@@ -73,7 +73,7 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SubpassImpl()
+	public SubpassImpl()
 	{
 		super();
 	}
@@ -110,8 +110,8 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SUBPASS__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__NAME, oldName, name));
 	}
 
 	/**
@@ -124,8 +124,7 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	{
 		if (refs == null)
 		{
-			refs = new EObjectContainmentEList<AttachmentRef>(AttachmentRef.class, this,
-					GraphicPackage.SUBPASS__REFS);
+			refs = new EObjectContainmentEList<AttachmentRef>(AttachmentRef.class, this, GraphicPackage.SUBPASS__REFS);
 		}
 		return refs;
 	}
@@ -136,9 +135,7 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

@@ -87,7 +87,7 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ShaderImpl()
+	public ShaderImpl()
 	{
 		super();
 	}
@@ -125,8 +125,8 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 		file = newFile;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ResourcePackage.SHADER__FILE, oldFile, newFile);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.SHADER__FILE,
+					oldFile, newFile);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -151,8 +151,8 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 			msgs = basicSetFile(newFile, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SHADER__FILE, newFile, newFile));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SHADER__FILE, newFile, newFile));
 	}
 
 	/**
@@ -176,8 +176,8 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 	{
 		EShaderStage oldStage = stage;
 		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SHADER__STAGE, oldStage, stage));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SHADER__STAGE, oldStage, stage));
 	}
 
 	/**
@@ -190,8 +190,8 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 	{
 		if (constants == null)
 		{
-			constants = new EObjectContainmentEList<SpecializationConstant>(
-					SpecializationConstant.class, this, ResourcePackage.SHADER__CONSTANTS);
+			constants = new EObjectContainmentEList<SpecializationConstant>(SpecializationConstant.class, this,
+					ResourcePackage.SHADER__CONSTANTS);
 		}
 		return constants;
 	}
@@ -202,9 +202,7 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

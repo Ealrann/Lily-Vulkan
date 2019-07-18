@@ -42,8 +42,7 @@ import org.sheepy.vulkan.model.enumeration.EPresentMode;
  *
  * @generated
  */
-public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container
-		implements SwapchainConfiguration
+public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container implements SwapchainConfiguration
 {
 	/**
 	 * The default value of the '{@link #getPresentationMode() <em>Presentation Mode</em>}' attribute.
@@ -110,7 +109,7 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SwapchainConfigurationImpl()
+	public SwapchainConfigurationImpl()
 	{
 		super();
 	}
@@ -146,12 +145,9 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container
 	public void setPresentationMode(EPresentMode newPresentationMode)
 	{
 		EPresentMode oldPresentationMode = presentationMode;
-		presentationMode = newPresentationMode == null
-				? PRESENTATION_MODE_EDEFAULT
-				: newPresentationMode;
+		presentationMode = newPresentationMode == null ? PRESENTATION_MODE_EDEFAULT : newPresentationMode;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE, oldPresentationMode,
-				presentationMode));
+				GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE, oldPresentationMode, presentationMode));
 	}
 
 	/**
@@ -176,8 +172,8 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container
 		int oldRequiredSwapImageCount = requiredSwapImageCount;
 		requiredSwapImageCount = newRequiredSwapImageCount;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT,
-				oldRequiredSwapImageCount, requiredSwapImageCount));
+				GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT, oldRequiredSwapImageCount,
+				requiredSwapImageCount));
 	}
 
 	/**
@@ -218,9 +214,7 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

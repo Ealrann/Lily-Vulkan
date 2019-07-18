@@ -20,8 +20,7 @@ public interface ResourceFactory extends EFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ResourceFactory eINSTANCE = org.sheepy.lily.vulkan.model.resource.impl.ResourceFactoryImpl
-			.init();
+	ResourceFactory eINSTANCE = org.sheepy.lily.vulkan.model.resource.impl.ResourceFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Basic Resource</em>'.
@@ -75,7 +74,7 @@ public interface ResourceFactory extends EFactory
 	 * @return a new object of class '<em>Composite Buffer</em>'.
 	 * @generated
 	 */
-	CompositeBuffer createCompositeBuffer();
+	<T> CompositeBuffer<T> createCompositeBuffer();
 
 	/**
 	 * Returns a new object of class '<em>Buffer Reference</em>'.
@@ -96,13 +95,22 @@ public interface ResourceFactory extends EFactory
 	CompositeBufferReference createCompositeBufferReference();
 
 	/**
-	 * Returns a new object of class '<em>Buffer Data Provider</em>'.
+	 * Returns a new object of class '<em>Vertex Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Buffer Data Provider</em>'.
+	 * @return a new object of class '<em>Vertex Provider</em>'.
 	 * @generated
 	 */
-	BufferDataProvider createBufferDataProvider();
+	<T> VertexProvider<T> createVertexProvider();
+
+	/**
+	 * Returns a new object of class '<em>Index Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Index Provider</em>'.
+	 * @generated
+	 */
+	<T> IndexProvider<T> createIndexProvider();
 
 	/**
 	 * Returns a new object of class '<em>Described Data Provider</em>'.
@@ -111,7 +119,7 @@ public interface ResourceFactory extends EFactory
 	 * @return a new object of class '<em>Described Data Provider</em>'.
 	 * @generated
 	 */
-	DescribedDataProvider createDescribedDataProvider();
+	<T> DescribedDataProvider<T> createDescribedDataProvider();
 
 	/**
 	 * Returns a new object of class '<em>Image</em>'.

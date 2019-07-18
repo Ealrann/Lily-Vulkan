@@ -96,7 +96,7 @@ public class InputDescriptorImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InputDescriptorImpl()
+	public InputDescriptorImpl()
 	{
 		super();
 	}
@@ -172,8 +172,8 @@ public class InputDescriptorImpl extends MinimalEObjectImpl.Container implements
 	{
 		if (attributes == null)
 		{
-			attributes = new EObjectContainmentEList<AttributeDescription>(
-					AttributeDescription.class, this, GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES);
+			attributes = new EObjectContainmentEList<AttributeDescription>(AttributeDescription.class, this,
+					GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES);
 		}
 		return attributes;
 	}
@@ -184,9 +184,7 @@ public class InputDescriptorImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

@@ -12,5 +12,5 @@ package org.sheepy.lily.vulkan.model.resource;
  * @model
  * @generated
  */
-public interface DescribedDataProvider extends BufferDataProvider, Descriptor
+public interface DescribedDataProvider<T> extends BufferDataProvider<T>, Descriptor
 {} // DescribedDataProvider

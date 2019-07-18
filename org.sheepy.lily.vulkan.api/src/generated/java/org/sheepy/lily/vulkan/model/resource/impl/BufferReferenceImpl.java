@@ -65,7 +65,7 @@ public class BufferReferenceImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BufferReferenceImpl()
+	public BufferReferenceImpl()
 	{
 		super();
 	}
@@ -95,9 +95,8 @@ public class BufferReferenceImpl extends MinimalEObjectImpl.Container implements
 			buffer = (Buffer) eResolveProxy(oldBuffer);
 			if (buffer != oldBuffer)
 			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ResourcePackage.BUFFER_REFERENCE__BUFFER, oldBuffer, buffer));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ResourcePackage.BUFFER_REFERENCE__BUFFER, oldBuffer, buffer));
 			}
 		}
 		return buffer;

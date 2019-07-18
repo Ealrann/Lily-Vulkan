@@ -94,7 +94,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GraphicProcessImpl()
+	public GraphicProcessImpl()
 	{
 		super();
 	}
@@ -125,9 +125,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 			maintainer = (Maintainer<GraphicProcess>) eResolveProxy(oldMaintainer);
 			if (maintainer != oldMaintainer)
 			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							GraphicPackage.GRAPHIC_PROCESS__MAINTAINER, oldMaintainer, maintainer));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						GraphicPackage.GRAPHIC_PROCESS__MAINTAINER, oldMaintainer, maintainer));
 			}
 		}
 		return maintainer;
@@ -148,8 +147,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetMaintainer(Maintainer<GraphicProcess> newMaintainer,
-												NotificationChain msgs)
+	public NotificationChain basicSetMaintainer(Maintainer<GraphicProcess> newMaintainer, NotificationChain msgs)
 	{
 		Maintainer<GraphicProcess> oldMaintainer = maintainer;
 		maintainer = newMaintainer;
@@ -201,16 +199,14 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetConfiguration(	GraphicConfiguration newConfiguration,
-													NotificationChain msgs)
+	public NotificationChain basicSetConfiguration(GraphicConfiguration newConfiguration, NotificationChain msgs)
 	{
 		GraphicConfiguration oldConfiguration = configuration;
 		configuration = newConfiguration;
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, oldConfiguration,
-					newConfiguration);
+					GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, oldConfiguration, newConfiguration);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -229,12 +225,9 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		{
 			NotificationChain msgs = null;
 			if (configuration != null) msgs = ((InternalEObject) configuration).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, null,
-					msgs);
-			if (newConfiguration != null)
-				msgs = ((InternalEObject) newConfiguration).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION,
-						null, msgs);
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, null, msgs);
+			if (newConfiguration != null) msgs = ((InternalEObject) newConfiguration).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, null, msgs);
 			msgs = basicSetConfiguration(newConfiguration, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -258,16 +251,14 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRenderPassInfo(RenderPassInfo newRenderPassInfo,
-													NotificationChain msgs)
+	public NotificationChain basicSetRenderPassInfo(RenderPassInfo newRenderPassInfo, NotificationChain msgs)
 	{
 		RenderPassInfo oldRenderPassInfo = renderPassInfo;
 		renderPassInfo = newRenderPassInfo;
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, oldRenderPassInfo,
-					newRenderPassInfo);
+					GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, oldRenderPassInfo, newRenderPassInfo);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -285,20 +276,15 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		if (newRenderPassInfo != renderPassInfo)
 		{
 			NotificationChain msgs = null;
-			if (renderPassInfo != null)
-				msgs = ((InternalEObject) renderPassInfo).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO,
-						null, msgs);
-			if (newRenderPassInfo != null)
-				msgs = ((InternalEObject) newRenderPassInfo).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO,
-						null, msgs);
+			if (renderPassInfo != null) msgs = ((InternalEObject) renderPassInfo).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, null, msgs);
+			if (newRenderPassInfo != null) msgs = ((InternalEObject) newRenderPassInfo).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, null, msgs);
 			msgs = basicSetRenderPassInfo(newRenderPassInfo, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, newRenderPassInfo,
-				newRenderPassInfo));
+				GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, newRenderPassInfo, newRenderPassInfo));
 	}
 
 	/**
@@ -333,9 +319,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(	InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
@@ -353,9 +337,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

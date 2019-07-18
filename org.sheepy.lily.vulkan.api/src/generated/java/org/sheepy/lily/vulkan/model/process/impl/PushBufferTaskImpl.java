@@ -87,7 +87,7 @@ public class PushBufferTaskImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PushBufferTaskImpl()
+	public PushBufferTaskImpl()
 	{
 		super();
 	}
@@ -124,8 +124,8 @@ public class PushBufferTaskImpl extends MinimalEObjectImpl.Container implements 
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PUSH_BUFFER_TASK__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, ProcessPackage.PUSH_BUFFER_TASK__NAME, oldName, name));
 	}
 
 	/**
@@ -167,9 +167,8 @@ public class PushBufferTaskImpl extends MinimalEObjectImpl.Container implements 
 			pushBuffer = (PushBuffer) eResolveProxy(oldPushBuffer);
 			if (pushBuffer != oldPushBuffer)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this,
-						Notification.RESOLVE, ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER,
-						oldPushBuffer, pushBuffer));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER, oldPushBuffer, pushBuffer));
 			}
 		}
 		return pushBuffer;

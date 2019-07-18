@@ -156,7 +156,7 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BufferImpl()
+	public BufferImpl()
 	{
 		super();
 	}
@@ -193,8 +193,8 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	{
 		long oldSize = size;
 		size = newSize;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.BUFFER__SIZE, oldSize, size));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__SIZE, oldSize, size));
 	}
 
 	/**
@@ -207,8 +207,7 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	{
 		if (usages == null)
 		{
-			usages = new EDataTypeUniqueEList<EBufferUsage>(EBufferUsage.class, this,
-					ResourcePackage.BUFFER__USAGES);
+			usages = new EDataTypeUniqueEList<EBufferUsage>(EBufferUsage.class, this, ResourcePackage.BUFFER__USAGES);
 		}
 		return usages;
 	}
@@ -234,8 +233,8 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	{
 		ByteBuffer oldData = data;
 		data = newData;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.BUFFER__DATA, oldData, data));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__DATA, oldData, data));
 	}
 
 	/**

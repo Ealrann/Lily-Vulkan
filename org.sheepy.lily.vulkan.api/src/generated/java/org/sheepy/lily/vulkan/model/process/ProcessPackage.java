@@ -1626,8 +1626,7 @@ public interface ProcessPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS = eINSTANCE
-				.getBindDescriptorSets_DescriptorSets();
+		EReference BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS = eINSTANCE.getBindDescriptorSets_DescriptorSets();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl <em>Push Constant</em>}' class.

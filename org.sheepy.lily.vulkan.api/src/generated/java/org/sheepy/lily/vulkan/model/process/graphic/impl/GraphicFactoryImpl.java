@@ -117,8 +117,7 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 		case GraphicPackage.BIND_INDEX_BUFFER:
 			return createBindIndexBuffer();
 		default:
-			throw new IllegalArgumentException(
-					"The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

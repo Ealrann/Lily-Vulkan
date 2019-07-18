@@ -57,13 +57,12 @@ public class BufferBarrierItemProvider extends AbstractBufferBarrierItemProvider
 	 */
 	protected void addBufferPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_BufferBarrier_buffer_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_BufferBarrier_buffer_feature",
-						"_UI_BufferBarrier_type"),
-				ResourcePackage.Literals.BUFFER_BARRIER__BUFFER, true, false, true, null, null,
-				null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_BufferBarrier_buffer_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_BufferBarrier_buffer_feature",
+								"_UI_BufferBarrier_type"),
+						ResourcePackage.Literals.BUFFER_BARRIER__BUFFER, true, false, true, null, null, null));
 	}
 
 	/**

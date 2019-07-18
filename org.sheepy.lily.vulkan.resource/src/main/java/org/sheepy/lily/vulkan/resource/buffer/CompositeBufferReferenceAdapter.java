@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.vulkan.api.resource.IBufferReferenceAdapter;
-import org.sheepy.lily.vulkan.api.resource.ICompositeBufferAdapter;
+import org.sheepy.lily.vulkan.api.resource.buffer.IBufferReferenceAdapter;
+import org.sheepy.lily.vulkan.api.resource.buffer.ICompositeBufferAdapter;
 import org.sheepy.lily.vulkan.model.resource.CompositeBufferReference;
 
 @Adapter(scope = CompositeBufferReference.class)

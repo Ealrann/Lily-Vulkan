@@ -9,9 +9,9 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.resource.IBufferDataProviderAdapter;
-import org.sheepy.lily.vulkan.api.resource.ICompositeBufferAdapter;
-import org.sheepy.lily.vulkan.api.resource.IPushBufferAdapter;
+import org.sheepy.lily.vulkan.api.resource.buffer.IBufferDataProviderAdapter;
+import org.sheepy.lily.vulkan.api.resource.buffer.ICompositeBufferAdapter;
+import org.sheepy.lily.vulkan.api.resource.buffer.IPushBufferAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
@@ -34,13 +34,15 @@ import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket.EReservati
 
 @Statefull
 @Adapter(scope = CompositeBuffer.class)
-public final class CompositeBufferAdapter implements ICompositeBufferAdapter
+public final class CompositeBufferAdapter<T> implements ICompositeBufferAdapter<T>
 {
 	private final List<DataProviderWrapper> providerWrappers;
 	private final List<IVkDescriptor> descriptors = new ArrayList<>();
 
-	private IBufferBackend bufferBackend;
 	private final PushBuffer pushBuffer;
+	private final T dataSource;
+
+	private IBufferBackend bufferBackend;
 
 	private final AdapterImpl pushBufferListener = new AdapterImpl()
 	{
@@ -55,9 +57,10 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		}
 	};
 
-	public CompositeBufferAdapter(CompositeBuffer compositeBuffer)
+	public CompositeBufferAdapter(CompositeBuffer<T> compositeBuffer)
 	{
-		pushBuffer = compositeBuffer.getPushBuffer();
+		this.pushBuffer = compositeBuffer.getPushBuffer();
+		this.dataSource = compositeBuffer.getDataSource();
 
 		final List<DataProviderWrapper> tmpList = new ArrayList<>();
 		for (final var dataProvider : compositeBuffer.getDataProviders())
@@ -124,7 +127,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		{
 			if (reservationSuccessfull)
 			{
-				providerWrapper.pushProvidedData();
+				providerWrapper.pushProvidedData(dataSource);
 			}
 			else
 			{
@@ -195,8 +198,8 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	private final class DataProviderWrapper
 	{
 		private final int usage;
-		private final BufferDataProvider dataProvider;
-		private final IBufferDataProviderAdapter adapter;
+		private final BufferDataProvider<T> dataProvider;
+		private final IBufferDataProviderAdapter<T> adapter;
 
 		private final EAccess access;
 		private final EPipelineStage stage;
@@ -208,7 +211,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		private MemoryTicket memTicket;
 		private IStagingBuffer stagingBuffer;
 
-		private DataProviderWrapper(BufferDataProvider dataProvider)
+		private DataProviderWrapper(BufferDataProvider<T> dataProvider)
 		{
 			this.dataProvider = dataProvider;
 			this.adapter = IBufferDataProviderAdapter.adapt(dataProvider);
@@ -220,7 +223,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 
 		public boolean needUpdate()
 		{
-			return needUpdate || adapter.hasChanged();
+			return needUpdate || adapter.hasChanged(dataSource);
 		}
 
 		public boolean reserveMemory(IStagingBuffer stagingBuffer)
@@ -237,16 +240,16 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			stagingBuffer.releaseTicket(memTicket);
 		}
 
-		private void pushProvidedData()
+		private void pushProvidedData(T dataSource)
 		{
 			assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
 
 			final long bufferAddress = bufferBackend.getAddress();
 
-			adapter.fill(memTicket.getMemoryPtr());
+			adapter.fill(dataSource, memTicket.getMemoryPtr());
 
-			final var pushCommand = IDataFlowCommand.newPipelinePushCommand(memTicket,
-					bufferAddress, alignedOffset, stage, access);
+			final var pushCommand = IDataFlowCommand.newPipelinePushCommand(memTicket, bufferAddress, alignedOffset,
+					stage, access);
 
 			stagingBuffer.addStagingCommand(pushCommand);
 
@@ -255,7 +258,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 
 		public IVkDescriptor createDescriptor(long bufferPtr)
 		{
-			final var described = (DescribedDataProvider) dataProvider;
+			final var described = (DescribedDataProvider<T>) dataProvider;
 
 			final var type = described.getDescriptorType();
 			final var stages = described.getShaderStages();

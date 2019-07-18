@@ -49,8 +49,7 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  *
  * @generated
  */
-public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
-		implements AbstractProcess
+public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container implements AbstractProcess
 {
 	/**
 	 * The cached value of the '{@link #getResourcePkg() <em>Resource Pkg</em>}' containment reference.
@@ -177,7 +176,7 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AbstractProcessImpl()
+	public AbstractProcessImpl()
 	{
 		super();
 	}
@@ -235,11 +234,9 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 		{
 			NotificationChain msgs = null;
 			if (resourcePkg != null) msgs = ((InternalEObject) resourcePkg).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, null,
-					msgs);
+					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, null, msgs);
 			if (newResourcePkg != null) msgs = ((InternalEObject) newResourcePkg).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, null,
-					msgs);
+					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, null, msgs);
 			msgs = basicSetResourcePkg(newResourcePkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -268,8 +265,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.ABSTRACT_PROCESS__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__NAME, oldName, name));
 	}
 
 	/**
@@ -319,8 +316,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 		boolean oldWaitingFenceDuringAcquire = waitingFenceDuringAcquire;
 		waitingFenceDuringAcquire = newWaitingFenceDuringAcquire;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE,
-				oldWaitingFenceDuringAcquire, waitingFenceDuringAcquire));
+				ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE, oldWaitingFenceDuringAcquire,
+				waitingFenceDuringAcquire));
 	}
 
 	/**
@@ -438,9 +435,7 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

@@ -211,7 +211,7 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ImageImpl()
+	public ImageImpl()
 	{
 		super();
 	}
@@ -248,8 +248,8 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	{
 		int oldWidth = width;
 		width = newWidth;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.IMAGE__WIDTH, oldWidth, width));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__WIDTH, oldWidth, width));
 	}
 
 	/**
@@ -273,8 +273,8 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	{
 		int oldHeight = height;
 		height = newHeight;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.IMAGE__HEIGHT, oldHeight, height));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__HEIGHT, oldHeight, height));
 	}
 
 	/**
@@ -298,8 +298,8 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	{
 		EFormat oldFormat = format;
 		format = newFormat == null ? FORMAT_EDEFAULT : newFormat;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.IMAGE__FORMAT, oldFormat, format));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__FORMAT, oldFormat, format));
 	}
 
 	/**
@@ -312,8 +312,7 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	{
 		if (usages == null)
 		{
-			usages = new EDataTypeUniqueEList<EImageUsage>(EImageUsage.class, this,
-					ResourcePackage.IMAGE__USAGES);
+			usages = new EDataTypeUniqueEList<EImageUsage>(EImageUsage.class, this, ResourcePackage.IMAGE__USAGES);
 		}
 		return usages;
 	}
@@ -364,8 +363,8 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	{
 		int oldTiling = tiling;
 		tiling = newTiling;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.IMAGE__TILING, oldTiling, tiling));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__TILING, oldTiling, tiling));
 	}
 
 	/**
@@ -409,8 +408,7 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitialLayout(	ImageLayout newInitialLayout,
-													NotificationChain msgs)
+	public NotificationChain basicSetInitialLayout(ImageLayout newInitialLayout, NotificationChain msgs)
 	{
 		ImageLayout oldInitialLayout = initialLayout;
 		initialLayout = newInitialLayout;
@@ -437,9 +435,8 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 			NotificationChain msgs = null;
 			if (initialLayout != null) msgs = ((InternalEObject) initialLayout).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE - ResourcePackage.IMAGE__INITIAL_LAYOUT, null, msgs);
-			if (newInitialLayout != null)
-				msgs = ((InternalEObject) newInitialLayout).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - ResourcePackage.IMAGE__INITIAL_LAYOUT, null, msgs);
+			if (newInitialLayout != null) msgs = ((InternalEObject) newInitialLayout).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - ResourcePackage.IMAGE__INITIAL_LAYOUT, null, msgs);
 			msgs = basicSetInitialLayout(newInitialLayout, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -478,9 +475,7 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

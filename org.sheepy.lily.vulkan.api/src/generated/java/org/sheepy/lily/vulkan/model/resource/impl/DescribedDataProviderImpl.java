@@ -9,7 +9,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
@@ -35,8 +34,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  *
  * @generated
  */
-public class DescribedDataProviderImpl extends BufferDataProviderImpl
-		implements DescribedDataProvider
+public class DescribedDataProviderImpl<T> extends BufferDataProviderImpl<T> implements DescribedDataProvider<T>
 {
 	/**
 	 * The default value of the '{@link #getDescriptorType() <em>Descriptor Type</em>}' attribute.
@@ -73,7 +71,7 @@ public class DescribedDataProviderImpl extends BufferDataProviderImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DescribedDataProviderImpl()
+	public DescribedDataProviderImpl()
 	{
 		super();
 	}
@@ -111,8 +109,7 @@ public class DescribedDataProviderImpl extends BufferDataProviderImpl
 		EDescriptorType oldDescriptorType = descriptorType;
 		descriptorType = newDescriptorType == null ? DESCRIPTOR_TYPE_EDEFAULT : newDescriptorType;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE, oldDescriptorType,
-				descriptorType));
+				ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
 	}
 
 	/**

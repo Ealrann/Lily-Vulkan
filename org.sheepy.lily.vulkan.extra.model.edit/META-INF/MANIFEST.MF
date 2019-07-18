@@ -10,7 +10,8 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.sheepy.lily.vulkan.extra.model.mesh.provider,
  org.sheepy.lily.vulkan.extra.model.nuklear.provider,
- org.sheepy.lily.vulkan.extra.model.rendering.provider
+ org.sheepy.lily.vulkan.extra.model.rendering.provider,
+ org.sheepy.lily.vulkan.extra.model.sprite.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit;visibility:=reexport,
  org.sheepy.lily.vulkan.model;visibility:=reexport,

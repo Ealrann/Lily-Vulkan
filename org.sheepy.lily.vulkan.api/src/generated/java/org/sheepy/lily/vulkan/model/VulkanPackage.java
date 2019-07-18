@@ -474,8 +474,7 @@ public interface VulkanPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference IRESOURCE_CONTAINER__RESOURCE_PKG = eINSTANCE
-				.getIResourceContainer_ResourcePkg();
+		EReference IRESOURCE_CONTAINER__RESOURCE_PKG = eINSTANCE.getIResourceContainer_ResourcePkg();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl <em>Resource Pkg</em>}' class.

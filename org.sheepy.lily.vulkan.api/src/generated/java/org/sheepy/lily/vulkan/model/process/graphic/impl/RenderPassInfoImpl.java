@@ -97,7 +97,7 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RenderPassInfoImpl()
+	public RenderPassInfoImpl()
 	{
 		super();
 	}
@@ -123,8 +123,7 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	{
 		if (attachments == null)
 		{
-			attachments = new EObjectContainmentEList<AttachmentDescription>(
-					AttachmentDescription.class, this,
+			attachments = new EObjectContainmentEList<AttachmentDescription>(AttachmentDescription.class, this,
 					GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS);
 		}
 		return attachments;
@@ -156,8 +155,8 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	{
 		if (dependencies == null)
 		{
-			dependencies = new EObjectContainmentEList<SubpassDependency>(SubpassDependency.class,
-					this, GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES);
+			dependencies = new EObjectContainmentEList<SubpassDependency>(SubpassDependency.class, this,
+					GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES);
 		}
 		return dependencies;
 	}
@@ -193,9 +192,7 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

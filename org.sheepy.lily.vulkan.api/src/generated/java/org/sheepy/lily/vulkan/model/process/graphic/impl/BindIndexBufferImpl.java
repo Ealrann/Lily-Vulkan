@@ -111,7 +111,7 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BindIndexBufferImpl()
+	public BindIndexBufferImpl()
 	{
 		super();
 	}
@@ -148,8 +148,8 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.BIND_INDEX_BUFFER__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, GraphicPackage.BIND_INDEX_BUFFER__NAME, oldName, name));
 	}
 
 	/**
@@ -218,8 +218,7 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBufferRef(	IBufferReference newBufferRef,
-												NotificationChain msgs)
+	public NotificationChain basicSetBufferRef(IBufferReference newBufferRef, NotificationChain msgs)
 	{
 		IBufferReference oldBufferRef = bufferRef;
 		bufferRef = newBufferRef;
@@ -245,11 +244,9 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 		{
 			NotificationChain msgs = null;
 			if (bufferRef != null) msgs = ((InternalEObject) bufferRef).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, null,
-					msgs);
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, null, msgs);
 			if (newBufferRef != null) msgs = ((InternalEObject) newBufferRef).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, null,
-					msgs);
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, null, msgs);
 			msgs = basicSetBufferRef(newBufferRef, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -263,9 +260,7 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

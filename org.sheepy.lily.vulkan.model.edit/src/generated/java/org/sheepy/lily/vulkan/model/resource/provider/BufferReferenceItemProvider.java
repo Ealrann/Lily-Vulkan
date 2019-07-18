@@ -31,9 +31,8 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class BufferReferenceItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class BufferReferenceItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -73,13 +72,12 @@ public class BufferReferenceItemProvider extends ItemProviderAdapter
 	 */
 	protected void addBufferPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_BufferReference_buffer_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_BufferReference_buffer_feature", "_UI_BufferReference_type"),
-				ResourcePackage.Literals.BUFFER_REFERENCE__BUFFER, true, false, true, null, null,
-				null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_BufferReference_buffer_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_BufferReference_buffer_feature",
+								"_UI_BufferReference_type"),
+						ResourcePackage.Literals.BUFFER_REFERENCE__BUFFER, true, false, true, null, null, null));
 	}
 
 	/**
@@ -90,13 +88,13 @@ public class BufferReferenceItemProvider extends ItemProviderAdapter
 	 */
 	protected void addOffsetPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_BufferReference_offset_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_BufferReference_offset_feature", "_UI_BufferReference_type"),
-				ResourcePackage.Literals.BUFFER_REFERENCE__OFFSET, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_BufferReference_offset_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_BufferReference_offset_feature",
+								"_UI_BufferReference_type"),
+						ResourcePackage.Literals.BUFFER_REFERENCE__OFFSET, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -139,8 +137,7 @@ public class BufferReferenceItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(BufferReference.class))
 		{
 		case ResourcePackage.BUFFER_REFERENCE__OFFSET:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

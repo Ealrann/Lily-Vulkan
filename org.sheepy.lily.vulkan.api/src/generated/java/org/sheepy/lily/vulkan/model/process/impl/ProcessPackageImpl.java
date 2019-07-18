@@ -208,8 +208,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 */
 	public static ProcessPackage init()
 	{
-		if (isInited)
-			return (ProcessPackage) EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
+		if (isInited) return (ProcessPackage) EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
 
 		// Obtain or create and register package
 		Object registeredProcessPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
@@ -848,20 +847,16 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		VulkanPackage theVulkanPackage = (VulkanPackage) EPackage.Registry.INSTANCE
-				.getEPackage(VulkanPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
-				.getEPackage(EcorePackage.eNS_URI);
+		VulkanPackage theVulkanPackage = (VulkanPackage) EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage) EPackage.Registry.INSTANCE
 				.getEPackage(ResourcePackage.eNS_URI);
-		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE
-				.getEPackage(TypesPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(EnumerationPackage.eNS_URI);
 		PipelinePackage thePipelinePackage = (PipelinePackage) EPackage.Registry.INSTANCE
 				.getEPackage(PipelinePackage.eNS_URI);
-		RootPackage theRootPackage = (RootPackage) EPackage.Registry.INSTANCE
-				.getEPackage(RootPackage.eNS_URI);
+		RootPackage theRootPackage = (RootPackage) EPackage.Registry.INSTANCE.getEPackage(RootPackage.eNS_URI);
 		BarrierPackage theBarrierPackage = (BarrierPackage) EPackage.Registry.INSTANCE
 				.getEPackage(BarrierPackage.eNS_URI);
 		MaintainerPackage theMaintainerPackage = (MaintainerPackage) EPackage.Registry.INSTANCE
@@ -893,145 +888,130 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		getBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbstractProcess_WaitingFenceDuringAcquire(),
-				theEcorePackage.getEBoolean(), "waitingFenceDuringAcquire", "false", 0, 1,
-				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcess_PartPkg(), this.getProcessPartPkg(), null, "partPkg",
-				null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getAbstractProcess_ResetAllowed(), theEcorePackage.getEBoolean(),
-				"resetAllowed", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAbstractProcess_WaitingFenceDuringAcquire(), theEcorePackage.getEBoolean(),
+				"waitingFenceDuringAcquire", "false", 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcess_Signals(), theResourcePackage.getSemaphore(), null,
-				"signals", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+		initEReference(getAbstractProcess_PartPkg(), this.getProcessPartPkg(), null, "partPkg", null, 0, 1,
+				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractProcess_ResetAllowed(), theEcorePackage.getEBoolean(), "resetAllowed", null, 0, 1,
+				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcess_WaitFor(), theResourcePackage.getSemaphore(), null,
-				"waitFor", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+		initEReference(getAbstractProcess_Signals(), theResourcePackage.getSemaphore(), null, "signals", null, 0, -1,
+				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractProcess_WaitFor(), theResourcePackage.getSemaphore(), null, "waitFor", null, 0, -1,
+				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(configurationEClass, Configuration.class, "Configuration", IS_ABSTRACT, IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(processPartPkgEClass, ProcessPartPkg.class, "ProcessPartPkg", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProcessPartPkg_Parts(), this.getIProcessPart(), null, "parts", null, 0, -1,
+				ProcessPartPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iPipelineTaskEClass, IPipelineTask.class, "IPipelineTask", IS_ABSTRACT, IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIPipelineTask_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true", 0, 1,
+				IPipelineTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(configurationEClass, Configuration.class, "Configuration", IS_ABSTRACT,
-				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(processPartPkgEClass, ProcessPartPkg.class, "ProcessPartPkg", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProcessPartPkg_Parts(), this.getIProcessPart(), null, "parts", null, 0,
-				-1, ProcessPartPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(iPipelineTaskEClass, IPipelineTask.class, "IPipelineTask", IS_ABSTRACT,
-				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIPipelineTask_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true",
-				0, 1, IPipelineTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(iProcessPartEClass, IProcessPart.class, "IProcessPart", IS_ABSTRACT,
-				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(iProcessPartEClass, IProcessPart.class, "IProcessPart", IS_ABSTRACT, IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iPipelineEClass, IPipeline.class, "IPipeline", IS_ABSTRACT, IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIPipeline_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true", 0,
-				1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getIPipeline_Stage(), theEnumerationPackage.getECommandStage(), "stage",
-				"Render", 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIPipeline_PushConstantRanges(), thePipelinePackage.getPushConstantRange(),
-				null, "pushConstantRanges", null, 0, -1, IPipeline.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getIPipeline_SpecializationData(), theResourcePackage.getByteBuffer(),
-				"specializationData", null, 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIPipeline_DescriptorSetPkg(), theResourcePackage.getDescriptorSetPkg(),
-				null, "descriptorSetPkg", null, 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+		initEAttribute(getIPipeline_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true", 0, 1, IPipeline.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getIPipeline_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Render", 0, 1,
+				IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEReference(getIPipeline_TaskPkg(), this.getTaskPkg(), null, "taskPkg", null, 0, 1,
-				IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIPipeline_PushConstantRanges(), thePipelinePackage.getPushConstantRange(), null,
+				"pushConstantRanges", null, 0, -1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIPipeline_SpecializationData(), theResourcePackage.getByteBuffer(), "specializationData",
+				null, 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIPipeline_DescriptorSetPkg(), theResourcePackage.getDescriptorSetPkg(), null,
+				"descriptorSetPkg", null, 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIPipeline_TaskPkg(), this.getTaskPkg(), null, "taskPkg", null, 0, 1, IPipeline.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(taskPkgEClass, TaskPkg.class, "TaskPkg", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTaskPkg_Tasks(), this.getIPipelineTask(), null, "tasks", null, 0, -1,
-				TaskPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(taskPkgEClass, TaskPkg.class, "TaskPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTaskPkg_Tasks(), this.getIPipelineTask(), null, "tasks", null, 0, -1, TaskPkg.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pipelineEClass, Pipeline.class, "Pipeline", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(pipelineBarrierEClass, PipelineBarrier.class, "PipelineBarrier", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPipelineBarrier_Barriers(), theBarrierPackage.getBarrier(), null,
-				"barriers", null, 1, -1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+		initEClass(pipelineBarrierEClass, PipelineBarrier.class, "PipelineBarrier", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPipelineBarrier_Barriers(), theBarrierPackage.getBarrier(), null, "barriers", null, 1, -1,
+				PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPipelineBarrier_SrcStage(), theEnumerationPackage.getEPipelineStage(), "srcStage", null, 0, 1,
+				PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPipelineBarrier_SrcStage(), theEnumerationPackage.getEPipelineStage(),
-				"srcStage", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPipelineBarrier_DstStage(), theEnumerationPackage.getEPipelineStage(),
-				"dstStage", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPipelineBarrier_SrcQueue(), this.getAbstractProcess(), null, "srcQueue",
-				null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getPipelineBarrier_DstQueue(), this.getAbstractProcess(), null, "dstQueue",
-				null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEAttribute(getPipelineBarrier_DstStage(), theEnumerationPackage.getEPipelineStage(), "dstStage", null, 0, 1,
+				PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getPipelineBarrier_SrcQueue(), this.getAbstractProcess(), null, "srcQueue", null, 0, 1,
+				PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPipelineBarrier_DstQueue(), this.getAbstractProcess(), null, "dstQueue", null, 0, 1,
+				PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(compositeTaskEClass, CompositeTask.class, "CompositeTask", !IS_ABSTRACT,
+		initEClass(compositeTaskEClass, CompositeTask.class, "CompositeTask", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCompositeTask_RepeatCount(), theEcorePackage.getEInt(), "repeatCount", "1", 0, 1,
+				CompositeTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositeTask_Tasks(), this.getIPipelineTask(), null, "tasks", null, 0, -1,
+				CompositeTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(bindDescriptorSetsEClass, BindDescriptorSets.class, "BindDescriptorSets", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCompositeTask_RepeatCount(), theEcorePackage.getEInt(), "repeatCount",
-				"1", 0, 1, CompositeTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCompositeTask_Tasks(), this.getIPipelineTask(), null, "tasks", null, 0,
-				-1, CompositeTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBindDescriptorSets_DescriptorSets(), theResourcePackage.getDescriptorSet(), null,
+				"descriptorSets", null, 0, -1, BindDescriptorSets.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(bindDescriptorSetsEClass, BindDescriptorSets.class, "BindDescriptorSets",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBindDescriptorSets_DescriptorSets(),
-				theResourcePackage.getDescriptorSet(), null, "descriptorSets", null, 0, -1,
-				BindDescriptorSets.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+		initEClass(pushConstantEClass, PushConstant.class, "PushConstant", IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPushConstant_Stages(), theEnumerationPackage.getEShaderStage(), "stages", null, 1, -1,
+				PushConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(pushConstantBufferEClass, PushConstantBuffer.class, "PushConstantBuffer", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPushConstantBuffer_Buffer(), theResourcePackage.getConstantBuffer(), null, "buffer", null, 1,
+				1, PushConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(pushConstantEClass, PushConstant.class, "PushConstant", IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPushConstant_Stages(), theEnumerationPackage.getEShaderStage(), "stages",
-				null, 1, -1, PushConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(pushBufferTaskEClass, PushBufferTask.class, "PushBufferTask", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPushBufferTask_PushBuffer(), theResourcePackage.getPushBuffer(), null, "pushBuffer", null, 1,
+				1, PushBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(pushConstantBufferEClass, PushConstantBuffer.class, "PushConstantBuffer",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPushConstantBuffer_Buffer(), theResourcePackage.getConstantBuffer(), null,
-				"buffer", null, 1, 1, PushConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-
-		initEClass(pushBufferTaskEClass, PushBufferTask.class, "PushBufferTask", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPushBufferTask_PushBuffer(), theResourcePackage.getPushBuffer(), null,
-				"pushBuffer", null, 1, 1, PushBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-
-		initEClass(getBufferTaskEClass, GetBufferTask.class, "GetBufferTask", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGetBufferTask_GetBuffer(), theResourcePackage.getGetBuffer(), null,
-				"getBuffer", null, 1, 1, GetBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getGetBufferTask_DeviceBuffer(), theResourcePackage.getBuffer(), null,
-				"deviceBuffer", null, 0, 1, GetBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(getBufferTaskEClass, GetBufferTask.class, "GetBufferTask", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGetBufferTask_GetBuffer(), theResourcePackage.getGetBuffer(), null, "getBuffer", null, 1, 1,
+				GetBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGetBufferTask_DeviceBuffer(), theResourcePackage.getBuffer(), null, "deviceBuffer", null, 0,
+				1, GetBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

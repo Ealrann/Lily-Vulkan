@@ -2,9 +2,10 @@
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sheepy.lily.vulkan.model/src/generated/java"
     editDirectory="/org.sheepy.lily.vulkan.model.edit/src/generated/java" editorDirectory=""
-    modelPluginID="org.sheepy.lily.vulkan.model" modelName="LilyVulkan" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    codeFormatting="true" testsDirectory="" importerID="org.eclipse.emf.ecore.xcore.importer"
-    complianceLevel="11.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline"
+    modelPluginID="org.sheepy.lily.vulkan.model" modelName="LilyVulkan" updateClasspath="false"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    testsDirectory="" importerID="org.eclipse.emf.ecore.xcore.importer" complianceLevel="11.0"
+    copyrightFields="false" publicConstructors="true" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline"
     importOrganizing="true" cleanup="true" eclipsePlatformVersion="2019-06">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
     <genAnnotations source="selectedPackages">
@@ -149,8 +150,10 @@
           ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/instanceCount"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//CompositeBuffer">
+      <genTypeParameters ecoreTypeParameter="resource.ecore#//CompositeBuffer/T"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/dataProviders"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/pushBuffer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/dataSource"/>
     </genClasses>
     <genClasses image="false" ecoreClass="resource.ecore#//IBufferReference"/>
     <genClasses ecoreClass="resource.ecore#//BufferReference">
@@ -162,11 +165,21 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBufferReference/part"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//BufferDataProvider">
+      <genTypeParameters ecoreTypeParameter="resource.ecore#//BufferDataProvider/T"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/size"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usage"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/instanceCount"/>
     </genClasses>
-    <genClasses ecoreClass="resource.ecore#//DescribedDataProvider"/>
+    <genClasses ecoreClass="resource.ecore#//VertexProvider">
+      <genTypeParameters ecoreTypeParameter="resource.ecore#//VertexProvider/T"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//IndexProvider">
+      <genTypeParameters ecoreTypeParameter="resource.ecore#//IndexProvider/T"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//IndexProvider/indexType"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//DescribedDataProvider">
+      <genTypeParameters ecoreTypeParameter="resource.ecore#//DescribedDataProvider/T"/>
+    </genClasses>
     <genClasses ecoreClass="resource.ecore#//Image">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Image/width"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Image/height"/>

@@ -132,8 +132,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 */
 	public static VulkanPackage init()
 	{
-		if (isInited)
-			return (VulkanPackage) EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
+		if (isInited) return (VulkanPackage) EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 
 		// Obtain or create and register package
 		Object registeredVulkanPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
@@ -405,12 +404,10 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		// Obtain other dependent packages
 		ApplicationPackage theApplicationPackage = (ApplicationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ApplicationPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
-				.getEPackage(EcorePackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(EnumerationPackage.eNS_URI);
-		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE
-				.getEPackage(TypesPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -426,43 +423,40 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		iProcessEClass.getESuperTypes().add(this.getIExecutionManager());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(vulkanEngineEClass, VulkanEngine.class, "VulkanEngine", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getVulkanEngine_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true",
-				0, 1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVulkanEngine_Processes(), this.getIProcess(), null, "processes", null, 0,
-				-1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getVulkanEngine_Features(),
-				theEnumerationPackage.getEPhysicalDeviceFeature(), "features", null, 0, -1,
-				VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(iResourceContainerEClass, IResourceContainer.class, "IResourceContainer",
-				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIResourceContainer_ResourcePkg(), this.getResourcePkg(), null,
-				"resourcePkg", null, 0, 1, IResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+		initEClass(vulkanEngineEClass, VulkanEngine.class, "VulkanEngine", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getVulkanEngine_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true", 0, 1,
+				VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEReference(getVulkanEngine_Processes(), this.getIProcess(), null, "processes", null, 0, -1,
+				VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVulkanEngine_Features(), theEnumerationPackage.getEPhysicalDeviceFeature(), "features", null,
+				0, -1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iResourceContainerEClass, IResourceContainer.class, "IResourceContainer", IS_ABSTRACT, IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIResourceContainer_ResourcePkg(), this.getResourcePkg(), null, "resourcePkg", null, 0, 1,
+				IResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(resourcePkgEClass, ResourcePkg.class, "ResourcePkg", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getResourcePkg_Resources(), this.getIResource(), null, "resources", null, 0,
-				-1, ResourcePkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getResourcePkg_Resources(), this.getIResource(), null, "resources", null, 0, -1,
+				ResourcePkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iResourceEClass, IResource.class, "IResource", IS_ABSTRACT, IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(iProcessEClass, IProcess.class, "IProcess", IS_ABSTRACT, IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIProcess_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true", 0,
-				1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(iProcessEClass, IProcess.class, "IProcess", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIProcess_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true", 0, 1, IProcess.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
-		initEClass(iExecutionManagerEClass, IExecutionManager.class, "IExecutionManager",
-				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(iExecutionManagerEClass, IExecutionManager.class, "IExecutionManager", IS_ABSTRACT, IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

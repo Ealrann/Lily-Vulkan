@@ -67,7 +67,7 @@ public class AttachmentRefImpl extends MinimalEObjectImpl.Container implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AttachmentRefImpl()
+	public AttachmentRefImpl()
 	{
 		super();
 	}
@@ -97,9 +97,8 @@ public class AttachmentRefImpl extends MinimalEObjectImpl.Container implements A
 			attachment = (AttachmentDescription) eResolveProxy(oldAttachment);
 			if (attachment != oldAttachment)
 			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							GraphicPackage.ATTACHMENT_REF__ATTACHMENT, oldAttachment, attachment));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						GraphicPackage.ATTACHMENT_REF__ATTACHMENT, oldAttachment, attachment));
 			}
 		}
 		return attachment;

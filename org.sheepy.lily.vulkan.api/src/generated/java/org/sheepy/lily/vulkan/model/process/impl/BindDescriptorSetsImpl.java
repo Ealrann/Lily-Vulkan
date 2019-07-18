@@ -35,8 +35,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  *
  * @generated
  */
-public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container
-		implements BindDescriptorSets
+public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container implements BindDescriptorSets
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -93,7 +92,7 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BindDescriptorSetsImpl()
+	public BindDescriptorSetsImpl()
 	{
 		super();
 	}

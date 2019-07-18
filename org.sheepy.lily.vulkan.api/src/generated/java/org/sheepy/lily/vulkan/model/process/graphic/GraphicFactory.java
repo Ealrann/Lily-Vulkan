@@ -20,8 +20,7 @@ public interface GraphicFactory extends EFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	GraphicFactory eINSTANCE = org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicFactoryImpl
-			.init();
+	GraphicFactory eINSTANCE = org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Configuration</em>'.

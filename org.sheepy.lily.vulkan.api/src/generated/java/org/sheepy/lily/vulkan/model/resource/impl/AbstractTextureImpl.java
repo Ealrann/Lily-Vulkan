@@ -51,7 +51,7 @@ public abstract class AbstractTextureImpl extends SampledImageImpl implements Ab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AbstractTextureImpl()
+	public AbstractTextureImpl()
 	{
 		super();
 	}

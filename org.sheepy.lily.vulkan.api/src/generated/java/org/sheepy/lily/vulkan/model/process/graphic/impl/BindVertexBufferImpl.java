@@ -115,7 +115,7 @@ public class BindVertexBufferImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BindVertexBufferImpl()
+	public BindVertexBufferImpl()
 	{
 		super();
 	}
@@ -152,8 +152,8 @@ public class BindVertexBufferImpl extends MinimalEObjectImpl.Container implement
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.BIND_VERTEX_BUFFER__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, GraphicPackage.BIND_VERTEX_BUFFER__NAME, oldName, name));
 	}
 
 	/**
@@ -228,9 +228,7 @@ public class BindVertexBufferImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

@@ -63,13 +63,12 @@ public class FontItemProvider extends SampledImageItemProvider
 	 */
 	protected void addHeightPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Font_height_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Font_height_feature",
-						"_UI_Font_type"),
-				ResourcePackage.Literals.FONT__HEIGHT, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Font_height_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Font_height_feature", "_UI_Font_type"),
+						ResourcePackage.Literals.FONT__HEIGHT, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -147,12 +146,10 @@ public class FontItemProvider extends SampledImageItemProvider
 		switch (notification.getFeatureID(Font.class))
 		{
 		case ResourcePackage.FONT__HEIGHT:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ResourcePackage.FONT__FILE:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);

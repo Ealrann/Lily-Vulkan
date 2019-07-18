@@ -44,7 +44,7 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SampledImageImpl()
+	public SampledImageImpl()
 	{
 		super();
 	}
@@ -118,9 +118,7 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

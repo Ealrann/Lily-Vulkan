@@ -182,7 +182,7 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PipelineImpl()
+	public PipelineImpl()
 	{
 		super();
 	}
@@ -219,8 +219,8 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PIPELINE__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE__NAME, oldName, name));
 	}
 
 	/**
@@ -296,8 +296,8 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PIPELINE__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -321,8 +321,8 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	{
 		ECommandStage oldStage = stage;
 		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PIPELINE__STAGE, oldStage, stage));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE__STAGE, oldStage, stage));
 	}
 
 	/**
@@ -335,8 +335,8 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	{
 		if (pushConstantRanges == null)
 		{
-			pushConstantRanges = new EObjectContainmentEList<PushConstantRange>(
-					PushConstantRange.class, this, ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES);
+			pushConstantRanges = new EObjectContainmentEList<PushConstantRange>(PushConstantRange.class, this,
+					ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES);
 		}
 		return pushConstantRanges;
 	}
@@ -363,8 +363,7 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 		ByteBuffer oldSpecializationData = specializationData;
 		specializationData = newSpecializationData;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PIPELINE__SPECIALIZATION_DATA, oldSpecializationData,
-				specializationData));
+				ProcessPackage.PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
 	}
 
 	/**
@@ -383,16 +382,14 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDescriptorSetPkg(	DescriptorSetPkg newDescriptorSetPkg,
-														NotificationChain msgs)
+	public NotificationChain basicSetDescriptorSetPkg(DescriptorSetPkg newDescriptorSetPkg, NotificationChain msgs)
 	{
 		DescriptorSetPkg oldDescriptorSetPkg = descriptorSetPkg;
 		descriptorSetPkg = newDescriptorSetPkg;
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG, oldDescriptorSetPkg,
-					newDescriptorSetPkg);
+					ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG, oldDescriptorSetPkg, newDescriptorSetPkg);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -410,20 +407,15 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 		if (newDescriptorSetPkg != descriptorSetPkg)
 		{
 			NotificationChain msgs = null;
-			if (descriptorSetPkg != null)
-				msgs = ((InternalEObject) descriptorSetPkg).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG, null,
-						msgs);
-			if (newDescriptorSetPkg != null)
-				msgs = ((InternalEObject) newDescriptorSetPkg).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG, null,
-						msgs);
+			if (descriptorSetPkg != null) msgs = ((InternalEObject) descriptorSetPkg).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
+			if (newDescriptorSetPkg != null) msgs = ((InternalEObject) newDescriptorSetPkg).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
 			msgs = basicSetDescriptorSetPkg(newDescriptorSetPkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG, newDescriptorSetPkg,
-				newDescriptorSetPkg));
+				ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG, newDescriptorSetPkg, newDescriptorSetPkg));
 	}
 
 	/**
@@ -484,9 +476,7 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

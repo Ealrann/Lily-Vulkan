@@ -31,7 +31,7 @@ public interface CompositeBufferReference extends IBufferReference
 	 * @model required="true"
 	 * @generated
 	 */
-	CompositeBuffer getBuffer();
+	CompositeBuffer<?> getBuffer();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.CompositeBufferReference#getBuffer <em>Buffer</em>}' reference.
@@ -41,7 +41,7 @@ public interface CompositeBufferReference extends IBufferReference
 	 * @see #getBuffer()
 	 * @generated
 	 */
-	void setBuffer(CompositeBuffer value);
+	void setBuffer(CompositeBuffer<?> value);
 
 	/**
 	 * Returns the value of the '<em><b>Part</b></em>' attribute.

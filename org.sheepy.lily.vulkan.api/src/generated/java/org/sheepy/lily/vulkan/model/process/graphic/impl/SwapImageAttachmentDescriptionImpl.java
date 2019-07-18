@@ -22,7 +22,7 @@ public class SwapImageAttachmentDescriptionImpl extends AttachmentDescriptionImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SwapImageAttachmentDescriptionImpl()
+	public SwapImageAttachmentDescriptionImpl()
 	{
 		super();
 	}

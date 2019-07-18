@@ -5,19 +5,15 @@ package org.sheepy.lily.vulkan.model.resource.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.PushBuffer;
@@ -34,11 +30,12 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getDataProviders <em>Data Providers</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getPushBuffer <em>Push Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements CompositeBuffer
+public class CompositeBufferImpl<T> extends MinimalEObjectImpl.Container implements CompositeBuffer<T>
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -61,14 +58,14 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getDataProviders() <em>Data Providers</em>}' containment reference list.
+	 * The cached value of the '{@link #getDataProviders() <em>Data Providers</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getDataProviders()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<BufferDataProvider> dataProviders;
+	protected EList<BufferDataProvider<T>> dataProviders;
 
 	/**
 	 * The cached value of the '{@link #getPushBuffer() <em>Push Buffer</em>}' reference.
@@ -81,11 +78,21 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	protected PushBuffer pushBuffer;
 
 	/**
+	 * The cached value of the '{@link #getDataSource() <em>Data Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected T dataSource;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompositeBufferImpl()
+	public CompositeBufferImpl()
 	{
 		super();
 	}
@@ -122,8 +129,8 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.COMPOSITE_BUFFER__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_BUFFER__NAME, oldName, name));
 	}
 
 	/**
@@ -132,12 +139,11 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public EList<BufferDataProvider> getDataProviders()
+	public EList<BufferDataProvider<T>> getDataProviders()
 	{
 		if (dataProviders == null)
 		{
-			dataProviders = new EObjectContainmentEList<BufferDataProvider>(
-					BufferDataProvider.class, this,
+			dataProviders = new EObjectEList<BufferDataProvider<T>>(BufferDataProvider.class, this,
 					ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS);
 		}
 		return dataProviders;
@@ -157,9 +163,8 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 			pushBuffer = (PushBuffer) eResolveProxy(oldPushBuffer);
 			if (pushBuffer != oldPushBuffer)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this,
-						Notification.RESOLVE, ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER,
-						oldPushBuffer, pushBuffer));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER, oldPushBuffer, pushBuffer));
 			}
 		}
 		return pushBuffer;
@@ -194,17 +199,45 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public T getDataSource()
 	{
-		switch (featureID)
+		if (dataSource != null && ((EObject) dataSource).eIsProxy())
 		{
-		case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
-			return ((InternalEList<?>) getDataProviders()).basicRemove(otherEnd, msgs);
+			InternalEObject oldDataSource = (InternalEObject) dataSource;
+			dataSource = (T) eResolveProxy(oldDataSource);
+			if (dataSource != oldDataSource)
+			{
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ResourcePackage.COMPOSITE_BUFFER__DATA_SOURCE, oldDataSource, dataSource));
+			}
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public T basicGetDataSource()
+	{
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDataSource(T newDataSource)
+	{
+		T oldDataSource = dataSource;
+		dataSource = newDataSource;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.COMPOSITE_BUFFER__DATA_SOURCE, oldDataSource, dataSource));
 	}
 
 	/**
@@ -224,6 +257,9 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 		case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
 			if (resolve) return getPushBuffer();
 			return basicGetPushBuffer();
+		case ResourcePackage.COMPOSITE_BUFFER__DATA_SOURCE:
+			if (resolve) return getDataSource();
+			return basicGetDataSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -244,10 +280,13 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 			return;
 		case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
 			getDataProviders().clear();
-			getDataProviders().addAll((Collection<? extends BufferDataProvider>) newValue);
+			getDataProviders().addAll((Collection<? extends BufferDataProvider<T>>) newValue);
 			return;
 		case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
 			setPushBuffer((PushBuffer) newValue);
+			return;
+		case ResourcePackage.COMPOSITE_BUFFER__DATA_SOURCE:
+			setDataSource((T) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -272,6 +311,9 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 		case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
 			setPushBuffer((PushBuffer) null);
 			return;
+		case ResourcePackage.COMPOSITE_BUFFER__DATA_SOURCE:
+			setDataSource((T) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -292,6 +334,8 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 			return dataProviders != null && !dataProviders.isEmpty();
 		case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
 			return pushBuffer != null;
+		case ResourcePackage.COMPOSITE_BUFFER__DATA_SOURCE:
+			return dataSource != null;
 		}
 		return super.eIsSet(featureID);
 	}

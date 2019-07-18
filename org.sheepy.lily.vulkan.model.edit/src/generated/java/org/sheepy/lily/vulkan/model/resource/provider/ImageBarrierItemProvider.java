@@ -59,13 +59,12 @@ public class ImageBarrierItemProvider extends AbstractImageBarrierItemProvider
 	 */
 	protected void addImagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ImageBarrier_image_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ImageBarrier_image_feature",
-						"_UI_ImageBarrier_type"),
-				ResourcePackage.Literals.IMAGE_BARRIER__IMAGE, true, false, true, null, null,
-				null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_ImageBarrier_image_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ImageBarrier_image_feature",
+								"_UI_ImageBarrier_type"),
+						ResourcePackage.Literals.IMAGE_BARRIER__IMAGE, true, false, true, null, null, null));
 	}
 
 	/**

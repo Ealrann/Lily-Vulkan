@@ -50,7 +50,7 @@ public class ResourcePkgImpl extends MinimalEObjectImpl.Container implements Res
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ResourcePkgImpl()
+	public ResourcePkgImpl()
 	{
 		super();
 	}
@@ -88,9 +88,7 @@ public class ResourcePkgImpl extends MinimalEObjectImpl.Container implements Res
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

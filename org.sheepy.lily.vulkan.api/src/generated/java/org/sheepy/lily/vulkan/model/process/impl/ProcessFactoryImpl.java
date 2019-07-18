@@ -83,8 +83,7 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 		case ProcessPackage.GET_BUFFER_TASK:
 			return createGetBufferTask();
 		default:
-			throw new IllegalArgumentException(
-					"The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

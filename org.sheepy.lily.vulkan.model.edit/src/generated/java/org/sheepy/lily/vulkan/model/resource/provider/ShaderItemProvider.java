@@ -63,13 +63,12 @@ public class ShaderItemProvider extends BasicResourceItemProvider
 	 */
 	protected void addStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Shader_stage_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Shader_stage_feature",
-						"_UI_Shader_type"),
-				ResourcePackage.Literals.SHADER__STAGE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Shader_stage_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Shader_stage_feature", "_UI_Shader_type"),
+						ResourcePackage.Literals.SHADER__STAGE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -148,13 +147,11 @@ public class ShaderItemProvider extends BasicResourceItemProvider
 		switch (notification.getFeatureID(Shader.class))
 		{
 		case ResourcePackage.SHADER__STAGE:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ResourcePackage.SHADER__FILE:
 		case ResourcePackage.SHADER__CONSTANTS:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);

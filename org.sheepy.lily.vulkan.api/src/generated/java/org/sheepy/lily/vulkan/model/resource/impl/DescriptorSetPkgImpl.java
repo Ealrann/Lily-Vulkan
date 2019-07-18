@@ -50,7 +50,7 @@ public class DescriptorSetPkgImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DescriptorSetPkgImpl()
+	public DescriptorSetPkgImpl()
 	{
 		super();
 	}
@@ -88,9 +88,7 @@ public class DescriptorSetPkgImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

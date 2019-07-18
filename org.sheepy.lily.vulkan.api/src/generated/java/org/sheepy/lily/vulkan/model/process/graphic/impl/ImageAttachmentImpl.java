@@ -72,7 +72,7 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ImageAttachmentImpl()
+	public ImageAttachmentImpl()
 	{
 		super();
 	}
@@ -127,9 +127,8 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 			imageRef = (Image) eResolveProxy(oldImageRef);
 			if (imageRef != oldImageRef)
 			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF, oldImageRef, imageRef));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF, oldImageRef, imageRef));
 			}
 		}
 		return imageRef;
@@ -229,9 +228,7 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID)
 		{
 		case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
-			return CLEAR_VALUE_EDEFAULT == null
-					? clearValue != null
-					: !CLEAR_VALUE_EDEFAULT.equals(clearValue);
+			return CLEAR_VALUE_EDEFAULT == null ? clearValue != null : !CLEAR_VALUE_EDEFAULT.equals(clearValue);
 		case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
 			return imageRef != null;
 		}

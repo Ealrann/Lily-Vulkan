@@ -35,8 +35,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *
  * @generated
  */
-public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
-		implements GraphicConfiguration
+public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container implements GraphicConfiguration
 {
 	/**
 	 * The cached value of the '{@link #getSwapchainConfiguration() <em>Swapchain Configuration</em>}' containment reference.
@@ -93,7 +92,7 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GraphicConfigurationImpl()
+	public GraphicConfigurationImpl()
 	{
 		super();
 	}
@@ -133,8 +132,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION,
-					oldSwapchainConfiguration, newSwapchainConfiguration);
+					GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION, oldSwapchainConfiguration,
+					newSwapchainConfiguration);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -152,22 +151,18 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 		if (newSwapchainConfiguration != swapchainConfiguration)
 		{
 			NotificationChain msgs = null;
-			if (swapchainConfiguration != null)
-				msgs = ((InternalEObject) swapchainConfiguration).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION,
-						null, msgs);
+			if (swapchainConfiguration != null) msgs = ((InternalEObject) swapchainConfiguration).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION, null, msgs);
 			if (newSwapchainConfiguration != null)
 				msgs = ((InternalEObject) newSwapchainConfiguration).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION,
-						null, msgs);
+						EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION, null,
+						msgs);
 			msgs = basicSetSwapchainConfiguration(newSwapchainConfiguration, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION,
-				newSwapchainConfiguration, newSwapchainConfiguration));
+				GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION, newSwapchainConfiguration,
+				newSwapchainConfiguration));
 	}
 
 	/**
@@ -194,8 +189,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION,
-					oldFramebufferConfiguration, newFramebufferConfiguration);
+					GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION, oldFramebufferConfiguration,
+					newFramebufferConfiguration);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -215,20 +210,18 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 			NotificationChain msgs = null;
 			if (framebufferConfiguration != null)
 				msgs = ((InternalEObject) framebufferConfiguration).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION,
-						null, msgs);
+						EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION, null,
+						msgs);
 			if (newFramebufferConfiguration != null)
 				msgs = ((InternalEObject) newFramebufferConfiguration).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION,
-						null, msgs);
+						EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION, null,
+						msgs);
 			msgs = basicSetFramebufferConfiguration(newFramebufferConfiguration, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION,
-				newFramebufferConfiguration, newFramebufferConfiguration));
+				GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION, newFramebufferConfiguration,
+				newFramebufferConfiguration));
 	}
 
 	/**
@@ -251,12 +244,9 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	public void setAcquireWaitStage(EPipelineStage newAcquireWaitStage)
 	{
 		EPipelineStage oldAcquireWaitStage = acquireWaitStage;
-		acquireWaitStage = newAcquireWaitStage == null
-				? ACQUIRE_WAIT_STAGE_EDEFAULT
-				: newAcquireWaitStage;
+		acquireWaitStage = newAcquireWaitStage == null ? ACQUIRE_WAIT_STAGE_EDEFAULT : newAcquireWaitStage;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE, oldAcquireWaitStage,
-				acquireWaitStage));
+				GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE, oldAcquireWaitStage, acquireWaitStage));
 	}
 
 	/**
@@ -282,8 +272,7 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, oldColorDomain,
-					newColorDomain);
+					GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, oldColorDomain, newColorDomain);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -302,17 +291,14 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 		{
 			NotificationChain msgs = null;
 			if (colorDomain != null) msgs = ((InternalEObject) colorDomain).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN,
-					null, msgs);
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, null, msgs);
 			if (newColorDomain != null) msgs = ((InternalEObject) newColorDomain).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN,
-					null, msgs);
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, null, msgs);
 			msgs = basicSetColorDomain(newColorDomain, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, newColorDomain,
-				newColorDomain));
+				GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, newColorDomain, newColorDomain));
 	}
 
 	/**
@@ -321,9 +307,7 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

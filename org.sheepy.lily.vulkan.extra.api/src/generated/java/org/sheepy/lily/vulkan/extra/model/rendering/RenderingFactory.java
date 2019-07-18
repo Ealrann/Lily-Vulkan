@@ -50,6 +50,15 @@ public interface RenderingFactory extends EFactory
 	PresentableEntity createPresentableEntity();
 
 	/**
+	 * Returns a new object of class '<em>Renderable Data Source</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Renderable Data Source</em>'.
+	 * @generated
+	 */
+	<T extends Presentation> RenderableDataSource<T> createRenderableDataSource();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

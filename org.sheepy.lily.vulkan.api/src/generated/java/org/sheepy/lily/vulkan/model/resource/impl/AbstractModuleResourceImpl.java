@@ -14,15 +14,14 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  *
  * @generated
  */
-public abstract class AbstractModuleResourceImpl extends PathResourceImpl
-		implements AbstractModuleResource
+public abstract class AbstractModuleResourceImpl extends PathResourceImpl implements AbstractModuleResource
 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AbstractModuleResourceImpl()
+	public AbstractModuleResourceImpl()
 	{
 		super();
 	}

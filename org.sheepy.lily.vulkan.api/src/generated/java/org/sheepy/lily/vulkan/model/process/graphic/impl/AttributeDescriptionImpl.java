@@ -29,8 +29,7 @@ import org.sheepy.vulkan.model.enumeration.EFormat;
  *
  * @generated
  */
-public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container
-		implements AttributeDescription
+public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container implements AttributeDescription
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -97,7 +96,7 @@ public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AttributeDescriptionImpl()
+	public AttributeDescriptionImpl()
 	{
 		super();
 	}

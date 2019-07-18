@@ -12,7 +12,7 @@ import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.api.resource.IPushBufferAdapter;
+import org.sheepy.lily.vulkan.api.resource.buffer.IPushBufferAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawTaskMaintainer;

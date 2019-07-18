@@ -44,7 +44,7 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TextureImpl()
+	public TextureImpl()
 	{
 		super();
 	}
@@ -108,8 +108,8 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 			msgs = basicSetFile(newFile, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.TEXTURE__FILE, newFile, newFile));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE__FILE, newFile, newFile));
 	}
 
 	/**
@@ -118,9 +118,7 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

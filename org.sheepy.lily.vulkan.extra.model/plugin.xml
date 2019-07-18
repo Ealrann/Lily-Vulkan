@@ -30,4 +30,12 @@
             genModel="model/Extra.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Extra -->
+      <package
+            uri="org.sheepy.lily.vulkan.extra.model.sprite"
+            class="org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage"
+            genModel="model/Extra.genmodel"/>
+   </extension>
+
 </plugin>

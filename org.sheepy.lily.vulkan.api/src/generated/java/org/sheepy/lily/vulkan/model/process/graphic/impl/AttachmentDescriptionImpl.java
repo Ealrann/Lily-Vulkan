@@ -37,8 +37,7 @@ import org.sheepy.vulkan.model.enumeration.ESampleCount;
  *
  * @generated
  */
-public abstract class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container
-		implements AttachmentDescription
+public abstract class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container implements AttachmentDescription
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -205,7 +204,7 @@ public abstract class AttachmentDescriptionImpl extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AttachmentDescriptionImpl()
+	public AttachmentDescriptionImpl()
 	{
 		super();
 	}
@@ -343,8 +342,7 @@ public abstract class AttachmentDescriptionImpl extends MinimalEObjectImpl.Conta
 		EAttachmentLoadOp oldStencilLoadOp = stencilLoadOp;
 		stencilLoadOp = newStencilLoadOp == null ? STENCIL_LOAD_OP_EDEFAULT : newStencilLoadOp;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP, oldStencilLoadOp,
-				stencilLoadOp));
+				GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP, oldStencilLoadOp, stencilLoadOp));
 	}
 
 	/**
@@ -369,8 +367,7 @@ public abstract class AttachmentDescriptionImpl extends MinimalEObjectImpl.Conta
 		EAttachmentStoreOp oldStencilStoreOp = stencilStoreOp;
 		stencilStoreOp = newStencilStoreOp == null ? STENCIL_STORE_OP_EDEFAULT : newStencilStoreOp;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP, oldStencilStoreOp,
-				stencilStoreOp));
+				GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP, oldStencilStoreOp, stencilStoreOp));
 	}
 
 	/**
@@ -395,8 +392,7 @@ public abstract class AttachmentDescriptionImpl extends MinimalEObjectImpl.Conta
 		EImageLayout oldInitialLayout = initialLayout;
 		initialLayout = newInitialLayout == null ? INITIAL_LAYOUT_EDEFAULT : newInitialLayout;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT, oldInitialLayout,
-				initialLayout));
+				GraphicPackage.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT, oldInitialLayout, initialLayout));
 	}
 
 	/**

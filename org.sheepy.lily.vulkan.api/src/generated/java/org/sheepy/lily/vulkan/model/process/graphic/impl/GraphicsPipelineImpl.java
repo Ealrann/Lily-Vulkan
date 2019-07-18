@@ -305,7 +305,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GraphicsPipelineImpl()
+	public GraphicsPipelineImpl()
 	{
 		super();
 	}
@@ -342,8 +342,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__NAME, oldName, name));
 	}
 
 	/**
@@ -388,11 +388,9 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		{
 			NotificationChain msgs = null;
 			if (resourcePkg != null) msgs = ((InternalEObject) resourcePkg).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, null,
-					msgs);
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, null, msgs);
 			if (newResourcePkg != null) msgs = ((InternalEObject) newResourcePkg).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, null,
-					msgs);
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, null, msgs);
 			msgs = basicSetResourcePkg(newResourcePkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -460,8 +458,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	{
 		if (pushConstantRanges == null)
 		{
-			pushConstantRanges = new EObjectContainmentEList<PushConstantRange>(
-					PushConstantRange.class, this,
+			pushConstantRanges = new EObjectContainmentEList<PushConstantRange>(PushConstantRange.class, this,
 					GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES);
 		}
 		return pushConstantRanges;
@@ -489,8 +486,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		ByteBuffer oldSpecializationData = specializationData;
 		specializationData = newSpecializationData;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA, oldSpecializationData,
-				specializationData));
+				GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
 	}
 
 	/**
@@ -509,16 +505,14 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDescriptorSetPkg(	DescriptorSetPkg newDescriptorSetPkg,
-														NotificationChain msgs)
+	public NotificationChain basicSetDescriptorSetPkg(DescriptorSetPkg newDescriptorSetPkg, NotificationChain msgs)
 	{
 		DescriptorSetPkg oldDescriptorSetPkg = descriptorSetPkg;
 		descriptorSetPkg = newDescriptorSetPkg;
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, oldDescriptorSetPkg,
-					newDescriptorSetPkg);
+					GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, oldDescriptorSetPkg, newDescriptorSetPkg);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -536,22 +530,15 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		if (newDescriptorSetPkg != descriptorSetPkg)
 		{
 			NotificationChain msgs = null;
-			if (descriptorSetPkg != null) msgs = ((InternalEObject) descriptorSetPkg)
-					.eInverseRemove(this,
-							EOPPOSITE_FEATURE_BASE
-									- GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG,
-							null, msgs);
-			if (newDescriptorSetPkg != null) msgs = ((InternalEObject) newDescriptorSetPkg)
-					.eInverseAdd(this,
-							EOPPOSITE_FEATURE_BASE
-									- GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG,
-							null, msgs);
+			if (descriptorSetPkg != null) msgs = ((InternalEObject) descriptorSetPkg).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
+			if (newDescriptorSetPkg != null) msgs = ((InternalEObject) newDescriptorSetPkg).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
 			msgs = basicSetDescriptorSetPkg(newDescriptorSetPkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, newDescriptorSetPkg,
-				newDescriptorSetPkg));
+				GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, newDescriptorSetPkg, newDescriptorSetPkg));
 	}
 
 	/**
@@ -596,11 +583,9 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		{
 			NotificationChain msgs = null;
 			if (taskPkg != null) msgs = ((InternalEObject) taskPkg).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, null,
-					msgs);
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, null, msgs);
 			if (newTaskPkg != null) msgs = ((InternalEObject) newTaskPkg).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, null,
-					msgs);
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, null, msgs);
 			msgs = basicSetTaskPkg(newTaskPkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -623,9 +608,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 			maintainer = (Maintainer<GraphicsPipeline>) eResolveProxy(oldMaintainer);
 			if (maintainer != oldMaintainer)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this,
-						Notification.RESOLVE, GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER,
-						oldMaintainer, maintainer));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER, oldMaintainer, maintainer));
 			}
 		}
 		return maintainer;
@@ -646,8 +630,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetMaintainer(Maintainer<GraphicsPipeline> newMaintainer,
-												NotificationChain msgs)
+	public NotificationChain basicSetMaintainer(Maintainer<GraphicsPipeline> newMaintainer, NotificationChain msgs)
 	{
 		Maintainer<GraphicsPipeline> oldMaintainer = maintainer;
 		maintainer = newMaintainer;
@@ -693,8 +676,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	{
 		if (shaders == null)
 		{
-			shaders = new EObjectResolvingEList<Shader>(Shader.class, this,
-					GraphicPackage.GRAPHICS_PIPELINE__SHADERS);
+			shaders = new EObjectResolvingEList<Shader>(Shader.class, this, GraphicPackage.GRAPHICS_PIPELINE__SHADERS);
 		}
 		return shaders;
 	}
@@ -715,16 +697,14 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetViewportState(	ViewportState newViewportState,
-													NotificationChain msgs)
+	public NotificationChain basicSetViewportState(ViewportState newViewportState, NotificationChain msgs)
 	{
 		ViewportState oldViewportState = viewportState;
 		viewportState = newViewportState;
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, oldViewportState,
-					newViewportState);
+					GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, oldViewportState, newViewportState);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -743,18 +723,14 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		{
 			NotificationChain msgs = null;
 			if (viewportState != null) msgs = ((InternalEObject) viewportState).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, null,
-					msgs);
-			if (newViewportState != null)
-				msgs = ((InternalEObject) newViewportState).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE,
-						null, msgs);
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, null, msgs);
+			if (newViewportState != null) msgs = ((InternalEObject) newViewportState).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, null, msgs);
 			msgs = basicSetViewportState(newViewportState, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, newViewportState,
-				newViewportState));
+				GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, newViewportState, newViewportState));
 	}
 
 	/**
@@ -773,16 +749,14 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInputAssembly(	InputAssembly newInputAssembly,
-													NotificationChain msgs)
+	public NotificationChain basicSetInputAssembly(InputAssembly newInputAssembly, NotificationChain msgs)
 	{
 		InputAssembly oldInputAssembly = inputAssembly;
 		inputAssembly = newInputAssembly;
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, oldInputAssembly,
-					newInputAssembly);
+					GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, oldInputAssembly, newInputAssembly);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -801,18 +775,14 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		{
 			NotificationChain msgs = null;
 			if (inputAssembly != null) msgs = ((InternalEObject) inputAssembly).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, null,
-					msgs);
-			if (newInputAssembly != null)
-				msgs = ((InternalEObject) newInputAssembly).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY,
-						null, msgs);
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, null, msgs);
+			if (newInputAssembly != null) msgs = ((InternalEObject) newInputAssembly).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, null, msgs);
 			msgs = basicSetInputAssembly(newInputAssembly, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, newInputAssembly,
-				newInputAssembly));
+				GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, newInputAssembly, newInputAssembly));
 	}
 
 	/**
@@ -857,11 +827,9 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		{
 			NotificationChain msgs = null;
 			if (rasterizer != null) msgs = ((InternalEObject) rasterizer).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, null,
-					msgs);
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, null, msgs);
 			if (newRasterizer != null) msgs = ((InternalEObject) newRasterizer).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, null,
-					msgs);
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, null, msgs);
 			msgs = basicSetRasterizer(newRasterizer, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -911,11 +879,9 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		{
 			NotificationChain msgs = null;
 			if (colorBlend != null) msgs = ((InternalEObject) colorBlend).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, null,
-					msgs);
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, null, msgs);
 			if (newColorBlend != null) msgs = ((InternalEObject) newColorBlend).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, null,
-					msgs);
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, null, msgs);
 			msgs = basicSetColorBlend(newColorBlend, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -939,16 +905,14 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDynamicState(	DynamicState newDynamicState,
-													NotificationChain msgs)
+	public NotificationChain basicSetDynamicState(DynamicState newDynamicState, NotificationChain msgs)
 	{
 		DynamicState oldDynamicState = dynamicState;
 		dynamicState = newDynamicState;
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, oldDynamicState,
-					newDynamicState);
+					GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, oldDynamicState, newDynamicState);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -967,12 +931,9 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		{
 			NotificationChain msgs = null;
 			if (dynamicState != null) msgs = ((InternalEObject) dynamicState).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, null,
-					msgs);
-			if (newDynamicState != null)
-				msgs = ((InternalEObject) newDynamicState).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE,
-						null, msgs);
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, null, msgs);
+			if (newDynamicState != null) msgs = ((InternalEObject) newDynamicState).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, null, msgs);
 			msgs = basicSetDynamicState(newDynamicState, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -1021,16 +982,14 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetVertexInputState(	VertexInputState newVertexInputState,
-														NotificationChain msgs)
+	public NotificationChain basicSetVertexInputState(VertexInputState newVertexInputState, NotificationChain msgs)
 	{
 		VertexInputState oldVertexInputState = vertexInputState;
 		vertexInputState = newVertexInputState;
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, oldVertexInputState,
-					newVertexInputState);
+					GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, oldVertexInputState, newVertexInputState);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -1048,22 +1007,15 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		if (newVertexInputState != vertexInputState)
 		{
 			NotificationChain msgs = null;
-			if (vertexInputState != null) msgs = ((InternalEObject) vertexInputState)
-					.eInverseRemove(this,
-							EOPPOSITE_FEATURE_BASE
-									- GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE,
-							null, msgs);
-			if (newVertexInputState != null) msgs = ((InternalEObject) newVertexInputState)
-					.eInverseAdd(this,
-							EOPPOSITE_FEATURE_BASE
-									- GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE,
-							null, msgs);
+			if (vertexInputState != null) msgs = ((InternalEObject) vertexInputState).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, null, msgs);
+			if (newVertexInputState != null) msgs = ((InternalEObject) newVertexInputState).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, null, msgs);
 			msgs = basicSetVertexInputState(newVertexInputState, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, newVertexInputState,
-				newVertexInputState));
+				GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, newVertexInputState, newVertexInputState));
 	}
 
 	/**
@@ -1073,9 +1025,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(	InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
@@ -1093,9 +1043,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

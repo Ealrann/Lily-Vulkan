@@ -127,8 +127,7 @@ public class TextureItemProvider extends AbstractTextureItemProvider
 		switch (notification.getFeatureID(Texture.class))
 		{
 		case ResourcePackage.TEXTURE__FILE:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);

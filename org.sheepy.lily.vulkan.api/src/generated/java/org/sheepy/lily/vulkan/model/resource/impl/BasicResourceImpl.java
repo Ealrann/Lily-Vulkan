@@ -52,7 +52,7 @@ public class BasicResourceImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BasicResourceImpl()
+	public BasicResourceImpl()
 	{
 		super();
 	}
@@ -89,8 +89,8 @@ public class BasicResourceImpl extends MinimalEObjectImpl.Container implements B
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.BASIC_RESOURCE__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BASIC_RESOURCE__NAME, oldName, name));
 	}
 
 	/**

@@ -28,8 +28,7 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  *
  * @generated
  */
-public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container
-		implements CompositeBufferReference
+public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container implements CompositeBufferReference
 {
 	/**
 	 * The cached value of the '{@link #getBuffer() <em>Buffer</em>}' reference.
@@ -39,7 +38,7 @@ public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	protected CompositeBuffer buffer;
+	protected CompositeBuffer<?> buffer;
 
 	/**
 	 * The default value of the '{@link #getPart() <em>Part</em>}' attribute.
@@ -66,7 +65,7 @@ public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompositeBufferReferenceImpl()
+	public CompositeBufferReferenceImpl()
 	{
 		super();
 	}
@@ -88,17 +87,16 @@ public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public CompositeBuffer getBuffer()
+	public CompositeBuffer<?> getBuffer()
 	{
 		if (buffer != null && buffer.eIsProxy())
 		{
 			InternalEObject oldBuffer = (InternalEObject) buffer;
-			buffer = (CompositeBuffer) eResolveProxy(oldBuffer);
+			buffer = (CompositeBuffer<?>) eResolveProxy(oldBuffer);
 			if (buffer != oldBuffer)
 			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER, oldBuffer, buffer));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER, oldBuffer, buffer));
 			}
 		}
 		return buffer;
@@ -109,7 +107,7 @@ public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeBuffer basicGetBuffer()
+	public CompositeBuffer<?> basicGetBuffer()
 	{
 		return buffer;
 	}
@@ -120,9 +118,9 @@ public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public void setBuffer(CompositeBuffer newBuffer)
+	public void setBuffer(CompositeBuffer<?> newBuffer)
 	{
-		CompositeBuffer oldBuffer = buffer;
+		CompositeBuffer<?> oldBuffer = buffer;
 		buffer = newBuffer;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
 				ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER, oldBuffer, buffer));
@@ -183,7 +181,7 @@ public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container
 		switch (featureID)
 		{
 		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER:
-			setBuffer((CompositeBuffer) newValue);
+			setBuffer((CompositeBuffer<?>) newValue);
 			return;
 		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__PART:
 			setPart((Integer) newValue);
@@ -203,7 +201,7 @@ public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container
 		switch (featureID)
 		{
 		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER:
-			setBuffer((CompositeBuffer) null);
+			setBuffer((CompositeBuffer<?>) null);
 			return;
 		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__PART:
 			setPart(PART_EDEFAULT);

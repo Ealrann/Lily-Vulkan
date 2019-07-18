@@ -110,7 +110,7 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BlitToSwapImageImpl()
+	public BlitToSwapImageImpl()
 	{
 		super();
 	}
@@ -147,8 +147,8 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.BLIT_TO_SWAP_IMAGE__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, GraphicPackage.BLIT_TO_SWAP_IMAGE__NAME, oldName, name));
 	}
 
 	/**
@@ -190,9 +190,8 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 			image = (Image) eResolveProxy(oldImage);
 			if (image != oldImage)
 			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE, oldImage, image));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE, oldImage, image));
 			}
 		}
 		return image;

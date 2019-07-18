@@ -115,7 +115,7 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PushBufferImpl()
+	public PushBufferImpl()
 	{
 		super();
 	}
@@ -152,8 +152,8 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.PUSH_BUFFER__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.PUSH_BUFFER__NAME, oldName, name));
 	}
 
 	/**
@@ -202,8 +202,8 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 	{
 		long oldSize = size;
 		size = newSize;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.PUSH_BUFFER__SIZE, oldSize, size));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.PUSH_BUFFER__SIZE, oldSize, size));
 	}
 
 	/**

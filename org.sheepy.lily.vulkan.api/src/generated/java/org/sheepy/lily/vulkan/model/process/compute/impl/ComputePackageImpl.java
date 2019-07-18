@@ -112,8 +112,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 */
 	public static ComputePackage init()
 	{
-		if (isInited)
-			return (ComputePackage) EPackage.Registry.INSTANCE.getEPackage(ComputePackage.eNS_URI);
+		if (isInited) return (ComputePackage) EPackage.Registry.INSTANCE.getEPackage(ComputePackage.eNS_URI);
 
 		// Obtain or create and register package
 		Object registeredComputePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
@@ -324,8 +323,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 				.getEPackage(ProcessPackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage) EPackage.Registry.INSTANCE
 				.getEPackage(ResourcePackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
-				.getEPackage(EcorePackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -337,26 +335,26 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		computerEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(computeProcessEClass, ComputeProcess.class, "ComputeProcess", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(computeProcessEClass, ComputeProcess.class, "ComputeProcess", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(computePipelineEClass, ComputePipeline.class, "ComputePipeline", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(computePipelineEClass, ComputePipeline.class, "ComputePipeline", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(computerEClass, Computer.class, "Computer", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComputer_Shader(), theResourcePackage.getShader(), null, "shader", null,
-				0, 1, Computer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getComputer_WorkgroupCountX(), theEcorePackage.getEInt(), "workgroupCountX",
-				"1", 0, 1, Computer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getComputer_WorkgroupCountY(), theEcorePackage.getEInt(), "workgroupCountY",
-				"1", 0, 1, Computer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getComputer_WorkgroupCountZ(), theEcorePackage.getEInt(), "workgroupCountZ",
-				"1", 0, 1, Computer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComputer_Shader(), theResourcePackage.getShader(), null, "shader", null, 0, 1, Computer.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getComputer_WorkgroupCountX(), theEcorePackage.getEInt(), "workgroupCountX", "1", 0, 1,
+				Computer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getComputer_WorkgroupCountY(), theEcorePackage.getEInt(), "workgroupCountY", "1", 0, 1,
+				Computer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getComputer_WorkgroupCountZ(), theEcorePackage.getEInt(), "workgroupCountZ", "1", 0, 1,
+				Computer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

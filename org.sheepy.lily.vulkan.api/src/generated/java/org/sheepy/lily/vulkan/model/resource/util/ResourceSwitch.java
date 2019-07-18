@@ -30,7 +30,7 @@ import org.sheepy.vulkan.model.barrier.Barrier;
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage
  * @generated
  */
-public class ResourceSwitch<T> extends Switch<T>
+public class ResourceSwitch<T1> extends Switch<T1>
 {
 	/**
 	 * The cached model package
@@ -76,14 +76,14 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	protected T doSwitch(int classifierID, EObject theEObject)
+	protected T1 doSwitch(int classifierID, EObject theEObject)
 	{
 		switch (classifierID)
 		{
 		case ResourcePackage.BASIC_RESOURCE:
 		{
 			BasicResource basicResource = (BasicResource) theEObject;
-			T result = caseBasicResource(basicResource);
+			T1 result = caseBasicResource(basicResource);
 			if (result == null) result = caseIResource(basicResource);
 			if (result == null) result = caseLNamedElement(basicResource);
 			if (result == null) result = defaultCase(theEObject);
@@ -92,7 +92,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.PUSH_BUFFER:
 		{
 			PushBuffer pushBuffer = (PushBuffer) theEObject;
-			T result = casePushBuffer(pushBuffer);
+			T1 result = casePushBuffer(pushBuffer);
 			if (result == null) result = caseIResource(pushBuffer);
 			if (result == null) result = caseLNamedElement(pushBuffer);
 			if (result == null) result = defaultCase(theEObject);
@@ -101,7 +101,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.GET_BUFFER:
 		{
 			GetBuffer getBuffer = (GetBuffer) theEObject;
-			T result = caseGetBuffer(getBuffer);
+			T1 result = caseGetBuffer(getBuffer);
 			if (result == null) result = caseIResource(getBuffer);
 			if (result == null) result = caseLNamedElement(getBuffer);
 			if (result == null) result = defaultCase(theEObject);
@@ -110,7 +110,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.CONSTANT_BUFFER:
 		{
 			ConstantBuffer constantBuffer = (ConstantBuffer) theEObject;
-			T result = caseConstantBuffer(constantBuffer);
+			T1 result = caseConstantBuffer(constantBuffer);
 			if (result == null) result = caseIResource(constantBuffer);
 			if (result == null) result = caseLNamedElement(constantBuffer);
 			if (result == null) result = defaultCase(theEObject);
@@ -119,7 +119,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.DESCRIPTED_RESOURCE:
 		{
 			DescriptedResource descriptedResource = (DescriptedResource) theEObject;
-			T result = caseDescriptedResource(descriptedResource);
+			T1 result = caseDescriptedResource(descriptedResource);
 			if (result == null) result = caseIResource(descriptedResource);
 			if (result == null) result = caseLNamedElement(descriptedResource);
 			if (result == null) result = defaultCase(theEObject);
@@ -128,7 +128,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.BASIC_DESCRIPTED_RESOURCE:
 		{
 			BasicDescriptedResource basicDescriptedResource = (BasicDescriptedResource) theEObject;
-			T result = caseBasicDescriptedResource(basicDescriptedResource);
+			T1 result = caseBasicDescriptedResource(basicDescriptedResource);
 			if (result == null) result = caseDescriptedResource(basicDescriptedResource);
 			if (result == null) result = caseIResource(basicDescriptedResource);
 			if (result == null) result = caseLNamedElement(basicDescriptedResource);
@@ -138,7 +138,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.IBUFFER:
 		{
 			IBuffer iBuffer = (IBuffer) theEObject;
-			T result = caseIBuffer(iBuffer);
+			T1 result = caseIBuffer(iBuffer);
 			if (result == null) result = caseIResource(iBuffer);
 			if (result == null) result = caseLNamedElement(iBuffer);
 			if (result == null) result = defaultCase(theEObject);
@@ -147,7 +147,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.BUFFER:
 		{
 			Buffer buffer = (Buffer) theEObject;
-			T result = caseBuffer(buffer);
+			T1 result = caseBuffer(buffer);
 			if (result == null) result = caseBasicDescriptedResource(buffer);
 			if (result == null) result = caseIBuffer(buffer);
 			if (result == null) result = caseDescriptedResource(buffer);
@@ -158,8 +158,8 @@ public class ResourceSwitch<T> extends Switch<T>
 		}
 		case ResourcePackage.COMPOSITE_BUFFER:
 		{
-			CompositeBuffer compositeBuffer = (CompositeBuffer) theEObject;
-			T result = caseCompositeBuffer(compositeBuffer);
+			CompositeBuffer<?> compositeBuffer = (CompositeBuffer<?>) theEObject;
+			T1 result = caseCompositeBuffer(compositeBuffer);
 			if (result == null) result = caseDescriptedResource(compositeBuffer);
 			if (result == null) result = caseIBuffer(compositeBuffer);
 			if (result == null) result = caseIResource(compositeBuffer);
@@ -170,14 +170,14 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.IBUFFER_REFERENCE:
 		{
 			IBufferReference iBufferReference = (IBufferReference) theEObject;
-			T result = caseIBufferReference(iBufferReference);
+			T1 result = caseIBufferReference(iBufferReference);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
 		case ResourcePackage.BUFFER_REFERENCE:
 		{
 			BufferReference bufferReference = (BufferReference) theEObject;
-			T result = caseBufferReference(bufferReference);
+			T1 result = caseBufferReference(bufferReference);
 			if (result == null) result = caseIBufferReference(bufferReference);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
@@ -185,23 +185,41 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE:
 		{
 			CompositeBufferReference compositeBufferReference = (CompositeBufferReference) theEObject;
-			T result = caseCompositeBufferReference(compositeBufferReference);
+			T1 result = caseCompositeBufferReference(compositeBufferReference);
 			if (result == null) result = caseIBufferReference(compositeBufferReference);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
 		case ResourcePackage.BUFFER_DATA_PROVIDER:
 		{
-			BufferDataProvider bufferDataProvider = (BufferDataProvider) theEObject;
-			T result = caseBufferDataProvider(bufferDataProvider);
+			BufferDataProvider<?> bufferDataProvider = (BufferDataProvider<?>) theEObject;
+			T1 result = caseBufferDataProvider(bufferDataProvider);
 			if (result == null) result = caseLNamedElement(bufferDataProvider);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ResourcePackage.VERTEX_PROVIDER:
+		{
+			VertexProvider<?> vertexProvider = (VertexProvider<?>) theEObject;
+			T1 result = caseVertexProvider(vertexProvider);
+			if (result == null) result = caseBufferDataProvider(vertexProvider);
+			if (result == null) result = caseLNamedElement(vertexProvider);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ResourcePackage.INDEX_PROVIDER:
+		{
+			IndexProvider<?> indexProvider = (IndexProvider<?>) theEObject;
+			T1 result = caseIndexProvider(indexProvider);
+			if (result == null) result = caseBufferDataProvider(indexProvider);
+			if (result == null) result = caseLNamedElement(indexProvider);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
 		case ResourcePackage.DESCRIBED_DATA_PROVIDER:
 		{
-			DescribedDataProvider describedDataProvider = (DescribedDataProvider) theEObject;
-			T result = caseDescribedDataProvider(describedDataProvider);
+			DescribedDataProvider<?> describedDataProvider = (DescribedDataProvider<?>) theEObject;
+			T1 result = caseDescribedDataProvider(describedDataProvider);
 			if (result == null) result = caseBufferDataProvider(describedDataProvider);
 			if (result == null) result = caseDescriptor(describedDataProvider);
 			if (result == null) result = caseLNamedElement(describedDataProvider);
@@ -211,7 +229,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.IMAGE:
 		{
 			Image image = (Image) theEObject;
-			T result = caseImage(image);
+			T1 result = caseImage(image);
 			if (result == null) result = caseBasicDescriptedResource(image);
 			if (result == null) result = caseDescriptedResource(image);
 			if (result == null) result = caseIResource(image);
@@ -222,14 +240,14 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.IMAGE_LAYOUT:
 		{
 			ImageLayout imageLayout = (ImageLayout) theEObject;
-			T result = caseImageLayout(imageLayout);
+			T1 result = caseImageLayout(imageLayout);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
 		case ResourcePackage.SAMPLED_IMAGE:
 		{
 			SampledImage sampledImage = (SampledImage) theEObject;
-			T result = caseSampledImage(sampledImage);
+			T1 result = caseSampledImage(sampledImage);
 			if (result == null) result = caseBasicDescriptedResource(sampledImage);
 			if (result == null) result = caseDescriptedResource(sampledImage);
 			if (result == null) result = caseIResource(sampledImage);
@@ -240,7 +258,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.SEMAPHORE:
 		{
 			Semaphore semaphore = (Semaphore) theEObject;
-			T result = caseSemaphore(semaphore);
+			T1 result = caseSemaphore(semaphore);
 			if (result == null) result = caseBasicResource(semaphore);
 			if (result == null) result = caseIResource(semaphore);
 			if (result == null) result = caseLNamedElement(semaphore);
@@ -250,7 +268,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.FONT:
 		{
 			Font font = (Font) theEObject;
-			T result = caseFont(font);
+			T1 result = caseFont(font);
 			if (result == null) result = caseSampledImage(font);
 			if (result == null) result = caseBasicDescriptedResource(font);
 			if (result == null) result = caseDescriptedResource(font);
@@ -262,7 +280,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.ABSTRACT_TEXTURE:
 		{
 			AbstractTexture abstractTexture = (AbstractTexture) theEObject;
-			T result = caseAbstractTexture(abstractTexture);
+			T1 result = caseAbstractTexture(abstractTexture);
 			if (result == null) result = caseSampledImage(abstractTexture);
 			if (result == null) result = caseBasicDescriptedResource(abstractTexture);
 			if (result == null) result = caseDescriptedResource(abstractTexture);
@@ -274,7 +292,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.TEXTURE:
 		{
 			Texture texture = (Texture) theEObject;
-			T result = caseTexture(texture);
+			T1 result = caseTexture(texture);
 			if (result == null) result = caseAbstractTexture(texture);
 			if (result == null) result = caseSampledImage(texture);
 			if (result == null) result = caseBasicDescriptedResource(texture);
@@ -287,21 +305,21 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.SAMPLER:
 		{
 			Sampler sampler = (Sampler) theEObject;
-			T result = caseSampler(sampler);
+			T1 result = caseSampler(sampler);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
 		case ResourcePackage.DESCRIPTOR:
 		{
 			Descriptor descriptor = (Descriptor) theEObject;
-			T result = caseDescriptor(descriptor);
+			T1 result = caseDescriptor(descriptor);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
 		case ResourcePackage.DESCRIPTOR_SET:
 		{
 			DescriptorSet descriptorSet = (DescriptorSet) theEObject;
-			T result = caseDescriptorSet(descriptorSet);
+			T1 result = caseDescriptorSet(descriptorSet);
 			if (result == null) result = caseLNamedElement(descriptorSet);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
@@ -309,14 +327,14 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.DESCRIPTOR_SET_PKG:
 		{
 			DescriptorSetPkg descriptorSetPkg = (DescriptorSetPkg) theEObject;
-			T result = caseDescriptorSetPkg(descriptorSetPkg);
+			T1 result = caseDescriptorSetPkg(descriptorSetPkg);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
 		case ResourcePackage.BUFFER_BARRIER:
 		{
 			BufferBarrier bufferBarrier = (BufferBarrier) theEObject;
-			T result = caseBufferBarrier(bufferBarrier);
+			T1 result = caseBufferBarrier(bufferBarrier);
 			if (result == null) result = caseAbstractBufferBarrier(bufferBarrier);
 			if (result == null) result = caseBarrier(bufferBarrier);
 			if (result == null) result = defaultCase(theEObject);
@@ -325,7 +343,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.IMAGE_BARRIER:
 		{
 			ImageBarrier imageBarrier = (ImageBarrier) theEObject;
-			T result = caseImageBarrier(imageBarrier);
+			T1 result = caseImageBarrier(imageBarrier);
 			if (result == null) result = caseAbstractImageBarrier(imageBarrier);
 			if (result == null) result = caseBarrier(imageBarrier);
 			if (result == null) result = defaultCase(theEObject);
@@ -334,7 +352,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.SHADER:
 		{
 			Shader shader = (Shader) theEObject;
-			T result = caseShader(shader);
+			T1 result = caseShader(shader);
 			if (result == null) result = caseBasicResource(shader);
 			if (result == null) result = caseIResource(shader);
 			if (result == null) result = caseLNamedElement(shader);
@@ -344,7 +362,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.PATH_RESOURCE:
 		{
 			PathResource pathResource = (PathResource) theEObject;
-			T result = casePathResource(pathResource);
+			T1 result = casePathResource(pathResource);
 			if (result == null) result = caseBasicResource(pathResource);
 			if (result == null) result = caseIResource(pathResource);
 			if (result == null) result = caseLNamedElement(pathResource);
@@ -354,7 +372,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.FILE_RESOURCE:
 		{
 			FileResource fileResource = (FileResource) theEObject;
-			T result = caseFileResource(fileResource);
+			T1 result = caseFileResource(fileResource);
 			if (result == null) result = casePathResource(fileResource);
 			if (result == null) result = caseBasicResource(fileResource);
 			if (result == null) result = caseIResource(fileResource);
@@ -365,7 +383,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.ABSTRACT_MODULE_RESOURCE:
 		{
 			AbstractModuleResource abstractModuleResource = (AbstractModuleResource) theEObject;
-			T result = caseAbstractModuleResource(abstractModuleResource);
+			T1 result = caseAbstractModuleResource(abstractModuleResource);
 			if (result == null) result = casePathResource(abstractModuleResource);
 			if (result == null) result = caseBasicResource(abstractModuleResource);
 			if (result == null) result = caseIResource(abstractModuleResource);
@@ -376,7 +394,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.MODULE_RESOURCE:
 		{
 			ModuleResource moduleResource = (ModuleResource) theEObject;
-			T result = caseModuleResource(moduleResource);
+			T1 result = caseModuleResource(moduleResource);
 			if (result == null) result = caseAbstractModuleResource(moduleResource);
 			if (result == null) result = casePathResource(moduleResource);
 			if (result == null) result = caseBasicResource(moduleResource);
@@ -388,7 +406,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		case ResourcePackage.STRING_MODULE_RESOURCE:
 		{
 			StringModuleResource stringModuleResource = (StringModuleResource) theEObject;
-			T result = caseStringModuleResource(stringModuleResource);
+			T1 result = caseStringModuleResource(stringModuleResource);
 			if (result == null) result = caseAbstractModuleResource(stringModuleResource);
 			if (result == null) result = casePathResource(stringModuleResource);
 			if (result == null) result = caseBasicResource(stringModuleResource);
@@ -413,7 +431,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBasicResource(BasicResource object)
+	public T1 caseBasicResource(BasicResource object)
 	{
 		return null;
 	}
@@ -429,7 +447,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePushBuffer(PushBuffer object)
+	public T1 casePushBuffer(PushBuffer object)
 	{
 		return null;
 	}
@@ -445,7 +463,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGetBuffer(GetBuffer object)
+	public T1 caseGetBuffer(GetBuffer object)
 	{
 		return null;
 	}
@@ -461,7 +479,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConstantBuffer(ConstantBuffer object)
+	public T1 caseConstantBuffer(ConstantBuffer object)
 	{
 		return null;
 	}
@@ -477,7 +495,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDescriptedResource(DescriptedResource object)
+	public T1 caseDescriptedResource(DescriptedResource object)
 	{
 		return null;
 	}
@@ -493,7 +511,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBasicDescriptedResource(BasicDescriptedResource object)
+	public T1 caseBasicDescriptedResource(BasicDescriptedResource object)
 	{
 		return null;
 	}
@@ -509,7 +527,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIBuffer(IBuffer object)
+	public T1 caseIBuffer(IBuffer object)
 	{
 		return null;
 	}
@@ -525,7 +543,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBuffer(Buffer object)
+	public T1 caseBuffer(Buffer object)
 	{
 		return null;
 	}
@@ -541,7 +559,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCompositeBuffer(CompositeBuffer object)
+	public <T> T1 caseCompositeBuffer(CompositeBuffer<T> object)
 	{
 		return null;
 	}
@@ -557,7 +575,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIBufferReference(IBufferReference object)
+	public T1 caseIBufferReference(IBufferReference object)
 	{
 		return null;
 	}
@@ -573,7 +591,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBufferReference(BufferReference object)
+	public T1 caseBufferReference(BufferReference object)
 	{
 		return null;
 	}
@@ -589,7 +607,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCompositeBufferReference(CompositeBufferReference object)
+	public T1 caseCompositeBufferReference(CompositeBufferReference object)
 	{
 		return null;
 	}
@@ -605,7 +623,39 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBufferDataProvider(BufferDataProvider object)
+	public <T> T1 caseBufferDataProvider(BufferDataProvider<T> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Vertex Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Vertex Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T> T1 caseVertexProvider(VertexProvider<T> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Index Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Index Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T> T1 caseIndexProvider(IndexProvider<T> object)
 	{
 		return null;
 	}
@@ -621,7 +671,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDescribedDataProvider(DescribedDataProvider object)
+	public <T> T1 caseDescribedDataProvider(DescribedDataProvider<T> object)
 	{
 		return null;
 	}
@@ -637,7 +687,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseImage(Image object)
+	public T1 caseImage(Image object)
 	{
 		return null;
 	}
@@ -653,7 +703,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseImageLayout(ImageLayout object)
+	public T1 caseImageLayout(ImageLayout object)
 	{
 		return null;
 	}
@@ -669,7 +719,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSampledImage(SampledImage object)
+	public T1 caseSampledImage(SampledImage object)
 	{
 		return null;
 	}
@@ -685,7 +735,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSemaphore(Semaphore object)
+	public T1 caseSemaphore(Semaphore object)
 	{
 		return null;
 	}
@@ -701,7 +751,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFont(Font object)
+	public T1 caseFont(Font object)
 	{
 		return null;
 	}
@@ -717,7 +767,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAbstractTexture(AbstractTexture object)
+	public T1 caseAbstractTexture(AbstractTexture object)
 	{
 		return null;
 	}
@@ -733,7 +783,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTexture(Texture object)
+	public T1 caseTexture(Texture object)
 	{
 		return null;
 	}
@@ -749,7 +799,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSampler(Sampler object)
+	public T1 caseSampler(Sampler object)
 	{
 		return null;
 	}
@@ -765,7 +815,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDescriptor(Descriptor object)
+	public T1 caseDescriptor(Descriptor object)
 	{
 		return null;
 	}
@@ -781,7 +831,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDescriptorSet(DescriptorSet object)
+	public T1 caseDescriptorSet(DescriptorSet object)
 	{
 		return null;
 	}
@@ -797,7 +847,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDescriptorSetPkg(DescriptorSetPkg object)
+	public T1 caseDescriptorSetPkg(DescriptorSetPkg object)
 	{
 		return null;
 	}
@@ -813,7 +863,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBufferBarrier(BufferBarrier object)
+	public T1 caseBufferBarrier(BufferBarrier object)
 	{
 		return null;
 	}
@@ -829,7 +879,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseImageBarrier(ImageBarrier object)
+	public T1 caseImageBarrier(ImageBarrier object)
 	{
 		return null;
 	}
@@ -845,7 +895,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseShader(Shader object)
+	public T1 caseShader(Shader object)
 	{
 		return null;
 	}
@@ -861,7 +911,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePathResource(PathResource object)
+	public T1 casePathResource(PathResource object)
 	{
 		return null;
 	}
@@ -877,7 +927,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFileResource(FileResource object)
+	public T1 caseFileResource(FileResource object)
 	{
 		return null;
 	}
@@ -893,7 +943,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAbstractModuleResource(AbstractModuleResource object)
+	public T1 caseAbstractModuleResource(AbstractModuleResource object)
 	{
 		return null;
 	}
@@ -909,7 +959,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModuleResource(ModuleResource object)
+	public T1 caseModuleResource(ModuleResource object)
 	{
 		return null;
 	}
@@ -925,7 +975,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStringModuleResource(StringModuleResource object)
+	public T1 caseStringModuleResource(StringModuleResource object)
 	{
 		return null;
 	}
@@ -941,7 +991,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLNamedElement(LNamedElement object)
+	public T1 caseLNamedElement(LNamedElement object)
 	{
 		return null;
 	}
@@ -957,7 +1007,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIResource(IResource object)
+	public T1 caseIResource(IResource object)
 	{
 		return null;
 	}
@@ -973,7 +1023,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBarrier(Barrier object)
+	public T1 caseBarrier(Barrier object)
 	{
 		return null;
 	}
@@ -989,7 +1039,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAbstractBufferBarrier(AbstractBufferBarrier object)
+	public T1 caseAbstractBufferBarrier(AbstractBufferBarrier object)
 	{
 		return null;
 	}
@@ -1005,7 +1055,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAbstractImageBarrier(AbstractImageBarrier object)
+	public T1 caseAbstractImageBarrier(AbstractImageBarrier object)
 	{
 		return null;
 	}
@@ -1022,7 +1072,7 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	public T defaultCase(EObject object)
+	public T1 defaultCase(EObject object)
 	{
 		return null;
 	}

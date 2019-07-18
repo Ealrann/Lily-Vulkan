@@ -26,8 +26,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
  *
  * @generated
  */
-public class ExtraAttachmentDescriptionImpl extends AttachmentDescriptionImpl
-		implements ExtraAttachmentDescription
+public class ExtraAttachmentDescriptionImpl extends AttachmentDescriptionImpl implements ExtraAttachmentDescription
 {
 	/**
 	 * The cached value of the '{@link #getAttachment() <em>Attachment</em>}' reference.
@@ -44,7 +43,7 @@ public class ExtraAttachmentDescriptionImpl extends AttachmentDescriptionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExtraAttachmentDescriptionImpl()
+	public ExtraAttachmentDescriptionImpl()
 	{
 		super();
 	}
@@ -74,10 +73,8 @@ public class ExtraAttachmentDescriptionImpl extends AttachmentDescriptionImpl
 			attachment = (ISwapAttachment) eResolveProxy(oldAttachment);
 			if (attachment != oldAttachment)
 			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT, oldAttachment,
-							attachment));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT, oldAttachment, attachment));
 			}
 		}
 		return attachment;
@@ -104,8 +101,7 @@ public class ExtraAttachmentDescriptionImpl extends AttachmentDescriptionImpl
 		ISwapAttachment oldAttachment = attachment;
 		attachment = newAttachment;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT, oldAttachment,
-				attachment));
+				GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT, oldAttachment, attachment));
 	}
 
 	/**

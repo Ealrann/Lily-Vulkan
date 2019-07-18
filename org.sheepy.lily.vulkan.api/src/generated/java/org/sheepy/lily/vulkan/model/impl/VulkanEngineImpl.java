@@ -128,7 +128,7 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VulkanEngineImpl()
+	public VulkanEngineImpl()
 	{
 		super();
 	}
@@ -272,8 +272,8 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		if (features == null)
 		{
-			features = new EDataTypeUniqueEList<EPhysicalDeviceFeature>(
-					EPhysicalDeviceFeature.class, this, VulkanPackage.VULKAN_ENGINE__FEATURES);
+			features = new EDataTypeUniqueEList<EPhysicalDeviceFeature>(EPhysicalDeviceFeature.class, this,
+					VulkanPackage.VULKAN_ENGINE__FEATURES);
 		}
 		return features;
 	}
@@ -378,9 +378,7 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

@@ -7,8 +7,10 @@ import java.nio.ByteBuffer;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -54,6 +56,7 @@ import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
+import org.sheepy.lily.vulkan.model.resource.IndexProvider;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.PushBuffer;
@@ -65,7 +68,7 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.StringModuleResource;
 import org.sheepy.lily.vulkan.model.resource.Texture;
-
+import org.sheepy.lily.vulkan.model.resource.VertexProvider;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
@@ -170,6 +173,20 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass bufferDataProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass vertexProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass indexProviderEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -366,8 +383,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 */
 	public static ResourcePackage init()
 	{
-		if (isInited) return (ResourcePackage) EPackage.Registry.INSTANCE
-				.getEPackage(ResourcePackage.eNS_URI);
+		if (isInited) return (ResourcePackage) EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 
 		// Obtain or create and register package
 		Object registeredResourcePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
@@ -700,6 +716,17 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
+	public EReference getCompositeBuffer_DataSource()
+	{
+		return (EReference) compositeBufferEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getIBufferReference()
 	{
 		return iBufferReferenceEClass;
@@ -813,6 +840,39 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EAttribute getBufferDataProvider_InstanceCount()
 	{
 		return (EAttribute) bufferDataProviderEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getVertexProvider()
+	{
+		return vertexProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIndexProvider()
+	{
+		return indexProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getIndexProvider_IndexType()
+	{
+		return (EAttribute) indexProviderEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1593,6 +1653,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		compositeBufferEClass = createEClass(COMPOSITE_BUFFER);
 		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__DATA_PROVIDERS);
 		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__PUSH_BUFFER);
+		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__DATA_SOURCE);
 
 		iBufferReferenceEClass = createEClass(IBUFFER_REFERENCE);
 
@@ -1608,6 +1669,11 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__SIZE);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__USAGE);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__INSTANCE_COUNT);
+
+		vertexProviderEClass = createEClass(VERTEX_PROVIDER);
+
+		indexProviderEClass = createEClass(INDEX_PROVIDER);
+		createEAttribute(indexProviderEClass, INDEX_PROVIDER__INDEX_TYPE);
 
 		describedDataProviderEClass = createEClass(DESCRIBED_DATA_PROVIDER);
 
@@ -1722,20 +1788,22 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		VulkanPackage theVulkanPackage = (VulkanPackage) EPackage.Registry.INSTANCE
-				.getEPackage(VulkanPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
-				.getEPackage(EcorePackage.eNS_URI);
+		VulkanPackage theVulkanPackage = (VulkanPackage) EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(EnumerationPackage.eNS_URI);
-		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE
-				.getEPackage(TypesPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		BarrierPackage theBarrierPackage = (BarrierPackage) EPackage.Registry.INSTANCE
 				.getEPackage(BarrierPackage.eNS_URI);
 		PipelinePackage thePipelinePackage = (PipelinePackage) EPackage.Registry.INSTANCE
 				.getEPackage(PipelinePackage.eNS_URI);
 
 		// Create type parameters
+		ETypeParameter compositeBufferEClass_T = addETypeParameter(compositeBufferEClass, "T");
+		addETypeParameter(bufferDataProviderEClass, "T");
+		ETypeParameter vertexProviderEClass_T = addETypeParameter(vertexProviderEClass, "T");
+		ETypeParameter indexProviderEClass_T = addETypeParameter(indexProviderEClass, "T");
+		ETypeParameter describedDataProviderEClass_T = addETypeParameter(describedDataProviderEClass, "T");
 
 		// Set bounds for type parameters
 
@@ -1754,8 +1822,20 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		bufferReferenceEClass.getESuperTypes().add(this.getIBufferReference());
 		compositeBufferReferenceEClass.getESuperTypes().add(this.getIBufferReference());
 		bufferDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		describedDataProviderEClass.getESuperTypes().add(this.getBufferDataProvider());
-		describedDataProviderEClass.getESuperTypes().add(this.getDescriptor());
+		EGenericType g1 = createEGenericType(this.getBufferDataProvider());
+		EGenericType g2 = createEGenericType(vertexProviderEClass_T);
+		g1.getETypeArguments().add(g2);
+		vertexProviderEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getBufferDataProvider());
+		g2 = createEGenericType(indexProviderEClass_T);
+		g1.getETypeArguments().add(g2);
+		indexProviderEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getBufferDataProvider());
+		g2 = createEGenericType(describedDataProviderEClass_T);
+		g1.getETypeArguments().add(g2);
+		describedDataProviderEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getDescriptor());
+		describedDataProviderEClass.getEGenericSuperTypes().add(g1);
 		imageEClass.getESuperTypes().add(this.getBasicDescriptedResource());
 		sampledImageEClass.getESuperTypes().add(this.getBasicDescriptedResource());
 		semaphoreEClass.getESuperTypes().add(this.getBasicResource());
@@ -1774,316 +1854,308 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		stringModuleResourceEClass.getESuperTypes().add(this.getAbstractModuleResource());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(basicResourceEClass, BasicResource.class, "BasicResource", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(basicResourceEClass, BasicResource.class, "BasicResource", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(pushBufferEClass, PushBuffer.class, "PushBuffer", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPushBuffer_BeingUpdated(), theEcorePackage.getEBoolean(), "beingUpdated",
-				"false", 0, 1, PushBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPushBuffer_Size(), theEcorePackage.getELong(), "size", null, 0, 1,
-				PushBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPushBuffer_InstanceCount(), theEcorePackage.getEInt(), "instanceCount",
-				"3", 0, 1, PushBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPushBuffer_BeingUpdated(), theEcorePackage.getEBoolean(), "beingUpdated", "false", 0, 1,
+				PushBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPushBuffer_Size(), theEcorePackage.getELong(), "size", null, 0, 1, PushBuffer.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getPushBuffer_InstanceCount(), theEcorePackage.getEInt(), "instanceCount", "3", 0, 1,
+				PushBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(getBufferEClass, GetBuffer.class, "GetBuffer", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getGetBuffer_Size(), theEcorePackage.getELong(), "size", null, 0, 1,
-				GetBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(constantBufferEClass, ConstantBuffer.class, "ConstantBuffer", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConstantBuffer_BeingPushed(), theEcorePackage.getEBoolean(),
-				"beingPushed", "false", 0, 1, ConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getConstantBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1,
-				ConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(descriptedResourceEClass, DescriptedResource.class, "DescriptedResource",
-				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(basicDescriptedResourceEClass, BasicDescriptedResource.class,
-				"BasicDescriptedResource", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBasicDescriptedResource_Descriptor(), this.getDescriptor(), null,
-				"descriptor", null, 0, 1, BasicDescriptedResource.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(iBufferEClass, IBuffer.class, "IBuffer", IS_ABSTRACT, IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(bufferEClass, Buffer.class, "Buffer", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBuffer_Size(), theEcorePackage.getELong(), "size", null, 0, 1,
-				Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null,
-				0, -1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1, Buffer.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_OftenUpdated(), theEcorePackage.getEBoolean(), "oftenUpdated",
-				"false", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_GpuBuffer(), theEcorePackage.getEBoolean(), "gpuBuffer", "true", 0,
-				1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_InstanceCount(), theEcorePackage.getEInt(), "instanceCount", "1",
-				0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(compositeBufferEClass, CompositeBuffer.class, "CompositeBuffer", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositeBuffer_DataProviders(), this.getBufferDataProvider(), null,
-				"dataProviders", null, 0, -1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getCompositeBuffer_PushBuffer(), this.getPushBuffer(), null, "pushBuffer",
-				null, 1, 1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+		initEAttribute(getGetBuffer_Size(), theEcorePackage.getELong(), "size", null, 0, 1, GetBuffer.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
-		initEClass(iBufferReferenceEClass, IBufferReference.class, "IBufferReference", IS_ABSTRACT,
-				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(bufferReferenceEClass, BufferReference.class, "BufferReference", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBufferReference_Buffer(), this.getBuffer(), null, "buffer", null, 1, 1,
-				BufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBufferReference_Offset(), theEcorePackage.getELong(), "offset", null, 0,
-				1, BufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(compositeBufferReferenceEClass, CompositeBufferReference.class,
-				"CompositeBufferReference", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(constantBufferEClass, ConstantBuffer.class, "ConstantBuffer", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositeBufferReference_Buffer(), this.getCompositeBuffer(), null,
-				"buffer", null, 1, 1, CompositeBufferReference.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+		initEAttribute(getConstantBuffer_BeingPushed(), theEcorePackage.getEBoolean(), "beingPushed", "false", 0, 1,
+				ConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCompositeBufferReference_Part(), theEcorePackage.getEInt(), "part", null,
-				0, 1, CompositeBufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConstantBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1, ConstantBuffer.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
-		initEClass(bufferDataProviderEClass, BufferDataProvider.class, "BufferDataProvider",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBufferDataProvider_Size(), theEcorePackage.getELong(), "size", null, 0, 1,
-				BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBufferDataProvider_Usage(), theEnumerationPackage.getEBufferUsage(),
-				"usage", null, 0, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBufferDataProvider_InstanceCount(), theEcorePackage.getEInt(),
-				"instanceCount", "1", 0, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(describedDataProviderEClass, DescribedDataProvider.class,
-				"DescribedDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(imageEClass, Image.class, "Image", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(descriptedResourceEClass, DescriptedResource.class, "DescriptedResource", IS_ABSTRACT, IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImage_Width(), theEcorePackage.getEInt(), "width", null, 0, 1,
-				Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImage_Height(), theEcorePackage.getEInt(), "height", null, 0, 1,
-				Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImage_Format(), theEnumerationPackage.getEFormat(), "format", null, 0, 1,
-				Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImage_Usages(), theEnumerationPackage.getEImageUsage(), "usages", null, 0,
-				-1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImage_Properties(), theEcorePackage.getEInt(), "properties", null, 0, 1,
-				Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImage_Tiling(), theEcorePackage.getEInt(), "tiling", "0", 0, 1,
-				Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImage_MipLevels(), theEcorePackage.getEInt(), "mipLevels", "1", 0, 1,
-				Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getImage_InitialLayout(), this.getImageLayout(), null, "initialLayout", null,
-				0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+
+		initEClass(basicDescriptedResourceEClass, BasicDescriptedResource.class, "BasicDescriptedResource", IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBasicDescriptedResource_Descriptor(), this.getDescriptor(), null, "descriptor", null, 0, 1,
+				BasicDescriptedResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImage_FillWithZero(), theEcorePackage.getEBoolean(), "fillWithZero",
-				"false", 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iBufferEClass, IBuffer.class, "IBuffer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(bufferEClass, Buffer.class, "Buffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBuffer_Size(), theEcorePackage.getELong(), "size", null, 0, 1, Buffer.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 0, -1, Buffer.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1, Buffer.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_OftenUpdated(), theEcorePackage.getEBoolean(), "oftenUpdated", "false", 0, 1,
+				Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_GpuBuffer(), theEcorePackage.getEBoolean(), "gpuBuffer", "true", 0, 1, Buffer.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getBuffer_InstanceCount(), theEcorePackage.getEInt(), "instanceCount", "1", 0, 1, Buffer.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		initEClass(compositeBufferEClass, CompositeBuffer.class, "CompositeBuffer", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(this.getBufferDataProvider());
+		g2 = createEGenericType(compositeBufferEClass_T);
+		g1.getETypeArguments().add(g2);
+		initEReference(getCompositeBuffer_DataProviders(), g1, null, "dataProviders", null, 0, -1,
+				CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositeBuffer_PushBuffer(), this.getPushBuffer(), null, "pushBuffer", null, 1, 1,
+				CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(compositeBufferEClass_T);
+		initEReference(getCompositeBuffer_DataSource(), g1, null, "dataSource", null, 0, 1, CompositeBuffer.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iBufferReferenceEClass, IBufferReference.class, "IBufferReference", IS_ABSTRACT, IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(bufferReferenceEClass, BufferReference.class, "BufferReference", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBufferReference_Buffer(), this.getBuffer(), null, "buffer", null, 1, 1, BufferReference.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferReference_Offset(), theEcorePackage.getELong(), "offset", null, 0, 1,
+				BufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(compositeBufferReferenceEClass, CompositeBufferReference.class, "CompositeBufferReference",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(this.getCompositeBuffer());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		initEReference(getCompositeBufferReference_Buffer(), g1, null, "buffer", null, 1, 1,
+				CompositeBufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCompositeBufferReference_Part(), theEcorePackage.getEInt(), "part", null, 0, 1,
+				CompositeBufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(bufferDataProviderEClass, BufferDataProvider.class, "BufferDataProvider", IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBufferDataProvider_Size(), theEcorePackage.getELong(), "size", null, 0, 1,
+				BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferDataProvider_Usage(), theEnumerationPackage.getEBufferUsage(), "usage", null, 0, 1,
+				BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferDataProvider_InstanceCount(), theEcorePackage.getEInt(), "instanceCount", "1", 0, 1,
+				BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(vertexProviderEClass, VertexProvider.class, "VertexProvider", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(indexProviderEClass, IndexProvider.class, "IndexProvider", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIndexProvider_IndexType(), theEnumerationPackage.getEIndexType(), "indexType", "UINT32", 1, 1,
+				IndexProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(describedDataProviderEClass, DescribedDataProvider.class, "DescribedDataProvider", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(imageEClass, Image.class, "Image", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getImage_Width(), theEcorePackage.getEInt(), "width", null, 0, 1, Image.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Height(), theEcorePackage.getEInt(), "height", null, 0, 1, Image.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Format(), theEnumerationPackage.getEFormat(), "format", null, 0, 1, Image.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getImage_Usages(), theEnumerationPackage.getEImageUsage(), "usages", null, 0, -1, Image.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Properties(), theEcorePackage.getEInt(), "properties", null, 0, 1, Image.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getImage_Tiling(), theEcorePackage.getEInt(), "tiling", "0", 0, 1, Image.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_MipLevels(), theEcorePackage.getEInt(), "mipLevels", "1", 0, 1, Image.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getImage_InitialLayout(), this.getImageLayout(), null, "initialLayout", null, 0, 1, Image.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_FillWithZero(), theEcorePackage.getEBoolean(), "fillWithZero", "false", 0, 1,
+				Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageLayoutEClass, ImageLayout.class, "ImageLayout", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImageLayout_Stage(), theEnumerationPackage.getEPipelineStage(), "stage",
-				null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageLayout_Layout(), theEnumerationPackage.getEImageLayout(), "layout",
-				null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageLayout_AccessMask(), theEnumerationPackage.getEAccess(),
-				"accessMask", null, 0, -1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageLayout_Stage(), theEnumerationPackage.getEPipelineStage(), "stage", null, 0, 1,
+				ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageLayout_Layout(), theEnumerationPackage.getEImageLayout(), "layout", null, 0, 1,
+				ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageLayout_AccessMask(), theEnumerationPackage.getEAccess(), "accessMask", null, 0, -1,
+				ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(sampledImageEClass, SampledImage.class, "SampledImage", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSampledImage_Sampler(), this.getSampler(), null, "sampler", null, 0, 1,
-				SampledImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(sampledImageEClass, SampledImage.class, "SampledImage", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSampledImage_Sampler(), this.getSampler(), null, "sampler", null, 0, 1, SampledImage.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(semaphoreEClass, Semaphore.class, "Semaphore", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSemaphore_SignalizedAtInit(), theEcorePackage.getEBoolean(),
-				"signalizedAtInit", "false", 0, 1, Semaphore.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSemaphore_WaitStage(), theEnumerationPackage.getEPipelineStage(),
-				"waitStage", null, 0, 1, Semaphore.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSemaphore_SignalizedAtInit(), theEcorePackage.getEBoolean(), "signalizedAtInit", "false", 0,
+				1, Semaphore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSemaphore_WaitStage(), theEnumerationPackage.getEPipelineStage(), "waitStage", null, 0, 1,
+				Semaphore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(fontEClass, Font.class, "Font", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(fontEClass, Font.class, "Font", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFont_File(), this.getPathResource(), null, "file", null, 0, 1, Font.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getFont_Height(), theEcorePackage.getEInt(), "height", "18", 0, 1, Font.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(abstractTextureEClass, AbstractTexture.class, "AbstractTexture", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFont_File(), this.getPathResource(), null, "file", null, 0, 1, Font.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+		initEAttribute(getAbstractTexture_MipmapEnabled(), theEcorePackage.getEBoolean(), "mipmapEnabled", "false", 0,
+				1, AbstractTexture.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(textureEClass, Texture.class, "Texture", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTexture_File(), this.getPathResource(), null, "file", null, 0, 1, Texture.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(samplerEClass, Sampler.class, "Sampler", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSampler_MinFilter(), theEnumerationPackage.getEFilter(), "minFilter", "NEAREST", 0, 1,
+				Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_MagFilter(), theEnumerationPackage.getEFilter(), "magFilter", "NEAREST", 0, 1,
+				Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_MipmapMode(), theEnumerationPackage.getESamplerMipmapMode(), "mipmapMode", "NEAREST",
+				0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_AddressMode(), theEnumerationPackage.getESamplerAddressMode(), "addressMode",
+				"REPEAT", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_BorderColor(), theEnumerationPackage.getEBorderColor(), "borderColor",
+				"INT_OPAQUE_BLACK", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_AnisotropyEnabled(), theEcorePackage.getEBoolean(), "anisotropyEnabled", "false", 0,
+				1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_UnnormalizedCoordinates(), theEcorePackage.getEBoolean(), "unnormalizedCoordinates",
+				"false", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_CompareEnable(), theEcorePackage.getEBoolean(), "compareEnable", "false", 0, 1,
+				Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_LodBias(), theEcorePackage.getEFloat(), "lodBias", "0", 0, 1, Sampler.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getSampler_MinLod(), theEcorePackage.getEInt(), "minLod", "0", 0, 1, Sampler.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getSampler_MaxLod(), theEcorePackage.getEInt(), "maxLod", "1", 0, 1, Sampler.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getSampler_MaxAnisotropy(), theEcorePackage.getEFloat(), "maxAnisotropy", "1", 0, 1,
+				Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(descriptorEClass, org.sheepy.lily.vulkan.model.resource.Descriptor.class, "Descriptor", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDescriptor_DescriptorType(), theEnumerationPackage.getEDescriptorType(), "descriptorType",
+				null, 0, 1, org.sheepy.lily.vulkan.model.resource.Descriptor.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDescriptor_ShaderStages(), theEnumerationPackage.getEShaderStage(), "shaderStages", null, 0,
+				-1, org.sheepy.lily.vulkan.model.resource.Descriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(descriptorSetEClass, DescriptorSet.class, "DescriptorSet", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDescriptorSet_Descriptors(), this.getDescriptedResource(), null, "descriptors", null, 1, -1,
+				DescriptorSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFont_Height(), theEcorePackage.getEInt(), "height", "18", 0, 1,
-				Font.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(abstractTextureEClass, AbstractTexture.class, "AbstractTexture", IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbstractTexture_MipmapEnabled(), theEcorePackage.getEBoolean(),
-				"mipmapEnabled", "false", 0, 1, AbstractTexture.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(textureEClass, Texture.class, "Texture", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(descriptorSetPkgEClass, DescriptorSetPkg.class, "DescriptorSetPkg", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTexture_File(), this.getPathResource(), null, "file", null, 0, 1,
-				Texture.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+		initEReference(getDescriptorSetPkg_DescriptorSets(), this.getDescriptorSet(), null, "descriptorSets", null, 0,
+				-1, DescriptorSetPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(samplerEClass, Sampler.class, "Sampler", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(bufferBarrierEClass, BufferBarrier.class, "BufferBarrier", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSampler_MinFilter(), theEnumerationPackage.getEFilter(), "minFilter",
-				"NEAREST", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_MagFilter(), theEnumerationPackage.getEFilter(), "magFilter",
-				"NEAREST", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_MipmapMode(), theEnumerationPackage.getESamplerMipmapMode(),
-				"mipmapMode", "NEAREST", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_AddressMode(), theEnumerationPackage.getESamplerAddressMode(),
-				"addressMode", "REPEAT", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_BorderColor(), theEnumerationPackage.getEBorderColor(),
-				"borderColor", "INT_OPAQUE_BLACK", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_AnisotropyEnabled(), theEcorePackage.getEBoolean(),
-				"anisotropyEnabled", "false", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_UnnormalizedCoordinates(), theEcorePackage.getEBoolean(),
-				"unnormalizedCoordinates", "false", 0, 1, Sampler.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+		initEReference(getBufferBarrier_Buffer(), this.getBuffer(), null, "buffer", null, 0, 1, BufferBarrier.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(imageBarrierEClass, ImageBarrier.class, "ImageBarrier", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getImageBarrier_Image(), this.getImage(), null, "image", null, 0, 1, ImageBarrier.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(shaderEClass, Shader.class, "Shader", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getShader_File(), this.getPathResource(), null, "file", null, 0, 1, Shader.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEAttribute(getSampler_CompareEnable(), theEcorePackage.getEBoolean(), "compareEnable",
-				"false", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_LodBias(), theEcorePackage.getEFloat(), "lodBias", "0", 0, 1,
-				Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_MinLod(), theEcorePackage.getEInt(), "minLod", "0", 0, 1,
-				Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_MaxLod(), theEcorePackage.getEInt(), "maxLod", "1", 0, 1,
-				Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_MaxAnisotropy(), theEcorePackage.getEFloat(), "maxAnisotropy",
-				"1", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getShader_Stage(), theEnumerationPackage.getEShaderStage(), "stage", null, 0, 1, Shader.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getShader_Constants(), thePipelinePackage.getSpecializationConstant(), null, "constants", null,
+				1, -1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(descriptorEClass, org.sheepy.lily.vulkan.model.resource.Descriptor.class,
-				"Descriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDescriptor_DescriptorType(), theEnumerationPackage.getEDescriptorType(),
-				"descriptorType", null, 0, 1,
-				org.sheepy.lily.vulkan.model.resource.Descriptor.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDescriptor_ShaderStages(), theEnumerationPackage.getEShaderStage(),
-				"shaderStages", null, 0, -1, org.sheepy.lily.vulkan.model.resource.Descriptor.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-
-		initEClass(descriptorSetEClass, DescriptorSet.class, "DescriptorSet", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDescriptorSet_Descriptors(), this.getDescriptedResource(), null,
-				"descriptors", null, 1, -1, DescriptorSet.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-
-		initEClass(descriptorSetPkgEClass, DescriptorSetPkg.class, "DescriptorSetPkg", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDescriptorSetPkg_DescriptorSets(), this.getDescriptorSet(), null,
-				"descriptorSets", null, 0, -1, DescriptorSetPkg.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-
-		initEClass(bufferBarrierEClass, BufferBarrier.class, "BufferBarrier", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBufferBarrier_Buffer(), this.getBuffer(), null, "buffer", null, 0, 1,
-				BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(imageBarrierEClass, ImageBarrier.class, "ImageBarrier", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getImageBarrier_Image(), this.getImage(), null, "image", null, 0, 1,
-				ImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(shaderEClass, Shader.class, "Shader", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(pathResourceEClass, PathResource.class, "PathResource", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getShader_File(), this.getPathResource(), null, "file", null, 0, 1,
-				Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getShader_Stage(), theEnumerationPackage.getEShaderStage(), "stage", null, 0,
-				1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getShader_Constants(), thePipelinePackage.getSpecializationConstant(), null,
-				"constants", null, 1, -1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+		initEAttribute(getPathResource_Path(), theEcorePackage.getEString(), "path", null, 0, 1, PathResource.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
-		initEClass(pathResourceEClass, PathResource.class, "PathResource", IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPathResource_Path(), theEcorePackage.getEString(), "path", null, 0, 1,
-				PathResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(fileResourceEClass, FileResource.class, "FileResource", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(fileResourceEClass, FileResource.class, "FileResource", !IS_ABSTRACT,
+		initEClass(abstractModuleResourceEClass, AbstractModuleResource.class, "AbstractModuleResource", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(abstractModuleResourceEClass, AbstractModuleResource.class,
-				"AbstractModuleResource", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(moduleResourceEClass, ModuleResource.class, "ModuleResource", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getModuleResource_Module(), this.getJavaModule(), "module", null, 0, 1, ModuleResource.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
-		initEClass(moduleResourceEClass, ModuleResource.class, "ModuleResource", !IS_ABSTRACT,
+		initEClass(stringModuleResourceEClass, StringModuleResource.class, "StringModuleResource", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModuleResource_Module(), this.getJavaModule(), "module", null, 0, 1,
-				ModuleResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(stringModuleResourceEClass, StringModuleResource.class, "StringModuleResource",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStringModuleResource_ModuleName(), theEcorePackage.getEString(),
-				"moduleName", null, 0, 1, StringModuleResource.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStringModuleResource_ModuleName(), theEcorePackage.getEString(), "moduleName", null, 0, 1,
+				StringModuleResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(byteBufferEDataType, ByteBuffer.class, "ByteBuffer", IS_SERIALIZABLE,
 				!IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(javaModuleEDataType, Module.class, "JavaModule", IS_SERIALIZABLE,
-				!IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(javaModuleEDataType, Module.class, "JavaModule", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

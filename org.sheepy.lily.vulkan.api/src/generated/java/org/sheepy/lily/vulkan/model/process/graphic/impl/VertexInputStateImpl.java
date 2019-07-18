@@ -50,7 +50,7 @@ public class VertexInputStateImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VertexInputStateImpl()
+	public VertexInputStateImpl()
 	{
 		super();
 	}
@@ -76,8 +76,8 @@ public class VertexInputStateImpl extends MinimalEObjectImpl.Container implement
 	{
 		if (inputDescriptor == null)
 		{
-			inputDescriptor = new EObjectContainmentEList<InputDescriptor>(InputDescriptor.class,
-					this, GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR);
+			inputDescriptor = new EObjectContainmentEList<InputDescriptor>(InputDescriptor.class, this,
+					GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR);
 		}
 		return inputDescriptor;
 	}
@@ -88,9 +88,7 @@ public class VertexInputStateImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

@@ -149,6 +149,31 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RenderableDataSourceItemProvider renderableDataSourceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRenderableDataSourceAdapter()
+	{
+		if (renderableDataSourceItemProvider == null)
+		{
+			renderableDataSourceItemProvider = new RenderableDataSourceItemProvider(this);
+		}
+
+		return renderableDataSourceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -268,6 +293,7 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 		if (axisItemProvider != null) axisItemProvider.dispose();
 		if (presentationPkgItemProvider != null) presentationPkgItemProvider.dispose();
 		if (presentableEntityItemProvider != null) presentableEntityItemProvider.dispose();
+		if (renderableDataSourceItemProvider != null) renderableDataSourceItemProvider.dispose();
 	}
 
 }

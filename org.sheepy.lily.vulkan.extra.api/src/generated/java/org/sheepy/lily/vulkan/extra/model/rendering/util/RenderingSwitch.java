@@ -6,9 +6,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
+import org.sheepy.lily.core.model.maintainer.Maintainable;
+import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.*;
+import org.sheepy.lily.vulkan.model.IResourceContainer;
+import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.IProcessPart;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +30,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.*;
  * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage
  * @generated
  */
-public class RenderingSwitch<T> extends Switch<T>
+public class RenderingSwitch<T1> extends Switch<T1>
 {
 	/**
 	 * The cached model package
@@ -69,14 +76,14 @@ public class RenderingSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	protected T doSwitch(int classifierID, EObject theEObject)
+	protected T1 doSwitch(int classifierID, EObject theEObject)
 	{
 		switch (classifierID)
 		{
 			case RenderingPackage.ENTITY:
 			{
 				Entity entity = (Entity)theEObject;
-				T result = caseEntity(entity);
+				T1 result = caseEntity(entity);
 				if (result == null) result = caseLNamedElement(entity);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -84,7 +91,7 @@ public class RenderingSwitch<T> extends Switch<T>
 			case RenderingPackage.PHYSICAL_ENTITY:
 			{
 				PhysicalEntity physicalEntity = (PhysicalEntity)theEObject;
-				T result = casePhysicalEntity(physicalEntity);
+				T1 result = casePhysicalEntity(physicalEntity);
 				if (result == null) result = caseEntity(physicalEntity);
 				if (result == null) result = caseLNamedElement(physicalEntity);
 				if (result == null) result = defaultCase(theEObject);
@@ -93,31 +100,61 @@ public class RenderingSwitch<T> extends Switch<T>
 			case RenderingPackage.AXIS:
 			{
 				Axis axis = (Axis)theEObject;
-				T result = caseAxis(axis);
+				T1 result = caseAxis(axis);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case RenderingPackage.PRESENTATION:
 			{
 				Presentation presentation = (Presentation)theEObject;
-				T result = casePresentation(presentation);
+				T1 result = casePresentation(presentation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case RenderingPackage.PRESENTATION_PKG:
 			{
 				PresentationPkg presentationPkg = (PresentationPkg)theEObject;
-				T result = casePresentationPkg(presentationPkg);
+				T1 result = casePresentationPkg(presentationPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case RenderingPackage.PRESENTABLE_ENTITY:
 			{
 				PresentableEntity presentableEntity = (PresentableEntity)theEObject;
-				T result = casePresentableEntity(presentableEntity);
+				T1 result = casePresentableEntity(presentableEntity);
 				if (result == null) result = casePhysicalEntity(presentableEntity);
 				if (result == null) result = caseEntity(presentableEntity);
 				if (result == null) result = caseLNamedElement(presentableEntity);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.GENERIC_RENDERER_MAINTAINER:
+			{
+				GenericRendererMaintainer<?> genericRendererMaintainer = (GenericRendererMaintainer<?>)theEObject;
+				T1 result = caseGenericRendererMaintainer(genericRendererMaintainer);
+				if (result == null) result = caseGraphicsPipeline(genericRendererMaintainer);
+				if (result == null) result = caseMaintainer(genericRendererMaintainer);
+				if (result == null) result = caseIPipeline(genericRendererMaintainer);
+				if (result == null) result = caseMaintainable(genericRendererMaintainer);
+				if (result == null) result = caseLNamedElement(genericRendererMaintainer);
+				if (result == null) result = caseIResourceContainer(genericRendererMaintainer);
+				if (result == null) result = caseIProcessPart(genericRendererMaintainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.GENERIC_DATA_PROVIDER:
+			{
+				GenericDataProvider<?> genericDataProvider = (GenericDataProvider<?>)theEObject;
+				T1 result = caseGenericDataProvider(genericDataProvider);
+				if (result == null) result = caseBufferDataProvider(genericDataProvider);
+				if (result == null) result = caseLNamedElement(genericDataProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.RENDERABLE_DATA_SOURCE:
+			{
+				RenderableDataSource<?> renderableDataSource = (RenderableDataSource<?>)theEObject;
+				T1 result = caseRenderableDataSource(renderableDataSource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -136,7 +173,7 @@ public class RenderingSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEntity(Entity object)
+	public T1 caseEntity(Entity object)
 	{
 		return null;
 	}
@@ -152,7 +189,7 @@ public class RenderingSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePhysicalEntity(PhysicalEntity object)
+	public T1 casePhysicalEntity(PhysicalEntity object)
 	{
 		return null;
 	}
@@ -168,7 +205,7 @@ public class RenderingSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAxis(Axis object)
+	public T1 caseAxis(Axis object)
 	{
 		return null;
 	}
@@ -184,7 +221,7 @@ public class RenderingSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePresentation(Presentation object)
+	public T1 casePresentation(Presentation object)
 	{
 		return null;
 	}
@@ -200,7 +237,7 @@ public class RenderingSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePresentationPkg(PresentationPkg object)
+	public T1 casePresentationPkg(PresentationPkg object)
 	{
 		return null;
 	}
@@ -216,7 +253,55 @@ public class RenderingSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePresentableEntity(PresentableEntity object)
+	public T1 casePresentableEntity(PresentableEntity object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Renderer Maintainer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Renderer Maintainer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Presentation> T1 caseGenericRendererMaintainer(GenericRendererMaintainer<T> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Data Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Data Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Presentation> T1 caseGenericDataProvider(GenericDataProvider<T> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Renderable Data Source</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Renderable Data Source</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Presentation> T1 caseRenderableDataSource(RenderableDataSource<T> object)
 	{
 		return null;
 	}
@@ -232,7 +317,119 @@ public class RenderingSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLNamedElement(LNamedElement object)
+	public T1 caseLNamedElement(LNamedElement object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IResource Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IResource Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIResourceContainer(IResourceContainer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IProcess Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IProcess Part</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIProcessPart(IProcessPart object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIPipeline(IPipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Maintainable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Maintainable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Maintainable<T>> T1 caseMaintainable(Maintainable<T> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Graphics Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Graphics Pipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseGraphicsPipeline(GraphicsPipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Maintainer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Maintainer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Maintainable<T>> T1 caseMaintainer(Maintainer<T> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Buffer Data Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Buffer Data Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T> T1 caseBufferDataProvider(BufferDataProvider<T> object)
 	{
 		return null;
 	}
@@ -249,7 +446,7 @@ public class RenderingSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	public T defaultCase(EObject object)
+	public T1 defaultCase(EObject object)
 	{
 		return null;
 	}

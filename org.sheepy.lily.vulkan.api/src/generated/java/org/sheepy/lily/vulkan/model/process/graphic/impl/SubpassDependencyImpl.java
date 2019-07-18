@@ -108,7 +108,7 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SubpassDependencyImpl()
+	public SubpassDependencyImpl()
 	{
 		super();
 	}
@@ -138,9 +138,8 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 			srcSubpass = (Subpass) eResolveProxy(oldSrcSubpass);
 			if (srcSubpass != oldSrcSubpass)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this,
-						Notification.RESOLVE, GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS,
-						oldSrcSubpass, srcSubpass));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS, oldSrcSubpass, srcSubpass));
 			}
 		}
 		return srcSubpass;
@@ -184,9 +183,8 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 			dstSubpass = (Subpass) eResolveProxy(oldDstSubpass);
 			if (dstSubpass != oldDstSubpass)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this,
-						Notification.RESOLVE, GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS,
-						oldDstSubpass, dstSubpass));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS, oldDstSubpass, dstSubpass));
 			}
 		}
 		return dstSubpass;

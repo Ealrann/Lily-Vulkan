@@ -51,7 +51,7 @@ public abstract class PathResourceImpl extends BasicResourceImpl implements Path
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PathResourceImpl()
+	public PathResourceImpl()
 	{
 		super();
 	}
@@ -88,8 +88,8 @@ public abstract class PathResourceImpl extends BasicResourceImpl implements Path
 	{
 		String oldPath = path;
 		path = newPath;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.PATH_RESOURCE__PATH, oldPath, path));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.PATH_RESOURCE__PATH, oldPath, path));
 	}
 
 	/**

@@ -24,8 +24,7 @@ import org.sheepy.lily.vulkan.model.resource.StringModuleResource;
  *
  * @generated
  */
-public class StringModuleResourceImpl extends AbstractModuleResourceImpl
-		implements StringModuleResource
+public class StringModuleResourceImpl extends AbstractModuleResourceImpl implements StringModuleResource
 {
 	/**
 	 * The default value of the '{@link #getModuleName() <em>Module Name</em>}' attribute.
@@ -52,7 +51,7 @@ public class StringModuleResourceImpl extends AbstractModuleResourceImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StringModuleResourceImpl()
+	public StringModuleResourceImpl()
 	{
 		super();
 	}
@@ -154,9 +153,7 @@ public class StringModuleResourceImpl extends AbstractModuleResourceImpl
 		switch (featureID)
 		{
 		case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
-			return MODULE_NAME_EDEFAULT == null
-					? moduleName != null
-					: !MODULE_NAME_EDEFAULT.equals(moduleName);
+			return MODULE_NAME_EDEFAULT == null ? moduleName != null : !MODULE_NAME_EDEFAULT.equals(moduleName);
 		}
 		return super.eIsSet(featureID);
 	}

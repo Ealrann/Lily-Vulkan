@@ -65,7 +65,7 @@ public class FontImpl extends SampledImageImpl implements Font
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected FontImpl()
+	public FontImpl()
 	{
 		super();
 	}
@@ -103,8 +103,8 @@ public class FontImpl extends SampledImageImpl implements Font
 		file = newFile;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ResourcePackage.FONT__FILE, oldFile, newFile);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.FONT__FILE,
+					oldFile, newFile);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -129,8 +129,8 @@ public class FontImpl extends SampledImageImpl implements Font
 			msgs = basicSetFile(newFile, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.FONT__FILE, newFile, newFile));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.FONT__FILE, newFile, newFile));
 	}
 
 	/**
@@ -154,8 +154,8 @@ public class FontImpl extends SampledImageImpl implements Font
 	{
 		int oldHeight = height;
 		height = newHeight;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.FONT__HEIGHT, oldHeight, height));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.FONT__HEIGHT, oldHeight, height));
 	}
 
 	/**
@@ -164,9 +164,7 @@ public class FontImpl extends SampledImageImpl implements Font
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

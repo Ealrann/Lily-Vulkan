@@ -36,9 +36,8 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class BasicDescriptedResourceItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class BasicDescriptedResourceItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -77,13 +76,13 @@ public class BasicDescriptedResourceItemProvider extends ItemProviderAdapter
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-						"_UI_LNamedElement_type"),
-				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+								"_UI_LNamedElement_type"),
+						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -149,12 +148,10 @@ public class BasicDescriptedResourceItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(BasicDescriptedResource.class))
 		{
 		case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__NAME:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -172,13 +169,11 @@ public class BasicDescriptedResourceItemProvider extends ItemProviderAdapter
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(
-				createChildParameter(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
-						ResourceFactory.eINSTANCE.createDescribedDataProvider()));
+		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
+				ResourceFactory.eINSTANCE.createDescribedDataProvider()));
 
-		newChildDescriptors.add(
-				createChildParameter(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
-						ResourceFactory.eINSTANCE.createDescriptor()));
+		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
+				ResourceFactory.eINSTANCE.createDescriptor()));
 	}
 
 	/**

@@ -99,7 +99,7 @@ public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements G
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GetBufferTaskImpl()
+	public GetBufferTaskImpl()
 	{
 		super();
 	}
@@ -136,8 +136,8 @@ public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements G
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.GET_BUFFER_TASK__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.GET_BUFFER_TASK__NAME, oldName, name));
 	}
 
 	/**
@@ -179,9 +179,8 @@ public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements G
 			getBuffer = (GetBuffer) eResolveProxy(oldGetBuffer);
 			if (getBuffer != oldGetBuffer)
 			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ProcessPackage.GET_BUFFER_TASK__GET_BUFFER, oldGetBuffer, getBuffer));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ProcessPackage.GET_BUFFER_TASK__GET_BUFFER, oldGetBuffer, getBuffer));
 			}
 		}
 		return getBuffer;
@@ -225,9 +224,8 @@ public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements G
 			deviceBuffer = (Buffer) eResolveProxy(oldDeviceBuffer);
 			if (deviceBuffer != oldDeviceBuffer)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this,
-						Notification.RESOLVE, ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER,
-						oldDeviceBuffer, deviceBuffer));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER, oldDeviceBuffer, deviceBuffer));
 			}
 		}
 		return deviceBuffer;

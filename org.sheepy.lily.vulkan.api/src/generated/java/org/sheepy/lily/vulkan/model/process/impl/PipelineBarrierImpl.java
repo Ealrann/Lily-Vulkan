@@ -193,7 +193,7 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PipelineBarrierImpl()
+	public PipelineBarrierImpl()
 	{
 		super();
 	}
@@ -231,8 +231,7 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 		EList<LObject> oldContentObjects = contentObjects;
 		contentObjects = newContentObjects;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS, oldContentObjects,
-				contentObjects));
+				ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS, oldContentObjects, contentObjects));
 	}
 
 	/**
@@ -256,8 +255,8 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PIPELINE_BARRIER__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE_BARRIER__NAME, oldName, name));
 	}
 
 	/**
@@ -365,9 +364,8 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 			srcQueue = (AbstractProcess) eResolveProxy(oldSrcQueue);
 			if (srcQueue != oldSrcQueue)
 			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ProcessPackage.PIPELINE_BARRIER__SRC_QUEUE, oldSrcQueue, srcQueue));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ProcessPackage.PIPELINE_BARRIER__SRC_QUEUE, oldSrcQueue, srcQueue));
 			}
 		}
 		return srcQueue;
@@ -411,9 +409,8 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 			dstQueue = (AbstractProcess) eResolveProxy(oldDstQueue);
 			if (dstQueue != oldDstQueue)
 			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ProcessPackage.PIPELINE_BARRIER__DST_QUEUE, oldDstQueue, dstQueue));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ProcessPackage.PIPELINE_BARRIER__DST_QUEUE, oldDstQueue, dstQueue));
 			}
 		}
 		return dstQueue;
@@ -543,9 +540,7 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

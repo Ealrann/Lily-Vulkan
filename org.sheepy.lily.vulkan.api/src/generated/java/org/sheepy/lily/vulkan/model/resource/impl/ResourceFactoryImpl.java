@@ -83,8 +83,10 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			return createBufferReference();
 		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE:
 			return createCompositeBufferReference();
-		case ResourcePackage.BUFFER_DATA_PROVIDER:
-			return createBufferDataProvider();
+		case ResourcePackage.VERTEX_PROVIDER:
+			return createVertexProvider();
+		case ResourcePackage.INDEX_PROVIDER:
+			return createIndexProvider();
 		case ResourcePackage.DESCRIBED_DATA_PROVIDER:
 			return createDescribedDataProvider();
 		case ResourcePackage.IMAGE:
@@ -120,8 +122,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 		case ResourcePackage.STRING_MODULE_RESOURCE:
 			return createStringModuleResource();
 		default:
-			throw new IllegalArgumentException(
-					"The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -140,8 +141,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 		case ResourcePackage.JAVA_MODULE:
 			return createJavaModuleFromString(eDataType, initialValue);
 		default:
-			throw new IllegalArgumentException(
-					"The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -160,8 +160,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 		case ResourcePackage.JAVA_MODULE:
 			return convertJavaModuleToString(eDataType, instanceValue);
 		default:
-			throw new IllegalArgumentException(
-					"The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -231,9 +230,9 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
-	public CompositeBuffer createCompositeBuffer()
+	public <T> CompositeBuffer<T> createCompositeBuffer()
 	{
-		CompositeBufferImpl compositeBuffer = new CompositeBufferImpl();
+		CompositeBufferImpl<T> compositeBuffer = new CompositeBufferImpl<T>();
 		return compositeBuffer;
 	}
 
@@ -267,10 +266,10 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
-	public BufferDataProvider createBufferDataProvider()
+	public <T> VertexProvider<T> createVertexProvider()
 	{
-		BufferDataProviderImpl bufferDataProvider = new BufferDataProviderImpl();
-		return bufferDataProvider;
+		VertexProviderImpl<T> vertexProvider = new VertexProviderImpl<T>();
+		return vertexProvider;
 	}
 
 	/**
@@ -279,9 +278,21 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
-	public DescribedDataProvider createDescribedDataProvider()
+	public <T> IndexProvider<T> createIndexProvider()
 	{
-		DescribedDataProviderImpl describedDataProvider = new DescribedDataProviderImpl();
+		IndexProviderImpl<T> indexProvider = new IndexProviderImpl<T>();
+		return indexProvider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public <T> DescribedDataProvider<T> createDescribedDataProvider()
+	{
+		DescribedDataProviderImpl<T> describedDataProvider = new DescribedDataProviderImpl<T>();
 		return describedDataProvider;
 	}
 

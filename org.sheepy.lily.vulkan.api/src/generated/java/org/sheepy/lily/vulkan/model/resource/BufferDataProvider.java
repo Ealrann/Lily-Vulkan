@@ -21,10 +21,10 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider()
- * @model
+ * @model abstract="true"
  * @generated
  */
-public interface BufferDataProvider extends LNamedElement
+public interface BufferDataProvider<T> extends LNamedElement
 {
 	/**
 	 * Returns the value of the '<em><b>Size</b></em>' attribute.

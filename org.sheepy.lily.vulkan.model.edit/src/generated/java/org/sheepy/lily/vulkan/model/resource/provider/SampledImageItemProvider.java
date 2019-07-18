@@ -125,8 +125,7 @@ public class SampledImageItemProvider extends BasicDescriptedResourceItemProvide
 		switch (notification.getFeatureID(SampledImage.class))
 		{
 		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -144,9 +143,8 @@ public class SampledImageItemProvider extends BasicDescriptedResourceItemProvide
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(ResourcePackage.Literals.SAMPLED_IMAGE__SAMPLER,
-						ResourceFactory.eINSTANCE.createSampler()));
+		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.SAMPLED_IMAGE__SAMPLER,
+				ResourceFactory.eINSTANCE.createSampler()));
 	}
 
 }

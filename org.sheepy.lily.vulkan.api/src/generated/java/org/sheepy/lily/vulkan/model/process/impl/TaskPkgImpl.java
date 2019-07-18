@@ -50,7 +50,7 @@ public class TaskPkgImpl extends MinimalEObjectImpl.Container implements TaskPkg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TaskPkgImpl()
+	public TaskPkgImpl()
 	{
 		super();
 	}
@@ -88,9 +88,7 @@ public class TaskPkgImpl extends MinimalEObjectImpl.Container implements TaskPkg
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

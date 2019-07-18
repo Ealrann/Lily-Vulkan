@@ -150,7 +150,7 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComputerImpl()
+	public ComputerImpl()
 	{
 		super();
 	}
@@ -187,8 +187,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ComputePackage.COMPUTER__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__NAME, oldName, name));
 	}
 
 	/**
@@ -212,8 +212,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ComputePackage.COMPUTER__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -230,8 +230,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 			shader = (Shader) eResolveProxy(oldShader);
 			if (shader != oldShader)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this,
-						Notification.RESOLVE, ComputePackage.COMPUTER__SHADER, oldShader, shader));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ComputePackage.COMPUTER__SHADER, oldShader, shader));
 			}
 		}
 		return shader;
@@ -257,8 +257,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		Shader oldShader = shader;
 		shader = newShader;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ComputePackage.COMPUTER__SHADER, oldShader, shader));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__SHADER, oldShader, shader));
 	}
 
 	/**

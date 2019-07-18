@@ -69,8 +69,7 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 		case VulkanPackage.RESOURCE_PKG:
 			return createResourcePkg();
 		default:
-			throw new IllegalArgumentException(
-					"The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

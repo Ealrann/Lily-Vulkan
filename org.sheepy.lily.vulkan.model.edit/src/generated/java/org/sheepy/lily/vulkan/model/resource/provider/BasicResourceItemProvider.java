@@ -33,9 +33,8 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class BasicResourceItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class BasicResourceItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -74,13 +73,13 @@ public class BasicResourceItemProvider extends ItemProviderAdapter
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-						"_UI_LNamedElement_type"),
-				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+								"_UI_LNamedElement_type"),
+						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -125,8 +124,7 @@ public class BasicResourceItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(BasicResource.class))
 		{
 		case ResourcePackage.BASIC_RESOURCE__NAME:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

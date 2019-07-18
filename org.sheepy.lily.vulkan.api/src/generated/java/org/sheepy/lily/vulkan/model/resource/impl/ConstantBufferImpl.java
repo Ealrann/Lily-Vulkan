@@ -96,7 +96,7 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConstantBufferImpl()
+	public ConstantBufferImpl()
 	{
 		super();
 	}
@@ -133,8 +133,8 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.CONSTANT_BUFFER__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, ResourcePackage.CONSTANT_BUFFER__NAME, oldName, name));
 	}
 
 	/**
@@ -183,8 +183,8 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 	{
 		ByteBuffer oldData = data;
 		data = newData;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.CONSTANT_BUFFER__DATA, oldData, data));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, ResourcePackage.CONSTANT_BUFFER__DATA, oldData, data));
 	}
 
 	/**

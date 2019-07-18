@@ -292,28 +292,53 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.VertexProvider} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BufferDataProviderItemProvider bufferDataProviderItemProvider;
+	protected VertexProviderItemProvider vertexProviderItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.VertexProvider}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createBufferDataProviderAdapter()
+	public Adapter createVertexProviderAdapter()
 	{
-		if (bufferDataProviderItemProvider == null)
+		if (vertexProviderItemProvider == null)
 		{
-			bufferDataProviderItemProvider = new BufferDataProviderItemProvider(this);
+			vertexProviderItemProvider = new VertexProviderItemProvider(this);
 		}
 
-		return bufferDataProviderItemProvider;
+		return vertexProviderItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.IndexProvider} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IndexProviderItemProvider indexProviderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.IndexProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIndexProviderAdapter()
+	{
+		if (indexProviderItemProvider == null)
+		{
+			indexProviderItemProvider = new IndexProviderItemProvider(this);
+		}
+
+		return indexProviderItemProvider;
 	}
 
 	/**
@@ -897,9 +922,9 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (bufferItemProvider != null) bufferItemProvider.dispose();
 		if (compositeBufferItemProvider != null) compositeBufferItemProvider.dispose();
 		if (bufferReferenceItemProvider != null) bufferReferenceItemProvider.dispose();
-		if (compositeBufferReferenceItemProvider != null)
-			compositeBufferReferenceItemProvider.dispose();
-		if (bufferDataProviderItemProvider != null) bufferDataProviderItemProvider.dispose();
+		if (compositeBufferReferenceItemProvider != null) compositeBufferReferenceItemProvider.dispose();
+		if (vertexProviderItemProvider != null) vertexProviderItemProvider.dispose();
+		if (indexProviderItemProvider != null) indexProviderItemProvider.dispose();
 		if (describedDataProviderItemProvider != null) describedDataProviderItemProvider.dispose();
 		if (imageItemProvider != null) imageItemProvider.dispose();
 		if (imageLayoutItemProvider != null) imageLayoutItemProvider.dispose();

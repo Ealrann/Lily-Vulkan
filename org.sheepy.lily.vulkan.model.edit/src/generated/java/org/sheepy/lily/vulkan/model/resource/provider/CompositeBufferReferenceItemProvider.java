@@ -31,9 +31,8 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CompositeBufferReferenceItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class CompositeBufferReferenceItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -74,13 +73,11 @@ public class CompositeBufferReferenceItemProvider extends ItemProviderAdapter
 	protected void addBufferPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_CompositeBufferReference_buffer_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_CompositeBufferReference_buffer_feature",
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_CompositeBufferReference_buffer_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_CompositeBufferReference_buffer_feature",
 						"_UI_CompositeBufferReference_type"),
-				ResourcePackage.Literals.COMPOSITE_BUFFER_REFERENCE__BUFFER, true, false, true,
-				null, null, null));
+				ResourcePackage.Literals.COMPOSITE_BUFFER_REFERENCE__BUFFER, true, false, true, null, null, null));
 	}
 
 	/**
@@ -92,10 +89,9 @@ public class CompositeBufferReferenceItemProvider extends ItemProviderAdapter
 	protected void addPartPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_CompositeBufferReference_part_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_CompositeBufferReference_part_feature",
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_CompositeBufferReference_part_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_CompositeBufferReference_part_feature",
 						"_UI_CompositeBufferReference_type"),
 				ResourcePackage.Literals.COMPOSITE_BUFFER_REFERENCE__PART, true, false, false,
 				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
@@ -110,8 +106,7 @@ public class CompositeBufferReferenceItemProvider extends ItemProviderAdapter
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/CompositeBufferReference"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CompositeBufferReference"));
 	}
 
 	/**
@@ -124,9 +119,7 @@ public class CompositeBufferReferenceItemProvider extends ItemProviderAdapter
 	public String getText(Object object)
 	{
 		CompositeBufferReference compositeBufferReference = (CompositeBufferReference) object;
-		return getString("_UI_CompositeBufferReference_type")
-				+ " "
-				+ compositeBufferReference.getPart();
+		return getString("_UI_CompositeBufferReference_type") + " " + compositeBufferReference.getPart();
 	}
 
 	/**
@@ -144,8 +137,7 @@ public class CompositeBufferReferenceItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(CompositeBufferReference.class))
 		{
 		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__PART:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

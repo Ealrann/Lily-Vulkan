@@ -67,7 +67,7 @@ public abstract class BasicDescriptedResourceImpl extends MinimalEObjectImpl.Con
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BasicDescriptedResourceImpl()
+	public BasicDescriptedResourceImpl()
 	{
 		super();
 	}
@@ -131,8 +131,7 @@ public abstract class BasicDescriptedResourceImpl extends MinimalEObjectImpl.Con
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR, oldDescriptor,
-					newDescriptor);
+					ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR, oldDescriptor, newDescriptor);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -151,17 +150,14 @@ public abstract class BasicDescriptedResourceImpl extends MinimalEObjectImpl.Con
 		{
 			NotificationChain msgs = null;
 			if (descriptor != null) msgs = ((InternalEObject) descriptor).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
-					null, msgs);
+					EOPPOSITE_FEATURE_BASE - ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR, null, msgs);
 			if (newDescriptor != null) msgs = ((InternalEObject) newDescriptor).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
-					null, msgs);
+					EOPPOSITE_FEATURE_BASE - ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR, null, msgs);
 			msgs = basicSetDescriptor(newDescriptor, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR, newDescriptor,
-				newDescriptor));
+				ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR, newDescriptor, newDescriptor));
 	}
 
 	/**
@@ -170,9 +166,7 @@ public abstract class BasicDescriptedResourceImpl extends MinimalEObjectImpl.Con
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

@@ -52,7 +52,7 @@ public class DepthAttachmentImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DepthAttachmentImpl()
+	public DepthAttachmentImpl()
 	{
 		super();
 	}
@@ -89,8 +89,8 @@ public class DepthAttachmentImpl extends MinimalEObjectImpl.Container implements
 	{
 		boolean oldClear = clear;
 		clear = newClear;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.DEPTH_ATTACHMENT__CLEAR, oldClear, clear));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, GraphicPackage.DEPTH_ATTACHMENT__CLEAR, oldClear, clear));
 	}
 
 	/**

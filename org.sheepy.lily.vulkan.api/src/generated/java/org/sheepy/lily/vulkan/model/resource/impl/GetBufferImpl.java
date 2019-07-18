@@ -73,7 +73,7 @@ public class GetBufferImpl extends MinimalEObjectImpl.Container implements GetBu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GetBufferImpl()
+	public GetBufferImpl()
 	{
 		super();
 	}
@@ -110,8 +110,8 @@ public class GetBufferImpl extends MinimalEObjectImpl.Container implements GetBu
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.GET_BUFFER__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.GET_BUFFER__NAME, oldName, name));
 	}
 
 	/**
@@ -135,8 +135,8 @@ public class GetBufferImpl extends MinimalEObjectImpl.Container implements GetBu
 	{
 		long oldSize = size;
 		size = newSize;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.GET_BUFFER__SIZE, oldSize, size));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.GET_BUFFER__SIZE, oldSize, size));
 	}
 
 	/**

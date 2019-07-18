@@ -70,7 +70,7 @@ public class DescriptorSetImpl extends MinimalEObjectImpl.Container implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DescriptorSetImpl()
+	public DescriptorSetImpl()
 	{
 		super();
 	}
@@ -107,8 +107,8 @@ public class DescriptorSetImpl extends MinimalEObjectImpl.Container implements D
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.DESCRIPTOR_SET__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.DESCRIPTOR_SET__NAME, oldName, name));
 	}
 
 	/**
@@ -121,8 +121,8 @@ public class DescriptorSetImpl extends MinimalEObjectImpl.Container implements D
 	{
 		if (descriptors == null)
 		{
-			descriptors = new EObjectResolvingEList<DescriptedResource>(DescriptedResource.class,
-					this, ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS);
+			descriptors = new EObjectResolvingEList<DescriptedResource>(DescriptedResource.class, this,
+					ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS);
 		}
 		return descriptors;
 	}

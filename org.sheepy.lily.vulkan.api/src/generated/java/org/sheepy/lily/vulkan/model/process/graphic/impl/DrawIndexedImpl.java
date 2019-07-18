@@ -178,7 +178,7 @@ public class DrawIndexedImpl extends MinimalEObjectImpl.Container implements Dra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DrawIndexedImpl()
+	public DrawIndexedImpl()
 	{
 		super();
 	}
@@ -215,8 +215,8 @@ public class DrawIndexedImpl extends MinimalEObjectImpl.Container implements Dra
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.DRAW_INDEXED__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DRAW_INDEXED__NAME, oldName, name));
 	}
 
 	/**

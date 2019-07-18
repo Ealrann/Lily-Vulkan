@@ -157,7 +157,7 @@ public class DrawImpl extends MinimalEObjectImpl.Container implements Draw
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DrawImpl()
+	public DrawImpl()
 	{
 		super();
 	}
@@ -194,8 +194,8 @@ public class DrawImpl extends MinimalEObjectImpl.Container implements Draw
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.DRAW__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DRAW__NAME, oldName, name));
 	}
 
 	/**
@@ -219,8 +219,8 @@ public class DrawImpl extends MinimalEObjectImpl.Container implements Draw
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.DRAW__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DRAW__ENABLED, oldEnabled, enabled));
 	}
 
 	/**

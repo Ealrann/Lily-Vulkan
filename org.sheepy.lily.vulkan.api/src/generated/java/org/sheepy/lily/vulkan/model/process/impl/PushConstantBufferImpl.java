@@ -44,7 +44,7 @@ public class PushConstantBufferImpl extends PushConstantImpl implements PushCons
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PushConstantBufferImpl()
+	public PushConstantBufferImpl()
 	{
 		super();
 	}
@@ -74,9 +74,8 @@ public class PushConstantBufferImpl extends PushConstantImpl implements PushCons
 			buffer = (ConstantBuffer) eResolveProxy(oldBuffer);
 			if (buffer != oldBuffer)
 			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER, oldBuffer, buffer));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER, oldBuffer, buffer));
 			}
 		}
 		return buffer;

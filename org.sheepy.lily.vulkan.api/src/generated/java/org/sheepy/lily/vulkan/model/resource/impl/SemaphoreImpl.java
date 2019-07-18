@@ -74,7 +74,7 @@ public class SemaphoreImpl extends BasicResourceImpl implements Semaphore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SemaphoreImpl()
+	public SemaphoreImpl()
 	{
 		super();
 	}
@@ -112,8 +112,7 @@ public class SemaphoreImpl extends BasicResourceImpl implements Semaphore
 		boolean oldSignalizedAtInit = signalizedAtInit;
 		signalizedAtInit = newSignalizedAtInit;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT, oldSignalizedAtInit,
-				signalizedAtInit));
+				ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT, oldSignalizedAtInit, signalizedAtInit));
 	}
 
 	/**

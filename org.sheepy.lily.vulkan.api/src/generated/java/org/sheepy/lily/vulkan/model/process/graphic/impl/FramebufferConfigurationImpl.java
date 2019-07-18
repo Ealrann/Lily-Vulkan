@@ -30,8 +30,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  *
  * @generated
  */
-public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
-		implements FramebufferConfiguration
+public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container implements FramebufferConfiguration
 {
 	/**
 	 * The default value of the '{@link #getClearValue() <em>Clear Value</em>}' attribute.
@@ -59,7 +58,7 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected FramebufferConfigurationImpl()
+	public FramebufferConfigurationImpl()
 	{
 		super();
 	}
@@ -161,9 +160,7 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 		switch (featureID)
 		{
 		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
-			return CLEAR_VALUE_EDEFAULT == null
-					? clearValue != null
-					: !CLEAR_VALUE_EDEFAULT.equals(clearValue);
+			return CLEAR_VALUE_EDEFAULT == null ? clearValue != null : !CLEAR_VALUE_EDEFAULT.equals(clearValue);
 		}
 		return super.eIsSet(featureID);
 	}

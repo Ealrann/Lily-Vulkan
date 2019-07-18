@@ -31,9 +31,8 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ImageLayoutItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class ImageLayoutItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -74,13 +73,13 @@ public class ImageLayoutItemProvider extends ItemProviderAdapter
 	 */
 	protected void addStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ImageLayout_stage_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_stage_feature",
-						"_UI_ImageLayout_type"),
-				ResourcePackage.Literals.IMAGE_LAYOUT__STAGE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_ImageLayout_stage_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_stage_feature",
+								"_UI_ImageLayout_type"),
+						ResourcePackage.Literals.IMAGE_LAYOUT__STAGE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -91,13 +90,13 @@ public class ImageLayoutItemProvider extends ItemProviderAdapter
 	 */
 	protected void addLayoutPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ImageLayout_layout_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_layout_feature",
-						"_UI_ImageLayout_type"),
-				ResourcePackage.Literals.IMAGE_LAYOUT__LAYOUT, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_ImageLayout_layout_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_layout_feature",
+								"_UI_ImageLayout_type"),
+						ResourcePackage.Literals.IMAGE_LAYOUT__LAYOUT, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -108,13 +107,13 @@ public class ImageLayoutItemProvider extends ItemProviderAdapter
 	 */
 	protected void addAccessMaskPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ImageLayout_accessMask_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ImageLayout_accessMask_feature", "_UI_ImageLayout_type"),
-				ResourcePackage.Literals.IMAGE_LAYOUT__ACCESS_MASK, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_ImageLayout_accessMask_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_accessMask_feature",
+								"_UI_ImageLayout_type"),
+						ResourcePackage.Literals.IMAGE_LAYOUT__ACCESS_MASK, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -162,8 +161,7 @@ public class ImageLayoutItemProvider extends ItemProviderAdapter
 		case ResourcePackage.IMAGE_LAYOUT__STAGE:
 		case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
 		case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

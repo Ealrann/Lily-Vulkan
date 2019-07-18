@@ -199,7 +199,7 @@ public class SetViewportImpl extends MinimalEObjectImpl.Container implements Set
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SetViewportImpl()
+	public SetViewportImpl()
 	{
 		super();
 	}
@@ -236,8 +236,8 @@ public class SetViewportImpl extends MinimalEObjectImpl.Container implements Set
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SET_VIEWPORT__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_VIEWPORT__NAME, oldName, name));
 	}
 
 	/**
@@ -286,8 +286,8 @@ public class SetViewportImpl extends MinimalEObjectImpl.Container implements Set
 	{
 		float oldX = x;
 		x = newX;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SET_VIEWPORT__X, oldX, x));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_VIEWPORT__X, oldX, x));
 	}
 
 	/**
@@ -311,8 +311,8 @@ public class SetViewportImpl extends MinimalEObjectImpl.Container implements Set
 	{
 		float oldY = y;
 		y = newY;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SET_VIEWPORT__Y, oldY, y));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_VIEWPORT__Y, oldY, y));
 	}
 
 	/**
@@ -336,8 +336,8 @@ public class SetViewportImpl extends MinimalEObjectImpl.Container implements Set
 	{
 		float oldWidth = width;
 		width = newWidth;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SET_VIEWPORT__WIDTH, oldWidth, width));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_VIEWPORT__WIDTH, oldWidth, width));
 	}
 
 	/**
@@ -361,8 +361,8 @@ public class SetViewportImpl extends MinimalEObjectImpl.Container implements Set
 	{
 		float oldHeight = height;
 		height = newHeight;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SET_VIEWPORT__HEIGHT, oldHeight, height));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_VIEWPORT__HEIGHT, oldHeight, height));
 	}
 
 	/**

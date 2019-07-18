@@ -94,7 +94,7 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ImageLayoutImpl()
+	public ImageLayoutImpl()
 	{
 		super();
 	}
@@ -131,8 +131,8 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	{
 		EPipelineStage oldStage = stage;
 		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.IMAGE_LAYOUT__STAGE, oldStage, stage));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_LAYOUT__STAGE, oldStage, stage));
 	}
 
 	/**
@@ -156,8 +156,8 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	{
 		EImageLayout oldLayout = layout;
 		layout = newLayout == null ? LAYOUT_EDEFAULT : newLayout;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.IMAGE_LAYOUT__LAYOUT, oldLayout, layout));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_LAYOUT__LAYOUT, oldLayout, layout));
 	}
 
 	/**

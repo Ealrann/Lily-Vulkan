@@ -76,7 +76,7 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ColorDomainImpl()
+	public ColorDomainImpl()
 	{
 		super();
 	}
@@ -113,8 +113,8 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	{
 		EFormat oldFormat = format;
 		format = newFormat == null ? FORMAT_EDEFAULT : newFormat;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.COLOR_DOMAIN__FORMAT, oldFormat, format));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, GraphicPackage.COLOR_DOMAIN__FORMAT, oldFormat, format));
 	}
 
 	/**

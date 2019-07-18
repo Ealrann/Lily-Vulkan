@@ -92,7 +92,7 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PushConstantImpl()
+	public PushConstantImpl()
 	{
 		super();
 	}
@@ -129,8 +129,8 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PUSH_CONSTANT__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PUSH_CONSTANT__NAME, oldName, name));
 	}
 
 	/**

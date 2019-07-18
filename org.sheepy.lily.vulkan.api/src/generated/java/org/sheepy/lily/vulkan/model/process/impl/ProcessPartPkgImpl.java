@@ -50,7 +50,7 @@ public class ProcessPartPkgImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProcessPartPkgImpl()
+	public ProcessPartPkgImpl()
 	{
 		super();
 	}
@@ -88,9 +88,7 @@ public class ProcessPartPkgImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

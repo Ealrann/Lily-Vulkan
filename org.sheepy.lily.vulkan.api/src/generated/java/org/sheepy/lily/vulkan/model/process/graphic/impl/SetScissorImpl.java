@@ -157,7 +157,7 @@ public class SetScissorImpl extends MinimalEObjectImpl.Container implements SetS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SetScissorImpl()
+	public SetScissorImpl()
 	{
 		super();
 	}
@@ -194,8 +194,8 @@ public class SetScissorImpl extends MinimalEObjectImpl.Container implements SetS
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SET_SCISSOR__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_SCISSOR__NAME, oldName, name));
 	}
 
 	/**
@@ -294,8 +294,8 @@ public class SetScissorImpl extends MinimalEObjectImpl.Container implements SetS
 	{
 		int oldWidth = width;
 		width = newWidth;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SET_SCISSOR__WIDTH, oldWidth, width));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_SCISSOR__WIDTH, oldWidth, width));
 	}
 
 	/**
@@ -319,8 +319,8 @@ public class SetScissorImpl extends MinimalEObjectImpl.Container implements SetS
 	{
 		int oldHeight = height;
 		height = newHeight;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SET_SCISSOR__HEIGHT, oldHeight, height));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_SCISSOR__HEIGHT, oldHeight, height));
 	}
 
 	/**

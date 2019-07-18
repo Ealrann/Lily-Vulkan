@@ -45,7 +45,7 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ImageBarrierImpl()
+	public ImageBarrierImpl()
 	{
 		super();
 	}
@@ -75,9 +75,8 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 			image = (Image) eResolveProxy(oldImage);
 			if (image != oldImage)
 			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ResourcePackage.IMAGE_BARRIER__IMAGE, oldImage, image));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ResourcePackage.IMAGE_BARRIER__IMAGE, oldImage, image));
 			}
 		}
 		return image;
@@ -103,8 +102,8 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	{
 		Image oldImage = image;
 		image = newImage;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.IMAGE_BARRIER__IMAGE, oldImage, image));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_BARRIER__IMAGE, oldImage, image));
 	}
 
 	/**

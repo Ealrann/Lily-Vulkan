@@ -46,7 +46,7 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VertexBindingImpl()
+	public VertexBindingImpl()
 	{
 		super();
 	}
@@ -78,8 +78,7 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBufferRef(	IBufferReference newBufferRef,
-												NotificationChain msgs)
+	public NotificationChain basicSetBufferRef(IBufferReference newBufferRef, NotificationChain msgs)
 	{
 		IBufferReference oldBufferRef = bufferRef;
 		bufferRef = newBufferRef;
@@ -121,9 +120,7 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

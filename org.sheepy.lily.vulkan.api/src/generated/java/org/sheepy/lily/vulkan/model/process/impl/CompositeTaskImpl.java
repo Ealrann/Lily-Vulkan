@@ -130,7 +130,7 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompositeTaskImpl()
+	public CompositeTaskImpl()
 	{
 		super();
 	}
@@ -167,8 +167,8 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.COMPOSITE_TASK__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.COMPOSITE_TASK__NAME, oldName, name));
 	}
 
 	/**
@@ -211,9 +211,8 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 			maintainer = (Maintainer<CompositeTask>) eResolveProxy(oldMaintainer);
 			if (maintainer != oldMaintainer)
 			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ProcessPackage.COMPOSITE_TASK__MAINTAINER, oldMaintainer, maintainer));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ProcessPackage.COMPOSITE_TASK__MAINTAINER, oldMaintainer, maintainer));
 			}
 		}
 		return maintainer;
@@ -234,8 +233,7 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetMaintainer(Maintainer<CompositeTask> newMaintainer,
-												NotificationChain msgs)
+	public NotificationChain basicSetMaintainer(Maintainer<CompositeTask> newMaintainer, NotificationChain msgs)
 	{
 		Maintainer<CompositeTask> oldMaintainer = maintainer;
 		maintainer = newMaintainer;
@@ -319,9 +317,7 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(	InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
@@ -339,9 +335,7 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{

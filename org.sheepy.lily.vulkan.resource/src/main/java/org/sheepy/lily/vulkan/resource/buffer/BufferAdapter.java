@@ -6,7 +6,7 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.resource.IBufferAdapter;
+import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.descriptor.VkBufferDescriptor;

@@ -23,7 +23,7 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComputeProcessImpl()
+	public ComputeProcessImpl()
 	{
 		super();
 	}

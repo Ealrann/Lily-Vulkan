@@ -33,9 +33,8 @@ import org.sheepy.vulkan.model.enumeration.EDescriptorType;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DescriptorItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class DescriptorItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -75,13 +74,13 @@ public class DescriptorItemProvider extends ItemProviderAdapter
 	 */
 	protected void addDescriptorTypePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Descriptor_descriptorType_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Descriptor_descriptorType_feature", "_UI_Descriptor_type"),
-				ResourcePackage.Literals.DESCRIPTOR__DESCRIPTOR_TYPE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Descriptor_descriptorType_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Descriptor_descriptorType_feature",
+								"_UI_Descriptor_type"),
+						ResourcePackage.Literals.DESCRIPTOR__DESCRIPTOR_TYPE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -92,13 +91,13 @@ public class DescriptorItemProvider extends ItemProviderAdapter
 	 */
 	protected void addShaderStagesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Descriptor_shaderStages_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Descriptor_shaderStages_feature", "_UI_Descriptor_type"),
-				ResourcePackage.Literals.DESCRIPTOR__SHADER_STAGES, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Descriptor_shaderStages_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Descriptor_shaderStages_feature",
+								"_UI_Descriptor_type"),
+						ResourcePackage.Literals.DESCRIPTOR__SHADER_STAGES, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -145,8 +144,7 @@ public class DescriptorItemProvider extends ItemProviderAdapter
 		{
 		case ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE:
 		case ResourcePackage.DESCRIPTOR__SHADER_STAGES:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

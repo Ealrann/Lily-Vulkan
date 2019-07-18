@@ -28,6 +28,7 @@ import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg} object.
@@ -167,6 +168,11 @@ public class PresentationPkgItemProvider
 			(createChildParameter
 				(RenderingPackage.Literals.PRESENTATION_PKG__PRESENTATIONS,
 				 MeshFactory.eINSTANCE.createMesh()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RenderingPackage.Literals.PRESENTATION_PKG__PRESENTATIONS,
+				 SpriteFactory.eINSTANCE.createSprite()));
 	}
 
 	/**

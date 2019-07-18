@@ -122,7 +122,7 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			return createBufferAdapter();
 		}
 		@Override
-		public Adapter caseCompositeBuffer(CompositeBuffer object)
+		public <T> Adapter caseCompositeBuffer(CompositeBuffer<T> object)
 		{
 			return createCompositeBufferAdapter();
 		}
@@ -142,12 +142,22 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			return createCompositeBufferReferenceAdapter();
 		}
 		@Override
-		public Adapter caseBufferDataProvider(BufferDataProvider object)
+		public <T> Adapter caseBufferDataProvider(BufferDataProvider<T> object)
 		{
 			return createBufferDataProviderAdapter();
 		}
 		@Override
-		public Adapter caseDescribedDataProvider(DescribedDataProvider object)
+		public <T> Adapter caseVertexProvider(VertexProvider<T> object)
+		{
+			return createVertexProviderAdapter();
+		}
+		@Override
+		public <T> Adapter caseIndexProvider(IndexProvider<T> object)
+		{
+			return createIndexProviderAdapter();
+		}
+		@Override
+		public <T> Adapter caseDescribedDataProvider(DescribedDataProvider<T> object)
 		{
 			return createDescribedDataProviderAdapter();
 		}
@@ -483,6 +493,36 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createBufferDataProviderAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.VertexProvider <em>Vertex Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.VertexProvider
+	 * @generated
+	 */
+	public Adapter createVertexProviderAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.IndexProvider <em>Index Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.IndexProvider
+	 * @generated
+	 */
+	public Adapter createIndexProviderAdapter()
 	{
 		return null;
 	}

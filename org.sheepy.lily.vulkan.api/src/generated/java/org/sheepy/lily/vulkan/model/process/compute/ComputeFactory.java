@@ -20,8 +20,7 @@ public interface ComputeFactory extends EFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ComputeFactory eINSTANCE = org.sheepy.lily.vulkan.model.process.compute.impl.ComputeFactoryImpl
-			.init();
+	ComputeFactory eINSTANCE = org.sheepy.lily.vulkan.model.process.compute.impl.ComputeFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Process</em>'.

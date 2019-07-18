@@ -5,7 +5,6 @@ package org.sheepy.lily.vulkan.model.resource.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -30,8 +29,7 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  *
  * @generated
  */
-public class BufferDataProviderImpl extends MinimalEObjectImpl.Container
-		implements BufferDataProvider
+public abstract class BufferDataProviderImpl<T> extends MinimalEObjectImpl.Container implements BufferDataProvider<T>
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -118,7 +116,7 @@ public class BufferDataProviderImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BufferDataProviderImpl()
+	public BufferDataProviderImpl()
 	{
 		super();
 	}
@@ -231,8 +229,7 @@ public class BufferDataProviderImpl extends MinimalEObjectImpl.Container
 		int oldInstanceCount = instanceCount;
 		instanceCount = newInstanceCount;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT, oldInstanceCount,
-				instanceCount));
+				ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
 	}
 
 	/**

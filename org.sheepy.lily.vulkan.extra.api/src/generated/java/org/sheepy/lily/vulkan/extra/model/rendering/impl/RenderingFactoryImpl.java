@@ -67,6 +67,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 			case RenderingPackage.AXIS: return createAxis();
 			case RenderingPackage.PRESENTATION_PKG: return createPresentationPkg();
 			case RenderingPackage.PRESENTABLE_ENTITY: return createPresentableEntity();
+			case RenderingPackage.RENDERABLE_DATA_SOURCE: return createRenderableDataSource();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -106,6 +107,18 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	{
 		PresentableEntityImpl presentableEntity = new PresentableEntityImpl();
 		return presentableEntity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public <T extends Presentation> RenderableDataSource<T> createRenderableDataSource()
+	{
+		RenderableDataSourceImpl<T> renderableDataSource = new RenderableDataSourceImpl<T>();
+		return renderableDataSource;
 	}
 
 	/**

@@ -57,8 +57,7 @@ public interface ComputePackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ComputePackage eINSTANCE = org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl
-			.init();
+	ComputePackage eINSTANCE = org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl <em>Process</em>}' class.

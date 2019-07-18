@@ -16,7 +16,10 @@ Export-Package: org.sheepy.lily.vulkan.extra.model.mesh,
  org.sheepy.lily.vulkan.extra.model.nuklear.util,
  org.sheepy.lily.vulkan.extra.model.rendering,
  org.sheepy.lily.vulkan.extra.model.rendering.impl,
- org.sheepy.lily.vulkan.extra.model.rendering.util
+ org.sheepy.lily.vulkan.extra.model.rendering.util,
+ org.sheepy.lily.vulkan.extra.model.sprite,
+ org.sheepy.lily.vulkan.extra.model.sprite.impl,
+ org.sheepy.lily.vulkan.extra.model.sprite.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xcore.lib,

@@ -61,8 +61,7 @@ public interface GraphicPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	GraphicPackage eINSTANCE = org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl
-			.init();
+	GraphicPackage eINSTANCE = org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl <em>Configuration</em>}' class.
@@ -81,8 +80,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION = ProcessPackage.CONFIGURATION_FEATURE_COUNT
-			+ 0;
+	int GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Framebuffer Configuration</b></em>' containment reference.
@@ -91,8 +89,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION = ProcessPackage.CONFIGURATION_FEATURE_COUNT
-			+ 1;
+	int GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Acquire Wait Stage</b></em>' attribute.
@@ -3002,8 +2999,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE = eINSTANCE
-				.getGraphicConfiguration_AcquireWaitStage();
+		EAttribute GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE = eINSTANCE.getGraphicConfiguration_AcquireWaitStage();
 
 		/**
 		 * The meta object literal for the '<em><b>Color Domain</b></em>' containment reference feature.
@@ -3011,8 +3007,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GRAPHIC_CONFIGURATION__COLOR_DOMAIN = eINSTANCE
-				.getGraphicConfiguration_ColorDomain();
+		EReference GRAPHIC_CONFIGURATION__COLOR_DOMAIN = eINSTANCE.getGraphicConfiguration_ColorDomain();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorDomainImpl <em>Color Domain</em>}' class.
@@ -3056,8 +3051,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE = eINSTANCE
-				.getSwapchainConfiguration_PresentationMode();
+		EAttribute SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE = eINSTANCE.getSwapchainConfiguration_PresentationMode();
 
 		/**
 		 * The meta object literal for the '<em><b>Required Swap Image Count</b></em>' attribute feature.
@@ -3074,8 +3068,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES = eINSTANCE
-				.getSwapchainConfiguration_SwapImageUsages();
+		EAttribute SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES = eINSTANCE.getSwapchainConfiguration_SwapImageUsages();
 
 		/**
 		 * The meta object literal for the '<em><b>Atachments</b></em>' containment reference list feature.
@@ -3083,8 +3076,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SWAPCHAIN_CONFIGURATION__ATACHMENTS = eINSTANCE
-				.getSwapchainConfiguration_Atachments();
+		EReference SWAPCHAIN_CONFIGURATION__ATACHMENTS = eINSTANCE.getSwapchainConfiguration_Atachments();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl <em>Framebuffer Configuration</em>}' class.
@@ -3102,8 +3094,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE = eINSTANCE
-				.getFramebufferConfiguration_ClearValue();
+		EAttribute FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE = eINSTANCE.getFramebufferConfiguration_ClearValue();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment <em>ISwap Attachment</em>}' class.
@@ -3285,8 +3276,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SUBPASS_DEPENDENCY__SRC_STAGE_MASK = eINSTANCE
-				.getSubpassDependency_SrcStageMask();
+		EAttribute SUBPASS_DEPENDENCY__SRC_STAGE_MASK = eINSTANCE.getSubpassDependency_SrcStageMask();
 
 		/**
 		 * The meta object literal for the '<em><b>Dst Stage Mask</b></em>' attribute list feature.
@@ -3294,8 +3284,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SUBPASS_DEPENDENCY__DST_STAGE_MASK = eINSTANCE
-				.getSubpassDependency_DstStageMask();
+		EAttribute SUBPASS_DEPENDENCY__DST_STAGE_MASK = eINSTANCE.getSubpassDependency_DstStageMask();
 
 		/**
 		 * The meta object literal for the '<em><b>Src Accesses</b></em>' attribute list feature.
@@ -3353,8 +3342,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP = eINSTANCE
-				.getAttachmentDescription_StencilLoadOp();
+		EAttribute ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP = eINSTANCE.getAttachmentDescription_StencilLoadOp();
 
 		/**
 		 * The meta object literal for the '<em><b>Stencil Store Op</b></em>' attribute feature.
@@ -3362,8 +3350,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP = eINSTANCE
-				.getAttachmentDescription_StencilStoreOp();
+		EAttribute ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP = eINSTANCE.getAttachmentDescription_StencilStoreOp();
 
 		/**
 		 * The meta object literal for the '<em><b>Initial Layout</b></em>' attribute feature.
@@ -3371,8 +3358,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT = eINSTANCE
-				.getAttachmentDescription_InitialLayout();
+		EAttribute ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT = eINSTANCE.getAttachmentDescription_InitialLayout();
 
 		/**
 		 * The meta object literal for the '<em><b>Final Layout</b></em>' attribute feature.
@@ -3380,8 +3366,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ATTACHMENT_DESCRIPTION__FINAL_LAYOUT = eINSTANCE
-				.getAttachmentDescription_FinalLayout();
+		EAttribute ATTACHMENT_DESCRIPTION__FINAL_LAYOUT = eINSTANCE.getAttachmentDescription_FinalLayout();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageAttachmentDescriptionImpl <em>Swap Image Attachment Description</em>}' class.
@@ -3409,8 +3394,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT = eINSTANCE
-				.getExtraAttachmentDescription_Attachment();
+		EReference EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT = eINSTANCE.getExtraAttachmentDescription_Attachment();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl <em>Process</em>}' class.
@@ -3470,8 +3454,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GRAPHICS_PIPELINE__VIEWPORT_STATE = eINSTANCE
-				.getGraphicsPipeline_ViewportState();
+		EReference GRAPHICS_PIPELINE__VIEWPORT_STATE = eINSTANCE.getGraphicsPipeline_ViewportState();
 
 		/**
 		 * The meta object literal for the '<em><b>Input Assembly</b></em>' containment reference feature.
@@ -3479,8 +3462,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GRAPHICS_PIPELINE__INPUT_ASSEMBLY = eINSTANCE
-				.getGraphicsPipeline_InputAssembly();
+		EReference GRAPHICS_PIPELINE__INPUT_ASSEMBLY = eINSTANCE.getGraphicsPipeline_InputAssembly();
 
 		/**
 		 * The meta object literal for the '<em><b>Rasterizer</b></em>' containment reference feature.
@@ -3520,8 +3502,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GRAPHICS_PIPELINE__VERTEX_INPUT_STATE = eINSTANCE
-				.getGraphicsPipeline_VertexInputState();
+		EReference GRAPHICS_PIPELINE__VERTEX_INPUT_STATE = eINSTANCE.getGraphicsPipeline_VertexInputState();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageBarrierImpl <em>Swap Image Barrier</em>}' class.
@@ -3667,8 +3648,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VERTEX_INPUT_STATE__INPUT_DESCRIPTOR = eINSTANCE
-				.getVertexInputState_InputDescriptor();
+		EReference VERTEX_INPUT_STATE__INPUT_DESCRIPTOR = eINSTANCE.getVertexInputState_InputDescriptor();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.InputDescriptorImpl <em>Input Descriptor</em>}' class.
@@ -3754,8 +3734,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BIND_VERTEX_BUFFER__VERTEX_BINDINGS = eINSTANCE
-				.getBindVertexBuffer_VertexBindings();
+		EReference BIND_VERTEX_BUFFER__VERTEX_BINDINGS = eINSTANCE.getBindVertexBuffer_VertexBindings();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SetScissorImpl <em>Set Scissor</em>}' class.

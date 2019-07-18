@@ -288,7 +288,7 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SamplerImpl()
+	public SamplerImpl()
 	{
 		super();
 	}
@@ -451,8 +451,7 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 		boolean oldAnisotropyEnabled = anisotropyEnabled;
 		anisotropyEnabled = newAnisotropyEnabled;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SAMPLER__ANISOTROPY_ENABLED, oldAnisotropyEnabled,
-				anisotropyEnabled));
+				ResourcePackage.SAMPLER__ANISOTROPY_ENABLED, oldAnisotropyEnabled, anisotropyEnabled));
 	}
 
 	/**
@@ -476,9 +475,9 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		boolean oldUnnormalizedCoordinates = unnormalizedCoordinates;
 		unnormalizedCoordinates = newUnnormalizedCoordinates;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SAMPLER__UNNORMALIZED_COORDINATES, oldUnnormalizedCoordinates,
-				unnormalizedCoordinates));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__UNNORMALIZED_COORDINATES,
+					oldUnnormalizedCoordinates, unnormalizedCoordinates));
 	}
 
 	/**
@@ -527,8 +526,8 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		float oldLodBias = lodBias;
 		lodBias = newLodBias;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SAMPLER__LOD_BIAS, oldLodBias, lodBias));
+		if (eNotificationRequired()) eNotify(
+				new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__LOD_BIAS, oldLodBias, lodBias));
 	}
 
 	/**
@@ -552,8 +551,8 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		int oldMinLod = minLod;
 		minLod = newMinLod;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SAMPLER__MIN_LOD, oldMinLod, minLod));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__MIN_LOD, oldMinLod, minLod));
 	}
 
 	/**
@@ -577,8 +576,8 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		int oldMaxLod = maxLod;
 		maxLod = newMaxLod;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SAMPLER__MAX_LOD, oldMaxLod, maxLod));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__MAX_LOD, oldMaxLod, maxLod));
 	}
 
 	/**

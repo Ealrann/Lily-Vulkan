@@ -45,7 +45,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BufferBarrierImpl()
+	public BufferBarrierImpl()
 	{
 		super();
 	}
@@ -75,9 +75,8 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 			buffer = (Buffer) eResolveProxy(oldBuffer);
 			if (buffer != oldBuffer)
 			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
 			}
 		}
 		return buffer;

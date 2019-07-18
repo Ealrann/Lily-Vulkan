@@ -32,6 +32,8 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
+import org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -146,16 +148,20 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		MeshPackageImpl theMeshPackage = (MeshPackageImpl)(registeredPackage instanceof MeshPackageImpl ? registeredPackage : MeshPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(RenderingPackage.eNS_URI);
 		RenderingPackageImpl theRenderingPackage = (RenderingPackageImpl)(registeredPackage instanceof RenderingPackageImpl ? registeredPackage : RenderingPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SpritePackage.eNS_URI);
+		SpritePackageImpl theSpritePackage = (SpritePackageImpl)(registeredPackage instanceof SpritePackageImpl ? registeredPackage : SpritePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theNuklearPackage.createPackageContents();
 		theMeshPackage.createPackageContents();
 		theRenderingPackage.createPackageContents();
+		theSpritePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNuklearPackage.initializePackageContents();
 		theMeshPackage.initializePackageContents();
 		theRenderingPackage.initializePackageContents();
+		theSpritePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theNuklearPackage.freeze();

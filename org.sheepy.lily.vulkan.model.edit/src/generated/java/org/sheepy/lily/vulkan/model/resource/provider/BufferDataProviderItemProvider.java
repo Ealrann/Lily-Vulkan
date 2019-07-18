@@ -32,9 +32,8 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class BufferDataProviderItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class BufferDataProviderItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -76,13 +75,13 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-						"_UI_LNamedElement_type"),
-				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+								"_UI_LNamedElement_type"),
+						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -93,13 +92,13 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter
 	 */
 	protected void addSizePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_BufferDataProvider_size_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_BufferDataProvider_size_feature", "_UI_BufferDataProvider_type"),
-				ResourcePackage.Literals.BUFFER_DATA_PROVIDER__SIZE, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_BufferDataProvider_size_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_size_feature",
+								"_UI_BufferDataProvider_type"),
+						ResourcePackage.Literals.BUFFER_DATA_PROVIDER__SIZE, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -110,13 +109,13 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter
 	 */
 	protected void addUsagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_BufferDataProvider_usage_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_BufferDataProvider_usage_feature", "_UI_BufferDataProvider_type"),
-				ResourcePackage.Literals.BUFFER_DATA_PROVIDER__USAGE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_BufferDataProvider_usage_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_usage_feature",
+								"_UI_BufferDataProvider_type"),
+						ResourcePackage.Literals.BUFFER_DATA_PROVIDER__USAGE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -128,10 +127,9 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter
 	protected void addInstanceCountPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_BufferDataProvider_instanceCount_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_BufferDataProvider_instanceCount_feature",
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_BufferDataProvider_instanceCount_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_instanceCount_feature",
 						"_UI_BufferDataProvider_type"),
 				ResourcePackage.Literals.BUFFER_DATA_PROVIDER__INSTANCE_COUNT, true, false, false,
 				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
@@ -158,7 +156,7 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((BufferDataProvider) object).getName();
+		String label = ((BufferDataProvider<?>) object).getName();
 		return label == null || label.length() == 0
 				? getString("_UI_BufferDataProvider_type")
 				: getString("_UI_BufferDataProvider_type") + " " + label;
@@ -182,8 +180,7 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter
 		case ResourcePackage.BUFFER_DATA_PROVIDER__SIZE:
 		case ResourcePackage.BUFFER_DATA_PROVIDER__USAGE:
 		case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
