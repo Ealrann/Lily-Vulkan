@@ -90,6 +90,18 @@ public class DescribedDataProviderImpl<T> extends BufferDataProviderImpl<T> impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
+	 * @generated
+	 */
+	@Override
+	public void setDataSource(T newDataSource)
+	{
+		super.setDataSource(newDataSource);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

@@ -15,9 +15,9 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getInstanceCount <em>Instance Count</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider()
@@ -26,28 +26,6 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  */
 public interface BufferDataProvider<T> extends LNamedElement
 {
-	/**
-	 * Returns the value of the '<em><b>Size</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Size</em>' attribute.
-	 * @see #setSize(long)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_Size()
-	 * @model unique="false"
-	 * @generated
-	 */
-	long getSize();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getSize <em>Size</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Size</em>' attribute.
-	 * @see #getSize()
-	 * @generated
-	 */
-	void setSize(long value);
-
 	/**
 	 * Returns the value of the '<em><b>Usage</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
@@ -95,5 +73,27 @@ public interface BufferDataProvider<T> extends LNamedElement
 	 * @generated
 	 */
 	void setInstanceCount(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Data Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Source</em>' reference.
+	 * @see #setDataSource(Object)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_DataSource()
+	 * @model kind="reference"
+	 * @generated
+	 */
+	T getDataSource();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource <em>Data Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Source</em>' reference.
+	 * @see #getDataSource()
+	 * @generated
+	 */
+	void setDataSource(T value);
 
 } // BufferDataProvider

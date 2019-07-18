@@ -32,9 +32,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeDescriptionItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class AttributeDescriptionItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -75,13 +74,13 @@ public class AttributeDescriptionItemProvider extends ItemProviderAdapter
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-						"_UI_LNamedElement_type"),
-				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+								"_UI_LNamedElement_type"),
+						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -92,13 +91,13 @@ public class AttributeDescriptionItemProvider extends ItemProviderAdapter
 	 */
 	protected void addFormatPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_AttributeDescription_format_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_AttributeDescription_format_feature", "_UI_AttributeDescription_type"),
-				GraphicPackage.Literals.ATTRIBUTE_DESCRIPTION__FORMAT, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_AttributeDescription_format_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_AttributeDescription_format_feature",
+								"_UI_AttributeDescription_type"),
+						GraphicPackage.Literals.ATTRIBUTE_DESCRIPTION__FORMAT, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -109,13 +108,13 @@ public class AttributeDescriptionItemProvider extends ItemProviderAdapter
 	 */
 	protected void addOffsetPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_AttributeDescription_offset_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_AttributeDescription_offset_feature", "_UI_AttributeDescription_type"),
-				GraphicPackage.Literals.ATTRIBUTE_DESCRIPTION__OFFSET, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_AttributeDescription_offset_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_AttributeDescription_offset_feature",
+								"_UI_AttributeDescription_type"),
+						GraphicPackage.Literals.ATTRIBUTE_DESCRIPTION__OFFSET, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -127,8 +126,7 @@ public class AttributeDescriptionItemProvider extends ItemProviderAdapter
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/AttributeDescription"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeDescription"));
 	}
 
 	/**
@@ -163,8 +161,7 @@ public class AttributeDescriptionItemProvider extends ItemProviderAdapter
 		case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
 		case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
 		case GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

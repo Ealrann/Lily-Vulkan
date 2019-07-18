@@ -292,56 +292,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.VertexProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected VertexProviderItemProvider vertexProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.VertexProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createVertexProviderAdapter()
-	{
-		if (vertexProviderItemProvider == null)
-		{
-			vertexProviderItemProvider = new VertexProviderItemProvider(this);
-		}
-
-		return vertexProviderItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.IndexProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected IndexProviderItemProvider indexProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.IndexProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createIndexProviderAdapter()
-	{
-		if (indexProviderItemProvider == null)
-		{
-			indexProviderItemProvider = new IndexProviderItemProvider(this);
-		}
-
-		return indexProviderItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.DescribedDataProvider} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -923,8 +873,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (compositeBufferItemProvider != null) compositeBufferItemProvider.dispose();
 		if (bufferReferenceItemProvider != null) bufferReferenceItemProvider.dispose();
 		if (compositeBufferReferenceItemProvider != null) compositeBufferReferenceItemProvider.dispose();
-		if (vertexProviderItemProvider != null) vertexProviderItemProvider.dispose();
-		if (indexProviderItemProvider != null) indexProviderItemProvider.dispose();
 		if (describedDataProviderItemProvider != null) describedDataProviderItemProvider.dispose();
 		if (imageItemProvider != null) imageItemProvider.dispose();
 		if (imageLayoutItemProvider != null) imageLayoutItemProvider.dispose();

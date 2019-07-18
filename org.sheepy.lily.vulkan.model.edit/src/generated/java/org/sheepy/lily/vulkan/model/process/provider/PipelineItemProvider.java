@@ -42,9 +42,8 @@ import org.sheepy.vulkan.model.pipeline.PipelineFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PipelineItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class PipelineItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -86,13 +85,13 @@ public class PipelineItemProvider extends ItemProviderAdapter
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-						"_UI_LNamedElement_type"),
-				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+								"_UI_LNamedElement_type"),
+						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -103,13 +102,13 @@ public class PipelineItemProvider extends ItemProviderAdapter
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_IPipeline_enabled_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_enabled_feature",
-						"_UI_IPipeline_type"),
-				ProcessPackage.Literals.IPIPELINE__ENABLED, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_IPipeline_enabled_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_enabled_feature",
+								"_UI_IPipeline_type"),
+						ProcessPackage.Literals.IPIPELINE__ENABLED, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -120,13 +119,13 @@ public class PipelineItemProvider extends ItemProviderAdapter
 	 */
 	protected void addStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_IPipeline_stage_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature",
-						"_UI_IPipeline_type"),
-				ProcessPackage.Literals.IPIPELINE__STAGE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_IPipeline_stage_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature",
+								"_UI_IPipeline_type"),
+						ProcessPackage.Literals.IPIPELINE__STAGE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -137,13 +136,13 @@ public class PipelineItemProvider extends ItemProviderAdapter
 	 */
 	protected void addSpecializationDataPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_IPipeline_specializationData_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_IPipeline_specializationData_feature", "_UI_IPipeline_type"),
-				ProcessPackage.Literals.IPIPELINE__SPECIALIZATION_DATA, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_IPipeline_specializationData_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_specializationData_feature",
+								"_UI_IPipeline_type"),
+						ProcessPackage.Literals.IPIPELINE__SPECIALIZATION_DATA, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -227,15 +226,13 @@ public class PipelineItemProvider extends ItemProviderAdapter
 		case ProcessPackage.PIPELINE__ENABLED:
 		case ProcessPackage.PIPELINE__STAGE:
 		case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ProcessPackage.PIPELINE__RESOURCE_PKG:
 		case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
 		case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
 		case ProcessPackage.PIPELINE__TASK_PKG:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -253,17 +250,14 @@ public class PipelineItemProvider extends ItemProviderAdapter
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-						VulkanFactory.eINSTANCE.createResourcePkg()));
+		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+				VulkanFactory.eINSTANCE.createResourcePkg()));
 
-		newChildDescriptors
-				.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES,
-						PipelineFactory.eINSTANCE.createPushConstantRange()));
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES,
+				PipelineFactory.eINSTANCE.createPushConstantRange()));
 
-		newChildDescriptors
-				.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
-						ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
+				ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
 
 		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__TASK_PKG,
 				ProcessFactory.eINSTANCE.createTaskPkg()));

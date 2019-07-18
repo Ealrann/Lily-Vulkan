@@ -30,9 +30,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FramebufferConfigurationItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class FramebufferConfigurationItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -71,14 +70,13 @@ public class FramebufferConfigurationItemProvider extends ItemProviderAdapter
 	 */
 	protected void addClearValuePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_FramebufferConfiguration_clearValue_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_FramebufferConfiguration_clearValue_feature",
-						"_UI_FramebufferConfiguration_type"),
-				GraphicPackage.Literals.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_FramebufferConfiguration_clearValue_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_FramebufferConfiguration_clearValue_feature", "_UI_FramebufferConfiguration_type"),
+						GraphicPackage.Literals.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -90,8 +88,7 @@ public class FramebufferConfigurationItemProvider extends ItemProviderAdapter
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/FramebufferConfiguration"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FramebufferConfiguration"));
 	}
 
 	/**
@@ -125,8 +122,7 @@ public class FramebufferConfigurationItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(FramebufferConfiguration.class))
 		{
 		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

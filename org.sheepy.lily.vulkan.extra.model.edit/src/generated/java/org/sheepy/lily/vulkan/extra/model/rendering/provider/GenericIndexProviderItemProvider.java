@@ -1,6 +1,7 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.resource.provider;
+package org.sheepy.lily.vulkan.extra.model.rendering.provider;
+
 
 import java.util.Collection;
 import java.util.List;
@@ -13,16 +14,16 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.lily.vulkan.model.resource.IndexProvider;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.extra.model.rendering.GenericIndexProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.IndexProvider} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericIndexProvider} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class IndexProviderItemProvider extends BufferDataProviderItemProvider
+public class GenericIndexProviderItemProvider extends GenericDataProviderItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -30,7 +31,7 @@ public class IndexProviderItemProvider extends BufferDataProviderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IndexProviderItemProvider(AdapterFactory adapterFactory)
+	public GenericIndexProviderItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -61,17 +62,23 @@ public class IndexProviderItemProvider extends BufferDataProviderItemProvider
 	 */
 	protected void addIndexTypePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IndexProvider_indexType_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IndexProvider_indexType_feature",
-								"_UI_IndexProvider_type"),
-						ResourcePackage.Literals.INDEX_PROVIDER__INDEX_TYPE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenericIndexProvider_indexType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenericIndexProvider_indexType_feature", "_UI_GenericIndexProvider_type"),
+				 RenderingPackage.Literals.GENERIC_INDEX_PROVIDER__INDEX_TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns IndexProvider.gif.
+	 * This returns GenericIndexProvider.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -79,7 +86,7 @@ public class IndexProviderItemProvider extends BufferDataProviderItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/IndexProvider"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/GenericIndexProvider"));
 	}
 
 	/**
@@ -91,11 +98,12 @@ public class IndexProviderItemProvider extends BufferDataProviderItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((IndexProvider<?>) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_IndexProvider_type")
-				: getString("_UI_IndexProvider_type") + " " + label;
+		String label = ((GenericIndexProvider<?>)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_GenericIndexProvider_type") :
+			getString("_UI_GenericIndexProvider_type") + " " + label;
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -109,11 +117,11 @@ public class IndexProviderItemProvider extends BufferDataProviderItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(IndexProvider.class))
+		switch (notification.getFeatureID(GenericIndexProvider.class))
 		{
-		case ResourcePackage.INDEX_PROVIDER__INDEX_TYPE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case RenderingPackage.GENERIC_INDEX_PROVIDER__INDEX_TYPE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

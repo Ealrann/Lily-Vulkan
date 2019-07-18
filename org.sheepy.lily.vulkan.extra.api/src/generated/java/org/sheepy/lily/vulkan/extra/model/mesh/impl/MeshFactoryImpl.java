@@ -65,6 +65,7 @@ public class MeshFactoryImpl extends EFactoryImpl implements MeshFactory
 		switch (eClass.getClassifierID())
 		{
 			case MeshPackage.MESH: return createMesh();
+			case MeshPackage.MESH_RENDERER_MAINTAINER: return createMeshRendererMaintainer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -80,6 +81,18 @@ public class MeshFactoryImpl extends EFactoryImpl implements MeshFactory
 	{
 		MeshImpl mesh = new MeshImpl();
 		return mesh;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MeshRendererMaintainer createMeshRendererMaintainer()
+	{
+		MeshRendererMaintainerImpl meshRendererMaintainer = new MeshRendererMaintainerImpl();
+		return meshRendererMaintainer;
 	}
 
 	/**

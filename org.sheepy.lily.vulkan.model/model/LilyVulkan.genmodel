@@ -150,10 +150,8 @@
           ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/instanceCount"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//CompositeBuffer">
-      <genTypeParameters ecoreTypeParameter="resource.ecore#//CompositeBuffer/T"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/dataProviders"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/pushBuffer"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/dataSource"/>
     </genClasses>
     <genClasses image="false" ecoreClass="resource.ecore#//IBufferReference"/>
     <genClasses ecoreClass="resource.ecore#//BufferReference">
@@ -166,16 +164,9 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//BufferDataProvider">
       <genTypeParameters ecoreTypeParameter="resource.ecore#//BufferDataProvider/T"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/size"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usage"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/instanceCount"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//VertexProvider">
-      <genTypeParameters ecoreTypeParameter="resource.ecore#//VertexProvider/T"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//IndexProvider">
-      <genTypeParameters ecoreTypeParameter="resource.ecore#//IndexProvider/T"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//IndexProvider/indexType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//BufferDataProvider/dataSource"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//DescribedDataProvider">
       <genTypeParameters ecoreTypeParameter="resource.ecore#//DescribedDataProvider/T"/>

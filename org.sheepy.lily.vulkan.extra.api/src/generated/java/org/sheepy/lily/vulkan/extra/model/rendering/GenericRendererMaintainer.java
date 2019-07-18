@@ -20,7 +20,7 @@ import org.sheepy.lily.vulkan.model.resource.PushBuffer;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getDataProviders <em>Data Providers</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getDataProviderPkg <em>Data Provider Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getPresentationPkg <em>Presentation Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getConstantBuffer <em>Constant Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getBasicResources <em>Basic Resources</em>}</li>
@@ -34,16 +34,26 @@ import org.sheepy.lily.vulkan.model.resource.PushBuffer;
 public interface GenericRendererMaintainer<T extends Presentation> extends GraphicsPipeline, Maintainer<GraphicsPipeline>
 {
 	/**
-	 * Returns the value of the '<em><b>Data Providers</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericDataProvider}<code>&lt;T&gt;</code>.
+	 * Returns the value of the '<em><b>Data Provider Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data Providers</em>' containment reference list.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getGenericRendererMaintainer_DataProviders()
+	 * @return the value of the '<em>Data Provider Pkg</em>' containment reference.
+	 * @see #setDataProviderPkg(DataProviderPkg)
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getGenericRendererMaintainer_DataProviderPkg()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<GenericDataProvider<T>> getDataProviders();
+	DataProviderPkg<T> getDataProviderPkg();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getDataProviderPkg <em>Data Provider Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Provider Pkg</em>' containment reference.
+	 * @see #getDataProviderPkg()
+	 * @generated
+	 */
+	void setDataProviderPkg(DataProviderPkg<T> value);
 
 	/**
 	 * Returns the value of the '<em><b>Presentation Pkg</b></em>' reference.

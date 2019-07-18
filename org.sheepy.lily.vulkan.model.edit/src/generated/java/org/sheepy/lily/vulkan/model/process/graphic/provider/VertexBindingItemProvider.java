@@ -31,9 +31,8 @@ import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class VertexBindingItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class VertexBindingItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -135,8 +134,7 @@ public class VertexBindingItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(VertexBinding.class))
 		{
 		case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -154,13 +152,11 @@ public class VertexBindingItemProvider extends ItemProviderAdapter
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.VERTEX_BINDING__BUFFER_REF,
-						ResourceFactory.eINSTANCE.createBufferReference()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.VERTEX_BINDING__BUFFER_REF,
+				ResourceFactory.eINSTANCE.createBufferReference()));
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.VERTEX_BINDING__BUFFER_REF,
-						ResourceFactory.eINSTANCE.createCompositeBufferReference()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.VERTEX_BINDING__BUFFER_REF,
+				ResourceFactory.eINSTANCE.createCompositeBufferReference()));
 	}
 
 	/**

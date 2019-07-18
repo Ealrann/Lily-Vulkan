@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -23,9 +24,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.joml.Vector3dc;
-
-import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
-
 import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
@@ -218,7 +216,7 @@ public class AxisItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ExtraEditPlugin.INSTANCE;
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

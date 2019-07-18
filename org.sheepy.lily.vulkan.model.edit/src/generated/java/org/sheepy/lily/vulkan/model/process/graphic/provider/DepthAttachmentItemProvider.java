@@ -31,9 +31,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DepthAttachmentItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class DepthAttachmentItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -72,13 +71,13 @@ public class DepthAttachmentItemProvider extends ItemProviderAdapter
 	 */
 	protected void addClearPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_DepthAttachment_clear_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_DepthAttachment_clear_feature",
-						"_UI_DepthAttachment_type"),
-				GraphicPackage.Literals.DEPTH_ATTACHMENT__CLEAR, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_DepthAttachment_clear_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_DepthAttachment_clear_feature",
+								"_UI_DepthAttachment_type"),
+						GraphicPackage.Literals.DEPTH_ATTACHMENT__CLEAR, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -121,8 +120,7 @@ public class DepthAttachmentItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(DepthAttachment.class))
 		{
 		case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

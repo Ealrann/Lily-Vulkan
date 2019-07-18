@@ -31,9 +31,8 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class BindDescriptorSetsItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class BindDescriptorSetsItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -74,13 +73,13 @@ public class BindDescriptorSetsItemProvider extends ItemProviderAdapter
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-						"_UI_LNamedElement_type"),
-				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+								"_UI_LNamedElement_type"),
+						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -91,13 +90,13 @@ public class BindDescriptorSetsItemProvider extends ItemProviderAdapter
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
-						"_UI_IPipelineTask_type"),
-				ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
+								"_UI_IPipelineTask_type"),
+						ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -109,13 +108,11 @@ public class BindDescriptorSetsItemProvider extends ItemProviderAdapter
 	protected void addDescriptorSetsPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_BindDescriptorSets_descriptorSets_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_BindDescriptorSets_descriptorSets_feature",
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_BindDescriptorSets_descriptorSets_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_BindDescriptorSets_descriptorSets_feature",
 						"_UI_BindDescriptorSets_type"),
-				ProcessPackage.Literals.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS, true, false, true,
-				null, null, null));
+				ProcessPackage.Literals.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -161,8 +158,7 @@ public class BindDescriptorSetsItemProvider extends ItemProviderAdapter
 		{
 		case ProcessPackage.BIND_DESCRIPTOR_SETS__NAME:
 		case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

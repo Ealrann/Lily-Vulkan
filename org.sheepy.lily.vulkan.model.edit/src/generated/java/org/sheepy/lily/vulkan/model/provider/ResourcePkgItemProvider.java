@@ -32,9 +32,8 @@ import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ResourcePkgItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class ResourcePkgItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -136,8 +135,7 @@ public class ResourcePkgItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(ResourcePkg.class))
 		{
 		case VulkanPackage.RESOURCE_PKG__RESOURCES:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);

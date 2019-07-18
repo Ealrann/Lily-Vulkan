@@ -13,6 +13,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -23,9 +24,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshFactory;
-
-import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
-
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
@@ -184,7 +182,7 @@ public class PresentationPkgItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ExtraEditPlugin.INSTANCE;
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

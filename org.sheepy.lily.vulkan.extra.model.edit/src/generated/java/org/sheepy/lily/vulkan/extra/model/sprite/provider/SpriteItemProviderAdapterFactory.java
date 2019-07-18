@@ -74,28 +74,28 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.sprite.SpritePipelineMaintainer} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRendererMaintainer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SpritePipelineMaintainerItemProvider spritePipelineMaintainerItemProvider;
+	protected SpriteRendererMaintainerItemProvider spriteRendererMaintainerItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpritePipelineMaintainer}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRendererMaintainer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSpritePipelineMaintainerAdapter()
+	public Adapter createSpriteRendererMaintainerAdapter()
 	{
-		if (spritePipelineMaintainerItemProvider == null)
+		if (spriteRendererMaintainerItemProvider == null)
 		{
-			spritePipelineMaintainerItemProvider = new SpritePipelineMaintainerItemProvider(this);
+			spriteRendererMaintainerItemProvider = new SpriteRendererMaintainerItemProvider(this);
 		}
 
-		return spritePipelineMaintainerItemProvider;
+		return spriteRendererMaintainerItemProvider;
 	}
 
 	/**
@@ -240,7 +240,7 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	@Override
 	public void dispose()
 	{
-		if (spritePipelineMaintainerItemProvider != null) spritePipelineMaintainerItemProvider.dispose();
+		if (spriteRendererMaintainerItemProvider != null) spriteRendererMaintainerItemProvider.dispose();
 		if (spriteItemProvider != null) spriteItemProvider.dispose();
 	}
 

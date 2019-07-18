@@ -34,9 +34,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ProcessPartPkgItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class ProcessPartPkgItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -138,8 +137,7 @@ public class ProcessPartPkgItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(ProcessPartPkg.class))
 		{
 		case ProcessPackage.PROCESS_PART_PKG__PARTS:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -157,17 +155,14 @@ public class ProcessPartPkgItemProvider extends ItemProviderAdapter
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
-						ProcessFactory.eINSTANCE.createPipeline()));
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
+				ProcessFactory.eINSTANCE.createPipeline()));
 
-		newChildDescriptors
-				.add(createChildParameter(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
-						ComputeFactory.eINSTANCE.createComputePipeline()));
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
+				ComputeFactory.eINSTANCE.createComputePipeline()));
 
-		newChildDescriptors
-				.add(createChildParameter(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
-						GraphicFactory.eINSTANCE.createGraphicsPipeline()));
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
+				GraphicFactory.eINSTANCE.createGraphicsPipeline()));
 	}
 
 	/**

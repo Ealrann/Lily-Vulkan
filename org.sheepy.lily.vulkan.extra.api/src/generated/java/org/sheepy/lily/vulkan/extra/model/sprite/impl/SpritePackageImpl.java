@@ -37,7 +37,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.sprite.Sprite;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
-import org.sheepy.lily.vulkan.extra.model.sprite.SpritePipelineMaintainer;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpriteRendererMaintainer;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -67,7 +67,7 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass spritePipelineMaintainerEClass = null;
+	private EClass spriteRendererMaintainerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -176,9 +176,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getSpritePipelineMaintainer()
+	public EClass getSpriteRendererMaintainer()
 	{
-		return spritePipelineMaintainerEClass;
+		return spriteRendererMaintainerEClass;
 	}
 
 	/**
@@ -234,7 +234,7 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		isCreated = true;
 
 		// Create classes and their features
-		spritePipelineMaintainerEClass = createEClass(SPRITE_PIPELINE_MAINTAINER);
+		spriteRendererMaintainerEClass = createEClass(SPRITE_RENDERER_MAINTAINER);
 
 		spriteEClass = createEClass(SPRITE);
 		createEReference(spriteEClass, SPRITE__FILE);
@@ -276,11 +276,11 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		EGenericType g1 = createEGenericType(theRenderingPackage.getGenericRendererMaintainer());
 		EGenericType g2 = createEGenericType(this.getSprite());
 		g1.getETypeArguments().add(g2);
-		spritePipelineMaintainerEClass.getEGenericSuperTypes().add(g1);
+		spriteRendererMaintainerEClass.getEGenericSuperTypes().add(g1);
 		spriteEClass.getESuperTypes().add(theRenderingPackage.getPresentation());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(spritePipelineMaintainerEClass, SpritePipelineMaintainer.class, "SpritePipelineMaintainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(spriteRendererMaintainerEClass, SpriteRendererMaintainer.class, "SpriteRendererMaintainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(spriteEClass, Sprite.class, "Sprite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSprite_File(), theResourcePackage.getFileResource(), null, "file", null, 1, 1, Sprite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

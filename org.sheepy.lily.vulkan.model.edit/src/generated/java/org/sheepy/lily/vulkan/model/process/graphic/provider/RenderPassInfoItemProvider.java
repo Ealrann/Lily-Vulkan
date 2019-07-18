@@ -34,9 +34,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RenderPassInfoItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class RenderPassInfoItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -75,13 +74,13 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter
 	 */
 	protected void addBindPointPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_RenderPassInfo_bindPoint_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_RenderPassInfo_bindPoint_feature", "_UI_RenderPassInfo_type"),
-				GraphicPackage.Literals.RENDER_PASS_INFO__BIND_POINT, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_RenderPassInfo_bindPoint_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_RenderPassInfo_bindPoint_feature",
+								"_UI_RenderPassInfo_type"),
+						GraphicPackage.Literals.RENDER_PASS_INFO__BIND_POINT, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -159,14 +158,12 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(RenderPassInfo.class))
 		{
 		case GraphicPackage.RENDER_PASS_INFO__BIND_POINT:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
 		case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
 		case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -184,21 +181,17 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.RENDER_PASS_INFO__ATTACHMENTS,
-						GraphicFactory.eINSTANCE.createSwapImageAttachmentDescription()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.RENDER_PASS_INFO__ATTACHMENTS,
+				GraphicFactory.eINSTANCE.createSwapImageAttachmentDescription()));
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.RENDER_PASS_INFO__ATTACHMENTS,
-						GraphicFactory.eINSTANCE.createExtraAttachmentDescription()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.RENDER_PASS_INFO__ATTACHMENTS,
+				GraphicFactory.eINSTANCE.createExtraAttachmentDescription()));
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.RENDER_PASS_INFO__SUBPASSES,
-						GraphicFactory.eINSTANCE.createSubpass()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.RENDER_PASS_INFO__SUBPASSES,
+				GraphicFactory.eINSTANCE.createSubpass()));
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.RENDER_PASS_INFO__DEPENDENCIES,
-						GraphicFactory.eINSTANCE.createSubpassDependency()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.RENDER_PASS_INFO__DEPENDENCIES,
+				GraphicFactory.eINSTANCE.createSubpassDependency()));
 	}
 
 	/**

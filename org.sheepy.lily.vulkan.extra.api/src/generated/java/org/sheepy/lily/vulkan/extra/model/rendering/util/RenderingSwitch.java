@@ -16,6 +16,8 @@ import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
+import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
+import org.sheepy.lily.vulkan.model.resource.Descriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -151,10 +153,49 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case RenderingPackage.DATA_PROVIDER_PKG:
+			{
+				DataProviderPkg<?> dataProviderPkg = (DataProviderPkg<?>)theEObject;
+				T1 result = caseDataProviderPkg(dataProviderPkg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.GENERIC_DESCRIBED_DATA_PROVIDER:
+			{
+				GenericDescribedDataProvider<?> genericDescribedDataProvider = (GenericDescribedDataProvider<?>)theEObject;
+				T1 result = caseGenericDescribedDataProvider(genericDescribedDataProvider);
+				if (result == null) result = caseGenericDataProvider(genericDescribedDataProvider);
+				if (result == null) result = caseDescribedDataProvider(genericDescribedDataProvider);
+				if (result == null) result = caseBufferDataProvider(genericDescribedDataProvider);
+				if (result == null) result = caseDescriptor(genericDescribedDataProvider);
+				if (result == null) result = caseLNamedElement(genericDescribedDataProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case RenderingPackage.RENDERABLE_DATA_SOURCE:
 			{
 				RenderableDataSource<?> renderableDataSource = (RenderableDataSource<?>)theEObject;
 				T1 result = caseRenderableDataSource(renderableDataSource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.GENERIC_VERTEX_PROVIDER:
+			{
+				GenericVertexProvider<?> genericVertexProvider = (GenericVertexProvider<?>)theEObject;
+				T1 result = caseGenericVertexProvider(genericVertexProvider);
+				if (result == null) result = caseGenericDataProvider(genericVertexProvider);
+				if (result == null) result = caseBufferDataProvider(genericVertexProvider);
+				if (result == null) result = caseLNamedElement(genericVertexProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.GENERIC_INDEX_PROVIDER:
+			{
+				GenericIndexProvider<?> genericIndexProvider = (GenericIndexProvider<?>)theEObject;
+				T1 result = caseGenericIndexProvider(genericIndexProvider);
+				if (result == null) result = caseGenericDataProvider(genericIndexProvider);
+				if (result == null) result = caseBufferDataProvider(genericIndexProvider);
+				if (result == null) result = caseLNamedElement(genericIndexProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -291,6 +332,38 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Data Provider Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Data Provider Pkg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Presentation> T1 caseDataProviderPkg(DataProviderPkg<T> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Described Data Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Described Data Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Presentation> T1 caseGenericDescribedDataProvider(GenericDescribedDataProvider<T> object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Renderable Data Source</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -302,6 +375,38 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public <T extends Presentation> T1 caseRenderableDataSource(RenderableDataSource<T> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Vertex Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Vertex Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Presentation> T1 caseGenericVertexProvider(GenericVertexProvider<T> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Index Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Index Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Presentation> T1 caseGenericIndexProvider(GenericIndexProvider<T> object)
 	{
 		return null;
 	}
@@ -430,6 +535,38 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public <T> T1 caseBufferDataProvider(BufferDataProvider<T> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseDescriptor(Descriptor object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Described Data Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Described Data Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T> T1 caseDescribedDataProvider(DescribedDataProvider<T> object)
 	{
 		return null;
 	}

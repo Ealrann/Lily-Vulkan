@@ -34,13 +34,12 @@ import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket.EReservati
 
 @Statefull
 @Adapter(scope = CompositeBuffer.class)
-public final class CompositeBufferAdapter<T> implements ICompositeBufferAdapter<T>
+public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 {
 	private final List<DataProviderWrapper> providerWrappers;
 	private final List<IVkDescriptor> descriptors = new ArrayList<>();
 
 	private final PushBuffer pushBuffer;
-	private final T dataSource;
 
 	private IBufferBackend bufferBackend;
 
@@ -57,10 +56,9 @@ public final class CompositeBufferAdapter<T> implements ICompositeBufferAdapter<
 		}
 	};
 
-	public CompositeBufferAdapter(CompositeBuffer<T> compositeBuffer)
+	public CompositeBufferAdapter(CompositeBuffer compositeBuffer)
 	{
 		this.pushBuffer = compositeBuffer.getPushBuffer();
-		this.dataSource = compositeBuffer.getDataSource();
 
 		final List<DataProviderWrapper> tmpList = new ArrayList<>();
 		for (final var dataProvider : compositeBuffer.getDataProviders())
@@ -127,7 +125,7 @@ public final class CompositeBufferAdapter<T> implements ICompositeBufferAdapter<
 		{
 			if (reservationSuccessfull)
 			{
-				providerWrapper.pushProvidedData(dataSource);
+				providerWrapper.pushProvidedData();
 			}
 			else
 			{
@@ -198,8 +196,8 @@ public final class CompositeBufferAdapter<T> implements ICompositeBufferAdapter<
 	private final class DataProviderWrapper
 	{
 		private final int usage;
-		private final BufferDataProvider<T> dataProvider;
-		private final IBufferDataProviderAdapter<T> adapter;
+		private final BufferDataProvider<?> dataProvider;
+		private final IBufferDataProviderAdapter adapter;
 
 		private final EAccess access;
 		private final EPipelineStage stage;
@@ -211,7 +209,7 @@ public final class CompositeBufferAdapter<T> implements ICompositeBufferAdapter<
 		private MemoryTicket memTicket;
 		private IStagingBuffer stagingBuffer;
 
-		private DataProviderWrapper(BufferDataProvider<T> dataProvider)
+		private DataProviderWrapper(BufferDataProvider<?> dataProvider)
 		{
 			this.dataProvider = dataProvider;
 			this.adapter = IBufferDataProviderAdapter.adapt(dataProvider);
@@ -223,13 +221,13 @@ public final class CompositeBufferAdapter<T> implements ICompositeBufferAdapter<
 
 		public boolean needUpdate()
 		{
-			return needUpdate || adapter.hasChanged(dataSource);
+			return needUpdate || adapter.hasChanged();
 		}
 
 		public boolean reserveMemory(IStagingBuffer stagingBuffer)
 		{
 			this.stagingBuffer = stagingBuffer;
-			final long size = dataProvider.getSize();
+			final long size = adapter.getSize();
 			memTicket = stagingBuffer.reserveMemory(size);
 
 			return memTicket.getReservationStatus() == EReservationStatus.SUCCESS;
@@ -240,13 +238,13 @@ public final class CompositeBufferAdapter<T> implements ICompositeBufferAdapter<
 			stagingBuffer.releaseTicket(memTicket);
 		}
 
-		private void pushProvidedData(T dataSource)
+		private void pushProvidedData()
 		{
 			assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
 
 			final long bufferAddress = bufferBackend.getAddress();
 
-			adapter.fill(dataSource, memTicket.getMemoryPtr());
+			adapter.fill(memTicket.getMemoryPtr());
 
 			final var pushCommand = IDataFlowCommand.newPipelinePushCommand(memTicket, bufferAddress, alignedOffset,
 					stage, access);
@@ -258,7 +256,7 @@ public final class CompositeBufferAdapter<T> implements ICompositeBufferAdapter<
 
 		public IVkDescriptor createDescriptor(long bufferPtr)
 		{
-			final var described = (DescribedDataProvider<T>) dataProvider;
+			final var described = (DescribedDataProvider<?>) dataProvider;
 
 			final var type = described.getDescriptorType();
 			final var stages = described.getShaderStages();
@@ -268,7 +266,7 @@ public final class CompositeBufferAdapter<T> implements ICompositeBufferAdapter<
 
 		public void updateAlignement(PhysicalDevice physicalDevice, long desiredOffset)
 		{
-			final long size = dataProvider.getSize();
+			final long size = adapter.getSize();
 			final long alignment = physicalDevice.getBufferAlignement(usage);
 
 			this.alignedOffset = align(desiredOffset, alignment);

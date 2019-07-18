@@ -32,6 +32,15 @@ public interface MeshFactory extends EFactory
 	Mesh createMesh();
 
 	/**
+	 * Returns a new object of class '<em>Renderer Maintainer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Renderer Maintainer</em>'.
+	 * @generated
+	 */
+	MeshRendererMaintainer createMeshRendererMaintainer();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

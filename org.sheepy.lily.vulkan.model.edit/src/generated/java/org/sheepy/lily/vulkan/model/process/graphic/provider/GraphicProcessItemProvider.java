@@ -64,12 +64,12 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 	 */
 	protected void addFieldOfViewYPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_GraphicProcess_fieldOfViewY_feature"),
-				getString("_UI_GraphicProcess_fieldOfViewY_description"),
-				GraphicPackage.Literals.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y, true, false, false,
-				ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_GraphicProcess_fieldOfViewY_feature"),
+						getString("_UI_GraphicProcess_fieldOfViewY_description"),
+						GraphicPackage.Literals.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y, true, false, false,
+						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -148,13 +148,11 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 		switch (notification.getFeatureID(GraphicProcess.class))
 		{
 		case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -172,13 +170,11 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.GRAPHIC_PROCESS__CONFIGURATION,
-						GraphicFactory.eINSTANCE.createGraphicConfiguration()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHIC_PROCESS__CONFIGURATION,
+				GraphicFactory.eINSTANCE.createGraphicConfiguration()));
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.GRAPHIC_PROCESS__RENDER_PASS_INFO,
-						GraphicFactory.eINSTANCE.createRenderPassInfo()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHIC_PROCESS__RENDER_PASS_INFO,
+				GraphicFactory.eINSTANCE.createRenderPassInfo()));
 	}
 
 }

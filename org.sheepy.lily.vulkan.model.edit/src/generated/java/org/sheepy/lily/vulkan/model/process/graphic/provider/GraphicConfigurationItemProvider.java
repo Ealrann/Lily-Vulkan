@@ -34,9 +34,8 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GraphicConfigurationItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class GraphicConfigurationItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -75,13 +74,12 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 	 */
 	protected void addAcquireWaitStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_GraphicConfiguration_acquireWaitStage_feature"),
-				getString("_UI_GraphicConfiguration_acquireWaitStage_description"),
-				GraphicPackage.Literals.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_GraphicConfiguration_acquireWaitStage_feature"),
+						getString("_UI_GraphicConfiguration_acquireWaitStage_description"),
+						GraphicPackage.Literals.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -98,10 +96,8 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION);
-			childrenFeatures
-					.add(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION);
+			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION);
+			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__COLOR_DOMAIN);
 		}
 		return childrenFeatures;
@@ -130,8 +126,7 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/GraphicConfiguration"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/GraphicConfiguration"));
 	}
 
 	/**
@@ -165,14 +160,12 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(GraphicConfiguration.class))
 		{
 		case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
 		case GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION:
 		case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -190,17 +183,16 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION,
-				GraphicFactory.eINSTANCE.createSwapchainConfiguration()));
+		newChildDescriptors
+				.add(createChildParameter(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION,
+						GraphicFactory.eINSTANCE.createSwapchainConfiguration()));
 
-		newChildDescriptors.add(createChildParameter(
-				GraphicPackage.Literals.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION,
-				GraphicFactory.eINSTANCE.createFramebufferConfiguration()));
+		newChildDescriptors
+				.add(createChildParameter(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION,
+						GraphicFactory.eINSTANCE.createFramebufferConfiguration()));
 
-		newChildDescriptors.add(
-				createChildParameter(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__COLOR_DOMAIN,
-						GraphicFactory.eINSTANCE.createColorDomain()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__COLOR_DOMAIN,
+				GraphicFactory.eINSTANCE.createColorDomain()));
 	}
 
 	/**

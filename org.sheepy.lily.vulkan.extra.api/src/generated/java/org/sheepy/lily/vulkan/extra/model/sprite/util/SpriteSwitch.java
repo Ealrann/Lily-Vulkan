@@ -86,18 +86,18 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	{
 		switch (classifierID)
 		{
-			case SpritePackage.SPRITE_PIPELINE_MAINTAINER:
+			case SpritePackage.SPRITE_RENDERER_MAINTAINER:
 			{
-				SpritePipelineMaintainer spritePipelineMaintainer = (SpritePipelineMaintainer)theEObject;
-				T1 result = caseSpritePipelineMaintainer(spritePipelineMaintainer);
-				if (result == null) result = caseGenericRendererMaintainer(spritePipelineMaintainer);
-				if (result == null) result = caseGraphicsPipeline(spritePipelineMaintainer);
-				if (result == null) result = caseMaintainer(spritePipelineMaintainer);
-				if (result == null) result = caseIPipeline(spritePipelineMaintainer);
-				if (result == null) result = caseMaintainable(spritePipelineMaintainer);
-				if (result == null) result = caseLNamedElement(spritePipelineMaintainer);
-				if (result == null) result = caseIResourceContainer(spritePipelineMaintainer);
-				if (result == null) result = caseIProcessPart(spritePipelineMaintainer);
+				SpriteRendererMaintainer spriteRendererMaintainer = (SpriteRendererMaintainer)theEObject;
+				T1 result = caseSpriteRendererMaintainer(spriteRendererMaintainer);
+				if (result == null) result = caseGenericRendererMaintainer(spriteRendererMaintainer);
+				if (result == null) result = caseGraphicsPipeline(spriteRendererMaintainer);
+				if (result == null) result = caseMaintainer(spriteRendererMaintainer);
+				if (result == null) result = caseIPipeline(spriteRendererMaintainer);
+				if (result == null) result = caseMaintainable(spriteRendererMaintainer);
+				if (result == null) result = caseLNamedElement(spriteRendererMaintainer);
+				if (result == null) result = caseIResourceContainer(spriteRendererMaintainer);
+				if (result == null) result = caseIProcessPart(spriteRendererMaintainer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -114,17 +114,17 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Pipeline Maintainer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Renderer Maintainer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Pipeline Maintainer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Renderer Maintainer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSpritePipelineMaintainer(SpritePipelineMaintainer object)
+	public T1 caseSpriteRendererMaintainer(SpriteRendererMaintainer object)
 	{
 		return null;
 	}

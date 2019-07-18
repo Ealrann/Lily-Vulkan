@@ -56,7 +56,6 @@ import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
-import org.sheepy.lily.vulkan.model.resource.IndexProvider;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.PushBuffer;
@@ -68,7 +67,6 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.StringModuleResource;
 import org.sheepy.lily.vulkan.model.resource.Texture;
-import org.sheepy.lily.vulkan.model.resource.VertexProvider;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
@@ -173,20 +171,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass bufferDataProviderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass vertexProviderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass indexProviderEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -716,17 +700,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getCompositeBuffer_DataSource()
-	{
-		return (EReference) compositeBufferEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getIBufferReference()
 	{
 		return iBufferReferenceEClass;
@@ -815,7 +788,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBufferDataProvider_Size()
+	public EAttribute getBufferDataProvider_Usage()
 	{
 		return (EAttribute) bufferDataProviderEClass.getEStructuralFeatures().get(0);
 	}
@@ -826,7 +799,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBufferDataProvider_Usage()
+	public EAttribute getBufferDataProvider_InstanceCount()
 	{
 		return (EAttribute) bufferDataProviderEClass.getEStructuralFeatures().get(1);
 	}
@@ -837,42 +810,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBufferDataProvider_InstanceCount()
+	public EReference getBufferDataProvider_DataSource()
 	{
-		return (EAttribute) bufferDataProviderEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getVertexProvider()
-	{
-		return vertexProviderEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getIndexProvider()
-	{
-		return indexProviderEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getIndexProvider_IndexType()
-	{
-		return (EAttribute) indexProviderEClass.getEStructuralFeatures().get(0);
+		return (EReference) bufferDataProviderEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1653,7 +1593,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		compositeBufferEClass = createEClass(COMPOSITE_BUFFER);
 		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__DATA_PROVIDERS);
 		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__PUSH_BUFFER);
-		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__DATA_SOURCE);
 
 		iBufferReferenceEClass = createEClass(IBUFFER_REFERENCE);
 
@@ -1666,14 +1605,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(compositeBufferReferenceEClass, COMPOSITE_BUFFER_REFERENCE__PART);
 
 		bufferDataProviderEClass = createEClass(BUFFER_DATA_PROVIDER);
-		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__SIZE);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__USAGE);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__INSTANCE_COUNT);
-
-		vertexProviderEClass = createEClass(VERTEX_PROVIDER);
-
-		indexProviderEClass = createEClass(INDEX_PROVIDER);
-		createEAttribute(indexProviderEClass, INDEX_PROVIDER__INDEX_TYPE);
+		createEReference(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__DATA_SOURCE);
 
 		describedDataProviderEClass = createEClass(DESCRIBED_DATA_PROVIDER);
 
@@ -1799,10 +1733,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 				.getEPackage(PipelinePackage.eNS_URI);
 
 		// Create type parameters
-		ETypeParameter compositeBufferEClass_T = addETypeParameter(compositeBufferEClass, "T");
-		addETypeParameter(bufferDataProviderEClass, "T");
-		ETypeParameter vertexProviderEClass_T = addETypeParameter(vertexProviderEClass, "T");
-		ETypeParameter indexProviderEClass_T = addETypeParameter(indexProviderEClass, "T");
+		ETypeParameter bufferDataProviderEClass_T = addETypeParameter(bufferDataProviderEClass, "T");
 		ETypeParameter describedDataProviderEClass_T = addETypeParameter(describedDataProviderEClass, "T");
 
 		// Set bounds for type parameters
@@ -1823,15 +1754,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		compositeBufferReferenceEClass.getESuperTypes().add(this.getIBufferReference());
 		bufferDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		EGenericType g1 = createEGenericType(this.getBufferDataProvider());
-		EGenericType g2 = createEGenericType(vertexProviderEClass_T);
-		g1.getETypeArguments().add(g2);
-		vertexProviderEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getBufferDataProvider());
-		g2 = createEGenericType(indexProviderEClass_T);
-		g1.getETypeArguments().add(g2);
-		indexProviderEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getBufferDataProvider());
-		g2 = createEGenericType(describedDataProviderEClass_T);
+		EGenericType g2 = createEGenericType(describedDataProviderEClass_T);
 		g1.getETypeArguments().add(g2);
 		describedDataProviderEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getDescriptor());
@@ -1915,18 +1838,14 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEClass(compositeBufferEClass, CompositeBuffer.class, "CompositeBuffer", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(this.getBufferDataProvider());
-		g2 = createEGenericType(compositeBufferEClass_T);
+		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		initEReference(getCompositeBuffer_DataProviders(), g1, null, "dataProviders", null, 0, -1,
-				CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCompositeBuffer_PushBuffer(), this.getPushBuffer(), null, "pushBuffer", null, 1, 1,
 				CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		g1 = createEGenericType(compositeBufferEClass_T);
-		initEReference(getCompositeBuffer_DataSource(), g1, null, "dataSource", null, 0, 1, CompositeBuffer.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iBufferReferenceEClass, IBufferReference.class, "IBufferReference", IS_ABSTRACT, IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1942,10 +1861,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		initEClass(compositeBufferReferenceEClass, CompositeBufferReference.class, "CompositeBufferReference",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(this.getCompositeBuffer());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		initEReference(getCompositeBufferReference_Buffer(), g1, null, "buffer", null, 1, 1,
+		initEReference(getCompositeBufferReference_Buffer(), this.getCompositeBuffer(), null, "buffer", null, 1, 1,
 				CompositeBufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCompositeBufferReference_Part(), theEcorePackage.getEInt(), "part", null, 0, 1,
@@ -1954,24 +1870,16 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		initEClass(bufferDataProviderEClass, BufferDataProvider.class, "BufferDataProvider", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBufferDataProvider_Size(), theEcorePackage.getELong(), "size", null, 0, 1,
-				BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferDataProvider_Usage(), theEnumerationPackage.getEBufferUsage(), "usage", null, 0, 1,
 				BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferDataProvider_InstanceCount(), theEcorePackage.getEInt(), "instanceCount", "1", 0, 1,
 				BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(vertexProviderEClass, VertexProvider.class, "VertexProvider", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(indexProviderEClass, IndexProvider.class, "IndexProvider", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIndexProvider_IndexType(), theEnumerationPackage.getEIndexType(), "indexType", "UINT32", 1, 1,
-				IndexProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(bufferDataProviderEClass_T);
+		initEReference(getBufferDataProvider_DataSource(), g1, null, "dataSource", null, 0, 1, BufferDataProvider.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(describedDataProviderEClass, DescribedDataProvider.class, "DescribedDataProvider", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2125,7 +2033,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEReference(getShader_Constants(), thePipelinePackage.getSpecializationConstant(), null, "constants", null,
-				1, -1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				0, -1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pathResourceEClass, PathResource.class, "PathResource", IS_ABSTRACT, !IS_INTERFACE,

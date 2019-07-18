@@ -89,9 +89,9 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 		new SpriteSwitch<Adapter>()
 		{
 			@Override
-			public Adapter caseSpritePipelineMaintainer(SpritePipelineMaintainer object)
+			public Adapter caseSpriteRendererMaintainer(SpriteRendererMaintainer object)
 			{
-				return createSpritePipelineMaintainerAdapter();
+				return createSpriteRendererMaintainerAdapter();
 			}
 			@Override
 			public Adapter caseSprite(Sprite object)
@@ -166,16 +166,16 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpritePipelineMaintainer <em>Pipeline Maintainer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRendererMaintainer <em>Renderer Maintainer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePipelineMaintainer
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteRendererMaintainer
 	 * @generated
 	 */
-	public Adapter createSpritePipelineMaintainerAdapter()
+	public Adapter createSpriteRendererMaintainerAdapter()
 	{
 		return null;
 	}

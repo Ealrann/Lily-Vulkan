@@ -6,8 +6,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
+import org.sheepy.lily.core.model.maintainer.Maintainable;
+import org.sheepy.lily.core.model.maintainer.Maintainer;
+import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.extra.model.mesh.*;
+import org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
+import org.sheepy.lily.vulkan.model.IResourceContainer;
+import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.IProcessPart;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +30,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
  * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage
  * @generated
  */
-public class MeshSwitch<T> extends Switch<T>
+public class MeshSwitch<T1> extends Switch<T1>
 {
 	/**
 	 * The cached model package
@@ -68,15 +76,30 @@ public class MeshSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	protected T doSwitch(int classifierID, EObject theEObject)
+	protected T1 doSwitch(int classifierID, EObject theEObject)
 	{
 		switch (classifierID)
 		{
 			case MeshPackage.MESH:
 			{
 				Mesh mesh = (Mesh)theEObject;
-				T result = caseMesh(mesh);
+				T1 result = caseMesh(mesh);
 				if (result == null) result = casePresentation(mesh);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MeshPackage.MESH_RENDERER_MAINTAINER:
+			{
+				MeshRendererMaintainer meshRendererMaintainer = (MeshRendererMaintainer)theEObject;
+				T1 result = caseMeshRendererMaintainer(meshRendererMaintainer);
+				if (result == null) result = caseGenericRendererMaintainer(meshRendererMaintainer);
+				if (result == null) result = caseGraphicsPipeline(meshRendererMaintainer);
+				if (result == null) result = caseMaintainer(meshRendererMaintainer);
+				if (result == null) result = caseIPipeline(meshRendererMaintainer);
+				if (result == null) result = caseMaintainable(meshRendererMaintainer);
+				if (result == null) result = caseLNamedElement(meshRendererMaintainer);
+				if (result == null) result = caseIResourceContainer(meshRendererMaintainer);
+				if (result == null) result = caseIProcessPart(meshRendererMaintainer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -95,7 +118,23 @@ public class MeshSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMesh(Mesh object)
+	public T1 caseMesh(Mesh object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Renderer Maintainer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Renderer Maintainer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseMeshRendererMaintainer(MeshRendererMaintainer object)
 	{
 		return null;
 	}
@@ -111,7 +150,135 @@ public class MeshSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePresentation(Presentation object)
+	public T1 casePresentation(Presentation object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>LNamed Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>LNamed Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseLNamedElement(LNamedElement object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IResource Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IResource Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIResourceContainer(IResourceContainer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IProcess Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IProcess Part</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIProcessPart(IProcessPart object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIPipeline(IPipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Maintainable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Maintainable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Maintainable<T>> T1 caseMaintainable(Maintainable<T> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Graphics Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Graphics Pipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseGraphicsPipeline(GraphicsPipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Maintainer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Maintainer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Maintainable<T>> T1 caseMaintainer(Maintainer<T> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Renderer Maintainer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Renderer Maintainer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Presentation> T1 caseGenericRendererMaintainer(GenericRendererMaintainer<T> object)
 	{
 		return null;
 	}
@@ -128,7 +295,7 @@ public class MeshSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	public T defaultCase(EObject object)
+	public T1 defaultCase(EObject object)
 	{
 		return null;
 	}

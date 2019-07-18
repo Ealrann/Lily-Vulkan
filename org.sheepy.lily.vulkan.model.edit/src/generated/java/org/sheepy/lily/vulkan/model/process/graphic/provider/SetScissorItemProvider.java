@@ -35,9 +35,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.SetScissor;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SetScissorItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class SetScissorItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -81,13 +80,13 @@ public class SetScissorItemProvider extends ItemProviderAdapter
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-						"_UI_LNamedElement_type"),
-				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+								"_UI_LNamedElement_type"),
+						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -98,13 +97,13 @@ public class SetScissorItemProvider extends ItemProviderAdapter
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
-						"_UI_IPipelineTask_type"),
-				ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
+								"_UI_IPipelineTask_type"),
+						ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -115,13 +114,13 @@ public class SetScissorItemProvider extends ItemProviderAdapter
 	 */
 	protected void addOffsetXPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_SetScissor_offsetX_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_SetScissor_offsetX_feature",
-						"_UI_SetScissor_type"),
-				GraphicPackage.Literals.SET_SCISSOR__OFFSET_X, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_SetScissor_offsetX_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_SetScissor_offsetX_feature",
+								"_UI_SetScissor_type"),
+						GraphicPackage.Literals.SET_SCISSOR__OFFSET_X, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -132,13 +131,13 @@ public class SetScissorItemProvider extends ItemProviderAdapter
 	 */
 	protected void addOffsetYPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_SetScissor_offsetY_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_SetScissor_offsetY_feature",
-						"_UI_SetScissor_type"),
-				GraphicPackage.Literals.SET_SCISSOR__OFFSET_Y, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_SetScissor_offsetY_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_SetScissor_offsetY_feature",
+								"_UI_SetScissor_type"),
+						GraphicPackage.Literals.SET_SCISSOR__OFFSET_Y, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -149,13 +148,13 @@ public class SetScissorItemProvider extends ItemProviderAdapter
 	 */
 	protected void addWidthPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_SetScissor_width_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_SetScissor_width_feature",
-						"_UI_SetScissor_type"),
-				GraphicPackage.Literals.SET_SCISSOR__WIDTH, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_SetScissor_width_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_SetScissor_width_feature",
+								"_UI_SetScissor_type"),
+						GraphicPackage.Literals.SET_SCISSOR__WIDTH, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -166,13 +165,13 @@ public class SetScissorItemProvider extends ItemProviderAdapter
 	 */
 	protected void addHeightPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_SetScissor_height_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_SetScissor_height_feature",
-						"_UI_SetScissor_type"),
-				GraphicPackage.Literals.SET_SCISSOR__HEIGHT, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_SetScissor_height_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_SetScissor_height_feature",
+								"_UI_SetScissor_type"),
+						GraphicPackage.Literals.SET_SCISSOR__HEIGHT, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -222,8 +221,7 @@ public class SetScissorItemProvider extends ItemProviderAdapter
 		case GraphicPackage.SET_SCISSOR__OFFSET_Y:
 		case GraphicPackage.SET_SCISSOR__WIDTH:
 		case GraphicPackage.SET_SCISSOR__HEIGHT:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

@@ -8,18 +8,13 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
-
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
 import org.sheepy.lily.vulkan.model.process.graphic.provider.GraphicsPipelineItemProvider;
@@ -170,7 +165,7 @@ public class GenericRendererMaintainerItemProvider extends GraphicsPipelineItemP
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RenderingPackage.Literals.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDERS);
+			childrenFeatures.add(RenderingPackage.Literals.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG);
 		}
 		return childrenFeatures;
 	}
@@ -219,7 +214,7 @@ public class GenericRendererMaintainerItemProvider extends GraphicsPipelineItemP
 
 		switch (notification.getFeatureID(GenericRendererMaintainer.class))
 		{
-			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDERS:
+			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -237,18 +232,11 @@ public class GenericRendererMaintainerItemProvider extends GraphicsPipelineItemP
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
 
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator()
-	{
-		return ExtraEditPlugin.INSTANCE;
+		newChildDescriptors.add
+			(createChildParameter
+				(RenderingPackage.Literals.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG,
+				 RenderingFactory.eINSTANCE.createDataProviderPkg()));
 	}
 
 }

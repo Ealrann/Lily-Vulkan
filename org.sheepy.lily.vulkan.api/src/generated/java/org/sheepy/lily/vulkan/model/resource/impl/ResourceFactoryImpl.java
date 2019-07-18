@@ -83,10 +83,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			return createBufferReference();
 		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE:
 			return createCompositeBufferReference();
-		case ResourcePackage.VERTEX_PROVIDER:
-			return createVertexProvider();
-		case ResourcePackage.INDEX_PROVIDER:
-			return createIndexProvider();
 		case ResourcePackage.DESCRIBED_DATA_PROVIDER:
 			return createDescribedDataProvider();
 		case ResourcePackage.IMAGE:
@@ -230,9 +226,9 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
-	public <T> CompositeBuffer<T> createCompositeBuffer()
+	public CompositeBuffer createCompositeBuffer()
 	{
-		CompositeBufferImpl<T> compositeBuffer = new CompositeBufferImpl<T>();
+		CompositeBufferImpl compositeBuffer = new CompositeBufferImpl();
 		return compositeBuffer;
 	}
 
@@ -258,30 +254,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		CompositeBufferReferenceImpl compositeBufferReference = new CompositeBufferReferenceImpl();
 		return compositeBufferReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public <T> VertexProvider<T> createVertexProvider()
-	{
-		VertexProviderImpl<T> vertexProvider = new VertexProviderImpl<T>();
-		return vertexProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public <T> IndexProvider<T> createIndexProvider()
-	{
-		IndexProviderImpl<T> indexProvider = new IndexProviderImpl<T>();
-		return indexProvider;
 	}
 
 	/**

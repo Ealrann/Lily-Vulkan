@@ -67,7 +67,11 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 			case RenderingPackage.AXIS: return createAxis();
 			case RenderingPackage.PRESENTATION_PKG: return createPresentationPkg();
 			case RenderingPackage.PRESENTABLE_ENTITY: return createPresentableEntity();
+			case RenderingPackage.DATA_PROVIDER_PKG: return createDataProviderPkg();
+			case RenderingPackage.GENERIC_DESCRIBED_DATA_PROVIDER: return createGenericDescribedDataProvider();
 			case RenderingPackage.RENDERABLE_DATA_SOURCE: return createRenderableDataSource();
+			case RenderingPackage.GENERIC_VERTEX_PROVIDER: return createGenericVertexProvider();
+			case RenderingPackage.GENERIC_INDEX_PROVIDER: return createGenericIndexProvider();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -115,10 +119,58 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	@Override
+	public <T extends Presentation> DataProviderPkg<T> createDataProviderPkg()
+	{
+		DataProviderPkgImpl<T> dataProviderPkg = new DataProviderPkgImpl<T>();
+		return dataProviderPkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public <T extends Presentation> GenericDescribedDataProvider<T> createGenericDescribedDataProvider()
+	{
+		GenericDescribedDataProviderImpl<T> genericDescribedDataProvider = new GenericDescribedDataProviderImpl<T>();
+		return genericDescribedDataProvider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public <T extends Presentation> RenderableDataSource<T> createRenderableDataSource()
 	{
 		RenderableDataSourceImpl<T> renderableDataSource = new RenderableDataSourceImpl<T>();
 		return renderableDataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public <T extends Presentation> GenericVertexProvider<T> createGenericVertexProvider()
+	{
+		GenericVertexProviderImpl<T> genericVertexProvider = new GenericVertexProviderImpl<T>();
+		return genericVertexProvider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public <T extends Presentation> GenericIndexProvider<T> createGenericIndexProvider()
+	{
+		GenericIndexProviderImpl<T> genericIndexProvider = new GenericIndexProviderImpl<T>();
+		return genericIndexProvider;
 	}
 
 	/**

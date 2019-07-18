@@ -35,9 +35,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DrawItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class DrawItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -81,13 +80,13 @@ public class DrawItemProvider extends ItemProviderAdapter
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-						"_UI_LNamedElement_type"),
-				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+								"_UI_LNamedElement_type"),
+						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -98,13 +97,13 @@ public class DrawItemProvider extends ItemProviderAdapter
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
-						"_UI_IPipelineTask_type"),
-				ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
+								"_UI_IPipelineTask_type"),
+						ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -115,13 +114,13 @@ public class DrawItemProvider extends ItemProviderAdapter
 	 */
 	protected void addVertexCountPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Draw_vertexCount_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Draw_vertexCount_feature",
-						"_UI_Draw_type"),
-				GraphicPackage.Literals.DRAW__VERTEX_COUNT, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Draw_vertexCount_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Draw_vertexCount_feature",
+								"_UI_Draw_type"),
+						GraphicPackage.Literals.DRAW__VERTEX_COUNT, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -132,13 +131,13 @@ public class DrawItemProvider extends ItemProviderAdapter
 	 */
 	protected void addInstanceCountPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Draw_instanceCount_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Draw_instanceCount_feature",
-						"_UI_Draw_type"),
-				GraphicPackage.Literals.DRAW__INSTANCE_COUNT, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Draw_instanceCount_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Draw_instanceCount_feature",
+								"_UI_Draw_type"),
+						GraphicPackage.Literals.DRAW__INSTANCE_COUNT, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -149,13 +148,13 @@ public class DrawItemProvider extends ItemProviderAdapter
 	 */
 	protected void addFirstVertexPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Draw_firstVertex_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Draw_firstVertex_feature",
-						"_UI_Draw_type"),
-				GraphicPackage.Literals.DRAW__FIRST_VERTEX, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Draw_firstVertex_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Draw_firstVertex_feature",
+								"_UI_Draw_type"),
+						GraphicPackage.Literals.DRAW__FIRST_VERTEX, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -166,13 +165,13 @@ public class DrawItemProvider extends ItemProviderAdapter
 	 */
 	protected void addFirstInstancePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Draw_firstInstance_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Draw_firstInstance_feature",
-						"_UI_Draw_type"),
-				GraphicPackage.Literals.DRAW__FIRST_INSTANCE, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Draw_firstInstance_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Draw_firstInstance_feature",
+								"_UI_Draw_type"),
+						GraphicPackage.Literals.DRAW__FIRST_INSTANCE, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -222,8 +221,7 @@ public class DrawItemProvider extends ItemProviderAdapter
 		case GraphicPackage.DRAW__INSTANCE_COUNT:
 		case GraphicPackage.DRAW__FIRST_VERTEX:
 		case GraphicPackage.DRAW__FIRST_INSTANCE:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

@@ -60,14 +60,11 @@ public class ExtraAttachmentDescriptionItemProvider extends AttachmentDescriptio
 	protected void addAttachmentPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_ExtraAttachmentDescription_attachment_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ExtraAttachmentDescription_attachment_feature",
+				getString("_UI_PropertyDescriptor_description", "_UI_ExtraAttachmentDescription_attachment_feature",
 						"_UI_ExtraAttachmentDescription_type"),
-				GraphicPackage.Literals.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT, true, false, true,
-				null, null, null));
+				GraphicPackage.Literals.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT, true, false, true, null, null, null));
 	}
 
 	/**
@@ -79,8 +76,7 @@ public class ExtraAttachmentDescriptionItemProvider extends AttachmentDescriptio
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/ExtraAttachmentDescription"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ExtraAttachmentDescription"));
 	}
 
 	/**

@@ -13,8 +13,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -23,7 +21,7 @@ import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 
-import org.sheepy.lily.vulkan.extra.model.rendering.GenericDataProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
@@ -45,7 +43,7 @@ import org.sheepy.lily.vulkan.model.resource.PushBuffer;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererMaintainerImpl#getMaintained <em>Maintained</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererMaintainerImpl#getDataProviders <em>Data Providers</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererMaintainerImpl#getDataProviderPkg <em>Data Provider Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererMaintainerImpl#getPresentationPkg <em>Presentation Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererMaintainerImpl#getConstantBuffer <em>Constant Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererMaintainerImpl#getBasicResources <em>Basic Resources</em>}</li>
@@ -67,14 +65,14 @@ public abstract class GenericRendererMaintainerImpl<T extends Presentation> exte
 	protected EList<Maintainable<GraphicsPipeline>> maintained;
 
 	/**
-	 * The cached value of the '{@link #getDataProviders() <em>Data Providers</em>}' containment reference list.
+	 * The cached value of the '{@link #getDataProviderPkg() <em>Data Provider Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDataProviders()
+	 * @see #getDataProviderPkg()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<GenericDataProvider<T>> dataProviders;
+	protected DataProviderPkg<T> dataProviderPkg;
 
 	/**
 	 * The cached value of the '{@link #getPresentationPkg() <em>Presentation Pkg</em>}' reference.
@@ -158,13 +156,48 @@ public abstract class GenericRendererMaintainerImpl<T extends Presentation> exte
 	 * @generated
 	 */
 	@Override
-	public EList<GenericDataProvider<T>> getDataProviders()
+	public DataProviderPkg<T> getDataProviderPkg()
 	{
-		if (dataProviders == null)
+		return dataProviderPkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDataProviderPkg(DataProviderPkg<T> newDataProviderPkg, NotificationChain msgs)
+	{
+		DataProviderPkg<T> oldDataProviderPkg = dataProviderPkg;
+		dataProviderPkg = newDataProviderPkg;
+		if (eNotificationRequired())
 		{
-			dataProviders = new EObjectContainmentEList<GenericDataProvider<T>>(GenericDataProvider.class, this, RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDERS);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG, oldDataProviderPkg, newDataProviderPkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return dataProviders;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDataProviderPkg(DataProviderPkg<T> newDataProviderPkg)
+	{
+		if (newDataProviderPkg != dataProviderPkg)
+		{
+			NotificationChain msgs = null;
+			if (dataProviderPkg != null)
+				msgs = ((InternalEObject)dataProviderPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG, null, msgs);
+			if (newDataProviderPkg != null)
+				msgs = ((InternalEObject)newDataProviderPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG, null, msgs);
+			msgs = basicSetDataProviderPkg(newDataProviderPkg, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG, newDataProviderPkg, newDataProviderPkg));
 	}
 
 	/**
@@ -346,8 +379,8 @@ public abstract class GenericRendererMaintainerImpl<T extends Presentation> exte
 		{
 			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__MAINTAINED:
 				return ((InternalEList<?>)getMaintained()).basicRemove(otherEnd, msgs);
-			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDERS:
-				return ((InternalEList<?>)getDataProviders()).basicRemove(otherEnd, msgs);
+			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG:
+				return basicSetDataProviderPkg(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -364,8 +397,8 @@ public abstract class GenericRendererMaintainerImpl<T extends Presentation> exte
 		{
 			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__MAINTAINED:
 				return getMaintained();
-			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDERS:
-				return getDataProviders();
+			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG:
+				return getDataProviderPkg();
 			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__PRESENTATION_PKG:
 				if (resolve) return getPresentationPkg();
 				return basicGetPresentationPkg();
@@ -396,9 +429,8 @@ public abstract class GenericRendererMaintainerImpl<T extends Presentation> exte
 				getMaintained().clear();
 				getMaintained().addAll((Collection<? extends Maintainable<GraphicsPipeline>>)newValue);
 				return;
-			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDERS:
-				getDataProviders().clear();
-				getDataProviders().addAll((Collection<? extends GenericDataProvider<T>>)newValue);
+			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG:
+				setDataProviderPkg((DataProviderPkg<T>)newValue);
 				return;
 			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__PRESENTATION_PKG:
 				setPresentationPkg((PresentationPkg)newValue);
@@ -430,8 +462,8 @@ public abstract class GenericRendererMaintainerImpl<T extends Presentation> exte
 			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__MAINTAINED:
 				getMaintained().clear();
 				return;
-			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDERS:
-				getDataProviders().clear();
+			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG:
+				setDataProviderPkg((DataProviderPkg<T>)null);
 				return;
 			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__PRESENTATION_PKG:
 				setPresentationPkg((PresentationPkg)null);
@@ -461,8 +493,8 @@ public abstract class GenericRendererMaintainerImpl<T extends Presentation> exte
 		{
 			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__MAINTAINED:
 				return maintained != null && !maintained.isEmpty();
-			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDERS:
-				return dataProviders != null && !dataProviders.isEmpty();
+			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG:
+				return dataProviderPkg != null;
 			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__PRESENTATION_PKG:
 				return presentationPkg != null;
 			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__CONSTANT_BUFFER:

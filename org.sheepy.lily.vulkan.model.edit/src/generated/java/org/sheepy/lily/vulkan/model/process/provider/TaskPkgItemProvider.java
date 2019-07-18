@@ -34,9 +34,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TaskPkgItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -138,8 +137,7 @@ public class TaskPkgItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(TaskPkg.class))
 		{
 		case ProcessPackage.TASK_PKG__TASKS:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -184,8 +182,8 @@ public class TaskPkgItemProvider extends ItemProviderAdapter
 		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
 				GraphicFactory.eINSTANCE.createDrawIndexed()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-				GraphicFactory.eINSTANCE.createDraw()));
+		newChildDescriptors.add(
+				createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS, GraphicFactory.eINSTANCE.createDraw()));
 
 		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
 				GraphicFactory.eINSTANCE.createBindVertexBuffer()));

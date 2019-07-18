@@ -11,8 +11,9 @@
   <foreignModel>Rendering.ecore</foreignModel>
   <foreignModel>Sprite.ecore</foreignModel>
   <genPackages prefix="Mesh" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
-      ecorePackage="Mesh.ecore#/">
+      childCreationExtenders="true" ecorePackage="Mesh.ecore#/">
     <genClasses ecoreClass="Mesh.ecore#//Mesh"/>
+    <genClasses ecoreClass="Mesh.ecore#//MeshRendererMaintainer"/>
   </genPackages>
   <genPackages prefix="Nuklear" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
       ecorePackage="Nuklear.ecore#/">
@@ -34,7 +35,7 @@
     </genClasses>
   </genPackages>
   <genPackages prefix="Rendering" basePackage="org.sheepy.lily.vulkan.extra.model"
-      disposableProviderFactory="true" ecorePackage="Rendering.ecore#/">
+      disposableProviderFactory="true" extensibleProviderFactory="true" ecorePackage="Rendering.ecore#/">
     <genClasses image="false" ecoreClass="Rendering.ecore#//Entity"/>
     <genClasses ecoreClass="Rendering.ecore#//PhysicalEntity">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//PhysicalEntity/geoLocation"/>
@@ -59,7 +60,7 @@
     </genClasses>
     <genClasses image="false" ecoreClass="Rendering.ecore#//GenericRendererMaintainer">
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//GenericRendererMaintainer/T"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRendererMaintainer/dataProviders"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRendererMaintainer/dataProviderPkg"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRendererMaintainer/presentationPkg"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRendererMaintainer/constantBuffer"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRendererMaintainer/basicResources"/>
@@ -68,15 +69,29 @@
     <genClasses image="false" ecoreClass="Rendering.ecore#//GenericDataProvider">
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//GenericDataProvider/T"/>
     </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//DataProviderPkg">
+      <genTypeParameters ecoreTypeParameter="Rendering.ecore#//DataProviderPkg/T"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//DataProviderPkg/dataProviders"/>
+    </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//GenericDescribedDataProvider">
+      <genTypeParameters ecoreTypeParameter="Rendering.ecore#//GenericDescribedDataProvider/T"/>
+    </genClasses>
     <genClasses ecoreClass="Rendering.ecore#//RenderableDataSource">
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//RenderableDataSource/T"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//RenderableDataSource/presentation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//RenderableDataSource/part"/>
     </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//GenericVertexProvider">
+      <genTypeParameters ecoreTypeParameter="Rendering.ecore#//GenericVertexProvider/T"/>
+    </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//GenericIndexProvider">
+      <genTypeParameters ecoreTypeParameter="Rendering.ecore#//GenericIndexProvider/T"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//GenericIndexProvider/indexType"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Sprite" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
       ecorePackage="Sprite.ecore#/">
-    <genClasses ecoreClass="Sprite.ecore#//SpritePipelineMaintainer"/>
+    <genClasses ecoreClass="Sprite.ecore#//SpriteRendererMaintainer"/>
     <genClasses ecoreClass="Sprite.ecore#//Sprite">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sprite.ecore#//Sprite/file"/>
     </genClasses>

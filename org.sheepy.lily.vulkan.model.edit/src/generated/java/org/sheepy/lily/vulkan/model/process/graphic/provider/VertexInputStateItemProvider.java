@@ -32,9 +32,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
  * <!-- end-user-doc -->
  * @generated
  */
-public class VertexInputStateItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class VertexInputStateItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -136,8 +135,7 @@ public class VertexInputStateItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(VertexInputState.class))
 		{
 		case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -155,9 +153,8 @@ public class VertexInputStateItemProvider extends ItemProviderAdapter
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(
-				createChildParameter(GraphicPackage.Literals.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR,
-						GraphicFactory.eINSTANCE.createInputDescriptor()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR,
+				GraphicFactory.eINSTANCE.createInputDescriptor()));
 	}
 
 	/**

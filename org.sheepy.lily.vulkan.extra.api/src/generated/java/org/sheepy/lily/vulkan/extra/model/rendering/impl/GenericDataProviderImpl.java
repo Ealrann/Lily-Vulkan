@@ -39,4 +39,16 @@ public abstract class GenericDataProviderImpl<T extends Presentation> extends Bu
 		return RenderingPackage.Literals.GENERIC_DATA_PROVIDER;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
+	 * @generated
+	 */
+	@Override
+	public void setDataSource(RenderableDataSource<T> newDataSource)
+	{
+		super.setDataSource(newDataSource);
+	}
+
 } //GenericDataProviderImpl

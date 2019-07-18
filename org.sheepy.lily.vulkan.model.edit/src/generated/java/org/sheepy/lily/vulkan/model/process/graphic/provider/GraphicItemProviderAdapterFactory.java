@@ -360,8 +360,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	{
 		if (swapImageAttachmentDescriptionItemProvider == null)
 		{
-			swapImageAttachmentDescriptionItemProvider = new SwapImageAttachmentDescriptionItemProvider(
-					this);
+			swapImageAttachmentDescriptionItemProvider = new SwapImageAttachmentDescriptionItemProvider(this);
 		}
 
 		return swapImageAttachmentDescriptionItemProvider;
@@ -386,8 +385,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	{
 		if (extraAttachmentDescriptionItemProvider == null)
 		{
-			extraAttachmentDescriptionItemProvider = new ExtraAttachmentDescriptionItemProvider(
-					this);
+			extraAttachmentDescriptionItemProvider = new ExtraAttachmentDescriptionItemProvider(this);
 		}
 
 		return extraAttachmentDescriptionItemProvider;
@@ -894,20 +892,16 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	{
 		if (graphicConfigurationItemProvider != null) graphicConfigurationItemProvider.dispose();
 		if (colorDomainItemProvider != null) colorDomainItemProvider.dispose();
-		if (swapchainConfigurationItemProvider != null)
-			swapchainConfigurationItemProvider.dispose();
-		if (framebufferConfigurationItemProvider != null)
-			framebufferConfigurationItemProvider.dispose();
+		if (swapchainConfigurationItemProvider != null) swapchainConfigurationItemProvider.dispose();
+		if (framebufferConfigurationItemProvider != null) framebufferConfigurationItemProvider.dispose();
 		if (imageAttachmentItemProvider != null) imageAttachmentItemProvider.dispose();
 		if (depthAttachmentItemProvider != null) depthAttachmentItemProvider.dispose();
 		if (renderPassInfoItemProvider != null) renderPassInfoItemProvider.dispose();
 		if (subpassItemProvider != null) subpassItemProvider.dispose();
 		if (attachmentRefItemProvider != null) attachmentRefItemProvider.dispose();
 		if (subpassDependencyItemProvider != null) subpassDependencyItemProvider.dispose();
-		if (swapImageAttachmentDescriptionItemProvider != null)
-			swapImageAttachmentDescriptionItemProvider.dispose();
-		if (extraAttachmentDescriptionItemProvider != null)
-			extraAttachmentDescriptionItemProvider.dispose();
+		if (swapImageAttachmentDescriptionItemProvider != null) swapImageAttachmentDescriptionItemProvider.dispose();
+		if (extraAttachmentDescriptionItemProvider != null) extraAttachmentDescriptionItemProvider.dispose();
 		if (graphicProcessItemProvider != null) graphicProcessItemProvider.dispose();
 		if (graphicsPipelineItemProvider != null) graphicsPipelineItemProvider.dispose();
 		if (swapImageBarrierItemProvider != null) swapImageBarrierItemProvider.dispose();

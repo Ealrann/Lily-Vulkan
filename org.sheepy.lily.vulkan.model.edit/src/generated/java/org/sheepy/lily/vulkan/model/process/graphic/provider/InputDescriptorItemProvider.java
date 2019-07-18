@@ -36,9 +36,8 @@ import org.sheepy.vulkan.model.enumeration.EInputRate;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InputDescriptorItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class InputDescriptorItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -78,13 +77,13 @@ public class InputDescriptorItemProvider extends ItemProviderAdapter
 	 */
 	protected void addInputRatePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_InputDescriptor_inputRate_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_InputDescriptor_inputRate_feature", "_UI_InputDescriptor_type"),
-				GraphicPackage.Literals.INPUT_DESCRIPTOR__INPUT_RATE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_InputDescriptor_inputRate_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_InputDescriptor_inputRate_feature",
+								"_UI_InputDescriptor_type"),
+						GraphicPackage.Literals.INPUT_DESCRIPTOR__INPUT_RATE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -95,12 +94,12 @@ public class InputDescriptorItemProvider extends ItemProviderAdapter
 	 */
 	protected void addStrideLengthPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_InputDescriptor_strideLength_feature"),
-				getString("_UI_InputDescriptor_strideLength_description"),
-				GraphicPackage.Literals.INPUT_DESCRIPTOR__STRIDE_LENGTH, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_InputDescriptor_strideLength_feature"),
+						getString("_UI_InputDescriptor_strideLength_description"),
+						GraphicPackage.Literals.INPUT_DESCRIPTOR__STRIDE_LENGTH, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -180,12 +179,10 @@ public class InputDescriptorItemProvider extends ItemProviderAdapter
 		{
 		case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
 		case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -203,9 +200,8 @@ public class InputDescriptorItemProvider extends ItemProviderAdapter
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.INPUT_DESCRIPTOR__ATTRIBUTES,
-						GraphicFactory.eINSTANCE.createAttributeDescription()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.INPUT_DESCRIPTOR__ATTRIBUTES,
+				GraphicFactory.eINSTANCE.createAttributeDescription()));
 	}
 
 	/**

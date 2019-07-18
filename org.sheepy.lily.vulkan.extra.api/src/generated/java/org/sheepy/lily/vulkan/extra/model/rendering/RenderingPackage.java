@@ -510,13 +510,13 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER_MAINTAINER__MAINTAINED = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Data Providers</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Data Provider Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__DATA_PROVIDERS = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 1;
+	int GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Presentation Pkg</b></em>' reference.
@@ -583,15 +583,6 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_DATA_PROVIDER__NAME = ResourcePackage.BUFFER_DATA_PROVIDER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Size</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_DATA_PROVIDER__SIZE = ResourcePackage.BUFFER_DATA_PROVIDER__SIZE;
-
-	/**
 	 * The feature id for the '<em><b>Usage</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -610,6 +601,15 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_DATA_PROVIDER__INSTANCE_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT;
 
 	/**
+	 * The feature id for the '<em><b>Data Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DATA_PROVIDER__DATA_SOURCE = ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE;
+
+	/**
 	 * The number of structural features of the '<em>Generic Data Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -620,6 +620,107 @@ public interface RenderingPackage extends EPackage
 
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderPkgImpl <em>Data Provider Pkg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderPkgImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDataProviderPkg()
+	 * @generated
+	 */
+	int DATA_PROVIDER_PKG = 8;
+
+	/**
+	 * The feature id for the '<em><b>Data Providers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_PROVIDER_PKG__DATA_PROVIDERS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Data Provider Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_PROVIDER_PKG_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericDescribedDataProviderImpl <em>Generic Described Data Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericDescribedDataProviderImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getGenericDescribedDataProvider()
+	 * @generated
+	 */
+	int GENERIC_DESCRIBED_DATA_PROVIDER = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DESCRIBED_DATA_PROVIDER__NAME = GENERIC_DATA_PROVIDER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Usage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DESCRIBED_DATA_PROVIDER__USAGE = GENERIC_DATA_PROVIDER__USAGE;
+
+	/**
+	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DESCRIBED_DATA_PROVIDER__INSTANCE_COUNT = GENERIC_DATA_PROVIDER__INSTANCE_COUNT;
+
+	/**
+	 * The feature id for the '<em><b>Data Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DESCRIBED_DATA_PROVIDER__DATA_SOURCE = GENERIC_DATA_PROVIDER__DATA_SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE = GENERIC_DATA_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DESCRIBED_DATA_PROVIDER__SHADER_STAGES = GENERIC_DATA_PROVIDER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Generic Described Data Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DESCRIBED_DATA_PROVIDER_FEATURE_COUNT = GENERIC_DATA_PROVIDER_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl <em>Renderable Data Source</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -627,7 +728,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderableDataSource()
 	 * @generated
 	 */
-	int RENDERABLE_DATA_SOURCE = 8;
+	int RENDERABLE_DATA_SOURCE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Presentation</b></em>' reference.
@@ -655,6 +756,126 @@ public interface RenderingPackage extends EPackage
 	 * @ordered
 	 */
 	int RENDERABLE_DATA_SOURCE_FEATURE_COUNT = 2;
+
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericVertexProviderImpl <em>Generic Vertex Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericVertexProviderImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getGenericVertexProvider()
+	 * @generated
+	 */
+	int GENERIC_VERTEX_PROVIDER = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_VERTEX_PROVIDER__NAME = GENERIC_DATA_PROVIDER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Usage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_VERTEX_PROVIDER__USAGE = GENERIC_DATA_PROVIDER__USAGE;
+
+	/**
+	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_VERTEX_PROVIDER__INSTANCE_COUNT = GENERIC_DATA_PROVIDER__INSTANCE_COUNT;
+
+	/**
+	 * The feature id for the '<em><b>Data Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_VERTEX_PROVIDER__DATA_SOURCE = GENERIC_DATA_PROVIDER__DATA_SOURCE;
+
+	/**
+	 * The number of structural features of the '<em>Generic Vertex Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_VERTEX_PROVIDER_FEATURE_COUNT = GENERIC_DATA_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericIndexProviderImpl <em>Generic Index Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericIndexProviderImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getGenericIndexProvider()
+	 * @generated
+	 */
+	int GENERIC_INDEX_PROVIDER = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_INDEX_PROVIDER__NAME = GENERIC_DATA_PROVIDER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Usage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_INDEX_PROVIDER__USAGE = GENERIC_DATA_PROVIDER__USAGE;
+
+	/**
+	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_INDEX_PROVIDER__INSTANCE_COUNT = GENERIC_DATA_PROVIDER__INSTANCE_COUNT;
+
+	/**
+	 * The feature id for the '<em><b>Data Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_INDEX_PROVIDER__DATA_SOURCE = GENERIC_DATA_PROVIDER__DATA_SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Index Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_INDEX_PROVIDER__INDEX_TYPE = GENERIC_DATA_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Generic Index Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_INDEX_PROVIDER_FEATURE_COUNT = GENERIC_DATA_PROVIDER_FEATURE_COUNT + 1;
 
 
 	/**
@@ -849,15 +1070,15 @@ public interface RenderingPackage extends EPackage
 	EClass getGenericRendererMaintainer();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getDataProviders <em>Data Providers</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getDataProviderPkg <em>Data Provider Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Data Providers</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getDataProviders()
+	 * @return the meta object for the containment reference '<em>Data Provider Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getDataProviderPkg()
 	 * @see #getGenericRendererMaintainer()
 	 * @generated
 	 */
-	EReference getGenericRendererMaintainer_DataProviders();
+	EReference getGenericRendererMaintainer_DataProviderPkg();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getPresentationPkg <em>Presentation Pkg</em>}'.
@@ -914,6 +1135,37 @@ public interface RenderingPackage extends EPackage
 	EClass getGenericDataProvider();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg <em>Data Provider Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Data Provider Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg
+	 * @generated
+	 */
+	EClass getDataProviderPkg();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg#getDataProviders <em>Data Providers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Data Providers</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg#getDataProviders()
+	 * @see #getDataProviderPkg()
+	 * @generated
+	 */
+	EReference getDataProviderPkg_DataProviders();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericDescribedDataProvider <em>Generic Described Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Generic Described Data Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericDescribedDataProvider
+	 * @generated
+	 */
+	EClass getGenericDescribedDataProvider();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource <em>Renderable Data Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -944,6 +1196,37 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getRenderableDataSource_Part();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericVertexProvider <em>Generic Vertex Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Generic Vertex Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericVertexProvider
+	 * @generated
+	 */
+	EClass getGenericVertexProvider();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericIndexProvider <em>Generic Index Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Generic Index Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericIndexProvider
+	 * @generated
+	 */
+	EClass getGenericIndexProvider();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericIndexProvider#getIndexType <em>Index Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Index Type</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericIndexProvider#getIndexType()
+	 * @see #getGenericIndexProvider()
+	 * @generated
+	 */
+	EAttribute getGenericIndexProvider_IndexType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1127,12 +1410,12 @@ public interface RenderingPackage extends EPackage
 		EClass GENERIC_RENDERER_MAINTAINER = eINSTANCE.getGenericRendererMaintainer();
 
 		/**
-		 * The meta object literal for the '<em><b>Data Providers</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Data Provider Pkg</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GENERIC_RENDERER_MAINTAINER__DATA_PROVIDERS = eINSTANCE.getGenericRendererMaintainer_DataProviders();
+		EReference GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG = eINSTANCE.getGenericRendererMaintainer_DataProviderPkg();
 
 		/**
 		 * The meta object literal for the '<em><b>Presentation Pkg</b></em>' reference feature.
@@ -1177,6 +1460,34 @@ public interface RenderingPackage extends EPackage
 		EClass GENERIC_DATA_PROVIDER = eINSTANCE.getGenericDataProvider();
 
 		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderPkgImpl <em>Data Provider Pkg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderPkgImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDataProviderPkg()
+		 * @generated
+		 */
+		EClass DATA_PROVIDER_PKG = eINSTANCE.getDataProviderPkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Providers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATA_PROVIDER_PKG__DATA_PROVIDERS = eINSTANCE.getDataProviderPkg_DataProviders();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericDescribedDataProviderImpl <em>Generic Described Data Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericDescribedDataProviderImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getGenericDescribedDataProvider()
+		 * @generated
+		 */
+		EClass GENERIC_DESCRIBED_DATA_PROVIDER = eINSTANCE.getGenericDescribedDataProvider();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl <em>Renderable Data Source</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1201,6 +1512,34 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute RENDERABLE_DATA_SOURCE__PART = eINSTANCE.getRenderableDataSource_Part();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericVertexProviderImpl <em>Generic Vertex Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericVertexProviderImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getGenericVertexProvider()
+		 * @generated
+		 */
+		EClass GENERIC_VERTEX_PROVIDER = eINSTANCE.getGenericVertexProvider();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericIndexProviderImpl <em>Generic Index Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericIndexProviderImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getGenericIndexProvider()
+		 * @generated
+		 */
+		EClass GENERIC_INDEX_PROVIDER = eINSTANCE.getGenericIndexProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Index Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GENERIC_INDEX_PROVIDER__INDEX_TYPE = eINSTANCE.getGenericIndexProvider_IndexType();
 
 	}
 

@@ -5,14 +5,19 @@ package org.sheepy.lily.vulkan.extra.model.rendering.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ChangeNotifier;
+import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -21,6 +26,8 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.util.RenderingAdapterFactory;
 
 /**
@@ -32,7 +39,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.util.RenderingAdapterFactory
  * <!-- end-user-doc -->
  * @generated
  */
-public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable
+public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
 {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -49,6 +56,14 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
+
+	/**
+	 * This helps manage the child creation extenders.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(ExtraEditPlugin.INSTANCE, RenderingPackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -149,6 +164,56 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DataProviderPkgItemProvider dataProviderPkgItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDataProviderPkgAdapter()
+	{
+		if (dataProviderPkgItemProvider == null)
+		{
+			dataProviderPkgItemProvider = new DataProviderPkgItemProvider(this);
+		}
+
+		return dataProviderPkgItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericDescribedDataProvider} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GenericDescribedDataProviderItemProvider genericDescribedDataProviderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericDescribedDataProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGenericDescribedDataProviderAdapter()
+	{
+		if (genericDescribedDataProviderItemProvider == null)
+		{
+			genericDescribedDataProviderItemProvider = new GenericDescribedDataProviderItemProvider(this);
+		}
+
+		return genericDescribedDataProviderItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -171,6 +236,56 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 		}
 
 		return renderableDataSourceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericVertexProvider} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GenericVertexProviderItemProvider genericVertexProviderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericVertexProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGenericVertexProviderAdapter()
+	{
+		if (genericVertexProviderItemProvider == null)
+		{
+			genericVertexProviderItemProvider = new GenericVertexProviderItemProvider(this);
+		}
+
+		return genericVertexProviderItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericIndexProvider} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GenericIndexProviderItemProvider genericIndexProviderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericIndexProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGenericIndexProviderAdapter()
+	{
+		if (genericIndexProviderItemProvider == null)
+		{
+			genericIndexProviderItemProvider = new GenericIndexProviderItemProvider(this);
+		}
+
+		return genericIndexProviderItemProvider;
 	}
 
 	/**
@@ -241,6 +356,36 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public List<IChildCreationExtender> getChildCreationExtenders()
+	{
+		return childCreationExtenderManager.getChildCreationExtenders();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain)
+	{
+		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ResourceLocator getResourceLocator()
+	{
+		return childCreationExtenderManager;
+	}
+
+	/**
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -293,7 +438,11 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 		if (axisItemProvider != null) axisItemProvider.dispose();
 		if (presentationPkgItemProvider != null) presentationPkgItemProvider.dispose();
 		if (presentableEntityItemProvider != null) presentableEntityItemProvider.dispose();
+		if (dataProviderPkgItemProvider != null) dataProviderPkgItemProvider.dispose();
+		if (genericDescribedDataProviderItemProvider != null) genericDescribedDataProviderItemProvider.dispose();
 		if (renderableDataSourceItemProvider != null) renderableDataSourceItemProvider.dispose();
+		if (genericVertexProviderItemProvider != null) genericVertexProviderItemProvider.dispose();
+		if (genericIndexProviderItemProvider != null) genericIndexProviderItemProvider.dispose();
 	}
 
 }

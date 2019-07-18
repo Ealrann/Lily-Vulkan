@@ -59,13 +59,12 @@ public class PushConstantBufferItemProvider extends PushConstantItemProvider
 	 */
 	protected void addBufferPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_PushConstantBuffer_buffer_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_PushConstantBuffer_buffer_feature", "_UI_PushConstantBuffer_type"),
-				ProcessPackage.Literals.PUSH_CONSTANT_BUFFER__BUFFER, true, false, true, null, null,
-				null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_PushConstantBuffer_buffer_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_PushConstantBuffer_buffer_feature",
+								"_UI_PushConstantBuffer_type"),
+						ProcessPackage.Literals.PUSH_CONSTANT_BUFFER__BUFFER, true, false, true, null, null, null));
 	}
 
 	/**

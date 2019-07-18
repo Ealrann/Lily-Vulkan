@@ -39,9 +39,9 @@
     <eTypeParameters name="T">
       <eBounds eClassifier="#//Presentation"/>
     </eTypeParameters>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dataProviders" lowerBound="1"
-        upperBound="-1" containment="true">
-      <eGenericType eClassifier="#//GenericDataProvider">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataProviderPkg" lowerBound="1"
+        containment="true">
+      <eGenericType eClassifier="#//DataProviderPkg">
         <eTypeArguments eTypeParameter="#//GenericRendererMaintainer/T"/>
       </eGenericType>
     </eStructuralFeatures>
@@ -67,6 +67,30 @@
       </eTypeArguments>
     </eGenericSuperTypes>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataProviderPkg">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="#//Presentation"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataProviders" lowerBound="1"
+        upperBound="-1" containment="true">
+      <eGenericType eClassifier="#//GenericDataProvider">
+        <eTypeArguments eTypeParameter="#//DataProviderPkg/T"/>
+      </eGenericType>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericDescribedDataProvider">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="#//Presentation"/>
+    </eTypeParameters>
+    <eGenericSuperTypes eClassifier="#//GenericDataProvider">
+      <eTypeArguments eTypeParameter="#//GenericDescribedDataProvider/T"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//DescribedDataProvider">
+      <eTypeArguments eClassifier="#//RenderableDataSource">
+        <eTypeArguments eTypeParameter="#//GenericDescribedDataProvider/T"/>
+      </eTypeArguments>
+    </eGenericSuperTypes>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RenderableDataSource">
     <eTypeParameters name="T">
       <eBounds eClassifier="#//Presentation"/>
@@ -75,5 +99,24 @@
       <eGenericType eTypeParameter="#//RenderableDataSource/T"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="part" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericVertexProvider">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="#//Presentation"/>
+    </eTypeParameters>
+    <eGenericSuperTypes eClassifier="#//GenericDataProvider">
+      <eTypeArguments eTypeParameter="#//GenericVertexProvider/T"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericIndexProvider">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="#//Presentation"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="indexType" lowerBound="1"
+        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EIndexType"
+        defaultValueLiteral="UINT32"/>
+    <eGenericSuperTypes eClassifier="#//GenericDataProvider">
+      <eTypeArguments eTypeParameter="#//GenericIndexProvider/T"/>
+    </eGenericSuperTypes>
   </eClassifiers>
 </ecore:EPackage>

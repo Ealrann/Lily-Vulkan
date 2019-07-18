@@ -23,13 +23,13 @@ public interface SpriteFactory extends EFactory
 	SpriteFactory eINSTANCE = org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Pipeline Maintainer</em>'.
+	 * Returns a new object of class '<em>Renderer Maintainer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Pipeline Maintainer</em>'.
+	 * @return a new object of class '<em>Renderer Maintainer</em>'.
 	 * @generated
 	 */
-	SpritePipelineMaintainer createSpritePipelineMaintainer();
+	SpriteRendererMaintainer createSpriteRendererMaintainer();
 
 	/**
 	 * Returns a new object of class '<em>Sprite</em>'.

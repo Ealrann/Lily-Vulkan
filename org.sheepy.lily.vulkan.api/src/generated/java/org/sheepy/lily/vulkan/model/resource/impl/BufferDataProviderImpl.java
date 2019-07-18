@@ -5,6 +5,8 @@ package org.sheepy.lily.vulkan.model.resource.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -22,9 +24,9 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getInstanceCount <em>Instance Count</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,26 +52,6 @@ public abstract class BufferDataProviderImpl<T> extends MinimalEObjectImpl.Conta
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSize()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final long SIZE_EDEFAULT = 0L;
-
-	/**
-	 * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSize()
-	 * @generated
-	 * @ordered
-	 */
-	protected long size = SIZE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getUsage() <em>Usage</em>}' attribute.
@@ -110,6 +92,16 @@ public abstract class BufferDataProviderImpl<T> extends MinimalEObjectImpl.Conta
 	 * @ordered
 	 */
 	protected int instanceCount = INSTANCE_COUNT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getDataSource() <em>Data Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected T dataSource;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -155,31 +147,6 @@ public abstract class BufferDataProviderImpl<T> extends MinimalEObjectImpl.Conta
 		name = newName;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
 				ResourcePackage.BUFFER_DATA_PROVIDER__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public long getSize()
-	{
-		return size;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setSize(long newSize)
-	{
-		long oldSize = size;
-		size = newSize;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.BUFFER_DATA_PROVIDER__SIZE, oldSize, size));
 	}
 
 	/**
@@ -237,6 +204,52 @@ public abstract class BufferDataProviderImpl<T> extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public T getDataSource()
+	{
+		if (dataSource != null && ((EObject) dataSource).eIsProxy())
+		{
+			InternalEObject oldDataSource = (InternalEObject) dataSource;
+			dataSource = (T) eResolveProxy(oldDataSource);
+			if (dataSource != oldDataSource)
+			{
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE, oldDataSource, dataSource));
+			}
+		}
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public T basicGetDataSource()
+	{
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDataSource(T newDataSource)
+	{
+		T oldDataSource = dataSource;
+		dataSource = newDataSource;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE, oldDataSource, dataSource));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
@@ -244,12 +257,13 @@ public abstract class BufferDataProviderImpl<T> extends MinimalEObjectImpl.Conta
 		{
 		case ResourcePackage.BUFFER_DATA_PROVIDER__NAME:
 			return getName();
-		case ResourcePackage.BUFFER_DATA_PROVIDER__SIZE:
-			return getSize();
 		case ResourcePackage.BUFFER_DATA_PROVIDER__USAGE:
 			return getUsage();
 		case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
 			return getInstanceCount();
+		case ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
+			if (resolve) return getDataSource();
+			return basicGetDataSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -259,6 +273,7 @@ public abstract class BufferDataProviderImpl<T> extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -267,14 +282,14 @@ public abstract class BufferDataProviderImpl<T> extends MinimalEObjectImpl.Conta
 		case ResourcePackage.BUFFER_DATA_PROVIDER__NAME:
 			setName((String) newValue);
 			return;
-		case ResourcePackage.BUFFER_DATA_PROVIDER__SIZE:
-			setSize((Long) newValue);
-			return;
 		case ResourcePackage.BUFFER_DATA_PROVIDER__USAGE:
 			setUsage((EBufferUsage) newValue);
 			return;
 		case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
 			setInstanceCount((Integer) newValue);
+			return;
+		case ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
+			setDataSource((T) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -293,14 +308,14 @@ public abstract class BufferDataProviderImpl<T> extends MinimalEObjectImpl.Conta
 		case ResourcePackage.BUFFER_DATA_PROVIDER__NAME:
 			setName(NAME_EDEFAULT);
 			return;
-		case ResourcePackage.BUFFER_DATA_PROVIDER__SIZE:
-			setSize(SIZE_EDEFAULT);
-			return;
 		case ResourcePackage.BUFFER_DATA_PROVIDER__USAGE:
 			setUsage(USAGE_EDEFAULT);
 			return;
 		case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
 			setInstanceCount(INSTANCE_COUNT_EDEFAULT);
+			return;
+		case ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
+			setDataSource((T) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -318,12 +333,12 @@ public abstract class BufferDataProviderImpl<T> extends MinimalEObjectImpl.Conta
 		{
 		case ResourcePackage.BUFFER_DATA_PROVIDER__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ResourcePackage.BUFFER_DATA_PROVIDER__SIZE:
-			return size != SIZE_EDEFAULT;
 		case ResourcePackage.BUFFER_DATA_PROVIDER__USAGE:
 			return usage != USAGE_EDEFAULT;
 		case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
 			return instanceCount != INSTANCE_COUNT_EDEFAULT;
+		case ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
+			return dataSource != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -341,8 +356,6 @@ public abstract class BufferDataProviderImpl<T> extends MinimalEObjectImpl.Conta
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", size: ");
-		result.append(size);
 		result.append(", usage: ");
 		result.append(usage);
 		result.append(", instanceCount: ");

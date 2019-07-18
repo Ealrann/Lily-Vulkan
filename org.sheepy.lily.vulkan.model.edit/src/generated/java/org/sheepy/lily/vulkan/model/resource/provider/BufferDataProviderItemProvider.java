@@ -60,9 +60,9 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addSizePropertyDescriptor(object);
 			addUsagePropertyDescriptor(object);
 			addInstanceCountPropertyDescriptor(object);
+			addDataSourcePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -82,23 +82,6 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 								"_UI_LNamedElement_type"),
 						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Size feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSizePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_BufferDataProvider_size_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_size_feature",
-								"_UI_BufferDataProvider_type"),
-						ResourcePackage.Literals.BUFFER_DATA_PROVIDER__SIZE, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -133,6 +116,22 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 						"_UI_BufferDataProvider_type"),
 				ResourcePackage.Literals.BUFFER_DATA_PROVIDER__INSTANCE_COUNT, true, false, false,
 				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Data Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataSourcePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_BufferDataProvider_dataSource_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_dataSource_feature",
+						"_UI_BufferDataProvider_type"),
+				ResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE, true, false, true, null, null, null));
 	}
 
 	/**
@@ -177,7 +176,6 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 		switch (notification.getFeatureID(BufferDataProvider.class))
 		{
 		case ResourcePackage.BUFFER_DATA_PROVIDER__NAME:
-		case ResourcePackage.BUFFER_DATA_PROVIDER__SIZE:
 		case ResourcePackage.BUFFER_DATA_PROVIDER__USAGE:
 		case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

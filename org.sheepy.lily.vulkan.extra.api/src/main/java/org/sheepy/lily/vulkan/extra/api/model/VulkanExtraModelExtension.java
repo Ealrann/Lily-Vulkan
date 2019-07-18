@@ -9,6 +9,7 @@ import org.sheepy.lily.core.api.resource.IModelExtension;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
 
 public class VulkanExtraModelExtension implements IModelExtension
 {
@@ -20,6 +21,7 @@ public class VulkanExtraModelExtension implements IModelExtension
 		res.add(NuklearPackage.eINSTANCE);
 		res.add(RenderingPackage.eINSTANCE);
 		res.add(MeshPackage.eINSTANCE);
+		res.add(SpritePackage.eINSTANCE);
 
 		return List.copyOf(res);
 	}

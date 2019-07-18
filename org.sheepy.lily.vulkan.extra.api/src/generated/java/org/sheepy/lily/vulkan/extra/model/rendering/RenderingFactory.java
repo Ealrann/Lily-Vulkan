@@ -50,6 +50,24 @@ public interface RenderingFactory extends EFactory
 	PresentableEntity createPresentableEntity();
 
 	/**
+	 * Returns a new object of class '<em>Data Provider Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Data Provider Pkg</em>'.
+	 * @generated
+	 */
+	<T extends Presentation> DataProviderPkg<T> createDataProviderPkg();
+
+	/**
+	 * Returns a new object of class '<em>Generic Described Data Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Generic Described Data Provider</em>'.
+	 * @generated
+	 */
+	<T extends Presentation> GenericDescribedDataProvider<T> createGenericDescribedDataProvider();
+
+	/**
 	 * Returns a new object of class '<em>Renderable Data Source</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,6 +75,24 @@ public interface RenderingFactory extends EFactory
 	 * @generated
 	 */
 	<T extends Presentation> RenderableDataSource<T> createRenderableDataSource();
+
+	/**
+	 * Returns a new object of class '<em>Generic Vertex Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Generic Vertex Provider</em>'.
+	 * @generated
+	 */
+	<T extends Presentation> GenericVertexProvider<T> createGenericVertexProvider();
+
+	/**
+	 * Returns a new object of class '<em>Generic Index Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Generic Index Provider</em>'.
+	 * @generated
+	 */
+	<T extends Presentation> GenericIndexProvider<T> createGenericIndexProvider();
 
 	/**
 	 * Returns the package supported by this factory.

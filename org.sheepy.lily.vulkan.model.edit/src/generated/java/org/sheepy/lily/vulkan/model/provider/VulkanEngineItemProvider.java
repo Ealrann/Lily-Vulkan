@@ -35,9 +35,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class VulkanEngineItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class VulkanEngineItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -77,13 +76,13 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_VulkanEngine_enabled_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_VulkanEngine_enabled_feature",
-						"_UI_VulkanEngine_type"),
-				VulkanPackage.Literals.VULKAN_ENGINE__ENABLED, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_VulkanEngine_enabled_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_VulkanEngine_enabled_feature",
+								"_UI_VulkanEngine_type"),
+						VulkanPackage.Literals.VULKAN_ENGINE__ENABLED, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -94,13 +93,13 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter
 	 */
 	protected void addFeaturesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_VulkanEngine_features_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_VulkanEngine_features_feature",
-						"_UI_VulkanEngine_type"),
-				VulkanPackage.Literals.VULKAN_ENGINE__FEATURES, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_VulkanEngine_features_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_VulkanEngine_features_feature",
+								"_UI_VulkanEngine_type"),
+						VulkanPackage.Literals.VULKAN_ENGINE__FEATURES, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -182,13 +181,11 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter
 		case VulkanPackage.VULKAN_ENGINE__CONTENT_OBJECTS:
 		case VulkanPackage.VULKAN_ENGINE__ENABLED:
 		case VulkanPackage.VULKAN_ENGINE__FEATURES:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 		case VulkanPackage.VULKAN_ENGINE__PROCESSES:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -206,17 +203,14 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-						VulkanFactory.eINSTANCE.createResourcePkg()));
+		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+				VulkanFactory.eINSTANCE.createResourcePkg()));
 
-		newChildDescriptors
-				.add(createChildParameter(VulkanPackage.Literals.VULKAN_ENGINE__PROCESSES,
-						ComputeFactory.eINSTANCE.createComputeProcess()));
+		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.VULKAN_ENGINE__PROCESSES,
+				ComputeFactory.eINSTANCE.createComputeProcess()));
 
-		newChildDescriptors
-				.add(createChildParameter(VulkanPackage.Literals.VULKAN_ENGINE__PROCESSES,
-						GraphicFactory.eINSTANCE.createGraphicProcess()));
+		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.VULKAN_ENGINE__PROCESSES,
+				GraphicFactory.eINSTANCE.createGraphicProcess()));
 	}
 
 	/**

@@ -37,9 +37,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CompositeTaskItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class CompositeTaskItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -80,13 +79,13 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-						"_UI_LNamedElement_type"),
-				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+								"_UI_LNamedElement_type"),
+						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -97,13 +96,13 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
-						"_UI_IPipelineTask_type"),
-				ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
+								"_UI_IPipelineTask_type"),
+						ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -114,13 +113,13 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter
 	 */
 	protected void addRepeatCountPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_CompositeTask_repeatCount_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_CompositeTask_repeatCount_feature", "_UI_CompositeTask_type"),
-				ProcessPackage.Literals.COMPOSITE_TASK__REPEAT_COUNT, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_CompositeTask_repeatCount_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_CompositeTask_repeatCount_feature",
+								"_UI_CompositeTask_type"),
+						ProcessPackage.Literals.COMPOSITE_TASK__REPEAT_COUNT, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -200,12 +199,10 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter
 		case ProcessPackage.COMPOSITE_TASK__NAME:
 		case ProcessPackage.COMPOSITE_TASK__ENABLED:
 		case ProcessPackage.COMPOSITE_TASK__REPEAT_COUNT:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ProcessPackage.COMPOSITE_TASK__TASKS:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);

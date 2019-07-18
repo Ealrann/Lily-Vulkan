@@ -38,9 +38,8 @@ import org.sheepy.vulkan.model.pipeline.PipelineFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GraphicsPipelineItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -84,13 +83,13 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-						"_UI_LNamedElement_type"),
-				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+								"_UI_LNamedElement_type"),
+						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -101,13 +100,13 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_IPipeline_enabled_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_enabled_feature",
-						"_UI_IPipeline_type"),
-				ProcessPackage.Literals.IPIPELINE__ENABLED, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_IPipeline_enabled_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_enabled_feature",
+								"_UI_IPipeline_type"),
+						ProcessPackage.Literals.IPIPELINE__ENABLED, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -118,13 +117,13 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 	 */
 	protected void addStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_IPipeline_stage_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature",
-						"_UI_IPipeline_type"),
-				ProcessPackage.Literals.IPIPELINE__STAGE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_IPipeline_stage_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature",
+								"_UI_IPipeline_type"),
+						ProcessPackage.Literals.IPIPELINE__STAGE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -135,13 +134,13 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 	 */
 	protected void addSpecializationDataPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_IPipeline_specializationData_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_IPipeline_specializationData_feature", "_UI_IPipeline_type"),
-				ProcessPackage.Literals.IPIPELINE__SPECIALIZATION_DATA, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_IPipeline_specializationData_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_specializationData_feature",
+								"_UI_IPipeline_type"),
+						ProcessPackage.Literals.IPIPELINE__SPECIALIZATION_DATA, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -152,13 +151,12 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 	 */
 	protected void addShadersPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_GraphicsPipeline_shaders_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_GraphicsPipeline_shaders_feature", "_UI_GraphicsPipeline_type"),
-				GraphicPackage.Literals.GRAPHICS_PIPELINE__SHADERS, true, false, true, null, null,
-				null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_GraphicsPipeline_shaders_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_GraphicsPipeline_shaders_feature",
+								"_UI_GraphicsPipeline_type"),
+						GraphicPackage.Literals.GRAPHICS_PIPELINE__SHADERS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -169,13 +167,13 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 	 */
 	protected void addSubpassPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_GraphicsPipeline_subpass_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_GraphicsPipeline_subpass_feature", "_UI_GraphicsPipeline_type"),
-				GraphicPackage.Literals.GRAPHICS_PIPELINE__SUBPASS, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_GraphicsPipeline_subpass_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_GraphicsPipeline_subpass_feature",
+								"_UI_GraphicsPipeline_type"),
+						GraphicPackage.Literals.GRAPHICS_PIPELINE__SUBPASS, true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -266,8 +264,7 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 		case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
 		case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
 		case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
 		case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
@@ -279,8 +276,7 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 		case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
 		case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
 		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -298,48 +294,38 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-						VulkanFactory.eINSTANCE.createResourcePkg()));
+		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+				VulkanFactory.eINSTANCE.createResourcePkg()));
 
-		newChildDescriptors
-				.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES,
-						PipelineFactory.eINSTANCE.createPushConstantRange()));
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES,
+				PipelineFactory.eINSTANCE.createPushConstantRange()));
 
-		newChildDescriptors
-				.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
-						ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
+				ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
 
 		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__TASK_PKG,
 				ProcessFactory.eINSTANCE.createTaskPkg()));
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE,
-						GraphicpipelineFactory.eINSTANCE.createStaticViewportState()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE,
+				GraphicpipelineFactory.eINSTANCE.createStaticViewportState()));
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE,
-						GraphicpipelineFactory.eINSTANCE.createDynamicViewportState()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE,
+				GraphicpipelineFactory.eINSTANCE.createDynamicViewportState()));
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__INPUT_ASSEMBLY,
-						GraphicpipelineFactory.eINSTANCE.createInputAssembly()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__INPUT_ASSEMBLY,
+				GraphicpipelineFactory.eINSTANCE.createInputAssembly()));
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__RASTERIZER,
-						GraphicpipelineFactory.eINSTANCE.createRasterizer()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__RASTERIZER,
+				GraphicpipelineFactory.eINSTANCE.createRasterizer()));
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__COLOR_BLEND,
-						GraphicpipelineFactory.eINSTANCE.createColorBlend()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__COLOR_BLEND,
+				GraphicpipelineFactory.eINSTANCE.createColorBlend()));
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__DYNAMIC_STATE,
-						GraphicpipelineFactory.eINSTANCE.createDynamicState()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__DYNAMIC_STATE,
+				GraphicpipelineFactory.eINSTANCE.createDynamicState()));
 
-		newChildDescriptors.add(
-				createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE,
-						GraphicFactory.eINSTANCE.createVertexInputState()));
+		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE,
+				GraphicFactory.eINSTANCE.createVertexInputState()));
 	}
 
 	/**

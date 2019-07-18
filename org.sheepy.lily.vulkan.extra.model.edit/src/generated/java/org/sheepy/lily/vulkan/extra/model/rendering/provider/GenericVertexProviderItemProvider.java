@@ -1,6 +1,7 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.resource.provider;
+package org.sheepy.lily.vulkan.extra.model.rendering.provider;
+
 
 import java.util.Collection;
 import java.util.List;
@@ -10,15 +11,15 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import org.sheepy.lily.vulkan.model.resource.VertexProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.GenericVertexProvider;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.VertexProvider} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericVertexProvider} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class VertexProviderItemProvider extends BufferDataProviderItemProvider
+public class GenericVertexProviderItemProvider extends GenericDataProviderItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -26,7 +27,7 @@ public class VertexProviderItemProvider extends BufferDataProviderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VertexProviderItemProvider(AdapterFactory adapterFactory)
+	public GenericVertexProviderItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -49,7 +50,7 @@ public class VertexProviderItemProvider extends BufferDataProviderItemProvider
 	}
 
 	/**
-	 * This returns VertexProvider.gif.
+	 * This returns GenericVertexProvider.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -57,7 +58,7 @@ public class VertexProviderItemProvider extends BufferDataProviderItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/VertexProvider"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/GenericVertexProvider"));
 	}
 
 	/**
@@ -69,11 +70,12 @@ public class VertexProviderItemProvider extends BufferDataProviderItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((VertexProvider<?>) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_VertexProvider_type")
-				: getString("_UI_VertexProvider_type") + " " + label;
+		String label = ((GenericVertexProvider<?>)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_GenericVertexProvider_type") :
+			getString("_UI_GenericVertexProvider_type") + " " + label;
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

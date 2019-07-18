@@ -31,9 +31,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ImageAttachmentItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class ImageAttachmentItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -73,13 +72,13 @@ public class ImageAttachmentItemProvider extends ItemProviderAdapter
 	 */
 	protected void addClearValuePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ImageAttachment_clearValue_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ImageAttachment_clearValue_feature", "_UI_ImageAttachment_type"),
-				GraphicPackage.Literals.IMAGE_ATTACHMENT__CLEAR_VALUE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_ImageAttachment_clearValue_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ImageAttachment_clearValue_feature",
+								"_UI_ImageAttachment_type"),
+						GraphicPackage.Literals.IMAGE_ATTACHMENT__CLEAR_VALUE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -90,13 +89,12 @@ public class ImageAttachmentItemProvider extends ItemProviderAdapter
 	 */
 	protected void addImageRefPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ImageAttachment_imageRef_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ImageAttachment_imageRef_feature", "_UI_ImageAttachment_type"),
-				GraphicPackage.Literals.IMAGE_ATTACHMENT__IMAGE_REF, true, false, true, null, null,
-				null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_ImageAttachment_imageRef_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ImageAttachment_imageRef_feature",
+								"_UI_ImageAttachment_type"),
+						GraphicPackage.Literals.IMAGE_ATTACHMENT__IMAGE_REF, true, false, true, null, null, null));
 	}
 
 	/**
@@ -142,8 +140,7 @@ public class ImageAttachmentItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(ImageAttachment.class))
 		{
 		case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

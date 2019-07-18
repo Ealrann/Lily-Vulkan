@@ -82,7 +82,7 @@ public interface Shader extends BasicResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Constants</em>' containment reference list.
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getShader_Constants()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<SpecializationConstant> getConstants();

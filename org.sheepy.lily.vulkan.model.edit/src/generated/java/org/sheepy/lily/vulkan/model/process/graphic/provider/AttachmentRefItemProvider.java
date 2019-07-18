@@ -33,9 +33,8 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttachmentRefItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class AttachmentRefItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -75,13 +74,12 @@ public class AttachmentRefItemProvider extends ItemProviderAdapter
 	 */
 	protected void addAttachmentPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_AttachmentRef_attachment_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_AttachmentRef_attachment_feature", "_UI_AttachmentRef_type"),
-				GraphicPackage.Literals.ATTACHMENT_REF__ATTACHMENT, true, false, true, null, null,
-				null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_AttachmentRef_attachment_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_AttachmentRef_attachment_feature",
+								"_UI_AttachmentRef_type"),
+						GraphicPackage.Literals.ATTACHMENT_REF__ATTACHMENT, true, false, true, null, null, null));
 	}
 
 	/**
@@ -92,13 +90,13 @@ public class AttachmentRefItemProvider extends ItemProviderAdapter
 	 */
 	protected void addLayoutPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_AttachmentRef_layout_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_AttachmentRef_layout_feature",
-						"_UI_AttachmentRef_type"),
-				GraphicPackage.Literals.ATTACHMENT_REF__LAYOUT, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_AttachmentRef_layout_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_AttachmentRef_layout_feature",
+								"_UI_AttachmentRef_type"),
+						GraphicPackage.Literals.ATTACHMENT_REF__LAYOUT, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -144,8 +142,7 @@ public class AttachmentRefItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(AttachmentRef.class))
 		{
 		case GraphicPackage.ATTACHMENT_REF__LAYOUT:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

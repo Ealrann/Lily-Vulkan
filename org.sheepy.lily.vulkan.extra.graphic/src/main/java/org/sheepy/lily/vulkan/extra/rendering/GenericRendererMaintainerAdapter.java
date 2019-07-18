@@ -9,10 +9,14 @@ import org.lwjgl.BufferUtils;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Autorun;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.maintainer.MaintainerUtil;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.vulkan.api.resource.buffer.IIndexProviderAdapter;
+import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
+import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexProviderAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IPresentationAdapter;
+import org.sheepy.lily.vulkan.extra.model.rendering.GenericIndexProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer;
+import org.sheepy.lily.vulkan.extra.model.rendering.GenericVertexProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
@@ -26,15 +30,13 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.lily.vulkan.model.resource.IndexProvider;
 import org.sheepy.lily.vulkan.model.resource.PushBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.lily.vulkan.model.resource.VertexProvider;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 @Statefull
 @Adapter(scope = GenericRendererMaintainer.class, scopeInheritance = true)
-public final class GenericRendererMaintainerAdapter<T extends Presentation>
+public final class GenericRendererMaintainerAdapter<T extends Presentation> implements IVulkanAdapter
 {
 	public static final int PUSH_BUFFER_SIZE = 2097152;
 
@@ -62,7 +64,10 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation>
 		final var presentationStream = presentationPkg.getPresentations().stream();
 		final var pipelineIndex = new AtomicInteger(0);
 
-		final Class<T> presentedClass = resolveGenericType();
+		final var presentedEClass = ModelUtil.resolveGenericType(maintainer,
+				RenderingPackage.Literals.GENERIC_RENDERER_MAINTAINER);
+		@SuppressWarnings("unchecked")
+		final Class<T> presentedClass = (Class<T>) presentedEClass.getInstanceClass();
 
 		presentationStream.filter(presentedClass::isInstance).map(presentedClass::cast).forEach(presentation -> {
 			final var meshAdapter = IPresentationAdapter.adapt(presentation);
@@ -75,42 +80,15 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation>
 		});
 	}
 
-	@SuppressWarnings("unchecked")
-	private Class<T> resolveGenericType()
-	{
-		Class<T> filter = null;
-
-		for (final var gType : maintainer.eClass().getEGenericSuperTypes())
-		{
-			if (gType.getEClassifier() == RenderingPackage.Literals.GENERIC_RENDERER_MAINTAINER)
-			{
-				filter = (Class<T>) gType.getERawType().getInstanceClass();
-			}
-		}
-
-		return filter;
-	}
-
 	private PipelineContext newPipelineContext(int index)
 	{
 		// @Todo T MaintainerUtil.instanciate(Maintainer<T> maintainer);
-		final GraphicsPipeline pipeline = GraphicFactory.eINSTANCE.createGraphicsPipeline();
-		pipeline.setDescriptorSetPkg(ResourceFactory.eINSTANCE.createDescriptorSetPkg());
-		pipeline.setResourcePkg(VulkanFactory.eINSTANCE.createResourcePkg());
-		pipeline.setTaskPkg(ProcessFactory.eINSTANCE.createTaskPkg());
-		maintainer.getMaintained().add(pipeline);
 
-		for (final var constantRange : maintainer.getPushConstantRanges())
-		{
-			pipeline.getPushConstantRanges().add(EcoreUtil.copy(constantRange));
-		}
-		pipeline.getShaders().addAll(maintainer.getShaders());
-		pipeline.setViewportState(EcoreUtil.copy(maintainer.getViewportState()));
-		pipeline.setInputAssembly(EcoreUtil.copy(maintainer.getInputAssembly()));
-		pipeline.setRasterizer(EcoreUtil.copy(maintainer.getRasterizer()));
-		pipeline.setColorBlend(EcoreUtil.copy(maintainer.getColorBlend()));
-		pipeline.setDynamicState(EcoreUtil.copy(maintainer.getDynamicState()));
-		pipeline.setVertexInputState(EcoreUtil.copy(maintainer.getVertexInputState()));
+		final var pipeline = MaintainerUtil.instanciateMaintainer(maintainer);
+
+		pipeline.setTaskPkg(ProcessFactory.eINSTANCE.createTaskPkg());
+		pipeline.setResourcePkg(VulkanFactory.eINSTANCE.createResourcePkg());
+		pipeline.setDescriptorSetPkg(ResourceFactory.eINSTANCE.createDescriptorSetPkg());
 
 		final var constantsData = BufferUtils.createByteBuffer(4);
 		constantsData.putInt(0, index);
@@ -136,12 +114,10 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation>
 	private static final class PresentationContext<T extends Presentation>
 	{
 		public final DescriptorSet descriptorSet;
-		public final CompositeBuffer<RenderableDataSource<T>> buffer;
+		public final CompositeBuffer buffer;
 		public final int part;
 
-		private PresentationContext(DescriptorSet descriptorSet,
-									CompositeBuffer<RenderableDataSource<T>> buffer,
-									int part)
+		private PresentationContext(DescriptorSet descriptorSet, CompositeBuffer buffer, int part)
 		{
 			this.descriptorSet = descriptorSet;
 			this.buffer = buffer;
@@ -152,8 +128,7 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation>
 		{
 			private final GenericRendererMaintainer<T> maintainer;
 
-			private CompositeBuffer<RenderableDataSource<T>> buffer;
-			private int part;
+			private CompositeBuffer buffer;
 
 			private Builder(GenericRendererMaintainer<T> maintainer)
 			{
@@ -162,7 +137,6 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation>
 
 			public PresentationContext<T> setup(PipelineContext pipelineContext, T presentation, int part)
 			{
-				this.part = part;
 				buffer = createBuffer(pipelineContext, presentation, part);
 
 				pipelineContext.pipeline.getResourcePkg().getResources().add(buffer);
@@ -186,7 +160,7 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation>
 
 			private void createDrawTasks(T presentation, TaskPkg taskPkg)
 			{
-				final var dataProviders = maintainer.getDataProviders();
+				final var dataProviders = buffer.getDataProviders();
 
 				final List<VertexBinding> vertexBufferRef = new ArrayList<>();
 				int indexIndex = -1;
@@ -194,7 +168,7 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation>
 				for (int i = 0; i < dataProviders.size(); i++)
 				{
 					final var provider = dataProviders.get(i);
-					if (provider instanceof IndexProvider)
+					if (provider instanceof GenericIndexProvider)
 					{
 						if (indexIndex != -1)
 						{
@@ -202,7 +176,7 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation>
 						}
 						indexIndex = i;
 					}
-					else if (provider instanceof VertexProvider)
+					else if (provider instanceof GenericVertexProvider)
 					{
 						final var vertexRef = ResourceFactory.eINSTANCE.createCompositeBufferReference();
 						vertexRef.setBuffer(buffer);
@@ -221,8 +195,7 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation>
 
 				if (indexIndex != -1)
 				{
-					@SuppressWarnings("unchecked")
-					final var indexProvider = (IndexProvider<RenderableDataSource<T>>) dataProviders.get(indexIndex);
+					final var indexProvider = (GenericIndexProvider<?>) dataProviders.get(indexIndex);
 					final var indexProviderAdapter = IIndexProviderAdapter.adapt(indexProvider);
 
 					final var indexRef = ResourceFactory.eINSTANCE.createCompositeBufferReference();
@@ -233,12 +206,8 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation>
 					bindIndex.setBufferRef(indexRef);
 					bindIndex.setIndexType(indexProvider.getIndexType());
 
-					final RenderableDataSource<T> dataSource = RenderingFactory.eINSTANCE.createRenderableDataSource();
-					dataSource.setPart(part);
-					dataSource.setPresentation(presentation);
-
 					final var drawIndexed = GraphicFactory.eINSTANCE.createDrawIndexed();
-					drawIndexed.setIndexCount(indexProviderAdapter.getIndexCount(dataSource));
+					drawIndexed.setIndexCount(indexProviderAdapter.getIndexCount());
 					drawIndexed.setInstanceCount(presentation.getPresentedEntities().size());
 
 					taskPkg.getTasks().add(bindIndex);
@@ -250,22 +219,23 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation>
 
 					taskPkg.getTasks().add(draw);
 				}
-
 			}
 
-			private CompositeBuffer<RenderableDataSource<T>> createBuffer(	PipelineContext pipelineContext,
-																			T presentation,
-																			int part)
+			private CompositeBuffer createBuffer(PipelineContext pipelineContext, T presentation, int part)
 			{
-				final CompositeBuffer<RenderableDataSource<T>> res = ResourceFactory.eINSTANCE.createCompositeBuffer();
-				final var dataProviders = maintainer.getDataProviders();
+				final CompositeBuffer res = ResourceFactory.eINSTANCE.createCompositeBuffer();
+				final var dataProviders = maintainer.getDataProviderPkg().getDataProviders();
 
 				final RenderableDataSource<T> dataSource = RenderingFactory.eINSTANCE.createRenderableDataSource();
 				dataSource.setPart(part);
 				dataSource.setPresentation(presentation);
 
-				res.getDataProviders().addAll(dataProviders);
-				res.setDataSource(dataSource);
+				for (final var dataProvider : dataProviders)
+				{
+					final var copy = EcoreUtil.copy(dataProvider);
+					copy.setDataSource(dataSource);
+					res.getDataProviders().add(copy);
+				}
 
 				res.setPushBuffer(pipelineContext.pushBuffer);
 

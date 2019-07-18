@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.resource.impl;
+package org.sheepy.lily.vulkan.extra.model.rendering.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -8,25 +8,25 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.sheepy.lily.vulkan.model.resource.IndexProvider;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-
+import org.sheepy.lily.vulkan.extra.model.rendering.GenericIndexProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.vulkan.model.enumeration.EIndexType;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Index Provider</b></em>'.
+ * An implementation of the model object '<em><b>Generic Index Provider</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.IndexProviderImpl#getIndexType <em>Index Type</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericIndexProviderImpl#getIndexType <em>Index Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class IndexProviderImpl<T> extends BufferDataProviderImpl<T> implements IndexProvider<T>
+public class GenericIndexProviderImpl<T extends Presentation> extends GenericDataProviderImpl<T> implements GenericIndexProvider<T>
 {
 	/**
 	 * The default value of the '{@link #getIndexType() <em>Index Type</em>}' attribute.
@@ -53,7 +53,7 @@ public class IndexProviderImpl<T> extends BufferDataProviderImpl<T> implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IndexProviderImpl()
+	protected GenericIndexProviderImpl()
 	{
 		super();
 	}
@@ -66,7 +66,7 @@ public class IndexProviderImpl<T> extends BufferDataProviderImpl<T> implements I
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.INDEX_PROVIDER;
+		return RenderingPackage.Literals.GENERIC_INDEX_PROVIDER;
 	}
 
 	/**
@@ -90,8 +90,8 @@ public class IndexProviderImpl<T> extends BufferDataProviderImpl<T> implements I
 	{
 		EIndexType oldIndexType = indexType;
 		indexType = newIndexType == null ? INDEX_TYPE_EDEFAULT : newIndexType;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.INDEX_PROVIDER__INDEX_TYPE, oldIndexType, indexType));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_INDEX_PROVIDER__INDEX_TYPE, oldIndexType, indexType));
 	}
 
 	/**
@@ -104,8 +104,8 @@ public class IndexProviderImpl<T> extends BufferDataProviderImpl<T> implements I
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.INDEX_PROVIDER__INDEX_TYPE:
-			return getIndexType();
+			case RenderingPackage.GENERIC_INDEX_PROVIDER__INDEX_TYPE:
+				return getIndexType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,9 +120,9 @@ public class IndexProviderImpl<T> extends BufferDataProviderImpl<T> implements I
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.INDEX_PROVIDER__INDEX_TYPE:
-			setIndexType((EIndexType) newValue);
-			return;
+			case RenderingPackage.GENERIC_INDEX_PROVIDER__INDEX_TYPE:
+				setIndexType((EIndexType)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -137,9 +137,9 @@ public class IndexProviderImpl<T> extends BufferDataProviderImpl<T> implements I
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.INDEX_PROVIDER__INDEX_TYPE:
-			setIndexType(INDEX_TYPE_EDEFAULT);
-			return;
+			case RenderingPackage.GENERIC_INDEX_PROVIDER__INDEX_TYPE:
+				setIndexType(INDEX_TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -154,8 +154,8 @@ public class IndexProviderImpl<T> extends BufferDataProviderImpl<T> implements I
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.INDEX_PROVIDER__INDEX_TYPE:
-			return indexType != INDEX_TYPE_EDEFAULT;
+			case RenderingPackage.GENERIC_INDEX_PROVIDER__INDEX_TYPE:
+				return indexType != INDEX_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -177,4 +177,4 @@ public class IndexProviderImpl<T> extends BufferDataProviderImpl<T> implements I
 		return result.toString();
 	}
 
-} //IndexProviderImpl
+} //GenericIndexProviderImpl

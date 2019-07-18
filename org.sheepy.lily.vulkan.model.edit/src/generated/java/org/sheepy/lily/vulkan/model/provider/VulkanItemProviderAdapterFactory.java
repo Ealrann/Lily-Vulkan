@@ -351,9 +351,8 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 			@Override
 			public Object caseApplication(Application object)
 			{
-				newChildDescriptors
-						.add(createChildParameter(ApplicationPackage.Literals.APPLICATION__ENGINES,
-								VulkanFactory.eINSTANCE.createVulkanEngine()));
+				newChildDescriptors.add(createChildParameter(ApplicationPackage.Literals.APPLICATION__ENGINES,
+						VulkanFactory.eINSTANCE.createVulkanEngine()));
 
 				return null;
 			}

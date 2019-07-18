@@ -158,7 +158,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 		}
 		case ResourcePackage.COMPOSITE_BUFFER:
 		{
-			CompositeBuffer<?> compositeBuffer = (CompositeBuffer<?>) theEObject;
+			CompositeBuffer compositeBuffer = (CompositeBuffer) theEObject;
 			T1 result = caseCompositeBuffer(compositeBuffer);
 			if (result == null) result = caseDescriptedResource(compositeBuffer);
 			if (result == null) result = caseIBuffer(compositeBuffer);
@@ -195,24 +195,6 @@ public class ResourceSwitch<T1> extends Switch<T1>
 			BufferDataProvider<?> bufferDataProvider = (BufferDataProvider<?>) theEObject;
 			T1 result = caseBufferDataProvider(bufferDataProvider);
 			if (result == null) result = caseLNamedElement(bufferDataProvider);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.VERTEX_PROVIDER:
-		{
-			VertexProvider<?> vertexProvider = (VertexProvider<?>) theEObject;
-			T1 result = caseVertexProvider(vertexProvider);
-			if (result == null) result = caseBufferDataProvider(vertexProvider);
-			if (result == null) result = caseLNamedElement(vertexProvider);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.INDEX_PROVIDER:
-		{
-			IndexProvider<?> indexProvider = (IndexProvider<?>) theEObject;
-			T1 result = caseIndexProvider(indexProvider);
-			if (result == null) result = caseBufferDataProvider(indexProvider);
-			if (result == null) result = caseLNamedElement(indexProvider);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -559,7 +541,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T> T1 caseCompositeBuffer(CompositeBuffer<T> object)
+	public T1 caseCompositeBuffer(CompositeBuffer object)
 	{
 		return null;
 	}
@@ -624,38 +606,6 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public <T> T1 caseBufferDataProvider(BufferDataProvider<T> object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Vertex Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Vertex Provider</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <T> T1 caseVertexProvider(VertexProvider<T> object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Index Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Index Provider</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <T> T1 caseIndexProvider(IndexProvider<T> object)
 	{
 		return null;
 	}
