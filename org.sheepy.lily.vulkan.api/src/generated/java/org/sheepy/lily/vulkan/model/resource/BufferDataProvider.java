@@ -35,7 +35,7 @@ public interface BufferDataProvider<T> extends LNamedElement
 	 * @see org.sheepy.vulkan.model.enumeration.EBufferUsage
 	 * @see #setUsage(EBufferUsage)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_Usage()
-	 * @model unique="false"
+	 * @model unique="false" required="true"
 	 * @generated
 	 */
 	EBufferUsage getUsage();
@@ -59,7 +59,7 @@ public interface BufferDataProvider<T> extends LNamedElement
 	 * @return the value of the '<em>Instance Count</em>' attribute.
 	 * @see #setInstanceCount(int)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_InstanceCount()
-	 * @model default="1" unique="false"
+	 * @model default="1" unique="false" required="true"
 	 * @generated
 	 */
 	int getInstanceCount();
@@ -75,22 +75,22 @@ public interface BufferDataProvider<T> extends LNamedElement
 	void setInstanceCount(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Data Source</b></em>' reference.
+	 * Returns the value of the '<em><b>Data Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data Source</em>' reference.
+	 * @return the value of the '<em>Data Source</em>' containment reference.
 	 * @see #setDataSource(Object)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_DataSource()
-	 * @model kind="reference"
+	 * @model kind="reference" containment="true"
 	 * @generated
 	 */
 	T getDataSource();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource <em>Data Source</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource <em>Data Source</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data Source</em>' reference.
+	 * @param value the new value of the '<em>Data Source</em>' containment reference.
 	 * @see #getDataSource()
 	 * @generated
 	 */

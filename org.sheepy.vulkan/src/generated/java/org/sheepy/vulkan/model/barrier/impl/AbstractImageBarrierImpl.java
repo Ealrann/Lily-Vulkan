@@ -67,7 +67,7 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AbstractImageBarrierImpl()
+	public AbstractImageBarrierImpl()
 	{
 		super();
 	}
@@ -104,8 +104,8 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	{
 		EImageLayout oldSrcLayout = srcLayout;
 		srcLayout = newSrcLayout == null ? SRC_LAYOUT_EDEFAULT : newSrcLayout;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT, oldSrcLayout, srcLayout));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT, oldSrcLayout, srcLayout));
 	}
 
 	/**
@@ -129,8 +129,8 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	{
 		EImageLayout oldDstLayout = dstLayout;
 		dstLayout = newDstLayout == null ? DST_LAYOUT_EDEFAULT : newDstLayout;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT, oldDstLayout, dstLayout));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT, oldDstLayout, dstLayout));
 	}
 
 	/**
@@ -143,10 +143,10 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT:
-			return getSrcLayout();
-		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT:
-			return getDstLayout();
+			case BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT:
+				return getSrcLayout();
+			case BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT:
+				return getDstLayout();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -161,12 +161,12 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT:
-			setSrcLayout((EImageLayout) newValue);
-			return;
-		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT:
-			setDstLayout((EImageLayout) newValue);
-			return;
+			case BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT:
+				setSrcLayout((EImageLayout)newValue);
+				return;
+			case BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT:
+				setDstLayout((EImageLayout)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -181,12 +181,12 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT:
-			setSrcLayout(SRC_LAYOUT_EDEFAULT);
-			return;
-		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT:
-			setDstLayout(DST_LAYOUT_EDEFAULT);
-			return;
+			case BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT:
+				setSrcLayout(SRC_LAYOUT_EDEFAULT);
+				return;
+			case BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT:
+				setDstLayout(DST_LAYOUT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -201,10 +201,10 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT:
-			return srcLayout != SRC_LAYOUT_EDEFAULT;
-		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT:
-			return dstLayout != DST_LAYOUT_EDEFAULT;
+			case BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT:
+				return srcLayout != SRC_LAYOUT_EDEFAULT;
+			case BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT:
+				return dstLayout != DST_LAYOUT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

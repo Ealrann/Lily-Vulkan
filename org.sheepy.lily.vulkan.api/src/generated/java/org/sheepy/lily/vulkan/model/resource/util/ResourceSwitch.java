@@ -80,325 +80,324 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	{
 		switch (classifierID)
 		{
-		case ResourcePackage.BASIC_RESOURCE:
-		{
-			BasicResource basicResource = (BasicResource) theEObject;
-			T1 result = caseBasicResource(basicResource);
-			if (result == null) result = caseIResource(basicResource);
-			if (result == null) result = caseLNamedElement(basicResource);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.PUSH_BUFFER:
-		{
-			PushBuffer pushBuffer = (PushBuffer) theEObject;
-			T1 result = casePushBuffer(pushBuffer);
-			if (result == null) result = caseIResource(pushBuffer);
-			if (result == null) result = caseLNamedElement(pushBuffer);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.GET_BUFFER:
-		{
-			GetBuffer getBuffer = (GetBuffer) theEObject;
-			T1 result = caseGetBuffer(getBuffer);
-			if (result == null) result = caseIResource(getBuffer);
-			if (result == null) result = caseLNamedElement(getBuffer);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.CONSTANT_BUFFER:
-		{
-			ConstantBuffer constantBuffer = (ConstantBuffer) theEObject;
-			T1 result = caseConstantBuffer(constantBuffer);
-			if (result == null) result = caseIResource(constantBuffer);
-			if (result == null) result = caseLNamedElement(constantBuffer);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.DESCRIPTED_RESOURCE:
-		{
-			DescriptedResource descriptedResource = (DescriptedResource) theEObject;
-			T1 result = caseDescriptedResource(descriptedResource);
-			if (result == null) result = caseIResource(descriptedResource);
-			if (result == null) result = caseLNamedElement(descriptedResource);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.BASIC_DESCRIPTED_RESOURCE:
-		{
-			BasicDescriptedResource basicDescriptedResource = (BasicDescriptedResource) theEObject;
-			T1 result = caseBasicDescriptedResource(basicDescriptedResource);
-			if (result == null) result = caseDescriptedResource(basicDescriptedResource);
-			if (result == null) result = caseIResource(basicDescriptedResource);
-			if (result == null) result = caseLNamedElement(basicDescriptedResource);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.IBUFFER:
-		{
-			IBuffer iBuffer = (IBuffer) theEObject;
-			T1 result = caseIBuffer(iBuffer);
-			if (result == null) result = caseIResource(iBuffer);
-			if (result == null) result = caseLNamedElement(iBuffer);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.BUFFER:
-		{
-			Buffer buffer = (Buffer) theEObject;
-			T1 result = caseBuffer(buffer);
-			if (result == null) result = caseBasicDescriptedResource(buffer);
-			if (result == null) result = caseIBuffer(buffer);
-			if (result == null) result = caseDescriptedResource(buffer);
-			if (result == null) result = caseIResource(buffer);
-			if (result == null) result = caseLNamedElement(buffer);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.COMPOSITE_BUFFER:
-		{
-			CompositeBuffer compositeBuffer = (CompositeBuffer) theEObject;
-			T1 result = caseCompositeBuffer(compositeBuffer);
-			if (result == null) result = caseDescriptedResource(compositeBuffer);
-			if (result == null) result = caseIBuffer(compositeBuffer);
-			if (result == null) result = caseIResource(compositeBuffer);
-			if (result == null) result = caseLNamedElement(compositeBuffer);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.IBUFFER_REFERENCE:
-		{
-			IBufferReference iBufferReference = (IBufferReference) theEObject;
-			T1 result = caseIBufferReference(iBufferReference);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.BUFFER_REFERENCE:
-		{
-			BufferReference bufferReference = (BufferReference) theEObject;
-			T1 result = caseBufferReference(bufferReference);
-			if (result == null) result = caseIBufferReference(bufferReference);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE:
-		{
-			CompositeBufferReference compositeBufferReference = (CompositeBufferReference) theEObject;
-			T1 result = caseCompositeBufferReference(compositeBufferReference);
-			if (result == null) result = caseIBufferReference(compositeBufferReference);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.BUFFER_DATA_PROVIDER:
-		{
-			BufferDataProvider<?> bufferDataProvider = (BufferDataProvider<?>) theEObject;
-			T1 result = caseBufferDataProvider(bufferDataProvider);
-			if (result == null) result = caseLNamedElement(bufferDataProvider);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.DESCRIBED_DATA_PROVIDER:
-		{
-			DescribedDataProvider<?> describedDataProvider = (DescribedDataProvider<?>) theEObject;
-			T1 result = caseDescribedDataProvider(describedDataProvider);
-			if (result == null) result = caseBufferDataProvider(describedDataProvider);
-			if (result == null) result = caseDescriptor(describedDataProvider);
-			if (result == null) result = caseLNamedElement(describedDataProvider);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.IMAGE:
-		{
-			Image image = (Image) theEObject;
-			T1 result = caseImage(image);
-			if (result == null) result = caseBasicDescriptedResource(image);
-			if (result == null) result = caseDescriptedResource(image);
-			if (result == null) result = caseIResource(image);
-			if (result == null) result = caseLNamedElement(image);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.IMAGE_LAYOUT:
-		{
-			ImageLayout imageLayout = (ImageLayout) theEObject;
-			T1 result = caseImageLayout(imageLayout);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.SAMPLED_IMAGE:
-		{
-			SampledImage sampledImage = (SampledImage) theEObject;
-			T1 result = caseSampledImage(sampledImage);
-			if (result == null) result = caseBasicDescriptedResource(sampledImage);
-			if (result == null) result = caseDescriptedResource(sampledImage);
-			if (result == null) result = caseIResource(sampledImage);
-			if (result == null) result = caseLNamedElement(sampledImage);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.SEMAPHORE:
-		{
-			Semaphore semaphore = (Semaphore) theEObject;
-			T1 result = caseSemaphore(semaphore);
-			if (result == null) result = caseBasicResource(semaphore);
-			if (result == null) result = caseIResource(semaphore);
-			if (result == null) result = caseLNamedElement(semaphore);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.FONT:
-		{
-			Font font = (Font) theEObject;
-			T1 result = caseFont(font);
-			if (result == null) result = caseSampledImage(font);
-			if (result == null) result = caseBasicDescriptedResource(font);
-			if (result == null) result = caseDescriptedResource(font);
-			if (result == null) result = caseIResource(font);
-			if (result == null) result = caseLNamedElement(font);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.ABSTRACT_TEXTURE:
-		{
-			AbstractTexture abstractTexture = (AbstractTexture) theEObject;
-			T1 result = caseAbstractTexture(abstractTexture);
-			if (result == null) result = caseSampledImage(abstractTexture);
-			if (result == null) result = caseBasicDescriptedResource(abstractTexture);
-			if (result == null) result = caseDescriptedResource(abstractTexture);
-			if (result == null) result = caseIResource(abstractTexture);
-			if (result == null) result = caseLNamedElement(abstractTexture);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.TEXTURE:
-		{
-			Texture texture = (Texture) theEObject;
-			T1 result = caseTexture(texture);
-			if (result == null) result = caseAbstractTexture(texture);
-			if (result == null) result = caseSampledImage(texture);
-			if (result == null) result = caseBasicDescriptedResource(texture);
-			if (result == null) result = caseDescriptedResource(texture);
-			if (result == null) result = caseIResource(texture);
-			if (result == null) result = caseLNamedElement(texture);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.SAMPLER:
-		{
-			Sampler sampler = (Sampler) theEObject;
-			T1 result = caseSampler(sampler);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.DESCRIPTOR:
-		{
-			Descriptor descriptor = (Descriptor) theEObject;
-			T1 result = caseDescriptor(descriptor);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.DESCRIPTOR_SET:
-		{
-			DescriptorSet descriptorSet = (DescriptorSet) theEObject;
-			T1 result = caseDescriptorSet(descriptorSet);
-			if (result == null) result = caseLNamedElement(descriptorSet);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.DESCRIPTOR_SET_PKG:
-		{
-			DescriptorSetPkg descriptorSetPkg = (DescriptorSetPkg) theEObject;
-			T1 result = caseDescriptorSetPkg(descriptorSetPkg);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.BUFFER_BARRIER:
-		{
-			BufferBarrier bufferBarrier = (BufferBarrier) theEObject;
-			T1 result = caseBufferBarrier(bufferBarrier);
-			if (result == null) result = caseAbstractBufferBarrier(bufferBarrier);
-			if (result == null) result = caseBarrier(bufferBarrier);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.IMAGE_BARRIER:
-		{
-			ImageBarrier imageBarrier = (ImageBarrier) theEObject;
-			T1 result = caseImageBarrier(imageBarrier);
-			if (result == null) result = caseAbstractImageBarrier(imageBarrier);
-			if (result == null) result = caseBarrier(imageBarrier);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.SHADER:
-		{
-			Shader shader = (Shader) theEObject;
-			T1 result = caseShader(shader);
-			if (result == null) result = caseBasicResource(shader);
-			if (result == null) result = caseIResource(shader);
-			if (result == null) result = caseLNamedElement(shader);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.PATH_RESOURCE:
-		{
-			PathResource pathResource = (PathResource) theEObject;
-			T1 result = casePathResource(pathResource);
-			if (result == null) result = caseBasicResource(pathResource);
-			if (result == null) result = caseIResource(pathResource);
-			if (result == null) result = caseLNamedElement(pathResource);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.FILE_RESOURCE:
-		{
-			FileResource fileResource = (FileResource) theEObject;
-			T1 result = caseFileResource(fileResource);
-			if (result == null) result = casePathResource(fileResource);
-			if (result == null) result = caseBasicResource(fileResource);
-			if (result == null) result = caseIResource(fileResource);
-			if (result == null) result = caseLNamedElement(fileResource);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.ABSTRACT_MODULE_RESOURCE:
-		{
-			AbstractModuleResource abstractModuleResource = (AbstractModuleResource) theEObject;
-			T1 result = caseAbstractModuleResource(abstractModuleResource);
-			if (result == null) result = casePathResource(abstractModuleResource);
-			if (result == null) result = caseBasicResource(abstractModuleResource);
-			if (result == null) result = caseIResource(abstractModuleResource);
-			if (result == null) result = caseLNamedElement(abstractModuleResource);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.MODULE_RESOURCE:
-		{
-			ModuleResource moduleResource = (ModuleResource) theEObject;
-			T1 result = caseModuleResource(moduleResource);
-			if (result == null) result = caseAbstractModuleResource(moduleResource);
-			if (result == null) result = casePathResource(moduleResource);
-			if (result == null) result = caseBasicResource(moduleResource);
-			if (result == null) result = caseIResource(moduleResource);
-			if (result == null) result = caseLNamedElement(moduleResource);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.STRING_MODULE_RESOURCE:
-		{
-			StringModuleResource stringModuleResource = (StringModuleResource) theEObject;
-			T1 result = caseStringModuleResource(stringModuleResource);
-			if (result == null) result = caseAbstractModuleResource(stringModuleResource);
-			if (result == null) result = casePathResource(stringModuleResource);
-			if (result == null) result = caseBasicResource(stringModuleResource);
-			if (result == null) result = caseIResource(stringModuleResource);
-			if (result == null) result = caseLNamedElement(stringModuleResource);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			case ResourcePackage.BASIC_RESOURCE:
+			{
+				BasicResource basicResource = (BasicResource)theEObject;
+				T1 result = caseBasicResource(basicResource);
+				if (result == null) result = caseIResource(basicResource);
+				if (result == null) result = caseLNamedElement(basicResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.PUSH_BUFFER:
+			{
+				PushBuffer pushBuffer = (PushBuffer)theEObject;
+				T1 result = casePushBuffer(pushBuffer);
+				if (result == null) result = caseIResource(pushBuffer);
+				if (result == null) result = caseLNamedElement(pushBuffer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.GET_BUFFER:
+			{
+				GetBuffer getBuffer = (GetBuffer)theEObject;
+				T1 result = caseGetBuffer(getBuffer);
+				if (result == null) result = caseIResource(getBuffer);
+				if (result == null) result = caseLNamedElement(getBuffer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.CONSTANT_BUFFER:
+			{
+				ConstantBuffer constantBuffer = (ConstantBuffer)theEObject;
+				T1 result = caseConstantBuffer(constantBuffer);
+				if (result == null) result = caseIResource(constantBuffer);
+				if (result == null) result = caseLNamedElement(constantBuffer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.DESCRIPTED_RESOURCE:
+			{
+				DescriptedResource descriptedResource = (DescriptedResource)theEObject;
+				T1 result = caseDescriptedResource(descriptedResource);
+				if (result == null) result = caseIResource(descriptedResource);
+				if (result == null) result = caseLNamedElement(descriptedResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.BASIC_DESCRIPTED_RESOURCE:
+			{
+				BasicDescriptedResource basicDescriptedResource = (BasicDescriptedResource)theEObject;
+				T1 result = caseBasicDescriptedResource(basicDescriptedResource);
+				if (result == null) result = caseDescriptedResource(basicDescriptedResource);
+				if (result == null) result = caseIResource(basicDescriptedResource);
+				if (result == null) result = caseLNamedElement(basicDescriptedResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.IBUFFER:
+			{
+				IBuffer iBuffer = (IBuffer)theEObject;
+				T1 result = caseIBuffer(iBuffer);
+				if (result == null) result = caseIResource(iBuffer);
+				if (result == null) result = caseLNamedElement(iBuffer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.BUFFER:
+			{
+				Buffer buffer = (Buffer)theEObject;
+				T1 result = caseBuffer(buffer);
+				if (result == null) result = caseBasicDescriptedResource(buffer);
+				if (result == null) result = caseIBuffer(buffer);
+				if (result == null) result = caseDescriptedResource(buffer);
+				if (result == null) result = caseIResource(buffer);
+				if (result == null) result = caseLNamedElement(buffer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.COMPOSITE_BUFFER:
+			{
+				CompositeBuffer compositeBuffer = (CompositeBuffer)theEObject;
+				T1 result = caseCompositeBuffer(compositeBuffer);
+				if (result == null) result = caseDescriptedResource(compositeBuffer);
+				if (result == null) result = caseIBuffer(compositeBuffer);
+				if (result == null) result = caseIResource(compositeBuffer);
+				if (result == null) result = caseLNamedElement(compositeBuffer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.IBUFFER_REFERENCE:
+			{
+				IBufferReference iBufferReference = (IBufferReference)theEObject;
+				T1 result = caseIBufferReference(iBufferReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.BUFFER_REFERENCE:
+			{
+				BufferReference bufferReference = (BufferReference)theEObject;
+				T1 result = caseBufferReference(bufferReference);
+				if (result == null) result = caseIBufferReference(bufferReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE:
+			{
+				CompositeBufferReference compositeBufferReference = (CompositeBufferReference)theEObject;
+				T1 result = caseCompositeBufferReference(compositeBufferReference);
+				if (result == null) result = caseIBufferReference(compositeBufferReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.BUFFER_DATA_PROVIDER:
+			{
+				BufferDataProvider<?> bufferDataProvider = (BufferDataProvider<?>)theEObject;
+				T1 result = caseBufferDataProvider(bufferDataProvider);
+				if (result == null) result = caseLNamedElement(bufferDataProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.DESCRIBED_DATA_PROVIDER:
+			{
+				DescribedDataProvider<?> describedDataProvider = (DescribedDataProvider<?>)theEObject;
+				T1 result = caseDescribedDataProvider(describedDataProvider);
+				if (result == null) result = caseBufferDataProvider(describedDataProvider);
+				if (result == null) result = caseDescriptor(describedDataProvider);
+				if (result == null) result = caseLNamedElement(describedDataProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.IMAGE:
+			{
+				Image image = (Image)theEObject;
+				T1 result = caseImage(image);
+				if (result == null) result = caseBasicDescriptedResource(image);
+				if (result == null) result = caseDescriptedResource(image);
+				if (result == null) result = caseIResource(image);
+				if (result == null) result = caseLNamedElement(image);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.IMAGE_LAYOUT:
+			{
+				ImageLayout imageLayout = (ImageLayout)theEObject;
+				T1 result = caseImageLayout(imageLayout);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.SAMPLED_IMAGE:
+			{
+				SampledImage sampledImage = (SampledImage)theEObject;
+				T1 result = caseSampledImage(sampledImage);
+				if (result == null) result = caseBasicDescriptedResource(sampledImage);
+				if (result == null) result = caseDescriptedResource(sampledImage);
+				if (result == null) result = caseIResource(sampledImage);
+				if (result == null) result = caseLNamedElement(sampledImage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.SEMAPHORE:
+			{
+				Semaphore semaphore = (Semaphore)theEObject;
+				T1 result = caseSemaphore(semaphore);
+				if (result == null) result = caseBasicResource(semaphore);
+				if (result == null) result = caseIResource(semaphore);
+				if (result == null) result = caseLNamedElement(semaphore);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.FONT:
+			{
+				Font font = (Font)theEObject;
+				T1 result = caseFont(font);
+				if (result == null) result = caseSampledImage(font);
+				if (result == null) result = caseBasicDescriptedResource(font);
+				if (result == null) result = caseDescriptedResource(font);
+				if (result == null) result = caseIResource(font);
+				if (result == null) result = caseLNamedElement(font);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.ABSTRACT_TEXTURE:
+			{
+				AbstractTexture abstractTexture = (AbstractTexture)theEObject;
+				T1 result = caseAbstractTexture(abstractTexture);
+				if (result == null) result = caseSampledImage(abstractTexture);
+				if (result == null) result = caseBasicDescriptedResource(abstractTexture);
+				if (result == null) result = caseDescriptedResource(abstractTexture);
+				if (result == null) result = caseIResource(abstractTexture);
+				if (result == null) result = caseLNamedElement(abstractTexture);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.TEXTURE:
+			{
+				Texture texture = (Texture)theEObject;
+				T1 result = caseTexture(texture);
+				if (result == null) result = caseAbstractTexture(texture);
+				if (result == null) result = caseSampledImage(texture);
+				if (result == null) result = caseBasicDescriptedResource(texture);
+				if (result == null) result = caseDescriptedResource(texture);
+				if (result == null) result = caseIResource(texture);
+				if (result == null) result = caseLNamedElement(texture);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.SAMPLER:
+			{
+				Sampler sampler = (Sampler)theEObject;
+				T1 result = caseSampler(sampler);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.DESCRIPTOR:
+			{
+				Descriptor descriptor = (Descriptor)theEObject;
+				T1 result = caseDescriptor(descriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.DESCRIPTOR_SET:
+			{
+				DescriptorSet descriptorSet = (DescriptorSet)theEObject;
+				T1 result = caseDescriptorSet(descriptorSet);
+				if (result == null) result = caseLNamedElement(descriptorSet);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.DESCRIPTOR_SET_PKG:
+			{
+				DescriptorSetPkg descriptorSetPkg = (DescriptorSetPkg)theEObject;
+				T1 result = caseDescriptorSetPkg(descriptorSetPkg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.BUFFER_BARRIER:
+			{
+				BufferBarrier bufferBarrier = (BufferBarrier)theEObject;
+				T1 result = caseBufferBarrier(bufferBarrier);
+				if (result == null) result = caseAbstractBufferBarrier(bufferBarrier);
+				if (result == null) result = caseBarrier(bufferBarrier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.IMAGE_BARRIER:
+			{
+				ImageBarrier imageBarrier = (ImageBarrier)theEObject;
+				T1 result = caseImageBarrier(imageBarrier);
+				if (result == null) result = caseAbstractImageBarrier(imageBarrier);
+				if (result == null) result = caseBarrier(imageBarrier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.SHADER:
+			{
+				Shader shader = (Shader)theEObject;
+				T1 result = caseShader(shader);
+				if (result == null) result = caseBasicResource(shader);
+				if (result == null) result = caseIResource(shader);
+				if (result == null) result = caseLNamedElement(shader);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.PATH_RESOURCE:
+			{
+				PathResource pathResource = (PathResource)theEObject;
+				T1 result = casePathResource(pathResource);
+				if (result == null) result = caseBasicResource(pathResource);
+				if (result == null) result = caseIResource(pathResource);
+				if (result == null) result = caseLNamedElement(pathResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.FILE_RESOURCE:
+			{
+				FileResource fileResource = (FileResource)theEObject;
+				T1 result = caseFileResource(fileResource);
+				if (result == null) result = casePathResource(fileResource);
+				if (result == null) result = caseBasicResource(fileResource);
+				if (result == null) result = caseIResource(fileResource);
+				if (result == null) result = caseLNamedElement(fileResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.ABSTRACT_MODULE_RESOURCE:
+			{
+				AbstractModuleResource abstractModuleResource = (AbstractModuleResource)theEObject;
+				T1 result = caseAbstractModuleResource(abstractModuleResource);
+				if (result == null) result = casePathResource(abstractModuleResource);
+				if (result == null) result = caseBasicResource(abstractModuleResource);
+				if (result == null) result = caseIResource(abstractModuleResource);
+				if (result == null) result = caseLNamedElement(abstractModuleResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.MODULE_RESOURCE:
+			{
+				ModuleResource moduleResource = (ModuleResource)theEObject;
+				T1 result = caseModuleResource(moduleResource);
+				if (result == null) result = caseAbstractModuleResource(moduleResource);
+				if (result == null) result = casePathResource(moduleResource);
+				if (result == null) result = caseBasicResource(moduleResource);
+				if (result == null) result = caseIResource(moduleResource);
+				if (result == null) result = caseLNamedElement(moduleResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.STRING_MODULE_RESOURCE:
+			{
+				StringModuleResource stringModuleResource = (StringModuleResource)theEObject;
+				T1 result = caseStringModuleResource(stringModuleResource);
+				if (result == null) result = caseAbstractModuleResource(stringModuleResource);
+				if (result == null) result = casePathResource(stringModuleResource);
+				if (result == null) result = caseBasicResource(stringModuleResource);
+				if (result == null) result = caseIResource(stringModuleResource);
+				if (result == null) result = caseLNamedElement(stringModuleResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 

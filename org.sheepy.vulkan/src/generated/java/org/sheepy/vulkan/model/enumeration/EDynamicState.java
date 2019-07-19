@@ -214,7 +214,8 @@ public enum EDynamicState implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EDynamicState[] VALUES_ARRAY = new EDynamicState[] {
+	private static final EDynamicState[] VALUES_ARRAY = new EDynamicState[]
+		{
 			VIEWPORT,
 			SCISSOR,
 			LINE_WIDTH,
@@ -224,7 +225,7 @@ public enum EDynamicState implements Enumerator
 			STENCIL_COMPARE_MASK,
 			STENCIL_WRITE_MASK,
 			STENCIL_REFERENCE,
-	};
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>EDynamic State</b></em>' enumerators.
@@ -232,8 +233,7 @@ public enum EDynamicState implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EDynamicState> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EDynamicState> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EDynamic State</b></em>' literal with the specified literal value.
@@ -289,24 +289,15 @@ public enum EDynamicState implements Enumerator
 	{
 		switch (value)
 		{
-		case VIEWPORT_VALUE:
-			return VIEWPORT;
-		case SCISSOR_VALUE:
-			return SCISSOR;
-		case LINE_WIDTH_VALUE:
-			return LINE_WIDTH;
-		case DEPTH_BIAS_VALUE:
-			return DEPTH_BIAS;
-		case BLEND_CONSTANTS_VALUE:
-			return BLEND_CONSTANTS;
-		case DEPTH_BOUNDS_VALUE:
-			return DEPTH_BOUNDS;
-		case STENCIL_COMPARE_MASK_VALUE:
-			return STENCIL_COMPARE_MASK;
-		case STENCIL_WRITE_MASK_VALUE:
-			return STENCIL_WRITE_MASK;
-		case STENCIL_REFERENCE_VALUE:
-			return STENCIL_REFERENCE;
+			case VIEWPORT_VALUE: return VIEWPORT;
+			case SCISSOR_VALUE: return SCISSOR;
+			case LINE_WIDTH_VALUE: return LINE_WIDTH;
+			case DEPTH_BIAS_VALUE: return DEPTH_BIAS;
+			case BLEND_CONSTANTS_VALUE: return BLEND_CONSTANTS;
+			case DEPTH_BOUNDS_VALUE: return DEPTH_BOUNDS;
+			case STENCIL_COMPARE_MASK_VALUE: return STENCIL_COMPARE_MASK;
+			case STENCIL_WRITE_MASK_VALUE: return STENCIL_WRITE_MASK;
+			case STENCIL_REFERENCE_VALUE: return STENCIL_REFERENCE;
 		}
 		return null;
 	}
@@ -353,7 +344,7 @@ public enum EDynamicState implements Enumerator
 	@Override
 	public int getValue()
 	{
-		return value;
+	  return value;
 	}
 
 	/**
@@ -364,7 +355,7 @@ public enum EDynamicState implements Enumerator
 	@Override
 	public String getName()
 	{
-		return name;
+	  return name;
 	}
 
 	/**
@@ -375,7 +366,7 @@ public enum EDynamicState implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-		return literal;
+	  return literal;
 	}
 
 	/**

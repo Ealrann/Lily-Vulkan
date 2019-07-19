@@ -84,14 +84,11 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 	 */
 	public static PipelinePackage init()
 	{
-		if (isInited) return (PipelinePackage) EPackage.Registry.INSTANCE
-				.getEPackage(PipelinePackage.eNS_URI);
+		if (isInited) return (PipelinePackage)EPackage.Registry.INSTANCE.getEPackage(PipelinePackage.eNS_URI);
 
 		// Obtain or create and register package
 		Object registeredPipelinePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		PipelinePackageImpl thePipelinePackage = registeredPipelinePackage instanceof PipelinePackageImpl
-				? (PipelinePackageImpl) registeredPipelinePackage
-				: new PipelinePackageImpl();
+		PipelinePackageImpl thePipelinePackage = registeredPipelinePackage instanceof PipelinePackageImpl ? (PipelinePackageImpl)registeredPipelinePackage : new PipelinePackageImpl();
 
 		isInited = true;
 
@@ -100,17 +97,11 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
-		BarrierPackageImpl theBarrierPackage = (BarrierPackageImpl) (registeredPackage instanceof BarrierPackageImpl
-				? registeredPackage
-				: BarrierPackage.eINSTANCE);
+		BarrierPackageImpl theBarrierPackage = (BarrierPackageImpl)(registeredPackage instanceof BarrierPackageImpl ? registeredPackage : BarrierPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
-		EnumerationPackageImpl theEnumerationPackage = (EnumerationPackageImpl) (registeredPackage instanceof EnumerationPackageImpl
-				? registeredPackage
-				: EnumerationPackage.eINSTANCE);
+		EnumerationPackageImpl theEnumerationPackage = (EnumerationPackageImpl)(registeredPackage instanceof EnumerationPackageImpl ? registeredPackage : EnumerationPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GraphicpipelinePackage.eNS_URI);
-		GraphicpipelinePackageImpl theGraphicpipelinePackage = (GraphicpipelinePackageImpl) (registeredPackage instanceof GraphicpipelinePackageImpl
-				? registeredPackage
-				: GraphicpipelinePackage.eINSTANCE);
+		GraphicpipelinePackageImpl theGraphicpipelinePackage = (GraphicpipelinePackageImpl)(registeredPackage instanceof GraphicpipelinePackageImpl ? registeredPackage : GraphicpipelinePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thePipelinePackage.createPackageContents();
@@ -151,7 +142,7 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 	@Override
 	public EAttribute getPushConstantRange_Stages()
 	{
-		return (EAttribute) pushConstantRangeEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)pushConstantRangeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -162,7 +153,7 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 	@Override
 	public EAttribute getPushConstantRange_Offset()
 	{
-		return (EAttribute) pushConstantRangeEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)pushConstantRangeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -173,7 +164,7 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 	@Override
 	public EAttribute getPushConstantRange_Size()
 	{
-		return (EAttribute) pushConstantRangeEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)pushConstantRangeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -195,7 +186,7 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 	@Override
 	public EAttribute getSpecializationConstant_Name()
 	{
-		return (EAttribute) specializationConstantEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)specializationConstantEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -206,7 +197,7 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 	@Override
 	public EAttribute getSpecializationConstant_ConstantId()
 	{
-		return (EAttribute) specializationConstantEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)specializationConstantEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -217,7 +208,7 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 	@Override
 	public EAttribute getSpecializationConstant_Size()
 	{
-		return (EAttribute) specializationConstantEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)specializationConstantEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -228,7 +219,7 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 	@Override
 	public PipelineFactory getPipelineFactory()
 	{
-		return (PipelineFactory) getEFactoryInstance();
+		return (PipelineFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -287,10 +278,8 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EnumerationPackage theEnumerationPackage = (EnumerationPackage) EPackage.Registry.INSTANCE
-				.getEPackage(EnumerationPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
-				.getEPackage(EcorePackage.eNS_URI);
+		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -298,30 +287,16 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 
 		// Add supertypes to classes
 
-		// Initialize classes and features; add operations and parameters
-		initEClass(pushConstantRangeEClass, PushConstantRange.class, "PushConstantRange",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPushConstantRange_Stages(), theEnumerationPackage.getEShaderStage(),
-				"stages", null, 1, -1, PushConstantRange.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPushConstantRange_Offset(), theEcorePackage.getEInt(), "offset", "0", 0,
-				1, PushConstantRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPushConstantRange_Size(), theEcorePackage.getEInt(), "size", null, 0, 1,
-				PushConstantRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		// Initialize classes, features, and operations; add parameters
+		initEClass(pushConstantRangeEClass, PushConstantRange.class, "PushConstantRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPushConstantRange_Stages(), theEnumerationPackage.getEShaderStage(), "stages", null, 1, -1, PushConstantRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPushConstantRange_Offset(), theEcorePackage.getEInt(), "offset", "0", 0, 1, PushConstantRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPushConstantRange_Size(), theEcorePackage.getEInt(), "size", null, 0, 1, PushConstantRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(specializationConstantEClass, SpecializationConstant.class,
-				"SpecializationConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSpecializationConstant_Name(), theEcorePackage.getEString(), "name", null,
-				0, 1, SpecializationConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSpecializationConstant_ConstantId(), theEcorePackage.getEInt(),
-				"constantId", null, 0, 1, SpecializationConstant.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSpecializationConstant_Size(), theEcorePackage.getEInt(), "size", null, 0,
-				1, SpecializationConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(specializationConstantEClass, SpecializationConstant.class, "SpecializationConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSpecializationConstant_Name(), theEcorePackage.getEString(), "name", null, 0, 1, SpecializationConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSpecializationConstant_ConstantId(), theEcorePackage.getEInt(), "constantId", null, 0, 1, SpecializationConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSpecializationConstant_Size(), theEcorePackage.getEInt(), "size", null, 0, 1, SpecializationConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

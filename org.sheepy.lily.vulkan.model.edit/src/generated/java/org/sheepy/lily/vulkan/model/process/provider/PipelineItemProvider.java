@@ -85,13 +85,19 @@ public class PipelineItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -102,13 +108,19 @@ public class PipelineItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipeline_enabled_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_enabled_feature",
-								"_UI_IPipeline_type"),
-						ProcessPackage.Literals.IPIPELINE__ENABLED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipeline_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_enabled_feature", "_UI_IPipeline_type"),
+				 ProcessPackage.Literals.IPIPELINE__ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -119,13 +131,19 @@ public class PipelineItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	protected void addStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipeline_stage_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature",
-								"_UI_IPipeline_type"),
-						ProcessPackage.Literals.IPIPELINE__STAGE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipeline_stage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature", "_UI_IPipeline_type"),
+				 ProcessPackage.Literals.IPIPELINE__STAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -136,13 +154,19 @@ public class PipelineItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	protected void addSpecializationDataPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipeline_specializationData_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_specializationData_feature",
-								"_UI_IPipeline_type"),
-						ProcessPackage.Literals.IPIPELINE__SPECIALIZATION_DATA, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipeline_specializationData_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_specializationData_feature", "_UI_IPipeline_type"),
+				 ProcessPackage.Literals.IPIPELINE__SPECIALIZATION_DATA,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -202,10 +226,10 @@ public class PipelineItemProvider extends ItemProviderAdapter implements IEditin
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Pipeline) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_Pipeline_type")
-				: getString("_UI_Pipeline_type") + " " + label;
+		String label = ((Pipeline)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Pipeline_type") :
+			getString("_UI_Pipeline_type") + " " + label;
 	}
 
 	/**
@@ -222,18 +246,18 @@ public class PipelineItemProvider extends ItemProviderAdapter implements IEditin
 
 		switch (notification.getFeatureID(Pipeline.class))
 		{
-		case ProcessPackage.PIPELINE__NAME:
-		case ProcessPackage.PIPELINE__ENABLED:
-		case ProcessPackage.PIPELINE__STAGE:
-		case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case ProcessPackage.PIPELINE__RESOURCE_PKG:
-		case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
-		case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
-		case ProcessPackage.PIPELINE__TASK_PKG:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case ProcessPackage.PIPELINE__NAME:
+			case ProcessPackage.PIPELINE__ENABLED:
+			case ProcessPackage.PIPELINE__STAGE:
+			case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ProcessPackage.PIPELINE__RESOURCE_PKG:
+			case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
+			case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
+			case ProcessPackage.PIPELINE__TASK_PKG:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -250,17 +274,25 @@ public class PipelineItemProvider extends ItemProviderAdapter implements IEditin
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-				VulkanFactory.eINSTANCE.createResourcePkg()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+				 VulkanFactory.eINSTANCE.createResourcePkg()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES,
-				PipelineFactory.eINSTANCE.createPushConstantRange()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES,
+				 PipelineFactory.eINSTANCE.createPushConstantRange()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
-				ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
+				 ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__TASK_PKG,
-				ProcessFactory.eINSTANCE.createTaskPkg()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.IPIPELINE__TASK_PKG,
+				 ProcessFactory.eINSTANCE.createTaskPkg()));
 	}
 
 	/**
@@ -272,7 +304,7 @@ public class PipelineItemProvider extends ItemProviderAdapter implements IEditin
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

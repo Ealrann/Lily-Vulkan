@@ -67,9 +67,11 @@ public enum EIndexType implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EIndexType[] VALUES_ARRAY = new EIndexType[] {
-			UINT16, UINT32,
-	};
+	private static final EIndexType[] VALUES_ARRAY = new EIndexType[]
+		{
+			UINT16,
+			UINT32,
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>EIndex Type</b></em>' enumerators.
@@ -77,8 +79,7 @@ public enum EIndexType implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EIndexType> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EIndexType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EIndex Type</b></em>' literal with the specified literal value.
@@ -134,10 +135,8 @@ public enum EIndexType implements Enumerator
 	{
 		switch (value)
 		{
-		case UINT16_VALUE:
-			return UINT16;
-		case UINT32_VALUE:
-			return UINT32;
+			case UINT16_VALUE: return UINT16;
+			case UINT32_VALUE: return UINT32;
 		}
 		return null;
 	}
@@ -184,7 +183,7 @@ public enum EIndexType implements Enumerator
 	@Override
 	public int getValue()
 	{
-		return value;
+	  return value;
 	}
 
 	/**
@@ -195,7 +194,7 @@ public enum EIndexType implements Enumerator
 	@Override
 	public String getName()
 	{
-		return name;
+	  return name;
 	}
 
 	/**
@@ -206,7 +205,7 @@ public enum EIndexType implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-		return literal;
+	  return literal;
 	}
 
 	/**

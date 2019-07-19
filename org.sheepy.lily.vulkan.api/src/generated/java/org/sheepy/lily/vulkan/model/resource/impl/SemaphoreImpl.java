@@ -111,8 +111,8 @@ public class SemaphoreImpl extends BasicResourceImpl implements Semaphore
 	{
 		boolean oldSignalizedAtInit = signalizedAtInit;
 		signalizedAtInit = newSignalizedAtInit;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT, oldSignalizedAtInit, signalizedAtInit));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT, oldSignalizedAtInit, signalizedAtInit));
 	}
 
 	/**
@@ -136,8 +136,8 @@ public class SemaphoreImpl extends BasicResourceImpl implements Semaphore
 	{
 		EPipelineStage oldWaitStage = waitStage;
 		waitStage = newWaitStage == null ? WAIT_STAGE_EDEFAULT : newWaitStage;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SEMAPHORE__WAIT_STAGE, oldWaitStage, waitStage));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SEMAPHORE__WAIT_STAGE, oldWaitStage, waitStage));
 	}
 
 	/**
@@ -150,10 +150,10 @@ public class SemaphoreImpl extends BasicResourceImpl implements Semaphore
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
-			return isSignalizedAtInit();
-		case ResourcePackage.SEMAPHORE__WAIT_STAGE:
-			return getWaitStage();
+			case ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
+				return isSignalizedAtInit();
+			case ResourcePackage.SEMAPHORE__WAIT_STAGE:
+				return getWaitStage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -168,12 +168,12 @@ public class SemaphoreImpl extends BasicResourceImpl implements Semaphore
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
-			setSignalizedAtInit((Boolean) newValue);
-			return;
-		case ResourcePackage.SEMAPHORE__WAIT_STAGE:
-			setWaitStage((EPipelineStage) newValue);
-			return;
+			case ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
+				setSignalizedAtInit((Boolean)newValue);
+				return;
+			case ResourcePackage.SEMAPHORE__WAIT_STAGE:
+				setWaitStage((EPipelineStage)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -188,12 +188,12 @@ public class SemaphoreImpl extends BasicResourceImpl implements Semaphore
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
-			setSignalizedAtInit(SIGNALIZED_AT_INIT_EDEFAULT);
-			return;
-		case ResourcePackage.SEMAPHORE__WAIT_STAGE:
-			setWaitStage(WAIT_STAGE_EDEFAULT);
-			return;
+			case ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
+				setSignalizedAtInit(SIGNALIZED_AT_INIT_EDEFAULT);
+				return;
+			case ResourcePackage.SEMAPHORE__WAIT_STAGE:
+				setWaitStage(WAIT_STAGE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -208,10 +208,10 @@ public class SemaphoreImpl extends BasicResourceImpl implements Semaphore
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
-			return signalizedAtInit != SIGNALIZED_AT_INIT_EDEFAULT;
-		case ResourcePackage.SEMAPHORE__WAIT_STAGE:
-			return waitStage != WAIT_STAGE_EDEFAULT;
+			case ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
+				return signalizedAtInit != SIGNALIZED_AT_INIT_EDEFAULT;
+			case ResourcePackage.SEMAPHORE__WAIT_STAGE:
+				return waitStage != WAIT_STAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

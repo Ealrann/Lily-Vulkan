@@ -6,25 +6,25 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.sheepy.lily.vulkan.extra.model.mesh.Mesh;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
-import org.sheepy.lily.vulkan.extra.model.mesh.MeshRendererMaintainer;
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshPkg;
 
-import org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererMaintainerImpl;
+import org.sheepy.lily.vulkan.extra.model.rendering.impl.PresentationPkgImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Renderer Maintainer</b></em>'.
+ * An implementation of the model object '<em><b>Pkg</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class MeshRendererMaintainerImpl extends GenericRendererMaintainerImpl<Mesh> implements MeshRendererMaintainer
+public class MeshPkgImpl extends PresentationPkgImpl<Mesh> implements MeshPkg
 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MeshRendererMaintainerImpl()
+	protected MeshPkgImpl()
 	{
 		super();
 	}
@@ -37,7 +37,7 @@ public class MeshRendererMaintainerImpl extends GenericRendererMaintainerImpl<Me
 	@Override
 	protected EClass eStaticClass()
 	{
-		return MeshPackage.Literals.MESH_RENDERER_MAINTAINER;
+		return MeshPackage.Literals.MESH_PKG;
 	}
 
-} //MeshRendererMaintainerImpl
+} //MeshPkgImpl

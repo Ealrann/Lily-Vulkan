@@ -11,6 +11,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
@@ -27,8 +29,13 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.util.RenderingAdapterFactory;
+import org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource;
+import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.util.ResourceSwitch;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -111,31 +118,6 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 		}
 
 		return axisItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PresentationPkgItemProvider presentationPkgItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createPresentationPkgAdapter()
-	{
-		if (presentationPkgItemProvider == null)
-		{
-			presentationPkgItemProvider = new PresentationPkgItemProvider(this);
-		}
-
-		return presentationPkgItemProvider;
 	}
 
 	/**
@@ -289,6 +271,56 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationRootPkg} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PresentationRootPkgItemProvider presentationRootPkgItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationRootPkg}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPresentationRootPkgAdapter()
+	{
+		if (presentationRootPkgItemProvider == null)
+		{
+			presentationRootPkgItemProvider = new PresentationRootPkgItemProvider(this);
+		}
+
+		return presentationRootPkgItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StaticResourceProviderItemProvider staticResourceProviderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStaticResourceProviderAdapter()
+	{
+		if (staticResourceProviderItemProvider == null)
+		{
+			staticResourceProviderItemProvider = new StaticResourceProviderItemProvider(this);
+		}
+
+		return staticResourceProviderItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -370,6 +402,7 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 	{
 		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
@@ -380,6 +413,7 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ResourceLocator getResourceLocator()
 	{
 		return childCreationExtenderManager;
@@ -436,13 +470,136 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	public void dispose()
 	{
 		if (axisItemProvider != null) axisItemProvider.dispose();
-		if (presentationPkgItemProvider != null) presentationPkgItemProvider.dispose();
 		if (presentableEntityItemProvider != null) presentableEntityItemProvider.dispose();
 		if (dataProviderPkgItemProvider != null) dataProviderPkgItemProvider.dispose();
 		if (genericDescribedDataProviderItemProvider != null) genericDescribedDataProviderItemProvider.dispose();
 		if (renderableDataSourceItemProvider != null) renderableDataSourceItemProvider.dispose();
 		if (genericVertexProviderItemProvider != null) genericVertexProviderItemProvider.dispose();
 		if (genericIndexProviderItemProvider != null) genericIndexProviderItemProvider.dispose();
+		if (presentationRootPkgItemProvider != null) presentationRootPkgItemProvider.dispose();
+		if (staticResourceProviderItemProvider != null) staticResourceProviderItemProvider.dispose();
+	}
+
+	/**
+	 * A child creation extender for the {@link ResourcePackage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static class ResourceChildCreationExtender implements IChildCreationExtender
+	{
+		/**
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected static class CreationSwitch extends ResourceSwitch<Object>
+		{
+			/**
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected List<Object> newChildDescriptors;
+
+			/**
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected EditingDomain editingDomain;
+
+			/**
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			{
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseBasicDescriptedResource(BasicDescriptedResource object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
+						 RenderingFactory.eINSTANCE.createGenericDescribedDataProvider()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseCompositeBuffer(CompositeBuffer object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
+						 RenderingFactory.eINSTANCE.createGenericDescribedDataProvider()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
+						 RenderingFactory.eINSTANCE.createGenericVertexProvider()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
+						 RenderingFactory.eINSTANCE.createGenericIndexProvider()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected CommandParameter createChildParameter(Object feature, Object child)
+			{
+				return new CommandParameter(null, feature, child);
+			}
+
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
+		{
+			ArrayList<Object> result = new ArrayList<Object>();
+			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			return result;
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public ResourceLocator getResourceLocator()
+		{
+			return ExtraEditPlugin.INSTANCE;
+		}
 	}
 
 }

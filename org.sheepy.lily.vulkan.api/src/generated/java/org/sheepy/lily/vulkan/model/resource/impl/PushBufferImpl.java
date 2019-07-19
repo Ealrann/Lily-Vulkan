@@ -177,8 +177,8 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 	{
 		boolean oldBeingUpdated = beingUpdated;
 		beingUpdated = newBeingUpdated;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.PUSH_BUFFER__BEING_UPDATED, oldBeingUpdated, beingUpdated));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.PUSH_BUFFER__BEING_UPDATED, oldBeingUpdated, beingUpdated));
 	}
 
 	/**
@@ -227,8 +227,8 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 	{
 		int oldInstanceCount = instanceCount;
 		instanceCount = newInstanceCount;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
 	}
 
 	/**
@@ -241,14 +241,14 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.PUSH_BUFFER__NAME:
-			return getName();
-		case ResourcePackage.PUSH_BUFFER__BEING_UPDATED:
-			return isBeingUpdated();
-		case ResourcePackage.PUSH_BUFFER__SIZE:
-			return getSize();
-		case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
-			return getInstanceCount();
+			case ResourcePackage.PUSH_BUFFER__NAME:
+				return getName();
+			case ResourcePackage.PUSH_BUFFER__BEING_UPDATED:
+				return isBeingUpdated();
+			case ResourcePackage.PUSH_BUFFER__SIZE:
+				return getSize();
+			case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
+				return getInstanceCount();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -263,18 +263,18 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.PUSH_BUFFER__NAME:
-			setName((String) newValue);
-			return;
-		case ResourcePackage.PUSH_BUFFER__BEING_UPDATED:
-			setBeingUpdated((Boolean) newValue);
-			return;
-		case ResourcePackage.PUSH_BUFFER__SIZE:
-			setSize((Long) newValue);
-			return;
-		case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
-			setInstanceCount((Integer) newValue);
-			return;
+			case ResourcePackage.PUSH_BUFFER__NAME:
+				setName((String)newValue);
+				return;
+			case ResourcePackage.PUSH_BUFFER__BEING_UPDATED:
+				setBeingUpdated((Boolean)newValue);
+				return;
+			case ResourcePackage.PUSH_BUFFER__SIZE:
+				setSize((Long)newValue);
+				return;
+			case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
+				setInstanceCount((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -289,18 +289,18 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.PUSH_BUFFER__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case ResourcePackage.PUSH_BUFFER__BEING_UPDATED:
-			setBeingUpdated(BEING_UPDATED_EDEFAULT);
-			return;
-		case ResourcePackage.PUSH_BUFFER__SIZE:
-			setSize(SIZE_EDEFAULT);
-			return;
-		case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
-			setInstanceCount(INSTANCE_COUNT_EDEFAULT);
-			return;
+			case ResourcePackage.PUSH_BUFFER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case ResourcePackage.PUSH_BUFFER__BEING_UPDATED:
+				setBeingUpdated(BEING_UPDATED_EDEFAULT);
+				return;
+			case ResourcePackage.PUSH_BUFFER__SIZE:
+				setSize(SIZE_EDEFAULT);
+				return;
+			case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
+				setInstanceCount(INSTANCE_COUNT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -315,14 +315,14 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.PUSH_BUFFER__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ResourcePackage.PUSH_BUFFER__BEING_UPDATED:
-			return beingUpdated != BEING_UPDATED_EDEFAULT;
-		case ResourcePackage.PUSH_BUFFER__SIZE:
-			return size != SIZE_EDEFAULT;
-		case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
-			return instanceCount != INSTANCE_COUNT_EDEFAULT;
+			case ResourcePackage.PUSH_BUFFER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ResourcePackage.PUSH_BUFFER__BEING_UPDATED:
+				return beingUpdated != BEING_UPDATED_EDEFAULT;
+			case ResourcePackage.PUSH_BUFFER__SIZE:
+				return size != SIZE_EDEFAULT;
+			case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
+				return instanceCount != INSTANCE_COUNT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

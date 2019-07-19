@@ -25,7 +25,8 @@ import org.sheepy.lily.vulkan.extra.model.mesh.Mesh;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshFactory;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
 
-import org.sheepy.lily.vulkan.extra.model.mesh.MeshRendererMaintainer;
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshPkg;
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 
 import org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl;
@@ -72,7 +73,14 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass meshRendererMaintainerEClass = null;
+	private EClass meshRendererEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass meshPkgEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -185,9 +193,20 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getMeshRendererMaintainer()
+	public EClass getMeshRenderer()
 	{
-		return meshRendererMaintainerEClass;
+		return meshRendererEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getMeshPkg()
+	{
+		return meshPkgEClass;
 	}
 
 	/**
@@ -223,7 +242,9 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 		// Create classes and their features
 		meshEClass = createEClass(MESH);
 
-		meshRendererMaintainerEClass = createEClass(MESH_RENDERER_MAINTAINER);
+		meshRendererEClass = createEClass(MESH_RENDERER);
+
+		meshPkgEClass = createEClass(MESH_PKG);
 	}
 
 	/**
@@ -259,15 +280,21 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 
 		// Add supertypes to classes
 		meshEClass.getESuperTypes().add(theRenderingPackage.getPresentation());
-		EGenericType g1 = createEGenericType(theRenderingPackage.getGenericRendererMaintainer());
+		EGenericType g1 = createEGenericType(theRenderingPackage.getGenericRenderer());
 		EGenericType g2 = createEGenericType(this.getMesh());
 		g1.getETypeArguments().add(g2);
-		meshRendererMaintainerEClass.getEGenericSuperTypes().add(g1);
+		meshRendererEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theRenderingPackage.getPresentationPkg());
+		g2 = createEGenericType(this.getMesh());
+		g1.getETypeArguments().add(g2);
+		meshPkgEClass.getEGenericSuperTypes().add(g1);
 
-		// Initialize classes and features; add operations and parameters
+		// Initialize classes, features, and operations; add parameters
 		initEClass(meshEClass, Mesh.class, "Mesh", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(meshRendererMaintainerEClass, MeshRendererMaintainer.class, "MeshRendererMaintainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(meshRendererEClass, MeshRenderer.class, "MeshRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(meshPkgEClass, MeshPkg.class, "MeshPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -15,17 +15,17 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
 
-import org.sheepy.lily.vulkan.extra.model.rendering.provider.GenericRendererMaintainerItemProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.provider.GenericRendererItemProvider;
 
-import org.sheepy.lily.vulkan.extra.model.sprite.SpriteRendererMaintainer;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRendererMaintainer} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SpriteRendererMaintainerItemProvider extends GenericRendererMaintainerItemProvider
+public class SpriteRendererItemProvider extends GenericRendererItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -33,7 +33,7 @@ public class SpriteRendererMaintainerItemProvider extends GenericRendererMaintai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SpriteRendererMaintainerItemProvider(AdapterFactory adapterFactory)
+	public SpriteRendererItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -56,7 +56,7 @@ public class SpriteRendererMaintainerItemProvider extends GenericRendererMaintai
 	}
 
 	/**
-	 * This returns SpriteRendererMaintainer.gif.
+	 * This returns SpriteRenderer.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -64,7 +64,7 @@ public class SpriteRendererMaintainerItemProvider extends GenericRendererMaintai
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SpriteRendererMaintainer"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SpriteRenderer"));
 	}
 
 	/**
@@ -76,10 +76,10 @@ public class SpriteRendererMaintainerItemProvider extends GenericRendererMaintai
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((SpriteRendererMaintainer)object).getName();
+		String label = ((SpriteRenderer)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_SpriteRendererMaintainer_type") :
-			getString("_UI_SpriteRendererMaintainer_type") + " " + label;
+			getString("_UI_SpriteRenderer_type") :
+			getString("_UI_SpriteRenderer_type") + " " + label;
 	}
 
 
@@ -94,6 +94,7 @@ public class SpriteRendererMaintainerItemProvider extends GenericRendererMaintai
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
+		super.notifyChanged(notification);
 	}
 
 	/**

@@ -131,8 +131,8 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	{
 		EPipelineStage oldStage = stage;
 		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_LAYOUT__STAGE, oldStage, stage));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_LAYOUT__STAGE, oldStage, stage));
 	}
 
 	/**
@@ -156,8 +156,8 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	{
 		EImageLayout oldLayout = layout;
 		layout = newLayout == null ? LAYOUT_EDEFAULT : newLayout;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_LAYOUT__LAYOUT, oldLayout, layout));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_LAYOUT__LAYOUT, oldLayout, layout));
 	}
 
 	/**
@@ -170,8 +170,7 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	{
 		if (accessMask == null)
 		{
-			accessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this,
-					ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK);
+			accessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK);
 		}
 		return accessMask;
 	}
@@ -186,12 +185,12 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE_LAYOUT__STAGE:
-			return getStage();
-		case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
-			return getLayout();
-		case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
-			return getAccessMask();
+			case ResourcePackage.IMAGE_LAYOUT__STAGE:
+				return getStage();
+			case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
+				return getLayout();
+			case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
+				return getAccessMask();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -207,16 +206,16 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE_LAYOUT__STAGE:
-			setStage((EPipelineStage) newValue);
-			return;
-		case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
-			setLayout((EImageLayout) newValue);
-			return;
-		case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
-			getAccessMask().clear();
-			getAccessMask().addAll((Collection<? extends EAccess>) newValue);
-			return;
+			case ResourcePackage.IMAGE_LAYOUT__STAGE:
+				setStage((EPipelineStage)newValue);
+				return;
+			case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
+				setLayout((EImageLayout)newValue);
+				return;
+			case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
+				getAccessMask().clear();
+				getAccessMask().addAll((Collection<? extends EAccess>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -231,15 +230,15 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE_LAYOUT__STAGE:
-			setStage(STAGE_EDEFAULT);
-			return;
-		case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
-			setLayout(LAYOUT_EDEFAULT);
-			return;
-		case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
-			getAccessMask().clear();
-			return;
+			case ResourcePackage.IMAGE_LAYOUT__STAGE:
+				setStage(STAGE_EDEFAULT);
+				return;
+			case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
+				setLayout(LAYOUT_EDEFAULT);
+				return;
+			case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
+				getAccessMask().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -254,12 +253,12 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE_LAYOUT__STAGE:
-			return stage != STAGE_EDEFAULT;
-		case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
-			return layout != LAYOUT_EDEFAULT;
-		case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
-			return accessMask != null && !accessMask.isEmpty();
+			case ResourcePackage.IMAGE_LAYOUT__STAGE:
+				return stage != STAGE_EDEFAULT;
+			case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
+				return layout != LAYOUT_EDEFAULT;
+			case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
+				return accessMask != null && !accessMask.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -24,8 +24,10 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshFactory;
+
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
 
 /**

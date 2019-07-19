@@ -73,13 +73,19 @@ public class ImageLayoutItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ImageLayout_stage_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_stage_feature",
-								"_UI_ImageLayout_type"),
-						ResourcePackage.Literals.IMAGE_LAYOUT__STAGE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageLayout_stage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_stage_feature", "_UI_ImageLayout_type"),
+				 ResourcePackage.Literals.IMAGE_LAYOUT__STAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -90,13 +96,19 @@ public class ImageLayoutItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addLayoutPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ImageLayout_layout_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_layout_feature",
-								"_UI_ImageLayout_type"),
-						ResourcePackage.Literals.IMAGE_LAYOUT__LAYOUT, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageLayout_layout_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_layout_feature", "_UI_ImageLayout_type"),
+				 ResourcePackage.Literals.IMAGE_LAYOUT__LAYOUT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -107,13 +119,19 @@ public class ImageLayoutItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addAccessMaskPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ImageLayout_accessMask_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_accessMask_feature",
-								"_UI_ImageLayout_type"),
-						ResourcePackage.Literals.IMAGE_LAYOUT__ACCESS_MASK, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageLayout_accessMask_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_accessMask_feature", "_UI_ImageLayout_type"),
+				 ResourcePackage.Literals.IMAGE_LAYOUT__ACCESS_MASK,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -137,11 +155,11 @@ public class ImageLayoutItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((ImageLayout) object).getStage();
+		EPipelineStage labelValue = ((ImageLayout)object).getStage();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0
-				? getString("_UI_ImageLayout_type")
-				: getString("_UI_ImageLayout_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_ImageLayout_type") :
+			getString("_UI_ImageLayout_type") + " " + label;
 	}
 
 	/**
@@ -158,11 +176,11 @@ public class ImageLayoutItemProvider extends ItemProviderAdapter implements IEdi
 
 		switch (notification.getFeatureID(ImageLayout.class))
 		{
-		case ResourcePackage.IMAGE_LAYOUT__STAGE:
-		case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
-		case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case ResourcePackage.IMAGE_LAYOUT__STAGE:
+			case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
+			case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -189,7 +207,7 @@ public class ImageLayoutItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

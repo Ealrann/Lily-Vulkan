@@ -8,24 +8,26 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer;
+
+import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
 import org.sheepy.lily.vulkan.model.process.graphic.provider.GraphicsPipelineItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GenericRendererMaintainerItemProvider extends GraphicsPipelineItemProvider
+public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -33,7 +35,7 @@ public class GenericRendererMaintainerItemProvider extends GraphicsPipelineItemP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GenericRendererMaintainerItemProvider(AdapterFactory adapterFactory)
+	public GenericRendererItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -53,7 +55,6 @@ public class GenericRendererMaintainerItemProvider extends GraphicsPipelineItemP
 
 			addPresentationPkgPropertyDescriptor(object);
 			addConstantBufferPropertyDescriptor(object);
-			addBasicResourcesPropertyDescriptor(object);
 			addPushBufferPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -71,9 +72,9 @@ public class GenericRendererMaintainerItemProvider extends GraphicsPipelineItemP
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GenericRendererMaintainer_presentationPkg_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GenericRendererMaintainer_presentationPkg_feature", "_UI_GenericRendererMaintainer_type"),
-				 RenderingPackage.Literals.GENERIC_RENDERER_MAINTAINER__PRESENTATION_PKG,
+				 getString("_UI_GenericRenderer_presentationPkg_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenericRenderer_presentationPkg_feature", "_UI_GenericRenderer_type"),
+				 RenderingPackage.Literals.GENERIC_RENDERER__PRESENTATION_PKG,
 				 true,
 				 false,
 				 true,
@@ -94,32 +95,9 @@ public class GenericRendererMaintainerItemProvider extends GraphicsPipelineItemP
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GenericRendererMaintainer_constantBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GenericRendererMaintainer_constantBuffer_feature", "_UI_GenericRendererMaintainer_type"),
-				 RenderingPackage.Literals.GENERIC_RENDERER_MAINTAINER__CONSTANT_BUFFER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Basic Resources feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addBasicResourcesPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GenericRendererMaintainer_basicResources_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GenericRendererMaintainer_basicResources_feature", "_UI_GenericRendererMaintainer_type"),
-				 RenderingPackage.Literals.GENERIC_RENDERER_MAINTAINER__BASIC_RESOURCES,
+				 getString("_UI_GenericRenderer_constantBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenericRenderer_constantBuffer_feature", "_UI_GenericRenderer_type"),
+				 RenderingPackage.Literals.GENERIC_RENDERER__CONSTANT_BUFFER,
 				 true,
 				 false,
 				 true,
@@ -140,9 +118,9 @@ public class GenericRendererMaintainerItemProvider extends GraphicsPipelineItemP
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GenericRendererMaintainer_pushBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GenericRendererMaintainer_pushBuffer_feature", "_UI_GenericRendererMaintainer_type"),
-				 RenderingPackage.Literals.GENERIC_RENDERER_MAINTAINER__PUSH_BUFFER,
+				 getString("_UI_GenericRenderer_pushBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenericRenderer_pushBuffer_feature", "_UI_GenericRenderer_type"),
+				 RenderingPackage.Literals.GENERIC_RENDERER__PUSH_BUFFER,
 				 true,
 				 false,
 				 true,
@@ -165,7 +143,8 @@ public class GenericRendererMaintainerItemProvider extends GraphicsPipelineItemP
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RenderingPackage.Literals.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG);
+			childrenFeatures.add(RenderingPackage.Literals.GENERIC_RENDERER__DATA_PROVIDER_PKG);
+			childrenFeatures.add(RenderingPackage.Literals.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER);
 		}
 		return childrenFeatures;
 	}
@@ -193,10 +172,10 @@ public class GenericRendererMaintainerItemProvider extends GraphicsPipelineItemP
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((GenericRendererMaintainer<?>)object).getName();
+		String label = ((GenericRenderer<?>)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_GenericRendererMaintainer_type") :
-			getString("_UI_GenericRendererMaintainer_type") + " " + label;
+			getString("_UI_GenericRenderer_type") :
+			getString("_UI_GenericRenderer_type") + " " + label;
 	}
 
 
@@ -212,9 +191,10 @@ public class GenericRendererMaintainerItemProvider extends GraphicsPipelineItemP
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GenericRendererMaintainer.class))
+		switch (notification.getFeatureID(GenericRenderer.class))
 		{
-			case RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG:
+			case RenderingPackage.GENERIC_RENDERER__DATA_PROVIDER_PKG:
+			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -235,8 +215,13 @@ public class GenericRendererMaintainerItemProvider extends GraphicsPipelineItemP
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RenderingPackage.Literals.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG,
+				(RenderingPackage.Literals.GENERIC_RENDERER__DATA_PROVIDER_PKG,
 				 RenderingFactory.eINSTANCE.createDataProviderPkg()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RenderingPackage.Literals.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER,
+				 RenderingFactory.eINSTANCE.createStaticResourceProvider()));
 	}
 
 }

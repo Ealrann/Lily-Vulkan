@@ -12,8 +12,9 @@ import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.extra.model.mesh.*;
-import org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer;
+import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
+import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IProcessPart;
@@ -88,9 +89,14 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 				return createMeshAdapter();
 			}
 			@Override
-			public Adapter caseMeshRendererMaintainer(MeshRendererMaintainer object)
+			public Adapter caseMeshRenderer(MeshRenderer object)
 			{
-				return createMeshRendererMaintainerAdapter();
+				return createMeshRendererAdapter();
+			}
+			@Override
+			public Adapter caseMeshPkg(MeshPkg object)
+			{
+				return createMeshPkgAdapter();
 			}
 			@Override
 			public Adapter casePresentation(Presentation object)
@@ -133,9 +139,14 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 				return createMaintainerAdapter();
 			}
 			@Override
-			public <T extends Presentation> Adapter caseGenericRendererMaintainer(GenericRendererMaintainer<T> object)
+			public <T extends Presentation> Adapter caseGenericRenderer(GenericRenderer<T> object)
 			{
-				return createGenericRendererMaintainerAdapter();
+				return createGenericRendererAdapter();
+			}
+			@Override
+			public <T extends Presentation> Adapter casePresentationPkg(PresentationPkg<T> object)
+			{
+				return createPresentationPkgAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -175,16 +186,31 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.mesh.MeshRendererMaintainer <em>Renderer Maintainer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer <em>Renderer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshRendererMaintainer
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer
 	 * @generated
 	 */
-	public Adapter createMeshRendererMaintainerAdapter()
+	public Adapter createMeshRendererAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.mesh.MeshPkg <em>Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshPkg
+	 * @generated
+	 */
+	public Adapter createMeshPkgAdapter()
 	{
 		return null;
 	}
@@ -310,16 +336,31 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer <em>Generic Renderer Maintainer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer <em>Generic Renderer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer
 	 * @generated
 	 */
-	public Adapter createGenericRendererMaintainerAdapter()
+	public Adapter createGenericRendererAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg <em>Presentation Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg
+	 * @generated
+	 */
+	public Adapter createPresentationPkgAdapter()
 	{
 		return null;
 	}

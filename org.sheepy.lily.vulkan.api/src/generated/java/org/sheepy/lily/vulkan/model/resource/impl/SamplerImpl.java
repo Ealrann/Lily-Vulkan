@@ -325,8 +325,8 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		EFilter oldMinFilter = minFilter;
 		minFilter = newMinFilter == null ? MIN_FILTER_EDEFAULT : newMinFilter;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SAMPLER__MIN_FILTER, oldMinFilter, minFilter));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__MIN_FILTER, oldMinFilter, minFilter));
 	}
 
 	/**
@@ -350,8 +350,8 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		EFilter oldMagFilter = magFilter;
 		magFilter = newMagFilter == null ? MAG_FILTER_EDEFAULT : newMagFilter;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SAMPLER__MAG_FILTER, oldMagFilter, magFilter));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__MAG_FILTER, oldMagFilter, magFilter));
 	}
 
 	/**
@@ -375,8 +375,8 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		ESamplerMipmapMode oldMipmapMode = mipmapMode;
 		mipmapMode = newMipmapMode == null ? MIPMAP_MODE_EDEFAULT : newMipmapMode;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SAMPLER__MIPMAP_MODE, oldMipmapMode, mipmapMode));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__MIPMAP_MODE, oldMipmapMode, mipmapMode));
 	}
 
 	/**
@@ -400,8 +400,8 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		ESamplerAddressMode oldAddressMode = addressMode;
 		addressMode = newAddressMode == null ? ADDRESS_MODE_EDEFAULT : newAddressMode;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SAMPLER__ADDRESS_MODE, oldAddressMode, addressMode));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__ADDRESS_MODE, oldAddressMode, addressMode));
 	}
 
 	/**
@@ -425,8 +425,8 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		EBorderColor oldBorderColor = borderColor;
 		borderColor = newBorderColor == null ? BORDER_COLOR_EDEFAULT : newBorderColor;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SAMPLER__BORDER_COLOR, oldBorderColor, borderColor));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__BORDER_COLOR, oldBorderColor, borderColor));
 	}
 
 	/**
@@ -450,8 +450,8 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		boolean oldAnisotropyEnabled = anisotropyEnabled;
 		anisotropyEnabled = newAnisotropyEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SAMPLER__ANISOTROPY_ENABLED, oldAnisotropyEnabled, anisotropyEnabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__ANISOTROPY_ENABLED, oldAnisotropyEnabled, anisotropyEnabled));
 	}
 
 	/**
@@ -476,8 +476,7 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 		boolean oldUnnormalizedCoordinates = unnormalizedCoordinates;
 		unnormalizedCoordinates = newUnnormalizedCoordinates;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__UNNORMALIZED_COORDINATES,
-					oldUnnormalizedCoordinates, unnormalizedCoordinates));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__UNNORMALIZED_COORDINATES, oldUnnormalizedCoordinates, unnormalizedCoordinates));
 	}
 
 	/**
@@ -501,8 +500,8 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		boolean oldCompareEnable = compareEnable;
 		compareEnable = newCompareEnable;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SAMPLER__COMPARE_ENABLE, oldCompareEnable, compareEnable));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__COMPARE_ENABLE, oldCompareEnable, compareEnable));
 	}
 
 	/**
@@ -526,8 +525,8 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		float oldLodBias = lodBias;
 		lodBias = newLodBias;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__LOD_BIAS, oldLodBias, lodBias));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__LOD_BIAS, oldLodBias, lodBias));
 	}
 
 	/**
@@ -601,8 +600,8 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		float oldMaxAnisotropy = maxAnisotropy;
 		maxAnisotropy = newMaxAnisotropy;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SAMPLER__MAX_ANISOTROPY, oldMaxAnisotropy, maxAnisotropy));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__MAX_ANISOTROPY, oldMaxAnisotropy, maxAnisotropy));
 	}
 
 	/**
@@ -615,30 +614,30 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SAMPLER__MIN_FILTER:
-			return getMinFilter();
-		case ResourcePackage.SAMPLER__MAG_FILTER:
-			return getMagFilter();
-		case ResourcePackage.SAMPLER__MIPMAP_MODE:
-			return getMipmapMode();
-		case ResourcePackage.SAMPLER__ADDRESS_MODE:
-			return getAddressMode();
-		case ResourcePackage.SAMPLER__BORDER_COLOR:
-			return getBorderColor();
-		case ResourcePackage.SAMPLER__ANISOTROPY_ENABLED:
-			return isAnisotropyEnabled();
-		case ResourcePackage.SAMPLER__UNNORMALIZED_COORDINATES:
-			return isUnnormalizedCoordinates();
-		case ResourcePackage.SAMPLER__COMPARE_ENABLE:
-			return isCompareEnable();
-		case ResourcePackage.SAMPLER__LOD_BIAS:
-			return getLodBias();
-		case ResourcePackage.SAMPLER__MIN_LOD:
-			return getMinLod();
-		case ResourcePackage.SAMPLER__MAX_LOD:
-			return getMaxLod();
-		case ResourcePackage.SAMPLER__MAX_ANISOTROPY:
-			return getMaxAnisotropy();
+			case ResourcePackage.SAMPLER__MIN_FILTER:
+				return getMinFilter();
+			case ResourcePackage.SAMPLER__MAG_FILTER:
+				return getMagFilter();
+			case ResourcePackage.SAMPLER__MIPMAP_MODE:
+				return getMipmapMode();
+			case ResourcePackage.SAMPLER__ADDRESS_MODE:
+				return getAddressMode();
+			case ResourcePackage.SAMPLER__BORDER_COLOR:
+				return getBorderColor();
+			case ResourcePackage.SAMPLER__ANISOTROPY_ENABLED:
+				return isAnisotropyEnabled();
+			case ResourcePackage.SAMPLER__UNNORMALIZED_COORDINATES:
+				return isUnnormalizedCoordinates();
+			case ResourcePackage.SAMPLER__COMPARE_ENABLE:
+				return isCompareEnable();
+			case ResourcePackage.SAMPLER__LOD_BIAS:
+				return getLodBias();
+			case ResourcePackage.SAMPLER__MIN_LOD:
+				return getMinLod();
+			case ResourcePackage.SAMPLER__MAX_LOD:
+				return getMaxLod();
+			case ResourcePackage.SAMPLER__MAX_ANISOTROPY:
+				return getMaxAnisotropy();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -653,42 +652,42 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SAMPLER__MIN_FILTER:
-			setMinFilter((EFilter) newValue);
-			return;
-		case ResourcePackage.SAMPLER__MAG_FILTER:
-			setMagFilter((EFilter) newValue);
-			return;
-		case ResourcePackage.SAMPLER__MIPMAP_MODE:
-			setMipmapMode((ESamplerMipmapMode) newValue);
-			return;
-		case ResourcePackage.SAMPLER__ADDRESS_MODE:
-			setAddressMode((ESamplerAddressMode) newValue);
-			return;
-		case ResourcePackage.SAMPLER__BORDER_COLOR:
-			setBorderColor((EBorderColor) newValue);
-			return;
-		case ResourcePackage.SAMPLER__ANISOTROPY_ENABLED:
-			setAnisotropyEnabled((Boolean) newValue);
-			return;
-		case ResourcePackage.SAMPLER__UNNORMALIZED_COORDINATES:
-			setUnnormalizedCoordinates((Boolean) newValue);
-			return;
-		case ResourcePackage.SAMPLER__COMPARE_ENABLE:
-			setCompareEnable((Boolean) newValue);
-			return;
-		case ResourcePackage.SAMPLER__LOD_BIAS:
-			setLodBias((Float) newValue);
-			return;
-		case ResourcePackage.SAMPLER__MIN_LOD:
-			setMinLod((Integer) newValue);
-			return;
-		case ResourcePackage.SAMPLER__MAX_LOD:
-			setMaxLod((Integer) newValue);
-			return;
-		case ResourcePackage.SAMPLER__MAX_ANISOTROPY:
-			setMaxAnisotropy((Float) newValue);
-			return;
+			case ResourcePackage.SAMPLER__MIN_FILTER:
+				setMinFilter((EFilter)newValue);
+				return;
+			case ResourcePackage.SAMPLER__MAG_FILTER:
+				setMagFilter((EFilter)newValue);
+				return;
+			case ResourcePackage.SAMPLER__MIPMAP_MODE:
+				setMipmapMode((ESamplerMipmapMode)newValue);
+				return;
+			case ResourcePackage.SAMPLER__ADDRESS_MODE:
+				setAddressMode((ESamplerAddressMode)newValue);
+				return;
+			case ResourcePackage.SAMPLER__BORDER_COLOR:
+				setBorderColor((EBorderColor)newValue);
+				return;
+			case ResourcePackage.SAMPLER__ANISOTROPY_ENABLED:
+				setAnisotropyEnabled((Boolean)newValue);
+				return;
+			case ResourcePackage.SAMPLER__UNNORMALIZED_COORDINATES:
+				setUnnormalizedCoordinates((Boolean)newValue);
+				return;
+			case ResourcePackage.SAMPLER__COMPARE_ENABLE:
+				setCompareEnable((Boolean)newValue);
+				return;
+			case ResourcePackage.SAMPLER__LOD_BIAS:
+				setLodBias((Float)newValue);
+				return;
+			case ResourcePackage.SAMPLER__MIN_LOD:
+				setMinLod((Integer)newValue);
+				return;
+			case ResourcePackage.SAMPLER__MAX_LOD:
+				setMaxLod((Integer)newValue);
+				return;
+			case ResourcePackage.SAMPLER__MAX_ANISOTROPY:
+				setMaxAnisotropy((Float)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -703,42 +702,42 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SAMPLER__MIN_FILTER:
-			setMinFilter(MIN_FILTER_EDEFAULT);
-			return;
-		case ResourcePackage.SAMPLER__MAG_FILTER:
-			setMagFilter(MAG_FILTER_EDEFAULT);
-			return;
-		case ResourcePackage.SAMPLER__MIPMAP_MODE:
-			setMipmapMode(MIPMAP_MODE_EDEFAULT);
-			return;
-		case ResourcePackage.SAMPLER__ADDRESS_MODE:
-			setAddressMode(ADDRESS_MODE_EDEFAULT);
-			return;
-		case ResourcePackage.SAMPLER__BORDER_COLOR:
-			setBorderColor(BORDER_COLOR_EDEFAULT);
-			return;
-		case ResourcePackage.SAMPLER__ANISOTROPY_ENABLED:
-			setAnisotropyEnabled(ANISOTROPY_ENABLED_EDEFAULT);
-			return;
-		case ResourcePackage.SAMPLER__UNNORMALIZED_COORDINATES:
-			setUnnormalizedCoordinates(UNNORMALIZED_COORDINATES_EDEFAULT);
-			return;
-		case ResourcePackage.SAMPLER__COMPARE_ENABLE:
-			setCompareEnable(COMPARE_ENABLE_EDEFAULT);
-			return;
-		case ResourcePackage.SAMPLER__LOD_BIAS:
-			setLodBias(LOD_BIAS_EDEFAULT);
-			return;
-		case ResourcePackage.SAMPLER__MIN_LOD:
-			setMinLod(MIN_LOD_EDEFAULT);
-			return;
-		case ResourcePackage.SAMPLER__MAX_LOD:
-			setMaxLod(MAX_LOD_EDEFAULT);
-			return;
-		case ResourcePackage.SAMPLER__MAX_ANISOTROPY:
-			setMaxAnisotropy(MAX_ANISOTROPY_EDEFAULT);
-			return;
+			case ResourcePackage.SAMPLER__MIN_FILTER:
+				setMinFilter(MIN_FILTER_EDEFAULT);
+				return;
+			case ResourcePackage.SAMPLER__MAG_FILTER:
+				setMagFilter(MAG_FILTER_EDEFAULT);
+				return;
+			case ResourcePackage.SAMPLER__MIPMAP_MODE:
+				setMipmapMode(MIPMAP_MODE_EDEFAULT);
+				return;
+			case ResourcePackage.SAMPLER__ADDRESS_MODE:
+				setAddressMode(ADDRESS_MODE_EDEFAULT);
+				return;
+			case ResourcePackage.SAMPLER__BORDER_COLOR:
+				setBorderColor(BORDER_COLOR_EDEFAULT);
+				return;
+			case ResourcePackage.SAMPLER__ANISOTROPY_ENABLED:
+				setAnisotropyEnabled(ANISOTROPY_ENABLED_EDEFAULT);
+				return;
+			case ResourcePackage.SAMPLER__UNNORMALIZED_COORDINATES:
+				setUnnormalizedCoordinates(UNNORMALIZED_COORDINATES_EDEFAULT);
+				return;
+			case ResourcePackage.SAMPLER__COMPARE_ENABLE:
+				setCompareEnable(COMPARE_ENABLE_EDEFAULT);
+				return;
+			case ResourcePackage.SAMPLER__LOD_BIAS:
+				setLodBias(LOD_BIAS_EDEFAULT);
+				return;
+			case ResourcePackage.SAMPLER__MIN_LOD:
+				setMinLod(MIN_LOD_EDEFAULT);
+				return;
+			case ResourcePackage.SAMPLER__MAX_LOD:
+				setMaxLod(MAX_LOD_EDEFAULT);
+				return;
+			case ResourcePackage.SAMPLER__MAX_ANISOTROPY:
+				setMaxAnisotropy(MAX_ANISOTROPY_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -753,30 +752,30 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SAMPLER__MIN_FILTER:
-			return minFilter != MIN_FILTER_EDEFAULT;
-		case ResourcePackage.SAMPLER__MAG_FILTER:
-			return magFilter != MAG_FILTER_EDEFAULT;
-		case ResourcePackage.SAMPLER__MIPMAP_MODE:
-			return mipmapMode != MIPMAP_MODE_EDEFAULT;
-		case ResourcePackage.SAMPLER__ADDRESS_MODE:
-			return addressMode != ADDRESS_MODE_EDEFAULT;
-		case ResourcePackage.SAMPLER__BORDER_COLOR:
-			return borderColor != BORDER_COLOR_EDEFAULT;
-		case ResourcePackage.SAMPLER__ANISOTROPY_ENABLED:
-			return anisotropyEnabled != ANISOTROPY_ENABLED_EDEFAULT;
-		case ResourcePackage.SAMPLER__UNNORMALIZED_COORDINATES:
-			return unnormalizedCoordinates != UNNORMALIZED_COORDINATES_EDEFAULT;
-		case ResourcePackage.SAMPLER__COMPARE_ENABLE:
-			return compareEnable != COMPARE_ENABLE_EDEFAULT;
-		case ResourcePackage.SAMPLER__LOD_BIAS:
-			return lodBias != LOD_BIAS_EDEFAULT;
-		case ResourcePackage.SAMPLER__MIN_LOD:
-			return minLod != MIN_LOD_EDEFAULT;
-		case ResourcePackage.SAMPLER__MAX_LOD:
-			return maxLod != MAX_LOD_EDEFAULT;
-		case ResourcePackage.SAMPLER__MAX_ANISOTROPY:
-			return maxAnisotropy != MAX_ANISOTROPY_EDEFAULT;
+			case ResourcePackage.SAMPLER__MIN_FILTER:
+				return minFilter != MIN_FILTER_EDEFAULT;
+			case ResourcePackage.SAMPLER__MAG_FILTER:
+				return magFilter != MAG_FILTER_EDEFAULT;
+			case ResourcePackage.SAMPLER__MIPMAP_MODE:
+				return mipmapMode != MIPMAP_MODE_EDEFAULT;
+			case ResourcePackage.SAMPLER__ADDRESS_MODE:
+				return addressMode != ADDRESS_MODE_EDEFAULT;
+			case ResourcePackage.SAMPLER__BORDER_COLOR:
+				return borderColor != BORDER_COLOR_EDEFAULT;
+			case ResourcePackage.SAMPLER__ANISOTROPY_ENABLED:
+				return anisotropyEnabled != ANISOTROPY_ENABLED_EDEFAULT;
+			case ResourcePackage.SAMPLER__UNNORMALIZED_COORDINATES:
+				return unnormalizedCoordinates != UNNORMALIZED_COORDINATES_EDEFAULT;
+			case ResourcePackage.SAMPLER__COMPARE_ENABLE:
+				return compareEnable != COMPARE_ENABLE_EDEFAULT;
+			case ResourcePackage.SAMPLER__LOD_BIAS:
+				return lodBias != LOD_BIAS_EDEFAULT;
+			case ResourcePackage.SAMPLER__MIN_LOD:
+				return minLod != MIN_LOD_EDEFAULT;
+			case ResourcePackage.SAMPLER__MAX_LOD:
+				return maxLod != MAX_LOD_EDEFAULT;
+			case ResourcePackage.SAMPLER__MAX_ANISOTROPY:
+				return maxAnisotropy != MAX_ANISOTROPY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -119,8 +119,8 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_BUFFER__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_BUFFER__NAME, oldName, name));
 	}
 
 	/**
@@ -133,8 +133,7 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		if (dataProviders == null)
 		{
-			dataProviders = new EObjectContainmentEList<BufferDataProvider<?>>(BufferDataProvider.class, this,
-					ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS);
+			dataProviders = new EObjectContainmentEList<BufferDataProvider<?>>(BufferDataProvider.class, this, ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS);
 		}
 		return dataProviders;
 	}
@@ -149,12 +148,12 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		if (pushBuffer != null && pushBuffer.eIsProxy())
 		{
-			InternalEObject oldPushBuffer = (InternalEObject) pushBuffer;
-			pushBuffer = (PushBuffer) eResolveProxy(oldPushBuffer);
+			InternalEObject oldPushBuffer = (InternalEObject)pushBuffer;
+			pushBuffer = (PushBuffer)eResolveProxy(oldPushBuffer);
 			if (pushBuffer != oldPushBuffer)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER, oldPushBuffer, pushBuffer));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER, oldPushBuffer, pushBuffer));
 			}
 		}
 		return pushBuffer;
@@ -180,8 +179,8 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		PushBuffer oldPushBuffer = pushBuffer;
 		pushBuffer = newPushBuffer;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER, oldPushBuffer, pushBuffer));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER, oldPushBuffer, pushBuffer));
 	}
 
 	/**
@@ -194,8 +193,8 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
-			return ((InternalEList<?>) getDataProviders()).basicRemove(otherEnd, msgs);
+			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
+				return ((InternalEList<?>)getDataProviders()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -210,13 +209,13 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.COMPOSITE_BUFFER__NAME:
-			return getName();
-		case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
-			return getDataProviders();
-		case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
-			if (resolve) return getPushBuffer();
-			return basicGetPushBuffer();
+			case ResourcePackage.COMPOSITE_BUFFER__NAME:
+				return getName();
+			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
+				return getDataProviders();
+			case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
+				if (resolve) return getPushBuffer();
+				return basicGetPushBuffer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -232,16 +231,16 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.COMPOSITE_BUFFER__NAME:
-			setName((String) newValue);
-			return;
-		case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
-			getDataProviders().clear();
-			getDataProviders().addAll((Collection<? extends BufferDataProvider<?>>) newValue);
-			return;
-		case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
-			setPushBuffer((PushBuffer) newValue);
-			return;
+			case ResourcePackage.COMPOSITE_BUFFER__NAME:
+				setName((String)newValue);
+				return;
+			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
+				getDataProviders().clear();
+				getDataProviders().addAll((Collection<? extends BufferDataProvider<?>>)newValue);
+				return;
+			case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
+				setPushBuffer((PushBuffer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -256,15 +255,15 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.COMPOSITE_BUFFER__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
-			getDataProviders().clear();
-			return;
-		case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
-			setPushBuffer((PushBuffer) null);
-			return;
+			case ResourcePackage.COMPOSITE_BUFFER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
+				getDataProviders().clear();
+				return;
+			case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
+				setPushBuffer((PushBuffer)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -279,12 +278,12 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.COMPOSITE_BUFFER__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
-			return dataProviders != null && !dataProviders.isEmpty();
-		case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
-			return pushBuffer != null;
+			case ResourcePackage.COMPOSITE_BUFFER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
+				return dataProviders != null && !dataProviders.isEmpty();
+			case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
+				return pushBuffer != null;
 		}
 		return super.eIsSet(featureID);
 	}

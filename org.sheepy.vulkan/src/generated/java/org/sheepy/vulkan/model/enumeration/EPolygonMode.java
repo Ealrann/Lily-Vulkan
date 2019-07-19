@@ -88,9 +88,12 @@ public enum EPolygonMode implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EPolygonMode[] VALUES_ARRAY = new EPolygonMode[] {
-			FILL, LINE, POINT,
-	};
+	private static final EPolygonMode[] VALUES_ARRAY = new EPolygonMode[]
+		{
+			FILL,
+			LINE,
+			POINT,
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>EPolygon Mode</b></em>' enumerators.
@@ -98,8 +101,7 @@ public enum EPolygonMode implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EPolygonMode> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EPolygonMode> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EPolygon Mode</b></em>' literal with the specified literal value.
@@ -155,12 +157,9 @@ public enum EPolygonMode implements Enumerator
 	{
 		switch (value)
 		{
-		case FILL_VALUE:
-			return FILL;
-		case LINE_VALUE:
-			return LINE;
-		case POINT_VALUE:
-			return POINT;
+			case FILL_VALUE: return FILL;
+			case LINE_VALUE: return LINE;
+			case POINT_VALUE: return POINT;
 		}
 		return null;
 	}
@@ -207,7 +206,7 @@ public enum EPolygonMode implements Enumerator
 	@Override
 	public int getValue()
 	{
-		return value;
+	  return value;
 	}
 
 	/**
@@ -218,7 +217,7 @@ public enum EPolygonMode implements Enumerator
 	@Override
 	public String getName()
 	{
-		return name;
+	  return name;
 	}
 
 	/**
@@ -229,7 +228,7 @@ public enum EPolygonMode implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-		return literal;
+	  return literal;
 	}
 
 	/**

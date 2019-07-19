@@ -152,8 +152,8 @@ public class BindVertexBufferImpl extends MinimalEObjectImpl.Container implement
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, GraphicPackage.BIND_VERTEX_BUFFER__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.BIND_VERTEX_BUFFER__NAME, oldName, name));
 	}
 
 	/**
@@ -177,8 +177,8 @@ public class BindVertexBufferImpl extends MinimalEObjectImpl.Container implement
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.BIND_VERTEX_BUFFER__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.BIND_VERTEX_BUFFER__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -202,8 +202,8 @@ public class BindVertexBufferImpl extends MinimalEObjectImpl.Container implement
 	{
 		int oldFirstBinding = firstBinding;
 		firstBinding = newFirstBinding;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.BIND_VERTEX_BUFFER__FIRST_BINDING, oldFirstBinding, firstBinding));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.BIND_VERTEX_BUFFER__FIRST_BINDING, oldFirstBinding, firstBinding));
 	}
 
 	/**
@@ -216,8 +216,7 @@ public class BindVertexBufferImpl extends MinimalEObjectImpl.Container implement
 	{
 		if (vertexBindings == null)
 		{
-			vertexBindings = new EObjectContainmentEList<VertexBinding>(VertexBinding.class, this,
-					GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS);
+			vertexBindings = new EObjectContainmentEList<VertexBinding>(VertexBinding.class, this, GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS);
 		}
 		return vertexBindings;
 	}
@@ -232,8 +231,8 @@ public class BindVertexBufferImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS:
-			return ((InternalEList<?>) getVertexBindings()).basicRemove(otherEnd, msgs);
+			case GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS:
+				return ((InternalEList<?>)getVertexBindings()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -248,14 +247,14 @@ public class BindVertexBufferImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.BIND_VERTEX_BUFFER__NAME:
-			return getName();
-		case GraphicPackage.BIND_VERTEX_BUFFER__ENABLED:
-			return isEnabled();
-		case GraphicPackage.BIND_VERTEX_BUFFER__FIRST_BINDING:
-			return getFirstBinding();
-		case GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS:
-			return getVertexBindings();
+			case GraphicPackage.BIND_VERTEX_BUFFER__NAME:
+				return getName();
+			case GraphicPackage.BIND_VERTEX_BUFFER__ENABLED:
+				return isEnabled();
+			case GraphicPackage.BIND_VERTEX_BUFFER__FIRST_BINDING:
+				return getFirstBinding();
+			case GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS:
+				return getVertexBindings();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -271,19 +270,19 @@ public class BindVertexBufferImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.BIND_VERTEX_BUFFER__NAME:
-			setName((String) newValue);
-			return;
-		case GraphicPackage.BIND_VERTEX_BUFFER__ENABLED:
-			setEnabled((Boolean) newValue);
-			return;
-		case GraphicPackage.BIND_VERTEX_BUFFER__FIRST_BINDING:
-			setFirstBinding((Integer) newValue);
-			return;
-		case GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS:
-			getVertexBindings().clear();
-			getVertexBindings().addAll((Collection<? extends VertexBinding>) newValue);
-			return;
+			case GraphicPackage.BIND_VERTEX_BUFFER__NAME:
+				setName((String)newValue);
+				return;
+			case GraphicPackage.BIND_VERTEX_BUFFER__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case GraphicPackage.BIND_VERTEX_BUFFER__FIRST_BINDING:
+				setFirstBinding((Integer)newValue);
+				return;
+			case GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS:
+				getVertexBindings().clear();
+				getVertexBindings().addAll((Collection<? extends VertexBinding>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -298,18 +297,18 @@ public class BindVertexBufferImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.BIND_VERTEX_BUFFER__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case GraphicPackage.BIND_VERTEX_BUFFER__ENABLED:
-			setEnabled(ENABLED_EDEFAULT);
-			return;
-		case GraphicPackage.BIND_VERTEX_BUFFER__FIRST_BINDING:
-			setFirstBinding(FIRST_BINDING_EDEFAULT);
-			return;
-		case GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS:
-			getVertexBindings().clear();
-			return;
+			case GraphicPackage.BIND_VERTEX_BUFFER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case GraphicPackage.BIND_VERTEX_BUFFER__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case GraphicPackage.BIND_VERTEX_BUFFER__FIRST_BINDING:
+				setFirstBinding(FIRST_BINDING_EDEFAULT);
+				return;
+			case GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS:
+				getVertexBindings().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -324,14 +323,14 @@ public class BindVertexBufferImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.BIND_VERTEX_BUFFER__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case GraphicPackage.BIND_VERTEX_BUFFER__ENABLED:
-			return enabled != ENABLED_EDEFAULT;
-		case GraphicPackage.BIND_VERTEX_BUFFER__FIRST_BINDING:
-			return firstBinding != FIRST_BINDING_EDEFAULT;
-		case GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS:
-			return vertexBindings != null && !vertexBindings.isEmpty();
+			case GraphicPackage.BIND_VERTEX_BUFFER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case GraphicPackage.BIND_VERTEX_BUFFER__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case GraphicPackage.BIND_VERTEX_BUFFER__FIRST_BINDING:
+				return firstBinding != FIRST_BINDING_EDEFAULT;
+			case GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS:
+				return vertexBindings != null && !vertexBindings.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

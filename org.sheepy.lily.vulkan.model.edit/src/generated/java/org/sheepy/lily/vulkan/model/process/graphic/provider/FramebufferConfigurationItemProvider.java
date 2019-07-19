@@ -70,13 +70,19 @@ public class FramebufferConfigurationItemProvider extends ItemProviderAdapter im
 	 */
 	protected void addClearValuePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_FramebufferConfiguration_clearValue_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_FramebufferConfiguration_clearValue_feature", "_UI_FramebufferConfiguration_type"),
-						GraphicPackage.Literals.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FramebufferConfiguration_clearValue_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FramebufferConfiguration_clearValue_feature", "_UI_FramebufferConfiguration_type"),
+				 GraphicPackage.Literals.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -100,11 +106,11 @@ public class FramebufferConfigurationItemProvider extends ItemProviderAdapter im
 	@Override
 	public String getText(Object object)
 	{
-		Vector4fc labelValue = ((FramebufferConfiguration) object).getClearValue();
+		Vector4fc labelValue = ((FramebufferConfiguration)object).getClearValue();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0
-				? getString("_UI_FramebufferConfiguration_type")
-				: getString("_UI_FramebufferConfiguration_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_FramebufferConfiguration_type") :
+			getString("_UI_FramebufferConfiguration_type") + " " + label;
 	}
 
 	/**
@@ -121,9 +127,9 @@ public class FramebufferConfigurationItemProvider extends ItemProviderAdapter im
 
 		switch (notification.getFeatureID(FramebufferConfiguration.class))
 		{
-		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -150,7 +156,7 @@ public class FramebufferConfigurationItemProvider extends ItemProviderAdapter im
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

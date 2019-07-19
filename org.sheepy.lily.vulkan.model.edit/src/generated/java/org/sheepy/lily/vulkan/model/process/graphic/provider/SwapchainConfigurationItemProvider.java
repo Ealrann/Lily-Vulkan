@@ -75,13 +75,19 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 	 */
 	protected void addPresentationModePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_SwapchainConfiguration_presentationMode_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_SwapchainConfiguration_presentationMode_feature",
-						"_UI_SwapchainConfiguration_type"),
-				GraphicPackage.Literals.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SwapchainConfiguration_presentationMode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SwapchainConfiguration_presentationMode_feature", "_UI_SwapchainConfiguration_type"),
+				 GraphicPackage.Literals.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -92,13 +98,19 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 	 */
 	protected void addRequiredSwapImageCountPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_SwapchainConfiguration_requiredSwapImageCount_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_SwapchainConfiguration_requiredSwapImageCount_feature", "_UI_SwapchainConfiguration_type"),
-				GraphicPackage.Literals.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SwapchainConfiguration_requiredSwapImageCount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SwapchainConfiguration_requiredSwapImageCount_feature", "_UI_SwapchainConfiguration_type"),
+				 GraphicPackage.Literals.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -109,13 +121,19 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 	 */
 	protected void addSwapImageUsagesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_SwapchainConfiguration_swapImageUsages_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_SwapchainConfiguration_swapImageUsages_feature",
-						"_UI_SwapchainConfiguration_type"),
-				GraphicPackage.Literals.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SwapchainConfiguration_swapImageUsages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SwapchainConfiguration_swapImageUsages_feature", "_UI_SwapchainConfiguration_type"),
+				 GraphicPackage.Literals.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -172,11 +190,11 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 	@Override
 	public String getText(Object object)
 	{
-		EPresentMode labelValue = ((SwapchainConfiguration) object).getPresentationMode();
+		EPresentMode labelValue = ((SwapchainConfiguration)object).getPresentationMode();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0
-				? getString("_UI_SwapchainConfiguration_type")
-				: getString("_UI_SwapchainConfiguration_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_SwapchainConfiguration_type") :
+			getString("_UI_SwapchainConfiguration_type") + " " + label;
 	}
 
 	/**
@@ -193,14 +211,14 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 
 		switch (notification.getFeatureID(SwapchainConfiguration.class))
 		{
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE:
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE:
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -217,11 +235,15 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.SWAPCHAIN_CONFIGURATION__ATACHMENTS,
-				GraphicFactory.eINSTANCE.createImageAttachment()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.SWAPCHAIN_CONFIGURATION__ATACHMENTS,
+				 GraphicFactory.eINSTANCE.createImageAttachment()));
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.SWAPCHAIN_CONFIGURATION__ATACHMENTS,
-				GraphicFactory.eINSTANCE.createDepthAttachment()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.SWAPCHAIN_CONFIGURATION__ATACHMENTS,
+				 GraphicFactory.eINSTANCE.createDepthAttachment()));
 	}
 
 	/**
@@ -233,7 +255,7 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

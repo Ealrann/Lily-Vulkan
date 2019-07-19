@@ -18,16 +18,16 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.StringModuleResource} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc
+ * --> <!-- end-user-doc -->
  * @generated
  */
 public class StringModuleResourceItemProvider extends AbstractModuleResourceItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	public StringModuleResourceItemProvider(AdapterFactory adapterFactory)
@@ -37,8 +37,8 @@ public class StringModuleResourceItemProvider extends AbstractModuleResourceItem
 
 	/**
 	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -55,25 +55,30 @@ public class StringModuleResourceItemProvider extends AbstractModuleResourceItem
 
 	/**
 	 * This adds a property descriptor for the Module Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	protected void addModuleNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_StringModuleResource_moduleName_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_StringModuleResource_moduleName_feature",
-						"_UI_StringModuleResource_type"),
-				ResourcePackage.Literals.STRING_MODULE_RESOURCE__MODULE_NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_StringModuleResource_moduleName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_StringModuleResource_moduleName_feature", "_UI_StringModuleResource_type"),
+				 ResourcePackage.Literals.STRING_MODULE_RESOURCE__MODULE_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns StringModuleResource.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -83,25 +88,22 @@ public class StringModuleResourceItemProvider extends AbstractModuleResourceItem
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((StringModuleResource) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_StringModuleResource_type")
-				: getString("_UI_StringModuleResource_type") + " " + label;
+		final var resource = (StringModuleResource) object;
+		return resource.getPath();
 	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -111,9 +113,9 @@ public class StringModuleResourceItemProvider extends AbstractModuleResourceItem
 
 		switch (notification.getFeatureID(StringModuleResource.class))
 		{
-		case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -121,8 +123,7 @@ public class StringModuleResourceItemProvider extends AbstractModuleResourceItem
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

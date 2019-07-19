@@ -109,28 +109,53 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.mesh.MeshRendererMaintainer} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MeshRendererMaintainerItemProvider meshRendererMaintainerItemProvider;
+	protected MeshRendererItemProvider meshRendererItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.mesh.MeshRendererMaintainer}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createMeshRendererMaintainerAdapter()
+	public Adapter createMeshRendererAdapter()
 	{
-		if (meshRendererMaintainerItemProvider == null)
+		if (meshRendererItemProvider == null)
 		{
-			meshRendererMaintainerItemProvider = new MeshRendererMaintainerItemProvider(this);
+			meshRendererItemProvider = new MeshRendererItemProvider(this);
 		}
 
-		return meshRendererMaintainerItemProvider;
+		return meshRendererItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.mesh.MeshPkg} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MeshPkgItemProvider meshPkgItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.mesh.MeshPkg}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMeshPkgAdapter()
+	{
+		if (meshPkgItemProvider == null)
+		{
+			meshPkgItemProvider = new MeshPkgItemProvider(this);
+		}
+
+		return meshPkgItemProvider;
 	}
 
 	/**
@@ -251,7 +276,8 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 	public void dispose()
 	{
 		if (meshItemProvider != null) meshItemProvider.dispose();
-		if (meshRendererMaintainerItemProvider != null) meshRendererMaintainerItemProvider.dispose();
+		if (meshRendererItemProvider != null) meshRendererItemProvider.dispose();
+		if (meshPkgItemProvider != null) meshPkgItemProvider.dispose();
 	}
 
 	/**
@@ -308,7 +334,7 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 				newChildDescriptors.add
 					(createChildParameter
 						(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
-						 MeshFactory.eINSTANCE.createMeshRendererMaintainer()));
+						 MeshFactory.eINSTANCE.createMeshRenderer()));
 
 				return null;
 			}
@@ -330,6 +356,7 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
 			ArrayList<Object> result = new ArrayList<Object>();
@@ -342,6 +369,7 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public ResourceLocator getResourceLocator()
 		{
 			return ExtraEditPlugin.INSTANCE;

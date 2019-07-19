@@ -53,8 +53,7 @@ public interface EnumerationPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	EnumerationPackage eINSTANCE = org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl
-			.init();
+	EnumerationPackage eINSTANCE = org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EImageLayout <em>EImage Layout</em>}' enum.

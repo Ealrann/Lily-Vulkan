@@ -57,10 +57,10 @@ public class AbstractModuleResourceItemProvider extends PathResourceItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((AbstractModuleResource) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_AbstractModuleResource_type")
-				: getString("_UI_AbstractModuleResource_type") + " " + label;
+		String label = ((AbstractModuleResource)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_AbstractModuleResource_type") :
+			getString("_UI_AbstractModuleResource_type") + " " + label;
 	}
 
 	/**
@@ -74,6 +74,7 @@ public class AbstractModuleResourceItemProvider extends PathResourceItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
+		super.notifyChanged(notification);
 	}
 
 	/**

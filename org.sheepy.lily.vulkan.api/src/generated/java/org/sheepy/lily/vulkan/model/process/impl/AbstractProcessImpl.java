@@ -214,10 +214,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 		resourcePkg = newResourcePkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -233,15 +231,15 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 		if (newResourcePkg != resourcePkg)
 		{
 			NotificationChain msgs = null;
-			if (resourcePkg != null) msgs = ((InternalEObject) resourcePkg).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, null, msgs);
-			if (newResourcePkg != null) msgs = ((InternalEObject) newResourcePkg).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, null, msgs);
+			if (resourcePkg != null)
+				msgs = ((InternalEObject)resourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, null, msgs);
+			if (newResourcePkg != null)
+				msgs = ((InternalEObject)newResourcePkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, null, msgs);
 			msgs = basicSetResourcePkg(newResourcePkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, newResourcePkg, newResourcePkg));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, newResourcePkg, newResourcePkg));
 	}
 
 	/**
@@ -265,8 +263,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__NAME, oldName, name));
 	}
 
 	/**
@@ -290,8 +288,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.ABSTRACT_PROCESS__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -315,9 +313,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		boolean oldWaitingFenceDuringAcquire = waitingFenceDuringAcquire;
 		waitingFenceDuringAcquire = newWaitingFenceDuringAcquire;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE, oldWaitingFenceDuringAcquire,
-				waitingFenceDuringAcquire));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE, oldWaitingFenceDuringAcquire, waitingFenceDuringAcquire));
 	}
 
 	/**
@@ -342,10 +339,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 		partPkg = newPartPkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ProcessPackage.ABSTRACT_PROCESS__PART_PKG, oldPartPkg, newPartPkg);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__PART_PKG, oldPartPkg, newPartPkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -361,15 +356,15 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 		if (newPartPkg != partPkg)
 		{
 			NotificationChain msgs = null;
-			if (partPkg != null) msgs = ((InternalEObject) partPkg).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__PART_PKG, null, msgs);
-			if (newPartPkg != null) msgs = ((InternalEObject) newPartPkg).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__PART_PKG, null, msgs);
+			if (partPkg != null)
+				msgs = ((InternalEObject)partPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__PART_PKG, null, msgs);
+			if (newPartPkg != null)
+				msgs = ((InternalEObject)newPartPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__PART_PKG, null, msgs);
 			msgs = basicSetPartPkg(newPartPkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.ABSTRACT_PROCESS__PART_PKG, newPartPkg, newPartPkg));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__PART_PKG, newPartPkg, newPartPkg));
 	}
 
 	/**
@@ -393,8 +388,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		boolean oldResetAllowed = resetAllowed;
 		resetAllowed = newResetAllowed;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED, oldResetAllowed, resetAllowed));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED, oldResetAllowed, resetAllowed));
 	}
 
 	/**
@@ -407,8 +402,7 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		if (signals == null)
 		{
-			signals = new EObjectResolvingEList<Semaphore>(Semaphore.class, this,
-					ProcessPackage.ABSTRACT_PROCESS__SIGNALS);
+			signals = new EObjectResolvingEList<Semaphore>(Semaphore.class, this, ProcessPackage.ABSTRACT_PROCESS__SIGNALS);
 		}
 		return signals;
 	}
@@ -423,8 +417,7 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		if (waitFor == null)
 		{
-			waitFor = new EObjectResolvingEList<Semaphore>(Semaphore.class, this,
-					ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR);
+			waitFor = new EObjectResolvingEList<Semaphore>(Semaphore.class, this, ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR);
 		}
 		return waitFor;
 	}
@@ -439,10 +432,10 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
-			return basicSetResourcePkg(null, msgs);
-		case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
-			return basicSetPartPkg(null, msgs);
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+				return basicSetResourcePkg(null, msgs);
+			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
+				return basicSetPartPkg(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -457,22 +450,22 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
-			return getResourcePkg();
-		case ProcessPackage.ABSTRACT_PROCESS__NAME:
-			return getName();
-		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
-			return isEnabled();
-		case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
-			return isWaitingFenceDuringAcquire();
-		case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
-			return getPartPkg();
-		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
-			return isResetAllowed();
-		case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:
-			return getSignals();
-		case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR:
-			return getWaitFor();
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+				return getResourcePkg();
+			case ProcessPackage.ABSTRACT_PROCESS__NAME:
+				return getName();
+			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
+				return isEnabled();
+			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
+				return isWaitingFenceDuringAcquire();
+			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
+				return getPartPkg();
+			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
+				return isResetAllowed();
+			case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:
+				return getSignals();
+			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR:
+				return getWaitFor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -488,32 +481,32 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
-			setResourcePkg((ResourcePkg) newValue);
-			return;
-		case ProcessPackage.ABSTRACT_PROCESS__NAME:
-			setName((String) newValue);
-			return;
-		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
-			setEnabled((Boolean) newValue);
-			return;
-		case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
-			setWaitingFenceDuringAcquire((Boolean) newValue);
-			return;
-		case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
-			setPartPkg((ProcessPartPkg) newValue);
-			return;
-		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
-			setResetAllowed((Boolean) newValue);
-			return;
-		case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:
-			getSignals().clear();
-			getSignals().addAll((Collection<? extends Semaphore>) newValue);
-			return;
-		case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR:
-			getWaitFor().clear();
-			getWaitFor().addAll((Collection<? extends Semaphore>) newValue);
-			return;
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+				setResourcePkg((ResourcePkg)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__NAME:
+				setName((String)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
+				setWaitingFenceDuringAcquire((Boolean)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
+				setPartPkg((ProcessPartPkg)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
+				setResetAllowed((Boolean)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:
+				getSignals().clear();
+				getSignals().addAll((Collection<? extends Semaphore>)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR:
+				getWaitFor().clear();
+				getWaitFor().addAll((Collection<? extends Semaphore>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -528,30 +521,30 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
-			setResourcePkg((ResourcePkg) null);
-			return;
-		case ProcessPackage.ABSTRACT_PROCESS__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
-			setEnabled(ENABLED_EDEFAULT);
-			return;
-		case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
-			setWaitingFenceDuringAcquire(WAITING_FENCE_DURING_ACQUIRE_EDEFAULT);
-			return;
-		case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
-			setPartPkg((ProcessPartPkg) null);
-			return;
-		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
-			setResetAllowed(RESET_ALLOWED_EDEFAULT);
-			return;
-		case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:
-			getSignals().clear();
-			return;
-		case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR:
-			getWaitFor().clear();
-			return;
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+				setResourcePkg((ResourcePkg)null);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
+				setWaitingFenceDuringAcquire(WAITING_FENCE_DURING_ACQUIRE_EDEFAULT);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
+				setPartPkg((ProcessPartPkg)null);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
+				setResetAllowed(RESET_ALLOWED_EDEFAULT);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:
+				getSignals().clear();
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR:
+				getWaitFor().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -566,22 +559,22 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
-			return resourcePkg != null;
-		case ProcessPackage.ABSTRACT_PROCESS__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
-			return enabled != ENABLED_EDEFAULT;
-		case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
-			return waitingFenceDuringAcquire != WAITING_FENCE_DURING_ACQUIRE_EDEFAULT;
-		case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
-			return partPkg != null;
-		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
-			return resetAllowed != RESET_ALLOWED_EDEFAULT;
-		case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:
-			return signals != null && !signals.isEmpty();
-		case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR:
-			return waitFor != null && !waitFor.isEmpty();
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+				return resourcePkg != null;
+			case ProcessPackage.ABSTRACT_PROCESS__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
+				return waitingFenceDuringAcquire != WAITING_FENCE_DURING_ACQUIRE_EDEFAULT;
+			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
+				return partPkg != null;
+			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
+				return resetAllowed != RESET_ALLOWED_EDEFAULT;
+			case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:
+				return signals != null && !signals.isEmpty();
+			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR:
+				return waitFor != null && !waitFor.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -598,18 +591,15 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 		{
 			switch (derivedFeatureID)
 			{
-			case ProcessPackage.ABSTRACT_PROCESS__NAME:
-				return TypesPackage.LNAMED_ELEMENT__NAME;
-			default:
-				return -1;
+				case ProcessPackage.ABSTRACT_PROCESS__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
+				default: return -1;
 			}
 		}
 		if (baseClass == IExecutionManager.class)
 		{
 			switch (derivedFeatureID)
 			{
-			default:
-				return -1;
+				default: return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -627,18 +617,15 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 		{
 			switch (baseFeatureID)
 			{
-			case TypesPackage.LNAMED_ELEMENT__NAME:
-				return ProcessPackage.ABSTRACT_PROCESS__NAME;
-			default:
-				return -1;
+				case TypesPackage.LNAMED_ELEMENT__NAME: return ProcessPackage.ABSTRACT_PROCESS__NAME;
+				default: return -1;
 			}
 		}
 		if (baseClass == IExecutionManager.class)
 		{
 			switch (baseFeatureID)
 			{
-			default:
-				return -1;
+				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);

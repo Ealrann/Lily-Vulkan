@@ -61,14 +61,19 @@ public class ReferenceBufferBarrierItemProvider extends AbstractBufferBarrierIte
 	 */
 	protected void addBufferPtrPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ReferenceBufferBarrier_bufferPtr_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ReferenceBufferBarrier_bufferPtr_feature",
-						"_UI_ReferenceBufferBarrier_type"),
-				BarrierPackage.Literals.REFERENCE_BUFFER_BARRIER__BUFFER_PTR, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ReferenceBufferBarrier_bufferPtr_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ReferenceBufferBarrier_bufferPtr_feature", "_UI_ReferenceBufferBarrier_type"),
+				 BarrierPackage.Literals.REFERENCE_BUFFER_BARRIER__BUFFER_PTR,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -80,8 +85,7 @@ public class ReferenceBufferBarrierItemProvider extends AbstractBufferBarrierIte
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/ReferenceBufferBarrier"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReferenceBufferBarrier"));
 	}
 
 	/**
@@ -93,10 +97,8 @@ public class ReferenceBufferBarrierItemProvider extends AbstractBufferBarrierIte
 	@Override
 	public String getText(Object object)
 	{
-		ReferenceBufferBarrier referenceBufferBarrier = (ReferenceBufferBarrier) object;
-		return getString("_UI_ReferenceBufferBarrier_type")
-				+ " "
-				+ referenceBufferBarrier.getBufferPtr();
+		ReferenceBufferBarrier referenceBufferBarrier = (ReferenceBufferBarrier)object;
+		return getString("_UI_ReferenceBufferBarrier_type") + " " + referenceBufferBarrier.getBufferPtr();
 	}
 
 	/**
@@ -113,10 +115,9 @@ public class ReferenceBufferBarrierItemProvider extends AbstractBufferBarrierIte
 
 		switch (notification.getFeatureID(ReferenceBufferBarrier.class))
 		{
-		case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

@@ -59,12 +59,19 @@ public class PushConstantBufferItemProvider extends PushConstantItemProvider
 	 */
 	protected void addBufferPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_PushConstantBuffer_buffer_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PushConstantBuffer_buffer_feature",
-								"_UI_PushConstantBuffer_type"),
-						ProcessPackage.Literals.PUSH_CONSTANT_BUFFER__BUFFER, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PushConstantBuffer_buffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PushConstantBuffer_buffer_feature", "_UI_PushConstantBuffer_type"),
+				 ProcessPackage.Literals.PUSH_CONSTANT_BUFFER__BUFFER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -88,10 +95,10 @@ public class PushConstantBufferItemProvider extends PushConstantItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((PushConstantBuffer) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_PushConstantBuffer_type")
-				: getString("_UI_PushConstantBuffer_type") + " " + label;
+		String label = ((PushConstantBuffer)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_PushConstantBuffer_type") :
+			getString("_UI_PushConstantBuffer_type") + " " + label;
 	}
 
 	/**
@@ -105,6 +112,7 @@ public class PushConstantBufferItemProvider extends PushConstantItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
+		super.notifyChanged(notification);
 	}
 
 	/**

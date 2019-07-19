@@ -261,8 +261,8 @@ public class SetViewportImpl extends MinimalEObjectImpl.Container implements Set
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SET_VIEWPORT__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_VIEWPORT__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -361,8 +361,8 @@ public class SetViewportImpl extends MinimalEObjectImpl.Container implements Set
 	{
 		float oldHeight = height;
 		height = newHeight;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_VIEWPORT__HEIGHT, oldHeight, height));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_VIEWPORT__HEIGHT, oldHeight, height));
 	}
 
 	/**
@@ -386,8 +386,8 @@ public class SetViewportImpl extends MinimalEObjectImpl.Container implements Set
 	{
 		float oldMinDepth = minDepth;
 		minDepth = newMinDepth;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SET_VIEWPORT__MIN_DEPTH, oldMinDepth, minDepth));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_VIEWPORT__MIN_DEPTH, oldMinDepth, minDepth));
 	}
 
 	/**
@@ -411,8 +411,8 @@ public class SetViewportImpl extends MinimalEObjectImpl.Container implements Set
 	{
 		float oldMaxDepth = maxDepth;
 		maxDepth = newMaxDepth;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SET_VIEWPORT__MAX_DEPTH, oldMaxDepth, maxDepth));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_VIEWPORT__MAX_DEPTH, oldMaxDepth, maxDepth));
 	}
 
 	/**
@@ -425,22 +425,22 @@ public class SetViewportImpl extends MinimalEObjectImpl.Container implements Set
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SET_VIEWPORT__NAME:
-			return getName();
-		case GraphicPackage.SET_VIEWPORT__ENABLED:
-			return isEnabled();
-		case GraphicPackage.SET_VIEWPORT__X:
-			return getX();
-		case GraphicPackage.SET_VIEWPORT__Y:
-			return getY();
-		case GraphicPackage.SET_VIEWPORT__WIDTH:
-			return getWidth();
-		case GraphicPackage.SET_VIEWPORT__HEIGHT:
-			return getHeight();
-		case GraphicPackage.SET_VIEWPORT__MIN_DEPTH:
-			return getMinDepth();
-		case GraphicPackage.SET_VIEWPORT__MAX_DEPTH:
-			return getMaxDepth();
+			case GraphicPackage.SET_VIEWPORT__NAME:
+				return getName();
+			case GraphicPackage.SET_VIEWPORT__ENABLED:
+				return isEnabled();
+			case GraphicPackage.SET_VIEWPORT__X:
+				return getX();
+			case GraphicPackage.SET_VIEWPORT__Y:
+				return getY();
+			case GraphicPackage.SET_VIEWPORT__WIDTH:
+				return getWidth();
+			case GraphicPackage.SET_VIEWPORT__HEIGHT:
+				return getHeight();
+			case GraphicPackage.SET_VIEWPORT__MIN_DEPTH:
+				return getMinDepth();
+			case GraphicPackage.SET_VIEWPORT__MAX_DEPTH:
+				return getMaxDepth();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -455,30 +455,30 @@ public class SetViewportImpl extends MinimalEObjectImpl.Container implements Set
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SET_VIEWPORT__NAME:
-			setName((String) newValue);
-			return;
-		case GraphicPackage.SET_VIEWPORT__ENABLED:
-			setEnabled((Boolean) newValue);
-			return;
-		case GraphicPackage.SET_VIEWPORT__X:
-			setX((Float) newValue);
-			return;
-		case GraphicPackage.SET_VIEWPORT__Y:
-			setY((Float) newValue);
-			return;
-		case GraphicPackage.SET_VIEWPORT__WIDTH:
-			setWidth((Float) newValue);
-			return;
-		case GraphicPackage.SET_VIEWPORT__HEIGHT:
-			setHeight((Float) newValue);
-			return;
-		case GraphicPackage.SET_VIEWPORT__MIN_DEPTH:
-			setMinDepth((Float) newValue);
-			return;
-		case GraphicPackage.SET_VIEWPORT__MAX_DEPTH:
-			setMaxDepth((Float) newValue);
-			return;
+			case GraphicPackage.SET_VIEWPORT__NAME:
+				setName((String)newValue);
+				return;
+			case GraphicPackage.SET_VIEWPORT__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case GraphicPackage.SET_VIEWPORT__X:
+				setX((Float)newValue);
+				return;
+			case GraphicPackage.SET_VIEWPORT__Y:
+				setY((Float)newValue);
+				return;
+			case GraphicPackage.SET_VIEWPORT__WIDTH:
+				setWidth((Float)newValue);
+				return;
+			case GraphicPackage.SET_VIEWPORT__HEIGHT:
+				setHeight((Float)newValue);
+				return;
+			case GraphicPackage.SET_VIEWPORT__MIN_DEPTH:
+				setMinDepth((Float)newValue);
+				return;
+			case GraphicPackage.SET_VIEWPORT__MAX_DEPTH:
+				setMaxDepth((Float)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -493,30 +493,30 @@ public class SetViewportImpl extends MinimalEObjectImpl.Container implements Set
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SET_VIEWPORT__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case GraphicPackage.SET_VIEWPORT__ENABLED:
-			setEnabled(ENABLED_EDEFAULT);
-			return;
-		case GraphicPackage.SET_VIEWPORT__X:
-			setX(X_EDEFAULT);
-			return;
-		case GraphicPackage.SET_VIEWPORT__Y:
-			setY(Y_EDEFAULT);
-			return;
-		case GraphicPackage.SET_VIEWPORT__WIDTH:
-			setWidth(WIDTH_EDEFAULT);
-			return;
-		case GraphicPackage.SET_VIEWPORT__HEIGHT:
-			setHeight(HEIGHT_EDEFAULT);
-			return;
-		case GraphicPackage.SET_VIEWPORT__MIN_DEPTH:
-			setMinDepth(MIN_DEPTH_EDEFAULT);
-			return;
-		case GraphicPackage.SET_VIEWPORT__MAX_DEPTH:
-			setMaxDepth(MAX_DEPTH_EDEFAULT);
-			return;
+			case GraphicPackage.SET_VIEWPORT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case GraphicPackage.SET_VIEWPORT__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case GraphicPackage.SET_VIEWPORT__X:
+				setX(X_EDEFAULT);
+				return;
+			case GraphicPackage.SET_VIEWPORT__Y:
+				setY(Y_EDEFAULT);
+				return;
+			case GraphicPackage.SET_VIEWPORT__WIDTH:
+				setWidth(WIDTH_EDEFAULT);
+				return;
+			case GraphicPackage.SET_VIEWPORT__HEIGHT:
+				setHeight(HEIGHT_EDEFAULT);
+				return;
+			case GraphicPackage.SET_VIEWPORT__MIN_DEPTH:
+				setMinDepth(MIN_DEPTH_EDEFAULT);
+				return;
+			case GraphicPackage.SET_VIEWPORT__MAX_DEPTH:
+				setMaxDepth(MAX_DEPTH_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -531,22 +531,22 @@ public class SetViewportImpl extends MinimalEObjectImpl.Container implements Set
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SET_VIEWPORT__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case GraphicPackage.SET_VIEWPORT__ENABLED:
-			return enabled != ENABLED_EDEFAULT;
-		case GraphicPackage.SET_VIEWPORT__X:
-			return x != X_EDEFAULT;
-		case GraphicPackage.SET_VIEWPORT__Y:
-			return y != Y_EDEFAULT;
-		case GraphicPackage.SET_VIEWPORT__WIDTH:
-			return width != WIDTH_EDEFAULT;
-		case GraphicPackage.SET_VIEWPORT__HEIGHT:
-			return height != HEIGHT_EDEFAULT;
-		case GraphicPackage.SET_VIEWPORT__MIN_DEPTH:
-			return minDepth != MIN_DEPTH_EDEFAULT;
-		case GraphicPackage.SET_VIEWPORT__MAX_DEPTH:
-			return maxDepth != MAX_DEPTH_EDEFAULT;
+			case GraphicPackage.SET_VIEWPORT__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case GraphicPackage.SET_VIEWPORT__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case GraphicPackage.SET_VIEWPORT__X:
+				return x != X_EDEFAULT;
+			case GraphicPackage.SET_VIEWPORT__Y:
+				return y != Y_EDEFAULT;
+			case GraphicPackage.SET_VIEWPORT__WIDTH:
+				return width != WIDTH_EDEFAULT;
+			case GraphicPackage.SET_VIEWPORT__HEIGHT:
+				return height != HEIGHT_EDEFAULT;
+			case GraphicPackage.SET_VIEWPORT__MIN_DEPTH:
+				return minDepth != MIN_DEPTH_EDEFAULT;
+			case GraphicPackage.SET_VIEWPORT__MAX_DEPTH:
+				return maxDepth != MAX_DEPTH_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

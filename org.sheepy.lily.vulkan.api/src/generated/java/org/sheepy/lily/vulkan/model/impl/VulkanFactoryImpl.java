@@ -30,13 +30,13 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 	{
 		try
 		{
-			VulkanFactory theVulkanFactory = (VulkanFactory) EPackage.Registry.INSTANCE
-					.getEFactory(VulkanPackage.eNS_URI);
+			VulkanFactory theVulkanFactory = (VulkanFactory)EPackage.Registry.INSTANCE.getEFactory(VulkanPackage.eNS_URI);
 			if (theVulkanFactory != null)
 			{
 				return theVulkanFactory;
 			}
-		} catch (Exception exception)
+		}
+		catch (Exception exception)
 		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
@@ -64,12 +64,10 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-		case VulkanPackage.VULKAN_ENGINE:
-			return createVulkanEngine();
-		case VulkanPackage.RESOURCE_PKG:
-			return createResourcePkg();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case VulkanPackage.VULKAN_ENGINE: return createVulkanEngine();
+			case VulkanPackage.RESOURCE_PKG: return createResourcePkg();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -105,7 +103,7 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 	@Override
 	public VulkanPackage getVulkanPackage()
 	{
-		return (VulkanPackage) getEPackage();
+		return (VulkanPackage)getEPackage();
 	}
 
 	/**

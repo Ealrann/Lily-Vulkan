@@ -33,7 +33,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
  *
  * @generated
  */
-public class PresentationPkgImpl extends MinimalEObjectImpl.Container implements PresentationPkg
+public abstract class PresentationPkgImpl<T extends Presentation> extends MinimalEObjectImpl.Container implements PresentationPkg<T>
 {
 	/**
 	 * The cached value of the '{@link #getPresentations() <em>Presentations</em>}' containment reference list.

@@ -71,12 +71,12 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	{
 		if (buffer != null && buffer.eIsProxy())
 		{
-			InternalEObject oldBuffer = (InternalEObject) buffer;
-			buffer = (Buffer) eResolveProxy(oldBuffer);
+			InternalEObject oldBuffer = (InternalEObject)buffer;
+			buffer = (Buffer)eResolveProxy(oldBuffer);
 			if (buffer != oldBuffer)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						ResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
 			}
 		}
 		return buffer;
@@ -102,8 +102,8 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	{
 		Buffer oldBuffer = buffer;
 		buffer = newBuffer;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
 	}
 
 	/**
@@ -116,9 +116,9 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BUFFER_BARRIER__BUFFER:
-			if (resolve) return getBuffer();
-			return basicGetBuffer();
+			case ResourcePackage.BUFFER_BARRIER__BUFFER:
+				if (resolve) return getBuffer();
+				return basicGetBuffer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -133,9 +133,9 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BUFFER_BARRIER__BUFFER:
-			setBuffer((Buffer) newValue);
-			return;
+			case ResourcePackage.BUFFER_BARRIER__BUFFER:
+				setBuffer((Buffer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -150,9 +150,9 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BUFFER_BARRIER__BUFFER:
-			setBuffer((Buffer) null);
-			return;
+			case ResourcePackage.BUFFER_BARRIER__BUFFER:
+				setBuffer((Buffer)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -167,8 +167,8 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BUFFER_BARRIER__BUFFER:
-			return buffer != null;
+			case ResourcePackage.BUFFER_BARRIER__BUFFER:
+				return buffer != null;
 		}
 		return super.eIsSet(featureID);
 	}

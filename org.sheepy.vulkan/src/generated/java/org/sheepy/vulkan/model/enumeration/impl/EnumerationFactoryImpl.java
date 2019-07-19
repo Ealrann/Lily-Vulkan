@@ -31,13 +31,13 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	{
 		try
 		{
-			EnumerationFactory theEnumerationFactory = (EnumerationFactory) EPackage.Registry.INSTANCE
-					.getEFactory(EnumerationPackage.eNS_URI);
+			EnumerationFactory theEnumerationFactory = (EnumerationFactory)EPackage.Registry.INSTANCE.getEFactory(EnumerationPackage.eNS_URI);
 			if (theEnumerationFactory != null)
 			{
 				return theEnumerationFactory;
 			}
-		} catch (Exception exception)
+		}
+		catch (Exception exception)
 		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
@@ -65,9 +65,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	{
 		switch (eClass.getClassifierID())
 		{
-		default:
-			throw new IllegalArgumentException(
-					"The class '" + eClass.getName() + "' is not a valid classifier");
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -81,69 +80,68 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	{
 		switch (eDataType.getClassifierID())
 		{
-		case EnumerationPackage.EIMAGE_LAYOUT:
-			return createEImageLayoutFromString(eDataType, initialValue);
-		case EnumerationPackage.EPHYSICAL_DEVICE_FEATURE:
-			return createEPhysicalDeviceFeatureFromString(eDataType, initialValue);
-		case EnumerationPackage.ECULL_MODE:
-			return createECullModeFromString(eDataType, initialValue);
-		case EnumerationPackage.EDESCRIPTOR_TYPE:
-			return createEDescriptorTypeFromString(eDataType, initialValue);
-		case EnumerationPackage.EFRONT_FACE:
-			return createEFrontFaceFromString(eDataType, initialValue);
-		case EnumerationPackage.EBORDER_COLOR:
-			return createEBorderColorFromString(eDataType, initialValue);
-		case EnumerationPackage.ECOMMAND_STAGE:
-			return createECommandStageFromString(eDataType, initialValue);
-		case EnumerationPackage.EATTACHMENT_LOAD_OP:
-			return createEAttachmentLoadOpFromString(eDataType, initialValue);
-		case EnumerationPackage.ELOGIC_OP:
-			return createELogicOpFromString(eDataType, initialValue);
-		case EnumerationPackage.EPRIMITIVE_TOPOLOGY:
-			return createEPrimitiveTopologyFromString(eDataType, initialValue);
-		case EnumerationPackage.EATTACHMENT_STORE_OP:
-			return createEAttachmentStoreOpFromString(eDataType, initialValue);
-		case EnumerationPackage.ESHADER_STAGE:
-			return createEShaderStageFromString(eDataType, initialValue);
-		case EnumerationPackage.EFILTER:
-			return createEFilterFromString(eDataType, initialValue);
-		case EnumerationPackage.ESAMPLER_MIPMAP_MODE:
-			return createESamplerMipmapModeFromString(eDataType, initialValue);
-		case EnumerationPackage.ESAMPLER_ADDRESS_MODE:
-			return createESamplerAddressModeFromString(eDataType, initialValue);
-		case EnumerationPackage.EBLEND_FACTOR:
-			return createEBlendFactorFromString(eDataType, initialValue);
-		case EnumerationPackage.EINDEX_TYPE:
-			return createEIndexTypeFromString(eDataType, initialValue);
-		case EnumerationPackage.EINPUT_RATE:
-			return createEInputRateFromString(eDataType, initialValue);
-		case EnumerationPackage.EDYNAMIC_STATE:
-			return createEDynamicStateFromString(eDataType, initialValue);
-		case EnumerationPackage.EBLEND_OP:
-			return createEBlendOpFromString(eDataType, initialValue);
-		case EnumerationPackage.EACCESS:
-			return createEAccessFromString(eDataType, initialValue);
-		case EnumerationPackage.EPIPELINE_STAGE:
-			return createEPipelineStageFromString(eDataType, initialValue);
-		case EnumerationPackage.ECOLOR_SPACE:
-			return createEColorSpaceFromString(eDataType, initialValue);
-		case EnumerationPackage.EFORMAT:
-			return createEFormatFromString(eDataType, initialValue);
-		case EnumerationPackage.EPRESENT_MODE:
-			return createEPresentModeFromString(eDataType, initialValue);
-		case EnumerationPackage.EPOLYGON_MODE:
-			return createEPolygonModeFromString(eDataType, initialValue);
-		case EnumerationPackage.EIMAGE_USAGE:
-			return createEImageUsageFromString(eDataType, initialValue);
-		case EnumerationPackage.EBUFFER_USAGE:
-			return createEBufferUsageFromString(eDataType, initialValue);
-		case EnumerationPackage.EMEMORY_PROPERTY:
-			return createEMemoryPropertyFromString(eDataType, initialValue);
-		case EnumerationPackage.ESAMPLE_COUNT:
-			return createESampleCountFromString(eDataType, initialValue);
-		default:
-			throw new IllegalArgumentException(
-					"The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			case EnumerationPackage.EIMAGE_LAYOUT:
+				return createEImageLayoutFromString(eDataType, initialValue);
+			case EnumerationPackage.EPHYSICAL_DEVICE_FEATURE:
+				return createEPhysicalDeviceFeatureFromString(eDataType, initialValue);
+			case EnumerationPackage.ECULL_MODE:
+				return createECullModeFromString(eDataType, initialValue);
+			case EnumerationPackage.EDESCRIPTOR_TYPE:
+				return createEDescriptorTypeFromString(eDataType, initialValue);
+			case EnumerationPackage.EFRONT_FACE:
+				return createEFrontFaceFromString(eDataType, initialValue);
+			case EnumerationPackage.EBORDER_COLOR:
+				return createEBorderColorFromString(eDataType, initialValue);
+			case EnumerationPackage.ECOMMAND_STAGE:
+				return createECommandStageFromString(eDataType, initialValue);
+			case EnumerationPackage.EATTACHMENT_LOAD_OP:
+				return createEAttachmentLoadOpFromString(eDataType, initialValue);
+			case EnumerationPackage.ELOGIC_OP:
+				return createELogicOpFromString(eDataType, initialValue);
+			case EnumerationPackage.EPRIMITIVE_TOPOLOGY:
+				return createEPrimitiveTopologyFromString(eDataType, initialValue);
+			case EnumerationPackage.EATTACHMENT_STORE_OP:
+				return createEAttachmentStoreOpFromString(eDataType, initialValue);
+			case EnumerationPackage.ESHADER_STAGE:
+				return createEShaderStageFromString(eDataType, initialValue);
+			case EnumerationPackage.EFILTER:
+				return createEFilterFromString(eDataType, initialValue);
+			case EnumerationPackage.ESAMPLER_MIPMAP_MODE:
+				return createESamplerMipmapModeFromString(eDataType, initialValue);
+			case EnumerationPackage.ESAMPLER_ADDRESS_MODE:
+				return createESamplerAddressModeFromString(eDataType, initialValue);
+			case EnumerationPackage.EBLEND_FACTOR:
+				return createEBlendFactorFromString(eDataType, initialValue);
+			case EnumerationPackage.EINDEX_TYPE:
+				return createEIndexTypeFromString(eDataType, initialValue);
+			case EnumerationPackage.EINPUT_RATE:
+				return createEInputRateFromString(eDataType, initialValue);
+			case EnumerationPackage.EDYNAMIC_STATE:
+				return createEDynamicStateFromString(eDataType, initialValue);
+			case EnumerationPackage.EBLEND_OP:
+				return createEBlendOpFromString(eDataType, initialValue);
+			case EnumerationPackage.EACCESS:
+				return createEAccessFromString(eDataType, initialValue);
+			case EnumerationPackage.EPIPELINE_STAGE:
+				return createEPipelineStageFromString(eDataType, initialValue);
+			case EnumerationPackage.ECOLOR_SPACE:
+				return createEColorSpaceFromString(eDataType, initialValue);
+			case EnumerationPackage.EFORMAT:
+				return createEFormatFromString(eDataType, initialValue);
+			case EnumerationPackage.EPRESENT_MODE:
+				return createEPresentModeFromString(eDataType, initialValue);
+			case EnumerationPackage.EPOLYGON_MODE:
+				return createEPolygonModeFromString(eDataType, initialValue);
+			case EnumerationPackage.EIMAGE_USAGE:
+				return createEImageUsageFromString(eDataType, initialValue);
+			case EnumerationPackage.EBUFFER_USAGE:
+				return createEBufferUsageFromString(eDataType, initialValue);
+			case EnumerationPackage.EMEMORY_PROPERTY:
+				return createEMemoryPropertyFromString(eDataType, initialValue);
+			case EnumerationPackage.ESAMPLE_COUNT:
+				return createESampleCountFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -157,69 +155,68 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	{
 		switch (eDataType.getClassifierID())
 		{
-		case EnumerationPackage.EIMAGE_LAYOUT:
-			return convertEImageLayoutToString(eDataType, instanceValue);
-		case EnumerationPackage.EPHYSICAL_DEVICE_FEATURE:
-			return convertEPhysicalDeviceFeatureToString(eDataType, instanceValue);
-		case EnumerationPackage.ECULL_MODE:
-			return convertECullModeToString(eDataType, instanceValue);
-		case EnumerationPackage.EDESCRIPTOR_TYPE:
-			return convertEDescriptorTypeToString(eDataType, instanceValue);
-		case EnumerationPackage.EFRONT_FACE:
-			return convertEFrontFaceToString(eDataType, instanceValue);
-		case EnumerationPackage.EBORDER_COLOR:
-			return convertEBorderColorToString(eDataType, instanceValue);
-		case EnumerationPackage.ECOMMAND_STAGE:
-			return convertECommandStageToString(eDataType, instanceValue);
-		case EnumerationPackage.EATTACHMENT_LOAD_OP:
-			return convertEAttachmentLoadOpToString(eDataType, instanceValue);
-		case EnumerationPackage.ELOGIC_OP:
-			return convertELogicOpToString(eDataType, instanceValue);
-		case EnumerationPackage.EPRIMITIVE_TOPOLOGY:
-			return convertEPrimitiveTopologyToString(eDataType, instanceValue);
-		case EnumerationPackage.EATTACHMENT_STORE_OP:
-			return convertEAttachmentStoreOpToString(eDataType, instanceValue);
-		case EnumerationPackage.ESHADER_STAGE:
-			return convertEShaderStageToString(eDataType, instanceValue);
-		case EnumerationPackage.EFILTER:
-			return convertEFilterToString(eDataType, instanceValue);
-		case EnumerationPackage.ESAMPLER_MIPMAP_MODE:
-			return convertESamplerMipmapModeToString(eDataType, instanceValue);
-		case EnumerationPackage.ESAMPLER_ADDRESS_MODE:
-			return convertESamplerAddressModeToString(eDataType, instanceValue);
-		case EnumerationPackage.EBLEND_FACTOR:
-			return convertEBlendFactorToString(eDataType, instanceValue);
-		case EnumerationPackage.EINDEX_TYPE:
-			return convertEIndexTypeToString(eDataType, instanceValue);
-		case EnumerationPackage.EINPUT_RATE:
-			return convertEInputRateToString(eDataType, instanceValue);
-		case EnumerationPackage.EDYNAMIC_STATE:
-			return convertEDynamicStateToString(eDataType, instanceValue);
-		case EnumerationPackage.EBLEND_OP:
-			return convertEBlendOpToString(eDataType, instanceValue);
-		case EnumerationPackage.EACCESS:
-			return convertEAccessToString(eDataType, instanceValue);
-		case EnumerationPackage.EPIPELINE_STAGE:
-			return convertEPipelineStageToString(eDataType, instanceValue);
-		case EnumerationPackage.ECOLOR_SPACE:
-			return convertEColorSpaceToString(eDataType, instanceValue);
-		case EnumerationPackage.EFORMAT:
-			return convertEFormatToString(eDataType, instanceValue);
-		case EnumerationPackage.EPRESENT_MODE:
-			return convertEPresentModeToString(eDataType, instanceValue);
-		case EnumerationPackage.EPOLYGON_MODE:
-			return convertEPolygonModeToString(eDataType, instanceValue);
-		case EnumerationPackage.EIMAGE_USAGE:
-			return convertEImageUsageToString(eDataType, instanceValue);
-		case EnumerationPackage.EBUFFER_USAGE:
-			return convertEBufferUsageToString(eDataType, instanceValue);
-		case EnumerationPackage.EMEMORY_PROPERTY:
-			return convertEMemoryPropertyToString(eDataType, instanceValue);
-		case EnumerationPackage.ESAMPLE_COUNT:
-			return convertESampleCountToString(eDataType, instanceValue);
-		default:
-			throw new IllegalArgumentException(
-					"The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			case EnumerationPackage.EIMAGE_LAYOUT:
+				return convertEImageLayoutToString(eDataType, instanceValue);
+			case EnumerationPackage.EPHYSICAL_DEVICE_FEATURE:
+				return convertEPhysicalDeviceFeatureToString(eDataType, instanceValue);
+			case EnumerationPackage.ECULL_MODE:
+				return convertECullModeToString(eDataType, instanceValue);
+			case EnumerationPackage.EDESCRIPTOR_TYPE:
+				return convertEDescriptorTypeToString(eDataType, instanceValue);
+			case EnumerationPackage.EFRONT_FACE:
+				return convertEFrontFaceToString(eDataType, instanceValue);
+			case EnumerationPackage.EBORDER_COLOR:
+				return convertEBorderColorToString(eDataType, instanceValue);
+			case EnumerationPackage.ECOMMAND_STAGE:
+				return convertECommandStageToString(eDataType, instanceValue);
+			case EnumerationPackage.EATTACHMENT_LOAD_OP:
+				return convertEAttachmentLoadOpToString(eDataType, instanceValue);
+			case EnumerationPackage.ELOGIC_OP:
+				return convertELogicOpToString(eDataType, instanceValue);
+			case EnumerationPackage.EPRIMITIVE_TOPOLOGY:
+				return convertEPrimitiveTopologyToString(eDataType, instanceValue);
+			case EnumerationPackage.EATTACHMENT_STORE_OP:
+				return convertEAttachmentStoreOpToString(eDataType, instanceValue);
+			case EnumerationPackage.ESHADER_STAGE:
+				return convertEShaderStageToString(eDataType, instanceValue);
+			case EnumerationPackage.EFILTER:
+				return convertEFilterToString(eDataType, instanceValue);
+			case EnumerationPackage.ESAMPLER_MIPMAP_MODE:
+				return convertESamplerMipmapModeToString(eDataType, instanceValue);
+			case EnumerationPackage.ESAMPLER_ADDRESS_MODE:
+				return convertESamplerAddressModeToString(eDataType, instanceValue);
+			case EnumerationPackage.EBLEND_FACTOR:
+				return convertEBlendFactorToString(eDataType, instanceValue);
+			case EnumerationPackage.EINDEX_TYPE:
+				return convertEIndexTypeToString(eDataType, instanceValue);
+			case EnumerationPackage.EINPUT_RATE:
+				return convertEInputRateToString(eDataType, instanceValue);
+			case EnumerationPackage.EDYNAMIC_STATE:
+				return convertEDynamicStateToString(eDataType, instanceValue);
+			case EnumerationPackage.EBLEND_OP:
+				return convertEBlendOpToString(eDataType, instanceValue);
+			case EnumerationPackage.EACCESS:
+				return convertEAccessToString(eDataType, instanceValue);
+			case EnumerationPackage.EPIPELINE_STAGE:
+				return convertEPipelineStageToString(eDataType, instanceValue);
+			case EnumerationPackage.ECOLOR_SPACE:
+				return convertEColorSpaceToString(eDataType, instanceValue);
+			case EnumerationPackage.EFORMAT:
+				return convertEFormatToString(eDataType, instanceValue);
+			case EnumerationPackage.EPRESENT_MODE:
+				return convertEPresentModeToString(eDataType, instanceValue);
+			case EnumerationPackage.EPOLYGON_MODE:
+				return convertEPolygonModeToString(eDataType, instanceValue);
+			case EnumerationPackage.EIMAGE_USAGE:
+				return convertEImageUsageToString(eDataType, instanceValue);
+			case EnumerationPackage.EBUFFER_USAGE:
+				return convertEBufferUsageToString(eDataType, instanceValue);
+			case EnumerationPackage.EMEMORY_PROPERTY:
+				return convertEMemoryPropertyToString(eDataType, instanceValue);
+			case EnumerationPackage.ESAMPLE_COUNT:
+				return convertESampleCountToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -231,11 +228,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EImageLayout createEImageLayoutFromString(EDataType eDataType, String initialValue)
 	{
 		EImageLayout result = EImageLayout.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -254,15 +247,10 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EPhysicalDeviceFeature createEPhysicalDeviceFeatureFromString(	EDataType eDataType,
-																			String initialValue)
+	public EPhysicalDeviceFeature createEPhysicalDeviceFeatureFromString(EDataType eDataType, String initialValue)
 	{
 		EPhysicalDeviceFeature result = EPhysicalDeviceFeature.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -284,11 +272,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public ECullMode createECullModeFromString(EDataType eDataType, String initialValue)
 	{
 		ECullMode result = ECullMode.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -310,11 +294,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EDescriptorType createEDescriptorTypeFromString(EDataType eDataType, String initialValue)
 	{
 		EDescriptorType result = EDescriptorType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -336,11 +316,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EFrontFace createEFrontFaceFromString(EDataType eDataType, String initialValue)
 	{
 		EFrontFace result = EFrontFace.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -362,11 +338,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EBorderColor createEBorderColorFromString(EDataType eDataType, String initialValue)
 	{
 		EBorderColor result = EBorderColor.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -388,11 +360,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public ECommandStage createECommandStageFromString(EDataType eDataType, String initialValue)
 	{
 		ECommandStage result = ECommandStage.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -411,15 +379,10 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttachmentLoadOp createEAttachmentLoadOpFromString(	EDataType eDataType,
-																String initialValue)
+	public EAttachmentLoadOp createEAttachmentLoadOpFromString(EDataType eDataType, String initialValue)
 	{
 		EAttachmentLoadOp result = EAttachmentLoadOp.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -441,11 +404,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public ELogicOp createELogicOpFromString(EDataType eDataType, String initialValue)
 	{
 		ELogicOp result = ELogicOp.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -464,15 +423,10 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EPrimitiveTopology createEPrimitiveTopologyFromString(	EDataType eDataType,
-																	String initialValue)
+	public EPrimitiveTopology createEPrimitiveTopologyFromString(EDataType eDataType, String initialValue)
 	{
 		EPrimitiveTopology result = EPrimitiveTopology.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -491,15 +445,10 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttachmentStoreOp createEAttachmentStoreOpFromString(	EDataType eDataType,
-																	String initialValue)
+	public EAttachmentStoreOp createEAttachmentStoreOpFromString(EDataType eDataType, String initialValue)
 	{
 		EAttachmentStoreOp result = EAttachmentStoreOp.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -521,11 +470,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EShaderStage createEShaderStageFromString(EDataType eDataType, String initialValue)
 	{
 		EShaderStage result = EShaderStage.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -547,11 +492,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EFilter createEFilterFromString(EDataType eDataType, String initialValue)
 	{
 		EFilter result = EFilter.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -570,15 +511,10 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ESamplerMipmapMode createESamplerMipmapModeFromString(	EDataType eDataType,
-																	String initialValue)
+	public ESamplerMipmapMode createESamplerMipmapModeFromString(EDataType eDataType, String initialValue)
 	{
 		ESamplerMipmapMode result = ESamplerMipmapMode.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -597,15 +533,10 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ESamplerAddressMode createESamplerAddressModeFromString(	EDataType eDataType,
-																	String initialValue)
+	public ESamplerAddressMode createESamplerAddressModeFromString(EDataType eDataType, String initialValue)
 	{
 		ESamplerAddressMode result = ESamplerAddressMode.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -627,11 +558,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EBlendFactor createEBlendFactorFromString(EDataType eDataType, String initialValue)
 	{
 		EBlendFactor result = EBlendFactor.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -653,11 +580,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EIndexType createEIndexTypeFromString(EDataType eDataType, String initialValue)
 	{
 		EIndexType result = EIndexType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -679,11 +602,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EInputRate createEInputRateFromString(EDataType eDataType, String initialValue)
 	{
 		EInputRate result = EInputRate.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -705,11 +624,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EDynamicState createEDynamicStateFromString(EDataType eDataType, String initialValue)
 	{
 		EDynamicState result = EDynamicState.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -731,11 +646,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EBlendOp createEBlendOpFromString(EDataType eDataType, String initialValue)
 	{
 		EBlendOp result = EBlendOp.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -757,11 +668,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EAccess createEAccessFromString(EDataType eDataType, String initialValue)
 	{
 		EAccess result = EAccess.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -783,11 +690,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EPipelineStage createEPipelineStageFromString(EDataType eDataType, String initialValue)
 	{
 		EPipelineStage result = EPipelineStage.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -809,11 +712,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EColorSpace createEColorSpaceFromString(EDataType eDataType, String initialValue)
 	{
 		EColorSpace result = EColorSpace.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -835,11 +734,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EFormat createEFormatFromString(EDataType eDataType, String initialValue)
 	{
 		EFormat result = EFormat.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -861,11 +756,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EPresentMode createEPresentModeFromString(EDataType eDataType, String initialValue)
 	{
 		EPresentMode result = EPresentMode.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -887,11 +778,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EPolygonMode createEPolygonModeFromString(EDataType eDataType, String initialValue)
 	{
 		EPolygonMode result = EPolygonMode.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -913,11 +800,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EImageUsage createEImageUsageFromString(EDataType eDataType, String initialValue)
 	{
 		EImageUsage result = EImageUsage.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -939,11 +822,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EBufferUsage createEBufferUsageFromString(EDataType eDataType, String initialValue)
 	{
 		EBufferUsage result = EBufferUsage.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -965,11 +844,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public EMemoryProperty createEMemoryPropertyFromString(EDataType eDataType, String initialValue)
 	{
 		EMemoryProperty result = EMemoryProperty.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -991,11 +866,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	public ESampleCount createESampleCountFromString(EDataType eDataType, String initialValue)
 	{
 		ESampleCount result = ESampleCount.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '"
-				+ initialValue
-				+ "' is not a valid enumerator of '"
-				+ eDataType.getName()
-				+ "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -1017,7 +888,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	@Override
 	public EnumerationPackage getEnumerationPackage()
 	{
-		return (EnumerationPackage) getEPackage();
+		return (EnumerationPackage)getEPackage();
 	}
 
 	/**

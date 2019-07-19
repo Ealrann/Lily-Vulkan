@@ -72,13 +72,19 @@ public class ColorDomainItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addFormatPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ColorDomain_format_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ColorDomain_format_feature",
-								"_UI_ColorDomain_type"),
-						GraphicPackage.Literals.COLOR_DOMAIN__FORMAT, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ColorDomain_format_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ColorDomain_format_feature", "_UI_ColorDomain_type"),
+				 GraphicPackage.Literals.COLOR_DOMAIN__FORMAT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -89,13 +95,19 @@ public class ColorDomainItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addColorSpacePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ColorDomain_colorSpace_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ColorDomain_colorSpace_feature",
-								"_UI_ColorDomain_type"),
-						GraphicPackage.Literals.COLOR_DOMAIN__COLOR_SPACE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ColorDomain_colorSpace_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ColorDomain_colorSpace_feature", "_UI_ColorDomain_type"),
+				 GraphicPackage.Literals.COLOR_DOMAIN__COLOR_SPACE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -119,11 +131,11 @@ public class ColorDomainItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	public String getText(Object object)
 	{
-		EFormat labelValue = ((ColorDomain) object).getFormat();
+		EFormat labelValue = ((ColorDomain)object).getFormat();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0
-				? getString("_UI_ColorDomain_type")
-				: getString("_UI_ColorDomain_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_ColorDomain_type") :
+			getString("_UI_ColorDomain_type") + " " + label;
 	}
 
 	/**
@@ -140,10 +152,10 @@ public class ColorDomainItemProvider extends ItemProviderAdapter implements IEdi
 
 		switch (notification.getFeatureID(ColorDomain.class))
 		{
-		case GraphicPackage.COLOR_DOMAIN__FORMAT:
-		case GraphicPackage.COLOR_DOMAIN__COLOR_SPACE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case GraphicPackage.COLOR_DOMAIN__FORMAT:
+			case GraphicPackage.COLOR_DOMAIN__COLOR_SPACE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -170,7 +182,7 @@ public class ColorDomainItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

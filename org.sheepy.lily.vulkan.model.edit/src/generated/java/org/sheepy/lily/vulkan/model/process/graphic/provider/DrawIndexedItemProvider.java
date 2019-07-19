@@ -80,13 +80,19 @@ public class DrawIndexedItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -97,13 +103,19 @@ public class DrawIndexedItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
-								"_UI_IPipelineTask_type"),
-						ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipelineTask_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature", "_UI_IPipelineTask_type"),
+				 ProcessPackage.Literals.IPIPELINE_TASK__ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -114,13 +126,19 @@ public class DrawIndexedItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addIndexCountPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_DrawIndexed_indexCount_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_DrawIndexed_indexCount_feature",
-								"_UI_DrawIndexed_type"),
-						GraphicPackage.Literals.DRAW_INDEXED__INDEX_COUNT, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DrawIndexed_indexCount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DrawIndexed_indexCount_feature", "_UI_DrawIndexed_type"),
+				 GraphicPackage.Literals.DRAW_INDEXED__INDEX_COUNT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -131,13 +149,19 @@ public class DrawIndexedItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addInstanceCountPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_DrawIndexed_instanceCount_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_DrawIndexed_instanceCount_feature",
-								"_UI_DrawIndexed_type"),
-						GraphicPackage.Literals.DRAW_INDEXED__INSTANCE_COUNT, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DrawIndexed_instanceCount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DrawIndexed_instanceCount_feature", "_UI_DrawIndexed_type"),
+				 GraphicPackage.Literals.DRAW_INDEXED__INSTANCE_COUNT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -148,13 +172,19 @@ public class DrawIndexedItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addFirstIndexPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_DrawIndexed_firstIndex_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_DrawIndexed_firstIndex_feature",
-								"_UI_DrawIndexed_type"),
-						GraphicPackage.Literals.DRAW_INDEXED__FIRST_INDEX, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DrawIndexed_firstIndex_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DrawIndexed_firstIndex_feature", "_UI_DrawIndexed_type"),
+				 GraphicPackage.Literals.DRAW_INDEXED__FIRST_INDEX,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -165,13 +195,19 @@ public class DrawIndexedItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addVertexOffsetPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_DrawIndexed_vertexOffset_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_DrawIndexed_vertexOffset_feature",
-								"_UI_DrawIndexed_type"),
-						GraphicPackage.Literals.DRAW_INDEXED__VERTEX_OFFSET, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DrawIndexed_vertexOffset_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DrawIndexed_vertexOffset_feature", "_UI_DrawIndexed_type"),
+				 GraphicPackage.Literals.DRAW_INDEXED__VERTEX_OFFSET,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -182,13 +218,19 @@ public class DrawIndexedItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addFirstInstancePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_DrawIndexed_firstInstance_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_DrawIndexed_firstInstance_feature",
-								"_UI_DrawIndexed_type"),
-						GraphicPackage.Literals.DRAW_INDEXED__FIRST_INSTANCE, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DrawIndexed_firstInstance_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DrawIndexed_firstInstance_feature", "_UI_DrawIndexed_type"),
+				 GraphicPackage.Literals.DRAW_INDEXED__FIRST_INSTANCE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -212,10 +254,10 @@ public class DrawIndexedItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((DrawIndexed) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_DrawIndexed_type")
-				: getString("_UI_DrawIndexed_type") + " " + label;
+		String label = ((DrawIndexed)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DrawIndexed_type") :
+			getString("_UI_DrawIndexed_type") + " " + label;
 	}
 
 	/**
@@ -232,15 +274,15 @@ public class DrawIndexedItemProvider extends ItemProviderAdapter implements IEdi
 
 		switch (notification.getFeatureID(DrawIndexed.class))
 		{
-		case GraphicPackage.DRAW_INDEXED__NAME:
-		case GraphicPackage.DRAW_INDEXED__ENABLED:
-		case GraphicPackage.DRAW_INDEXED__INDEX_COUNT:
-		case GraphicPackage.DRAW_INDEXED__INSTANCE_COUNT:
-		case GraphicPackage.DRAW_INDEXED__FIRST_INDEX:
-		case GraphicPackage.DRAW_INDEXED__VERTEX_OFFSET:
-		case GraphicPackage.DRAW_INDEXED__FIRST_INSTANCE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case GraphicPackage.DRAW_INDEXED__NAME:
+			case GraphicPackage.DRAW_INDEXED__ENABLED:
+			case GraphicPackage.DRAW_INDEXED__INDEX_COUNT:
+			case GraphicPackage.DRAW_INDEXED__INSTANCE_COUNT:
+			case GraphicPackage.DRAW_INDEXED__FIRST_INDEX:
+			case GraphicPackage.DRAW_INDEXED__VERTEX_OFFSET:
+			case GraphicPackage.DRAW_INDEXED__FIRST_INSTANCE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -267,7 +309,7 @@ public class DrawIndexedItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

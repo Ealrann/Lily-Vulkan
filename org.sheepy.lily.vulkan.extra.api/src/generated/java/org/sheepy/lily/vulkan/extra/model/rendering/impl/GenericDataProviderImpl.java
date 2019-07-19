@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.rendering.impl;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericDataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
@@ -46,9 +47,9 @@ public abstract class GenericDataProviderImpl<T extends Presentation> extends Bu
 	 * @generated
 	 */
 	@Override
-	public void setDataSource(RenderableDataSource<T> newDataSource)
+	public NotificationChain basicSetDataSource(RenderableDataSource<T> newDataSource, NotificationChain msgs)
 	{
-		super.setDataSource(newDataSource);
+		return super.basicSetDataSource(newDataSource, msgs);
 	}
 
 } //GenericDataProviderImpl

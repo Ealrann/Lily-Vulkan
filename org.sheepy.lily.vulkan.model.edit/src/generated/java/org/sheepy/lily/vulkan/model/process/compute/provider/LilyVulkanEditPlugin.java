@@ -43,9 +43,13 @@ public final class LilyVulkanEditPlugin extends EMFPlugin
 	 */
 	public LilyVulkanEditPlugin()
 	{
-		super(new ResourceLocator[] {
-				EcoreEditPlugin.INSTANCE, LilyEditPlugin.INSTANCE, VulkanEditPlugin.INSTANCE,
-		});
+		super
+		  (new ResourceLocator [] 
+		   {
+		     EcoreEditPlugin.INSTANCE,
+		     LilyEditPlugin.INSTANCE,
+		     VulkanEditPlugin.INSTANCE,
+		   });
 	}
 
 	/**

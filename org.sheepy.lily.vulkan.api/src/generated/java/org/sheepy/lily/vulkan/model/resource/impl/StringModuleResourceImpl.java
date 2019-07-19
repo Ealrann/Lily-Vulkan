@@ -88,8 +88,8 @@ public class StringModuleResourceImpl extends AbstractModuleResourceImpl impleme
 	{
 		String oldModuleName = moduleName;
 		moduleName = newModuleName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME, oldModuleName, moduleName));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME, oldModuleName, moduleName));
 	}
 
 	/**
@@ -102,8 +102,8 @@ public class StringModuleResourceImpl extends AbstractModuleResourceImpl impleme
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
-			return getModuleName();
+			case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
+				return getModuleName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -118,9 +118,9 @@ public class StringModuleResourceImpl extends AbstractModuleResourceImpl impleme
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
-			setModuleName((String) newValue);
-			return;
+			case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
+				setModuleName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -135,9 +135,9 @@ public class StringModuleResourceImpl extends AbstractModuleResourceImpl impleme
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
-			setModuleName(MODULE_NAME_EDEFAULT);
-			return;
+			case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
+				setModuleName(MODULE_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -152,8 +152,8 @@ public class StringModuleResourceImpl extends AbstractModuleResourceImpl impleme
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
-			return MODULE_NAME_EDEFAULT == null ? moduleName != null : !MODULE_NAME_EDEFAULT.equals(moduleName);
+			case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
+				return MODULE_NAME_EDEFAULT == null ? moduleName != null : !MODULE_NAME_EDEFAULT.equals(moduleName);
 		}
 		return super.eIsSet(featureID);
 	}

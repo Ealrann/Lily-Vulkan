@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getPresentationPkg()
- * @model
+ * @model abstract="true"
  * @generated
  */
-public interface PresentationPkg extends EObject
+public interface PresentationPkg<T extends Presentation> extends EObject
 {
 	/**
 	 * Returns the value of the '<em><b>Presentations</b></em>' containment reference list.

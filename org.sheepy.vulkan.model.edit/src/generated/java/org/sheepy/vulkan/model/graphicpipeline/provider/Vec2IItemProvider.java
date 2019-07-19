@@ -31,9 +31,8 @@ import org.sheepy.vulkan.model.graphicpipeline.Vec2I;
  * <!-- end-user-doc -->
  * @generated
  */
-public class Vec2IItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class Vec2IItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -73,13 +72,19 @@ public class Vec2IItemProvider extends ItemProviderAdapter
 	 */
 	protected void addXPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Vec2I_x_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Vec2I_x_feature",
-						"_UI_Vec2I_type"),
-				GraphicpipelinePackage.Literals.VEC2_I__X, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Vec2I_x_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Vec2I_x_feature", "_UI_Vec2I_type"),
+				 GraphicpipelinePackage.Literals.VEC2_I__X,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -90,13 +95,19 @@ public class Vec2IItemProvider extends ItemProviderAdapter
 	 */
 	protected void addYPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Vec2I_y_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Vec2I_y_feature",
-						"_UI_Vec2I_type"),
-				GraphicpipelinePackage.Literals.VEC2_I__Y, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Vec2I_y_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Vec2I_y_feature", "_UI_Vec2I_type"),
+				 GraphicpipelinePackage.Literals.VEC2_I__Y,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -120,7 +131,7 @@ public class Vec2IItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		Vec2I vec2I = (Vec2I) object;
+		Vec2I vec2I = (Vec2I)object;
 		return getString("_UI_Vec2I_type") + " " + vec2I.getX();
 	}
 
@@ -138,11 +149,10 @@ public class Vec2IItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(Vec2I.class))
 		{
-		case GraphicpipelinePackage.VEC2_I__X:
-		case GraphicpipelinePackage.VEC2_I__Y:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case GraphicpipelinePackage.VEC2_I__X:
+			case GraphicpipelinePackage.VEC2_I__Y:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -169,7 +179,7 @@ public class Vec2IItemProvider extends ItemProviderAdapter
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

@@ -74,13 +74,19 @@ public class AttributeDescriptionItemProvider extends ItemProviderAdapter implem
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -91,13 +97,19 @@ public class AttributeDescriptionItemProvider extends ItemProviderAdapter implem
 	 */
 	protected void addFormatPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_AttributeDescription_format_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_AttributeDescription_format_feature",
-								"_UI_AttributeDescription_type"),
-						GraphicPackage.Literals.ATTRIBUTE_DESCRIPTION__FORMAT, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AttributeDescription_format_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeDescription_format_feature", "_UI_AttributeDescription_type"),
+				 GraphicPackage.Literals.ATTRIBUTE_DESCRIPTION__FORMAT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -108,13 +120,19 @@ public class AttributeDescriptionItemProvider extends ItemProviderAdapter implem
 	 */
 	protected void addOffsetPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_AttributeDescription_offset_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_AttributeDescription_offset_feature",
-								"_UI_AttributeDescription_type"),
-						GraphicPackage.Literals.ATTRIBUTE_DESCRIPTION__OFFSET, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AttributeDescription_offset_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeDescription_offset_feature", "_UI_AttributeDescription_type"),
+				 GraphicPackage.Literals.ATTRIBUTE_DESCRIPTION__OFFSET,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -138,10 +156,10 @@ public class AttributeDescriptionItemProvider extends ItemProviderAdapter implem
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((AttributeDescription) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_AttributeDescription_type")
-				: getString("_UI_AttributeDescription_type") + " " + label;
+		String label = ((AttributeDescription)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_AttributeDescription_type") :
+			getString("_UI_AttributeDescription_type") + " " + label;
 	}
 
 	/**
@@ -158,11 +176,11 @@ public class AttributeDescriptionItemProvider extends ItemProviderAdapter implem
 
 		switch (notification.getFeatureID(AttributeDescription.class))
 		{
-		case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
-		case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
-		case GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -189,7 +207,7 @@ public class AttributeDescriptionItemProvider extends ItemProviderAdapter implem
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

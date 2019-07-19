@@ -30,13 +30,13 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		try
 		{
-			ProcessFactory theProcessFactory = (ProcessFactory) EPackage.Registry.INSTANCE
-					.getEFactory(ProcessPackage.eNS_URI);
+			ProcessFactory theProcessFactory = (ProcessFactory)EPackage.Registry.INSTANCE.getEFactory(ProcessPackage.eNS_URI);
 			if (theProcessFactory != null)
 			{
 				return theProcessFactory;
 			}
-		} catch (Exception exception)
+		}
+		catch (Exception exception)
 		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
@@ -64,26 +64,17 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-		case ProcessPackage.PROCESS_PART_PKG:
-			return createProcessPartPkg();
-		case ProcessPackage.TASK_PKG:
-			return createTaskPkg();
-		case ProcessPackage.PIPELINE:
-			return createPipeline();
-		case ProcessPackage.PIPELINE_BARRIER:
-			return createPipelineBarrier();
-		case ProcessPackage.COMPOSITE_TASK:
-			return createCompositeTask();
-		case ProcessPackage.BIND_DESCRIPTOR_SETS:
-			return createBindDescriptorSets();
-		case ProcessPackage.PUSH_CONSTANT_BUFFER:
-			return createPushConstantBuffer();
-		case ProcessPackage.PUSH_BUFFER_TASK:
-			return createPushBufferTask();
-		case ProcessPackage.GET_BUFFER_TASK:
-			return createGetBufferTask();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case ProcessPackage.PROCESS_PART_PKG: return createProcessPartPkg();
+			case ProcessPackage.TASK_PKG: return createTaskPkg();
+			case ProcessPackage.PIPELINE: return createPipeline();
+			case ProcessPackage.PIPELINE_BARRIER: return createPipelineBarrier();
+			case ProcessPackage.COMPOSITE_TASK: return createCompositeTask();
+			case ProcessPackage.BIND_DESCRIPTOR_SETS: return createBindDescriptorSets();
+			case ProcessPackage.PUSH_CONSTANT_BUFFER: return createPushConstantBuffer();
+			case ProcessPackage.PUSH_BUFFER_TASK: return createPushBufferTask();
+			case ProcessPackage.GET_BUFFER_TASK: return createGetBufferTask();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -203,7 +194,7 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	@Override
 	public ProcessPackage getProcessPackage()
 	{
-		return (ProcessPackage) getEPackage();
+		return (ProcessPackage)getEPackage();
 	}
 
 	/**

@@ -88,6 +88,7 @@ public class GenericVertexProviderItemProvider extends GenericDataProviderItemPr
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
+		super.notifyChanged(notification);
 	}
 
 	/**

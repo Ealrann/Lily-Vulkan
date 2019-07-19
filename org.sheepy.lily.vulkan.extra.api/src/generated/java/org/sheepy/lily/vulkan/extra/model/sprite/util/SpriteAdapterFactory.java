@@ -13,9 +13,9 @@ import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
-
-import org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer;
+import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
+import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.sprite.*;
 
 import org.sheepy.lily.vulkan.model.IResourceContainer;
@@ -89,14 +89,19 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 		new SpriteSwitch<Adapter>()
 		{
 			@Override
-			public Adapter caseSpriteRendererMaintainer(SpriteRendererMaintainer object)
+			public Adapter caseSpriteRenderer(SpriteRenderer object)
 			{
-				return createSpriteRendererMaintainerAdapter();
+				return createSpriteRendererAdapter();
 			}
 			@Override
 			public Adapter caseSprite(Sprite object)
 			{
 				return createSpriteAdapter();
+			}
+			@Override
+			public Adapter caseSpritePkg(SpritePkg object)
+			{
+				return createSpritePkgAdapter();
 			}
 			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
@@ -134,14 +139,19 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 				return createMaintainerAdapter();
 			}
 			@Override
-			public <T extends Presentation> Adapter caseGenericRendererMaintainer(GenericRendererMaintainer<T> object)
+			public <T extends Presentation> Adapter caseGenericRenderer(GenericRenderer<T> object)
 			{
-				return createGenericRendererMaintainerAdapter();
+				return createGenericRendererAdapter();
 			}
 			@Override
 			public Adapter casePresentation(Presentation object)
 			{
 				return createPresentationAdapter();
+			}
+			@Override
+			public <T extends Presentation> Adapter casePresentationPkg(PresentationPkg<T> object)
+			{
+				return createPresentationPkgAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -166,16 +176,16 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRendererMaintainer <em>Renderer Maintainer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer <em>Renderer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteRendererMaintainer
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer
 	 * @generated
 	 */
-	public Adapter createSpriteRendererMaintainerAdapter()
+	public Adapter createSpriteRendererAdapter()
 	{
 		return null;
 	}
@@ -191,6 +201,21 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createSpriteAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg <em>Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg
+	 * @generated
+	 */
+	public Adapter createSpritePkgAdapter()
 	{
 		return null;
 	}
@@ -301,16 +326,16 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer <em>Generic Renderer Maintainer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer <em>Generic Renderer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer
 	 * @generated
 	 */
-	public Adapter createGenericRendererMaintainerAdapter()
+	public Adapter createGenericRendererAdapter()
 	{
 		return null;
 	}
@@ -326,6 +351,21 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createPresentationAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg <em>Presentation Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg
+	 * @generated
+	 */
+	public Adapter createPresentationPkgAdapter()
 	{
 		return null;
 	}

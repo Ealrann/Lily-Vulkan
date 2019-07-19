@@ -62,13 +62,19 @@ public class DescribedDataProviderItemProvider extends BufferDataProviderItemPro
 	 */
 	protected void addDescriptorTypePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Descriptor_descriptorType_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Descriptor_descriptorType_feature",
-								"_UI_Descriptor_type"),
-						ResourcePackage.Literals.DESCRIPTOR__DESCRIPTOR_TYPE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Descriptor_descriptorType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Descriptor_descriptorType_feature", "_UI_Descriptor_type"),
+				 ResourcePackage.Literals.DESCRIPTOR__DESCRIPTOR_TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -79,13 +85,19 @@ public class DescribedDataProviderItemProvider extends BufferDataProviderItemPro
 	 */
 	protected void addShaderStagesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Descriptor_shaderStages_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Descriptor_shaderStages_feature",
-								"_UI_Descriptor_type"),
-						ResourcePackage.Literals.DESCRIPTOR__SHADER_STAGES, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Descriptor_shaderStages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Descriptor_shaderStages_feature", "_UI_Descriptor_type"),
+				 ResourcePackage.Literals.DESCRIPTOR__SHADER_STAGES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -109,10 +121,10 @@ public class DescribedDataProviderItemProvider extends BufferDataProviderItemPro
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((DescribedDataProvider<?>) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_DescribedDataProvider_type")
-				: getString("_UI_DescribedDataProvider_type") + " " + label;
+		String label = ((DescribedDataProvider<?>)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DescribedDataProvider_type") :
+			getString("_UI_DescribedDataProvider_type") + " " + label;
 	}
 
 	/**
@@ -129,10 +141,10 @@ public class DescribedDataProviderItemProvider extends BufferDataProviderItemPro
 
 		switch (notification.getFeatureID(DescribedDataProvider.class))
 		{
-		case ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE:
-		case ResourcePackage.DESCRIBED_DATA_PROVIDER__SHADER_STAGES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE:
+			case ResourcePackage.DESCRIBED_DATA_PROVIDER__SHADER_STAGES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

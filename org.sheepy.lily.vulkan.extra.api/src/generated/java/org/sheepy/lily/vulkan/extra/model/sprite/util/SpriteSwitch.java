@@ -11,9 +11,9 @@ import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
-
-import org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer;
+import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
+import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.sprite.*;
 
 import org.sheepy.lily.vulkan.model.IResourceContainer;
@@ -86,18 +86,18 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	{
 		switch (classifierID)
 		{
-			case SpritePackage.SPRITE_RENDERER_MAINTAINER:
+			case SpritePackage.SPRITE_RENDERER:
 			{
-				SpriteRendererMaintainer spriteRendererMaintainer = (SpriteRendererMaintainer)theEObject;
-				T1 result = caseSpriteRendererMaintainer(spriteRendererMaintainer);
-				if (result == null) result = caseGenericRendererMaintainer(spriteRendererMaintainer);
-				if (result == null) result = caseGraphicsPipeline(spriteRendererMaintainer);
-				if (result == null) result = caseMaintainer(spriteRendererMaintainer);
-				if (result == null) result = caseIPipeline(spriteRendererMaintainer);
-				if (result == null) result = caseMaintainable(spriteRendererMaintainer);
-				if (result == null) result = caseLNamedElement(spriteRendererMaintainer);
-				if (result == null) result = caseIResourceContainer(spriteRendererMaintainer);
-				if (result == null) result = caseIProcessPart(spriteRendererMaintainer);
+				SpriteRenderer spriteRenderer = (SpriteRenderer)theEObject;
+				T1 result = caseSpriteRenderer(spriteRenderer);
+				if (result == null) result = caseGenericRenderer(spriteRenderer);
+				if (result == null) result = caseGraphicsPipeline(spriteRenderer);
+				if (result == null) result = caseMaintainer(spriteRenderer);
+				if (result == null) result = caseIPipeline(spriteRenderer);
+				if (result == null) result = caseMaintainable(spriteRenderer);
+				if (result == null) result = caseLNamedElement(spriteRenderer);
+				if (result == null) result = caseIResourceContainer(spriteRenderer);
+				if (result == null) result = caseIProcessPart(spriteRenderer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -109,22 +109,30 @@ public class SpriteSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SpritePackage.SPRITE_PKG:
+			{
+				SpritePkg spritePkg = (SpritePkg)theEObject;
+				T1 result = caseSpritePkg(spritePkg);
+				if (result == null) result = casePresentationPkg(spritePkg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Renderer Maintainer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Renderer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Renderer Maintainer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Renderer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSpriteRendererMaintainer(SpriteRendererMaintainer object)
+	public T1 caseSpriteRenderer(SpriteRenderer object)
 	{
 		return null;
 	}
@@ -141,6 +149,22 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseSprite(Sprite object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pkg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseSpritePkg(SpritePkg object)
 	{
 		return null;
 	}
@@ -258,17 +282,17 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Generic Renderer Maintainer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Renderer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Generic Renderer Maintainer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Renderer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Presentation> T1 caseGenericRendererMaintainer(GenericRendererMaintainer<T> object)
+	public <T extends Presentation> T1 caseGenericRenderer(GenericRenderer<T> object)
 	{
 		return null;
 	}
@@ -285,6 +309,22 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 casePresentation(Presentation object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Presentation Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Presentation Pkg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Presentation> T1 casePresentationPkg(PresentationPkg<T> object)
 	{
 		return null;
 	}

@@ -76,8 +76,7 @@ public class DescriptorSetPkgImpl extends MinimalEObjectImpl.Container implement
 	{
 		if (descriptorSets == null)
 		{
-			descriptorSets = new EObjectContainmentEList<DescriptorSet>(DescriptorSet.class, this,
-					ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS);
+			descriptorSets = new EObjectContainmentEList<DescriptorSet>(DescriptorSet.class, this, ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS);
 		}
 		return descriptorSets;
 	}
@@ -92,8 +91,8 @@ public class DescriptorSetPkgImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
-			return ((InternalEList<?>) getDescriptorSets()).basicRemove(otherEnd, msgs);
+			case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
+				return ((InternalEList<?>)getDescriptorSets()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -108,8 +107,8 @@ public class DescriptorSetPkgImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
-			return getDescriptorSets();
+			case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
+				return getDescriptorSets();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -125,10 +124,10 @@ public class DescriptorSetPkgImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
-			getDescriptorSets().clear();
-			getDescriptorSets().addAll((Collection<? extends DescriptorSet>) newValue);
-			return;
+			case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
+				getDescriptorSets().clear();
+				getDescriptorSets().addAll((Collection<? extends DescriptorSet>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -143,9 +142,9 @@ public class DescriptorSetPkgImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
-			getDescriptorSets().clear();
-			return;
+			case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
+				getDescriptorSets().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -160,8 +159,8 @@ public class DescriptorSetPkgImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
-			return descriptorSets != null && !descriptorSets.isEmpty();
+			case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
+				return descriptorSets != null && !descriptorSets.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

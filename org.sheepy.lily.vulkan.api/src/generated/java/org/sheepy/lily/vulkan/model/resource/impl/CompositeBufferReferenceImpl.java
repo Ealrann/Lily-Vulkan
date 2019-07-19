@@ -91,12 +91,12 @@ public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container i
 	{
 		if (buffer != null && buffer.eIsProxy())
 		{
-			InternalEObject oldBuffer = (InternalEObject) buffer;
-			buffer = (CompositeBuffer) eResolveProxy(oldBuffer);
+			InternalEObject oldBuffer = (InternalEObject)buffer;
+			buffer = (CompositeBuffer)eResolveProxy(oldBuffer);
 			if (buffer != oldBuffer)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER, oldBuffer, buffer));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER, oldBuffer, buffer));
 			}
 		}
 		return buffer;
@@ -122,8 +122,8 @@ public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container i
 	{
 		CompositeBuffer oldBuffer = buffer;
 		buffer = newBuffer;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER, oldBuffer, buffer));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER, oldBuffer, buffer));
 	}
 
 	/**
@@ -147,8 +147,8 @@ public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container i
 	{
 		int oldPart = part;
 		part = newPart;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.COMPOSITE_BUFFER_REFERENCE__PART, oldPart, part));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_BUFFER_REFERENCE__PART, oldPart, part));
 	}
 
 	/**
@@ -161,11 +161,11 @@ public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER:
-			if (resolve) return getBuffer();
-			return basicGetBuffer();
-		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__PART:
-			return getPart();
+			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER:
+				if (resolve) return getBuffer();
+				return basicGetBuffer();
+			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__PART:
+				return getPart();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -180,12 +180,12 @@ public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER:
-			setBuffer((CompositeBuffer) newValue);
-			return;
-		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__PART:
-			setPart((Integer) newValue);
-			return;
+			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER:
+				setBuffer((CompositeBuffer)newValue);
+				return;
+			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__PART:
+				setPart((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -200,12 +200,12 @@ public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER:
-			setBuffer((CompositeBuffer) null);
-			return;
-		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__PART:
-			setPart(PART_EDEFAULT);
-			return;
+			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER:
+				setBuffer((CompositeBuffer)null);
+				return;
+			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__PART:
+				setPart(PART_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -220,10 +220,10 @@ public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER:
-			return buffer != null;
-		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__PART:
-			return part != PART_EDEFAULT;
+			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__BUFFER:
+				return buffer != null;
+			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__PART:
+				return part != PART_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -124,8 +124,8 @@ public class PushBufferTaskImpl extends MinimalEObjectImpl.Container implements 
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, ProcessPackage.PUSH_BUFFER_TASK__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PUSH_BUFFER_TASK__NAME, oldName, name));
 	}
 
 	/**
@@ -149,8 +149,8 @@ public class PushBufferTaskImpl extends MinimalEObjectImpl.Container implements 
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PUSH_BUFFER_TASK__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PUSH_BUFFER_TASK__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -163,12 +163,12 @@ public class PushBufferTaskImpl extends MinimalEObjectImpl.Container implements 
 	{
 		if (pushBuffer != null && pushBuffer.eIsProxy())
 		{
-			InternalEObject oldPushBuffer = (InternalEObject) pushBuffer;
-			pushBuffer = (PushBuffer) eResolveProxy(oldPushBuffer);
+			InternalEObject oldPushBuffer = (InternalEObject)pushBuffer;
+			pushBuffer = (PushBuffer)eResolveProxy(oldPushBuffer);
 			if (pushBuffer != oldPushBuffer)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER, oldPushBuffer, pushBuffer));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER, oldPushBuffer, pushBuffer));
 			}
 		}
 		return pushBuffer;
@@ -194,8 +194,8 @@ public class PushBufferTaskImpl extends MinimalEObjectImpl.Container implements 
 	{
 		PushBuffer oldPushBuffer = pushBuffer;
 		pushBuffer = newPushBuffer;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER, oldPushBuffer, pushBuffer));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER, oldPushBuffer, pushBuffer));
 	}
 
 	/**
@@ -208,13 +208,13 @@ public class PushBufferTaskImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PUSH_BUFFER_TASK__NAME:
-			return getName();
-		case ProcessPackage.PUSH_BUFFER_TASK__ENABLED:
-			return isEnabled();
-		case ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER:
-			if (resolve) return getPushBuffer();
-			return basicGetPushBuffer();
+			case ProcessPackage.PUSH_BUFFER_TASK__NAME:
+				return getName();
+			case ProcessPackage.PUSH_BUFFER_TASK__ENABLED:
+				return isEnabled();
+			case ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER:
+				if (resolve) return getPushBuffer();
+				return basicGetPushBuffer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -229,15 +229,15 @@ public class PushBufferTaskImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PUSH_BUFFER_TASK__NAME:
-			setName((String) newValue);
-			return;
-		case ProcessPackage.PUSH_BUFFER_TASK__ENABLED:
-			setEnabled((Boolean) newValue);
-			return;
-		case ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER:
-			setPushBuffer((PushBuffer) newValue);
-			return;
+			case ProcessPackage.PUSH_BUFFER_TASK__NAME:
+				setName((String)newValue);
+				return;
+			case ProcessPackage.PUSH_BUFFER_TASK__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER:
+				setPushBuffer((PushBuffer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -252,15 +252,15 @@ public class PushBufferTaskImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PUSH_BUFFER_TASK__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case ProcessPackage.PUSH_BUFFER_TASK__ENABLED:
-			setEnabled(ENABLED_EDEFAULT);
-			return;
-		case ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER:
-			setPushBuffer((PushBuffer) null);
-			return;
+			case ProcessPackage.PUSH_BUFFER_TASK__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case ProcessPackage.PUSH_BUFFER_TASK__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER:
+				setPushBuffer((PushBuffer)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -275,12 +275,12 @@ public class PushBufferTaskImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PUSH_BUFFER_TASK__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ProcessPackage.PUSH_BUFFER_TASK__ENABLED:
-			return enabled != ENABLED_EDEFAULT;
-		case ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER:
-			return pushBuffer != null;
+			case ProcessPackage.PUSH_BUFFER_TASK__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ProcessPackage.PUSH_BUFFER_TASK__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER:
+				return pushBuffer != null;
 		}
 		return super.eIsSet(featureID);
 	}

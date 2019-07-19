@@ -44,8 +44,7 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Vector4fc CLEAR_VALUE_EDEFAULT = (Vector4fc) TypesFactory.eINSTANCE
-			.createFromString(TypesPackage.eINSTANCE.getColor4f(), "0;0;0;0");
+	protected static final Vector4fc CLEAR_VALUE_EDEFAULT = (Vector4fc)TypesFactory.eINSTANCE.createFromString(TypesPackage.eINSTANCE.getColor4f(), "0;0;0;0");
 
 	/**
 	 * The cached value of the '{@link #getClearValue() <em>Clear Value</em>}' attribute.
@@ -109,8 +108,8 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 	{
 		Vector4fc oldClearValue = clearValue;
 		clearValue = newClearValue;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE, oldClearValue, clearValue));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE, oldClearValue, clearValue));
 	}
 
 	/**
@@ -123,12 +122,12 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 	{
 		if (imageRef != null && imageRef.eIsProxy())
 		{
-			InternalEObject oldImageRef = (InternalEObject) imageRef;
-			imageRef = (Image) eResolveProxy(oldImageRef);
+			InternalEObject oldImageRef = (InternalEObject)imageRef;
+			imageRef = (Image)eResolveProxy(oldImageRef);
 			if (imageRef != oldImageRef)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF, oldImageRef, imageRef));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF, oldImageRef, imageRef));
 			}
 		}
 		return imageRef;
@@ -154,8 +153,8 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 	{
 		Image oldImageRef = imageRef;
 		imageRef = newImageRef;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF, oldImageRef, imageRef));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF, oldImageRef, imageRef));
 	}
 
 	/**
@@ -168,11 +167,11 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
-			return getClearValue();
-		case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
-			if (resolve) return getImageRef();
-			return basicGetImageRef();
+			case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
+				return getClearValue();
+			case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
+				if (resolve) return getImageRef();
+				return basicGetImageRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -187,12 +186,12 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
-			setClearValue((Vector4fc) newValue);
-			return;
-		case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
-			setImageRef((Image) newValue);
-			return;
+			case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
+				setClearValue((Vector4fc)newValue);
+				return;
+			case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
+				setImageRef((Image)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -207,12 +206,12 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
-			setClearValue(CLEAR_VALUE_EDEFAULT);
-			return;
-		case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
-			setImageRef((Image) null);
-			return;
+			case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
+				setClearValue(CLEAR_VALUE_EDEFAULT);
+				return;
+			case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
+				setImageRef((Image)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -227,10 +226,10 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
-			return CLEAR_VALUE_EDEFAULT == null ? clearValue != null : !CLEAR_VALUE_EDEFAULT.equals(clearValue);
-		case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
-			return imageRef != null;
+			case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
+				return CLEAR_VALUE_EDEFAULT == null ? clearValue != null : !CLEAR_VALUE_EDEFAULT.equals(clearValue);
+			case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
+				return imageRef != null;
 		}
 		return super.eIsSet(featureID);
 	}

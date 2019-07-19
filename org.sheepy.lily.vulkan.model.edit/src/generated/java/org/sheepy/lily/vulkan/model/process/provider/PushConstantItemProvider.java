@@ -72,13 +72,19 @@ public class PushConstantItemProvider extends ItemProviderAdapter implements IEd
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -89,13 +95,19 @@ public class PushConstantItemProvider extends ItemProviderAdapter implements IEd
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
-								"_UI_IPipelineTask_type"),
-						ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipelineTask_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature", "_UI_IPipelineTask_type"),
+				 ProcessPackage.Literals.IPIPELINE_TASK__ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -106,13 +118,19 @@ public class PushConstantItemProvider extends ItemProviderAdapter implements IEd
 	 */
 	protected void addStagesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_PushConstant_stages_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PushConstant_stages_feature",
-								"_UI_PushConstant_type"),
-						ProcessPackage.Literals.PUSH_CONSTANT__STAGES, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PushConstant_stages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PushConstant_stages_feature", "_UI_PushConstant_type"),
+				 ProcessPackage.Literals.PUSH_CONSTANT__STAGES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -124,10 +142,10 @@ public class PushConstantItemProvider extends ItemProviderAdapter implements IEd
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((PushConstant) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_PushConstant_type")
-				: getString("_UI_PushConstant_type") + " " + label;
+		String label = ((PushConstant)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_PushConstant_type") :
+			getString("_UI_PushConstant_type") + " " + label;
 	}
 
 	/**
@@ -144,11 +162,11 @@ public class PushConstantItemProvider extends ItemProviderAdapter implements IEd
 
 		switch (notification.getFeatureID(PushConstant.class))
 		{
-		case ProcessPackage.PUSH_CONSTANT__NAME:
-		case ProcessPackage.PUSH_CONSTANT__ENABLED:
-		case ProcessPackage.PUSH_CONSTANT__STAGES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case ProcessPackage.PUSH_CONSTANT__NAME:
+			case ProcessPackage.PUSH_CONSTANT__ENABLED:
+			case ProcessPackage.PUSH_CONSTANT__STAGES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -175,7 +193,7 @@ public class PushConstantItemProvider extends ItemProviderAdapter implements IEd
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

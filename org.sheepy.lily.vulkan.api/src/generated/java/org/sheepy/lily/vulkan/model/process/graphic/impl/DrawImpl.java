@@ -244,8 +244,8 @@ public class DrawImpl extends MinimalEObjectImpl.Container implements Draw
 	{
 		int oldVertexCount = vertexCount;
 		vertexCount = newVertexCount;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.DRAW__VERTEX_COUNT, oldVertexCount, vertexCount));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DRAW__VERTEX_COUNT, oldVertexCount, vertexCount));
 	}
 
 	/**
@@ -269,8 +269,8 @@ public class DrawImpl extends MinimalEObjectImpl.Container implements Draw
 	{
 		int oldInstanceCount = instanceCount;
 		instanceCount = newInstanceCount;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.DRAW__INSTANCE_COUNT, oldInstanceCount, instanceCount));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DRAW__INSTANCE_COUNT, oldInstanceCount, instanceCount));
 	}
 
 	/**
@@ -294,8 +294,8 @@ public class DrawImpl extends MinimalEObjectImpl.Container implements Draw
 	{
 		int oldFirstVertex = firstVertex;
 		firstVertex = newFirstVertex;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.DRAW__FIRST_VERTEX, oldFirstVertex, firstVertex));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DRAW__FIRST_VERTEX, oldFirstVertex, firstVertex));
 	}
 
 	/**
@@ -319,8 +319,8 @@ public class DrawImpl extends MinimalEObjectImpl.Container implements Draw
 	{
 		int oldFirstInstance = firstInstance;
 		firstInstance = newFirstInstance;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.DRAW__FIRST_INSTANCE, oldFirstInstance, firstInstance));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DRAW__FIRST_INSTANCE, oldFirstInstance, firstInstance));
 	}
 
 	/**
@@ -333,18 +333,18 @@ public class DrawImpl extends MinimalEObjectImpl.Container implements Draw
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.DRAW__NAME:
-			return getName();
-		case GraphicPackage.DRAW__ENABLED:
-			return isEnabled();
-		case GraphicPackage.DRAW__VERTEX_COUNT:
-			return getVertexCount();
-		case GraphicPackage.DRAW__INSTANCE_COUNT:
-			return getInstanceCount();
-		case GraphicPackage.DRAW__FIRST_VERTEX:
-			return getFirstVertex();
-		case GraphicPackage.DRAW__FIRST_INSTANCE:
-			return getFirstInstance();
+			case GraphicPackage.DRAW__NAME:
+				return getName();
+			case GraphicPackage.DRAW__ENABLED:
+				return isEnabled();
+			case GraphicPackage.DRAW__VERTEX_COUNT:
+				return getVertexCount();
+			case GraphicPackage.DRAW__INSTANCE_COUNT:
+				return getInstanceCount();
+			case GraphicPackage.DRAW__FIRST_VERTEX:
+				return getFirstVertex();
+			case GraphicPackage.DRAW__FIRST_INSTANCE:
+				return getFirstInstance();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -359,24 +359,24 @@ public class DrawImpl extends MinimalEObjectImpl.Container implements Draw
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.DRAW__NAME:
-			setName((String) newValue);
-			return;
-		case GraphicPackage.DRAW__ENABLED:
-			setEnabled((Boolean) newValue);
-			return;
-		case GraphicPackage.DRAW__VERTEX_COUNT:
-			setVertexCount((Integer) newValue);
-			return;
-		case GraphicPackage.DRAW__INSTANCE_COUNT:
-			setInstanceCount((Integer) newValue);
-			return;
-		case GraphicPackage.DRAW__FIRST_VERTEX:
-			setFirstVertex((Integer) newValue);
-			return;
-		case GraphicPackage.DRAW__FIRST_INSTANCE:
-			setFirstInstance((Integer) newValue);
-			return;
+			case GraphicPackage.DRAW__NAME:
+				setName((String)newValue);
+				return;
+			case GraphicPackage.DRAW__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case GraphicPackage.DRAW__VERTEX_COUNT:
+				setVertexCount((Integer)newValue);
+				return;
+			case GraphicPackage.DRAW__INSTANCE_COUNT:
+				setInstanceCount((Integer)newValue);
+				return;
+			case GraphicPackage.DRAW__FIRST_VERTEX:
+				setFirstVertex((Integer)newValue);
+				return;
+			case GraphicPackage.DRAW__FIRST_INSTANCE:
+				setFirstInstance((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -391,24 +391,24 @@ public class DrawImpl extends MinimalEObjectImpl.Container implements Draw
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.DRAW__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case GraphicPackage.DRAW__ENABLED:
-			setEnabled(ENABLED_EDEFAULT);
-			return;
-		case GraphicPackage.DRAW__VERTEX_COUNT:
-			setVertexCount(VERTEX_COUNT_EDEFAULT);
-			return;
-		case GraphicPackage.DRAW__INSTANCE_COUNT:
-			setInstanceCount(INSTANCE_COUNT_EDEFAULT);
-			return;
-		case GraphicPackage.DRAW__FIRST_VERTEX:
-			setFirstVertex(FIRST_VERTEX_EDEFAULT);
-			return;
-		case GraphicPackage.DRAW__FIRST_INSTANCE:
-			setFirstInstance(FIRST_INSTANCE_EDEFAULT);
-			return;
+			case GraphicPackage.DRAW__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case GraphicPackage.DRAW__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case GraphicPackage.DRAW__VERTEX_COUNT:
+				setVertexCount(VERTEX_COUNT_EDEFAULT);
+				return;
+			case GraphicPackage.DRAW__INSTANCE_COUNT:
+				setInstanceCount(INSTANCE_COUNT_EDEFAULT);
+				return;
+			case GraphicPackage.DRAW__FIRST_VERTEX:
+				setFirstVertex(FIRST_VERTEX_EDEFAULT);
+				return;
+			case GraphicPackage.DRAW__FIRST_INSTANCE:
+				setFirstInstance(FIRST_INSTANCE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -423,18 +423,18 @@ public class DrawImpl extends MinimalEObjectImpl.Container implements Draw
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.DRAW__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case GraphicPackage.DRAW__ENABLED:
-			return enabled != ENABLED_EDEFAULT;
-		case GraphicPackage.DRAW__VERTEX_COUNT:
-			return vertexCount != VERTEX_COUNT_EDEFAULT;
-		case GraphicPackage.DRAW__INSTANCE_COUNT:
-			return instanceCount != INSTANCE_COUNT_EDEFAULT;
-		case GraphicPackage.DRAW__FIRST_VERTEX:
-			return firstVertex != FIRST_VERTEX_EDEFAULT;
-		case GraphicPackage.DRAW__FIRST_INSTANCE:
-			return firstInstance != FIRST_INSTANCE_EDEFAULT;
+			case GraphicPackage.DRAW__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case GraphicPackage.DRAW__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case GraphicPackage.DRAW__VERTEX_COUNT:
+				return vertexCount != VERTEX_COUNT_EDEFAULT;
+			case GraphicPackage.DRAW__INSTANCE_COUNT:
+				return instanceCount != INSTANCE_COUNT_EDEFAULT;
+			case GraphicPackage.DRAW__FIRST_VERTEX:
+				return firstVertex != FIRST_VERTEX_EDEFAULT;
+			case GraphicPackage.DRAW__FIRST_INSTANCE:
+				return firstInstance != FIRST_INSTANCE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

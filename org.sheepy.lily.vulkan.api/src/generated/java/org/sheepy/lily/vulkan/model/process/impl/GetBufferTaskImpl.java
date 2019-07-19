@@ -161,8 +161,8 @@ public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements G
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.GET_BUFFER_TASK__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.GET_BUFFER_TASK__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -175,12 +175,12 @@ public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements G
 	{
 		if (getBuffer != null && getBuffer.eIsProxy())
 		{
-			InternalEObject oldGetBuffer = (InternalEObject) getBuffer;
-			getBuffer = (GetBuffer) eResolveProxy(oldGetBuffer);
+			InternalEObject oldGetBuffer = (InternalEObject)getBuffer;
+			getBuffer = (GetBuffer)eResolveProxy(oldGetBuffer);
 			if (getBuffer != oldGetBuffer)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						ProcessPackage.GET_BUFFER_TASK__GET_BUFFER, oldGetBuffer, getBuffer));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.GET_BUFFER_TASK__GET_BUFFER, oldGetBuffer, getBuffer));
 			}
 		}
 		return getBuffer;
@@ -206,8 +206,8 @@ public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements G
 	{
 		GetBuffer oldGetBuffer = getBuffer;
 		getBuffer = newGetBuffer;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.GET_BUFFER_TASK__GET_BUFFER, oldGetBuffer, getBuffer));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.GET_BUFFER_TASK__GET_BUFFER, oldGetBuffer, getBuffer));
 	}
 
 	/**
@@ -220,12 +220,12 @@ public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements G
 	{
 		if (deviceBuffer != null && deviceBuffer.eIsProxy())
 		{
-			InternalEObject oldDeviceBuffer = (InternalEObject) deviceBuffer;
-			deviceBuffer = (Buffer) eResolveProxy(oldDeviceBuffer);
+			InternalEObject oldDeviceBuffer = (InternalEObject)deviceBuffer;
+			deviceBuffer = (Buffer)eResolveProxy(oldDeviceBuffer);
 			if (deviceBuffer != oldDeviceBuffer)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER, oldDeviceBuffer, deviceBuffer));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER, oldDeviceBuffer, deviceBuffer));
 			}
 		}
 		return deviceBuffer;
@@ -251,8 +251,8 @@ public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements G
 	{
 		Buffer oldDeviceBuffer = deviceBuffer;
 		deviceBuffer = newDeviceBuffer;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER, oldDeviceBuffer, deviceBuffer));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER, oldDeviceBuffer, deviceBuffer));
 	}
 
 	/**
@@ -265,16 +265,16 @@ public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements G
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.GET_BUFFER_TASK__NAME:
-			return getName();
-		case ProcessPackage.GET_BUFFER_TASK__ENABLED:
-			return isEnabled();
-		case ProcessPackage.GET_BUFFER_TASK__GET_BUFFER:
-			if (resolve) return getGetBuffer();
-			return basicGetGetBuffer();
-		case ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER:
-			if (resolve) return getDeviceBuffer();
-			return basicGetDeviceBuffer();
+			case ProcessPackage.GET_BUFFER_TASK__NAME:
+				return getName();
+			case ProcessPackage.GET_BUFFER_TASK__ENABLED:
+				return isEnabled();
+			case ProcessPackage.GET_BUFFER_TASK__GET_BUFFER:
+				if (resolve) return getGetBuffer();
+				return basicGetGetBuffer();
+			case ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER:
+				if (resolve) return getDeviceBuffer();
+				return basicGetDeviceBuffer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -289,18 +289,18 @@ public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements G
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.GET_BUFFER_TASK__NAME:
-			setName((String) newValue);
-			return;
-		case ProcessPackage.GET_BUFFER_TASK__ENABLED:
-			setEnabled((Boolean) newValue);
-			return;
-		case ProcessPackage.GET_BUFFER_TASK__GET_BUFFER:
-			setGetBuffer((GetBuffer) newValue);
-			return;
-		case ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER:
-			setDeviceBuffer((Buffer) newValue);
-			return;
+			case ProcessPackage.GET_BUFFER_TASK__NAME:
+				setName((String)newValue);
+				return;
+			case ProcessPackage.GET_BUFFER_TASK__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case ProcessPackage.GET_BUFFER_TASK__GET_BUFFER:
+				setGetBuffer((GetBuffer)newValue);
+				return;
+			case ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER:
+				setDeviceBuffer((Buffer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -315,18 +315,18 @@ public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements G
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.GET_BUFFER_TASK__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case ProcessPackage.GET_BUFFER_TASK__ENABLED:
-			setEnabled(ENABLED_EDEFAULT);
-			return;
-		case ProcessPackage.GET_BUFFER_TASK__GET_BUFFER:
-			setGetBuffer((GetBuffer) null);
-			return;
-		case ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER:
-			setDeviceBuffer((Buffer) null);
-			return;
+			case ProcessPackage.GET_BUFFER_TASK__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case ProcessPackage.GET_BUFFER_TASK__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case ProcessPackage.GET_BUFFER_TASK__GET_BUFFER:
+				setGetBuffer((GetBuffer)null);
+				return;
+			case ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER:
+				setDeviceBuffer((Buffer)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -341,14 +341,14 @@ public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements G
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.GET_BUFFER_TASK__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ProcessPackage.GET_BUFFER_TASK__ENABLED:
-			return enabled != ENABLED_EDEFAULT;
-		case ProcessPackage.GET_BUFFER_TASK__GET_BUFFER:
-			return getBuffer != null;
-		case ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER:
-			return deviceBuffer != null;
+			case ProcessPackage.GET_BUFFER_TASK__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ProcessPackage.GET_BUFFER_TASK__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case ProcessPackage.GET_BUFFER_TASK__GET_BUFFER:
+				return getBuffer != null;
+			case ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER:
+				return deviceBuffer != null;
 		}
 		return super.eIsSet(featureID);
 	}

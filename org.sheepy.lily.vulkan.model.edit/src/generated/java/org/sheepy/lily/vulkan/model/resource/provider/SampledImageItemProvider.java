@@ -104,10 +104,10 @@ public class SampledImageItemProvider extends BasicDescriptedResourceItemProvide
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((SampledImage) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_SampledImage_type")
-				: getString("_UI_SampledImage_type") + " " + label;
+		String label = ((SampledImage)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SampledImage_type") :
+			getString("_UI_SampledImage_type") + " " + label;
 	}
 
 	/**
@@ -124,9 +124,9 @@ public class SampledImageItemProvider extends BasicDescriptedResourceItemProvide
 
 		switch (notification.getFeatureID(SampledImage.class))
 		{
-		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -143,8 +143,10 @@ public class SampledImageItemProvider extends BasicDescriptedResourceItemProvide
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.SAMPLED_IMAGE__SAMPLER,
-				ResourceFactory.eINSTANCE.createSampler()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.SAMPLED_IMAGE__SAMPLER,
+				 ResourceFactory.eINSTANCE.createSampler()));
 	}
 
 }

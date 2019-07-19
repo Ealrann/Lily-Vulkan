@@ -75,7 +75,7 @@ public class InputAssemblyImpl extends MinimalEObjectImpl.Container implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InputAssemblyImpl()
+	public InputAssemblyImpl()
 	{
 		super();
 	}
@@ -112,9 +112,8 @@ public class InputAssemblyImpl extends MinimalEObjectImpl.Container implements I
 	{
 		boolean oldPrimitiveRestartEnabled = primitiveRestartEnabled;
 		primitiveRestartEnabled = newPrimitiveRestartEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED,
-				oldPrimitiveRestartEnabled, primitiveRestartEnabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED, oldPrimitiveRestartEnabled, primitiveRestartEnabled));
 	}
 
 	/**
@@ -137,12 +136,9 @@ public class InputAssemblyImpl extends MinimalEObjectImpl.Container implements I
 	public void setPrimitiveTopology(EPrimitiveTopology newPrimitiveTopology)
 	{
 		EPrimitiveTopology oldPrimitiveTopology = primitiveTopology;
-		primitiveTopology = newPrimitiveTopology == null
-				? PRIMITIVE_TOPOLOGY_EDEFAULT
-				: newPrimitiveTopology;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY, oldPrimitiveTopology,
-				primitiveTopology));
+		primitiveTopology = newPrimitiveTopology == null ? PRIMITIVE_TOPOLOGY_EDEFAULT : newPrimitiveTopology;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY, oldPrimitiveTopology, primitiveTopology));
 	}
 
 	/**
@@ -155,10 +151,10 @@ public class InputAssemblyImpl extends MinimalEObjectImpl.Container implements I
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED:
-			return isPrimitiveRestartEnabled();
-		case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY:
-			return getPrimitiveTopology();
+			case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED:
+				return isPrimitiveRestartEnabled();
+			case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY:
+				return getPrimitiveTopology();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -173,12 +169,12 @@ public class InputAssemblyImpl extends MinimalEObjectImpl.Container implements I
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED:
-			setPrimitiveRestartEnabled((Boolean) newValue);
-			return;
-		case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY:
-			setPrimitiveTopology((EPrimitiveTopology) newValue);
-			return;
+			case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED:
+				setPrimitiveRestartEnabled((Boolean)newValue);
+				return;
+			case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY:
+				setPrimitiveTopology((EPrimitiveTopology)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -193,12 +189,12 @@ public class InputAssemblyImpl extends MinimalEObjectImpl.Container implements I
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED:
-			setPrimitiveRestartEnabled(PRIMITIVE_RESTART_ENABLED_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY:
-			setPrimitiveTopology(PRIMITIVE_TOPOLOGY_EDEFAULT);
-			return;
+			case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED:
+				setPrimitiveRestartEnabled(PRIMITIVE_RESTART_ENABLED_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY:
+				setPrimitiveTopology(PRIMITIVE_TOPOLOGY_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -213,10 +209,10 @@ public class InputAssemblyImpl extends MinimalEObjectImpl.Container implements I
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED:
-			return primitiveRestartEnabled != PRIMITIVE_RESTART_ENABLED_EDEFAULT;
-		case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY:
-			return primitiveTopology != PRIMITIVE_TOPOLOGY_EDEFAULT;
+			case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED:
+				return primitiveRestartEnabled != PRIMITIVE_RESTART_ENABLED_EDEFAULT;
+			case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY:
+				return primitiveTopology != PRIMITIVE_TOPOLOGY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

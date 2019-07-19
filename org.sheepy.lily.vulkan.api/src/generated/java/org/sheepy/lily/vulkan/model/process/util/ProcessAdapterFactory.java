@@ -72,7 +72,7 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 		}
 		if (object instanceof EObject)
 		{
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -84,123 +84,123 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected ProcessSwitch<Adapter> modelSwitch = new ProcessSwitch<Adapter>()
-	{
-		@Override
-		public Adapter caseAbstractProcess(AbstractProcess object)
 		{
-			return createAbstractProcessAdapter();
-		}
-		@Override
-		public Adapter caseConfiguration(Configuration object)
-		{
-			return createConfigurationAdapter();
-		}
-		@Override
-		public Adapter caseProcessPartPkg(ProcessPartPkg object)
-		{
-			return createProcessPartPkgAdapter();
-		}
-		@Override
-		public Adapter caseIPipelineTask(IPipelineTask object)
-		{
-			return createIPipelineTaskAdapter();
-		}
-		@Override
-		public Adapter caseIProcessPart(IProcessPart object)
-		{
-			return createIProcessPartAdapter();
-		}
-		@Override
-		public Adapter caseIPipeline(IPipeline object)
-		{
-			return createIPipelineAdapter();
-		}
-		@Override
-		public Adapter caseTaskPkg(TaskPkg object)
-		{
-			return createTaskPkgAdapter();
-		}
-		@Override
-		public Adapter casePipeline(Pipeline object)
-		{
-			return createPipelineAdapter();
-		}
-		@Override
-		public Adapter casePipelineBarrier(PipelineBarrier object)
-		{
-			return createPipelineBarrierAdapter();
-		}
-		@Override
-		public Adapter caseCompositeTask(CompositeTask object)
-		{
-			return createCompositeTaskAdapter();
-		}
-		@Override
-		public Adapter caseBindDescriptorSets(BindDescriptorSets object)
-		{
-			return createBindDescriptorSetsAdapter();
-		}
-		@Override
-		public Adapter casePushConstant(PushConstant object)
-		{
-			return createPushConstantAdapter();
-		}
-		@Override
-		public Adapter casePushConstantBuffer(PushConstantBuffer object)
-		{
-			return createPushConstantBufferAdapter();
-		}
-		@Override
-		public Adapter casePushBufferTask(PushBufferTask object)
-		{
-			return createPushBufferTaskAdapter();
-		}
-		@Override
-		public Adapter caseGetBufferTask(GetBufferTask object)
-		{
-			return createGetBufferTaskAdapter();
-		}
-		@Override
-		public Adapter caseIResourceContainer(IResourceContainer object)
-		{
-			return createIResourceContainerAdapter();
-		}
-		@Override
-		public Adapter caseLNamedElement(LNamedElement object)
-		{
-			return createLNamedElementAdapter();
-		}
-		@Override
-		public Adapter caseIExecutionManager(IExecutionManager object)
-		{
-			return createIExecutionManagerAdapter();
-		}
-		@Override
-		public Adapter caseIProcess(IProcess object)
-		{
-			return createIProcessAdapter();
-		}
-		@Override
-		public Adapter caseIInferenceObject(IInferenceObject object)
-		{
-			return createIInferenceObjectAdapter();
-		}
-		@Override
-		public Adapter caseLObject(LObject object)
-		{
-			return createLObjectAdapter();
-		}
-		@Override
-		public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object)
-		{
-			return createMaintainableAdapter();
-		}
-		@Override
-		public Adapter defaultCase(EObject object)
-		{
-			return createEObjectAdapter();
-		}
-	};
+			@Override
+			public Adapter caseAbstractProcess(AbstractProcess object)
+			{
+				return createAbstractProcessAdapter();
+			}
+			@Override
+			public Adapter caseConfiguration(Configuration object)
+			{
+				return createConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseProcessPartPkg(ProcessPartPkg object)
+			{
+				return createProcessPartPkgAdapter();
+			}
+			@Override
+			public Adapter caseIPipelineTask(IPipelineTask object)
+			{
+				return createIPipelineTaskAdapter();
+			}
+			@Override
+			public Adapter caseIProcessPart(IProcessPart object)
+			{
+				return createIProcessPartAdapter();
+			}
+			@Override
+			public Adapter caseIPipeline(IPipeline object)
+			{
+				return createIPipelineAdapter();
+			}
+			@Override
+			public Adapter caseTaskPkg(TaskPkg object)
+			{
+				return createTaskPkgAdapter();
+			}
+			@Override
+			public Adapter casePipeline(Pipeline object)
+			{
+				return createPipelineAdapter();
+			}
+			@Override
+			public Adapter casePipelineBarrier(PipelineBarrier object)
+			{
+				return createPipelineBarrierAdapter();
+			}
+			@Override
+			public Adapter caseCompositeTask(CompositeTask object)
+			{
+				return createCompositeTaskAdapter();
+			}
+			@Override
+			public Adapter caseBindDescriptorSets(BindDescriptorSets object)
+			{
+				return createBindDescriptorSetsAdapter();
+			}
+			@Override
+			public Adapter casePushConstant(PushConstant object)
+			{
+				return createPushConstantAdapter();
+			}
+			@Override
+			public Adapter casePushConstantBuffer(PushConstantBuffer object)
+			{
+				return createPushConstantBufferAdapter();
+			}
+			@Override
+			public Adapter casePushBufferTask(PushBufferTask object)
+			{
+				return createPushBufferTaskAdapter();
+			}
+			@Override
+			public Adapter caseGetBufferTask(GetBufferTask object)
+			{
+				return createGetBufferTaskAdapter();
+			}
+			@Override
+			public Adapter caseIResourceContainer(IResourceContainer object)
+			{
+				return createIResourceContainerAdapter();
+			}
+			@Override
+			public Adapter caseLNamedElement(LNamedElement object)
+			{
+				return createLNamedElementAdapter();
+			}
+			@Override
+			public Adapter caseIExecutionManager(IExecutionManager object)
+			{
+				return createIExecutionManagerAdapter();
+			}
+			@Override
+			public Adapter caseIProcess(IProcess object)
+			{
+				return createIProcessAdapter();
+			}
+			@Override
+			public Adapter caseIInferenceObject(IInferenceObject object)
+			{
+				return createIInferenceObjectAdapter();
+			}
+			@Override
+			public Adapter caseLObject(LObject object)
+			{
+				return createLObjectAdapter();
+			}
+			@Override
+			public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object)
+			{
+				return createMaintainableAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object)
+			{
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -213,7 +213,7 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public Adapter createAdapter(Notifier target)
 	{
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 	/**

@@ -74,12 +74,19 @@ public class AttachmentRefItemProvider extends ItemProviderAdapter implements IE
 	 */
 	protected void addAttachmentPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_AttachmentRef_attachment_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_AttachmentRef_attachment_feature",
-								"_UI_AttachmentRef_type"),
-						GraphicPackage.Literals.ATTACHMENT_REF__ATTACHMENT, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AttachmentRef_attachment_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttachmentRef_attachment_feature", "_UI_AttachmentRef_type"),
+				 GraphicPackage.Literals.ATTACHMENT_REF__ATTACHMENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -90,13 +97,19 @@ public class AttachmentRefItemProvider extends ItemProviderAdapter implements IE
 	 */
 	protected void addLayoutPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_AttachmentRef_layout_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_AttachmentRef_layout_feature",
-								"_UI_AttachmentRef_type"),
-						GraphicPackage.Literals.ATTACHMENT_REF__LAYOUT, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AttachmentRef_layout_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttachmentRef_layout_feature", "_UI_AttachmentRef_type"),
+				 GraphicPackage.Literals.ATTACHMENT_REF__LAYOUT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -120,11 +133,11 @@ public class AttachmentRefItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public String getText(Object object)
 	{
-		EImageLayout labelValue = ((AttachmentRef) object).getLayout();
+		EImageLayout labelValue = ((AttachmentRef)object).getLayout();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0
-				? getString("_UI_AttachmentRef_type")
-				: getString("_UI_AttachmentRef_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_AttachmentRef_type") :
+			getString("_UI_AttachmentRef_type") + " " + label;
 	}
 
 	/**
@@ -141,9 +154,9 @@ public class AttachmentRefItemProvider extends ItemProviderAdapter implements IE
 
 		switch (notification.getFeatureID(AttachmentRef.class))
 		{
-		case GraphicPackage.ATTACHMENT_REF__LAYOUT:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case GraphicPackage.ATTACHMENT_REF__LAYOUT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -170,7 +183,7 @@ public class AttachmentRefItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

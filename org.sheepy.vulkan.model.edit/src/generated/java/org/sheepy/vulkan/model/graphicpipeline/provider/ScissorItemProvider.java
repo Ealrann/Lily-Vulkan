@@ -34,9 +34,8 @@ import org.sheepy.vulkan.model.graphicpipeline.Scissor;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ScissorItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class ScissorItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -76,13 +75,19 @@ public class ScissorItemProvider extends ItemProviderAdapter
 	 */
 	protected void addOffsetXPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Scissor_offsetX_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Scissor_offsetX_feature",
-						"_UI_Scissor_type"),
-				GraphicpipelinePackage.Literals.SCISSOR__OFFSET_X, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Scissor_offsetX_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Scissor_offsetX_feature", "_UI_Scissor_type"),
+				 GraphicpipelinePackage.Literals.SCISSOR__OFFSET_X,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -93,13 +98,19 @@ public class ScissorItemProvider extends ItemProviderAdapter
 	 */
 	protected void addOffsetYPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Scissor_offsetY_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Scissor_offsetY_feature",
-						"_UI_Scissor_type"),
-				GraphicpipelinePackage.Literals.SCISSOR__OFFSET_Y, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Scissor_offsetY_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Scissor_offsetY_feature", "_UI_Scissor_type"),
+				 GraphicpipelinePackage.Literals.SCISSOR__OFFSET_Y,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -156,7 +167,7 @@ public class ScissorItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		Scissor scissor = (Scissor) object;
+		Scissor scissor = (Scissor)object;
 		return getString("_UI_Scissor_type") + " " + scissor.getOffsetX();
 	}
 
@@ -174,15 +185,13 @@ public class ScissorItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(Scissor.class))
 		{
-		case GraphicpipelinePackage.SCISSOR__OFFSET_X:
-		case GraphicpipelinePackage.SCISSOR__OFFSET_Y:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case GraphicpipelinePackage.SCISSOR__EXTENT:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case GraphicpipelinePackage.SCISSOR__OFFSET_X:
+			case GraphicpipelinePackage.SCISSOR__OFFSET_Y:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case GraphicpipelinePackage.SCISSOR__EXTENT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -199,9 +208,10 @@ public class ScissorItemProvider extends ItemProviderAdapter
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicpipelinePackage.Literals.SCISSOR__EXTENT,
-						GraphicpipelineFactory.eINSTANCE.createVec2I()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicpipelinePackage.Literals.SCISSOR__EXTENT,
+				 GraphicpipelineFactory.eINSTANCE.createVec2I()));
 	}
 
 	/**
@@ -213,7 +223,7 @@ public class ScissorItemProvider extends ItemProviderAdapter
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

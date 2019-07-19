@@ -71,13 +71,19 @@ public class DepthAttachmentItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addClearPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_DepthAttachment_clear_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_DepthAttachment_clear_feature",
-								"_UI_DepthAttachment_type"),
-						GraphicPackage.Literals.DEPTH_ATTACHMENT__CLEAR, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DepthAttachment_clear_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DepthAttachment_clear_feature", "_UI_DepthAttachment_type"),
+				 GraphicPackage.Literals.DEPTH_ATTACHMENT__CLEAR,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -101,7 +107,7 @@ public class DepthAttachmentItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public String getText(Object object)
 	{
-		DepthAttachment depthAttachment = (DepthAttachment) object;
+		DepthAttachment depthAttachment = (DepthAttachment)object;
 		return getString("_UI_DepthAttachment_type") + " " + depthAttachment.isClear();
 	}
 
@@ -119,9 +125,9 @@ public class DepthAttachmentItemProvider extends ItemProviderAdapter implements 
 
 		switch (notification.getFeatureID(DepthAttachment.class))
 		{
-		case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -148,7 +154,7 @@ public class DepthAttachmentItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

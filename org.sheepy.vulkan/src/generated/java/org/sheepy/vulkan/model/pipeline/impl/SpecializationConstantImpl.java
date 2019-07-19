@@ -26,8 +26,7 @@ import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
  *
  * @generated
  */
-public class SpecializationConstantImpl extends MinimalEObjectImpl.Container
-		implements SpecializationConstant
+public class SpecializationConstantImpl extends MinimalEObjectImpl.Container implements SpecializationConstant
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -94,7 +93,7 @@ public class SpecializationConstantImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SpecializationConstantImpl()
+	public SpecializationConstantImpl()
 	{
 		super();
 	}
@@ -131,8 +130,8 @@ public class SpecializationConstantImpl extends MinimalEObjectImpl.Container
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				PipelinePackage.SPECIALIZATION_CONSTANT__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PipelinePackage.SPECIALIZATION_CONSTANT__NAME, oldName, name));
 	}
 
 	/**
@@ -156,8 +155,8 @@ public class SpecializationConstantImpl extends MinimalEObjectImpl.Container
 	{
 		int oldConstantId = constantId;
 		constantId = newConstantId;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				PipelinePackage.SPECIALIZATION_CONSTANT__CONSTANT_ID, oldConstantId, constantId));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PipelinePackage.SPECIALIZATION_CONSTANT__CONSTANT_ID, oldConstantId, constantId));
 	}
 
 	/**
@@ -181,8 +180,8 @@ public class SpecializationConstantImpl extends MinimalEObjectImpl.Container
 	{
 		int oldSize = size;
 		size = newSize;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				PipelinePackage.SPECIALIZATION_CONSTANT__SIZE, oldSize, size));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PipelinePackage.SPECIALIZATION_CONSTANT__SIZE, oldSize, size));
 	}
 
 	/**
@@ -195,12 +194,12 @@ public class SpecializationConstantImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case PipelinePackage.SPECIALIZATION_CONSTANT__NAME:
-			return getName();
-		case PipelinePackage.SPECIALIZATION_CONSTANT__CONSTANT_ID:
-			return getConstantId();
-		case PipelinePackage.SPECIALIZATION_CONSTANT__SIZE:
-			return getSize();
+			case PipelinePackage.SPECIALIZATION_CONSTANT__NAME:
+				return getName();
+			case PipelinePackage.SPECIALIZATION_CONSTANT__CONSTANT_ID:
+				return getConstantId();
+			case PipelinePackage.SPECIALIZATION_CONSTANT__SIZE:
+				return getSize();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -215,15 +214,15 @@ public class SpecializationConstantImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case PipelinePackage.SPECIALIZATION_CONSTANT__NAME:
-			setName((String) newValue);
-			return;
-		case PipelinePackage.SPECIALIZATION_CONSTANT__CONSTANT_ID:
-			setConstantId((Integer) newValue);
-			return;
-		case PipelinePackage.SPECIALIZATION_CONSTANT__SIZE:
-			setSize((Integer) newValue);
-			return;
+			case PipelinePackage.SPECIALIZATION_CONSTANT__NAME:
+				setName((String)newValue);
+				return;
+			case PipelinePackage.SPECIALIZATION_CONSTANT__CONSTANT_ID:
+				setConstantId((Integer)newValue);
+				return;
+			case PipelinePackage.SPECIALIZATION_CONSTANT__SIZE:
+				setSize((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -238,15 +237,15 @@ public class SpecializationConstantImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case PipelinePackage.SPECIALIZATION_CONSTANT__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case PipelinePackage.SPECIALIZATION_CONSTANT__CONSTANT_ID:
-			setConstantId(CONSTANT_ID_EDEFAULT);
-			return;
-		case PipelinePackage.SPECIALIZATION_CONSTANT__SIZE:
-			setSize(SIZE_EDEFAULT);
-			return;
+			case PipelinePackage.SPECIALIZATION_CONSTANT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case PipelinePackage.SPECIALIZATION_CONSTANT__CONSTANT_ID:
+				setConstantId(CONSTANT_ID_EDEFAULT);
+				return;
+			case PipelinePackage.SPECIALIZATION_CONSTANT__SIZE:
+				setSize(SIZE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -261,12 +260,12 @@ public class SpecializationConstantImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case PipelinePackage.SPECIALIZATION_CONSTANT__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case PipelinePackage.SPECIALIZATION_CONSTANT__CONSTANT_ID:
-			return constantId != CONSTANT_ID_EDEFAULT;
-		case PipelinePackage.SPECIALIZATION_CONSTANT__SIZE:
-			return size != SIZE_EDEFAULT;
+			case PipelinePackage.SPECIALIZATION_CONSTANT__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PipelinePackage.SPECIALIZATION_CONSTANT__CONSTANT_ID:
+				return constantId != CONSTANT_ID_EDEFAULT;
+			case PipelinePackage.SPECIALIZATION_CONSTANT__SIZE:
+				return size != SIZE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

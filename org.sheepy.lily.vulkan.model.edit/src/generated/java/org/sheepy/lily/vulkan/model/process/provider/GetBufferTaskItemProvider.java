@@ -76,13 +76,19 @@ public class GetBufferTaskItemProvider extends ItemProviderAdapter implements IE
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -93,13 +99,19 @@ public class GetBufferTaskItemProvider extends ItemProviderAdapter implements IE
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
-								"_UI_IPipelineTask_type"),
-						ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipelineTask_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature", "_UI_IPipelineTask_type"),
+				 ProcessPackage.Literals.IPIPELINE_TASK__ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -110,12 +122,19 @@ public class GetBufferTaskItemProvider extends ItemProviderAdapter implements IE
 	 */
 	protected void addGetBufferPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_GetBufferTask_getBuffer_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_GetBufferTask_getBuffer_feature",
-								"_UI_GetBufferTask_type"),
-						ProcessPackage.Literals.GET_BUFFER_TASK__GET_BUFFER, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GetBufferTask_getBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GetBufferTask_getBuffer_feature", "_UI_GetBufferTask_type"),
+				 ProcessPackage.Literals.GET_BUFFER_TASK__GET_BUFFER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -126,12 +145,19 @@ public class GetBufferTaskItemProvider extends ItemProviderAdapter implements IE
 	 */
 	protected void addDeviceBufferPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_GetBufferTask_deviceBuffer_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_GetBufferTask_deviceBuffer_feature",
-								"_UI_GetBufferTask_type"),
-						ProcessPackage.Literals.GET_BUFFER_TASK__DEVICE_BUFFER, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GetBufferTask_deviceBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GetBufferTask_deviceBuffer_feature", "_UI_GetBufferTask_type"),
+				 ProcessPackage.Literals.GET_BUFFER_TASK__DEVICE_BUFFER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -155,10 +181,10 @@ public class GetBufferTaskItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((GetBufferTask) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_GetBufferTask_type")
-				: getString("_UI_GetBufferTask_type") + " " + label;
+		String label = ((GetBufferTask)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_GetBufferTask_type") :
+			getString("_UI_GetBufferTask_type") + " " + label;
 	}
 
 	/**
@@ -175,10 +201,10 @@ public class GetBufferTaskItemProvider extends ItemProviderAdapter implements IE
 
 		switch (notification.getFeatureID(GetBufferTask.class))
 		{
-		case ProcessPackage.GET_BUFFER_TASK__NAME:
-		case ProcessPackage.GET_BUFFER_TASK__ENABLED:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case ProcessPackage.GET_BUFFER_TASK__NAME:
+			case ProcessPackage.GET_BUFFER_TASK__ENABLED:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -205,7 +231,7 @@ public class GetBufferTaskItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

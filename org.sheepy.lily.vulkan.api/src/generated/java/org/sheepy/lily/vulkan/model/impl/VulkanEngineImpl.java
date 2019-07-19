@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -165,8 +166,8 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		EList<LObject> oldContentObjects = contentObjects;
 		contentObjects = newContentObjects;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				VulkanPackage.VULKAN_ENGINE__CONTENT_OBJECTS, oldContentObjects, contentObjects));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__CONTENT_OBJECTS, oldContentObjects, contentObjects));
 	}
 
 	/**
@@ -191,10 +192,8 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 		resourcePkg = newResourcePkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -210,15 +209,15 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 		if (newResourcePkg != resourcePkg)
 		{
 			NotificationChain msgs = null;
-			if (resourcePkg != null) msgs = ((InternalEObject) resourcePkg).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, null, msgs);
-			if (newResourcePkg != null) msgs = ((InternalEObject) newResourcePkg).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, null, msgs);
+			if (resourcePkg != null)
+				msgs = ((InternalEObject)resourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, null, msgs);
+			if (newResourcePkg != null)
+				msgs = ((InternalEObject)newResourcePkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, null, msgs);
 			msgs = basicSetResourcePkg(newResourcePkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, newResourcePkg, newResourcePkg));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, newResourcePkg, newResourcePkg));
 	}
 
 	/**
@@ -242,8 +241,8 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				VulkanPackage.VULKAN_ENGINE__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -256,8 +255,7 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		if (processes == null)
 		{
-			processes = new EObjectContainmentEList<IProcess>(IProcess.class, this,
-					VulkanPackage.VULKAN_ENGINE__PROCESSES);
+			processes = new EObjectContainmentEList<IProcess>(IProcess.class, this, VulkanPackage.VULKAN_ENGINE__PROCESSES);
 		}
 		return processes;
 	}
@@ -272,8 +270,7 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		if (features == null)
 		{
-			features = new EDataTypeUniqueEList<EPhysicalDeviceFeature>(EPhysicalDeviceFeature.class, this,
-					VulkanPackage.VULKAN_ENGINE__FEATURES);
+			features = new EDataTypeUniqueEList<EPhysicalDeviceFeature>(EPhysicalDeviceFeature.class, this, VulkanPackage.VULKAN_ENGINE__FEATURES);
 		}
 		return features;
 	}
@@ -301,7 +298,7 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 		boolean _isEmpty = unitRefs.isEmpty();
 		if (_isEmpty)
 		{
-			res = ECollections.<T> emptyEList();
+			res = ECollections.<T>emptyEList();
 		}
 		else
 		{
@@ -325,7 +322,7 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 			boolean _tripleEquals = (_contentObjects == null);
 			if (_tripleEquals)
 			{
-				this.setContentObjects(this.<LObject> createContainmentEList(Literals.LOBJECT));
+				this.setContentObjects(this.<LObject>createContainmentEList(Literals.LOBJECT));
 			}
 			_xblockexpression = this.getContentObjects();
 		}
@@ -382,10 +379,10 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		switch (featureID)
 		{
-		case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
-			return basicSetResourcePkg(null, msgs);
-		case VulkanPackage.VULKAN_ENGINE__PROCESSES:
-			return ((InternalEList<?>) getProcesses()).basicRemove(otherEnd, msgs);
+			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
+				return basicSetResourcePkg(null, msgs);
+			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
+				return ((InternalEList<?>)getProcesses()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -400,16 +397,16 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		switch (featureID)
 		{
-		case VulkanPackage.VULKAN_ENGINE__CONTENT_OBJECTS:
-			return getContentObjects();
-		case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
-			return getResourcePkg();
-		case VulkanPackage.VULKAN_ENGINE__ENABLED:
-			return isEnabled();
-		case VulkanPackage.VULKAN_ENGINE__PROCESSES:
-			return getProcesses();
-		case VulkanPackage.VULKAN_ENGINE__FEATURES:
-			return getFeatures();
+			case VulkanPackage.VULKAN_ENGINE__CONTENT_OBJECTS:
+				return getContentObjects();
+			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
+				return getResourcePkg();
+			case VulkanPackage.VULKAN_ENGINE__ENABLED:
+				return isEnabled();
+			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
+				return getProcesses();
+			case VulkanPackage.VULKAN_ENGINE__FEATURES:
+				return getFeatures();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -425,23 +422,23 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		switch (featureID)
 		{
-		case VulkanPackage.VULKAN_ENGINE__CONTENT_OBJECTS:
-			setContentObjects((EList<LObject>) newValue);
-			return;
-		case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
-			setResourcePkg((ResourcePkg) newValue);
-			return;
-		case VulkanPackage.VULKAN_ENGINE__ENABLED:
-			setEnabled((Boolean) newValue);
-			return;
-		case VulkanPackage.VULKAN_ENGINE__PROCESSES:
-			getProcesses().clear();
-			getProcesses().addAll((Collection<? extends IProcess>) newValue);
-			return;
-		case VulkanPackage.VULKAN_ENGINE__FEATURES:
-			getFeatures().clear();
-			getFeatures().addAll((Collection<? extends EPhysicalDeviceFeature>) newValue);
-			return;
+			case VulkanPackage.VULKAN_ENGINE__CONTENT_OBJECTS:
+				setContentObjects((EList<LObject>)newValue);
+				return;
+			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
+				setResourcePkg((ResourcePkg)newValue);
+				return;
+			case VulkanPackage.VULKAN_ENGINE__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
+				getProcesses().clear();
+				getProcesses().addAll((Collection<? extends IProcess>)newValue);
+				return;
+			case VulkanPackage.VULKAN_ENGINE__FEATURES:
+				getFeatures().clear();
+				getFeatures().addAll((Collection<? extends EPhysicalDeviceFeature>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -456,21 +453,21 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		switch (featureID)
 		{
-		case VulkanPackage.VULKAN_ENGINE__CONTENT_OBJECTS:
-			setContentObjects((EList<LObject>) null);
-			return;
-		case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
-			setResourcePkg((ResourcePkg) null);
-			return;
-		case VulkanPackage.VULKAN_ENGINE__ENABLED:
-			setEnabled(ENABLED_EDEFAULT);
-			return;
-		case VulkanPackage.VULKAN_ENGINE__PROCESSES:
-			getProcesses().clear();
-			return;
-		case VulkanPackage.VULKAN_ENGINE__FEATURES:
-			getFeatures().clear();
-			return;
+			case VulkanPackage.VULKAN_ENGINE__CONTENT_OBJECTS:
+				setContentObjects((EList<LObject>)null);
+				return;
+			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
+				setResourcePkg((ResourcePkg)null);
+				return;
+			case VulkanPackage.VULKAN_ENGINE__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
+				getProcesses().clear();
+				return;
+			case VulkanPackage.VULKAN_ENGINE__FEATURES:
+				getFeatures().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -485,16 +482,16 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		switch (featureID)
 		{
-		case VulkanPackage.VULKAN_ENGINE__CONTENT_OBJECTS:
-			return contentObjects != null;
-		case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
-			return resourcePkg != null;
-		case VulkanPackage.VULKAN_ENGINE__ENABLED:
-			return enabled != ENABLED_EDEFAULT;
-		case VulkanPackage.VULKAN_ENGINE__PROCESSES:
-			return processes != null && !processes.isEmpty();
-		case VulkanPackage.VULKAN_ENGINE__FEATURES:
-			return features != null && !features.isEmpty();
+			case VulkanPackage.VULKAN_ENGINE__CONTENT_OBJECTS:
+				return contentObjects != null;
+			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
+				return resourcePkg != null;
+			case VulkanPackage.VULKAN_ENGINE__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
+				return processes != null && !processes.isEmpty();
+			case VulkanPackage.VULKAN_ENGINE__FEATURES:
+				return features != null && !features.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -511,18 +508,15 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 		{
 			switch (derivedFeatureID)
 			{
-			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
-				return VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG;
-			default:
-				return -1;
+				case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG: return VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG;
+				default: return -1;
 			}
 		}
 		if (baseClass == IExecutionManager.class)
 		{
 			switch (derivedFeatureID)
 			{
-			default:
-				return -1;
+				default: return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -540,21 +534,42 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 		{
 			switch (baseFeatureID)
 			{
-			case VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG:
-				return VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG;
-			default:
-				return -1;
+				case VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG: return VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG;
+				default: return -1;
 			}
 		}
 		if (baseClass == IExecutionManager.class)
 		{
 			switch (baseFeatureID)
 			{
-			default:
-				return -1;
+				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
+	{
+		switch (operationID)
+		{
+			case VulkanPackage.VULKAN_ENGINE___CREATE_CONTAINMENT_ELIST__ECLASS:
+				return createContainmentEList((EClass)arguments.get(0));
+			case VulkanPackage.VULKAN_ENGINE___LCONTENTS:
+				return lContents();
+			case VulkanPackage.VULKAN_ENGINE___LPARENT:
+				return lParent();
+			case VulkanPackage.VULKAN_ENGINE___LALL_CONTENTS:
+				return lAllContents();
+			case VulkanPackage.VULKAN_ENGINE___LINFERENCE_OBJECT:
+				return lInferenceObject();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

@@ -63,12 +63,19 @@ public class ShaderItemProvider extends BasicResourceItemProvider
 	 */
 	protected void addStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Shader_stage_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Shader_stage_feature", "_UI_Shader_type"),
-						ResourcePackage.Literals.SHADER__STAGE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Shader_stage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Shader_stage_feature", "_UI_Shader_type"),
+				 ResourcePackage.Literals.SHADER__STAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -126,10 +133,10 @@ public class ShaderItemProvider extends BasicResourceItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Shader) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_Shader_type")
-				: getString("_UI_Shader_type") + " " + label;
+		String label = ((Shader)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Shader_type") :
+			getString("_UI_Shader_type") + " " + label;
 	}
 
 	/**
@@ -146,13 +153,13 @@ public class ShaderItemProvider extends BasicResourceItemProvider
 
 		switch (notification.getFeatureID(Shader.class))
 		{
-		case ResourcePackage.SHADER__STAGE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case ResourcePackage.SHADER__FILE:
-		case ResourcePackage.SHADER__CONSTANTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case ResourcePackage.SHADER__STAGE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ResourcePackage.SHADER__FILE:
+			case ResourcePackage.SHADER__CONSTANTS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -169,17 +176,25 @@ public class ShaderItemProvider extends BasicResourceItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.SHADER__FILE,
-				ResourceFactory.eINSTANCE.createFileResource()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.SHADER__FILE,
+				 ResourceFactory.eINSTANCE.createFileResource()));
 
-		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.SHADER__FILE,
-				ResourceFactory.eINSTANCE.createModuleResource()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.SHADER__FILE,
+				 ResourceFactory.eINSTANCE.createModuleResource()));
 
-		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.SHADER__FILE,
-				ResourceFactory.eINSTANCE.createStringModuleResource()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.SHADER__FILE,
+				 ResourceFactory.eINSTANCE.createStringModuleResource()));
 
-		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.SHADER__CONSTANTS,
-				PipelineFactory.eINSTANCE.createSpecializationConstant()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.SHADER__CONSTANTS,
+				 PipelineFactory.eINSTANCE.createSpecializationConstant()));
 	}
 
 }

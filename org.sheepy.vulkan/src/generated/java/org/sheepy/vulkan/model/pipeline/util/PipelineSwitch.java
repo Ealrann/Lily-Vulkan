@@ -72,22 +72,21 @@ public class PipelineSwitch<T> extends Switch<T>
 	{
 		switch (classifierID)
 		{
-		case PipelinePackage.PUSH_CONSTANT_RANGE:
-		{
-			PushConstantRange pushConstantRange = (PushConstantRange) theEObject;
-			T result = casePushConstantRange(pushConstantRange);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case PipelinePackage.SPECIALIZATION_CONSTANT:
-		{
-			SpecializationConstant specializationConstant = (SpecializationConstant) theEObject;
-			T result = caseSpecializationConstant(specializationConstant);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			case PipelinePackage.PUSH_CONSTANT_RANGE:
+			{
+				PushConstantRange pushConstantRange = (PushConstantRange)theEObject;
+				T result = casePushConstantRange(pushConstantRange);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PipelinePackage.SPECIALIZATION_CONSTANT:
+			{
+				SpecializationConstant specializationConstant = (SpecializationConstant)theEObject;
+				T result = caseSpecializationConstant(specializationConstant);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 

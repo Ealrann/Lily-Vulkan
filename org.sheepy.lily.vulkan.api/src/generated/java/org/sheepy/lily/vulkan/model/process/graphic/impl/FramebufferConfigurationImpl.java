@@ -40,8 +40,7 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Vector4fc CLEAR_VALUE_EDEFAULT = (Vector4fc) TypesFactory.eINSTANCE
-			.createFromString(TypesPackage.eINSTANCE.getColor4f(), "0;0;0;0");
+	protected static final Vector4fc CLEAR_VALUE_EDEFAULT = (Vector4fc)TypesFactory.eINSTANCE.createFromString(TypesPackage.eINSTANCE.getColor4f(), "0;0;0;0");
 
 	/**
 	 * The cached value of the '{@link #getClearValue() <em>Clear Value</em>}' attribute.
@@ -95,8 +94,8 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container i
 	{
 		Vector4fc oldClearValue = clearValue;
 		clearValue = newClearValue;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE, oldClearValue, clearValue));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE, oldClearValue, clearValue));
 	}
 
 	/**
@@ -109,8 +108,8 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
-			return getClearValue();
+			case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
+				return getClearValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -125,9 +124,9 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
-			setClearValue((Vector4fc) newValue);
-			return;
+			case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
+				setClearValue((Vector4fc)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -142,9 +141,9 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
-			setClearValue(CLEAR_VALUE_EDEFAULT);
-			return;
+			case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
+				setClearValue(CLEAR_VALUE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -159,8 +158,8 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
-			return CLEAR_VALUE_EDEFAULT == null ? clearValue != null : !CLEAR_VALUE_EDEFAULT.equals(clearValue);
+			case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
+				return CLEAR_VALUE_EDEFAULT == null ? clearValue != null : !CLEAR_VALUE_EDEFAULT.equals(clearValue);
 		}
 		return super.eIsSet(featureID);
 	}

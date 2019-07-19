@@ -212,8 +212,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -226,12 +226,12 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		if (shader != null && shader.eIsProxy())
 		{
-			InternalEObject oldShader = (InternalEObject) shader;
-			shader = (Shader) eResolveProxy(oldShader);
+			InternalEObject oldShader = (InternalEObject)shader;
+			shader = (Shader)eResolveProxy(oldShader);
 			if (shader != oldShader)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						ComputePackage.COMPUTER__SHADER, oldShader, shader));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ComputePackage.COMPUTER__SHADER, oldShader, shader));
 			}
 		}
 		return shader;
@@ -282,8 +282,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		int oldWorkgroupCountX = workgroupCountX;
 		workgroupCountX = newWorkgroupCountX;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ComputePackage.COMPUTER__WORKGROUP_COUNT_X, oldWorkgroupCountX, workgroupCountX));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__WORKGROUP_COUNT_X, oldWorkgroupCountX, workgroupCountX));
 	}
 
 	/**
@@ -307,8 +307,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		int oldWorkgroupCountY = workgroupCountY;
 		workgroupCountY = newWorkgroupCountY;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ComputePackage.COMPUTER__WORKGROUP_COUNT_Y, oldWorkgroupCountY, workgroupCountY));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__WORKGROUP_COUNT_Y, oldWorkgroupCountY, workgroupCountY));
 	}
 
 	/**
@@ -332,8 +332,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		int oldWorkgroupCountZ = workgroupCountZ;
 		workgroupCountZ = newWorkgroupCountZ;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ComputePackage.COMPUTER__WORKGROUP_COUNT_Z, oldWorkgroupCountZ, workgroupCountZ));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__WORKGROUP_COUNT_Z, oldWorkgroupCountZ, workgroupCountZ));
 	}
 
 	/**
@@ -346,19 +346,19 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		switch (featureID)
 		{
-		case ComputePackage.COMPUTER__NAME:
-			return getName();
-		case ComputePackage.COMPUTER__ENABLED:
-			return isEnabled();
-		case ComputePackage.COMPUTER__SHADER:
-			if (resolve) return getShader();
-			return basicGetShader();
-		case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
-			return getWorkgroupCountX();
-		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
-			return getWorkgroupCountY();
-		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
-			return getWorkgroupCountZ();
+			case ComputePackage.COMPUTER__NAME:
+				return getName();
+			case ComputePackage.COMPUTER__ENABLED:
+				return isEnabled();
+			case ComputePackage.COMPUTER__SHADER:
+				if (resolve) return getShader();
+				return basicGetShader();
+			case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
+				return getWorkgroupCountX();
+			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
+				return getWorkgroupCountY();
+			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
+				return getWorkgroupCountZ();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -373,24 +373,24 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		switch (featureID)
 		{
-		case ComputePackage.COMPUTER__NAME:
-			setName((String) newValue);
-			return;
-		case ComputePackage.COMPUTER__ENABLED:
-			setEnabled((Boolean) newValue);
-			return;
-		case ComputePackage.COMPUTER__SHADER:
-			setShader((Shader) newValue);
-			return;
-		case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
-			setWorkgroupCountX((Integer) newValue);
-			return;
-		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
-			setWorkgroupCountY((Integer) newValue);
-			return;
-		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
-			setWorkgroupCountZ((Integer) newValue);
-			return;
+			case ComputePackage.COMPUTER__NAME:
+				setName((String)newValue);
+				return;
+			case ComputePackage.COMPUTER__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case ComputePackage.COMPUTER__SHADER:
+				setShader((Shader)newValue);
+				return;
+			case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
+				setWorkgroupCountX((Integer)newValue);
+				return;
+			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
+				setWorkgroupCountY((Integer)newValue);
+				return;
+			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
+				setWorkgroupCountZ((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -405,24 +405,24 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		switch (featureID)
 		{
-		case ComputePackage.COMPUTER__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case ComputePackage.COMPUTER__ENABLED:
-			setEnabled(ENABLED_EDEFAULT);
-			return;
-		case ComputePackage.COMPUTER__SHADER:
-			setShader((Shader) null);
-			return;
-		case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
-			setWorkgroupCountX(WORKGROUP_COUNT_X_EDEFAULT);
-			return;
-		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
-			setWorkgroupCountY(WORKGROUP_COUNT_Y_EDEFAULT);
-			return;
-		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
-			setWorkgroupCountZ(WORKGROUP_COUNT_Z_EDEFAULT);
-			return;
+			case ComputePackage.COMPUTER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case ComputePackage.COMPUTER__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case ComputePackage.COMPUTER__SHADER:
+				setShader((Shader)null);
+				return;
+			case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
+				setWorkgroupCountX(WORKGROUP_COUNT_X_EDEFAULT);
+				return;
+			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
+				setWorkgroupCountY(WORKGROUP_COUNT_Y_EDEFAULT);
+				return;
+			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
+				setWorkgroupCountZ(WORKGROUP_COUNT_Z_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -437,18 +437,18 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		switch (featureID)
 		{
-		case ComputePackage.COMPUTER__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ComputePackage.COMPUTER__ENABLED:
-			return enabled != ENABLED_EDEFAULT;
-		case ComputePackage.COMPUTER__SHADER:
-			return shader != null;
-		case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
-			return workgroupCountX != WORKGROUP_COUNT_X_EDEFAULT;
-		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
-			return workgroupCountY != WORKGROUP_COUNT_Y_EDEFAULT;
-		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
-			return workgroupCountZ != WORKGROUP_COUNT_Z_EDEFAULT;
+			case ComputePackage.COMPUTER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ComputePackage.COMPUTER__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case ComputePackage.COMPUTER__SHADER:
+				return shader != null;
+			case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
+				return workgroupCountX != WORKGROUP_COUNT_X_EDEFAULT;
+			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
+				return workgroupCountY != WORKGROUP_COUNT_Y_EDEFAULT;
+			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
+				return workgroupCountZ != WORKGROUP_COUNT_Z_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -74,12 +74,19 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter implem
 	 */
 	protected void addAcquireWaitStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_GraphicConfiguration_acquireWaitStage_feature"),
-						getString("_UI_GraphicConfiguration_acquireWaitStage_description"),
-						GraphicPackage.Literals.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GraphicConfiguration_acquireWaitStage_feature"),
+				 getString("_UI_GraphicConfiguration_acquireWaitStage_description"),
+				 GraphicPackage.Literals.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -138,11 +145,11 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter implem
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((GraphicConfiguration) object).getAcquireWaitStage();
+		EPipelineStage labelValue = ((GraphicConfiguration)object).getAcquireWaitStage();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0
-				? getString("_UI_GraphicConfiguration_type")
-				: getString("_UI_GraphicConfiguration_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_GraphicConfiguration_type") :
+			getString("_UI_GraphicConfiguration_type") + " " + label;
 	}
 
 	/**
@@ -159,14 +166,14 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter implem
 
 		switch (notification.getFeatureID(GraphicConfiguration.class))
 		{
-		case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
-		case GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION:
-		case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
+			case GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION:
+			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -183,16 +190,20 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter implem
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION,
-						GraphicFactory.eINSTANCE.createSwapchainConfiguration()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION,
+				 GraphicFactory.eINSTANCE.createSwapchainConfiguration()));
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION,
-						GraphicFactory.eINSTANCE.createFramebufferConfiguration()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION,
+				 GraphicFactory.eINSTANCE.createFramebufferConfiguration()));
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__COLOR_DOMAIN,
-				GraphicFactory.eINSTANCE.createColorDomain()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__COLOR_DOMAIN,
+				 GraphicFactory.eINSTANCE.createColorDomain()));
 	}
 
 	/**
@@ -204,7 +215,7 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter implem
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

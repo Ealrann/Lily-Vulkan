@@ -69,10 +69,10 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((ComputeProcess) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_ComputeProcess_type")
-				: getString("_UI_ComputeProcess_type") + " " + label;
+		String label = ((ComputeProcess)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ComputeProcess_type") :
+			getString("_UI_ComputeProcess_type") + " " + label;
 	}
 
 	/**
@@ -86,6 +86,7 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
+		super.notifyChanged(notification);
 	}
 
 	/**

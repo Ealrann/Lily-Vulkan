@@ -30,13 +30,13 @@ public class PipelineFactoryImpl extends EFactoryImpl implements PipelineFactory
 	{
 		try
 		{
-			PipelineFactory thePipelineFactory = (PipelineFactory) EPackage.Registry.INSTANCE
-					.getEFactory(PipelinePackage.eNS_URI);
+			PipelineFactory thePipelineFactory = (PipelineFactory)EPackage.Registry.INSTANCE.getEFactory(PipelinePackage.eNS_URI);
 			if (thePipelineFactory != null)
 			{
 				return thePipelineFactory;
 			}
-		} catch (Exception exception)
+		}
+		catch (Exception exception)
 		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
@@ -64,13 +64,10 @@ public class PipelineFactoryImpl extends EFactoryImpl implements PipelineFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-		case PipelinePackage.PUSH_CONSTANT_RANGE:
-			return createPushConstantRange();
-		case PipelinePackage.SPECIALIZATION_CONSTANT:
-			return createSpecializationConstant();
-		default:
-			throw new IllegalArgumentException(
-					"The class '" + eClass.getName() + "' is not a valid classifier");
+			case PipelinePackage.PUSH_CONSTANT_RANGE: return createPushConstantRange();
+			case PipelinePackage.SPECIALIZATION_CONSTANT: return createSpecializationConstant();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -106,7 +103,7 @@ public class PipelineFactoryImpl extends EFactoryImpl implements PipelineFactory
 	@Override
 	public PipelinePackage getPipelinePackage()
 	{
-		return (PipelinePackage) getEPackage();
+		return (PipelinePackage)getEPackage();
 	}
 
 	/**

@@ -59,13 +59,19 @@ public class PathResourceItemProvider extends BasicResourceItemProvider
 	 */
 	protected void addPathPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_PathResource_path_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PathResource_path_feature",
-								"_UI_PathResource_type"),
-						ResourcePackage.Literals.PATH_RESOURCE__PATH, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PathResource_path_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PathResource_path_feature", "_UI_PathResource_type"),
+				 ResourcePackage.Literals.PATH_RESOURCE__PATH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -77,10 +83,10 @@ public class PathResourceItemProvider extends BasicResourceItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((PathResource) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_PathResource_type")
-				: getString("_UI_PathResource_type") + " " + label;
+		String label = ((PathResource)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_PathResource_type") :
+			getString("_UI_PathResource_type") + " " + label;
 	}
 
 	/**
@@ -97,9 +103,9 @@ public class PathResourceItemProvider extends BasicResourceItemProvider
 
 		switch (notification.getFeatureID(PathResource.class))
 		{
-		case ResourcePackage.PATH_RESOURCE__PATH:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case ResourcePackage.PATH_RESOURCE__PATH:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

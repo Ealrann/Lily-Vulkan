@@ -37,7 +37,8 @@ import org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.sprite.Sprite;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
-import org.sheepy.lily.vulkan.extra.model.sprite.SpriteRendererMaintainer;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -67,7 +68,7 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass spriteRendererMaintainerEClass = null;
+	private EClass spriteRendererEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,6 +76,13 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	private EClass spriteEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass spritePkgEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -176,9 +184,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getSpriteRendererMaintainer()
+	public EClass getSpriteRenderer()
 	{
-		return spriteRendererMaintainerEClass;
+		return spriteRendererEClass;
 	}
 
 	/**
@@ -201,6 +209,17 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	public EReference getSprite_File()
 	{
 		return (EReference)spriteEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSpritePkg()
+	{
+		return spritePkgEClass;
 	}
 
 	/**
@@ -234,10 +253,12 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		isCreated = true;
 
 		// Create classes and their features
-		spriteRendererMaintainerEClass = createEClass(SPRITE_RENDERER_MAINTAINER);
+		spriteRendererEClass = createEClass(SPRITE_RENDERER);
 
 		spriteEClass = createEClass(SPRITE);
 		createEReference(spriteEClass, SPRITE__FILE);
+
+		spritePkgEClass = createEClass(SPRITE_PKG);
 	}
 
 	/**
@@ -273,17 +294,23 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		EGenericType g1 = createEGenericType(theRenderingPackage.getGenericRendererMaintainer());
+		EGenericType g1 = createEGenericType(theRenderingPackage.getGenericRenderer());
 		EGenericType g2 = createEGenericType(this.getSprite());
 		g1.getETypeArguments().add(g2);
-		spriteRendererMaintainerEClass.getEGenericSuperTypes().add(g1);
+		spriteRendererEClass.getEGenericSuperTypes().add(g1);
 		spriteEClass.getESuperTypes().add(theRenderingPackage.getPresentation());
+		g1 = createEGenericType(theRenderingPackage.getPresentationPkg());
+		g2 = createEGenericType(this.getSprite());
+		g1.getETypeArguments().add(g2);
+		spritePkgEClass.getEGenericSuperTypes().add(g1);
 
-		// Initialize classes and features; add operations and parameters
-		initEClass(spriteRendererMaintainerEClass, SpriteRendererMaintainer.class, "SpriteRendererMaintainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		// Initialize classes, features, and operations; add parameters
+		initEClass(spriteRendererEClass, SpriteRenderer.class, "SpriteRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(spriteEClass, Sprite.class, "Sprite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSprite_File(), theResourcePackage.getFileResource(), null, "file", null, 1, 1, Sprite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSprite_File(), theResourcePackage.getPathResource(), null, "file", null, 1, 1, Sprite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(spritePkgEClass, SpritePkg.class, "SpritePkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

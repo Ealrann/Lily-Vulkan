@@ -133,8 +133,8 @@ public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container imple
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME, oldName, name));
 	}
 
 	/**
@@ -158,8 +158,8 @@ public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container imple
 	{
 		EFormat oldFormat = format;
 		format = newFormat == null ? FORMAT_EDEFAULT : newFormat;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT, oldFormat, format));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT, oldFormat, format));
 	}
 
 	/**
@@ -183,8 +183,8 @@ public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container imple
 	{
 		int oldOffset = offset;
 		offset = newOffset;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET, oldOffset, offset));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET, oldOffset, offset));
 	}
 
 	/**
@@ -197,12 +197,12 @@ public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container imple
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
-			return getName();
-		case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
-			return getFormat();
-		case GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET:
-			return getOffset();
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
+				return getName();
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
+				return getFormat();
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET:
+				return getOffset();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -217,15 +217,15 @@ public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container imple
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
-			setName((String) newValue);
-			return;
-		case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
-			setFormat((EFormat) newValue);
-			return;
-		case GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET:
-			setOffset((Integer) newValue);
-			return;
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
+				setName((String)newValue);
+				return;
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
+				setFormat((EFormat)newValue);
+				return;
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET:
+				setOffset((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -240,15 +240,15 @@ public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container imple
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
-			setFormat(FORMAT_EDEFAULT);
-			return;
-		case GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET:
-			setOffset(OFFSET_EDEFAULT);
-			return;
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
+				setFormat(FORMAT_EDEFAULT);
+				return;
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET:
+				setOffset(OFFSET_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -263,12 +263,12 @@ public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container imple
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
-			return format != FORMAT_EDEFAULT;
-		case GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET:
-			return offset != OFFSET_EDEFAULT;
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
+				return format != FORMAT_EDEFAULT;
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET:
+				return offset != OFFSET_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

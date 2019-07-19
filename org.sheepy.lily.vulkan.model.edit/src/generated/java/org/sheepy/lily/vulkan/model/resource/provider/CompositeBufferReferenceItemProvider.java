@@ -72,12 +72,19 @@ public class CompositeBufferReferenceItemProvider extends ItemProviderAdapter im
 	 */
 	protected void addBufferPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_CompositeBufferReference_buffer_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_CompositeBufferReference_buffer_feature",
-						"_UI_CompositeBufferReference_type"),
-				ResourcePackage.Literals.COMPOSITE_BUFFER_REFERENCE__BUFFER, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositeBufferReference_buffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeBufferReference_buffer_feature", "_UI_CompositeBufferReference_type"),
+				 ResourcePackage.Literals.COMPOSITE_BUFFER_REFERENCE__BUFFER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -88,13 +95,19 @@ public class CompositeBufferReferenceItemProvider extends ItemProviderAdapter im
 	 */
 	protected void addPartPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_CompositeBufferReference_part_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_CompositeBufferReference_part_feature",
-						"_UI_CompositeBufferReference_type"),
-				ResourcePackage.Literals.COMPOSITE_BUFFER_REFERENCE__PART, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositeBufferReference_part_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeBufferReference_part_feature", "_UI_CompositeBufferReference_type"),
+				 ResourcePackage.Literals.COMPOSITE_BUFFER_REFERENCE__PART,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -118,7 +131,7 @@ public class CompositeBufferReferenceItemProvider extends ItemProviderAdapter im
 	@Override
 	public String getText(Object object)
 	{
-		CompositeBufferReference compositeBufferReference = (CompositeBufferReference) object;
+		CompositeBufferReference compositeBufferReference = (CompositeBufferReference)object;
 		return getString("_UI_CompositeBufferReference_type") + " " + compositeBufferReference.getPart();
 	}
 
@@ -136,9 +149,9 @@ public class CompositeBufferReferenceItemProvider extends ItemProviderAdapter im
 
 		switch (notification.getFeatureID(CompositeBufferReference.class))
 		{
-		case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__PART:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__PART:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -165,7 +178,7 @@ public class CompositeBufferReferenceItemProvider extends ItemProviderAdapter im
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

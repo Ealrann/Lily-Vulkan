@@ -84,10 +84,8 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 		bufferRef = newBufferRef;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.VERTEX_BINDING__BUFFER_REF, oldBufferRef, newBufferRef);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.VERTEX_BINDING__BUFFER_REF, oldBufferRef, newBufferRef);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -103,15 +101,15 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 		if (newBufferRef != bufferRef)
 		{
 			NotificationChain msgs = null;
-			if (bufferRef != null) msgs = ((InternalEObject) bufferRef).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.VERTEX_BINDING__BUFFER_REF, null, msgs);
-			if (newBufferRef != null) msgs = ((InternalEObject) newBufferRef).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.VERTEX_BINDING__BUFFER_REF, null, msgs);
+			if (bufferRef != null)
+				msgs = ((InternalEObject)bufferRef).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.VERTEX_BINDING__BUFFER_REF, null, msgs);
+			if (newBufferRef != null)
+				msgs = ((InternalEObject)newBufferRef).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.VERTEX_BINDING__BUFFER_REF, null, msgs);
 			msgs = basicSetBufferRef(newBufferRef, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.VERTEX_BINDING__BUFFER_REF, newBufferRef, newBufferRef));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.VERTEX_BINDING__BUFFER_REF, newBufferRef, newBufferRef));
 	}
 
 	/**
@@ -124,8 +122,8 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
-			return basicSetBufferRef(null, msgs);
+			case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
+				return basicSetBufferRef(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -140,8 +138,8 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
-			return getBufferRef();
+			case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
+				return getBufferRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -156,9 +154,9 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
-			setBufferRef((IBufferReference) newValue);
-			return;
+			case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
+				setBufferRef((IBufferReference)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -173,9 +171,9 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
-			setBufferRef((IBufferReference) null);
-			return;
+			case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
+				setBufferRef((IBufferReference)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -190,8 +188,8 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
-			return bufferRef != null;
+			case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
+				return bufferRef != null;
 		}
 		return super.eIsSet(featureID);
 	}

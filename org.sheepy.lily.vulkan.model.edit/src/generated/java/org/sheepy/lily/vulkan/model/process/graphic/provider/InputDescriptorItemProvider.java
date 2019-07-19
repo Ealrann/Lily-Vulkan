@@ -77,13 +77,19 @@ public class InputDescriptorItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addInputRatePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_InputDescriptor_inputRate_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_InputDescriptor_inputRate_feature",
-								"_UI_InputDescriptor_type"),
-						GraphicPackage.Literals.INPUT_DESCRIPTOR__INPUT_RATE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_InputDescriptor_inputRate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_InputDescriptor_inputRate_feature", "_UI_InputDescriptor_type"),
+				 GraphicPackage.Literals.INPUT_DESCRIPTOR__INPUT_RATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -94,12 +100,19 @@ public class InputDescriptorItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addStrideLengthPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_InputDescriptor_strideLength_feature"),
-						getString("_UI_InputDescriptor_strideLength_description"),
-						GraphicPackage.Literals.INPUT_DESCRIPTOR__STRIDE_LENGTH, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_InputDescriptor_strideLength_feature"),
+				 getString("_UI_InputDescriptor_strideLength_description"),
+				 GraphicPackage.Literals.INPUT_DESCRIPTOR__STRIDE_LENGTH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -156,11 +169,11 @@ public class InputDescriptorItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public String getText(Object object)
 	{
-		EInputRate labelValue = ((InputDescriptor) object).getInputRate();
+		EInputRate labelValue = ((InputDescriptor)object).getInputRate();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0
-				? getString("_UI_InputDescriptor_type")
-				: getString("_UI_InputDescriptor_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_InputDescriptor_type") :
+			getString("_UI_InputDescriptor_type") + " " + label;
 	}
 
 	/**
@@ -177,13 +190,13 @@ public class InputDescriptorItemProvider extends ItemProviderAdapter implements 
 
 		switch (notification.getFeatureID(InputDescriptor.class))
 		{
-		case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
-		case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
+			case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -200,8 +213,10 @@ public class InputDescriptorItemProvider extends ItemProviderAdapter implements 
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.INPUT_DESCRIPTOR__ATTRIBUTES,
-				GraphicFactory.eINSTANCE.createAttributeDescription()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.INPUT_DESCRIPTOR__ATTRIBUTES,
+				 GraphicFactory.eINSTANCE.createAttributeDescription()));
 	}
 
 	/**
@@ -213,7 +228,7 @@ public class InputDescriptorItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

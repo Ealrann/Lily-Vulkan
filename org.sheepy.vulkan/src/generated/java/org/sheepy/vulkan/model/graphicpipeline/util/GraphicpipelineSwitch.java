@@ -72,87 +72,86 @@ public class GraphicpipelineSwitch<T> extends Switch<T>
 	{
 		switch (classifierID)
 		{
-		case GraphicpipelinePackage.COLOR_BLEND:
-		{
-			ColorBlend colorBlend = (ColorBlend) theEObject;
-			T result = caseColorBlend(colorBlend);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicpipelinePackage.COLOR_BLEND_ATTACHMENT:
-		{
-			ColorBlendAttachment colorBlendAttachment = (ColorBlendAttachment) theEObject;
-			T result = caseColorBlendAttachment(colorBlendAttachment);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicpipelinePackage.INPUT_ASSEMBLY:
-		{
-			InputAssembly inputAssembly = (InputAssembly) theEObject;
-			T result = caseInputAssembly(inputAssembly);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicpipelinePackage.RASTERIZER:
-		{
-			Rasterizer rasterizer = (Rasterizer) theEObject;
-			T result = caseRasterizer(rasterizer);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicpipelinePackage.DYNAMIC_STATE:
-		{
-			DynamicState dynamicState = (DynamicState) theEObject;
-			T result = caseDynamicState(dynamicState);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicpipelinePackage.VIEWPORT_STATE:
-		{
-			ViewportState viewportState = (ViewportState) theEObject;
-			T result = caseViewportState(viewportState);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicpipelinePackage.STATIC_VIEWPORT_STATE:
-		{
-			StaticViewportState staticViewportState = (StaticViewportState) theEObject;
-			T result = caseStaticViewportState(staticViewportState);
-			if (result == null) result = caseViewportState(staticViewportState);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicpipelinePackage.DYNAMIC_VIEWPORT_STATE:
-		{
-			DynamicViewportState dynamicViewportState = (DynamicViewportState) theEObject;
-			T result = caseDynamicViewportState(dynamicViewportState);
-			if (result == null) result = caseViewportState(dynamicViewportState);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicpipelinePackage.VEC2_I:
-		{
-			Vec2I vec2I = (Vec2I) theEObject;
-			T result = caseVec2I(vec2I);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicpipelinePackage.VIEWPORT:
-		{
-			Viewport viewport = (Viewport) theEObject;
-			T result = caseViewport(viewport);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicpipelinePackage.SCISSOR:
-		{
-			Scissor scissor = (Scissor) theEObject;
-			T result = caseScissor(scissor);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			case GraphicpipelinePackage.COLOR_BLEND:
+			{
+				ColorBlend colorBlend = (ColorBlend)theEObject;
+				T result = caseColorBlend(colorBlend);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicpipelinePackage.COLOR_BLEND_ATTACHMENT:
+			{
+				ColorBlendAttachment colorBlendAttachment = (ColorBlendAttachment)theEObject;
+				T result = caseColorBlendAttachment(colorBlendAttachment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicpipelinePackage.INPUT_ASSEMBLY:
+			{
+				InputAssembly inputAssembly = (InputAssembly)theEObject;
+				T result = caseInputAssembly(inputAssembly);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicpipelinePackage.RASTERIZER:
+			{
+				Rasterizer rasterizer = (Rasterizer)theEObject;
+				T result = caseRasterizer(rasterizer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicpipelinePackage.DYNAMIC_STATE:
+			{
+				DynamicState dynamicState = (DynamicState)theEObject;
+				T result = caseDynamicState(dynamicState);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicpipelinePackage.VIEWPORT_STATE:
+			{
+				ViewportState viewportState = (ViewportState)theEObject;
+				T result = caseViewportState(viewportState);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicpipelinePackage.STATIC_VIEWPORT_STATE:
+			{
+				StaticViewportState staticViewportState = (StaticViewportState)theEObject;
+				T result = caseStaticViewportState(staticViewportState);
+				if (result == null) result = caseViewportState(staticViewportState);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicpipelinePackage.DYNAMIC_VIEWPORT_STATE:
+			{
+				DynamicViewportState dynamicViewportState = (DynamicViewportState)theEObject;
+				T result = caseDynamicViewportState(dynamicViewportState);
+				if (result == null) result = caseViewportState(dynamicViewportState);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicpipelinePackage.VEC2_I:
+			{
+				Vec2I vec2I = (Vec2I)theEObject;
+				T result = caseVec2I(vec2I);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicpipelinePackage.VIEWPORT:
+			{
+				Viewport viewport = (Viewport)theEObject;
+				T result = caseViewport(viewport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicpipelinePackage.SCISSOR:
+			{
+				Scissor scissor = (Scissor)theEObject;
+				T result = caseScissor(scissor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 

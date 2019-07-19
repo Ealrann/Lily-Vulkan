@@ -136,9 +136,9 @@ public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditing
 
 		switch (notification.getFeatureID(TaskPkg.class))
 		{
-		case ProcessPackage.TASK_PKG__TASKS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case ProcessPackage.TASK_PKG__TASKS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -155,47 +155,75 @@ public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditing
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-				ProcessFactory.eINSTANCE.createPipelineBarrier()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PKG__TASKS,
+				 ProcessFactory.eINSTANCE.createPipelineBarrier()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-				ProcessFactory.eINSTANCE.createCompositeTask()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PKG__TASKS,
+				 ProcessFactory.eINSTANCE.createCompositeTask()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-				ProcessFactory.eINSTANCE.createBindDescriptorSets()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PKG__TASKS,
+				 ProcessFactory.eINSTANCE.createBindDescriptorSets()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-				ProcessFactory.eINSTANCE.createPushConstantBuffer()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PKG__TASKS,
+				 ProcessFactory.eINSTANCE.createPushConstantBuffer()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-				ProcessFactory.eINSTANCE.createPushBufferTask()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PKG__TASKS,
+				 ProcessFactory.eINSTANCE.createPushBufferTask()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-				ProcessFactory.eINSTANCE.createGetBufferTask()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PKG__TASKS,
+				 ProcessFactory.eINSTANCE.createGetBufferTask()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-				ComputeFactory.eINSTANCE.createComputer()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PKG__TASKS,
+				 ComputeFactory.eINSTANCE.createComputer()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-				GraphicFactory.eINSTANCE.createBlitToSwapImage()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PKG__TASKS,
+				 GraphicFactory.eINSTANCE.createBlitToSwapImage()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-				GraphicFactory.eINSTANCE.createDrawIndexed()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PKG__TASKS,
+				 GraphicFactory.eINSTANCE.createDrawIndexed()));
 
-		newChildDescriptors.add(
-				createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS, GraphicFactory.eINSTANCE.createDraw()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PKG__TASKS,
+				 GraphicFactory.eINSTANCE.createDraw()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-				GraphicFactory.eINSTANCE.createBindVertexBuffer()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PKG__TASKS,
+				 GraphicFactory.eINSTANCE.createBindVertexBuffer()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-				GraphicFactory.eINSTANCE.createSetScissor()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PKG__TASKS,
+				 GraphicFactory.eINSTANCE.createSetScissor()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-				GraphicFactory.eINSTANCE.createSetViewport()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PKG__TASKS,
+				 GraphicFactory.eINSTANCE.createSetViewport()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-				GraphicFactory.eINSTANCE.createBindIndexBuffer()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PKG__TASKS,
+				 GraphicFactory.eINSTANCE.createBindIndexBuffer()));
 	}
 
 	/**
@@ -207,7 +235,7 @@ public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditing
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

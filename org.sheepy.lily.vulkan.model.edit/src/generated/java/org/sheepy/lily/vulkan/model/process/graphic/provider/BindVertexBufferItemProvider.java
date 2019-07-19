@@ -78,13 +78,19 @@ public class BindVertexBufferItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -95,13 +101,19 @@ public class BindVertexBufferItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
-								"_UI_IPipelineTask_type"),
-						ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipelineTask_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature", "_UI_IPipelineTask_type"),
+				 ProcessPackage.Literals.IPIPELINE_TASK__ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -112,13 +124,19 @@ public class BindVertexBufferItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addFirstBindingPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_BindVertexBuffer_firstBinding_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_BindVertexBuffer_firstBinding_feature",
-								"_UI_BindVertexBuffer_type"),
-						GraphicPackage.Literals.BIND_VERTEX_BUFFER__FIRST_BINDING, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BindVertexBuffer_firstBinding_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BindVertexBuffer_firstBinding_feature", "_UI_BindVertexBuffer_type"),
+				 GraphicPackage.Literals.BIND_VERTEX_BUFFER__FIRST_BINDING,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -175,10 +193,10 @@ public class BindVertexBufferItemProvider extends ItemProviderAdapter implements
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((BindVertexBuffer) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_BindVertexBuffer_type")
-				: getString("_UI_BindVertexBuffer_type") + " " + label;
+		String label = ((BindVertexBuffer)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_BindVertexBuffer_type") :
+			getString("_UI_BindVertexBuffer_type") + " " + label;
 	}
 
 	/**
@@ -195,14 +213,14 @@ public class BindVertexBufferItemProvider extends ItemProviderAdapter implements
 
 		switch (notification.getFeatureID(BindVertexBuffer.class))
 		{
-		case GraphicPackage.BIND_VERTEX_BUFFER__NAME:
-		case GraphicPackage.BIND_VERTEX_BUFFER__ENABLED:
-		case GraphicPackage.BIND_VERTEX_BUFFER__FIRST_BINDING:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case GraphicPackage.BIND_VERTEX_BUFFER__NAME:
+			case GraphicPackage.BIND_VERTEX_BUFFER__ENABLED:
+			case GraphicPackage.BIND_VERTEX_BUFFER__FIRST_BINDING:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -219,8 +237,10 @@ public class BindVertexBufferItemProvider extends ItemProviderAdapter implements
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.BIND_VERTEX_BUFFER__VERTEX_BINDINGS,
-				GraphicFactory.eINSTANCE.createVertexBinding()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.BIND_VERTEX_BUFFER__VERTEX_BINDINGS,
+				 GraphicFactory.eINSTANCE.createVertexBinding()));
 	}
 
 	/**
@@ -232,7 +252,7 @@ public class BindVertexBufferItemProvider extends ItemProviderAdapter implements
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

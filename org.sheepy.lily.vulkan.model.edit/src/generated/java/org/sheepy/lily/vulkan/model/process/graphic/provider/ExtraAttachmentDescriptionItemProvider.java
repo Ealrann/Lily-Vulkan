@@ -59,12 +59,19 @@ public class ExtraAttachmentDescriptionItemProvider extends AttachmentDescriptio
 	 */
 	protected void addAttachmentPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ExtraAttachmentDescription_attachment_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ExtraAttachmentDescription_attachment_feature",
-						"_UI_ExtraAttachmentDescription_type"),
-				GraphicPackage.Literals.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExtraAttachmentDescription_attachment_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExtraAttachmentDescription_attachment_feature", "_UI_ExtraAttachmentDescription_type"),
+				 GraphicPackage.Literals.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -88,10 +95,10 @@ public class ExtraAttachmentDescriptionItemProvider extends AttachmentDescriptio
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((ExtraAttachmentDescription) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_ExtraAttachmentDescription_type")
-				: getString("_UI_ExtraAttachmentDescription_type") + " " + label;
+		String label = ((ExtraAttachmentDescription)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ExtraAttachmentDescription_type") :
+			getString("_UI_ExtraAttachmentDescription_type") + " " + label;
 	}
 
 	/**
@@ -105,6 +112,7 @@ public class ExtraAttachmentDescriptionItemProvider extends AttachmentDescriptio
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
+		super.notifyChanged(notification);
 	}
 
 	/**

@@ -93,12 +93,12 @@ public class AttachmentRefImpl extends MinimalEObjectImpl.Container implements A
 	{
 		if (attachment != null && attachment.eIsProxy())
 		{
-			InternalEObject oldAttachment = (InternalEObject) attachment;
-			attachment = (AttachmentDescription) eResolveProxy(oldAttachment);
+			InternalEObject oldAttachment = (InternalEObject)attachment;
+			attachment = (AttachmentDescription)eResolveProxy(oldAttachment);
 			if (attachment != oldAttachment)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						GraphicPackage.ATTACHMENT_REF__ATTACHMENT, oldAttachment, attachment));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.ATTACHMENT_REF__ATTACHMENT, oldAttachment, attachment));
 			}
 		}
 		return attachment;
@@ -124,8 +124,8 @@ public class AttachmentRefImpl extends MinimalEObjectImpl.Container implements A
 	{
 		AttachmentDescription oldAttachment = attachment;
 		attachment = newAttachment;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.ATTACHMENT_REF__ATTACHMENT, oldAttachment, attachment));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTACHMENT_REF__ATTACHMENT, oldAttachment, attachment));
 	}
 
 	/**
@@ -149,8 +149,8 @@ public class AttachmentRefImpl extends MinimalEObjectImpl.Container implements A
 	{
 		EImageLayout oldLayout = layout;
 		layout = newLayout == null ? LAYOUT_EDEFAULT : newLayout;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.ATTACHMENT_REF__LAYOUT, oldLayout, layout));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTACHMENT_REF__LAYOUT, oldLayout, layout));
 	}
 
 	/**
@@ -163,11 +163,11 @@ public class AttachmentRefImpl extends MinimalEObjectImpl.Container implements A
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
-			if (resolve) return getAttachment();
-			return basicGetAttachment();
-		case GraphicPackage.ATTACHMENT_REF__LAYOUT:
-			return getLayout();
+			case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
+				if (resolve) return getAttachment();
+				return basicGetAttachment();
+			case GraphicPackage.ATTACHMENT_REF__LAYOUT:
+				return getLayout();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -182,12 +182,12 @@ public class AttachmentRefImpl extends MinimalEObjectImpl.Container implements A
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
-			setAttachment((AttachmentDescription) newValue);
-			return;
-		case GraphicPackage.ATTACHMENT_REF__LAYOUT:
-			setLayout((EImageLayout) newValue);
-			return;
+			case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
+				setAttachment((AttachmentDescription)newValue);
+				return;
+			case GraphicPackage.ATTACHMENT_REF__LAYOUT:
+				setLayout((EImageLayout)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -202,12 +202,12 @@ public class AttachmentRefImpl extends MinimalEObjectImpl.Container implements A
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
-			setAttachment((AttachmentDescription) null);
-			return;
-		case GraphicPackage.ATTACHMENT_REF__LAYOUT:
-			setLayout(LAYOUT_EDEFAULT);
-			return;
+			case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
+				setAttachment((AttachmentDescription)null);
+				return;
+			case GraphicPackage.ATTACHMENT_REF__LAYOUT:
+				setLayout(LAYOUT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -222,10 +222,10 @@ public class AttachmentRefImpl extends MinimalEObjectImpl.Container implements A
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
-			return attachment != null;
-		case GraphicPackage.ATTACHMENT_REF__LAYOUT:
-			return layout != LAYOUT_EDEFAULT;
+			case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
+				return attachment != null;
+			case GraphicPackage.ATTACHMENT_REF__LAYOUT:
+				return layout != LAYOUT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

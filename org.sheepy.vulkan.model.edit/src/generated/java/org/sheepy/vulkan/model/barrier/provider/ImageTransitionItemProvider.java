@@ -33,9 +33,8 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ImageTransitionItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class ImageTransitionItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -77,13 +76,19 @@ public class ImageTransitionItemProvider extends ItemProviderAdapter
 	 */
 	protected void addSrcLayoutPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ImageTransition_srcLayout_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ImageTransition_srcLayout_feature", "_UI_ImageTransition_type"),
-				BarrierPackage.Literals.IMAGE_TRANSITION__SRC_LAYOUT, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageTransition_srcLayout_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageTransition_srcLayout_feature", "_UI_ImageTransition_type"),
+				 BarrierPackage.Literals.IMAGE_TRANSITION__SRC_LAYOUT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -94,13 +99,19 @@ public class ImageTransitionItemProvider extends ItemProviderAdapter
 	 */
 	protected void addDstLayoutPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ImageTransition_dstLayout_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ImageTransition_dstLayout_feature", "_UI_ImageTransition_type"),
-				BarrierPackage.Literals.IMAGE_TRANSITION__DST_LAYOUT, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageTransition_dstLayout_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageTransition_dstLayout_feature", "_UI_ImageTransition_type"),
+				 BarrierPackage.Literals.IMAGE_TRANSITION__DST_LAYOUT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -111,13 +122,19 @@ public class ImageTransitionItemProvider extends ItemProviderAdapter
 	 */
 	protected void addSrcAccessMaskPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ImageTransition_srcAccessMask_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ImageTransition_srcAccessMask_feature", "_UI_ImageTransition_type"),
-				BarrierPackage.Literals.IMAGE_TRANSITION__SRC_ACCESS_MASK, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageTransition_srcAccessMask_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageTransition_srcAccessMask_feature", "_UI_ImageTransition_type"),
+				 BarrierPackage.Literals.IMAGE_TRANSITION__SRC_ACCESS_MASK,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -128,13 +145,19 @@ public class ImageTransitionItemProvider extends ItemProviderAdapter
 	 */
 	protected void addDstAccessMaskPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ImageTransition_dstAccessMask_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ImageTransition_dstAccessMask_feature", "_UI_ImageTransition_type"),
-				BarrierPackage.Literals.IMAGE_TRANSITION__DST_ACCESS_MASK, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageTransition_dstAccessMask_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageTransition_dstAccessMask_feature", "_UI_ImageTransition_type"),
+				 BarrierPackage.Literals.IMAGE_TRANSITION__DST_ACCESS_MASK,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -158,11 +181,11 @@ public class ImageTransitionItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		EImageLayout labelValue = ((ImageTransition) object).getSrcLayout();
+		EImageLayout labelValue = ((ImageTransition)object).getSrcLayout();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0
-				? getString("_UI_ImageTransition_type")
-				: getString("_UI_ImageTransition_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_ImageTransition_type") :
+			getString("_UI_ImageTransition_type") + " " + label;
 	}
 
 	/**
@@ -179,13 +202,12 @@ public class ImageTransitionItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(ImageTransition.class))
 		{
-		case BarrierPackage.IMAGE_TRANSITION__SRC_LAYOUT:
-		case BarrierPackage.IMAGE_TRANSITION__DST_LAYOUT:
-		case BarrierPackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
-		case BarrierPackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case BarrierPackage.IMAGE_TRANSITION__SRC_LAYOUT:
+			case BarrierPackage.IMAGE_TRANSITION__DST_LAYOUT:
+			case BarrierPackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
+			case BarrierPackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -212,7 +234,7 @@ public class ImageTransitionItemProvider extends ItemProviderAdapter
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

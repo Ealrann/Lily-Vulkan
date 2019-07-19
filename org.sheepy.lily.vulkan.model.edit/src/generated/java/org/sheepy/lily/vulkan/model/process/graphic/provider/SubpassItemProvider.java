@@ -73,12 +73,19 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Subpass_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Subpass_name_feature", "_UI_Subpass_type"),
-						GraphicPackage.Literals.SUBPASS__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Subpass_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_name_feature", "_UI_Subpass_type"),
+				 GraphicPackage.Literals.SUBPASS__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -135,10 +142,10 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Subpass) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_Subpass_type")
-				: getString("_UI_Subpass_type") + " " + label;
+		String label = ((Subpass)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Subpass_type") :
+			getString("_UI_Subpass_type") + " " + label;
 	}
 
 	/**
@@ -155,12 +162,12 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 
 		switch (notification.getFeatureID(Subpass.class))
 		{
-		case GraphicPackage.SUBPASS__NAME:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case GraphicPackage.SUBPASS__REFS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case GraphicPackage.SUBPASS__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case GraphicPackage.SUBPASS__REFS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -177,8 +184,10 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.SUBPASS__REFS,
-				GraphicFactory.eINSTANCE.createAttachmentRef()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.SUBPASS__REFS,
+				 GraphicFactory.eINSTANCE.createAttachmentRef()));
 	}
 
 	/**
@@ -190,7 +199,7 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

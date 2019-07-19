@@ -129,7 +129,7 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ViewportImpl()
+	public ViewportImpl()
 	{
 		super();
 	}
@@ -166,8 +166,8 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	{
 		int oldOffsetX = offsetX;
 		offsetX = newOffsetX;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.VIEWPORT__OFFSET_X, oldOffsetX, offsetX));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.VIEWPORT__OFFSET_X, oldOffsetX, offsetX));
 	}
 
 	/**
@@ -191,8 +191,8 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	{
 		int oldOffsetY = offsetY;
 		offsetY = newOffsetY;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.VIEWPORT__OFFSET_Y, oldOffsetY, offsetY));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.VIEWPORT__OFFSET_Y, oldOffsetY, offsetY));
 	}
 
 	/**
@@ -217,10 +217,8 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 		extent = newExtent;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicpipelinePackage.VIEWPORT__EXTENT, oldExtent, newExtent);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.VIEWPORT__EXTENT, oldExtent, newExtent);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -236,15 +234,15 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 		if (newExtent != extent)
 		{
 			NotificationChain msgs = null;
-			if (extent != null) msgs = ((InternalEObject) extent).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicpipelinePackage.VIEWPORT__EXTENT, null, msgs);
-			if (newExtent != null) msgs = ((InternalEObject) newExtent).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicpipelinePackage.VIEWPORT__EXTENT, null, msgs);
+			if (extent != null)
+				msgs = ((InternalEObject)extent).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicpipelinePackage.VIEWPORT__EXTENT, null, msgs);
+			if (newExtent != null)
+				msgs = ((InternalEObject)newExtent).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicpipelinePackage.VIEWPORT__EXTENT, null, msgs);
 			msgs = basicSetExtent(newExtent, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.VIEWPORT__EXTENT, newExtent, newExtent));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.VIEWPORT__EXTENT, newExtent, newExtent));
 	}
 
 	/**
@@ -268,8 +266,8 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	{
 		int oldMinDepth = minDepth;
 		minDepth = newMinDepth;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.VIEWPORT__MIN_DEPTH, oldMinDepth, minDepth));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.VIEWPORT__MIN_DEPTH, oldMinDepth, minDepth));
 	}
 
 	/**
@@ -293,8 +291,8 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	{
 		int oldMaxDepth = maxDepth;
 		maxDepth = newMaxDepth;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.VIEWPORT__MAX_DEPTH, oldMaxDepth, maxDepth));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.VIEWPORT__MAX_DEPTH, oldMaxDepth, maxDepth));
 	}
 
 	/**
@@ -303,14 +301,12 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.VIEWPORT__EXTENT:
-			return basicSetExtent(null, msgs);
+			case GraphicpipelinePackage.VIEWPORT__EXTENT:
+				return basicSetExtent(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -325,16 +321,16 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.VIEWPORT__OFFSET_X:
-			return getOffsetX();
-		case GraphicpipelinePackage.VIEWPORT__OFFSET_Y:
-			return getOffsetY();
-		case GraphicpipelinePackage.VIEWPORT__EXTENT:
-			return getExtent();
-		case GraphicpipelinePackage.VIEWPORT__MIN_DEPTH:
-			return getMinDepth();
-		case GraphicpipelinePackage.VIEWPORT__MAX_DEPTH:
-			return getMaxDepth();
+			case GraphicpipelinePackage.VIEWPORT__OFFSET_X:
+				return getOffsetX();
+			case GraphicpipelinePackage.VIEWPORT__OFFSET_Y:
+				return getOffsetY();
+			case GraphicpipelinePackage.VIEWPORT__EXTENT:
+				return getExtent();
+			case GraphicpipelinePackage.VIEWPORT__MIN_DEPTH:
+				return getMinDepth();
+			case GraphicpipelinePackage.VIEWPORT__MAX_DEPTH:
+				return getMaxDepth();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -349,21 +345,21 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.VIEWPORT__OFFSET_X:
-			setOffsetX((Integer) newValue);
-			return;
-		case GraphicpipelinePackage.VIEWPORT__OFFSET_Y:
-			setOffsetY((Integer) newValue);
-			return;
-		case GraphicpipelinePackage.VIEWPORT__EXTENT:
-			setExtent((Vec2I) newValue);
-			return;
-		case GraphicpipelinePackage.VIEWPORT__MIN_DEPTH:
-			setMinDepth((Integer) newValue);
-			return;
-		case GraphicpipelinePackage.VIEWPORT__MAX_DEPTH:
-			setMaxDepth((Integer) newValue);
-			return;
+			case GraphicpipelinePackage.VIEWPORT__OFFSET_X:
+				setOffsetX((Integer)newValue);
+				return;
+			case GraphicpipelinePackage.VIEWPORT__OFFSET_Y:
+				setOffsetY((Integer)newValue);
+				return;
+			case GraphicpipelinePackage.VIEWPORT__EXTENT:
+				setExtent((Vec2I)newValue);
+				return;
+			case GraphicpipelinePackage.VIEWPORT__MIN_DEPTH:
+				setMinDepth((Integer)newValue);
+				return;
+			case GraphicpipelinePackage.VIEWPORT__MAX_DEPTH:
+				setMaxDepth((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -378,21 +374,21 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.VIEWPORT__OFFSET_X:
-			setOffsetX(OFFSET_X_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.VIEWPORT__OFFSET_Y:
-			setOffsetY(OFFSET_Y_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.VIEWPORT__EXTENT:
-			setExtent((Vec2I) null);
-			return;
-		case GraphicpipelinePackage.VIEWPORT__MIN_DEPTH:
-			setMinDepth(MIN_DEPTH_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.VIEWPORT__MAX_DEPTH:
-			setMaxDepth(MAX_DEPTH_EDEFAULT);
-			return;
+			case GraphicpipelinePackage.VIEWPORT__OFFSET_X:
+				setOffsetX(OFFSET_X_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.VIEWPORT__OFFSET_Y:
+				setOffsetY(OFFSET_Y_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.VIEWPORT__EXTENT:
+				setExtent((Vec2I)null);
+				return;
+			case GraphicpipelinePackage.VIEWPORT__MIN_DEPTH:
+				setMinDepth(MIN_DEPTH_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.VIEWPORT__MAX_DEPTH:
+				setMaxDepth(MAX_DEPTH_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -407,16 +403,16 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.VIEWPORT__OFFSET_X:
-			return offsetX != OFFSET_X_EDEFAULT;
-		case GraphicpipelinePackage.VIEWPORT__OFFSET_Y:
-			return offsetY != OFFSET_Y_EDEFAULT;
-		case GraphicpipelinePackage.VIEWPORT__EXTENT:
-			return extent != null;
-		case GraphicpipelinePackage.VIEWPORT__MIN_DEPTH:
-			return minDepth != MIN_DEPTH_EDEFAULT;
-		case GraphicpipelinePackage.VIEWPORT__MAX_DEPTH:
-			return maxDepth != MAX_DEPTH_EDEFAULT;
+			case GraphicpipelinePackage.VIEWPORT__OFFSET_X:
+				return offsetX != OFFSET_X_EDEFAULT;
+			case GraphicpipelinePackage.VIEWPORT__OFFSET_Y:
+				return offsetY != OFFSET_Y_EDEFAULT;
+			case GraphicpipelinePackage.VIEWPORT__EXTENT:
+				return extent != null;
+			case GraphicpipelinePackage.VIEWPORT__MIN_DEPTH:
+				return minDepth != MIN_DEPTH_EDEFAULT;
+			case GraphicpipelinePackage.VIEWPORT__MAX_DEPTH:
+				return maxDepth != MAX_DEPTH_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

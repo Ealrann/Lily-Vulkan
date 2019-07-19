@@ -104,8 +104,8 @@ public abstract class BasicDescriptedResourceImpl extends MinimalEObjectImpl.Con
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.BASIC_DESCRIPTED_RESOURCE__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BASIC_DESCRIPTED_RESOURCE__NAME, oldName, name));
 	}
 
 	/**
@@ -130,10 +130,8 @@ public abstract class BasicDescriptedResourceImpl extends MinimalEObjectImpl.Con
 		descriptor = newDescriptor;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR, oldDescriptor, newDescriptor);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR, oldDescriptor, newDescriptor);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -149,15 +147,15 @@ public abstract class BasicDescriptedResourceImpl extends MinimalEObjectImpl.Con
 		if (newDescriptor != descriptor)
 		{
 			NotificationChain msgs = null;
-			if (descriptor != null) msgs = ((InternalEObject) descriptor).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR, null, msgs);
-			if (newDescriptor != null) msgs = ((InternalEObject) newDescriptor).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR, null, msgs);
+			if (descriptor != null)
+				msgs = ((InternalEObject)descriptor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR, null, msgs);
+			if (newDescriptor != null)
+				msgs = ((InternalEObject)newDescriptor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR, null, msgs);
 			msgs = basicSetDescriptor(newDescriptor, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR, newDescriptor, newDescriptor));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR, newDescriptor, newDescriptor));
 	}
 
 	/**
@@ -170,8 +168,8 @@ public abstract class BasicDescriptedResourceImpl extends MinimalEObjectImpl.Con
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR:
-			return basicSetDescriptor(null, msgs);
+			case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR:
+				return basicSetDescriptor(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -186,10 +184,10 @@ public abstract class BasicDescriptedResourceImpl extends MinimalEObjectImpl.Con
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__NAME:
-			return getName();
-		case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR:
-			return getDescriptor();
+			case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__NAME:
+				return getName();
+			case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR:
+				return getDescriptor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -204,12 +202,12 @@ public abstract class BasicDescriptedResourceImpl extends MinimalEObjectImpl.Con
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__NAME:
-			setName((String) newValue);
-			return;
-		case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR:
-			setDescriptor((Descriptor) newValue);
-			return;
+			case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__NAME:
+				setName((String)newValue);
+				return;
+			case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR:
+				setDescriptor((Descriptor)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -224,12 +222,12 @@ public abstract class BasicDescriptedResourceImpl extends MinimalEObjectImpl.Con
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR:
-			setDescriptor((Descriptor) null);
-			return;
+			case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR:
+				setDescriptor((Descriptor)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -244,10 +242,10 @@ public abstract class BasicDescriptedResourceImpl extends MinimalEObjectImpl.Con
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR:
-			return descriptor != null;
+			case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR:
+				return descriptor != null;
 		}
 		return super.eIsSet(featureID);
 	}

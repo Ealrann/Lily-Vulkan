@@ -72,12 +72,19 @@ public class BufferReferenceItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addBufferPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_BufferReference_buffer_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_BufferReference_buffer_feature",
-								"_UI_BufferReference_type"),
-						ResourcePackage.Literals.BUFFER_REFERENCE__BUFFER, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BufferReference_buffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferReference_buffer_feature", "_UI_BufferReference_type"),
+				 ResourcePackage.Literals.BUFFER_REFERENCE__BUFFER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -88,13 +95,19 @@ public class BufferReferenceItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addOffsetPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_BufferReference_offset_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_BufferReference_offset_feature",
-								"_UI_BufferReference_type"),
-						ResourcePackage.Literals.BUFFER_REFERENCE__OFFSET, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BufferReference_offset_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferReference_offset_feature", "_UI_BufferReference_type"),
+				 ResourcePackage.Literals.BUFFER_REFERENCE__OFFSET,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -118,7 +131,7 @@ public class BufferReferenceItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public String getText(Object object)
 	{
-		BufferReference bufferReference = (BufferReference) object;
+		BufferReference bufferReference = (BufferReference)object;
 		return getString("_UI_BufferReference_type") + " " + bufferReference.getOffset();
 	}
 
@@ -136,9 +149,9 @@ public class BufferReferenceItemProvider extends ItemProviderAdapter implements 
 
 		switch (notification.getFeatureID(BufferReference.class))
 		{
-		case ResourcePackage.BUFFER_REFERENCE__OFFSET:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case ResourcePackage.BUFFER_REFERENCE__OFFSET:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -165,7 +178,7 @@ public class BufferReferenceItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

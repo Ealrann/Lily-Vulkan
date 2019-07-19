@@ -4,27 +4,27 @@ package org.sheepy.lily.vulkan.extra.model.sprite.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererMaintainerImpl;
+import org.sheepy.lily.vulkan.extra.model.rendering.impl.PresentationPkgImpl;
 
 import org.sheepy.lily.vulkan.extra.model.sprite.Sprite;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
-import org.sheepy.lily.vulkan.extra.model.sprite.SpriteRendererMaintainer;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Renderer Maintainer</b></em>'.
+ * An implementation of the model object '<em><b>Pkg</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class SpriteRendererMaintainerImpl extends GenericRendererMaintainerImpl<Sprite> implements SpriteRendererMaintainer
+public class SpritePkgImpl extends PresentationPkgImpl<Sprite> implements SpritePkg
 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SpriteRendererMaintainerImpl()
+	protected SpritePkgImpl()
 	{
 		super();
 	}
@@ -37,7 +37,7 @@ public class SpriteRendererMaintainerImpl extends GenericRendererMaintainerImpl<
 	@Override
 	protected EClass eStaticClass()
 	{
-		return SpritePackage.Literals.SPRITE_RENDERER_MAINTAINER;
+		return SpritePackage.Literals.SPRITE_PKG;
 	}
 
-} //SpriteRendererMaintainerImpl
+} //SpritePkgImpl

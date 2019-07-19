@@ -83,40 +83,39 @@ public class ComputeSwitch<T> extends Switch<T>
 	{
 		switch (classifierID)
 		{
-		case ComputePackage.COMPUTE_PROCESS:
-		{
-			ComputeProcess computeProcess = (ComputeProcess) theEObject;
-			T result = caseComputeProcess(computeProcess);
-			if (result == null) result = caseAbstractProcess(computeProcess);
-			if (result == null) result = caseIProcess(computeProcess);
-			if (result == null) result = caseIResourceContainer(computeProcess);
-			if (result == null) result = caseLNamedElement(computeProcess);
-			if (result == null) result = caseIExecutionManager(computeProcess);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ComputePackage.COMPUTE_PIPELINE:
-		{
-			ComputePipeline computePipeline = (ComputePipeline) theEObject;
-			T result = caseComputePipeline(computePipeline);
-			if (result == null) result = caseIPipeline(computePipeline);
-			if (result == null) result = caseLNamedElement(computePipeline);
-			if (result == null) result = caseIResourceContainer(computePipeline);
-			if (result == null) result = caseIProcessPart(computePipeline);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ComputePackage.COMPUTER:
-		{
-			Computer computer = (Computer) theEObject;
-			T result = caseComputer(computer);
-			if (result == null) result = caseIPipelineTask(computer);
-			if (result == null) result = caseLNamedElement(computer);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			case ComputePackage.COMPUTE_PROCESS:
+			{
+				ComputeProcess computeProcess = (ComputeProcess)theEObject;
+				T result = caseComputeProcess(computeProcess);
+				if (result == null) result = caseAbstractProcess(computeProcess);
+				if (result == null) result = caseIProcess(computeProcess);
+				if (result == null) result = caseIResourceContainer(computeProcess);
+				if (result == null) result = caseLNamedElement(computeProcess);
+				if (result == null) result = caseIExecutionManager(computeProcess);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ComputePackage.COMPUTE_PIPELINE:
+			{
+				ComputePipeline computePipeline = (ComputePipeline)theEObject;
+				T result = caseComputePipeline(computePipeline);
+				if (result == null) result = caseIPipeline(computePipeline);
+				if (result == null) result = caseLNamedElement(computePipeline);
+				if (result == null) result = caseIResourceContainer(computePipeline);
+				if (result == null) result = caseIProcessPart(computePipeline);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ComputePackage.COMPUTER:
+			{
+				Computer computer = (Computer)theEObject;
+				T result = caseComputer(computer);
+				if (result == null) result = caseIPipelineTask(computer);
+				if (result == null) result = caseLNamedElement(computer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 

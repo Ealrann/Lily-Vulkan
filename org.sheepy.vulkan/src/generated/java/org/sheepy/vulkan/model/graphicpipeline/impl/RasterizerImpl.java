@@ -182,7 +182,7 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RasterizerImpl()
+	public RasterizerImpl()
 	{
 		super();
 	}
@@ -219,8 +219,8 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 	{
 		ECullMode oldCullMode = cullMode;
 		cullMode = newCullMode == null ? CULL_MODE_EDEFAULT : newCullMode;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.RASTERIZER__CULL_MODE, oldCullMode, cullMode));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.RASTERIZER__CULL_MODE, oldCullMode, cullMode));
 	}
 
 	/**
@@ -244,8 +244,8 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 	{
 		EFrontFace oldFrontFace = frontFace;
 		frontFace = newFrontFace == null ? FRONT_FACE_EDEFAULT : newFrontFace;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.RASTERIZER__FRONT_FACE, oldFrontFace, frontFace));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.RASTERIZER__FRONT_FACE, oldFrontFace, frontFace));
 	}
 
 	/**
@@ -269,8 +269,8 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 	{
 		EPolygonMode oldPolygonMode = polygonMode;
 		polygonMode = newPolygonMode == null ? POLYGON_MODE_EDEFAULT : newPolygonMode;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.RASTERIZER__POLYGON_MODE, oldPolygonMode, polygonMode));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.RASTERIZER__POLYGON_MODE, oldPolygonMode, polygonMode));
 	}
 
 	/**
@@ -294,8 +294,8 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 	{
 		int oldLineWidth = lineWidth;
 		lineWidth = newLineWidth;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.RASTERIZER__LINE_WIDTH, oldLineWidth, lineWidth));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.RASTERIZER__LINE_WIDTH, oldLineWidth, lineWidth));
 	}
 
 	/**
@@ -319,9 +319,8 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 	{
 		boolean oldDepthClampEnable = depthClampEnable;
 		depthClampEnable = newDepthClampEnable;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.RASTERIZER__DEPTH_CLAMP_ENABLE, oldDepthClampEnable,
-				depthClampEnable));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.RASTERIZER__DEPTH_CLAMP_ENABLE, oldDepthClampEnable, depthClampEnable));
 	}
 
 	/**
@@ -345,9 +344,8 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 	{
 		boolean oldDiscardEnable = discardEnable;
 		discardEnable = newDiscardEnable;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.RASTERIZER__DISCARD_ENABLE, oldDiscardEnable,
-				discardEnable));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.RASTERIZER__DISCARD_ENABLE, oldDiscardEnable, discardEnable));
 	}
 
 	/**
@@ -371,9 +369,8 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 	{
 		boolean oldDepthBiasEnable = depthBiasEnable;
 		depthBiasEnable = newDepthBiasEnable;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.RASTERIZER__DEPTH_BIAS_ENABLE, oldDepthBiasEnable,
-				depthBiasEnable));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.RASTERIZER__DEPTH_BIAS_ENABLE, oldDepthBiasEnable, depthBiasEnable));
 	}
 
 	/**
@@ -386,20 +383,20 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.RASTERIZER__CULL_MODE:
-			return getCullMode();
-		case GraphicpipelinePackage.RASTERIZER__FRONT_FACE:
-			return getFrontFace();
-		case GraphicpipelinePackage.RASTERIZER__POLYGON_MODE:
-			return getPolygonMode();
-		case GraphicpipelinePackage.RASTERIZER__LINE_WIDTH:
-			return getLineWidth();
-		case GraphicpipelinePackage.RASTERIZER__DEPTH_CLAMP_ENABLE:
-			return isDepthClampEnable();
-		case GraphicpipelinePackage.RASTERIZER__DISCARD_ENABLE:
-			return isDiscardEnable();
-		case GraphicpipelinePackage.RASTERIZER__DEPTH_BIAS_ENABLE:
-			return isDepthBiasEnable();
+			case GraphicpipelinePackage.RASTERIZER__CULL_MODE:
+				return getCullMode();
+			case GraphicpipelinePackage.RASTERIZER__FRONT_FACE:
+				return getFrontFace();
+			case GraphicpipelinePackage.RASTERIZER__POLYGON_MODE:
+				return getPolygonMode();
+			case GraphicpipelinePackage.RASTERIZER__LINE_WIDTH:
+				return getLineWidth();
+			case GraphicpipelinePackage.RASTERIZER__DEPTH_CLAMP_ENABLE:
+				return isDepthClampEnable();
+			case GraphicpipelinePackage.RASTERIZER__DISCARD_ENABLE:
+				return isDiscardEnable();
+			case GraphicpipelinePackage.RASTERIZER__DEPTH_BIAS_ENABLE:
+				return isDepthBiasEnable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -414,27 +411,27 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.RASTERIZER__CULL_MODE:
-			setCullMode((ECullMode) newValue);
-			return;
-		case GraphicpipelinePackage.RASTERIZER__FRONT_FACE:
-			setFrontFace((EFrontFace) newValue);
-			return;
-		case GraphicpipelinePackage.RASTERIZER__POLYGON_MODE:
-			setPolygonMode((EPolygonMode) newValue);
-			return;
-		case GraphicpipelinePackage.RASTERIZER__LINE_WIDTH:
-			setLineWidth((Integer) newValue);
-			return;
-		case GraphicpipelinePackage.RASTERIZER__DEPTH_CLAMP_ENABLE:
-			setDepthClampEnable((Boolean) newValue);
-			return;
-		case GraphicpipelinePackage.RASTERIZER__DISCARD_ENABLE:
-			setDiscardEnable((Boolean) newValue);
-			return;
-		case GraphicpipelinePackage.RASTERIZER__DEPTH_BIAS_ENABLE:
-			setDepthBiasEnable((Boolean) newValue);
-			return;
+			case GraphicpipelinePackage.RASTERIZER__CULL_MODE:
+				setCullMode((ECullMode)newValue);
+				return;
+			case GraphicpipelinePackage.RASTERIZER__FRONT_FACE:
+				setFrontFace((EFrontFace)newValue);
+				return;
+			case GraphicpipelinePackage.RASTERIZER__POLYGON_MODE:
+				setPolygonMode((EPolygonMode)newValue);
+				return;
+			case GraphicpipelinePackage.RASTERIZER__LINE_WIDTH:
+				setLineWidth((Integer)newValue);
+				return;
+			case GraphicpipelinePackage.RASTERIZER__DEPTH_CLAMP_ENABLE:
+				setDepthClampEnable((Boolean)newValue);
+				return;
+			case GraphicpipelinePackage.RASTERIZER__DISCARD_ENABLE:
+				setDiscardEnable((Boolean)newValue);
+				return;
+			case GraphicpipelinePackage.RASTERIZER__DEPTH_BIAS_ENABLE:
+				setDepthBiasEnable((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -449,27 +446,27 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.RASTERIZER__CULL_MODE:
-			setCullMode(CULL_MODE_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.RASTERIZER__FRONT_FACE:
-			setFrontFace(FRONT_FACE_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.RASTERIZER__POLYGON_MODE:
-			setPolygonMode(POLYGON_MODE_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.RASTERIZER__LINE_WIDTH:
-			setLineWidth(LINE_WIDTH_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.RASTERIZER__DEPTH_CLAMP_ENABLE:
-			setDepthClampEnable(DEPTH_CLAMP_ENABLE_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.RASTERIZER__DISCARD_ENABLE:
-			setDiscardEnable(DISCARD_ENABLE_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.RASTERIZER__DEPTH_BIAS_ENABLE:
-			setDepthBiasEnable(DEPTH_BIAS_ENABLE_EDEFAULT);
-			return;
+			case GraphicpipelinePackage.RASTERIZER__CULL_MODE:
+				setCullMode(CULL_MODE_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.RASTERIZER__FRONT_FACE:
+				setFrontFace(FRONT_FACE_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.RASTERIZER__POLYGON_MODE:
+				setPolygonMode(POLYGON_MODE_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.RASTERIZER__LINE_WIDTH:
+				setLineWidth(LINE_WIDTH_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.RASTERIZER__DEPTH_CLAMP_ENABLE:
+				setDepthClampEnable(DEPTH_CLAMP_ENABLE_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.RASTERIZER__DISCARD_ENABLE:
+				setDiscardEnable(DISCARD_ENABLE_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.RASTERIZER__DEPTH_BIAS_ENABLE:
+				setDepthBiasEnable(DEPTH_BIAS_ENABLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -484,20 +481,20 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.RASTERIZER__CULL_MODE:
-			return cullMode != CULL_MODE_EDEFAULT;
-		case GraphicpipelinePackage.RASTERIZER__FRONT_FACE:
-			return frontFace != FRONT_FACE_EDEFAULT;
-		case GraphicpipelinePackage.RASTERIZER__POLYGON_MODE:
-			return polygonMode != POLYGON_MODE_EDEFAULT;
-		case GraphicpipelinePackage.RASTERIZER__LINE_WIDTH:
-			return lineWidth != LINE_WIDTH_EDEFAULT;
-		case GraphicpipelinePackage.RASTERIZER__DEPTH_CLAMP_ENABLE:
-			return depthClampEnable != DEPTH_CLAMP_ENABLE_EDEFAULT;
-		case GraphicpipelinePackage.RASTERIZER__DISCARD_ENABLE:
-			return discardEnable != DISCARD_ENABLE_EDEFAULT;
-		case GraphicpipelinePackage.RASTERIZER__DEPTH_BIAS_ENABLE:
-			return depthBiasEnable != DEPTH_BIAS_ENABLE_EDEFAULT;
+			case GraphicpipelinePackage.RASTERIZER__CULL_MODE:
+				return cullMode != CULL_MODE_EDEFAULT;
+			case GraphicpipelinePackage.RASTERIZER__FRONT_FACE:
+				return frontFace != FRONT_FACE_EDEFAULT;
+			case GraphicpipelinePackage.RASTERIZER__POLYGON_MODE:
+				return polygonMode != POLYGON_MODE_EDEFAULT;
+			case GraphicpipelinePackage.RASTERIZER__LINE_WIDTH:
+				return lineWidth != LINE_WIDTH_EDEFAULT;
+			case GraphicpipelinePackage.RASTERIZER__DEPTH_CLAMP_ENABLE:
+				return depthClampEnable != DEPTH_CLAMP_ENABLE_EDEFAULT;
+			case GraphicpipelinePackage.RASTERIZER__DISCARD_ENABLE:
+				return discardEnable != DISCARD_ENABLE_EDEFAULT;
+			case GraphicpipelinePackage.RASTERIZER__DEPTH_BIAS_ENABLE:
+				return depthBiasEnable != DEPTH_BIAS_ENABLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

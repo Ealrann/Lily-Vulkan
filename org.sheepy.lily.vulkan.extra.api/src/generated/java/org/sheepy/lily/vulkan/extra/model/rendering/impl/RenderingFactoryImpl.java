@@ -65,13 +65,14 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 		switch (eClass.getClassifierID())
 		{
 			case RenderingPackage.AXIS: return createAxis();
-			case RenderingPackage.PRESENTATION_PKG: return createPresentationPkg();
 			case RenderingPackage.PRESENTABLE_ENTITY: return createPresentableEntity();
 			case RenderingPackage.DATA_PROVIDER_PKG: return createDataProviderPkg();
 			case RenderingPackage.GENERIC_DESCRIBED_DATA_PROVIDER: return createGenericDescribedDataProvider();
 			case RenderingPackage.RENDERABLE_DATA_SOURCE: return createRenderableDataSource();
 			case RenderingPackage.GENERIC_VERTEX_PROVIDER: return createGenericVertexProvider();
 			case RenderingPackage.GENERIC_INDEX_PROVIDER: return createGenericIndexProvider();
+			case RenderingPackage.PRESENTATION_ROOT_PKG: return createPresentationRootPkg();
+			case RenderingPackage.STATIC_RESOURCE_PROVIDER: return createStaticResourceProvider();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -87,18 +88,6 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	{
 		AxisImpl axis = new AxisImpl();
 		return axis;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public PresentationPkg createPresentationPkg()
-	{
-		PresentationPkgImpl presentationPkg = new PresentationPkgImpl();
-		return presentationPkg;
 	}
 
 	/**
@@ -171,6 +160,30 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	{
 		GenericIndexProviderImpl<T> genericIndexProvider = new GenericIndexProviderImpl<T>();
 		return genericIndexProvider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PresentationRootPkg createPresentationRootPkg()
+	{
+		PresentationRootPkgImpl presentationRootPkg = new PresentationRootPkgImpl();
+		return presentationRootPkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StaticResourceProvider createStaticResourceProvider()
+	{
+		StaticResourceProviderImpl staticResourceProvider = new StaticResourceProviderImpl();
+		return staticResourceProvider;
 	}
 
 	/**

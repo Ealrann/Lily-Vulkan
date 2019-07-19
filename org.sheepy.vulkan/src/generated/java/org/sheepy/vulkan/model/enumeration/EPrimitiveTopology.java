@@ -117,10 +117,7 @@ public enum EPrimitiveTopology implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	TRIANGLE_STRIP_WITH_ADJACENCY(
-			9,
-			"TRIANGLE_STRIP_WITH_ADJACENCY",
-			"TRIANGLE_STRIP_WITH_ADJACENCY"),
+	TRIANGLE_STRIP_WITH_ADJACENCY(9, "TRIANGLE_STRIP_WITH_ADJACENCY", "TRIANGLE_STRIP_WITH_ADJACENCY"),
 
 	/**
 	 * The '<em><b>PATCH LIST</b></em>' literal object.
@@ -259,7 +256,8 @@ public enum EPrimitiveTopology implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EPrimitiveTopology[] VALUES_ARRAY = new EPrimitiveTopology[] {
+	private static final EPrimitiveTopology[] VALUES_ARRAY = new EPrimitiveTopology[]
+		{
 			POINT_LIST,
 			LINE_LIST,
 			LINE_STRIP,
@@ -271,7 +269,7 @@ public enum EPrimitiveTopology implements Enumerator
 			TRIANGLE_LIST_WITH_ADJACENCY,
 			TRIANGLE_STRIP_WITH_ADJACENCY,
 			PATCH_LIST,
-	};
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>EPrimitive Topology</b></em>' enumerators.
@@ -279,8 +277,7 @@ public enum EPrimitiveTopology implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EPrimitiveTopology> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EPrimitiveTopology> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EPrimitive Topology</b></em>' literal with the specified literal value.
@@ -336,28 +333,17 @@ public enum EPrimitiveTopology implements Enumerator
 	{
 		switch (value)
 		{
-		case POINT_LIST_VALUE:
-			return POINT_LIST;
-		case LINE_LIST_VALUE:
-			return LINE_LIST;
-		case LINE_STRIP_VALUE:
-			return LINE_STRIP;
-		case TRIANGLE_LIST_VALUE:
-			return TRIANGLE_LIST;
-		case TRIANGLE_STRIP_VALUE:
-			return TRIANGLE_STRIP;
-		case TRIANGLE_FAN_VALUE:
-			return TRIANGLE_FAN;
-		case LINE_LIST_WITH_ADJACENCY_VALUE:
-			return LINE_LIST_WITH_ADJACENCY;
-		case LINE_STRIP_WITH_ADJACENCY_VALUE:
-			return LINE_STRIP_WITH_ADJACENCY;
-		case TRIANGLE_LIST_WITH_ADJACENCY_VALUE:
-			return TRIANGLE_LIST_WITH_ADJACENCY;
-		case TRIANGLE_STRIP_WITH_ADJACENCY_VALUE:
-			return TRIANGLE_STRIP_WITH_ADJACENCY;
-		case PATCH_LIST_VALUE:
-			return PATCH_LIST;
+			case POINT_LIST_VALUE: return POINT_LIST;
+			case LINE_LIST_VALUE: return LINE_LIST;
+			case LINE_STRIP_VALUE: return LINE_STRIP;
+			case TRIANGLE_LIST_VALUE: return TRIANGLE_LIST;
+			case TRIANGLE_STRIP_VALUE: return TRIANGLE_STRIP;
+			case TRIANGLE_FAN_VALUE: return TRIANGLE_FAN;
+			case LINE_LIST_WITH_ADJACENCY_VALUE: return LINE_LIST_WITH_ADJACENCY;
+			case LINE_STRIP_WITH_ADJACENCY_VALUE: return LINE_STRIP_WITH_ADJACENCY;
+			case TRIANGLE_LIST_WITH_ADJACENCY_VALUE: return TRIANGLE_LIST_WITH_ADJACENCY;
+			case TRIANGLE_STRIP_WITH_ADJACENCY_VALUE: return TRIANGLE_STRIP_WITH_ADJACENCY;
+			case PATCH_LIST_VALUE: return PATCH_LIST;
 		}
 		return null;
 	}
@@ -404,7 +390,7 @@ public enum EPrimitiveTopology implements Enumerator
 	@Override
 	public int getValue()
 	{
-		return value;
+	  return value;
 	}
 
 	/**
@@ -415,7 +401,7 @@ public enum EPrimitiveTopology implements Enumerator
 	@Override
 	public String getName()
 	{
-		return name;
+	  return name;
 	}
 
 	/**
@@ -426,7 +412,7 @@ public enum EPrimitiveTopology implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-		return literal;
+	  return literal;
 	}
 
 	/**

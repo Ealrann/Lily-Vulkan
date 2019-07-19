@@ -33,9 +33,8 @@ import org.sheepy.vulkan.model.graphicpipeline.Rasterizer;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RasterizerItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class RasterizerItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -80,13 +79,19 @@ public class RasterizerItemProvider extends ItemProviderAdapter
 	 */
 	protected void addCullModePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Rasterizer_cullMode_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Rasterizer_cullMode_feature",
-						"_UI_Rasterizer_type"),
-				GraphicpipelinePackage.Literals.RASTERIZER__CULL_MODE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Rasterizer_cullMode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Rasterizer_cullMode_feature", "_UI_Rasterizer_type"),
+				 GraphicpipelinePackage.Literals.RASTERIZER__CULL_MODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -97,13 +102,19 @@ public class RasterizerItemProvider extends ItemProviderAdapter
 	 */
 	protected void addFrontFacePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Rasterizer_frontFace_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Rasterizer_frontFace_feature",
-						"_UI_Rasterizer_type"),
-				GraphicpipelinePackage.Literals.RASTERIZER__FRONT_FACE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Rasterizer_frontFace_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Rasterizer_frontFace_feature", "_UI_Rasterizer_type"),
+				 GraphicpipelinePackage.Literals.RASTERIZER__FRONT_FACE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -114,13 +125,19 @@ public class RasterizerItemProvider extends ItemProviderAdapter
 	 */
 	protected void addPolygonModePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Rasterizer_polygonMode_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Rasterizer_polygonMode_feature", "_UI_Rasterizer_type"),
-				GraphicpipelinePackage.Literals.RASTERIZER__POLYGON_MODE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Rasterizer_polygonMode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Rasterizer_polygonMode_feature", "_UI_Rasterizer_type"),
+				 GraphicpipelinePackage.Literals.RASTERIZER__POLYGON_MODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -131,13 +148,19 @@ public class RasterizerItemProvider extends ItemProviderAdapter
 	 */
 	protected void addLineWidthPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Rasterizer_lineWidth_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Rasterizer_lineWidth_feature",
-						"_UI_Rasterizer_type"),
-				GraphicpipelinePackage.Literals.RASTERIZER__LINE_WIDTH, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Rasterizer_lineWidth_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Rasterizer_lineWidth_feature", "_UI_Rasterizer_type"),
+				 GraphicpipelinePackage.Literals.RASTERIZER__LINE_WIDTH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -148,13 +171,19 @@ public class RasterizerItemProvider extends ItemProviderAdapter
 	 */
 	protected void addDepthClampEnablePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Rasterizer_depthClampEnable_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Rasterizer_depthClampEnable_feature", "_UI_Rasterizer_type"),
-				GraphicpipelinePackage.Literals.RASTERIZER__DEPTH_CLAMP_ENABLE, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Rasterizer_depthClampEnable_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Rasterizer_depthClampEnable_feature", "_UI_Rasterizer_type"),
+				 GraphicpipelinePackage.Literals.RASTERIZER__DEPTH_CLAMP_ENABLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -165,13 +194,19 @@ public class RasterizerItemProvider extends ItemProviderAdapter
 	 */
 	protected void addDiscardEnablePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Rasterizer_discardEnable_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Rasterizer_discardEnable_feature", "_UI_Rasterizer_type"),
-				GraphicpipelinePackage.Literals.RASTERIZER__DISCARD_ENABLE, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Rasterizer_discardEnable_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Rasterizer_discardEnable_feature", "_UI_Rasterizer_type"),
+				 GraphicpipelinePackage.Literals.RASTERIZER__DISCARD_ENABLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -182,13 +217,19 @@ public class RasterizerItemProvider extends ItemProviderAdapter
 	 */
 	protected void addDepthBiasEnablePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Rasterizer_depthBiasEnable_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Rasterizer_depthBiasEnable_feature", "_UI_Rasterizer_type"),
-				GraphicpipelinePackage.Literals.RASTERIZER__DEPTH_BIAS_ENABLE, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Rasterizer_depthBiasEnable_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Rasterizer_depthBiasEnable_feature", "_UI_Rasterizer_type"),
+				 GraphicpipelinePackage.Literals.RASTERIZER__DEPTH_BIAS_ENABLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -212,11 +253,11 @@ public class RasterizerItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		ECullMode labelValue = ((Rasterizer) object).getCullMode();
+		ECullMode labelValue = ((Rasterizer)object).getCullMode();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0
-				? getString("_UI_Rasterizer_type")
-				: getString("_UI_Rasterizer_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_Rasterizer_type") :
+			getString("_UI_Rasterizer_type") + " " + label;
 	}
 
 	/**
@@ -233,16 +274,15 @@ public class RasterizerItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(Rasterizer.class))
 		{
-		case GraphicpipelinePackage.RASTERIZER__CULL_MODE:
-		case GraphicpipelinePackage.RASTERIZER__FRONT_FACE:
-		case GraphicpipelinePackage.RASTERIZER__POLYGON_MODE:
-		case GraphicpipelinePackage.RASTERIZER__LINE_WIDTH:
-		case GraphicpipelinePackage.RASTERIZER__DEPTH_CLAMP_ENABLE:
-		case GraphicpipelinePackage.RASTERIZER__DISCARD_ENABLE:
-		case GraphicpipelinePackage.RASTERIZER__DEPTH_BIAS_ENABLE:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case GraphicpipelinePackage.RASTERIZER__CULL_MODE:
+			case GraphicpipelinePackage.RASTERIZER__FRONT_FACE:
+			case GraphicpipelinePackage.RASTERIZER__POLYGON_MODE:
+			case GraphicpipelinePackage.RASTERIZER__LINE_WIDTH:
+			case GraphicpipelinePackage.RASTERIZER__DEPTH_CLAMP_ENABLE:
+			case GraphicpipelinePackage.RASTERIZER__DISCARD_ENABLE:
+			case GraphicpipelinePackage.RASTERIZER__DEPTH_BIAS_ENABLE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -269,7 +309,7 @@ public class RasterizerItemProvider extends ItemProviderAdapter
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

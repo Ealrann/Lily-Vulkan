@@ -68,7 +68,7 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 		}
 		if (object instanceof EObject)
 		{
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -80,63 +80,63 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected VulkanSwitch<Adapter> modelSwitch = new VulkanSwitch<Adapter>()
-	{
-		@Override
-		public Adapter caseVulkanEngine(VulkanEngine object)
 		{
-			return createVulkanEngineAdapter();
-		}
-		@Override
-		public Adapter caseIResourceContainer(IResourceContainer object)
-		{
-			return createIResourceContainerAdapter();
-		}
-		@Override
-		public Adapter caseResourcePkg(ResourcePkg object)
-		{
-			return createResourcePkgAdapter();
-		}
-		@Override
-		public Adapter caseIResource(IResource object)
-		{
-			return createIResourceAdapter();
-		}
-		@Override
-		public Adapter caseIProcess(IProcess object)
-		{
-			return createIProcessAdapter();
-		}
-		@Override
-		public Adapter caseIExecutionManager(IExecutionManager object)
-		{
-			return createIExecutionManagerAdapter();
-		}
-		@Override
-		public Adapter caseIInferenceObject(IInferenceObject object)
-		{
-			return createIInferenceObjectAdapter();
-		}
-		@Override
-		public Adapter caseLObject(LObject object)
-		{
-			return createLObjectAdapter();
-		}
-		@Override
-		public Adapter caseIEngine(IEngine object)
-		{
-			return createIEngineAdapter();
-		}
-		@Override
-		public Adapter caseLNamedElement(LNamedElement object)
-		{
-			return createLNamedElementAdapter();
-		}
-		@Override
-		public Adapter defaultCase(EObject object)
-		{
-			return createEObjectAdapter();
-		}
-	};
+			@Override
+			public Adapter caseVulkanEngine(VulkanEngine object)
+			{
+				return createVulkanEngineAdapter();
+			}
+			@Override
+			public Adapter caseIResourceContainer(IResourceContainer object)
+			{
+				return createIResourceContainerAdapter();
+			}
+			@Override
+			public Adapter caseResourcePkg(ResourcePkg object)
+			{
+				return createResourcePkgAdapter();
+			}
+			@Override
+			public Adapter caseIResource(IResource object)
+			{
+				return createIResourceAdapter();
+			}
+			@Override
+			public Adapter caseIProcess(IProcess object)
+			{
+				return createIProcessAdapter();
+			}
+			@Override
+			public Adapter caseIExecutionManager(IExecutionManager object)
+			{
+				return createIExecutionManagerAdapter();
+			}
+			@Override
+			public Adapter caseIInferenceObject(IInferenceObject object)
+			{
+				return createIInferenceObjectAdapter();
+			}
+			@Override
+			public Adapter caseLObject(LObject object)
+			{
+				return createLObjectAdapter();
+			}
+			@Override
+			public Adapter caseIEngine(IEngine object)
+			{
+				return createIEngineAdapter();
+			}
+			@Override
+			public Adapter caseLNamedElement(LNamedElement object)
+			{
+				return createLNamedElementAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object)
+			{
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -149,7 +149,7 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public Adapter createAdapter(Notifier target)
 	{
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 	/**

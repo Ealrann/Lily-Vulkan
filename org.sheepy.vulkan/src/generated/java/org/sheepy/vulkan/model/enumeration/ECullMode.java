@@ -109,9 +109,13 @@ public enum ECullMode implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ECullMode[] VALUES_ARRAY = new ECullMode[] {
-			NONE, FRONT_BIT, BACK_BIT, FRONT_AND_BACK,
-	};
+	private static final ECullMode[] VALUES_ARRAY = new ECullMode[]
+		{
+			NONE,
+			FRONT_BIT,
+			BACK_BIT,
+			FRONT_AND_BACK,
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>ECull Mode</b></em>' enumerators.
@@ -119,8 +123,7 @@ public enum ECullMode implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ECullMode> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ECullMode> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>ECull Mode</b></em>' literal with the specified literal value.
@@ -176,14 +179,10 @@ public enum ECullMode implements Enumerator
 	{
 		switch (value)
 		{
-		case NONE_VALUE:
-			return NONE;
-		case FRONT_BIT_VALUE:
-			return FRONT_BIT;
-		case BACK_BIT_VALUE:
-			return BACK_BIT;
-		case FRONT_AND_BACK_VALUE:
-			return FRONT_AND_BACK;
+			case NONE_VALUE: return NONE;
+			case FRONT_BIT_VALUE: return FRONT_BIT;
+			case BACK_BIT_VALUE: return BACK_BIT;
+			case FRONT_AND_BACK_VALUE: return FRONT_AND_BACK;
 		}
 		return null;
 	}
@@ -230,7 +229,7 @@ public enum ECullMode implements Enumerator
 	@Override
 	public int getValue()
 	{
-		return value;
+	  return value;
 	}
 
 	/**
@@ -241,7 +240,7 @@ public enum ECullMode implements Enumerator
 	@Override
 	public String getName()
 	{
-		return name;
+	  return name;
 	}
 
 	/**
@@ -252,7 +251,7 @@ public enum ECullMode implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-		return literal;
+	  return literal;
 	}
 
 	/**

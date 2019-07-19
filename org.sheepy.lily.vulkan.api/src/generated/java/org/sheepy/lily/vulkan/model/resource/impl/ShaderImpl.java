@@ -125,10 +125,8 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 		file = newFile;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.SHADER__FILE,
-					oldFile, newFile);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.SHADER__FILE, oldFile, newFile);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -144,10 +142,10 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 		if (newFile != file)
 		{
 			NotificationChain msgs = null;
-			if (file != null) msgs = ((InternalEObject) file).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - ResourcePackage.SHADER__FILE, null, msgs);
-			if (newFile != null) msgs = ((InternalEObject) newFile).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - ResourcePackage.SHADER__FILE, null, msgs);
+			if (file != null)
+				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SHADER__FILE, null, msgs);
+			if (newFile != null)
+				msgs = ((InternalEObject)newFile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SHADER__FILE, null, msgs);
 			msgs = basicSetFile(newFile, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -190,8 +188,7 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 	{
 		if (constants == null)
 		{
-			constants = new EObjectContainmentEList<SpecializationConstant>(SpecializationConstant.class, this,
-					ResourcePackage.SHADER__CONSTANTS);
+			constants = new EObjectContainmentEList<SpecializationConstant>(SpecializationConstant.class, this, ResourcePackage.SHADER__CONSTANTS);
 		}
 		return constants;
 	}
@@ -206,10 +203,10 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SHADER__FILE:
-			return basicSetFile(null, msgs);
-		case ResourcePackage.SHADER__CONSTANTS:
-			return ((InternalEList<?>) getConstants()).basicRemove(otherEnd, msgs);
+			case ResourcePackage.SHADER__FILE:
+				return basicSetFile(null, msgs);
+			case ResourcePackage.SHADER__CONSTANTS:
+				return ((InternalEList<?>)getConstants()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -224,12 +221,12 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SHADER__FILE:
-			return getFile();
-		case ResourcePackage.SHADER__STAGE:
-			return getStage();
-		case ResourcePackage.SHADER__CONSTANTS:
-			return getConstants();
+			case ResourcePackage.SHADER__FILE:
+				return getFile();
+			case ResourcePackage.SHADER__STAGE:
+				return getStage();
+			case ResourcePackage.SHADER__CONSTANTS:
+				return getConstants();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -245,16 +242,16 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SHADER__FILE:
-			setFile((PathResource) newValue);
-			return;
-		case ResourcePackage.SHADER__STAGE:
-			setStage((EShaderStage) newValue);
-			return;
-		case ResourcePackage.SHADER__CONSTANTS:
-			getConstants().clear();
-			getConstants().addAll((Collection<? extends SpecializationConstant>) newValue);
-			return;
+			case ResourcePackage.SHADER__FILE:
+				setFile((PathResource)newValue);
+				return;
+			case ResourcePackage.SHADER__STAGE:
+				setStage((EShaderStage)newValue);
+				return;
+			case ResourcePackage.SHADER__CONSTANTS:
+				getConstants().clear();
+				getConstants().addAll((Collection<? extends SpecializationConstant>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -269,15 +266,15 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SHADER__FILE:
-			setFile((PathResource) null);
-			return;
-		case ResourcePackage.SHADER__STAGE:
-			setStage(STAGE_EDEFAULT);
-			return;
-		case ResourcePackage.SHADER__CONSTANTS:
-			getConstants().clear();
-			return;
+			case ResourcePackage.SHADER__FILE:
+				setFile((PathResource)null);
+				return;
+			case ResourcePackage.SHADER__STAGE:
+				setStage(STAGE_EDEFAULT);
+				return;
+			case ResourcePackage.SHADER__CONSTANTS:
+				getConstants().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -292,12 +289,12 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SHADER__FILE:
-			return file != null;
-		case ResourcePackage.SHADER__STAGE:
-			return stage != STAGE_EDEFAULT;
-		case ResourcePackage.SHADER__CONSTANTS:
-			return constants != null && !constants.isEmpty();
+			case ResourcePackage.SHADER__FILE:
+				return file != null;
+			case ResourcePackage.SHADER__STAGE:
+				return stage != STAGE_EDEFAULT;
+			case ResourcePackage.SHADER__CONSTANTS:
+				return constants != null && !constants.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

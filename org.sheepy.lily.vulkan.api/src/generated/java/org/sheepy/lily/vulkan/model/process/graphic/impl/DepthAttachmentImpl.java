@@ -89,8 +89,8 @@ public class DepthAttachmentImpl extends MinimalEObjectImpl.Container implements
 	{
 		boolean oldClear = clear;
 		clear = newClear;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, GraphicPackage.DEPTH_ATTACHMENT__CLEAR, oldClear, clear));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DEPTH_ATTACHMENT__CLEAR, oldClear, clear));
 	}
 
 	/**
@@ -103,8 +103,8 @@ public class DepthAttachmentImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
-			return isClear();
+			case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
+				return isClear();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,9 +119,9 @@ public class DepthAttachmentImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
-			setClear((Boolean) newValue);
-			return;
+			case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
+				setClear((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -136,9 +136,9 @@ public class DepthAttachmentImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
-			setClear(CLEAR_EDEFAULT);
-			return;
+			case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
+				setClear(CLEAR_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -153,8 +153,8 @@ public class DepthAttachmentImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
-			return clear != CLEAR_EDEFAULT;
+			case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
+				return clear != CLEAR_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

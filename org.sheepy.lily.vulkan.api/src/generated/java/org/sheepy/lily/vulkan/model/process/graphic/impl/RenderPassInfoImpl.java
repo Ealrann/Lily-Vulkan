@@ -123,8 +123,7 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	{
 		if (attachments == null)
 		{
-			attachments = new EObjectContainmentEList<AttachmentDescription>(AttachmentDescription.class, this,
-					GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS);
+			attachments = new EObjectContainmentEList<AttachmentDescription>(AttachmentDescription.class, this, GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS);
 		}
 		return attachments;
 	}
@@ -139,8 +138,7 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	{
 		if (subpasses == null)
 		{
-			subpasses = new EObjectContainmentEList<Subpass>(Subpass.class, this,
-					GraphicPackage.RENDER_PASS_INFO__SUBPASSES);
+			subpasses = new EObjectContainmentEList<Subpass>(Subpass.class, this, GraphicPackage.RENDER_PASS_INFO__SUBPASSES);
 		}
 		return subpasses;
 	}
@@ -155,8 +153,7 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	{
 		if (dependencies == null)
 		{
-			dependencies = new EObjectContainmentEList<SubpassDependency>(SubpassDependency.class, this,
-					GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES);
+			dependencies = new EObjectContainmentEList<SubpassDependency>(SubpassDependency.class, this, GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES);
 		}
 		return dependencies;
 	}
@@ -182,8 +179,8 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	{
 		int oldBindPoint = bindPoint;
 		bindPoint = newBindPoint;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.RENDER_PASS_INFO__BIND_POINT, oldBindPoint, bindPoint));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.RENDER_PASS_INFO__BIND_POINT, oldBindPoint, bindPoint));
 	}
 
 	/**
@@ -196,12 +193,12 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
-			return ((InternalEList<?>) getAttachments()).basicRemove(otherEnd, msgs);
-		case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
-			return ((InternalEList<?>) getSubpasses()).basicRemove(otherEnd, msgs);
-		case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
-			return ((InternalEList<?>) getDependencies()).basicRemove(otherEnd, msgs);
+			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
+				return ((InternalEList<?>)getAttachments()).basicRemove(otherEnd, msgs);
+			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
+				return ((InternalEList<?>)getSubpasses()).basicRemove(otherEnd, msgs);
+			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
+				return ((InternalEList<?>)getDependencies()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -216,14 +213,14 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
-			return getAttachments();
-		case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
-			return getSubpasses();
-		case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
-			return getDependencies();
-		case GraphicPackage.RENDER_PASS_INFO__BIND_POINT:
-			return getBindPoint();
+			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
+				return getAttachments();
+			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
+				return getSubpasses();
+			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
+				return getDependencies();
+			case GraphicPackage.RENDER_PASS_INFO__BIND_POINT:
+				return getBindPoint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -239,21 +236,21 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
-			getAttachments().clear();
-			getAttachments().addAll((Collection<? extends AttachmentDescription>) newValue);
-			return;
-		case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
-			getSubpasses().clear();
-			getSubpasses().addAll((Collection<? extends Subpass>) newValue);
-			return;
-		case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
-			getDependencies().clear();
-			getDependencies().addAll((Collection<? extends SubpassDependency>) newValue);
-			return;
-		case GraphicPackage.RENDER_PASS_INFO__BIND_POINT:
-			setBindPoint((Integer) newValue);
-			return;
+			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
+				getAttachments().clear();
+				getAttachments().addAll((Collection<? extends AttachmentDescription>)newValue);
+				return;
+			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
+				getSubpasses().clear();
+				getSubpasses().addAll((Collection<? extends Subpass>)newValue);
+				return;
+			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
+				getDependencies().clear();
+				getDependencies().addAll((Collection<? extends SubpassDependency>)newValue);
+				return;
+			case GraphicPackage.RENDER_PASS_INFO__BIND_POINT:
+				setBindPoint((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -268,18 +265,18 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
-			getAttachments().clear();
-			return;
-		case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
-			getSubpasses().clear();
-			return;
-		case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
-			getDependencies().clear();
-			return;
-		case GraphicPackage.RENDER_PASS_INFO__BIND_POINT:
-			setBindPoint(BIND_POINT_EDEFAULT);
-			return;
+			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
+				getAttachments().clear();
+				return;
+			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
+				getSubpasses().clear();
+				return;
+			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
+				getDependencies().clear();
+				return;
+			case GraphicPackage.RENDER_PASS_INFO__BIND_POINT:
+				setBindPoint(BIND_POINT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -294,14 +291,14 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
-			return attachments != null && !attachments.isEmpty();
-		case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
-			return subpasses != null && !subpasses.isEmpty();
-		case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
-			return dependencies != null && !dependencies.isEmpty();
-		case GraphicPackage.RENDER_PASS_INFO__BIND_POINT:
-			return bindPoint != BIND_POINT_EDEFAULT;
+			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
+				return attachments != null && !attachments.isEmpty();
+			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
+				return subpasses != null && !subpasses.isEmpty();
+			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
+				return dependencies != null && !dependencies.isEmpty();
+			case GraphicPackage.RENDER_PASS_INFO__BIND_POINT:
+				return bindPoint != BIND_POINT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

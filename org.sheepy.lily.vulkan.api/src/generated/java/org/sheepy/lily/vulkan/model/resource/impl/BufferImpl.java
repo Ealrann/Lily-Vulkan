@@ -258,8 +258,8 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	{
 		boolean oldOftenUpdated = oftenUpdated;
 		oftenUpdated = newOftenUpdated;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.BUFFER__OFTEN_UPDATED, oldOftenUpdated, oftenUpdated));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__OFTEN_UPDATED, oldOftenUpdated, oftenUpdated));
 	}
 
 	/**
@@ -283,8 +283,8 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	{
 		boolean oldGpuBuffer = gpuBuffer;
 		gpuBuffer = newGpuBuffer;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.BUFFER__GPU_BUFFER, oldGpuBuffer, gpuBuffer));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__GPU_BUFFER, oldGpuBuffer, gpuBuffer));
 	}
 
 	/**
@@ -308,8 +308,8 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	{
 		int oldInstanceCount = instanceCount;
 		instanceCount = newInstanceCount;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.BUFFER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
 	}
 
 	/**
@@ -322,18 +322,18 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BUFFER__SIZE:
-			return getSize();
-		case ResourcePackage.BUFFER__USAGES:
-			return getUsages();
-		case ResourcePackage.BUFFER__DATA:
-			return getData();
-		case ResourcePackage.BUFFER__OFTEN_UPDATED:
-			return isOftenUpdated();
-		case ResourcePackage.BUFFER__GPU_BUFFER:
-			return isGpuBuffer();
-		case ResourcePackage.BUFFER__INSTANCE_COUNT:
-			return getInstanceCount();
+			case ResourcePackage.BUFFER__SIZE:
+				return getSize();
+			case ResourcePackage.BUFFER__USAGES:
+				return getUsages();
+			case ResourcePackage.BUFFER__DATA:
+				return getData();
+			case ResourcePackage.BUFFER__OFTEN_UPDATED:
+				return isOftenUpdated();
+			case ResourcePackage.BUFFER__GPU_BUFFER:
+				return isGpuBuffer();
+			case ResourcePackage.BUFFER__INSTANCE_COUNT:
+				return getInstanceCount();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -349,25 +349,25 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BUFFER__SIZE:
-			setSize((Long) newValue);
-			return;
-		case ResourcePackage.BUFFER__USAGES:
-			getUsages().clear();
-			getUsages().addAll((Collection<? extends EBufferUsage>) newValue);
-			return;
-		case ResourcePackage.BUFFER__DATA:
-			setData((ByteBuffer) newValue);
-			return;
-		case ResourcePackage.BUFFER__OFTEN_UPDATED:
-			setOftenUpdated((Boolean) newValue);
-			return;
-		case ResourcePackage.BUFFER__GPU_BUFFER:
-			setGpuBuffer((Boolean) newValue);
-			return;
-		case ResourcePackage.BUFFER__INSTANCE_COUNT:
-			setInstanceCount((Integer) newValue);
-			return;
+			case ResourcePackage.BUFFER__SIZE:
+				setSize((Long)newValue);
+				return;
+			case ResourcePackage.BUFFER__USAGES:
+				getUsages().clear();
+				getUsages().addAll((Collection<? extends EBufferUsage>)newValue);
+				return;
+			case ResourcePackage.BUFFER__DATA:
+				setData((ByteBuffer)newValue);
+				return;
+			case ResourcePackage.BUFFER__OFTEN_UPDATED:
+				setOftenUpdated((Boolean)newValue);
+				return;
+			case ResourcePackage.BUFFER__GPU_BUFFER:
+				setGpuBuffer((Boolean)newValue);
+				return;
+			case ResourcePackage.BUFFER__INSTANCE_COUNT:
+				setInstanceCount((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -382,24 +382,24 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BUFFER__SIZE:
-			setSize(SIZE_EDEFAULT);
-			return;
-		case ResourcePackage.BUFFER__USAGES:
-			getUsages().clear();
-			return;
-		case ResourcePackage.BUFFER__DATA:
-			setData(DATA_EDEFAULT);
-			return;
-		case ResourcePackage.BUFFER__OFTEN_UPDATED:
-			setOftenUpdated(OFTEN_UPDATED_EDEFAULT);
-			return;
-		case ResourcePackage.BUFFER__GPU_BUFFER:
-			setGpuBuffer(GPU_BUFFER_EDEFAULT);
-			return;
-		case ResourcePackage.BUFFER__INSTANCE_COUNT:
-			setInstanceCount(INSTANCE_COUNT_EDEFAULT);
-			return;
+			case ResourcePackage.BUFFER__SIZE:
+				setSize(SIZE_EDEFAULT);
+				return;
+			case ResourcePackage.BUFFER__USAGES:
+				getUsages().clear();
+				return;
+			case ResourcePackage.BUFFER__DATA:
+				setData(DATA_EDEFAULT);
+				return;
+			case ResourcePackage.BUFFER__OFTEN_UPDATED:
+				setOftenUpdated(OFTEN_UPDATED_EDEFAULT);
+				return;
+			case ResourcePackage.BUFFER__GPU_BUFFER:
+				setGpuBuffer(GPU_BUFFER_EDEFAULT);
+				return;
+			case ResourcePackage.BUFFER__INSTANCE_COUNT:
+				setInstanceCount(INSTANCE_COUNT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -414,18 +414,18 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BUFFER__SIZE:
-			return size != SIZE_EDEFAULT;
-		case ResourcePackage.BUFFER__USAGES:
-			return usages != null && !usages.isEmpty();
-		case ResourcePackage.BUFFER__DATA:
-			return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
-		case ResourcePackage.BUFFER__OFTEN_UPDATED:
-			return oftenUpdated != OFTEN_UPDATED_EDEFAULT;
-		case ResourcePackage.BUFFER__GPU_BUFFER:
-			return gpuBuffer != GPU_BUFFER_EDEFAULT;
-		case ResourcePackage.BUFFER__INSTANCE_COUNT:
-			return instanceCount != INSTANCE_COUNT_EDEFAULT;
+			case ResourcePackage.BUFFER__SIZE:
+				return size != SIZE_EDEFAULT;
+			case ResourcePackage.BUFFER__USAGES:
+				return usages != null && !usages.isEmpty();
+			case ResourcePackage.BUFFER__DATA:
+				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
+			case ResourcePackage.BUFFER__OFTEN_UPDATED:
+				return oftenUpdated != OFTEN_UPDATED_EDEFAULT;
+			case ResourcePackage.BUFFER__GPU_BUFFER:
+				return gpuBuffer != GPU_BUFFER_EDEFAULT;
+			case ResourcePackage.BUFFER__INSTANCE_COUNT:
+				return instanceCount != INSTANCE_COUNT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

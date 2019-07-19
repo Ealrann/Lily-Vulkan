@@ -151,14 +151,15 @@ public enum EBorderColor implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EBorderColor[] VALUES_ARRAY = new EBorderColor[] {
+	private static final EBorderColor[] VALUES_ARRAY = new EBorderColor[]
+		{
 			FLOAT_TRANSPARENT_BLACK,
 			INT_TRANSPARENT_BLACK,
 			FLOAT_OPAQUE_BLACK,
 			INT_OPAQUE_BLACK,
 			FLOAT_OPAQUE_WHITE,
 			INT_OPAQUE_WHITE,
-	};
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>EBorder Color</b></em>' enumerators.
@@ -166,8 +167,7 @@ public enum EBorderColor implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EBorderColor> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EBorderColor> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EBorder Color</b></em>' literal with the specified literal value.
@@ -223,18 +223,12 @@ public enum EBorderColor implements Enumerator
 	{
 		switch (value)
 		{
-		case FLOAT_TRANSPARENT_BLACK_VALUE:
-			return FLOAT_TRANSPARENT_BLACK;
-		case INT_TRANSPARENT_BLACK_VALUE:
-			return INT_TRANSPARENT_BLACK;
-		case FLOAT_OPAQUE_BLACK_VALUE:
-			return FLOAT_OPAQUE_BLACK;
-		case INT_OPAQUE_BLACK_VALUE:
-			return INT_OPAQUE_BLACK;
-		case FLOAT_OPAQUE_WHITE_VALUE:
-			return FLOAT_OPAQUE_WHITE;
-		case INT_OPAQUE_WHITE_VALUE:
-			return INT_OPAQUE_WHITE;
+			case FLOAT_TRANSPARENT_BLACK_VALUE: return FLOAT_TRANSPARENT_BLACK;
+			case INT_TRANSPARENT_BLACK_VALUE: return INT_TRANSPARENT_BLACK;
+			case FLOAT_OPAQUE_BLACK_VALUE: return FLOAT_OPAQUE_BLACK;
+			case INT_OPAQUE_BLACK_VALUE: return INT_OPAQUE_BLACK;
+			case FLOAT_OPAQUE_WHITE_VALUE: return FLOAT_OPAQUE_WHITE;
+			case INT_OPAQUE_WHITE_VALUE: return INT_OPAQUE_WHITE;
 		}
 		return null;
 	}
@@ -281,7 +275,7 @@ public enum EBorderColor implements Enumerator
 	@Override
 	public int getValue()
 	{
-		return value;
+	  return value;
 	}
 
 	/**
@@ -292,7 +286,7 @@ public enum EBorderColor implements Enumerator
 	@Override
 	public String getName()
 	{
-		return name;
+	  return name;
 	}
 
 	/**
@@ -303,7 +297,7 @@ public enum EBorderColor implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-		return literal;
+	  return literal;
 	}
 
 	/**

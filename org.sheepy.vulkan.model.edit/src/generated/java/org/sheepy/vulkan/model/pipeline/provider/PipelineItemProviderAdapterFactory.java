@@ -67,8 +67,7 @@ public class PipelineItemProviderAdapterFactory extends PipelineAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
-			VulkanEditPlugin.INSTANCE, PipelinePackage.eNS_URI);
+	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(VulkanEditPlugin.INSTANCE, PipelinePackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -201,7 +200,7 @@ public class PipelineItemProviderAdapterFactory extends PipelineAdapterFactory
 		if (isFactoryForType(type))
 		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter)))
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
 			{
 				return adapter;
 			}
@@ -293,8 +292,7 @@ public class PipelineItemProviderAdapterFactory extends PipelineAdapterFactory
 	public void dispose()
 	{
 		if (pushConstantRangeItemProvider != null) pushConstantRangeItemProvider.dispose();
-		if (specializationConstantItemProvider != null)
-			specializationConstantItemProvider.dispose();
+		if (specializationConstantItemProvider != null) specializationConstantItemProvider.dispose();
 	}
 
 }

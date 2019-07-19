@@ -130,13 +130,14 @@ public enum EMemoryProperty implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EMemoryProperty[] VALUES_ARRAY = new EMemoryProperty[] {
+	private static final EMemoryProperty[] VALUES_ARRAY = new EMemoryProperty[]
+		{
 			DEVICE_LOCAL_BIT,
 			HOST_VISIBLE_BIT,
 			HOST_COHERENT_BIT,
 			HOST_CACHED_BIT,
 			LAZILY_ALLOCATED_BIT,
-	};
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>EMemory Property</b></em>' enumerators.
@@ -144,8 +145,7 @@ public enum EMemoryProperty implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EMemoryProperty> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EMemoryProperty> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EMemory Property</b></em>' literal with the specified literal value.
@@ -201,16 +201,11 @@ public enum EMemoryProperty implements Enumerator
 	{
 		switch (value)
 		{
-		case DEVICE_LOCAL_BIT_VALUE:
-			return DEVICE_LOCAL_BIT;
-		case HOST_VISIBLE_BIT_VALUE:
-			return HOST_VISIBLE_BIT;
-		case HOST_COHERENT_BIT_VALUE:
-			return HOST_COHERENT_BIT;
-		case HOST_CACHED_BIT_VALUE:
-			return HOST_CACHED_BIT;
-		case LAZILY_ALLOCATED_BIT_VALUE:
-			return LAZILY_ALLOCATED_BIT;
+			case DEVICE_LOCAL_BIT_VALUE: return DEVICE_LOCAL_BIT;
+			case HOST_VISIBLE_BIT_VALUE: return HOST_VISIBLE_BIT;
+			case HOST_COHERENT_BIT_VALUE: return HOST_COHERENT_BIT;
+			case HOST_CACHED_BIT_VALUE: return HOST_CACHED_BIT;
+			case LAZILY_ALLOCATED_BIT_VALUE: return LAZILY_ALLOCATED_BIT;
 		}
 		return null;
 	}
@@ -257,7 +252,7 @@ public enum EMemoryProperty implements Enumerator
 	@Override
 	public int getValue()
 	{
-		return value;
+	  return value;
 	}
 
 	/**
@@ -268,7 +263,7 @@ public enum EMemoryProperty implements Enumerator
 	@Override
 	public String getName()
 	{
-		return name;
+	  return name;
 	}
 
 	/**
@@ -279,7 +274,7 @@ public enum EMemoryProperty implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-		return literal;
+	  return literal;
 	}
 
 	/**

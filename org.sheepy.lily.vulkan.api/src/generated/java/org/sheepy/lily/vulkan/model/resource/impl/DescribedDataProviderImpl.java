@@ -6,6 +6,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -94,9 +95,9 @@ public class DescribedDataProviderImpl<T> extends BufferDataProviderImpl<T> impl
 	 * @generated
 	 */
 	@Override
-	public void setDataSource(T newDataSource)
+	public NotificationChain basicSetDataSource(T newDataSource, NotificationChain msgs)
 	{
-		super.setDataSource(newDataSource);
+		return super.basicSetDataSource(newDataSource, msgs);
 	}
 
 	/**
@@ -120,8 +121,8 @@ public class DescribedDataProviderImpl<T> extends BufferDataProviderImpl<T> impl
 	{
 		EDescriptorType oldDescriptorType = descriptorType;
 		descriptorType = newDescriptorType == null ? DESCRIPTOR_TYPE_EDEFAULT : newDescriptorType;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
 	}
 
 	/**
@@ -134,8 +135,7 @@ public class DescribedDataProviderImpl<T> extends BufferDataProviderImpl<T> impl
 	{
 		if (shaderStages == null)
 		{
-			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this,
-					ResourcePackage.DESCRIBED_DATA_PROVIDER__SHADER_STAGES);
+			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, ResourcePackage.DESCRIBED_DATA_PROVIDER__SHADER_STAGES);
 		}
 		return shaderStages;
 	}
@@ -150,10 +150,10 @@ public class DescribedDataProviderImpl<T> extends BufferDataProviderImpl<T> impl
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE:
-			return getDescriptorType();
-		case ResourcePackage.DESCRIBED_DATA_PROVIDER__SHADER_STAGES:
-			return getShaderStages();
+			case ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE:
+				return getDescriptorType();
+			case ResourcePackage.DESCRIBED_DATA_PROVIDER__SHADER_STAGES:
+				return getShaderStages();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -169,13 +169,13 @@ public class DescribedDataProviderImpl<T> extends BufferDataProviderImpl<T> impl
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE:
-			setDescriptorType((EDescriptorType) newValue);
-			return;
-		case ResourcePackage.DESCRIBED_DATA_PROVIDER__SHADER_STAGES:
-			getShaderStages().clear();
-			getShaderStages().addAll((Collection<? extends EShaderStage>) newValue);
-			return;
+			case ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE:
+				setDescriptorType((EDescriptorType)newValue);
+				return;
+			case ResourcePackage.DESCRIBED_DATA_PROVIDER__SHADER_STAGES:
+				getShaderStages().clear();
+				getShaderStages().addAll((Collection<? extends EShaderStage>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -190,12 +190,12 @@ public class DescribedDataProviderImpl<T> extends BufferDataProviderImpl<T> impl
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE:
-			setDescriptorType(DESCRIPTOR_TYPE_EDEFAULT);
-			return;
-		case ResourcePackage.DESCRIBED_DATA_PROVIDER__SHADER_STAGES:
-			getShaderStages().clear();
-			return;
+			case ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE:
+				setDescriptorType(DESCRIPTOR_TYPE_EDEFAULT);
+				return;
+			case ResourcePackage.DESCRIBED_DATA_PROVIDER__SHADER_STAGES:
+				getShaderStages().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -210,10 +210,10 @@ public class DescribedDataProviderImpl<T> extends BufferDataProviderImpl<T> impl
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE:
-			return descriptorType != DESCRIPTOR_TYPE_EDEFAULT;
-		case ResourcePackage.DESCRIBED_DATA_PROVIDER__SHADER_STAGES:
-			return shaderStages != null && !shaderStages.isEmpty();
+			case ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE:
+				return descriptorType != DESCRIPTOR_TYPE_EDEFAULT;
+			case ResourcePackage.DESCRIBED_DATA_PROVIDER__SHADER_STAGES:
+				return shaderStages != null && !shaderStages.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -230,12 +230,9 @@ public class DescribedDataProviderImpl<T> extends BufferDataProviderImpl<T> impl
 		{
 			switch (derivedFeatureID)
 			{
-			case ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE:
-				return ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE;
-			case ResourcePackage.DESCRIBED_DATA_PROVIDER__SHADER_STAGES:
-				return ResourcePackage.DESCRIPTOR__SHADER_STAGES;
-			default:
-				return -1;
+				case ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE: return ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE;
+				case ResourcePackage.DESCRIBED_DATA_PROVIDER__SHADER_STAGES: return ResourcePackage.DESCRIPTOR__SHADER_STAGES;
+				default: return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -253,12 +250,9 @@ public class DescribedDataProviderImpl<T> extends BufferDataProviderImpl<T> impl
 		{
 			switch (baseFeatureID)
 			{
-			case ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE:
-				return ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE;
-			case ResourcePackage.DESCRIPTOR__SHADER_STAGES:
-				return ResourcePackage.DESCRIBED_DATA_PROVIDER__SHADER_STAGES;
-			default:
-				return -1;
+				case ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE: return ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE;
+				case ResourcePackage.DESCRIPTOR__SHADER_STAGES: return ResourcePackage.DESCRIBED_DATA_PROVIDER__SHADER_STAGES;
+				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);

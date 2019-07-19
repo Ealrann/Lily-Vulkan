@@ -67,10 +67,7 @@ public enum EPipelineStage implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	TESSELLATION_CONTROL_SHADER_BIT(
-			16,
-			"TESSELLATION_CONTROL_SHADER_BIT",
-			"TESSELLATION_CONTROL_SHADER_BIT"),
+	TESSELLATION_CONTROL_SHADER_BIT(16, "TESSELLATION_CONTROL_SHADER_BIT", "TESSELLATION_CONTROL_SHADER_BIT"),
 
 	/**
 	 * The '<em><b>TESSELLATION EVALUATION SHADER BIT</b></em>' literal object.
@@ -80,10 +77,7 @@ public enum EPipelineStage implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	TESSELLATION_EVALUATION_SHADER_BIT(
-			32,
-			"TESSELLATION_EVALUATION_SHADER_BIT",
-			"TESSELLATION_EVALUATION_SHADER_BIT"),
+	TESSELLATION_EVALUATION_SHADER_BIT(32, "TESSELLATION_EVALUATION_SHADER_BIT", "TESSELLATION_EVALUATION_SHADER_BIT"),
 
 	/**
 	 * The '<em><b>GEOMETRY SHADER BIT</b></em>' literal object.
@@ -388,7 +382,8 @@ public enum EPipelineStage implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EPipelineStage[] VALUES_ARRAY = new EPipelineStage[] {
+	private static final EPipelineStage[] VALUES_ARRAY = new EPipelineStage[]
+		{
 			TOP_OF_PIPE_BIT,
 			DRAW_INDIRECT_BIT,
 			VERTEX_INPUT_BIT,
@@ -406,7 +401,7 @@ public enum EPipelineStage implements Enumerator
 			HOST_BIT,
 			ALL_GRAPHICS_BIT,
 			ALL_COMMANDS_BIT,
-	};
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>EPipeline Stage</b></em>' enumerators.
@@ -414,8 +409,7 @@ public enum EPipelineStage implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EPipelineStage> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EPipelineStage> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EPipeline Stage</b></em>' literal with the specified literal value.
@@ -471,40 +465,23 @@ public enum EPipelineStage implements Enumerator
 	{
 		switch (value)
 		{
-		case TOP_OF_PIPE_BIT_VALUE:
-			return TOP_OF_PIPE_BIT;
-		case DRAW_INDIRECT_BIT_VALUE:
-			return DRAW_INDIRECT_BIT;
-		case VERTEX_INPUT_BIT_VALUE:
-			return VERTEX_INPUT_BIT;
-		case VERTEX_SHADER_BIT_VALUE:
-			return VERTEX_SHADER_BIT;
-		case TESSELLATION_CONTROL_SHADER_BIT_VALUE:
-			return TESSELLATION_CONTROL_SHADER_BIT;
-		case TESSELLATION_EVALUATION_SHADER_BIT_VALUE:
-			return TESSELLATION_EVALUATION_SHADER_BIT;
-		case GEOMETRY_SHADER_BIT_VALUE:
-			return GEOMETRY_SHADER_BIT;
-		case FRAGMENT_SHADER_BIT_VALUE:
-			return FRAGMENT_SHADER_BIT;
-		case EARLY_FRAGMENT_TESTS_BIT_VALUE:
-			return EARLY_FRAGMENT_TESTS_BIT;
-		case LATE_FRAGMENT_TESTS_BIT_VALUE:
-			return LATE_FRAGMENT_TESTS_BIT;
-		case COLOR_ATTACHMENT_OUTPUT_BIT_VALUE:
-			return COLOR_ATTACHMENT_OUTPUT_BIT;
-		case COMPUTE_SHADER_BIT_VALUE:
-			return COMPUTE_SHADER_BIT;
-		case TRANSFER_BIT_VALUE:
-			return TRANSFER_BIT;
-		case BOTTOM_OF_PIPE_BIT_VALUE:
-			return BOTTOM_OF_PIPE_BIT;
-		case HOST_BIT_VALUE:
-			return HOST_BIT;
-		case ALL_GRAPHICS_BIT_VALUE:
-			return ALL_GRAPHICS_BIT;
-		case ALL_COMMANDS_BIT_VALUE:
-			return ALL_COMMANDS_BIT;
+			case TOP_OF_PIPE_BIT_VALUE: return TOP_OF_PIPE_BIT;
+			case DRAW_INDIRECT_BIT_VALUE: return DRAW_INDIRECT_BIT;
+			case VERTEX_INPUT_BIT_VALUE: return VERTEX_INPUT_BIT;
+			case VERTEX_SHADER_BIT_VALUE: return VERTEX_SHADER_BIT;
+			case TESSELLATION_CONTROL_SHADER_BIT_VALUE: return TESSELLATION_CONTROL_SHADER_BIT;
+			case TESSELLATION_EVALUATION_SHADER_BIT_VALUE: return TESSELLATION_EVALUATION_SHADER_BIT;
+			case GEOMETRY_SHADER_BIT_VALUE: return GEOMETRY_SHADER_BIT;
+			case FRAGMENT_SHADER_BIT_VALUE: return FRAGMENT_SHADER_BIT;
+			case EARLY_FRAGMENT_TESTS_BIT_VALUE: return EARLY_FRAGMENT_TESTS_BIT;
+			case LATE_FRAGMENT_TESTS_BIT_VALUE: return LATE_FRAGMENT_TESTS_BIT;
+			case COLOR_ATTACHMENT_OUTPUT_BIT_VALUE: return COLOR_ATTACHMENT_OUTPUT_BIT;
+			case COMPUTE_SHADER_BIT_VALUE: return COMPUTE_SHADER_BIT;
+			case TRANSFER_BIT_VALUE: return TRANSFER_BIT;
+			case BOTTOM_OF_PIPE_BIT_VALUE: return BOTTOM_OF_PIPE_BIT;
+			case HOST_BIT_VALUE: return HOST_BIT;
+			case ALL_GRAPHICS_BIT_VALUE: return ALL_GRAPHICS_BIT;
+			case ALL_COMMANDS_BIT_VALUE: return ALL_COMMANDS_BIT;
 		}
 		return null;
 	}
@@ -551,7 +528,7 @@ public enum EPipelineStage implements Enumerator
 	@Override
 	public int getValue()
 	{
-		return value;
+	  return value;
 	}
 
 	/**
@@ -562,7 +539,7 @@ public enum EPipelineStage implements Enumerator
 	@Override
 	public String getName()
 	{
-		return name;
+	  return name;
 	}
 
 	/**
@@ -573,7 +550,7 @@ public enum EPipelineStage implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-		return literal;
+	  return literal;
 	}
 
 	/**

@@ -39,9 +39,11 @@ public final class VulkanEditPlugin extends EMFPlugin
 	 */
 	public VulkanEditPlugin()
 	{
-		super(new ResourceLocator[] {
-				EcoreEditPlugin.INSTANCE,
-		});
+		super
+		  (new ResourceLocator [] 
+		   {
+		     EcoreEditPlugin.INSTANCE,
+		   });
 	}
 
 	/**

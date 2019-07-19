@@ -133,9 +133,9 @@ public class VertexBindingItemProvider extends ItemProviderAdapter implements IE
 
 		switch (notification.getFeatureID(VertexBinding.class))
 		{
-		case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -152,11 +152,15 @@ public class VertexBindingItemProvider extends ItemProviderAdapter implements IE
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.VERTEX_BINDING__BUFFER_REF,
-				ResourceFactory.eINSTANCE.createBufferReference()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.VERTEX_BINDING__BUFFER_REF,
+				 ResourceFactory.eINSTANCE.createBufferReference()));
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.VERTEX_BINDING__BUFFER_REF,
-				ResourceFactory.eINSTANCE.createCompositeBufferReference()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.VERTEX_BINDING__BUFFER_REF,
+				 ResourceFactory.eINSTANCE.createCompositeBufferReference()));
 	}
 
 	/**
@@ -168,7 +172,7 @@ public class VertexBindingItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

@@ -76,8 +76,7 @@ public class VertexInputStateImpl extends MinimalEObjectImpl.Container implement
 	{
 		if (inputDescriptor == null)
 		{
-			inputDescriptor = new EObjectContainmentEList<InputDescriptor>(InputDescriptor.class, this,
-					GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR);
+			inputDescriptor = new EObjectContainmentEList<InputDescriptor>(InputDescriptor.class, this, GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR);
 		}
 		return inputDescriptor;
 	}
@@ -92,8 +91,8 @@ public class VertexInputStateImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
-			return ((InternalEList<?>) getInputDescriptor()).basicRemove(otherEnd, msgs);
+			case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
+				return ((InternalEList<?>)getInputDescriptor()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -108,8 +107,8 @@ public class VertexInputStateImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
-			return getInputDescriptor();
+			case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
+				return getInputDescriptor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -125,10 +124,10 @@ public class VertexInputStateImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
-			getInputDescriptor().clear();
-			getInputDescriptor().addAll((Collection<? extends InputDescriptor>) newValue);
-			return;
+			case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
+				getInputDescriptor().clear();
+				getInputDescriptor().addAll((Collection<? extends InputDescriptor>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -143,9 +142,9 @@ public class VertexInputStateImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
-			getInputDescriptor().clear();
-			return;
+			case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
+				getInputDescriptor().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -160,8 +159,8 @@ public class VertexInputStateImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
-			return inputDescriptor != null && !inputDescriptor.isEmpty();
+			case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
+				return inputDescriptor != null && !inputDescriptor.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

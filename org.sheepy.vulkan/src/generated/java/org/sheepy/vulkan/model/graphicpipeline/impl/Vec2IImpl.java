@@ -73,7 +73,7 @@ public class Vec2IImpl extends MinimalEObjectImpl.Container implements Vec2I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Vec2IImpl()
+	public Vec2IImpl()
 	{
 		super();
 	}
@@ -110,8 +110,8 @@ public class Vec2IImpl extends MinimalEObjectImpl.Container implements Vec2I
 	{
 		int oldX = x;
 		x = newX;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.VEC2_I__X, oldX, x));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.VEC2_I__X, oldX, x));
 	}
 
 	/**
@@ -135,8 +135,8 @@ public class Vec2IImpl extends MinimalEObjectImpl.Container implements Vec2I
 	{
 		int oldY = y;
 		y = newY;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.VEC2_I__Y, oldY, y));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.VEC2_I__Y, oldY, y));
 	}
 
 	/**
@@ -149,10 +149,10 @@ public class Vec2IImpl extends MinimalEObjectImpl.Container implements Vec2I
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.VEC2_I__X:
-			return getX();
-		case GraphicpipelinePackage.VEC2_I__Y:
-			return getY();
+			case GraphicpipelinePackage.VEC2_I__X:
+				return getX();
+			case GraphicpipelinePackage.VEC2_I__Y:
+				return getY();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -167,12 +167,12 @@ public class Vec2IImpl extends MinimalEObjectImpl.Container implements Vec2I
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.VEC2_I__X:
-			setX((Integer) newValue);
-			return;
-		case GraphicpipelinePackage.VEC2_I__Y:
-			setY((Integer) newValue);
-			return;
+			case GraphicpipelinePackage.VEC2_I__X:
+				setX((Integer)newValue);
+				return;
+			case GraphicpipelinePackage.VEC2_I__Y:
+				setY((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -187,12 +187,12 @@ public class Vec2IImpl extends MinimalEObjectImpl.Container implements Vec2I
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.VEC2_I__X:
-			setX(X_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.VEC2_I__Y:
-			setY(Y_EDEFAULT);
-			return;
+			case GraphicpipelinePackage.VEC2_I__X:
+				setX(X_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.VEC2_I__Y:
+				setY(Y_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -207,10 +207,10 @@ public class Vec2IImpl extends MinimalEObjectImpl.Container implements Vec2I
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.VEC2_I__X:
-			return x != X_EDEFAULT;
-		case GraphicpipelinePackage.VEC2_I__Y:
-			return y != Y_EDEFAULT;
+			case GraphicpipelinePackage.VEC2_I__X:
+				return x != X_EDEFAULT;
+			case GraphicpipelinePackage.VEC2_I__Y:
+				return y != Y_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

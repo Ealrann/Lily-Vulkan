@@ -80,13 +80,19 @@ public class SetScissorItemProvider extends ItemProviderAdapter implements IEdit
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -97,13 +103,19 @@ public class SetScissorItemProvider extends ItemProviderAdapter implements IEdit
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
-								"_UI_IPipelineTask_type"),
-						ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipelineTask_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature", "_UI_IPipelineTask_type"),
+				 ProcessPackage.Literals.IPIPELINE_TASK__ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -114,13 +126,19 @@ public class SetScissorItemProvider extends ItemProviderAdapter implements IEdit
 	 */
 	protected void addOffsetXPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SetScissor_offsetX_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SetScissor_offsetX_feature",
-								"_UI_SetScissor_type"),
-						GraphicPackage.Literals.SET_SCISSOR__OFFSET_X, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SetScissor_offsetX_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SetScissor_offsetX_feature", "_UI_SetScissor_type"),
+				 GraphicPackage.Literals.SET_SCISSOR__OFFSET_X,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -131,13 +149,19 @@ public class SetScissorItemProvider extends ItemProviderAdapter implements IEdit
 	 */
 	protected void addOffsetYPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SetScissor_offsetY_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SetScissor_offsetY_feature",
-								"_UI_SetScissor_type"),
-						GraphicPackage.Literals.SET_SCISSOR__OFFSET_Y, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SetScissor_offsetY_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SetScissor_offsetY_feature", "_UI_SetScissor_type"),
+				 GraphicPackage.Literals.SET_SCISSOR__OFFSET_Y,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -148,13 +172,19 @@ public class SetScissorItemProvider extends ItemProviderAdapter implements IEdit
 	 */
 	protected void addWidthPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SetScissor_width_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SetScissor_width_feature",
-								"_UI_SetScissor_type"),
-						GraphicPackage.Literals.SET_SCISSOR__WIDTH, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SetScissor_width_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SetScissor_width_feature", "_UI_SetScissor_type"),
+				 GraphicPackage.Literals.SET_SCISSOR__WIDTH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -165,13 +195,19 @@ public class SetScissorItemProvider extends ItemProviderAdapter implements IEdit
 	 */
 	protected void addHeightPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SetScissor_height_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SetScissor_height_feature",
-								"_UI_SetScissor_type"),
-						GraphicPackage.Literals.SET_SCISSOR__HEIGHT, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SetScissor_height_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SetScissor_height_feature", "_UI_SetScissor_type"),
+				 GraphicPackage.Literals.SET_SCISSOR__HEIGHT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -195,10 +231,10 @@ public class SetScissorItemProvider extends ItemProviderAdapter implements IEdit
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((SetScissor) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_SetScissor_type")
-				: getString("_UI_SetScissor_type") + " " + label;
+		String label = ((SetScissor)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SetScissor_type") :
+			getString("_UI_SetScissor_type") + " " + label;
 	}
 
 	/**
@@ -215,14 +251,14 @@ public class SetScissorItemProvider extends ItemProviderAdapter implements IEdit
 
 		switch (notification.getFeatureID(SetScissor.class))
 		{
-		case GraphicPackage.SET_SCISSOR__NAME:
-		case GraphicPackage.SET_SCISSOR__ENABLED:
-		case GraphicPackage.SET_SCISSOR__OFFSET_X:
-		case GraphicPackage.SET_SCISSOR__OFFSET_Y:
-		case GraphicPackage.SET_SCISSOR__WIDTH:
-		case GraphicPackage.SET_SCISSOR__HEIGHT:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case GraphicPackage.SET_SCISSOR__NAME:
+			case GraphicPackage.SET_SCISSOR__ENABLED:
+			case GraphicPackage.SET_SCISSOR__OFFSET_X:
+			case GraphicPackage.SET_SCISSOR__OFFSET_Y:
+			case GraphicPackage.SET_SCISSOR__WIDTH:
+			case GraphicPackage.SET_SCISSOR__HEIGHT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -249,7 +285,7 @@ public class SetScissorItemProvider extends ItemProviderAdapter implements IEdit
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

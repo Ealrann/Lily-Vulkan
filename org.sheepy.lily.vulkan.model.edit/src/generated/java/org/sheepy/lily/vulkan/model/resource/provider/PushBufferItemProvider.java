@@ -75,13 +75,19 @@ public class PushBufferItemProvider extends ItemProviderAdapter implements IEdit
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -92,13 +98,19 @@ public class PushBufferItemProvider extends ItemProviderAdapter implements IEdit
 	 */
 	protected void addSizePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_PushBuffer_size_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PushBuffer_size_feature",
-								"_UI_PushBuffer_type"),
-						ResourcePackage.Literals.PUSH_BUFFER__SIZE, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PushBuffer_size_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PushBuffer_size_feature", "_UI_PushBuffer_type"),
+				 ResourcePackage.Literals.PUSH_BUFFER__SIZE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -109,13 +121,19 @@ public class PushBufferItemProvider extends ItemProviderAdapter implements IEdit
 	 */
 	protected void addInstanceCountPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_PushBuffer_instanceCount_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PushBuffer_instanceCount_feature",
-								"_UI_PushBuffer_type"),
-						ResourcePackage.Literals.PUSH_BUFFER__INSTANCE_COUNT, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PushBuffer_instanceCount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PushBuffer_instanceCount_feature", "_UI_PushBuffer_type"),
+				 ResourcePackage.Literals.PUSH_BUFFER__INSTANCE_COUNT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -139,10 +157,10 @@ public class PushBufferItemProvider extends ItemProviderAdapter implements IEdit
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((PushBuffer) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_PushBuffer_type")
-				: getString("_UI_PushBuffer_type") + " " + label;
+		String label = ((PushBuffer)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_PushBuffer_type") :
+			getString("_UI_PushBuffer_type") + " " + label;
 	}
 
 	/**
@@ -159,12 +177,12 @@ public class PushBufferItemProvider extends ItemProviderAdapter implements IEdit
 
 		switch (notification.getFeatureID(PushBuffer.class))
 		{
-		case ResourcePackage.PUSH_BUFFER__NAME:
-		case ResourcePackage.PUSH_BUFFER__BEING_UPDATED:
-		case ResourcePackage.PUSH_BUFFER__SIZE:
-		case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case ResourcePackage.PUSH_BUFFER__NAME:
+			case ResourcePackage.PUSH_BUFFER__BEING_UPDATED:
+			case ResourcePackage.PUSH_BUFFER__SIZE:
+			case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -191,7 +209,7 @@ public class PushBufferItemProvider extends ItemProviderAdapter implements IEdit
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

@@ -147,8 +147,8 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, GraphicPackage.BLIT_TO_SWAP_IMAGE__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.BLIT_TO_SWAP_IMAGE__NAME, oldName, name));
 	}
 
 	/**
@@ -172,8 +172,8 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.BLIT_TO_SWAP_IMAGE__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.BLIT_TO_SWAP_IMAGE__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -186,12 +186,12 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 	{
 		if (image != null && image.eIsProxy())
 		{
-			InternalEObject oldImage = (InternalEObject) image;
-			image = (Image) eResolveProxy(oldImage);
+			InternalEObject oldImage = (InternalEObject)image;
+			image = (Image)eResolveProxy(oldImage);
 			if (image != oldImage)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE, oldImage, image));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE, oldImage, image));
 			}
 		}
 		return image;
@@ -217,8 +217,8 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 	{
 		Image oldImage = image;
 		image = newImage;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE, oldImage, image));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE, oldImage, image));
 	}
 
 	/**
@@ -242,8 +242,8 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 	{
 		EFilter oldFilter = filter;
 		filter = newFilter == null ? FILTER_EDEFAULT : newFilter;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER, oldFilter, filter));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER, oldFilter, filter));
 	}
 
 	/**
@@ -256,15 +256,15 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__NAME:
-			return getName();
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__ENABLED:
-			return isEnabled();
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE:
-			if (resolve) return getImage();
-			return basicGetImage();
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
-			return getFilter();
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__NAME:
+				return getName();
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__ENABLED:
+				return isEnabled();
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE:
+				if (resolve) return getImage();
+				return basicGetImage();
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
+				return getFilter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -279,18 +279,18 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__NAME:
-			setName((String) newValue);
-			return;
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__ENABLED:
-			setEnabled((Boolean) newValue);
-			return;
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE:
-			setImage((Image) newValue);
-			return;
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
-			setFilter((EFilter) newValue);
-			return;
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__NAME:
+				setName((String)newValue);
+				return;
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE:
+				setImage((Image)newValue);
+				return;
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
+				setFilter((EFilter)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -305,18 +305,18 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__ENABLED:
-			setEnabled(ENABLED_EDEFAULT);
-			return;
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE:
-			setImage((Image) null);
-			return;
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
-			setFilter(FILTER_EDEFAULT);
-			return;
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE:
+				setImage((Image)null);
+				return;
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
+				setFilter(FILTER_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -331,14 +331,14 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__ENABLED:
-			return enabled != ENABLED_EDEFAULT;
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE:
-			return image != null;
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
-			return filter != FILTER_EDEFAULT;
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE:
+				return image != null;
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
+				return filter != FILTER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

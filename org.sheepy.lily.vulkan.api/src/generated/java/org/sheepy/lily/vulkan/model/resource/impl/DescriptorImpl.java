@@ -109,8 +109,8 @@ public class DescriptorImpl extends MinimalEObjectImpl.Container implements Desc
 	{
 		EDescriptorType oldDescriptorType = descriptorType;
 		descriptorType = newDescriptorType == null ? DESCRIPTOR_TYPE_EDEFAULT : newDescriptorType;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
 	}
 
 	/**
@@ -123,8 +123,7 @@ public class DescriptorImpl extends MinimalEObjectImpl.Container implements Desc
 	{
 		if (shaderStages == null)
 		{
-			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this,
-					ResourcePackage.DESCRIPTOR__SHADER_STAGES);
+			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, ResourcePackage.DESCRIPTOR__SHADER_STAGES);
 		}
 		return shaderStages;
 	}
@@ -139,10 +138,10 @@ public class DescriptorImpl extends MinimalEObjectImpl.Container implements Desc
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE:
-			return getDescriptorType();
-		case ResourcePackage.DESCRIPTOR__SHADER_STAGES:
-			return getShaderStages();
+			case ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE:
+				return getDescriptorType();
+			case ResourcePackage.DESCRIPTOR__SHADER_STAGES:
+				return getShaderStages();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -158,13 +157,13 @@ public class DescriptorImpl extends MinimalEObjectImpl.Container implements Desc
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE:
-			setDescriptorType((EDescriptorType) newValue);
-			return;
-		case ResourcePackage.DESCRIPTOR__SHADER_STAGES:
-			getShaderStages().clear();
-			getShaderStages().addAll((Collection<? extends EShaderStage>) newValue);
-			return;
+			case ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE:
+				setDescriptorType((EDescriptorType)newValue);
+				return;
+			case ResourcePackage.DESCRIPTOR__SHADER_STAGES:
+				getShaderStages().clear();
+				getShaderStages().addAll((Collection<? extends EShaderStage>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -179,12 +178,12 @@ public class DescriptorImpl extends MinimalEObjectImpl.Container implements Desc
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE:
-			setDescriptorType(DESCRIPTOR_TYPE_EDEFAULT);
-			return;
-		case ResourcePackage.DESCRIPTOR__SHADER_STAGES:
-			getShaderStages().clear();
-			return;
+			case ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE:
+				setDescriptorType(DESCRIPTOR_TYPE_EDEFAULT);
+				return;
+			case ResourcePackage.DESCRIPTOR__SHADER_STAGES:
+				getShaderStages().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -199,10 +198,10 @@ public class DescriptorImpl extends MinimalEObjectImpl.Container implements Desc
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE:
-			return descriptorType != DESCRIPTOR_TYPE_EDEFAULT;
-		case ResourcePackage.DESCRIPTOR__SHADER_STAGES:
-			return shaderStages != null && !shaderStages.isEmpty();
+			case ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE:
+				return descriptorType != DESCRIPTOR_TYPE_EDEFAULT;
+			case ResourcePackage.DESCRIPTOR__SHADER_STAGES:
+				return shaderStages != null && !shaderStages.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

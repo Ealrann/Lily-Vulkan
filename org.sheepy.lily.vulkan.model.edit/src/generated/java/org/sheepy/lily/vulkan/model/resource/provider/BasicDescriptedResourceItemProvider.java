@@ -76,13 +76,19 @@ public class BasicDescriptedResourceItemProvider extends ItemProviderAdapter imp
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -127,10 +133,10 @@ public class BasicDescriptedResourceItemProvider extends ItemProviderAdapter imp
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((BasicDescriptedResource) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_BasicDescriptedResource_type")
-				: getString("_UI_BasicDescriptedResource_type") + " " + label;
+		String label = ((BasicDescriptedResource)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_BasicDescriptedResource_type") :
+			getString("_UI_BasicDescriptedResource_type") + " " + label;
 	}
 
 	/**
@@ -147,12 +153,12 @@ public class BasicDescriptedResourceItemProvider extends ItemProviderAdapter imp
 
 		switch (notification.getFeatureID(BasicDescriptedResource.class))
 		{
-		case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__NAME:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -169,11 +175,15 @@ public class BasicDescriptedResourceItemProvider extends ItemProviderAdapter imp
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
-				ResourceFactory.eINSTANCE.createDescribedDataProvider()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
+				 ResourceFactory.eINSTANCE.createDescribedDataProvider()));
 
-		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
-				ResourceFactory.eINSTANCE.createDescriptor()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
+				 ResourceFactory.eINSTANCE.createDescriptor()));
 	}
 
 	/**
@@ -185,7 +195,7 @@ public class BasicDescriptedResourceItemProvider extends ItemProviderAdapter imp
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

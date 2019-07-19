@@ -20,8 +20,7 @@ public interface GraphicpipelineFactory extends EFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	GraphicpipelineFactory eINSTANCE = org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelineFactoryImpl
-			.init();
+	GraphicpipelineFactory eINSTANCE = org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelineFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Color Blend</em>'.

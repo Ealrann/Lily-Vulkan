@@ -103,6 +103,15 @@ public interface PipelinePackage extends EPackage
 	int PUSH_CONSTANT_RANGE_FEATURE_COUNT = 3;
 
 	/**
+	 * The number of operations of the '<em>Push Constant Range</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_CONSTANT_RANGE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.pipeline.impl.SpecializationConstantImpl <em>Specialization Constant</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -147,6 +156,15 @@ public interface PipelinePackage extends EPackage
 	 * @ordered
 	 */
 	int SPECIALIZATION_CONSTANT_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Specialization Constant</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIALIZATION_CONSTANT_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.pipeline.PushConstantRange <em>Push Constant Range</em>}'.
@@ -316,8 +334,7 @@ public interface PipelinePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SPECIALIZATION_CONSTANT__CONSTANT_ID = eINSTANCE
-				.getSpecializationConstant_ConstantId();
+		EAttribute SPECIALIZATION_CONSTANT__CONSTANT_ID = eINSTANCE.getSpecializationConstant_ConstantId();
 
 		/**
 		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.

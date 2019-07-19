@@ -31,9 +31,8 @@ import org.sheepy.vulkan.model.barrier.BarrierPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class BarrierItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class BarrierItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -73,13 +72,19 @@ public class BarrierItemProvider extends ItemProviderAdapter
 	 */
 	protected void addSrcAccessMaskPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Barrier_srcAccessMask_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Barrier_srcAccessMask_feature",
-						"_UI_Barrier_type"),
-				BarrierPackage.Literals.BARRIER__SRC_ACCESS_MASK, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Barrier_srcAccessMask_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Barrier_srcAccessMask_feature", "_UI_Barrier_type"),
+				 BarrierPackage.Literals.BARRIER__SRC_ACCESS_MASK,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -90,13 +95,19 @@ public class BarrierItemProvider extends ItemProviderAdapter
 	 */
 	protected void addDstAccessMaskPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Barrier_dstAccessMask_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Barrier_dstAccessMask_feature",
-						"_UI_Barrier_type"),
-				BarrierPackage.Literals.BARRIER__DST_ACCESS_MASK, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Barrier_dstAccessMask_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Barrier_dstAccessMask_feature", "_UI_Barrier_type"),
+				 BarrierPackage.Literals.BARRIER__DST_ACCESS_MASK,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -125,11 +136,10 @@ public class BarrierItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(Barrier.class))
 		{
-		case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
-		case BarrierPackage.BARRIER__DST_ACCESS_MASK:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
+			case BarrierPackage.BARRIER__DST_ACCESS_MASK:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -156,7 +166,7 @@ public class BarrierItemProvider extends ItemProviderAdapter
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

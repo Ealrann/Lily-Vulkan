@@ -130,9 +130,14 @@ public enum ECommandStage implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ECommandStage[] VALUES_ARRAY = new ECommandStage[] {
-			TRANSFER, COMPUTE, PRE_RENDER, RENDER, POST_RENDER,
-	};
+	private static final ECommandStage[] VALUES_ARRAY = new ECommandStage[]
+		{
+			TRANSFER,
+			COMPUTE,
+			PRE_RENDER,
+			RENDER,
+			POST_RENDER,
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>ECommand Stage</b></em>' enumerators.
@@ -140,8 +145,7 @@ public enum ECommandStage implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ECommandStage> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ECommandStage> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>ECommand Stage</b></em>' literal with the specified literal value.
@@ -197,16 +201,11 @@ public enum ECommandStage implements Enumerator
 	{
 		switch (value)
 		{
-		case TRANSFER_VALUE:
-			return TRANSFER;
-		case COMPUTE_VALUE:
-			return COMPUTE;
-		case PRE_RENDER_VALUE:
-			return PRE_RENDER;
-		case RENDER_VALUE:
-			return RENDER;
-		case POST_RENDER_VALUE:
-			return POST_RENDER;
+			case TRANSFER_VALUE: return TRANSFER;
+			case COMPUTE_VALUE: return COMPUTE;
+			case PRE_RENDER_VALUE: return PRE_RENDER;
+			case RENDER_VALUE: return RENDER;
+			case POST_RENDER_VALUE: return POST_RENDER;
 		}
 		return null;
 	}
@@ -253,7 +252,7 @@ public enum ECommandStage implements Enumerator
 	@Override
 	public int getValue()
 	{
-		return value;
+	  return value;
 	}
 
 	/**
@@ -264,7 +263,7 @@ public enum ECommandStage implements Enumerator
 	@Override
 	public String getName()
 	{
-		return name;
+	  return name;
 	}
 
 	/**
@@ -275,7 +274,7 @@ public enum ECommandStage implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-		return literal;
+	  return literal;
 	}
 
 	/**

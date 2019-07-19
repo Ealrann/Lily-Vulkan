@@ -136,9 +136,9 @@ public class ProcessPartPkgItemProvider extends ItemProviderAdapter implements I
 
 		switch (notification.getFeatureID(ProcessPartPkg.class))
 		{
-		case ProcessPackage.PROCESS_PART_PKG__PARTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case ProcessPackage.PROCESS_PART_PKG__PARTS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -155,14 +155,20 @@ public class ProcessPartPkgItemProvider extends ItemProviderAdapter implements I
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
-				ProcessFactory.eINSTANCE.createPipeline()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
+				 ProcessFactory.eINSTANCE.createPipeline()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
-				ComputeFactory.eINSTANCE.createComputePipeline()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
+				 ComputeFactory.eINSTANCE.createComputePipeline()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
-				GraphicFactory.eINSTANCE.createGraphicsPipeline()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
+				 GraphicFactory.eINSTANCE.createGraphicsPipeline()));
 	}
 
 	/**
@@ -174,7 +180,7 @@ public class ProcessPartPkgItemProvider extends ItemProviderAdapter implements I
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

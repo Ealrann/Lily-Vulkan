@@ -75,13 +75,19 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -92,13 +98,19 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
-								"_UI_IPipelineTask_type"),
-						ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipelineTask_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature", "_UI_IPipelineTask_type"),
+				 ProcessPackage.Literals.IPIPELINE_TASK__ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -109,12 +121,19 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	protected void addShaderPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Computer_shader_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Computer_shader_feature",
-								"_UI_Computer_type"),
-						ComputePackage.Literals.COMPUTER__SHADER, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Computer_shader_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Computer_shader_feature", "_UI_Computer_type"),
+				 ComputePackage.Literals.COMPUTER__SHADER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -125,13 +144,19 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	protected void addWorkgroupCountXPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Computer_workgroupCountX_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Computer_workgroupCountX_feature",
-								"_UI_Computer_type"),
-						ComputePackage.Literals.COMPUTER__WORKGROUP_COUNT_X, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Computer_workgroupCountX_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Computer_workgroupCountX_feature", "_UI_Computer_type"),
+				 ComputePackage.Literals.COMPUTER__WORKGROUP_COUNT_X,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -142,13 +167,19 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	protected void addWorkgroupCountYPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Computer_workgroupCountY_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Computer_workgroupCountY_feature",
-								"_UI_Computer_type"),
-						ComputePackage.Literals.COMPUTER__WORKGROUP_COUNT_Y, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Computer_workgroupCountY_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Computer_workgroupCountY_feature", "_UI_Computer_type"),
+				 ComputePackage.Literals.COMPUTER__WORKGROUP_COUNT_Y,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -159,13 +190,19 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	protected void addWorkgroupCountZPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Computer_workgroupCountZ_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Computer_workgroupCountZ_feature",
-								"_UI_Computer_type"),
-						ComputePackage.Literals.COMPUTER__WORKGROUP_COUNT_Z, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Computer_workgroupCountZ_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Computer_workgroupCountZ_feature", "_UI_Computer_type"),
+				 ComputePackage.Literals.COMPUTER__WORKGROUP_COUNT_Z,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -189,10 +226,10 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Computer) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_Computer_type")
-				: getString("_UI_Computer_type") + " " + label;
+		String label = ((Computer)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Computer_type") :
+			getString("_UI_Computer_type") + " " + label;
 	}
 
 	/**
@@ -209,13 +246,13 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 
 		switch (notification.getFeatureID(Computer.class))
 		{
-		case ComputePackage.COMPUTER__NAME:
-		case ComputePackage.COMPUTER__ENABLED:
-		case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
-		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
-		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case ComputePackage.COMPUTER__NAME:
+			case ComputePackage.COMPUTER__ENABLED:
+			case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
+			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
+			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -242,7 +279,7 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

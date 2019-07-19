@@ -87,7 +87,7 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ScissorImpl()
+	public ScissorImpl()
 	{
 		super();
 	}
@@ -124,8 +124,8 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	{
 		int oldOffsetX = offsetX;
 		offsetX = newOffsetX;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.SCISSOR__OFFSET_X, oldOffsetX, offsetX));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.SCISSOR__OFFSET_X, oldOffsetX, offsetX));
 	}
 
 	/**
@@ -149,8 +149,8 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	{
 		int oldOffsetY = offsetY;
 		offsetY = newOffsetY;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.SCISSOR__OFFSET_Y, oldOffsetY, offsetY));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.SCISSOR__OFFSET_Y, oldOffsetY, offsetY));
 	}
 
 	/**
@@ -175,10 +175,8 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 		extent = newExtent;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicpipelinePackage.SCISSOR__EXTENT, oldExtent, newExtent);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.SCISSOR__EXTENT, oldExtent, newExtent);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -194,15 +192,15 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 		if (newExtent != extent)
 		{
 			NotificationChain msgs = null;
-			if (extent != null) msgs = ((InternalEObject) extent).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicpipelinePackage.SCISSOR__EXTENT, null, msgs);
-			if (newExtent != null) msgs = ((InternalEObject) newExtent).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicpipelinePackage.SCISSOR__EXTENT, null, msgs);
+			if (extent != null)
+				msgs = ((InternalEObject)extent).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicpipelinePackage.SCISSOR__EXTENT, null, msgs);
+			if (newExtent != null)
+				msgs = ((InternalEObject)newExtent).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicpipelinePackage.SCISSOR__EXTENT, null, msgs);
 			msgs = basicSetExtent(newExtent, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.SCISSOR__EXTENT, newExtent, newExtent));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.SCISSOR__EXTENT, newExtent, newExtent));
 	}
 
 	/**
@@ -211,14 +209,12 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.SCISSOR__EXTENT:
-			return basicSetExtent(null, msgs);
+			case GraphicpipelinePackage.SCISSOR__EXTENT:
+				return basicSetExtent(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -233,12 +229,12 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.SCISSOR__OFFSET_X:
-			return getOffsetX();
-		case GraphicpipelinePackage.SCISSOR__OFFSET_Y:
-			return getOffsetY();
-		case GraphicpipelinePackage.SCISSOR__EXTENT:
-			return getExtent();
+			case GraphicpipelinePackage.SCISSOR__OFFSET_X:
+				return getOffsetX();
+			case GraphicpipelinePackage.SCISSOR__OFFSET_Y:
+				return getOffsetY();
+			case GraphicpipelinePackage.SCISSOR__EXTENT:
+				return getExtent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -253,15 +249,15 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.SCISSOR__OFFSET_X:
-			setOffsetX((Integer) newValue);
-			return;
-		case GraphicpipelinePackage.SCISSOR__OFFSET_Y:
-			setOffsetY((Integer) newValue);
-			return;
-		case GraphicpipelinePackage.SCISSOR__EXTENT:
-			setExtent((Vec2I) newValue);
-			return;
+			case GraphicpipelinePackage.SCISSOR__OFFSET_X:
+				setOffsetX((Integer)newValue);
+				return;
+			case GraphicpipelinePackage.SCISSOR__OFFSET_Y:
+				setOffsetY((Integer)newValue);
+				return;
+			case GraphicpipelinePackage.SCISSOR__EXTENT:
+				setExtent((Vec2I)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -276,15 +272,15 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.SCISSOR__OFFSET_X:
-			setOffsetX(OFFSET_X_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.SCISSOR__OFFSET_Y:
-			setOffsetY(OFFSET_Y_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.SCISSOR__EXTENT:
-			setExtent((Vec2I) null);
-			return;
+			case GraphicpipelinePackage.SCISSOR__OFFSET_X:
+				setOffsetX(OFFSET_X_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.SCISSOR__OFFSET_Y:
+				setOffsetY(OFFSET_Y_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.SCISSOR__EXTENT:
+				setExtent((Vec2I)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -299,12 +295,12 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.SCISSOR__OFFSET_X:
-			return offsetX != OFFSET_X_EDEFAULT;
-		case GraphicpipelinePackage.SCISSOR__OFFSET_Y:
-			return offsetY != OFFSET_Y_EDEFAULT;
-		case GraphicpipelinePackage.SCISSOR__EXTENT:
-			return extent != null;
+			case GraphicpipelinePackage.SCISSOR__OFFSET_X:
+				return offsetX != OFFSET_X_EDEFAULT;
+			case GraphicpipelinePackage.SCISSOR__OFFSET_Y:
+				return offsetY != OFFSET_Y_EDEFAULT;
+			case GraphicpipelinePackage.SCISSOR__EXTENT:
+				return extent != null;
 		}
 		return super.eIsSet(featureID);
 	}

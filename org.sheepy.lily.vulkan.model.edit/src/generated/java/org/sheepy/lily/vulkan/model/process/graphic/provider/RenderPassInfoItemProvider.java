@@ -74,13 +74,19 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter implements I
 	 */
 	protected void addBindPointPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_RenderPassInfo_bindPoint_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_RenderPassInfo_bindPoint_feature",
-								"_UI_RenderPassInfo_type"),
-						GraphicPackage.Literals.RENDER_PASS_INFO__BIND_POINT, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RenderPassInfo_bindPoint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RenderPassInfo_bindPoint_feature", "_UI_RenderPassInfo_type"),
+				 GraphicPackage.Literals.RENDER_PASS_INFO__BIND_POINT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -139,7 +145,7 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter implements I
 	@Override
 	public String getText(Object object)
 	{
-		RenderPassInfo renderPassInfo = (RenderPassInfo) object;
+		RenderPassInfo renderPassInfo = (RenderPassInfo)object;
 		return getString("_UI_RenderPassInfo_type") + " " + renderPassInfo.getBindPoint();
 	}
 
@@ -157,14 +163,14 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter implements I
 
 		switch (notification.getFeatureID(RenderPassInfo.class))
 		{
-		case GraphicPackage.RENDER_PASS_INFO__BIND_POINT:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
-		case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
-		case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case GraphicPackage.RENDER_PASS_INFO__BIND_POINT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
+			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
+			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -181,17 +187,25 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter implements I
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.RENDER_PASS_INFO__ATTACHMENTS,
-				GraphicFactory.eINSTANCE.createSwapImageAttachmentDescription()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.RENDER_PASS_INFO__ATTACHMENTS,
+				 GraphicFactory.eINSTANCE.createSwapImageAttachmentDescription()));
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.RENDER_PASS_INFO__ATTACHMENTS,
-				GraphicFactory.eINSTANCE.createExtraAttachmentDescription()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.RENDER_PASS_INFO__ATTACHMENTS,
+				 GraphicFactory.eINSTANCE.createExtraAttachmentDescription()));
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.RENDER_PASS_INFO__SUBPASSES,
-				GraphicFactory.eINSTANCE.createSubpass()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.RENDER_PASS_INFO__SUBPASSES,
+				 GraphicFactory.eINSTANCE.createSubpass()));
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.RENDER_PASS_INFO__DEPENDENCIES,
-				GraphicFactory.eINSTANCE.createSubpassDependency()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.RENDER_PASS_INFO__DEPENDENCIES,
+				 GraphicFactory.eINSTANCE.createSubpassDependency()));
 	}
 
 	/**
@@ -203,7 +217,7 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter implements I
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

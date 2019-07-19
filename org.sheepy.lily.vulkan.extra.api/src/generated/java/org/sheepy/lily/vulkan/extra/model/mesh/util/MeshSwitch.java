@@ -10,8 +10,9 @@ import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.extra.model.mesh.*;
-import org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer;
+import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
+import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IProcessPart;
@@ -88,18 +89,26 @@ public class MeshSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MeshPackage.MESH_RENDERER_MAINTAINER:
+			case MeshPackage.MESH_RENDERER:
 			{
-				MeshRendererMaintainer meshRendererMaintainer = (MeshRendererMaintainer)theEObject;
-				T1 result = caseMeshRendererMaintainer(meshRendererMaintainer);
-				if (result == null) result = caseGenericRendererMaintainer(meshRendererMaintainer);
-				if (result == null) result = caseGraphicsPipeline(meshRendererMaintainer);
-				if (result == null) result = caseMaintainer(meshRendererMaintainer);
-				if (result == null) result = caseIPipeline(meshRendererMaintainer);
-				if (result == null) result = caseMaintainable(meshRendererMaintainer);
-				if (result == null) result = caseLNamedElement(meshRendererMaintainer);
-				if (result == null) result = caseIResourceContainer(meshRendererMaintainer);
-				if (result == null) result = caseIProcessPart(meshRendererMaintainer);
+				MeshRenderer meshRenderer = (MeshRenderer)theEObject;
+				T1 result = caseMeshRenderer(meshRenderer);
+				if (result == null) result = caseGenericRenderer(meshRenderer);
+				if (result == null) result = caseGraphicsPipeline(meshRenderer);
+				if (result == null) result = caseMaintainer(meshRenderer);
+				if (result == null) result = caseIPipeline(meshRenderer);
+				if (result == null) result = caseMaintainable(meshRenderer);
+				if (result == null) result = caseLNamedElement(meshRenderer);
+				if (result == null) result = caseIResourceContainer(meshRenderer);
+				if (result == null) result = caseIProcessPart(meshRenderer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MeshPackage.MESH_PKG:
+			{
+				MeshPkg meshPkg = (MeshPkg)theEObject;
+				T1 result = caseMeshPkg(meshPkg);
+				if (result == null) result = casePresentationPkg(meshPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -124,17 +133,33 @@ public class MeshSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Renderer Maintainer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Renderer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Renderer Maintainer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Renderer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseMeshRendererMaintainer(MeshRendererMaintainer object)
+	public T1 caseMeshRenderer(MeshRenderer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pkg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseMeshPkg(MeshPkg object)
 	{
 		return null;
 	}
@@ -268,17 +293,33 @@ public class MeshSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Generic Renderer Maintainer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Renderer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Generic Renderer Maintainer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Renderer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Presentation> T1 caseGenericRendererMaintainer(GenericRendererMaintainer<T> object)
+	public <T extends Presentation> T1 caseGenericRenderer(GenericRenderer<T> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Presentation Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Presentation Pkg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Presentation> T1 casePresentationPkg(PresentationPkg<T> object)
 	{
 		return null;
 	}

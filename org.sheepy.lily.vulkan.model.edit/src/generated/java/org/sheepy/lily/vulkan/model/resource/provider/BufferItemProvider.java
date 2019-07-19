@@ -64,12 +64,19 @@ public class BufferItemProvider extends BasicDescriptedResourceItemProvider
 	 */
 	protected void addSizePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Buffer_size_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Buffer_size_feature", "_UI_Buffer_type"),
-						ResourcePackage.Literals.BUFFER__SIZE, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Buffer_size_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_size_feature", "_UI_Buffer_type"),
+				 ResourcePackage.Literals.BUFFER__SIZE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -80,12 +87,19 @@ public class BufferItemProvider extends BasicDescriptedResourceItemProvider
 	 */
 	protected void addUsagesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Buffer_usages_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Buffer_usages_feature", "_UI_Buffer_type"),
-						ResourcePackage.Literals.BUFFER__USAGES, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Buffer_usages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_usages_feature", "_UI_Buffer_type"),
+				 ResourcePackage.Literals.BUFFER__USAGES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -96,12 +110,19 @@ public class BufferItemProvider extends BasicDescriptedResourceItemProvider
 	 */
 	protected void addDataPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Buffer_data_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Buffer_data_feature", "_UI_Buffer_type"),
-						ResourcePackage.Literals.BUFFER__DATA, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Buffer_data_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_data_feature", "_UI_Buffer_type"),
+				 ResourcePackage.Literals.BUFFER__DATA,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -112,13 +133,19 @@ public class BufferItemProvider extends BasicDescriptedResourceItemProvider
 	 */
 	protected void addOftenUpdatedPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Buffer_oftenUpdated_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Buffer_oftenUpdated_feature",
-								"_UI_Buffer_type"),
-						ResourcePackage.Literals.BUFFER__OFTEN_UPDATED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Buffer_oftenUpdated_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_oftenUpdated_feature", "_UI_Buffer_type"),
+				 ResourcePackage.Literals.BUFFER__OFTEN_UPDATED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -129,13 +156,19 @@ public class BufferItemProvider extends BasicDescriptedResourceItemProvider
 	 */
 	protected void addGpuBufferPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Buffer_gpuBuffer_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Buffer_gpuBuffer_feature",
-								"_UI_Buffer_type"),
-						ResourcePackage.Literals.BUFFER__GPU_BUFFER, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Buffer_gpuBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_gpuBuffer_feature", "_UI_Buffer_type"),
+				 ResourcePackage.Literals.BUFFER__GPU_BUFFER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -146,11 +179,19 @@ public class BufferItemProvider extends BasicDescriptedResourceItemProvider
 	 */
 	protected void addInstanceCountPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Buffer_instanceCount_feature"), getString("_UI_Buffer_instanceCount_description"),
-				ResourcePackage.Literals.BUFFER__INSTANCE_COUNT, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Buffer_instanceCount_feature"),
+				 getString("_UI_Buffer_instanceCount_description"),
+				 ResourcePackage.Literals.BUFFER__INSTANCE_COUNT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -174,10 +215,10 @@ public class BufferItemProvider extends BasicDescriptedResourceItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Buffer) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_Buffer_type")
-				: getString("_UI_Buffer_type") + " " + label;
+		String label = ((Buffer)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Buffer_type") :
+			getString("_UI_Buffer_type") + " " + label;
 	}
 
 	/**
@@ -194,14 +235,14 @@ public class BufferItemProvider extends BasicDescriptedResourceItemProvider
 
 		switch (notification.getFeatureID(Buffer.class))
 		{
-		case ResourcePackage.BUFFER__SIZE:
-		case ResourcePackage.BUFFER__USAGES:
-		case ResourcePackage.BUFFER__DATA:
-		case ResourcePackage.BUFFER__OFTEN_UPDATED:
-		case ResourcePackage.BUFFER__GPU_BUFFER:
-		case ResourcePackage.BUFFER__INSTANCE_COUNT:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case ResourcePackage.BUFFER__SIZE:
+			case ResourcePackage.BUFFER__USAGES:
+			case ResourcePackage.BUFFER__DATA:
+			case ResourcePackage.BUFFER__OFTEN_UPDATED:
+			case ResourcePackage.BUFFER__GPU_BUFFER:
+			case ResourcePackage.BUFFER__INSTANCE_COUNT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

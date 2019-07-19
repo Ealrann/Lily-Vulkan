@@ -75,12 +75,19 @@ public class SubpassDependencyItemProvider extends ItemProviderAdapter implement
 	 */
 	protected void addSrcSubpassPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SubpassDependency_srcSubpass_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SubpassDependency_srcSubpass_feature",
-								"_UI_SubpassDependency_type"),
-						GraphicPackage.Literals.SUBPASS_DEPENDENCY__SRC_SUBPASS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SubpassDependency_srcSubpass_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SubpassDependency_srcSubpass_feature", "_UI_SubpassDependency_type"),
+				 GraphicPackage.Literals.SUBPASS_DEPENDENCY__SRC_SUBPASS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -91,12 +98,19 @@ public class SubpassDependencyItemProvider extends ItemProviderAdapter implement
 	 */
 	protected void addDstSubpassPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SubpassDependency_dstSubpass_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SubpassDependency_dstSubpass_feature",
-								"_UI_SubpassDependency_type"),
-						GraphicPackage.Literals.SUBPASS_DEPENDENCY__DST_SUBPASS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SubpassDependency_dstSubpass_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SubpassDependency_dstSubpass_feature", "_UI_SubpassDependency_type"),
+				 GraphicPackage.Literals.SUBPASS_DEPENDENCY__DST_SUBPASS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -107,13 +121,19 @@ public class SubpassDependencyItemProvider extends ItemProviderAdapter implement
 	 */
 	protected void addSrcStageMaskPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_SubpassDependency_srcStageMask_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_SubpassDependency_srcStageMask_feature",
-						"_UI_SubpassDependency_type"),
-				GraphicPackage.Literals.SUBPASS_DEPENDENCY__SRC_STAGE_MASK, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SubpassDependency_srcStageMask_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SubpassDependency_srcStageMask_feature", "_UI_SubpassDependency_type"),
+				 GraphicPackage.Literals.SUBPASS_DEPENDENCY__SRC_STAGE_MASK,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -124,13 +144,19 @@ public class SubpassDependencyItemProvider extends ItemProviderAdapter implement
 	 */
 	protected void addDstStageMaskPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_SubpassDependency_dstStageMask_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_SubpassDependency_dstStageMask_feature",
-						"_UI_SubpassDependency_type"),
-				GraphicPackage.Literals.SUBPASS_DEPENDENCY__DST_STAGE_MASK, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SubpassDependency_dstStageMask_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SubpassDependency_dstStageMask_feature", "_UI_SubpassDependency_type"),
+				 GraphicPackage.Literals.SUBPASS_DEPENDENCY__DST_STAGE_MASK,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -141,13 +167,19 @@ public class SubpassDependencyItemProvider extends ItemProviderAdapter implement
 	 */
 	protected void addSrcAccessesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SubpassDependency_srcAccesses_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SubpassDependency_srcAccesses_feature",
-								"_UI_SubpassDependency_type"),
-						GraphicPackage.Literals.SUBPASS_DEPENDENCY__SRC_ACCESSES, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SubpassDependency_srcAccesses_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SubpassDependency_srcAccesses_feature", "_UI_SubpassDependency_type"),
+				 GraphicPackage.Literals.SUBPASS_DEPENDENCY__SRC_ACCESSES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -158,13 +190,19 @@ public class SubpassDependencyItemProvider extends ItemProviderAdapter implement
 	 */
 	protected void addDstAccessesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SubpassDependency_dstAccesses_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SubpassDependency_dstAccesses_feature",
-								"_UI_SubpassDependency_type"),
-						GraphicPackage.Literals.SUBPASS_DEPENDENCY__DST_ACCESSES, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SubpassDependency_dstAccesses_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SubpassDependency_dstAccesses_feature", "_UI_SubpassDependency_type"),
+				 GraphicPackage.Literals.SUBPASS_DEPENDENCY__DST_ACCESSES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -205,12 +243,12 @@ public class SubpassDependencyItemProvider extends ItemProviderAdapter implement
 
 		switch (notification.getFeatureID(SubpassDependency.class))
 		{
-		case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
-		case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
-		case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
-		case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -237,7 +275,7 @@ public class SubpassDependencyItemProvider extends ItemProviderAdapter implement
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

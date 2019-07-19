@@ -5,7 +5,7 @@
     modelName="Extra" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="11.0" copyrightFields="false"
     usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//process ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//model ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//resource ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//graphic ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline"
-    importOrganizing="true">
+    operationReflection="true" importOrganizing="true" cleanup="true">
   <foreignModel>Mesh.ecore</foreignModel>
   <foreignModel>Nuklear.ecore</foreignModel>
   <foreignModel>Rendering.ecore</foreignModel>
@@ -13,7 +13,8 @@
   <genPackages prefix="Mesh" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
       childCreationExtenders="true" ecorePackage="Mesh.ecore#/">
     <genClasses ecoreClass="Mesh.ecore#//Mesh"/>
-    <genClasses ecoreClass="Mesh.ecore#//MeshRendererMaintainer"/>
+    <genClasses ecoreClass="Mesh.ecore#//MeshRenderer"/>
+    <genClasses ecoreClass="Mesh.ecore#//MeshPkg"/>
   </genPackages>
   <genPackages prefix="Nuklear" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
       ecorePackage="Nuklear.ecore#/">
@@ -35,7 +36,8 @@
     </genClasses>
   </genPackages>
   <genPackages prefix="Rendering" basePackage="org.sheepy.lily.vulkan.extra.model"
-      disposableProviderFactory="true" extensibleProviderFactory="true" ecorePackage="Rendering.ecore#/">
+      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
+      ecorePackage="Rendering.ecore#/">
     <genClasses image="false" ecoreClass="Rendering.ecore#//Entity"/>
     <genClasses ecoreClass="Rendering.ecore#//PhysicalEntity">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//PhysicalEntity/geoLocation"/>
@@ -49,22 +51,24 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//Axis/rightDirection"/>
     </genClasses>
     <genClasses ecoreClass="Rendering.ecore#//Presentation">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//Presentation/presentedEntities"/>
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Rendering.ecore#//Presentation/presentedEntities"/>
     </genClasses>
     <genClasses ecoreClass="Rendering.ecore#//PresentationPkg">
+      <genTypeParameters ecoreTypeParameter="Rendering.ecore#//PresentationPkg/T"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//PresentationPkg/presentations"/>
     </genClasses>
     <genClasses ecoreClass="Rendering.ecore#//PresentableEntity">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//PresentableEntity/presentation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//PresentableEntity/scale"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Rendering.ecore#//GenericRendererMaintainer">
-      <genTypeParameters ecoreTypeParameter="Rendering.ecore#//GenericRendererMaintainer/T"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRendererMaintainer/dataProviderPkg"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRendererMaintainer/presentationPkg"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRendererMaintainer/constantBuffer"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRendererMaintainer/basicResources"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRendererMaintainer/pushBuffer"/>
+    <genClasses image="false" ecoreClass="Rendering.ecore#//GenericRenderer">
+      <genTypeParameters ecoreTypeParameter="Rendering.ecore#//GenericRenderer/T"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/dataProviderPkg"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/presentationPkg"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/constantBuffer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/pushBuffer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/commonResourceProvider"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Rendering.ecore#//GenericDataProvider">
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//GenericDataProvider/T"/>
@@ -88,12 +92,20 @@
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//GenericIndexProvider/T"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//GenericIndexProvider/indexType"/>
     </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//PresentationRootPkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//PresentationRootPkg/presentationPkgs"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Rendering.ecore#//ResourceProvider"/>
+    <genClasses ecoreClass="Rendering.ecore#//StaticResourceProvider">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//StaticResourceProvider/resources"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Sprite" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
-      ecorePackage="Sprite.ecore#/">
-    <genClasses ecoreClass="Sprite.ecore#//SpriteRendererMaintainer"/>
+      childCreationExtenders="true" ecorePackage="Sprite.ecore#/">
+    <genClasses ecoreClass="Sprite.ecore#//SpriteRenderer"/>
     <genClasses ecoreClass="Sprite.ecore#//Sprite">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sprite.ecore#//Sprite/file"/>
     </genClasses>
+    <genClasses ecoreClass="Sprite.ecore#//SpritePkg"/>
   </genPackages>
 </genmodel:GenModel>

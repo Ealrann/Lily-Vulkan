@@ -134,9 +134,9 @@ public class VertexInputStateItemProvider extends ItemProviderAdapter implements
 
 		switch (notification.getFeatureID(VertexInputState.class))
 		{
-		case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -153,8 +153,10 @@ public class VertexInputStateItemProvider extends ItemProviderAdapter implements
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR,
-				GraphicFactory.eINSTANCE.createInputDescriptor()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR,
+				 GraphicFactory.eINSTANCE.createInputDescriptor()));
 	}
 
 	/**
@@ -166,7 +168,7 @@ public class VertexInputStateItemProvider extends ItemProviderAdapter implements
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

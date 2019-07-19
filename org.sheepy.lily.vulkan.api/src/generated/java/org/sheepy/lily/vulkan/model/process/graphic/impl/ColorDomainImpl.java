@@ -113,8 +113,8 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	{
 		EFormat oldFormat = format;
 		format = newFormat == null ? FORMAT_EDEFAULT : newFormat;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, GraphicPackage.COLOR_DOMAIN__FORMAT, oldFormat, format));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.COLOR_DOMAIN__FORMAT, oldFormat, format));
 	}
 
 	/**
@@ -138,8 +138,8 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	{
 		EColorSpace oldColorSpace = colorSpace;
 		colorSpace = newColorSpace == null ? COLOR_SPACE_EDEFAULT : newColorSpace;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.COLOR_DOMAIN__COLOR_SPACE, oldColorSpace, colorSpace));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.COLOR_DOMAIN__COLOR_SPACE, oldColorSpace, colorSpace));
 	}
 
 	/**
@@ -152,10 +152,10 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.COLOR_DOMAIN__FORMAT:
-			return getFormat();
-		case GraphicPackage.COLOR_DOMAIN__COLOR_SPACE:
-			return getColorSpace();
+			case GraphicPackage.COLOR_DOMAIN__FORMAT:
+				return getFormat();
+			case GraphicPackage.COLOR_DOMAIN__COLOR_SPACE:
+				return getColorSpace();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -170,12 +170,12 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.COLOR_DOMAIN__FORMAT:
-			setFormat((EFormat) newValue);
-			return;
-		case GraphicPackage.COLOR_DOMAIN__COLOR_SPACE:
-			setColorSpace((EColorSpace) newValue);
-			return;
+			case GraphicPackage.COLOR_DOMAIN__FORMAT:
+				setFormat((EFormat)newValue);
+				return;
+			case GraphicPackage.COLOR_DOMAIN__COLOR_SPACE:
+				setColorSpace((EColorSpace)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -190,12 +190,12 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.COLOR_DOMAIN__FORMAT:
-			setFormat(FORMAT_EDEFAULT);
-			return;
-		case GraphicPackage.COLOR_DOMAIN__COLOR_SPACE:
-			setColorSpace(COLOR_SPACE_EDEFAULT);
-			return;
+			case GraphicPackage.COLOR_DOMAIN__FORMAT:
+				setFormat(FORMAT_EDEFAULT);
+				return;
+			case GraphicPackage.COLOR_DOMAIN__COLOR_SPACE:
+				setColorSpace(COLOR_SPACE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -210,10 +210,10 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.COLOR_DOMAIN__FORMAT:
-			return format != FORMAT_EDEFAULT;
-		case GraphicPackage.COLOR_DOMAIN__COLOR_SPACE:
-			return colorSpace != COLOR_SPACE_EDEFAULT;
+			case GraphicPackage.COLOR_DOMAIN__FORMAT:
+				return format != FORMAT_EDEFAULT;
+			case GraphicPackage.COLOR_DOMAIN__COLOR_SPACE:
+				return colorSpace != COLOR_SPACE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

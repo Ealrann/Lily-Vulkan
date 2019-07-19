@@ -71,12 +71,12 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	{
 		if (image != null && image.eIsProxy())
 		{
-			InternalEObject oldImage = (InternalEObject) image;
-			image = (Image) eResolveProxy(oldImage);
+			InternalEObject oldImage = (InternalEObject)image;
+			image = (Image)eResolveProxy(oldImage);
 			if (image != oldImage)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						ResourcePackage.IMAGE_BARRIER__IMAGE, oldImage, image));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.IMAGE_BARRIER__IMAGE, oldImage, image));
 			}
 		}
 		return image;
@@ -102,8 +102,8 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	{
 		Image oldImage = image;
 		image = newImage;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_BARRIER__IMAGE, oldImage, image));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_BARRIER__IMAGE, oldImage, image));
 	}
 
 	/**
@@ -116,9 +116,9 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE_BARRIER__IMAGE:
-			if (resolve) return getImage();
-			return basicGetImage();
+			case ResourcePackage.IMAGE_BARRIER__IMAGE:
+				if (resolve) return getImage();
+				return basicGetImage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -133,9 +133,9 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE_BARRIER__IMAGE:
-			setImage((Image) newValue);
-			return;
+			case ResourcePackage.IMAGE_BARRIER__IMAGE:
+				setImage((Image)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -150,9 +150,9 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE_BARRIER__IMAGE:
-			setImage((Image) null);
-			return;
+			case ResourcePackage.IMAGE_BARRIER__IMAGE:
+				setImage((Image)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -167,8 +167,8 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE_BARRIER__IMAGE:
-			return image != null;
+			case ResourcePackage.IMAGE_BARRIER__IMAGE:
+				return image != null;
 		}
 		return super.eIsSet(featureID);
 	}

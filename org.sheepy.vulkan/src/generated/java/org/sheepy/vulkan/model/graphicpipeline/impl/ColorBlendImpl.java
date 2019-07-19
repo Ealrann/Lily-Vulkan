@@ -180,7 +180,7 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ColorBlendImpl()
+	public ColorBlendImpl()
 	{
 		super();
 	}
@@ -206,9 +206,7 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	{
 		if (attachments == null)
 		{
-			attachments = new EObjectContainmentEList<ColorBlendAttachment>(
-					ColorBlendAttachment.class, this,
-					GraphicpipelinePackage.COLOR_BLEND__ATTACHMENTS);
+			attachments = new EObjectContainmentEList<ColorBlendAttachment>(ColorBlendAttachment.class, this, GraphicpipelinePackage.COLOR_BLEND__ATTACHMENTS);
 		}
 		return attachments;
 	}
@@ -234,9 +232,8 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	{
 		boolean oldLogicOpEnable = logicOpEnable;
 		logicOpEnable = newLogicOpEnable;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP_ENABLE, oldLogicOpEnable,
-				logicOpEnable));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP_ENABLE, oldLogicOpEnable, logicOpEnable));
 	}
 
 	/**
@@ -260,8 +257,8 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	{
 		ELogicOp oldLogicOp = logicOp;
 		logicOp = newLogicOp == null ? LOGIC_OP_EDEFAULT : newLogicOp;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP, oldLogicOp, logicOp));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP, oldLogicOp, logicOp));
 	}
 
 	/**
@@ -285,9 +282,8 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	{
 		int oldBlendConstant0 = blendConstant0;
 		blendConstant0 = newBlendConstant0;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT0, oldBlendConstant0,
-				blendConstant0));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT0, oldBlendConstant0, blendConstant0));
 	}
 
 	/**
@@ -311,9 +307,8 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	{
 		int oldBlendConstant1 = blendConstant1;
 		blendConstant1 = newBlendConstant1;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT1, oldBlendConstant1,
-				blendConstant1));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT1, oldBlendConstant1, blendConstant1));
 	}
 
 	/**
@@ -337,9 +332,8 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	{
 		int oldBlendConstant2 = blendConstant2;
 		blendConstant2 = newBlendConstant2;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT2, oldBlendConstant2,
-				blendConstant2));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT2, oldBlendConstant2, blendConstant2));
 	}
 
 	/**
@@ -363,9 +357,8 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	{
 		int oldBlendConstant3 = blendConstant3;
 		blendConstant3 = newBlendConstant3;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT3, oldBlendConstant3,
-				blendConstant3));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT3, oldBlendConstant3, blendConstant3));
 	}
 
 	/**
@@ -374,14 +367,12 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.COLOR_BLEND__ATTACHMENTS:
-			return ((InternalEList<?>) getAttachments()).basicRemove(otherEnd, msgs);
+			case GraphicpipelinePackage.COLOR_BLEND__ATTACHMENTS:
+				return ((InternalEList<?>)getAttachments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -396,20 +387,20 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.COLOR_BLEND__ATTACHMENTS:
-			return getAttachments();
-		case GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP_ENABLE:
-			return isLogicOpEnable();
-		case GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP:
-			return getLogicOp();
-		case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT0:
-			return getBlendConstant0();
-		case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT1:
-			return getBlendConstant1();
-		case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT2:
-			return getBlendConstant2();
-		case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT3:
-			return getBlendConstant3();
+			case GraphicpipelinePackage.COLOR_BLEND__ATTACHMENTS:
+				return getAttachments();
+			case GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP_ENABLE:
+				return isLogicOpEnable();
+			case GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP:
+				return getLogicOp();
+			case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT0:
+				return getBlendConstant0();
+			case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT1:
+				return getBlendConstant1();
+			case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT2:
+				return getBlendConstant2();
+			case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT3:
+				return getBlendConstant3();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -425,28 +416,28 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.COLOR_BLEND__ATTACHMENTS:
-			getAttachments().clear();
-			getAttachments().addAll((Collection<? extends ColorBlendAttachment>) newValue);
-			return;
-		case GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP_ENABLE:
-			setLogicOpEnable((Boolean) newValue);
-			return;
-		case GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP:
-			setLogicOp((ELogicOp) newValue);
-			return;
-		case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT0:
-			setBlendConstant0((Integer) newValue);
-			return;
-		case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT1:
-			setBlendConstant1((Integer) newValue);
-			return;
-		case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT2:
-			setBlendConstant2((Integer) newValue);
-			return;
-		case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT3:
-			setBlendConstant3((Integer) newValue);
-			return;
+			case GraphicpipelinePackage.COLOR_BLEND__ATTACHMENTS:
+				getAttachments().clear();
+				getAttachments().addAll((Collection<? extends ColorBlendAttachment>)newValue);
+				return;
+			case GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP_ENABLE:
+				setLogicOpEnable((Boolean)newValue);
+				return;
+			case GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP:
+				setLogicOp((ELogicOp)newValue);
+				return;
+			case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT0:
+				setBlendConstant0((Integer)newValue);
+				return;
+			case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT1:
+				setBlendConstant1((Integer)newValue);
+				return;
+			case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT2:
+				setBlendConstant2((Integer)newValue);
+				return;
+			case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT3:
+				setBlendConstant3((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -461,27 +452,27 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.COLOR_BLEND__ATTACHMENTS:
-			getAttachments().clear();
-			return;
-		case GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP_ENABLE:
-			setLogicOpEnable(LOGIC_OP_ENABLE_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP:
-			setLogicOp(LOGIC_OP_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT0:
-			setBlendConstant0(BLEND_CONSTANT0_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT1:
-			setBlendConstant1(BLEND_CONSTANT1_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT2:
-			setBlendConstant2(BLEND_CONSTANT2_EDEFAULT);
-			return;
-		case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT3:
-			setBlendConstant3(BLEND_CONSTANT3_EDEFAULT);
-			return;
+			case GraphicpipelinePackage.COLOR_BLEND__ATTACHMENTS:
+				getAttachments().clear();
+				return;
+			case GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP_ENABLE:
+				setLogicOpEnable(LOGIC_OP_ENABLE_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP:
+				setLogicOp(LOGIC_OP_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT0:
+				setBlendConstant0(BLEND_CONSTANT0_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT1:
+				setBlendConstant1(BLEND_CONSTANT1_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT2:
+				setBlendConstant2(BLEND_CONSTANT2_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT3:
+				setBlendConstant3(BLEND_CONSTANT3_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -496,20 +487,20 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	{
 		switch (featureID)
 		{
-		case GraphicpipelinePackage.COLOR_BLEND__ATTACHMENTS:
-			return attachments != null && !attachments.isEmpty();
-		case GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP_ENABLE:
-			return logicOpEnable != LOGIC_OP_ENABLE_EDEFAULT;
-		case GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP:
-			return logicOp != LOGIC_OP_EDEFAULT;
-		case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT0:
-			return blendConstant0 != BLEND_CONSTANT0_EDEFAULT;
-		case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT1:
-			return blendConstant1 != BLEND_CONSTANT1_EDEFAULT;
-		case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT2:
-			return blendConstant2 != BLEND_CONSTANT2_EDEFAULT;
-		case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT3:
-			return blendConstant3 != BLEND_CONSTANT3_EDEFAULT;
+			case GraphicpipelinePackage.COLOR_BLEND__ATTACHMENTS:
+				return attachments != null && !attachments.isEmpty();
+			case GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP_ENABLE:
+				return logicOpEnable != LOGIC_OP_ENABLE_EDEFAULT;
+			case GraphicpipelinePackage.COLOR_BLEND__LOGIC_OP:
+				return logicOp != LOGIC_OP_EDEFAULT;
+			case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT0:
+				return blendConstant0 != BLEND_CONSTANT0_EDEFAULT;
+			case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT1:
+				return blendConstant1 != BLEND_CONSTANT1_EDEFAULT;
+			case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT2:
+				return blendConstant2 != BLEND_CONSTANT2_EDEFAULT;
+			case GraphicpipelinePackage.COLOR_BLEND__BLEND_CONSTANT3:
+				return blendConstant3 != BLEND_CONSTANT3_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

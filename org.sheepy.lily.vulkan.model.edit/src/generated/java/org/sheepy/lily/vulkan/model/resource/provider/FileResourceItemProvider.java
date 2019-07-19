@@ -69,10 +69,10 @@ public class FileResourceItemProvider extends PathResourceItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((FileResource) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_FileResource_type")
-				: getString("_UI_FileResource_type") + " " + label;
+		String label = ((FileResource)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_FileResource_type") :
+			getString("_UI_FileResource_type") + " " + label;
 	}
 
 	/**
@@ -86,6 +86,7 @@ public class FileResourceItemProvider extends PathResourceItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
+		super.notifyChanged(notification);
 	}
 
 	/**

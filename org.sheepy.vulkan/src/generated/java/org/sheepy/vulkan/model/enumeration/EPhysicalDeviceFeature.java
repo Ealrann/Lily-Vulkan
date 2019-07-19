@@ -108,9 +108,13 @@ public enum EPhysicalDeviceFeature implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EPhysicalDeviceFeature[] VALUES_ARRAY = new EPhysicalDeviceFeature[] {
-			GEOMETRY_SHADER, FILL_MODE_NON_SOLID, WIDE_LINES, FRAGMENT_STORES_AND_ATOMICS,
-	};
+	private static final EPhysicalDeviceFeature[] VALUES_ARRAY = new EPhysicalDeviceFeature[]
+		{
+			GEOMETRY_SHADER,
+			FILL_MODE_NON_SOLID,
+			WIDE_LINES,
+			FRAGMENT_STORES_AND_ATOMICS,
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>EPhysical Device Feature</b></em>' enumerators.
@@ -118,8 +122,7 @@ public enum EPhysicalDeviceFeature implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EPhysicalDeviceFeature> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EPhysicalDeviceFeature> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EPhysical Device Feature</b></em>' literal with the specified literal value.
@@ -175,8 +178,7 @@ public enum EPhysicalDeviceFeature implements Enumerator
 	{
 		switch (value)
 		{
-		case GEOMETRY_SHADER_VALUE:
-			return GEOMETRY_SHADER;
+			case GEOMETRY_SHADER_VALUE: return GEOMETRY_SHADER;
 		}
 		return null;
 	}
@@ -223,7 +225,7 @@ public enum EPhysicalDeviceFeature implements Enumerator
 	@Override
 	public int getValue()
 	{
-		return value;
+	  return value;
 	}
 
 	/**
@@ -234,7 +236,7 @@ public enum EPhysicalDeviceFeature implements Enumerator
 	@Override
 	public String getName()
 	{
-		return name;
+	  return name;
 	}
 
 	/**
@@ -245,7 +247,7 @@ public enum EPhysicalDeviceFeature implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-		return literal;
+	  return literal;
 	}
 
 	/**

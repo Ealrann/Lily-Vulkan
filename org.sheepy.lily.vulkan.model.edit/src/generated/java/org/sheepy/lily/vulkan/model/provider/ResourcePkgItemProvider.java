@@ -134,9 +134,9 @@ public class ResourcePkgItemProvider extends ItemProviderAdapter implements IEdi
 
 		switch (notification.getFeatureID(ResourcePkg.class))
 		{
-		case VulkanPackage.RESOURCE_PKG__RESOURCES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case VulkanPackage.RESOURCE_PKG__RESOURCES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -153,50 +153,80 @@ public class ResourcePkgItemProvider extends ItemProviderAdapter implements IEdi
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				ResourceFactory.eINSTANCE.createBasicResource()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createBasicResource()));
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				ResourceFactory.eINSTANCE.createPushBuffer()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createPushBuffer()));
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				ResourceFactory.eINSTANCE.createGetBuffer()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createGetBuffer()));
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				ResourceFactory.eINSTANCE.createConstantBuffer()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createConstantBuffer()));
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				ResourceFactory.eINSTANCE.createBuffer()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createBuffer()));
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				ResourceFactory.eINSTANCE.createCompositeBuffer()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createCompositeBuffer()));
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				ResourceFactory.eINSTANCE.createImage()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createImage()));
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				ResourceFactory.eINSTANCE.createSampledImage()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createSampledImage()));
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				ResourceFactory.eINSTANCE.createSemaphore()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createSemaphore()));
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				ResourceFactory.eINSTANCE.createFont()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createFont()));
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				ResourceFactory.eINSTANCE.createTexture()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createTexture()));
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				ResourceFactory.eINSTANCE.createShader()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createShader()));
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				ResourceFactory.eINSTANCE.createFileResource()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createFileResource()));
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				ResourceFactory.eINSTANCE.createModuleResource()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createModuleResource()));
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				ResourceFactory.eINSTANCE.createStringModuleResource()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createStringModuleResource()));
 	}
 
 	/**
@@ -208,7 +238,7 @@ public class ResourcePkgItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

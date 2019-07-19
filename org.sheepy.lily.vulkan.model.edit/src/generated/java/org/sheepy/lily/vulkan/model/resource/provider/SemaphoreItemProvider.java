@@ -60,13 +60,19 @@ public class SemaphoreItemProvider extends BasicResourceItemProvider
 	 */
 	protected void addSignalizedAtInitPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Semaphore_signalizedAtInit_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Semaphore_signalizedAtInit_feature",
-								"_UI_Semaphore_type"),
-						ResourcePackage.Literals.SEMAPHORE__SIGNALIZED_AT_INIT, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Semaphore_signalizedAtInit_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Semaphore_signalizedAtInit_feature", "_UI_Semaphore_type"),
+				 ResourcePackage.Literals.SEMAPHORE__SIGNALIZED_AT_INIT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -77,13 +83,19 @@ public class SemaphoreItemProvider extends BasicResourceItemProvider
 	 */
 	protected void addWaitStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Semaphore_waitStage_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Semaphore_waitStage_feature",
-								"_UI_Semaphore_type"),
-						ResourcePackage.Literals.SEMAPHORE__WAIT_STAGE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Semaphore_waitStage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Semaphore_waitStage_feature", "_UI_Semaphore_type"),
+				 ResourcePackage.Literals.SEMAPHORE__WAIT_STAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -107,10 +119,10 @@ public class SemaphoreItemProvider extends BasicResourceItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Semaphore) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_Semaphore_type")
-				: getString("_UI_Semaphore_type") + " " + label;
+		String label = ((Semaphore)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Semaphore_type") :
+			getString("_UI_Semaphore_type") + " " + label;
 	}
 
 	/**
@@ -127,10 +139,10 @@ public class SemaphoreItemProvider extends BasicResourceItemProvider
 
 		switch (notification.getFeatureID(Semaphore.class))
 		{
-		case ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
-		case ResourcePackage.SEMAPHORE__WAIT_STAGE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
+			case ResourcePackage.SEMAPHORE__WAIT_STAGE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

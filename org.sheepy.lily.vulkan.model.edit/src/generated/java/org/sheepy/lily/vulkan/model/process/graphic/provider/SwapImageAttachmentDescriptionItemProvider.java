@@ -69,10 +69,10 @@ public class SwapImageAttachmentDescriptionItemProvider extends AttachmentDescri
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((SwapImageAttachmentDescription) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_SwapImageAttachmentDescription_type")
-				: getString("_UI_SwapImageAttachmentDescription_type") + " " + label;
+		String label = ((SwapImageAttachmentDescription)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SwapImageAttachmentDescription_type") :
+			getString("_UI_SwapImageAttachmentDescription_type") + " " + label;
 	}
 
 	/**
@@ -86,6 +86,7 @@ public class SwapImageAttachmentDescriptionItemProvider extends AttachmentDescri
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
+		super.notifyChanged(notification);
 	}
 
 	/**

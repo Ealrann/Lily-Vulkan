@@ -306,14 +306,11 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 */
 	public static EnumerationPackage init()
 	{
-		if (isInited) return (EnumerationPackage) EPackage.Registry.INSTANCE
-				.getEPackage(EnumerationPackage.eNS_URI);
+		if (isInited) return (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 
 		// Obtain or create and register package
 		Object registeredEnumerationPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		EnumerationPackageImpl theEnumerationPackage = registeredEnumerationPackage instanceof EnumerationPackageImpl
-				? (EnumerationPackageImpl) registeredEnumerationPackage
-				: new EnumerationPackageImpl();
+		EnumerationPackageImpl theEnumerationPackage = registeredEnumerationPackage instanceof EnumerationPackageImpl ? (EnumerationPackageImpl)registeredEnumerationPackage : new EnumerationPackageImpl();
 
 		isInited = true;
 
@@ -322,17 +319,11 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
-		BarrierPackageImpl theBarrierPackage = (BarrierPackageImpl) (registeredPackage instanceof BarrierPackageImpl
-				? registeredPackage
-				: BarrierPackage.eINSTANCE);
+		BarrierPackageImpl theBarrierPackage = (BarrierPackageImpl)(registeredPackage instanceof BarrierPackageImpl ? registeredPackage : BarrierPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GraphicpipelinePackage.eNS_URI);
-		GraphicpipelinePackageImpl theGraphicpipelinePackage = (GraphicpipelinePackageImpl) (registeredPackage instanceof GraphicpipelinePackageImpl
-				? registeredPackage
-				: GraphicpipelinePackage.eINSTANCE);
+		GraphicpipelinePackageImpl theGraphicpipelinePackage = (GraphicpipelinePackageImpl)(registeredPackage instanceof GraphicpipelinePackageImpl ? registeredPackage : GraphicpipelinePackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(PipelinePackage.eNS_URI);
-		PipelinePackageImpl thePipelinePackage = (PipelinePackageImpl) (registeredPackage instanceof PipelinePackageImpl
-				? registeredPackage
-				: PipelinePackage.eINSTANCE);
+		PipelinePackageImpl thePipelinePackage = (PipelinePackageImpl)(registeredPackage instanceof PipelinePackageImpl ? registeredPackage : PipelinePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theEnumerationPackage.createPackageContents();
@@ -692,7 +683,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	@Override
 	public EnumerationFactory getEnumerationFactory()
 	{
-		return (EnumerationFactory) getEFactoryInstance();
+		return (EnumerationFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -784,13 +775,11 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(eImageLayoutEEnum, EImageLayout.PREINITIALIZED);
 		addEEnumLiteral(eImageLayoutEEnum, EImageLayout.PRESENT_SRC_KHR);
 
-		initEEnum(ePhysicalDeviceFeatureEEnum, EPhysicalDeviceFeature.class,
-				"EPhysicalDeviceFeature");
+		initEEnum(ePhysicalDeviceFeatureEEnum, EPhysicalDeviceFeature.class, "EPhysicalDeviceFeature");
 		addEEnumLiteral(ePhysicalDeviceFeatureEEnum, EPhysicalDeviceFeature.GEOMETRY_SHADER);
 		addEEnumLiteral(ePhysicalDeviceFeatureEEnum, EPhysicalDeviceFeature.FILL_MODE_NON_SOLID);
 		addEEnumLiteral(ePhysicalDeviceFeatureEEnum, EPhysicalDeviceFeature.WIDE_LINES);
-		addEEnumLiteral(ePhysicalDeviceFeatureEEnum,
-				EPhysicalDeviceFeature.FRAGMENT_STORES_AND_ATOMICS);
+		addEEnumLiteral(ePhysicalDeviceFeatureEEnum, EPhysicalDeviceFeature.FRAGMENT_STORES_AND_ATOMICS);
 
 		initEEnum(eCullModeEEnum, ECullMode.class, "ECullMode");
 		addEEnumLiteral(eCullModeEEnum, ECullMode.NONE);

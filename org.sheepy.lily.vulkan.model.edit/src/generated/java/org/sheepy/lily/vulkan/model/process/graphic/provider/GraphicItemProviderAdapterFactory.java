@@ -65,8 +65,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
-			LilyVulkanEditPlugin.INSTANCE, GraphicPackage.eNS_URI);
+	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(LilyVulkanEditPlugin.INSTANCE, GraphicPackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -799,7 +798,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		if (isFactoryForType(type))
 		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter)))
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
 			{
 				return adapter;
 			}

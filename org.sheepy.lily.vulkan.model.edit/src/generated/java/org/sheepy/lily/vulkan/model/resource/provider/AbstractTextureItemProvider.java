@@ -60,13 +60,19 @@ public class AbstractTextureItemProvider extends SampledImageItemProvider
 	 */
 	protected void addMipmapEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_AbstractTexture_mipmapEnabled_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_AbstractTexture_mipmapEnabled_feature",
-								"_UI_AbstractTexture_type"),
-						ResourcePackage.Literals.ABSTRACT_TEXTURE__MIPMAP_ENABLED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractTexture_mipmapEnabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractTexture_mipmapEnabled_feature", "_UI_AbstractTexture_type"),
+				 ResourcePackage.Literals.ABSTRACT_TEXTURE__MIPMAP_ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -78,10 +84,10 @@ public class AbstractTextureItemProvider extends SampledImageItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((AbstractTexture) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_AbstractTexture_type")
-				: getString("_UI_AbstractTexture_type") + " " + label;
+		String label = ((AbstractTexture)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_AbstractTexture_type") :
+			getString("_UI_AbstractTexture_type") + " " + label;
 	}
 
 	/**
@@ -98,9 +104,9 @@ public class AbstractTextureItemProvider extends SampledImageItemProvider
 
 		switch (notification.getFeatureID(AbstractTexture.class))
 		{
-		case ResourcePackage.ABSTRACT_TEXTURE__MIPMAP_ENABLED:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case ResourcePackage.ABSTRACT_TEXTURE__MIPMAP_ENABLED:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

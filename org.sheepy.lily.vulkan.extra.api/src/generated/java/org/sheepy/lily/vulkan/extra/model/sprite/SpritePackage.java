@@ -58,14 +58,14 @@ public interface SpritePackage extends EPackage
 	SpritePackage eINSTANCE = org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteRendererMaintainerImpl <em>Renderer Maintainer</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteRendererImpl <em>Renderer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteRendererMaintainerImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteRendererMaintainer()
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteRendererImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteRenderer()
 	 * @generated
 	 */
-	int SPRITE_RENDERER_MAINTAINER = 0;
+	int SPRITE_RENDERER = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -74,7 +74,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__NAME = RenderingPackage.GENERIC_RENDERER_MAINTAINER__NAME;
+	int SPRITE_RENDERER__NAME = RenderingPackage.GENERIC_RENDERER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -83,7 +83,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__RESOURCE_PKG = RenderingPackage.GENERIC_RENDERER_MAINTAINER__RESOURCE_PKG;
+	int SPRITE_RENDERER__RESOURCE_PKG = RenderingPackage.GENERIC_RENDERER__RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -92,7 +92,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__ENABLED = RenderingPackage.GENERIC_RENDERER_MAINTAINER__ENABLED;
+	int SPRITE_RENDERER__ENABLED = RenderingPackage.GENERIC_RENDERER__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -101,7 +101,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__STAGE = RenderingPackage.GENERIC_RENDERER_MAINTAINER__STAGE;
+	int SPRITE_RENDERER__STAGE = RenderingPackage.GENERIC_RENDERER__STAGE;
 
 	/**
 	 * The feature id for the '<em><b>Push Constant Ranges</b></em>' containment reference list.
@@ -110,7 +110,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__PUSH_CONSTANT_RANGES = RenderingPackage.GENERIC_RENDERER_MAINTAINER__PUSH_CONSTANT_RANGES;
+	int SPRITE_RENDERER__PUSH_CONSTANT_RANGES = RenderingPackage.GENERIC_RENDERER__PUSH_CONSTANT_RANGES;
 
 	/**
 	 * The feature id for the '<em><b>Specialization Data</b></em>' attribute.
@@ -119,7 +119,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__SPECIALIZATION_DATA = RenderingPackage.GENERIC_RENDERER_MAINTAINER__SPECIALIZATION_DATA;
+	int SPRITE_RENDERER__SPECIALIZATION_DATA = RenderingPackage.GENERIC_RENDERER__SPECIALIZATION_DATA;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
@@ -128,7 +128,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__DESCRIPTOR_SET_PKG = RenderingPackage.GENERIC_RENDERER_MAINTAINER__DESCRIPTOR_SET_PKG;
+	int SPRITE_RENDERER__DESCRIPTOR_SET_PKG = RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_SET_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
@@ -137,7 +137,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__TASK_PKG = RenderingPackage.GENERIC_RENDERER_MAINTAINER__TASK_PKG;
+	int SPRITE_RENDERER__TASK_PKG = RenderingPackage.GENERIC_RENDERER__TASK_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Maintainer</b></em>' reference.
@@ -146,7 +146,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__MAINTAINER = RenderingPackage.GENERIC_RENDERER_MAINTAINER__MAINTAINER;
+	int SPRITE_RENDERER__MAINTAINER = RenderingPackage.GENERIC_RENDERER__MAINTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Shaders</b></em>' reference list.
@@ -155,7 +155,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__SHADERS = RenderingPackage.GENERIC_RENDERER_MAINTAINER__SHADERS;
+	int SPRITE_RENDERER__SHADERS = RenderingPackage.GENERIC_RENDERER__SHADERS;
 
 	/**
 	 * The feature id for the '<em><b>Viewport State</b></em>' containment reference.
@@ -164,7 +164,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__VIEWPORT_STATE = RenderingPackage.GENERIC_RENDERER_MAINTAINER__VIEWPORT_STATE;
+	int SPRITE_RENDERER__VIEWPORT_STATE = RenderingPackage.GENERIC_RENDERER__VIEWPORT_STATE;
 
 	/**
 	 * The feature id for the '<em><b>Input Assembly</b></em>' containment reference.
@@ -173,7 +173,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__INPUT_ASSEMBLY = RenderingPackage.GENERIC_RENDERER_MAINTAINER__INPUT_ASSEMBLY;
+	int SPRITE_RENDERER__INPUT_ASSEMBLY = RenderingPackage.GENERIC_RENDERER__INPUT_ASSEMBLY;
 
 	/**
 	 * The feature id for the '<em><b>Rasterizer</b></em>' containment reference.
@@ -182,7 +182,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__RASTERIZER = RenderingPackage.GENERIC_RENDERER_MAINTAINER__RASTERIZER;
+	int SPRITE_RENDERER__RASTERIZER = RenderingPackage.GENERIC_RENDERER__RASTERIZER;
 
 	/**
 	 * The feature id for the '<em><b>Color Blend</b></em>' containment reference.
@@ -191,7 +191,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__COLOR_BLEND = RenderingPackage.GENERIC_RENDERER_MAINTAINER__COLOR_BLEND;
+	int SPRITE_RENDERER__COLOR_BLEND = RenderingPackage.GENERIC_RENDERER__COLOR_BLEND;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic State</b></em>' containment reference.
@@ -200,7 +200,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__DYNAMIC_STATE = RenderingPackage.GENERIC_RENDERER_MAINTAINER__DYNAMIC_STATE;
+	int SPRITE_RENDERER__DYNAMIC_STATE = RenderingPackage.GENERIC_RENDERER__DYNAMIC_STATE;
 
 	/**
 	 * The feature id for the '<em><b>Subpass</b></em>' attribute.
@@ -209,7 +209,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__SUBPASS = RenderingPackage.GENERIC_RENDERER_MAINTAINER__SUBPASS;
+	int SPRITE_RENDERER__SUBPASS = RenderingPackage.GENERIC_RENDERER__SUBPASS;
 
 	/**
 	 * The feature id for the '<em><b>Vertex Input State</b></em>' containment reference.
@@ -218,7 +218,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__VERTEX_INPUT_STATE = RenderingPackage.GENERIC_RENDERER_MAINTAINER__VERTEX_INPUT_STATE;
+	int SPRITE_RENDERER__VERTEX_INPUT_STATE = RenderingPackage.GENERIC_RENDERER__VERTEX_INPUT_STATE;
 
 	/**
 	 * The feature id for the '<em><b>Maintained</b></em>' reference list.
@@ -227,7 +227,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__MAINTAINED = RenderingPackage.GENERIC_RENDERER_MAINTAINER__MAINTAINED;
+	int SPRITE_RENDERER__MAINTAINED = RenderingPackage.GENERIC_RENDERER__MAINTAINED;
 
 	/**
 	 * The feature id for the '<em><b>Data Provider Pkg</b></em>' containment reference.
@@ -236,7 +236,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__DATA_PROVIDER_PKG = RenderingPackage.GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG;
+	int SPRITE_RENDERER__DATA_PROVIDER_PKG = RenderingPackage.GENERIC_RENDERER__DATA_PROVIDER_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Presentation Pkg</b></em>' reference.
@@ -245,7 +245,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__PRESENTATION_PKG = RenderingPackage.GENERIC_RENDERER_MAINTAINER__PRESENTATION_PKG;
+	int SPRITE_RENDERER__PRESENTATION_PKG = RenderingPackage.GENERIC_RENDERER__PRESENTATION_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Constant Buffer</b></em>' reference.
@@ -254,16 +254,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__CONSTANT_BUFFER = RenderingPackage.GENERIC_RENDERER_MAINTAINER__CONSTANT_BUFFER;
-
-	/**
-	 * The feature id for the '<em><b>Basic Resources</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_RENDERER_MAINTAINER__BASIC_RESOURCES = RenderingPackage.GENERIC_RENDERER_MAINTAINER__BASIC_RESOURCES;
+	int SPRITE_RENDERER__CONSTANT_BUFFER = RenderingPackage.GENERIC_RENDERER__CONSTANT_BUFFER;
 
 	/**
 	 * The feature id for the '<em><b>Push Buffer</b></em>' reference.
@@ -272,16 +263,34 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER__PUSH_BUFFER = RenderingPackage.GENERIC_RENDERER_MAINTAINER__PUSH_BUFFER;
+	int SPRITE_RENDERER__PUSH_BUFFER = RenderingPackage.GENERIC_RENDERER__PUSH_BUFFER;
 
 	/**
-	 * The number of structural features of the '<em>Renderer Maintainer</em>' class.
+	 * The feature id for the '<em><b>Common Resource Provider</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER_MAINTAINER_FEATURE_COUNT = RenderingPackage.GENERIC_RENDERER_MAINTAINER_FEATURE_COUNT + 0;
+	int SPRITE_RENDERER__COMMON_RESOURCE_PROVIDER = RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER;
+
+	/**
+	 * The number of structural features of the '<em>Renderer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_RENDERER_FEATURE_COUNT = RenderingPackage.GENERIC_RENDERER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Renderer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_RENDERER_OPERATION_COUNT = RenderingPackage.GENERIC_RENDERER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteImpl <em>Sprite</em>}' class.
@@ -322,14 +331,62 @@ public interface SpritePackage extends EPackage
 
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRendererMaintainer <em>Renderer Maintainer</em>}'.
+	 * The number of operations of the '<em>Sprite</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Renderer Maintainer</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteRendererMaintainer
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_OPERATION_COUNT = RenderingPackage.PRESENTATION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePkgImpl <em>Pkg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePkgImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpritePkg()
 	 * @generated
 	 */
-	EClass getSpriteRendererMaintainer();
+	int SPRITE_PKG = 2;
+
+	/**
+	 * The feature id for the '<em><b>Presentations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_PKG__PRESENTATIONS = RenderingPackage.PRESENTATION_PKG__PRESENTATIONS;
+
+	/**
+	 * The number of structural features of the '<em>Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_PKG_FEATURE_COUNT = RenderingPackage.PRESENTATION_PKG_FEATURE_COUNT + 0;
+
+
+	/**
+	 * The number of operations of the '<em>Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_PKG_OPERATION_COUNT = RenderingPackage.PRESENTATION_PKG_OPERATION_COUNT + 0;
+
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer <em>Renderer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Renderer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer
+	 * @generated
+	 */
+	EClass getSpriteRenderer();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.Sprite <em>Sprite</em>}'.
@@ -351,6 +408,16 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 */
 	EReference getSprite_File();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg <em>Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg
+	 * @generated
+	 */
+	EClass getSpritePkg();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -376,14 +443,14 @@ public interface SpritePackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteRendererMaintainerImpl <em>Renderer Maintainer</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteRendererImpl <em>Renderer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteRendererMaintainerImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteRendererMaintainer()
+		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteRendererImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteRenderer()
 		 * @generated
 		 */
-		EClass SPRITE_RENDERER_MAINTAINER = eINSTANCE.getSpriteRendererMaintainer();
+		EClass SPRITE_RENDERER = eINSTANCE.getSpriteRenderer();
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteImpl <em>Sprite</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -400,6 +467,15 @@ public interface SpritePackage extends EPackage
 		 * @generated
 		 */
 		EReference SPRITE__FILE = eINSTANCE.getSprite_File();
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePkgImpl <em>Pkg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePkgImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpritePkg()
+		 * @generated
+		 */
+		EClass SPRITE_PKG = eINSTANCE.getSpritePkg();
 
 	}
 

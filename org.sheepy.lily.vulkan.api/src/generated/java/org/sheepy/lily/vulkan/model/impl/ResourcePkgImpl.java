@@ -76,8 +76,7 @@ public class ResourcePkgImpl extends MinimalEObjectImpl.Container implements Res
 	{
 		if (resources == null)
 		{
-			resources = new EObjectContainmentEList<IResource>(IResource.class, this,
-					VulkanPackage.RESOURCE_PKG__RESOURCES);
+			resources = new EObjectContainmentEList<IResource>(IResource.class, this, VulkanPackage.RESOURCE_PKG__RESOURCES);
 		}
 		return resources;
 	}
@@ -92,8 +91,8 @@ public class ResourcePkgImpl extends MinimalEObjectImpl.Container implements Res
 	{
 		switch (featureID)
 		{
-		case VulkanPackage.RESOURCE_PKG__RESOURCES:
-			return ((InternalEList<?>) getResources()).basicRemove(otherEnd, msgs);
+			case VulkanPackage.RESOURCE_PKG__RESOURCES:
+				return ((InternalEList<?>)getResources()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -108,8 +107,8 @@ public class ResourcePkgImpl extends MinimalEObjectImpl.Container implements Res
 	{
 		switch (featureID)
 		{
-		case VulkanPackage.RESOURCE_PKG__RESOURCES:
-			return getResources();
+			case VulkanPackage.RESOURCE_PKG__RESOURCES:
+				return getResources();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -125,10 +124,10 @@ public class ResourcePkgImpl extends MinimalEObjectImpl.Container implements Res
 	{
 		switch (featureID)
 		{
-		case VulkanPackage.RESOURCE_PKG__RESOURCES:
-			getResources().clear();
-			getResources().addAll((Collection<? extends IResource>) newValue);
-			return;
+			case VulkanPackage.RESOURCE_PKG__RESOURCES:
+				getResources().clear();
+				getResources().addAll((Collection<? extends IResource>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -143,9 +142,9 @@ public class ResourcePkgImpl extends MinimalEObjectImpl.Container implements Res
 	{
 		switch (featureID)
 		{
-		case VulkanPackage.RESOURCE_PKG__RESOURCES:
-			getResources().clear();
-			return;
+			case VulkanPackage.RESOURCE_PKG__RESOURCES:
+				getResources().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -160,8 +159,8 @@ public class ResourcePkgImpl extends MinimalEObjectImpl.Container implements Res
 	{
 		switch (featureID)
 		{
-		case VulkanPackage.RESOURCE_PKG__RESOURCES:
-			return resources != null && !resources.isEmpty();
+			case VulkanPackage.RESOURCE_PKG__RESOURCES:
+				return resources != null && !resources.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

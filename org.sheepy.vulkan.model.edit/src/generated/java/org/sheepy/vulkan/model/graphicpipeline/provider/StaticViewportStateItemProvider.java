@@ -32,9 +32,8 @@ import org.sheepy.vulkan.model.graphicpipeline.StaticViewportState;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StaticViewportStateItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class StaticViewportStateItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -107,8 +106,7 @@ public class StaticViewportStateItemProvider extends ItemProviderAdapter
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/StaticViewportState"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/StaticViewportState"));
 	}
 
 	/**
@@ -137,11 +135,10 @@ public class StaticViewportStateItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(StaticViewportState.class))
 		{
-		case GraphicpipelinePackage.STATIC_VIEWPORT_STATE__VIEWPORTS:
-		case GraphicpipelinePackage.STATIC_VIEWPORT_STATE__SCISSORS:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case GraphicpipelinePackage.STATIC_VIEWPORT_STATE__VIEWPORTS:
+			case GraphicpipelinePackage.STATIC_VIEWPORT_STATE__SCISSORS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -158,13 +155,15 @@ public class StaticViewportStateItemProvider extends ItemProviderAdapter
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				GraphicpipelinePackage.Literals.STATIC_VIEWPORT_STATE__VIEWPORTS,
-				GraphicpipelineFactory.eINSTANCE.createViewport()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicpipelinePackage.Literals.STATIC_VIEWPORT_STATE__VIEWPORTS,
+				 GraphicpipelineFactory.eINSTANCE.createViewport()));
 
-		newChildDescriptors.add(createChildParameter(
-				GraphicpipelinePackage.Literals.STATIC_VIEWPORT_STATE__SCISSORS,
-				GraphicpipelineFactory.eINSTANCE.createScissor()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicpipelinePackage.Literals.STATIC_VIEWPORT_STATE__SCISSORS,
+				 GraphicpipelineFactory.eINSTANCE.createScissor()));
 	}
 
 	/**
@@ -176,7 +175,7 @@ public class StaticViewportStateItemProvider extends ItemProviderAdapter
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

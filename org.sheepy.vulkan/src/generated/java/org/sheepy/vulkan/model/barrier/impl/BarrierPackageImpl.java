@@ -116,14 +116,11 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	 */
 	public static BarrierPackage init()
 	{
-		if (isInited)
-			return (BarrierPackage) EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
+		if (isInited) return (BarrierPackage)EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
 
 		// Obtain or create and register package
 		Object registeredBarrierPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		BarrierPackageImpl theBarrierPackage = registeredBarrierPackage instanceof BarrierPackageImpl
-				? (BarrierPackageImpl) registeredBarrierPackage
-				: new BarrierPackageImpl();
+		BarrierPackageImpl theBarrierPackage = registeredBarrierPackage instanceof BarrierPackageImpl ? (BarrierPackageImpl)registeredBarrierPackage : new BarrierPackageImpl();
 
 		isInited = true;
 
@@ -131,19 +128,12 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		Object registeredPackage = EPackage.Registry.INSTANCE
-				.getEPackage(EnumerationPackage.eNS_URI);
-		EnumerationPackageImpl theEnumerationPackage = (EnumerationPackageImpl) (registeredPackage instanceof EnumerationPackageImpl
-				? registeredPackage
-				: EnumerationPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
+		EnumerationPackageImpl theEnumerationPackage = (EnumerationPackageImpl)(registeredPackage instanceof EnumerationPackageImpl ? registeredPackage : EnumerationPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GraphicpipelinePackage.eNS_URI);
-		GraphicpipelinePackageImpl theGraphicpipelinePackage = (GraphicpipelinePackageImpl) (registeredPackage instanceof GraphicpipelinePackageImpl
-				? registeredPackage
-				: GraphicpipelinePackage.eINSTANCE);
+		GraphicpipelinePackageImpl theGraphicpipelinePackage = (GraphicpipelinePackageImpl)(registeredPackage instanceof GraphicpipelinePackageImpl ? registeredPackage : GraphicpipelinePackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(PipelinePackage.eNS_URI);
-		PipelinePackageImpl thePipelinePackage = (PipelinePackageImpl) (registeredPackage instanceof PipelinePackageImpl
-				? registeredPackage
-				: PipelinePackage.eINSTANCE);
+		PipelinePackageImpl thePipelinePackage = (PipelinePackageImpl)(registeredPackage instanceof PipelinePackageImpl ? registeredPackage : PipelinePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theBarrierPackage.createPackageContents();
@@ -184,7 +174,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	@Override
 	public EAttribute getBarrier_SrcAccessMask()
 	{
-		return (EAttribute) barrierEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)barrierEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -195,7 +185,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	@Override
 	public EAttribute getBarrier_DstAccessMask()
 	{
-		return (EAttribute) barrierEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)barrierEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -228,7 +218,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	@Override
 	public EAttribute getReferenceBufferBarrier_BufferPtr()
 	{
-		return (EAttribute) referenceBufferBarrierEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)referenceBufferBarrierEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -250,7 +240,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	@Override
 	public EAttribute getAbstractImageBarrier_SrcLayout()
 	{
-		return (EAttribute) abstractImageBarrierEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)abstractImageBarrierEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -261,7 +251,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	@Override
 	public EAttribute getAbstractImageBarrier_DstLayout()
 	{
-		return (EAttribute) abstractImageBarrierEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)abstractImageBarrierEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -283,7 +273,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	@Override
 	public EAttribute getReferenceImageBarrier_ImagePtr()
 	{
-		return (EAttribute) referenceImageBarrierEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)referenceImageBarrierEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -294,7 +284,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	@Override
 	public EAttribute getReferenceImageBarrier_MipLevels()
 	{
-		return (EAttribute) referenceImageBarrierEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)referenceImageBarrierEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -305,7 +295,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	@Override
 	public EAttribute getReferenceImageBarrier_ImageFormat()
 	{
-		return (EAttribute) referenceImageBarrierEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)referenceImageBarrierEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -327,7 +317,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	@Override
 	public EAttribute getImageTransition_SrcLayout()
 	{
-		return (EAttribute) imageTransitionEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)imageTransitionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -338,7 +328,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	@Override
 	public EAttribute getImageTransition_DstLayout()
 	{
-		return (EAttribute) imageTransitionEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)imageTransitionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -349,7 +339,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	@Override
 	public EAttribute getImageTransition_SrcAccessMask()
 	{
-		return (EAttribute) imageTransitionEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)imageTransitionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -360,7 +350,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	@Override
 	public EAttribute getImageTransition_DstAccessMask()
 	{
-		return (EAttribute) imageTransitionEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)imageTransitionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -371,7 +361,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	@Override
 	public BarrierFactory getBarrierFactory()
 	{
-		return (BarrierFactory) getEFactoryInstance();
+		return (BarrierFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -444,10 +434,8 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EnumerationPackage theEnumerationPackage = (EnumerationPackage) EPackage.Registry.INSTANCE
-				.getEPackage(EnumerationPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
-				.getEPackage(EcorePackage.eNS_URI);
+		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -459,60 +447,30 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 		abstractImageBarrierEClass.getESuperTypes().add(this.getBarrier());
 		referenceImageBarrierEClass.getESuperTypes().add(this.getAbstractImageBarrier());
 
-		// Initialize classes and features; add operations and parameters
-		initEClass(barrierEClass, Barrier.class, "Barrier", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBarrier_SrcAccessMask(), theEnumerationPackage.getEAccess(),
-				"srcAccessMask", null, 0, -1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBarrier_DstAccessMask(), theEnumerationPackage.getEAccess(),
-				"dstAccessMask", null, 0, -1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		// Initialize classes, features, and operations; add parameters
+		initEClass(barrierEClass, Barrier.class, "Barrier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBarrier_SrcAccessMask(), theEnumerationPackage.getEAccess(), "srcAccessMask", null, 0, -1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBarrier_DstAccessMask(), theEnumerationPackage.getEAccess(), "dstAccessMask", null, 0, -1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(abstractBufferBarrierEClass, AbstractBufferBarrier.class,
-				"AbstractBufferBarrier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(abstractBufferBarrierEClass, AbstractBufferBarrier.class, "AbstractBufferBarrier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(referenceBufferBarrierEClass, ReferenceBufferBarrier.class,
-				"ReferenceBufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getReferenceBufferBarrier_BufferPtr(), theEcorePackage.getELong(),
-				"bufferPtr", null, 0, 1, ReferenceBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(referenceBufferBarrierEClass, ReferenceBufferBarrier.class, "ReferenceBufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getReferenceBufferBarrier_BufferPtr(), theEcorePackage.getELong(), "bufferPtr", null, 0, 1, ReferenceBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(abstractImageBarrierEClass, AbstractImageBarrier.class, "AbstractImageBarrier",
-				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbstractImageBarrier_SrcLayout(), theEnumerationPackage.getEImageLayout(),
-				"srcLayout", null, 0, 1, AbstractImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAbstractImageBarrier_DstLayout(), theEnumerationPackage.getEImageLayout(),
-				"dstLayout", null, 0, 1, AbstractImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(abstractImageBarrierEClass, AbstractImageBarrier.class, "AbstractImageBarrier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAbstractImageBarrier_SrcLayout(), theEnumerationPackage.getEImageLayout(), "srcLayout", null, 0, 1, AbstractImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractImageBarrier_DstLayout(), theEnumerationPackage.getEImageLayout(), "dstLayout", null, 0, 1, AbstractImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(referenceImageBarrierEClass, ReferenceImageBarrier.class,
-				"ReferenceImageBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getReferenceImageBarrier_ImagePtr(), theEcorePackage.getELong(), "imagePtr",
-				null, 0, 1, ReferenceImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getReferenceImageBarrier_MipLevels(), theEcorePackage.getEInt(), "mipLevels",
-				null, 0, 1, ReferenceImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getReferenceImageBarrier_ImageFormat(), theEcorePackage.getEInt(),
-				"imageFormat", null, 0, 1, ReferenceImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(referenceImageBarrierEClass, ReferenceImageBarrier.class, "ReferenceImageBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getReferenceImageBarrier_ImagePtr(), theEcorePackage.getELong(), "imagePtr", null, 0, 1, ReferenceImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReferenceImageBarrier_MipLevels(), theEcorePackage.getEInt(), "mipLevels", null, 0, 1, ReferenceImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReferenceImageBarrier_ImageFormat(), theEcorePackage.getEInt(), "imageFormat", null, 0, 1, ReferenceImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(imageTransitionEClass, ImageTransition.class, "ImageTransition", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImageTransition_SrcLayout(), theEnumerationPackage.getEImageLayout(),
-				"srcLayout", null, 0, 1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageTransition_DstLayout(), theEnumerationPackage.getEImageLayout(),
-				"dstLayout", null, 0, 1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageTransition_SrcAccessMask(), theEnumerationPackage.getEAccess(),
-				"srcAccessMask", null, 0, -1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageTransition_DstAccessMask(), theEnumerationPackage.getEAccess(),
-				"dstAccessMask", null, 0, -1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(imageTransitionEClass, ImageTransition.class, "ImageTransition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getImageTransition_SrcLayout(), theEnumerationPackage.getEImageLayout(), "srcLayout", null, 0, 1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageTransition_DstLayout(), theEnumerationPackage.getEImageLayout(), "dstLayout", null, 0, 1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageTransition_SrcAccessMask(), theEnumerationPackage.getEAccess(), "srcAccessMask", null, 0, -1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageTransition_DstAccessMask(), theEnumerationPackage.getEAccess(), "dstAccessMask", null, 0, -1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

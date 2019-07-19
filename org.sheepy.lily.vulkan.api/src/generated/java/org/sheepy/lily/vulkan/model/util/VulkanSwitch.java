@@ -80,59 +80,58 @@ public class VulkanSwitch<T> extends Switch<T>
 	{
 		switch (classifierID)
 		{
-		case VulkanPackage.VULKAN_ENGINE:
-		{
-			VulkanEngine vulkanEngine = (VulkanEngine) theEObject;
-			T result = caseVulkanEngine(vulkanEngine);
-			if (result == null) result = caseIEngine(vulkanEngine);
-			if (result == null) result = caseIResourceContainer(vulkanEngine);
-			if (result == null) result = caseIExecutionManager(vulkanEngine);
-			if (result == null) result = caseLObject(vulkanEngine);
-			if (result == null) result = caseIInferenceObject(vulkanEngine);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case VulkanPackage.IRESOURCE_CONTAINER:
-		{
-			IResourceContainer iResourceContainer = (IResourceContainer) theEObject;
-			T result = caseIResourceContainer(iResourceContainer);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case VulkanPackage.RESOURCE_PKG:
-		{
-			ResourcePkg resourcePkg = (ResourcePkg) theEObject;
-			T result = caseResourcePkg(resourcePkg);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case VulkanPackage.IRESOURCE:
-		{
-			IResource iResource = (IResource) theEObject;
-			T result = caseIResource(iResource);
-			if (result == null) result = caseLNamedElement(iResource);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case VulkanPackage.IPROCESS:
-		{
-			IProcess iProcess = (IProcess) theEObject;
-			T result = caseIProcess(iProcess);
-			if (result == null) result = caseIResourceContainer(iProcess);
-			if (result == null) result = caseLNamedElement(iProcess);
-			if (result == null) result = caseIExecutionManager(iProcess);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case VulkanPackage.IEXECUTION_MANAGER:
-		{
-			IExecutionManager iExecutionManager = (IExecutionManager) theEObject;
-			T result = caseIExecutionManager(iExecutionManager);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			case VulkanPackage.VULKAN_ENGINE:
+			{
+				VulkanEngine vulkanEngine = (VulkanEngine)theEObject;
+				T result = caseVulkanEngine(vulkanEngine);
+				if (result == null) result = caseIEngine(vulkanEngine);
+				if (result == null) result = caseIResourceContainer(vulkanEngine);
+				if (result == null) result = caseIExecutionManager(vulkanEngine);
+				if (result == null) result = caseLObject(vulkanEngine);
+				if (result == null) result = caseIInferenceObject(vulkanEngine);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanPackage.IRESOURCE_CONTAINER:
+			{
+				IResourceContainer iResourceContainer = (IResourceContainer)theEObject;
+				T result = caseIResourceContainer(iResourceContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanPackage.RESOURCE_PKG:
+			{
+				ResourcePkg resourcePkg = (ResourcePkg)theEObject;
+				T result = caseResourcePkg(resourcePkg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanPackage.IRESOURCE:
+			{
+				IResource iResource = (IResource)theEObject;
+				T result = caseIResource(iResource);
+				if (result == null) result = caseLNamedElement(iResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanPackage.IPROCESS:
+			{
+				IProcess iProcess = (IProcess)theEObject;
+				T result = caseIProcess(iProcess);
+				if (result == null) result = caseIResourceContainer(iProcess);
+				if (result == null) result = caseLNamedElement(iProcess);
+				if (result == null) result = caseIExecutionManager(iProcess);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanPackage.IEXECUTION_MANAGER:
+			{
+				IExecutionManager iExecutionManager = (IExecutionManager)theEObject;
+				T result = caseIExecutionManager(iExecutionManager);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 

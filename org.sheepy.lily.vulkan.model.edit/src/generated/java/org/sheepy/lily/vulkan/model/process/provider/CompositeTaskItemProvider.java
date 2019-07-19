@@ -79,13 +79,19 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -96,13 +102,19 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
-								"_UI_IPipelineTask_type"),
-						ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipelineTask_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature", "_UI_IPipelineTask_type"),
+				 ProcessPackage.Literals.IPIPELINE_TASK__ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -113,13 +125,19 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	 */
 	protected void addRepeatCountPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_CompositeTask_repeatCount_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_CompositeTask_repeatCount_feature",
-								"_UI_CompositeTask_type"),
-						ProcessPackage.Literals.COMPOSITE_TASK__REPEAT_COUNT, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositeTask_repeatCount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeTask_repeatCount_feature", "_UI_CompositeTask_type"),
+				 ProcessPackage.Literals.COMPOSITE_TASK__REPEAT_COUNT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -176,10 +194,10 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((CompositeTask) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_CompositeTask_type")
-				: getString("_UI_CompositeTask_type") + " " + label;
+		String label = ((CompositeTask)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_CompositeTask_type") :
+			getString("_UI_CompositeTask_type") + " " + label;
 	}
 
 	/**
@@ -196,14 +214,14 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 
 		switch (notification.getFeatureID(CompositeTask.class))
 		{
-		case ProcessPackage.COMPOSITE_TASK__NAME:
-		case ProcessPackage.COMPOSITE_TASK__ENABLED:
-		case ProcessPackage.COMPOSITE_TASK__REPEAT_COUNT:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case ProcessPackage.COMPOSITE_TASK__TASKS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case ProcessPackage.COMPOSITE_TASK__NAME:
+			case ProcessPackage.COMPOSITE_TASK__ENABLED:
+			case ProcessPackage.COMPOSITE_TASK__REPEAT_COUNT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ProcessPackage.COMPOSITE_TASK__TASKS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -220,47 +238,75 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				ProcessFactory.eINSTANCE.createPipelineBarrier()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				 ProcessFactory.eINSTANCE.createPipelineBarrier()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				ProcessFactory.eINSTANCE.createCompositeTask()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				 ProcessFactory.eINSTANCE.createCompositeTask()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				ProcessFactory.eINSTANCE.createBindDescriptorSets()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				 ProcessFactory.eINSTANCE.createBindDescriptorSets()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				ProcessFactory.eINSTANCE.createPushConstantBuffer()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				 ProcessFactory.eINSTANCE.createPushConstantBuffer()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				ProcessFactory.eINSTANCE.createPushBufferTask()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				 ProcessFactory.eINSTANCE.createPushBufferTask()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				ProcessFactory.eINSTANCE.createGetBufferTask()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				 ProcessFactory.eINSTANCE.createGetBufferTask()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				ComputeFactory.eINSTANCE.createComputer()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				 ComputeFactory.eINSTANCE.createComputer()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				GraphicFactory.eINSTANCE.createBlitToSwapImage()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				 GraphicFactory.eINSTANCE.createBlitToSwapImage()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				GraphicFactory.eINSTANCE.createDrawIndexed()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				 GraphicFactory.eINSTANCE.createDrawIndexed()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				GraphicFactory.eINSTANCE.createDraw()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				 GraphicFactory.eINSTANCE.createDraw()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				GraphicFactory.eINSTANCE.createBindVertexBuffer()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				 GraphicFactory.eINSTANCE.createBindVertexBuffer()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				GraphicFactory.eINSTANCE.createSetScissor()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				 GraphicFactory.eINSTANCE.createSetScissor()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				GraphicFactory.eINSTANCE.createSetViewport()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				 GraphicFactory.eINSTANCE.createSetViewport()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				GraphicFactory.eINSTANCE.createBindIndexBuffer()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				 GraphicFactory.eINSTANCE.createBindIndexBuffer()));
 	}
 
 	/**
@@ -272,7 +318,7 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

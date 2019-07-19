@@ -82,10 +82,8 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 		file = newFile;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ResourcePackage.TEXTURE__FILE, oldFile, newFile);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE__FILE, oldFile, newFile);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -101,10 +99,10 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 		if (newFile != file)
 		{
 			NotificationChain msgs = null;
-			if (file != null) msgs = ((InternalEObject) file).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - ResourcePackage.TEXTURE__FILE, null, msgs);
-			if (newFile != null) msgs = ((InternalEObject) newFile).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - ResourcePackage.TEXTURE__FILE, null, msgs);
+			if (file != null)
+				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.TEXTURE__FILE, null, msgs);
+			if (newFile != null)
+				msgs = ((InternalEObject)newFile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.TEXTURE__FILE, null, msgs);
 			msgs = basicSetFile(newFile, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -122,8 +120,8 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.TEXTURE__FILE:
-			return basicSetFile(null, msgs);
+			case ResourcePackage.TEXTURE__FILE:
+				return basicSetFile(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -138,8 +136,8 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.TEXTURE__FILE:
-			return getFile();
+			case ResourcePackage.TEXTURE__FILE:
+				return getFile();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -154,9 +152,9 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.TEXTURE__FILE:
-			setFile((PathResource) newValue);
-			return;
+			case ResourcePackage.TEXTURE__FILE:
+				setFile((PathResource)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -171,9 +169,9 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.TEXTURE__FILE:
-			setFile((PathResource) null);
-			return;
+			case ResourcePackage.TEXTURE__FILE:
+				setFile((PathResource)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -188,8 +186,8 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.TEXTURE__FILE:
-			return file != null;
+			case ResourcePackage.TEXTURE__FILE:
+				return file != null;
 		}
 		return super.eIsSet(featureID);
 	}

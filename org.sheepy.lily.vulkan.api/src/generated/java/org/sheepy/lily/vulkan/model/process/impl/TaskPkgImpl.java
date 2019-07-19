@@ -76,8 +76,7 @@ public class TaskPkgImpl extends MinimalEObjectImpl.Container implements TaskPkg
 	{
 		if (tasks == null)
 		{
-			tasks = new EObjectContainmentEList<IPipelineTask>(IPipelineTask.class, this,
-					ProcessPackage.TASK_PKG__TASKS);
+			tasks = new EObjectContainmentEList<IPipelineTask>(IPipelineTask.class, this, ProcessPackage.TASK_PKG__TASKS);
 		}
 		return tasks;
 	}
@@ -92,8 +91,8 @@ public class TaskPkgImpl extends MinimalEObjectImpl.Container implements TaskPkg
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.TASK_PKG__TASKS:
-			return ((InternalEList<?>) getTasks()).basicRemove(otherEnd, msgs);
+			case ProcessPackage.TASK_PKG__TASKS:
+				return ((InternalEList<?>)getTasks()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -108,8 +107,8 @@ public class TaskPkgImpl extends MinimalEObjectImpl.Container implements TaskPkg
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.TASK_PKG__TASKS:
-			return getTasks();
+			case ProcessPackage.TASK_PKG__TASKS:
+				return getTasks();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -125,10 +124,10 @@ public class TaskPkgImpl extends MinimalEObjectImpl.Container implements TaskPkg
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.TASK_PKG__TASKS:
-			getTasks().clear();
-			getTasks().addAll((Collection<? extends IPipelineTask>) newValue);
-			return;
+			case ProcessPackage.TASK_PKG__TASKS:
+				getTasks().clear();
+				getTasks().addAll((Collection<? extends IPipelineTask>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -143,9 +142,9 @@ public class TaskPkgImpl extends MinimalEObjectImpl.Container implements TaskPkg
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.TASK_PKG__TASKS:
-			getTasks().clear();
-			return;
+			case ProcessPackage.TASK_PKG__TASKS:
+				getTasks().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -160,8 +159,8 @@ public class TaskPkgImpl extends MinimalEObjectImpl.Container implements TaskPkg
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.TASK_PKG__TASKS:
-			return tasks != null && !tasks.isEmpty();
+			case ProcessPackage.TASK_PKG__TASKS:
+				return tasks != null && !tasks.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

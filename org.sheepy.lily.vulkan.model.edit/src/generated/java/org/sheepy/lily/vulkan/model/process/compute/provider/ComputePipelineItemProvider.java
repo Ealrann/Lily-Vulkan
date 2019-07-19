@@ -79,13 +79,19 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -96,13 +102,19 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipeline_enabled_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_enabled_feature",
-								"_UI_IPipeline_type"),
-						ProcessPackage.Literals.IPIPELINE__ENABLED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipeline_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_enabled_feature", "_UI_IPipeline_type"),
+				 ProcessPackage.Literals.IPIPELINE__ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -113,13 +125,19 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipeline_stage_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature",
-								"_UI_IPipeline_type"),
-						ProcessPackage.Literals.IPIPELINE__STAGE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipeline_stage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature", "_UI_IPipeline_type"),
+				 ProcessPackage.Literals.IPIPELINE__STAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -130,13 +148,19 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addSpecializationDataPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipeline_specializationData_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_specializationData_feature",
-								"_UI_IPipeline_type"),
-						ProcessPackage.Literals.IPIPELINE__SPECIALIZATION_DATA, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipeline_specializationData_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_specializationData_feature", "_UI_IPipeline_type"),
+				 ProcessPackage.Literals.IPIPELINE__SPECIALIZATION_DATA,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -196,10 +220,10 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((ComputePipeline) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_ComputePipeline_type")
-				: getString("_UI_ComputePipeline_type") + " " + label;
+		String label = ((ComputePipeline)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ComputePipeline_type") :
+			getString("_UI_ComputePipeline_type") + " " + label;
 	}
 
 	/**
@@ -216,18 +240,18 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter implements 
 
 		switch (notification.getFeatureID(ComputePipeline.class))
 		{
-		case ComputePackage.COMPUTE_PIPELINE__NAME:
-		case ComputePackage.COMPUTE_PIPELINE__ENABLED:
-		case ComputePackage.COMPUTE_PIPELINE__STAGE:
-		case ComputePackage.COMPUTE_PIPELINE__SPECIALIZATION_DATA:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case ComputePackage.COMPUTE_PIPELINE__RESOURCE_PKG:
-		case ComputePackage.COMPUTE_PIPELINE__PUSH_CONSTANT_RANGES:
-		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG:
-		case ComputePackage.COMPUTE_PIPELINE__TASK_PKG:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case ComputePackage.COMPUTE_PIPELINE__NAME:
+			case ComputePackage.COMPUTE_PIPELINE__ENABLED:
+			case ComputePackage.COMPUTE_PIPELINE__STAGE:
+			case ComputePackage.COMPUTE_PIPELINE__SPECIALIZATION_DATA:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ComputePackage.COMPUTE_PIPELINE__RESOURCE_PKG:
+			case ComputePackage.COMPUTE_PIPELINE__PUSH_CONSTANT_RANGES:
+			case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG:
+			case ComputePackage.COMPUTE_PIPELINE__TASK_PKG:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -244,17 +268,25 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter implements 
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-				VulkanFactory.eINSTANCE.createResourcePkg()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+				 VulkanFactory.eINSTANCE.createResourcePkg()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES,
-				PipelineFactory.eINSTANCE.createPushConstantRange()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES,
+				 PipelineFactory.eINSTANCE.createPushConstantRange()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
-				ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
+				 ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__TASK_PKG,
-				ProcessFactory.eINSTANCE.createTaskPkg()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.IPIPELINE__TASK_PKG,
+				 ProcessFactory.eINSTANCE.createTaskPkg()));
 	}
 
 	/**
@@ -266,7 +298,7 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

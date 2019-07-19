@@ -55,8 +55,7 @@ public interface GraphicpipelinePackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	GraphicpipelinePackage eINSTANCE = org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl
-			.init();
+	GraphicpipelinePackage eINSTANCE = org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.ColorBlendImpl <em>Color Blend</em>}' class.
@@ -139,6 +138,15 @@ public interface GraphicpipelinePackage extends EPackage
 	 * @ordered
 	 */
 	int COLOR_BLEND_FEATURE_COUNT = 7;
+
+	/**
+	 * The number of operations of the '<em>Color Blend</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.ColorBlendAttachmentImpl <em>Color Blend Attachment</em>}' class.
@@ -259,6 +267,15 @@ public interface GraphicpipelinePackage extends EPackage
 	int COLOR_BLEND_ATTACHMENT_FEATURE_COUNT = 11;
 
 	/**
+	 * The number of operations of the '<em>Color Blend Attachment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.InputAssemblyImpl <em>Input Assembly</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -294,6 +311,15 @@ public interface GraphicpipelinePackage extends EPackage
 	 * @ordered
 	 */
 	int INPUT_ASSEMBLY_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Input Assembly</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_ASSEMBLY_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.RasterizerImpl <em>Rasterizer</em>}' class.
@@ -378,6 +404,15 @@ public interface GraphicpipelinePackage extends EPackage
 	int RASTERIZER_FEATURE_COUNT = 7;
 
 	/**
+	 * The number of operations of the '<em>Rasterizer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RASTERIZER_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.DynamicStateImpl <em>Dynamic State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -406,6 +441,15 @@ public interface GraphicpipelinePackage extends EPackage
 	int DYNAMIC_STATE_FEATURE_COUNT = 1;
 
 	/**
+	 * The number of operations of the '<em>Dynamic State</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_STATE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.ViewportState <em>Viewport State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -423,6 +467,15 @@ public interface GraphicpipelinePackage extends EPackage
 	 * @ordered
 	 */
 	int VIEWPORT_STATE_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Viewport State</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEWPORT_STATE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.StaticViewportStateImpl <em>Static Viewport State</em>}' class.
@@ -462,6 +515,15 @@ public interface GraphicpipelinePackage extends EPackage
 	int STATIC_VIEWPORT_STATE_FEATURE_COUNT = VIEWPORT_STATE_FEATURE_COUNT + 2;
 
 	/**
+	 * The number of operations of the '<em>Static Viewport State</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_VIEWPORT_STATE_OPERATION_COUNT = VIEWPORT_STATE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.DynamicViewportStateImpl <em>Dynamic Viewport State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -499,6 +561,15 @@ public interface GraphicpipelinePackage extends EPackage
 	int DYNAMIC_VIEWPORT_STATE_FEATURE_COUNT = VIEWPORT_STATE_FEATURE_COUNT + 2;
 
 	/**
+	 * The number of operations of the '<em>Dynamic Viewport State</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_VIEWPORT_STATE_OPERATION_COUNT = VIEWPORT_STATE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.Vec2IImpl <em>Vec2 I</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -534,6 +605,15 @@ public interface GraphicpipelinePackage extends EPackage
 	 * @ordered
 	 */
 	int VEC2_I_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Vec2 I</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VEC2_I_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.ViewportImpl <em>Viewport</em>}' class.
@@ -600,6 +680,15 @@ public interface GraphicpipelinePackage extends EPackage
 	int VIEWPORT_FEATURE_COUNT = 5;
 
 	/**
+	 * The number of operations of the '<em>Viewport</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEWPORT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.ScissorImpl <em>Scissor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -644,6 +733,15 @@ public interface GraphicpipelinePackage extends EPackage
 	 * @ordered
 	 */
 	int SCISSOR_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Scissor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCISSOR_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.graphicpipeline.ColorBlend <em>Color Blend</em>}'.
@@ -1323,8 +1421,7 @@ public interface GraphicpipelinePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COLOR_BLEND_ATTACHMENT__BLEND_ENABLE = eINSTANCE
-				.getColorBlendAttachment_BlendEnable();
+		EAttribute COLOR_BLEND_ATTACHMENT__BLEND_ENABLE = eINSTANCE.getColorBlendAttachment_BlendEnable();
 
 		/**
 		 * The meta object literal for the '<em><b>Src Color</b></em>' attribute feature.
@@ -1364,8 +1461,7 @@ public interface GraphicpipelinePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP = eINSTANCE
-				.getColorBlendAttachment_ColorBlendOp();
+		EAttribute COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP = eINSTANCE.getColorBlendAttachment_ColorBlendOp();
 
 		/**
 		 * The meta object literal for the '<em><b>Alpha Blend Op</b></em>' attribute feature.
@@ -1373,8 +1469,7 @@ public interface GraphicpipelinePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP = eINSTANCE
-				.getColorBlendAttachment_AlphaBlendOp();
+		EAttribute COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP = eINSTANCE.getColorBlendAttachment_AlphaBlendOp();
 
 		/**
 		 * The meta object literal for the '<em><b>Red Component Enable</b></em>' attribute feature.
@@ -1382,8 +1477,7 @@ public interface GraphicpipelinePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE = eINSTANCE
-				.getColorBlendAttachment_RedComponentEnable();
+		EAttribute COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE = eINSTANCE.getColorBlendAttachment_RedComponentEnable();
 
 		/**
 		 * The meta object literal for the '<em><b>Green Component Enable</b></em>' attribute feature.
@@ -1391,8 +1485,7 @@ public interface GraphicpipelinePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE = eINSTANCE
-				.getColorBlendAttachment_GreenComponentEnable();
+		EAttribute COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE = eINSTANCE.getColorBlendAttachment_GreenComponentEnable();
 
 		/**
 		 * The meta object literal for the '<em><b>Blue Component Enable</b></em>' attribute feature.
@@ -1400,8 +1493,7 @@ public interface GraphicpipelinePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE = eINSTANCE
-				.getColorBlendAttachment_BlueComponentEnable();
+		EAttribute COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE = eINSTANCE.getColorBlendAttachment_BlueComponentEnable();
 
 		/**
 		 * The meta object literal for the '<em><b>Alpha Component Enable</b></em>' attribute feature.
@@ -1409,8 +1501,7 @@ public interface GraphicpipelinePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE = eINSTANCE
-				.getColorBlendAttachment_AlphaComponentEnable();
+		EAttribute COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE = eINSTANCE.getColorBlendAttachment_AlphaComponentEnable();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.InputAssemblyImpl <em>Input Assembly</em>}' class.
@@ -1428,8 +1519,7 @@ public interface GraphicpipelinePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED = eINSTANCE
-				.getInputAssembly_PrimitiveRestartEnabled();
+		EAttribute INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED = eINSTANCE.getInputAssembly_PrimitiveRestartEnabled();
 
 		/**
 		 * The meta object literal for the '<em><b>Primitive Topology</b></em>' attribute feature.
@@ -1437,8 +1527,7 @@ public interface GraphicpipelinePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY = eINSTANCE
-				.getInputAssembly_PrimitiveTopology();
+		EAttribute INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY = eINSTANCE.getInputAssembly_PrimitiveTopology();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.RasterizerImpl <em>Rasterizer</em>}' class.
@@ -1576,8 +1665,7 @@ public interface GraphicpipelinePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DYNAMIC_VIEWPORT_STATE__VIEWPORT_COUNT = eINSTANCE
-				.getDynamicViewportState_ViewportCount();
+		EAttribute DYNAMIC_VIEWPORT_STATE__VIEWPORT_COUNT = eINSTANCE.getDynamicViewportState_ViewportCount();
 
 		/**
 		 * The meta object literal for the '<em><b>Scissor Count</b></em>' attribute feature.
@@ -1585,8 +1673,7 @@ public interface GraphicpipelinePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT = eINSTANCE
-				.getDynamicViewportState_ScissorCount();
+		EAttribute DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT = eINSTANCE.getDynamicViewportState_ScissorCount();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.Vec2IImpl <em>Vec2 I</em>}' class.

@@ -31,9 +31,8 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PushConstantRangeItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class PushConstantRangeItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -74,13 +73,19 @@ public class PushConstantRangeItemProvider extends ItemProviderAdapter
 	 */
 	protected void addStagesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_PushConstantRange_stages_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_PushConstantRange_stages_feature", "_UI_PushConstantRange_type"),
-				PipelinePackage.Literals.PUSH_CONSTANT_RANGE__STAGES, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PushConstantRange_stages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PushConstantRange_stages_feature", "_UI_PushConstantRange_type"),
+				 PipelinePackage.Literals.PUSH_CONSTANT_RANGE__STAGES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -91,13 +96,19 @@ public class PushConstantRangeItemProvider extends ItemProviderAdapter
 	 */
 	protected void addOffsetPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_PushConstantRange_offset_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_PushConstantRange_offset_feature", "_UI_PushConstantRange_type"),
-				PipelinePackage.Literals.PUSH_CONSTANT_RANGE__OFFSET, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PushConstantRange_offset_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PushConstantRange_offset_feature", "_UI_PushConstantRange_type"),
+				 PipelinePackage.Literals.PUSH_CONSTANT_RANGE__OFFSET,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -108,13 +119,19 @@ public class PushConstantRangeItemProvider extends ItemProviderAdapter
 	 */
 	protected void addSizePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_PushConstantRange_size_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_PushConstantRange_size_feature", "_UI_PushConstantRange_type"),
-				PipelinePackage.Literals.PUSH_CONSTANT_RANGE__SIZE, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PushConstantRange_size_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PushConstantRange_size_feature", "_UI_PushConstantRange_type"),
+				 PipelinePackage.Literals.PUSH_CONSTANT_RANGE__SIZE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -138,7 +155,7 @@ public class PushConstantRangeItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		PushConstantRange pushConstantRange = (PushConstantRange) object;
+		PushConstantRange pushConstantRange = (PushConstantRange)object;
 		return getString("_UI_PushConstantRange_type") + " " + pushConstantRange.getOffset();
 	}
 
@@ -156,12 +173,11 @@ public class PushConstantRangeItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(PushConstantRange.class))
 		{
-		case PipelinePackage.PUSH_CONSTANT_RANGE__STAGES:
-		case PipelinePackage.PUSH_CONSTANT_RANGE__OFFSET:
-		case PipelinePackage.PUSH_CONSTANT_RANGE__SIZE:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case PipelinePackage.PUSH_CONSTANT_RANGE__STAGES:
+			case PipelinePackage.PUSH_CONSTANT_RANGE__OFFSET:
+			case PipelinePackage.PUSH_CONSTANT_RANGE__SIZE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -188,7 +204,7 @@ public class PushConstantRangeItemProvider extends ItemProviderAdapter
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

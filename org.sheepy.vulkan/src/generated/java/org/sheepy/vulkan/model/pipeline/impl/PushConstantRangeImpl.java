@@ -90,7 +90,7 @@ public class PushConstantRangeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PushConstantRangeImpl()
+	public PushConstantRangeImpl()
 	{
 		super();
 	}
@@ -116,8 +116,7 @@ public class PushConstantRangeImpl extends MinimalEObjectImpl.Container implemen
 	{
 		if (stages == null)
 		{
-			stages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this,
-					PipelinePackage.PUSH_CONSTANT_RANGE__STAGES);
+			stages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, PipelinePackage.PUSH_CONSTANT_RANGE__STAGES);
 		}
 		return stages;
 	}
@@ -143,8 +142,8 @@ public class PushConstantRangeImpl extends MinimalEObjectImpl.Container implemen
 	{
 		int oldOffset = offset;
 		offset = newOffset;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				PipelinePackage.PUSH_CONSTANT_RANGE__OFFSET, oldOffset, offset));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PipelinePackage.PUSH_CONSTANT_RANGE__OFFSET, oldOffset, offset));
 	}
 
 	/**
@@ -168,8 +167,8 @@ public class PushConstantRangeImpl extends MinimalEObjectImpl.Container implemen
 	{
 		int oldSize = size;
 		size = newSize;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				PipelinePackage.PUSH_CONSTANT_RANGE__SIZE, oldSize, size));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PipelinePackage.PUSH_CONSTANT_RANGE__SIZE, oldSize, size));
 	}
 
 	/**
@@ -182,12 +181,12 @@ public class PushConstantRangeImpl extends MinimalEObjectImpl.Container implemen
 	{
 		switch (featureID)
 		{
-		case PipelinePackage.PUSH_CONSTANT_RANGE__STAGES:
-			return getStages();
-		case PipelinePackage.PUSH_CONSTANT_RANGE__OFFSET:
-			return getOffset();
-		case PipelinePackage.PUSH_CONSTANT_RANGE__SIZE:
-			return getSize();
+			case PipelinePackage.PUSH_CONSTANT_RANGE__STAGES:
+				return getStages();
+			case PipelinePackage.PUSH_CONSTANT_RANGE__OFFSET:
+				return getOffset();
+			case PipelinePackage.PUSH_CONSTANT_RANGE__SIZE:
+				return getSize();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -203,16 +202,16 @@ public class PushConstantRangeImpl extends MinimalEObjectImpl.Container implemen
 	{
 		switch (featureID)
 		{
-		case PipelinePackage.PUSH_CONSTANT_RANGE__STAGES:
-			getStages().clear();
-			getStages().addAll((Collection<? extends EShaderStage>) newValue);
-			return;
-		case PipelinePackage.PUSH_CONSTANT_RANGE__OFFSET:
-			setOffset((Integer) newValue);
-			return;
-		case PipelinePackage.PUSH_CONSTANT_RANGE__SIZE:
-			setSize((Integer) newValue);
-			return;
+			case PipelinePackage.PUSH_CONSTANT_RANGE__STAGES:
+				getStages().clear();
+				getStages().addAll((Collection<? extends EShaderStage>)newValue);
+				return;
+			case PipelinePackage.PUSH_CONSTANT_RANGE__OFFSET:
+				setOffset((Integer)newValue);
+				return;
+			case PipelinePackage.PUSH_CONSTANT_RANGE__SIZE:
+				setSize((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -227,15 +226,15 @@ public class PushConstantRangeImpl extends MinimalEObjectImpl.Container implemen
 	{
 		switch (featureID)
 		{
-		case PipelinePackage.PUSH_CONSTANT_RANGE__STAGES:
-			getStages().clear();
-			return;
-		case PipelinePackage.PUSH_CONSTANT_RANGE__OFFSET:
-			setOffset(OFFSET_EDEFAULT);
-			return;
-		case PipelinePackage.PUSH_CONSTANT_RANGE__SIZE:
-			setSize(SIZE_EDEFAULT);
-			return;
+			case PipelinePackage.PUSH_CONSTANT_RANGE__STAGES:
+				getStages().clear();
+				return;
+			case PipelinePackage.PUSH_CONSTANT_RANGE__OFFSET:
+				setOffset(OFFSET_EDEFAULT);
+				return;
+			case PipelinePackage.PUSH_CONSTANT_RANGE__SIZE:
+				setSize(SIZE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -250,12 +249,12 @@ public class PushConstantRangeImpl extends MinimalEObjectImpl.Container implemen
 	{
 		switch (featureID)
 		{
-		case PipelinePackage.PUSH_CONSTANT_RANGE__STAGES:
-			return stages != null && !stages.isEmpty();
-		case PipelinePackage.PUSH_CONSTANT_RANGE__OFFSET:
-			return offset != OFFSET_EDEFAULT;
-		case PipelinePackage.PUSH_CONSTANT_RANGE__SIZE:
-			return size != SIZE_EDEFAULT;
+			case PipelinePackage.PUSH_CONSTANT_RANGE__STAGES:
+				return stages != null && !stages.isEmpty();
+			case PipelinePackage.PUSH_CONSTANT_RANGE__OFFSET:
+				return offset != OFFSET_EDEFAULT;
+			case PipelinePackage.PUSH_CONSTANT_RANGE__SIZE:
+				return size != SIZE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

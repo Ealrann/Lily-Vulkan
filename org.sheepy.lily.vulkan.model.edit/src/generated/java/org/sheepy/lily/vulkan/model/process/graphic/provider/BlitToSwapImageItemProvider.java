@@ -77,13 +77,19 @@ public class BlitToSwapImageItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -94,13 +100,19 @@ public class BlitToSwapImageItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
-								"_UI_IPipelineTask_type"),
-						ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipelineTask_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature", "_UI_IPipelineTask_type"),
+				 ProcessPackage.Literals.IPIPELINE_TASK__ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -111,12 +123,19 @@ public class BlitToSwapImageItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addImagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_BlitToSwapImage_image_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_BlitToSwapImage_image_feature",
-								"_UI_BlitToSwapImage_type"),
-						GraphicPackage.Literals.BLIT_TO_SWAP_IMAGE__IMAGE, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BlitToSwapImage_image_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BlitToSwapImage_image_feature", "_UI_BlitToSwapImage_type"),
+				 GraphicPackage.Literals.BLIT_TO_SWAP_IMAGE__IMAGE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -127,13 +146,19 @@ public class BlitToSwapImageItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addFilterPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_BlitToSwapImage_filter_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_BlitToSwapImage_filter_feature",
-								"_UI_BlitToSwapImage_type"),
-						GraphicPackage.Literals.BLIT_TO_SWAP_IMAGE__FILTER, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BlitToSwapImage_filter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BlitToSwapImage_filter_feature", "_UI_BlitToSwapImage_type"),
+				 GraphicPackage.Literals.BLIT_TO_SWAP_IMAGE__FILTER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -157,10 +182,10 @@ public class BlitToSwapImageItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((BlitToSwapImage) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_BlitToSwapImage_type")
-				: getString("_UI_BlitToSwapImage_type") + " " + label;
+		String label = ((BlitToSwapImage)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_BlitToSwapImage_type") :
+			getString("_UI_BlitToSwapImage_type") + " " + label;
 	}
 
 	/**
@@ -177,11 +202,11 @@ public class BlitToSwapImageItemProvider extends ItemProviderAdapter implements 
 
 		switch (notification.getFeatureID(BlitToSwapImage.class))
 		{
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__NAME:
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__ENABLED:
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__NAME:
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__ENABLED:
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -208,7 +233,7 @@ public class BlitToSwapImageItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

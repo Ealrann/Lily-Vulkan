@@ -82,13 +82,19 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	protected void addMinFilterPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Sampler_minFilter_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Sampler_minFilter_feature",
-								"_UI_Sampler_type"),
-						ResourcePackage.Literals.SAMPLER__MIN_FILTER, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Sampler_minFilter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Sampler_minFilter_feature", "_UI_Sampler_type"),
+				 ResourcePackage.Literals.SAMPLER__MIN_FILTER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -99,13 +105,19 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	protected void addMagFilterPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Sampler_magFilter_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Sampler_magFilter_feature",
-								"_UI_Sampler_type"),
-						ResourcePackage.Literals.SAMPLER__MAG_FILTER, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Sampler_magFilter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Sampler_magFilter_feature", "_UI_Sampler_type"),
+				 ResourcePackage.Literals.SAMPLER__MAG_FILTER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -116,13 +128,19 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	protected void addMipmapModePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Sampler_mipmapMode_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Sampler_mipmapMode_feature",
-								"_UI_Sampler_type"),
-						ResourcePackage.Literals.SAMPLER__MIPMAP_MODE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Sampler_mipmapMode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Sampler_mipmapMode_feature", "_UI_Sampler_type"),
+				 ResourcePackage.Literals.SAMPLER__MIPMAP_MODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -133,13 +151,19 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	protected void addAddressModePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Sampler_addressMode_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Sampler_addressMode_feature",
-								"_UI_Sampler_type"),
-						ResourcePackage.Literals.SAMPLER__ADDRESS_MODE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Sampler_addressMode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Sampler_addressMode_feature", "_UI_Sampler_type"),
+				 ResourcePackage.Literals.SAMPLER__ADDRESS_MODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -150,13 +174,19 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	protected void addBorderColorPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Sampler_borderColor_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Sampler_borderColor_feature",
-								"_UI_Sampler_type"),
-						ResourcePackage.Literals.SAMPLER__BORDER_COLOR, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Sampler_borderColor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Sampler_borderColor_feature", "_UI_Sampler_type"),
+				 ResourcePackage.Literals.SAMPLER__BORDER_COLOR,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -167,13 +197,19 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	protected void addAnisotropyEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Sampler_anisotropyEnabled_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Sampler_anisotropyEnabled_feature",
-								"_UI_Sampler_type"),
-						ResourcePackage.Literals.SAMPLER__ANISOTROPY_ENABLED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Sampler_anisotropyEnabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Sampler_anisotropyEnabled_feature", "_UI_Sampler_type"),
+				 ResourcePackage.Literals.SAMPLER__ANISOTROPY_ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -184,13 +220,19 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	protected void addUnnormalizedCoordinatesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Sampler_unnormalizedCoordinates_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Sampler_unnormalizedCoordinates_feature",
-								"_UI_Sampler_type"),
-						ResourcePackage.Literals.SAMPLER__UNNORMALIZED_COORDINATES, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Sampler_unnormalizedCoordinates_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Sampler_unnormalizedCoordinates_feature", "_UI_Sampler_type"),
+				 ResourcePackage.Literals.SAMPLER__UNNORMALIZED_COORDINATES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -201,13 +243,19 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	protected void addCompareEnablePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Sampler_compareEnable_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Sampler_compareEnable_feature",
-								"_UI_Sampler_type"),
-						ResourcePackage.Literals.SAMPLER__COMPARE_ENABLE, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Sampler_compareEnable_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Sampler_compareEnable_feature", "_UI_Sampler_type"),
+				 ResourcePackage.Literals.SAMPLER__COMPARE_ENABLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -218,13 +266,19 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	protected void addLodBiasPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Sampler_lodBias_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Sampler_lodBias_feature",
-								"_UI_Sampler_type"),
-						ResourcePackage.Literals.SAMPLER__LOD_BIAS, true, false, false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Sampler_lodBias_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Sampler_lodBias_feature", "_UI_Sampler_type"),
+				 ResourcePackage.Literals.SAMPLER__LOD_BIAS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -235,13 +289,19 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	protected void addMinLodPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Sampler_minLod_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Sampler_minLod_feature",
-								"_UI_Sampler_type"),
-						ResourcePackage.Literals.SAMPLER__MIN_LOD, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Sampler_minLod_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Sampler_minLod_feature", "_UI_Sampler_type"),
+				 ResourcePackage.Literals.SAMPLER__MIN_LOD,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -252,13 +312,19 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	protected void addMaxLodPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Sampler_maxLod_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Sampler_maxLod_feature",
-								"_UI_Sampler_type"),
-						ResourcePackage.Literals.SAMPLER__MAX_LOD, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Sampler_maxLod_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Sampler_maxLod_feature", "_UI_Sampler_type"),
+				 ResourcePackage.Literals.SAMPLER__MAX_LOD,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -269,13 +335,19 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	protected void addMaxAnisotropyPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Sampler_maxAnisotropy_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Sampler_maxAnisotropy_feature",
-								"_UI_Sampler_type"),
-						ResourcePackage.Literals.SAMPLER__MAX_ANISOTROPY, true, false, false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Sampler_maxAnisotropy_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Sampler_maxAnisotropy_feature", "_UI_Sampler_type"),
+				 ResourcePackage.Literals.SAMPLER__MAX_ANISOTROPY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -299,11 +371,11 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 	@Override
 	public String getText(Object object)
 	{
-		EFilter labelValue = ((Sampler) object).getMinFilter();
+		EFilter labelValue = ((Sampler)object).getMinFilter();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0
-				? getString("_UI_Sampler_type")
-				: getString("_UI_Sampler_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_Sampler_type") :
+			getString("_UI_Sampler_type") + " " + label;
 	}
 
 	/**
@@ -320,20 +392,20 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 
 		switch (notification.getFeatureID(Sampler.class))
 		{
-		case ResourcePackage.SAMPLER__MIN_FILTER:
-		case ResourcePackage.SAMPLER__MAG_FILTER:
-		case ResourcePackage.SAMPLER__MIPMAP_MODE:
-		case ResourcePackage.SAMPLER__ADDRESS_MODE:
-		case ResourcePackage.SAMPLER__BORDER_COLOR:
-		case ResourcePackage.SAMPLER__ANISOTROPY_ENABLED:
-		case ResourcePackage.SAMPLER__UNNORMALIZED_COORDINATES:
-		case ResourcePackage.SAMPLER__COMPARE_ENABLE:
-		case ResourcePackage.SAMPLER__LOD_BIAS:
-		case ResourcePackage.SAMPLER__MIN_LOD:
-		case ResourcePackage.SAMPLER__MAX_LOD:
-		case ResourcePackage.SAMPLER__MAX_ANISOTROPY:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case ResourcePackage.SAMPLER__MIN_FILTER:
+			case ResourcePackage.SAMPLER__MAG_FILTER:
+			case ResourcePackage.SAMPLER__MIPMAP_MODE:
+			case ResourcePackage.SAMPLER__ADDRESS_MODE:
+			case ResourcePackage.SAMPLER__BORDER_COLOR:
+			case ResourcePackage.SAMPLER__ANISOTROPY_ENABLED:
+			case ResourcePackage.SAMPLER__UNNORMALIZED_COORDINATES:
+			case ResourcePackage.SAMPLER__COMPARE_ENABLE:
+			case ResourcePackage.SAMPLER__LOD_BIAS:
+			case ResourcePackage.SAMPLER__MIN_LOD:
+			case ResourcePackage.SAMPLER__MAX_LOD:
+			case ResourcePackage.SAMPLER__MAX_ANISOTROPY:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -360,7 +432,7 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

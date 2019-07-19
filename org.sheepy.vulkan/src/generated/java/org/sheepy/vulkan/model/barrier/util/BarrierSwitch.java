@@ -72,56 +72,55 @@ public class BarrierSwitch<T> extends Switch<T>
 	{
 		switch (classifierID)
 		{
-		case BarrierPackage.BARRIER:
-		{
-			Barrier barrier = (Barrier) theEObject;
-			T result = caseBarrier(barrier);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case BarrierPackage.ABSTRACT_BUFFER_BARRIER:
-		{
-			AbstractBufferBarrier abstractBufferBarrier = (AbstractBufferBarrier) theEObject;
-			T result = caseAbstractBufferBarrier(abstractBufferBarrier);
-			if (result == null) result = caseBarrier(abstractBufferBarrier);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case BarrierPackage.REFERENCE_BUFFER_BARRIER:
-		{
-			ReferenceBufferBarrier referenceBufferBarrier = (ReferenceBufferBarrier) theEObject;
-			T result = caseReferenceBufferBarrier(referenceBufferBarrier);
-			if (result == null) result = caseAbstractBufferBarrier(referenceBufferBarrier);
-			if (result == null) result = caseBarrier(referenceBufferBarrier);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case BarrierPackage.ABSTRACT_IMAGE_BARRIER:
-		{
-			AbstractImageBarrier abstractImageBarrier = (AbstractImageBarrier) theEObject;
-			T result = caseAbstractImageBarrier(abstractImageBarrier);
-			if (result == null) result = caseBarrier(abstractImageBarrier);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER:
-		{
-			ReferenceImageBarrier referenceImageBarrier = (ReferenceImageBarrier) theEObject;
-			T result = caseReferenceImageBarrier(referenceImageBarrier);
-			if (result == null) result = caseAbstractImageBarrier(referenceImageBarrier);
-			if (result == null) result = caseBarrier(referenceImageBarrier);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case BarrierPackage.IMAGE_TRANSITION:
-		{
-			ImageTransition imageTransition = (ImageTransition) theEObject;
-			T result = caseImageTransition(imageTransition);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			case BarrierPackage.BARRIER:
+			{
+				Barrier barrier = (Barrier)theEObject;
+				T result = caseBarrier(barrier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BarrierPackage.ABSTRACT_BUFFER_BARRIER:
+			{
+				AbstractBufferBarrier abstractBufferBarrier = (AbstractBufferBarrier)theEObject;
+				T result = caseAbstractBufferBarrier(abstractBufferBarrier);
+				if (result == null) result = caseBarrier(abstractBufferBarrier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BarrierPackage.REFERENCE_BUFFER_BARRIER:
+			{
+				ReferenceBufferBarrier referenceBufferBarrier = (ReferenceBufferBarrier)theEObject;
+				T result = caseReferenceBufferBarrier(referenceBufferBarrier);
+				if (result == null) result = caseAbstractBufferBarrier(referenceBufferBarrier);
+				if (result == null) result = caseBarrier(referenceBufferBarrier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BarrierPackage.ABSTRACT_IMAGE_BARRIER:
+			{
+				AbstractImageBarrier abstractImageBarrier = (AbstractImageBarrier)theEObject;
+				T result = caseAbstractImageBarrier(abstractImageBarrier);
+				if (result == null) result = caseBarrier(abstractImageBarrier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BarrierPackage.REFERENCE_IMAGE_BARRIER:
+			{
+				ReferenceImageBarrier referenceImageBarrier = (ReferenceImageBarrier)theEObject;
+				T result = caseReferenceImageBarrier(referenceImageBarrier);
+				if (result == null) result = caseAbstractImageBarrier(referenceImageBarrier);
+				if (result == null) result = caseBarrier(referenceImageBarrier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BarrierPackage.IMAGE_TRANSITION:
+			{
+				ImageTransition imageTransition = (ImageTransition)theEObject;
+				T result = caseImageTransition(imageTransition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 

@@ -338,8 +338,8 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	{
 		int oldProperties = properties;
 		properties = newProperties;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.IMAGE__PROPERTIES, oldProperties, properties));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__PROPERTIES, oldProperties, properties));
 	}
 
 	/**
@@ -388,8 +388,8 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	{
 		int oldMipLevels = mipLevels;
 		mipLevels = newMipLevels;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.IMAGE__MIP_LEVELS, oldMipLevels, mipLevels));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__MIP_LEVELS, oldMipLevels, mipLevels));
 	}
 
 	/**
@@ -414,10 +414,8 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 		initialLayout = newInitialLayout;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ResourcePackage.IMAGE__INITIAL_LAYOUT, oldInitialLayout, newInitialLayout);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__INITIAL_LAYOUT, oldInitialLayout, newInitialLayout);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -433,15 +431,15 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 		if (newInitialLayout != initialLayout)
 		{
 			NotificationChain msgs = null;
-			if (initialLayout != null) msgs = ((InternalEObject) initialLayout).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - ResourcePackage.IMAGE__INITIAL_LAYOUT, null, msgs);
-			if (newInitialLayout != null) msgs = ((InternalEObject) newInitialLayout).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - ResourcePackage.IMAGE__INITIAL_LAYOUT, null, msgs);
+			if (initialLayout != null)
+				msgs = ((InternalEObject)initialLayout).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.IMAGE__INITIAL_LAYOUT, null, msgs);
+			if (newInitialLayout != null)
+				msgs = ((InternalEObject)newInitialLayout).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.IMAGE__INITIAL_LAYOUT, null, msgs);
 			msgs = basicSetInitialLayout(newInitialLayout, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.IMAGE__INITIAL_LAYOUT, newInitialLayout, newInitialLayout));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__INITIAL_LAYOUT, newInitialLayout, newInitialLayout));
 	}
 
 	/**
@@ -465,8 +463,8 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	{
 		boolean oldFillWithZero = fillWithZero;
 		fillWithZero = newFillWithZero;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.IMAGE__FILL_WITH_ZERO, oldFillWithZero, fillWithZero));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__FILL_WITH_ZERO, oldFillWithZero, fillWithZero));
 	}
 
 	/**
@@ -479,8 +477,8 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE__INITIAL_LAYOUT:
-			return basicSetInitialLayout(null, msgs);
+			case ResourcePackage.IMAGE__INITIAL_LAYOUT:
+				return basicSetInitialLayout(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -495,24 +493,24 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE__WIDTH:
-			return getWidth();
-		case ResourcePackage.IMAGE__HEIGHT:
-			return getHeight();
-		case ResourcePackage.IMAGE__FORMAT:
-			return getFormat();
-		case ResourcePackage.IMAGE__USAGES:
-			return getUsages();
-		case ResourcePackage.IMAGE__PROPERTIES:
-			return getProperties();
-		case ResourcePackage.IMAGE__TILING:
-			return getTiling();
-		case ResourcePackage.IMAGE__MIP_LEVELS:
-			return getMipLevels();
-		case ResourcePackage.IMAGE__INITIAL_LAYOUT:
-			return getInitialLayout();
-		case ResourcePackage.IMAGE__FILL_WITH_ZERO:
-			return isFillWithZero();
+			case ResourcePackage.IMAGE__WIDTH:
+				return getWidth();
+			case ResourcePackage.IMAGE__HEIGHT:
+				return getHeight();
+			case ResourcePackage.IMAGE__FORMAT:
+				return getFormat();
+			case ResourcePackage.IMAGE__USAGES:
+				return getUsages();
+			case ResourcePackage.IMAGE__PROPERTIES:
+				return getProperties();
+			case ResourcePackage.IMAGE__TILING:
+				return getTiling();
+			case ResourcePackage.IMAGE__MIP_LEVELS:
+				return getMipLevels();
+			case ResourcePackage.IMAGE__INITIAL_LAYOUT:
+				return getInitialLayout();
+			case ResourcePackage.IMAGE__FILL_WITH_ZERO:
+				return isFillWithZero();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -528,34 +526,34 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE__WIDTH:
-			setWidth((Integer) newValue);
-			return;
-		case ResourcePackage.IMAGE__HEIGHT:
-			setHeight((Integer) newValue);
-			return;
-		case ResourcePackage.IMAGE__FORMAT:
-			setFormat((EFormat) newValue);
-			return;
-		case ResourcePackage.IMAGE__USAGES:
-			getUsages().clear();
-			getUsages().addAll((Collection<? extends EImageUsage>) newValue);
-			return;
-		case ResourcePackage.IMAGE__PROPERTIES:
-			setProperties((Integer) newValue);
-			return;
-		case ResourcePackage.IMAGE__TILING:
-			setTiling((Integer) newValue);
-			return;
-		case ResourcePackage.IMAGE__MIP_LEVELS:
-			setMipLevels((Integer) newValue);
-			return;
-		case ResourcePackage.IMAGE__INITIAL_LAYOUT:
-			setInitialLayout((ImageLayout) newValue);
-			return;
-		case ResourcePackage.IMAGE__FILL_WITH_ZERO:
-			setFillWithZero((Boolean) newValue);
-			return;
+			case ResourcePackage.IMAGE__WIDTH:
+				setWidth((Integer)newValue);
+				return;
+			case ResourcePackage.IMAGE__HEIGHT:
+				setHeight((Integer)newValue);
+				return;
+			case ResourcePackage.IMAGE__FORMAT:
+				setFormat((EFormat)newValue);
+				return;
+			case ResourcePackage.IMAGE__USAGES:
+				getUsages().clear();
+				getUsages().addAll((Collection<? extends EImageUsage>)newValue);
+				return;
+			case ResourcePackage.IMAGE__PROPERTIES:
+				setProperties((Integer)newValue);
+				return;
+			case ResourcePackage.IMAGE__TILING:
+				setTiling((Integer)newValue);
+				return;
+			case ResourcePackage.IMAGE__MIP_LEVELS:
+				setMipLevels((Integer)newValue);
+				return;
+			case ResourcePackage.IMAGE__INITIAL_LAYOUT:
+				setInitialLayout((ImageLayout)newValue);
+				return;
+			case ResourcePackage.IMAGE__FILL_WITH_ZERO:
+				setFillWithZero((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -570,33 +568,33 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE__WIDTH:
-			setWidth(WIDTH_EDEFAULT);
-			return;
-		case ResourcePackage.IMAGE__HEIGHT:
-			setHeight(HEIGHT_EDEFAULT);
-			return;
-		case ResourcePackage.IMAGE__FORMAT:
-			setFormat(FORMAT_EDEFAULT);
-			return;
-		case ResourcePackage.IMAGE__USAGES:
-			getUsages().clear();
-			return;
-		case ResourcePackage.IMAGE__PROPERTIES:
-			setProperties(PROPERTIES_EDEFAULT);
-			return;
-		case ResourcePackage.IMAGE__TILING:
-			setTiling(TILING_EDEFAULT);
-			return;
-		case ResourcePackage.IMAGE__MIP_LEVELS:
-			setMipLevels(MIP_LEVELS_EDEFAULT);
-			return;
-		case ResourcePackage.IMAGE__INITIAL_LAYOUT:
-			setInitialLayout((ImageLayout) null);
-			return;
-		case ResourcePackage.IMAGE__FILL_WITH_ZERO:
-			setFillWithZero(FILL_WITH_ZERO_EDEFAULT);
-			return;
+			case ResourcePackage.IMAGE__WIDTH:
+				setWidth(WIDTH_EDEFAULT);
+				return;
+			case ResourcePackage.IMAGE__HEIGHT:
+				setHeight(HEIGHT_EDEFAULT);
+				return;
+			case ResourcePackage.IMAGE__FORMAT:
+				setFormat(FORMAT_EDEFAULT);
+				return;
+			case ResourcePackage.IMAGE__USAGES:
+				getUsages().clear();
+				return;
+			case ResourcePackage.IMAGE__PROPERTIES:
+				setProperties(PROPERTIES_EDEFAULT);
+				return;
+			case ResourcePackage.IMAGE__TILING:
+				setTiling(TILING_EDEFAULT);
+				return;
+			case ResourcePackage.IMAGE__MIP_LEVELS:
+				setMipLevels(MIP_LEVELS_EDEFAULT);
+				return;
+			case ResourcePackage.IMAGE__INITIAL_LAYOUT:
+				setInitialLayout((ImageLayout)null);
+				return;
+			case ResourcePackage.IMAGE__FILL_WITH_ZERO:
+				setFillWithZero(FILL_WITH_ZERO_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -611,24 +609,24 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE__WIDTH:
-			return width != WIDTH_EDEFAULT;
-		case ResourcePackage.IMAGE__HEIGHT:
-			return height != HEIGHT_EDEFAULT;
-		case ResourcePackage.IMAGE__FORMAT:
-			return format != FORMAT_EDEFAULT;
-		case ResourcePackage.IMAGE__USAGES:
-			return usages != null && !usages.isEmpty();
-		case ResourcePackage.IMAGE__PROPERTIES:
-			return properties != PROPERTIES_EDEFAULT;
-		case ResourcePackage.IMAGE__TILING:
-			return tiling != TILING_EDEFAULT;
-		case ResourcePackage.IMAGE__MIP_LEVELS:
-			return mipLevels != MIP_LEVELS_EDEFAULT;
-		case ResourcePackage.IMAGE__INITIAL_LAYOUT:
-			return initialLayout != null;
-		case ResourcePackage.IMAGE__FILL_WITH_ZERO:
-			return fillWithZero != FILL_WITH_ZERO_EDEFAULT;
+			case ResourcePackage.IMAGE__WIDTH:
+				return width != WIDTH_EDEFAULT;
+			case ResourcePackage.IMAGE__HEIGHT:
+				return height != HEIGHT_EDEFAULT;
+			case ResourcePackage.IMAGE__FORMAT:
+				return format != FORMAT_EDEFAULT;
+			case ResourcePackage.IMAGE__USAGES:
+				return usages != null && !usages.isEmpty();
+			case ResourcePackage.IMAGE__PROPERTIES:
+				return properties != PROPERTIES_EDEFAULT;
+			case ResourcePackage.IMAGE__TILING:
+				return tiling != TILING_EDEFAULT;
+			case ResourcePackage.IMAGE__MIP_LEVELS:
+				return mipLevels != MIP_LEVELS_EDEFAULT;
+			case ResourcePackage.IMAGE__INITIAL_LAYOUT:
+				return initialLayout != null;
+			case ResourcePackage.IMAGE__FILL_WITH_ZERO:
+				return fillWithZero != FILL_WITH_ZERO_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

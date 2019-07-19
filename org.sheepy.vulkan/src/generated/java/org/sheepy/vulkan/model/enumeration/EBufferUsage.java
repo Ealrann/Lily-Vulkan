@@ -214,7 +214,8 @@ public enum EBufferUsage implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EBufferUsage[] VALUES_ARRAY = new EBufferUsage[] {
+	private static final EBufferUsage[] VALUES_ARRAY = new EBufferUsage[]
+		{
 			TRANSFER_SRC_BIT,
 			TRANSFER_DST_BIT,
 			UNIFORM_TEXEL_BUFFER_BIT,
@@ -224,7 +225,7 @@ public enum EBufferUsage implements Enumerator
 			INDEX_BUFFER_BIT,
 			VERTEX_BUFFER_BIT,
 			INDIRECT_BUFFER_BIT,
-	};
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>EBuffer Usage</b></em>' enumerators.
@@ -232,8 +233,7 @@ public enum EBufferUsage implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EBufferUsage> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EBufferUsage> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EBuffer Usage</b></em>' literal with the specified literal value.
@@ -289,24 +289,15 @@ public enum EBufferUsage implements Enumerator
 	{
 		switch (value)
 		{
-		case TRANSFER_SRC_BIT_VALUE:
-			return TRANSFER_SRC_BIT;
-		case TRANSFER_DST_BIT_VALUE:
-			return TRANSFER_DST_BIT;
-		case UNIFORM_TEXEL_BUFFER_BIT_VALUE:
-			return UNIFORM_TEXEL_BUFFER_BIT;
-		case STORAGE_TEXEL_BUFFER_BIT_VALUE:
-			return STORAGE_TEXEL_BUFFER_BIT;
-		case UNIFORM_BUFFER_BIT_VALUE:
-			return UNIFORM_BUFFER_BIT;
-		case STORAGE_BUFFER_BIT_VALUE:
-			return STORAGE_BUFFER_BIT;
-		case INDEX_BUFFER_BIT_VALUE:
-			return INDEX_BUFFER_BIT;
-		case VERTEX_BUFFER_BIT_VALUE:
-			return VERTEX_BUFFER_BIT;
-		case INDIRECT_BUFFER_BIT_VALUE:
-			return INDIRECT_BUFFER_BIT;
+			case TRANSFER_SRC_BIT_VALUE: return TRANSFER_SRC_BIT;
+			case TRANSFER_DST_BIT_VALUE: return TRANSFER_DST_BIT;
+			case UNIFORM_TEXEL_BUFFER_BIT_VALUE: return UNIFORM_TEXEL_BUFFER_BIT;
+			case STORAGE_TEXEL_BUFFER_BIT_VALUE: return STORAGE_TEXEL_BUFFER_BIT;
+			case UNIFORM_BUFFER_BIT_VALUE: return UNIFORM_BUFFER_BIT;
+			case STORAGE_BUFFER_BIT_VALUE: return STORAGE_BUFFER_BIT;
+			case INDEX_BUFFER_BIT_VALUE: return INDEX_BUFFER_BIT;
+			case VERTEX_BUFFER_BIT_VALUE: return VERTEX_BUFFER_BIT;
+			case INDIRECT_BUFFER_BIT_VALUE: return INDIRECT_BUFFER_BIT;
 		}
 		return null;
 	}
@@ -353,7 +344,7 @@ public enum EBufferUsage implements Enumerator
 	@Override
 	public int getValue()
 	{
-		return value;
+	  return value;
 	}
 
 	/**
@@ -364,7 +355,7 @@ public enum EBufferUsage implements Enumerator
 	@Override
 	public String getName()
 	{
-		return name;
+	  return name;
 	}
 
 	/**
@@ -375,7 +366,7 @@ public enum EBufferUsage implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-		return literal;
+	  return literal;
 	}
 
 	/**

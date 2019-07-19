@@ -26,8 +26,7 @@ import org.sheepy.vulkan.model.barrier.ReferenceImageBarrier;
  *
  * @generated
  */
-public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
-		implements ReferenceImageBarrier
+public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl implements ReferenceImageBarrier
 {
 	/**
 	 * The default value of the '{@link #getImagePtr() <em>Image Ptr</em>}' attribute.
@@ -94,7 +93,7 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ReferenceImageBarrierImpl()
+	public ReferenceImageBarrierImpl()
 	{
 		super();
 	}
@@ -131,8 +130,8 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
 	{
 		long oldImagePtr = imagePtr;
 		imagePtr = newImagePtr;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_PTR, oldImagePtr, imagePtr));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_PTR, oldImagePtr, imagePtr));
 	}
 
 	/**
@@ -156,8 +155,8 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
 	{
 		int oldMipLevels = mipLevels;
 		mipLevels = newMipLevels;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				BarrierPackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS, oldMipLevels, mipLevels));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BarrierPackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS, oldMipLevels, mipLevels));
 	}
 
 	/**
@@ -181,8 +180,8 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
 	{
 		int oldImageFormat = imageFormat;
 		imageFormat = newImageFormat;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT, oldImageFormat, imageFormat));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT, oldImageFormat, imageFormat));
 	}
 
 	/**
@@ -195,12 +194,12 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_PTR:
-			return getImagePtr();
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
-			return getMipLevels();
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT:
-			return getImageFormat();
+			case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_PTR:
+				return getImagePtr();
+			case BarrierPackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
+				return getMipLevels();
+			case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT:
+				return getImageFormat();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -215,15 +214,15 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_PTR:
-			setImagePtr((Long) newValue);
-			return;
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
-			setMipLevels((Integer) newValue);
-			return;
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT:
-			setImageFormat((Integer) newValue);
-			return;
+			case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_PTR:
+				setImagePtr((Long)newValue);
+				return;
+			case BarrierPackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
+				setMipLevels((Integer)newValue);
+				return;
+			case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT:
+				setImageFormat((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -238,15 +237,15 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_PTR:
-			setImagePtr(IMAGE_PTR_EDEFAULT);
-			return;
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
-			setMipLevels(MIP_LEVELS_EDEFAULT);
-			return;
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT:
-			setImageFormat(IMAGE_FORMAT_EDEFAULT);
-			return;
+			case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_PTR:
+				setImagePtr(IMAGE_PTR_EDEFAULT);
+				return;
+			case BarrierPackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
+				setMipLevels(MIP_LEVELS_EDEFAULT);
+				return;
+			case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT:
+				setImageFormat(IMAGE_FORMAT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -261,12 +260,12 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_PTR:
-			return imagePtr != IMAGE_PTR_EDEFAULT;
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
-			return mipLevels != MIP_LEVELS_EDEFAULT;
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT:
-			return imageFormat != IMAGE_FORMAT_EDEFAULT;
+			case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_PTR:
+				return imagePtr != IMAGE_PTR_EDEFAULT;
+			case BarrierPackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
+				return mipLevels != MIP_LEVELS_EDEFAULT;
+			case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT:
+				return imageFormat != IMAGE_FORMAT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

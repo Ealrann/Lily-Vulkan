@@ -32,15 +32,6 @@ public interface RenderingFactory extends EFactory
 	Axis createAxis();
 
 	/**
-	 * Returns a new object of class '<em>Presentation Pkg</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Presentation Pkg</em>'.
-	 * @generated
-	 */
-	PresentationPkg createPresentationPkg();
-
-	/**
 	 * Returns a new object of class '<em>Presentable Entity</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -93,6 +84,24 @@ public interface RenderingFactory extends EFactory
 	 * @generated
 	 */
 	<T extends Presentation> GenericIndexProvider<T> createGenericIndexProvider();
+
+	/**
+	 * Returns a new object of class '<em>Presentation Root Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Presentation Root Pkg</em>'.
+	 * @generated
+	 */
+	PresentationRootPkg createPresentationRootPkg();
+
+	/**
+	 * Returns a new object of class '<em>Static Resource Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Static Resource Provider</em>'.
+	 * @generated
+	 */
+	StaticResourceProvider createStaticResourceProvider();
 
 	/**
 	 * Returns the package supported by this factory.

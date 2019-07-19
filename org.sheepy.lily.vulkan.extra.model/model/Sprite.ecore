@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sprite" nsURI="org.sheepy.lily.vulkan.extra.model.sprite" nsPrefix="sprite">
-  <eClassifiers xsi:type="ecore:EClass" name="SpriteRendererMaintainer">
-    <eGenericSuperTypes eClassifier="ecore:EClass Rendering.ecore#//GenericRendererMaintainer">
+  <eClassifiers xsi:type="ecore:EClass" name="SpriteRenderer">
+    <eGenericSuperTypes eClassifier="ecore:EClass Rendering.ecore#//GenericRenderer">
       <eTypeArguments eClassifier="#//Sprite"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Sprite" eSuperTypes="Rendering.ecore#//Presentation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="file" lowerBound="1" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//FileResource"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="file" lowerBound="1" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//PathResource"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SpritePkg">
+    <eGenericSuperTypes eClassifier="ecore:EClass Rendering.ecore#//PresentationPkg">
+      <eTypeArguments eClassifier="#//Sprite"/>
+    </eGenericSuperTypes>
   </eClassifiers>
 </ecore:EPackage>

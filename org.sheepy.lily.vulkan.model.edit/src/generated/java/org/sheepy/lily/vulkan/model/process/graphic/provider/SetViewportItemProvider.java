@@ -82,13 +82,19 @@ public class SetViewportItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -99,13 +105,19 @@ public class SetViewportItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
-								"_UI_IPipelineTask_type"),
-						ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipelineTask_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature", "_UI_IPipelineTask_type"),
+				 ProcessPackage.Literals.IPIPELINE_TASK__ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -116,13 +128,19 @@ public class SetViewportItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addXPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SetViewport_x_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SetViewport_x_feature",
-								"_UI_SetViewport_type"),
-						GraphicPackage.Literals.SET_VIEWPORT__X, true, false, false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SetViewport_x_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SetViewport_x_feature", "_UI_SetViewport_type"),
+				 GraphicPackage.Literals.SET_VIEWPORT__X,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -133,13 +151,19 @@ public class SetViewportItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addYPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SetViewport_y_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SetViewport_y_feature",
-								"_UI_SetViewport_type"),
-						GraphicPackage.Literals.SET_VIEWPORT__Y, true, false, false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SetViewport_y_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SetViewport_y_feature", "_UI_SetViewport_type"),
+				 GraphicPackage.Literals.SET_VIEWPORT__Y,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -150,13 +174,19 @@ public class SetViewportItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addWidthPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SetViewport_width_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SetViewport_width_feature",
-								"_UI_SetViewport_type"),
-						GraphicPackage.Literals.SET_VIEWPORT__WIDTH, true, false, false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SetViewport_width_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SetViewport_width_feature", "_UI_SetViewport_type"),
+				 GraphicPackage.Literals.SET_VIEWPORT__WIDTH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -167,13 +197,19 @@ public class SetViewportItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addHeightPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SetViewport_height_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SetViewport_height_feature",
-								"_UI_SetViewport_type"),
-						GraphicPackage.Literals.SET_VIEWPORT__HEIGHT, true, false, false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SetViewport_height_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SetViewport_height_feature", "_UI_SetViewport_type"),
+				 GraphicPackage.Literals.SET_VIEWPORT__HEIGHT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -184,13 +220,19 @@ public class SetViewportItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addMinDepthPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SetViewport_minDepth_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SetViewport_minDepth_feature",
-								"_UI_SetViewport_type"),
-						GraphicPackage.Literals.SET_VIEWPORT__MIN_DEPTH, true, false, false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SetViewport_minDepth_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SetViewport_minDepth_feature", "_UI_SetViewport_type"),
+				 GraphicPackage.Literals.SET_VIEWPORT__MIN_DEPTH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -201,13 +243,19 @@ public class SetViewportItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addMaxDepthPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SetViewport_maxDepth_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SetViewport_maxDepth_feature",
-								"_UI_SetViewport_type"),
-						GraphicPackage.Literals.SET_VIEWPORT__MAX_DEPTH, true, false, false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SetViewport_maxDepth_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SetViewport_maxDepth_feature", "_UI_SetViewport_type"),
+				 GraphicPackage.Literals.SET_VIEWPORT__MAX_DEPTH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -231,10 +279,10 @@ public class SetViewportItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((SetViewport) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_SetViewport_type")
-				: getString("_UI_SetViewport_type") + " " + label;
+		String label = ((SetViewport)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SetViewport_type") :
+			getString("_UI_SetViewport_type") + " " + label;
 	}
 
 	/**
@@ -251,16 +299,16 @@ public class SetViewportItemProvider extends ItemProviderAdapter implements IEdi
 
 		switch (notification.getFeatureID(SetViewport.class))
 		{
-		case GraphicPackage.SET_VIEWPORT__NAME:
-		case GraphicPackage.SET_VIEWPORT__ENABLED:
-		case GraphicPackage.SET_VIEWPORT__X:
-		case GraphicPackage.SET_VIEWPORT__Y:
-		case GraphicPackage.SET_VIEWPORT__WIDTH:
-		case GraphicPackage.SET_VIEWPORT__HEIGHT:
-		case GraphicPackage.SET_VIEWPORT__MIN_DEPTH:
-		case GraphicPackage.SET_VIEWPORT__MAX_DEPTH:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case GraphicPackage.SET_VIEWPORT__NAME:
+			case GraphicPackage.SET_VIEWPORT__ENABLED:
+			case GraphicPackage.SET_VIEWPORT__X:
+			case GraphicPackage.SET_VIEWPORT__Y:
+			case GraphicPackage.SET_VIEWPORT__WIDTH:
+			case GraphicPackage.SET_VIEWPORT__HEIGHT:
+			case GraphicPackage.SET_VIEWPORT__MIN_DEPTH:
+			case GraphicPackage.SET_VIEWPORT__MAX_DEPTH:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -287,7 +335,7 @@ public class SetViewportItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

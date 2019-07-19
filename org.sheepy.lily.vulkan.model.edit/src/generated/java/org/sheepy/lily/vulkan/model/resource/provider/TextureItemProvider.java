@@ -106,10 +106,10 @@ public class TextureItemProvider extends AbstractTextureItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Texture) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_Texture_type")
-				: getString("_UI_Texture_type") + " " + label;
+		String label = ((Texture)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Texture_type") :
+			getString("_UI_Texture_type") + " " + label;
 	}
 
 	/**
@@ -126,9 +126,9 @@ public class TextureItemProvider extends AbstractTextureItemProvider
 
 		switch (notification.getFeatureID(Texture.class))
 		{
-		case ResourcePackage.TEXTURE__FILE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case ResourcePackage.TEXTURE__FILE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -145,14 +145,20 @@ public class TextureItemProvider extends AbstractTextureItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.TEXTURE__FILE,
-				ResourceFactory.eINSTANCE.createFileResource()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.TEXTURE__FILE,
+				 ResourceFactory.eINSTANCE.createFileResource()));
 
-		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.TEXTURE__FILE,
-				ResourceFactory.eINSTANCE.createModuleResource()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.TEXTURE__FILE,
+				 ResourceFactory.eINSTANCE.createModuleResource()));
 
-		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.TEXTURE__FILE,
-				ResourceFactory.eINSTANCE.createStringModuleResource()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.TEXTURE__FILE,
+				 ResourceFactory.eINSTANCE.createStringModuleResource()));
 	}
 
 }

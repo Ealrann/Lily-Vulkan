@@ -54,7 +54,7 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BarrierImpl()
+	public BarrierImpl()
 	{
 		super();
 	}
@@ -80,8 +80,7 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	{
 		if (srcAccessMask == null)
 		{
-			srcAccessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this,
-					BarrierPackage.BARRIER__SRC_ACCESS_MASK);
+			srcAccessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, BarrierPackage.BARRIER__SRC_ACCESS_MASK);
 		}
 		return srcAccessMask;
 	}
@@ -96,8 +95,7 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	{
 		if (dstAccessMask == null)
 		{
-			dstAccessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this,
-					BarrierPackage.BARRIER__DST_ACCESS_MASK);
+			dstAccessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, BarrierPackage.BARRIER__DST_ACCESS_MASK);
 		}
 		return dstAccessMask;
 	}
@@ -112,10 +110,10 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
-			return getSrcAccessMask();
-		case BarrierPackage.BARRIER__DST_ACCESS_MASK:
-			return getDstAccessMask();
+			case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
+				return getSrcAccessMask();
+			case BarrierPackage.BARRIER__DST_ACCESS_MASK:
+				return getDstAccessMask();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -131,14 +129,14 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
-			getSrcAccessMask().clear();
-			getSrcAccessMask().addAll((Collection<? extends EAccess>) newValue);
-			return;
-		case BarrierPackage.BARRIER__DST_ACCESS_MASK:
-			getDstAccessMask().clear();
-			getDstAccessMask().addAll((Collection<? extends EAccess>) newValue);
-			return;
+			case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
+				getSrcAccessMask().clear();
+				getSrcAccessMask().addAll((Collection<? extends EAccess>)newValue);
+				return;
+			case BarrierPackage.BARRIER__DST_ACCESS_MASK:
+				getDstAccessMask().clear();
+				getDstAccessMask().addAll((Collection<? extends EAccess>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -153,12 +151,12 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
-			getSrcAccessMask().clear();
-			return;
-		case BarrierPackage.BARRIER__DST_ACCESS_MASK:
-			getDstAccessMask().clear();
-			return;
+			case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
+				getSrcAccessMask().clear();
+				return;
+			case BarrierPackage.BARRIER__DST_ACCESS_MASK:
+				getDstAccessMask().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -173,10 +171,10 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
-			return srcAccessMask != null && !srcAccessMask.isEmpty();
-		case BarrierPackage.BARRIER__DST_ACCESS_MASK:
-			return dstAccessMask != null && !dstAccessMask.isEmpty();
+			case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
+				return srcAccessMask != null && !srcAccessMask.isEmpty();
+			case BarrierPackage.BARRIER__DST_ACCESS_MASK:
+				return dstAccessMask != null && !dstAccessMask.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

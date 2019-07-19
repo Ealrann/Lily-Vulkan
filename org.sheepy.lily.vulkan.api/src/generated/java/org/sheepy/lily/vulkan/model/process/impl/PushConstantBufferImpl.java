@@ -70,12 +70,12 @@ public class PushConstantBufferImpl extends PushConstantImpl implements PushCons
 	{
 		if (buffer != null && buffer.eIsProxy())
 		{
-			InternalEObject oldBuffer = (InternalEObject) buffer;
-			buffer = (ConstantBuffer) eResolveProxy(oldBuffer);
+			InternalEObject oldBuffer = (InternalEObject)buffer;
+			buffer = (ConstantBuffer)eResolveProxy(oldBuffer);
 			if (buffer != oldBuffer)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER, oldBuffer, buffer));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER, oldBuffer, buffer));
 			}
 		}
 		return buffer;
@@ -101,8 +101,8 @@ public class PushConstantBufferImpl extends PushConstantImpl implements PushCons
 	{
 		ConstantBuffer oldBuffer = buffer;
 		buffer = newBuffer;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER, oldBuffer, buffer));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER, oldBuffer, buffer));
 	}
 
 	/**
@@ -115,9 +115,9 @@ public class PushConstantBufferImpl extends PushConstantImpl implements PushCons
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER:
-			if (resolve) return getBuffer();
-			return basicGetBuffer();
+			case ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER:
+				if (resolve) return getBuffer();
+				return basicGetBuffer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -132,9 +132,9 @@ public class PushConstantBufferImpl extends PushConstantImpl implements PushCons
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER:
-			setBuffer((ConstantBuffer) newValue);
-			return;
+			case ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER:
+				setBuffer((ConstantBuffer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -149,9 +149,9 @@ public class PushConstantBufferImpl extends PushConstantImpl implements PushCons
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER:
-			setBuffer((ConstantBuffer) null);
-			return;
+			case ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER:
+				setBuffer((ConstantBuffer)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -166,8 +166,8 @@ public class PushConstantBufferImpl extends PushConstantImpl implements PushCons
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER:
-			return buffer != null;
+			case ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER:
+				return buffer != null;
 		}
 		return super.eIsSet(featureID);
 	}

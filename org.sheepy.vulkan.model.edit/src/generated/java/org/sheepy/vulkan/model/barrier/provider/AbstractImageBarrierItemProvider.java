@@ -63,14 +63,19 @@ public class AbstractImageBarrierItemProvider extends BarrierItemProvider
 	 */
 	protected void addSrcLayoutPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_AbstractImageBarrier_srcLayout_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_AbstractImageBarrier_srcLayout_feature",
-						"_UI_AbstractImageBarrier_type"),
-				BarrierPackage.Literals.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractImageBarrier_srcLayout_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractImageBarrier_srcLayout_feature", "_UI_AbstractImageBarrier_type"),
+				 BarrierPackage.Literals.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -81,14 +86,19 @@ public class AbstractImageBarrierItemProvider extends BarrierItemProvider
 	 */
 	protected void addDstLayoutPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_AbstractImageBarrier_dstLayout_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_AbstractImageBarrier_dstLayout_feature",
-						"_UI_AbstractImageBarrier_type"),
-				BarrierPackage.Literals.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractImageBarrier_dstLayout_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractImageBarrier_dstLayout_feature", "_UI_AbstractImageBarrier_type"),
+				 BarrierPackage.Literals.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -100,11 +110,11 @@ public class AbstractImageBarrierItemProvider extends BarrierItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		EImageLayout labelValue = ((AbstractImageBarrier) object).getSrcLayout();
+		EImageLayout labelValue = ((AbstractImageBarrier)object).getSrcLayout();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0
-				? getString("_UI_AbstractImageBarrier_type")
-				: getString("_UI_AbstractImageBarrier_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_AbstractImageBarrier_type") :
+			getString("_UI_AbstractImageBarrier_type") + " " + label;
 	}
 
 	/**
@@ -121,11 +131,10 @@ public class AbstractImageBarrierItemProvider extends BarrierItemProvider
 
 		switch (notification.getFeatureID(AbstractImageBarrier.class))
 		{
-		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT:
-		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT:
+			case BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

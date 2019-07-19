@@ -139,8 +139,8 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SUBPASS__REFS:
-			return ((InternalEList<?>) getRefs()).basicRemove(otherEnd, msgs);
+			case GraphicPackage.SUBPASS__REFS:
+				return ((InternalEList<?>)getRefs()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -155,10 +155,10 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SUBPASS__NAME:
-			return getName();
-		case GraphicPackage.SUBPASS__REFS:
-			return getRefs();
+			case GraphicPackage.SUBPASS__NAME:
+				return getName();
+			case GraphicPackage.SUBPASS__REFS:
+				return getRefs();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -174,13 +174,13 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SUBPASS__NAME:
-			setName((String) newValue);
-			return;
-		case GraphicPackage.SUBPASS__REFS:
-			getRefs().clear();
-			getRefs().addAll((Collection<? extends AttachmentRef>) newValue);
-			return;
+			case GraphicPackage.SUBPASS__NAME:
+				setName((String)newValue);
+				return;
+			case GraphicPackage.SUBPASS__REFS:
+				getRefs().clear();
+				getRefs().addAll((Collection<? extends AttachmentRef>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -195,12 +195,12 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SUBPASS__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case GraphicPackage.SUBPASS__REFS:
-			getRefs().clear();
-			return;
+			case GraphicPackage.SUBPASS__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case GraphicPackage.SUBPASS__REFS:
+				getRefs().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -215,10 +215,10 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SUBPASS__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case GraphicPackage.SUBPASS__REFS:
-			return refs != null && !refs.isEmpty();
+			case GraphicPackage.SUBPASS__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case GraphicPackage.SUBPASS__REFS:
+				return refs != null && !refs.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

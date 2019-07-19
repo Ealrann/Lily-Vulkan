@@ -134,12 +134,12 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	{
 		if (srcSubpass != null && srcSubpass.eIsProxy())
 		{
-			InternalEObject oldSrcSubpass = (InternalEObject) srcSubpass;
-			srcSubpass = (Subpass) eResolveProxy(oldSrcSubpass);
+			InternalEObject oldSrcSubpass = (InternalEObject)srcSubpass;
+			srcSubpass = (Subpass)eResolveProxy(oldSrcSubpass);
 			if (srcSubpass != oldSrcSubpass)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS, oldSrcSubpass, srcSubpass));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS, oldSrcSubpass, srcSubpass));
 			}
 		}
 		return srcSubpass;
@@ -165,8 +165,8 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	{
 		Subpass oldSrcSubpass = srcSubpass;
 		srcSubpass = newSrcSubpass;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS, oldSrcSubpass, srcSubpass));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS, oldSrcSubpass, srcSubpass));
 	}
 
 	/**
@@ -179,12 +179,12 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	{
 		if (dstSubpass != null && dstSubpass.eIsProxy())
 		{
-			InternalEObject oldDstSubpass = (InternalEObject) dstSubpass;
-			dstSubpass = (Subpass) eResolveProxy(oldDstSubpass);
+			InternalEObject oldDstSubpass = (InternalEObject)dstSubpass;
+			dstSubpass = (Subpass)eResolveProxy(oldDstSubpass);
 			if (dstSubpass != oldDstSubpass)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS, oldDstSubpass, dstSubpass));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS, oldDstSubpass, dstSubpass));
 			}
 		}
 		return dstSubpass;
@@ -210,8 +210,8 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	{
 		Subpass oldDstSubpass = dstSubpass;
 		dstSubpass = newDstSubpass;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS, oldDstSubpass, dstSubpass));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS, oldDstSubpass, dstSubpass));
 	}
 
 	/**
@@ -224,8 +224,7 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	{
 		if (srcStageMask == null)
 		{
-			srcStageMask = new EDataTypeUniqueEList<EPipelineStage>(EPipelineStage.class, this,
-					GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK);
+			srcStageMask = new EDataTypeUniqueEList<EPipelineStage>(EPipelineStage.class, this, GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK);
 		}
 		return srcStageMask;
 	}
@@ -240,8 +239,7 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	{
 		if (dstStageMask == null)
 		{
-			dstStageMask = new EDataTypeUniqueEList<EPipelineStage>(EPipelineStage.class, this,
-					GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK);
+			dstStageMask = new EDataTypeUniqueEList<EPipelineStage>(EPipelineStage.class, this, GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK);
 		}
 		return dstStageMask;
 	}
@@ -256,8 +254,7 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	{
 		if (srcAccesses == null)
 		{
-			srcAccesses = new EDataTypeUniqueEList<EAccess>(EAccess.class, this,
-					GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES);
+			srcAccesses = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES);
 		}
 		return srcAccesses;
 	}
@@ -272,8 +269,7 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	{
 		if (dstAccesses == null)
 		{
-			dstAccesses = new EDataTypeUniqueEList<EAccess>(EAccess.class, this,
-					GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES);
+			dstAccesses = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES);
 		}
 		return dstAccesses;
 	}
@@ -288,20 +284,20 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
-			if (resolve) return getSrcSubpass();
-			return basicGetSrcSubpass();
-		case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:
-			if (resolve) return getDstSubpass();
-			return basicGetDstSubpass();
-		case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
-			return getSrcStageMask();
-		case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
-			return getDstStageMask();
-		case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
-			return getSrcAccesses();
-		case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES:
-			return getDstAccesses();
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
+				if (resolve) return getSrcSubpass();
+				return basicGetSrcSubpass();
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:
+				if (resolve) return getDstSubpass();
+				return basicGetDstSubpass();
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
+				return getSrcStageMask();
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
+				return getDstStageMask();
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
+				return getSrcAccesses();
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES:
+				return getDstAccesses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -317,28 +313,28 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
-			setSrcSubpass((Subpass) newValue);
-			return;
-		case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:
-			setDstSubpass((Subpass) newValue);
-			return;
-		case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
-			getSrcStageMask().clear();
-			getSrcStageMask().addAll((Collection<? extends EPipelineStage>) newValue);
-			return;
-		case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
-			getDstStageMask().clear();
-			getDstStageMask().addAll((Collection<? extends EPipelineStage>) newValue);
-			return;
-		case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
-			getSrcAccesses().clear();
-			getSrcAccesses().addAll((Collection<? extends EAccess>) newValue);
-			return;
-		case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES:
-			getDstAccesses().clear();
-			getDstAccesses().addAll((Collection<? extends EAccess>) newValue);
-			return;
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
+				setSrcSubpass((Subpass)newValue);
+				return;
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:
+				setDstSubpass((Subpass)newValue);
+				return;
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
+				getSrcStageMask().clear();
+				getSrcStageMask().addAll((Collection<? extends EPipelineStage>)newValue);
+				return;
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
+				getDstStageMask().clear();
+				getDstStageMask().addAll((Collection<? extends EPipelineStage>)newValue);
+				return;
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
+				getSrcAccesses().clear();
+				getSrcAccesses().addAll((Collection<? extends EAccess>)newValue);
+				return;
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES:
+				getDstAccesses().clear();
+				getDstAccesses().addAll((Collection<? extends EAccess>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -353,24 +349,24 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
-			setSrcSubpass((Subpass) null);
-			return;
-		case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:
-			setDstSubpass((Subpass) null);
-			return;
-		case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
-			getSrcStageMask().clear();
-			return;
-		case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
-			getDstStageMask().clear();
-			return;
-		case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
-			getSrcAccesses().clear();
-			return;
-		case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES:
-			getDstAccesses().clear();
-			return;
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
+				setSrcSubpass((Subpass)null);
+				return;
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:
+				setDstSubpass((Subpass)null);
+				return;
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
+				getSrcStageMask().clear();
+				return;
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
+				getDstStageMask().clear();
+				return;
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
+				getSrcAccesses().clear();
+				return;
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES:
+				getDstAccesses().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -385,18 +381,18 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
-			return srcSubpass != null;
-		case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:
-			return dstSubpass != null;
-		case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
-			return srcStageMask != null && !srcStageMask.isEmpty();
-		case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
-			return dstStageMask != null && !dstStageMask.isEmpty();
-		case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
-			return srcAccesses != null && !srcAccesses.isEmpty();
-		case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES:
-			return dstAccesses != null && !dstAccesses.isEmpty();
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
+				return srcSubpass != null;
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:
+				return dstSubpass != null;
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
+				return srcStageMask != null && !srcStageMask.isEmpty();
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
+				return dstStageMask != null && !dstStageMask.isEmpty();
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
+				return srcAccesses != null && !srcAccesses.isEmpty();
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES:
+				return dstAccesses != null && !dstAccesses.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

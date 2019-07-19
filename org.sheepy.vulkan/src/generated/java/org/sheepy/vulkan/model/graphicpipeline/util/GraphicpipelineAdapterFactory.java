@@ -60,7 +60,7 @@ public class GraphicpipelineAdapterFactory extends AdapterFactoryImpl
 		}
 		if (object instanceof EObject)
 		{
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -72,68 +72,68 @@ public class GraphicpipelineAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected GraphicpipelineSwitch<Adapter> modelSwitch = new GraphicpipelineSwitch<Adapter>()
-	{
-		@Override
-		public Adapter caseColorBlend(ColorBlend object)
 		{
-			return createColorBlendAdapter();
-		}
-		@Override
-		public Adapter caseColorBlendAttachment(ColorBlendAttachment object)
-		{
-			return createColorBlendAttachmentAdapter();
-		}
-		@Override
-		public Adapter caseInputAssembly(InputAssembly object)
-		{
-			return createInputAssemblyAdapter();
-		}
-		@Override
-		public Adapter caseRasterizer(Rasterizer object)
-		{
-			return createRasterizerAdapter();
-		}
-		@Override
-		public Adapter caseDynamicState(DynamicState object)
-		{
-			return createDynamicStateAdapter();
-		}
-		@Override
-		public Adapter caseViewportState(ViewportState object)
-		{
-			return createViewportStateAdapter();
-		}
-		@Override
-		public Adapter caseStaticViewportState(StaticViewportState object)
-		{
-			return createStaticViewportStateAdapter();
-		}
-		@Override
-		public Adapter caseDynamicViewportState(DynamicViewportState object)
-		{
-			return createDynamicViewportStateAdapter();
-		}
-		@Override
-		public Adapter caseVec2I(Vec2I object)
-		{
-			return createVec2IAdapter();
-		}
-		@Override
-		public Adapter caseViewport(Viewport object)
-		{
-			return createViewportAdapter();
-		}
-		@Override
-		public Adapter caseScissor(Scissor object)
-		{
-			return createScissorAdapter();
-		}
-		@Override
-		public Adapter defaultCase(EObject object)
-		{
-			return createEObjectAdapter();
-		}
-	};
+			@Override
+			public Adapter caseColorBlend(ColorBlend object)
+			{
+				return createColorBlendAdapter();
+			}
+			@Override
+			public Adapter caseColorBlendAttachment(ColorBlendAttachment object)
+			{
+				return createColorBlendAttachmentAdapter();
+			}
+			@Override
+			public Adapter caseInputAssembly(InputAssembly object)
+			{
+				return createInputAssemblyAdapter();
+			}
+			@Override
+			public Adapter caseRasterizer(Rasterizer object)
+			{
+				return createRasterizerAdapter();
+			}
+			@Override
+			public Adapter caseDynamicState(DynamicState object)
+			{
+				return createDynamicStateAdapter();
+			}
+			@Override
+			public Adapter caseViewportState(ViewportState object)
+			{
+				return createViewportStateAdapter();
+			}
+			@Override
+			public Adapter caseStaticViewportState(StaticViewportState object)
+			{
+				return createStaticViewportStateAdapter();
+			}
+			@Override
+			public Adapter caseDynamicViewportState(DynamicViewportState object)
+			{
+				return createDynamicViewportStateAdapter();
+			}
+			@Override
+			public Adapter caseVec2I(Vec2I object)
+			{
+				return createVec2IAdapter();
+			}
+			@Override
+			public Adapter caseViewport(Viewport object)
+			{
+				return createViewportAdapter();
+			}
+			@Override
+			public Adapter caseScissor(Scissor object)
+			{
+				return createScissorAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object)
+			{
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -146,7 +146,7 @@ public class GraphicpipelineAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public Adapter createAdapter(Notifier target)
 	{
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 	/**

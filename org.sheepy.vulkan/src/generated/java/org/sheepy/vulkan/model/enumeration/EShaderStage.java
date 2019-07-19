@@ -193,7 +193,8 @@ public enum EShaderStage implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EShaderStage[] VALUES_ARRAY = new EShaderStage[] {
+	private static final EShaderStage[] VALUES_ARRAY = new EShaderStage[]
+		{
 			VERTEX_BIT,
 			TESSELLATION_CONTROL_BIT,
 			TESSELLATION_EVALUATION_BIT,
@@ -202,7 +203,7 @@ public enum EShaderStage implements Enumerator
 			COMPUTE_BIT,
 			ALL_GRAPHICS,
 			ALL,
-	};
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>EShader Stage</b></em>' enumerators.
@@ -210,8 +211,7 @@ public enum EShaderStage implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EShaderStage> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EShaderStage> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EShader Stage</b></em>' literal with the specified literal value.
@@ -267,22 +267,14 @@ public enum EShaderStage implements Enumerator
 	{
 		switch (value)
 		{
-		case VERTEX_BIT_VALUE:
-			return VERTEX_BIT;
-		case TESSELLATION_CONTROL_BIT_VALUE:
-			return TESSELLATION_CONTROL_BIT;
-		case TESSELLATION_EVALUATION_BIT_VALUE:
-			return TESSELLATION_EVALUATION_BIT;
-		case GEOMETRY_BIT_VALUE:
-			return GEOMETRY_BIT;
-		case FRAGMENT_BIT_VALUE:
-			return FRAGMENT_BIT;
-		case COMPUTE_BIT_VALUE:
-			return COMPUTE_BIT;
-		case ALL_GRAPHICS_VALUE:
-			return ALL_GRAPHICS;
-		case ALL_VALUE:
-			return ALL;
+			case VERTEX_BIT_VALUE: return VERTEX_BIT;
+			case TESSELLATION_CONTROL_BIT_VALUE: return TESSELLATION_CONTROL_BIT;
+			case TESSELLATION_EVALUATION_BIT_VALUE: return TESSELLATION_EVALUATION_BIT;
+			case GEOMETRY_BIT_VALUE: return GEOMETRY_BIT;
+			case FRAGMENT_BIT_VALUE: return FRAGMENT_BIT;
+			case COMPUTE_BIT_VALUE: return COMPUTE_BIT;
+			case ALL_GRAPHICS_VALUE: return ALL_GRAPHICS;
+			case ALL_VALUE: return ALL;
 		}
 		return null;
 	}
@@ -329,7 +321,7 @@ public enum EShaderStage implements Enumerator
 	@Override
 	public int getValue()
 	{
-		return value;
+	  return value;
 	}
 
 	/**
@@ -340,7 +332,7 @@ public enum EShaderStage implements Enumerator
 	@Override
 	public String getName()
 	{
-		return name;
+	  return name;
 	}
 
 	/**
@@ -351,7 +343,7 @@ public enum EShaderStage implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-		return literal;
+	  return literal;
 	}
 
 	/**

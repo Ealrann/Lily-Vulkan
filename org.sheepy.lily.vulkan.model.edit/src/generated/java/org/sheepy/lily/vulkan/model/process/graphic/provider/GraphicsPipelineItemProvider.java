@@ -83,13 +83,19 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -100,13 +106,19 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipeline_enabled_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_enabled_feature",
-								"_UI_IPipeline_type"),
-						ProcessPackage.Literals.IPIPELINE__ENABLED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipeline_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_enabled_feature", "_UI_IPipeline_type"),
+				 ProcessPackage.Literals.IPIPELINE__ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -117,13 +129,19 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipeline_stage_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature",
-								"_UI_IPipeline_type"),
-						ProcessPackage.Literals.IPIPELINE__STAGE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipeline_stage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature", "_UI_IPipeline_type"),
+				 ProcessPackage.Literals.IPIPELINE__STAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -134,13 +152,19 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addSpecializationDataPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipeline_specializationData_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_specializationData_feature",
-								"_UI_IPipeline_type"),
-						ProcessPackage.Literals.IPIPELINE__SPECIALIZATION_DATA, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipeline_specializationData_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_specializationData_feature", "_UI_IPipeline_type"),
+				 ProcessPackage.Literals.IPIPELINE__SPECIALIZATION_DATA,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -151,12 +175,19 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addShadersPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_GraphicsPipeline_shaders_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_GraphicsPipeline_shaders_feature",
-								"_UI_GraphicsPipeline_type"),
-						GraphicPackage.Literals.GRAPHICS_PIPELINE__SHADERS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GraphicsPipeline_shaders_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicsPipeline_shaders_feature", "_UI_GraphicsPipeline_type"),
+				 GraphicPackage.Literals.GRAPHICS_PIPELINE__SHADERS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -167,13 +198,19 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addSubpassPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_GraphicsPipeline_subpass_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_GraphicsPipeline_subpass_feature",
-								"_UI_GraphicsPipeline_type"),
-						GraphicPackage.Literals.GRAPHICS_PIPELINE__SUBPASS, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GraphicsPipeline_subpass_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicsPipeline_subpass_feature", "_UI_GraphicsPipeline_type"),
+				 GraphicPackage.Literals.GRAPHICS_PIPELINE__SUBPASS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -239,10 +276,10 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((GraphicsPipeline) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_GraphicsPipeline_type")
-				: getString("_UI_GraphicsPipeline_type") + " " + label;
+		String label = ((GraphicsPipeline)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_GraphicsPipeline_type") :
+			getString("_UI_GraphicsPipeline_type") + " " + label;
 	}
 
 	/**
@@ -259,25 +296,25 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 
 		switch (notification.getFeatureID(GraphicsPipeline.class))
 		{
-		case GraphicPackage.GRAPHICS_PIPELINE__NAME:
-		case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
-		case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
-		case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
-		case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-		case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
-		case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
-		case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
-		case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
-		case GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
-		case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
-		case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
-		case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
-		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case GraphicPackage.GRAPHICS_PIPELINE__NAME:
+			case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
+			case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
+			case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
+			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
+			case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
+			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
+			case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
+			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
+			case GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
+			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
+			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -294,38 +331,60 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-				VulkanFactory.eINSTANCE.createResourcePkg()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+				 VulkanFactory.eINSTANCE.createResourcePkg()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES,
-				PipelineFactory.eINSTANCE.createPushConstantRange()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES,
+				 PipelineFactory.eINSTANCE.createPushConstantRange()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
-				ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
+				 ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
 
-		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__TASK_PKG,
-				ProcessFactory.eINSTANCE.createTaskPkg()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.IPIPELINE__TASK_PKG,
+				 ProcessFactory.eINSTANCE.createTaskPkg()));
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE,
-				GraphicpipelineFactory.eINSTANCE.createStaticViewportState()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE,
+				 GraphicpipelineFactory.eINSTANCE.createStaticViewportState()));
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE,
-				GraphicpipelineFactory.eINSTANCE.createDynamicViewportState()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE,
+				 GraphicpipelineFactory.eINSTANCE.createDynamicViewportState()));
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__INPUT_ASSEMBLY,
-				GraphicpipelineFactory.eINSTANCE.createInputAssembly()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.GRAPHICS_PIPELINE__INPUT_ASSEMBLY,
+				 GraphicpipelineFactory.eINSTANCE.createInputAssembly()));
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__RASTERIZER,
-				GraphicpipelineFactory.eINSTANCE.createRasterizer()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.GRAPHICS_PIPELINE__RASTERIZER,
+				 GraphicpipelineFactory.eINSTANCE.createRasterizer()));
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__COLOR_BLEND,
-				GraphicpipelineFactory.eINSTANCE.createColorBlend()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.GRAPHICS_PIPELINE__COLOR_BLEND,
+				 GraphicpipelineFactory.eINSTANCE.createColorBlend()));
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__DYNAMIC_STATE,
-				GraphicpipelineFactory.eINSTANCE.createDynamicState()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.GRAPHICS_PIPELINE__DYNAMIC_STATE,
+				 GraphicpipelineFactory.eINSTANCE.createDynamicState()));
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE,
-				GraphicFactory.eINSTANCE.createVertexInputState()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE,
+				 GraphicFactory.eINSTANCE.createVertexInputState()));
 	}
 
 	/**
@@ -337,7 +396,7 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

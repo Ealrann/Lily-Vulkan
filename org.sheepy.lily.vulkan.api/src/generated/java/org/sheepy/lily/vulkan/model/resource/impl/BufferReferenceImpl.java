@@ -91,12 +91,12 @@ public class BufferReferenceImpl extends MinimalEObjectImpl.Container implements
 	{
 		if (buffer != null && buffer.eIsProxy())
 		{
-			InternalEObject oldBuffer = (InternalEObject) buffer;
-			buffer = (Buffer) eResolveProxy(oldBuffer);
+			InternalEObject oldBuffer = (InternalEObject)buffer;
+			buffer = (Buffer)eResolveProxy(oldBuffer);
 			if (buffer != oldBuffer)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						ResourcePackage.BUFFER_REFERENCE__BUFFER, oldBuffer, buffer));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.BUFFER_REFERENCE__BUFFER, oldBuffer, buffer));
 			}
 		}
 		return buffer;
@@ -122,8 +122,8 @@ public class BufferReferenceImpl extends MinimalEObjectImpl.Container implements
 	{
 		Buffer oldBuffer = buffer;
 		buffer = newBuffer;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.BUFFER_REFERENCE__BUFFER, oldBuffer, buffer));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_REFERENCE__BUFFER, oldBuffer, buffer));
 	}
 
 	/**
@@ -147,8 +147,8 @@ public class BufferReferenceImpl extends MinimalEObjectImpl.Container implements
 	{
 		long oldOffset = offset;
 		offset = newOffset;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.BUFFER_REFERENCE__OFFSET, oldOffset, offset));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_REFERENCE__OFFSET, oldOffset, offset));
 	}
 
 	/**
@@ -161,11 +161,11 @@ public class BufferReferenceImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BUFFER_REFERENCE__BUFFER:
-			if (resolve) return getBuffer();
-			return basicGetBuffer();
-		case ResourcePackage.BUFFER_REFERENCE__OFFSET:
-			return getOffset();
+			case ResourcePackage.BUFFER_REFERENCE__BUFFER:
+				if (resolve) return getBuffer();
+				return basicGetBuffer();
+			case ResourcePackage.BUFFER_REFERENCE__OFFSET:
+				return getOffset();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -180,12 +180,12 @@ public class BufferReferenceImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BUFFER_REFERENCE__BUFFER:
-			setBuffer((Buffer) newValue);
-			return;
-		case ResourcePackage.BUFFER_REFERENCE__OFFSET:
-			setOffset((Long) newValue);
-			return;
+			case ResourcePackage.BUFFER_REFERENCE__BUFFER:
+				setBuffer((Buffer)newValue);
+				return;
+			case ResourcePackage.BUFFER_REFERENCE__OFFSET:
+				setOffset((Long)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -200,12 +200,12 @@ public class BufferReferenceImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BUFFER_REFERENCE__BUFFER:
-			setBuffer((Buffer) null);
-			return;
-		case ResourcePackage.BUFFER_REFERENCE__OFFSET:
-			setOffset(OFFSET_EDEFAULT);
-			return;
+			case ResourcePackage.BUFFER_REFERENCE__BUFFER:
+				setBuffer((Buffer)null);
+				return;
+			case ResourcePackage.BUFFER_REFERENCE__OFFSET:
+				setOffset(OFFSET_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -220,10 +220,10 @@ public class BufferReferenceImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BUFFER_REFERENCE__BUFFER:
-			return buffer != null;
-		case ResourcePackage.BUFFER_REFERENCE__OFFSET:
-			return offset != OFFSET_EDEFAULT;
+			case ResourcePackage.BUFFER_REFERENCE__BUFFER:
+				return buffer != null;
+			case ResourcePackage.BUFFER_REFERENCE__OFFSET:
+				return offset != OFFSET_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

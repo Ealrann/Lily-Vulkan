@@ -25,7 +25,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="presentedEntities" upperBound="-1"
         eType="#//PresentableEntity" eOpposite="#//PresentableEntity/presentation"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PresentationPkg">
+  <eClassifiers xsi:type="ecore:EClass" name="PresentationPkg" abstract="true">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="#//Presentation"/>
+    </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EReference" name="presentations" upperBound="-1"
         eType="#//Presentation" containment="true"/>
   </eClassifiers>
@@ -35,23 +38,28 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="scale" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
         defaultValueLiteral="1"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GenericRendererMaintainer" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="GenericRenderer" abstract="true">
     <eTypeParameters name="T">
       <eBounds eClassifier="#//Presentation"/>
     </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataProviderPkg" lowerBound="1"
         containment="true">
       <eGenericType eClassifier="#//DataProviderPkg">
-        <eTypeArguments eTypeParameter="#//GenericRendererMaintainer/T"/>
+        <eTypeArguments eTypeParameter="#//GenericRenderer/T"/>
       </eGenericType>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="presentationPkg" lowerBound="1"
-        eType="#//PresentationPkg"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="presentationPkg" lowerBound="1">
+      <eGenericType eClassifier="#//PresentationPkg">
+        <eTypeArguments>
+          <eLowerBound eTypeParameter="#//GenericRenderer/T"/>
+        </eTypeArguments>
+      </eGenericType>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constantBuffer" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//ConstantBuffer"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="basicResources" upperBound="-1"
-        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//DescriptedResource"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pushBuffer" lowerBound="1"
         eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//PushBuffer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commonResourceProvider"
+        eType="#//ResourceProvider" containment="true"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/graphic.ecore#//GraphicsPipeline"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.core.model/model/maintainer.ecore#//Maintainer">
       <eTypeArguments eClassifier="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/graphic.ecore#//GraphicsPipeline"/>
@@ -118,5 +126,20 @@
     <eGenericSuperTypes eClassifier="#//GenericDataProvider">
       <eTypeArguments eTypeParameter="#//GenericIndexProvider/T"/>
     </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PresentationRootPkg">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="presentationPkgs" upperBound="-1"
+        containment="true">
+      <eGenericType eClassifier="#//PresentationPkg">
+        <eTypeArguments>
+          <eUpperBound eClassifier="#//Presentation"/>
+        </eTypeArguments>
+      </eGenericType>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ResourceProvider" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StaticResourceProvider" eSuperTypes="#//ResourceProvider">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resources" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//DescriptedResource"/>
   </eClassifiers>
 </ecore:EPackage>

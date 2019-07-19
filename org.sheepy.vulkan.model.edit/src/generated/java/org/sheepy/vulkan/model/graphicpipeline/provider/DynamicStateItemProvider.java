@@ -31,9 +31,8 @@ import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DynamicStateItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class DynamicStateItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -72,13 +71,19 @@ public class DynamicStateItemProvider extends ItemProviderAdapter
 	 */
 	protected void addStatesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_DynamicState_states_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_DynamicState_states_feature",
-						"_UI_DynamicState_type"),
-				GraphicpipelinePackage.Literals.DYNAMIC_STATE__STATES, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DynamicState_states_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DynamicState_states_feature", "_UI_DynamicState_type"),
+				 GraphicpipelinePackage.Literals.DYNAMIC_STATE__STATES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -119,10 +124,9 @@ public class DynamicStateItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(DynamicState.class))
 		{
-		case GraphicpipelinePackage.DYNAMIC_STATE__STATES:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case GraphicpipelinePackage.DYNAMIC_STATE__STATES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -149,7 +153,7 @@ public class DynamicStateItemProvider extends ItemProviderAdapter
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

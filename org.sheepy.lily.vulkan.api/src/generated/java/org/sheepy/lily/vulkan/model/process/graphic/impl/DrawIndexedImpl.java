@@ -240,8 +240,8 @@ public class DrawIndexedImpl extends MinimalEObjectImpl.Container implements Dra
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.DRAW_INDEXED__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DRAW_INDEXED__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -265,8 +265,8 @@ public class DrawIndexedImpl extends MinimalEObjectImpl.Container implements Dra
 	{
 		int oldIndexCount = indexCount;
 		indexCount = newIndexCount;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.DRAW_INDEXED__INDEX_COUNT, oldIndexCount, indexCount));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DRAW_INDEXED__INDEX_COUNT, oldIndexCount, indexCount));
 	}
 
 	/**
@@ -290,8 +290,8 @@ public class DrawIndexedImpl extends MinimalEObjectImpl.Container implements Dra
 	{
 		int oldInstanceCount = instanceCount;
 		instanceCount = newInstanceCount;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.DRAW_INDEXED__INSTANCE_COUNT, oldInstanceCount, instanceCount));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DRAW_INDEXED__INSTANCE_COUNT, oldInstanceCount, instanceCount));
 	}
 
 	/**
@@ -315,8 +315,8 @@ public class DrawIndexedImpl extends MinimalEObjectImpl.Container implements Dra
 	{
 		int oldFirstIndex = firstIndex;
 		firstIndex = newFirstIndex;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.DRAW_INDEXED__FIRST_INDEX, oldFirstIndex, firstIndex));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DRAW_INDEXED__FIRST_INDEX, oldFirstIndex, firstIndex));
 	}
 
 	/**
@@ -340,8 +340,8 @@ public class DrawIndexedImpl extends MinimalEObjectImpl.Container implements Dra
 	{
 		int oldVertexOffset = vertexOffset;
 		vertexOffset = newVertexOffset;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.DRAW_INDEXED__VERTEX_OFFSET, oldVertexOffset, vertexOffset));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DRAW_INDEXED__VERTEX_OFFSET, oldVertexOffset, vertexOffset));
 	}
 
 	/**
@@ -365,8 +365,8 @@ public class DrawIndexedImpl extends MinimalEObjectImpl.Container implements Dra
 	{
 		int oldFirstInstance = firstInstance;
 		firstInstance = newFirstInstance;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.DRAW_INDEXED__FIRST_INSTANCE, oldFirstInstance, firstInstance));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DRAW_INDEXED__FIRST_INSTANCE, oldFirstInstance, firstInstance));
 	}
 
 	/**
@@ -379,20 +379,20 @@ public class DrawIndexedImpl extends MinimalEObjectImpl.Container implements Dra
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.DRAW_INDEXED__NAME:
-			return getName();
-		case GraphicPackage.DRAW_INDEXED__ENABLED:
-			return isEnabled();
-		case GraphicPackage.DRAW_INDEXED__INDEX_COUNT:
-			return getIndexCount();
-		case GraphicPackage.DRAW_INDEXED__INSTANCE_COUNT:
-			return getInstanceCount();
-		case GraphicPackage.DRAW_INDEXED__FIRST_INDEX:
-			return getFirstIndex();
-		case GraphicPackage.DRAW_INDEXED__VERTEX_OFFSET:
-			return getVertexOffset();
-		case GraphicPackage.DRAW_INDEXED__FIRST_INSTANCE:
-			return getFirstInstance();
+			case GraphicPackage.DRAW_INDEXED__NAME:
+				return getName();
+			case GraphicPackage.DRAW_INDEXED__ENABLED:
+				return isEnabled();
+			case GraphicPackage.DRAW_INDEXED__INDEX_COUNT:
+				return getIndexCount();
+			case GraphicPackage.DRAW_INDEXED__INSTANCE_COUNT:
+				return getInstanceCount();
+			case GraphicPackage.DRAW_INDEXED__FIRST_INDEX:
+				return getFirstIndex();
+			case GraphicPackage.DRAW_INDEXED__VERTEX_OFFSET:
+				return getVertexOffset();
+			case GraphicPackage.DRAW_INDEXED__FIRST_INSTANCE:
+				return getFirstInstance();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -407,27 +407,27 @@ public class DrawIndexedImpl extends MinimalEObjectImpl.Container implements Dra
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.DRAW_INDEXED__NAME:
-			setName((String) newValue);
-			return;
-		case GraphicPackage.DRAW_INDEXED__ENABLED:
-			setEnabled((Boolean) newValue);
-			return;
-		case GraphicPackage.DRAW_INDEXED__INDEX_COUNT:
-			setIndexCount((Integer) newValue);
-			return;
-		case GraphicPackage.DRAW_INDEXED__INSTANCE_COUNT:
-			setInstanceCount((Integer) newValue);
-			return;
-		case GraphicPackage.DRAW_INDEXED__FIRST_INDEX:
-			setFirstIndex((Integer) newValue);
-			return;
-		case GraphicPackage.DRAW_INDEXED__VERTEX_OFFSET:
-			setVertexOffset((Integer) newValue);
-			return;
-		case GraphicPackage.DRAW_INDEXED__FIRST_INSTANCE:
-			setFirstInstance((Integer) newValue);
-			return;
+			case GraphicPackage.DRAW_INDEXED__NAME:
+				setName((String)newValue);
+				return;
+			case GraphicPackage.DRAW_INDEXED__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case GraphicPackage.DRAW_INDEXED__INDEX_COUNT:
+				setIndexCount((Integer)newValue);
+				return;
+			case GraphicPackage.DRAW_INDEXED__INSTANCE_COUNT:
+				setInstanceCount((Integer)newValue);
+				return;
+			case GraphicPackage.DRAW_INDEXED__FIRST_INDEX:
+				setFirstIndex((Integer)newValue);
+				return;
+			case GraphicPackage.DRAW_INDEXED__VERTEX_OFFSET:
+				setVertexOffset((Integer)newValue);
+				return;
+			case GraphicPackage.DRAW_INDEXED__FIRST_INSTANCE:
+				setFirstInstance((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -442,27 +442,27 @@ public class DrawIndexedImpl extends MinimalEObjectImpl.Container implements Dra
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.DRAW_INDEXED__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case GraphicPackage.DRAW_INDEXED__ENABLED:
-			setEnabled(ENABLED_EDEFAULT);
-			return;
-		case GraphicPackage.DRAW_INDEXED__INDEX_COUNT:
-			setIndexCount(INDEX_COUNT_EDEFAULT);
-			return;
-		case GraphicPackage.DRAW_INDEXED__INSTANCE_COUNT:
-			setInstanceCount(INSTANCE_COUNT_EDEFAULT);
-			return;
-		case GraphicPackage.DRAW_INDEXED__FIRST_INDEX:
-			setFirstIndex(FIRST_INDEX_EDEFAULT);
-			return;
-		case GraphicPackage.DRAW_INDEXED__VERTEX_OFFSET:
-			setVertexOffset(VERTEX_OFFSET_EDEFAULT);
-			return;
-		case GraphicPackage.DRAW_INDEXED__FIRST_INSTANCE:
-			setFirstInstance(FIRST_INSTANCE_EDEFAULT);
-			return;
+			case GraphicPackage.DRAW_INDEXED__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case GraphicPackage.DRAW_INDEXED__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case GraphicPackage.DRAW_INDEXED__INDEX_COUNT:
+				setIndexCount(INDEX_COUNT_EDEFAULT);
+				return;
+			case GraphicPackage.DRAW_INDEXED__INSTANCE_COUNT:
+				setInstanceCount(INSTANCE_COUNT_EDEFAULT);
+				return;
+			case GraphicPackage.DRAW_INDEXED__FIRST_INDEX:
+				setFirstIndex(FIRST_INDEX_EDEFAULT);
+				return;
+			case GraphicPackage.DRAW_INDEXED__VERTEX_OFFSET:
+				setVertexOffset(VERTEX_OFFSET_EDEFAULT);
+				return;
+			case GraphicPackage.DRAW_INDEXED__FIRST_INSTANCE:
+				setFirstInstance(FIRST_INSTANCE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -477,20 +477,20 @@ public class DrawIndexedImpl extends MinimalEObjectImpl.Container implements Dra
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.DRAW_INDEXED__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case GraphicPackage.DRAW_INDEXED__ENABLED:
-			return enabled != ENABLED_EDEFAULT;
-		case GraphicPackage.DRAW_INDEXED__INDEX_COUNT:
-			return indexCount != INDEX_COUNT_EDEFAULT;
-		case GraphicPackage.DRAW_INDEXED__INSTANCE_COUNT:
-			return instanceCount != INSTANCE_COUNT_EDEFAULT;
-		case GraphicPackage.DRAW_INDEXED__FIRST_INDEX:
-			return firstIndex != FIRST_INDEX_EDEFAULT;
-		case GraphicPackage.DRAW_INDEXED__VERTEX_OFFSET:
-			return vertexOffset != VERTEX_OFFSET_EDEFAULT;
-		case GraphicPackage.DRAW_INDEXED__FIRST_INSTANCE:
-			return firstInstance != FIRST_INSTANCE_EDEFAULT;
+			case GraphicPackage.DRAW_INDEXED__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case GraphicPackage.DRAW_INDEXED__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case GraphicPackage.DRAW_INDEXED__INDEX_COUNT:
+				return indexCount != INDEX_COUNT_EDEFAULT;
+			case GraphicPackage.DRAW_INDEXED__INSTANCE_COUNT:
+				return instanceCount != INSTANCE_COUNT_EDEFAULT;
+			case GraphicPackage.DRAW_INDEXED__FIRST_INDEX:
+				return firstIndex != FIRST_INDEX_EDEFAULT;
+			case GraphicPackage.DRAW_INDEXED__VERTEX_OFFSET:
+				return vertexOffset != VERTEX_OFFSET_EDEFAULT;
+			case GraphicPackage.DRAW_INDEXED__FIRST_INSTANCE:
+				return firstInstance != FIRST_INSTANCE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

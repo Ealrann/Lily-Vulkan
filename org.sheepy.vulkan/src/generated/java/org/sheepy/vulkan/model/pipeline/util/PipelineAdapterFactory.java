@@ -60,7 +60,7 @@ public class PipelineAdapterFactory extends AdapterFactoryImpl
 		}
 		if (object instanceof EObject)
 		{
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -72,23 +72,23 @@ public class PipelineAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected PipelineSwitch<Adapter> modelSwitch = new PipelineSwitch<Adapter>()
-	{
-		@Override
-		public Adapter casePushConstantRange(PushConstantRange object)
 		{
-			return createPushConstantRangeAdapter();
-		}
-		@Override
-		public Adapter caseSpecializationConstant(SpecializationConstant object)
-		{
-			return createSpecializationConstantAdapter();
-		}
-		@Override
-		public Adapter defaultCase(EObject object)
-		{
-			return createEObjectAdapter();
-		}
-	};
+			@Override
+			public Adapter casePushConstantRange(PushConstantRange object)
+			{
+				return createPushConstantRangeAdapter();
+			}
+			@Override
+			public Adapter caseSpecializationConstant(SpecializationConstant object)
+			{
+				return createSpecializationConstantAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object)
+			{
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -101,7 +101,7 @@ public class PipelineAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public Adapter createAdapter(Notifier target)
 	{
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 	/**

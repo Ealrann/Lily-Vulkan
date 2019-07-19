@@ -69,12 +69,12 @@ public class ExtraAttachmentDescriptionImpl extends AttachmentDescriptionImpl im
 	{
 		if (attachment != null && attachment.eIsProxy())
 		{
-			InternalEObject oldAttachment = (InternalEObject) attachment;
-			attachment = (ISwapAttachment) eResolveProxy(oldAttachment);
+			InternalEObject oldAttachment = (InternalEObject)attachment;
+			attachment = (ISwapAttachment)eResolveProxy(oldAttachment);
 			if (attachment != oldAttachment)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT, oldAttachment, attachment));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT, oldAttachment, attachment));
 			}
 		}
 		return attachment;
@@ -100,8 +100,8 @@ public class ExtraAttachmentDescriptionImpl extends AttachmentDescriptionImpl im
 	{
 		ISwapAttachment oldAttachment = attachment;
 		attachment = newAttachment;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT, oldAttachment, attachment));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT, oldAttachment, attachment));
 	}
 
 	/**
@@ -114,9 +114,9 @@ public class ExtraAttachmentDescriptionImpl extends AttachmentDescriptionImpl im
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT:
-			if (resolve) return getAttachment();
-			return basicGetAttachment();
+			case GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT:
+				if (resolve) return getAttachment();
+				return basicGetAttachment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -131,9 +131,9 @@ public class ExtraAttachmentDescriptionImpl extends AttachmentDescriptionImpl im
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT:
-			setAttachment((ISwapAttachment) newValue);
-			return;
+			case GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT:
+				setAttachment((ISwapAttachment)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -148,9 +148,9 @@ public class ExtraAttachmentDescriptionImpl extends AttachmentDescriptionImpl im
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT:
-			setAttachment((ISwapAttachment) null);
-			return;
+			case GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT:
+				setAttachment((ISwapAttachment)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -165,8 +165,8 @@ public class ExtraAttachmentDescriptionImpl extends AttachmentDescriptionImpl im
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT:
-			return attachment != null;
+			case GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT:
+				return attachment != null;
 		}
 		return super.eIsSet(featureID);
 	}

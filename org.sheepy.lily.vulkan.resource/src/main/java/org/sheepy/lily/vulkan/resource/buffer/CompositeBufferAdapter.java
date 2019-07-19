@@ -42,6 +42,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	private final PushBuffer pushBuffer;
 
 	private IBufferBackend bufferBackend;
+	private boolean allocated = false;
 
 	private final AdapterImpl pushBufferListener = new AdapterImpl()
 	{
@@ -97,6 +98,8 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		}
 
 		pushBuffer.eAdapters().add(pushBufferListener);
+
+		allocated = true;
 	}
 
 	public void update()
@@ -171,6 +174,8 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	@Override
 	public void free(IExecutionContext context)
 	{
+		allocated = false;
+
 		bufferBackend.free(context);
 
 		pushBuffer.eAdapters().remove(pushBufferListener);
@@ -185,6 +190,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	@Override
 	public List<IVkDescriptor> getDescriptors()
 	{
+		assert allocated == true;
 		return descriptors;
 	}
 

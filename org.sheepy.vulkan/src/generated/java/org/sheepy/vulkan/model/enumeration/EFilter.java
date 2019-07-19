@@ -67,9 +67,11 @@ public enum EFilter implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EFilter[] VALUES_ARRAY = new EFilter[] {
-			NEAREST, LINEAR,
-	};
+	private static final EFilter[] VALUES_ARRAY = new EFilter[]
+		{
+			NEAREST,
+			LINEAR,
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>EFilter</b></em>' enumerators.
@@ -77,8 +79,7 @@ public enum EFilter implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EFilter> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EFilter> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EFilter</b></em>' literal with the specified literal value.
@@ -134,10 +135,8 @@ public enum EFilter implements Enumerator
 	{
 		switch (value)
 		{
-		case NEAREST_VALUE:
-			return NEAREST;
-		case LINEAR_VALUE:
-			return LINEAR;
+			case NEAREST_VALUE: return NEAREST;
+			case LINEAR_VALUE: return LINEAR;
 		}
 		return null;
 	}
@@ -184,7 +183,7 @@ public enum EFilter implements Enumerator
 	@Override
 	public int getValue()
 	{
-		return value;
+	  return value;
 	}
 
 	/**
@@ -195,7 +194,7 @@ public enum EFilter implements Enumerator
 	@Override
 	public String getName()
 	{
-		return name;
+	  return name;
 	}
 
 	/**
@@ -206,7 +205,7 @@ public enum EFilter implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-		return literal;
+	  return literal;
 	}
 
 	/**

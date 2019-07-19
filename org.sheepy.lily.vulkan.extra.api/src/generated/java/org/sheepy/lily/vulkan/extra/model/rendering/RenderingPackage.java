@@ -89,6 +89,15 @@ public interface RenderingPackage extends EPackage
 	int ENTITY_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The number of operations of the '<em>Entity</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTITY_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PhysicalEntityImpl <em>Physical Entity</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -153,6 +162,15 @@ public interface RenderingPackage extends EPackage
 	int PHYSICAL_ENTITY_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 4;
 
 	/**
+	 * The number of operations of the '<em>Physical Entity</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHYSICAL_ENTITY_OPERATION_COUNT = ENTITY_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.AxisImpl <em>Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -199,6 +217,15 @@ public interface RenderingPackage extends EPackage
 	int AXIS_FEATURE_COUNT = 3;
 
 	/**
+	 * The number of operations of the '<em>Axis</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AXIS_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.Presentation <em>Presentation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -227,6 +254,15 @@ public interface RenderingPackage extends EPackage
 	int PRESENTATION_FEATURE_COUNT = 1;
 
 	/**
+	 * The number of operations of the '<em>Presentation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRESENTATION_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PresentationPkgImpl <em>Presentation Pkg</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -253,6 +289,15 @@ public interface RenderingPackage extends EPackage
 	 * @ordered
 	 */
 	int PRESENTATION_PKG_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Presentation Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRESENTATION_PKG_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PresentableEntityImpl <em>Presentable Entity</em>}' class.
@@ -338,14 +383,23 @@ public interface RenderingPackage extends EPackage
 
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererMaintainerImpl <em>Generic Renderer Maintainer</em>}' class.
+	 * The number of operations of the '<em>Presentable Entity</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererMaintainerImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getGenericRendererMaintainer()
+	 * @generated
+	 * @ordered
+	 */
+	int PRESENTABLE_ENTITY_OPERATION_COUNT = PHYSICAL_ENTITY_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl <em>Generic Renderer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getGenericRenderer()
 	 * @generated
 	 */
-	int GENERIC_RENDERER_MAINTAINER = 6;
+	int GENERIC_RENDERER = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -354,7 +408,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__NAME = GraphicPackage.GRAPHICS_PIPELINE__NAME;
+	int GENERIC_RENDERER__NAME = GraphicPackage.GRAPHICS_PIPELINE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -363,7 +417,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__RESOURCE_PKG = GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG;
+	int GENERIC_RENDERER__RESOURCE_PKG = GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -372,7 +426,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__ENABLED = GraphicPackage.GRAPHICS_PIPELINE__ENABLED;
+	int GENERIC_RENDERER__ENABLED = GraphicPackage.GRAPHICS_PIPELINE__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -381,7 +435,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__STAGE = GraphicPackage.GRAPHICS_PIPELINE__STAGE;
+	int GENERIC_RENDERER__STAGE = GraphicPackage.GRAPHICS_PIPELINE__STAGE;
 
 	/**
 	 * The feature id for the '<em><b>Push Constant Ranges</b></em>' containment reference list.
@@ -390,7 +444,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__PUSH_CONSTANT_RANGES = GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES;
+	int GENERIC_RENDERER__PUSH_CONSTANT_RANGES = GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES;
 
 	/**
 	 * The feature id for the '<em><b>Specialization Data</b></em>' attribute.
@@ -399,7 +453,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__SPECIALIZATION_DATA = GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA;
+	int GENERIC_RENDERER__SPECIALIZATION_DATA = GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
@@ -408,7 +462,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__DESCRIPTOR_SET_PKG = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG;
+	int GENERIC_RENDERER__DESCRIPTOR_SET_PKG = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
@@ -417,7 +471,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__TASK_PKG = GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG;
+	int GENERIC_RENDERER__TASK_PKG = GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Maintainer</b></em>' reference.
@@ -426,7 +480,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__MAINTAINER = GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER;
+	int GENERIC_RENDERER__MAINTAINER = GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Shaders</b></em>' reference list.
@@ -435,7 +489,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__SHADERS = GraphicPackage.GRAPHICS_PIPELINE__SHADERS;
+	int GENERIC_RENDERER__SHADERS = GraphicPackage.GRAPHICS_PIPELINE__SHADERS;
 
 	/**
 	 * The feature id for the '<em><b>Viewport State</b></em>' containment reference.
@@ -444,7 +498,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__VIEWPORT_STATE = GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE;
+	int GENERIC_RENDERER__VIEWPORT_STATE = GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE;
 
 	/**
 	 * The feature id for the '<em><b>Input Assembly</b></em>' containment reference.
@@ -453,7 +507,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__INPUT_ASSEMBLY = GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY;
+	int GENERIC_RENDERER__INPUT_ASSEMBLY = GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY;
 
 	/**
 	 * The feature id for the '<em><b>Rasterizer</b></em>' containment reference.
@@ -462,7 +516,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__RASTERIZER = GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER;
+	int GENERIC_RENDERER__RASTERIZER = GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER;
 
 	/**
 	 * The feature id for the '<em><b>Color Blend</b></em>' containment reference.
@@ -471,7 +525,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__COLOR_BLEND = GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND;
+	int GENERIC_RENDERER__COLOR_BLEND = GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic State</b></em>' containment reference.
@@ -480,7 +534,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__DYNAMIC_STATE = GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE;
+	int GENERIC_RENDERER__DYNAMIC_STATE = GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE;
 
 	/**
 	 * The feature id for the '<em><b>Subpass</b></em>' attribute.
@@ -489,7 +543,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__SUBPASS = GraphicPackage.GRAPHICS_PIPELINE__SUBPASS;
+	int GENERIC_RENDERER__SUBPASS = GraphicPackage.GRAPHICS_PIPELINE__SUBPASS;
 
 	/**
 	 * The feature id for the '<em><b>Vertex Input State</b></em>' containment reference.
@@ -498,7 +552,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__VERTEX_INPUT_STATE = GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE;
+	int GENERIC_RENDERER__VERTEX_INPUT_STATE = GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE;
 
 	/**
 	 * The feature id for the '<em><b>Maintained</b></em>' reference list.
@@ -507,7 +561,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__MAINTAINED = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 0;
+	int GENERIC_RENDERER__MAINTAINED = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Data Provider Pkg</b></em>' containment reference.
@@ -516,7 +570,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 1;
+	int GENERIC_RENDERER__DATA_PROVIDER_PKG = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Presentation Pkg</b></em>' reference.
@@ -525,7 +579,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__PRESENTATION_PKG = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 2;
+	int GENERIC_RENDERER__PRESENTATION_PKG = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Constant Buffer</b></em>' reference.
@@ -534,16 +588,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__CONSTANT_BUFFER = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Basic Resources</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_RENDERER_MAINTAINER__BASIC_RESOURCES = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 4;
+	int GENERIC_RENDERER__CONSTANT_BUFFER = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Push Buffer</b></em>' reference.
@@ -552,16 +597,34 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER__PUSH_BUFFER = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 5;
+	int GENERIC_RENDERER__PUSH_BUFFER = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the '<em>Generic Renderer Maintainer</em>' class.
+	 * The feature id for the '<em><b>Common Resource Provider</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_MAINTAINER_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 6;
+	int GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of structural features of the '<em>Generic Renderer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_RENDERER_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 6;
+
+	/**
+	 * The number of operations of the '<em>Generic Renderer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_RENDERER_OPERATION_COUNT = GraphicPackage.GRAPHICS_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericDataProviderImpl <em>Generic Data Provider</em>}' class.
@@ -601,7 +664,7 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_DATA_PROVIDER__INSTANCE_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT;
 
 	/**
-	 * The feature id for the '<em><b>Data Source</b></em>' reference.
+	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -618,6 +681,15 @@ public interface RenderingPackage extends EPackage
 	 */
 	int GENERIC_DATA_PROVIDER_FEATURE_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
 
+
+	/**
+	 * The number of operations of the '<em>Generic Data Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DATA_PROVIDER_OPERATION_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderPkgImpl <em>Data Provider Pkg</em>}' class.
@@ -646,6 +718,15 @@ public interface RenderingPackage extends EPackage
 	 * @ordered
 	 */
 	int DATA_PROVIDER_PKG_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Data Provider Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_PROVIDER_PKG_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericDescribedDataProviderImpl <em>Generic Described Data Provider</em>}' class.
@@ -685,7 +766,7 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_DESCRIBED_DATA_PROVIDER__INSTANCE_COUNT = GENERIC_DATA_PROVIDER__INSTANCE_COUNT;
 
 	/**
-	 * The feature id for the '<em><b>Data Source</b></em>' reference.
+	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -719,6 +800,15 @@ public interface RenderingPackage extends EPackage
 	 * @ordered
 	 */
 	int GENERIC_DESCRIBED_DATA_PROVIDER_FEATURE_COUNT = GENERIC_DATA_PROVIDER_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Generic Described Data Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DESCRIBED_DATA_PROVIDER_OPERATION_COUNT = GENERIC_DATA_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl <em>Renderable Data Source</em>}' class.
@@ -759,6 +849,15 @@ public interface RenderingPackage extends EPackage
 
 
 	/**
+	 * The number of operations of the '<em>Renderable Data Source</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDERABLE_DATA_SOURCE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericVertexProviderImpl <em>Generic Vertex Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -796,7 +895,7 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_VERTEX_PROVIDER__INSTANCE_COUNT = GENERIC_DATA_PROVIDER__INSTANCE_COUNT;
 
 	/**
-	 * The feature id for the '<em><b>Data Source</b></em>' reference.
+	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -812,6 +911,15 @@ public interface RenderingPackage extends EPackage
 	 * @ordered
 	 */
 	int GENERIC_VERTEX_PROVIDER_FEATURE_COUNT = GENERIC_DATA_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Generic Vertex Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_VERTEX_PROVIDER_OPERATION_COUNT = GENERIC_DATA_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericIndexProviderImpl <em>Generic Index Provider</em>}' class.
@@ -851,7 +959,7 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_INDEX_PROVIDER__INSTANCE_COUNT = GENERIC_DATA_PROVIDER__INSTANCE_COUNT;
 
 	/**
-	 * The feature id for the '<em><b>Data Source</b></em>' reference.
+	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -876,6 +984,120 @@ public interface RenderingPackage extends EPackage
 	 * @ordered
 	 */
 	int GENERIC_INDEX_PROVIDER_FEATURE_COUNT = GENERIC_DATA_PROVIDER_FEATURE_COUNT + 1;
+
+
+	/**
+	 * The number of operations of the '<em>Generic Index Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_INDEX_PROVIDER_OPERATION_COUNT = GENERIC_DATA_PROVIDER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PresentationRootPkgImpl <em>Presentation Root Pkg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.PresentationRootPkgImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getPresentationRootPkg()
+	 * @generated
+	 */
+	int PRESENTATION_ROOT_PKG = 13;
+
+	/**
+	 * The feature id for the '<em><b>Presentation Pkgs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRESENTATION_ROOT_PKG__PRESENTATION_PKGS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Presentation Root Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRESENTATION_ROOT_PKG_FEATURE_COUNT = 1;
+
+
+	/**
+	 * The number of operations of the '<em>Presentation Root Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRESENTATION_ROOT_PKG_OPERATION_COUNT = 0;
+
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider <em>Resource Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getResourceProvider()
+	 * @generated
+	 */
+	int RESOURCE_PROVIDER = 14;
+
+	/**
+	 * The number of structural features of the '<em>Resource Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_PROVIDER_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Resource Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_PROVIDER_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.StaticResourceProviderImpl <em>Static Resource Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.StaticResourceProviderImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getStaticResourceProvider()
+	 * @generated
+	 */
+	int STATIC_RESOURCE_PROVIDER = 15;
+
+	/**
+	 * The feature id for the '<em><b>Resources</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_RESOURCE_PROVIDER__RESOURCES = RESOURCE_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Static Resource Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_RESOURCE_PROVIDER_FEATURE_COUNT = RESOURCE_PROVIDER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Static Resource Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_RESOURCE_PROVIDER_OPERATION_COUNT = RESOURCE_PROVIDER_OPERATION_COUNT + 0;
 
 
 	/**
@@ -1060,69 +1282,69 @@ public interface RenderingPackage extends EPackage
 	EAttribute getPresentableEntity_Scale();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer <em>Generic Renderer Maintainer</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer <em>Generic Renderer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Generic Renderer Maintainer</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer
+	 * @return the meta object for class '<em>Generic Renderer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer
 	 * @generated
 	 */
-	EClass getGenericRendererMaintainer();
+	EClass getGenericRenderer();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getDataProviderPkg <em>Data Provider Pkg</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getDataProviderPkg <em>Data Provider Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Data Provider Pkg</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getDataProviderPkg()
-	 * @see #getGenericRendererMaintainer()
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getDataProviderPkg()
+	 * @see #getGenericRenderer()
 	 * @generated
 	 */
-	EReference getGenericRendererMaintainer_DataProviderPkg();
+	EReference getGenericRenderer_DataProviderPkg();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getPresentationPkg <em>Presentation Pkg</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getPresentationPkg <em>Presentation Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Presentation Pkg</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getPresentationPkg()
-	 * @see #getGenericRendererMaintainer()
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getPresentationPkg()
+	 * @see #getGenericRenderer()
 	 * @generated
 	 */
-	EReference getGenericRendererMaintainer_PresentationPkg();
+	EReference getGenericRenderer_PresentationPkg();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getConstantBuffer <em>Constant Buffer</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getConstantBuffer <em>Constant Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Constant Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getConstantBuffer()
-	 * @see #getGenericRendererMaintainer()
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getConstantBuffer()
+	 * @see #getGenericRenderer()
 	 * @generated
 	 */
-	EReference getGenericRendererMaintainer_ConstantBuffer();
+	EReference getGenericRenderer_ConstantBuffer();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getBasicResources <em>Basic Resources</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Basic Resources</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getBasicResources()
-	 * @see #getGenericRendererMaintainer()
-	 * @generated
-	 */
-	EReference getGenericRendererMaintainer_BasicResources();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getPushBuffer <em>Push Buffer</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getPushBuffer <em>Push Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Push Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRendererMaintainer#getPushBuffer()
-	 * @see #getGenericRendererMaintainer()
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getPushBuffer()
+	 * @see #getGenericRenderer()
 	 * @generated
 	 */
-	EReference getGenericRendererMaintainer_PushBuffer();
+	EReference getGenericRenderer_PushBuffer();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getCommonResourceProvider <em>Common Resource Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Common Resource Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getCommonResourceProvider()
+	 * @see #getGenericRenderer()
+	 * @generated
+	 */
+	EReference getGenericRenderer_CommonResourceProvider();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericDataProvider <em>Generic Data Provider</em>}'.
@@ -1227,6 +1449,58 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getGenericIndexProvider_IndexType();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationRootPkg <em>Presentation Root Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Presentation Root Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PresentationRootPkg
+	 * @generated
+	 */
+	EClass getPresentationRootPkg();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationRootPkg#getPresentationPkgs <em>Presentation Pkgs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Presentation Pkgs</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PresentationRootPkg#getPresentationPkgs()
+	 * @see #getPresentationRootPkg()
+	 * @generated
+	 */
+	EReference getPresentationRootPkg_PresentationPkgs();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider <em>Resource Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Resource Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider
+	 * @generated
+	 */
+	EClass getResourceProvider();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider <em>Static Resource Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Static Resource Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider
+	 * @generated
+	 */
+	EClass getStaticResourceProvider();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider#getResources <em>Resources</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Resources</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider#getResources()
+	 * @see #getStaticResourceProvider()
+	 * @generated
+	 */
+	EReference getStaticResourceProvider_Resources();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1400,14 +1674,14 @@ public interface RenderingPackage extends EPackage
 		EAttribute PRESENTABLE_ENTITY__SCALE = eINSTANCE.getPresentableEntity_Scale();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererMaintainerImpl <em>Generic Renderer Maintainer</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl <em>Generic Renderer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererMaintainerImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getGenericRendererMaintainer()
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getGenericRenderer()
 		 * @generated
 		 */
-		EClass GENERIC_RENDERER_MAINTAINER = eINSTANCE.getGenericRendererMaintainer();
+		EClass GENERIC_RENDERER = eINSTANCE.getGenericRenderer();
 
 		/**
 		 * The meta object literal for the '<em><b>Data Provider Pkg</b></em>' containment reference feature.
@@ -1415,7 +1689,7 @@ public interface RenderingPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GENERIC_RENDERER_MAINTAINER__DATA_PROVIDER_PKG = eINSTANCE.getGenericRendererMaintainer_DataProviderPkg();
+		EReference GENERIC_RENDERER__DATA_PROVIDER_PKG = eINSTANCE.getGenericRenderer_DataProviderPkg();
 
 		/**
 		 * The meta object literal for the '<em><b>Presentation Pkg</b></em>' reference feature.
@@ -1423,7 +1697,7 @@ public interface RenderingPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GENERIC_RENDERER_MAINTAINER__PRESENTATION_PKG = eINSTANCE.getGenericRendererMaintainer_PresentationPkg();
+		EReference GENERIC_RENDERER__PRESENTATION_PKG = eINSTANCE.getGenericRenderer_PresentationPkg();
 
 		/**
 		 * The meta object literal for the '<em><b>Constant Buffer</b></em>' reference feature.
@@ -1431,15 +1705,7 @@ public interface RenderingPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GENERIC_RENDERER_MAINTAINER__CONSTANT_BUFFER = eINSTANCE.getGenericRendererMaintainer_ConstantBuffer();
-
-		/**
-		 * The meta object literal for the '<em><b>Basic Resources</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GENERIC_RENDERER_MAINTAINER__BASIC_RESOURCES = eINSTANCE.getGenericRendererMaintainer_BasicResources();
+		EReference GENERIC_RENDERER__CONSTANT_BUFFER = eINSTANCE.getGenericRenderer_ConstantBuffer();
 
 		/**
 		 * The meta object literal for the '<em><b>Push Buffer</b></em>' reference feature.
@@ -1447,7 +1713,15 @@ public interface RenderingPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GENERIC_RENDERER_MAINTAINER__PUSH_BUFFER = eINSTANCE.getGenericRendererMaintainer_PushBuffer();
+		EReference GENERIC_RENDERER__PUSH_BUFFER = eINSTANCE.getGenericRenderer_PushBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Common Resource Provider</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER = eINSTANCE.getGenericRenderer_CommonResourceProvider();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericDataProviderImpl <em>Generic Data Provider</em>}' class.
@@ -1540,6 +1814,52 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute GENERIC_INDEX_PROVIDER__INDEX_TYPE = eINSTANCE.getGenericIndexProvider_IndexType();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PresentationRootPkgImpl <em>Presentation Root Pkg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.PresentationRootPkgImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getPresentationRootPkg()
+		 * @generated
+		 */
+		EClass PRESENTATION_ROOT_PKG = eINSTANCE.getPresentationRootPkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Presentation Pkgs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRESENTATION_ROOT_PKG__PRESENTATION_PKGS = eINSTANCE.getPresentationRootPkg_PresentationPkgs();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider <em>Resource Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getResourceProvider()
+		 * @generated
+		 */
+		EClass RESOURCE_PROVIDER = eINSTANCE.getResourceProvider();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.StaticResourceProviderImpl <em>Static Resource Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.StaticResourceProviderImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getStaticResourceProvider()
+		 * @generated
+		 */
+		EClass STATIC_RESOURCE_PROVIDER = eINSTANCE.getStaticResourceProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Resources</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATIC_RESOURCE_PROVIDER__RESOURCES = eINSTANCE.getStaticResourceProvider_Resources();
 
 	}
 

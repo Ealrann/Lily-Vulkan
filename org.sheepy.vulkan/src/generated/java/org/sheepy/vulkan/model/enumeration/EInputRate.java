@@ -67,9 +67,11 @@ public enum EInputRate implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EInputRate[] VALUES_ARRAY = new EInputRate[] {
-			VERTEX, INSTANCE,
-	};
+	private static final EInputRate[] VALUES_ARRAY = new EInputRate[]
+		{
+			VERTEX,
+			INSTANCE,
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>EInput Rate</b></em>' enumerators.
@@ -77,8 +79,7 @@ public enum EInputRate implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EInputRate> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EInputRate> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EInput Rate</b></em>' literal with the specified literal value.
@@ -134,10 +135,8 @@ public enum EInputRate implements Enumerator
 	{
 		switch (value)
 		{
-		case VERTEX_VALUE:
-			return VERTEX;
-		case INSTANCE_VALUE:
-			return INSTANCE;
+			case VERTEX_VALUE: return VERTEX;
+			case INSTANCE_VALUE: return INSTANCE;
 		}
 		return null;
 	}
@@ -184,7 +183,7 @@ public enum EInputRate implements Enumerator
 	@Override
 	public int getValue()
 	{
-		return value;
+	  return value;
 	}
 
 	/**
@@ -195,7 +194,7 @@ public enum EInputRate implements Enumerator
 	@Override
 	public String getName()
 	{
-		return name;
+	  return name;
 	}
 
 	/**
@@ -206,7 +205,7 @@ public enum EInputRate implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-		return literal;
+	  return literal;
 	}
 
 	/**

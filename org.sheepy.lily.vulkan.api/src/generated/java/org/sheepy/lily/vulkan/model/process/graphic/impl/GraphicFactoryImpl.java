@@ -30,13 +30,13 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		try
 		{
-			GraphicFactory theGraphicFactory = (GraphicFactory) EPackage.Registry.INSTANCE
-					.getEFactory(GraphicPackage.eNS_URI);
+			GraphicFactory theGraphicFactory = (GraphicFactory)EPackage.Registry.INSTANCE.getEFactory(GraphicPackage.eNS_URI);
 			if (theGraphicFactory != null)
 			{
 				return theGraphicFactory;
 			}
-		} catch (Exception exception)
+		}
+		catch (Exception exception)
 		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
@@ -64,60 +64,34 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-		case GraphicPackage.GRAPHIC_CONFIGURATION:
-			return createGraphicConfiguration();
-		case GraphicPackage.COLOR_DOMAIN:
-			return createColorDomain();
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION:
-			return createSwapchainConfiguration();
-		case GraphicPackage.FRAMEBUFFER_CONFIGURATION:
-			return createFramebufferConfiguration();
-		case GraphicPackage.IMAGE_ATTACHMENT:
-			return createImageAttachment();
-		case GraphicPackage.DEPTH_ATTACHMENT:
-			return createDepthAttachment();
-		case GraphicPackage.RENDER_PASS_INFO:
-			return createRenderPassInfo();
-		case GraphicPackage.SUBPASS:
-			return createSubpass();
-		case GraphicPackage.ATTACHMENT_REF:
-			return createAttachmentRef();
-		case GraphicPackage.SUBPASS_DEPENDENCY:
-			return createSubpassDependency();
-		case GraphicPackage.SWAP_IMAGE_ATTACHMENT_DESCRIPTION:
-			return createSwapImageAttachmentDescription();
-		case GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION:
-			return createExtraAttachmentDescription();
-		case GraphicPackage.GRAPHIC_PROCESS:
-			return createGraphicProcess();
-		case GraphicPackage.GRAPHICS_PIPELINE:
-			return createGraphicsPipeline();
-		case GraphicPackage.SWAP_IMAGE_BARRIER:
-			return createSwapImageBarrier();
-		case GraphicPackage.BLIT_TO_SWAP_IMAGE:
-			return createBlitToSwapImage();
-		case GraphicPackage.DRAW_INDEXED:
-			return createDrawIndexed();
-		case GraphicPackage.DRAW:
-			return createDraw();
-		case GraphicPackage.VERTEX_INPUT_STATE:
-			return createVertexInputState();
-		case GraphicPackage.INPUT_DESCRIPTOR:
-			return createInputDescriptor();
-		case GraphicPackage.ATTRIBUTE_DESCRIPTION:
-			return createAttributeDescription();
-		case GraphicPackage.BIND_VERTEX_BUFFER:
-			return createBindVertexBuffer();
-		case GraphicPackage.SET_SCISSOR:
-			return createSetScissor();
-		case GraphicPackage.SET_VIEWPORT:
-			return createSetViewport();
-		case GraphicPackage.VERTEX_BINDING:
-			return createVertexBinding();
-		case GraphicPackage.BIND_INDEX_BUFFER:
-			return createBindIndexBuffer();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case GraphicPackage.GRAPHIC_CONFIGURATION: return createGraphicConfiguration();
+			case GraphicPackage.COLOR_DOMAIN: return createColorDomain();
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION: return createSwapchainConfiguration();
+			case GraphicPackage.FRAMEBUFFER_CONFIGURATION: return createFramebufferConfiguration();
+			case GraphicPackage.IMAGE_ATTACHMENT: return createImageAttachment();
+			case GraphicPackage.DEPTH_ATTACHMENT: return createDepthAttachment();
+			case GraphicPackage.RENDER_PASS_INFO: return createRenderPassInfo();
+			case GraphicPackage.SUBPASS: return createSubpass();
+			case GraphicPackage.ATTACHMENT_REF: return createAttachmentRef();
+			case GraphicPackage.SUBPASS_DEPENDENCY: return createSubpassDependency();
+			case GraphicPackage.SWAP_IMAGE_ATTACHMENT_DESCRIPTION: return createSwapImageAttachmentDescription();
+			case GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION: return createExtraAttachmentDescription();
+			case GraphicPackage.GRAPHIC_PROCESS: return createGraphicProcess();
+			case GraphicPackage.GRAPHICS_PIPELINE: return createGraphicsPipeline();
+			case GraphicPackage.SWAP_IMAGE_BARRIER: return createSwapImageBarrier();
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE: return createBlitToSwapImage();
+			case GraphicPackage.DRAW_INDEXED: return createDrawIndexed();
+			case GraphicPackage.DRAW: return createDraw();
+			case GraphicPackage.VERTEX_INPUT_STATE: return createVertexInputState();
+			case GraphicPackage.INPUT_DESCRIPTOR: return createInputDescriptor();
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION: return createAttributeDescription();
+			case GraphicPackage.BIND_VERTEX_BUFFER: return createBindVertexBuffer();
+			case GraphicPackage.SET_SCISSOR: return createSetScissor();
+			case GraphicPackage.SET_VIEWPORT: return createSetViewport();
+			case GraphicPackage.VERTEX_BINDING: return createVertexBinding();
+			case GraphicPackage.BIND_INDEX_BUFFER: return createBindIndexBuffer();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -441,7 +415,7 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	@Override
 	public GraphicPackage getGraphicPackage()
 	{
-		return (GraphicPackage) getEPackage();
+		return (GraphicPackage)getEPackage();
 	}
 
 	/**

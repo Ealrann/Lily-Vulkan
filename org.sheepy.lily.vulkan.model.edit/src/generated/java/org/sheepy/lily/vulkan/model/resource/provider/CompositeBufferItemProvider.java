@@ -77,13 +77,19 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -94,12 +100,19 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addPushBufferPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_CompositeBuffer_pushBuffer_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_CompositeBuffer_pushBuffer_feature",
-								"_UI_CompositeBuffer_type"),
-						ResourcePackage.Literals.COMPOSITE_BUFFER__PUSH_BUFFER, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositeBuffer_pushBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeBuffer_pushBuffer_feature", "_UI_CompositeBuffer_type"),
+				 ResourcePackage.Literals.COMPOSITE_BUFFER__PUSH_BUFFER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -156,10 +169,10 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((CompositeBuffer) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_CompositeBuffer_type")
-				: getString("_UI_CompositeBuffer_type") + " " + label;
+		String label = ((CompositeBuffer)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_CompositeBuffer_type") :
+			getString("_UI_CompositeBuffer_type") + " " + label;
 	}
 
 	/**
@@ -176,12 +189,12 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 
 		switch (notification.getFeatureID(CompositeBuffer.class))
 		{
-		case ResourcePackage.COMPOSITE_BUFFER__NAME:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case ResourcePackage.COMPOSITE_BUFFER__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -198,8 +211,10 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
-				ResourceFactory.eINSTANCE.createDescribedDataProvider()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
+				 ResourceFactory.eINSTANCE.createDescribedDataProvider()));
 	}
 
 	/**
@@ -211,7 +226,7 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

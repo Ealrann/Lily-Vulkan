@@ -76,8 +76,7 @@ public class ProcessPartPkgImpl extends MinimalEObjectImpl.Container implements 
 	{
 		if (parts == null)
 		{
-			parts = new EObjectContainmentEList<IProcessPart>(IProcessPart.class, this,
-					ProcessPackage.PROCESS_PART_PKG__PARTS);
+			parts = new EObjectContainmentEList<IProcessPart>(IProcessPart.class, this, ProcessPackage.PROCESS_PART_PKG__PARTS);
 		}
 		return parts;
 	}
@@ -92,8 +91,8 @@ public class ProcessPartPkgImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PROCESS_PART_PKG__PARTS:
-			return ((InternalEList<?>) getParts()).basicRemove(otherEnd, msgs);
+			case ProcessPackage.PROCESS_PART_PKG__PARTS:
+				return ((InternalEList<?>)getParts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -108,8 +107,8 @@ public class ProcessPartPkgImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PROCESS_PART_PKG__PARTS:
-			return getParts();
+			case ProcessPackage.PROCESS_PART_PKG__PARTS:
+				return getParts();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -125,10 +124,10 @@ public class ProcessPartPkgImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PROCESS_PART_PKG__PARTS:
-			getParts().clear();
-			getParts().addAll((Collection<? extends IProcessPart>) newValue);
-			return;
+			case ProcessPackage.PROCESS_PART_PKG__PARTS:
+				getParts().clear();
+				getParts().addAll((Collection<? extends IProcessPart>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -143,9 +142,9 @@ public class ProcessPartPkgImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PROCESS_PART_PKG__PARTS:
-			getParts().clear();
-			return;
+			case ProcessPackage.PROCESS_PART_PKG__PARTS:
+				getParts().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -160,8 +159,8 @@ public class ProcessPartPkgImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PROCESS_PART_PKG__PARTS:
-			return parts != null && !parts.isEmpty();
+			case ProcessPackage.PROCESS_PART_PKG__PARTS:
+				return parts != null && !parts.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

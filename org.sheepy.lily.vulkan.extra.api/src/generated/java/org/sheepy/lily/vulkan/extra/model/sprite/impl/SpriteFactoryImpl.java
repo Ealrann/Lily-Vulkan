@@ -64,8 +64,9 @@ public class SpriteFactoryImpl extends EFactoryImpl implements SpriteFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case SpritePackage.SPRITE_RENDERER_MAINTAINER: return createSpriteRendererMaintainer();
+			case SpritePackage.SPRITE_RENDERER: return createSpriteRenderer();
 			case SpritePackage.SPRITE: return createSprite();
+			case SpritePackage.SPRITE_PKG: return createSpritePkg();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -77,10 +78,10 @@ public class SpriteFactoryImpl extends EFactoryImpl implements SpriteFactory
 	 * @generated
 	 */
 	@Override
-	public SpriteRendererMaintainer createSpriteRendererMaintainer()
+	public SpriteRenderer createSpriteRenderer()
 	{
-		SpriteRendererMaintainerImpl spriteRendererMaintainer = new SpriteRendererMaintainerImpl();
-		return spriteRendererMaintainer;
+		SpriteRendererImpl spriteRenderer = new SpriteRendererImpl();
+		return spriteRenderer;
 	}
 
 	/**
@@ -93,6 +94,18 @@ public class SpriteFactoryImpl extends EFactoryImpl implements SpriteFactory
 	{
 		SpriteImpl sprite = new SpriteImpl();
 		return sprite;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SpritePkg createSpritePkg()
+	{
+		SpritePkgImpl spritePkg = new SpritePkgImpl();
+		return spritePkg;
 	}
 
 	/**

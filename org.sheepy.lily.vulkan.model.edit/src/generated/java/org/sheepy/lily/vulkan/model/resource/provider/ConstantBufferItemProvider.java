@@ -74,13 +74,19 @@ public class ConstantBufferItemProvider extends ItemProviderAdapter implements I
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -91,13 +97,19 @@ public class ConstantBufferItemProvider extends ItemProviderAdapter implements I
 	 */
 	protected void addDataPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ConstantBuffer_data_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ConstantBuffer_data_feature",
-								"_UI_ConstantBuffer_type"),
-						ResourcePackage.Literals.CONSTANT_BUFFER__DATA, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConstantBuffer_data_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConstantBuffer_data_feature", "_UI_ConstantBuffer_type"),
+				 ResourcePackage.Literals.CONSTANT_BUFFER__DATA,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -121,10 +133,10 @@ public class ConstantBufferItemProvider extends ItemProviderAdapter implements I
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((ConstantBuffer) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_ConstantBuffer_type")
-				: getString("_UI_ConstantBuffer_type") + " " + label;
+		String label = ((ConstantBuffer)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ConstantBuffer_type") :
+			getString("_UI_ConstantBuffer_type") + " " + label;
 	}
 
 	/**
@@ -141,11 +153,11 @@ public class ConstantBufferItemProvider extends ItemProviderAdapter implements I
 
 		switch (notification.getFeatureID(ConstantBuffer.class))
 		{
-		case ResourcePackage.CONSTANT_BUFFER__NAME:
-		case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
-		case ResourcePackage.CONSTANT_BUFFER__DATA:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case ResourcePackage.CONSTANT_BUFFER__NAME:
+			case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
+			case ResourcePackage.CONSTANT_BUFFER__DATA:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -172,7 +184,7 @@ public class ConstantBufferItemProvider extends ItemProviderAdapter implements I
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

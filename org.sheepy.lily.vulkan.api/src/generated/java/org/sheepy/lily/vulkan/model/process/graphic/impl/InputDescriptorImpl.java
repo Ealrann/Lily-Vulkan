@@ -133,8 +133,8 @@ public class InputDescriptorImpl extends MinimalEObjectImpl.Container implements
 	{
 		EInputRate oldInputRate = inputRate;
 		inputRate = newInputRate == null ? INPUT_RATE_EDEFAULT : newInputRate;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE, oldInputRate, inputRate));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE, oldInputRate, inputRate));
 	}
 
 	/**
@@ -158,8 +158,8 @@ public class InputDescriptorImpl extends MinimalEObjectImpl.Container implements
 	{
 		int oldStrideLength = strideLength;
 		strideLength = newStrideLength;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH, oldStrideLength, strideLength));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH, oldStrideLength, strideLength));
 	}
 
 	/**
@@ -172,8 +172,7 @@ public class InputDescriptorImpl extends MinimalEObjectImpl.Container implements
 	{
 		if (attributes == null)
 		{
-			attributes = new EObjectContainmentEList<AttributeDescription>(AttributeDescription.class, this,
-					GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES);
+			attributes = new EObjectContainmentEList<AttributeDescription>(AttributeDescription.class, this, GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES);
 		}
 		return attributes;
 	}
@@ -188,8 +187,8 @@ public class InputDescriptorImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
-			return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd, msgs);
+			case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
+				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -204,12 +203,12 @@ public class InputDescriptorImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
-			return getInputRate();
-		case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
-			return getStrideLength();
-		case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
-			return getAttributes();
+			case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
+				return getInputRate();
+			case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
+				return getStrideLength();
+			case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
+				return getAttributes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -225,16 +224,16 @@ public class InputDescriptorImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
-			setInputRate((EInputRate) newValue);
-			return;
-		case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
-			setStrideLength((Integer) newValue);
-			return;
-		case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
-			getAttributes().clear();
-			getAttributes().addAll((Collection<? extends AttributeDescription>) newValue);
-			return;
+			case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
+				setInputRate((EInputRate)newValue);
+				return;
+			case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
+				setStrideLength((Integer)newValue);
+				return;
+			case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
+				getAttributes().clear();
+				getAttributes().addAll((Collection<? extends AttributeDescription>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -249,15 +248,15 @@ public class InputDescriptorImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
-			setInputRate(INPUT_RATE_EDEFAULT);
-			return;
-		case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
-			setStrideLength(STRIDE_LENGTH_EDEFAULT);
-			return;
-		case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
-			getAttributes().clear();
-			return;
+			case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
+				setInputRate(INPUT_RATE_EDEFAULT);
+				return;
+			case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
+				setStrideLength(STRIDE_LENGTH_EDEFAULT);
+				return;
+			case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
+				getAttributes().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -272,12 +271,12 @@ public class InputDescriptorImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
-			return inputRate != INPUT_RATE_EDEFAULT;
-		case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
-			return strideLength != STRIDE_LENGTH_EDEFAULT;
-		case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
-			return attributes != null && !attributes.isEmpty();
+			case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
+				return inputRate != INPUT_RATE_EDEFAULT;
+			case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
+				return strideLength != STRIDE_LENGTH_EDEFAULT;
+			case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
+				return attributes != null && !attributes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

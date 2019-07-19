@@ -30,13 +30,13 @@ public class BarrierFactoryImpl extends EFactoryImpl implements BarrierFactory
 	{
 		try
 		{
-			BarrierFactory theBarrierFactory = (BarrierFactory) EPackage.Registry.INSTANCE
-					.getEFactory(BarrierPackage.eNS_URI);
+			BarrierFactory theBarrierFactory = (BarrierFactory)EPackage.Registry.INSTANCE.getEFactory(BarrierPackage.eNS_URI);
 			if (theBarrierFactory != null)
 			{
 				return theBarrierFactory;
 			}
-		} catch (Exception exception)
+		}
+		catch (Exception exception)
 		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
@@ -64,15 +64,11 @@ public class BarrierFactoryImpl extends EFactoryImpl implements BarrierFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-		case BarrierPackage.REFERENCE_BUFFER_BARRIER:
-			return createReferenceBufferBarrier();
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER:
-			return createReferenceImageBarrier();
-		case BarrierPackage.IMAGE_TRANSITION:
-			return createImageTransition();
-		default:
-			throw new IllegalArgumentException(
-					"The class '" + eClass.getName() + "' is not a valid classifier");
+			case BarrierPackage.REFERENCE_BUFFER_BARRIER: return createReferenceBufferBarrier();
+			case BarrierPackage.REFERENCE_IMAGE_BARRIER: return createReferenceImageBarrier();
+			case BarrierPackage.IMAGE_TRANSITION: return createImageTransition();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -120,7 +116,7 @@ public class BarrierFactoryImpl extends EFactoryImpl implements BarrierFactory
 	@Override
 	public BarrierPackage getBarrierPackage()
 	{
-		return (BarrierPackage) getEPackage();
+		return (BarrierPackage)getEPackage();
 	}
 
 	/**

@@ -102,8 +102,8 @@ public abstract class PathResourceImpl extends BasicResourceImpl implements Path
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.PATH_RESOURCE__PATH:
-			return getPath();
+			case ResourcePackage.PATH_RESOURCE__PATH:
+				return getPath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -118,9 +118,9 @@ public abstract class PathResourceImpl extends BasicResourceImpl implements Path
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.PATH_RESOURCE__PATH:
-			setPath((String) newValue);
-			return;
+			case ResourcePackage.PATH_RESOURCE__PATH:
+				setPath((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -135,9 +135,9 @@ public abstract class PathResourceImpl extends BasicResourceImpl implements Path
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.PATH_RESOURCE__PATH:
-			setPath(PATH_EDEFAULT);
-			return;
+			case ResourcePackage.PATH_RESOURCE__PATH:
+				setPath(PATH_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -152,8 +152,8 @@ public abstract class PathResourceImpl extends BasicResourceImpl implements Path
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.PATH_RESOURCE__PATH:
-			return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
+			case ResourcePackage.PATH_RESOURCE__PATH:
+				return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
 		}
 		return super.eIsSet(featureID);
 	}

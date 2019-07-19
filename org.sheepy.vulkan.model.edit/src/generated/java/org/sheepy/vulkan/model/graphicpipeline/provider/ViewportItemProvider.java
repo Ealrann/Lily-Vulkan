@@ -34,9 +34,8 @@ import org.sheepy.vulkan.model.graphicpipeline.Viewport;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ViewportItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class ViewportItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -78,13 +77,19 @@ public class ViewportItemProvider extends ItemProviderAdapter
 	 */
 	protected void addOffsetXPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Viewport_offsetX_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Viewport_offsetX_feature",
-						"_UI_Viewport_type"),
-				GraphicpipelinePackage.Literals.VIEWPORT__OFFSET_X, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Viewport_offsetX_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Viewport_offsetX_feature", "_UI_Viewport_type"),
+				 GraphicpipelinePackage.Literals.VIEWPORT__OFFSET_X,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -95,13 +100,19 @@ public class ViewportItemProvider extends ItemProviderAdapter
 	 */
 	protected void addOffsetYPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Viewport_offsetY_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Viewport_offsetY_feature",
-						"_UI_Viewport_type"),
-				GraphicpipelinePackage.Literals.VIEWPORT__OFFSET_Y, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Viewport_offsetY_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Viewport_offsetY_feature", "_UI_Viewport_type"),
+				 GraphicpipelinePackage.Literals.VIEWPORT__OFFSET_Y,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -112,13 +123,19 @@ public class ViewportItemProvider extends ItemProviderAdapter
 	 */
 	protected void addMinDepthPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Viewport_minDepth_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Viewport_minDepth_feature",
-						"_UI_Viewport_type"),
-				GraphicpipelinePackage.Literals.VIEWPORT__MIN_DEPTH, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Viewport_minDepth_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Viewport_minDepth_feature", "_UI_Viewport_type"),
+				 GraphicpipelinePackage.Literals.VIEWPORT__MIN_DEPTH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -129,13 +146,19 @@ public class ViewportItemProvider extends ItemProviderAdapter
 	 */
 	protected void addMaxDepthPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Viewport_maxDepth_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Viewport_maxDepth_feature",
-						"_UI_Viewport_type"),
-				GraphicpipelinePackage.Literals.VIEWPORT__MAX_DEPTH, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Viewport_maxDepth_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Viewport_maxDepth_feature", "_UI_Viewport_type"),
+				 GraphicpipelinePackage.Literals.VIEWPORT__MAX_DEPTH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -192,7 +215,7 @@ public class ViewportItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		Viewport viewport = (Viewport) object;
+		Viewport viewport = (Viewport)object;
 		return getString("_UI_Viewport_type") + " " + viewport.getOffsetX();
 	}
 
@@ -210,17 +233,15 @@ public class ViewportItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(Viewport.class))
 		{
-		case GraphicpipelinePackage.VIEWPORT__OFFSET_X:
-		case GraphicpipelinePackage.VIEWPORT__OFFSET_Y:
-		case GraphicpipelinePackage.VIEWPORT__MIN_DEPTH:
-		case GraphicpipelinePackage.VIEWPORT__MAX_DEPTH:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case GraphicpipelinePackage.VIEWPORT__EXTENT:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case GraphicpipelinePackage.VIEWPORT__OFFSET_X:
+			case GraphicpipelinePackage.VIEWPORT__OFFSET_Y:
+			case GraphicpipelinePackage.VIEWPORT__MIN_DEPTH:
+			case GraphicpipelinePackage.VIEWPORT__MAX_DEPTH:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case GraphicpipelinePackage.VIEWPORT__EXTENT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -237,9 +258,10 @@ public class ViewportItemProvider extends ItemProviderAdapter
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicpipelinePackage.Literals.VIEWPORT__EXTENT,
-						GraphicpipelineFactory.eINSTANCE.createVec2I()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicpipelinePackage.Literals.VIEWPORT__EXTENT,
+				 GraphicpipelineFactory.eINSTANCE.createVec2I()));
 	}
 
 	/**
@@ -251,7 +273,7 @@ public class ViewportItemProvider extends ItemProviderAdapter
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

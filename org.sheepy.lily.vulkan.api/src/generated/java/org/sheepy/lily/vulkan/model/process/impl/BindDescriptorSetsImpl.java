@@ -129,8 +129,8 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container impleme
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.BIND_DESCRIPTOR_SETS__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.BIND_DESCRIPTOR_SETS__NAME, oldName, name));
 	}
 
 	/**
@@ -154,8 +154,8 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container impleme
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -168,8 +168,7 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container impleme
 	{
 		if (descriptorSets == null)
 		{
-			descriptorSets = new EObjectResolvingEList<DescriptorSet>(DescriptorSet.class, this,
-					ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS);
+			descriptorSets = new EObjectResolvingEList<DescriptorSet>(DescriptorSet.class, this, ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS);
 		}
 		return descriptorSets;
 	}
@@ -184,12 +183,12 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container impleme
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__NAME:
-			return getName();
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
-			return isEnabled();
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS:
-			return getDescriptorSets();
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__NAME:
+				return getName();
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
+				return isEnabled();
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS:
+				return getDescriptorSets();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -205,16 +204,16 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container impleme
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__NAME:
-			setName((String) newValue);
-			return;
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
-			setEnabled((Boolean) newValue);
-			return;
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS:
-			getDescriptorSets().clear();
-			getDescriptorSets().addAll((Collection<? extends DescriptorSet>) newValue);
-			return;
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__NAME:
+				setName((String)newValue);
+				return;
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS:
+				getDescriptorSets().clear();
+				getDescriptorSets().addAll((Collection<? extends DescriptorSet>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -229,15 +228,15 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container impleme
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
-			setEnabled(ENABLED_EDEFAULT);
-			return;
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS:
-			getDescriptorSets().clear();
-			return;
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS:
+				getDescriptorSets().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -252,12 +251,12 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container impleme
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
-			return enabled != ENABLED_EDEFAULT;
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS:
-			return descriptorSets != null && !descriptorSets.isEmpty();
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS:
+				return descriptorSets != null && !descriptorSets.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -103,8 +103,8 @@ public class BasicResourceImpl extends MinimalEObjectImpl.Container implements B
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BASIC_RESOURCE__NAME:
-			return getName();
+			case ResourcePackage.BASIC_RESOURCE__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,9 +119,9 @@ public class BasicResourceImpl extends MinimalEObjectImpl.Container implements B
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BASIC_RESOURCE__NAME:
-			setName((String) newValue);
-			return;
+			case ResourcePackage.BASIC_RESOURCE__NAME:
+				setName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -136,9 +136,9 @@ public class BasicResourceImpl extends MinimalEObjectImpl.Container implements B
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BASIC_RESOURCE__NAME:
-			setName(NAME_EDEFAULT);
-			return;
+			case ResourcePackage.BASIC_RESOURCE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -153,8 +153,8 @@ public class BasicResourceImpl extends MinimalEObjectImpl.Container implements B
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BASIC_RESOURCE__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ResourcePackage.BASIC_RESOURCE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}

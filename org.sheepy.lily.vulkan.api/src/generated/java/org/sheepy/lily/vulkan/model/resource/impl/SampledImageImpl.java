@@ -82,10 +82,8 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 		sampler = newSampler;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ResourcePackage.SAMPLED_IMAGE__SAMPLER, oldSampler, newSampler);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE__SAMPLER, oldSampler, newSampler);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -101,15 +99,15 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 		if (newSampler != sampler)
 		{
 			NotificationChain msgs = null;
-			if (sampler != null) msgs = ((InternalEObject) sampler).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_IMAGE__SAMPLER, null, msgs);
-			if (newSampler != null) msgs = ((InternalEObject) newSampler).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_IMAGE__SAMPLER, null, msgs);
+			if (sampler != null)
+				msgs = ((InternalEObject)sampler).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_IMAGE__SAMPLER, null, msgs);
+			if (newSampler != null)
+				msgs = ((InternalEObject)newSampler).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_IMAGE__SAMPLER, null, msgs);
 			msgs = basicSetSampler(newSampler, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SAMPLED_IMAGE__SAMPLER, newSampler, newSampler));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE__SAMPLER, newSampler, newSampler));
 	}
 
 	/**
@@ -122,8 +120,8 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
-			return basicSetSampler(null, msgs);
+			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+				return basicSetSampler(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -138,8 +136,8 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
-			return getSampler();
+			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+				return getSampler();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -154,9 +152,9 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
-			setSampler((Sampler) newValue);
-			return;
+			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+				setSampler((Sampler)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -171,9 +169,9 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
-			setSampler((Sampler) null);
-			return;
+			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+				setSampler((Sampler)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -188,8 +186,8 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
-			return sampler != null;
+			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+				return sampler != null;
 		}
 		return super.eIsSet(featureID);
 	}

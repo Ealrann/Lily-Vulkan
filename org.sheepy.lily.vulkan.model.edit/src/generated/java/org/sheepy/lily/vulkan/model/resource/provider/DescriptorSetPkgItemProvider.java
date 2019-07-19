@@ -134,9 +134,9 @@ public class DescriptorSetPkgItemProvider extends ItemProviderAdapter implements
 
 		switch (notification.getFeatureID(DescriptorSetPkg.class))
 		{
-		case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -153,8 +153,10 @@ public class DescriptorSetPkgItemProvider extends ItemProviderAdapter implements
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS,
-				ResourceFactory.eINSTANCE.createDescriptorSet()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS,
+				 ResourceFactory.eINSTANCE.createDescriptorSet()));
 	}
 
 	/**
@@ -166,7 +168,7 @@ public class DescriptorSetPkgItemProvider extends ItemProviderAdapter implements
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

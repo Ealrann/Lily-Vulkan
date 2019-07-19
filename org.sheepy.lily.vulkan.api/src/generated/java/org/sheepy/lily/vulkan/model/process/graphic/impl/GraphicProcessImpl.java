@@ -121,12 +121,12 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		if (maintainer != null && maintainer.eIsProxy())
 		{
-			InternalEObject oldMaintainer = (InternalEObject) maintainer;
-			maintainer = (Maintainer<GraphicProcess>) eResolveProxy(oldMaintainer);
+			InternalEObject oldMaintainer = (InternalEObject)maintainer;
+			maintainer = (Maintainer<GraphicProcess>)eResolveProxy(oldMaintainer);
 			if (maintainer != oldMaintainer)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						GraphicPackage.GRAPHIC_PROCESS__MAINTAINER, oldMaintainer, maintainer));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.GRAPHIC_PROCESS__MAINTAINER, oldMaintainer, maintainer));
 			}
 		}
 		return maintainer;
@@ -153,10 +153,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		maintainer = newMaintainer;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHIC_PROCESS__MAINTAINER, oldMaintainer, newMaintainer);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__MAINTAINER, oldMaintainer, newMaintainer);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -172,15 +170,15 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		if (newMaintainer != maintainer)
 		{
 			NotificationChain msgs = null;
-			if (maintainer != null) msgs = ((InternalEObject) maintainer).eInverseRemove(this,
-					MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
-			if (newMaintainer != null) msgs = ((InternalEObject) newMaintainer).eInverseAdd(this,
-					MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+			if (maintainer != null)
+				msgs = ((InternalEObject)maintainer).eInverseRemove(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+			if (newMaintainer != null)
+				msgs = ((InternalEObject)newMaintainer).eInverseAdd(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
 			msgs = basicSetMaintainer(newMaintainer, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHIC_PROCESS__MAINTAINER, newMaintainer, newMaintainer));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__MAINTAINER, newMaintainer, newMaintainer));
 	}
 
 	/**
@@ -205,10 +203,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		configuration = newConfiguration;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, oldConfiguration, newConfiguration);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, oldConfiguration, newConfiguration);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -224,15 +220,15 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		if (newConfiguration != configuration)
 		{
 			NotificationChain msgs = null;
-			if (configuration != null) msgs = ((InternalEObject) configuration).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, null, msgs);
-			if (newConfiguration != null) msgs = ((InternalEObject) newConfiguration).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, null, msgs);
+			if (configuration != null)
+				msgs = ((InternalEObject)configuration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, null, msgs);
+			if (newConfiguration != null)
+				msgs = ((InternalEObject)newConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, null, msgs);
 			msgs = basicSetConfiguration(newConfiguration, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, newConfiguration, newConfiguration));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, newConfiguration, newConfiguration));
 	}
 
 	/**
@@ -257,10 +253,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		renderPassInfo = newRenderPassInfo;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, oldRenderPassInfo, newRenderPassInfo);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, oldRenderPassInfo, newRenderPassInfo);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -276,15 +270,15 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		if (newRenderPassInfo != renderPassInfo)
 		{
 			NotificationChain msgs = null;
-			if (renderPassInfo != null) msgs = ((InternalEObject) renderPassInfo).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, null, msgs);
-			if (newRenderPassInfo != null) msgs = ((InternalEObject) newRenderPassInfo).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, null, msgs);
+			if (renderPassInfo != null)
+				msgs = ((InternalEObject)renderPassInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, null, msgs);
+			if (newRenderPassInfo != null)
+				msgs = ((InternalEObject)newRenderPassInfo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, null, msgs);
 			msgs = basicSetRenderPassInfo(newRenderPassInfo, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, newRenderPassInfo, newRenderPassInfo));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, newRenderPassInfo, newRenderPassInfo));
 	}
 
 	/**
@@ -308,8 +302,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		float oldFieldOfViewY = fieldOfViewY;
 		fieldOfViewY = newFieldOfViewY;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y, oldFieldOfViewY, fieldOfViewY));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y, oldFieldOfViewY, fieldOfViewY));
 	}
 
 	/**
@@ -323,10 +317,10 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
-			if (maintainer != null) msgs = ((InternalEObject) maintainer).eInverseRemove(this,
-					MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
-			return basicSetMaintainer((Maintainer<GraphicProcess>) otherEnd, msgs);
+			case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
+				if (maintainer != null)
+					msgs = ((InternalEObject)maintainer).eInverseRemove(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+				return basicSetMaintainer((Maintainer<GraphicProcess>)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -341,12 +335,12 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
-			return basicSetMaintainer(null, msgs);
-		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
-			return basicSetConfiguration(null, msgs);
-		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-			return basicSetRenderPassInfo(null, msgs);
+			case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
+				return basicSetMaintainer(null, msgs);
+			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
+				return basicSetConfiguration(null, msgs);
+			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
+				return basicSetRenderPassInfo(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -361,15 +355,15 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
-			if (resolve) return getMaintainer();
-			return basicGetMaintainer();
-		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
-			return getConfiguration();
-		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-			return getRenderPassInfo();
-		case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
-			return getFieldOfViewY();
+			case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
+				if (resolve) return getMaintainer();
+				return basicGetMaintainer();
+			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
+				return getConfiguration();
+			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
+				return getRenderPassInfo();
+			case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
+				return getFieldOfViewY();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -385,18 +379,18 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
-			setMaintainer((Maintainer<GraphicProcess>) newValue);
-			return;
-		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
-			setConfiguration((GraphicConfiguration) newValue);
-			return;
-		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-			setRenderPassInfo((RenderPassInfo) newValue);
-			return;
-		case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
-			setFieldOfViewY((Float) newValue);
-			return;
+			case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
+				setMaintainer((Maintainer<GraphicProcess>)newValue);
+				return;
+			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
+				setConfiguration((GraphicConfiguration)newValue);
+				return;
+			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
+				setRenderPassInfo((RenderPassInfo)newValue);
+				return;
+			case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
+				setFieldOfViewY((Float)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -411,18 +405,18 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
-			setMaintainer((Maintainer<GraphicProcess>) null);
-			return;
-		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
-			setConfiguration((GraphicConfiguration) null);
-			return;
-		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-			setRenderPassInfo((RenderPassInfo) null);
-			return;
-		case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
-			setFieldOfViewY(FIELD_OF_VIEW_Y_EDEFAULT);
-			return;
+			case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
+				setMaintainer((Maintainer<GraphicProcess>)null);
+				return;
+			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
+				setConfiguration((GraphicConfiguration)null);
+				return;
+			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
+				setRenderPassInfo((RenderPassInfo)null);
+				return;
+			case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
+				setFieldOfViewY(FIELD_OF_VIEW_Y_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -437,14 +431,14 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
-			return maintainer != null;
-		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
-			return configuration != null;
-		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-			return renderPassInfo != null;
-		case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
-			return fieldOfViewY != FIELD_OF_VIEW_Y_EDEFAULT;
+			case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
+				return maintainer != null;
+			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
+				return configuration != null;
+			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
+				return renderPassInfo != null;
+			case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
+				return fieldOfViewY != FIELD_OF_VIEW_Y_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -461,10 +455,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		{
 			switch (derivedFeatureID)
 			{
-			case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
-				return MaintainerPackage.MAINTAINABLE__MAINTAINER;
-			default:
-				return -1;
+				case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER: return MaintainerPackage.MAINTAINABLE__MAINTAINER;
+				default: return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -482,10 +474,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		{
 			switch (baseFeatureID)
 			{
-			case MaintainerPackage.MAINTAINABLE__MAINTAINER:
-				return GraphicPackage.GRAPHIC_PROCESS__MAINTAINER;
-			default:
-				return -1;
+				case MaintainerPackage.MAINTAINABLE__MAINTAINER: return GraphicPackage.GRAPHIC_PROCESS__MAINTAINER;
+				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);

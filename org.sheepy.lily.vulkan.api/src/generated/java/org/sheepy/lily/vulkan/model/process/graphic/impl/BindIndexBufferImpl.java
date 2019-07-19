@@ -148,8 +148,8 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, GraphicPackage.BIND_INDEX_BUFFER__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.BIND_INDEX_BUFFER__NAME, oldName, name));
 	}
 
 	/**
@@ -173,8 +173,8 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.BIND_INDEX_BUFFER__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.BIND_INDEX_BUFFER__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -198,8 +198,8 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		EIndexType oldIndexType = indexType;
 		indexType = newIndexType == null ? INDEX_TYPE_EDEFAULT : newIndexType;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE, oldIndexType, indexType));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE, oldIndexType, indexType));
 	}
 
 	/**
@@ -224,10 +224,8 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 		bufferRef = newBufferRef;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, oldBufferRef, newBufferRef);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, oldBufferRef, newBufferRef);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -243,15 +241,15 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 		if (newBufferRef != bufferRef)
 		{
 			NotificationChain msgs = null;
-			if (bufferRef != null) msgs = ((InternalEObject) bufferRef).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, null, msgs);
-			if (newBufferRef != null) msgs = ((InternalEObject) newBufferRef).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, null, msgs);
+			if (bufferRef != null)
+				msgs = ((InternalEObject)bufferRef).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, null, msgs);
+			if (newBufferRef != null)
+				msgs = ((InternalEObject)newBufferRef).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, null, msgs);
 			msgs = basicSetBufferRef(newBufferRef, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, newBufferRef, newBufferRef));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, newBufferRef, newBufferRef));
 	}
 
 	/**
@@ -264,8 +262,8 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
-			return basicSetBufferRef(null, msgs);
+			case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
+				return basicSetBufferRef(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -280,14 +278,14 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.BIND_INDEX_BUFFER__NAME:
-			return getName();
-		case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
-			return isEnabled();
-		case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
-			return getIndexType();
-		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
-			return getBufferRef();
+			case GraphicPackage.BIND_INDEX_BUFFER__NAME:
+				return getName();
+			case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
+				return isEnabled();
+			case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
+				return getIndexType();
+			case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
+				return getBufferRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -302,18 +300,18 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.BIND_INDEX_BUFFER__NAME:
-			setName((String) newValue);
-			return;
-		case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
-			setEnabled((Boolean) newValue);
-			return;
-		case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
-			setIndexType((EIndexType) newValue);
-			return;
-		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
-			setBufferRef((IBufferReference) newValue);
-			return;
+			case GraphicPackage.BIND_INDEX_BUFFER__NAME:
+				setName((String)newValue);
+				return;
+			case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
+				setIndexType((EIndexType)newValue);
+				return;
+			case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
+				setBufferRef((IBufferReference)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -328,18 +326,18 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.BIND_INDEX_BUFFER__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
-			setEnabled(ENABLED_EDEFAULT);
-			return;
-		case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
-			setIndexType(INDEX_TYPE_EDEFAULT);
-			return;
-		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
-			setBufferRef((IBufferReference) null);
-			return;
+			case GraphicPackage.BIND_INDEX_BUFFER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
+				setIndexType(INDEX_TYPE_EDEFAULT);
+				return;
+			case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
+				setBufferRef((IBufferReference)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -354,14 +352,14 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.BIND_INDEX_BUFFER__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
-			return enabled != ENABLED_EDEFAULT;
-		case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
-			return indexType != INDEX_TYPE_EDEFAULT;
-		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
-			return bufferRef != null;
+			case GraphicPackage.BIND_INDEX_BUFFER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
+				return indexType != INDEX_TYPE_EDEFAULT;
+			case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
+				return bufferRef != null;
 		}
 		return super.eIsSet(featureID);
 	}

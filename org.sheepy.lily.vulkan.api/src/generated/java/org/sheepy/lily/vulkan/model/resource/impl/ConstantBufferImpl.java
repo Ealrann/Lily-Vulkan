@@ -133,8 +133,8 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, ResourcePackage.CONSTANT_BUFFER__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.CONSTANT_BUFFER__NAME, oldName, name));
 	}
 
 	/**
@@ -158,8 +158,8 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 	{
 		boolean oldBeingPushed = beingPushed;
 		beingPushed = newBeingPushed;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED, oldBeingPushed, beingPushed));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED, oldBeingPushed, beingPushed));
 	}
 
 	/**
@@ -183,8 +183,8 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 	{
 		ByteBuffer oldData = data;
 		data = newData;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, ResourcePackage.CONSTANT_BUFFER__DATA, oldData, data));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.CONSTANT_BUFFER__DATA, oldData, data));
 	}
 
 	/**
@@ -197,12 +197,12 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.CONSTANT_BUFFER__NAME:
-			return getName();
-		case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
-			return isBeingPushed();
-		case ResourcePackage.CONSTANT_BUFFER__DATA:
-			return getData();
+			case ResourcePackage.CONSTANT_BUFFER__NAME:
+				return getName();
+			case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
+				return isBeingPushed();
+			case ResourcePackage.CONSTANT_BUFFER__DATA:
+				return getData();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -217,15 +217,15 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.CONSTANT_BUFFER__NAME:
-			setName((String) newValue);
-			return;
-		case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
-			setBeingPushed((Boolean) newValue);
-			return;
-		case ResourcePackage.CONSTANT_BUFFER__DATA:
-			setData((ByteBuffer) newValue);
-			return;
+			case ResourcePackage.CONSTANT_BUFFER__NAME:
+				setName((String)newValue);
+				return;
+			case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
+				setBeingPushed((Boolean)newValue);
+				return;
+			case ResourcePackage.CONSTANT_BUFFER__DATA:
+				setData((ByteBuffer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -240,15 +240,15 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.CONSTANT_BUFFER__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
-			setBeingPushed(BEING_PUSHED_EDEFAULT);
-			return;
-		case ResourcePackage.CONSTANT_BUFFER__DATA:
-			setData(DATA_EDEFAULT);
-			return;
+			case ResourcePackage.CONSTANT_BUFFER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
+				setBeingPushed(BEING_PUSHED_EDEFAULT);
+				return;
+			case ResourcePackage.CONSTANT_BUFFER__DATA:
+				setData(DATA_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -263,12 +263,12 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.CONSTANT_BUFFER__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
-			return beingPushed != BEING_PUSHED_EDEFAULT;
-		case ResourcePackage.CONSTANT_BUFFER__DATA:
-			return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
+			case ResourcePackage.CONSTANT_BUFFER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
+				return beingPushed != BEING_PUSHED_EDEFAULT;
+			case ResourcePackage.CONSTANT_BUFFER__DATA:
+				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
 		}
 		return super.eIsSet(featureID);
 	}

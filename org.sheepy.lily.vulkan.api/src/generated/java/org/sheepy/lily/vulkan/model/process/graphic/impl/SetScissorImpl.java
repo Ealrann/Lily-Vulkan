@@ -219,8 +219,8 @@ public class SetScissorImpl extends MinimalEObjectImpl.Container implements SetS
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SET_SCISSOR__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_SCISSOR__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -244,8 +244,8 @@ public class SetScissorImpl extends MinimalEObjectImpl.Container implements SetS
 	{
 		int oldOffsetX = offsetX;
 		offsetX = newOffsetX;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SET_SCISSOR__OFFSET_X, oldOffsetX, offsetX));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_SCISSOR__OFFSET_X, oldOffsetX, offsetX));
 	}
 
 	/**
@@ -269,8 +269,8 @@ public class SetScissorImpl extends MinimalEObjectImpl.Container implements SetS
 	{
 		int oldOffsetY = offsetY;
 		offsetY = newOffsetY;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SET_SCISSOR__OFFSET_Y, oldOffsetY, offsetY));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_SCISSOR__OFFSET_Y, oldOffsetY, offsetY));
 	}
 
 	/**
@@ -319,8 +319,8 @@ public class SetScissorImpl extends MinimalEObjectImpl.Container implements SetS
 	{
 		int oldHeight = height;
 		height = newHeight;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_SCISSOR__HEIGHT, oldHeight, height));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SET_SCISSOR__HEIGHT, oldHeight, height));
 	}
 
 	/**
@@ -333,18 +333,18 @@ public class SetScissorImpl extends MinimalEObjectImpl.Container implements SetS
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SET_SCISSOR__NAME:
-			return getName();
-		case GraphicPackage.SET_SCISSOR__ENABLED:
-			return isEnabled();
-		case GraphicPackage.SET_SCISSOR__OFFSET_X:
-			return getOffsetX();
-		case GraphicPackage.SET_SCISSOR__OFFSET_Y:
-			return getOffsetY();
-		case GraphicPackage.SET_SCISSOR__WIDTH:
-			return getWidth();
-		case GraphicPackage.SET_SCISSOR__HEIGHT:
-			return getHeight();
+			case GraphicPackage.SET_SCISSOR__NAME:
+				return getName();
+			case GraphicPackage.SET_SCISSOR__ENABLED:
+				return isEnabled();
+			case GraphicPackage.SET_SCISSOR__OFFSET_X:
+				return getOffsetX();
+			case GraphicPackage.SET_SCISSOR__OFFSET_Y:
+				return getOffsetY();
+			case GraphicPackage.SET_SCISSOR__WIDTH:
+				return getWidth();
+			case GraphicPackage.SET_SCISSOR__HEIGHT:
+				return getHeight();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -359,24 +359,24 @@ public class SetScissorImpl extends MinimalEObjectImpl.Container implements SetS
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SET_SCISSOR__NAME:
-			setName((String) newValue);
-			return;
-		case GraphicPackage.SET_SCISSOR__ENABLED:
-			setEnabled((Boolean) newValue);
-			return;
-		case GraphicPackage.SET_SCISSOR__OFFSET_X:
-			setOffsetX((Integer) newValue);
-			return;
-		case GraphicPackage.SET_SCISSOR__OFFSET_Y:
-			setOffsetY((Integer) newValue);
-			return;
-		case GraphicPackage.SET_SCISSOR__WIDTH:
-			setWidth((Integer) newValue);
-			return;
-		case GraphicPackage.SET_SCISSOR__HEIGHT:
-			setHeight((Integer) newValue);
-			return;
+			case GraphicPackage.SET_SCISSOR__NAME:
+				setName((String)newValue);
+				return;
+			case GraphicPackage.SET_SCISSOR__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case GraphicPackage.SET_SCISSOR__OFFSET_X:
+				setOffsetX((Integer)newValue);
+				return;
+			case GraphicPackage.SET_SCISSOR__OFFSET_Y:
+				setOffsetY((Integer)newValue);
+				return;
+			case GraphicPackage.SET_SCISSOR__WIDTH:
+				setWidth((Integer)newValue);
+				return;
+			case GraphicPackage.SET_SCISSOR__HEIGHT:
+				setHeight((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -391,24 +391,24 @@ public class SetScissorImpl extends MinimalEObjectImpl.Container implements SetS
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SET_SCISSOR__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case GraphicPackage.SET_SCISSOR__ENABLED:
-			setEnabled(ENABLED_EDEFAULT);
-			return;
-		case GraphicPackage.SET_SCISSOR__OFFSET_X:
-			setOffsetX(OFFSET_X_EDEFAULT);
-			return;
-		case GraphicPackage.SET_SCISSOR__OFFSET_Y:
-			setOffsetY(OFFSET_Y_EDEFAULT);
-			return;
-		case GraphicPackage.SET_SCISSOR__WIDTH:
-			setWidth(WIDTH_EDEFAULT);
-			return;
-		case GraphicPackage.SET_SCISSOR__HEIGHT:
-			setHeight(HEIGHT_EDEFAULT);
-			return;
+			case GraphicPackage.SET_SCISSOR__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case GraphicPackage.SET_SCISSOR__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case GraphicPackage.SET_SCISSOR__OFFSET_X:
+				setOffsetX(OFFSET_X_EDEFAULT);
+				return;
+			case GraphicPackage.SET_SCISSOR__OFFSET_Y:
+				setOffsetY(OFFSET_Y_EDEFAULT);
+				return;
+			case GraphicPackage.SET_SCISSOR__WIDTH:
+				setWidth(WIDTH_EDEFAULT);
+				return;
+			case GraphicPackage.SET_SCISSOR__HEIGHT:
+				setHeight(HEIGHT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -423,18 +423,18 @@ public class SetScissorImpl extends MinimalEObjectImpl.Container implements SetS
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SET_SCISSOR__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case GraphicPackage.SET_SCISSOR__ENABLED:
-			return enabled != ENABLED_EDEFAULT;
-		case GraphicPackage.SET_SCISSOR__OFFSET_X:
-			return offsetX != OFFSET_X_EDEFAULT;
-		case GraphicPackage.SET_SCISSOR__OFFSET_Y:
-			return offsetY != OFFSET_Y_EDEFAULT;
-		case GraphicPackage.SET_SCISSOR__WIDTH:
-			return width != WIDTH_EDEFAULT;
-		case GraphicPackage.SET_SCISSOR__HEIGHT:
-			return height != HEIGHT_EDEFAULT;
+			case GraphicPackage.SET_SCISSOR__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case GraphicPackage.SET_SCISSOR__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case GraphicPackage.SET_SCISSOR__OFFSET_X:
+				return offsetX != OFFSET_X_EDEFAULT;
+			case GraphicPackage.SET_SCISSOR__OFFSET_Y:
+				return offsetY != OFFSET_Y_EDEFAULT;
+			case GraphicPackage.SET_SCISSOR__WIDTH:
+				return width != WIDTH_EDEFAULT;
+			case GraphicPackage.SET_SCISSOR__HEIGHT:
+				return height != HEIGHT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

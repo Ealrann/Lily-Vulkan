@@ -149,10 +149,10 @@ public class GetBufferImpl extends MinimalEObjectImpl.Container implements GetBu
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.GET_BUFFER__NAME:
-			return getName();
-		case ResourcePackage.GET_BUFFER__SIZE:
-			return getSize();
+			case ResourcePackage.GET_BUFFER__NAME:
+				return getName();
+			case ResourcePackage.GET_BUFFER__SIZE:
+				return getSize();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -167,12 +167,12 @@ public class GetBufferImpl extends MinimalEObjectImpl.Container implements GetBu
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.GET_BUFFER__NAME:
-			setName((String) newValue);
-			return;
-		case ResourcePackage.GET_BUFFER__SIZE:
-			setSize((Long) newValue);
-			return;
+			case ResourcePackage.GET_BUFFER__NAME:
+				setName((String)newValue);
+				return;
+			case ResourcePackage.GET_BUFFER__SIZE:
+				setSize((Long)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -187,12 +187,12 @@ public class GetBufferImpl extends MinimalEObjectImpl.Container implements GetBu
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.GET_BUFFER__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case ResourcePackage.GET_BUFFER__SIZE:
-			setSize(SIZE_EDEFAULT);
-			return;
+			case ResourcePackage.GET_BUFFER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case ResourcePackage.GET_BUFFER__SIZE:
+				setSize(SIZE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -207,10 +207,10 @@ public class GetBufferImpl extends MinimalEObjectImpl.Container implements GetBu
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.GET_BUFFER__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ResourcePackage.GET_BUFFER__SIZE:
-			return size != SIZE_EDEFAULT;
+			case ResourcePackage.GET_BUFFER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ResourcePackage.GET_BUFFER__SIZE:
+				return size != SIZE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

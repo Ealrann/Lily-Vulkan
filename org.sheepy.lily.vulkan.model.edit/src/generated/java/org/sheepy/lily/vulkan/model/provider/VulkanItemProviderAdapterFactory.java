@@ -71,8 +71,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
-			LilyVulkanEditPlugin.INSTANCE, VulkanPackage.eNS_URI);
+	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(LilyVulkanEditPlugin.INSTANCE, VulkanPackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -205,7 +204,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 		if (isFactoryForType(type))
 		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter)))
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
 			{
 				return adapter;
 			}
@@ -351,8 +350,10 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 			@Override
 			public Object caseApplication(Application object)
 			{
-				newChildDescriptors.add(createChildParameter(ApplicationPackage.Literals.APPLICATION__ENGINES,
-						VulkanFactory.eINSTANCE.createVulkanEngine()));
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.APPLICATION__ENGINES,
+						 VulkanFactory.eINSTANCE.createVulkanEngine()));
 
 				return null;
 			}
@@ -378,7 +379,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
 			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
+			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
 			return result;
 		}
 

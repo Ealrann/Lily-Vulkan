@@ -342,8 +342,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__NAME, oldName, name));
 	}
 
 	/**
@@ -368,10 +368,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		resourcePkg = newResourcePkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -387,15 +385,15 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		if (newResourcePkg != resourcePkg)
 		{
 			NotificationChain msgs = null;
-			if (resourcePkg != null) msgs = ((InternalEObject) resourcePkg).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, null, msgs);
-			if (newResourcePkg != null) msgs = ((InternalEObject) newResourcePkg).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, null, msgs);
+			if (resourcePkg != null)
+				msgs = ((InternalEObject)resourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, null, msgs);
+			if (newResourcePkg != null)
+				msgs = ((InternalEObject)newResourcePkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, null, msgs);
 			msgs = basicSetResourcePkg(newResourcePkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, newResourcePkg, newResourcePkg));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, newResourcePkg, newResourcePkg));
 	}
 
 	/**
@@ -419,8 +417,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -444,8 +442,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	{
 		ECommandStage oldStage = stage;
 		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__STAGE, oldStage, stage));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__STAGE, oldStage, stage));
 	}
 
 	/**
@@ -458,8 +456,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	{
 		if (pushConstantRanges == null)
 		{
-			pushConstantRanges = new EObjectContainmentEList<PushConstantRange>(PushConstantRange.class, this,
-					GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES);
+			pushConstantRanges = new EObjectContainmentEList<PushConstantRange>(PushConstantRange.class, this, GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES);
 		}
 		return pushConstantRanges;
 	}
@@ -485,8 +482,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	{
 		ByteBuffer oldSpecializationData = specializationData;
 		specializationData = newSpecializationData;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
 	}
 
 	/**
@@ -511,10 +508,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		descriptorSetPkg = newDescriptorSetPkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, oldDescriptorSetPkg, newDescriptorSetPkg);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, oldDescriptorSetPkg, newDescriptorSetPkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -530,15 +525,15 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		if (newDescriptorSetPkg != descriptorSetPkg)
 		{
 			NotificationChain msgs = null;
-			if (descriptorSetPkg != null) msgs = ((InternalEObject) descriptorSetPkg).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
-			if (newDescriptorSetPkg != null) msgs = ((InternalEObject) newDescriptorSetPkg).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
+			if (descriptorSetPkg != null)
+				msgs = ((InternalEObject)descriptorSetPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
+			if (newDescriptorSetPkg != null)
+				msgs = ((InternalEObject)newDescriptorSetPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
 			msgs = basicSetDescriptorSetPkg(newDescriptorSetPkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, newDescriptorSetPkg, newDescriptorSetPkg));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, newDescriptorSetPkg, newDescriptorSetPkg));
 	}
 
 	/**
@@ -563,10 +558,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		taskPkg = newTaskPkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, oldTaskPkg, newTaskPkg);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, oldTaskPkg, newTaskPkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -582,15 +575,15 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		if (newTaskPkg != taskPkg)
 		{
 			NotificationChain msgs = null;
-			if (taskPkg != null) msgs = ((InternalEObject) taskPkg).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, null, msgs);
-			if (newTaskPkg != null) msgs = ((InternalEObject) newTaskPkg).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, null, msgs);
+			if (taskPkg != null)
+				msgs = ((InternalEObject)taskPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, null, msgs);
+			if (newTaskPkg != null)
+				msgs = ((InternalEObject)newTaskPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, null, msgs);
 			msgs = basicSetTaskPkg(newTaskPkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, newTaskPkg, newTaskPkg));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, newTaskPkg, newTaskPkg));
 	}
 
 	/**
@@ -604,12 +597,12 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	{
 		if (maintainer != null && maintainer.eIsProxy())
 		{
-			InternalEObject oldMaintainer = (InternalEObject) maintainer;
-			maintainer = (Maintainer<GraphicsPipeline>) eResolveProxy(oldMaintainer);
+			InternalEObject oldMaintainer = (InternalEObject)maintainer;
+			maintainer = (Maintainer<GraphicsPipeline>)eResolveProxy(oldMaintainer);
 			if (maintainer != oldMaintainer)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER, oldMaintainer, maintainer));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER, oldMaintainer, maintainer));
 			}
 		}
 		return maintainer;
@@ -636,10 +629,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		maintainer = newMaintainer;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER, oldMaintainer, newMaintainer);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER, oldMaintainer, newMaintainer);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -655,15 +646,15 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		if (newMaintainer != maintainer)
 		{
 			NotificationChain msgs = null;
-			if (maintainer != null) msgs = ((InternalEObject) maintainer).eInverseRemove(this,
-					MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
-			if (newMaintainer != null) msgs = ((InternalEObject) newMaintainer).eInverseAdd(this,
-					MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+			if (maintainer != null)
+				msgs = ((InternalEObject)maintainer).eInverseRemove(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+			if (newMaintainer != null)
+				msgs = ((InternalEObject)newMaintainer).eInverseAdd(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
 			msgs = basicSetMaintainer(newMaintainer, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER, newMaintainer, newMaintainer));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER, newMaintainer, newMaintainer));
 	}
 
 	/**
@@ -703,10 +694,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		viewportState = newViewportState;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, oldViewportState, newViewportState);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, oldViewportState, newViewportState);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -722,15 +711,15 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		if (newViewportState != viewportState)
 		{
 			NotificationChain msgs = null;
-			if (viewportState != null) msgs = ((InternalEObject) viewportState).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, null, msgs);
-			if (newViewportState != null) msgs = ((InternalEObject) newViewportState).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, null, msgs);
+			if (viewportState != null)
+				msgs = ((InternalEObject)viewportState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, null, msgs);
+			if (newViewportState != null)
+				msgs = ((InternalEObject)newViewportState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, null, msgs);
 			msgs = basicSetViewportState(newViewportState, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, newViewportState, newViewportState));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, newViewportState, newViewportState));
 	}
 
 	/**
@@ -755,10 +744,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		inputAssembly = newInputAssembly;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, oldInputAssembly, newInputAssembly);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, oldInputAssembly, newInputAssembly);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -774,15 +761,15 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		if (newInputAssembly != inputAssembly)
 		{
 			NotificationChain msgs = null;
-			if (inputAssembly != null) msgs = ((InternalEObject) inputAssembly).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, null, msgs);
-			if (newInputAssembly != null) msgs = ((InternalEObject) newInputAssembly).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, null, msgs);
+			if (inputAssembly != null)
+				msgs = ((InternalEObject)inputAssembly).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, null, msgs);
+			if (newInputAssembly != null)
+				msgs = ((InternalEObject)newInputAssembly).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, null, msgs);
 			msgs = basicSetInputAssembly(newInputAssembly, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, newInputAssembly, newInputAssembly));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, newInputAssembly, newInputAssembly));
 	}
 
 	/**
@@ -807,10 +794,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		rasterizer = newRasterizer;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, oldRasterizer, newRasterizer);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, oldRasterizer, newRasterizer);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -826,15 +811,15 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		if (newRasterizer != rasterizer)
 		{
 			NotificationChain msgs = null;
-			if (rasterizer != null) msgs = ((InternalEObject) rasterizer).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, null, msgs);
-			if (newRasterizer != null) msgs = ((InternalEObject) newRasterizer).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, null, msgs);
+			if (rasterizer != null)
+				msgs = ((InternalEObject)rasterizer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, null, msgs);
+			if (newRasterizer != null)
+				msgs = ((InternalEObject)newRasterizer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, null, msgs);
 			msgs = basicSetRasterizer(newRasterizer, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, newRasterizer, newRasterizer));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, newRasterizer, newRasterizer));
 	}
 
 	/**
@@ -859,10 +844,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		colorBlend = newColorBlend;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, oldColorBlend, newColorBlend);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, oldColorBlend, newColorBlend);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -878,15 +861,15 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		if (newColorBlend != colorBlend)
 		{
 			NotificationChain msgs = null;
-			if (colorBlend != null) msgs = ((InternalEObject) colorBlend).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, null, msgs);
-			if (newColorBlend != null) msgs = ((InternalEObject) newColorBlend).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, null, msgs);
+			if (colorBlend != null)
+				msgs = ((InternalEObject)colorBlend).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, null, msgs);
+			if (newColorBlend != null)
+				msgs = ((InternalEObject)newColorBlend).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, null, msgs);
 			msgs = basicSetColorBlend(newColorBlend, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, newColorBlend, newColorBlend));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, newColorBlend, newColorBlend));
 	}
 
 	/**
@@ -911,10 +894,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		dynamicState = newDynamicState;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, oldDynamicState, newDynamicState);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, oldDynamicState, newDynamicState);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -930,15 +911,15 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		if (newDynamicState != dynamicState)
 		{
 			NotificationChain msgs = null;
-			if (dynamicState != null) msgs = ((InternalEObject) dynamicState).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, null, msgs);
-			if (newDynamicState != null) msgs = ((InternalEObject) newDynamicState).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, null, msgs);
+			if (dynamicState != null)
+				msgs = ((InternalEObject)dynamicState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, null, msgs);
+			if (newDynamicState != null)
+				msgs = ((InternalEObject)newDynamicState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, null, msgs);
 			msgs = basicSetDynamicState(newDynamicState, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, newDynamicState, newDynamicState));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, newDynamicState, newDynamicState));
 	}
 
 	/**
@@ -962,8 +943,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	{
 		int oldSubpass = subpass;
 		subpass = newSubpass;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__SUBPASS, oldSubpass, subpass));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__SUBPASS, oldSubpass, subpass));
 	}
 
 	/**
@@ -988,10 +969,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		vertexInputState = newVertexInputState;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, oldVertexInputState, newVertexInputState);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, oldVertexInputState, newVertexInputState);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -1007,15 +986,15 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		if (newVertexInputState != vertexInputState)
 		{
 			NotificationChain msgs = null;
-			if (vertexInputState != null) msgs = ((InternalEObject) vertexInputState).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, null, msgs);
-			if (newVertexInputState != null) msgs = ((InternalEObject) newVertexInputState).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, null, msgs);
+			if (vertexInputState != null)
+				msgs = ((InternalEObject)vertexInputState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, null, msgs);
+			if (newVertexInputState != null)
+				msgs = ((InternalEObject)newVertexInputState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, null, msgs);
 			msgs = basicSetVertexInputState(newVertexInputState, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, newVertexInputState, newVertexInputState));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, newVertexInputState, newVertexInputState));
 	}
 
 	/**
@@ -1029,10 +1008,10 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
-			if (maintainer != null) msgs = ((InternalEObject) maintainer).eInverseRemove(this,
-					MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
-			return basicSetMaintainer((Maintainer<GraphicsPipeline>) otherEnd, msgs);
+			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
+				if (maintainer != null)
+					msgs = ((InternalEObject)maintainer).eInverseRemove(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+				return basicSetMaintainer((Maintainer<GraphicsPipeline>)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -1047,28 +1026,28 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-			return basicSetResourcePkg(null, msgs);
-		case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
-			return ((InternalEList<?>) getPushConstantRanges()).basicRemove(otherEnd, msgs);
-		case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
-			return basicSetDescriptorSetPkg(null, msgs);
-		case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
-			return basicSetTaskPkg(null, msgs);
-		case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
-			return basicSetMaintainer(null, msgs);
-		case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
-			return basicSetViewportState(null, msgs);
-		case GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
-			return basicSetInputAssembly(null, msgs);
-		case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
-			return basicSetRasterizer(null, msgs);
-		case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
-			return basicSetColorBlend(null, msgs);
-		case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
-			return basicSetDynamicState(null, msgs);
-		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
-			return basicSetVertexInputState(null, msgs);
+			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
+				return basicSetResourcePkg(null, msgs);
+			case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
+				return ((InternalEList<?>)getPushConstantRanges()).basicRemove(otherEnd, msgs);
+			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
+				return basicSetDescriptorSetPkg(null, msgs);
+			case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
+				return basicSetTaskPkg(null, msgs);
+			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
+				return basicSetMaintainer(null, msgs);
+			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
+				return basicSetViewportState(null, msgs);
+			case GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
+				return basicSetInputAssembly(null, msgs);
+			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
+				return basicSetRasterizer(null, msgs);
+			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+				return basicSetColorBlend(null, msgs);
+			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+				return basicSetDynamicState(null, msgs);
+			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
+				return basicSetVertexInputState(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1083,41 +1062,41 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHICS_PIPELINE__NAME:
-			return getName();
-		case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-			return getResourcePkg();
-		case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
-			return isEnabled();
-		case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
-			return getStage();
-		case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
-			return getPushConstantRanges();
-		case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
-			return getSpecializationData();
-		case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
-			return getDescriptorSetPkg();
-		case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
-			return getTaskPkg();
-		case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
-			if (resolve) return getMaintainer();
-			return basicGetMaintainer();
-		case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
-			return getShaders();
-		case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
-			return getViewportState();
-		case GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
-			return getInputAssembly();
-		case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
-			return getRasterizer();
-		case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
-			return getColorBlend();
-		case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
-			return getDynamicState();
-		case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
-			return getSubpass();
-		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
-			return getVertexInputState();
+			case GraphicPackage.GRAPHICS_PIPELINE__NAME:
+				return getName();
+			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
+				return getResourcePkg();
+			case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
+				return isEnabled();
+			case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
+				return getStage();
+			case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
+				return getPushConstantRanges();
+			case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
+				return getSpecializationData();
+			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
+				return getDescriptorSetPkg();
+			case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
+				return getTaskPkg();
+			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
+				if (resolve) return getMaintainer();
+				return basicGetMaintainer();
+			case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
+				return getShaders();
+			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
+				return getViewportState();
+			case GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
+				return getInputAssembly();
+			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
+				return getRasterizer();
+			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+				return getColorBlend();
+			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+				return getDynamicState();
+			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
+				return getSubpass();
+			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
+				return getVertexInputState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1133,59 +1112,59 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHICS_PIPELINE__NAME:
-			setName((String) newValue);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-			setResourcePkg((ResourcePkg) newValue);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
-			setEnabled((Boolean) newValue);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
-			setStage((ECommandStage) newValue);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
-			getPushConstantRanges().clear();
-			getPushConstantRanges().addAll((Collection<? extends PushConstantRange>) newValue);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
-			setSpecializationData((ByteBuffer) newValue);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
-			setDescriptorSetPkg((DescriptorSetPkg) newValue);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
-			setTaskPkg((TaskPkg) newValue);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
-			setMaintainer((Maintainer<GraphicsPipeline>) newValue);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
-			getShaders().clear();
-			getShaders().addAll((Collection<? extends Shader>) newValue);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
-			setViewportState((ViewportState) newValue);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
-			setInputAssembly((InputAssembly) newValue);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
-			setRasterizer((Rasterizer) newValue);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
-			setColorBlend((ColorBlend) newValue);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
-			setDynamicState((DynamicState) newValue);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
-			setSubpass((Integer) newValue);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
-			setVertexInputState((VertexInputState) newValue);
-			return;
+			case GraphicPackage.GRAPHICS_PIPELINE__NAME:
+				setName((String)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
+				setResourcePkg((ResourcePkg)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
+				setStage((ECommandStage)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
+				getPushConstantRanges().clear();
+				getPushConstantRanges().addAll((Collection<? extends PushConstantRange>)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
+				setSpecializationData((ByteBuffer)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
+				setDescriptorSetPkg((DescriptorSetPkg)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
+				setTaskPkg((TaskPkg)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
+				setMaintainer((Maintainer<GraphicsPipeline>)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
+				getShaders().clear();
+				getShaders().addAll((Collection<? extends Shader>)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
+				setViewportState((ViewportState)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
+				setInputAssembly((InputAssembly)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
+				setRasterizer((Rasterizer)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+				setColorBlend((ColorBlend)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+				setDynamicState((DynamicState)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
+				setSubpass((Integer)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
+				setVertexInputState((VertexInputState)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1200,57 +1179,57 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHICS_PIPELINE__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-			setResourcePkg((ResourcePkg) null);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
-			setEnabled(ENABLED_EDEFAULT);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
-			setStage(STAGE_EDEFAULT);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
-			getPushConstantRanges().clear();
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
-			setSpecializationData(SPECIALIZATION_DATA_EDEFAULT);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
-			setDescriptorSetPkg((DescriptorSetPkg) null);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
-			setTaskPkg((TaskPkg) null);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
-			setMaintainer((Maintainer<GraphicsPipeline>) null);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
-			getShaders().clear();
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
-			setViewportState((ViewportState) null);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
-			setInputAssembly((InputAssembly) null);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
-			setRasterizer((Rasterizer) null);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
-			setColorBlend((ColorBlend) null);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
-			setDynamicState((DynamicState) null);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
-			setSubpass(SUBPASS_EDEFAULT);
-			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
-			setVertexInputState((VertexInputState) null);
-			return;
+			case GraphicPackage.GRAPHICS_PIPELINE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
+				setResourcePkg((ResourcePkg)null);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
+				setStage(STAGE_EDEFAULT);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
+				getPushConstantRanges().clear();
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
+				setSpecializationData(SPECIALIZATION_DATA_EDEFAULT);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
+				setDescriptorSetPkg((DescriptorSetPkg)null);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
+				setTaskPkg((TaskPkg)null);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
+				setMaintainer((Maintainer<GraphicsPipeline>)null);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
+				getShaders().clear();
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
+				setViewportState((ViewportState)null);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
+				setInputAssembly((InputAssembly)null);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
+				setRasterizer((Rasterizer)null);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+				setColorBlend((ColorBlend)null);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+				setDynamicState((DynamicState)null);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
+				setSubpass(SUBPASS_EDEFAULT);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
+				setVertexInputState((VertexInputState)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1265,42 +1244,40 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHICS_PIPELINE__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-			return resourcePkg != null;
-		case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
-			return enabled != ENABLED_EDEFAULT;
-		case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
-			return stage != STAGE_EDEFAULT;
-		case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
-			return pushConstantRanges != null && !pushConstantRanges.isEmpty();
-		case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
-			return SPECIALIZATION_DATA_EDEFAULT == null
-					? specializationData != null
-					: !SPECIALIZATION_DATA_EDEFAULT.equals(specializationData);
-		case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
-			return descriptorSetPkg != null;
-		case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
-			return taskPkg != null;
-		case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
-			return maintainer != null;
-		case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
-			return shaders != null && !shaders.isEmpty();
-		case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
-			return viewportState != null;
-		case GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
-			return inputAssembly != null;
-		case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
-			return rasterizer != null;
-		case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
-			return colorBlend != null;
-		case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
-			return dynamicState != null;
-		case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
-			return subpass != SUBPASS_EDEFAULT;
-		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
-			return vertexInputState != null;
+			case GraphicPackage.GRAPHICS_PIPELINE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
+				return resourcePkg != null;
+			case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
+				return stage != STAGE_EDEFAULT;
+			case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
+				return pushConstantRanges != null && !pushConstantRanges.isEmpty();
+			case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
+				return SPECIALIZATION_DATA_EDEFAULT == null ? specializationData != null : !SPECIALIZATION_DATA_EDEFAULT.equals(specializationData);
+			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
+				return descriptorSetPkg != null;
+			case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
+				return taskPkg != null;
+			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
+				return maintainer != null;
+			case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
+				return shaders != null && !shaders.isEmpty();
+			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
+				return viewportState != null;
+			case GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
+				return inputAssembly != null;
+			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
+				return rasterizer != null;
+			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+				return colorBlend != null;
+			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+				return dynamicState != null;
+			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
+				return subpass != SUBPASS_EDEFAULT;
+			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
+				return vertexInputState != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1317,28 +1294,23 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		{
 			switch (derivedFeatureID)
 			{
-			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-				return VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG;
-			default:
-				return -1;
+				case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG: return VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG;
+				default: return -1;
 			}
 		}
 		if (baseClass == IProcessPart.class)
 		{
 			switch (derivedFeatureID)
 			{
-			default:
-				return -1;
+				default: return -1;
 			}
 		}
 		if (baseClass == Maintainable.class)
 		{
 			switch (derivedFeatureID)
 			{
-			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
-				return MaintainerPackage.MAINTAINABLE__MAINTAINER;
-			default:
-				return -1;
+				case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER: return MaintainerPackage.MAINTAINABLE__MAINTAINER;
+				default: return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -1356,28 +1328,23 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		{
 			switch (baseFeatureID)
 			{
-			case VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG:
-				return GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG;
-			default:
-				return -1;
+				case VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG: return GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG;
+				default: return -1;
 			}
 		}
 		if (baseClass == IProcessPart.class)
 		{
 			switch (baseFeatureID)
 			{
-			default:
-				return -1;
+				default: return -1;
 			}
 		}
 		if (baseClass == Maintainable.class)
 		{
 			switch (baseFeatureID)
 			{
-			case MaintainerPackage.MAINTAINABLE__MAINTAINER:
-				return GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER;
-			default:
-				return -1;
+				case MaintainerPackage.MAINTAINABLE__MAINTAINER: return GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER;
+				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);

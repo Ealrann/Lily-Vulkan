@@ -115,7 +115,7 @@ public class RenderingSwitch<T1> extends Switch<T1>
 			}
 			case RenderingPackage.PRESENTATION_PKG:
 			{
-				PresentationPkg presentationPkg = (PresentationPkg)theEObject;
+				PresentationPkg<?> presentationPkg = (PresentationPkg<?>)theEObject;
 				T1 result = casePresentationPkg(presentationPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -130,17 +130,17 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.GENERIC_RENDERER_MAINTAINER:
+			case RenderingPackage.GENERIC_RENDERER:
 			{
-				GenericRendererMaintainer<?> genericRendererMaintainer = (GenericRendererMaintainer<?>)theEObject;
-				T1 result = caseGenericRendererMaintainer(genericRendererMaintainer);
-				if (result == null) result = caseGraphicsPipeline(genericRendererMaintainer);
-				if (result == null) result = caseMaintainer(genericRendererMaintainer);
-				if (result == null) result = caseIPipeline(genericRendererMaintainer);
-				if (result == null) result = caseMaintainable(genericRendererMaintainer);
-				if (result == null) result = caseLNamedElement(genericRendererMaintainer);
-				if (result == null) result = caseIResourceContainer(genericRendererMaintainer);
-				if (result == null) result = caseIProcessPart(genericRendererMaintainer);
+				GenericRenderer<?> genericRenderer = (GenericRenderer<?>)theEObject;
+				T1 result = caseGenericRenderer(genericRenderer);
+				if (result == null) result = caseGraphicsPipeline(genericRenderer);
+				if (result == null) result = caseMaintainer(genericRenderer);
+				if (result == null) result = caseIPipeline(genericRenderer);
+				if (result == null) result = caseMaintainable(genericRenderer);
+				if (result == null) result = caseLNamedElement(genericRenderer);
+				if (result == null) result = caseIResourceContainer(genericRenderer);
+				if (result == null) result = caseIProcessPart(genericRenderer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -196,6 +196,28 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseGenericDataProvider(genericIndexProvider);
 				if (result == null) result = caseBufferDataProvider(genericIndexProvider);
 				if (result == null) result = caseLNamedElement(genericIndexProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.PRESENTATION_ROOT_PKG:
+			{
+				PresentationRootPkg presentationRootPkg = (PresentationRootPkg)theEObject;
+				T1 result = casePresentationRootPkg(presentationRootPkg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.RESOURCE_PROVIDER:
+			{
+				ResourceProvider resourceProvider = (ResourceProvider)theEObject;
+				T1 result = caseResourceProvider(resourceProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.STATIC_RESOURCE_PROVIDER:
+			{
+				StaticResourceProvider staticResourceProvider = (StaticResourceProvider)theEObject;
+				T1 result = caseStaticResourceProvider(staticResourceProvider);
+				if (result == null) result = caseResourceProvider(staticResourceProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -278,7 +300,7 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePresentationPkg(PresentationPkg object)
+	public <T extends Presentation> T1 casePresentationPkg(PresentationPkg<T> object)
 	{
 		return null;
 	}
@@ -300,17 +322,17 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Generic Renderer Maintainer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Renderer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Generic Renderer Maintainer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Renderer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Presentation> T1 caseGenericRendererMaintainer(GenericRendererMaintainer<T> object)
+	public <T extends Presentation> T1 caseGenericRenderer(GenericRenderer<T> object)
 	{
 		return null;
 	}
@@ -407,6 +429,54 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public <T extends Presentation> T1 caseGenericIndexProvider(GenericIndexProvider<T> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Presentation Root Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Presentation Root Pkg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 casePresentationRootPkg(PresentationRootPkg object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Resource Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Resource Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseResourceProvider(ResourceProvider object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Static Resource Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Static Resource Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseStaticResourceProvider(StaticResourceProvider object)
 	{
 		return null;
 	}

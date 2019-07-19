@@ -154,8 +154,8 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PUSH_CONSTANT__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PUSH_CONSTANT__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -168,8 +168,7 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	{
 		if (stages == null)
 		{
-			stages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this,
-					ProcessPackage.PUSH_CONSTANT__STAGES);
+			stages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, ProcessPackage.PUSH_CONSTANT__STAGES);
 		}
 		return stages;
 	}
@@ -184,12 +183,12 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PUSH_CONSTANT__NAME:
-			return getName();
-		case ProcessPackage.PUSH_CONSTANT__ENABLED:
-			return isEnabled();
-		case ProcessPackage.PUSH_CONSTANT__STAGES:
-			return getStages();
+			case ProcessPackage.PUSH_CONSTANT__NAME:
+				return getName();
+			case ProcessPackage.PUSH_CONSTANT__ENABLED:
+				return isEnabled();
+			case ProcessPackage.PUSH_CONSTANT__STAGES:
+				return getStages();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -205,16 +204,16 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PUSH_CONSTANT__NAME:
-			setName((String) newValue);
-			return;
-		case ProcessPackage.PUSH_CONSTANT__ENABLED:
-			setEnabled((Boolean) newValue);
-			return;
-		case ProcessPackage.PUSH_CONSTANT__STAGES:
-			getStages().clear();
-			getStages().addAll((Collection<? extends EShaderStage>) newValue);
-			return;
+			case ProcessPackage.PUSH_CONSTANT__NAME:
+				setName((String)newValue);
+				return;
+			case ProcessPackage.PUSH_CONSTANT__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case ProcessPackage.PUSH_CONSTANT__STAGES:
+				getStages().clear();
+				getStages().addAll((Collection<? extends EShaderStage>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -229,15 +228,15 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PUSH_CONSTANT__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case ProcessPackage.PUSH_CONSTANT__ENABLED:
-			setEnabled(ENABLED_EDEFAULT);
-			return;
-		case ProcessPackage.PUSH_CONSTANT__STAGES:
-			getStages().clear();
-			return;
+			case ProcessPackage.PUSH_CONSTANT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case ProcessPackage.PUSH_CONSTANT__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case ProcessPackage.PUSH_CONSTANT__STAGES:
+				getStages().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -252,12 +251,12 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PUSH_CONSTANT__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ProcessPackage.PUSH_CONSTANT__ENABLED:
-			return enabled != ENABLED_EDEFAULT;
-		case ProcessPackage.PUSH_CONSTANT__STAGES:
-			return stages != null && !stages.isEmpty();
+			case ProcessPackage.PUSH_CONSTANT__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ProcessPackage.PUSH_CONSTANT__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case ProcessPackage.PUSH_CONSTANT__STAGES:
+				return stages != null && !stages.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

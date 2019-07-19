@@ -31,9 +31,8 @@ import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SpecializationConstantItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class SpecializationConstantItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -74,14 +73,19 @@ public class SpecializationConstantItemProvider extends ItemProviderAdapter
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_SpecializationConstant_name_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_SpecializationConstant_name_feature",
-						"_UI_SpecializationConstant_type"),
-				PipelinePackage.Literals.SPECIALIZATION_CONSTANT__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SpecializationConstant_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SpecializationConstant_name_feature", "_UI_SpecializationConstant_type"),
+				 PipelinePackage.Literals.SPECIALIZATION_CONSTANT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -92,14 +96,19 @@ public class SpecializationConstantItemProvider extends ItemProviderAdapter
 	 */
 	protected void addConstantIdPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_SpecializationConstant_constantId_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_SpecializationConstant_constantId_feature",
-						"_UI_SpecializationConstant_type"),
-				PipelinePackage.Literals.SPECIALIZATION_CONSTANT__CONSTANT_ID, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SpecializationConstant_constantId_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SpecializationConstant_constantId_feature", "_UI_SpecializationConstant_type"),
+				 PipelinePackage.Literals.SPECIALIZATION_CONSTANT__CONSTANT_ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -110,14 +119,19 @@ public class SpecializationConstantItemProvider extends ItemProviderAdapter
 	 */
 	protected void addSizePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_SpecializationConstant_size_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_SpecializationConstant_size_feature",
-						"_UI_SpecializationConstant_type"),
-				PipelinePackage.Literals.SPECIALIZATION_CONSTANT__SIZE, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SpecializationConstant_size_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SpecializationConstant_size_feature", "_UI_SpecializationConstant_type"),
+				 PipelinePackage.Literals.SPECIALIZATION_CONSTANT__SIZE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -129,8 +143,7 @@ public class SpecializationConstantItemProvider extends ItemProviderAdapter
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/SpecializationConstant"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SpecializationConstant"));
 	}
 
 	/**
@@ -142,10 +155,10 @@ public class SpecializationConstantItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((SpecializationConstant) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_SpecializationConstant_type")
-				: getString("_UI_SpecializationConstant_type") + " " + label;
+		String label = ((SpecializationConstant)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SpecializationConstant_type") :
+			getString("_UI_SpecializationConstant_type") + " " + label;
 	}
 
 	/**
@@ -162,12 +175,11 @@ public class SpecializationConstantItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(SpecializationConstant.class))
 		{
-		case PipelinePackage.SPECIALIZATION_CONSTANT__NAME:
-		case PipelinePackage.SPECIALIZATION_CONSTANT__CONSTANT_ID:
-		case PipelinePackage.SPECIALIZATION_CONSTANT__SIZE:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case PipelinePackage.SPECIALIZATION_CONSTANT__NAME:
+			case PipelinePackage.SPECIALIZATION_CONSTANT__CONSTANT_ID:
+			case PipelinePackage.SPECIALIZATION_CONSTANT__SIZE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -194,7 +206,7 @@ public class SpecializationConstantItemProvider extends ItemProviderAdapter
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

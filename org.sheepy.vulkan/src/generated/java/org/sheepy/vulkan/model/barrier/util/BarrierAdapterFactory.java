@@ -60,7 +60,7 @@ public class BarrierAdapterFactory extends AdapterFactoryImpl
 		}
 		if (object instanceof EObject)
 		{
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -72,43 +72,43 @@ public class BarrierAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected BarrierSwitch<Adapter> modelSwitch = new BarrierSwitch<Adapter>()
-	{
-		@Override
-		public Adapter caseBarrier(Barrier object)
 		{
-			return createBarrierAdapter();
-		}
-		@Override
-		public Adapter caseAbstractBufferBarrier(AbstractBufferBarrier object)
-		{
-			return createAbstractBufferBarrierAdapter();
-		}
-		@Override
-		public Adapter caseReferenceBufferBarrier(ReferenceBufferBarrier object)
-		{
-			return createReferenceBufferBarrierAdapter();
-		}
-		@Override
-		public Adapter caseAbstractImageBarrier(AbstractImageBarrier object)
-		{
-			return createAbstractImageBarrierAdapter();
-		}
-		@Override
-		public Adapter caseReferenceImageBarrier(ReferenceImageBarrier object)
-		{
-			return createReferenceImageBarrierAdapter();
-		}
-		@Override
-		public Adapter caseImageTransition(ImageTransition object)
-		{
-			return createImageTransitionAdapter();
-		}
-		@Override
-		public Adapter defaultCase(EObject object)
-		{
-			return createEObjectAdapter();
-		}
-	};
+			@Override
+			public Adapter caseBarrier(Barrier object)
+			{
+				return createBarrierAdapter();
+			}
+			@Override
+			public Adapter caseAbstractBufferBarrier(AbstractBufferBarrier object)
+			{
+				return createAbstractBufferBarrierAdapter();
+			}
+			@Override
+			public Adapter caseReferenceBufferBarrier(ReferenceBufferBarrier object)
+			{
+				return createReferenceBufferBarrierAdapter();
+			}
+			@Override
+			public Adapter caseAbstractImageBarrier(AbstractImageBarrier object)
+			{
+				return createAbstractImageBarrierAdapter();
+			}
+			@Override
+			public Adapter caseReferenceImageBarrier(ReferenceImageBarrier object)
+			{
+				return createReferenceImageBarrierAdapter();
+			}
+			@Override
+			public Adapter caseImageTransition(ImageTransition object)
+			{
+				return createImageTransitionAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object)
+			{
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -121,7 +121,7 @@ public class BarrierAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public Adapter createAdapter(Notifier target)
 	{
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 	/**

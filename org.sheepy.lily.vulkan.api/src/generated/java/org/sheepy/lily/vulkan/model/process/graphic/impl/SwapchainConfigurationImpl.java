@@ -146,8 +146,8 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	{
 		EPresentMode oldPresentationMode = presentationMode;
 		presentationMode = newPresentationMode == null ? PRESENTATION_MODE_EDEFAULT : newPresentationMode;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE, oldPresentationMode, presentationMode));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE, oldPresentationMode, presentationMode));
 	}
 
 	/**
@@ -171,9 +171,8 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	{
 		int oldRequiredSwapImageCount = requiredSwapImageCount;
 		requiredSwapImageCount = newRequiredSwapImageCount;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT, oldRequiredSwapImageCount,
-				requiredSwapImageCount));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT, oldRequiredSwapImageCount, requiredSwapImageCount));
 	}
 
 	/**
@@ -186,8 +185,7 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	{
 		if (swapImageUsages == null)
 		{
-			swapImageUsages = new EDataTypeUniqueEList<EImageUsage>(EImageUsage.class, this,
-					GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES);
+			swapImageUsages = new EDataTypeUniqueEList<EImageUsage>(EImageUsage.class, this, GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES);
 		}
 		return swapImageUsages;
 	}
@@ -202,8 +200,7 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	{
 		if (atachments == null)
 		{
-			atachments = new EObjectContainmentEList<ISwapAttachment>(ISwapAttachment.class, this,
-					GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS);
+			atachments = new EObjectContainmentEList<ISwapAttachment>(ISwapAttachment.class, this, GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS);
 		}
 		return atachments;
 	}
@@ -218,8 +215,8 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
-			return ((InternalEList<?>) getAtachments()).basicRemove(otherEnd, msgs);
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
+				return ((InternalEList<?>)getAtachments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -234,14 +231,14 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE:
-			return getPresentationMode();
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
-			return getRequiredSwapImageCount();
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
-			return getSwapImageUsages();
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
-			return getAtachments();
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE:
+				return getPresentationMode();
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
+				return getRequiredSwapImageCount();
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
+				return getSwapImageUsages();
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
+				return getAtachments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -257,20 +254,20 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE:
-			setPresentationMode((EPresentMode) newValue);
-			return;
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
-			setRequiredSwapImageCount((Integer) newValue);
-			return;
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
-			getSwapImageUsages().clear();
-			getSwapImageUsages().addAll((Collection<? extends EImageUsage>) newValue);
-			return;
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
-			getAtachments().clear();
-			getAtachments().addAll((Collection<? extends ISwapAttachment>) newValue);
-			return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE:
+				setPresentationMode((EPresentMode)newValue);
+				return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
+				setRequiredSwapImageCount((Integer)newValue);
+				return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
+				getSwapImageUsages().clear();
+				getSwapImageUsages().addAll((Collection<? extends EImageUsage>)newValue);
+				return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
+				getAtachments().clear();
+				getAtachments().addAll((Collection<? extends ISwapAttachment>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -285,18 +282,18 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE:
-			setPresentationMode(PRESENTATION_MODE_EDEFAULT);
-			return;
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
-			setRequiredSwapImageCount(REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT);
-			return;
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
-			getSwapImageUsages().clear();
-			return;
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
-			getAtachments().clear();
-			return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE:
+				setPresentationMode(PRESENTATION_MODE_EDEFAULT);
+				return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
+				setRequiredSwapImageCount(REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT);
+				return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
+				getSwapImageUsages().clear();
+				return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
+				getAtachments().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -311,14 +308,14 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE:
-			return presentationMode != PRESENTATION_MODE_EDEFAULT;
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
-			return requiredSwapImageCount != REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT;
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
-			return swapImageUsages != null && !swapImageUsages.isEmpty();
-		case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
-			return atachments != null && !atachments.isEmpty();
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE:
+				return presentationMode != PRESENTATION_MODE_EDEFAULT;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
+				return requiredSwapImageCount != REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
+				return swapImageUsages != null && !swapImageUsages.isEmpty();
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
+				return atachments != null && !atachments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

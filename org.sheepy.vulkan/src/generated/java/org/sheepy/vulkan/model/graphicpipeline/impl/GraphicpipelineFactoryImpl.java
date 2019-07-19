@@ -30,13 +30,13 @@ public class GraphicpipelineFactoryImpl extends EFactoryImpl implements Graphicp
 	{
 		try
 		{
-			GraphicpipelineFactory theGraphicpipelineFactory = (GraphicpipelineFactory) EPackage.Registry.INSTANCE
-					.getEFactory(GraphicpipelinePackage.eNS_URI);
+			GraphicpipelineFactory theGraphicpipelineFactory = (GraphicpipelineFactory)EPackage.Registry.INSTANCE.getEFactory(GraphicpipelinePackage.eNS_URI);
 			if (theGraphicpipelineFactory != null)
 			{
 				return theGraphicpipelineFactory;
 			}
-		} catch (Exception exception)
+		}
+		catch (Exception exception)
 		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
@@ -64,29 +64,18 @@ public class GraphicpipelineFactoryImpl extends EFactoryImpl implements Graphicp
 	{
 		switch (eClass.getClassifierID())
 		{
-		case GraphicpipelinePackage.COLOR_BLEND:
-			return createColorBlend();
-		case GraphicpipelinePackage.COLOR_BLEND_ATTACHMENT:
-			return createColorBlendAttachment();
-		case GraphicpipelinePackage.INPUT_ASSEMBLY:
-			return createInputAssembly();
-		case GraphicpipelinePackage.RASTERIZER:
-			return createRasterizer();
-		case GraphicpipelinePackage.DYNAMIC_STATE:
-			return createDynamicState();
-		case GraphicpipelinePackage.STATIC_VIEWPORT_STATE:
-			return createStaticViewportState();
-		case GraphicpipelinePackage.DYNAMIC_VIEWPORT_STATE:
-			return createDynamicViewportState();
-		case GraphicpipelinePackage.VEC2_I:
-			return createVec2I();
-		case GraphicpipelinePackage.VIEWPORT:
-			return createViewport();
-		case GraphicpipelinePackage.SCISSOR:
-			return createScissor();
-		default:
-			throw new IllegalArgumentException(
-					"The class '" + eClass.getName() + "' is not a valid classifier");
+			case GraphicpipelinePackage.COLOR_BLEND: return createColorBlend();
+			case GraphicpipelinePackage.COLOR_BLEND_ATTACHMENT: return createColorBlendAttachment();
+			case GraphicpipelinePackage.INPUT_ASSEMBLY: return createInputAssembly();
+			case GraphicpipelinePackage.RASTERIZER: return createRasterizer();
+			case GraphicpipelinePackage.DYNAMIC_STATE: return createDynamicState();
+			case GraphicpipelinePackage.STATIC_VIEWPORT_STATE: return createStaticViewportState();
+			case GraphicpipelinePackage.DYNAMIC_VIEWPORT_STATE: return createDynamicViewportState();
+			case GraphicpipelinePackage.VEC2_I: return createVec2I();
+			case GraphicpipelinePackage.VIEWPORT: return createViewport();
+			case GraphicpipelinePackage.SCISSOR: return createScissor();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -218,7 +207,7 @@ public class GraphicpipelineFactoryImpl extends EFactoryImpl implements Graphicp
 	@Override
 	public GraphicpipelinePackage getGraphicpipelinePackage()
 	{
-		return (GraphicpipelinePackage) getEPackage();
+		return (GraphicpipelinePackage)getEPackage();
 	}
 
 	/**

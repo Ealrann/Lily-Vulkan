@@ -31,9 +31,8 @@ import org.sheepy.vulkan.model.graphicpipeline.InputAssembly;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InputAssemblyItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class InputAssemblyItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -73,15 +72,19 @@ public class InputAssemblyItemProvider extends ItemProviderAdapter
 	 */
 	protected void addPrimitiveRestartEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_InputAssembly_primitiveRestartEnabled_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_InputAssembly_primitiveRestartEnabled_feature",
-						"_UI_InputAssembly_type"),
-				GraphicpipelinePackage.Literals.INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED, true,
-				false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_InputAssembly_primitiveRestartEnabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_InputAssembly_primitiveRestartEnabled_feature", "_UI_InputAssembly_type"),
+				 GraphicpipelinePackage.Literals.INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -92,13 +95,19 @@ public class InputAssemblyItemProvider extends ItemProviderAdapter
 	 */
 	protected void addPrimitiveTopologyPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_InputAssembly_primitiveTopology_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_InputAssembly_primitiveTopology_feature", "_UI_InputAssembly_type"),
-				GraphicpipelinePackage.Literals.INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_InputAssembly_primitiveTopology_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_InputAssembly_primitiveTopology_feature", "_UI_InputAssembly_type"),
+				 GraphicpipelinePackage.Literals.INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -122,10 +131,8 @@ public class InputAssemblyItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		InputAssembly inputAssembly = (InputAssembly) object;
-		return getString("_UI_InputAssembly_type")
-				+ " "
-				+ inputAssembly.isPrimitiveRestartEnabled();
+		InputAssembly inputAssembly = (InputAssembly)object;
+		return getString("_UI_InputAssembly_type") + " " + inputAssembly.isPrimitiveRestartEnabled();
 	}
 
 	/**
@@ -142,11 +149,10 @@ public class InputAssemblyItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(InputAssembly.class))
 		{
-		case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED:
-		case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED:
+			case GraphicpipelinePackage.INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -173,7 +179,7 @@ public class InputAssemblyItemProvider extends ItemProviderAdapter
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

@@ -77,13 +77,19 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-								"_UI_LNamedElement_type"),
-						TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -94,13 +100,19 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
-								"_UI_IPipelineTask_type"),
-						ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPipelineTask_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature", "_UI_IPipelineTask_type"),
+				 ProcessPackage.Literals.IPIPELINE_TASK__ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -111,13 +123,19 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter implements 
 	 */
 	protected void addIndexTypePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_BindIndexBuffer_indexType_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_BindIndexBuffer_indexType_feature",
-								"_UI_BindIndexBuffer_type"),
-						GraphicPackage.Literals.BIND_INDEX_BUFFER__INDEX_TYPE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BindIndexBuffer_indexType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BindIndexBuffer_indexType_feature", "_UI_BindIndexBuffer_type"),
+				 GraphicPackage.Literals.BIND_INDEX_BUFFER__INDEX_TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -174,10 +192,10 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((BindIndexBuffer) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_BindIndexBuffer_type")
-				: getString("_UI_BindIndexBuffer_type") + " " + label;
+		String label = ((BindIndexBuffer)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_BindIndexBuffer_type") :
+			getString("_UI_BindIndexBuffer_type") + " " + label;
 	}
 
 	/**
@@ -194,14 +212,14 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter implements 
 
 		switch (notification.getFeatureID(BindIndexBuffer.class))
 		{
-		case GraphicPackage.BIND_INDEX_BUFFER__NAME:
-		case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
-		case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case GraphicPackage.BIND_INDEX_BUFFER__NAME:
+			case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
+			case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -218,11 +236,15 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter implements 
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.BIND_INDEX_BUFFER__BUFFER_REF,
-				ResourceFactory.eINSTANCE.createBufferReference()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.BIND_INDEX_BUFFER__BUFFER_REF,
+				 ResourceFactory.eINSTANCE.createBufferReference()));
 
-		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.BIND_INDEX_BUFFER__BUFFER_REF,
-				ResourceFactory.eINSTANCE.createCompositeBufferReference()));
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.BIND_INDEX_BUFFER__BUFFER_REF,
+				 ResourceFactory.eINSTANCE.createCompositeBufferReference()));
 	}
 
 	/**
@@ -234,7 +256,7 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

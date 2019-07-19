@@ -3,8 +3,7 @@
 package org.sheepy.lily.vulkan.extra.model.sprite;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
-
-import org.sheepy.lily.vulkan.model.resource.FileResource;
+import org.sheepy.lily.vulkan.model.resource.PathResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,12 +28,12 @@ public interface Sprite extends Presentation
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>File</em>' containment reference.
-	 * @see #setFile(FileResource)
+	 * @see #setFile(PathResource)
 	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage#getSprite_File()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	FileResource getFile();
+	PathResource getFile();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.sprite.Sprite#getFile <em>File</em>}' containment reference.
@@ -44,6 +43,6 @@ public interface Sprite extends Presentation
 	 * @see #getFile()
 	 * @generated
 	 */
-	void setFile(FileResource value);
+	void setFile(PathResource value);
 
 } // Sprite

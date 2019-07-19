@@ -245,10 +245,8 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 		resourcePkg = newResourcePkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ProcessPackage.PIPELINE__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -264,15 +262,15 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 		if (newResourcePkg != resourcePkg)
 		{
 			NotificationChain msgs = null;
-			if (resourcePkg != null) msgs = ((InternalEObject) resourcePkg).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE__RESOURCE_PKG, null, msgs);
-			if (newResourcePkg != null) msgs = ((InternalEObject) newResourcePkg).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE__RESOURCE_PKG, null, msgs);
+			if (resourcePkg != null)
+				msgs = ((InternalEObject)resourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE__RESOURCE_PKG, null, msgs);
+			if (newResourcePkg != null)
+				msgs = ((InternalEObject)newResourcePkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE__RESOURCE_PKG, null, msgs);
 			msgs = basicSetResourcePkg(newResourcePkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PIPELINE__RESOURCE_PKG, newResourcePkg, newResourcePkg));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE__RESOURCE_PKG, newResourcePkg, newResourcePkg));
 	}
 
 	/**
@@ -296,8 +294,8 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired()) eNotify(
-				new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -335,8 +333,7 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	{
 		if (pushConstantRanges == null)
 		{
-			pushConstantRanges = new EObjectContainmentEList<PushConstantRange>(PushConstantRange.class, this,
-					ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES);
+			pushConstantRanges = new EObjectContainmentEList<PushConstantRange>(PushConstantRange.class, this, ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES);
 		}
 		return pushConstantRanges;
 	}
@@ -362,8 +359,8 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	{
 		ByteBuffer oldSpecializationData = specializationData;
 		specializationData = newSpecializationData;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
 	}
 
 	/**
@@ -388,10 +385,8 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 		descriptorSetPkg = newDescriptorSetPkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG, oldDescriptorSetPkg, newDescriptorSetPkg);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG, oldDescriptorSetPkg, newDescriptorSetPkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -407,15 +402,15 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 		if (newDescriptorSetPkg != descriptorSetPkg)
 		{
 			NotificationChain msgs = null;
-			if (descriptorSetPkg != null) msgs = ((InternalEObject) descriptorSetPkg).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
-			if (newDescriptorSetPkg != null) msgs = ((InternalEObject) newDescriptorSetPkg).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
+			if (descriptorSetPkg != null)
+				msgs = ((InternalEObject)descriptorSetPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
+			if (newDescriptorSetPkg != null)
+				msgs = ((InternalEObject)newDescriptorSetPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
 			msgs = basicSetDescriptorSetPkg(newDescriptorSetPkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG, newDescriptorSetPkg, newDescriptorSetPkg));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG, newDescriptorSetPkg, newDescriptorSetPkg));
 	}
 
 	/**
@@ -440,10 +435,8 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 		taskPkg = newTaskPkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ProcessPackage.PIPELINE__TASK_PKG, oldTaskPkg, newTaskPkg);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE__TASK_PKG, oldTaskPkg, newTaskPkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -459,15 +452,15 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 		if (newTaskPkg != taskPkg)
 		{
 			NotificationChain msgs = null;
-			if (taskPkg != null) msgs = ((InternalEObject) taskPkg).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE__TASK_PKG, null, msgs);
-			if (newTaskPkg != null) msgs = ((InternalEObject) newTaskPkg).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE__TASK_PKG, null, msgs);
+			if (taskPkg != null)
+				msgs = ((InternalEObject)taskPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE__TASK_PKG, null, msgs);
+			if (newTaskPkg != null)
+				msgs = ((InternalEObject)newTaskPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE__TASK_PKG, null, msgs);
 			msgs = basicSetTaskPkg(newTaskPkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.PIPELINE__TASK_PKG, newTaskPkg, newTaskPkg));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE__TASK_PKG, newTaskPkg, newTaskPkg));
 	}
 
 	/**
@@ -480,14 +473,14 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PIPELINE__RESOURCE_PKG:
-			return basicSetResourcePkg(null, msgs);
-		case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
-			return ((InternalEList<?>) getPushConstantRanges()).basicRemove(otherEnd, msgs);
-		case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
-			return basicSetDescriptorSetPkg(null, msgs);
-		case ProcessPackage.PIPELINE__TASK_PKG:
-			return basicSetTaskPkg(null, msgs);
+			case ProcessPackage.PIPELINE__RESOURCE_PKG:
+				return basicSetResourcePkg(null, msgs);
+			case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
+				return ((InternalEList<?>)getPushConstantRanges()).basicRemove(otherEnd, msgs);
+			case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
+				return basicSetDescriptorSetPkg(null, msgs);
+			case ProcessPackage.PIPELINE__TASK_PKG:
+				return basicSetTaskPkg(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -502,22 +495,22 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PIPELINE__NAME:
-			return getName();
-		case ProcessPackage.PIPELINE__RESOURCE_PKG:
-			return getResourcePkg();
-		case ProcessPackage.PIPELINE__ENABLED:
-			return isEnabled();
-		case ProcessPackage.PIPELINE__STAGE:
-			return getStage();
-		case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
-			return getPushConstantRanges();
-		case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
-			return getSpecializationData();
-		case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
-			return getDescriptorSetPkg();
-		case ProcessPackage.PIPELINE__TASK_PKG:
-			return getTaskPkg();
+			case ProcessPackage.PIPELINE__NAME:
+				return getName();
+			case ProcessPackage.PIPELINE__RESOURCE_PKG:
+				return getResourcePkg();
+			case ProcessPackage.PIPELINE__ENABLED:
+				return isEnabled();
+			case ProcessPackage.PIPELINE__STAGE:
+				return getStage();
+			case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
+				return getPushConstantRanges();
+			case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
+				return getSpecializationData();
+			case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
+				return getDescriptorSetPkg();
+			case ProcessPackage.PIPELINE__TASK_PKG:
+				return getTaskPkg();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -533,31 +526,31 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PIPELINE__NAME:
-			setName((String) newValue);
-			return;
-		case ProcessPackage.PIPELINE__RESOURCE_PKG:
-			setResourcePkg((ResourcePkg) newValue);
-			return;
-		case ProcessPackage.PIPELINE__ENABLED:
-			setEnabled((Boolean) newValue);
-			return;
-		case ProcessPackage.PIPELINE__STAGE:
-			setStage((ECommandStage) newValue);
-			return;
-		case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
-			getPushConstantRanges().clear();
-			getPushConstantRanges().addAll((Collection<? extends PushConstantRange>) newValue);
-			return;
-		case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
-			setSpecializationData((ByteBuffer) newValue);
-			return;
-		case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
-			setDescriptorSetPkg((DescriptorSetPkg) newValue);
-			return;
-		case ProcessPackage.PIPELINE__TASK_PKG:
-			setTaskPkg((TaskPkg) newValue);
-			return;
+			case ProcessPackage.PIPELINE__NAME:
+				setName((String)newValue);
+				return;
+			case ProcessPackage.PIPELINE__RESOURCE_PKG:
+				setResourcePkg((ResourcePkg)newValue);
+				return;
+			case ProcessPackage.PIPELINE__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case ProcessPackage.PIPELINE__STAGE:
+				setStage((ECommandStage)newValue);
+				return;
+			case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
+				getPushConstantRanges().clear();
+				getPushConstantRanges().addAll((Collection<? extends PushConstantRange>)newValue);
+				return;
+			case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
+				setSpecializationData((ByteBuffer)newValue);
+				return;
+			case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
+				setDescriptorSetPkg((DescriptorSetPkg)newValue);
+				return;
+			case ProcessPackage.PIPELINE__TASK_PKG:
+				setTaskPkg((TaskPkg)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -572,30 +565,30 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PIPELINE__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case ProcessPackage.PIPELINE__RESOURCE_PKG:
-			setResourcePkg((ResourcePkg) null);
-			return;
-		case ProcessPackage.PIPELINE__ENABLED:
-			setEnabled(ENABLED_EDEFAULT);
-			return;
-		case ProcessPackage.PIPELINE__STAGE:
-			setStage(STAGE_EDEFAULT);
-			return;
-		case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
-			getPushConstantRanges().clear();
-			return;
-		case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
-			setSpecializationData(SPECIALIZATION_DATA_EDEFAULT);
-			return;
-		case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
-			setDescriptorSetPkg((DescriptorSetPkg) null);
-			return;
-		case ProcessPackage.PIPELINE__TASK_PKG:
-			setTaskPkg((TaskPkg) null);
-			return;
+			case ProcessPackage.PIPELINE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case ProcessPackage.PIPELINE__RESOURCE_PKG:
+				setResourcePkg((ResourcePkg)null);
+				return;
+			case ProcessPackage.PIPELINE__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case ProcessPackage.PIPELINE__STAGE:
+				setStage(STAGE_EDEFAULT);
+				return;
+			case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
+				getPushConstantRanges().clear();
+				return;
+			case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
+				setSpecializationData(SPECIALIZATION_DATA_EDEFAULT);
+				return;
+			case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
+				setDescriptorSetPkg((DescriptorSetPkg)null);
+				return;
+			case ProcessPackage.PIPELINE__TASK_PKG:
+				setTaskPkg((TaskPkg)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -610,24 +603,22 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.PIPELINE__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ProcessPackage.PIPELINE__RESOURCE_PKG:
-			return resourcePkg != null;
-		case ProcessPackage.PIPELINE__ENABLED:
-			return enabled != ENABLED_EDEFAULT;
-		case ProcessPackage.PIPELINE__STAGE:
-			return stage != STAGE_EDEFAULT;
-		case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
-			return pushConstantRanges != null && !pushConstantRanges.isEmpty();
-		case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
-			return SPECIALIZATION_DATA_EDEFAULT == null
-					? specializationData != null
-					: !SPECIALIZATION_DATA_EDEFAULT.equals(specializationData);
-		case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
-			return descriptorSetPkg != null;
-		case ProcessPackage.PIPELINE__TASK_PKG:
-			return taskPkg != null;
+			case ProcessPackage.PIPELINE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ProcessPackage.PIPELINE__RESOURCE_PKG:
+				return resourcePkg != null;
+			case ProcessPackage.PIPELINE__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case ProcessPackage.PIPELINE__STAGE:
+				return stage != STAGE_EDEFAULT;
+			case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
+				return pushConstantRanges != null && !pushConstantRanges.isEmpty();
+			case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
+				return SPECIALIZATION_DATA_EDEFAULT == null ? specializationData != null : !SPECIALIZATION_DATA_EDEFAULT.equals(specializationData);
+			case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
+				return descriptorSetPkg != null;
+			case ProcessPackage.PIPELINE__TASK_PKG:
+				return taskPkg != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -644,18 +635,15 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 		{
 			switch (derivedFeatureID)
 			{
-			case ProcessPackage.PIPELINE__RESOURCE_PKG:
-				return VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG;
-			default:
-				return -1;
+				case ProcessPackage.PIPELINE__RESOURCE_PKG: return VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG;
+				default: return -1;
 			}
 		}
 		if (baseClass == IProcessPart.class)
 		{
 			switch (derivedFeatureID)
 			{
-			default:
-				return -1;
+				default: return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -673,18 +661,15 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 		{
 			switch (baseFeatureID)
 			{
-			case VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG:
-				return ProcessPackage.PIPELINE__RESOURCE_PKG;
-			default:
-				return -1;
+				case VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG: return ProcessPackage.PIPELINE__RESOURCE_PKG;
+				default: return -1;
 			}
 		}
 		if (baseClass == IProcessPart.class)
 		{
 			switch (baseFeatureID)
 			{
-			default:
-				return -1;
+				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);

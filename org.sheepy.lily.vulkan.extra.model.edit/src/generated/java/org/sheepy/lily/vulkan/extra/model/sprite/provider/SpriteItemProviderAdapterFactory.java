@@ -5,14 +5,20 @@ package org.sheepy.lily.vulkan.extra.model.sprite.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.CommandParameter;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -21,7 +27,12 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
 import org.sheepy.lily.vulkan.extra.model.sprite.util.SpriteAdapterFactory;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
+import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -74,28 +85,28 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRendererMaintainer} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SpriteRendererMaintainerItemProvider spriteRendererMaintainerItemProvider;
+	protected SpriteRendererItemProvider spriteRendererItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRendererMaintainer}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSpriteRendererMaintainerAdapter()
+	public Adapter createSpriteRendererAdapter()
 	{
-		if (spriteRendererMaintainerItemProvider == null)
+		if (spriteRendererItemProvider == null)
 		{
-			spriteRendererMaintainerItemProvider = new SpriteRendererMaintainerItemProvider(this);
+			spriteRendererItemProvider = new SpriteRendererItemProvider(this);
 		}
 
-		return spriteRendererMaintainerItemProvider;
+		return spriteRendererItemProvider;
 	}
 
 	/**
@@ -121,6 +132,31 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 		}
 
 		return spriteItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SpritePkgItemProvider spritePkgItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSpritePkgAdapter()
+	{
+		if (spritePkgItemProvider == null)
+		{
+			spritePkgItemProvider = new SpritePkgItemProvider(this);
+		}
+
+		return spritePkgItemProvider;
 	}
 
 	/**
@@ -240,8 +276,105 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	@Override
 	public void dispose()
 	{
-		if (spriteRendererMaintainerItemProvider != null) spriteRendererMaintainerItemProvider.dispose();
+		if (spriteRendererItemProvider != null) spriteRendererItemProvider.dispose();
 		if (spriteItemProvider != null) spriteItemProvider.dispose();
+		if (spritePkgItemProvider != null) spritePkgItemProvider.dispose();
+	}
+
+	/**
+	 * A child creation extender for the {@link ProcessPackage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static class ProcessChildCreationExtender implements IChildCreationExtender
+	{
+		/**
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected static class CreationSwitch extends ProcessSwitch<Object>
+		{
+			/**
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected List<Object> newChildDescriptors;
+
+			/**
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected EditingDomain editingDomain;
+
+			/**
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			{
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseProcessPartPkg(ProcessPartPkg object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
+						 SpriteFactory.eINSTANCE.createSpriteRenderer()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected CommandParameter createChildParameter(Object feature, Object child)
+			{
+				return new CommandParameter(null, feature, child);
+			}
+
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
+		{
+			ArrayList<Object> result = new ArrayList<Object>();
+			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			return result;
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public ResourceLocator getResourceLocator()
+		{
+			return ExtraEditPlugin.INSTANCE;
+		}
 	}
 
 }

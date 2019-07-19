@@ -24,8 +24,7 @@ import org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier;
  *
  * @generated
  */
-public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl
-		implements ReferenceBufferBarrier
+public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl implements ReferenceBufferBarrier
 {
 	/**
 	 * The default value of the '{@link #getBufferPtr() <em>Buffer Ptr</em>}' attribute.
@@ -52,7 +51,7 @@ public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ReferenceBufferBarrierImpl()
+	public ReferenceBufferBarrierImpl()
 	{
 		super();
 	}
@@ -89,8 +88,8 @@ public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl
 	{
 		long oldBufferPtr = bufferPtr;
 		bufferPtr = newBufferPtr;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR, oldBufferPtr, bufferPtr));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR, oldBufferPtr, bufferPtr));
 	}
 
 	/**
@@ -103,8 +102,8 @@ public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR:
-			return getBufferPtr();
+			case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR:
+				return getBufferPtr();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,9 +118,9 @@ public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR:
-			setBufferPtr((Long) newValue);
-			return;
+			case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR:
+				setBufferPtr((Long)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -136,9 +135,9 @@ public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR:
-			setBufferPtr(BUFFER_PTR_EDEFAULT);
-			return;
+			case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR:
+				setBufferPtr(BUFFER_PTR_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -153,8 +152,8 @@ public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR:
-			return bufferPtr != BUFFER_PTR_EDEFAULT;
+			case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR:
+				return bufferPtr != BUFFER_PTR_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

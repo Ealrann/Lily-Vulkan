@@ -23,8 +23,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
 import org.sheepy.lily.vulkan.extra.model.sprite.Sprite;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
-
-import org.sheepy.lily.vulkan.model.resource.FileResource;
+import org.sheepy.lily.vulkan.model.resource.PathResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,7 +59,7 @@ public class SpriteImpl extends MinimalEObjectImpl.Container implements Sprite
 	 * @generated
 	 * @ordered
 	 */
-	protected FileResource file;
+	protected PathResource file;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -104,7 +103,7 @@ public class SpriteImpl extends MinimalEObjectImpl.Container implements Sprite
 	 * @generated
 	 */
 	@Override
-	public FileResource getFile()
+	public PathResource getFile()
 	{
 		return file;
 	}
@@ -114,9 +113,9 @@ public class SpriteImpl extends MinimalEObjectImpl.Container implements Sprite
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFile(FileResource newFile, NotificationChain msgs)
+	public NotificationChain basicSetFile(PathResource newFile, NotificationChain msgs)
 	{
-		FileResource oldFile = file;
+		PathResource oldFile = file;
 		file = newFile;
 		if (eNotificationRequired())
 		{
@@ -132,7 +131,7 @@ public class SpriteImpl extends MinimalEObjectImpl.Container implements Sprite
 	 * @generated
 	 */
 	@Override
-	public void setFile(FileResource newFile)
+	public void setFile(PathResource newFile)
 	{
 		if (newFile != file)
 		{
@@ -217,7 +216,7 @@ public class SpriteImpl extends MinimalEObjectImpl.Container implements Sprite
 				getPresentedEntities().addAll((Collection<? extends PresentableEntity>)newValue);
 				return;
 			case SpritePackage.SPRITE__FILE:
-				setFile((FileResource)newValue);
+				setFile((PathResource)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -237,7 +236,7 @@ public class SpriteImpl extends MinimalEObjectImpl.Container implements Sprite
 				getPresentedEntities().clear();
 				return;
 			case SpritePackage.SPRITE__FILE:
-				setFile((FileResource)null);
+				setFile((PathResource)null);
 				return;
 		}
 		super.eUnset(featureID);
