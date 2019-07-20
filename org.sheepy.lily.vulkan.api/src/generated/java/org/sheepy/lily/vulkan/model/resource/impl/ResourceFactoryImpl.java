@@ -79,10 +79,10 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.IMAGE: return createImage();
 			case ResourcePackage.IMAGE_LAYOUT: return createImageLayout();
 			case ResourcePackage.SAMPLED_IMAGE: return createSampledImage();
+			case ResourcePackage.SAMPLER: return createSampler();
 			case ResourcePackage.SEMAPHORE: return createSemaphore();
 			case ResourcePackage.FONT: return createFont();
 			case ResourcePackage.TEXTURE: return createTexture();
-			case ResourcePackage.SAMPLER: return createSampler();
 			case ResourcePackage.DESCRIPTOR: return createDescriptor();
 			case ResourcePackage.DESCRIPTOR_SET: return createDescriptorSet();
 			case ResourcePackage.DESCRIPTOR_SET_PKG: return createDescriptorSetPkg();
@@ -92,6 +92,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.FILE_RESOURCE: return createFileResource();
 			case ResourcePackage.MODULE_RESOURCE: return createModuleResource();
 			case ResourcePackage.STRING_MODULE_RESOURCE: return createStringModuleResource();
+			case ResourcePackage.TEXTURE2_DARRAY: return createTexture2DArray();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -285,6 +286,18 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
+	public Sampler createSampler()
+	{
+		SamplerImpl sampler = new SamplerImpl();
+		return sampler;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Semaphore createSemaphore()
 	{
 		SemaphoreImpl semaphore = new SemaphoreImpl();
@@ -313,18 +326,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		TextureImpl texture = new TextureImpl();
 		return texture;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Sampler createSampler()
-	{
-		SamplerImpl sampler = new SamplerImpl();
-		return sampler;
 	}
 
 	/**
@@ -433,6 +434,18 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		StringModuleResourceImpl stringModuleResource = new StringModuleResourceImpl();
 		return stringModuleResource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Texture2DArray createTexture2DArray()
+	{
+		Texture2DArrayImpl texture2DArray = new Texture2DArrayImpl();
+		return texture2DArray;
 	}
 
 	/**

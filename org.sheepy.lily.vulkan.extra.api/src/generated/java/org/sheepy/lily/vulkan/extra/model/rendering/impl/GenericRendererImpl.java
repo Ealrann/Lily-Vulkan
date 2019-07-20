@@ -83,7 +83,7 @@ public abstract class GenericRendererImpl<T extends Presentation> extends Graphi
 	 * @generated
 	 * @ordered
 	 */
-	protected PresentationPkg<? super T> presentationPkg;
+	protected PresentationPkg<? extends T> presentationPkg;
 
 	/**
 	 * The cached value of the '{@link #getConstantBuffer() <em>Constant Buffer</em>}' reference.
@@ -208,12 +208,12 @@ public abstract class GenericRendererImpl<T extends Presentation> extends Graphi
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public PresentationPkg<? super T> getPresentationPkg()
+	public PresentationPkg<? extends T> getPresentationPkg()
 	{
 		if (presentationPkg != null && presentationPkg.eIsProxy())
 		{
 			InternalEObject oldPresentationPkg = (InternalEObject)presentationPkg;
-			presentationPkg = (PresentationPkg<? super T>)eResolveProxy(oldPresentationPkg);
+			presentationPkg = (PresentationPkg<? extends T>)eResolveProxy(oldPresentationPkg);
 			if (presentationPkg != oldPresentationPkg)
 			{
 				if (eNotificationRequired())
@@ -228,7 +228,7 @@ public abstract class GenericRendererImpl<T extends Presentation> extends Graphi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PresentationPkg<? super T> basicGetPresentationPkg()
+	public PresentationPkg<? extends T> basicGetPresentationPkg()
 	{
 		return presentationPkg;
 	}
@@ -239,9 +239,9 @@ public abstract class GenericRendererImpl<T extends Presentation> extends Graphi
 	 * @generated
 	 */
 	@Override
-	public void setPresentationPkg(PresentationPkg<? super T> newPresentationPkg)
+	public void setPresentationPkg(PresentationPkg<? extends T> newPresentationPkg)
 	{
-		PresentationPkg<? super T> oldPresentationPkg = presentationPkg;
+		PresentationPkg<? extends T> oldPresentationPkg = presentationPkg;
 		presentationPkg = newPresentationPkg;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER__PRESENTATION_PKG, oldPresentationPkg, presentationPkg));
@@ -472,7 +472,7 @@ public abstract class GenericRendererImpl<T extends Presentation> extends Graphi
 				setDataProviderPkg((DataProviderPkg<T>)newValue);
 				return;
 			case RenderingPackage.GENERIC_RENDERER__PRESENTATION_PKG:
-				setPresentationPkg((PresentationPkg<? super T>)newValue);
+				setPresentationPkg((PresentationPkg<? extends T>)newValue);
 				return;
 			case RenderingPackage.GENERIC_RENDERER__CONSTANT_BUFFER:
 				setConstantBuffer((ConstantBuffer)newValue);
@@ -504,7 +504,7 @@ public abstract class GenericRendererImpl<T extends Presentation> extends Graphi
 				setDataProviderPkg((DataProviderPkg<T>)null);
 				return;
 			case RenderingPackage.GENERIC_RENDERER__PRESENTATION_PKG:
-				setPresentationPkg((PresentationPkg<? super T>)null);
+				setPresentationPkg((PresentationPkg<? extends T>)null);
 				return;
 			case RenderingPackage.GENERIC_RENDERER__CONSTANT_BUFFER:
 				setConstantBuffer((ConstantBuffer)null);

@@ -24,6 +24,9 @@ module org.sheepy.vulkan
 	exports org.sheepy.vulkan.model.graphicpipeline;
 	exports org.sheepy.vulkan.model.graphicpipeline.impl;
 	exports org.sheepy.vulkan.model.graphicpipeline.util;
+	exports org.sheepy.vulkan.model.image;
+	exports org.sheepy.vulkan.model.image.impl;
+	exports org.sheepy.vulkan.model.image.util;
 	exports org.sheepy.vulkan.model.pipeline;
 	exports org.sheepy.vulkan.model.pipeline.impl;
 	exports org.sheepy.vulkan.model.pipeline.util;

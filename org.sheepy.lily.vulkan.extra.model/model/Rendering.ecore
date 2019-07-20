@@ -30,12 +30,14 @@
       <eBounds eClassifier="#//Presentation"/>
     </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EReference" name="presentations" upperBound="-1"
-        eType="#//Presentation" containment="true"/>
+        containment="true">
+      <eGenericType eTypeParameter="#//PresentationPkg/T"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PresentableEntity" eSuperTypes="#//PhysicalEntity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="presentation" eType="#//Presentation"
         eOpposite="#//Presentation/presentedEntities"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scale" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
         defaultValueLiteral="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenericRenderer" abstract="true">
@@ -51,7 +53,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="presentationPkg" lowerBound="1">
       <eGenericType eClassifier="#//PresentationPkg">
         <eTypeArguments>
-          <eLowerBound eTypeParameter="#//GenericRenderer/T"/>
+          <eUpperBound eTypeParameter="#//GenericRenderer/T"/>
         </eTypeArguments>
       </eGenericType>
     </eStructuralFeatures>
@@ -106,7 +108,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="presentation" lowerBound="1">
       <eGenericType eTypeParameter="#//RenderableDataSource/T"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="part" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="part" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenericVertexProvider">
     <eTypeParameters name="T">

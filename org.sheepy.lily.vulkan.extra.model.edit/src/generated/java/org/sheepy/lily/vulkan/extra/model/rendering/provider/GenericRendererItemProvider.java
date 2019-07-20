@@ -19,6 +19,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
+import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.provider.GraphicsPipelineItemProvider;
 
 /**
@@ -222,6 +223,11 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 			(createChildParameter
 				(RenderingPackage.Literals.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER,
 				 RenderingFactory.eINSTANCE.createStaticResourceProvider()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RenderingPackage.Literals.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER,
+				 SpriteFactory.eINSTANCE.createSpriteMonoSamplerProvider()));
 	}
 
 }

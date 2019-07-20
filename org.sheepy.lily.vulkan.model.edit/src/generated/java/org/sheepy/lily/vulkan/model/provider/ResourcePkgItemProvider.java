@@ -196,6 +196,11 @@ public class ResourcePkgItemProvider extends ItemProviderAdapter implements IEdi
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createSampler()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
 				 ResourceFactory.eINSTANCE.createSemaphore()));
 
 		newChildDescriptors.add
@@ -227,6 +232,11 @@ public class ResourcePkgItemProvider extends ItemProviderAdapter implements IEdi
 			(createChildParameter
 				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
 				 ResourceFactory.eINSTANCE.createStringModuleResource()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createTexture2DArray()));
 	}
 
 	/**

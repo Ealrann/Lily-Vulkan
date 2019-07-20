@@ -16,6 +16,8 @@ import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 import org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 import org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl;
+import org.sheepy.vulkan.model.image.ImagePackage;
+import org.sheepy.vulkan.model.image.impl.ImagePackageImpl;
 import org.sheepy.vulkan.model.pipeline.PipelineFactory;
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
@@ -102,18 +104,22 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 		EnumerationPackageImpl theEnumerationPackage = (EnumerationPackageImpl)(registeredPackage instanceof EnumerationPackageImpl ? registeredPackage : EnumerationPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GraphicpipelinePackage.eNS_URI);
 		GraphicpipelinePackageImpl theGraphicpipelinePackage = (GraphicpipelinePackageImpl)(registeredPackage instanceof GraphicpipelinePackageImpl ? registeredPackage : GraphicpipelinePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ImagePackage.eNS_URI);
+		ImagePackageImpl theImagePackage = (ImagePackageImpl)(registeredPackage instanceof ImagePackageImpl ? registeredPackage : ImagePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thePipelinePackage.createPackageContents();
 		theBarrierPackage.createPackageContents();
 		theEnumerationPackage.createPackageContents();
 		theGraphicpipelinePackage.createPackageContents();
+		theImagePackage.createPackageContents();
 
 		// Initialize created meta-data
 		thePipelinePackage.initializePackageContents();
 		theBarrierPackage.initializePackageContents();
 		theEnumerationPackage.initializePackageContents();
 		theGraphicpipelinePackage.initializePackageContents();
+		theImagePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		thePipelinePackage.freeze();

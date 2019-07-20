@@ -63,7 +63,7 @@ public interface GenericRenderer<T extends Presentation> extends GraphicsPipelin
 	 * @model required="true"
 	 * @generated
 	 */
-	PresentationPkg<? super T> getPresentationPkg();
+	PresentationPkg<? extends T> getPresentationPkg();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getPresentationPkg <em>Presentation Pkg</em>}' reference.
@@ -73,7 +73,7 @@ public interface GenericRenderer<T extends Presentation> extends GraphicsPipelin
 	 * @see #getPresentationPkg()
 	 * @generated
 	 */
-	void setPresentationPkg(PresentationPkg<? super T> value);
+	void setPresentationPkg(PresentationPkg<? extends T> value);
 
 	/**
 	 * Returns the value of the '<em><b>Constant Buffer</b></em>' reference.

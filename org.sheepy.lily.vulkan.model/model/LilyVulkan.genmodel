@@ -4,7 +4,7 @@
     editDirectory="/org.sheepy.lily.vulkan.model.edit/src/generated/java" editorDirectory=""
     modelPluginID="org.sheepy.lily.vulkan.model" modelName="LilyVulkan" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     testsDirectory="" importerID="org.eclipse.emf.ecore.xcore.importer" complianceLevel="11.0"
-    copyrightFields="false" publicConstructors="true" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline"
+    copyrightFields="false" publicConstructors="true" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//image"
     operationReflection="true" importOrganizing="true" cleanup="true" eclipsePlatformVersion="2019-06">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
     <genAnnotations source="selectedPackages">
@@ -189,6 +189,9 @@
     <genClasses ecoreClass="resource.ecore#//SampledImage">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//SampledImage/sampler"/>
     </genClasses>
+    <genClasses ecoreClass="resource.ecore#//Sampler">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Sampler/info"/>
+    </genClasses>
     <genClasses ecoreClass="resource.ecore#//Semaphore">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Semaphore/signalizedAtInit"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Semaphore/waitStage"/>
@@ -202,20 +205,6 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//Texture">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Texture/file"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//Sampler">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Sampler/minFilter"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Sampler/magFilter"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Sampler/mipmapMode"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Sampler/addressMode"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Sampler/borderColor"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Sampler/anisotropyEnabled"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Sampler/unnormalizedCoordinates"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Sampler/compareEnable"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Sampler/lodBias"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Sampler/minLod"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Sampler/maxLod"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Sampler/maxAnisotropy"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//Descriptor">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Descriptor/descriptorType"/>
@@ -248,6 +237,11 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//StringModuleResource">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StringModuleResource/moduleName"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//Texture2DArray">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Texture2DArray/files"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Texture2DArray/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Texture2DArray/height"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Graphic" basePackage="org.sheepy.lily.vulkan.model.process"

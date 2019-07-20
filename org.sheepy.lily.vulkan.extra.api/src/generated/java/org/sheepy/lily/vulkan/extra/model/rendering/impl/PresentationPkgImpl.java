@@ -43,7 +43,7 @@ public abstract class PresentationPkgImpl<T extends Presentation> extends Minima
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Presentation> presentations;
+	protected EList<T> presentations;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,11 +71,11 @@ public abstract class PresentationPkgImpl<T extends Presentation> extends Minima
 	 * @generated
 	 */
 	@Override
-	public EList<Presentation> getPresentations()
+	public EList<T> getPresentations()
 	{
 		if (presentations == null)
 		{
-			presentations = new EObjectContainmentEList<Presentation>(Presentation.class, this, RenderingPackage.PRESENTATION_PKG__PRESENTATIONS);
+			presentations = new EObjectContainmentEList<T>(Presentation.class, this, RenderingPackage.PRESENTATION_PKG__PRESENTATIONS);
 		}
 		return presentations;
 	}
@@ -125,7 +125,7 @@ public abstract class PresentationPkgImpl<T extends Presentation> extends Minima
 		{
 			case RenderingPackage.PRESENTATION_PKG__PRESENTATIONS:
 				getPresentations().clear();
-				getPresentations().addAll((Collection<? extends Presentation>)newValue);
+				getPresentations().addAll((Collection<? extends T>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

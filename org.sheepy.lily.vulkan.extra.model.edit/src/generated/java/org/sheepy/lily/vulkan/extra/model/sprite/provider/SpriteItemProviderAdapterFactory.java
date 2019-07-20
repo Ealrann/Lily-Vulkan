@@ -160,6 +160,31 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SpriteMonoSamplerProviderItemProvider spriteMonoSamplerProviderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSpriteMonoSamplerProviderAdapter()
+	{
+		if (spriteMonoSamplerProviderItemProvider == null)
+		{
+			spriteMonoSamplerProviderItemProvider = new SpriteMonoSamplerProviderItemProvider(this);
+		}
+
+		return spriteMonoSamplerProviderItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -279,6 +304,7 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 		if (spriteRendererItemProvider != null) spriteRendererItemProvider.dispose();
 		if (spriteItemProvider != null) spriteItemProvider.dispose();
 		if (spritePkgItemProvider != null) spritePkgItemProvider.dispose();
+		if (spriteMonoSamplerProviderItemProvider != null) spriteMonoSamplerProviderItemProvider.dispose();
 	}
 
 	/**

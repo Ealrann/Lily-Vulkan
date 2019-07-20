@@ -2,9 +2,9 @@
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sheepy.vulkan.model/src/generated/java" editDirectory="/org.sheepy.vulkan.model.edit/src/generated/java"
     editorDirectory="" modelPluginID="org.sheepy.vulkan.model" modelName="Vulkan"
-    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory=""
-    importerID="org.eclipse.emf.ecore.xcore.importer" complianceLevel="11.0" copyrightFields="false"
-    publicConstructors="true" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    testsDirectory="" importerID="org.eclipse.emf.importer.ecore" complianceLevel="11.0"
+    copyrightFields="false" publicConstructors="true" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
     operationReflection="true" importOrganizing="true" cleanup="true" eclipsePlatformVersion="2019-06">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
     <genAnnotations source="selectedPackages">
@@ -18,10 +18,11 @@
     </genAnnotations>
     <details key="directoryURI" value="."/>
   </genAnnotations>
-  <foreignModel>Barrier.xcore</foreignModel>
-  <foreignModel>GraphicPipeline.xcore</foreignModel>
-  <foreignModel>Pipeline.xcore</foreignModel>
-  <foreignModel>VulkanEnum.xcore</foreignModel>
+  <foreignModel>barrier.ecore</foreignModel>
+  <foreignModel>enumeration.ecore</foreignModel>
+  <foreignModel>graphicpipeline.ecore</foreignModel>
+  <foreignModel>Image.ecore</foreignModel>
+  <foreignModel>pipeline.ecore</foreignModel>
   <genPackages prefix="Barrier" basePackage="org.sheepy.vulkan.model" resource="XMI"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
       ecorePackage="barrier.ecore#/">
@@ -562,6 +563,23 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Scissor/offsetX"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Scissor/offsetY"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphicpipeline.ecore#//Scissor/extent"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Image" basePackage="org.sheepy.vulkan.model" disposableProviderFactory="true"
+      ecorePackage="Image.ecore#/">
+    <genClasses ecoreClass="Image.ecore#//SamplerInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//SamplerInfo/minFilter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//SamplerInfo/magFilter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//SamplerInfo/mipmapMode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//SamplerInfo/addressMode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//SamplerInfo/borderColor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//SamplerInfo/anisotropyEnabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//SamplerInfo/unnormalizedCoordinates"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//SamplerInfo/compareEnable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//SamplerInfo/lodBias"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//SamplerInfo/minLod"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//SamplerInfo/maxLod"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//SamplerInfo/maxAnisotropy"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Pipeline" basePackage="org.sheepy.vulkan.model" resource="XMI"

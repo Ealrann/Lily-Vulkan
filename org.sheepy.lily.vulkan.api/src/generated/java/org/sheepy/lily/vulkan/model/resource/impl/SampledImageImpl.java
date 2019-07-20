@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
-import org.sheepy.lily.vulkan.model.resource.Sampler;
+import org.sheepy.vulkan.model.image.SamplerInfo;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +37,7 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 	 * @generated
 	 * @ordered
 	 */
-	protected Sampler sampler;
+	protected SamplerInfo sampler;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 	 * @generated
 	 */
 	@Override
-	public Sampler getSampler()
+	public SamplerInfo getSampler()
 	{
 		return sampler;
 	}
@@ -76,9 +76,9 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSampler(Sampler newSampler, NotificationChain msgs)
+	public NotificationChain basicSetSampler(SamplerInfo newSampler, NotificationChain msgs)
 	{
-		Sampler oldSampler = sampler;
+		SamplerInfo oldSampler = sampler;
 		sampler = newSampler;
 		if (eNotificationRequired())
 		{
@@ -94,7 +94,7 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 	 * @generated
 	 */
 	@Override
-	public void setSampler(Sampler newSampler)
+	public void setSampler(SamplerInfo newSampler)
 	{
 		if (newSampler != sampler)
 		{
@@ -153,7 +153,7 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 		switch (featureID)
 		{
 			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
-				setSampler((Sampler)newValue);
+				setSampler((SamplerInfo)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -170,7 +170,7 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 		switch (featureID)
 		{
 			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
-				setSampler((Sampler)null);
+				setSampler((SamplerInfo)null);
 				return;
 		}
 		super.eUnset(featureID);

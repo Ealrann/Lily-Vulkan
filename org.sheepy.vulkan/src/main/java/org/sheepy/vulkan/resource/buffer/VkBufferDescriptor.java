@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.descriptor;
+package org.sheepy.vulkan.resource.buffer;
 
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
 
@@ -9,6 +9,7 @@ import org.lwjgl.vulkan.VkDescriptorBufferInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
+import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.util.VkModelUtil;
@@ -46,7 +47,7 @@ public class VkBufferDescriptor implements IVkDescriptor
 	@Override
 	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
 	{
-		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
+		final var res = VkDescriptorSetLayoutBinding.callocStack(stack);
 		res.descriptorType(descriptorType);
 		res.descriptorCount(1);
 		res.stageFlags(shaderStages);
@@ -56,7 +57,7 @@ public class VkBufferDescriptor implements IVkDescriptor
 	@Override
 	public void fillWriteDescriptor(MemoryStack stack, VkWriteDescriptorSet writeDescriptor)
 	{
-		final VkDescriptorBufferInfo.Buffer bufferInfo = allocBufferInfo(stack);
+		final var bufferInfo = allocBufferInfo(stack);
 
 		writeDescriptor.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
 		writeDescriptor.dstArrayElement(0);

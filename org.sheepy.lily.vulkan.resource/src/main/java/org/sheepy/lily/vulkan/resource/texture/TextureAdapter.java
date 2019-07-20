@@ -9,12 +9,12 @@ import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.model.resource.AbstractTexture;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.Texture;
 import org.sheepy.lily.vulkan.resource.image.AbstractSampledImageAdapter;
 import org.sheepy.lily.vulkan.resource.util.STBImageLoader;
 import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.model.image.ImageFactory;
+import org.sheepy.vulkan.model.image.SamplerInfo;
 import org.sheepy.vulkan.resource.image.VkImage;
 import org.sheepy.vulkan.resource.image.VkImage.Builder;
 
@@ -38,8 +38,7 @@ public final class TextureAdapter extends AbstractSampledImageAdapter
 		final int height = size.y();
 
 		int mipLevels;
-		if (texture.isMipmapEnabled())
-			mipLevels = (int) (Math.floor(log2nlz(Math.max(width, height))) + 1);
+		if (texture.isMipmapEnabled()) mipLevels = (int) (Math.floor(log2nlz(Math.max(width, height))) + 1);
 		else mipLevels = 1;
 
 		final int format = VK_FORMAT_R8G8B8A8_UNORM;
@@ -63,18 +62,17 @@ public final class TextureAdapter extends AbstractSampledImageAdapter
 		final int width = imageLoader.getWidth();
 		final int height = imageLoader.getHeight();
 
-		Sampler samplerInfos = texture.getSampler();
-		if (samplerInfos == null)
+		SamplerInfo sampler = texture.getSampler();
+		if (sampler == null)
 		{
-			samplerInfos = ResourceFactory.eINSTANCE.createSampler();
-			texture.setSampler(samplerInfos);
+			sampler = ImageFactory.eINSTANCE.createSamplerInfo();
+			texture.setSampler(sampler);
 		}
 
 		int mipLevels = 0;
-		if (texture.isMipmapEnabled())
-			mipLevels = (int) (Math.floor(log2nlz(Math.max(width, height))) + 1);
+		if (texture.isMipmapEnabled()) mipLevels = (int) (Math.floor(log2nlz(Math.max(width, height))) + 1);
 		else mipLevels = 1;
-		samplerInfos.setMaxLod(Math.max(mipLevels, samplerInfos.getMaxLod()));
+		sampler.setMaxLod(Math.max(mipLevels, sampler.getMaxLod()));
 
 		super.allocate(stack, context);
 	}

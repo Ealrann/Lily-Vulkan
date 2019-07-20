@@ -26,7 +26,6 @@ public interface PresentationPkg<T extends Presentation> extends EObject
 {
 	/**
 	 * Returns the value of the '<em><b>Presentations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.extra.model.rendering.Presentation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Presentations</em>' containment reference list.
@@ -34,6 +33,6 @@ public interface PresentationPkg<T extends Presentation> extends EObject
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Presentation> getPresentations();
+	EList<T> getPresentations();
 
 } // PresentationPkg

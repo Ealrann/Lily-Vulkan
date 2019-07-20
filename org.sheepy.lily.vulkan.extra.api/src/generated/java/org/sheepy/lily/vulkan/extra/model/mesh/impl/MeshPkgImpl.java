@@ -2,8 +2,10 @@
  */
 package org.sheepy.lily.vulkan.extra.model.mesh.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.sheepy.lily.vulkan.extra.model.mesh.Mesh;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshPkg;
@@ -38,6 +40,22 @@ public class MeshPkgImpl extends PresentationPkgImpl<Mesh> implements MeshPkg
 	protected EClass eStaticClass()
 	{
 		return MeshPackage.Literals.MESH_PKG;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific element type known in this context.
+	 * @generated
+	 */
+	@Override
+	public EList<Mesh> getPresentations()
+	{
+		if (presentations == null)
+		{
+			presentations = new EObjectContainmentEList<Mesh>(Mesh.class, this, MeshPackage.MESH_PKG__PRESENTATIONS);
+		}
+		return presentations;
 	}
 
 } //MeshPkgImpl

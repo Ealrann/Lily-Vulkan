@@ -391,6 +391,31 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Sampler} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SamplerItemProvider samplerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Sampler}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSamplerAdapter()
+	{
+		if (samplerItemProvider == null)
+		{
+			samplerItemProvider = new SamplerItemProvider(this);
+		}
+
+		return samplerItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Semaphore} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -463,31 +488,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		}
 
 		return textureItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Sampler} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SamplerItemProvider samplerItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Sampler}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSamplerAdapter()
-	{
-		if (samplerItemProvider == null)
-		{
-			samplerItemProvider = new SamplerItemProvider(this);
-		}
-
-		return samplerItemProvider;
 	}
 
 	/**
@@ -716,6 +716,31 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Texture2DArray} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Texture2DArrayItemProvider texture2DArrayItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Texture2DArray}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTexture2DArrayAdapter()
+	{
+		if (texture2DArrayItemProvider == null)
+		{
+			texture2DArrayItemProvider = new Texture2DArrayItemProvider(this);
+		}
+
+		return texture2DArrayItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -876,10 +901,10 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (imageItemProvider != null) imageItemProvider.dispose();
 		if (imageLayoutItemProvider != null) imageLayoutItemProvider.dispose();
 		if (sampledImageItemProvider != null) sampledImageItemProvider.dispose();
+		if (samplerItemProvider != null) samplerItemProvider.dispose();
 		if (semaphoreItemProvider != null) semaphoreItemProvider.dispose();
 		if (fontItemProvider != null) fontItemProvider.dispose();
 		if (textureItemProvider != null) textureItemProvider.dispose();
-		if (samplerItemProvider != null) samplerItemProvider.dispose();
 		if (descriptorItemProvider != null) descriptorItemProvider.dispose();
 		if (descriptorSetItemProvider != null) descriptorSetItemProvider.dispose();
 		if (descriptorSetPkgItemProvider != null) descriptorSetPkgItemProvider.dispose();
@@ -889,6 +914,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (fileResourceItemProvider != null) fileResourceItemProvider.dispose();
 		if (moduleResourceItemProvider != null) moduleResourceItemProvider.dispose();
 		if (stringModuleResourceItemProvider != null) stringModuleResourceItemProvider.dispose();
+		if (texture2DArrayItemProvider != null) texture2DArrayItemProvider.dispose();
 	}
 
 }

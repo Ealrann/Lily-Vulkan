@@ -67,6 +67,7 @@ import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 
+import org.sheepy.vulkan.model.image.ImagePackage;
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 
 /**
@@ -334,6 +335,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		EnumerationPackage.eINSTANCE.eClass();
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
+		ImagePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ComputePackage.eNS_URI);

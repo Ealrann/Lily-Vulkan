@@ -237,6 +237,16 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ResourcePackage.SAMPLER:
+			{
+				Sampler sampler = (Sampler)theEObject;
+				T1 result = caseSampler(sampler);
+				if (result == null) result = caseDescriptedResource(sampler);
+				if (result == null) result = caseIResource(sampler);
+				if (result == null) result = caseLNamedElement(sampler);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ResourcePackage.SEMAPHORE:
 			{
 				Semaphore semaphore = (Semaphore)theEObject;
@@ -281,13 +291,6 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseDescriptedResource(texture);
 				if (result == null) result = caseIResource(texture);
 				if (result == null) result = caseLNamedElement(texture);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.SAMPLER:
-			{
-				Sampler sampler = (Sampler)theEObject;
-				T1 result = caseSampler(sampler);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -394,6 +397,16 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseBasicResource(stringModuleResource);
 				if (result == null) result = caseIResource(stringModuleResource);
 				if (result == null) result = caseLNamedElement(stringModuleResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.TEXTURE2_DARRAY:
+			{
+				Texture2DArray texture2DArray = (Texture2DArray)theEObject;
+				T1 result = caseTexture2DArray(texture2DArray);
+				if (result == null) result = caseDescriptedResource(texture2DArray);
+				if (result == null) result = caseIResource(texture2DArray);
+				if (result == null) result = caseLNamedElement(texture2DArray);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -674,6 +687,22 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sampler</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sampler</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseSampler(Sampler object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Semaphore</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -733,22 +762,6 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseTexture(Texture object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Sampler</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Sampler</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseSampler(Sampler object)
 	{
 		return null;
 	}
@@ -925,6 +938,22 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseStringModuleResource(StringModuleResource object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Texture2 DArray</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Texture2 DArray</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseTexture2DArray(Texture2DArray object)
 	{
 		return null;
 	}

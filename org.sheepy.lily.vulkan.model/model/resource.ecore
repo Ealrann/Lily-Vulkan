@@ -141,8 +141,12 @@
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EAccess"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SampledImage" eSuperTypes="#//BasicDescriptedResource">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sampler" eType="#//Sampler"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sampler" eType="ecore:EClass ../../org.sheepy.vulkan.model/model/Image.ecore#//SamplerInfo"
         containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Sampler" eSuperTypes="#//DescriptedResource">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="info" lowerBound="1" eType="ecore:EClass ../../org.sheepy.vulkan.model/model/Image.ecore#//SamplerInfo"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Semaphore" eSuperTypes="#//BasicResource ../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="signalizedAtInit" unique="false"
@@ -166,44 +170,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Texture" eSuperTypes="#//AbstractTexture">
     <eStructuralFeatures xsi:type="ecore:EReference" name="file" eType="#//PathResource"
         containment="true" resolveProxies="false"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Sampler">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minFilter" unique="false"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EFilter"
-        defaultValueLiteral="NEAREST"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="magFilter" unique="false"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EFilter"
-        defaultValueLiteral="NEAREST"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mipmapMode" unique="false"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ESamplerMipmapMode"
-        defaultValueLiteral="NEAREST"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="addressMode" unique="false"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ESamplerAddressMode"
-        defaultValueLiteral="REPEAT"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="borderColor" unique="false"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EBorderColor"
-        defaultValueLiteral="INT_OPAQUE_BLACK"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="anisotropyEnabled" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
-        defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unnormalizedCoordinates"
-        unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
-        defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="compareEnable" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
-        defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lodBias" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EFloat"
-        defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minLod" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
-        defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxLod" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
-        defaultValueLiteral="1"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxAnisotropy" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EFloat"
-        defaultValueLiteral="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="JavaModule" instanceClassName="java.lang.Module"/>
   <eClassifiers xsi:type="ecore:EClass" name="Descriptor">
@@ -247,5 +213,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="StringModuleResource" eSuperTypes="#//AbstractModuleResource">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="moduleName" unique="false"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Texture2DArray" eSuperTypes="#//DescriptedResource">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="files" lowerBound="1" upperBound="-1"
+        eType="#//PathResource" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -28,6 +28,8 @@ import org.sheepy.vulkan.model.graphicpipeline.StaticViewportState;
 import org.sheepy.vulkan.model.graphicpipeline.Vec2I;
 import org.sheepy.vulkan.model.graphicpipeline.Viewport;
 import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
+import org.sheepy.vulkan.model.image.ImagePackage;
+import org.sheepy.vulkan.model.image.impl.ImagePackageImpl;
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 import org.sheepy.vulkan.model.pipeline.impl.PipelinePackageImpl;
 
@@ -173,6 +175,8 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 		BarrierPackageImpl theBarrierPackage = (BarrierPackageImpl)(registeredPackage instanceof BarrierPackageImpl ? registeredPackage : BarrierPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 		EnumerationPackageImpl theEnumerationPackage = (EnumerationPackageImpl)(registeredPackage instanceof EnumerationPackageImpl ? registeredPackage : EnumerationPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ImagePackage.eNS_URI);
+		ImagePackageImpl theImagePackage = (ImagePackageImpl)(registeredPackage instanceof ImagePackageImpl ? registeredPackage : ImagePackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(PipelinePackage.eNS_URI);
 		PipelinePackageImpl thePipelinePackage = (PipelinePackageImpl)(registeredPackage instanceof PipelinePackageImpl ? registeredPackage : PipelinePackage.eINSTANCE);
 
@@ -180,12 +184,14 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 		theGraphicpipelinePackage.createPackageContents();
 		theBarrierPackage.createPackageContents();
 		theEnumerationPackage.createPackageContents();
+		theImagePackage.createPackageContents();
 		thePipelinePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theGraphicpipelinePackage.initializePackageContents();
 		theBarrierPackage.initializePackageContents();
 		theEnumerationPackage.initializePackageContents();
+		theImagePackage.initializePackageContents();
 		thePipelinePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed

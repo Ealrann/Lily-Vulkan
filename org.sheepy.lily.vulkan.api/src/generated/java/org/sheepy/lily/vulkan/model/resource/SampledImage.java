@@ -2,6 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
+import org.sheepy.vulkan.model.image.SamplerInfo;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Sampled Image</b></em>'.
@@ -25,12 +27,12 @@ public interface SampledImage extends BasicDescriptedResource
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sampler</em>' containment reference.
-	 * @see #setSampler(Sampler)
+	 * @see #setSampler(SamplerInfo)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampledImage_Sampler()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Sampler getSampler();
+	SamplerInfo getSampler();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.SampledImage#getSampler <em>Sampler</em>}' containment reference.
@@ -40,6 +42,6 @@ public interface SampledImage extends BasicDescriptedResource
 	 * @see #getSampler()
 	 * @generated
 	 */
-	void setSampler(Sampler value);
+	void setSampler(SamplerInfo value);
 
 } // SampledImage

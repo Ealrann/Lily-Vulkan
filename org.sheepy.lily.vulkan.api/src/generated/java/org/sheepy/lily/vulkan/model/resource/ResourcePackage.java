@@ -1045,6 +1045,52 @@ public interface ResourcePackage extends EPackage
 	int SAMPLED_IMAGE_OPERATION_COUNT = BASIC_DESCRIPTED_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl <em>Sampler</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampler()
+	 * @generated
+	 */
+	int SAMPLER = 17;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__NAME = DESCRIPTED_RESOURCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Info</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__INFO = DESCRIPTED_RESOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Sampler</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER_FEATURE_COUNT = DESCRIPTED_RESOURCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Sampler</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER_OPERATION_COUNT = DESCRIPTED_RESOURCE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SemaphoreImpl <em>Semaphore</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1052,7 +1098,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSemaphore()
 	 * @generated
 	 */
-	int SEMAPHORE = 17;
+	int SEMAPHORE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1107,7 +1153,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFont()
 	 * @generated
 	 */
-	int FONT = 18;
+	int FONT = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1180,7 +1226,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractTexture()
 	 * @generated
 	 */
-	int ABSTRACT_TEXTURE = 19;
+	int ABSTRACT_TEXTURE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1244,7 +1290,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getTexture()
 	 * @generated
 	 */
-	int TEXTURE = 20;
+	int TEXTURE = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1308,142 +1354,6 @@ public interface ResourcePackage extends EPackage
 	 * @ordered
 	 */
 	int TEXTURE_OPERATION_COUNT = ABSTRACT_TEXTURE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl <em>Sampler</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampler()
-	 * @generated
-	 */
-	int SAMPLER = 21;
-
-	/**
-	 * The feature id for the '<em><b>Min Filter</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLER__MIN_FILTER = 0;
-
-	/**
-	 * The feature id for the '<em><b>Mag Filter</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLER__MAG_FILTER = 1;
-
-	/**
-	 * The feature id for the '<em><b>Mipmap Mode</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLER__MIPMAP_MODE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Address Mode</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLER__ADDRESS_MODE = 3;
-
-	/**
-	 * The feature id for the '<em><b>Border Color</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLER__BORDER_COLOR = 4;
-
-	/**
-	 * The feature id for the '<em><b>Anisotropy Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLER__ANISOTROPY_ENABLED = 5;
-
-	/**
-	 * The feature id for the '<em><b>Unnormalized Coordinates</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLER__UNNORMALIZED_COORDINATES = 6;
-
-	/**
-	 * The feature id for the '<em><b>Compare Enable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLER__COMPARE_ENABLE = 7;
-
-	/**
-	 * The feature id for the '<em><b>Lod Bias</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLER__LOD_BIAS = 8;
-
-	/**
-	 * The feature id for the '<em><b>Min Lod</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLER__MIN_LOD = 9;
-
-	/**
-	 * The feature id for the '<em><b>Max Lod</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLER__MAX_LOD = 10;
-
-	/**
-	 * The feature id for the '<em><b>Max Anisotropy</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLER__MAX_ANISOTROPY = 11;
-
-	/**
-	 * The number of structural features of the '<em>Sampler</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLER_FEATURE_COUNT = 12;
-
-	/**
-	 * The number of operations of the '<em>Sampler</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLER_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorImpl <em>Descriptor</em>}' class.
@@ -2015,6 +1925,70 @@ public interface ResourcePackage extends EPackage
 	int STRING_MODULE_RESOURCE_OPERATION_COUNT = ABSTRACT_MODULE_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl <em>Texture2 DArray</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getTexture2DArray()
+	 * @generated
+	 */
+	int TEXTURE2_DARRAY = 33;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXTURE2_DARRAY__NAME = DESCRIPTED_RESOURCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Files</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXTURE2_DARRAY__FILES = DESCRIPTED_RESOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXTURE2_DARRAY__WIDTH = DESCRIPTED_RESOURCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXTURE2_DARRAY__HEIGHT = DESCRIPTED_RESOURCE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Texture2 DArray</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXTURE2_DARRAY_FEATURE_COUNT = DESCRIPTED_RESOURCE_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Texture2 DArray</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXTURE2_DARRAY_OPERATION_COUNT = DESCRIPTED_RESOURCE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '<em>Byte Buffer</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2022,7 +1996,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 33;
+	int BYTE_BUFFER = 34;
 
 	/**
 	 * The meta object id for the '<em>Java Module</em>' data type.
@@ -2032,7 +2006,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
 	 * @generated
 	 */
-	int JAVA_MODULE = 34;
+	int JAVA_MODULE = 35;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
@@ -2590,6 +2564,27 @@ public interface ResourcePackage extends EPackage
 	EReference getSampledImage_Sampler();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Sampler <em>Sampler</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Sampler</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler
+	 * @generated
+	 */
+	EClass getSampler();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getInfo <em>Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Info</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getInfo()
+	 * @see #getSampler()
+	 * @generated
+	 */
+	EReference getSampler_Info();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Semaphore <em>Semaphore</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2694,148 +2689,6 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EReference getTexture_File();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Sampler <em>Sampler</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Sampler</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Sampler
-	 * @generated
-	 */
-	EClass getSampler();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getMinFilter <em>Min Filter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Min Filter</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getMinFilter()
-	 * @see #getSampler()
-	 * @generated
-	 */
-	EAttribute getSampler_MinFilter();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getMagFilter <em>Mag Filter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Mag Filter</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getMagFilter()
-	 * @see #getSampler()
-	 * @generated
-	 */
-	EAttribute getSampler_MagFilter();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getMipmapMode <em>Mipmap Mode</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Mipmap Mode</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getMipmapMode()
-	 * @see #getSampler()
-	 * @generated
-	 */
-	EAttribute getSampler_MipmapMode();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getAddressMode <em>Address Mode</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Address Mode</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getAddressMode()
-	 * @see #getSampler()
-	 * @generated
-	 */
-	EAttribute getSampler_AddressMode();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getBorderColor <em>Border Color</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Border Color</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getBorderColor()
-	 * @see #getSampler()
-	 * @generated
-	 */
-	EAttribute getSampler_BorderColor();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#isAnisotropyEnabled <em>Anisotropy Enabled</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Anisotropy Enabled</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#isAnisotropyEnabled()
-	 * @see #getSampler()
-	 * @generated
-	 */
-	EAttribute getSampler_AnisotropyEnabled();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#isUnnormalizedCoordinates <em>Unnormalized Coordinates</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Unnormalized Coordinates</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#isUnnormalizedCoordinates()
-	 * @see #getSampler()
-	 * @generated
-	 */
-	EAttribute getSampler_UnnormalizedCoordinates();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#isCompareEnable <em>Compare Enable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Compare Enable</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#isCompareEnable()
-	 * @see #getSampler()
-	 * @generated
-	 */
-	EAttribute getSampler_CompareEnable();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getLodBias <em>Lod Bias</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Lod Bias</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getLodBias()
-	 * @see #getSampler()
-	 * @generated
-	 */
-	EAttribute getSampler_LodBias();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getMinLod <em>Min Lod</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Min Lod</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getMinLod()
-	 * @see #getSampler()
-	 * @generated
-	 */
-	EAttribute getSampler_MinLod();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getMaxLod <em>Max Lod</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Max Lod</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getMaxLod()
-	 * @see #getSampler()
-	 * @generated
-	 */
-	EAttribute getSampler_MaxLod();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getMaxAnisotropy <em>Max Anisotropy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Max Anisotropy</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getMaxAnisotropy()
-	 * @see #getSampler()
-	 * @generated
-	 */
-	EAttribute getSampler_MaxAnisotropy();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Descriptor <em>Descriptor</em>}'.
@@ -3078,6 +2931,49 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getStringModuleResource_ModuleName();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray <em>Texture2 DArray</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Texture2 DArray</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.Texture2DArray
+	 * @generated
+	 */
+	EClass getTexture2DArray();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray#getFiles <em>Files</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Files</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.Texture2DArray#getFiles()
+	 * @see #getTexture2DArray()
+	 * @generated
+	 */
+	EReference getTexture2DArray_Files();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray#getWidth <em>Width</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Width</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.Texture2DArray#getWidth()
+	 * @see #getTexture2DArray()
+	 * @generated
+	 */
+	EAttribute getTexture2DArray_Width();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray#getHeight <em>Height</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Height</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.Texture2DArray#getHeight()
+	 * @see #getTexture2DArray()
+	 * @generated
+	 */
+	EAttribute getTexture2DArray_Height();
 
 	/**
 	 * Returns the meta object for data type '{@link java.nio.ByteBuffer <em>Byte Buffer</em>}'.
@@ -3576,6 +3472,24 @@ public interface ResourcePackage extends EPackage
 		EReference SAMPLED_IMAGE__SAMPLER = eINSTANCE.getSampledImage_Sampler();
 
 		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl <em>Sampler</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampler()
+		 * @generated
+		 */
+		EClass SAMPLER = eINSTANCE.getSampler();
+
+		/**
+		 * The meta object literal for the '<em><b>Info</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SAMPLER__INFO = eINSTANCE.getSampler_Info();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SemaphoreImpl <em>Semaphore</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3662,112 +3576,6 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EReference TEXTURE__FILE = eINSTANCE.getTexture_File();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl <em>Sampler</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampler()
-		 * @generated
-		 */
-		EClass SAMPLER = eINSTANCE.getSampler();
-
-		/**
-		 * The meta object literal for the '<em><b>Min Filter</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SAMPLER__MIN_FILTER = eINSTANCE.getSampler_MinFilter();
-
-		/**
-		 * The meta object literal for the '<em><b>Mag Filter</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SAMPLER__MAG_FILTER = eINSTANCE.getSampler_MagFilter();
-
-		/**
-		 * The meta object literal for the '<em><b>Mipmap Mode</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SAMPLER__MIPMAP_MODE = eINSTANCE.getSampler_MipmapMode();
-
-		/**
-		 * The meta object literal for the '<em><b>Address Mode</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SAMPLER__ADDRESS_MODE = eINSTANCE.getSampler_AddressMode();
-
-		/**
-		 * The meta object literal for the '<em><b>Border Color</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SAMPLER__BORDER_COLOR = eINSTANCE.getSampler_BorderColor();
-
-		/**
-		 * The meta object literal for the '<em><b>Anisotropy Enabled</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SAMPLER__ANISOTROPY_ENABLED = eINSTANCE.getSampler_AnisotropyEnabled();
-
-		/**
-		 * The meta object literal for the '<em><b>Unnormalized Coordinates</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SAMPLER__UNNORMALIZED_COORDINATES = eINSTANCE.getSampler_UnnormalizedCoordinates();
-
-		/**
-		 * The meta object literal for the '<em><b>Compare Enable</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SAMPLER__COMPARE_ENABLE = eINSTANCE.getSampler_CompareEnable();
-
-		/**
-		 * The meta object literal for the '<em><b>Lod Bias</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SAMPLER__LOD_BIAS = eINSTANCE.getSampler_LodBias();
-
-		/**
-		 * The meta object literal for the '<em><b>Min Lod</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SAMPLER__MIN_LOD = eINSTANCE.getSampler_MinLod();
-
-		/**
-		 * The meta object literal for the '<em><b>Max Lod</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SAMPLER__MAX_LOD = eINSTANCE.getSampler_MaxLod();
-
-		/**
-		 * The meta object literal for the '<em><b>Max Anisotropy</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SAMPLER__MAX_ANISOTROPY = eINSTANCE.getSampler_MaxAnisotropy();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorImpl <em>Descriptor</em>}' class.
@@ -3974,6 +3782,40 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute STRING_MODULE_RESOURCE__MODULE_NAME = eINSTANCE.getStringModuleResource_ModuleName();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl <em>Texture2 DArray</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getTexture2DArray()
+		 * @generated
+		 */
+		EClass TEXTURE2_DARRAY = eINSTANCE.getTexture2DArray();
+
+		/**
+		 * The meta object literal for the '<em><b>Files</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEXTURE2_DARRAY__FILES = eINSTANCE.getTexture2DArray_Files();
+
+		/**
+		 * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXTURE2_DARRAY__WIDTH = eINSTANCE.getTexture2DArray_Width();
+
+		/**
+		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXTURE2_DARRAY__HEIGHT = eINSTANCE.getTexture2DArray_Height();
 
 		/**
 		 * The meta object literal for the '<em>Byte Buffer</em>' data type.

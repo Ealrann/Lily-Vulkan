@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.sprite.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
@@ -36,6 +37,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl;
 
 import org.sheepy.lily.vulkan.extra.model.sprite.Sprite;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer;
@@ -53,6 +55,7 @@ import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 
+import org.sheepy.vulkan.model.image.ImagePackage;
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 
 /**
@@ -83,6 +86,13 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	private EClass spritePkgEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass spriteMonoSamplerProviderEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -149,6 +159,7 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		EnumerationPackage.eINSTANCE.eClass();
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
+		ImagePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MeshPackage.eNS_URI);
@@ -228,6 +239,50 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
+	public EClass getSpriteMonoSamplerProvider()
+	{
+		return spriteMonoSamplerProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSpriteMonoSamplerProvider_SamplerInfo()
+	{
+		return (EReference)spriteMonoSamplerProviderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSpriteMonoSamplerProvider_Width()
+	{
+		return (EAttribute)spriteMonoSamplerProviderEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSpriteMonoSamplerProvider_Height()
+	{
+		return (EAttribute)spriteMonoSamplerProviderEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public SpriteFactory getSpriteFactory()
 	{
 		return (SpriteFactory)getEFactoryInstance();
@@ -259,6 +314,11 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		createEReference(spriteEClass, SPRITE__FILE);
 
 		spritePkgEClass = createEClass(SPRITE_PKG);
+
+		spriteMonoSamplerProviderEClass = createEClass(SPRITE_MONO_SAMPLER_PROVIDER);
+		createEReference(spriteMonoSamplerProviderEClass, SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO);
+		createEAttribute(spriteMonoSamplerProviderEClass, SPRITE_MONO_SAMPLER_PROVIDER__WIDTH);
+		createEAttribute(spriteMonoSamplerProviderEClass, SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT);
 	}
 
 	/**
@@ -288,6 +348,7 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		// Obtain other dependent packages
 		RenderingPackage theRenderingPackage = (RenderingPackage)EPackage.Registry.INSTANCE.getEPackage(RenderingPackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		ImagePackage theImagePackage = (ImagePackage)EPackage.Registry.INSTANCE.getEPackage(ImagePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -303,6 +364,7 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		g2 = createEGenericType(this.getSprite());
 		g1.getETypeArguments().add(g2);
 		spritePkgEClass.getEGenericSuperTypes().add(g1);
+		spriteMonoSamplerProviderEClass.getESuperTypes().add(theRenderingPackage.getResourceProvider());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(spriteRendererEClass, SpriteRenderer.class, "SpriteRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -311,6 +373,11 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		initEReference(getSprite_File(), theResourcePackage.getPathResource(), null, "file", null, 1, 1, Sprite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(spritePkgEClass, SpritePkg.class, "SpritePkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(spriteMonoSamplerProviderEClass, SpriteMonoSamplerProvider.class, "SpriteMonoSamplerProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSpriteMonoSamplerProvider_SamplerInfo(), theImagePackage.getSamplerInfo(), null, "samplerInfo", null, 1, 1, SpriteMonoSamplerProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSpriteMonoSamplerProvider_Width(), ecorePackage.getEInt(), "width", null, 1, 1, SpriteMonoSamplerProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSpriteMonoSamplerProvider_Height(), ecorePackage.getEInt(), "height", null, 1, 1, SpriteMonoSamplerProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

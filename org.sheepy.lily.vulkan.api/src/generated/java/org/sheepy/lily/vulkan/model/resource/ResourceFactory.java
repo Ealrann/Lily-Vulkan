@@ -131,6 +131,15 @@ public interface ResourceFactory extends EFactory
 	SampledImage createSampledImage();
 
 	/**
+	 * Returns a new object of class '<em>Sampler</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sampler</em>'.
+	 * @generated
+	 */
+	Sampler createSampler();
+
+	/**
 	 * Returns a new object of class '<em>Semaphore</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -156,15 +165,6 @@ public interface ResourceFactory extends EFactory
 	 * @generated
 	 */
 	Texture createTexture();
-
-	/**
-	 * Returns a new object of class '<em>Sampler</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sampler</em>'.
-	 * @generated
-	 */
-	Sampler createSampler();
 
 	/**
 	 * Returns a new object of class '<em>Descriptor</em>'.
@@ -246,6 +246,15 @@ public interface ResourceFactory extends EFactory
 	 * @generated
 	 */
 	StringModuleResource createStringModuleResource();
+
+	/**
+	 * Returns a new object of class '<em>Texture2 DArray</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Texture2 DArray</em>'.
+	 * @generated
+	 */
+	Texture2DArray createTexture2DArray();
 
 	/**
 	 * Returns the package supported by this factory.

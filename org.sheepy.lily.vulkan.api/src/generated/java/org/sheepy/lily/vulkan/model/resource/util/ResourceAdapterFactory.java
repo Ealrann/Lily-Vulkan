@@ -167,6 +167,11 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createSampledImageAdapter();
 			}
 			@Override
+			public Adapter caseSampler(Sampler object)
+			{
+				return createSamplerAdapter();
+			}
+			@Override
 			public Adapter caseSemaphore(Semaphore object)
 			{
 				return createSemaphoreAdapter();
@@ -185,11 +190,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseTexture(Texture object)
 			{
 				return createTextureAdapter();
-			}
-			@Override
-			public Adapter caseSampler(Sampler object)
-			{
-				return createSamplerAdapter();
 			}
 			@Override
 			public Adapter caseDescriptor(Descriptor object)
@@ -245,6 +245,11 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseStringModuleResource(StringModuleResource object)
 			{
 				return createStringModuleResourceAdapter();
+			}
+			@Override
+			public Adapter caseTexture2DArray(Texture2DArray object)
+			{
+				return createTexture2DArrayAdapter();
 			}
 			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
@@ -548,6 +553,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Sampler <em>Sampler</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler
+	 * @generated
+	 */
+	public Adapter createSamplerAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Semaphore <em>Semaphore</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -603,21 +623,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createTextureAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Sampler <em>Sampler</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.Sampler
-	 * @generated
-	 */
-	public Adapter createSamplerAdapter()
 	{
 		return null;
 	}
@@ -783,6 +788,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createStringModuleResourceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray <em>Texture2 DArray</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.Texture2DArray
+	 * @generated
+	 */
+	public Adapter createTexture2DArrayAdapter()
 	{
 		return null;
 	}

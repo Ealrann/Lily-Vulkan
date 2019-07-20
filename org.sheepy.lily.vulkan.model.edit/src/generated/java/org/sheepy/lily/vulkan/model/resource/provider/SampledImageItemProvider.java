@@ -10,9 +10,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
+import org.sheepy.vulkan.model.image.ImageFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.SampledImage} object.
@@ -146,7 +146,7 @@ public class SampledImageItemProvider extends BasicDescriptedResourceItemProvide
 		newChildDescriptors.add
 			(createChildParameter
 				(ResourcePackage.Literals.SAMPLED_IMAGE__SAMPLER,
-				 ResourceFactory.eINSTANCE.createSampler()));
+				 ImageFactory.eINSTANCE.createSamplerInfo()));
 	}
 
 }
