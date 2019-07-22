@@ -7,27 +7,18 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
-
-import org.sheepy.vulkan.model.image.ImageFactory;
+import org.sheepy.vulkan.model.image.provider.SamplerInfoItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.Sampler} object.
@@ -35,8 +26,7 @@ import org.sheepy.vulkan.model.image.ImageFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SamplerItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class SamplerItemProvider extends SamplerInfoItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -63,6 +53,7 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addImagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -91,6 +82,29 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 	}
 
 	/**
+	 * This adds a property descriptor for the Image feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addImagePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Sampler_image_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Sampler_image_feature", "_UI_Sampler_type"),
+				 ResourcePackage.Literals.SAMPLER__IMAGE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -104,7 +118,7 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ResourcePackage.Literals.SAMPLER__INFO);
+			childrenFeatures.add(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR);
 		}
 		return childrenFeatures;
 	}
@@ -167,7 +181,7 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 			case ResourcePackage.SAMPLER__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ResourcePackage.SAMPLER__INFO:
+			case ResourcePackage.SAMPLER__DESCRIPTOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -188,8 +202,13 @@ public class SamplerItemProvider extends ItemProviderAdapter implements IEditing
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.SAMPLER__INFO,
-				 ImageFactory.eINSTANCE.createSamplerInfo()));
+				(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
+				 ResourceFactory.eINSTANCE.createDescribedDataProvider()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
+				 ResourceFactory.eINSTANCE.createDescriptor()));
 	}
 
 	/**

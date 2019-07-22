@@ -71,7 +71,7 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImageAttachmentImpl()
+	protected ImageAttachmentImpl()
 	{
 		super();
 	}

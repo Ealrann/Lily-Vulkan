@@ -115,7 +115,7 @@ public class BindVertexBufferImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BindVertexBufferImpl()
+	protected BindVertexBufferImpl()
 	{
 		super();
 	}

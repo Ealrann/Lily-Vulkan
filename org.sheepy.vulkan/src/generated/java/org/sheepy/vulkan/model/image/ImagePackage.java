@@ -193,6 +193,97 @@ public interface ImagePackage extends EPackage
 	int SAMPLER_INFO_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.image.impl.ImageInfoImpl <em>Info</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.image.impl.ImageInfoImpl
+	 * @see org.sheepy.vulkan.model.image.impl.ImagePackageImpl#getImageInfo()
+	 * @generated
+	 */
+	int IMAGE_INFO = 1;
+
+	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_INFO__WIDTH = 0;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_INFO__HEIGHT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Format</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_INFO__FORMAT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_INFO__USAGES = 3;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_INFO__PROPERTIES = 4;
+
+	/**
+	 * The feature id for the '<em><b>Tiling</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_INFO__TILING = 5;
+
+	/**
+	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_INFO__MIP_LEVELS = 6;
+
+	/**
+	 * The number of structural features of the '<em>Info</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_INFO_FEATURE_COUNT = 7;
+
+	/**
+	 * The number of operations of the '<em>Info</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_INFO_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.image.SamplerInfo <em>Sampler Info</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -335,6 +426,93 @@ public interface ImagePackage extends EPackage
 	EAttribute getSamplerInfo_MaxAnisotropy();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.image.ImageInfo <em>Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Info</em>'.
+	 * @see org.sheepy.vulkan.model.image.ImageInfo
+	 * @generated
+	 */
+	EClass getImageInfo();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.image.ImageInfo#getWidth <em>Width</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Width</em>'.
+	 * @see org.sheepy.vulkan.model.image.ImageInfo#getWidth()
+	 * @see #getImageInfo()
+	 * @generated
+	 */
+	EAttribute getImageInfo_Width();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.image.ImageInfo#getHeight <em>Height</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Height</em>'.
+	 * @see org.sheepy.vulkan.model.image.ImageInfo#getHeight()
+	 * @see #getImageInfo()
+	 * @generated
+	 */
+	EAttribute getImageInfo_Height();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.image.ImageInfo#getFormat <em>Format</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Format</em>'.
+	 * @see org.sheepy.vulkan.model.image.ImageInfo#getFormat()
+	 * @see #getImageInfo()
+	 * @generated
+	 */
+	EAttribute getImageInfo_Format();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.image.ImageInfo#getUsages <em>Usages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Usages</em>'.
+	 * @see org.sheepy.vulkan.model.image.ImageInfo#getUsages()
+	 * @see #getImageInfo()
+	 * @generated
+	 */
+	EAttribute getImageInfo_Usages();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.image.ImageInfo#getProperties <em>Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Properties</em>'.
+	 * @see org.sheepy.vulkan.model.image.ImageInfo#getProperties()
+	 * @see #getImageInfo()
+	 * @generated
+	 */
+	EAttribute getImageInfo_Properties();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.image.ImageInfo#getTiling <em>Tiling</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Tiling</em>'.
+	 * @see org.sheepy.vulkan.model.image.ImageInfo#getTiling()
+	 * @see #getImageInfo()
+	 * @generated
+	 */
+	EAttribute getImageInfo_Tiling();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.image.ImageInfo#getMipLevels <em>Mip Levels</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mip Levels</em>'.
+	 * @see org.sheepy.vulkan.model.image.ImageInfo#getMipLevels()
+	 * @see #getImageInfo()
+	 * @generated
+	 */
+	EAttribute getImageInfo_MipLevels();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -463,6 +641,72 @@ public interface ImagePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute SAMPLER_INFO__MAX_ANISOTROPY = eINSTANCE.getSamplerInfo_MaxAnisotropy();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.image.impl.ImageInfoImpl <em>Info</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.image.impl.ImageInfoImpl
+		 * @see org.sheepy.vulkan.model.image.impl.ImagePackageImpl#getImageInfo()
+		 * @generated
+		 */
+		EClass IMAGE_INFO = eINSTANCE.getImageInfo();
+
+		/**
+		 * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE_INFO__WIDTH = eINSTANCE.getImageInfo_Width();
+
+		/**
+		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE_INFO__HEIGHT = eINSTANCE.getImageInfo_Height();
+
+		/**
+		 * The meta object literal for the '<em><b>Format</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE_INFO__FORMAT = eINSTANCE.getImageInfo_Format();
+
+		/**
+		 * The meta object literal for the '<em><b>Usages</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE_INFO__USAGES = eINSTANCE.getImageInfo_Usages();
+
+		/**
+		 * The meta object literal for the '<em><b>Properties</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE_INFO__PROPERTIES = eINSTANCE.getImageInfo_Properties();
+
+		/**
+		 * The meta object literal for the '<em><b>Tiling</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE_INFO__TILING = eINSTANCE.getImageInfo_Tiling();
+
+		/**
+		 * The meta object literal for the '<em><b>Mip Levels</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE_INFO__MIP_LEVELS = eINSTANCE.getImageInfo_MipLevels();
 
 	}
 

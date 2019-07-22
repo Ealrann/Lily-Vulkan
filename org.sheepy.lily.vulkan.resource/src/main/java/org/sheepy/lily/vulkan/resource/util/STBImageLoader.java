@@ -77,4 +77,9 @@ public class STBImageLoader
 	{
 		return pixels;
 	}
+	
+	public void free()
+	{
+		MemoryUtil.memFree(pixels);
+	}
 }

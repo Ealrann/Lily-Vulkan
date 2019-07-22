@@ -52,7 +52,7 @@ public class DepthAttachmentImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DepthAttachmentImpl()
+	protected DepthAttachmentImpl()
 	{
 		super();
 	}

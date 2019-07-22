@@ -199,7 +199,7 @@ public class SetViewportImpl extends MinimalEObjectImpl.Container implements Set
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SetViewportImpl()
+	protected SetViewportImpl()
 	{
 		super();
 	}

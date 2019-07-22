@@ -15,24 +15,23 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.util.VkModelUtil;
 
-
 public class VkImageDescriptor implements IVkDescriptor
 {
-	private final long imageViewAddress;
-	private final long samplerAddress;
+	private final long imageViewPtr;
+	private final long samplerPtr;
 	private final int descriptorType;
 	private final int shaderStages;
 	private final int imageLayout;
 
-	public VkImageDescriptor(	long imageViewAddress,
-								long samplerAddress,
+	public VkImageDescriptor(	long imageViewPtr,
+								long samplerPtr,
 								EImageLayout imageLayout,
 								EDescriptorType descriptorType,
 								Collection<EShaderStage> shaderStages)
 	{
-		this.imageViewAddress = imageViewAddress;
-		this.samplerAddress = samplerAddress;
-		this.imageLayout = imageLayout.getValue();
+		this.imageViewPtr = imageViewPtr != -1 ? imageViewPtr : 0;
+		this.samplerPtr = samplerPtr != -1 ? samplerPtr : 0;
+		this.imageLayout = imageLayout != null ? imageLayout.getValue() : 0;
 		this.descriptorType = descriptorType.getValue();
 		this.shaderStages = VkModelUtil.getEnumeratedFlag(shaderStages);
 	}
@@ -59,8 +58,8 @@ public class VkImageDescriptor implements IVkDescriptor
 	{
 		final var imageInfo = VkDescriptorImageInfo.callocStack(1, stack);
 		imageInfo.imageLayout(imageLayout);
-		imageInfo.imageView(imageViewAddress);
-		imageInfo.sampler(samplerAddress);
+		imageInfo.imageView(imageViewPtr);
+		imageInfo.sampler(samplerPtr);
 
 		writeDescriptor.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
 		writeDescriptor.dstArrayElement(0);
@@ -73,8 +72,16 @@ public class VkImageDescriptor implements IVkDescriptor
 	@Override
 	public String toString()
 	{
-		return "VkImageDescriptor [imageViewAddress=" + imageViewAddress + ", samplerAddress=" + samplerAddress
-				+ ", descriptorType=" + descriptorType + ", shaderStages=" + shaderStages + ", imageLayout="
-				+ imageLayout + "]";
+		return "VkImageDescriptor [imageViewAddress="
+				+ imageViewPtr
+				+ ", samplerAddress="
+				+ samplerPtr
+				+ ", descriptorType="
+				+ descriptorType
+				+ ", shaderStages="
+				+ shaderStages
+				+ ", imageLayout="
+				+ imageLayout
+				+ "]";
 	}
 }

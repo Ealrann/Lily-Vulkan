@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -291,6 +292,52 @@ public interface NuklearPackage extends EPackage
 
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearFontImpl <em>Font</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearFontImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getNuklearFont()
+	 * @generated
+	 */
+	int NUKLEAR_FONT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_FONT__NAME = ResourcePackage.BASIC_RESOURCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Font Sampled Image</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_FONT__FONT_SAMPLED_IMAGE = ResourcePackage.BASIC_RESOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Font</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_FONT_FEATURE_COUNT = ResourcePackage.BASIC_RESOURCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Font</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_FONT_OPERATION_COUNT = ResourcePackage.BASIC_RESOURCE_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants <em>Push Constants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -431,6 +478,27 @@ public interface NuklearPackage extends EPackage
 	EReference getNuklearContext_LayoutTask();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont <em>Font</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Font</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont
+	 * @generated
+	 */
+	EClass getNuklearFont();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontSampledImage <em>Font Sampled Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Font Sampled Image</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontSampledImage()
+	 * @see #getNuklearFont()
+	 * @generated
+	 */
+	EReference getNuklearFont_FontSampledImage();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -562,6 +630,24 @@ public interface NuklearPackage extends EPackage
 		 * @generated
 		 */
 		EReference NUKLEAR_CONTEXT__LAYOUT_TASK = eINSTANCE.getNuklearContext_LayoutTask();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearFontImpl <em>Font</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearFontImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getNuklearFont()
+		 * @generated
+		 */
+		EClass NUKLEAR_FONT = eINSTANCE.getNuklearFont();
+
+		/**
+		 * The meta object literal for the '<em><b>Font Sampled Image</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NUKLEAR_FONT__FONT_SAMPLED_IMAGE = eINSTANCE.getNuklearFont_FontSampledImage();
 
 	}
 

@@ -90,7 +90,7 @@ public class PushConstantRangeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PushConstantRangeImpl()
+	protected PushConstantRangeImpl()
 	{
 		super();
 	}

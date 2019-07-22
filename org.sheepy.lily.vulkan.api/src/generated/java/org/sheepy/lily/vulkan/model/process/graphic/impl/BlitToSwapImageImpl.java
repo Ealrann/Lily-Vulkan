@@ -110,7 +110,7 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BlitToSwapImageImpl()
+	protected BlitToSwapImageImpl()
 	{
 		super();
 	}

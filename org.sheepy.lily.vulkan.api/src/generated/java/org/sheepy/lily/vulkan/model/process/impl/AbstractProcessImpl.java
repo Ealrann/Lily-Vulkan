@@ -176,7 +176,7 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AbstractProcessImpl()
+	protected AbstractProcessImpl()
 	{
 		super();
 	}

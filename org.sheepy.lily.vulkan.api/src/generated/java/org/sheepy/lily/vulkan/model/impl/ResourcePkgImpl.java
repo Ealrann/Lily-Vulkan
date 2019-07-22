@@ -50,7 +50,7 @@ public class ResourcePkgImpl extends MinimalEObjectImpl.Container implements Res
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourcePkgImpl()
+	protected ResourcePkgImpl()
 	{
 		super();
 	}

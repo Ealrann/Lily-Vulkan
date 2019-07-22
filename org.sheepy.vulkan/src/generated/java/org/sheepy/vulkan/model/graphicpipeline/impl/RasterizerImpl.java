@@ -182,7 +182,7 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RasterizerImpl()
+	protected RasterizerImpl()
 	{
 		super();
 	}

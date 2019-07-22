@@ -73,7 +73,7 @@ public class GetBufferImpl extends MinimalEObjectImpl.Container implements GetBu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GetBufferImpl()
+	protected GetBufferImpl()
 	{
 		super();
 	}

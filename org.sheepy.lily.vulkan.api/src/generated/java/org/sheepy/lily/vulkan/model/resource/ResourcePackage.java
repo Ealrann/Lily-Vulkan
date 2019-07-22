@@ -13,6 +13,7 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
+import org.sheepy.vulkan.model.image.ImagePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -824,79 +825,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE__NAME = BASIC_DESCRIPTED_RESOURCE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__DESCRIPTOR = BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR;
-
-	/**
-	 * The feature id for the '<em><b>Width</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__WIDTH = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__HEIGHT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Format</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__FORMAT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__USAGES = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Properties</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__PROPERTIES = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Tiling</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__TILING = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__MIP_LEVELS = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 6;
+	int IMAGE__NAME = DESCRIPTED_RESOURCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
@@ -905,16 +834,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE__INITIAL_LAYOUT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 7;
-
-	/**
-	 * The feature id for the '<em><b>Fill With Zero</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__FILL_WITH_ZERO = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 8;
+	int IMAGE__INITIAL_LAYOUT = DESCRIPTED_RESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Image</em>' class.
@@ -923,7 +843,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_FEATURE_COUNT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 9;
+	int IMAGE_FEATURE_COUNT = DESCRIPTED_RESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Image</em>' class.
@@ -932,7 +852,216 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_OPERATION_COUNT = BASIC_DESCRIPTED_RESOURCE_OPERATION_COUNT + 0;
+	int IMAGE_OPERATION_COUNT = DESCRIPTED_RESOURCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.StaticImageImpl <em>Static Image</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.StaticImageImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getStaticImage()
+	 * @generated
+	 */
+	int STATIC_IMAGE = 15;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__NAME = IMAGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__INITIAL_LAYOUT = IMAGE__INITIAL_LAYOUT;
+
+	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__WIDTH = IMAGE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__HEIGHT = IMAGE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Format</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__FORMAT = IMAGE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__USAGES = IMAGE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__PROPERTIES = IMAGE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Tiling</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__TILING = IMAGE_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__MIP_LEVELS = IMAGE_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__DESCRIPTOR = IMAGE_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Fill With Zero</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__FILL_WITH_ZERO = IMAGE_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Fill With</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__FILL_WITH = IMAGE_FEATURE_COUNT + 9;
+
+	/**
+	 * The number of structural features of the '<em>Static Image</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE_FEATURE_COUNT = IMAGE_FEATURE_COUNT + 10;
+
+	/**
+	 * The number of operations of the '<em>Static Image</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE_OPERATION_COUNT = IMAGE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FileImageImpl <em>File Image</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.FileImageImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFileImage()
+	 * @generated
+	 */
+	int FILE_IMAGE = 16;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMAGE__NAME = IMAGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMAGE__INITIAL_LAYOUT = IMAGE__INITIAL_LAYOUT;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMAGE__DESCRIPTOR = IMAGE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>File</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMAGE__FILE = IMAGE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Mipmap Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMAGE__MIPMAP_ENABLED = IMAGE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>File Image</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMAGE_FEATURE_COUNT = IMAGE_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>File Image</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMAGE_OPERATION_COUNT = IMAGE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl <em>Image Layout</em>}' class.
@@ -942,7 +1071,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageLayout()
 	 * @generated
 	 */
-	int IMAGE_LAYOUT = 15;
+	int IMAGE_LAYOUT = 17;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -997,7 +1126,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampledImage()
 	 * @generated
 	 */
-	int SAMPLED_IMAGE = 16;
+	int SAMPLED_IMAGE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1027,13 +1156,22 @@ public interface ResourcePackage extends EPackage
 	int SAMPLED_IMAGE__SAMPLER = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Image</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLED_IMAGE__IMAGE = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Sampled Image</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLED_IMAGE_FEATURE_COUNT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 1;
+	int SAMPLED_IMAGE_FEATURE_COUNT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Sampled Image</em>' class.
@@ -1052,7 +1190,115 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampler()
 	 * @generated
 	 */
-	int SAMPLER = 17;
+	int SAMPLER = 19;
+
+	/**
+	 * The feature id for the '<em><b>Min Filter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__MIN_FILTER = ImagePackage.SAMPLER_INFO__MIN_FILTER;
+
+	/**
+	 * The feature id for the '<em><b>Mag Filter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__MAG_FILTER = ImagePackage.SAMPLER_INFO__MAG_FILTER;
+
+	/**
+	 * The feature id for the '<em><b>Mipmap Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__MIPMAP_MODE = ImagePackage.SAMPLER_INFO__MIPMAP_MODE;
+
+	/**
+	 * The feature id for the '<em><b>Address Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__ADDRESS_MODE = ImagePackage.SAMPLER_INFO__ADDRESS_MODE;
+
+	/**
+	 * The feature id for the '<em><b>Border Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__BORDER_COLOR = ImagePackage.SAMPLER_INFO__BORDER_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Anisotropy Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__ANISOTROPY_ENABLED = ImagePackage.SAMPLER_INFO__ANISOTROPY_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Unnormalized Coordinates</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__UNNORMALIZED_COORDINATES = ImagePackage.SAMPLER_INFO__UNNORMALIZED_COORDINATES;
+
+	/**
+	 * The feature id for the '<em><b>Compare Enable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__COMPARE_ENABLE = ImagePackage.SAMPLER_INFO__COMPARE_ENABLE;
+
+	/**
+	 * The feature id for the '<em><b>Lod Bias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__LOD_BIAS = ImagePackage.SAMPLER_INFO__LOD_BIAS;
+
+	/**
+	 * The feature id for the '<em><b>Min Lod</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__MIN_LOD = ImagePackage.SAMPLER_INFO__MIN_LOD;
+
+	/**
+	 * The feature id for the '<em><b>Max Lod</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__MAX_LOD = ImagePackage.SAMPLER_INFO__MAX_LOD;
+
+	/**
+	 * The feature id for the '<em><b>Max Anisotropy</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__MAX_ANISOTROPY = ImagePackage.SAMPLER_INFO__MAX_ANISOTROPY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1061,16 +1307,25 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLER__NAME = DESCRIPTED_RESOURCE__NAME;
+	int SAMPLER__NAME = ImagePackage.SAMPLER_INFO_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Info</b></em>' containment reference.
+	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLER__INFO = DESCRIPTED_RESOURCE_FEATURE_COUNT + 0;
+	int SAMPLER__DESCRIPTOR = ImagePackage.SAMPLER_INFO_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Image</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__IMAGE = ImagePackage.SAMPLER_INFO_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Sampler</em>' class.
@@ -1079,7 +1334,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLER_FEATURE_COUNT = DESCRIPTED_RESOURCE_FEATURE_COUNT + 1;
+	int SAMPLER_FEATURE_COUNT = ImagePackage.SAMPLER_INFO_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Sampler</em>' class.
@@ -1088,7 +1343,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLER_OPERATION_COUNT = DESCRIPTED_RESOURCE_OPERATION_COUNT + 0;
+	int SAMPLER_OPERATION_COUNT = ImagePackage.SAMPLER_INFO_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SemaphoreImpl <em>Semaphore</em>}' class.
@@ -1098,7 +1353,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSemaphore()
 	 * @generated
 	 */
-	int SEMAPHORE = 18;
+	int SEMAPHORE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1146,14 +1401,14 @@ public interface ResourcePackage extends EPackage
 	int SEMAPHORE_OPERATION_COUNT = BASIC_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FontImpl <em>Font</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl <em>Font Image</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.FontImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFont()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFontImage()
 	 * @generated
 	 */
-	int FONT = 19;
+	int FONT_IMAGE = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1162,25 +1417,16 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FONT__NAME = SAMPLED_IMAGE__NAME;
+	int FONT_IMAGE__NAME = IMAGE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
+	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FONT__DESCRIPTOR = SAMPLED_IMAGE__DESCRIPTOR;
-
-	/**
-	 * The feature id for the '<em><b>Sampler</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT__SAMPLER = SAMPLED_IMAGE__SAMPLER;
+	int FONT_IMAGE__INITIAL_LAYOUT = IMAGE__INITIAL_LAYOUT;
 
 	/**
 	 * The feature id for the '<em><b>File</b></em>' containment reference.
@@ -1189,7 +1435,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FONT__FILE = SAMPLED_IMAGE_FEATURE_COUNT + 0;
+	int FONT_IMAGE__FILE = IMAGE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
@@ -1198,162 +1444,25 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FONT__HEIGHT = SAMPLED_IMAGE_FEATURE_COUNT + 1;
+	int FONT_IMAGE__HEIGHT = IMAGE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Font</em>' class.
+	 * The number of structural features of the '<em>Font Image</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FONT_FEATURE_COUNT = SAMPLED_IMAGE_FEATURE_COUNT + 2;
+	int FONT_IMAGE_FEATURE_COUNT = IMAGE_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Font</em>' class.
+	 * The number of operations of the '<em>Font Image</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FONT_OPERATION_COUNT = SAMPLED_IMAGE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractTextureImpl <em>Abstract Texture</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.AbstractTextureImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractTexture()
-	 * @generated
-	 */
-	int ABSTRACT_TEXTURE = 20;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_TEXTURE__NAME = SAMPLED_IMAGE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_TEXTURE__DESCRIPTOR = SAMPLED_IMAGE__DESCRIPTOR;
-
-	/**
-	 * The feature id for the '<em><b>Sampler</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_TEXTURE__SAMPLER = SAMPLED_IMAGE__SAMPLER;
-
-	/**
-	 * The feature id for the '<em><b>Mipmap Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_TEXTURE__MIPMAP_ENABLED = SAMPLED_IMAGE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Abstract Texture</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_TEXTURE_FEATURE_COUNT = SAMPLED_IMAGE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Abstract Texture</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_TEXTURE_OPERATION_COUNT = SAMPLED_IMAGE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.TextureImpl <em>Texture</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.TextureImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getTexture()
-	 * @generated
-	 */
-	int TEXTURE = 21;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXTURE__NAME = ABSTRACT_TEXTURE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXTURE__DESCRIPTOR = ABSTRACT_TEXTURE__DESCRIPTOR;
-
-	/**
-	 * The feature id for the '<em><b>Sampler</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXTURE__SAMPLER = ABSTRACT_TEXTURE__SAMPLER;
-
-	/**
-	 * The feature id for the '<em><b>Mipmap Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXTURE__MIPMAP_ENABLED = ABSTRACT_TEXTURE__MIPMAP_ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>File</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXTURE__FILE = ABSTRACT_TEXTURE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Texture</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXTURE_FEATURE_COUNT = ABSTRACT_TEXTURE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Texture</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXTURE_OPERATION_COUNT = ABSTRACT_TEXTURE_OPERATION_COUNT + 0;
+	int FONT_IMAGE_OPERATION_COUNT = IMAGE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorImpl <em>Descriptor</em>}' class.
@@ -2401,83 +2510,6 @@ public interface ResourcePackage extends EPackage
 	EClass getImage();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Image#getWidth <em>Width</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Width</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Image#getWidth()
-	 * @see #getImage()
-	 * @generated
-	 */
-	EAttribute getImage_Width();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Image#getHeight <em>Height</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Height</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Image#getHeight()
-	 * @see #getImage()
-	 * @generated
-	 */
-	EAttribute getImage_Height();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Image#getFormat <em>Format</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Format</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Image#getFormat()
-	 * @see #getImage()
-	 * @generated
-	 */
-	EAttribute getImage_Format();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.Image#getUsages <em>Usages</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Usages</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Image#getUsages()
-	 * @see #getImage()
-	 * @generated
-	 */
-	EAttribute getImage_Usages();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Image#getProperties <em>Properties</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Properties</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Image#getProperties()
-	 * @see #getImage()
-	 * @generated
-	 */
-	EAttribute getImage_Properties();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Image#getTiling <em>Tiling</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Tiling</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Image#getTiling()
-	 * @see #getImage()
-	 * @generated
-	 */
-	EAttribute getImage_Tiling();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Image#getMipLevels <em>Mip Levels</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Mip Levels</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Image#getMipLevels()
-	 * @see #getImage()
-	 * @generated
-	 */
-	EAttribute getImage_MipLevels();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.Image#getInitialLayout <em>Initial Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2489,15 +2521,68 @@ public interface ResourcePackage extends EPackage
 	EReference getImage_InitialLayout();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Image#isFillWithZero <em>Fill With Zero</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.StaticImage <em>Static Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Static Image</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.StaticImage
+	 * @generated
+	 */
+	EClass getStaticImage();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.StaticImage#isFillWithZero <em>Fill With Zero</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Fill With Zero</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Image#isFillWithZero()
-	 * @see #getImage()
+	 * @see org.sheepy.lily.vulkan.model.resource.StaticImage#isFillWithZero()
+	 * @see #getStaticImage()
 	 * @generated
 	 */
-	EAttribute getImage_FillWithZero();
+	EAttribute getStaticImage_FillWithZero();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.StaticImage#getFillWith <em>Fill With</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Fill With</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.StaticImage#getFillWith()
+	 * @see #getStaticImage()
+	 * @generated
+	 */
+	EAttribute getStaticImage_FillWith();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.FileImage <em>File Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>File Image</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.FileImage
+	 * @generated
+	 */
+	EClass getFileImage();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.FileImage#getFile <em>File</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>File</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.FileImage#getFile()
+	 * @see #getFileImage()
+	 * @generated
+	 */
+	EReference getFileImage_File();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.FileImage#isMipmapEnabled <em>Mipmap Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mipmap Enabled</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.FileImage#isMipmapEnabled()
+	 * @see #getFileImage()
+	 * @generated
+	 */
+	EAttribute getFileImage_MipmapEnabled();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.ImageLayout <em>Image Layout</em>}'.
@@ -2564,6 +2649,17 @@ public interface ResourcePackage extends EPackage
 	EReference getSampledImage_Sampler();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.SampledImage#getImage <em>Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Image</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.SampledImage#getImage()
+	 * @see #getSampledImage()
+	 * @generated
+	 */
+	EReference getSampledImage_Image();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Sampler <em>Sampler</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2574,15 +2670,15 @@ public interface ResourcePackage extends EPackage
 	EClass getSampler();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getInfo <em>Info</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getImage <em>Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Info</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getInfo()
+	 * @return the meta object for the reference '<em>Image</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getImage()
 	 * @see #getSampler()
 	 * @generated
 	 */
-	EReference getSampler_Info();
+	EReference getSampler_Image();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Semaphore <em>Semaphore</em>}'.
@@ -2617,78 +2713,36 @@ public interface ResourcePackage extends EPackage
 	EAttribute getSemaphore_WaitStage();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Font <em>Font</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.FontImage <em>Font Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Font</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Font
+	 * @return the meta object for class '<em>Font Image</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.FontImage
 	 * @generated
 	 */
-	EClass getFont();
+	EClass getFontImage();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.Font#getFile <em>File</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.FontImage#getFile <em>File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>File</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Font#getFile()
-	 * @see #getFont()
+	 * @see org.sheepy.lily.vulkan.model.resource.FontImage#getFile()
+	 * @see #getFontImage()
 	 * @generated
 	 */
-	EReference getFont_File();
+	EReference getFontImage_File();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Font#getHeight <em>Height</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.FontImage#getHeight <em>Height</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Height</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Font#getHeight()
-	 * @see #getFont()
+	 * @see org.sheepy.lily.vulkan.model.resource.FontImage#getHeight()
+	 * @see #getFontImage()
 	 * @generated
 	 */
-	EAttribute getFont_Height();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.AbstractTexture <em>Abstract Texture</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Abstract Texture</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.AbstractTexture
-	 * @generated
-	 */
-	EClass getAbstractTexture();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.AbstractTexture#isMipmapEnabled <em>Mipmap Enabled</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Mipmap Enabled</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.AbstractTexture#isMipmapEnabled()
-	 * @see #getAbstractTexture()
-	 * @generated
-	 */
-	EAttribute getAbstractTexture_MipmapEnabled();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Texture <em>Texture</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Texture</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Texture
-	 * @generated
-	 */
-	EClass getTexture();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.Texture#getFile <em>File</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>File</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Texture#getFile()
-	 * @see #getTexture()
-	 * @generated
-	 */
-	EReference getTexture_File();
+	EAttribute getFontImage_Height();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Descriptor <em>Descriptor</em>}'.
@@ -3348,62 +3402,6 @@ public interface ResourcePackage extends EPackage
 		EClass IMAGE = eINSTANCE.getImage();
 
 		/**
-		 * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE__WIDTH = eINSTANCE.getImage_Width();
-
-		/**
-		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE__HEIGHT = eINSTANCE.getImage_Height();
-
-		/**
-		 * The meta object literal for the '<em><b>Format</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE__FORMAT = eINSTANCE.getImage_Format();
-
-		/**
-		 * The meta object literal for the '<em><b>Usages</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE__USAGES = eINSTANCE.getImage_Usages();
-
-		/**
-		 * The meta object literal for the '<em><b>Properties</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE__PROPERTIES = eINSTANCE.getImage_Properties();
-
-		/**
-		 * The meta object literal for the '<em><b>Tiling</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE__TILING = eINSTANCE.getImage_Tiling();
-
-		/**
-		 * The meta object literal for the '<em><b>Mip Levels</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE__MIP_LEVELS = eINSTANCE.getImage_MipLevels();
-
-		/**
 		 * The meta object literal for the '<em><b>Initial Layout</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3412,12 +3410,56 @@ public interface ResourcePackage extends EPackage
 		EReference IMAGE__INITIAL_LAYOUT = eINSTANCE.getImage_InitialLayout();
 
 		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.StaticImageImpl <em>Static Image</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.StaticImageImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getStaticImage()
+		 * @generated
+		 */
+		EClass STATIC_IMAGE = eINSTANCE.getStaticImage();
+
+		/**
 		 * The meta object literal for the '<em><b>Fill With Zero</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IMAGE__FILL_WITH_ZERO = eINSTANCE.getImage_FillWithZero();
+		EAttribute STATIC_IMAGE__FILL_WITH_ZERO = eINSTANCE.getStaticImage_FillWithZero();
+
+		/**
+		 * The meta object literal for the '<em><b>Fill With</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATIC_IMAGE__FILL_WITH = eINSTANCE.getStaticImage_FillWith();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FileImageImpl <em>File Image</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.FileImageImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFileImage()
+		 * @generated
+		 */
+		EClass FILE_IMAGE = eINSTANCE.getFileImage();
+
+		/**
+		 * The meta object literal for the '<em><b>File</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FILE_IMAGE__FILE = eINSTANCE.getFileImage_File();
+
+		/**
+		 * The meta object literal for the '<em><b>Mipmap Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FILE_IMAGE__MIPMAP_ENABLED = eINSTANCE.getFileImage_MipmapEnabled();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl <em>Image Layout</em>}' class.
@@ -3472,6 +3514,14 @@ public interface ResourcePackage extends EPackage
 		EReference SAMPLED_IMAGE__SAMPLER = eINSTANCE.getSampledImage_Sampler();
 
 		/**
+		 * The meta object literal for the '<em><b>Image</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SAMPLED_IMAGE__IMAGE = eINSTANCE.getSampledImage_Image();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl <em>Sampler</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3482,12 +3532,12 @@ public interface ResourcePackage extends EPackage
 		EClass SAMPLER = eINSTANCE.getSampler();
 
 		/**
-		 * The meta object literal for the '<em><b>Info</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Image</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SAMPLER__INFO = eINSTANCE.getSampler_Info();
+		EReference SAMPLER__IMAGE = eINSTANCE.getSampler_Image();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SemaphoreImpl <em>Semaphore</em>}' class.
@@ -3516,14 +3566,14 @@ public interface ResourcePackage extends EPackage
 		EAttribute SEMAPHORE__WAIT_STAGE = eINSTANCE.getSemaphore_WaitStage();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FontImpl <em>Font</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl <em>Font Image</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.FontImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFont()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFontImage()
 		 * @generated
 		 */
-		EClass FONT = eINSTANCE.getFont();
+		EClass FONT_IMAGE = eINSTANCE.getFontImage();
 
 		/**
 		 * The meta object literal for the '<em><b>File</b></em>' containment reference feature.
@@ -3531,7 +3581,7 @@ public interface ResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FONT__FILE = eINSTANCE.getFont_File();
+		EReference FONT_IMAGE__FILE = eINSTANCE.getFontImage_File();
 
 		/**
 		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
@@ -3539,43 +3589,7 @@ public interface ResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FONT__HEIGHT = eINSTANCE.getFont_Height();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractTextureImpl <em>Abstract Texture</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.AbstractTextureImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractTexture()
-		 * @generated
-		 */
-		EClass ABSTRACT_TEXTURE = eINSTANCE.getAbstractTexture();
-
-		/**
-		 * The meta object literal for the '<em><b>Mipmap Enabled</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ABSTRACT_TEXTURE__MIPMAP_ENABLED = eINSTANCE.getAbstractTexture_MipmapEnabled();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.TextureImpl <em>Texture</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.TextureImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getTexture()
-		 * @generated
-		 */
-		EClass TEXTURE = eINSTANCE.getTexture();
-
-		/**
-		 * The meta object literal for the '<em><b>File</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEXTURE__FILE = eINSTANCE.getTexture_File();
+		EAttribute FONT_IMAGE__HEIGHT = eINSTANCE.getFontImage_Height();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorImpl <em>Descriptor</em>}' class.

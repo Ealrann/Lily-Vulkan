@@ -10,24 +10,25 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.lily.vulkan.model.resource.Texture;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Texture</b></em>'.
+ * An implementation of the model object '<em><b>Font Image</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TextureImpl#getFile <em>File</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl#getFile <em>File</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl#getHeight <em>Height</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TextureImpl extends AbstractTextureImpl implements Texture
+public class FontImageImpl extends ImageImpl implements FontImage
 {
 	/**
 	 * The cached value of the '{@link #getFile() <em>File</em>}' containment reference.
@@ -40,11 +41,31 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	protected PathResource file;
 
 	/**
+	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHeight()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int HEIGHT_EDEFAULT = 18;
+
+	/**
+	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHeight()
+	 * @generated
+	 * @ordered
+	 */
+	protected int height = HEIGHT_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TextureImpl()
+	protected FontImageImpl()
 	{
 		super();
 	}
@@ -57,7 +78,7 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.TEXTURE;
+		return ResourcePackage.Literals.FONT_IMAGE;
 	}
 
 	/**
@@ -82,7 +103,7 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 		file = newFile;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE__FILE, oldFile, newFile);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.FONT_IMAGE__FILE, oldFile, newFile);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -100,14 +121,39 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 		{
 			NotificationChain msgs = null;
 			if (file != null)
-				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.TEXTURE__FILE, null, msgs);
+				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.FONT_IMAGE__FILE, null, msgs);
 			if (newFile != null)
-				msgs = ((InternalEObject)newFile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.TEXTURE__FILE, null, msgs);
+				msgs = ((InternalEObject)newFile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.FONT_IMAGE__FILE, null, msgs);
 			msgs = basicSetFile(newFile, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE__FILE, newFile, newFile));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.FONT_IMAGE__FILE, newFile, newFile));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getHeight()
+	{
+		return height;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setHeight(int newHeight)
+	{
+		int oldHeight = height;
+		height = newHeight;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.FONT_IMAGE__HEIGHT, oldHeight, height));
 	}
 
 	/**
@@ -120,7 +166,7 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE__FILE:
+			case ResourcePackage.FONT_IMAGE__FILE:
 				return basicSetFile(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -136,8 +182,10 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE__FILE:
+			case ResourcePackage.FONT_IMAGE__FILE:
 				return getFile();
+			case ResourcePackage.FONT_IMAGE__HEIGHT:
+				return getHeight();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -152,8 +200,11 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE__FILE:
+			case ResourcePackage.FONT_IMAGE__FILE:
 				setFile((PathResource)newValue);
+				return;
+			case ResourcePackage.FONT_IMAGE__HEIGHT:
+				setHeight((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -169,8 +220,11 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE__FILE:
+			case ResourcePackage.FONT_IMAGE__FILE:
 				setFile((PathResource)null);
+				return;
+			case ResourcePackage.FONT_IMAGE__HEIGHT:
+				setHeight(HEIGHT_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -186,10 +240,29 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE__FILE:
+			case ResourcePackage.FONT_IMAGE__FILE:
 				return file != null;
+			case ResourcePackage.FONT_IMAGE__HEIGHT:
+				return height != HEIGHT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //TextureImpl
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (height: ");
+		result.append(height);
+		result.append(')');
+		return result.toString();
+	}
+
+} //FontImageImpl

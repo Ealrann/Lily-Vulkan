@@ -10,45 +10,28 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
+import org.sheepy.lily.vulkan.model.resource.ImageLayout;
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
-import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
-import org.sheepy.vulkan.model.image.ImageFactory;
-import org.sheepy.vulkan.model.image.SamplerInfo;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.vulkan.resource.image.VkImage;
-import org.sheepy.vulkan.resource.image.VkImageDescriptor;
 import org.sheepy.vulkan.resource.image.VkImageView;
-import org.sheepy.vulkan.resource.image.VkSampler;
+import org.sheepy.vulkan.util.VkModelUtil;
 
 public class VkTexture implements IAllocable<IExecutionContext>
 {
-	private final SamplerInfo sampler;
-
 	private final VkImage image;
+
 	private VkImageView imageView;
-	private VkSampler vkSampler;
-	private IVkDescriptor descriptor = null;
 
-	public VkTexture(VkImage.Builder imageBuilder, SamplerInfo samplerInfo)
+	public VkTexture(VkImage.Builder imageBuilder)
 	{
-		final var sampledBuilder = new VkImage.VkImageBuilder(imageBuilder);
-		sampledBuilder.addUsage(VK_IMAGE_USAGE_SAMPLED_BIT);
-		image = sampledBuilder.build();
-
-		if (samplerInfo == null)
-		{
-			this.sampler = ImageFactory.eINSTANCE.createSamplerInfo();
-		}
-		else
-		{
-			this.sampler = samplerInfo;
-		}
+		final var builder = new VkImage.VkImageBuilder(imageBuilder.copyImmutable());
+		builder.addUsage(VK_IMAGE_USAGE_SAMPLED_BIT);
+		image = builder.build();
 	}
 
 	@Override
@@ -56,16 +39,17 @@ public class VkTexture implements IAllocable<IExecutionContext>
 	{
 		final var logicalDevice = context.getLogicalDevice();
 		image.allocate(stack, context);
-		final var imageAddress = image.getAddress();
+		final var imageAddress = image.getPtr();
 
 		imageView = new VkImageView(logicalDevice.getVkDevice());
-		vkSampler = new VkSampler(sampler);
 
 		imageView.allocate(imageAddress, image.mipLevels, image.format, VK_IMAGE_ASPECT_COLOR_BIT);
-		vkSampler.allocate(stack, context);
 	}
 
-	public void loadImage(MemoryStack stack, IExecutionContext executionContext, ByteBuffer data)
+	public void loadImage(	MemoryStack stack,
+							IExecutionContext executionContext,
+							ByteBuffer data,
+							ImageLayout targetLayout)
 	{
 		final int stagingUsage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 		final List<EAccess> srcAccessMask = List.of();
@@ -75,20 +59,21 @@ public class VkTexture implements IAllocable<IExecutionContext>
 		final var buffer = BufferAllocator.allocateCPUBufferAndFill(stack, executionContext, size, stagingUsage, false,
 				data);
 
-		executionContext.execute(stack, (MemoryStack stack2, VkCommandBuffer commandBuffer) -> {
+		executionContext.execute(stack, (MemoryStack stack2, VkCommandBuffer commandBuffer) ->
+		{
 			image.transitionImageLayout(stack2, commandBuffer, EPipelineStage.TOP_OF_PIPE_BIT,
 					EPipelineStage.TRANSFER_BIT, EImageLayout.UNDEFINED, EImageLayout.TRANSFER_DST_OPTIMAL,
 					srcAccessMask, dstAccessMask);
 			image.fillWithBuffer(commandBuffer, buffer.getAddress());
-			generateMipmaps(commandBuffer);
+			generateMipmaps(commandBuffer, targetLayout);
 		});
 
 		buffer.free(executionContext);
 	}
 
-	private void generateMipmaps(VkCommandBuffer commandBuffer)
+	private void generateMipmaps(VkCommandBuffer commandBuffer, ImageLayout targetLayout)
 	{
-		final long imageAddress = image.getAddress();
+		final long imageAddress = image.getPtr();
 
 		final VkImageMemoryBarrier.Buffer barrier = VkImageMemoryBarrier.calloc(1);
 		barrier.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
@@ -151,41 +136,60 @@ public class VkTexture implements IAllocable<IExecutionContext>
 			blit.free();
 		}
 
+		int trgAccess;
+		int trgStage;
+		int trgLayout;
+
+		if (targetLayout != null)
+		{
+			trgAccess = VkModelUtil.getEnumeratedFlag(targetLayout.getAccessMask());
+			trgStage = targetLayout.getStage().getValue();
+			trgLayout = targetLayout.getLayout().getValue();
+		}
+		else
+		{
+			trgAccess = EAccess.SHADER_READ_BIT_VALUE;
+			trgStage = EPipelineStage.FRAGMENT_SHADER_BIT_VALUE;
+			trgLayout = EImageLayout.SHADER_READ_ONLY_OPTIMAL_VALUE;
+		}
+
 		barrier.subresourceRange().baseMipLevel(image.mipLevels - 1);
 		barrier.oldLayout(VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
-		barrier.newLayout(VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+		barrier.newLayout(trgLayout);
 		barrier.srcAccessMask(VK_ACCESS_TRANSFER_WRITE_BIT);
-		barrier.dstAccessMask(VK_ACCESS_SHADER_READ_BIT);
+		barrier.dstAccessMask(trgAccess);
 
-		vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT, VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, 0,
-				null, null, barrier);
+		vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT, trgStage, 0, null, null, barrier);
 
 		barrier.free();
 	}
 
-	public long getImageAddress()
+	public long getImagePtr()
 	{
-		return image.getAddress();
+		return image.getPtr();
 	}
 
-	public long getViewAddress()
+	public long getViewPtr()
 	{
-		return imageView.getAddress();
+		return imageView.getPtr();
 	}
 
-	public long getSamplerAddress()
+	public long getMemoryPtr()
 	{
-		return vkSampler.getPtr();
+		return image.getMemoryPtr();
+	}
+
+	public VkImage getImage()
+	{
+		return image;
 	}
 
 	@Override
 	public void free(IExecutionContext context)
 	{
-		vkSampler.free(context);
 		imageView.free();
 		image.free(context);
 
-		vkSampler = null;
 		imageView = null;
 	}
 
@@ -193,22 +197,5 @@ public class VkTexture implements IAllocable<IExecutionContext>
 	public boolean isAllocationDirty(IExecutionContext context)
 	{
 		return false;
-	}
-
-	public IVkDescriptor getDescriptor()
-	{
-		if (descriptor == null)
-		{
-			descriptor = new VkImageDescriptor(getViewAddress(), vkSampler.getPtr(),
-					EImageLayout.SHADER_READ_ONLY_OPTIMAL, EDescriptorType.COMBINED_IMAGE_SAMPLER,
-					List.of(EShaderStage.FRAGMENT_BIT));
-		}
-
-		return descriptor;
-	}
-
-	public VkImage getImage()
-	{
-		return image;
 	}
 }

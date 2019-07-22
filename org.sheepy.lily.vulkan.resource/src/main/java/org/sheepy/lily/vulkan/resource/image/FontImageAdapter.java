@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.resource.texture;
+package org.sheepy.lily.vulkan.resource.image;
 
 import static org.lwjgl.stb.STBTruetype.*;
 import static org.lwjgl.system.MemoryUtil.*;
@@ -6,25 +6,28 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
+import java.util.List;
 
 import org.lwjgl.stb.STBTTFontinfo;
 import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.model.resource.Font;
+import org.sheepy.lily.vulkan.api.resource.IFontImageAdapter;
+import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.lily.vulkan.resource.file.FileResourceAdapter;
-import org.sheepy.lily.vulkan.resource.image.AbstractSampledImageAdapter;
+import org.sheepy.lily.vulkan.resource.nativehelper.VkTexture;
+import org.sheepy.vulkan.descriptor.IVkDescriptor;
+import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.resource.image.VkImage;
 
 @Statefull
-@Adapter(scope = Font.class)
-public class FontAdapter extends AbstractSampledImageAdapter
+@Adapter(scope = FontImage.class)
+public class FontImageAdapter implements IFontImageAdapter
 {
 	public static final int BUFFER_WIDTH = 1024;
 	public static final int BUFFER_HEIGHT = 1024;
@@ -32,8 +35,7 @@ public class FontAdapter extends AbstractSampledImageAdapter
 	public static final VkImage.Builder imageBuilder;
 	static
 	{
-		final var builder = VkImage.newBuilder(BUFFER_WIDTH, BUFFER_HEIGHT,
-				VK_FORMAT_R8G8B8A8_UNORM);
+		final var builder = VkImage.newBuilder(BUFFER_WIDTH, BUFFER_HEIGHT, VK_FORMAT_R8G8B8A8_UNORM);
 		builder.usage(VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT);
 		builder.properties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 		builder.tiling(VK_IMAGE_TILING_OPTIMAL);
@@ -41,7 +43,8 @@ public class FontAdapter extends AbstractSampledImageAdapter
 		imageBuilder = builder.copyImmutable();
 	}
 
-	private final Font font;
+	private final FontImage font;
+	private final VkTexture vkTexture;
 
 	private STBTTFontinfo fontInfo;
 	private STBTTPackedchar.Buffer cdata;
@@ -49,26 +52,35 @@ public class FontAdapter extends AbstractSampledImageAdapter
 	private float scale;
 	private ByteBuffer bufferedRessource;
 
-	public FontAdapter(Font font)
+	public FontImageAdapter(FontImage font)
 	{
-		super(font, imageBuilder);
 		this.font = font;
+
+		vkTexture = new VkTexture(imageBuilder);
 	}
 
 	@Override
 	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
+		final var executionContext = (ExecutionContext) context;
+
 		final var file = font.getFile();
 		final var fileAdapter = FileResourceAdapter.adapt(file);
+		final var targetLayout = font.getInitialLayout();
+
 		bufferedRessource = fileAdapter.toByteBuffer(file);
 
-		super.allocate(stack, context);
+		vkTexture.allocate(stack, context);
+		final var texture = allocDataBuffer(stack);
+		vkTexture.loadImage(stack, executionContext, texture, targetLayout);
+		
+		memFree(texture);
 	}
 
 	@Override
 	public void free(IExecutionContext context)
 	{
-		super.free(context);
+		vkTexture.free(context);
 
 		fontInfo.free();
 		cdata.free();
@@ -79,14 +91,10 @@ public class FontAdapter extends AbstractSampledImageAdapter
 		bufferedRessource = null;
 	}
 
-	@Override
-	protected ByteBuffer allocDataBuffer(MemoryStack stack)
+	private ByteBuffer allocDataBuffer(MemoryStack stack)
 	{
-		return allocateFontTexture(stack, bufferedRessource, font.getHeight());
-	}
-
-	public ByteBuffer allocateFontTexture(MemoryStack stack, ByteBuffer ttf, int fontHeight)
-	{
+		final var fontHeight = font.getHeight();
+		final var ttf = bufferedRessource;
 		ByteBuffer bitmap = null;
 		ByteBuffer texture = null;
 		try
@@ -131,28 +139,69 @@ public class FontAdapter extends AbstractSampledImageAdapter
 		return texture;
 	}
 
+	@Override
+	public VkImage getVkImage()
+	{
+		return vkTexture.getImage();
+	}
+
+	@Override
+	public long getImagePtr()
+	{
+		return vkTexture.getImagePtr();
+	}
+
+	@Override
+	public long getViewPtr()
+	{
+		return vkTexture.getViewPtr();
+	}
+
+	@Override
+	public long getMemoryPtr()
+	{
+		return vkTexture.getMemoryPtr();
+	}
+
+	@Override
 	public float getDescent()
 	{
 		return descent;
 	}
 
+	@Override
 	public STBTTFontinfo getFontInfo()
 	{
 		return fontInfo;
 	}
 
+	@Override
 	public STBTTPackedchar.Buffer getCdata()
 	{
 		return cdata;
 	}
 
+	@Override
 	public float getScale()
 	{
 		return scale;
 	}
 
-	public static FontAdapter adapt(Font font)
+	@Override
+	public List<IVkDescriptor> getDescriptors()
 	{
-		return IAdapterFactoryService.INSTANCE.adapt(font, FontAdapter.class);
+		return List.of();
+	}
+
+	@Override
+	public int getBufferWidth()
+	{
+		return BUFFER_WIDTH;
+	}
+
+	@Override
+	public int getBufferHeight()
+	{
+		return BUFFER_HEIGHT;
 	}
 }

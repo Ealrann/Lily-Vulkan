@@ -43,8 +43,7 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 	private void createAndAllocateImageView(LogicalDevice logicalDevice)
 	{
 		depthImageView = new VkImageView(logicalDevice.getVkDevice());
-		depthImageView.allocate(depthImageBackend.getAddress(), 1, depthFormat,
-				VK_IMAGE_ASPECT_DEPTH_BIT);
+		depthImageView.allocate(depthImageBackend.getPtr(), 1, depthFormat, VK_IMAGE_ASPECT_DEPTH_BIT);
 	}
 
 	private void allocateDepthImage(MemoryStack stack, IGraphicContext context)
@@ -78,17 +77,17 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 		barrierInfo.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
 		barrierInfo.oldLayout(srcLayout.getValue());
 		barrierInfo.newLayout(dstLayout.getValue());
-		barrierInfo.image(depthImageBackend.getAddress());
+		barrierInfo.image(depthImageBackend.getPtr());
 		barrierInfo.subresourceRange().baseMipLevel(0);
 		barrierInfo.subresourceRange().levelCount(1);
 		barrierInfo.subresourceRange().baseArrayLayer(0);
 		barrierInfo.subresourceRange().layerCount(1);
 		barrierInfo.subresourceRange().aspectMask(aspectMask);
-		barrierInfo.dstAccessMask(EAccess.DEPTH_STENCIL_ATTACHMENT_READ_BIT_VALUE
-				| EAccess.DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_VALUE);
+		barrierInfo.dstAccessMask(
+				EAccess.DEPTH_STENCIL_ATTACHMENT_READ_BIT_VALUE | EAccess.DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_VALUE);
 
-		context.execute(stack, (stack2, commandBuffer) -> vkCmdPipelineBarrier(commandBuffer, srcStage,
-				dstStage, 0, null, null, barrierInfo));
+		context.execute(stack, (stack2, commandBuffer) -> vkCmdPipelineBarrier(commandBuffer, srcStage, dstStage, 0,
+				null, null, barrierInfo));
 	}
 
 	private static int findDepthFormat(PhysicalDevice physicalDevice)
@@ -114,13 +113,13 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 	@Override
 	public long getImageId()
 	{
-		return depthImageBackend.getAddress();
+		return depthImageBackend.getPtr();
 	}
 
 	@Override
 	public long getImageViewId()
 	{
-		return depthImageView.getAddress();
+		return depthImageView.getPtr();
 	}
 
 	@Override

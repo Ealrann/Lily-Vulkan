@@ -65,6 +65,7 @@ public class ImageFactoryImpl extends EFactoryImpl implements ImageFactory
 		switch (eClass.getClassifierID())
 		{
 			case ImagePackage.SAMPLER_INFO: return createSamplerInfo();
+			case ImagePackage.IMAGE_INFO: return createImageInfo();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -80,6 +81,18 @@ public class ImageFactoryImpl extends EFactoryImpl implements ImageFactory
 	{
 		SamplerInfoImpl samplerInfo = new SamplerInfoImpl();
 		return samplerInfo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ImageInfo createImageInfo()
+	{
+		ImageInfoImpl imageInfo = new ImageInfoImpl();
+		return imageInfo;
 	}
 
 	/**

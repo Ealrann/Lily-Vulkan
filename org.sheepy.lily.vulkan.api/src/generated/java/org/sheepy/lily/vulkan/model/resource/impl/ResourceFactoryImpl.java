@@ -76,13 +76,13 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.BUFFER_REFERENCE: return createBufferReference();
 			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE: return createCompositeBufferReference();
 			case ResourcePackage.DESCRIBED_DATA_PROVIDER: return createDescribedDataProvider();
-			case ResourcePackage.IMAGE: return createImage();
+			case ResourcePackage.STATIC_IMAGE: return createStaticImage();
+			case ResourcePackage.FILE_IMAGE: return createFileImage();
 			case ResourcePackage.IMAGE_LAYOUT: return createImageLayout();
 			case ResourcePackage.SAMPLED_IMAGE: return createSampledImage();
 			case ResourcePackage.SAMPLER: return createSampler();
 			case ResourcePackage.SEMAPHORE: return createSemaphore();
-			case ResourcePackage.FONT: return createFont();
-			case ResourcePackage.TEXTURE: return createTexture();
+			case ResourcePackage.FONT_IMAGE: return createFontImage();
 			case ResourcePackage.DESCRIPTOR: return createDescriptor();
 			case ResourcePackage.DESCRIPTOR_SET: return createDescriptorSet();
 			case ResourcePackage.DESCRIPTOR_SET_PKG: return createDescriptorSetPkg();
@@ -250,10 +250,22 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
-	public Image createImage()
+	public StaticImage createStaticImage()
 	{
-		ImageImpl image = new ImageImpl();
-		return image;
+		StaticImageImpl staticImage = new StaticImageImpl();
+		return staticImage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FileImage createFileImage()
+	{
+		FileImageImpl fileImage = new FileImageImpl();
+		return fileImage;
 	}
 
 	/**
@@ -310,22 +322,10 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
-	public Font createFont()
+	public FontImage createFontImage()
 	{
-		FontImpl font = new FontImpl();
-		return font;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Texture createTexture()
-	{
-		TextureImpl texture = new TextureImpl();
-		return texture;
+		FontImageImpl fontImage = new FontImageImpl();
+		return fontImage;
 	}
 
 	/**

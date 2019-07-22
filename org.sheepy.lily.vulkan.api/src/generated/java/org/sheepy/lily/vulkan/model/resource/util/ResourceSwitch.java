@@ -16,6 +16,8 @@ import org.sheepy.lily.vulkan.model.resource.*;
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 import org.sheepy.vulkan.model.barrier.Barrier;
+import org.sheepy.vulkan.model.image.ImageInfo;
+import org.sheepy.vulkan.model.image.SamplerInfo;
 
 /**
  * <!-- begin-user-doc -->
@@ -212,10 +214,34 @@ public class ResourceSwitch<T1> extends Switch<T1>
 			{
 				Image image = (Image)theEObject;
 				T1 result = caseImage(image);
-				if (result == null) result = caseBasicDescriptedResource(image);
 				if (result == null) result = caseDescriptedResource(image);
 				if (result == null) result = caseIResource(image);
 				if (result == null) result = caseLNamedElement(image);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.STATIC_IMAGE:
+			{
+				StaticImage staticImage = (StaticImage)theEObject;
+				T1 result = caseStaticImage(staticImage);
+				if (result == null) result = caseImage(staticImage);
+				if (result == null) result = caseImageInfo(staticImage);
+				if (result == null) result = caseBasicDescriptedResource(staticImage);
+				if (result == null) result = caseDescriptedResource(staticImage);
+				if (result == null) result = caseIResource(staticImage);
+				if (result == null) result = caseLNamedElement(staticImage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.FILE_IMAGE:
+			{
+				FileImage fileImage = (FileImage)theEObject;
+				T1 result = caseFileImage(fileImage);
+				if (result == null) result = caseImage(fileImage);
+				if (result == null) result = caseBasicDescriptedResource(fileImage);
+				if (result == null) result = caseDescriptedResource(fileImage);
+				if (result == null) result = caseIResource(fileImage);
+				if (result == null) result = caseLNamedElement(fileImage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -241,6 +267,8 @@ public class ResourceSwitch<T1> extends Switch<T1>
 			{
 				Sampler sampler = (Sampler)theEObject;
 				T1 result = caseSampler(sampler);
+				if (result == null) result = caseSamplerInfo(sampler);
+				if (result == null) result = caseBasicDescriptedResource(sampler);
 				if (result == null) result = caseDescriptedResource(sampler);
 				if (result == null) result = caseIResource(sampler);
 				if (result == null) result = caseLNamedElement(sampler);
@@ -257,40 +285,14 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.FONT:
+			case ResourcePackage.FONT_IMAGE:
 			{
-				Font font = (Font)theEObject;
-				T1 result = caseFont(font);
-				if (result == null) result = caseSampledImage(font);
-				if (result == null) result = caseBasicDescriptedResource(font);
-				if (result == null) result = caseDescriptedResource(font);
-				if (result == null) result = caseIResource(font);
-				if (result == null) result = caseLNamedElement(font);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.ABSTRACT_TEXTURE:
-			{
-				AbstractTexture abstractTexture = (AbstractTexture)theEObject;
-				T1 result = caseAbstractTexture(abstractTexture);
-				if (result == null) result = caseSampledImage(abstractTexture);
-				if (result == null) result = caseBasicDescriptedResource(abstractTexture);
-				if (result == null) result = caseDescriptedResource(abstractTexture);
-				if (result == null) result = caseIResource(abstractTexture);
-				if (result == null) result = caseLNamedElement(abstractTexture);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.TEXTURE:
-			{
-				Texture texture = (Texture)theEObject;
-				T1 result = caseTexture(texture);
-				if (result == null) result = caseAbstractTexture(texture);
-				if (result == null) result = caseSampledImage(texture);
-				if (result == null) result = caseBasicDescriptedResource(texture);
-				if (result == null) result = caseDescriptedResource(texture);
-				if (result == null) result = caseIResource(texture);
-				if (result == null) result = caseLNamedElement(texture);
+				FontImage fontImage = (FontImage)theEObject;
+				T1 result = caseFontImage(fontImage);
+				if (result == null) result = caseImage(fontImage);
+				if (result == null) result = caseDescriptedResource(fontImage);
+				if (result == null) result = caseIResource(fontImage);
+				if (result == null) result = caseLNamedElement(fontImage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -655,6 +657,38 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Static Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Static Image</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseStaticImage(StaticImage object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>File Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>File Image</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseFileImage(FileImage object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Image Layout</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -719,49 +753,17 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Font</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Font Image</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Font</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Font Image</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseFont(Font object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Texture</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Texture</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseAbstractTexture(AbstractTexture object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Texture</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Texture</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseTexture(Texture object)
+	public T1 caseFontImage(FontImage object)
 	{
 		return null;
 	}
@@ -986,6 +988,38 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIResource(IResource object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Info</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseImageInfo(ImageInfo object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sampler Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sampler Info</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseSamplerInfo(SamplerInfo object)
 	{
 		return null;
 	}

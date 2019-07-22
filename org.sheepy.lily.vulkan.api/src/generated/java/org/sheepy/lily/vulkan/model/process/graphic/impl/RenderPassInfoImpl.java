@@ -97,7 +97,7 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RenderPassInfoImpl()
+	protected RenderPassInfoImpl()
 	{
 		super();
 	}

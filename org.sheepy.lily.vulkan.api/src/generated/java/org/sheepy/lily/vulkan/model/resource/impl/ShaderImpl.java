@@ -87,7 +87,7 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ShaderImpl()
+	protected ShaderImpl()
 	{
 		super();
 	}

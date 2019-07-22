@@ -115,7 +115,7 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PushBufferImpl()
+	protected PushBufferImpl()
 	{
 		super();
 	}

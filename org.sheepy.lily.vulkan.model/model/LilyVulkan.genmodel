@@ -2,9 +2,10 @@
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sheepy.lily.vulkan.model/src/generated/java"
     editDirectory="/org.sheepy.lily.vulkan.model.edit/src/generated/java" editorDirectory=""
-    modelPluginID="org.sheepy.lily.vulkan.model" modelName="LilyVulkan" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    testsDirectory="" importerID="org.eclipse.emf.ecore.xcore.importer" complianceLevel="11.0"
-    copyrightFields="false" publicConstructors="true" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//image"
+    modelPluginID="org.sheepy.lily.vulkan.model" modelName="LilyVulkan" updateClasspath="false"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory=""
+    importerID="org.eclipse.emf.ecore.xcore.importer" complianceLevel="11.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//image"
     operationReflection="true" importOrganizing="true" cleanup="true" eclipsePlatformVersion="2019-06">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
     <genAnnotations source="selectedPackages">
@@ -24,8 +25,8 @@
   <foreignModel>Resource.xcore</foreignModel>
   <foreignModel>Vulkan.xcore</foreignModel>
   <genPackages prefix="Compute" basePackage="org.sheepy.lily.vulkan.model.process"
-      resource="XMI" disposableProviderFactory="true" extensibleProviderFactory="true"
-      childCreationExtenders="true" ecorePackage="compute.ecore#/">
+      resource="XMI" disposableProviderFactory="true" childCreationExtenders="true"
+      ecorePackage="compute.ecore#/">
     <genClasses ecoreClass="compute.ecore#//ComputeProcess"/>
     <genClasses ecoreClass="compute.ecore#//ComputePipeline"/>
     <genClasses ecoreClass="compute.ecore#//Computer">
@@ -171,15 +172,15 @@
       <genTypeParameters ecoreTypeParameter="resource.ecore#//DescribedDataProvider/T"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//Image">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Image/width"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Image/height"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Image/format"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Image/usages"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Image/properties"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Image/tiling"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Image/mipLevels"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Image/initialLayout"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Image/fillWithZero"/>
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Image/initialLayout"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//StaticImage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticImage/fillWithZero"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticImage/fillWith"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//FileImage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//FileImage/file"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//FileImage/mipmapEnabled"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//ImageLayout">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ImageLayout/stage"/>
@@ -188,23 +189,18 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//SampledImage">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//SampledImage/sampler"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//SampledImage/image"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//Sampler">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Sampler/info"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//Sampler/image"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//Semaphore">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Semaphore/signalizedAtInit"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Semaphore/waitStage"/>
     </genClasses>
-    <genClasses ecoreClass="resource.ecore#//Font">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Font/file"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Font/height"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="resource.ecore#//AbstractTexture">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//AbstractTexture/mipmapEnabled"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//Texture">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Texture/file"/>
+    <genClasses ecoreClass="resource.ecore#//FontImage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//FontImage/file"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//FontImage/height"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//Descriptor">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Descriptor/descriptorType"/>

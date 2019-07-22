@@ -94,7 +94,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GraphicProcessImpl()
+	protected GraphicProcessImpl()
 	{
 		super();
 	}

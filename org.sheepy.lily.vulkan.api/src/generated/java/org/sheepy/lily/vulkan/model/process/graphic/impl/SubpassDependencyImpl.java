@@ -108,7 +108,7 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SubpassDependencyImpl()
+	protected SubpassDependencyImpl()
 	{
 		super();
 	}

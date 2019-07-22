@@ -288,7 +288,7 @@ public class SamplerInfoImpl extends MinimalEObjectImpl.Container implements Sam
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SamplerInfoImpl()
+	protected SamplerInfoImpl()
 	{
 		super();
 	}

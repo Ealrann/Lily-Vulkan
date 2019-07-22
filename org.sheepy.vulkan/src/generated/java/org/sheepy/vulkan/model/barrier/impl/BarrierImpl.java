@@ -54,7 +54,7 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BarrierImpl()
+	protected BarrierImpl()
 	{
 		super();
 	}

@@ -67,6 +67,7 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS: return createNuklearPushConstants();
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK: return createNuklearLayoutTask();
 			case NuklearPackage.NUKLEAR_CONTEXT: return createNuklearContext();
+			case NuklearPackage.NUKLEAR_FONT: return createNuklearFont();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -106,6 +107,18 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 	{
 		NuklearContextImpl nuklearContext = new NuklearContextImpl();
 		return nuklearContext;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NuklearFont createNuklearFont()
+	{
+		NuklearFontImpl nuklearFont = new NuklearFontImpl();
+		return nuklearFont;
 	}
 
 	/**

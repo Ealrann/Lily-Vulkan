@@ -3,9 +3,7 @@
 package org.sheepy.lily.vulkan.extra.model.nuklear;
 
 import org.sheepy.lily.vulkan.model.IResource;
-
-import org.sheepy.lily.vulkan.model.resource.BasicResource;
-import org.sheepy.lily.vulkan.model.resource.Font;
+import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 
 /**
@@ -26,19 +24,19 @@ import org.sheepy.lily.vulkan.model.resource.SampledImage;
  * @model
  * @generated
  */
-public interface NuklearContext extends IResource, BasicResource
+public interface NuklearContext extends IResource, DescriptedResource
 {
 	/**
 	 * Returns the value of the '<em><b>Font</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Font</em>' reference.
-	 * @see #setFont(Font)
+	 * @see #setFont(NuklearFont)
 	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getNuklearContext_Font()
 	 * @model required="true"
 	 * @generated
 	 */
-	Font getFont();
+	NuklearFont getFont();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getFont <em>Font</em>}' reference.
@@ -48,7 +46,7 @@ public interface NuklearContext extends IResource, BasicResource
 	 * @see #getFont()
 	 * @generated
 	 */
-	void setFont(Font value);
+	void setFont(NuklearFont value);
 
 	/**
 	 * Returns the value of the '<em><b>Null Texture</b></em>' reference.

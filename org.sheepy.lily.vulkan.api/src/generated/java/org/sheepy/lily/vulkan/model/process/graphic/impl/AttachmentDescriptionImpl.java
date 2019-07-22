@@ -204,7 +204,7 @@ public abstract class AttachmentDescriptionImpl extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttachmentDescriptionImpl()
+	protected AttachmentDescriptionImpl()
 	{
 		super();
 	}

@@ -16,8 +16,8 @@ import org.lwjgl.stb.STBTTAlignedQuad;
 import org.lwjgl.stb.STBTTFontinfo;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.vulkan.model.resource.Font;
-import org.sheepy.lily.vulkan.resource.texture.FontAdapter;
+import org.sheepy.lily.vulkan.api.resource.IFontImageAdapter;
+import org.sheepy.lily.vulkan.model.resource.FontImage;
 
 public class NkFontLoader
 {
@@ -31,20 +31,19 @@ public class NkFontLoader
 
 	private STBTTAlignedQuad quad;
 
-	private final int width = FontAdapter.BUFFER_WIDTH;
-	private final int height = FontAdapter.BUFFER_HEIGHT;
-
-	private final Font font;
+	private final FontImage font;
 	private int fontHeight;
 	private float descent;
 	private float scale;
+	private int width;
+	private int height;
 
 	private final Map<Integer, QueryData> queryDatas = new HashMap<>();
 	private STBTTPackedchar.Buffer cdata;
-	private FontAdapter adapter;
+	private IFontImageAdapter adapter;
 	private STBTTFontinfo fontInfo;
 
-	public NkFontLoader(Font font)
+	public NkFontLoader(FontImage font)
 	{
 		this.font = font;
 	}
@@ -74,7 +73,9 @@ public class NkFontLoader
 
 	public NkUserFont createNkFont(long id)
 	{
-		adapter = FontAdapter.adapt(font);
+		adapter = IFontImageAdapter.adapt(font);
+		width = adapter.getBufferWidth();
+		height = adapter.getBufferHeight();
 
 		fontHeight = font.getHeight();
 		descent = adapter.getDescent();
@@ -83,10 +84,11 @@ public class NkFontLoader
 		fontInfo = adapter.getFontInfo();
 		cdata = adapter.getCdata();
 
-		NkUserFont default_font = NkUserFont.create();
+		final NkUserFont default_font = NkUserFont.create();
 		default_font.width(new TextWidthCallback(fontInfo, scale));
 		default_font.height(fontHeight);
-		default_font.query((handle, font_height, glyph, codepoint, next_codepoint) -> {
+		default_font.query((handle, font_height, glyph, codepoint, next_codepoint) ->
+		{
 
 			QueryData queryData = queryDatas.get(codepoint);
 			if (queryData == null)
@@ -95,7 +97,7 @@ public class NkFontLoader
 				queryDatas.put(codepoint, queryData);
 			}
 
-			NkUserFontGlyph ufg = NkUserFontGlyph.create(glyph);
+			final NkUserFontGlyph ufg = NkUserFontGlyph.create(glyph);
 			queryData.fill(ufg);
 		});
 		default_font.texture(it -> it.ptr(id));
@@ -120,15 +122,15 @@ public class NkFontLoader
 
 		QueryData(STBTTAlignedQuad quad, int advance)
 		{
-			float width = quad.x1() - quad.x0();
-			float height = quad.y1() - quad.y0();
-			float offsetX = quad.x0();
-			float offsetY = quad.y0() + (fontHeight + descent);
-			float xAdvance = advance * scale;
-			float uvx0 = quad.s0();
-			float uvy0 = quad.t0();
-			float uvx1 = quad.s1();
-			float uvy1 = quad.t1();
+			final float width = quad.x1() - quad.x0();
+			final float height = quad.y1() - quad.y0();
+			final float offsetX = quad.x0();
+			final float offsetY = quad.y0() + (fontHeight + descent);
+			final float xAdvance = advance * scale;
+			final float uvx0 = quad.s0();
+			final float uvy0 = quad.t0();
+			final float uvx1 = quad.s1();
+			final float uvy1 = quad.t1();
 
 			patternGlyph.width(width);
 			patternGlyph.height(height);
@@ -168,8 +170,8 @@ public class NkFontLoader
 
 			while (position < length)
 			{
-				int currentGlyphLength = nnk_utf_decode(text + position, unicodeAddress, 1);
-				int unicodeCodepoint = unicode.get(0);
+				final int currentGlyphLength = nnk_utf_decode(text + position, unicodeAddress, 1);
+				final int unicodeCodepoint = unicode.get(0);
 
 				if (unicodeCodepoint == NK_UTF_INVALID || currentGlyphLength == 0)
 				{

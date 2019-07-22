@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
+
 import java.util.Collection;
 import java.util.List;
 
@@ -10,19 +11,22 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.lily.vulkan.model.resource.Texture;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.Texture} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.FontImage} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TextureItemProvider extends AbstractTextureItemProvider
+public class FontImageItemProvider extends ImageItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -30,7 +34,7 @@ public class TextureItemProvider extends AbstractTextureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TextureItemProvider(AdapterFactory adapterFactory)
+	public FontImageItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -48,8 +52,32 @@ public class TextureItemProvider extends AbstractTextureItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
+			addHeightPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Height feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addHeightPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FontImage_height_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FontImage_height_feature", "_UI_FontImage_type"),
+				 ResourcePackage.Literals.FONT_IMAGE__HEIGHT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -66,7 +94,7 @@ public class TextureItemProvider extends AbstractTextureItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ResourcePackage.Literals.TEXTURE__FILE);
+			childrenFeatures.add(ResourcePackage.Literals.FONT_IMAGE__FILE);
 		}
 		return childrenFeatures;
 	}
@@ -86,7 +114,7 @@ public class TextureItemProvider extends AbstractTextureItemProvider
 	}
 
 	/**
-	 * This returns Texture.gif.
+	 * This returns FontImage.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -94,7 +122,7 @@ public class TextureItemProvider extends AbstractTextureItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Texture"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FontImage"));
 	}
 
 	/**
@@ -106,11 +134,12 @@ public class TextureItemProvider extends AbstractTextureItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Texture)object).getName();
+		String label = ((FontImage)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Texture_type") :
-			getString("_UI_Texture_type") + " " + label;
+			getString("_UI_FontImage_type") :
+			getString("_UI_FontImage_type") + " " + label;
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -124,9 +153,12 @@ public class TextureItemProvider extends AbstractTextureItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Texture.class))
+		switch (notification.getFeatureID(FontImage.class))
 		{
-			case ResourcePackage.TEXTURE__FILE:
+			case ResourcePackage.FONT_IMAGE__HEIGHT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ResourcePackage.FONT_IMAGE__FILE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -147,17 +179,17 @@ public class TextureItemProvider extends AbstractTextureItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.TEXTURE__FILE,
+				(ResourcePackage.Literals.FONT_IMAGE__FILE,
 				 ResourceFactory.eINSTANCE.createFileResource()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.TEXTURE__FILE,
+				(ResourcePackage.Literals.FONT_IMAGE__FILE,
 				 ResourceFactory.eINSTANCE.createModuleResource()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.TEXTURE__FILE,
+				(ResourcePackage.Literals.FONT_IMAGE__FILE,
 				 ResourceFactory.eINSTANCE.createStringModuleResource()));
 	}
 

@@ -2,17 +2,28 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
+
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
@@ -23,7 +34,7 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ImageItemProvider extends BasicDescriptedResourceItemProvider
+public class ImageItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -49,79 +60,27 @@ public class ImageItemProvider extends BasicDescriptedResourceItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addWidthPropertyDescriptor(object);
-			addHeightPropertyDescriptor(object);
-			addFormatPropertyDescriptor(object);
-			addUsagesPropertyDescriptor(object);
-			addPropertiesPropertyDescriptor(object);
-			addTilingPropertyDescriptor(object);
-			addMipLevelsPropertyDescriptor(object);
-			addFillWithZeroPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
+			addInitialLayoutPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Width feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addWidthPropertyDescriptor(Object object)
+	protected void addNamePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Image_width_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_width_feature", "_UI_Image_type"),
-				 ResourcePackage.Literals.IMAGE__WIDTH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Height feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addHeightPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Image_height_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_height_feature", "_UI_Image_type"),
-				 ResourcePackage.Literals.IMAGE__HEIGHT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Format feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFormatPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Image_format_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_format_feature", "_UI_Image_type"),
-				 ResourcePackage.Literals.IMAGE__FORMAT,
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
 				 true,
 				 false,
 				 false,
@@ -131,116 +90,24 @@ public class ImageItemProvider extends BasicDescriptedResourceItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Usages feature.
+	 * This adds a property descriptor for the Initial Layout feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addUsagesPropertyDescriptor(Object object)
+	protected void addInitialLayoutPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Image_usages_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_usages_feature", "_UI_Image_type"),
-				 ResourcePackage.Literals.IMAGE__USAGES,
+				 getString("_UI_Image_initialLayout_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Image_initialLayout_feature", "_UI_Image_type"),
+				 ResourcePackage.Literals.IMAGE__INITIAL_LAYOUT,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Properties feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPropertiesPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Image_properties_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_properties_feature", "_UI_Image_type"),
-				 ResourcePackage.Literals.IMAGE__PROPERTIES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Tiling feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTilingPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Image_tiling_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_tiling_feature", "_UI_Image_type"),
-				 ResourcePackage.Literals.IMAGE__TILING,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Mip Levels feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addMipLevelsPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Image_mipLevels_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_mipLevels_feature", "_UI_Image_type"),
-				 ResourcePackage.Literals.IMAGE__MIP_LEVELS,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Fill With Zero feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFillWithZeroPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Image_fillWithZero_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_fillWithZero_feature", "_UI_Image_type"),
-				 ResourcePackage.Literals.IMAGE__FILL_WITH_ZERO,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -305,6 +172,7 @@ public class ImageItemProvider extends BasicDescriptedResourceItemProvider
 			getString("_UI_Image_type") + " " + label;
 	}
 
+
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
@@ -319,14 +187,7 @@ public class ImageItemProvider extends BasicDescriptedResourceItemProvider
 
 		switch (notification.getFeatureID(Image.class))
 		{
-			case ResourcePackage.IMAGE__WIDTH:
-			case ResourcePackage.IMAGE__HEIGHT:
-			case ResourcePackage.IMAGE__FORMAT:
-			case ResourcePackage.IMAGE__USAGES:
-			case ResourcePackage.IMAGE__PROPERTIES:
-			case ResourcePackage.IMAGE__TILING:
-			case ResourcePackage.IMAGE__MIP_LEVELS:
-			case ResourcePackage.IMAGE__FILL_WITH_ZERO:
+			case ResourcePackage.IMAGE__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ResourcePackage.IMAGE__INITIAL_LAYOUT:
@@ -352,6 +213,18 @@ public class ImageItemProvider extends BasicDescriptedResourceItemProvider
 			(createChildParameter
 				(ResourcePackage.Literals.IMAGE__INITIAL_LAYOUT,
 				 ResourceFactory.eINSTANCE.createImageLayout()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator()
+	{
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

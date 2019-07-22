@@ -108,7 +108,7 @@ public abstract class BufferDataProviderImpl<T> extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BufferDataProviderImpl()
+	protected BufferDataProviderImpl()
 	{
 		super();
 	}

@@ -21,7 +21,7 @@ public abstract class AbstractModuleResourceImpl extends PathResourceImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AbstractModuleResourceImpl()
+	protected AbstractModuleResourceImpl()
 	{
 		super();
 	}

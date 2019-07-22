@@ -14,10 +14,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="pushBuffer" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//PushBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="vertexBuffer" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//Buffer"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NuklearContext" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkan.ecore#//IResource ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//BasicResource">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="font" lowerBound="1" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//Font"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NuklearContext" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkan.ecore#//IResource ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//DescriptedResource">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="font" lowerBound="1" eType="#//NuklearFont"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nullTexture" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//SampledImage"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="layoutTask" lowerBound="1"
         eType="#//NuklearLayoutTask" eOpposite="#//NuklearLayoutTask/context"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NuklearFont" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/resource.ecore#//BasicResource">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fontSampledImage" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//SampledImage"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

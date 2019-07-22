@@ -5,8 +5,8 @@ import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.vulkan.api.barrier.IImageBarrierAdapter;
+import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
-import org.sheepy.lily.vulkan.resource.image.ImageAdapter;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 import org.sheepy.vulkan.resource.image.ImageUtil;
@@ -23,12 +23,13 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter<IExecutionConte
 	{
 		final var imageBarrier = (ImageBarrier) barrier;
 		final var image = imageBarrier.getImage();
-		final var imageAdapter = ImageAdapter.adapt(image);
+		final var imageAdapter = IImageAdapter.adapt(image);
+		final var imageInfo = imageAdapter.getVkImage();
 
-		final int mipLevels = image.getMipLevels();
+		final int mipLevels = imageInfo.mipLevels;
 		final var srcLayout = imageBarrier.getSrcLayout();
 		final var dstLayout = imageBarrier.getDstLayout();
-		final int imageFormat = image.getFormat().getValue();
+		final int imageFormat = imageInfo.format;
 		final var aspectMask = ImageUtil.getAspectMask(dstLayout, imageFormat);
 		final int srcAccessMask = VkModelUtil.getEnumeratedFlag(barrier.getSrcAccessMask());
 		final int dstAccessMask = VkModelUtil.getEnumeratedFlag(barrier.getDstAccessMask());
@@ -36,7 +37,7 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter<IExecutionConte
 		info.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
 		info.oldLayout(srcLayout.getValue());
 		info.newLayout(dstLayout.getValue());
-		info.image(imageAdapter.getAddress());
+		info.image(imageAdapter.getImagePtr());
 		info.subresourceRange().baseMipLevel(0);
 		info.subresourceRange().levelCount(mipLevels);
 		info.subresourceRange().baseArrayLayer(0);

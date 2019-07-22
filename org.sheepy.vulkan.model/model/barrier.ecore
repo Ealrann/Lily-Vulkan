@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="barrier" nsURI="org.sheepy.vulkan.model.barrier" nsPrefix="barrier">
-  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-    <details key="cleanup" value="true"/>
-    <details key="codeFormatting" value="true"/>
-    <details key="modelDirectory" value="/org.sheepy.vulkan.model/src/generated/java"/>
-    <details key="editDirectory" value="/org.sheepy.vulkan.model.edit/src/generated/java"/>
-    <details key="publicConstructors" value="true"/>
-    <details key="complianceLevel" value="11.0"/>
-    <details key="resource" value="XMI"/>
-    <details key="extensibleProviderFactory" value="true"/>
-    <details key="childCreationExtenders" value="true"/>
-    <details key="updateClasspath" value="false"/>
-    <details key="basePackage" value="org.sheepy.vulkan.model"/>
-  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Barrier" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="srcAccessMask" upperBound="-1"
         eType="ecore:EEnum enumeration.ecore#//EAccess"/>
@@ -24,7 +11,7 @@
       eSuperTypes="#//Barrier"/>
   <eClassifiers xsi:type="ecore:EClass" name="ReferenceBufferBarrier" eSuperTypes="#//AbstractBufferBarrier">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bufferPtr" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//ELong"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractImageBarrier" abstract="true"
       eSuperTypes="#//Barrier">
@@ -35,11 +22,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReferenceImageBarrier" eSuperTypes="#//AbstractImageBarrier">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="imagePtr" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//ELong"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mipLevels" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageFormat" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImageTransition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="srcLayout" unique="false"

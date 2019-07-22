@@ -50,6 +50,15 @@ public interface NuklearFactory extends EFactory
 	NuklearContext createNuklearContext();
 
 	/**
+	 * Returns a new object of class '<em>Font</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Font</em>'.
+	 * @generated
+	 */
+	NuklearFont createNuklearFont();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

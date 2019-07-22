@@ -316,28 +316,53 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Image} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.StaticImage} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ImageItemProvider imageItemProvider;
+	protected StaticImageItemProvider staticImageItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Image}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.StaticImage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createImageAdapter()
+	public Adapter createStaticImageAdapter()
 	{
-		if (imageItemProvider == null)
+		if (staticImageItemProvider == null)
 		{
-			imageItemProvider = new ImageItemProvider(this);
+			staticImageItemProvider = new StaticImageItemProvider(this);
 		}
 
-		return imageItemProvider;
+		return staticImageItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FileImage} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FileImageItemProvider fileImageItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.FileImage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFileImageAdapter()
+	{
+		if (fileImageItemProvider == null)
+		{
+			fileImageItemProvider = new FileImageItemProvider(this);
+		}
+
+		return fileImageItemProvider;
 	}
 
 	/**
@@ -441,53 +466,28 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Font} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FontImage} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected FontItemProvider fontItemProvider;
+	protected FontImageItemProvider fontImageItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Font}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.FontImage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createFontAdapter()
+	public Adapter createFontImageAdapter()
 	{
-		if (fontItemProvider == null)
+		if (fontImageItemProvider == null)
 		{
-			fontItemProvider = new FontItemProvider(this);
+			fontImageItemProvider = new FontImageItemProvider(this);
 		}
 
-		return fontItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Texture} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TextureItemProvider textureItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Texture}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTextureAdapter()
-	{
-		if (textureItemProvider == null)
-		{
-			textureItemProvider = new TextureItemProvider(this);
-		}
-
-		return textureItemProvider;
+		return fontImageItemProvider;
 	}
 
 	/**
@@ -898,13 +898,13 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (bufferReferenceItemProvider != null) bufferReferenceItemProvider.dispose();
 		if (compositeBufferReferenceItemProvider != null) compositeBufferReferenceItemProvider.dispose();
 		if (describedDataProviderItemProvider != null) describedDataProviderItemProvider.dispose();
-		if (imageItemProvider != null) imageItemProvider.dispose();
+		if (staticImageItemProvider != null) staticImageItemProvider.dispose();
+		if (fileImageItemProvider != null) fileImageItemProvider.dispose();
 		if (imageLayoutItemProvider != null) imageLayoutItemProvider.dispose();
 		if (sampledImageItemProvider != null) sampledImageItemProvider.dispose();
 		if (samplerItemProvider != null) samplerItemProvider.dispose();
 		if (semaphoreItemProvider != null) semaphoreItemProvider.dispose();
-		if (fontItemProvider != null) fontItemProvider.dispose();
-		if (textureItemProvider != null) textureItemProvider.dispose();
+		if (fontImageItemProvider != null) fontImageItemProvider.dispose();
 		if (descriptorItemProvider != null) descriptorItemProvider.dispose();
 		if (descriptorSetItemProvider != null) descriptorSetItemProvider.dispose();
 		if (descriptorSetPkgItemProvider != null) descriptorSetPkgItemProvider.dispose();

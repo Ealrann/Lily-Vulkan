@@ -9,10 +9,11 @@ import org.sheepy.vulkan.log.Logger;
 public class VkImageView
 {
 	private final VkDevice device;
-	private long imageAddress;
+
+	private long imagePtr;
 	private int imageFormat;
 
-	private long imageViewId = -1;
+	private long imageViewPtr = -1;
 
 	public static VkImageView alloc(VkDevice device, long imageAddress, int format, int aspectMask)
 	{
@@ -28,7 +29,7 @@ public class VkImageView
 
 	public void allocate(long imageAddress, int levelCount, int format, int aspectMask)
 	{
-		this.imageAddress = imageAddress;
+		this.imagePtr = imageAddress;
 		this.imageFormat = format;
 
 		final VkImageViewCreateInfo createInfo = VkImageViewCreateInfo.calloc();
@@ -47,27 +48,26 @@ public class VkImageView
 		createInfo.subresourceRange().layerCount(1);
 
 		final long[] aBuffer = new long[1];
-		Logger.check("Failed to create image views!",
-				() -> vkCreateImageView(device, createInfo, null, aBuffer));
-		imageViewId = aBuffer[0];
+		Logger.check("Failed to create image views!", () -> vkCreateImageView(device, createInfo, null, aBuffer));
+		imageViewPtr = aBuffer[0];
 
 		createInfo.free();
 	}
 
 	public void free()
 	{
-		vkDestroyImageView(device, imageViewId, null);
-		imageViewId = -1;
+		vkDestroyImageView(device, imageViewPtr, null);
+		imageViewPtr = -1;
 	}
 
-	public long getAddress()
+	public long getPtr()
 	{
-		return imageViewId;
+		return imageViewPtr;
 	}
 
-	public long getImageAddress()
+	public long getImagePtr()
 	{
-		return imageAddress;
+		return imagePtr;
 	}
 
 	public int getImageFormat()

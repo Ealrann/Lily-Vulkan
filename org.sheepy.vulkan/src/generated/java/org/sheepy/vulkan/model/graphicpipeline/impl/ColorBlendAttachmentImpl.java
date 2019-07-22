@@ -265,7 +265,7 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ColorBlendAttachmentImpl()
+	protected ColorBlendAttachmentImpl()
 	{
 		super();
 	}

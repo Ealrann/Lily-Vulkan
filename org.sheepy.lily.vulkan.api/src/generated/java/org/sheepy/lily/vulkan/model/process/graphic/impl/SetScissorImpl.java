@@ -157,7 +157,7 @@ public class SetScissorImpl extends MinimalEObjectImpl.Container implements SetS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SetScissorImpl()
+	protected SetScissorImpl()
 	{
 		super();
 	}

@@ -7,28 +7,30 @@ import org.sheepy.lily.vulkan.resource.buffer.PushBufferAdapter;
 import org.sheepy.lily.vulkan.resource.file.FileResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.ModuleResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.StringModuleResourceAdapter;
-import org.sheepy.lily.vulkan.resource.image.ImageAdapter;
+import org.sheepy.lily.vulkan.resource.image.FileImageAdapter;
+import org.sheepy.lily.vulkan.resource.image.FontImageAdapter;
+import org.sheepy.lily.vulkan.resource.image.SampledImageAdapter;
 import org.sheepy.lily.vulkan.resource.image.SamplerAdapter;
+import org.sheepy.lily.vulkan.resource.image.StaticImageAdapter;
 import org.sheepy.lily.vulkan.resource.semaphore.SemaphoreAdapter;
 import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
-import org.sheepy.lily.vulkan.resource.texture.FontAdapter;
-import org.sheepy.lily.vulkan.resource.texture.TextureAdapter;
 
 @Adapters(classifiers = {
-		ShaderAdapter.class,
 		BufferAdapter.class,
-		CompositeBufferAdapter.class,
-		PushBufferAdapter.class,
-		ImageAdapter.class,
-		TextureAdapter.class,
-		FileResourceAdapter.class,
-		ModuleResourceAdapter.class,
-		StringModuleResourceAdapter.class,
-		FontAdapter.class,
-		SamplerAdapter.class,
-		SemaphoreAdapter.class,
 		BufferReferenceAdapter.class,
-		CompositeBufferReferenceAdapter.class
+		CompositeBufferAdapter.class,
+		CompositeBufferReferenceAdapter.class,
+		FileImageAdapter.class,
+		FileResourceAdapter.class,
+		FontImageAdapter.class,
+		ModuleResourceAdapter.class,
+		PushBufferAdapter.class,
+		SamplerAdapter.class,
+		SampledImageAdapter.class,
+		SemaphoreAdapter.class,
+		ShaderAdapter.class,
+		StaticImageAdapter.class,
+		StringModuleResourceAdapter.class
 })
 
 module org.sheepy.lily.vulkan.resource
@@ -36,7 +38,6 @@ module org.sheepy.lily.vulkan.resource
 	requires transitive org.sheepy.lily.vulkan.common;
 
 	exports org.sheepy.lily.vulkan.resource.image;
-	exports org.sheepy.lily.vulkan.resource.texture;
 	exports org.sheepy.lily.vulkan.resource.semaphore;
 
 	opens org.sheepy.lily.vulkan.resource.buffer;
@@ -44,5 +45,4 @@ module org.sheepy.lily.vulkan.resource
 	opens org.sheepy.lily.vulkan.resource.image;
 	opens org.sheepy.lily.vulkan.resource.semaphore;
 	opens org.sheepy.lily.vulkan.resource.shader;
-	opens org.sheepy.lily.vulkan.resource.texture;
 }

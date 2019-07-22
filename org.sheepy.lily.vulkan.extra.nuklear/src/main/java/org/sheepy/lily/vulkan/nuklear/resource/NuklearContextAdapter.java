@@ -64,8 +64,7 @@ public class NuklearContextAdapter implements IResourceAdapter
 		VERTEX_LAYOUT.position(0).attribute(NK_VERTEX_POSITION).format(NK_FORMAT_FLOAT).offset(0);
 		VERTEX_LAYOUT.position(1).attribute(NK_VERTEX_TEXCOORD).format(NK_FORMAT_FLOAT).offset(8);
 		VERTEX_LAYOUT.position(2).attribute(NK_VERTEX_COLOR).format(NK_FORMAT_R8G8B8A8).offset(16);
-		VERTEX_LAYOUT.position(3).attribute(NK_VERTEX_ATTRIBUTE_COUNT).format(NK_FORMAT_COUNT)
-				.offset(0);
+		VERTEX_LAYOUT.position(3).attribute(NK_VERTEX_ATTRIBUTE_COUNT).format(NK_FORMAT_COUNT).offset(0);
 		VERTEX_LAYOUT.position(4).flip();
 	}
 
@@ -101,15 +100,14 @@ public class NuklearContextAdapter implements IResourceAdapter
 	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
 		final var font = nuklearContext.getFont();
-		final var fontAdapter = (NuklearFontAdapter) ISampledImageAdapter.adapt(font);
+		final var fontAdapter = NuklearFontAdapter.adapt(font);
 		final var nullTexture = nuklearContext.getNullTexture();
 		final var nullTextureAdapter = ISampledImageAdapter.adapt(nullTexture);
 		final var defaultFont = fontAdapter.getNkFont();
 		final var layoutTask = nuklearContext.getLayoutTask();
 		final var pipeline = ModelUtil.findParent(layoutTask, GraphicsPipeline.class);
 		final var descriptorSet = pipeline.getDescriptorSetPkg().getDescriptorSets().get(0);
-		final var layoutTaskAdapter = (NuklearLayoutTaskAdapter) IPipelineTaskAdapter
-				.adapt(layoutTask);
+		final var layoutTaskAdapter = (NuklearLayoutTaskAdapter) IPipelineTaskAdapter.adapt(layoutTask);
 		final var engine = VulkanModelUtil.getEngine(nuklearContext);
 		final var inputManager = IVulkanEngineAdapter.adapt(engine).getInputManager();
 		final var inputCatcher = NuklearInputCatcher.INSTANCE;
@@ -126,7 +124,8 @@ public class NuklearContextAdapter implements IResourceAdapter
 		inputManager.setInputCatcher(inputCatcher);
 		inputCatcher.configure(nkContext, context.getWindow(), layoutTaskAdapter);
 
-		nkContext.clip(it -> it.copy((handle, text, len) -> {
+		nkContext.clip(it -> it.copy((handle, text, len) ->
+		{
 			if (len == 0)
 			{
 				return;
@@ -140,7 +139,8 @@ public class NuklearContextAdapter implements IResourceAdapter
 
 				glfwSetClipboardString(context.getWindow().getId(), str);
 			}
-		}).paste((handle, edit) -> {
+		}).paste((handle, edit) ->
+		{
 			final long text = nglfwGetClipboardString(context.getWindow().getId());
 			if (text != 0)
 			{
@@ -148,7 +148,7 @@ public class NuklearContextAdapter implements IResourceAdapter
 			}
 		}));
 
-		nkNullTexture.texture().ptr(nullTextureAdapter.getSamplerAddress());
+		nkNullTexture.texture().ptr(nullTextureAdapter.getSamplerPtr());
 		nkNullTexture.uv().set(0.5f, 0.5f);
 
 		vbuf = NkBuffer.calloc();
@@ -189,13 +189,11 @@ public class NuklearContextAdapter implements IResourceAdapter
 				final var indexMemoryMap = indexMemoryTicket.getMemoryPtr();
 				final var indexOffset = vertexBufferSize;
 
-				final var vertexPushCommand = IDataFlowCommand.newPipelinePushCommand(
-						vertexMemoryTicket, bufferPtr, vertexOffset,
-						EPipelineStage.VERTEX_INPUT_BIT, EAccess.VERTEX_ATTRIBUTE_READ_BIT);
+				final var vertexPushCommand = IDataFlowCommand.newPipelinePushCommand(vertexMemoryTicket, bufferPtr,
+						vertexOffset, EPipelineStage.VERTEX_INPUT_BIT, EAccess.VERTEX_ATTRIBUTE_READ_BIT);
 
-				final var indexPushCommand = IDataFlowCommand.newPipelinePushCommand(
-						indexMemoryTicket, bufferPtr, indexOffset, EPipelineStage.VERTEX_INPUT_BIT,
-						EAccess.VERTEX_ATTRIBUTE_READ_BIT);
+				final var indexPushCommand = IDataFlowCommand.newPipelinePushCommand(indexMemoryTicket, bufferPtr,
+						indexOffset, EPipelineStage.VERTEX_INPUT_BIT, EAccess.VERTEX_ATTRIBUTE_READ_BIT);
 
 				nnk_buffer_init_fixed(vbuf.address(), vertexMemoryMap, vertexBufferSize);
 				stagingBuffer.addStagingCommand(vertexPushCommand);
@@ -230,7 +228,7 @@ public class NuklearContextAdapter implements IResourceAdapter
 			if (descriptor instanceof SampledImage)
 			{
 				final var adapter = ISampledImageAdapter.adapt((SampledImage) descriptor);
-				final long ptr = adapter.getSamplerAddress();
+				final long ptr = adapter.getSamplerPtr();
 				texturePtrs.add(ptr);
 			}
 		}
@@ -260,8 +258,8 @@ public class NuklearContextAdapter implements IResourceAdapter
 		int drawedIndexes = 0;
 		int previousDrawedIndexes = 0;
 
-		for (NkDrawCommand cmd = nk__draw_begin(nkContext, cmds); cmd != null; cmd = nk__draw_next(
-				cmd, cmds, nkContext))
+		for (NkDrawCommand cmd = nk__draw_begin(nkContext, cmds); cmd != null; cmd = nk__draw_next(cmd, cmds,
+				nkContext))
 		{
 			final int elemCount = cmd.elem_count();
 			if (elemCount <= 0)

@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.vulkan.model.image.ImageFactory;
@@ -65,6 +66,7 @@ public class SampledImageItemProvider extends BasicDescriptedResourceItemProvide
 		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ResourcePackage.Literals.SAMPLED_IMAGE__SAMPLER);
+			childrenFeatures.add(ResourcePackage.Literals.SAMPLED_IMAGE__IMAGE);
 		}
 		return childrenFeatures;
 	}
@@ -125,6 +127,7 @@ public class SampledImageItemProvider extends BasicDescriptedResourceItemProvide
 		switch (notification.getFeatureID(SampledImage.class))
 		{
 			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+			case ResourcePackage.SAMPLED_IMAGE__IMAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -146,7 +149,27 @@ public class SampledImageItemProvider extends BasicDescriptedResourceItemProvide
 		newChildDescriptors.add
 			(createChildParameter
 				(ResourcePackage.Literals.SAMPLED_IMAGE__SAMPLER,
+				 ResourceFactory.eINSTANCE.createSampler()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.SAMPLED_IMAGE__SAMPLER,
 				 ImageFactory.eINSTANCE.createSamplerInfo()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.SAMPLED_IMAGE__IMAGE,
+				 ResourceFactory.eINSTANCE.createStaticImage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.SAMPLED_IMAGE__IMAGE,
+				 ResourceFactory.eINSTANCE.createFileImage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.SAMPLED_IMAGE__IMAGE,
+				 ResourceFactory.eINSTANCE.createFontImage()));
 	}
 
 }

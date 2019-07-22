@@ -19,6 +19,7 @@ import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EIndexType;
@@ -26,6 +27,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.ESampleCount;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelineFactory;
+import org.sheepy.vulkan.model.image.ImageFactory;
 import org.sheepy.vulkan.model.pipeline.PipelineFactory;
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 
@@ -48,8 +50,7 @@ public class MeshModelFactory
 		application.setSize(size);
 		application.getEngines().add(engine);
 
-		final var framebufferConfiguration = GraphicFactory.eINSTANCE
-				.createFramebufferConfiguration();
+		final var framebufferConfiguration = GraphicFactory.eINSTANCE.createFramebufferConfiguration();
 		final var graphicConfiguration = GraphicFactory.eINSTANCE.createGraphicConfiguration();
 		final var swapchainConfiguration = GraphicFactory.eINSTANCE.createSwapchainConfiguration();
 
@@ -76,8 +77,7 @@ public class MeshModelFactory
 		final var subpass = GraphicFactory.eINSTANCE.createSubpass();
 		renderPass.getSubpasses().add(subpass);
 
-		final var colorAttachmentDescriptor = GraphicFactory.eINSTANCE
-				.createSwapImageAttachmentDescription();
+		final var colorAttachmentDescriptor = GraphicFactory.eINSTANCE.createSwapImageAttachmentDescription();
 		colorAttachmentDescriptor.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
 		colorAttachmentDescriptor.setLoadOp(EAttachmentLoadOp.CLEAR);
 		colorAttachmentDescriptor.setStoreOp(EAttachmentStoreOp.STORE);
@@ -95,8 +95,7 @@ public class MeshModelFactory
 
 		if (meshConfiguration.depth)
 		{
-			final var depthAttachmentDescriptor = GraphicFactory.eINSTANCE
-					.createExtraAttachmentDescription();
+			final var depthAttachmentDescriptor = GraphicFactory.eINSTANCE.createExtraAttachmentDescription();
 
 			depthAttachmentDescriptor.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
 			depthAttachmentDescriptor.setLoadOp(EAttachmentLoadOp.CLEAR);
@@ -186,8 +185,7 @@ public class MeshModelFactory
 		viewportState.getScissors().add(GraphicpipelineFactory.eINSTANCE.createScissor());
 
 		final var colorBlend = GraphicpipelineFactory.eINSTANCE.createColorBlend();
-		colorBlend.getAttachments()
-				.add(GraphicpipelineFactory.eINSTANCE.createColorBlendAttachment());
+		colorBlend.getAttachments().add(GraphicpipelineFactory.eINSTANCE.createColorBlendAttachment());
 
 		final var locationAttribute = GraphicFactory.eINSTANCE.createAttributeDescription();
 		if (meshConfiguration.useTexture) locationAttribute.setFormat(EFormat.R32G32B32_SFLOAT);
@@ -222,8 +220,7 @@ public class MeshModelFactory
 		graphicPipeline.setViewportState(viewportState);
 		graphicPipeline.setColorBlend(colorBlend);
 		graphicPipeline.setVertexInputState(inputState);
-		if (pushConstantRange != null)
-			graphicPipeline.getPushConstantRanges().add(pushConstantRange);
+		if (pushConstantRange != null) graphicPipeline.getPushConstantRanges().add(pushConstantRange);
 
 		final var vertexRef = ResourceFactory.eINSTANCE.createBufferReference();
 		vertexRef.setBuffer(indexedVertexBuffer);
@@ -273,16 +270,27 @@ public class MeshModelFactory
 
 		if (meshConfiguration.useTexture)
 		{
-			final var textureFile = ResourceFactory.eINSTANCE.createModuleResource();
-			textureFile.setModule(module);
-			textureFile.setPath(meshConfiguration.texturePath);
+			final var imageFile = ResourceFactory.eINSTANCE.createModuleResource();
+			imageFile.setModule(module);
+			imageFile.setPath(meshConfiguration.texturePath);
 
-			final var texture = ResourceFactory.eINSTANCE.createTexture();
-			texture.setFile(textureFile);
+			final var texture = ResourceFactory.eINSTANCE.createFileImage();
+			texture.setFile(imageFile);
 			texture.setMipmapEnabled(meshConfiguration.mipmap);
 
-			descriptorSet.getDescriptors().add(texture);
-			resourcePkg.getResources().add(texture);
+			final var descriptor = ResourceFactory.eINSTANCE.createDescriptor();
+			descriptor.setDescriptorType(EDescriptorType.COMBINED_IMAGE_SAMPLER);
+			descriptor.getShaderStages().add(EShaderStage.FRAGMENT_BIT);
+
+			final var sampler = ImageFactory.eINSTANCE.createSamplerInfo();
+
+			final var sampledImage = ResourceFactory.eINSTANCE.createSampledImage();
+			sampledImage.setSampler(sampler);
+			sampledImage.setImage(texture);
+			sampledImage.setDescriptor(descriptor);
+
+			resourcePkg.getResources().add(sampledImage);
+			descriptorSet.getDescriptors().add(sampledImage);
 		}
 
 		if (descriptorSet.getDescriptors().isEmpty() == false)

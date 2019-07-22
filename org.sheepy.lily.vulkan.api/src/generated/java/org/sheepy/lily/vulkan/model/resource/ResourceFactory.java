@@ -104,13 +104,22 @@ public interface ResourceFactory extends EFactory
 	<T> DescribedDataProvider<T> createDescribedDataProvider();
 
 	/**
-	 * Returns a new object of class '<em>Image</em>'.
+	 * Returns a new object of class '<em>Static Image</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Image</em>'.
+	 * @return a new object of class '<em>Static Image</em>'.
 	 * @generated
 	 */
-	Image createImage();
+	StaticImage createStaticImage();
+
+	/**
+	 * Returns a new object of class '<em>File Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>File Image</em>'.
+	 * @generated
+	 */
+	FileImage createFileImage();
 
 	/**
 	 * Returns a new object of class '<em>Image Layout</em>'.
@@ -149,22 +158,13 @@ public interface ResourceFactory extends EFactory
 	Semaphore createSemaphore();
 
 	/**
-	 * Returns a new object of class '<em>Font</em>'.
+	 * Returns a new object of class '<em>Font Image</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Font</em>'.
+	 * @return a new object of class '<em>Font Image</em>'.
 	 * @generated
 	 */
-	Font createFont();
-
-	/**
-	 * Returns a new object of class '<em>Texture</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Texture</em>'.
-	 * @generated
-	 */
-	Texture createTexture();
+	FontImage createFontImage();
 
 	/**
 	 * Returns a new object of class '<em>Descriptor</em>'.

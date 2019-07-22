@@ -18,10 +18,10 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
-import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.resource.StaticImage;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
@@ -46,7 +46,7 @@ public class ModelFactory
 	public ComputeProcess process2;
 	public ResourcePkg sharedResources = VulkanFactory.eINSTANCE.createResourcePkg();
 
-	private Image boardImage;
+	private StaticImage boardImage;
 	private final Vector2i size;
 
 	public ModelFactory(int width, int height)

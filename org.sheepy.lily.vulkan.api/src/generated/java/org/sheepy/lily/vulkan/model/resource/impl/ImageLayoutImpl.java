@@ -67,7 +67,7 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EImageLayout LAYOUT_EDEFAULT = EImageLayout.UNDEFINED;
+	protected static final EImageLayout LAYOUT_EDEFAULT = EImageLayout.SHADER_READ_ONLY_OPTIMAL;
 
 	/**
 	 * The cached value of the '{@link #getLayout() <em>Layout</em>}' attribute.
@@ -94,7 +94,7 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImageLayoutImpl()
+	protected ImageLayoutImpl()
 	{
 		super();
 	}

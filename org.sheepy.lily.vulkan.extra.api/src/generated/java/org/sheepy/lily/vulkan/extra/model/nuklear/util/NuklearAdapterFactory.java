@@ -19,6 +19,7 @@ import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 
 import org.sheepy.lily.vulkan.model.resource.BasicResource;
+import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -99,6 +100,11 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 				return createNuklearContextAdapter();
 			}
 			@Override
+			public Adapter caseNuklearFont(NuklearFont object)
+			{
+				return createNuklearFontAdapter();
+			}
+			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
@@ -117,6 +123,11 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIResource(IResource object)
 			{
 				return createIResourceAdapter();
+			}
+			@Override
+			public Adapter caseDescriptedResource(DescriptedResource object)
+			{
+				return createDescriptedResourceAdapter();
 			}
 			@Override
 			public Adapter caseBasicResource(BasicResource object)
@@ -191,6 +202,21 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont <em>Font</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont
+	 * @generated
+	 */
+	public Adapter createNuklearFontAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.types.LNamedElement <em>LNamed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -246,6 +272,21 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIResourceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DescriptedResource <em>Descripted Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.DescriptedResource
+	 * @generated
+	 */
+	public Adapter createDescriptedResourceAdapter()
 	{
 		return null;
 	}

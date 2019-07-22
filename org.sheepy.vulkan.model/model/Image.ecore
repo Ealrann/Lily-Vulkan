@@ -28,4 +28,19 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxAnisotropy" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="1"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImageInfo">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" lowerBound="1"
+        eType="ecore:EEnum enumeration.ecore#//EFormat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="usages" lowerBound="1"
+        upperBound="-1" eType="ecore:EEnum enumeration.ecore#//EImageUsage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="properties" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tiling" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mipLevels" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
+  </eClassifiers>
 </ecore:EPackage>

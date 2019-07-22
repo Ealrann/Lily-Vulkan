@@ -108,7 +108,7 @@ public class Texture2DArrayImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Texture2DArrayImpl()
+	protected Texture2DArrayImpl()
 	{
 		super();
 	}

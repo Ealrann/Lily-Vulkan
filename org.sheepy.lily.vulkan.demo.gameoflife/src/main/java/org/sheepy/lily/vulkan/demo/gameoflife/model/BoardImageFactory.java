@@ -3,9 +3,8 @@ package org.sheepy.lily.vulkan.demo.gameoflife.model;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.joml.Vector2i;
-import org.sheepy.lily.vulkan.model.resource.Image;
-import org.sheepy.lily.vulkan.model.resource.ImageLayout;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.StaticImage;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EFormat;
@@ -18,11 +17,11 @@ public class BoardImageFactory
 {
 	private static final EFormat IMAGE_FORMAT = EFormat.R8G8B8A8_UNORM;
 
-	public static final Image createBoardImage(Vector2i size)
+	public static final StaticImage createBoardImage(Vector2i size)
 	{
-		final Image res = ResourceFactory.eINSTANCE.createImage();
+		final var res = ResourceFactory.eINSTANCE.createStaticImage();
 
-		final ImageLayout initialLayout = ResourceFactory.eINSTANCE.createImageLayout();
+		final var initialLayout = ResourceFactory.eINSTANCE.createImageLayout();
 		initialLayout.setStage(EPipelineStage.COMPUTE_SHADER_BIT);
 		initialLayout.setLayout(EImageLayout.GENERAL);
 		initialLayout.getAccessMask().add(EAccess.SHADER_WRITE_BIT);

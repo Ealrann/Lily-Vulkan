@@ -40,7 +40,7 @@ public class SwapImageBarrierAdapter implements IImageBarrierAdapter<IGraphicCon
 		info.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
 		info.oldLayout(srcLayout.getValue());
 		info.newLayout(dstLayout.getValue());
-		info.image(view.getImageAddress());
+		info.image(view.getImagePtr());
 		info.subresourceRange().baseMipLevel(0);
 		info.subresourceRange().levelCount(mipLevels);
 		info.subresourceRange().baseArrayLayer(0);

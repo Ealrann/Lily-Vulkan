@@ -22,6 +22,7 @@ import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 import org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl;
 
 import org.sheepy.vulkan.model.image.ImageFactory;
+import org.sheepy.vulkan.model.image.ImageInfo;
 import org.sheepy.vulkan.model.image.ImagePackage;
 import org.sheepy.vulkan.model.image.SamplerInfo;
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
@@ -42,6 +43,13 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 	 * @generated
 	 */
 	private EClass samplerInfoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass imageInfoEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -276,6 +284,94 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 	 * @generated
 	 */
 	@Override
+	public EClass getImageInfo()
+	{
+		return imageInfoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImageInfo_Width()
+	{
+		return (EAttribute)imageInfoEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImageInfo_Height()
+	{
+		return (EAttribute)imageInfoEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImageInfo_Format()
+	{
+		return (EAttribute)imageInfoEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImageInfo_Usages()
+	{
+		return (EAttribute)imageInfoEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImageInfo_Properties()
+	{
+		return (EAttribute)imageInfoEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImageInfo_Tiling()
+	{
+		return (EAttribute)imageInfoEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImageInfo_MipLevels()
+	{
+		return (EAttribute)imageInfoEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ImageFactory getImageFactory()
 	{
 		return (ImageFactory)getEFactoryInstance();
@@ -314,6 +410,15 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 		createEAttribute(samplerInfoEClass, SAMPLER_INFO__MIN_LOD);
 		createEAttribute(samplerInfoEClass, SAMPLER_INFO__MAX_LOD);
 		createEAttribute(samplerInfoEClass, SAMPLER_INFO__MAX_ANISOTROPY);
+
+		imageInfoEClass = createEClass(IMAGE_INFO);
+		createEAttribute(imageInfoEClass, IMAGE_INFO__WIDTH);
+		createEAttribute(imageInfoEClass, IMAGE_INFO__HEIGHT);
+		createEAttribute(imageInfoEClass, IMAGE_INFO__FORMAT);
+		createEAttribute(imageInfoEClass, IMAGE_INFO__USAGES);
+		createEAttribute(imageInfoEClass, IMAGE_INFO__PROPERTIES);
+		createEAttribute(imageInfoEClass, IMAGE_INFO__TILING);
+		createEAttribute(imageInfoEClass, IMAGE_INFO__MIP_LEVELS);
 	}
 
 	/**
@@ -363,6 +468,15 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 		initEAttribute(getSamplerInfo_MinLod(), ecorePackage.getEInt(), "minLod", "0", 0, 1, SamplerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSamplerInfo_MaxLod(), ecorePackage.getEInt(), "maxLod", "1", 0, 1, SamplerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSamplerInfo_MaxAnisotropy(), ecorePackage.getEFloat(), "maxAnisotropy", "1", 0, 1, SamplerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(imageInfoEClass, ImageInfo.class, "ImageInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getImageInfo_Width(), ecorePackage.getEInt(), "width", null, 1, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageInfo_Height(), ecorePackage.getEInt(), "height", null, 1, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageInfo_Format(), theEnumerationPackage.getEFormat(), "format", null, 1, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageInfo_Usages(), theEnumerationPackage.getEImageUsage(), "usages", null, 1, -1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageInfo_Properties(), ecorePackage.getEInt(), "properties", "0", 0, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageInfo_Tiling(), ecorePackage.getEInt(), "tiling", "0", 1, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageInfo_MipLevels(), ecorePackage.getEInt(), "mipLevels", "1", 1, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

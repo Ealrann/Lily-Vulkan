@@ -18,6 +18,8 @@ import org.sheepy.lily.vulkan.model.resource.*;
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 import org.sheepy.vulkan.model.barrier.Barrier;
+import org.sheepy.vulkan.model.image.ImageInfo;
+import org.sheepy.vulkan.model.image.SamplerInfo;
 
 /**
  * <!-- begin-user-doc -->
@@ -157,6 +159,16 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createImageAdapter();
 			}
 			@Override
+			public Adapter caseStaticImage(StaticImage object)
+			{
+				return createStaticImageAdapter();
+			}
+			@Override
+			public Adapter caseFileImage(FileImage object)
+			{
+				return createFileImageAdapter();
+			}
+			@Override
 			public Adapter caseImageLayout(ImageLayout object)
 			{
 				return createImageLayoutAdapter();
@@ -177,19 +189,9 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createSemaphoreAdapter();
 			}
 			@Override
-			public Adapter caseFont(Font object)
+			public Adapter caseFontImage(FontImage object)
 			{
-				return createFontAdapter();
-			}
-			@Override
-			public Adapter caseAbstractTexture(AbstractTexture object)
-			{
-				return createAbstractTextureAdapter();
-			}
-			@Override
-			public Adapter caseTexture(Texture object)
-			{
-				return createTextureAdapter();
+				return createFontImageAdapter();
 			}
 			@Override
 			public Adapter caseDescriptor(Descriptor object)
@@ -260,6 +262,16 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIResource(IResource object)
 			{
 				return createIResourceAdapter();
+			}
+			@Override
+			public Adapter caseImageInfo(ImageInfo object)
+			{
+				return createImageInfoAdapter();
+			}
+			@Override
+			public Adapter caseSamplerInfo(SamplerInfo object)
+			{
+				return createSamplerInfoAdapter();
 			}
 			@Override
 			public Adapter caseBarrier(Barrier object)
@@ -523,6 +535,36 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.StaticImage <em>Static Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.StaticImage
+	 * @generated
+	 */
+	public Adapter createStaticImageAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.FileImage <em>File Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.FileImage
+	 * @generated
+	 */
+	public Adapter createFileImageAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.ImageLayout <em>Image Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -583,46 +625,16 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Font <em>Font</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.FontImage <em>Font Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.Font
+	 * @see org.sheepy.lily.vulkan.model.resource.FontImage
 	 * @generated
 	 */
-	public Adapter createFontAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.AbstractTexture <em>Abstract Texture</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.AbstractTexture
-	 * @generated
-	 */
-	public Adapter createAbstractTextureAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Texture <em>Texture</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.Texture
-	 * @generated
-	 */
-	public Adapter createTextureAdapter()
+	public Adapter createFontImageAdapter()
 	{
 		return null;
 	}
@@ -833,6 +845,36 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIResourceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.image.ImageInfo <em>Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.image.ImageInfo
+	 * @generated
+	 */
+	public Adapter createImageInfoAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.image.SamplerInfo <em>Sampler Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.image.SamplerInfo
+	 * @generated
+	 */
+	public Adapter createSamplerInfoAdapter()
 	{
 		return null;
 	}

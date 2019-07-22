@@ -67,7 +67,7 @@ public class AttachmentRefImpl extends MinimalEObjectImpl.Container implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttachmentRefImpl()
+	protected AttachmentRefImpl()
 	{
 		super();
 	}

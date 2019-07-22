@@ -42,7 +42,7 @@ public class FramebufferManager implements IFramebufferManager
 		framebuffersIds = new ArrayList<>(imageViews.size());
 		for (final VkImageView imageView : imageViews)
 		{
-			fillAttachments(attachmentsBuffer, imageView.getAddress(), configuration);
+			fillAttachments(attachmentsBuffer, imageView.getPtr(), configuration);
 
 			Logger.check("Failed to create framebuffer!",
 					() -> vkCreateFramebuffer(vkDevice, createInfo, null, aFramebufferId));

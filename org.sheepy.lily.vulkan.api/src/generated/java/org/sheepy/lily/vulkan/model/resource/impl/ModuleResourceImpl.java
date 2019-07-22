@@ -51,7 +51,7 @@ public class ModuleResourceImpl extends AbstractModuleResourceImpl implements Mo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModuleResourceImpl()
+	protected ModuleResourceImpl()
 	{
 		super();
 	}

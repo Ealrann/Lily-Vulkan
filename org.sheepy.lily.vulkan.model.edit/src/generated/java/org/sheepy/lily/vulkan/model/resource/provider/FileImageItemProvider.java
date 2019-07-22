@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
+
 import java.util.Collection;
 import java.util.List;
 
@@ -14,17 +15,18 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.resource.Font;
+
+import org.sheepy.lily.vulkan.model.resource.FileImage;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.Font} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.FileImage} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class FontItemProvider extends SampledImageItemProvider
+public class FileImageItemProvider extends ImageItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -32,7 +34,7 @@ public class FontItemProvider extends SampledImageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FontItemProvider(AdapterFactory adapterFactory)
+	public FileImageItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -50,30 +52,30 @@ public class FontItemProvider extends SampledImageItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addHeightPropertyDescriptor(object);
+			addMipmapEnabledPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Height feature.
+	 * This adds a property descriptor for the Mipmap Enabled feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addHeightPropertyDescriptor(Object object)
+	protected void addMipmapEnabledPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Font_height_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Font_height_feature", "_UI_Font_type"),
-				 ResourcePackage.Literals.FONT__HEIGHT,
+				 getString("_UI_FileImage_mipmapEnabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FileImage_mipmapEnabled_feature", "_UI_FileImage_type"),
+				 ResourcePackage.Literals.FILE_IMAGE__MIPMAP_ENABLED,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -92,7 +94,8 @@ public class FontItemProvider extends SampledImageItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ResourcePackage.Literals.FONT__FILE);
+			childrenFeatures.add(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR);
+			childrenFeatures.add(ResourcePackage.Literals.FILE_IMAGE__FILE);
 		}
 		return childrenFeatures;
 	}
@@ -112,7 +115,7 @@ public class FontItemProvider extends SampledImageItemProvider
 	}
 
 	/**
-	 * This returns Font.gif.
+	 * This returns FileImage.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -120,7 +123,7 @@ public class FontItemProvider extends SampledImageItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Font"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FileImage"));
 	}
 
 	/**
@@ -132,11 +135,12 @@ public class FontItemProvider extends SampledImageItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Font)object).getName();
+		String label = ((FileImage)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Font_type") :
-			getString("_UI_Font_type") + " " + label;
+			getString("_UI_FileImage_type") :
+			getString("_UI_FileImage_type") + " " + label;
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -150,12 +154,13 @@ public class FontItemProvider extends SampledImageItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Font.class))
+		switch (notification.getFeatureID(FileImage.class))
 		{
-			case ResourcePackage.FONT__HEIGHT:
+			case ResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ResourcePackage.FONT__FILE:
+			case ResourcePackage.FILE_IMAGE__DESCRIPTOR:
+			case ResourcePackage.FILE_IMAGE__FILE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -176,17 +181,27 @@ public class FontItemProvider extends SampledImageItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.FONT__FILE,
+				(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
+				 ResourceFactory.eINSTANCE.createDescribedDataProvider()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
+				 ResourceFactory.eINSTANCE.createDescriptor()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.FILE_IMAGE__FILE,
 				 ResourceFactory.eINSTANCE.createFileResource()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.FONT__FILE,
+				(ResourcePackage.Literals.FILE_IMAGE__FILE,
 				 ResourceFactory.eINSTANCE.createModuleResource()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.FONT__FILE,
+				(ResourcePackage.Literals.FILE_IMAGE__FILE,
 				 ResourceFactory.eINSTANCE.createStringModuleResource()));
 	}
 

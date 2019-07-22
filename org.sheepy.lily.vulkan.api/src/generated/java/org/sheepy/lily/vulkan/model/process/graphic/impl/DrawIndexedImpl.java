@@ -178,7 +178,7 @@ public class DrawIndexedImpl extends MinimalEObjectImpl.Container implements Dra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DrawIndexedImpl()
+	protected DrawIndexedImpl()
 	{
 		super();
 	}

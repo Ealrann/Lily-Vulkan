@@ -129,7 +129,7 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VulkanEngineImpl()
+	protected VulkanEngineImpl()
 	{
 		super();
 	}

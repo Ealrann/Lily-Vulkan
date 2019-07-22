@@ -21,7 +21,7 @@ public class FileResourceImpl extends PathResourceImpl implements FileResource
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FileResourceImpl()
+	protected FileResourceImpl()
 	{
 		super();
 	}

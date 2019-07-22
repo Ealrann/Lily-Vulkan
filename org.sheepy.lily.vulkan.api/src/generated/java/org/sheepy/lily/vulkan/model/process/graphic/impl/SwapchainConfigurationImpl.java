@@ -109,7 +109,7 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SwapchainConfigurationImpl()
+	protected SwapchainConfigurationImpl()
 	{
 		super();
 	}

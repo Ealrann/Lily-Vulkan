@@ -194,7 +194,7 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PipelineBarrierImpl()
+	protected PipelineBarrierImpl()
 	{
 		super();
 	}

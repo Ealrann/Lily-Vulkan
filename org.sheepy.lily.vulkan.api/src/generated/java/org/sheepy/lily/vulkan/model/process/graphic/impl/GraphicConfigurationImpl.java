@@ -92,7 +92,7 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GraphicConfigurationImpl()
+	protected GraphicConfigurationImpl()
 	{
 		super();
 	}

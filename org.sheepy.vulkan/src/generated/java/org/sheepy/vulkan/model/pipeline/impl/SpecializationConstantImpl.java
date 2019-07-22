@@ -93,7 +93,7 @@ public class SpecializationConstantImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SpecializationConstantImpl()
+	protected SpecializationConstantImpl()
 	{
 		super();
 	}

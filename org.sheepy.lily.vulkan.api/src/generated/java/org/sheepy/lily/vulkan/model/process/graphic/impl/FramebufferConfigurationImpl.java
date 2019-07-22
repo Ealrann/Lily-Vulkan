@@ -57,7 +57,7 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FramebufferConfigurationImpl()
+	protected FramebufferConfigurationImpl()
 	{
 		super();
 	}

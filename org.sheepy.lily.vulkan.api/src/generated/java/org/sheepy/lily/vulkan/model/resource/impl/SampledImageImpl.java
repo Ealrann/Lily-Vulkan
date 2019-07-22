@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.vulkan.model.image.SamplerInfo;
@@ -23,6 +24,7 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl#getSampler <em>Sampler</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl#getImage <em>Image</em>}</li>
  * </ul>
  *
  * @generated
@@ -40,11 +42,21 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 	protected SamplerInfo sampler;
 
 	/**
+	 * The cached value of the '{@link #getImage() <em>Image</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getImage()
+	 * @generated
+	 * @ordered
+	 */
+	protected Image image;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SampledImageImpl()
+	protected SampledImageImpl()
 	{
 		super();
 	}
@@ -116,12 +128,64 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 	 * @generated
 	 */
 	@Override
+	public Image getImage()
+	{
+		return image;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetImage(Image newImage, NotificationChain msgs)
+	{
+		Image oldImage = image;
+		image = newImage;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE__IMAGE, oldImage, newImage);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setImage(Image newImage)
+	{
+		if (newImage != image)
+		{
+			NotificationChain msgs = null;
+			if (image != null)
+				msgs = ((InternalEObject)image).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_IMAGE__IMAGE, null, msgs);
+			if (newImage != null)
+				msgs = ((InternalEObject)newImage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_IMAGE__IMAGE, null, msgs);
+			msgs = basicSetImage(newImage, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE__IMAGE, newImage, newImage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
 			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				return basicSetSampler(null, msgs);
+			case ResourcePackage.SAMPLED_IMAGE__IMAGE:
+				return basicSetImage(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -138,6 +202,8 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 		{
 			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				return getSampler();
+			case ResourcePackage.SAMPLED_IMAGE__IMAGE:
+				return getImage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -154,6 +220,9 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 		{
 			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				setSampler((SamplerInfo)newValue);
+				return;
+			case ResourcePackage.SAMPLED_IMAGE__IMAGE:
+				setImage((Image)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -172,6 +241,9 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				setSampler((SamplerInfo)null);
 				return;
+			case ResourcePackage.SAMPLED_IMAGE__IMAGE:
+				setImage((Image)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -188,6 +260,8 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 		{
 			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				return sampler != null;
+			case ResourcePackage.SAMPLED_IMAGE__IMAGE:
+				return image != null;
 		}
 		return super.eIsSet(featureID);
 	}

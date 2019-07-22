@@ -149,6 +149,31 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NuklearFontItemProvider nuklearFontItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNuklearFontAdapter()
+	{
+		if (nuklearFontItemProvider == null)
+		{
+			nuklearFontItemProvider = new NuklearFontItemProvider(this);
+		}
+
+		return nuklearFontItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -268,6 +293,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 		if (nuklearPushConstantsItemProvider != null) nuklearPushConstantsItemProvider.dispose();
 		if (nuklearLayoutTaskItemProvider != null) nuklearLayoutTaskItemProvider.dispose();
 		if (nuklearContextItemProvider != null) nuklearContextItemProvider.dispose();
+		if (nuklearFontItemProvider != null) nuklearFontItemProvider.dispose();
 	}
 
 }

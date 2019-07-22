@@ -57,6 +57,7 @@ public interface ImageLayout extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Layout</b></em>' attribute.
+	 * The default value is <code>"SHADER_READ_ONLY_OPTIMAL"</code>.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageLayout}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +65,7 @@ public interface ImageLayout extends EObject
 	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
 	 * @see #setLayout(EImageLayout)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageLayout_Layout()
-	 * @model unique="false"
+	 * @model default="SHADER_READ_ONLY_OPTIMAL" unique="false"
 	 * @generated
 	 */
 	EImageLayout getLayout();

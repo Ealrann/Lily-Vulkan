@@ -26,10 +26,10 @@ import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
 import org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFactory;
+import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants;
-
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
@@ -77,6 +77,13 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	private EClass nuklearContextEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass nuklearFontEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -322,6 +329,28 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getNuklearFont()
+	{
+		return nuklearFontEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getNuklearFont_FontSampledImage()
+	{
+		return (EReference)nuklearFontEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NuklearFactory getNuklearFactory()
 	{
 		return (NuklearFactory)getEFactoryInstance();
@@ -362,6 +391,9 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__FONT);
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__NULL_TEXTURE);
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__LAYOUT_TASK);
+
+		nuklearFontEClass = createEClass(NUKLEAR_FONT);
+		createEReference(nuklearFontEClass, NUKLEAR_FONT__FONT_SAMPLED_IMAGE);
 	}
 
 	/**
@@ -402,7 +434,8 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		nuklearPushConstantsEClass.getESuperTypes().add(theProcessPackage.getPushConstant());
 		nuklearLayoutTaskEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		nuklearContextEClass.getESuperTypes().add(theVulkanPackage.getIResource());
-		nuklearContextEClass.getESuperTypes().add(theResourcePackage.getBasicResource());
+		nuklearContextEClass.getESuperTypes().add(theResourcePackage.getDescriptedResource());
+		nuklearFontEClass.getESuperTypes().add(theResourcePackage.getBasicResource());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(nuklearPushConstantsEClass, NuklearPushConstants.class, "NuklearPushConstants", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -417,9 +450,12 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		initEReference(getNuklearLayoutTask_VertexBuffer(), theResourcePackage.getBuffer(), null, "vertexBuffer", null, 0, 1, NuklearLayoutTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nuklearContextEClass, NuklearContext.class, "NuklearContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNuklearContext_Font(), theResourcePackage.getFont(), null, "font", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNuklearContext_Font(), this.getNuklearFont(), null, "font", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearContext_NullTexture(), theResourcePackage.getSampledImage(), null, "nullTexture", null, 0, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearContext_LayoutTask(), this.getNuklearLayoutTask(), this.getNuklearLayoutTask_Context(), "layoutTask", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(nuklearFontEClass, NuklearFont.class, "NuklearFont", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNuklearFont_FontSampledImage(), theResourcePackage.getSampledImage(), null, "fontSampledImage", null, 1, 1, NuklearFont.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

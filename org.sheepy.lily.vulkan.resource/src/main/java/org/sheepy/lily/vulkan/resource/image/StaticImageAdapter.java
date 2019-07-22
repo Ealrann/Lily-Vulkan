@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.resource.image;
 
 import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,25 +10,24 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.resource.IDescriptedResourceAdapter;
-import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
-import org.sheepy.lily.vulkan.model.resource.Image;
-import org.sheepy.lily.vulkan.model.resource.ImageLayout;
+import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.model.resource.StaticImage;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.image.VkImage;
 import org.sheepy.vulkan.resource.image.VkImageDescriptor;
 import org.sheepy.vulkan.resource.image.VkImageView;
-import org.sheepy.vulkan.util.VkModelUtil;
 
 @Statefull
-@Adapter(scope = Image.class)
-public class ImageAdapter implements IDescriptedResourceAdapter, IResourceAdapter
+@Adapter(scope = StaticImage.class)
+public class StaticImageAdapter implements IImageAdapter
 {
+	private final StaticImage image;
+
 	private VkImage imageBackend;
-	private final Image image;
 	private VkImageView imageView;
 
 	private IImageLoader loader = null;
@@ -35,7 +35,7 @@ public class ImageAdapter implements IDescriptedResourceAdapter, IResourceAdapte
 
 	private List<IVkDescriptor> descriptors = null;
 
-	public ImageAdapter(Image image)
+	public StaticImageAdapter(StaticImage image)
 	{
 		this.image = image;
 	}
@@ -50,7 +50,8 @@ public class ImageAdapter implements IDescriptedResourceAdapter, IResourceAdapte
 	{
 		this.executionContext = context;
 		final var logicalDevice = executionContext.getLogicalDevice();
-		final var builder = createBuilder(image);
+		final var builder = new VkImage.VkImageBuilder(image);
+		builder.fillWith(image.getFillWith());
 
 		imageBackend = builder.build();
 		imageBackend.allocate(stack, context);
@@ -61,20 +62,24 @@ public class ImageAdapter implements IDescriptedResourceAdapter, IResourceAdapte
 		}
 
 		imageView = new VkImageView(logicalDevice.getVkDevice());
-		imageView.allocate(imageBackend.getAddress(), 1, imageBackend.format,
-				VK_IMAGE_ASPECT_COLOR_BIT);
+		imageView.allocate(imageBackend.getPtr(), 1, imageBackend.format, VK_IMAGE_ASPECT_COLOR_BIT);
 
 		load();
 	}
 
 	private void initialTransition(MemoryStack stack)
 	{
-		executionContext.execute(stack, (stack2, commandBuffer) -> {
-			final ImageLayout initialLayout = image.getInitialLayout();
-			imageBackend.transitionImageLayout(stack2, commandBuffer,
-					EPipelineStage.BOTTOM_OF_PIPE_BIT, initialLayout.getStage(),
-					EImageLayout.UNDEFINED, initialLayout.getLayout(), Collections.emptyList(),
-					initialLayout.getAccessMask());
+		executionContext.execute(stack, (stack2, commandBuffer) ->
+		{
+			final var initialLayout = image.getInitialLayout();
+			final var stage = initialLayout.getStage();
+			final var trgAccess = new ArrayList<>(initialLayout.getAccessMask());
+			if (trgAccess.isEmpty())
+			{
+				trgAccess.add(EAccess.SHADER_READ_BIT);
+			}
+			imageBackend.transitionImageLayout(stack2, commandBuffer, EPipelineStage.BOTTOM_OF_PIPE_BIT, stage,
+					EImageLayout.UNDEFINED, initialLayout.getLayout(), Collections.emptyList(), trgAccess);
 		});
 	}
 
@@ -105,7 +110,7 @@ public class ImageAdapter implements IDescriptedResourceAdapter, IResourceAdapte
 			final var type = descriptor.getDescriptorType();
 			final var stages = descriptor.getShaderStages();
 			final var layout = EImageLayout.GENERAL;
-			final long viewPtr = getViewAddress();
+			final long viewPtr = getViewPtr();
 
 			final var vkImageDescriptor = new VkImageDescriptor(viewPtr, 0, layout, type, stages);
 			descriptors = List.of(vkImageDescriptor);
@@ -114,19 +119,28 @@ public class ImageAdapter implements IDescriptedResourceAdapter, IResourceAdapte
 		return descriptors;
 	}
 
-	public long getAddress()
+	@Override
+	public long getImagePtr()
 	{
-		return imageBackend.getAddress();
+		return imageBackend.getPtr();
 	}
 
-	public long getMemoryAddress()
+	@Override
+	public long getMemoryPtr()
 	{
-		return imageBackend.getMemoryAddress();
+		return imageBackend.getMemoryPtr();
 	}
 
-	public long getViewAddress()
+	@Override
+	public long getViewPtr()
 	{
-		return imageView.getAddress();
+		return imageView.getPtr();
+	}
+
+	@Override
+	public VkImage getVkImage()
+	{
+		return imageBackend;
 	}
 
 	public static interface IImageLoader
@@ -134,29 +148,8 @@ public class ImageAdapter implements IDescriptedResourceAdapter, IResourceAdapte
 		void load(IExecutionContext executionManager, VkImage backendBuffer);
 	}
 
-	public static ImageAdapter adapt(Image image)
+	public static StaticImageAdapter adapt(StaticImage image)
 	{
-		return IAdapterFactoryService.INSTANCE.adapt(image, ImageAdapter.class);
-	}
-
-	private static VkImage.Builder createBuilder(Image image)
-	{
-		final int usages = VkModelUtil.getEnumeratedFlag(image.getUsages());
-		final int format = image.getFormat().getValue();
-		final int mipLevels = image.getMipLevels();
-		final int height = image.getHeight();
-		final int tiling = image.getTiling();
-		final int width = image.getWidth();
-		final int properties = image.getProperties();
-		final boolean fillWithZero = image.isFillWithZero();
-
-		final var res = VkImage.newBuilder(width, height, format);
-		res.usage(usages);
-		res.properties(properties);
-		res.mipLevels(mipLevels);
-		res.tiling(tiling);
-		res.fillWithZero(fillWithZero);
-
-		return res;
+		return IAdapterFactoryService.INSTANCE.adapt(image, StaticImageAdapter.class);
 	}
 }

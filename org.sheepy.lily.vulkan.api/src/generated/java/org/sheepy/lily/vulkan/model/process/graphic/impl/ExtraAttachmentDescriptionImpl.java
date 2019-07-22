@@ -43,7 +43,7 @@ public class ExtraAttachmentDescriptionImpl extends AttachmentDescriptionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtraAttachmentDescriptionImpl()
+	protected ExtraAttachmentDescriptionImpl()
 	{
 		super();
 	}

@@ -13,35 +13,35 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.Sampler#getInfo <em>Info</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Sampler#getImage <em>Image</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampler()
  * @model
  * @generated
  */
-public interface Sampler extends DescriptedResource
+public interface Sampler extends SamplerInfo, BasicDescriptedResource
 {
 	/**
-	 * Returns the value of the '<em><b>Info</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Image</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Info</em>' containment reference.
-	 * @see #setInfo(SamplerInfo)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampler_Info()
-	 * @model containment="true" required="true"
+	 * @return the value of the '<em>Image</em>' reference.
+	 * @see #setImage(Image)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampler_Image()
+	 * @model
 	 * @generated
 	 */
-	SamplerInfo getInfo();
+	Image getImage();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getInfo <em>Info</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getImage <em>Image</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Info</em>' containment reference.
-	 * @see #getInfo()
+	 * @param value the new value of the '<em>Image</em>' reference.
+	 * @see #getImage()
 	 * @generated
 	 */
-	void setInfo(SamplerInfo value);
+	void setImage(Image value);
 
 } // Sampler

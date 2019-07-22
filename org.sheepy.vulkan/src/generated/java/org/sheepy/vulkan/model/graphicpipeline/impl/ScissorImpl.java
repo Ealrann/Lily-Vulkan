@@ -87,7 +87,7 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ScissorImpl()
+	protected ScissorImpl()
 	{
 		super();
 	}

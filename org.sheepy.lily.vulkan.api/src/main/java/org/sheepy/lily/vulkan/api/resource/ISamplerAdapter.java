@@ -7,6 +7,8 @@ import org.sheepy.vulkan.resource.image.VkSampler;
 public interface ISamplerAdapter extends IDescriptedResourceAdapter
 {
 	VkSampler getVkSampler();
+	
+	long getSamplerPtr();
 
 	public static ISamplerAdapter adapt(Sampler sampler)
 	{

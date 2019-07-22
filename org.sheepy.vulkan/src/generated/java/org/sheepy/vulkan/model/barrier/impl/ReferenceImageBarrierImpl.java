@@ -93,7 +93,7 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReferenceImageBarrierImpl()
+	protected ReferenceImageBarrierImpl()
 	{
 		super();
 	}

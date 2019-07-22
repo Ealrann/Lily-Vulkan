@@ -29,7 +29,7 @@ public interface ImageBarrier extends AbstractImageBarrier
 	 * @return the value of the '<em>Image</em>' reference.
 	 * @see #setImage(Image)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageBarrier_Image()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	Image getImage();

@@ -12,9 +12,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
+import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
-import org.sheepy.lily.vulkan.model.resource.Font;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 
 /**
@@ -63,7 +63,7 @@ public class NuklearContextImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected Font font;
+	protected NuklearFont font;
 
 	/**
 	 * The cached value of the '{@link #getNullTexture() <em>Null Texture</em>}' reference.
@@ -137,12 +137,12 @@ public class NuklearContextImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public Font getFont()
+	public NuklearFont getFont()
 	{
 		if (font != null && font.eIsProxy())
 		{
 			InternalEObject oldFont = (InternalEObject)font;
-			font = (Font)eResolveProxy(oldFont);
+			font = (NuklearFont)eResolveProxy(oldFont);
 			if (font != oldFont)
 			{
 				if (eNotificationRequired())
@@ -157,7 +157,7 @@ public class NuklearContextImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Font basicGetFont()
+	public NuklearFont basicGetFont()
 	{
 		return font;
 	}
@@ -168,9 +168,9 @@ public class NuklearContextImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public void setFont(Font newFont)
+	public void setFont(NuklearFont newFont)
 	{
-		Font oldFont = font;
+		NuklearFont oldFont = font;
 		font = newFont;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__FONT, oldFont, font));
@@ -364,7 +364,7 @@ public class NuklearContextImpl extends MinimalEObjectImpl.Container implements 
 				setName((String)newValue);
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__FONT:
-				setFont((Font)newValue);
+				setFont((NuklearFont)newValue);
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__NULL_TEXTURE:
 				setNullTexture((SampledImage)newValue);
@@ -390,7 +390,7 @@ public class NuklearContextImpl extends MinimalEObjectImpl.Container implements 
 				setName(NAME_EDEFAULT);
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__FONT:
-				setFont((Font)null);
+				setFont((NuklearFont)null);
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__NULL_TEXTURE:
 				setNullTexture((SampledImage)null);

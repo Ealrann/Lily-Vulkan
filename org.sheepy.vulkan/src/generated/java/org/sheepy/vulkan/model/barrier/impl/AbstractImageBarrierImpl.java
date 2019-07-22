@@ -67,7 +67,7 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AbstractImageBarrierImpl()
+	protected AbstractImageBarrierImpl()
 	{
 		super();
 	}

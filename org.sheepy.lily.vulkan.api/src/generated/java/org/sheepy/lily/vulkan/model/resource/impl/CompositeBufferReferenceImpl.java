@@ -65,7 +65,7 @@ public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeBufferReferenceImpl()
+	protected CompositeBufferReferenceImpl()
 	{
 		super();
 	}
