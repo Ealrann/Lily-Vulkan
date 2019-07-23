@@ -7,9 +7,9 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.api.execution.IExecutionRecorders;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
+import org.sheepy.lily.vulkan.api.resource.ISemaphoreAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
-import org.sheepy.lily.vulkan.resource.semaphore.SemaphoreAdapter;
 import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.allocation.IAllocationNode;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
@@ -54,7 +54,7 @@ public abstract class ExecutionRecorders<T extends IProcessContext>
 		final var res = new ArrayList<VkSemaphore>();
 		for (final Semaphore semaphore : process.getSignals())
 		{
-			res.add(SemaphoreAdapter.adapt(semaphore).getVkSemaphore());
+			res.add(ISemaphoreAdapter.adapt(semaphore).getVkSemaphore());
 		}
 		return res;
 	}
@@ -72,7 +72,7 @@ public abstract class ExecutionRecorders<T extends IProcessContext>
 
 	protected static WaitData convertToData(Semaphore semaphore)
 	{
-		final var adapter = SemaphoreAdapter.adapt(semaphore);
+		final var adapter = ISemaphoreAdapter.adapt(semaphore);
 		final var waitStage = semaphore.getWaitStage();
 		return new WaitData(adapter.getVkSemaphore(), waitStage);
 	}

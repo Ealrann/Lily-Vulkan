@@ -10,7 +10,5 @@ module org.sheepy.lily.vulkan.extra.graphic
 {
 	requires transitive org.sheepy.lily.vulkan.extra.api;
 
-	requires org.sheepy.lily.vulkan.process.graphic;
-
 	opens org.sheepy.lily.vulkan.extra.rendering;
 }

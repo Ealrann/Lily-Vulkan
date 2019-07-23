@@ -1,17 +1,16 @@
 package org.sheepy.lily.vulkan.resource.semaphore;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
+import org.sheepy.lily.vulkan.api.resource.ISemaphoreAdapter;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.execution.IExecutionContext;
 
 @Statefull
 @Adapter(scope = Semaphore.class)
-public class SemaphoreAdapter implements IResourceAdapter
+public class SemaphoreAdapter implements ISemaphoreAdapter
 {
 	private final Semaphore semaphore;
 	private final VkSemaphore vkSemaphore = new VkSemaphore();
@@ -38,13 +37,9 @@ public class SemaphoreAdapter implements IResourceAdapter
 		vkSemaphore.free(context);
 	}
 
+	@Override
 	public VkSemaphore getVkSemaphore()
 	{
 		return vkSemaphore;
-	}
-
-	public static SemaphoreAdapter adapt(Semaphore semaphore)
-	{
-		return IAdapterFactoryService.INSTANCE.adapt(semaphore, SemaphoreAdapter.class);
 	}
 }

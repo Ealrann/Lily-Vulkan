@@ -27,9 +27,10 @@ import org.sheepy.lily.vulkan.process.graphic.resource.DepthAttachmentAdapter;
 
 module org.sheepy.lily.vulkan.process.graphic
 {
-	requires transitive org.sheepy.lily.vulkan.process;
-	requires transitive org.sheepy.lily.vulkan.resource;
 	requires transitive org.sheepy.lily.vulkan.api;
+
+	requires org.sheepy.lily.vulkan.common;
+	requires org.sheepy.lily.vulkan.process;
 
 	exports org.sheepy.lily.vulkan.process.graphic.pipeline;
 

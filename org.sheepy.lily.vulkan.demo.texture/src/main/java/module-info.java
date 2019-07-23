@@ -7,7 +7,7 @@ import org.sheepy.lily.vulkan.demo.adapter.CameraConstantAdapter;
 
 module org.sheepy.lily.vulkan.demo.texture
 {
-	requires transitive org.sheepy.lily.vulkan.process.graphic;
+	requires transitive org.sheepy.lily.vulkan.base;
 
 	requires org.joml;
 

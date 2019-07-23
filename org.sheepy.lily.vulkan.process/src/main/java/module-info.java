@@ -27,8 +27,9 @@ import org.sheepy.lily.vulkan.process.pipeline.task.PushConstantBufferAdapter;
 
 module org.sheepy.lily.vulkan.process
 {
-	requires transitive org.sheepy.lily.vulkan.common;
-	requires transitive org.sheepy.lily.vulkan.resource;
+	requires transitive org.sheepy.lily.vulkan.api;
+
+	requires org.sheepy.lily.vulkan.common;
 
 	exports org.sheepy.lily.vulkan.process.execution;
 	exports org.sheepy.lily.vulkan.process.pipeline;

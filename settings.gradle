@@ -3,6 +3,7 @@ rootProject.name = "org.sheepy.lily.vulkan"
 
 include ':org.sheepy.vulkan'
 include ':org.sheepy.lily.vulkan.api'
+include ':org.sheepy.lily.vulkan.base'
 include ':org.sheepy.lily.vulkan.common'
 include ':org.sheepy.lily.vulkan.resource'
 include ':org.sheepy.lily.vulkan.process'
@@ -10,6 +11,7 @@ include ':org.sheepy.lily.vulkan.process.compute'
 include ':org.sheepy.lily.vulkan.process.graphic'
 
 include ':org.sheepy.lily.vulkan.extra.api'
+include ':org.sheepy.lily.vulkan.extra.base'
 include ':org.sheepy.lily.vulkan.extra.graphic'
 include ':org.sheepy.lily.vulkan.extra.nuklear'
 

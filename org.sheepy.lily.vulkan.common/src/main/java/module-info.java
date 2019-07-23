@@ -7,8 +7,6 @@ module org.sheepy.lily.vulkan.common
 {
 	requires transitive org.sheepy.lily.vulkan.api;
 
-	requires org.sheepy.lily.core.impl;
-
 	exports org.sheepy.lily.vulkan.common.allocation;
 	exports org.sheepy.lily.vulkan.common.util;
 

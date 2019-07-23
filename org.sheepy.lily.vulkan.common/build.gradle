@@ -4,13 +4,12 @@ plugins {
 
 dependencies {
 
-	implementation 'org.sheepy.lily.core:org.sheepy.lily.core.impl'
-
 	api project(':org.sheepy.lily.vulkan.api')
 
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
 	testImplementation 'org.junit.jupiter:junit-jupiter-params:5.4.2'
 
+	testRuntimeOnly 'org.sheepy.lily.core:org.sheepy.lily.core.base'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
 }
 

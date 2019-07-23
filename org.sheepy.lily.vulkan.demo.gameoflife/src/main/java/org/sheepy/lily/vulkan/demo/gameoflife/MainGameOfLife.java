@@ -12,7 +12,7 @@ public class MainGameOfLife
 	public static void main(String[] args)
 	{
 		DebugUtil.DEBUG_ENABLED = true;
-		
+	
 		final ModelFactory factory = new ModelFactory(WIDTH, HEIGHT);
 		final MainLoop mainLoop = new MainLoop(factory);
 		ApplicationLauncher.launch(factory.application, mainLoop);

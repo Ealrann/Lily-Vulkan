@@ -28,7 +28,8 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 @Statefull
 @Adapter(scope = GenericRenderer.class, scopeInheritance = true)
-public final class GenericRendererMaintainerAdapter<T extends Presentation> implements IVulkanAdapter
+public final class GenericRendererMaintainerAdapter<T extends Presentation>
+		implements IVulkanAdapter
 {
 	private static final EClass RENDERER_ECLASS = RenderingPackage.Literals.GENERIC_RENDERER;
 
@@ -54,7 +55,8 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation> impl
 		final var commonResourceProvider = maintainer.getCommonResourceProvider();
 		if (commonResourceProvider != null)
 		{
-			final var resourceProviderAdapter = IResourceProviderAdapter.adapt(commonResourceProvider);
+			final var resourceProviderAdapter = IResourceProviderAdapter
+					.adapt(commonResourceProvider);
 			commonResources.addAll(resourceProviderAdapter.getResources(commonResourceProvider));
 		}
 		return commonResources;
@@ -73,17 +75,22 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation> impl
 	{
 		final var presentationPkg = maintainer.getPresentationPkg();
 		final var builder = new PresentationContext.Builder<T>(maintainer);
-		final var presentationStream = presentationPkg.getPresentations().stream();
+		final var presentations = presentationPkg.getPresentations().stream();
 		final var pipelineIndex = new AtomicInteger(graphicProcess.getPartPkg().getParts().size());
 
 		final var presentedEClass = ModelUtil.resolveGenericType(maintainer, RENDERER_ECLASS);
 		@SuppressWarnings("unchecked")
-		final var presentedClass = (Class<T>) presentedEClass.getInstanceClass();
+		final var classifier = (Class<T>) presentedEClass.getInstanceClass();
 
-		final boolean needRecreatePipelines = builder.containsDynamicDescriptors || builder.containsIndexData;
-		final var commonPipeline = needRecreatePipelines ? null : newPipelineContext(pipelineIndex.getAndIncrement());
+		final boolean needRecreatePipelines = builder.containsDynamicDescriptors
+				|| builder.containsIndexData;
+		final var commonPipeline = needRecreatePipelines
+				? null
+				: newPipelineContext(pipelineIndex.getAndIncrement());
+		final var stream = presentations.filter(classifier::isInstance).map(classifier::cast);
 
-		presentationStream.filter(presentedClass::isInstance).map(presentedClass::cast).forEach(presentation -> {
+		stream.forEach(presentation ->
+		{
 			final var meshAdapter = IPresentationAdapter.adapt(presentation);
 			for (int i = 0; i < meshAdapter.getPartCount(); i++)
 			{
@@ -97,7 +104,7 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation> impl
 
 		if (DebugUtil.DEBUG_ENABLED)
 		{
-			final var name = presentedClass.getSimpleName();
+			final var name = classifier.getSimpleName();
 			final int count = contexts.size();
 			System.out.println(String.format("Create %d pipelines for %s.", count, name));
 		}

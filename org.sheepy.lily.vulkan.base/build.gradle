@@ -1,0 +1,15 @@
+plugins {
+	id 'java-library'
+}
+
+dependencies {
+	api project(":org.sheepy.lily.vulkan.api")
+
+	api 'org.sheepy.lily.core:org.sheepy.lily.core.base'
+
+	implementation project(":org.sheepy.lily.vulkan.common")
+	implementation project(":org.sheepy.lily.vulkan.process")
+	implementation project(":org.sheepy.lily.vulkan.process.compute")
+	implementation project(":org.sheepy.lily.vulkan.process.graphic")
+	implementation project(":org.sheepy.lily.vulkan.resource")
+}

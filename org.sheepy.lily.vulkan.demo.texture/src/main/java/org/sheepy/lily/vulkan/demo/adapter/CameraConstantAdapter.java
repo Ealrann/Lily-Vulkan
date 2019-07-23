@@ -13,8 +13,8 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.adapter.annotation.Tick;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
+import org.sheepy.lily.vulkan.api.util.SizeOf;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
-import org.sheepy.lily.vulkan.common.util.SizeOf;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 
 @Statefull

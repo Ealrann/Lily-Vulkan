@@ -29,8 +29,6 @@ module org.sheepy.lily.vulkan.extra.nuklear
 {
 	requires transitive org.sheepy.lily.vulkan.extra.api;
 
-	requires transitive org.sheepy.lily.vulkan.process.graphic;
-
 	requires transitive org.lwjgl.nuklear;
 	requires org.lwjgl.nuklear.natives;
 

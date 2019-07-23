@@ -3,5 +3,7 @@ plugins {
 }
 
 dependencies {
-	api project(':org.sheepy.lily.vulkan.resource')
+	api project(':org.sheepy.lily.vulkan.api')
+
+	implementation project(':org.sheepy.lily.vulkan.common')
 }

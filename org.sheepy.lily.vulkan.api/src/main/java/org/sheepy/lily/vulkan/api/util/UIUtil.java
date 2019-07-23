@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.common.util;
+package org.sheepy.lily.vulkan.api.util;
 
 import org.joml.Vector2ic;
 import org.sheepy.lily.core.model.presentation.IPositionElement;

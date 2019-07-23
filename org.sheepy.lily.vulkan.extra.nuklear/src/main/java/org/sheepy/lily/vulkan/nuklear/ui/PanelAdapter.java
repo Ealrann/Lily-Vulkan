@@ -14,7 +14,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
-import org.sheepy.lily.vulkan.common.util.UIUtil;
+import org.sheepy.lily.vulkan.api.util.UIUtil;
 import org.sheepy.vulkan.window.IWindowListener;
 import org.sheepy.vulkan.window.Window;
 
