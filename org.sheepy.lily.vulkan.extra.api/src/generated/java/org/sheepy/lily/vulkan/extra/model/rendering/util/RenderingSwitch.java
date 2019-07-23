@@ -17,7 +17,6 @@ import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
-import org.sheepy.lily.vulkan.model.resource.Descriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -167,7 +166,6 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseGenericDataProvider(genericDescribedDataProvider);
 				if (result == null) result = caseDescribedDataProvider(genericDescribedDataProvider);
 				if (result == null) result = caseBufferDataProvider(genericDescribedDataProvider);
-				if (result == null) result = caseDescriptor(genericDescribedDataProvider);
 				if (result == null) result = caseLNamedElement(genericDescribedDataProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -605,22 +603,6 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public <T> T1 caseBufferDataProvider(BufferDataProvider<T> object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseDescriptor(Descriptor object)
 	{
 		return null;
 	}

@@ -775,22 +775,13 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_DESCRIBED_DATA_PROVIDER__DATA_SOURCE = GENERIC_DATA_PROVIDER__DATA_SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE = GENERIC_DATA_PROVIDER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_DESCRIBED_DATA_PROVIDER__SHADER_STAGES = GENERIC_DATA_PROVIDER_FEATURE_COUNT + 1;
+	int GENERIC_DESCRIBED_DATA_PROVIDER__DESCRIPTOR = GENERIC_DATA_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Generic Described Data Provider</em>' class.
@@ -799,7 +790,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_DESCRIBED_DATA_PROVIDER_FEATURE_COUNT = GENERIC_DATA_PROVIDER_FEATURE_COUNT + 2;
+	int GENERIC_DESCRIBED_DATA_PROVIDER_FEATURE_COUNT = GENERIC_DATA_PROVIDER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Generic Described Data Provider</em>' class.

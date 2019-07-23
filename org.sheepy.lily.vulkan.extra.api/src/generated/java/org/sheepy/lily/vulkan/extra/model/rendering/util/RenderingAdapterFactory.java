@@ -19,7 +19,6 @@ import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
-import org.sheepy.lily.vulkan.model.resource.Descriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -203,11 +202,6 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 			public <T> Adapter caseBufferDataProvider(BufferDataProvider<T> object)
 			{
 				return createBufferDataProviderAdapter();
-			}
-			@Override
-			public Adapter caseDescriptor(Descriptor object)
-			{
-				return createDescriptorAdapter();
 			}
 			@Override
 			public <T> Adapter caseDescribedDataProvider(DescribedDataProvider<T> object)
@@ -592,21 +586,6 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createBufferDataProviderAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Descriptor <em>Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.Descriptor
-	 * @generated
-	 */
-	public Adapter createDescriptorAdapter()
 	{
 		return null;
 	}

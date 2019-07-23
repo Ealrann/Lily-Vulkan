@@ -32,7 +32,6 @@ import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.util.RenderingAdapterFactory;
-import org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.util.ResourceSwitch;
@@ -523,22 +522,6 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
 			}
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseBasicDescriptedResource(BasicDescriptedResource object)
-			{
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
-						 RenderingFactory.eINSTANCE.createGenericDescribedDataProvider()));
-
-				return null;
-			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

@@ -203,11 +203,6 @@ public class SamplerItemProvider extends SamplerInfoItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
-				 ResourceFactory.eINSTANCE.createDescribedDataProvider()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
 				 ResourceFactory.eINSTANCE.createDescriptor()));
 	}
 

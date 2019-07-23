@@ -205,7 +205,6 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				DescribedDataProvider<?> describedDataProvider = (DescribedDataProvider<?>)theEObject;
 				T1 result = caseDescribedDataProvider(describedDataProvider);
 				if (result == null) result = caseBufferDataProvider(describedDataProvider);
-				if (result == null) result = caseDescriptor(describedDataProvider);
 				if (result == null) result = caseLNamedElement(describedDataProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

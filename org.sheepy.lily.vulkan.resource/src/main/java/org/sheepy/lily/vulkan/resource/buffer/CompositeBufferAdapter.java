@@ -252,8 +252,8 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 
 			adapter.fill(memTicket.getMemoryPtr());
 
-			final var pushCommand = IDataFlowCommand.newPipelinePushCommand(memTicket, bufferAddress, alignedOffset,
-					stage, access);
+			final var pushCommand = IDataFlowCommand.newPipelinePushCommand(memTicket,
+					bufferAddress, alignedOffset, stage, access);
 
 			stagingBuffer.addStagingCommand(pushCommand);
 
@@ -262,10 +262,15 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 
 		public IVkDescriptor createDescriptor(long bufferPtr)
 		{
-			final var described = (DescribedDataProvider<?>) dataProvider;
+			assert dataProvider instanceof DescribedDataProvider;
 
-			final var type = described.getDescriptorType();
-			final var stages = described.getShaderStages();
+			final var described = (DescribedDataProvider<?>) dataProvider;
+			final var descriptor = described.getDescriptor();
+
+			assert descriptor != null;
+
+			final var type = descriptor.getDescriptorType();
+			final var stages = descriptor.getShaderStages();
 
 			return new VkBufferDescriptor(bufferPtr, alignedSize, alignedOffset, type, stages);
 		}

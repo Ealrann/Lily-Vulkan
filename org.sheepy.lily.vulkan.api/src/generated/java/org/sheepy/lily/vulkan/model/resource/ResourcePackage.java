@@ -773,22 +773,13 @@ public interface ResourcePackage extends EPackage
 	int DESCRIBED_DATA_PROVIDER__DATA_SOURCE = BUFFER_DATA_PROVIDER__DATA_SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE = BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIBED_DATA_PROVIDER__SHADER_STAGES = BUFFER_DATA_PROVIDER_FEATURE_COUNT + 1;
+	int DESCRIBED_DATA_PROVIDER__DESCRIPTOR = BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Described Data Provider</em>' class.
@@ -797,7 +788,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DESCRIBED_DATA_PROVIDER_FEATURE_COUNT = BUFFER_DATA_PROVIDER_FEATURE_COUNT + 2;
+	int DESCRIBED_DATA_PROVIDER_FEATURE_COUNT = BUFFER_DATA_PROVIDER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Described Data Provider</em>' class.
@@ -2500,6 +2491,17 @@ public interface ResourcePackage extends EPackage
 	EClass getDescribedDataProvider();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.DescribedDataProvider#getDescriptor <em>Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.DescribedDataProvider#getDescriptor()
+	 * @see #getDescribedDataProvider()
+	 * @generated
+	 */
+	EReference getDescribedDataProvider_Descriptor();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Image <em>Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3390,6 +3392,14 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EClass DESCRIBED_DATA_PROVIDER = eINSTANCE.getDescribedDataProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Descriptor</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DESCRIBED_DATA_PROVIDER__DESCRIPTOR = eINSTANCE.getDescribedDataProvider_Descriptor();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl <em>Image</em>}' class.

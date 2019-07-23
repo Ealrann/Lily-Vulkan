@@ -832,6 +832,17 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
+	public EReference getDescribedDataProvider_Descriptor()
+	{
+		return (EReference)describedDataProviderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getImage()
 	{
 		return imageEClass;
@@ -1478,6 +1489,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEReference(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__DATA_SOURCE);
 
 		describedDataProviderEClass = createEClass(DESCRIBED_DATA_PROVIDER);
+		createEReference(describedDataProviderEClass, DESCRIBED_DATA_PROVIDER__DESCRIPTOR);
 
 		imageEClass = createEClass(IMAGE);
 		createEReference(imageEClass, IMAGE__INITIAL_LAYOUT);
@@ -1612,8 +1624,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		EGenericType g2 = createEGenericType(describedDataProviderEClass_T);
 		g1.getETypeArguments().add(g2);
 		describedDataProviderEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getDescriptor());
-		describedDataProviderEClass.getEGenericSuperTypes().add(g1);
 		imageEClass.getESuperTypes().add(this.getDescriptedResource());
 		staticImageEClass.getESuperTypes().add(this.getImage());
 		staticImageEClass.getESuperTypes().add(theImagePackage.getImageInfo());
@@ -1691,6 +1701,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getBufferDataProvider_DataSource(), g1, null, "dataSource", null, 0, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(describedDataProviderEClass, DescribedDataProvider.class, "DescribedDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDescribedDataProvider_Descriptor(), this.getDescriptor(), null, "descriptor", null, 1, 1, DescribedDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageEClass, Image.class, "Image", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getImage_InitialLayout(), this.getImageLayout(), null, "initialLayout", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

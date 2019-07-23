@@ -92,10 +92,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DescribedDataProvider">
     <eTypeParameters name="T"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptor" lowerBound="1"
+        eType="#//Descriptor" containment="true"/>
     <eGenericSuperTypes eClassifier="#//BufferDataProvider">
       <eTypeArguments eTypeParameter="#//DescribedDataProvider/T"/>
     </eGenericSuperTypes>
-    <eGenericSuperTypes eClassifier="#//Descriptor"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="ByteBuffer" instanceClassName="java.nio.ByteBuffer"/>
   <eClassifiers xsi:type="ecore:EClass" name="Image" abstract="true" eSuperTypes="#//DescriptedResource">

@@ -170,6 +170,7 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//DescribedDataProvider">
       <genTypeParameters ecoreTypeParameter="resource.ecore#//DescribedDataProvider/T"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//DescribedDataProvider/descriptor"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//Image">
       <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Image/initialLayout"/>
