@@ -73,6 +73,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 			case RenderingPackage.GENERIC_INDEX_PROVIDER: return createGenericIndexProvider();
 			case RenderingPackage.PRESENTATION_ROOT_PKG: return createPresentationRootPkg();
 			case RenderingPackage.STATIC_RESOURCE_PROVIDER: return createStaticResourceProvider();
+			case RenderingPackage.COMPOSITE_RESOURCE_PROVIDER: return createCompositeResourceProvider();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -184,6 +185,18 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	{
 		StaticResourceProviderImpl staticResourceProvider = new StaticResourceProviderImpl();
 		return staticResourceProvider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CompositeResourceProvider createCompositeResourceProvider()
+	{
+		CompositeResourceProviderImpl compositeResourceProvider = new CompositeResourceProviderImpl();
+		return compositeResourceProvider;
 	}
 
 	/**

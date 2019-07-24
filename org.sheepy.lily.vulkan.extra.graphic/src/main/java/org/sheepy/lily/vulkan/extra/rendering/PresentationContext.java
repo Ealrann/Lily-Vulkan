@@ -34,8 +34,8 @@ public final class PresentationContext<T extends Presentation>
 
 	public static class Builder<T extends Presentation>
 	{
-		public final boolean containsDynamicDescriptors;
-		public final boolean containsIndexData;
+		public final boolean hasDynamicDescriptors;
+		public final boolean hasIndexData;
 
 		private final GenericRenderer<T> maintainer;
 
@@ -45,8 +45,8 @@ public final class PresentationContext<T extends Presentation>
 		{
 			this.maintainer = maintainer;
 
-			containsDynamicDescriptors = isContainingDynamicDescriptors();
-			containsIndexData = isContainingIndexData();
+			hasDynamicDescriptors = isContainingDynamicDescriptors();
+			hasIndexData = isContainingIndexData();
 		}
 
 		private boolean isContainingDynamicDescriptors()
@@ -77,7 +77,7 @@ public final class PresentationContext<T extends Presentation>
 
 		private void setupDescriptorSet(PipelineContext pipelineContext, final TaskPkg taskPkg)
 		{
-			if (containsDynamicDescriptors)
+			if (hasDynamicDescriptors)
 			{
 				final var descriptorSet = ResourceFactory.eINSTANCE.createDescriptorSet();
 				descriptorSet.getDescriptors().add(buffer);

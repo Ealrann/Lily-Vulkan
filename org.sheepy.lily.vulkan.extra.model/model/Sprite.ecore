@@ -17,7 +17,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SpriteMonoSamplerProvider" eSuperTypes="Rendering.ecore#//ResourceProvider">
     <eStructuralFeatures xsi:type="ecore:EReference" name="samplerInfo" lowerBound="1"
-        eType="ecore:EClass ../../org.sheepy.vulkan.model/model/Image.ecore#//SamplerInfo"/>
+        eType="ecore:EClass ../../org.sheepy.vulkan.model/model/Image.ecore#//SamplerInfo"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

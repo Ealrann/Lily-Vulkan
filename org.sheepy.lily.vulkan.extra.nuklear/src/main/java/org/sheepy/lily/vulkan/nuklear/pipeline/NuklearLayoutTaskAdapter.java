@@ -6,6 +6,7 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
+import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.presentation.IUIView;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
@@ -13,7 +14,6 @@ import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IPushBufferAdapter;
-import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawTaskMaintainer;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
@@ -55,7 +55,7 @@ public class NuklearLayoutTaskAdapter
 	{
 		this.context = context;
 		window = context.getWindow();
-		application = VulkanModelUtil.getApplication(task);
+		application = ModelUtil.getApplication(task);
 		nuklearContextAdapter = NuklearContextAdapter.adapt(task.getContext());
 
 		// Prepare a first render before the opening of the window

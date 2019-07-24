@@ -11,10 +11,10 @@ import org.sheepy.lily.core.api.adapter.annotation.Autorun;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.adapter.annotation.Tick;
+import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
 import org.sheepy.lily.vulkan.api.util.SizeOf;
-import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 
 @Statefull
@@ -45,7 +45,7 @@ public class CameraConstantAdapter implements IVulkanAdapter
 	public CameraConstantAdapter(ConstantBuffer buffer)
 	{
 		this.buffer = buffer;
-		this.application = VulkanModelUtil.getApplication(buffer);
+		this.application = ModelUtil.getApplication(buffer);
 	}
 
 	@Autorun

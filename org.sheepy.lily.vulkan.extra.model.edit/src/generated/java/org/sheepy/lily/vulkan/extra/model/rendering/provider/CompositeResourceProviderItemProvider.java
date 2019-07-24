@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.extra.model.sprite.provider;
+package org.sheepy.lily.vulkan.extra.model.rendering.provider;
 
 
 import java.util.Collection;
@@ -12,31 +12,30 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
 
-import org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider;
-import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.vulkan.model.image.ImageFactory;
+import org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+
+import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SpriteMonoSamplerProviderItemProvider 
+public class CompositeResourceProviderItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -51,7 +50,7 @@ public class SpriteMonoSamplerProviderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SpriteMonoSamplerProviderItemProvider(AdapterFactory adapterFactory)
+	public CompositeResourceProviderItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -69,56 +68,8 @@ public class SpriteMonoSamplerProviderItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addWidthPropertyDescriptor(object);
-			addHeightPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Width feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addWidthPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SpriteMonoSamplerProvider_width_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SpriteMonoSamplerProvider_width_feature", "_UI_SpriteMonoSamplerProvider_type"),
-				 SpritePackage.Literals.SPRITE_MONO_SAMPLER_PROVIDER__WIDTH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Height feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addHeightPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SpriteMonoSamplerProvider_height_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SpriteMonoSamplerProvider_height_feature", "_UI_SpriteMonoSamplerProvider_type"),
-				 SpritePackage.Literals.SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -135,7 +86,7 @@ public class SpriteMonoSamplerProviderItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SpritePackage.Literals.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO);
+			childrenFeatures.add(RenderingPackage.Literals.COMPOSITE_RESOURCE_PROVIDER__PROVIDERS);
 		}
 		return childrenFeatures;
 	}
@@ -155,7 +106,7 @@ public class SpriteMonoSamplerProviderItemProvider
 	}
 
 	/**
-	 * This returns SpriteMonoSamplerProvider.gif.
+	 * This returns CompositeResourceProvider.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -163,7 +114,7 @@ public class SpriteMonoSamplerProviderItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SpriteMonoSamplerProvider"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CompositeResourceProvider"));
 	}
 
 	/**
@@ -175,8 +126,7 @@ public class SpriteMonoSamplerProviderItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		SpriteMonoSamplerProvider spriteMonoSamplerProvider = (SpriteMonoSamplerProvider)object;
-		return getString("_UI_SpriteMonoSamplerProvider_type") + " " + spriteMonoSamplerProvider.getWidth();
+		return getString("_UI_CompositeResourceProvider_type");
 	}
 
 
@@ -192,13 +142,9 @@ public class SpriteMonoSamplerProviderItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SpriteMonoSamplerProvider.class))
+		switch (notification.getFeatureID(CompositeResourceProvider.class))
 		{
-			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__WIDTH:
-			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO:
+			case RenderingPackage.COMPOSITE_RESOURCE_PROVIDER__PROVIDERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -219,13 +165,18 @@ public class SpriteMonoSamplerProviderItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SpritePackage.Literals.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO,
-				 ResourceFactory.eINSTANCE.createSampler()));
+				(RenderingPackage.Literals.COMPOSITE_RESOURCE_PROVIDER__PROVIDERS,
+				 RenderingFactory.eINSTANCE.createStaticResourceProvider()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SpritePackage.Literals.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO,
-				 ImageFactory.eINSTANCE.createSamplerInfo()));
+				(RenderingPackage.Literals.COMPOSITE_RESOURCE_PROVIDER__PROVIDERS,
+				 RenderingFactory.eINSTANCE.createCompositeResourceProvider()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RenderingPackage.Literals.COMPOSITE_RESOURCE_PROVIDER__PROVIDERS,
+				 SpriteFactory.eINSTANCE.createSpriteMonoSamplerProvider()));
 	}
 
 	/**
@@ -237,7 +188,7 @@ public class SpriteMonoSamplerProviderItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ExtraEditPlugin.INSTANCE;
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

@@ -33,6 +33,7 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
+import org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.Entity;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericDataProvider;
@@ -188,6 +189,13 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	private EClass staticResourceProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compositeResourceProviderEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -708,6 +716,28 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
+	public EClass getCompositeResourceProvider()
+	{
+		return compositeResourceProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompositeResourceProvider_Providers()
+	{
+		return (EReference)compositeResourceProviderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public RenderingFactory getRenderingFactory()
 	{
 		return (RenderingFactory)getEFactoryInstance();
@@ -786,6 +816,9 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 
 		staticResourceProviderEClass = createEClass(STATIC_RESOURCE_PROVIDER);
 		createEReference(staticResourceProviderEClass, STATIC_RESOURCE_PROVIDER__RESOURCES);
+
+		compositeResourceProviderEClass = createEClass(COMPOSITE_RESOURCE_PROVIDER);
+		createEReference(compositeResourceProviderEClass, COMPOSITE_RESOURCE_PROVIDER__PROVIDERS);
 	}
 
 	/**
@@ -882,6 +915,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		g1.getETypeArguments().add(g2);
 		genericIndexProviderEClass.getEGenericSuperTypes().add(g1);
 		staticResourceProviderEClass.getESuperTypes().add(this.getResourceProvider());
+		compositeResourceProviderEClass.getESuperTypes().add(this.getResourceProvider());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(entityEClass, Entity.class, "Entity", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -955,6 +989,9 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 
 		initEClass(staticResourceProviderEClass, StaticResourceProvider.class, "StaticResourceProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStaticResourceProvider_Resources(), theResourcePackage.getDescriptedResource(), null, "resources", null, 1, -1, StaticResourceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(compositeResourceProviderEClass, CompositeResourceProvider.class, "CompositeResourceProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompositeResourceProvider_Providers(), this.getResourceProvider(), null, "providers", null, 0, -1, CompositeResourceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

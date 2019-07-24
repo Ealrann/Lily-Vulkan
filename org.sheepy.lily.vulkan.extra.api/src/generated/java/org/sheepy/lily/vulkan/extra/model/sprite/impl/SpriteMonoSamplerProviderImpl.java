@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.extra.model.sprite.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -33,7 +34,7 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
 public class SpriteMonoSamplerProviderImpl extends MinimalEObjectImpl.Container implements SpriteMonoSamplerProvider
 {
 	/**
-	 * The cached value of the '{@link #getSamplerInfo() <em>Sampler Info</em>}' reference.
+	 * The cached value of the '{@link #getSamplerInfo() <em>Sampler Info</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSamplerInfo()
@@ -108,16 +109,6 @@ public class SpriteMonoSamplerProviderImpl extends MinimalEObjectImpl.Container 
 	@Override
 	public SamplerInfo getSamplerInfo()
 	{
-		if (samplerInfo != null && samplerInfo.eIsProxy())
-		{
-			InternalEObject oldSamplerInfo = (InternalEObject)samplerInfo;
-			samplerInfo = (SamplerInfo)eResolveProxy(oldSamplerInfo);
-			if (samplerInfo != oldSamplerInfo)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO, oldSamplerInfo, samplerInfo));
-			}
-		}
 		return samplerInfo;
 	}
 
@@ -126,9 +117,16 @@ public class SpriteMonoSamplerProviderImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SamplerInfo basicGetSamplerInfo()
+	public NotificationChain basicSetSamplerInfo(SamplerInfo newSamplerInfo, NotificationChain msgs)
 	{
-		return samplerInfo;
+		SamplerInfo oldSamplerInfo = samplerInfo;
+		samplerInfo = newSamplerInfo;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO, oldSamplerInfo, newSamplerInfo);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -139,10 +137,18 @@ public class SpriteMonoSamplerProviderImpl extends MinimalEObjectImpl.Container 
 	@Override
 	public void setSamplerInfo(SamplerInfo newSamplerInfo)
 	{
-		SamplerInfo oldSamplerInfo = samplerInfo;
-		samplerInfo = newSamplerInfo;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO, oldSamplerInfo, samplerInfo));
+		if (newSamplerInfo != samplerInfo)
+		{
+			NotificationChain msgs = null;
+			if (samplerInfo != null)
+				msgs = ((InternalEObject)samplerInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO, null, msgs);
+			if (newSamplerInfo != null)
+				msgs = ((InternalEObject)newSamplerInfo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO, null, msgs);
+			msgs = basicSetSamplerInfo(newSamplerInfo, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO, newSamplerInfo, newSamplerInfo));
 	}
 
 	/**
@@ -201,13 +207,28 @@ public class SpriteMonoSamplerProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO:
+				return basicSetSamplerInfo(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
 		{
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO:
-				if (resolve) return getSamplerInfo();
-				return basicGetSamplerInfo();
+				return getSamplerInfo();
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__WIDTH:
 				return getWidth();
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT:

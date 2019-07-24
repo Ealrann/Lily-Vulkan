@@ -375,7 +375,7 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		initEClass(spritePkgEClass, SpritePkg.class, "SpritePkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(spriteMonoSamplerProviderEClass, SpriteMonoSamplerProvider.class, "SpriteMonoSamplerProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSpriteMonoSamplerProvider_SamplerInfo(), theImagePackage.getSamplerInfo(), null, "samplerInfo", null, 1, 1, SpriteMonoSamplerProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpriteMonoSamplerProvider_SamplerInfo(), theImagePackage.getSamplerInfo(), null, "samplerInfo", null, 1, 1, SpriteMonoSamplerProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSpriteMonoSamplerProvider_Width(), ecorePackage.getEInt(), "width", null, 1, 1, SpriteMonoSamplerProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSpriteMonoSamplerProvider_Height(), ecorePackage.getEInt(), "height", null, 1, 1, SpriteMonoSamplerProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

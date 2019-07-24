@@ -227,6 +227,11 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RenderingPackage.Literals.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER,
+				 RenderingFactory.eINSTANCE.createCompositeResourceProvider()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RenderingPackage.Literals.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER,
 				 SpriteFactory.eINSTANCE.createSpriteMonoSamplerProvider()));
 	}
 

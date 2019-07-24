@@ -16,5 +16,4 @@ public class StaticResourceProviderAdapter implements IResourceProviderAdapter
 	{
 		return ((StaticResourceProvider) provider).getResources();
 	}
-
 }

@@ -82,9 +82,8 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation>
 		@SuppressWarnings("unchecked")
 		final var classifier = (Class<T>) presentedEClass.getInstanceClass();
 
-		final boolean needRecreatePipelines = builder.containsDynamicDescriptors
-				|| builder.containsIndexData;
-		final var commonPipeline = needRecreatePipelines
+		final boolean needRecreatePipeline = builder.hasDynamicDescriptors || builder.hasIndexData;
+		final var commonPipeline = needRecreatePipeline
 				? null
 				: newPipelineContext(pipelineIndex.getAndIncrement());
 		final var stream = presentations.filter(classifier::isInstance).map(classifier::cast);

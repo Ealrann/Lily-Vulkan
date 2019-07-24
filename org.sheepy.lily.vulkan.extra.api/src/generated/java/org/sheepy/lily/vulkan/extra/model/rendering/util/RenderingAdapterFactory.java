@@ -164,6 +164,11 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createStaticResourceProviderAdapter();
 			}
 			@Override
+			public Adapter caseCompositeResourceProvider(CompositeResourceProvider object)
+			{
+				return createCompositeResourceProviderAdapter();
+			}
+			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
@@ -466,6 +471,21 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createStaticResourceProviderAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider <em>Composite Resource Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider
+	 * @generated
+	 */
+	public Adapter createCompositeResourceProviderAdapter()
 	{
 		return null;
 	}

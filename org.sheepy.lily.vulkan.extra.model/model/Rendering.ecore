@@ -144,4 +144,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="resources" lowerBound="1"
         upperBound="-1" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//DescriptedResource"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeResourceProvider" eSuperTypes="#//ResourceProvider">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="providers" upperBound="-1"
+        eType="#//ResourceProvider" containment="true"/>
+  </eClassifiers>
 </ecore:EPackage>

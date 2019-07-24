@@ -104,6 +104,15 @@ public interface RenderingFactory extends EFactory
 	StaticResourceProvider createStaticResourceProvider();
 
 	/**
+	 * Returns a new object of class '<em>Composite Resource Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Composite Resource Provider</em>'.
+	 * @generated
+	 */
+	CompositeResourceProvider createCompositeResourceProvider();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

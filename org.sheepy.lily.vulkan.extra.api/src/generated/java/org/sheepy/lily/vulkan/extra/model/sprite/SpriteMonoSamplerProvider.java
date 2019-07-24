@@ -27,22 +27,22 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
 public interface SpriteMonoSamplerProvider extends ResourceProvider
 {
 	/**
-	 * Returns the value of the '<em><b>Sampler Info</b></em>' reference.
+	 * Returns the value of the '<em><b>Sampler Info</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sampler Info</em>' reference.
+	 * @return the value of the '<em>Sampler Info</em>' containment reference.
 	 * @see #setSamplerInfo(SamplerInfo)
 	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage#getSpriteMonoSamplerProvider_SamplerInfo()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	SamplerInfo getSamplerInfo();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getSamplerInfo <em>Sampler Info</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getSamplerInfo <em>Sampler Info</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sampler Info</em>' reference.
+	 * @param value the new value of the '<em>Sampler Info</em>' containment reference.
 	 * @see #getSamplerInfo()
 	 * @generated
 	 */

@@ -390,7 +390,7 @@ public interface SpritePackage extends EPackage
 	int SPRITE_MONO_SAMPLER_PROVIDER = 3;
 
 	/**
-	 * The feature id for the '<em><b>Sampler Info</b></em>' reference.
+	 * The feature id for the '<em><b>Sampler Info</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -486,10 +486,10 @@ public interface SpritePackage extends EPackage
 	EClass getSpriteMonoSamplerProvider();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getSamplerInfo <em>Sampler Info</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getSamplerInfo <em>Sampler Info</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Sampler Info</em>'.
+	 * @return the meta object for the containment reference '<em>Sampler Info</em>'.
 	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getSamplerInfo()
 	 * @see #getSpriteMonoSamplerProvider()
 	 * @generated
@@ -585,7 +585,7 @@ public interface SpritePackage extends EPackage
 		 */
 		EClass SPRITE_MONO_SAMPLER_PROVIDER = eINSTANCE.getSpriteMonoSamplerProvider();
 		/**
-		 * The meta object literal for the '<em><b>Sampler Info</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Sampler Info</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

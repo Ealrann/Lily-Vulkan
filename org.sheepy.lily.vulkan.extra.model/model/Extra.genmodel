@@ -102,6 +102,9 @@
     <genClasses ecoreClass="Rendering.ecore#//StaticResourceProvider">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//StaticResourceProvider/resources"/>
     </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//CompositeResourceProvider">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//CompositeResourceProvider/providers"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Sprite" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
       childCreationExtenders="true" ecorePackage="Sprite.ecore#/">
@@ -111,7 +114,7 @@
     </genClasses>
     <genClasses ecoreClass="Sprite.ecore#//SpritePkg"/>
     <genClasses ecoreClass="Sprite.ecore#//SpriteMonoSamplerProvider">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteMonoSamplerProvider/samplerInfo"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteMonoSamplerProvider/samplerInfo"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sprite.ecore#//SpriteMonoSamplerProvider/width"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sprite.ecore#//SpriteMonoSamplerProvider/height"/>
     </genClasses>

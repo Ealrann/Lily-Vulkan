@@ -1092,6 +1092,44 @@ public interface RenderingPackage extends EPackage
 
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CompositeResourceProviderImpl <em>Composite Resource Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.CompositeResourceProviderImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCompositeResourceProvider()
+	 * @generated
+	 */
+	int COMPOSITE_RESOURCE_PROVIDER = 16;
+
+	/**
+	 * The feature id for the '<em><b>Providers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_RESOURCE_PROVIDER__PROVIDERS = RESOURCE_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Composite Resource Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_RESOURCE_PROVIDER_FEATURE_COUNT = RESOURCE_PROVIDER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Composite Resource Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_RESOURCE_PROVIDER_OPERATION_COUNT = RESOURCE_PROVIDER_OPERATION_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.Entity <em>Entity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1494,6 +1532,27 @@ public interface RenderingPackage extends EPackage
 	EReference getStaticResourceProvider_Resources();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider <em>Composite Resource Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Composite Resource Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider
+	 * @generated
+	 */
+	EClass getCompositeResourceProvider();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider#getProviders <em>Providers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Providers</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider#getProviders()
+	 * @see #getCompositeResourceProvider()
+	 * @generated
+	 */
+	EReference getCompositeResourceProvider_Providers();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1851,6 +1910,24 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EReference STATIC_RESOURCE_PROVIDER__RESOURCES = eINSTANCE.getStaticResourceProvider_Resources();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CompositeResourceProviderImpl <em>Composite Resource Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.CompositeResourceProviderImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCompositeResourceProvider()
+		 * @generated
+		 */
+		EClass COMPOSITE_RESOURCE_PROVIDER = eINSTANCE.getCompositeResourceProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Providers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITE_RESOURCE_PROVIDER__PROVIDERS = eINSTANCE.getCompositeResourceProvider_Providers();
 
 	}
 

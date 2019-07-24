@@ -320,6 +320,31 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CompositeResourceProviderItemProvider compositeResourceProviderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCompositeResourceProviderAdapter()
+	{
+		if (compositeResourceProviderItemProvider == null)
+		{
+			compositeResourceProviderItemProvider = new CompositeResourceProviderItemProvider(this);
+		}
+
+		return compositeResourceProviderItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -477,6 +502,7 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 		if (genericIndexProviderItemProvider != null) genericIndexProviderItemProvider.dispose();
 		if (presentationRootPkgItemProvider != null) presentationRootPkgItemProvider.dispose();
 		if (staticResourceProviderItemProvider != null) staticResourceProviderItemProvider.dispose();
+		if (compositeResourceProviderItemProvider != null) compositeResourceProviderItemProvider.dispose();
 	}
 
 	/**
