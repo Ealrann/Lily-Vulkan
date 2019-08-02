@@ -17,7 +17,7 @@ public interface IVkDescriptorSet
 	void fillPoolSizes(VkDescriptorPoolSize.Buffer poolSizes);
 
 	List<IVkDescriptor> getDescriptors();
-	int size();
+	int descriptorCount();
 
 	void updateDescriptorSet(MemoryStack stack);
 }

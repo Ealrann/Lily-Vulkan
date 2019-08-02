@@ -21,17 +21,25 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rightDirection" eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector3d"
         defaultValueLiteral="0;0;0"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Structure" abstract="true" interface="true">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="#//Presentation"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="presentations" lowerBound="1"
+        upperBound="-1" containment="true">
+      <eGenericType eTypeParameter="#//Structure/T"/>
+    </eStructuralFeatures>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Presentation" abstract="true" interface="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="presentedEntities" upperBound="-1"
         eType="#//PresentableEntity" eOpposite="#//PresentableEntity/presentation"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PresentationPkg" abstract="true">
-    <eTypeParameters name="T">
-      <eBounds eClassifier="#//Presentation"/>
-    </eTypeParameters>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="presentations" upperBound="-1"
+  <eClassifiers xsi:type="ecore:EClass" name="PresentationPkg">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="structures" upperBound="-1"
         containment="true">
-      <eGenericType eTypeParameter="#//PresentationPkg/T"/>
+      <eGenericType eClassifier="#//Structure">
+        <eTypeArguments/>
+      </eGenericType>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PresentableEntity" eSuperTypes="#//PhysicalEntity">
@@ -42,7 +50,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenericRenderer" abstract="true">
     <eTypeParameters name="T">
-      <eBounds eClassifier="#//Presentation"/>
+      <eBounds eClassifier="#//Structure">
+        <eTypeArguments/>
+      </eBounds>
     </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataProviderPkg" lowerBound="1"
         containment="true">
@@ -50,12 +60,9 @@
         <eTypeArguments eTypeParameter="#//GenericRenderer/T"/>
       </eGenericType>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="presentationPkg" lowerBound="1">
-      <eGenericType eClassifier="#//PresentationPkg">
-        <eTypeArguments>
-          <eUpperBound eTypeParameter="#//GenericRenderer/T"/>
-        </eTypeArguments>
-      </eGenericType>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="renderedStructures" lowerBound="1"
+        upperBound="-1">
+      <eGenericType eTypeParameter="#//GenericRenderer/T"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constantBuffer" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//ConstantBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pushBuffer" lowerBound="1"
@@ -67,77 +74,80 @@
       <eTypeArguments eClassifier="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/graphic.ecore#//GraphicsPipeline"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GenericDataProvider" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="RenderDataProvider" abstract="true"
+      interface="true">
     <eTypeParameters name="T">
-      <eBounds eClassifier="#//Presentation"/>
+      <eBounds eClassifier="#//Structure">
+        <eTypeArguments/>
+      </eBounds>
     </eTypeParameters>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//BufferDataProvider">
       <eTypeArguments eClassifier="#//RenderableDataSource">
-        <eTypeArguments eTypeParameter="#//GenericDataProvider/T"/>
+        <eTypeArguments eTypeParameter="#//RenderDataProvider/T"/>
       </eTypeArguments>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataProviderPkg">
     <eTypeParameters name="T">
-      <eBounds eClassifier="#//Presentation"/>
+      <eBounds eClassifier="#//Structure">
+        <eTypeArguments/>
+      </eBounds>
     </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataProviders" lowerBound="1"
         upperBound="-1" containment="true">
-      <eGenericType eClassifier="#//GenericDataProvider">
+      <eGenericType eClassifier="#//RenderDataProvider">
         <eTypeArguments eTypeParameter="#//DataProviderPkg/T"/>
       </eGenericType>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GenericDescribedDataProvider">
+  <eClassifiers xsi:type="ecore:EClass" name="DescribedDataProvider">
     <eTypeParameters name="T">
-      <eBounds eClassifier="#//Presentation"/>
+      <eBounds eClassifier="#//Structure">
+        <eTypeArguments/>
+      </eBounds>
     </eTypeParameters>
-    <eGenericSuperTypes eClassifier="#//GenericDataProvider">
-      <eTypeArguments eTypeParameter="#//GenericDescribedDataProvider/T"/>
+    <eGenericSuperTypes eClassifier="#//RenderDataProvider">
+      <eTypeArguments eTypeParameter="#//DescribedDataProvider/T"/>
     </eGenericSuperTypes>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//DescribedDataProvider">
       <eTypeArguments eClassifier="#//RenderableDataSource">
-        <eTypeArguments eTypeParameter="#//GenericDescribedDataProvider/T"/>
+        <eTypeArguments eTypeParameter="#//DescribedDataProvider/T"/>
       </eTypeArguments>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RenderableDataSource">
     <eTypeParameters name="T">
-      <eBounds eClassifier="#//Presentation"/>
+      <eBounds eClassifier="#//Structure">
+        <eTypeArguments/>
+      </eBounds>
     </eTypeParameters>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="presentation" lowerBound="1">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="structure" lowerBound="1">
       <eGenericType eTypeParameter="#//RenderableDataSource/T"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="part" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GenericVertexProvider">
+  <eClassifiers xsi:type="ecore:EClass" name="VertexProvider">
     <eTypeParameters name="T">
-      <eBounds eClassifier="#//Presentation"/>
+      <eBounds eClassifier="#//Structure">
+        <eTypeArguments/>
+      </eBounds>
     </eTypeParameters>
-    <eGenericSuperTypes eClassifier="#//GenericDataProvider">
-      <eTypeArguments eTypeParameter="#//GenericVertexProvider/T"/>
+    <eGenericSuperTypes eClassifier="#//RenderDataProvider">
+      <eTypeArguments eTypeParameter="#//VertexProvider/T"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GenericIndexProvider">
+  <eClassifiers xsi:type="ecore:EClass" name="IndexProvider">
     <eTypeParameters name="T">
-      <eBounds eClassifier="#//Presentation"/>
+      <eBounds eClassifier="#//Structure">
+        <eTypeArguments/>
+      </eBounds>
     </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="indexType" lowerBound="1"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EIndexType"
         defaultValueLiteral="UINT32"/>
-    <eGenericSuperTypes eClassifier="#//GenericDataProvider">
-      <eTypeArguments eTypeParameter="#//GenericIndexProvider/T"/>
+    <eGenericSuperTypes eClassifier="#//RenderDataProvider">
+      <eTypeArguments eTypeParameter="#//IndexProvider/T"/>
     </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PresentationRootPkg">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="presentationPkgs" upperBound="-1"
-        containment="true">
-      <eGenericType eClassifier="#//PresentationPkg">
-        <eTypeArguments>
-          <eUpperBound eClassifier="#//Presentation"/>
-        </eTypeArguments>
-      </eGenericType>
-    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResourceProvider" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="StaticResourceProvider" eSuperTypes="#//ResourceProvider">

@@ -99,12 +99,17 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createAxisAdapter();
 			}
 			@Override
+			public <T extends Presentation> Adapter caseStructure(Structure<T> object)
+			{
+				return createStructureAdapter();
+			}
+			@Override
 			public Adapter casePresentation(Presentation object)
 			{
 				return createPresentationAdapter();
 			}
 			@Override
-			public <T extends Presentation> Adapter casePresentationPkg(PresentationPkg<T> object)
+			public Adapter casePresentationPkg(PresentationPkg object)
 			{
 				return createPresentationPkgAdapter();
 			}
@@ -114,44 +119,39 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createPresentableEntityAdapter();
 			}
 			@Override
-			public <T extends Presentation> Adapter caseGenericRenderer(GenericRenderer<T> object)
+			public <T extends Structure<?>> Adapter caseGenericRenderer(GenericRenderer<T> object)
 			{
 				return createGenericRendererAdapter();
 			}
 			@Override
-			public <T extends Presentation> Adapter caseGenericDataProvider(GenericDataProvider<T> object)
+			public <T extends Structure<?>> Adapter caseRenderDataProvider(RenderDataProvider<T> object)
 			{
-				return createGenericDataProviderAdapter();
+				return createRenderDataProviderAdapter();
 			}
 			@Override
-			public <T extends Presentation> Adapter caseDataProviderPkg(DataProviderPkg<T> object)
+			public <T extends Structure<?>> Adapter caseDataProviderPkg(DataProviderPkg<T> object)
 			{
 				return createDataProviderPkgAdapter();
 			}
 			@Override
-			public <T extends Presentation> Adapter caseGenericDescribedDataProvider(GenericDescribedDataProvider<T> object)
+			public <T extends Structure<?>> Adapter caseDescribedDataProvider(org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider<T> object)
 			{
-				return createGenericDescribedDataProviderAdapter();
+				return createDescribedDataProviderAdapter();
 			}
 			@Override
-			public <T extends Presentation> Adapter caseRenderableDataSource(RenderableDataSource<T> object)
+			public <T extends Structure<?>> Adapter caseRenderableDataSource(RenderableDataSource<T> object)
 			{
 				return createRenderableDataSourceAdapter();
 			}
 			@Override
-			public <T extends Presentation> Adapter caseGenericVertexProvider(GenericVertexProvider<T> object)
+			public <T extends Structure<?>> Adapter caseVertexProvider(VertexProvider<T> object)
 			{
-				return createGenericVertexProviderAdapter();
+				return createVertexProviderAdapter();
 			}
 			@Override
-			public <T extends Presentation> Adapter caseGenericIndexProvider(GenericIndexProvider<T> object)
+			public <T extends Structure<?>> Adapter caseIndexProvider(IndexProvider<T> object)
 			{
-				return createGenericIndexProviderAdapter();
-			}
-			@Override
-			public Adapter casePresentationRootPkg(PresentationRootPkg object)
-			{
-				return createPresentationRootPkgAdapter();
+				return createIndexProviderAdapter();
 			}
 			@Override
 			public Adapter caseResourceProvider(ResourceProvider object)
@@ -209,9 +209,9 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createBufferDataProviderAdapter();
 			}
 			@Override
-			public <T> Adapter caseDescribedDataProvider(DescribedDataProvider<T> object)
+			public <T> Adapter caseResource_DescribedDataProvider(DescribedDataProvider<T> object)
 			{
-				return createDescribedDataProviderAdapter();
+				return createResource_DescribedDataProviderAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -281,6 +281,21 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.Structure <em>Structure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Structure
+	 * @generated
+	 */
+	public Adapter createStructureAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.Presentation <em>Presentation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -341,16 +356,16 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericDataProvider <em>Generic Data Provider</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider <em>Render Data Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericDataProvider
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider
 	 * @generated
 	 */
-	public Adapter createGenericDataProviderAdapter()
+	public Adapter createRenderDataProviderAdapter()
 	{
 		return null;
 	}
@@ -371,21 +386,6 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericDescribedDataProvider <em>Generic Described Data Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericDescribedDataProvider
-	 * @generated
-	 */
-	public Adapter createGenericDescribedDataProviderAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource <em>Renderable Data Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -401,46 +401,31 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericVertexProvider <em>Generic Vertex Provider</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.VertexProvider <em>Vertex Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericVertexProvider
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.VertexProvider
 	 * @generated
 	 */
-	public Adapter createGenericVertexProviderAdapter()
+	public Adapter createVertexProviderAdapter()
 	{
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericIndexProvider <em>Generic Index Provider</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider <em>Index Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericIndexProvider
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider
 	 * @generated
 	 */
-	public Adapter createGenericIndexProviderAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationRootPkg <em>Presentation Root Pkg</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PresentationRootPkg
-	 * @generated
-	 */
-	public Adapter createPresentationRootPkgAdapter()
+	public Adapter createIndexProviderAdapter()
 	{
 		return null;
 	}
@@ -618,6 +603,21 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.sheepy.lily.vulkan.model.resource.DescribedDataProvider
+	 * @generated
+	 */
+	public Adapter createResource_DescribedDataProviderAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider <em>Described Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider
 	 * @generated
 	 */
 	public Adapter createDescribedDataProviderAdapter()

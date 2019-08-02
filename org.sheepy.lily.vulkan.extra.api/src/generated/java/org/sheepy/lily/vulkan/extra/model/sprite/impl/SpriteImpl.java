@@ -23,6 +23,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
 import org.sheepy.lily.vulkan.extra.model.sprite.Sprite;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpriteType;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 
 /**
@@ -35,6 +36,7 @@ import org.sheepy.lily.vulkan.model.resource.PathResource;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteImpl#getPresentedEntities <em>Presented Entities</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteImpl#getFile <em>File</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -60,6 +62,26 @@ public class SpriteImpl extends MinimalEObjectImpl.Container implements Sprite
 	 * @ordered
 	 */
 	protected PathResource file;
+
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final SpriteType TYPE_EDEFAULT = SpriteType.FLOOR;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected SpriteType type = TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -152,6 +174,31 @@ public class SpriteImpl extends MinimalEObjectImpl.Container implements Sprite
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public SpriteType getType()
+	{
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setType(SpriteType newType)
+	{
+		SpriteType oldType = type;
+		type = newType == null ? TYPE_EDEFAULT : newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SpritePackage.SPRITE__TYPE, oldType, type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
@@ -196,6 +243,8 @@ public class SpriteImpl extends MinimalEObjectImpl.Container implements Sprite
 				return getPresentedEntities();
 			case SpritePackage.SPRITE__FILE:
 				return getFile();
+			case SpritePackage.SPRITE__TYPE:
+				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -218,6 +267,9 @@ public class SpriteImpl extends MinimalEObjectImpl.Container implements Sprite
 			case SpritePackage.SPRITE__FILE:
 				setFile((PathResource)newValue);
 				return;
+			case SpritePackage.SPRITE__TYPE:
+				setType((SpriteType)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -238,6 +290,9 @@ public class SpriteImpl extends MinimalEObjectImpl.Container implements Sprite
 			case SpritePackage.SPRITE__FILE:
 				setFile((PathResource)null);
 				return;
+			case SpritePackage.SPRITE__TYPE:
+				setType(TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -256,8 +311,27 @@ public class SpriteImpl extends MinimalEObjectImpl.Container implements Sprite
 				return presentedEntities != null && !presentedEntities.isEmpty();
 			case SpritePackage.SPRITE__FILE:
 				return file != null;
+			case SpritePackage.SPRITE__TYPE:
+				return type != TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (type: ");
+		result.append(type);
+		result.append(')');
+		return result.toString();
 	}
 
 } //SpriteImpl

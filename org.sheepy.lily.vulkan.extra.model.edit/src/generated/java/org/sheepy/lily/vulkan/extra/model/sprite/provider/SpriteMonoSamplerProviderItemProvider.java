@@ -71,6 +71,7 @@ public class SpriteMonoSamplerProviderItemProvider
 
 			addWidthPropertyDescriptor(object);
 			addHeightPropertyDescriptor(object);
+			addTargetResourcePkgPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -117,6 +118,29 @@ public class SpriteMonoSamplerProviderItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Target Resource Pkg feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetResourcePkgPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SpriteMonoSamplerProvider_targetResourcePkg_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SpriteMonoSamplerProvider_targetResourcePkg_feature", "_UI_SpriteMonoSamplerProvider_type"),
+				 SpritePackage.Literals.SPRITE_MONO_SAMPLER_PROVIDER__TARGET_RESOURCE_PKG,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

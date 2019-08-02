@@ -2041,7 +2041,25 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE2_DARRAY__NAME = DESCRIPTED_RESOURCE__NAME;
+	int TEXTURE2_DARRAY__NAME = IMAGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXTURE2_DARRAY__INITIAL_LAYOUT = IMAGE__INITIAL_LAYOUT;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXTURE2_DARRAY__DESCRIPTOR = IMAGE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Files</b></em>' containment reference list.
@@ -2050,7 +2068,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE2_DARRAY__FILES = DESCRIPTED_RESOURCE_FEATURE_COUNT + 0;
+	int TEXTURE2_DARRAY__FILES = IMAGE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Width</b></em>' attribute.
@@ -2059,7 +2077,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE2_DARRAY__WIDTH = DESCRIPTED_RESOURCE_FEATURE_COUNT + 1;
+	int TEXTURE2_DARRAY__WIDTH = IMAGE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
@@ -2068,7 +2086,16 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE2_DARRAY__HEIGHT = DESCRIPTED_RESOURCE_FEATURE_COUNT + 2;
+	int TEXTURE2_DARRAY__HEIGHT = IMAGE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Mipmap Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXTURE2_DARRAY__MIPMAP_ENABLED = IMAGE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Texture2 DArray</em>' class.
@@ -2077,7 +2104,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE2_DARRAY_FEATURE_COUNT = DESCRIPTED_RESOURCE_FEATURE_COUNT + 3;
+	int TEXTURE2_DARRAY_FEATURE_COUNT = IMAGE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Texture2 DArray</em>' class.
@@ -2086,7 +2113,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE2_DARRAY_OPERATION_COUNT = DESCRIPTED_RESOURCE_OPERATION_COUNT + 0;
+	int TEXTURE2_DARRAY_OPERATION_COUNT = IMAGE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '<em>Byte Buffer</em>' data type.
@@ -3032,6 +3059,17 @@ public interface ResourcePackage extends EPackage
 	EAttribute getTexture2DArray_Height();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray#isMipmapEnabled <em>Mipmap Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mipmap Enabled</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.Texture2DArray#isMipmapEnabled()
+	 * @see #getTexture2DArray()
+	 * @generated
+	 */
+	EAttribute getTexture2DArray_MipmapEnabled();
+
+	/**
 	 * Returns the meta object for data type '{@link java.nio.ByteBuffer <em>Byte Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3840,6 +3878,14 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute TEXTURE2_DARRAY__HEIGHT = eINSTANCE.getTexture2DArray_Height();
+
+		/**
+		 * The meta object literal for the '<em><b>Mipmap Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXTURE2_DARRAY__MIPMAP_ENABLED = eINSTANCE.getTexture2DArray_MipmapEnabled();
 
 		/**
 		 * The meta object literal for the '<em>Byte Buffer</em>' data type.

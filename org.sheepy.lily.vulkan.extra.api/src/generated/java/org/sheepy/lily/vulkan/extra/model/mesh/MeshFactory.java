@@ -23,15 +23,6 @@ public interface MeshFactory extends EFactory
 	MeshFactory eINSTANCE = org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Mesh</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mesh</em>'.
-	 * @generated
-	 */
-	Mesh createMesh();
-
-	/**
 	 * Returns a new object of class '<em>Renderer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -39,15 +30,6 @@ public interface MeshFactory extends EFactory
 	 * @generated
 	 */
 	MeshRenderer createMeshRenderer();
-
-	/**
-	 * Returns a new object of class '<em>Pkg</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Pkg</em>'.
-	 * @generated
-	 */
-	MeshPkg createMeshPkg();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -11,7 +11,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
  *
  *
  * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage#getMesh()
- * @model
+ * @model interface="true" abstract="true"
  * @generated
  */
 public interface Mesh extends Presentation

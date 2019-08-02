@@ -11,6 +11,7 @@ import org.sheepy.vulkan.execution.ISingleTimeCommand;
 
 public class BufferGPUFiller
 {
+	private static final int STAGING_USAGE = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 	private final IExecutionContext context;
 	private final long targetBufferId;
 	private final MemoryStack stack;
@@ -46,9 +47,11 @@ public class BufferGPUFiller
 
 	private void createStagingBuffer(ByteBuffer sourceBuffer, long byteSize)
 	{
-		final int usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-		stagingBuffer = BufferAllocator.allocateCPUBufferAndFill(stack, context, byteSize, usage,
-				false, sourceBuffer);
+		final int usage = STAGING_USAGE;
+		final var bufferInfo = new BufferInfo(byteSize, usage, false);
+		stagingBuffer = new CPUBufferBackend(bufferInfo, true);
+		stagingBuffer.allocate(stack, context);
+		stagingBuffer.pushData(context, sourceBuffer);
 	}
 
 	private void fillBuffer(VkCommandBuffer commandBuffer, long offset, long byteSize)

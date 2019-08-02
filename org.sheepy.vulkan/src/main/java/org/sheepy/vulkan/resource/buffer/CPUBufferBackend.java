@@ -11,9 +11,8 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.resource.memory.VkMemoryAllocator;
-import org.sheepy.vulkan.resource.memory.VkMemoryAllocator.MemoryAllocationInfo;
-import org.sheepy.vulkan.resource.memory.VkMemoryAllocator.MemoryInfo;
+import org.sheepy.vulkan.resource.memory.MemoryChunk;
+import org.sheepy.vulkan.resource.memory.MemoryChunkBuilder;
 
 public class CPUBufferBackend implements IBufferBackend
 {
@@ -25,6 +24,7 @@ public class CPUBufferBackend implements IBufferBackend
 
 	private long address = -1;
 	private long memoryAddress;
+	private MemoryChunk memory;
 	private long memoryMap = -1;
 	private int currentInstance = 0;
 	private long currentOffset = 0;
@@ -51,27 +51,34 @@ public class CPUBufferBackend implements IBufferBackend
 	@Override
 	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
+		final MemoryChunkBuilder memoryBuilder = new MemoryChunkBuilder(stack, context, properties);
+		allocate(stack, context, memoryBuilder);
+		memory = memoryBuilder.build(stack);
+		memory.allocate(stack, context);
+	}
+
+	@Override
+	public void allocate(	MemoryStack stack,
+							IExecutionContext context,
+							MemoryChunkBuilder memoryBuilder)
+	{
 		vkDevice = context.getVkDevice();
 
 		info.computeAlignment(context.getPhysicalDevice());
 		address = VkBufferAllocator.allocate(stack, vkDevice, info);
 
-		final var memoryInfo = allocateMemory(stack, context.getLogicalDevice());
-		memoryAddress = memoryInfo.id;
-
-		vkBindBufferMemory(vkDevice, address, memoryAddress, 0);
-		// System.out.println(Long.toHexString(bufferMemoryId));
-
-		if (info.keptMapped)
+		memoryBuilder.registerBuffer(address, (memoryPtr, memorySize) ->
 		{
-			mapMemory();
-		}
-	}
+			memoryAddress = memoryPtr;
 
-	private MemoryInfo allocateMemory(MemoryStack stack, LogicalDevice logicalDevice)
-	{
-		final var allocationInfo = new MemoryAllocationInfo(logicalDevice, address, properties);
-		return VkMemoryAllocator.allocateFromBuffer(stack, allocationInfo);
+			vkBindBufferMemory(vkDevice, address, memoryAddress, 0);
+			// System.out.println(Long.toHexString(bufferMemoryId));
+
+			if (info.keptMapped)
+			{
+				mapMemory();
+			}
+		});
 	}
 
 	@Override
@@ -85,7 +92,7 @@ public class CPUBufferBackend implements IBufferBackend
 		}
 
 		vkDestroyBuffer(vkDevice, address, null);
-		vkFreeMemory(vkDevice, memoryAddress, null);
+		if (memory != null) memory.free(context);
 
 		address = -1;
 		memoryAddress = -1;
@@ -192,5 +199,11 @@ public class CPUBufferBackend implements IBufferBackend
 	public long getMemoryMap()
 	{
 		return memoryMap;
+	}
+
+	@Override
+	public int getProperties()
+	{
+		return properties;
 	}
 }

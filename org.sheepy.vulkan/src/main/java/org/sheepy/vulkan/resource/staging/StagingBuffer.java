@@ -164,7 +164,8 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 
 		if (unsynchronizedCommands.isEmpty() == false)
 		{
-			executionContext.execute((MemoryStack stack, VkCommandBuffer subCommandBuffer) -> {
+			executionContext.execute((MemoryStack stack, VkCommandBuffer subCommandBuffer) ->
+			{
 				for (final var command : unsynchronizedCommands)
 				{
 					command.execute(stack, subCommandBuffer);

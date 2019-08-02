@@ -15,24 +15,25 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg#getPresentations <em>Presentations</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg#getStructures <em>Structures</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getPresentationPkg()
- * @model abstract="true"
+ * @model
  * @generated
  */
-public interface PresentationPkg<T extends Presentation> extends EObject
+public interface PresentationPkg extends EObject
 {
 	/**
-	 * Returns the value of the '<em><b>Presentations</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Structures</b></em>' containment reference list.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.extra.model.rendering.Structure}<code>&lt;?&gt;</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Presentations</em>' containment reference list.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getPresentationPkg_Presentations()
+	 * @return the value of the '<em>Structures</em>' containment reference list.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getPresentationPkg_Structures()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<T> getPresentations();
+	EList<Structure<?>> getStructures();
 
 } // PresentationPkg

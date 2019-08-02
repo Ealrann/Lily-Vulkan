@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.rendering;
 
+import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
@@ -19,7 +20,7 @@ import org.sheepy.lily.vulkan.model.resource.PushBuffer;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getDataProviderPkg <em>Data Provider Pkg</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getPresentationPkg <em>Presentation Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getRenderedStructures <em>Rendered Structures</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getConstantBuffer <em>Constant Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getPushBuffer <em>Push Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getCommonResourceProvider <em>Common Resource Provider</em>}</li>
@@ -29,7 +30,7 @@ import org.sheepy.lily.vulkan.model.resource.PushBuffer;
  * @model abstract="true"
  * @generated
  */
-public interface GenericRenderer<T extends Presentation> extends GraphicsPipeline, Maintainer<GraphicsPipeline>
+public interface GenericRenderer<T extends Structure<?>> extends GraphicsPipeline, Maintainer<GraphicsPipeline>
 {
 	/**
 	 * Returns the value of the '<em><b>Data Provider Pkg</b></em>' containment reference.
@@ -54,26 +55,15 @@ public interface GenericRenderer<T extends Presentation> extends GraphicsPipelin
 	void setDataProviderPkg(DataProviderPkg<T> value);
 
 	/**
-	 * Returns the value of the '<em><b>Presentation Pkg</b></em>' reference.
+	 * Returns the value of the '<em><b>Rendered Structures</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Presentation Pkg</em>' reference.
-	 * @see #setPresentationPkg(PresentationPkg)
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getGenericRenderer_PresentationPkg()
+	 * @return the value of the '<em>Rendered Structures</em>' reference list.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getGenericRenderer_RenderedStructures()
 	 * @model required="true"
 	 * @generated
 	 */
-	PresentationPkg<? extends T> getPresentationPkg();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getPresentationPkg <em>Presentation Pkg</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Presentation Pkg</em>' reference.
-	 * @see #getPresentationPkg()
-	 * @generated
-	 */
-	void setPresentationPkg(PresentationPkg<? extends T> value);
+	EList<T> getRenderedStructures();
 
 	/**
 	 * Returns the value of the '<em><b>Constant Buffer</b></em>' reference.

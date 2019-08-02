@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
 
+import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.vulkan.model.image.SamplerInfo;
 
 /**
@@ -27,6 +28,7 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteMonoSamplerProviderImpl#getSamplerInfo <em>Sampler Info</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteMonoSamplerProviderImpl#getWidth <em>Width</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteMonoSamplerProviderImpl#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteMonoSamplerProviderImpl#getTargetResourcePkg <em>Target Resource Pkg</em>}</li>
  * </ul>
  *
  * @generated
@@ -79,6 +81,16 @@ public class SpriteMonoSamplerProviderImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected int height = HEIGHT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getTargetResourcePkg() <em>Target Resource Pkg</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetResourcePkg()
+	 * @generated
+	 * @ordered
+	 */
+	protected ResourcePkg targetResourcePkg;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -207,6 +219,51 @@ public class SpriteMonoSamplerProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
+	public ResourcePkg getTargetResourcePkg()
+	{
+		if (targetResourcePkg != null && targetResourcePkg.eIsProxy())
+		{
+			InternalEObject oldTargetResourcePkg = (InternalEObject)targetResourcePkg;
+			targetResourcePkg = (ResourcePkg)eResolveProxy(oldTargetResourcePkg);
+			if (targetResourcePkg != oldTargetResourcePkg)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__TARGET_RESOURCE_PKG, oldTargetResourcePkg, targetResourcePkg));
+			}
+		}
+		return targetResourcePkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ResourcePkg basicGetTargetResourcePkg()
+	{
+		return targetResourcePkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTargetResourcePkg(ResourcePkg newTargetResourcePkg)
+	{
+		ResourcePkg oldTargetResourcePkg = targetResourcePkg;
+		targetResourcePkg = newTargetResourcePkg;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__TARGET_RESOURCE_PKG, oldTargetResourcePkg, targetResourcePkg));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -233,6 +290,9 @@ public class SpriteMonoSamplerProviderImpl extends MinimalEObjectImpl.Container 
 				return getWidth();
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT:
 				return getHeight();
+			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__TARGET_RESOURCE_PKG:
+				if (resolve) return getTargetResourcePkg();
+				return basicGetTargetResourcePkg();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -255,6 +315,9 @@ public class SpriteMonoSamplerProviderImpl extends MinimalEObjectImpl.Container 
 				return;
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT:
 				setHeight((Integer)newValue);
+				return;
+			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__TARGET_RESOURCE_PKG:
+				setTargetResourcePkg((ResourcePkg)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -279,6 +342,9 @@ public class SpriteMonoSamplerProviderImpl extends MinimalEObjectImpl.Container 
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT:
 				setHeight(HEIGHT_EDEFAULT);
 				return;
+			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__TARGET_RESOURCE_PKG:
+				setTargetResourcePkg((ResourcePkg)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -299,6 +365,8 @@ public class SpriteMonoSamplerProviderImpl extends MinimalEObjectImpl.Container 
 				return width != WIDTH_EDEFAULT;
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT:
 				return height != HEIGHT_EDEFAULT;
+			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__TARGET_RESOURCE_PKG:
+				return targetResourcePkg != null;
 		}
 		return super.eIsSet(featureID);
 	}

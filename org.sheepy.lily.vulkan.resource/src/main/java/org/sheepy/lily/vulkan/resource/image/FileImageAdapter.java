@@ -32,9 +32,9 @@ public class FileImageAdapter implements IImageAdapter
 	public FileImageAdapter(FileImage image)
 	{
 		this.image = image;
-		final var createBuilder = createBuilder(image);
+		final var imageBuilder = createBuilder(image);
 
-		vkTexture = new VkTexture(createBuilder);
+		vkTexture = new VkTexture(imageBuilder);
 	}
 
 	private static Builder createBuilder(FileImage image)
@@ -122,7 +122,7 @@ public class FileImageAdapter implements IImageAdapter
 
 	public static int log2nlz(int bits)
 	{
-		if (bits == 0) return 0; // or throw exception
+		if (bits == 0) return 0;
 		return 31 - Integer.numberOfLeadingZeros(bits);
 	}
 }

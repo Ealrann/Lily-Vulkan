@@ -14,7 +14,7 @@ import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.extra.model.mesh.*;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
-import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IProcessPart;
@@ -94,9 +94,9 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 				return createMeshRendererAdapter();
 			}
 			@Override
-			public Adapter caseMeshPkg(MeshPkg object)
+			public <T extends Mesh> Adapter caseMeshStructure(MeshStructure<T> object)
 			{
-				return createMeshPkgAdapter();
+				return createMeshStructureAdapter();
 			}
 			@Override
 			public Adapter casePresentation(Presentation object)
@@ -139,14 +139,14 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 				return createMaintainerAdapter();
 			}
 			@Override
-			public <T extends Presentation> Adapter caseGenericRenderer(GenericRenderer<T> object)
+			public <T extends Structure<?>> Adapter caseGenericRenderer(GenericRenderer<T> object)
 			{
 				return createGenericRendererAdapter();
 			}
 			@Override
-			public <T extends Presentation> Adapter casePresentationPkg(PresentationPkg<T> object)
+			public <T extends Presentation> Adapter caseStructure(Structure<T> object)
 			{
-				return createPresentationPkgAdapter();
+				return createStructureAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -201,16 +201,16 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.mesh.MeshPkg <em>Pkg</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure <em>Structure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshPkg
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure
 	 * @generated
 	 */
-	public Adapter createMeshPkgAdapter()
+	public Adapter createMeshStructureAdapter()
 	{
 		return null;
 	}
@@ -351,16 +351,16 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg <em>Presentation Pkg</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.Structure <em>Structure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Structure
 	 * @generated
 	 */
-	public Adapter createPresentationPkgAdapter()
+	public Adapter createStructureAdapter()
 	{
 		return null;
 	}

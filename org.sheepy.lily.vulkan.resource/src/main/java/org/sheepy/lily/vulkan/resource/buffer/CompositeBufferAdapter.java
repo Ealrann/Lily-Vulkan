@@ -85,19 +85,23 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			usage |= providerWrapper.dataProvider.getUsage().getValue();
 		}
 
-		createBuffer(position, usage);
-		bufferBackend.allocate(stack, context);
-
-		for (final var providerWrapper : providerWrappers)
+		if (position != 0)
 		{
-			if (providerWrapper.dataProvider instanceof DescribedDataProvider)
-			{
-				final var descriptor = providerWrapper.createDescriptor(bufferBackend.getAddress());
-				descriptors.add(descriptor);
-			}
-		}
+			createBuffer(position, usage);
+			bufferBackend.allocate(stack, context);
 
-		pushBuffer.eAdapters().add(pushBufferListener);
+			for (final var providerWrapper : providerWrappers)
+			{
+				if (providerWrapper.dataProvider instanceof DescribedDataProvider)
+				{
+					final var descriptor = providerWrapper
+							.createDescriptor(bufferBackend.getAddress());
+					descriptors.add(descriptor);
+				}
+			}
+
+			pushBuffer.eAdapters().add(pushBufferListener);
+		}
 
 		allocated = true;
 	}

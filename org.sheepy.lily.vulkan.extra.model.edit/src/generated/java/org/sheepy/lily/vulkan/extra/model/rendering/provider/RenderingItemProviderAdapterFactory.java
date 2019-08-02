@@ -120,6 +120,31 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PresentationPkgItemProvider presentationPkgItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPresentationPkgAdapter()
+	{
+		if (presentationPkgItemProvider == null)
+		{
+			presentationPkgItemProvider = new PresentationPkgItemProvider(this);
+		}
+
+		return presentationPkgItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -170,28 +195,28 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericDescribedDataProvider} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GenericDescribedDataProviderItemProvider genericDescribedDataProviderItemProvider;
+	protected DescribedDataProviderItemProvider describedDataProviderItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericDescribedDataProvider}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createGenericDescribedDataProviderAdapter()
+	public Adapter createDescribedDataProviderAdapter()
 	{
-		if (genericDescribedDataProviderItemProvider == null)
+		if (describedDataProviderItemProvider == null)
 		{
-			genericDescribedDataProviderItemProvider = new GenericDescribedDataProviderItemProvider(this);
+			describedDataProviderItemProvider = new DescribedDataProviderItemProvider(this);
 		}
 
-		return genericDescribedDataProviderItemProvider;
+		return describedDataProviderItemProvider;
 	}
 
 	/**
@@ -220,78 +245,53 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericVertexProvider} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.VertexProvider} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GenericVertexProviderItemProvider genericVertexProviderItemProvider;
+	protected VertexProviderItemProvider vertexProviderItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericVertexProvider}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.VertexProvider}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createGenericVertexProviderAdapter()
+	public Adapter createVertexProviderAdapter()
 	{
-		if (genericVertexProviderItemProvider == null)
+		if (vertexProviderItemProvider == null)
 		{
-			genericVertexProviderItemProvider = new GenericVertexProviderItemProvider(this);
+			vertexProviderItemProvider = new VertexProviderItemProvider(this);
 		}
 
-		return genericVertexProviderItemProvider;
+		return vertexProviderItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericIndexProvider} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GenericIndexProviderItemProvider genericIndexProviderItemProvider;
+	protected IndexProviderItemProvider indexProviderItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericIndexProvider}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createGenericIndexProviderAdapter()
+	public Adapter createIndexProviderAdapter()
 	{
-		if (genericIndexProviderItemProvider == null)
+		if (indexProviderItemProvider == null)
 		{
-			genericIndexProviderItemProvider = new GenericIndexProviderItemProvider(this);
+			indexProviderItemProvider = new IndexProviderItemProvider(this);
 		}
 
-		return genericIndexProviderItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationRootPkg} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PresentationRootPkgItemProvider presentationRootPkgItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationRootPkg}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createPresentationRootPkgAdapter()
-	{
-		if (presentationRootPkgItemProvider == null)
-		{
-			presentationRootPkgItemProvider = new PresentationRootPkgItemProvider(this);
-		}
-
-		return presentationRootPkgItemProvider;
+		return indexProviderItemProvider;
 	}
 
 	/**
@@ -494,13 +494,13 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	public void dispose()
 	{
 		if (axisItemProvider != null) axisItemProvider.dispose();
+		if (presentationPkgItemProvider != null) presentationPkgItemProvider.dispose();
 		if (presentableEntityItemProvider != null) presentableEntityItemProvider.dispose();
 		if (dataProviderPkgItemProvider != null) dataProviderPkgItemProvider.dispose();
-		if (genericDescribedDataProviderItemProvider != null) genericDescribedDataProviderItemProvider.dispose();
+		if (describedDataProviderItemProvider != null) describedDataProviderItemProvider.dispose();
 		if (renderableDataSourceItemProvider != null) renderableDataSourceItemProvider.dispose();
-		if (genericVertexProviderItemProvider != null) genericVertexProviderItemProvider.dispose();
-		if (genericIndexProviderItemProvider != null) genericIndexProviderItemProvider.dispose();
-		if (presentationRootPkgItemProvider != null) presentationRootPkgItemProvider.dispose();
+		if (vertexProviderItemProvider != null) vertexProviderItemProvider.dispose();
+		if (indexProviderItemProvider != null) indexProviderItemProvider.dispose();
 		if (staticResourceProviderItemProvider != null) staticResourceProviderItemProvider.dispose();
 		if (compositeResourceProviderItemProvider != null) compositeResourceProviderItemProvider.dispose();
 	}
@@ -559,17 +559,17 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 				newChildDescriptors.add
 					(createChildParameter
 						(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
-						 RenderingFactory.eINSTANCE.createGenericDescribedDataProvider()));
+						 RenderingFactory.eINSTANCE.createDescribedDataProvider()));
 
 				newChildDescriptors.add
 					(createChildParameter
 						(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
-						 RenderingFactory.eINSTANCE.createGenericVertexProvider()));
+						 RenderingFactory.eINSTANCE.createVertexProvider()));
 
 				newChildDescriptors.add
 					(createChildParameter
 						(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
-						 RenderingFactory.eINSTANCE.createGenericIndexProvider()));
+						 RenderingFactory.eINSTANCE.createIndexProvider()));
 
 				return null;
 			}

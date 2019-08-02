@@ -84,31 +84,6 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.mesh.Mesh} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected MeshItemProvider meshItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.mesh.Mesh}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createMeshAdapter()
-	{
-		if (meshItemProvider == null)
-		{
-			meshItemProvider = new MeshItemProvider(this);
-		}
-
-		return meshItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -131,31 +106,6 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 		}
 
 		return meshRendererItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.mesh.MeshPkg} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected MeshPkgItemProvider meshPkgItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.mesh.MeshPkg}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createMeshPkgAdapter()
-	{
-		if (meshPkgItemProvider == null)
-		{
-			meshPkgItemProvider = new MeshPkgItemProvider(this);
-		}
-
-		return meshPkgItemProvider;
 	}
 
 	/**
@@ -275,9 +225,7 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 	@Override
 	public void dispose()
 	{
-		if (meshItemProvider != null) meshItemProvider.dispose();
 		if (meshRendererItemProvider != null) meshRendererItemProvider.dispose();
-		if (meshPkgItemProvider != null) meshPkgItemProvider.dispose();
 	}
 
 	/**

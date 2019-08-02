@@ -22,9 +22,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.lily.vulkan.extra.model.mesh.MeshFactory;
-
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
@@ -87,7 +84,7 @@ public class PresentationPkgItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RenderingPackage.Literals.PRESENTATION_PKG__PRESENTATIONS);
+			childrenFeatures.add(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES);
 		}
 		return childrenFeatures;
 	}
@@ -145,7 +142,7 @@ public class PresentationPkgItemProvider
 
 		switch (notification.getFeatureID(PresentationPkg.class))
 		{
-			case RenderingPackage.PRESENTATION_PKG__PRESENTATIONS:
+			case RenderingPackage.PRESENTATION_PKG__STRUCTURES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -166,13 +163,8 @@ public class PresentationPkgItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RenderingPackage.Literals.PRESENTATION_PKG__PRESENTATIONS,
-				 MeshFactory.eINSTANCE.createMesh()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderingPackage.Literals.PRESENTATION_PKG__PRESENTATIONS,
-				 SpriteFactory.eINSTANCE.createSprite()));
+				(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES,
+				 SpriteFactory.eINSTANCE.createSpriteStructure()));
 	}
 
 	/**

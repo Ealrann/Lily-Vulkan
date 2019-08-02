@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface DataProviderPkg<T extends Presentation> extends EObject
+public interface DataProviderPkg<T extends Structure<?>> extends EObject
 {
 	/**
 	 * Returns the value of the '<em><b>Data Providers</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericDataProvider}<code>&lt;T&gt;</code>.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider}<code>&lt;T&gt;</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data Providers</em>' containment reference list.
@@ -34,6 +34,6 @@ public interface DataProviderPkg<T extends Presentation> extends EObject
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<GenericDataProvider<T>> getDataProviders();
+	EList<RenderDataProvider<T>> getDataProviders();
 
 } // DataProviderPkg

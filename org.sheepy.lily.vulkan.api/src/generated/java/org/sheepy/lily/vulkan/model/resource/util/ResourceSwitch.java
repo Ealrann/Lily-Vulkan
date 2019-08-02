@@ -405,6 +405,8 @@ public class ResourceSwitch<T1> extends Switch<T1>
 			{
 				Texture2DArray texture2DArray = (Texture2DArray)theEObject;
 				T1 result = caseTexture2DArray(texture2DArray);
+				if (result == null) result = caseImage(texture2DArray);
+				if (result == null) result = caseBasicDescriptedResource(texture2DArray);
 				if (result == null) result = caseDescriptedResource(texture2DArray);
 				if (result == null) result = caseIResource(texture2DArray);
 				if (result == null) result = caseLNamedElement(texture2DArray);

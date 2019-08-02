@@ -135,31 +135,6 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SpritePkgItemProvider spritePkgItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSpritePkgAdapter()
-	{
-		if (spritePkgItemProvider == null)
-		{
-			spritePkgItemProvider = new SpritePkgItemProvider(this);
-		}
-
-		return spritePkgItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -182,6 +157,31 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 		}
 
 		return spriteMonoSamplerProviderItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SpriteStructureItemProvider spriteStructureItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSpriteStructureAdapter()
+	{
+		if (spriteStructureItemProvider == null)
+		{
+			spriteStructureItemProvider = new SpriteStructureItemProvider(this);
+		}
+
+		return spriteStructureItemProvider;
 	}
 
 	/**
@@ -303,8 +303,8 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	{
 		if (spriteRendererItemProvider != null) spriteRendererItemProvider.dispose();
 		if (spriteItemProvider != null) spriteItemProvider.dispose();
-		if (spritePkgItemProvider != null) spritePkgItemProvider.dispose();
 		if (spriteMonoSamplerProviderItemProvider != null) spriteMonoSamplerProviderItemProvider.dispose();
+		if (spriteStructureItemProvider != null) spriteStructureItemProvider.dispose();
 	}
 
 	/**

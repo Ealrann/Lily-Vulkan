@@ -12,24 +12,22 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkImageCreateInfo;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
-import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.image.ImageInfo;
-import org.sheepy.vulkan.resource.buffer.BufferAllocator;
-import org.sheepy.vulkan.resource.memory.VkMemoryAllocator;
-import org.sheepy.vulkan.resource.memory.VkMemoryAllocator.MemoryAllocationInfo;
-import org.sheepy.vulkan.resource.memory.VkMemoryAllocator.MemoryInfo;
+import org.sheepy.vulkan.resource.buffer.BufferInfo;
+import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
+import org.sheepy.vulkan.resource.memory.MemoryChunk;
+import org.sheepy.vulkan.resource.memory.MemoryChunkBuilder;
 import org.sheepy.vulkan.util.VkModelUtil;
 
-public final class VkImage implements IAllocable<IExecutionContext>
+public final class VkImage
 {
 	protected long imagePtr;
-	protected long imageMemoryPtr;
+	protected long memoryPtr;
 
 	public final int width;
 	public final int height;
@@ -40,6 +38,7 @@ public final class VkImage implements IAllocable<IExecutionContext>
 	public final int mipLevels;
 	public final boolean fillWithZero;
 	public final ByteBuffer fillWith;
+	private MemoryChunk memory;
 
 	VkImage(int width,
 			int height,
@@ -67,67 +66,80 @@ public final class VkImage implements IAllocable<IExecutionContext>
 		return new VkImageBuilder(width, height, format);
 	}
 
-	@Override
 	public void allocate(MemoryStack stack, IExecutionContext context)
+	{
+		final var memoryBuilder = new MemoryChunkBuilder(stack, context, properties);
+		allocate(stack, context, memoryBuilder);
+		memory = memoryBuilder.build(stack);
+		memory.allocate(stack, context);
+	}
+
+	public void allocate(	MemoryStack stack,
+							IExecutionContext context,
+							MemoryChunkBuilder memoryChunkBuilder)
 	{
 		final var logicalDevice = context.getLogicalDevice();
 
 		imagePtr = allocateImage(stack, logicalDevice.getVkDevice());
 
-		final var memoryInfo = allocateMemory(stack, logicalDevice);
-		imageMemoryPtr = memoryInfo.id;
-
-		vkBindImageMemory(logicalDevice.getVkDevice(), imagePtr, imageMemoryPtr, 0);
-
-		if (fillWith != null)
+		memoryChunkBuilder.registerImage(imagePtr, (memoryPtr, memorySize) ->
 		{
-			fillWith(stack, context, fillWith);
-		}
-		else if (fillWithZero)
-		{
-			fillWithZero(stack, context, memoryInfo);
-		}
+			this.memoryPtr = memoryPtr;
+			vkBindImageMemory(logicalDevice.getVkDevice(), imagePtr, memoryPtr, 0);
+
+			if (fillWith != null)
+			{
+				fillWith(stack, context, fillWith);
+			}
+			else if (fillWithZero)
+			{
+				fillWithZero(stack, context, memorySize);
+			}
+		});
 	}
 
-	private void fillWithZero(MemoryStack stack, final IExecutionContext executionContext, final MemoryInfo memoryInfo)
+	private void fillWithZero(	MemoryStack stack,
+								final IExecutionContext executionContext,
+								final long memorySize)
 	{
-		final long size = memoryInfo.size;
-		final ByteBuffer data = MemoryUtil.memCalloc((int) size);
+		final ByteBuffer data = MemoryUtil.memCalloc((int) memorySize);
 
 		fillWith(stack, executionContext, data);
 		MemoryUtil.memFree(data);
 	}
 
-	private void fillWith(MemoryStack _stack, final IExecutionContext executionContext, final ByteBuffer data)
+	private void fillWith(	MemoryStack _stack,
+							final IExecutionContext executionContext,
+							final ByteBuffer data)
 	{
 		final int usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 		final var size = data.limit();
 
-		final var buffer = BufferAllocator.allocateCPUBufferAndFill(_stack, executionContext, size, usage, false, data);
-		executionContext.execute(_stack, (MemoryStack stack, VkCommandBuffer commandBuffer) ->
+		final var bufferInfo = new BufferInfo(size, usage, false);
+		final var stagingBuffer = new CPUBufferBackend(bufferInfo, true);
+		stagingBuffer.allocate(_stack, executionContext);
+		stagingBuffer.pushData(executionContext, data);
+
+		executionContext.execute(_stack, (stack, commandBuffer) ->
 		{
 			List<EAccess> srcAccessMask = List.of();
 			List<EAccess> dstAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
 
-			transitionImageLayout(stack, commandBuffer, EPipelineStage.TRANSFER_BIT, EPipelineStage.TRANSFER_BIT,
-					EImageLayout.UNDEFINED, EImageLayout.TRANSFER_DST_OPTIMAL, srcAccessMask, dstAccessMask);
+			transitionImageLayout(stack, commandBuffer, EPipelineStage.TRANSFER_BIT,
+					EPipelineStage.TRANSFER_BIT, EImageLayout.UNDEFINED,
+					EImageLayout.TRANSFER_DST_OPTIMAL, srcAccessMask, dstAccessMask);
 
-			fillWithBuffer(commandBuffer, buffer.getAddress());
+			fillWithBuffer(commandBuffer, stagingBuffer.getAddress());
 
 			srcAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
 			dstAccessMask = List.of();
 
-			transitionImageLayout(stack, commandBuffer, EPipelineStage.TRANSFER_BIT, EPipelineStage.TRANSFER_BIT,
-					EImageLayout.TRANSFER_DST_OPTIMAL, EImageLayout.GENERAL, srcAccessMask, dstAccessMask);
+			transitionImageLayout(stack, commandBuffer, EPipelineStage.TRANSFER_BIT,
+					EPipelineStage.TRANSFER_BIT, EImageLayout.TRANSFER_DST_OPTIMAL,
+					EImageLayout.GENERAL, srcAccessMask, dstAccessMask);
 		});
 
-		buffer.free(executionContext);
-	}
-
-	private MemoryInfo allocateMemory(MemoryStack stack, LogicalDevice logicalDevice)
-	{
-		final var allocationInfo = new MemoryAllocationInfo(logicalDevice, imagePtr, properties);
-		return VkMemoryAllocator.allocateFromImage(stack, allocationInfo);
+		stagingBuffer.free(executionContext);
 	}
 
 	public void fillWithBuffer(VkCommandBuffer commandBuffer, long bufferId)
@@ -175,24 +187,19 @@ public final class VkImage implements IAllocable<IExecutionContext>
 		barrierInfo.srcAccessMask(VkModelUtil.getEnumeratedFlag(srcAccessMask));
 		barrierInfo.dstAccessMask(VkModelUtil.getEnumeratedFlag(dstAccessMask));
 
-		vkCmdPipelineBarrier(commandBuffer, srcStage.getValue(), dstStage.getValue(), 0, null, null, barrierInfo);
+		vkCmdPipelineBarrier(commandBuffer, srcStage.getValue(), dstStage.getValue(), 0, null, null,
+				barrierInfo);
 	}
 
-	@Override
 	public void free(IExecutionContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
 
 		vkDestroyImage(logicalDevice.getVkDevice(), imagePtr, null);
-		vkFreeMemory(logicalDevice.getVkDevice(), imageMemoryPtr, null);
-		imagePtr = -1;
-		imageMemoryPtr = -1;
-	}
+		if (memory != null) memory.free(context);
 
-	@Override
-	public boolean isAllocationDirty(IExecutionContext context)
-	{
-		return false;
+		imagePtr = -1;
+		memoryPtr = -1;
 	}
 
 	public long getPtr()
@@ -202,14 +209,15 @@ public final class VkImage implements IAllocable<IExecutionContext>
 
 	public long getMemoryPtr()
 	{
-		return imageMemoryPtr;
+		return memoryPtr;
 	}
 
 	private long allocateImage(MemoryStack stack, VkDevice device) throws AssertionError
 	{
 		final VkImageCreateInfo imageInfo = allocateInfo(stack);
 		final long[] aImageId = new long[1];
-		Logger.check("Failed to create image!", () -> vkCreateImage(device, imageInfo, null, aImageId));
+		Logger.check("Failed to create image!",
+				() -> vkCreateImage(device, imageInfo, null, aImageId));
 		return aImageId[0];
 	}
 
@@ -399,7 +407,8 @@ public final class VkImage implements IAllocable<IExecutionContext>
 		@Override
 		public VkImage build()
 		{
-			return new VkImage(width, height, format, usage, properties, tiling, mipLevels, fillWithZero, fillWith);
+			return new VkImage(width, height, format, usage, properties, tiling, mipLevels,
+					fillWithZero, fillWith);
 		}
 	}
 
@@ -491,7 +500,8 @@ public final class VkImage implements IAllocable<IExecutionContext>
 		@Override
 		public VkImage build()
 		{
-			return new VkImage(width, height, format, usage, properties, tiling, mipLevels, fillWithZero, fillWith);
+			return new VkImage(width, height, format, usage, properties, tiling, mipLevels,
+					fillWithZero, fillWith);
 		}
 	}
 }

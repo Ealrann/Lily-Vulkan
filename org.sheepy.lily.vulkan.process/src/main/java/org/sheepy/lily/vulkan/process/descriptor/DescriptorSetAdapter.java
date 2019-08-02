@@ -73,9 +73,9 @@ public class DescriptorSetAdapter implements IDescriptorSetAdapter
 	}
 
 	@Override
-	public int size()
+	public int descriptorCount()
 	{
-		return getDescriptors().size();
+		return descriptorSet.getDescriptors().size();
 	}
 
 	@Override
@@ -94,7 +94,8 @@ public class DescriptorSetAdapter implements IDescriptorSetAdapter
 			for (final var descriptor : descriptors)
 			{
 				final var adapter = IDescriptedResourceAdapter.adapt(descriptor);
-				vkDescriptors.addAll(adapter.getDescriptors());
+				final var gatherDescriptors = adapter.getDescriptors();
+				vkDescriptors.addAll(gatherDescriptors);
 			}
 			vkDescriptors = List.copyOf(vkDescriptors);
 		}

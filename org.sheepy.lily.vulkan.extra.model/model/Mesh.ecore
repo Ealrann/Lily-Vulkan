@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mesh" nsURI="org.sheepy.lily.vulkan.extra.model.mesh" nsPrefix="mesh">
-  <eClassifiers xsi:type="ecore:EClass" name="Mesh" eSuperTypes="Rendering.ecore#//Presentation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Mesh" abstract="true" interface="true"
+      eSuperTypes="Rendering.ecore#//Presentation"/>
   <eClassifiers xsi:type="ecore:EClass" name="MeshRenderer">
     <eGenericSuperTypes eClassifier="ecore:EClass Rendering.ecore#//GenericRenderer">
-      <eTypeArguments eClassifier="#//Mesh"/>
+      <eTypeArguments eClassifier="#//MeshStructure">
+        <eTypeArguments/>
+      </eTypeArguments>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MeshPkg">
-    <eGenericSuperTypes eClassifier="ecore:EClass Rendering.ecore#//PresentationPkg">
-      <eTypeArguments eClassifier="#//Mesh"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MeshStructure" abstract="true" interface="true">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="#//Mesh"/>
+    </eTypeParameters>
+    <eGenericSuperTypes eClassifier="ecore:EClass Rendering.ecore#//Structure">
+      <eTypeArguments eTypeParameter="#//MeshStructure/T"/>
     </eGenericSuperTypes>
   </eClassifiers>
 </ecore:EPackage>

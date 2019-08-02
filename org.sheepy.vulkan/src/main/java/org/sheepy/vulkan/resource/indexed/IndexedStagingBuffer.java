@@ -6,7 +6,6 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferCopy;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
@@ -21,7 +20,7 @@ public class IndexedStagingBuffer implements IAllocable<IExecutionContext>
 	private long vertexMemoryMap = -1;
 	private long indexMemoryMap = -1;
 
-	private ExecutionContext context = null;
+	private IExecutionContext context = null;
 
 	private VkBufferCopy.Buffer vertexCopyInfo;
 	private VkBufferCopy.Buffer indexCopyInfo;
@@ -40,9 +39,9 @@ public class IndexedStagingBuffer implements IAllocable<IExecutionContext>
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext allocContext)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
-		context = (ExecutionContext) allocContext;
+		this.context = context;
 
 		stagingBuffer.allocate(stack, context);
 
@@ -101,7 +100,8 @@ public class IndexedStagingBuffer implements IAllocable<IExecutionContext>
 		final var dstVertexAddress = indexedBuffer.getVertexBufferAddress();
 		final var dstIndexAddress = indexedBuffer.getIndexBufferAddress();
 
-		context.execute((MemoryStack stack, VkCommandBuffer commandBuffer) -> {
+		context.execute((MemoryStack stack, VkCommandBuffer commandBuffer) ->
+		{
 			vkCmdCopyBuffer(commandBuffer, srcBufferAddress, dstVertexAddress, vertexCopyInfo);
 			vkCmdCopyBuffer(commandBuffer, srcBufferAddress, dstIndexAddress, indexCopyInfo);
 		});

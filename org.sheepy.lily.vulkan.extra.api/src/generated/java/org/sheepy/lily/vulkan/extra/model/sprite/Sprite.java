@@ -15,6 +15,7 @@ import org.sheepy.lily.vulkan.model.resource.PathResource;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.Sprite#getFile <em>File</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.Sprite#getType <em>Type</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage#getSprite()
@@ -44,5 +45,31 @@ public interface Sprite extends Presentation
 	 * @generated
 	 */
 	void setFile(PathResource value);
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * The default value is <code>"Floor"</code>.
+	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteType
+	 * @see #setType(SpriteType)
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage#getSprite_Type()
+	 * @model default="Floor" required="true"
+	 * @generated
+	 */
+	SpriteType getType();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.sprite.Sprite#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteType
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(SpriteType value);
 
 } // Sprite

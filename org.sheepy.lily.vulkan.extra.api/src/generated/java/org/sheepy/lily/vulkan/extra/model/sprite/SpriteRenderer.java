@@ -14,6 +14,6 @@ import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
  * @model
  * @generated
  */
-public interface SpriteRenderer extends GenericRenderer<Sprite>
+public interface SpriteRenderer extends GenericRenderer<SpriteStructure>
 {
 } // SpriteRenderer

@@ -57,10 +57,10 @@ public interface MeshPackage extends EPackage
 	MeshPackage eINSTANCE = org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshImpl <em>Mesh</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.Mesh <em>Mesh</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.Mesh
 	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getMesh()
 	 * @generated
 	 */
@@ -276,13 +276,13 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__DATA_PROVIDER_PKG = RenderingPackage.GENERIC_RENDERER__DATA_PROVIDER_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Presentation Pkg</b></em>' reference.
+	 * The feature id for the '<em><b>Rendered Structures</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_RENDERER__PRESENTATION_PKG = RenderingPackage.GENERIC_RENDERER__PRESENTATION_PKG;
+	int MESH_RENDERER__RENDERED_STRUCTURES = RenderingPackage.GENERIC_RENDERER__RENDERED_STRUCTURES;
 
 	/**
 	 * The feature id for the '<em><b>Constant Buffer</b></em>' reference.
@@ -330,14 +330,14 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER_OPERATION_COUNT = RenderingPackage.GENERIC_RENDERER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPkgImpl <em>Pkg</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure <em>Structure</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPkgImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getMeshPkg()
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getMeshStructure()
 	 * @generated
 	 */
-	int MESH_PKG = 2;
+	int MESH_STRUCTURE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Presentations</b></em>' containment reference list.
@@ -346,27 +346,25 @@ public interface MeshPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_PKG__PRESENTATIONS = RenderingPackage.PRESENTATION_PKG__PRESENTATIONS;
+	int MESH_STRUCTURE__PRESENTATIONS = RenderingPackage.STRUCTURE__PRESENTATIONS;
 
 	/**
-	 * The number of structural features of the '<em>Pkg</em>' class.
+	 * The number of structural features of the '<em>Structure</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_PKG_FEATURE_COUNT = RenderingPackage.PRESENTATION_PKG_FEATURE_COUNT + 0;
-
+	int MESH_STRUCTURE_FEATURE_COUNT = RenderingPackage.STRUCTURE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Pkg</em>' class.
+	 * The number of operations of the '<em>Structure</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_PKG_OPERATION_COUNT = RenderingPackage.PRESENTATION_PKG_OPERATION_COUNT + 0;
-
+	int MESH_STRUCTURE_OPERATION_COUNT = RenderingPackage.STRUCTURE_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.mesh.Mesh <em>Mesh</em>}'.
@@ -389,14 +387,14 @@ public interface MeshPackage extends EPackage
 	EClass getMeshRenderer();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.mesh.MeshPkg <em>Pkg</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure <em>Structure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Pkg</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshPkg
+	 * @return the meta object for class '<em>Structure</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure
 	 * @generated
 	 */
-	EClass getMeshPkg();
+	EClass getMeshStructure();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -422,10 +420,10 @@ public interface MeshPackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshImpl <em>Mesh</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.Mesh <em>Mesh</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.mesh.Mesh
 		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getMesh()
 		 * @generated
 		 */
@@ -440,14 +438,14 @@ public interface MeshPackage extends EPackage
 		 */
 		EClass MESH_RENDERER = eINSTANCE.getMeshRenderer();
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPkgImpl <em>Pkg</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure <em>Structure</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPkgImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getMeshPkg()
+		 * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure
+		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getMeshStructure()
 		 * @generated
 		 */
-		EClass MESH_PKG = eINSTANCE.getMeshPkg();
+		EClass MESH_STRUCTURE = eINSTANCE.getMeshStructure();
 
 	}
 

@@ -16,13 +16,14 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray#getFiles <em>Files</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray#getWidth <em>Width</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray#isMipmapEnabled <em>Mipmap Enabled</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getTexture2DArray()
  * @model
  * @generated
  */
-public interface Texture2DArray extends DescriptedResource
+public interface Texture2DArray extends Image, BasicDescriptedResource
 {
 	/**
 	 * Returns the value of the '<em><b>Files</b></em>' containment reference list.
@@ -79,5 +80,28 @@ public interface Texture2DArray extends DescriptedResource
 	 * @generated
 	 */
 	void setHeight(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Mipmap Enabled</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mipmap Enabled</em>' attribute.
+	 * @see #setMipmapEnabled(boolean)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getTexture2DArray_MipmapEnabled()
+	 * @model default="false" unique="false"
+	 * @generated
+	 */
+	boolean isMipmapEnabled();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray#isMipmapEnabled <em>Mipmap Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Mipmap Enabled</em>' attribute.
+	 * @see #isMipmapEnabled()
+	 * @generated
+	 */
+	void setMipmapEnabled(boolean value);
 
 } // Texture2DArray

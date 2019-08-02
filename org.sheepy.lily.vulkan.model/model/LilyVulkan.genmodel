@@ -239,6 +239,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Texture2DArray/files"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Texture2DArray/width"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Texture2DArray/height"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Texture2DArray/mipmapEnabled"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Graphic" basePackage="org.sheepy.lily.vulkan.model.process"

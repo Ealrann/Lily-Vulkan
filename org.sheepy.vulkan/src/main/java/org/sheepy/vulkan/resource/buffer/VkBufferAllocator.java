@@ -10,17 +10,13 @@ public class VkBufferAllocator
 {
 	public static long allocate(MemoryStack stack, VkDevice device, BufferInfo bufferInfo)
 	{
-		return create(stack, device, bufferInfo);
-	}
+		assert bufferInfo.getTotalSize() != 0;
 
-	private static long create(MemoryStack stack, VkDevice device, BufferInfo bufferInfo)
-			throws AssertionError
-	{
 		final VkBufferCreateInfo bufferCreateInfo = allocateInfo(stack, bufferInfo);
 		final long[] aVertexBuffer = new long[1];
 		if (vkCreateBuffer(device, bufferCreateInfo, null, aVertexBuffer) != VK_SUCCESS)
 		{
-			throw new AssertionError("failed to create vertex buffer!");
+			throw new AssertionError("Failed to create vertex buffer");
 		}
 		return aVertexBuffer[0];
 	}

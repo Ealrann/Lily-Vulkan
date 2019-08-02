@@ -17,9 +17,9 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
-import org.sheepy.lily.vulkan.extra.model.rendering.GenericDataProvider;
-import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +34,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
  *
  * @generated
  */
-public class DataProviderPkgImpl<T extends Presentation> extends MinimalEObjectImpl.Container implements DataProviderPkg<T>
+public class DataProviderPkgImpl<T extends Structure<?>> extends MinimalEObjectImpl.Container implements DataProviderPkg<T>
 {
 	/**
 	 * The cached value of the '{@link #getDataProviders() <em>Data Providers</em>}' containment reference list.
@@ -44,7 +44,7 @@ public class DataProviderPkgImpl<T extends Presentation> extends MinimalEObjectI
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<GenericDataProvider<T>> dataProviders;
+	protected EList<RenderDataProvider<T>> dataProviders;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,11 +73,11 @@ public class DataProviderPkgImpl<T extends Presentation> extends MinimalEObjectI
 	 * @generated
 	 */
 	@Override
-	public EList<GenericDataProvider<T>> getDataProviders()
+	public EList<RenderDataProvider<T>> getDataProviders()
 	{
 		if (dataProviders == null)
 		{
-			dataProviders = new EObjectContainmentEList<GenericDataProvider<T>>(GenericDataProvider.class, this, RenderingPackage.DATA_PROVIDER_PKG__DATA_PROVIDERS);
+			dataProviders = new EObjectContainmentEList<RenderDataProvider<T>>(RenderDataProvider.class, this, RenderingPackage.DATA_PROVIDER_PKG__DATA_PROVIDERS);
 		}
 		return dataProviders;
 	}
@@ -127,7 +127,7 @@ public class DataProviderPkgImpl<T extends Presentation> extends MinimalEObjectI
 		{
 			case RenderingPackage.DATA_PROVIDER_PKG__DATA_PROVIDERS:
 				getDataProviders().clear();
-				getDataProviders().addAll((Collection<? extends GenericDataProvider<T>>)newValue);
+				getDataProviders().addAll((Collection<? extends RenderDataProvider<T>>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

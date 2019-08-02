@@ -170,6 +170,11 @@ public class SampledImageItemProvider extends BasicDescriptedResourceItemProvide
 			(createChildParameter
 				(ResourcePackage.Literals.SAMPLED_IMAGE__IMAGE,
 				 ResourceFactory.eINSTANCE.createFontImage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.SAMPLED_IMAGE__IMAGE,
+				 ResourceFactory.eINSTANCE.createTexture2DArray()));
 	}
 
 }

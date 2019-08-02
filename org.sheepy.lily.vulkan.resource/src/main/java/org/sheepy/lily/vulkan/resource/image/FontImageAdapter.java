@@ -35,8 +35,11 @@ public class FontImageAdapter implements IFontImageAdapter
 	public static final VkImage.Builder imageBuilder;
 	static
 	{
-		final var builder = VkImage.newBuilder(BUFFER_WIDTH, BUFFER_HEIGHT, VK_FORMAT_R8G8B8A8_UNORM);
-		builder.usage(VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT);
+		final var builder = VkImage.newBuilder(BUFFER_WIDTH, BUFFER_HEIGHT,
+				VK_FORMAT_R8G8B8A8_UNORM);
+		builder.usage(VK_IMAGE_USAGE_TRANSFER_DST_BIT
+				| VK_IMAGE_USAGE_SAMPLED_BIT
+				| VK_IMAGE_USAGE_SAMPLED_BIT);
 		builder.properties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 		builder.tiling(VK_IMAGE_TILING_OPTIMAL);
 		builder.mipLevels(1);
@@ -73,7 +76,7 @@ public class FontImageAdapter implements IFontImageAdapter
 		vkTexture.allocate(stack, context);
 		final var texture = allocDataBuffer(stack);
 		vkTexture.loadImage(stack, executionContext, texture, targetLayout);
-		
+
 		memFree(texture);
 	}
 

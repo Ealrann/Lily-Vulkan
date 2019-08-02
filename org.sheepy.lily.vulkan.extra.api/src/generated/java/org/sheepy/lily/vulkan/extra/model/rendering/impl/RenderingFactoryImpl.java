@@ -65,13 +65,13 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 		switch (eClass.getClassifierID())
 		{
 			case RenderingPackage.AXIS: return createAxis();
+			case RenderingPackage.PRESENTATION_PKG: return createPresentationPkg();
 			case RenderingPackage.PRESENTABLE_ENTITY: return createPresentableEntity();
 			case RenderingPackage.DATA_PROVIDER_PKG: return createDataProviderPkg();
-			case RenderingPackage.GENERIC_DESCRIBED_DATA_PROVIDER: return createGenericDescribedDataProvider();
+			case RenderingPackage.DESCRIBED_DATA_PROVIDER: return createDescribedDataProvider();
 			case RenderingPackage.RENDERABLE_DATA_SOURCE: return createRenderableDataSource();
-			case RenderingPackage.GENERIC_VERTEX_PROVIDER: return createGenericVertexProvider();
-			case RenderingPackage.GENERIC_INDEX_PROVIDER: return createGenericIndexProvider();
-			case RenderingPackage.PRESENTATION_ROOT_PKG: return createPresentationRootPkg();
+			case RenderingPackage.VERTEX_PROVIDER: return createVertexProvider();
+			case RenderingPackage.INDEX_PROVIDER: return createIndexProvider();
 			case RenderingPackage.STATIC_RESOURCE_PROVIDER: return createStaticResourceProvider();
 			case RenderingPackage.COMPOSITE_RESOURCE_PROVIDER: return createCompositeResourceProvider();
 			default:
@@ -97,6 +97,18 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	@Override
+	public PresentationPkg createPresentationPkg()
+	{
+		PresentationPkgImpl presentationPkg = new PresentationPkgImpl();
+		return presentationPkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public PresentableEntity createPresentableEntity()
 	{
 		PresentableEntityImpl presentableEntity = new PresentableEntityImpl();
@@ -109,7 +121,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	@Override
-	public <T extends Presentation> DataProviderPkg<T> createDataProviderPkg()
+	public <T extends Structure<?>> DataProviderPkg<T> createDataProviderPkg()
 	{
 		DataProviderPkgImpl<T> dataProviderPkg = new DataProviderPkgImpl<T>();
 		return dataProviderPkg;
@@ -121,10 +133,10 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	@Override
-	public <T extends Presentation> GenericDescribedDataProvider<T> createGenericDescribedDataProvider()
+	public <T extends Structure<?>> DescribedDataProvider<T> createDescribedDataProvider()
 	{
-		GenericDescribedDataProviderImpl<T> genericDescribedDataProvider = new GenericDescribedDataProviderImpl<T>();
-		return genericDescribedDataProvider;
+		DescribedDataProviderImpl<T> describedDataProvider = new DescribedDataProviderImpl<T>();
+		return describedDataProvider;
 	}
 
 	/**
@@ -133,7 +145,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	@Override
-	public <T extends Presentation> RenderableDataSource<T> createRenderableDataSource()
+	public <T extends Structure<?>> RenderableDataSource<T> createRenderableDataSource()
 	{
 		RenderableDataSourceImpl<T> renderableDataSource = new RenderableDataSourceImpl<T>();
 		return renderableDataSource;
@@ -145,10 +157,10 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	@Override
-	public <T extends Presentation> GenericVertexProvider<T> createGenericVertexProvider()
+	public <T extends Structure<?>> VertexProvider<T> createVertexProvider()
 	{
-		GenericVertexProviderImpl<T> genericVertexProvider = new GenericVertexProviderImpl<T>();
-		return genericVertexProvider;
+		VertexProviderImpl<T> vertexProvider = new VertexProviderImpl<T>();
+		return vertexProvider;
 	}
 
 	/**
@@ -157,22 +169,10 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	@Override
-	public <T extends Presentation> GenericIndexProvider<T> createGenericIndexProvider()
+	public <T extends Structure<?>> IndexProvider<T> createIndexProvider()
 	{
-		GenericIndexProviderImpl<T> genericIndexProvider = new GenericIndexProviderImpl<T>();
-		return genericIndexProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public PresentationRootPkg createPresentationRootPkg()
-	{
-		PresentationRootPkgImpl presentationRootPkg = new PresentationRootPkgImpl();
-		return presentationRootPkg;
+		IndexProviderImpl<T> indexProvider = new IndexProviderImpl<T>();
+		return indexProvider;
 	}
 
 	/**

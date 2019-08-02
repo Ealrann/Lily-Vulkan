@@ -9,10 +9,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,23 +21,23 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl#getPresentation <em>Presentation</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl#getStructure <em>Structure</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl#getPart <em>Part</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class RenderableDataSourceImpl<T extends Presentation> extends MinimalEObjectImpl.Container implements RenderableDataSource<T>
+public class RenderableDataSourceImpl<T extends Structure<?>> extends MinimalEObjectImpl.Container implements RenderableDataSource<T>
 {
 	/**
-	 * The cached value of the '{@link #getPresentation() <em>Presentation</em>}' reference.
+	 * The cached value of the '{@link #getStructure() <em>Structure</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPresentation()
+	 * @see #getStructure()
 	 * @generated
 	 * @ordered
 	 */
-	protected T presentation;
+	protected T structure;
 
 	/**
 	 * The default value of the '{@link #getPart() <em>Part</em>}' attribute.
@@ -88,19 +87,19 @@ public class RenderableDataSourceImpl<T extends Presentation> extends MinimalEOb
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public T getPresentation()
+	public T getStructure()
 	{
-		if (presentation != null && presentation.eIsProxy())
+		if (structure != null && structure.eIsProxy())
 		{
-			InternalEObject oldPresentation = (InternalEObject)presentation;
-			presentation = (T)eResolveProxy(oldPresentation);
-			if (presentation != oldPresentation)
+			InternalEObject oldStructure = (InternalEObject)structure;
+			structure = (T)eResolveProxy(oldStructure);
+			if (structure != oldStructure)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.RENDERABLE_DATA_SOURCE__PRESENTATION, oldPresentation, presentation));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.RENDERABLE_DATA_SOURCE__STRUCTURE, oldStructure, structure));
 			}
 		}
-		return presentation;
+		return structure;
 	}
 
 	/**
@@ -108,9 +107,9 @@ public class RenderableDataSourceImpl<T extends Presentation> extends MinimalEOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public T basicGetPresentation()
+	public T basicGetStructure()
 	{
-		return presentation;
+		return structure;
 	}
 
 	/**
@@ -119,12 +118,12 @@ public class RenderableDataSourceImpl<T extends Presentation> extends MinimalEOb
 	 * @generated
 	 */
 	@Override
-	public void setPresentation(T newPresentation)
+	public void setStructure(T newStructure)
 	{
-		T oldPresentation = presentation;
-		presentation = newPresentation;
+		T oldStructure = structure;
+		structure = newStructure;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.RENDERABLE_DATA_SOURCE__PRESENTATION, oldPresentation, presentation));
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.RENDERABLE_DATA_SOURCE__STRUCTURE, oldStructure, structure));
 	}
 
 	/**
@@ -162,9 +161,9 @@ public class RenderableDataSourceImpl<T extends Presentation> extends MinimalEOb
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.RENDERABLE_DATA_SOURCE__PRESENTATION:
-				if (resolve) return getPresentation();
-				return basicGetPresentation();
+			case RenderingPackage.RENDERABLE_DATA_SOURCE__STRUCTURE:
+				if (resolve) return getStructure();
+				return basicGetStructure();
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__PART:
 				return getPart();
 		}
@@ -182,8 +181,8 @@ public class RenderableDataSourceImpl<T extends Presentation> extends MinimalEOb
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.RENDERABLE_DATA_SOURCE__PRESENTATION:
-				setPresentation((T)newValue);
+			case RenderingPackage.RENDERABLE_DATA_SOURCE__STRUCTURE:
+				setStructure((T)newValue);
 				return;
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__PART:
 				setPart((Integer)newValue);
@@ -202,8 +201,8 @@ public class RenderableDataSourceImpl<T extends Presentation> extends MinimalEOb
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.RENDERABLE_DATA_SOURCE__PRESENTATION:
-				setPresentation((T)null);
+			case RenderingPackage.RENDERABLE_DATA_SOURCE__STRUCTURE:
+				setStructure((T)null);
 				return;
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__PART:
 				setPart(PART_EDEFAULT);
@@ -222,8 +221,8 @@ public class RenderableDataSourceImpl<T extends Presentation> extends MinimalEOb
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.RENDERABLE_DATA_SOURCE__PRESENTATION:
-				return presentation != null;
+			case RenderingPackage.RENDERABLE_DATA_SOURCE__STRUCTURE:
+				return structure != null;
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__PART:
 				return part != PART_EDEFAULT;
 		}

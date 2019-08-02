@@ -2,12 +2,14 @@
  */
 package org.sheepy.lily.vulkan.extra.model.mesh.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
-import org.sheepy.lily.vulkan.extra.model.mesh.Mesh;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer;
 
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure;
 import org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl;
 
 /**
@@ -17,7 +19,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl;
  *
  * @generated
  */
-public class MeshRendererImpl extends GenericRendererImpl<Mesh> implements MeshRenderer
+public class MeshRendererImpl extends GenericRendererImpl<MeshStructure<?>> implements MeshRenderer
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -38,6 +40,22 @@ public class MeshRendererImpl extends GenericRendererImpl<Mesh> implements MeshR
 	protected EClass eStaticClass()
 	{
 		return MeshPackage.Literals.MESH_RENDERER;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific element type known in this context.
+	 * @generated
+	 */
+	@Override
+	public EList<MeshStructure<?>> getRenderedStructures()
+	{
+		if (renderedStructures == null)
+		{
+			renderedStructures = new EObjectResolvingEList<MeshStructure<?>>(MeshStructure.class, this, MeshPackage.MESH_RENDERER__RENDERED_STRUCTURES);
+		}
+		return renderedStructures;
 	}
 
 } //MeshRendererImpl

@@ -72,7 +72,6 @@ public class PhysicalEntityItemProvider
 			addNamePropertyDescriptor(object);
 			addGeoLocationPropertyDescriptor(object);
 			addGeoOrientationPropertyDescriptor(object);
-			addAxisLocationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -138,29 +137,6 @@ public class PhysicalEntityItemProvider
 				 getString("_UI_PhysicalEntity_geoOrientation_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_PhysicalEntity_geoOrientation_feature", "_UI_PhysicalEntity_type"),
 				 RenderingPackage.Literals.PHYSICAL_ENTITY__GEO_ORIENTATION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Axis Location feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAxisLocationPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PhysicalEntity_axisLocation_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PhysicalEntity_axisLocation_feature", "_UI_PhysicalEntity_type"),
-				 RenderingPackage.Literals.PHYSICAL_ENTITY__AXIS_LOCATION,
 				 true,
 				 false,
 				 false,

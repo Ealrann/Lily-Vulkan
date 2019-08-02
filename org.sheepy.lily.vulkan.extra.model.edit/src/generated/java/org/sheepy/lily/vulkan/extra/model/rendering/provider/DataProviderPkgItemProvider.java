@@ -164,17 +164,17 @@ public class DataProviderPkgItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RenderingPackage.Literals.DATA_PROVIDER_PKG__DATA_PROVIDERS,
-				 RenderingFactory.eINSTANCE.createGenericDescribedDataProvider()));
+				 RenderingFactory.eINSTANCE.createDescribedDataProvider()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(RenderingPackage.Literals.DATA_PROVIDER_PKG__DATA_PROVIDERS,
-				 RenderingFactory.eINSTANCE.createGenericVertexProvider()));
+				 RenderingFactory.eINSTANCE.createVertexProvider()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(RenderingPackage.Literals.DATA_PROVIDER_PKG__DATA_PROVIDERS,
-				 RenderingFactory.eINSTANCE.createGenericIndexProvider()));
+				 RenderingFactory.eINSTANCE.createIndexProvider()));
 	}
 
 	/**

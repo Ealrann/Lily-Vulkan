@@ -198,7 +198,7 @@ public class MeshModelFactory
 		else colorAttribute.setOffset(8);
 
 		final var textureAttribute = GraphicFactory.eINSTANCE.createAttributeDescription();
-		textureAttribute.setFormat(EFormat.R32G32B32_SFLOAT);
+		textureAttribute.setFormat(EFormat.R32G32_SFLOAT);
 		textureAttribute.setOffset(24);
 
 		final int strideLength = meshConfiguration.useTexture ? 32 : 20;

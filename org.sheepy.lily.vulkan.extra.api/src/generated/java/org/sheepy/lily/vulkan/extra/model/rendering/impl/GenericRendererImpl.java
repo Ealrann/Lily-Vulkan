@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -23,11 +24,10 @@ import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
-import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
-import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
 
+import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl;
@@ -45,7 +45,7 @@ import org.sheepy.lily.vulkan.model.resource.PushBuffer;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getMaintained <em>Maintained</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getDataProviderPkg <em>Data Provider Pkg</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getPresentationPkg <em>Presentation Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getRenderedStructures <em>Rendered Structures</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getConstantBuffer <em>Constant Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getPushBuffer <em>Push Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getCommonResourceProvider <em>Common Resource Provider</em>}</li>
@@ -53,7 +53,7 @@ import org.sheepy.lily.vulkan.model.resource.PushBuffer;
  *
  * @generated
  */
-public abstract class GenericRendererImpl<T extends Presentation> extends GraphicsPipelineImpl implements GenericRenderer<T>
+public abstract class GenericRendererImpl<T extends Structure<?>> extends GraphicsPipelineImpl implements GenericRenderer<T>
 {
 	/**
 	 * The cached value of the '{@link #getMaintained() <em>Maintained</em>}' reference list.
@@ -76,14 +76,14 @@ public abstract class GenericRendererImpl<T extends Presentation> extends Graphi
 	protected DataProviderPkg<T> dataProviderPkg;
 
 	/**
-	 * The cached value of the '{@link #getPresentationPkg() <em>Presentation Pkg</em>}' reference.
+	 * The cached value of the '{@link #getRenderedStructures() <em>Rendered Structures</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPresentationPkg()
+	 * @see #getRenderedStructures()
 	 * @generated
 	 * @ordered
 	 */
-	protected PresentationPkg<? extends T> presentationPkg;
+	protected EList<T> renderedStructures;
 
 	/**
 	 * The cached value of the '{@link #getConstantBuffer() <em>Constant Buffer</em>}' reference.
@@ -206,45 +206,14 @@ public abstract class GenericRendererImpl<T extends Presentation> extends Graphi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
-	public PresentationPkg<? extends T> getPresentationPkg()
+	public EList<T> getRenderedStructures()
 	{
-		if (presentationPkg != null && presentationPkg.eIsProxy())
+		if (renderedStructures == null)
 		{
-			InternalEObject oldPresentationPkg = (InternalEObject)presentationPkg;
-			presentationPkg = (PresentationPkg<? extends T>)eResolveProxy(oldPresentationPkg);
-			if (presentationPkg != oldPresentationPkg)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.GENERIC_RENDERER__PRESENTATION_PKG, oldPresentationPkg, presentationPkg));
-			}
+			renderedStructures = new EObjectResolvingEList<T>(Structure.class, this, RenderingPackage.GENERIC_RENDERER__RENDERED_STRUCTURES);
 		}
-		return presentationPkg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PresentationPkg<? extends T> basicGetPresentationPkg()
-	{
-		return presentationPkg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setPresentationPkg(PresentationPkg<? extends T> newPresentationPkg)
-	{
-		PresentationPkg<? extends T> oldPresentationPkg = presentationPkg;
-		presentationPkg = newPresentationPkg;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER__PRESENTATION_PKG, oldPresentationPkg, presentationPkg));
+		return renderedStructures;
 	}
 
 	/**
@@ -438,9 +407,8 @@ public abstract class GenericRendererImpl<T extends Presentation> extends Graphi
 				return getMaintained();
 			case RenderingPackage.GENERIC_RENDERER__DATA_PROVIDER_PKG:
 				return getDataProviderPkg();
-			case RenderingPackage.GENERIC_RENDERER__PRESENTATION_PKG:
-				if (resolve) return getPresentationPkg();
-				return basicGetPresentationPkg();
+			case RenderingPackage.GENERIC_RENDERER__RENDERED_STRUCTURES:
+				return getRenderedStructures();
 			case RenderingPackage.GENERIC_RENDERER__CONSTANT_BUFFER:
 				if (resolve) return getConstantBuffer();
 				return basicGetConstantBuffer();
@@ -471,8 +439,9 @@ public abstract class GenericRendererImpl<T extends Presentation> extends Graphi
 			case RenderingPackage.GENERIC_RENDERER__DATA_PROVIDER_PKG:
 				setDataProviderPkg((DataProviderPkg<T>)newValue);
 				return;
-			case RenderingPackage.GENERIC_RENDERER__PRESENTATION_PKG:
-				setPresentationPkg((PresentationPkg<? extends T>)newValue);
+			case RenderingPackage.GENERIC_RENDERER__RENDERED_STRUCTURES:
+				getRenderedStructures().clear();
+				getRenderedStructures().addAll((Collection<? extends T>)newValue);
 				return;
 			case RenderingPackage.GENERIC_RENDERER__CONSTANT_BUFFER:
 				setConstantBuffer((ConstantBuffer)newValue);
@@ -503,8 +472,8 @@ public abstract class GenericRendererImpl<T extends Presentation> extends Graphi
 			case RenderingPackage.GENERIC_RENDERER__DATA_PROVIDER_PKG:
 				setDataProviderPkg((DataProviderPkg<T>)null);
 				return;
-			case RenderingPackage.GENERIC_RENDERER__PRESENTATION_PKG:
-				setPresentationPkg((PresentationPkg<? extends T>)null);
+			case RenderingPackage.GENERIC_RENDERER__RENDERED_STRUCTURES:
+				getRenderedStructures().clear();
 				return;
 			case RenderingPackage.GENERIC_RENDERER__CONSTANT_BUFFER:
 				setConstantBuffer((ConstantBuffer)null);
@@ -533,8 +502,8 @@ public abstract class GenericRendererImpl<T extends Presentation> extends Graphi
 				return maintained != null && !maintained.isEmpty();
 			case RenderingPackage.GENERIC_RENDERER__DATA_PROVIDER_PKG:
 				return dataProviderPkg != null;
-			case RenderingPackage.GENERIC_RENDERER__PRESENTATION_PKG:
-				return presentationPkg != null;
+			case RenderingPackage.GENERIC_RENDERER__RENDERED_STRUCTURES:
+				return renderedStructures != null && !renderedStructures.isEmpty();
 			case RenderingPackage.GENERIC_RENDERER__CONSTANT_BUFFER:
 				return constantBuffer != null;
 			case RenderingPackage.GENERIC_RENDERER__PUSH_BUFFER:

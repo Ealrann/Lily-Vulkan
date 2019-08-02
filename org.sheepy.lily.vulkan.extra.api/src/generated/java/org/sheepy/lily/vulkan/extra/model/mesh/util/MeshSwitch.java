@@ -12,7 +12,7 @@ import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.extra.model.mesh.*;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
-import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IProcessPart;
@@ -104,11 +104,11 @@ public class MeshSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MeshPackage.MESH_PKG:
+			case MeshPackage.MESH_STRUCTURE:
 			{
-				MeshPkg meshPkg = (MeshPkg)theEObject;
-				T1 result = caseMeshPkg(meshPkg);
-				if (result == null) result = casePresentationPkg(meshPkg);
+				MeshStructure<?> meshStructure = (MeshStructure<?>)theEObject;
+				T1 result = caseMeshStructure(meshStructure);
+				if (result == null) result = caseStructure(meshStructure);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -149,17 +149,17 @@ public class MeshSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Pkg</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Structure</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Pkg</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Structure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseMeshPkg(MeshPkg object)
+	public <T extends Mesh> T1 caseMeshStructure(MeshStructure<T> object)
 	{
 		return null;
 	}
@@ -303,23 +303,23 @@ public class MeshSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Presentation> T1 caseGenericRenderer(GenericRenderer<T> object)
+	public <T extends Structure<?>> T1 caseGenericRenderer(GenericRenderer<T> object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Presentation Pkg</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Structure</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Presentation Pkg</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Structure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Presentation> T1 casePresentationPkg(PresentationPkg<T> object)
+	public <T extends Presentation> T1 caseStructure(Structure<T> object)
 	{
 		return null;
 	}

@@ -10,6 +10,7 @@ import org.sheepy.vulkan.resource.buffer.BufferGPUFiller;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
 import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
+import org.sheepy.vulkan.resource.memory.MemoryChunkBuilder;
 
 public class IndexedBufferWithUniform extends IndexedBuffer
 {
@@ -34,16 +35,9 @@ public class IndexedBufferWithUniform extends IndexedBuffer
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	protected void allocateBuffers(MemoryStack stack, MemoryChunkBuilder memoryBuilder)
 	{
-		super.allocate(stack, context);
-
-		allocateUniformBuffer(stack);
-	}
-
-	private void allocateUniformBuffer(MemoryStack stack)
-	{
-		uniformBuffer.allocate(stack, context);
+		uniformBuffer.allocate(stack, context, memoryBuilder);
 	}
 
 	public void fillBuffer(	MemoryStack stack,
@@ -72,6 +66,12 @@ public class IndexedBufferWithUniform extends IndexedBuffer
 				numberOfVertice);
 
 		uniformBuffer.pushData(context, uniformStaggingBuffer);
+	}
+
+	@Override
+	protected int getUsages()
+	{
+		return super.getUsages() | VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
 	}
 
 	@Override

@@ -3,8 +3,10 @@ package org.sheepy.lily.vulkan.extra.rendering;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Supplier;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.lwjgl.BufferUtils;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Autorun;
@@ -13,12 +15,14 @@ import org.sheepy.lily.core.api.maintainer.MaintainerUtil;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
-import org.sheepy.lily.vulkan.extra.api.rendering.IPresentationAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IResourceProviderAdapter;
+import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
-import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
-import org.sheepy.lily.vulkan.extra.rendering.PresentationContext.PipelineContext;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
+import org.sheepy.lily.vulkan.extra.rendering.builder.PipelineContext;
+import org.sheepy.lily.vulkan.extra.rendering.builder.StructureContext;
+import org.sheepy.lily.vulkan.extra.rendering.builder.StructureInstaller;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
@@ -28,38 +32,25 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 @Statefull
 @Adapter(scope = GenericRenderer.class, scopeInheritance = true)
-public final class GenericRendererMaintainerAdapter<T extends Presentation>
+public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 		implements IVulkanAdapter
 {
+	public static final int PUSH_BUFFER_SIZE = 2097152;
+
 	private static final EClass RENDERER_ECLASS = RenderingPackage.Literals.GENERIC_RENDERER;
 
-	public static final int PUSH_BUFFER_SIZE = 2097152;
+	private static PipelineContext commonPipeline = null;
 
 	private final GenericRenderer<T> maintainer;
 	private final GraphicProcess graphicProcess;
-
-	private final List<PresentationContext<T>> contexts = new ArrayList<>();
-
+	private final List<StructureContext> contexts = new ArrayList<>();
 	private final List<DescriptedResource> commonResources;
 
 	public GenericRendererMaintainerAdapter(GenericRenderer<T> maintainer)
 	{
 		this.maintainer = maintainer;
 		this.graphicProcess = ModelUtil.findParent(maintainer, GraphicProcess.class);
-		this.commonResources = List.copyOf(getCommonResources(maintainer));
-	}
-
-	private List<DescriptedResource> getCommonResources(GenericRenderer<T> maintainer)
-	{
-		final List<DescriptedResource> commonResources = new ArrayList<>();
-		final var commonResourceProvider = maintainer.getCommonResourceProvider();
-		if (commonResourceProvider != null)
-		{
-			final var resourceProviderAdapter = IResourceProviderAdapter
-					.adapt(commonResourceProvider);
-			commonResources.addAll(resourceProviderAdapter.getResources(commonResourceProvider));
-		}
-		return commonResources;
+		this.commonResources = List.copyOf(gatherCommonResources(maintainer));
 	}
 
 	@Autorun
@@ -73,39 +64,54 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation>
 
 	private void buildPipelines()
 	{
-		final var presentationPkg = maintainer.getPresentationPkg();
-		final var builder = new PresentationContext.Builder<T>(maintainer);
-		final var presentations = presentationPkg.getPresentations().stream();
-		final var pipelineIndex = new AtomicInteger(graphicProcess.getPartPkg().getParts().size());
-
+		final var structures = maintainer.getRenderedStructures().stream();
+		final var structInstaller = new StructureInstaller<>(maintainer);
 		final var presentedEClass = ModelUtil.resolveGenericType(maintainer, RENDERER_ECLASS);
-		@SuppressWarnings("unchecked")
-		final var classifier = (Class<T>) presentedEClass.getInstanceClass();
 
-		final boolean needRecreatePipeline = builder.hasDynamicDescriptors || builder.hasIndexData;
-		final var commonPipeline = needRecreatePipeline
-				? null
-				: newPipelineContext(pipelineIndex.getAndIncrement());
-		final var stream = presentations.filter(classifier::isInstance).map(classifier::cast);
+		final var pipContextBuilder = createPipelineContextBuilder(structInstaller);
 
-		stream.forEach(presentation ->
-		{
-			final var meshAdapter = IPresentationAdapter.adapt(presentation);
-			for (int i = 0; i < meshAdapter.getPartCount(); i++)
-			{
-				final var pipelineContext = commonPipeline != null
-						? commonPipeline
-						: newPipelineContext(pipelineIndex.getAndIncrement());
-				final var meshContext = builder.setup(pipelineContext, presentation, i);
-				contexts.add(meshContext);
-			}
-		});
+		structures.forEach(s -> preparePipeline(pipContextBuilder, structInstaller, s));
 
 		if (DebugUtil.DEBUG_ENABLED)
 		{
-			final var name = classifier.getSimpleName();
-			final int count = contexts.size();
-			System.out.println(String.format("Create %d pipelines for %s.", count, name));
+			printDebugInfo(presentedEClass);
+		}
+	}
+
+	private Supplier<PipelineContext> createPipelineContextBuilder(StructureInstaller<?> structInstaller)
+	{
+		final int pipelineCount = graphicProcess.getPartPkg().getParts().size();
+		final boolean needRecreatePipeline = structInstaller.hasDynamicDescriptors
+				|| structInstaller.hasIndexData;
+
+		if (needRecreatePipeline)
+		{
+			final var pipelineIndex = new AtomicInteger(pipelineCount);
+
+			// Will recreate pipeline each call
+			return () -> newPipelineContext(pipelineIndex.getAndIncrement());
+		}
+		else
+		{
+			// Keep the same pipeline
+			return () ->
+			{
+				if (commonPipeline == null) commonPipeline = newPipelineContext(pipelineCount + 1);
+				return commonPipeline;
+			};
+		}
+	}
+
+	private void preparePipeline(	Supplier<PipelineContext> contextBuilder,
+									final StructureInstaller<T> installer,
+									T structure)
+	{
+		final var structureAdapter = IStructureAdapter.adapt(structure);
+		for (int i = 0; i < structureAdapter.getPartCount(); i++)
+		{
+			final var context = contextBuilder.get();
+			final var meshContext = installer.install(context, structure, i);
+			contexts.add(meshContext);
 		}
 	}
 
@@ -141,5 +147,25 @@ public final class GenericRendererMaintainerAdapter<T extends Presentation>
 		graphicProcess.getPartPkg().getParts().add(pipeline);
 
 		return new PipelineContext(pipeline, maintainer.getPushBuffer());
+	}
+
+	private static List<DescriptedResource> gatherCommonResources(GenericRenderer<?> maintainer)
+	{
+		final List<DescriptedResource> commonResources = new ArrayList<>();
+		final var resourceProvider = maintainer.getCommonResourceProvider();
+		if (resourceProvider != null)
+		{
+			final var providerAdapter = IResourceProviderAdapter.adapt(resourceProvider);
+			commonResources.addAll(providerAdapter.getResources(resourceProvider));
+		}
+		return commonResources;
+	}
+
+	private void printDebugInfo(final EClassifier presentedEClass)
+	{
+		final var classifier = presentedEClass.getInstanceClass();
+		final var name = classifier.getSimpleName();
+		final int count = contexts.size();
+		System.out.println(String.format("Create %d pipelines for %s.", count, name));
 	}
 }

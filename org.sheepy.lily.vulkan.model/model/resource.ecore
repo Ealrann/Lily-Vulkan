@@ -191,11 +191,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="moduleName" unique="false"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Texture2DArray" eSuperTypes="#//DescriptedResource">
+  <eClassifiers xsi:type="ecore:EClass" name="Texture2DArray" eSuperTypes="#//Image #//BasicDescriptedResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="files" lowerBound="1" upperBound="-1"
         eType="#//PathResource" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" unique="false"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mipmapEnabled" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        defaultValueLiteral="false"/>
   </eClassifiers>
 </ecore:EPackage>

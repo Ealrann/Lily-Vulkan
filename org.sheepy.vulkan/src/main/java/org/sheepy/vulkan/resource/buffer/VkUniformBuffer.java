@@ -7,11 +7,11 @@ import org.lwjgl.vulkan.VkDescriptorBufferInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.resource.memory.MemoryChunkBuilder;
 
-public class VkUniformBuffer implements IVkDescriptor, IAllocable<IExecutionContext>
+public class VkUniformBuffer implements IVkDescriptor
 {
 	private final GPUBufferBackend uniformBuffer;
 	private final int shaderStages;
@@ -24,22 +24,16 @@ public class VkUniformBuffer implements IVkDescriptor, IAllocable<IExecutionCont
 		uniformBuffer = new GPUBufferBackend(info, false);
 	}
 
-	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(	MemoryStack stack,
+							IExecutionContext context,
+							MemoryChunkBuilder memoryBuilder)
 	{
-		uniformBuffer.allocate(stack, context);
+		uniformBuffer.allocate(stack, context, memoryBuilder);
 	}
 
-	@Override
 	public void free(IExecutionContext context)
 	{
 		uniformBuffer.free(context);
-	}
-
-	@Override
-	public boolean isAllocationDirty(IExecutionContext context)
-	{
-		return uniformBuffer.isAllocationDirty(context);
 	}
 
 	@Override

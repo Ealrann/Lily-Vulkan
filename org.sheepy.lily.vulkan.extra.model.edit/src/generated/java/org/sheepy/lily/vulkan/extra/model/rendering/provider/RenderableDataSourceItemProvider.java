@@ -64,27 +64,27 @@ public class RenderableDataSourceItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addPresentationPropertyDescriptor(object);
+			addStructurePropertyDescriptor(object);
 			addPartPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Presentation feature.
+	 * This adds a property descriptor for the Structure feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPresentationPropertyDescriptor(Object object)
+	protected void addStructurePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_RenderableDataSource_presentation_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RenderableDataSource_presentation_feature", "_UI_RenderableDataSource_type"),
-				 RenderingPackage.Literals.RENDERABLE_DATA_SOURCE__PRESENTATION,
+				 getString("_UI_RenderableDataSource_structure_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RenderableDataSource_structure_feature", "_UI_RenderableDataSource_type"),
+				 RenderingPackage.Literals.RENDERABLE_DATA_SOURCE__STRUCTURE,
 				 true,
 				 false,
 				 true,

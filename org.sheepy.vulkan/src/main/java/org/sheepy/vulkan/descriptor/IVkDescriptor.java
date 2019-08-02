@@ -17,5 +17,4 @@ public interface IVkDescriptor
 	{
 		return false;
 	}
-
 }

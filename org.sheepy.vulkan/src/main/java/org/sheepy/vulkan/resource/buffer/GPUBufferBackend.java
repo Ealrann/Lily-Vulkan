@@ -6,22 +6,22 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.resource.memory.VkMemoryAllocator;
-import org.sheepy.vulkan.resource.memory.VkMemoryAllocator.MemoryAllocationInfo;
-import org.sheepy.vulkan.resource.memory.VkMemoryAllocator.MemoryInfo;
+import org.sheepy.vulkan.resource.memory.MemoryChunk;
+import org.sheepy.vulkan.resource.memory.MemoryChunkBuilder;
 import org.sheepy.vulkan.util.VulkanDebugUtil;
 
 public class GPUBufferBackend implements IBufferBackend
 {
 	public static final int DEVICE_LOCAL = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
 
-	private final int properties;
+	public final int properties;
+
 	private final BufferInfo info;
 
 	private long address = -1;
 	private long memoryAddress;
+	private MemoryChunk memory;
 	private int currentInstance = 0;
 	private long currentOffset = 0;
 
@@ -44,27 +44,34 @@ public class GPUBufferBackend implements IBufferBackend
 	@Override
 	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
+		final MemoryChunkBuilder memoryBuilder = new MemoryChunkBuilder(stack, context, properties);
+		allocate(stack, context, memoryBuilder);
+		memory = memoryBuilder.build(stack);
+		memory.allocate(stack, context);
+	}
+
+	@Override
+	public void allocate(	MemoryStack stack,
+							IExecutionContext context,
+							MemoryChunkBuilder memoryBuilder)
+	{
 		final var vkDevice = context.getVkDevice();
 
 		info.computeAlignment(context.getPhysicalDevice());
 		address = VkBufferAllocator.allocate(stack, vkDevice, info);
 
-		final var memoryInfo = allocateMemory(stack, context.getLogicalDevice());
-		memoryAddress = memoryInfo.id;
+		memoryBuilder.registerBuffer(address, (memoryPtr, memorySize) ->
+		{
+			memoryAddress = memoryPtr;
 
-		vkBindBufferMemory(vkDevice, address, memoryAddress, 0);
-		// System.out.println(Long.toHexString(bufferMemoryId));
+			vkBindBufferMemory(vkDevice, address, memoryAddress, 0);
+			// System.out.println(Long.toHexString(bufferMemoryId));
+		});
 
 		if (cpuBackend != null)
 		{
 			cpuBackend.allocate(stack, context);
 		}
-	}
-
-	private MemoryInfo allocateMemory(MemoryStack stack, LogicalDevice logicalDevice)
-	{
-		final var allocationInfo = new MemoryAllocationInfo(logicalDevice, address, properties);
-		return VkMemoryAllocator.allocateFromBuffer(stack, allocationInfo);
 	}
 
 	@Override
@@ -73,7 +80,7 @@ public class GPUBufferBackend implements IBufferBackend
 		final var vkDevice = context.getVkDevice();
 
 		vkDestroyBuffer(vkDevice, address, null);
-		vkFreeMemory(vkDevice, memoryAddress, null);
+		if (memory != null) memory.free(context);
 
 		if (cpuBackend != null)
 		{
@@ -118,7 +125,8 @@ public class GPUBufferBackend implements IBufferBackend
 		final int size = (int) Math.min(stagingBuffer.info.size, info.size);
 		final long bufferPtr = stagingBuffer.getAddress();
 
-		executionContext.execute((MemoryStack stack, VkCommandBuffer commandBuffer) -> {
+		executionContext.execute((MemoryStack stack, VkCommandBuffer commandBuffer) ->
+		{
 			BufferUtils.copyBuffer(commandBuffer, bufferPtr, 0, address, currentOffset, size);
 		});
 	}
@@ -189,5 +197,11 @@ public class GPUBufferBackend implements IBufferBackend
 	public long getMemoryAddress()
 	{
 		return memoryAddress;
+	}
+
+	@Override
+	public int getProperties()
+	{
+		return properties;
 	}
 }

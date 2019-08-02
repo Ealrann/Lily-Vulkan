@@ -41,15 +41,6 @@ public interface SpriteFactory extends EFactory
 	Sprite createSprite();
 
 	/**
-	 * Returns a new object of class '<em>Pkg</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Pkg</em>'.
-	 * @generated
-	 */
-	SpritePkg createSpritePkg();
-
-	/**
 	 * Returns a new object of class '<em>Mono Sampler Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,6 +48,15 @@ public interface SpriteFactory extends EFactory
 	 * @generated
 	 */
 	SpriteMonoSamplerProvider createSpriteMonoSamplerProvider();
+
+	/**
+	 * Returns a new object of class '<em>Structure</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Structure</em>'.
+	 * @generated
+	 */
+	SpriteStructure createSpriteStructure();
 
 	/**
 	 * Returns the package supported by this factory.

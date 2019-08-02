@@ -32,6 +32,15 @@ public interface RenderingFactory extends EFactory
 	Axis createAxis();
 
 	/**
+	 * Returns a new object of class '<em>Presentation Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Presentation Pkg</em>'.
+	 * @generated
+	 */
+	PresentationPkg createPresentationPkg();
+
+	/**
 	 * Returns a new object of class '<em>Presentable Entity</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -47,16 +56,16 @@ public interface RenderingFactory extends EFactory
 	 * @return a new object of class '<em>Data Provider Pkg</em>'.
 	 * @generated
 	 */
-	<T extends Presentation> DataProviderPkg<T> createDataProviderPkg();
+	<T extends Structure<?>> DataProviderPkg<T> createDataProviderPkg();
 
 	/**
-	 * Returns a new object of class '<em>Generic Described Data Provider</em>'.
+	 * Returns a new object of class '<em>Described Data Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Generic Described Data Provider</em>'.
+	 * @return a new object of class '<em>Described Data Provider</em>'.
 	 * @generated
 	 */
-	<T extends Presentation> GenericDescribedDataProvider<T> createGenericDescribedDataProvider();
+	<T extends Structure<?>> DescribedDataProvider<T> createDescribedDataProvider();
 
 	/**
 	 * Returns a new object of class '<em>Renderable Data Source</em>'.
@@ -65,34 +74,25 @@ public interface RenderingFactory extends EFactory
 	 * @return a new object of class '<em>Renderable Data Source</em>'.
 	 * @generated
 	 */
-	<T extends Presentation> RenderableDataSource<T> createRenderableDataSource();
+	<T extends Structure<?>> RenderableDataSource<T> createRenderableDataSource();
 
 	/**
-	 * Returns a new object of class '<em>Generic Vertex Provider</em>'.
+	 * Returns a new object of class '<em>Vertex Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Generic Vertex Provider</em>'.
+	 * @return a new object of class '<em>Vertex Provider</em>'.
 	 * @generated
 	 */
-	<T extends Presentation> GenericVertexProvider<T> createGenericVertexProvider();
+	<T extends Structure<?>> VertexProvider<T> createVertexProvider();
 
 	/**
-	 * Returns a new object of class '<em>Generic Index Provider</em>'.
+	 * Returns a new object of class '<em>Index Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Generic Index Provider</em>'.
+	 * @return a new object of class '<em>Index Provider</em>'.
 	 * @generated
 	 */
-	<T extends Presentation> GenericIndexProvider<T> createGenericIndexProvider();
-
-	/**
-	 * Returns a new object of class '<em>Presentation Root Pkg</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Presentation Root Pkg</em>'.
-	 * @generated
-	 */
-	PresentationRootPkg createPresentationRootPkg();
+	<T extends Structure<?>> IndexProvider<T> createIndexProvider();
 
 	/**
 	 * Returns a new object of class '<em>Static Resource Provider</em>'.

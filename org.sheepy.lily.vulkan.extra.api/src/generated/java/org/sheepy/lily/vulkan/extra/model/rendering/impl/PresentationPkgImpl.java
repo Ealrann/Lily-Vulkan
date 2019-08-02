@@ -15,10 +15,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,22 +27,22 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PresentationPkgImpl#getPresentations <em>Presentations</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PresentationPkgImpl#getStructures <em>Structures</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class PresentationPkgImpl<T extends Presentation> extends MinimalEObjectImpl.Container implements PresentationPkg<T>
+public class PresentationPkgImpl extends MinimalEObjectImpl.Container implements PresentationPkg
 {
 	/**
-	 * The cached value of the '{@link #getPresentations() <em>Presentations</em>}' containment reference list.
+	 * The cached value of the '{@link #getStructures() <em>Structures</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPresentations()
+	 * @see #getStructures()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<T> presentations;
+	protected EList<Structure<?>> structures;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,13 +70,13 @@ public abstract class PresentationPkgImpl<T extends Presentation> extends Minima
 	 * @generated
 	 */
 	@Override
-	public EList<T> getPresentations()
+	public EList<Structure<?>> getStructures()
 	{
-		if (presentations == null)
+		if (structures == null)
 		{
-			presentations = new EObjectContainmentEList<T>(Presentation.class, this, RenderingPackage.PRESENTATION_PKG__PRESENTATIONS);
+			structures = new EObjectContainmentEList<Structure<?>>(Structure.class, this, RenderingPackage.PRESENTATION_PKG__STRUCTURES);
 		}
-		return presentations;
+		return structures;
 	}
 
 	/**
@@ -90,8 +89,8 @@ public abstract class PresentationPkgImpl<T extends Presentation> extends Minima
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.PRESENTATION_PKG__PRESENTATIONS:
-				return ((InternalEList<?>)getPresentations()).basicRemove(otherEnd, msgs);
+			case RenderingPackage.PRESENTATION_PKG__STRUCTURES:
+				return ((InternalEList<?>)getStructures()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -106,8 +105,8 @@ public abstract class PresentationPkgImpl<T extends Presentation> extends Minima
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.PRESENTATION_PKG__PRESENTATIONS:
-				return getPresentations();
+			case RenderingPackage.PRESENTATION_PKG__STRUCTURES:
+				return getStructures();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -123,9 +122,9 @@ public abstract class PresentationPkgImpl<T extends Presentation> extends Minima
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.PRESENTATION_PKG__PRESENTATIONS:
-				getPresentations().clear();
-				getPresentations().addAll((Collection<? extends T>)newValue);
+			case RenderingPackage.PRESENTATION_PKG__STRUCTURES:
+				getStructures().clear();
+				getStructures().addAll((Collection<? extends Structure<?>>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -141,8 +140,8 @@ public abstract class PresentationPkgImpl<T extends Presentation> extends Minima
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.PRESENTATION_PKG__PRESENTATIONS:
-				getPresentations().clear();
+			case RenderingPackage.PRESENTATION_PKG__STRUCTURES:
+				getStructures().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -158,8 +157,8 @@ public abstract class PresentationPkgImpl<T extends Presentation> extends Minima
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.PRESENTATION_PKG__PRESENTATIONS:
-				return presentations != null && !presentations.isEmpty();
+			case RenderingPackage.PRESENTATION_PKG__STRUCTURES:
+				return structures != null && !structures.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -1393,6 +1393,17 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getTexture2DArray_MipmapEnabled()
+	{
+		return (EAttribute)texture2DArrayEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EDataType getByteBuffer()
 	{
 		return byteBufferEDataType;
@@ -1560,6 +1571,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEReference(texture2DArrayEClass, TEXTURE2_DARRAY__FILES);
 		createEAttribute(texture2DArrayEClass, TEXTURE2_DARRAY__WIDTH);
 		createEAttribute(texture2DArrayEClass, TEXTURE2_DARRAY__HEIGHT);
+		createEAttribute(texture2DArrayEClass, TEXTURE2_DARRAY__MIPMAP_ENABLED);
 
 		// Create data types
 		byteBufferEDataType = createEDataType(BYTE_BUFFER);
@@ -1645,7 +1657,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		abstractModuleResourceEClass.getESuperTypes().add(this.getPathResource());
 		moduleResourceEClass.getESuperTypes().add(this.getAbstractModuleResource());
 		stringModuleResourceEClass.getESuperTypes().add(this.getAbstractModuleResource());
-		texture2DArrayEClass.getESuperTypes().add(this.getDescriptedResource());
+		texture2DArrayEClass.getESuperTypes().add(this.getImage());
+		texture2DArrayEClass.getESuperTypes().add(this.getBasicDescriptedResource());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(basicResourceEClass, BasicResource.class, "BasicResource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1772,6 +1785,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getTexture2DArray_Files(), this.getPathResource(), null, "files", null, 1, -1, Texture2DArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTexture2DArray_Width(), theEcorePackage.getEInt(), "width", null, 0, 1, Texture2DArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTexture2DArray_Height(), theEcorePackage.getEInt(), "height", null, 0, 1, Texture2DArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTexture2DArray_MipmapEnabled(), theEcorePackage.getEBoolean(), "mipmapEnabled", "false", 0, 1, Texture2DArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(byteBufferEDataType, ByteBuffer.class, "ByteBuffer", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

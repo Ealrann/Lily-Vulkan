@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource#getPresentation <em>Presentation</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource#getStructure <em>Structure</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource#getPart <em>Part</em>}</li>
  * </ul>
  *
@@ -21,29 +21,29 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface RenderableDataSource<T extends Presentation> extends EObject
+public interface RenderableDataSource<T extends Structure<?>> extends EObject
 {
 	/**
-	 * Returns the value of the '<em><b>Presentation</b></em>' reference.
+	 * Returns the value of the '<em><b>Structure</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Presentation</em>' reference.
-	 * @see #setPresentation(Presentation)
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getRenderableDataSource_Presentation()
+	 * @return the value of the '<em>Structure</em>' reference.
+	 * @see #setStructure(Structure)
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getRenderableDataSource_Structure()
 	 * @model required="true"
 	 * @generated
 	 */
-	T getPresentation();
+	T getStructure();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource#getPresentation <em>Presentation</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource#getStructure <em>Structure</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Presentation</em>' reference.
-	 * @see #getPresentation()
+	 * @param value the new value of the '<em>Structure</em>' reference.
+	 * @see #getStructure()
 	 * @generated
 	 */
-	void setPresentation(T value);
+	void setStructure(T value);
 
 	/**
 	 * Returns the value of the '<em><b>Part</b></em>' attribute.

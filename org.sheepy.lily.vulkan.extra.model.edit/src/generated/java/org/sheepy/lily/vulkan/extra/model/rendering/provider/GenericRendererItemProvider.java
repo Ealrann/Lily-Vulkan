@@ -54,7 +54,7 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addPresentationPkgPropertyDescriptor(object);
+			addRenderedStructuresPropertyDescriptor(object);
 			addConstantBufferPropertyDescriptor(object);
 			addPushBufferPropertyDescriptor(object);
 		}
@@ -62,20 +62,20 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Presentation Pkg feature.
+	 * This adds a property descriptor for the Rendered Structures feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPresentationPkgPropertyDescriptor(Object object)
+	protected void addRenderedStructuresPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GenericRenderer_presentationPkg_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GenericRenderer_presentationPkg_feature", "_UI_GenericRenderer_type"),
-				 RenderingPackage.Literals.GENERIC_RENDERER__PRESENTATION_PKG,
+				 getString("_UI_GenericRenderer_renderedStructures_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenericRenderer_renderedStructures_feature", "_UI_GenericRenderer_type"),
+				 RenderingPackage.Literals.GENERIC_RENDERER__RENDERED_STRUCTURES,
 				 true,
 				 false,
 				 true,

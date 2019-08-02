@@ -35,7 +35,7 @@ public class DescriptorPool implements IAllocable<IExecutionContext>
 		int poolSize = 0;
 		for (final var descriptorSet : descriptorSets)
 		{
-			poolSize += descriptorSet.size();
+			poolSize += descriptorSet.descriptorCount();
 		}
 
 		if (poolSize > 0)

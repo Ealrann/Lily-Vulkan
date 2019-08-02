@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.extra.model.sprite;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
 
+import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.vulkan.model.image.SamplerInfo;
 
 /**
@@ -18,6 +19,7 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getSamplerInfo <em>Sampler Info</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getWidth <em>Width</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getTargetResourcePkg <em>Target Resource Pkg</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage#getSpriteMonoSamplerProvider()
@@ -91,5 +93,27 @@ public interface SpriteMonoSamplerProvider extends ResourceProvider
 	 * @generated
 	 */
 	void setHeight(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Target Resource Pkg</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target Resource Pkg</em>' reference.
+	 * @see #setTargetResourcePkg(ResourcePkg)
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage#getSpriteMonoSamplerProvider_TargetResourcePkg()
+	 * @model required="true"
+	 * @generated
+	 */
+	ResourcePkg getTargetResourcePkg();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getTargetResourcePkg <em>Target Resource Pkg</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target Resource Pkg</em>' reference.
+	 * @see #getTargetResourcePkg()
+	 * @generated
+	 */
+	void setTargetResourcePkg(ResourcePkg value);
 
 } // SpriteMonoSamplerProvider
