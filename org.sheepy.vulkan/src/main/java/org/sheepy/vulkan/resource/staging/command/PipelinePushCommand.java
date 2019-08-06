@@ -28,6 +28,12 @@ public class PipelinePushCommand implements IDataFlowCommand
 								EPipelineStage dstStage,
 								EAccess dstAccess)
 	{
+		assert dstStage != null;
+		assert dstAccess != null;
+		assert trgBuffer > 0;
+		assert trgOffset >= 0;
+		assert ticket != null;
+
 		this.ticket = ticket;
 		this.trgBuffer = trgBuffer;
 		this.trgOffset = trgOffset;
@@ -83,7 +89,7 @@ public class PipelinePushCommand implements IDataFlowCommand
 	{
 		return null;
 	}
-	
+
 	@Override
 	public EFlowType getFlowType()
 	{

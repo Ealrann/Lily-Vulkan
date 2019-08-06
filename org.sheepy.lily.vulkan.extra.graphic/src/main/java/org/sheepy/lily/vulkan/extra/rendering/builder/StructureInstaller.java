@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexProviderAdapter;
+import org.sheepy.lily.vulkan.extra.api.mesh.data.IVertexProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
@@ -94,6 +95,7 @@ public final class StructureInstaller<T extends Structure<?>>
 
 		final List<VertexBinding> vertexBufferRef = new ArrayList<>();
 		int indexIndex = -1;
+		int vertexCount = 0;
 
 		for (int i = 0; i < dataProviders.size(); i++)
 		{
@@ -108,6 +110,9 @@ public final class StructureInstaller<T extends Structure<?>>
 			}
 			else if (provider instanceof VertexProvider)
 			{
+				final var adapter = IVertexProviderAdapter.adapt((VertexProvider<?>) provider);
+				vertexCount += adapter.getVertexCount();
+
 				final var vertexRef = ResourceFactory.eINSTANCE.createCompositeBufferReference();
 				vertexRef.setBuffer(buffer);
 				vertexRef.setPart(i);
@@ -146,6 +151,7 @@ public final class StructureInstaller<T extends Structure<?>>
 		else
 		{
 			final var draw = GraphicFactory.eINSTANCE.createDraw();
+			draw.setVertexCount(vertexCount);
 
 			taskPkg.getTasks().add(draw);
 		}
