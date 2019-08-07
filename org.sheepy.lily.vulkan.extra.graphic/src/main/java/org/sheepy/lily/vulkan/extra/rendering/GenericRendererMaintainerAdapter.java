@@ -21,7 +21,6 @@ import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.rendering.builder.PipelineContext;
-import org.sheepy.lily.vulkan.extra.rendering.builder.StructureContext;
 import org.sheepy.lily.vulkan.extra.rendering.builder.StructureInstaller;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
@@ -39,12 +38,12 @@ public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 
 	private static final EClass RENDERER_ECLASS = RenderingPackage.Literals.GENERIC_RENDERER;
 
-	private static PipelineContext commonPipeline = null;
-
 	private final GenericRenderer<T> maintainer;
 	private final GraphicProcess graphicProcess;
-	private final List<StructureContext> contexts = new ArrayList<>();
+	private final List<PipelineContext> contexts = new ArrayList<>();
 	private final List<DescriptedResource> commonResources;
+
+	private PipelineContext commonPipeline = null;
 
 	public GenericRendererMaintainerAdapter(GenericRenderer<T> maintainer)
 	{
@@ -89,14 +88,23 @@ public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 			final var pipelineIndex = new AtomicInteger(pipelineCount);
 
 			// Will recreate pipeline each call
-			return () -> newPipelineContext(pipelineIndex.getAndIncrement());
+			return () ->
+			{
+				final var res = newPipelineContext(pipelineIndex.getAndIncrement());
+				contexts.add(res);
+				return res;
+			};
 		}
 		else
 		{
 			// Keep the same pipeline
 			return () ->
 			{
-				if (commonPipeline == null) commonPipeline = newPipelineContext(pipelineCount + 1);
+				if (commonPipeline == null)
+				{
+					commonPipeline = newPipelineContext(pipelineCount + 1);
+					contexts.add(commonPipeline);
+				}
 				return commonPipeline;
 			};
 		}
@@ -110,8 +118,7 @@ public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 		for (int i = 0; i < structureAdapter.getPartCount(); i++)
 		{
 			final var context = contextBuilder.get();
-			final var meshContext = installer.install(context, structure, i);
-			contexts.add(meshContext);
+			installer.install(context, structure, i);
 		}
 	}
 
@@ -164,8 +171,10 @@ public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 	private void printDebugInfo(final EClassifier presentedEClass)
 	{
 		final var classifier = presentedEClass.getInstanceClass();
-		final var name = classifier.getSimpleName();
+		final var name = maintainer.getName();
+		final var className = classifier.getSimpleName();
 		final int count = contexts.size();
-		System.out.println(String.format("Create %d pipelines for %s.", count, name));
+		System.out
+				.println(String.format("Create %d pipelines for %s [%s].", count, name, className));
 	}
 }
