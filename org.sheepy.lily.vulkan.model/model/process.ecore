@@ -85,6 +85,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="BindDescriptorSets" eSuperTypes="#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorSets" upperBound="-1"
         eType="ecore:EClass resource.ecore#//DescriptorSet"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindPoint" lowerBound="1"
+        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EBindPoint"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PushConstant" abstract="true" eSuperTypes="#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stages" lowerBound="1"

@@ -497,6 +497,10 @@
       <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ESampleCount/SAMPLE_COUNT_32_BIT"/>
       <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ESampleCount/SAMPLE_COUNT_64_BIT"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EBindPoint">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBindPoint/GRAPHICS"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBindPoint/COMPUTE"/>
+    </genEnums>
   </genPackages>
   <genPackages prefix="Graphicpipeline" basePackage="org.sheepy.vulkan.model" resource="XMI"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"

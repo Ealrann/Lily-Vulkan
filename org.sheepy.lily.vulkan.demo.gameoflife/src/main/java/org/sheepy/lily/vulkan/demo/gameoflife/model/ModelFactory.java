@@ -25,6 +25,7 @@ import org.sheepy.lily.vulkan.model.resource.StaticImage;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
+import org.sheepy.vulkan.model.enumeration.EBindPoint;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
@@ -242,6 +243,7 @@ public class ModelFactory
 
 		final var bindDescriptorSet = ProcessFactory.eINSTANCE.createBindDescriptorSets();
 		bindDescriptorSet.getDescriptorSets().add(descriptorSet);
+		bindDescriptorSet.setBindPoint(EBindPoint.COMPUTE);
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 
 		final var res = ComputeFactory.eINSTANCE.createComputePipeline();

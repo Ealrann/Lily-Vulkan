@@ -61,6 +61,7 @@ public class BindDescriptorSetsItemProvider extends ItemProviderAdapter implemen
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
 			addDescriptorSetsPropertyDescriptor(object);
+			addBindPointPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -135,6 +136,29 @@ public class BindDescriptorSetsItemProvider extends ItemProviderAdapter implemen
 	}
 
 	/**
+	 * This adds a property descriptor for the Bind Point feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addBindPointPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BindDescriptorSets_bindPoint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BindDescriptorSets_bindPoint_feature", "_UI_BindDescriptorSets_type"),
+				 ProcessPackage.Literals.BIND_DESCRIPTOR_SETS__BIND_POINT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns BindDescriptorSets.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -177,6 +201,7 @@ public class BindDescriptorSetsItemProvider extends ItemProviderAdapter implemen
 		{
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__NAME:
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__BIND_POINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

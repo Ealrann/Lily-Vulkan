@@ -11,7 +11,7 @@ import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.api.process.IComputeContext;
+import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
@@ -21,7 +21,7 @@ import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 
 @Statefull
 @Adapter(scope = ComputePipeline.class)
-public final class ComputePipelineAdapter extends AbstractPipelineAdapter<IComputeContext>
+public final class ComputePipelineAdapter extends AbstractPipelineAdapter<IProcessContext>
 {
 	protected final ComputePipeline pipeline;
 
@@ -34,7 +34,7 @@ public final class ComputePipelineAdapter extends AbstractPipelineAdapter<ICompu
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IComputeContext context)
+	public void allocate(MemoryStack stack, IProcessContext context)
 	{
 		super.allocate(stack, context);
 
@@ -74,7 +74,7 @@ public final class ComputePipelineAdapter extends AbstractPipelineAdapter<ICompu
 	}
 
 	@Override
-	public void free(IComputeContext context)
+	public void free(IProcessContext context)
 	{
 		for (final var pipeline : vkPipelines)
 		{

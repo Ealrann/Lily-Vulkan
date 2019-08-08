@@ -13,6 +13,7 @@ import org.sheepy.vulkan.model.barrier.impl.BarrierPackageImpl;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
+import org.sheepy.vulkan.model.enumeration.EBindPoint;
 import org.sheepy.vulkan.model.enumeration.EBlendFactor;
 import org.sheepy.vulkan.model.enumeration.EBlendOp;
 import org.sheepy.vulkan.model.enumeration.EBorderColor;
@@ -266,6 +267,13 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	private EEnum eSampleCountEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eBindPointEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -687,6 +695,17 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	@Override
+	public EEnum getEBindPoint()
+	{
+		return eBindPointEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EnumerationFactory getEnumerationFactory()
 	{
 		return (EnumerationFactory)getEFactoryInstance();
@@ -742,6 +761,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		eBufferUsageEEnum = createEEnum(EBUFFER_USAGE);
 		eMemoryPropertyEEnum = createEEnum(EMEMORY_PROPERTY);
 		eSampleCountEEnum = createEEnum(ESAMPLE_COUNT);
+		eBindPointEEnum = createEEnum(EBIND_POINT);
 	}
 
 	/**
@@ -1212,6 +1232,10 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(eSampleCountEEnum, ESampleCount.SAMPLE_COUNT_16_BIT);
 		addEEnumLiteral(eSampleCountEEnum, ESampleCount.SAMPLE_COUNT_32_BIT);
 		addEEnumLiteral(eSampleCountEEnum, ESampleCount.SAMPLE_COUNT_64_BIT);
+
+		initEEnum(eBindPointEEnum, EBindPoint.class, "EBindPoint");
+		addEEnumLiteral(eBindPointEEnum, EBindPoint.GRAPHICS);
+		addEEnumLiteral(eBindPointEEnum, EBindPoint.COMPUTE);
 
 		// Create resource
 		createResource(eNS_URI);

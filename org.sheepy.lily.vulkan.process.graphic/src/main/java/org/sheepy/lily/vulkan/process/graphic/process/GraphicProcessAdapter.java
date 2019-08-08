@@ -18,7 +18,8 @@ import org.sheepy.vulkan.queue.VulkanQueue;
 public class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphicContext>
 {
 	private static final List<ECommandStage> stages = List.of(ECommandStage.TRANSFER,
-			ECommandStage.PRE_RENDER, ECommandStage.RENDER, ECommandStage.POST_RENDER);
+			ECommandStage.COMPUTE, ECommandStage.PRE_RENDER, ECommandStage.RENDER,
+			ECommandStage.POST_RENDER);
 
 	private final ImageAcquirer acquirer = new ImageAcquirer();
 
@@ -44,21 +45,6 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphicContex
 		return nextImage;
 	}
 
-	// private static void signalSubmitSemaphores(final GraphicContext graphicContext)
-	// {
-	// final var submission = graphicContext.frameSubmission;
-	//
-	// try (MemoryStack stack = MemoryStack.stackPush())
-	// {
-	// graphicContext.execute(stack, submission.signalEmitters, new ISingleTimeCommand()
-	// {
-	// @Override
-	// public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
-	// {}
-	// });
-	// }
-	// }
-
 	@Override
 	public VulkanQueue getQueue()
 	{
@@ -81,5 +67,4 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphicContex
 	{
 		return stages;
 	}
-
 }

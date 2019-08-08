@@ -24,7 +24,7 @@ public class ComputerAdapter implements IPipelineTaskAdapter<Computer>
 		final int groupCountY = task.getWorkgroupCountY();
 		final int groupCountZ = task.getWorkgroupCountZ();
 
-		vkPipeline.bindPipeline(commandBuffer, context.bindPoint);
+		vkPipeline.bindPipeline(commandBuffer);
 		vkCmdDispatch(commandBuffer, groupCountX, groupCountY, groupCountZ);
 	}
 

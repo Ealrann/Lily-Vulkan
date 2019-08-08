@@ -36,7 +36,8 @@ public final class BindDescriptorSetsAdapter implements IPipelineTaskAdapter<Bin
 		final var pipeline = ModelUtil.findParent(task, IPipeline.class);
 		final var pipelineAdapter = IPipelineAdapter.adapt(pipeline);
 		final var pipelineLayout = pipelineAdapter.getVkPipelineLayout();
+		final int bindPoint = task.getBindPoint().getValue();
 
-		pipelineLayout.bindDescriptors(context.commandBuffer, sets, context.bindPoint);
+		pipelineLayout.bindDescriptors(context.commandBuffer, sets, bindPoint);
 	}
 }

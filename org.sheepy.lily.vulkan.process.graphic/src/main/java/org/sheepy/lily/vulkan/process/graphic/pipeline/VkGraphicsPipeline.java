@@ -62,6 +62,8 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 								ByteBuffer specializationData,
 								int subpass)
 	{
+		super(VK_PIPELINE_BIND_POINT_GRAPHICS);
+
 		this.pipelineLayout = pipelineLayout;
 		this.colorBlend = colorBlend;
 		this.rasterizer = rasterizer;

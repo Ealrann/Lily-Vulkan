@@ -19,6 +19,7 @@ import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
+import org.sheepy.vulkan.model.enumeration.EBindPoint;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,6 +32,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl#getDescriptorSets <em>Descriptor Sets</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl#getBindPoint <em>Bind Point</em>}</li>
  * </ul>
  *
  * @generated
@@ -86,6 +88,26 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	protected EList<DescriptorSet> descriptorSets;
+
+	/**
+	 * The default value of the '{@link #getBindPoint() <em>Bind Point</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBindPoint()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EBindPoint BIND_POINT_EDEFAULT = EBindPoint.GRAPHICS;
+
+	/**
+	 * The cached value of the '{@link #getBindPoint() <em>Bind Point</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBindPoint()
+	 * @generated
+	 * @ordered
+	 */
+	protected EBindPoint bindPoint = BIND_POINT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -179,6 +201,31 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
+	public EBindPoint getBindPoint()
+	{
+		return bindPoint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBindPoint(EBindPoint newBindPoint)
+	{
+		EBindPoint oldBindPoint = bindPoint;
+		bindPoint = newBindPoint == null ? BIND_POINT_EDEFAULT : newBindPoint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.BIND_DESCRIPTOR_SETS__BIND_POINT, oldBindPoint, bindPoint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -189,6 +236,8 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container impleme
 				return isEnabled();
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS:
 				return getDescriptorSets();
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__BIND_POINT:
+				return getBindPoint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -214,6 +263,9 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container impleme
 				getDescriptorSets().clear();
 				getDescriptorSets().addAll((Collection<? extends DescriptorSet>)newValue);
 				return;
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__BIND_POINT:
+				setBindPoint((EBindPoint)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -237,6 +289,9 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container impleme
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS:
 				getDescriptorSets().clear();
 				return;
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__BIND_POINT:
+				setBindPoint(BIND_POINT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -257,6 +312,8 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container impleme
 				return enabled != ENABLED_EDEFAULT;
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS:
 				return descriptorSets != null && !descriptorSets.isEmpty();
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__BIND_POINT:
+				return bindPoint != BIND_POINT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -276,6 +333,8 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container impleme
 		result.append(name);
 		result.append(", enabled: ");
 		result.append(enabled);
+		result.append(", bindPoint: ");
+		result.append(bindPoint);
 		result.append(')');
 		return result.toString();
 	}

@@ -8,7 +8,14 @@ import org.sheepy.vulkan.execution.IExecutionContext;
 
 public abstract class VkPipeline<T extends IExecutionContext> implements IAllocable<T>
 {
-	public void bindPipeline(VkCommandBuffer commandBuffer, int bindPoint)
+	private final int bindPoint;
+
+	public VkPipeline(int bindPoint)
+	{
+		this.bindPoint = bindPoint;
+	}
+
+	public void bindPipeline(VkCommandBuffer commandBuffer)
 	{
 		vkCmdBindPipeline(commandBuffer, bindPoint, getPipelineId());
 	}

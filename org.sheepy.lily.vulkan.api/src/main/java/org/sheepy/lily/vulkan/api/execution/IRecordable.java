@@ -15,17 +15,12 @@ public interface IRecordable
 	{
 		public final VkCommandBuffer commandBuffer;
 		public final ECommandStage stage;
-		public final int bindPoint;
 		public final int index;
 
-		public RecordContext(	VkCommandBuffer commandBuffer,
-								ECommandStage stage,
-								int bindPoint,
-								int index)
+		public RecordContext(VkCommandBuffer commandBuffer, ECommandStage stage, int index)
 		{
 			this.commandBuffer = commandBuffer;
 			this.stage = stage;
-			this.bindPoint = bindPoint;
 			this.index = index;
 		}
 	}

@@ -5,6 +5,7 @@ package org.sheepy.lily.vulkan.model.process;
 import org.eclipse.emf.common.util.EList;
 
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
+import org.sheepy.vulkan.model.enumeration.EBindPoint;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,6 +17,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getDescriptorSets <em>Descriptor Sets</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getBindPoint <em>Bind Point</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getBindDescriptorSets()
@@ -35,5 +37,30 @@ public interface BindDescriptorSets extends IPipelineTask
 	 * @generated
 	 */
 	EList<DescriptorSet> getDescriptorSets();
+
+	/**
+	 * Returns the value of the '<em><b>Bind Point</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EBindPoint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bind Point</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EBindPoint
+	 * @see #setBindPoint(EBindPoint)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getBindDescriptorSets_BindPoint()
+	 * @model required="true"
+	 * @generated
+	 */
+	EBindPoint getBindPoint();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getBindPoint <em>Bind Point</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Bind Point</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EBindPoint
+	 * @see #getBindPoint()
+	 * @generated
+	 */
+	void setBindPoint(EBindPoint value);
 
 } // BindDescriptorSets

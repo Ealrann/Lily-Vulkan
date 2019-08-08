@@ -445,4 +445,8 @@
     <eLiterals name="SAMPLE_COUNT_32_BIT" value="32"/>
     <eLiterals name="SAMPLE_COUNT_64_BIT" value="64"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EBindPoint">
+    <eLiterals name="GRAPHICS"/>
+    <eLiterals name="COMPUTE" value="1"/>
+  </eClassifiers>
 </ecore:EPackage>

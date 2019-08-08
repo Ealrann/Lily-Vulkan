@@ -56,8 +56,7 @@ public class GraphicExecutionRecorder extends AbstractExecutionRecorder<IGraphic
 
 					if (shouldRecord && goodSubpass)
 					{
-						final var context = new RecordContext(vkCommandBuffer, stage,
-								VK_PIPELINE_BIND_POINT_GRAPHICS, index);
+						final var context = new RecordContext(vkCommandBuffer, stage, index);
 						adapter.record(context);
 					}
 				}

@@ -82,6 +82,7 @@
     </genClasses>
     <genClasses ecoreClass="process.ecore#//BindDescriptorSets">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//BindDescriptorSets/descriptorSets"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//BindDescriptorSets/bindPoint"/>
     </genClasses>
     <genClasses image="false" ecoreClass="process.ecore#//PushConstant">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PushConstant/stages"/>

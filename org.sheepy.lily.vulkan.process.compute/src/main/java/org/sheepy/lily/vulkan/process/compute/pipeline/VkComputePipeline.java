@@ -7,24 +7,26 @@ import java.nio.ByteBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.api.process.IComputeContext;
+import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.pipeline.VkPipeline;
 import org.sheepy.vulkan.pipeline.VkPipelineLayout;
 import org.sheepy.vulkan.pipeline.VkShaderStage;
 
-public class VkComputePipeline extends VkPipeline<IComputeContext>
+public class VkComputePipeline extends VkPipeline<IProcessContext>
 {
-	private final VkPipelineLayout<? super IComputeContext> pipelineLayout;
+	private final VkPipelineLayout<? super IProcessContext> pipelineLayout;
 	private final VkShaderStage shaderStage;
 	private final ByteBuffer specializationData;
 
 	protected long[] pipelineIds;
 
-	public VkComputePipeline(	VkPipelineLayout<? super IComputeContext> pipelineLayout,
+	public VkComputePipeline(	VkPipelineLayout<? super IProcessContext> pipelineLayout,
 								VkShaderStage shaderStage,
 								ByteBuffer specializationData)
 	{
+		super(VK_PIPELINE_BIND_POINT_COMPUTE);
+		
 		this.pipelineLayout = pipelineLayout;
 		this.shaderStage = shaderStage;
 		this.specializationData = specializationData;
@@ -34,7 +36,7 @@ public class VkComputePipeline extends VkPipeline<IComputeContext>
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IComputeContext context)
+	public void allocate(MemoryStack stack, IProcessContext context)
 	{
 		final var device = context.getVkDevice();
 
@@ -60,7 +62,7 @@ public class VkComputePipeline extends VkPipeline<IComputeContext>
 	}
 
 	@Override
-	public void free(IComputeContext context)
+	public void free(IProcessContext context)
 	{
 		final var device = context.getVkDevice();
 
@@ -73,7 +75,7 @@ public class VkComputePipeline extends VkPipeline<IComputeContext>
 	}
 
 	@Override
-	public boolean isAllocationDirty(IComputeContext context)
+	public boolean isAllocationDirty(IProcessContext context)
 	{
 		return false;
 	}

@@ -356,6 +356,16 @@ public interface EnumerationPackage extends EPackage
 	int ESAMPLE_COUNT = 29;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EBindPoint <em>EBind Point</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.enumeration.EBindPoint
+	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEBindPoint()
+	 * @generated
+	 */
+	int EBIND_POINT = 30;
+
+	/**
 	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EImageLayout <em>EImage Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -654,6 +664,16 @@ public interface EnumerationPackage extends EPackage
 	 * @generated
 	 */
 	EEnum getESampleCount();
+
+	/**
+	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EBindPoint <em>EBind Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>EBind Point</em>'.
+	 * @see org.sheepy.vulkan.model.enumeration.EBindPoint
+	 * @generated
+	 */
+	EEnum getEBindPoint();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -978,6 +998,16 @@ public interface EnumerationPackage extends EPackage
 		 * @generated
 		 */
 		EEnum ESAMPLE_COUNT = eINSTANCE.getESampleCount();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EBindPoint <em>EBind Point</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.enumeration.EBindPoint
+		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEBindPoint()
+		 * @generated
+		 */
+		EEnum EBIND_POINT = eINSTANCE.getEBindPoint();
 
 	}
 

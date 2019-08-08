@@ -1,7 +1,5 @@
 package org.sheepy.lily.vulkan.process.compute.execution;
 
-import static org.lwjgl.vulkan.VK10.VK_PIPELINE_BIND_POINT_COMPUTE;
-
 import java.util.List;
 
 import org.sheepy.lily.vulkan.api.execution.IRecordable;
@@ -31,8 +29,7 @@ public class ComputeExecutionRecorder extends AbstractExecutionRecorder<ICompute
 			{
 				if (pipelineAdapter.shouldRecord(stage))
 				{
-					final RecordContext context = new RecordContext(vkCommandBuffer, stage,
-							VK_PIPELINE_BIND_POINT_COMPUTE, index);
+					final RecordContext context = new RecordContext(vkCommandBuffer, stage, index);
 					pipelineAdapter.record(context);
 				}
 			}
