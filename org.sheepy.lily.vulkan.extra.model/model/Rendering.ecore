@@ -158,4 +158,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="providers" upperBound="-1"
         eType="#//ResourceProvider" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RenderProxyConstantBuffer" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/resource.ecore#//ConstantBuffer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constantBuffer" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//ConstantBuffer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="partIndex" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
 </ecore:EPackage>

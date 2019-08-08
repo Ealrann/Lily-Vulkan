@@ -107,6 +107,10 @@
     <genClasses ecoreClass="Rendering.ecore#//CompositeResourceProvider">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//CompositeResourceProvider/providers"/>
     </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//RenderProxyConstantBuffer">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//RenderProxyConstantBuffer/constantBuffer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//RenderProxyConstantBuffer/partIndex"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Sprite" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
       childCreationExtenders="true" ecorePackage="Sprite.ecore#/">

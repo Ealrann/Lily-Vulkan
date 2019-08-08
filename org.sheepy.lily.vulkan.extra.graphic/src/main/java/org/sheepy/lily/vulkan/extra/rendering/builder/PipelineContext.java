@@ -8,19 +8,23 @@ import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 import org.sheepy.lily.vulkan.model.resource.PushBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 public final class PipelineContext
 {
 	public final GraphicsPipeline pipeline;
+	public final ConstantBuffer constantBuffer;
 	public final PushBuffer pushBuffer;
 
-	public PipelineContext(GraphicsPipeline pipeline, PushBuffer pushBuffer)
+	public PipelineContext(	GraphicsPipeline pipeline,
+							ConstantBuffer constantBuffer,
+							PushBuffer pushBuffer)
 	{
 		this.pipeline = pipeline;
+		this.constantBuffer = constantBuffer;
 		this.pushBuffer = pushBuffer;
 	}
 
@@ -38,6 +42,12 @@ public final class PipelineContext
 		public PipelineContext build(int index)
 		{
 			final var pipeline = MaintainerUtil.instanciateMaintainer(renderer);
+			final var constantBuffer = renderer.getConstantBuffer();
+			final var pushBuffer = renderer.getPushBuffer();
+
+			final var range = pipeline.getPushConstantRanges();
+			final var rangeSize = range.get(0).getSize();
+			range.get(0).setSize(rangeSize + 4);
 
 			pipeline.setTaskPkg(ProcessFactory.eINSTANCE.createTaskPkg());
 			pipeline.setResourcePkg(VulkanFactory.eINSTANCE.createResourcePkg());
@@ -47,16 +57,6 @@ public final class PipelineContext
 			constantsData.putInt(0, index);
 			pipeline.setSpecializationData(constantsData);
 
-			final var constantBuffer = renderer.getConstantBuffer();
-			if (constantBuffer != null)
-			{
-				final var pushConstant = ProcessFactory.eINSTANCE.createPushConstantBuffer();
-				pushConstant.getStages().add(EShaderStage.VERTEX_BIT);
-				pushConstant.getStages().add(EShaderStage.FRAGMENT_BIT);
-				pushConstant.setBuffer(constantBuffer);
-				pipeline.getTaskPkg().getTasks().add(pushConstant);
-			}
-
 			if (commonResources.isEmpty() == false)
 			{
 				final var descriptorSet = ResourceFactory.eINSTANCE.createDescriptorSet();
@@ -64,7 +64,7 @@ public final class PipelineContext
 				pipeline.getDescriptorSetPkg().getDescriptorSets().add(descriptorSet);
 			}
 
-			return new PipelineContext(pipeline, renderer.getPushBuffer());
+			return new PipelineContext(pipeline, constantBuffer, pushBuffer);
 		}
 	}
 }

@@ -27,8 +27,6 @@ import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 		implements IVulkanAdapter
 {
-	public static final int PUSH_BUFFER_SIZE = 2097152;
-
 	private static final EClass RENDERER_ECLASS = RenderingPackage.Literals.GENERIC_RENDERER;
 
 	private final GenericRenderer<T> maintainer;
@@ -88,12 +86,10 @@ public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 										final BufferInstaller<T> bufferInstaller,
 										T structure)
 	{
-
 		final int pipelineCount = graphicProcess.getPartPkg().getParts().size();
 		final var structureAdapter = IStructureAdapter.adapt(structure);
 		final var drawInstaller = new DrawTaskInstaller(structure);
-		final PipelineContext pipelineContext = newPipelineContext(contextBuilder,
-				pipelineCount + 1);
+		final var pipelineContext = newPipelineContext(contextBuilder, pipelineCount + 1);
 
 		for (int i = 0; i < structureAdapter.getPartCount(); i++)
 		{

@@ -1126,6 +1126,80 @@ public interface RenderingPackage extends EPackage
 
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderProxyConstantBufferImpl <em>Render Proxy Constant Buffer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderProxyConstantBufferImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderProxyConstantBuffer()
+	 * @generated
+	 */
+	int RENDER_PROXY_CONSTANT_BUFFER = 17;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_PROXY_CONSTANT_BUFFER__NAME = ResourcePackage.CONSTANT_BUFFER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Being Pushed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_PROXY_CONSTANT_BUFFER__BEING_PUSHED = ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED;
+
+	/**
+	 * The feature id for the '<em><b>Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_PROXY_CONSTANT_BUFFER__DATA = ResourcePackage.CONSTANT_BUFFER__DATA;
+
+	/**
+	 * The feature id for the '<em><b>Constant Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_PROXY_CONSTANT_BUFFER__CONSTANT_BUFFER = ResourcePackage.CONSTANT_BUFFER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Part Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_PROXY_CONSTANT_BUFFER__PART_INDEX = ResourcePackage.CONSTANT_BUFFER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Render Proxy Constant Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_PROXY_CONSTANT_BUFFER_FEATURE_COUNT = ResourcePackage.CONSTANT_BUFFER_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Render Proxy Constant Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_PROXY_CONSTANT_BUFFER_OPERATION_COUNT = ResourcePackage.CONSTANT_BUFFER_OPERATION_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.Entity <em>Entity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1549,6 +1623,38 @@ public interface RenderingPackage extends EPackage
 	EReference getCompositeResourceProvider_Providers();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer <em>Render Proxy Constant Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Render Proxy Constant Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer
+	 * @generated
+	 */
+	EClass getRenderProxyConstantBuffer();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer#getConstantBuffer <em>Constant Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Constant Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer#getConstantBuffer()
+	 * @see #getRenderProxyConstantBuffer()
+	 * @generated
+	 */
+	EReference getRenderProxyConstantBuffer_ConstantBuffer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer#getPartIndex <em>Part Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Part Index</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer#getPartIndex()
+	 * @see #getRenderProxyConstantBuffer()
+	 * @generated
+	 */
+	EAttribute getRenderProxyConstantBuffer_PartIndex();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1924,6 +2030,32 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EReference COMPOSITE_RESOURCE_PROVIDER__PROVIDERS = eINSTANCE.getCompositeResourceProvider_Providers();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderProxyConstantBufferImpl <em>Render Proxy Constant Buffer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderProxyConstantBufferImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderProxyConstantBuffer()
+		 * @generated
+		 */
+		EClass RENDER_PROXY_CONSTANT_BUFFER = eINSTANCE.getRenderProxyConstantBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Constant Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RENDER_PROXY_CONSTANT_BUFFER__CONSTANT_BUFFER = eINSTANCE.getRenderProxyConstantBuffer_ConstantBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Part Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RENDER_PROXY_CONSTANT_BUFFER__PART_INDEX = eINSTANCE.getRenderProxyConstantBuffer_PartIndex();
 
 	}
 

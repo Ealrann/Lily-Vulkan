@@ -113,6 +113,15 @@ public interface RenderingFactory extends EFactory
 	CompositeResourceProvider createCompositeResourceProvider();
 
 	/**
+	 * Returns a new object of class '<em>Render Proxy Constant Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Render Proxy Constant Buffer</em>'.
+	 * @generated
+	 */
+	RenderProxyConstantBuffer createRenderProxyConstantBuffer();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

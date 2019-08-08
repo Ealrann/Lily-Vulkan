@@ -6,11 +6,14 @@ import java.util.List;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexProviderAdapter;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IVertexProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.rendering.VertexProvider;
+import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 public final class DrawTaskInstaller
 {
@@ -31,7 +34,9 @@ public final class DrawTaskInstaller
 
 	public void install(BufferContext context)
 	{
-		final var taskPkg = context.pipelineContext.pipeline.getTaskPkg();
+		final var pipeline = context.pipelineContext.pipeline;
+		final var taskPkg = pipeline.getTaskPkg();
+		final var resourcePkg = pipeline.getResourcePkg();
 		final var buffer = context.buffer;
 
 		final var dataProviders = buffer.getDataProviders();
@@ -66,6 +71,19 @@ public final class DrawTaskInstaller
 				vertexBufferRef.add(vertexBinding);
 			}
 		}
+
+		final var constantBuffer = context.pipelineContext.constantBuffer;
+		final var proxyConstantBuffer = RenderingFactory.eINSTANCE
+				.createRenderProxyConstantBuffer();
+		proxyConstantBuffer.setConstantBuffer(constantBuffer);
+		proxyConstantBuffer.setPartIndex(context.part);
+		resourcePkg.getResources().add(proxyConstantBuffer);
+
+		final var pushConstant = ProcessFactory.eINSTANCE.createPushConstantBuffer();
+		pushConstant.getStages().add(EShaderStage.VERTEX_BIT);
+		pushConstant.getStages().add(EShaderStage.FRAGMENT_BIT);
+		pushConstant.setBuffer(proxyConstantBuffer);
+		taskPkg.getTasks().add(pushConstant);
 
 		final var bindVertex = GraphicFactory.eINSTANCE.createBindVertexBuffer();
 		bindVertex.getVertexBindings().addAll(vertexBufferRef);

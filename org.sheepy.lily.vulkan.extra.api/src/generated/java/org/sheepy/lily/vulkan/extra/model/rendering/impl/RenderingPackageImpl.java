@@ -44,6 +44,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
@@ -196,6 +197,13 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	private EClass compositeResourceProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass renderProxyConstantBufferEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -738,6 +746,39 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
+	public EClass getRenderProxyConstantBuffer()
+	{
+		return renderProxyConstantBufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getRenderProxyConstantBuffer_ConstantBuffer()
+	{
+		return (EReference)renderProxyConstantBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getRenderProxyConstantBuffer_PartIndex()
+	{
+		return (EAttribute)renderProxyConstantBufferEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public RenderingFactory getRenderingFactory()
 	{
 		return (RenderingFactory)getEFactoryInstance();
@@ -819,6 +860,10 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 
 		compositeResourceProviderEClass = createEClass(COMPOSITE_RESOURCE_PROVIDER);
 		createEReference(compositeResourceProviderEClass, COMPOSITE_RESOURCE_PROVIDER__PROVIDERS);
+
+		renderProxyConstantBufferEClass = createEClass(RENDER_PROXY_CONSTANT_BUFFER);
+		createEReference(renderProxyConstantBufferEClass, RENDER_PROXY_CONSTANT_BUFFER__CONSTANT_BUFFER);
+		createEAttribute(renderProxyConstantBufferEClass, RENDER_PROXY_CONSTANT_BUFFER__PART_INDEX);
 	}
 
 	/**
@@ -930,6 +975,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		indexProviderEClass.getEGenericSuperTypes().add(g1);
 		staticResourceProviderEClass.getESuperTypes().add(this.getResourceProvider());
 		compositeResourceProviderEClass.getESuperTypes().add(this.getResourceProvider());
+		renderProxyConstantBufferEClass.getESuperTypes().add(theResourcePackage.getConstantBuffer());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(entityEClass, Entity.class, "Entity", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1000,6 +1046,10 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 
 		initEClass(compositeResourceProviderEClass, CompositeResourceProvider.class, "CompositeResourceProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeResourceProvider_Providers(), this.getResourceProvider(), null, "providers", null, 0, -1, CompositeResourceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(renderProxyConstantBufferEClass, RenderProxyConstantBuffer.class, "RenderProxyConstantBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRenderProxyConstantBuffer_ConstantBuffer(), theResourcePackage.getConstantBuffer(), null, "constantBuffer", null, 1, 1, RenderProxyConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRenderProxyConstantBuffer_PartIndex(), ecorePackage.getEInt(), "partIndex", null, 1, 1, RenderProxyConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
