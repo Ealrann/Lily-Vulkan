@@ -11,6 +11,7 @@ import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.api.resource.buffer.IConstantBufferUpdater;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
@@ -34,12 +35,14 @@ public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConst
 	};
 
 	private final ConstantBuffer buffer;
+	private final IConstantBufferUpdater updater;
 
 	private boolean dirty = true;
 
 	public PushConstantBufferAdapter(PushConstantBuffer task)
 	{
 		buffer = task.getBuffer();
+		updater = IConstantBufferUpdater.adapt(buffer);
 		buffer.eAdapters().add(bufferListener);
 	}
 
@@ -55,7 +58,10 @@ public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConst
 		final var pipeline = ModelUtil.findParent(pushConstant, IPipeline.class);
 		final var pipelineAdapter = IPipelineAdapter.adapt(pipeline);
 
-		buffer.setBeingPushed(true);
+		if (updater != null)
+		{
+			updater.beforePush(buffer);
+		}
 
 		final var data = buffer.getData();
 		if (data != null)
@@ -65,8 +71,6 @@ public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConst
 
 			vkCmdPushConstants(context.commandBuffer, layoutId, stageFlags, 0, data);
 		}
-
-		buffer.setBeingPushed(false);
 
 		dirty = false;
 	}

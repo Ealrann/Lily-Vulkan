@@ -3,13 +3,6 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="resource" nsURI="org.sheepy.lily.vulkan.model.resource" nsPrefix="resource">
   <eClassifiers xsi:type="ecore:EClass" name="BasicResource" eSuperTypes="vulkan.ecore#//IResource"/>
   <eClassifiers xsi:type="ecore:EClass" name="PushBuffer" eSuperTypes="vulkan.ecore#//IResource">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="beingUpdated" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
-        defaultValueLiteral="false">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="property" value="None"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//ELong"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceCount" unique="false"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
@@ -19,13 +12,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//ELong"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstantBuffer" eSuperTypes="vulkan.ecore#//IResource">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="beingPushed" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
-        defaultValueLiteral="false">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="property" value="None"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" unique="false" eType="#//ByteBuffer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DescriptedResource" abstract="true"

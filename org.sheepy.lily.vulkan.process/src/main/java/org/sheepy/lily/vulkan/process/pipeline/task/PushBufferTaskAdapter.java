@@ -5,7 +5,9 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IPushBufferAdapter;
+import org.sheepy.lily.vulkan.api.resource.buffer.IPushBufferUpdater;
 import org.sheepy.lily.vulkan.model.process.PushBufferTask;
+import org.sheepy.lily.vulkan.model.resource.PushBuffer;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @Statefull
@@ -14,10 +16,13 @@ public class PushBufferTaskAdapter implements IPipelineTaskAdapter<PushBufferTas
 {
 	private final boolean[] stagingFlushHistory;
 	private final IPushBufferAdapter pushBufferAdapter;
+	private final IPushBufferUpdater updater;
+	private final PushBuffer pushBuffer;
 
 	public PushBufferTaskAdapter(PushBufferTask task)
 	{
-		final var pushBuffer = task.getPushBuffer();
+		pushBuffer = task.getPushBuffer();
+		updater = IPushBufferUpdater.adapt(pushBuffer);
 		stagingFlushHistory = new boolean[pushBuffer.getInstanceCount()];
 		pushBufferAdapter = IPushBufferAdapter.adapt(pushBuffer);
 	}
@@ -44,8 +49,10 @@ public class PushBufferTaskAdapter implements IPipelineTaskAdapter<PushBufferTas
 
 		if (pushBufferAdapter != null)
 		{
-			task.getPushBuffer().setBeingUpdated(true);
-			task.getPushBuffer().setBeingUpdated(false);
+			if (updater != null)
+			{
+				updater.beforePush(pushBuffer);
+			}
 
 			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
 			final boolean previousRecordMadeFlush = stagingFlushHistory[index];
@@ -54,6 +61,7 @@ public class PushBufferTaskAdapter implements IPipelineTaskAdapter<PushBufferTas
 				stagingFlushHistory[index] = false;
 			}
 
+			stagingBuffer.prepare();
 			res |= !stagingBuffer.isEmpty();
 			res |= previousRecordMadeFlush;
 		}

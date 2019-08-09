@@ -21,7 +21,6 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.PushBufferImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.PushBufferImpl#isBeingUpdated <em>Being Updated</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.PushBufferImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.PushBufferImpl#getInstanceCount <em>Instance Count</em>}</li>
  * </ul>
@@ -49,26 +48,6 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isBeingUpdated() <em>Being Updated</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isBeingUpdated()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean BEING_UPDATED_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isBeingUpdated() <em>Being Updated</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isBeingUpdated()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean beingUpdated = BEING_UPDATED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
@@ -162,31 +141,6 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 	 * @generated
 	 */
 	@Override
-	public boolean isBeingUpdated()
-	{
-		return beingUpdated;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setBeingUpdated(boolean newBeingUpdated)
-	{
-		boolean oldBeingUpdated = beingUpdated;
-		beingUpdated = newBeingUpdated;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.PUSH_BUFFER__BEING_UPDATED, oldBeingUpdated, beingUpdated));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public long getSize()
 	{
 		return size;
@@ -243,8 +197,6 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 		{
 			case ResourcePackage.PUSH_BUFFER__NAME:
 				return getName();
-			case ResourcePackage.PUSH_BUFFER__BEING_UPDATED:
-				return isBeingUpdated();
 			case ResourcePackage.PUSH_BUFFER__SIZE:
 				return getSize();
 			case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
@@ -265,9 +217,6 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 		{
 			case ResourcePackage.PUSH_BUFFER__NAME:
 				setName((String)newValue);
-				return;
-			case ResourcePackage.PUSH_BUFFER__BEING_UPDATED:
-				setBeingUpdated((Boolean)newValue);
 				return;
 			case ResourcePackage.PUSH_BUFFER__SIZE:
 				setSize((Long)newValue);
@@ -292,9 +241,6 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 			case ResourcePackage.PUSH_BUFFER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ResourcePackage.PUSH_BUFFER__BEING_UPDATED:
-				setBeingUpdated(BEING_UPDATED_EDEFAULT);
-				return;
 			case ResourcePackage.PUSH_BUFFER__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
@@ -317,8 +263,6 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 		{
 			case ResourcePackage.PUSH_BUFFER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.PUSH_BUFFER__BEING_UPDATED:
-				return beingUpdated != BEING_UPDATED_EDEFAULT;
 			case ResourcePackage.PUSH_BUFFER__SIZE:
 				return size != SIZE_EDEFAULT;
 			case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
@@ -340,8 +284,6 @@ public class PushBufferImpl extends MinimalEObjectImpl.Container implements Push
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", beingUpdated: ");
-		result.append(beingUpdated);
 		result.append(", size: ");
 		result.append(size);
 		result.append(", instanceCount: ");

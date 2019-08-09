@@ -122,22 +122,13 @@ public interface ResourcePackage extends EPackage
 	int PUSH_BUFFER__NAME = VulkanPackage.IRESOURCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Being Updated</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PUSH_BUFFER__BEING_UPDATED = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_BUFFER__SIZE = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
+	int PUSH_BUFFER__SIZE = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
@@ -146,7 +137,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_BUFFER__INSTANCE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 2;
+	int PUSH_BUFFER__INSTANCE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Push Buffer</em>' class.
@@ -155,7 +146,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_BUFFER_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 3;
+	int PUSH_BUFFER_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Push Buffer</em>' class.
@@ -232,22 +223,13 @@ public interface ResourcePackage extends EPackage
 	int CONSTANT_BUFFER__NAME = VulkanPackage.IRESOURCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Being Pushed</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTANT_BUFFER__BEING_PUSHED = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Data</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT_BUFFER__DATA = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
+	int CONSTANT_BUFFER__DATA = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Constant Buffer</em>' class.
@@ -256,7 +238,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT_BUFFER_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 2;
+	int CONSTANT_BUFFER_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Constant Buffer</em>' class.
@@ -2156,17 +2138,6 @@ public interface ResourcePackage extends EPackage
 	EClass getPushBuffer();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.PushBuffer#isBeingUpdated <em>Being Updated</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Being Updated</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.PushBuffer#isBeingUpdated()
-	 * @see #getPushBuffer()
-	 * @generated
-	 */
-	EAttribute getPushBuffer_BeingUpdated();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.PushBuffer#getSize <em>Size</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2218,17 +2189,6 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EClass getConstantBuffer();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ConstantBuffer#isBeingPushed <em>Being Pushed</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Being Pushed</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.ConstantBuffer#isBeingPushed()
-	 * @see #getConstantBuffer()
-	 * @generated
-	 */
-	EAttribute getConstantBuffer_BeingPushed();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ConstantBuffer#getData <em>Data</em>}'.
@@ -3136,14 +3096,6 @@ public interface ResourcePackage extends EPackage
 		EClass PUSH_BUFFER = eINSTANCE.getPushBuffer();
 
 		/**
-		 * The meta object literal for the '<em><b>Being Updated</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PUSH_BUFFER__BEING_UPDATED = eINSTANCE.getPushBuffer_BeingUpdated();
-
-		/**
 		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3186,14 +3138,6 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EClass CONSTANT_BUFFER = eINSTANCE.getConstantBuffer();
-
-		/**
-		 * The meta object literal for the '<em><b>Being Pushed</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONSTANT_BUFFER__BEING_PUSHED = eINSTANCE.getConstantBuffer_BeingPushed();
 
 		/**
 		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.

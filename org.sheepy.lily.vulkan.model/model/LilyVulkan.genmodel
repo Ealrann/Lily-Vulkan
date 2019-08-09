@@ -125,7 +125,6 @@
     <genDataTypes ecoreDataType="resource.ecore#//JavaModule"/>
     <genClasses ecoreClass="resource.ecore#//BasicResource"/>
     <genClasses ecoreClass="resource.ecore#//PushBuffer">
-      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//PushBuffer/beingUpdated"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//PushBuffer/size"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//PushBuffer/instanceCount"/>
     </genClasses>
@@ -133,7 +132,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//GetBuffer/size"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//ConstantBuffer">
-      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ConstantBuffer/beingPushed"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ConstantBuffer/data"/>
     </genClasses>
     <genClasses image="false" ecoreClass="resource.ecore#//DescriptedResource"/>

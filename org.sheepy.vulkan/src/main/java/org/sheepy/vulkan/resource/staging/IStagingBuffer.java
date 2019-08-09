@@ -10,7 +10,18 @@ public interface IStagingBuffer
 
 	void addStagingCommand(IDataFlowCommand command);
 	boolean isEmpty();
+
+	void prepare();
 	void flushCommands(VkCommandBuffer commandBuffer);
+
+	void addListener(FlushListener listener);
+	void removeListener(FlushListener listener);
+
+	static interface FlushListener
+	{
+		void preFlush();
+		void postFlush();
+	}
 
 	static final class MemoryTicket
 	{

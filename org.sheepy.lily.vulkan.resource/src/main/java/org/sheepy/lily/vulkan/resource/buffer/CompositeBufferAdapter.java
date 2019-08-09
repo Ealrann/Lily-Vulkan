@@ -4,8 +4,6 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -16,7 +14,6 @@ import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
 import org.sheepy.lily.vulkan.model.resource.PushBuffer;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.device.PhysicalDevice;
 import org.sheepy.vulkan.execution.IExecutionContext;
@@ -29,6 +26,7 @@ import org.sheepy.vulkan.resource.buffer.IBufferBackend;
 import org.sheepy.vulkan.resource.buffer.VkBufferDescriptor;
 import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
 import org.sheepy.vulkan.resource.staging.IStagingBuffer;
+import org.sheepy.vulkan.resource.staging.IStagingBuffer.FlushListener;
 import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket;
 import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket.EReservationStatus;
 
@@ -40,26 +38,29 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	private final List<IVkDescriptor> descriptors = new ArrayList<>();
 
 	private final PushBuffer pushBuffer;
+	private final IStagingBuffer stagingBuffer;
 
 	private IBufferBackend bufferBackend;
 	private boolean allocated = false;
 
-	private final AdapterImpl pushBufferListener = new AdapterImpl()
+	private final FlushListener pushBufferListener = new FlushListener()
 	{
 		@Override
-		public void notifyChanged(Notification notification)
+		public void preFlush()
 		{
-			if (notification.getFeature() == ResourcePackage.Literals.PUSH_BUFFER__BEING_UPDATED
-					&& notification.getNewBooleanValue() == true)
-			{
-				update();
-			}
+			update();
 		}
+
+		@Override
+		public void postFlush()
+		{}
 	};
 
 	public CompositeBufferAdapter(CompositeBuffer compositeBuffer)
 	{
 		this.pushBuffer = compositeBuffer.getPushBuffer();
+		final var pushBufferAdapter = IPushBufferAdapter.adapt(pushBuffer);
+		stagingBuffer = pushBufferAdapter.getStagingBuffer();
 
 		final List<DataProviderWrapper> tmpList = new ArrayList<>();
 		for (final var dataProvider : compositeBuffer.getDataProviders())
@@ -100,7 +101,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 				}
 			}
 
-			pushBuffer.eAdapters().add(pushBufferListener);
+			stagingBuffer.addListener(pushBufferListener);
 		}
 
 		allocated = true;
@@ -108,9 +109,6 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 
 	public void update()
 	{
-		final var pushBufferAdapter = IPushBufferAdapter.adapt(pushBuffer);
-		final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
-
 		final List<DataProviderWrapper> providersToPush = new ArrayList<>();
 		boolean reservationSuccessfull = true;
 
@@ -182,7 +180,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 
 		bufferBackend.free(context);
 
-		pushBuffer.eAdapters().remove(pushBufferListener);
+		stagingBuffer.removeListener(pushBufferListener);
 	}
 
 	@Override

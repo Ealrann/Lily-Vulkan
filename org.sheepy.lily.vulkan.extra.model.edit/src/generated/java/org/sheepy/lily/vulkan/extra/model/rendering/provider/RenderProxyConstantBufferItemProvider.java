@@ -10,6 +10,8 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.model.resource.provider.ConstantBufferItemProvider;
@@ -48,6 +50,7 @@ public class RenderProxyConstantBufferItemProvider
 			super.getPropertyDescriptors(object);
 
 			addConstantBufferPropertyDescriptor(object);
+			addPartIndexPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -71,6 +74,29 @@ public class RenderProxyConstantBufferItemProvider
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Part Index feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPartIndexPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RenderProxyConstantBuffer_partIndex_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RenderProxyConstantBuffer_partIndex_feature", "_UI_RenderProxyConstantBuffer_type"),
+				 RenderingPackage.Literals.RENDER_PROXY_CONSTANT_BUFFER__PART_INDEX,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -114,6 +140,13 @@ public class RenderProxyConstantBufferItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(RenderProxyConstantBuffer.class))
+		{
+			case RenderingPackage.RENDER_PROXY_CONSTANT_BUFFER__PART_INDEX:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

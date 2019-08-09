@@ -8,7 +8,6 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
@@ -26,6 +25,7 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	private final Deque<IDataFlowCommand> unsynchronizedCommands = new ArrayDeque<>();
 	private final long capacity;
 	private final MemorySpaceManager spaceManager;
+	private final List<FlushListener> listeners = new ArrayList<>();
 
 	private boolean containingPushCommand = false;
 	private boolean containingGetCommand = false;
@@ -144,6 +144,12 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	}
 
 	@Override
+	public void prepare()
+	{
+		firePreFlush();
+	}
+
+	@Override
 	public void flushCommands(VkCommandBuffer commandBuffer)
 	{
 		final var logicalDevice = executionContext.getLogicalDevice();
@@ -189,6 +195,7 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 		}
 
 		clear();
+		firePostFlush();
 	}
 
 	private void clear()
@@ -204,6 +211,34 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 		spaceManager.clear();
 
 		tickets.clear();
+	}
+
+	@Override
+	public void addListener(FlushListener listener)
+	{
+		listeners.add(listener);
+	}
+
+	@Override
+	public void removeListener(FlushListener listener)
+	{
+		listeners.remove(listener);
+	}
+
+	private void firePreFlush()
+	{
+		for (final FlushListener flushListener : listeners)
+		{
+			flushListener.preFlush();
+		}
+	}
+
+	private void firePostFlush()
+	{
+		for (final FlushListener flushListener : listeners)
+		{
+			flushListener.postFlush();
+		}
 	}
 
 	private static MemoryTicket newFailTicket(EReservationStatus failure)

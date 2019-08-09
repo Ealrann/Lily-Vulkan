@@ -48,28 +48,24 @@ public class PipelinePushCommand implements IDataFlowCommand
 		final var offset = ticket.getBufferOffset();
 		final var size = ticket.getSize();
 
+		// Submission guarantees the host write being complete, as per
+		// https://www.khronos.org/registry/vulkan/specs/1.0/html/vkspec.html#synchronization-submission-host-writes
+		// So no need for a barrier before the transfer
+
+		BufferUtils.copyBuffer(commandBuffer, srcBuffer, offset, trgBuffer, trgOffset, size);
+
+		final var srcStageVal = EPipelineStage.TRANSFER_BIT_VALUE;
+		final var dstStageVal = dstStage.getValue();
+
 		final var barrierInfo = VkBufferMemoryBarrier.callocStack(1, stack);
 		barrierInfo.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
 		barrierInfo.buffer(trgBuffer);
 		barrierInfo.offset(trgOffset);
-		barrierInfo.srcAccessMask(0);
-		barrierInfo.dstAccessMask(EAccess.TRANSFER_WRITE_BIT_VALUE);
-		barrierInfo.size(VK_WHOLE_SIZE);
-
-		final var srcStage1 = EPipelineStage.TOP_OF_PIPE_BIT_VALUE;
-		final var dstStage1 = EPipelineStage.TRANSFER_BIT_VALUE;
-
-		vkCmdPipelineBarrier(commandBuffer, srcStage1, dstStage1, 0, null, barrierInfo, null);
-
-		BufferUtils.copyBuffer(commandBuffer, srcBuffer, offset, trgBuffer, trgOffset, size);
-
-		final var srcStage2 = EPipelineStage.TRANSFER_BIT_VALUE;
-		final var dstStage2 = dstStage.getValue();
-
+		barrierInfo.size(size);
 		barrierInfo.srcAccessMask(EAccess.TRANSFER_WRITE_BIT_VALUE);
 		barrierInfo.dstAccessMask(dstAccess.getValue());
 
-		vkCmdPipelineBarrier(commandBuffer, srcStage2, dstStage2, 0, null, barrierInfo, null);
+		vkCmdPipelineBarrier(commandBuffer, srcStageVal, dstStageVal, 0, null, barrierInfo, null);
 	}
 
 	@Override

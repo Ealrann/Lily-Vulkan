@@ -23,7 +23,6 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantBufferImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantBufferImpl#isBeingPushed <em>Being Pushed</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantBufferImpl#getData <em>Data</em>}</li>
  * </ul>
  *
@@ -50,26 +49,6 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isBeingPushed() <em>Being Pushed</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isBeingPushed()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean BEING_PUSHED_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isBeingPushed() <em>Being Pushed</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isBeingPushed()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean beingPushed = BEING_PUSHED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getData() <em>Data</em>}' attribute.
@@ -143,31 +122,6 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public boolean isBeingPushed()
-	{
-		return beingPushed;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setBeingPushed(boolean newBeingPushed)
-	{
-		boolean oldBeingPushed = beingPushed;
-		beingPushed = newBeingPushed;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED, oldBeingPushed, beingPushed));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ByteBuffer getData()
 	{
 		return data;
@@ -199,8 +153,6 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 		{
 			case ResourcePackage.CONSTANT_BUFFER__NAME:
 				return getName();
-			case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
-				return isBeingPushed();
 			case ResourcePackage.CONSTANT_BUFFER__DATA:
 				return getData();
 		}
@@ -219,9 +171,6 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 		{
 			case ResourcePackage.CONSTANT_BUFFER__NAME:
 				setName((String)newValue);
-				return;
-			case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
-				setBeingPushed((Boolean)newValue);
 				return;
 			case ResourcePackage.CONSTANT_BUFFER__DATA:
 				setData((ByteBuffer)newValue);
@@ -243,9 +192,6 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 			case ResourcePackage.CONSTANT_BUFFER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
-				setBeingPushed(BEING_PUSHED_EDEFAULT);
-				return;
 			case ResourcePackage.CONSTANT_BUFFER__DATA:
 				setData(DATA_EDEFAULT);
 				return;
@@ -265,8 +211,6 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 		{
 			case ResourcePackage.CONSTANT_BUFFER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
-				return beingPushed != BEING_PUSHED_EDEFAULT;
 			case ResourcePackage.CONSTANT_BUFFER__DATA:
 				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
 		}
@@ -286,8 +230,6 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", beingPushed: ");
-		result.append(beingPushed);
 		result.append(", data: ");
 		result.append(data);
 		result.append(')');

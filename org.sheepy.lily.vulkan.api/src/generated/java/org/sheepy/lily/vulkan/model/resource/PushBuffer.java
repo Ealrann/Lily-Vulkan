@@ -13,7 +13,6 @@ import org.sheepy.lily.vulkan.model.IResource;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.PushBuffer#isBeingUpdated <em>Being Updated</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.PushBuffer#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.PushBuffer#getInstanceCount <em>Instance Count</em>}</li>
  * </ul>
@@ -24,29 +23,6 @@ import org.sheepy.lily.vulkan.model.IResource;
  */
 public interface PushBuffer extends IResource
 {
-	/**
-	 * Returns the value of the '<em><b>Being Updated</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Being Updated</em>' attribute.
-	 * @see #setBeingUpdated(boolean)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getPushBuffer_BeingUpdated()
-	 * @model default="false" unique="false"
-	 * @generated
-	 */
-	boolean isBeingUpdated();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.PushBuffer#isBeingUpdated <em>Being Updated</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Being Updated</em>' attribute.
-	 * @see #isBeingUpdated()
-	 * @generated
-	 */
-	void setBeingUpdated(boolean value);
-
 	/**
 	 * Returns the value of the '<em><b>Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->

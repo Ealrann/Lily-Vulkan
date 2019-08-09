@@ -154,7 +154,6 @@ public class ConstantBufferItemProvider extends ItemProviderAdapter implements I
 		switch (notification.getFeatureID(ConstantBuffer.class))
 		{
 			case ResourcePackage.CONSTANT_BUFFER__NAME:
-			case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
 			case ResourcePackage.CONSTANT_BUFFER__DATA:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

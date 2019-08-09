@@ -1145,15 +1145,6 @@ public interface RenderingPackage extends EPackage
 	int RENDER_PROXY_CONSTANT_BUFFER__NAME = ResourcePackage.CONSTANT_BUFFER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Being Pushed</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_PROXY_CONSTANT_BUFFER__BEING_PUSHED = ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED;
-
-	/**
 	 * The feature id for the '<em><b>Data</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
