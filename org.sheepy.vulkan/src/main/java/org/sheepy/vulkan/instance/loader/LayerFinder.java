@@ -13,11 +13,13 @@ import org.lwjgl.vulkan.VkLayerProperties;
 
 public class LayerFinder
 {
-	public static PointerBuffer convertToPointerBuffer(MemoryStack stack, String[] requiredLayers)
+	public static PointerBuffer convertToPointerBuffer(	MemoryStack stack,
+														String[] requiredLayers,
+														boolean verbose)
 	{
-		Set<String> availableLayers = getAvailableLayers(stack, requiredLayers);
-		List<String> selectedLayers = filterRequiredLayers(requiredLayers, availableLayers);
-		PointerBuffer res = convertToBuffer(stack, selectedLayers);
+		final Set<String> availableLayers = getAvailableLayers(stack, requiredLayers, verbose);
+		final List<String> selectedLayers = filterRequiredLayers(requiredLayers, availableLayers);
+		final PointerBuffer res = convertToBuffer(stack, selectedLayers);
 
 		return res;
 	}
@@ -25,7 +27,7 @@ public class LayerFinder
 	private static PointerBuffer convertToBuffer(MemoryStack stack, List<String> selectedLayers)
 	{
 		PointerBuffer res;
-		int size = selectedLayers.size();
+		final int size = selectedLayers.size();
 		res = stack.mallocPointer(size);
 		for (int i = 0; i < size; i++)
 		{
@@ -38,8 +40,8 @@ public class LayerFinder
 	private static List<String> filterRequiredLayers(	String[] requiredLayers,
 														Set<String> availableLayers)
 	{
-		List<String> selectedLayers = new ArrayList<>();
-		for (String layer : requiredLayers)
+		final List<String> selectedLayers = new ArrayList<>();
+		for (final String layer : requiredLayers)
 		{
 			if (availableLayers.contains(layer) == false)
 			{
@@ -53,9 +55,11 @@ public class LayerFinder
 		return selectedLayers;
 	}
 
-	private static Set<String> getAvailableLayers(MemoryStack stack, String[] requiredLayers)
+	private static Set<String> getAvailableLayers(	MemoryStack stack,
+													String[] requiredLayers,
+													boolean verbose)
 	{
-		Set<String> res = new HashSet<>();
+		final Set<String> res = new HashSet<>();
 		final int[] ip = new int[1];
 		vkEnumerateInstanceLayerProperties(ip, null);
 		final int count = ip[0];
@@ -65,11 +69,18 @@ public class LayerFinder
 			final var instanceLayers = VkLayerProperties.mallocStack(count, stack);
 			vkEnumerateInstanceLayerProperties(ip, instanceLayers);
 
-			System.out.println("System Layers:");
+			if (verbose)
+			{
+				System.out.println("System Layers:");
+			}
 			for (int i = 0; i < count; i++)
 			{
-				String layerName = instanceLayers.get(i).layerNameString();
-				System.out.println("\t" + layerName);
+				final String layerName = instanceLayers.get(i).layerNameString();
+
+				if (verbose)
+				{
+					System.out.println("\t" + layerName);
+				}
 				res.add(layerName);
 			}
 		}

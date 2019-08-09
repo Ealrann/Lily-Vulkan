@@ -72,8 +72,6 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private final Application application;
 	private final EngineExtensionRequirement extensionRequirement;
 
-	private final boolean debug;
-
 	protected VulkanInstance vkInstance;
 	protected PhysicalDevice physicalDevice;
 	protected LogicalDevice logicalDevice = null;
@@ -131,7 +129,6 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	{
 		this.engine = engine;
 		application = (Application) engine.eContainer();
-		debug = DebugUtil.DEBUG_ENABLED;
 		if (application.isHeadless() == false)
 		{
 			window = new Window(application.getSize(), application.getTitle(),
@@ -147,7 +144,8 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 		try (MemoryStack stack = stackPush())
 		{
-			extensionRequirement = new EngineExtensionRequirement(stack, debug);
+			extensionRequirement = new EngineExtensionRequirement(stack, DebugUtil.DEBUG_ENABLED,
+					DebugUtil.DEBUG_VERBOSE_ENABLED);
 		}
 	}
 
@@ -294,23 +292,27 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void createInstance(MemoryStack stack)
 	{
-		vkInstance = new VulkanInstance(application.getTitle(), extensionRequirement, debug);
+		vkInstance = new VulkanInstance(application.getTitle(), extensionRequirement,
+				DebugUtil.DEBUG_ENABLED, DebugUtil.DEBUG_VERBOSE_ENABLED);
 		vkInstance.allocate(stack);
 	}
 
 	private void pickPhysicalDevice(MemoryStack stack, VkSurface dummySurface)
 	{
 		final var deviceSelector = new PhysicalDeviceSelector(vkInstance, extensionRequirement,
-				dummySurface, debug);
+				dummySurface, DebugUtil.DEBUG_VERBOSE_ENABLED);
 
 		physicalDevice = deviceSelector.findBestPhysicalDevice(stack);
 
 		printDeviceInfo();
 
-		if (debug)
+		if (DebugUtil.DEBUG_ENABLED)
 		{
 			physicalDevice.printRetainedExtensions();
-			// physicalDevice.printPhysicalProperties();
+		}
+		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
+		{
+			physicalDevice.printPhysicalProperties();
 		}
 	}
 
@@ -337,11 +339,11 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void cleanup()
 	{
-		if(inputManager != null) inputManager.dispose();
+		if (inputManager != null) inputManager.dispose();
 		logicalDevice.free();
 
-		if(window != null) window.close();
-		if(window != null) window.destroy();
+		if (window != null) window.close();
+		if (window != null) window.destroy();
 
 		physicalDevice.free();
 

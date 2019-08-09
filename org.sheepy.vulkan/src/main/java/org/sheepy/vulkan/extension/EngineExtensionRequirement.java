@@ -17,10 +17,10 @@ public class EngineExtensionRequirement
 	private final List<String> availableInstanceExtensions;
 	private final List<EDeviceExtension> requiredDeviceExtensions;
 
-	public EngineExtensionRequirement(MemoryStack stack, boolean debug)
+	public EngineExtensionRequirement(MemoryStack stack, boolean debug, boolean verbose)
 	{
 		requiredDeviceExtensions = List.copyOf(gatherDeviceExtensions());
-		availableInstanceExtensions = List.copyOf(gatherAvailableInstanceExtensions(stack, debug));
+		availableInstanceExtensions = List.copyOf(gatherAvailableInstanceExtensions(stack, verbose));
 		requiredInstanceExtensions = List.copyOf(gatherInstanceExtensions(debug));
 	}
 
@@ -52,7 +52,7 @@ public class EngineExtensionRequirement
 		return res;
 	}
 
-	public static List<String> gatherAvailableInstanceExtensions(MemoryStack stack, boolean debug)
+	public static List<String> gatherAvailableInstanceExtensions(MemoryStack stack, boolean verbose)
 	{
 		final List<String> extensions = new ArrayList<>();
 
@@ -65,7 +65,7 @@ public class EngineExtensionRequirement
 			final var instanceExtensions = VkExtensionProperties.mallocStack(count, stack);
 			vkEnumerateInstanceExtensionProperties((String) null, ip, instanceExtensions);
 
-			if (debug)
+			if (verbose)
 			{
 				System.out.println("Available Instance Extensions:");
 			}
@@ -75,7 +75,7 @@ public class EngineExtensionRequirement
 				final String extensionName = instanceExtensions.get(i).extensionNameString();
 				extensions.add(extensionName);
 
-				if (debug)
+				if (verbose)
 				{
 					System.out.println("\t" + extensionName);
 				}

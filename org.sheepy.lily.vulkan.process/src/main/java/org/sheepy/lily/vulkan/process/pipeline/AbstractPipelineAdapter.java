@@ -121,7 +121,7 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		vkPipelineLayout = createVkPipelineLayout();
 		vkPipelineLayout.allocate(stack, context);
 
-		if (DebugUtil.DEBUG_ENABLED)
+		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 		{
 			System.out.print("Pipeline Layout: ");
 			System.out.println(vkPipelineLayout.toString());

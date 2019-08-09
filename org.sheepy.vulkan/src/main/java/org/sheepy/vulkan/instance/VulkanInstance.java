@@ -26,6 +26,7 @@ public class VulkanInstance
 	private final EngineExtensionRequirement requirements;
 	private final String title;
 	private final boolean debug;
+	private final boolean verbose;
 
 	private VkInstance vkInstance;
 
@@ -35,18 +36,21 @@ public class VulkanInstance
 
 	public VulkanInstance(	String title,
 							EngineExtensionRequirement requirements,
-							boolean debug)
+							boolean debug,
+							boolean verbose)
 	{
 		this.requirements = requirements;
 		this.title = title;
 		this.debug = debug;
+		this.verbose = verbose;
 	}
 
 	public void allocate(MemoryStack stack)
 	{
 		if (debug)
 		{
-			ppEnabledLayerNames = LayerFinder.convertToPointerBuffer(stack, LAYERS_TO_ENABLE);
+			ppEnabledLayerNames = LayerFinder.convertToPointerBuffer(stack, LAYERS_TO_ENABLE,
+					verbose);
 		}
 
 		final VkApplicationInfo appInfo = VkApplicationInfo.callocStack(stack);

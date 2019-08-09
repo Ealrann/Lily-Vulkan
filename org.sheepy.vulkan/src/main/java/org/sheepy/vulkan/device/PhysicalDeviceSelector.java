@@ -32,7 +32,7 @@ public class PhysicalDeviceSelector
 	private final List<PhysicalDeviceWrapper> devices = new ArrayList<>();
 	private final EngineExtensionRequirement extensionRequirement;
 	private final VkSurface surface;
-	private final boolean debug;
+	private final boolean printAvailableExtensions;
 
 	private IntBuffer pPhysicalDeviceCount;
 
@@ -41,12 +41,12 @@ public class PhysicalDeviceSelector
 	public PhysicalDeviceSelector(	VulkanInstance vkInstance,
 									EngineExtensionRequirement extensionRequirement,
 									VkSurface surface,
-									boolean debug)
+									boolean printAvailableExtensions)
 	{
 		this.vkInstance = vkInstance;
 		this.extensionRequirement = extensionRequirement;
 		this.surface = surface;
-		this.debug = debug;
+		this.printAvailableExtensions = printAvailableExtensions;
 	}
 
 	public PhysicalDevice findBestPhysicalDevice(MemoryStack stack)
@@ -87,7 +87,7 @@ public class PhysicalDeviceSelector
 					? PhysicalDeviceJudge.rateDeviceSuitability(physicalDevice, surface)
 					: PhysicalDeviceJudge.rateDeviceSuitability(physicalDevice);
 
-			if (debug)
+			if (printAvailableExtensions)
 			{
 				System.out.println(String.format("[%s (%d)]: %d points", physicalDevice.getName(),
 						physicalDevice.getDriverVersion(), deviceScore));

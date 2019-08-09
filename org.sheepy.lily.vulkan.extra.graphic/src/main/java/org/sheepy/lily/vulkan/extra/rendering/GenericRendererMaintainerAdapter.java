@@ -59,14 +59,14 @@ public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 
 		structures.forEach(s -> preparePipeline(pipContextBuilder, structInstaller, s));
 
-		if (DebugUtil.DEBUG_ENABLED)
+		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 		{
 			printDebugInfo(presentedEClass);
 		}
 	}
 
 	private void preparePipeline(	PipelineContext.Builder contextBuilder,
-									final BufferInstaller<T> bufferInstaller,
+									BufferInstaller<T> bufferInstaller,
 									T structure)
 	{
 		final boolean needMultiplePipelines = bufferInstaller.hasDynamicDescriptors
@@ -83,7 +83,7 @@ public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 	}
 
 	private void prepareSinglePipeline(	PipelineContext.Builder contextBuilder,
-										final BufferInstaller<T> bufferInstaller,
+										BufferInstaller<T> bufferInstaller,
 										T structure)
 	{
 		final int pipelineCount = graphicProcess.getPartPkg().getParts().size();
@@ -99,7 +99,7 @@ public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 	}
 
 	private void prepareMultiplePipelines(	PipelineContext.Builder contextBuilder,
-											final BufferInstaller<T> bufferInstaller,
+											BufferInstaller<T> bufferInstaller,
 											T structure)
 	{
 		final int pipelineCount = graphicProcess.getPartPkg().getParts().size();

@@ -6,7 +6,6 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
-import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.pipeline.VkPipeline;
@@ -26,7 +25,7 @@ public class VkComputePipeline extends VkPipeline<IProcessContext>
 								ByteBuffer specializationData)
 	{
 		super(VK_PIPELINE_BIND_POINT_COMPUTE);
-		
+
 		this.pipelineLayout = pipelineLayout;
 		this.shaderStage = shaderStage;
 		this.specializationData = specializationData;
@@ -50,12 +49,6 @@ public class VkComputePipeline extends VkPipeline<IProcessContext>
 		shaderStage.fillInfo(stack, pipelineCreateInfo.stage(), specializationData);
 
 		pipelineCreateInfos.flip();
-
-		if (DebugUtil.DEBUG_ENABLED)
-		{
-			System.out.println("Create compute pipeline with layout:");
-			System.out.println(pipelineLayout.toString());
-		}
 
 		Logger.check("Failed to create compute pipeline!", () -> vkCreateComputePipelines(device,
 				VK_NULL_HANDLE, pipelineCreateInfos, null, pipelineIds));
