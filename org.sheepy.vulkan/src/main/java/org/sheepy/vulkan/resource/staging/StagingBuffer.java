@@ -188,19 +188,22 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 			bufferBackend.invalidate(logicalDevice);
 		}
 
-		clear(logicalDevice);
+		clear();
 	}
 
-	private void clear(final LogicalDevice logicalDevice)
+	private void clear()
 	{
-		for (final var ticket : tickets)
+		for (int i = 0; i < tickets.size(); i++)
 		{
+			final var ticket = tickets.get(i);
 			ticket.invalidate();
 		}
 
 		containingGetCommand = false;
 		containingPushCommand = false;
 		spaceManager.clear();
+
+		tickets.clear();
 	}
 
 	private static MemoryTicket newFailTicket(EReservationStatus failure)
