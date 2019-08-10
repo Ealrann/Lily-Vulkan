@@ -6,6 +6,7 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
@@ -60,6 +61,12 @@ public final class BufferAdapter implements IBufferAdapter
 	@Override
 	public void pushData(ByteBuffer data)
 	{
+		if (DebugUtil.DEBUG_ENABLED)
+		{
+			System.err.println(
+					"[Warning] BufferAdapter.pushData() is slow. Don't use it in the main loop.");
+		}
+
 		bufferBackend.nextInstance();
 		bufferBackend.pushData(executionManager, data);
 

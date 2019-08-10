@@ -110,7 +110,8 @@ public class GPUBufferBackend implements IBufferBackend
 
 			if (VulkanDebugUtil.DEBUG_ENABLED)
 			{
-				System.err.println("[Warning] Pushing in a non staged GPU Buffer is slow.");
+				System.err.println(
+						"[Warning] Pushing in a non staged GPU Buffer is slow. Don't use it in the main loop.");
 			}
 		}
 		else
