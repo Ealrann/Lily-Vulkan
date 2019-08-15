@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
@@ -43,14 +43,14 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
 		this.executionContext = context;
 		final var physicalDevice = context.getPhysicalDevice();
 		minMemoryMapAlignment = physicalDevice.getDeviceProperties().limits()
 				.minMemoryMapAlignment();
 
-		bufferBackend.allocate(stack, context);
+		bufferBackend.allocate(context);
 	}
 
 	@Override
@@ -170,8 +170,10 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 
 		if (unsynchronizedCommands.isEmpty() == false)
 		{
-			executionContext.execute((MemoryStack stack, VkCommandBuffer subCommandBuffer) ->
+			executionContext.execute((context, subCommandBuffer) ->
 			{
+				final var stack = context.stack();
+
 				for (final var command : unsynchronizedCommands)
 				{
 					command.execute(stack, subCommandBuffer);
@@ -253,11 +255,5 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	{
 		return new MemoryTicket(EReservationStatus.SUCCESS, space, bufferBackend.getAddress(),
 				memoryPtr, bufferOffset, size);
-	}
-
-	@Override
-	public boolean isAllocationDirty(IExecutionContext context)
-	{
-		return false;
 	}
 }

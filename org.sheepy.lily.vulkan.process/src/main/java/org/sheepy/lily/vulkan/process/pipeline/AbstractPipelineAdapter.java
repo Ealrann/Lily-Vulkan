@@ -6,13 +6,13 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
@@ -22,9 +22,6 @@ import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
-import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationNode;
-import org.sheepy.vulkan.allocation.IAllocationObject;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -32,20 +29,18 @@ import org.sheepy.vulkan.pipeline.VkPipelineLayout;
 
 @Statefull
 public abstract class AbstractPipelineAdapter<T extends IProcessContext>
-		implements IAllocableAdapter<T>, IPipelineAdapter<T>, IAllocationNode<T>
+		implements IAllocableAdapter<T>, IPipelineAdapter<T>
 {
 
 	protected final IPipeline pipeline;
 
-	private final List<IAllocationObject<? super T>> allocationList = new ArrayList<>();
-	private final List<TaskWrapper<?>> taskWrappers = new ArrayList<>();
 	private final TaskPkg taskPkg;
 
+	private final List<TaskWrapper<?>> taskWrappers;
 	private VkPipelineLayout<? super T> vkPipelineLayout;
-	private boolean taskListDirty = true;
+	private boolean taskListDirty = false;
 
 	protected boolean recordNeeded = false;
-	protected List<IAllocable<? super T>> allocationDependencies = new ArrayList<>();
 
 	private final Adapter taskListener = new AdapterImpl()
 	{
@@ -59,6 +54,8 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		}
 	};
 
+	private IAllocationConfiguration allocationConfig;
+
 	public AbstractPipelineAdapter(IPipeline pipeline)
 	{
 		this.pipeline = pipeline;
@@ -68,7 +65,7 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 			taskPkg.eAdapters().add(taskListener);
 		}
 
-		collectTasks();
+		taskWrappers = List.copyOf(collectTasks());
 	}
 
 	@Dispose
@@ -80,11 +77,25 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	private void collectTasks()
+	private List<IAllocable<?>> collectAllocables()
 	{
-		allocationList.clear();
-		taskWrappers.clear();
+		final List<IAllocable<?>> res = new ArrayList<>();
+
+		for (final var taskWrapper : taskWrappers)
+		{
+			final var adapter = IAllocableAdapter.adapt(taskWrapper.task);
+			if (adapter != null)
+			{
+				res.add(adapter);
+			}
+		}
+
+		return res;
+	}
+
+	private List<TaskWrapper<?>> collectTasks()
+	{
+		final List<TaskWrapper<?>> res = new ArrayList<>();
 
 		if (taskPkg != null)
 		{
@@ -92,17 +103,12 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 			for (int i = 0; i < tasks.size(); i++)
 			{
 				final var task = tasks.get(i);
-				final var adapter = IAllocationAdapter.adapt(task);
-				if (adapter != null)
-				{
-					allocationList.add((IAllocationObject<? super T>) adapter);
-				}
 
-				taskWrappers.add(new TaskWrapper<>(task));
+				res.add(new TaskWrapper<>(task));
 			}
 		}
 
-		taskListDirty = false;
+		return res;
 	}
 
 	@NotifyChanged
@@ -116,10 +122,17 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, T context)
+	public void configureAllocation(IAllocationConfiguration config, T context)
+	{
+		this.allocationConfig = config;
+		config.addChildren(collectAllocables());
+	}
+
+	@Override
+	public void allocate(T context)
 	{
 		vkPipelineLayout = createVkPipelineLayout();
-		vkPipelineLayout.allocate(stack, context);
+		vkPipelineLayout.allocate(context);
 
 		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 		{
@@ -141,25 +154,6 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	public void free(T context)
 	{
 		vkPipelineLayout.free(context);
-		allocationDependencies.clear();
-	}
-
-	@Override
-	public boolean isAllocationDirty(T context)
-	{
-		boolean res = false;
-
-		for (int i = 0; i < allocationDependencies.size(); i++)
-		{
-			final var dependency = allocationDependencies.get(i);
-			if (dependency.isAllocationDirty(context))
-			{
-				res = true;
-				break;
-			}
-		}
-
-		return res;
 	}
 
 	@Override
@@ -168,6 +162,7 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		if (taskListDirty)
 		{
 			collectTasks();
+			allocationConfig.setDirty();
 		}
 
 		for (int i = 0; i < taskWrappers.size(); i++)
@@ -236,7 +231,10 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 			for (final var resource : resourcePkg.getResources())
 			{
 				final var adapter = IResourceAdapter.adapt(resource);
-				collectIn.add(adapter);
+				if (adapter != null)
+				{
+					collectIn.add(adapter);
+				}
 			}
 		}
 	}
@@ -288,12 +286,6 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		}
 
 		return res;
-	}
-
-	@Override
-	public List<? extends IAllocationObject<? super T>> getAllocationChildren()
-	{
-		return allocationList;
 	}
 
 	private static final class TaskWrapper<T extends IPipelineTask>

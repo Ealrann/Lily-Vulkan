@@ -4,15 +4,16 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkMemoryAllocateInfo;
-import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.resource.memory.MemoryChunkBuilder.MemoryAllocationCallback;
 
 public final class MemoryChunk implements IAllocable<IVulkanContext>
 {
+	private static final String ALLOC_ERROR = "Failed to allocate buffer";
+
 	private final VkMemoryAllocateInfo allocInfo;
 	private final List<MemoryConsumer> consumers;
 
@@ -25,9 +26,9 @@ public final class MemoryChunk implements IAllocable<IVulkanContext>
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IVulkanContext context)
+	public void allocate(IVulkanContext context)
 	{
-		ptr = allocate(context);
+		ptr = allocateBuffer(context);
 		long offset = 0;
 		for (final MemoryConsumer memoryConsumer : consumers)
 		{
@@ -37,12 +38,11 @@ public final class MemoryChunk implements IAllocable<IVulkanContext>
 		}
 	}
 
-	private long allocate(IVulkanContext context) throws AssertionError
+	private long allocateBuffer(IVulkanContext context) throws AssertionError
 	{
 		final var vkDevice = context.getVkDevice();
 		final long[] aMemoryId = new long[1];
-		Logger.check("Failed to allocate buffer",
-				() -> vkAllocateMemory(vkDevice, allocInfo, null, aMemoryId));
+		Logger.check(ALLOC_ERROR, () -> vkAllocateMemory(vkDevice, allocInfo, null, aMemoryId));
 		return aMemoryId[0];
 	}
 
@@ -50,12 +50,6 @@ public final class MemoryChunk implements IAllocable<IVulkanContext>
 	public void free(IVulkanContext context)
 	{
 		vkFreeMemory(context.getVkDevice(), ptr, null);
-	}
-
-	@Override
-	public boolean isAllocationDirty(IVulkanContext context)
-	{
-		return false;
 	}
 
 	public final static class MemoryConsumer

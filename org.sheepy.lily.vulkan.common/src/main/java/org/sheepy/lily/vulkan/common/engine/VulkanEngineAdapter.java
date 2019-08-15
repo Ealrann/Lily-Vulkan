@@ -176,21 +176,25 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void start()
 	{
-		try (MemoryStack stack = stackPush())
+		try
 		{
-			createInstance(stack);
-			if (window != null) window.open(vkInstance.getVkInstance());
+			try (MemoryStack stack = stackPush())
+			{
+				createInstance(stack);
+				if (window != null) window.open(vkInstance.getVkInstance());
 
-			final var dummySurface = window != null ? window.createSurface() : null;
-			pickPhysicalDevice(stack, dummySurface);
-			createLogicalDevice(stack, dummySurface);
-			if (dummySurface != null) dummySurface.free();
+				final var dummySurface = window != null ? window.createSurface() : null;
+				pickPhysicalDevice(stack, dummySurface);
+				createLogicalDevice(stack, dummySurface);
+				if (dummySurface != null) dummySurface.free();
 
-			vulkanContext = new VulkanContext(logicalDevice, window);
-			if (inputManager != null) inputManager.load();
-			if (window != null) window.addListener(windowListener);
+				vulkanContext = new VulkanContext(logicalDevice, window);
+				if (inputManager != null) inputManager.load();
+				if (window != null) window.addListener(windowListener);
+			}
 
-			allocate(stack);
+			allocate();
+
 		} catch (final Throwable e)
 		{
 			e.printStackTrace();
@@ -230,23 +234,24 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		cleanup();
 	}
 
-	private void allocate(MemoryStack stack)
+	private void allocate()
 	{
 		allocationRoot = new VulkanEngineAllocationRoot(executionContext, gatherResourceAdapters());
 		allocator = new TreeAllocator<IVulkanContext>(allocationRoot);
-		allocator.allocate(stack, vulkanContext);
 
-		startProcesses(stack);
+		allocator.allocate(vulkanContext);
+
+		startProcesses();
 
 		allocated = true;
 	}
 
-	private void startProcesses(MemoryStack stack)
+	private void startProcesses()
 	{
 		for (final IProcess process : engine.getProcesses())
 		{
 			final var adapter = IProcessAdapter.adapt(process);
-			adapter.start(stack, vulkanContext);
+			adapter.start(vulkanContext);
 		}
 	}
 
@@ -270,7 +275,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private void free()
 	{
 		executionContext.getQueue().waitIdle();
-		allocator.free(vulkanContext);
+		allocator.free();
 
 		stopProcesses();
 
@@ -361,7 +366,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	public VkFence newFence(boolean signaled)
 	{
 		final VkFence res = new VkFence(signaled);
-		res.allocate(null, vulkanContext);
+		res.allocate(vulkanContext);
 
 		fences.add(res);
 		return res;

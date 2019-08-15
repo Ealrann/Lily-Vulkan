@@ -63,7 +63,7 @@ public class FontImageAdapter implements IFontImageAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
 		final var executionContext = (ExecutionContext) context;
 
@@ -73,9 +73,9 @@ public class FontImageAdapter implements IFontImageAdapter
 
 		bufferedRessource = fileAdapter.toByteBuffer(file);
 
-		vkTexture.allocate(stack, context);
-		final var texture = allocDataBuffer(stack);
-		vkTexture.loadImage(stack, executionContext, texture, targetLayout);
+		vkTexture.allocate(context);
+		final var texture = allocDataBuffer(context.stack());
+		vkTexture.loadImage(executionContext, texture, targetLayout);
 
 		memFree(texture);
 	}

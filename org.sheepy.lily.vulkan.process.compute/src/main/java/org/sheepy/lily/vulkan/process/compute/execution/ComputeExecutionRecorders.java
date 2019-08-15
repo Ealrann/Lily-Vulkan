@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.process.compute.execution;
 
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.vulkan.api.process.IComputeContext;
 import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
 import org.sheepy.lily.vulkan.process.execution.SubmissionsBuilder;
@@ -10,8 +9,7 @@ import org.sheepy.lily.vulkan.process.execution.SubmissionsBuilder;
 public class ComputeExecutionRecorders extends ExecutionRecorders<IComputeContext>
 {
 	@Override
-	public List<ComputeExecutionRecorder> createRecorders(	MemoryStack stack,
-															IComputeContext context)
+	public List<ComputeExecutionRecorder> createRecorders(IComputeContext context)
 	{
 		final var computeContext = context;
 		final var process = computeContext.getProcess();

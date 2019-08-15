@@ -19,11 +19,11 @@ public final class MemoryChunkBuilder
 	private final MemoryRequirements memReq;
 	private final List<MemoryConsumer> consumers = new ArrayList<>();
 
-	public MemoryChunkBuilder(MemoryStack stack, IVulkanContext context, int properties)
+	public MemoryChunkBuilder(IVulkanContext context, int properties)
 	{
 		this.context = context;
 		this.properties = properties;
-		this.memReq = new MemoryRequirements(stack, context.getVkDevice());
+		this.memReq = new MemoryRequirements(context);
 	}
 
 	public void registerImage(long imagePtr, MemoryAllocationCallback whenMemoryIsAllocated)
@@ -45,9 +45,9 @@ public final class MemoryChunkBuilder
 		consumers.add(new MemoryConsumer(offset, whenMemoryIsAllocated));
 	}
 
-	public MemoryChunk build(MemoryStack stack)
+	public MemoryChunk build()
 	{
-		final var allocInfo = allocateInfo(stack);
+		final var allocInfo = allocateInfo(context.stack());
 		return new MemoryChunk(allocInfo, consumers);
 	}
 
@@ -74,10 +74,11 @@ public final class MemoryChunkBuilder
 		private long size = 0;
 		private int memoryTypeBits = 0;
 
-		public MemoryRequirements(MemoryStack stack, VkDevice device)
+		public MemoryRequirements(IVulkanContext context)
 		{
+			final var stack = context.stack();
 			requirementBuffer = VkMemoryRequirements.mallocStack(stack);
-			this.device = device;
+			this.device = context.getVkDevice();
 		}
 
 		public void updateRequirementsFromImage(long imagePtr)

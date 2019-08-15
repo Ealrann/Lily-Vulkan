@@ -1,6 +1,5 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
@@ -25,21 +24,15 @@ public class PushBufferAdapter implements IPushBufferAdapter, IResourceAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
-		stagingBuffer.allocate(stack, context);
+		stagingBuffer.allocate(context);
 	}
 
 	@Override
 	public void free(IExecutionContext context)
 	{
 		stagingBuffer.free(context);
-	}
-
-	@Override
-	public boolean isAllocationDirty(IExecutionContext context)
-	{
-		return false;
 	}
 
 	@Override

@@ -27,8 +27,7 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContex
 	@Override
 	protected IComputeContext createContext()
 	{
-		return new ComputeContext(getQueueType(), isResetAllowed(), descriptorPool,
-				(ComputeProcess) process);
+		return new ComputeContext(getQueueType(), isResetAllowed(), descriptorPool, process);
 	}
 
 	@Override

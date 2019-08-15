@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -34,9 +33,9 @@ public final class ComputePipelineAdapter extends AbstractPipelineAdapter<IProce
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IProcessContext context)
+	public void allocate(IProcessContext context)
 	{
-		super.allocate(stack, context);
+		super.allocate(context);
 
 		final var tasks = pipeline.getTaskPkg().getTasks();
 
@@ -56,7 +55,7 @@ public final class ComputePipelineAdapter extends AbstractPipelineAdapter<IProce
 
 				final var vkPipeline = new VkComputePipeline(getVkPipelineLayout(), shaderStage,
 						specializationData);
-				vkPipeline.allocate(stack, context);
+				vkPipeline.allocate(context);
 				vkPipelines.add(vkPipeline);
 
 				computerAdapter.setVkPipeline(vkPipeline);

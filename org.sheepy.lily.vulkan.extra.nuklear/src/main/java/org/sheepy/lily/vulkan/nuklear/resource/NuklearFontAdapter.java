@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 
 import org.lwjgl.nuklear.NkUserFont;
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -34,11 +33,11 @@ public class NuklearFontAdapter implements IDescriptedResourceAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
 		final var fontImage = nuklearFont.getFontSampledImage().getImage();
 
-		samplerAdapter.allocate(stack, context);
+		samplerAdapter.allocate(context);
 
 		final var samplerPtr = samplerAdapter.getVkSampler().getPtr();
 

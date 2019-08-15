@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.IImageViewManager;
 import org.sheepy.vulkan.resource.image.VkImageView;
@@ -17,7 +17,15 @@ public class ImageViewManager implements IImageViewManager
 	private List<VkImageView> imageViews = null;
 
 	@Override
-	public void allocate(MemoryStack stack, IGraphicContext context)
+	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	{
+		final var swapChainManager = context.getSwapChainManager();
+
+		config.addDependencies(List.of(swapChainManager));
+	}
+
+	@Override
+	public void allocate(IGraphicContext context)
 	{
 		final var device = context.getVkDevice();
 		final var swapChainManager = context.getSwapChainManager();
@@ -54,11 +62,5 @@ public class ImageViewManager implements IImageViewManager
 			view.free();
 		}
 		imageViews = null;
-	}
-
-	@Override
-	public boolean isAllocationDirty(IGraphicContext context)
-	{
-		return context.getSwapChainManager().isAllocationDirty(context);
 	}
 }

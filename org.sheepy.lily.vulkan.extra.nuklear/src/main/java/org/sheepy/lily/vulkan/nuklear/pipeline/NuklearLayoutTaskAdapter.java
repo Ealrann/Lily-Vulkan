@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.nuklear.pipeline;
 
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
@@ -51,7 +50,7 @@ public class NuklearLayoutTaskAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IGraphicContext context)
+	public void allocate(IGraphicContext context)
 	{
 		this.context = context;
 		window = context.getWindow();
@@ -147,11 +146,5 @@ public class NuklearLayoutTaskAdapter
 	public boolean needRecord(NuklearLayoutTask task, int index)
 	{
 		return dirty;
-	}
-
-	@Override
-	public boolean isAllocationDirty(IGraphicContext context)
-	{
-		return false;
 	}
 }

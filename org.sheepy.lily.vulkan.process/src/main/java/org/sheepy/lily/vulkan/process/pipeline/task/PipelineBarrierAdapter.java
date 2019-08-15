@@ -5,9 +5,9 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
@@ -32,6 +32,7 @@ public class PipelineBarrierAdapter
 
 	private ImageBarriersBackend imageBarrierInfos;
 	private BufferBarriersBackend bufferBarrierInfos;
+	private IAllocationConfiguration allocationConfiguration;
 
 	public PipelineBarrierAdapter(PipelineBarrier pipelineBarrier)
 	{
@@ -42,7 +43,13 @@ public class PipelineBarrierAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IProcessContext context)
+	public void configureAllocation(IAllocationConfiguration config, IProcessContext context)
+	{
+		this.allocationConfiguration = config;
+	}
+
+	@Override
+	public void allocate(IProcessContext context)
 	{
 		final int swapCount = context.getSwapCount();
 		final var logicalDevice = context.getLogicalDevice();
@@ -74,15 +81,18 @@ public class PipelineBarrierAdapter
 		bufferBarrierInfos = new BufferBarriersBackend(swapCount, srcQueueIndex, dstQueueIndex,
 				bufferBarriers);
 
-		imageBarrierInfos.allocate(stack, context);
-		bufferBarrierInfos.allocate(stack, context);
+		allocationConfiguration.addChildren(List.of(imageBarrierInfos, bufferBarrierInfos));
+		allocationConfiguration.addDependencies(List.of(imageBarrierInfos, bufferBarrierInfos));
 	}
 
 	@Override
 	public void free(IProcessContext context)
 	{
-		imageBarrierInfos.free(context);
-		bufferBarrierInfos.free(context);
+		allocationConfiguration.removeDependencies(List.of(imageBarrierInfos, bufferBarrierInfos));
+		allocationConfiguration.removeChildren(List.of(imageBarrierInfos, bufferBarrierInfos));
+
+		imageBarrierInfos = null;
+		bufferBarrierInfos = null;
 	}
 
 	@Override
@@ -104,12 +114,5 @@ public class PipelineBarrierAdapter
 			res = logicalDevice.getQueueIndex(queueType);
 		}
 		return res;
-	}
-
-	@Override
-	public boolean isAllocationDirty(IProcessContext context)
-	{
-		return imageBarrierInfos.isAllocationDirty(context)
-				|| bufferBarrierInfos.isAllocationDirty(context);
 	}
 }

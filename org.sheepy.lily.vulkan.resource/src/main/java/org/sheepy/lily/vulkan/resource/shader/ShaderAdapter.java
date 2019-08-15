@@ -1,6 +1,5 @@
 package org.sheepy.lily.vulkan.resource.shader;
 
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
@@ -24,13 +23,13 @@ public class ShaderAdapter implements IShaderAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
 		final var resource = shader.getFile();
 
 		shaderBackend = new ShaderBackend(vkDevice, resource);
-		shaderBackend.allocate(stack);
+		shaderBackend.allocate(context.stack());
 
 		final var specializationConstants = shader.getConstants();
 		final long id = shaderBackend.getId();

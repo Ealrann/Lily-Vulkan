@@ -1,17 +1,17 @@
 package org.sheepy.vulkan.execution;
 
 import java.util.Collection;
+import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
+import org.sheepy.vulkan.device.DelegatedVulkanContext;
 import org.sheepy.vulkan.device.IVulkanContext;
-import org.sheepy.vulkan.device.VulkanContext;
 import org.sheepy.vulkan.queue.EQueueType;
 import org.sheepy.vulkan.queue.VulkanQueue;
 
-public class ExecutionContext extends VulkanContext
+public class ExecutionContext extends DelegatedVulkanContext
 		implements IAllocable<IVulkanContext>, IExecutionContext
 {
 	public final EQueueType queueType;
@@ -27,18 +27,17 @@ public class ExecutionContext extends VulkanContext
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IVulkanContext context)
+	public void allocate(IVulkanContext context)
 	{
-		setLogicalDevice(context.getLogicalDevice());
-		setWindow(context.getWindow());
+		super.allocate(context);
 
 		switch (queueType)
 		{
 		case Compute:
-			queue = logicalDevice.createComputeQueue();
+			queue = getLogicalDevice().createComputeQueue();
 			break;
 		case Graphic:
-			queue = logicalDevice.createGraphicQueue();
+			queue = getLogicalDevice().createGraphicQueue();
 			break;
 		case Present:
 			throw new AssertionError("Present is not a valid ExecutionContext");
@@ -47,19 +46,13 @@ public class ExecutionContext extends VulkanContext
 		}
 
 		commandPool = new CommandPool(queue.index, resetAllowed);
-		commandPool.allocate(stack, this);
+		commandPool.allocate(this);
 	}
 
 	@Override
 	public void free(IVulkanContext context)
 	{
 		commandPool.free(this);
-	}
-
-	@Override
-	public boolean isAllocationDirty(IVulkanContext context)
-	{
-		return false;
 	}
 
 	@Override
@@ -77,29 +70,18 @@ public class ExecutionContext extends VulkanContext
 	@Override
 	public void execute(ISingleTimeCommand command)
 	{
-		try (MemoryStack stack = MemoryStack.stackPush())
-		{
-			execute(stack, command);
-		}
+		execute(List.of(), command);
 	}
 
 	@Override
-	public void execute(MemoryStack stack, ISingleTimeCommand command)
+	public void execute(Collection<VkSemaphore> semaphoreToSignal, ISingleTimeCommand command)
 	{
-		execute(stack, null, command);
-	}
-
-	@Override
-	public void execute(MemoryStack stack,
-						Collection<VkSemaphore> semaphoreToSignal,
-						ISingleTimeCommand command)
-	{
-		final SingleTimeCommand stc = new SingleTimeCommand(this, stack, semaphoreToSignal)
+		final SingleTimeCommand stc = new SingleTimeCommand(this, semaphoreToSignal)
 		{
 			@Override
-			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
+			protected void doExecute(IExecutionContext context, VkCommandBuffer commandBuffer)
 			{
-				command.execute(stack, commandBuffer);
+				command.execute(context, commandBuffer);
 			}
 
 			@Override

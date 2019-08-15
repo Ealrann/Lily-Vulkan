@@ -4,8 +4,7 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
 
-import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.buffer.BufferGPUFiller;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
@@ -43,17 +42,17 @@ public class IndexedBuffer implements IAllocable<IExecutionContext>
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
 		this.context = context;
+
 		final int usage = getUsages();
+		final var memoryBuilder = new MemoryChunkBuilder(context, usage);
 
-		final var memoryBuilder = new MemoryChunkBuilder(stack, context, usage);
+		allocateBuffers(memoryBuilder);
 
-		allocateBuffers(stack, memoryBuilder);
-
-		memory = memoryBuilder.build(stack);
-		memory.allocate(stack, context);
+		memory = memoryBuilder.build();
+		memory.allocate(context);
 
 		allocated = true;
 	}
@@ -65,37 +64,33 @@ public class IndexedBuffer implements IAllocable<IExecutionContext>
 				| VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
 	}
 
-	protected void allocateBuffers(MemoryStack stack, final MemoryChunkBuilder memoryBuilder)
+	protected void allocateBuffers(final MemoryChunkBuilder memoryBuilder)
 	{
-		allocateIndexBuffer(stack, memoryBuilder);
-		allocateVertexBuffer(stack, memoryBuilder);
+		allocateIndexBuffer(memoryBuilder);
+		allocateVertexBuffer(memoryBuilder);
 	}
 
-	private void allocateVertexBuffer(MemoryStack stack, MemoryChunkBuilder memoryBuilder)
+	private void allocateVertexBuffer(MemoryChunkBuilder memoryBuilder)
 	{
 		final int usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
-		vertexBuffer = createBuffer(stack, memoryBuilder, vertexBufferCapacity, usage);
+		vertexBuffer = createBuffer(memoryBuilder, vertexBufferCapacity, usage);
 	}
 
-	private void allocateIndexBuffer(MemoryStack stack, MemoryChunkBuilder memoryBuilder)
+	private void allocateIndexBuffer(MemoryChunkBuilder memoryBuilder)
 	{
 		final int usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
-		indexBuffer = createBuffer(stack, memoryBuilder, indexBufferCapacity, usage);
+		indexBuffer = createBuffer(memoryBuilder, indexBufferCapacity, usage);
 	}
 
-	private GPUBufferBackend createBuffer(	MemoryStack stack,
-											MemoryChunkBuilder memoryBuilder,
-											long size,
-											int usage)
+	private GPUBufferBackend createBuffer(MemoryChunkBuilder memoryBuilder, long size, int usage)
 	{
 		final var bufferInfo = new BufferInfo(size, usage, false);
 		final var res = new GPUBufferBackend(bufferInfo, false);
-		res.allocate(stack, context, memoryBuilder);
+		res.allocate(context, memoryBuilder);
 		return res;
 	}
 
-	public void fillBuffer(	MemoryStack stack,
-							ByteBuffer vertices,
+	public void fillBuffer(	ByteBuffer vertices,
 							int numberOfVertice,
 							ByteBuffer indices,
 							int numberOfIndice)
@@ -106,8 +101,8 @@ public class IndexedBuffer implements IAllocable<IExecutionContext>
 		final int indexByteSize = numberOfIndice * indexSize;
 		final int vertexByteSize = numberOfVertice * vertexStride;
 
-		final var vertexFiller = new BufferGPUFiller(stack, context, vertexBuffer.getAddress());
-		final var indexFiller = new BufferGPUFiller(stack, context, indexBuffer.getAddress());
+		final var vertexFiller = new BufferGPUFiller(context, vertexBuffer.getAddress());
+		final var indexFiller = new BufferGPUFiller(context, indexBuffer.getAddress());
 
 		vertexFiller.fill(vertices, 0, vertexByteSize);
 		indexFiller.fill(indices, 0, indexByteSize);
@@ -192,12 +187,6 @@ public class IndexedBuffer implements IAllocable<IExecutionContext>
 	public int getIndexMemoryOffset()
 	{
 		return 0;
-	}
-
-	@Override
-	public boolean isAllocationDirty(IExecutionContext context)
-	{
-		return false;
 	}
 
 	public GPUBufferBackend getVertexBuffer()

@@ -3,12 +3,14 @@ package org.sheepy.lily.vulkan.process.graphic.present;
 import static org.lwjgl.vulkan.KHRSwapchain.*;
 import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
 
-import org.lwjgl.system.MemoryStack;
+import java.util.List;
+
 import org.lwjgl.vulkan.VkDevice;
+import org.sheepy.lily.core.api.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.ISurfaceManager;
-import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.log.EVulkanErrorStatus;
 import org.sheepy.vulkan.log.Logger;
@@ -27,7 +29,15 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 	private Container container;
 
 	@Override
-	public void allocate(MemoryStack stack, IGraphicContext context)
+	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	{
+		final var swapChainManager = context.getSwapChainManager();
+
+		config.addDependencies(List.of(swapChainManager));
+	}
+
+	@Override
+	public void allocate(IGraphicContext context)
 	{
 		container = new Container(context);
 	}
@@ -35,12 +45,6 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 	@Override
 	public void free(IGraphicContext context)
 	{}
-
-	@Override
-	public boolean isAllocationDirty(IGraphicContext context)
-	{
-		return context.getSwapChainManager().isAllocationDirty(context);
-	}
 
 	public Integer acquireNextImage()
 	{

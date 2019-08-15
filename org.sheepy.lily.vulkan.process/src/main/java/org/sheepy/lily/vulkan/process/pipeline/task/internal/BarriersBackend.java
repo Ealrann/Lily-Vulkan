@@ -2,9 +2,9 @@ package org.sheepy.lily.vulkan.process.pipeline.task.internal;
 
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.NativeResource;
-import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.barrier.Barrier;
 
@@ -16,6 +16,7 @@ public abstract class BarriersBackend<T extends Barrier, Y extends NativeResourc
 	private final int dstQueueIndex;
 	private final List<? extends T> barriers;
 
+	protected IAllocationConfiguration allocationConfiguration;
 	private Y[] barrierInfos = null;
 
 	public BarriersBackend(	final int swapCount,
@@ -30,7 +31,13 @@ public abstract class BarriersBackend<T extends Barrier, Y extends NativeResourc
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void configureAllocation(IAllocationConfiguration config, IExecutionContext context)
+	{
+		this.allocationConfiguration = config;
+	}
+
+	@Override
+	public void allocate(IExecutionContext context)
 	{
 		barrierInfos = createBufferArray(swapCount);
 		if (barriers.isEmpty() == false)

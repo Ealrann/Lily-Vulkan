@@ -2,20 +2,36 @@ package org.sheepy.lily.vulkan.process.graphic.barrier;
 
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
 
+import java.util.List;
+
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.vulkan.api.barrier.IImageBarrierAdapter;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.api.graphic.IImageViewManager;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 import org.sheepy.vulkan.resource.image.ImageUtil;
 import org.sheepy.vulkan.util.VkModelUtil;
 
 @Adapter(scope = SwapImageBarrier.class)
-public class SwapImageBarrierAdapter implements IImageBarrierAdapter<IGraphicContext>
+public class SwapImageBarrierAdapter
+		implements IImageBarrierAdapter<IGraphicContext>, IAllocable<IGraphicContext>
 {
-	private IImageViewManager imageViewManager;
+	@Override
+	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	{
+		config.addDependencies(List.of(context.getImageViewManager()));
+	}
+
+	@Override
+	public void allocate(IGraphicContext context)
+	{}
+
+	@Override
+	public void free(IGraphicContext context)
+	{}
 
 	@Override
 	public void fillInfo(	IGraphicContext context,
@@ -23,7 +39,7 @@ public class SwapImageBarrierAdapter implements IImageBarrierAdapter<IGraphicCon
 							VkImageMemoryBarrier info,
 							int swapIndex)
 	{
-		imageViewManager = context.getImageViewManager();
+		final var imageViewManager = context.getImageViewManager();
 
 		final var view = imageViewManager.getImageViews().get(swapIndex);
 
@@ -48,11 +64,5 @@ public class SwapImageBarrierAdapter implements IImageBarrierAdapter<IGraphicCon
 		info.subresourceRange().aspectMask(aspectMask);
 		info.srcAccessMask(srcAccessMask);
 		info.dstAccessMask(dstAccessMask);
-	}
-
-	@Override
-	public boolean isAllocationDirty(IGraphicContext context)
-	{
-		return imageViewManager.isAllocationDirty(context);
 	}
 }

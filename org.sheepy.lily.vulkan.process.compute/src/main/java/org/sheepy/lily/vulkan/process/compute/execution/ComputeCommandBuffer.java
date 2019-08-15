@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.process.compute.execution;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.sheepy.lily.vulkan.api.process.IComputeContext;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
@@ -16,14 +15,14 @@ public class ComputeCommandBuffer extends AbstractCommandBuffer<IComputeContext>
 	private VkCommandBufferBeginInfo beginInfo;
 
 	@Override
-	public void allocate(MemoryStack stack, IComputeContext context)
+	public void allocate(IComputeContext context)
 	{
 		beginInfo = VkCommandBufferBeginInfo.calloc();
 		beginInfo.sType(VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO);
 		beginInfo.flags(VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT);
 		beginInfo.pInheritanceInfo(null);
 
-		super.allocate(stack, context);
+		super.allocate(context);
 	}
 
 	@Override

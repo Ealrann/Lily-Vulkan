@@ -8,7 +8,6 @@ import java.nio.IntBuffer;
 import java.nio.LongBuffer;
 import java.util.Collection;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
 import org.lwjgl.vulkan.VkQueue;
@@ -51,18 +50,18 @@ public class FrameSubmission extends Submission<IGraphicContext>
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IGraphicContext context)
+	public void allocate(IGraphicContext context)
 	{
 		this.context = context;
 		final var swapChain = context.getSwapChainManager();
 
 		presentQueue = context.getSurfaceManager().getPresentQueue().vkQueue;
 
-		presentWaitSemaphore.allocate(stack, context);
+		presentWaitSemaphore.allocate(context);
 		final long presentSemaphorePtr = presentWaitSemaphore.getPtr();
 		signalSemaphores.add(presentSemaphorePtr);
 
-		super.allocate(stack, context);
+		super.allocate(context);
 
 		bSwapChains = memAllocLong(1);
 		bSwapChains.put(swapChain.getAddress());

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.barrier.IBufferBarrierAdapter;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
@@ -11,8 +12,6 @@ import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
 public class BufferBarriersBackend
 		extends BarriersBackend<AbstractBufferBarrier, VkBufferMemoryBarrier.Buffer>
 {
-	private final List<IBufferBarrierAdapter> adapters = new ArrayList<>();
-
 	public BufferBarriersBackend(	int swapCount,
 									int srcQueueIndex,
 									int dstQueueIndex,
@@ -35,36 +34,30 @@ public class BufferBarriersBackend
 																	final int dstQueueIndex)
 	{
 		final var res = VkBufferMemoryBarrier.calloc(barriers.size());
-		adapters.clear();
+
+		final List<IAllocable<?>> newDependencies = new ArrayList<>();
+
+		allocationConfiguration.clearDependencies();
+		allocationConfiguration.clearChildren();
 
 		for (final var bufferBarrier : barriers)
 		{
 			final var info = res.get();
 			final var barrierAdapter = IBufferBarrierAdapter.adapt(bufferBarrier);
-			adapters.add(barrierAdapter);
+
+			if (barrierAdapter instanceof IAllocable)
+			{
+				newDependencies.add((IAllocable<?>) barrierAdapter);
+			}
+
 			barrierAdapter.fillInfo(context, bufferBarrier, info, swapIndex);
 			info.srcQueueFamilyIndex(srcQueueIndex);
 			info.dstQueueFamilyIndex(dstQueueIndex);
 		}
 		res.flip();
 
-		return res;
-	}
-
-	@Override
-	public boolean isAllocationDirty(IExecutionContext context)
-	{
-		boolean res = false;
-
-		for (int i = 0; i < adapters.size(); i++)
-		{
-			final var adapter = adapters.get(i);
-			if (adapter.isAllocationDirty(context))
-			{
-				res = true;
-				break;
-			}
-		}
+		allocationConfiguration.addChildren(newDependencies);
+		allocationConfiguration.addDependencies(newDependencies);
 
 		return res;
 	}

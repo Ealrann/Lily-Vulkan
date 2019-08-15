@@ -50,7 +50,8 @@ public class MeshModelFactory
 		application.setSize(size);
 		application.getEngines().add(engine);
 
-		final var framebufferConfiguration = GraphicFactory.eINSTANCE.createFramebufferConfiguration();
+		final var framebufferConfiguration = GraphicFactory.eINSTANCE
+				.createFramebufferConfiguration();
 		final var graphicConfiguration = GraphicFactory.eINSTANCE.createGraphicConfiguration();
 		final var swapchainConfiguration = GraphicFactory.eINSTANCE.createSwapchainConfiguration();
 
@@ -77,7 +78,8 @@ public class MeshModelFactory
 		final var subpass = GraphicFactory.eINSTANCE.createSubpass();
 		renderPass.getSubpasses().add(subpass);
 
-		final var colorAttachmentDescriptor = GraphicFactory.eINSTANCE.createSwapImageAttachmentDescription();
+		final var colorAttachmentDescriptor = GraphicFactory.eINSTANCE
+				.createSwapImageAttachmentDescription();
 		colorAttachmentDescriptor.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
 		colorAttachmentDescriptor.setLoadOp(EAttachmentLoadOp.CLEAR);
 		colorAttachmentDescriptor.setStoreOp(EAttachmentStoreOp.STORE);
@@ -95,7 +97,8 @@ public class MeshModelFactory
 
 		if (meshConfiguration.depth)
 		{
-			final var depthAttachmentDescriptor = GraphicFactory.eINSTANCE.createExtraAttachmentDescription();
+			final var depthAttachmentDescriptor = GraphicFactory.eINSTANCE
+					.createExtraAttachmentDescription();
 
 			depthAttachmentDescriptor.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
 			depthAttachmentDescriptor.setLoadOp(EAttachmentLoadOp.CLEAR);
@@ -185,7 +188,8 @@ public class MeshModelFactory
 		viewportState.getScissors().add(GraphicpipelineFactory.eINSTANCE.createScissor());
 
 		final var colorBlend = GraphicpipelineFactory.eINSTANCE.createColorBlend();
-		colorBlend.getAttachments().add(GraphicpipelineFactory.eINSTANCE.createColorBlendAttachment());
+		colorBlend.getAttachments()
+				.add(GraphicpipelineFactory.eINSTANCE.createColorBlendAttachment());
 
 		final var locationAttribute = GraphicFactory.eINSTANCE.createAttributeDescription();
 		if (meshConfiguration.useTexture) locationAttribute.setFormat(EFormat.R32G32B32_SFLOAT);
@@ -220,7 +224,8 @@ public class MeshModelFactory
 		graphicPipeline.setViewportState(viewportState);
 		graphicPipeline.setColorBlend(colorBlend);
 		graphicPipeline.setVertexInputState(inputState);
-		if (pushConstantRange != null) graphicPipeline.getPushConstantRanges().add(pushConstantRange);
+		if (pushConstantRange != null)
+			graphicPipeline.getPushConstantRanges().add(pushConstantRange);
 
 		final var vertexRef = ResourceFactory.eINSTANCE.createBufferReference();
 		vertexRef.setBuffer(indexedVertexBuffer);

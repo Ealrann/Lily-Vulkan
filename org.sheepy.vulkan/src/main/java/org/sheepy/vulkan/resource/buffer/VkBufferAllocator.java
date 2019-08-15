@@ -4,14 +4,16 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferCreateInfo;
-import org.lwjgl.vulkan.VkDevice;
+import org.sheepy.vulkan.device.IVulkanContext;
 
 public class VkBufferAllocator
 {
-	public static long allocate(MemoryStack stack, VkDevice device, BufferInfo bufferInfo)
+	public static long allocate(IVulkanContext context, BufferInfo bufferInfo)
 	{
 		assert bufferInfo.getTotalSize() != 0;
 
+		final var stack = context.stack();
+		final var device = context.getVkDevice();
 		final VkBufferCreateInfo bufferCreateInfo = allocateInfo(stack, bufferInfo);
 		final long[] aVertexBuffer = new long[1];
 		if (vkCreateBuffer(device, bufferCreateInfo, null, aVertexBuffer) != VK_SUCCESS)

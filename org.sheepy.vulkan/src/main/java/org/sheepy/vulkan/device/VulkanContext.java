@@ -1,18 +1,16 @@
 package org.sheepy.vulkan.device;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.sheepy.vulkan.window.Window;
 
 public class VulkanContext implements IVulkanContext
 {
-	protected LogicalDevice logicalDevice;
-	private Window window;
+	private final Window window;
+	protected final LogicalDevice logicalDevice;
 
-	public VulkanContext()
-	{
-		this(null, null);
-	}
+	private MemoryStack stack = null;
 
 	public VulkanContext(LogicalDevice logicalDevice, Window window)
 	{
@@ -21,15 +19,36 @@ public class VulkanContext implements IVulkanContext
 	}
 
 	@Override
-	public void setLogicalDevice(LogicalDevice logicalDevice)
+	public MemoryStack stackPush()
 	{
-		this.logicalDevice = logicalDevice;
+		if (stack != null)
+		{
+			stack.pop();
+		}
+
+		stack = MemoryStack.stackPush();
+
+		return stack;
 	}
 
 	@Override
-	public void setWindow(Window window)
+	public void stackPop()
 	{
-		this.window = window;
+		if (stack != null)
+		{
+			stack.pop();
+			stack = null;
+		}
+	}
+
+	@Override
+	public MemoryStack stack()
+	{
+		if (stack == null)
+		{
+			stackPush();
+		}
+		return stack;
 	}
 
 	@Override

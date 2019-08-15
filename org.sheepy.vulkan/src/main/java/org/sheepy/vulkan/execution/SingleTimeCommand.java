@@ -6,7 +6,6 @@ import java.nio.LongBuffer;
 import java.util.Collection;
 import java.util.List;
 
-import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
@@ -18,20 +17,19 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 public abstract class SingleTimeCommand extends AbstractCommandBuffer<IExecutionContext>
 {
 	protected final IExecutionContext executionContext;
-	private List<VkSemaphore> semaphoreToSignal = null;
 	private final MemoryStack stack;
+	private List<VkSemaphore> semaphoreToSignal = null;
 
-	public SingleTimeCommand(IExecutionContext executionManager, MemoryStack stack)
+	public SingleTimeCommand(IExecutionContext executionContext)
 	{
-		this(executionManager, stack, null);
+		this(executionContext, null);
 	}
 
 	public SingleTimeCommand(	IExecutionContext executionContext,
-								MemoryStack stack,
 								Collection<VkSemaphore> semaphoreToSignal)
 	{
 		this.executionContext = executionContext;
-		this.stack = stack;
+		this.stack = executionContext.stack();
 		if (semaphoreToSignal != null && semaphoreToSignal.isEmpty() == false)
 		{
 			this.semaphoreToSignal = List.copyOf(semaphoreToSignal);
@@ -41,14 +39,14 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer<IExecution
 			this.semaphoreToSignal = List.of();
 		}
 
-		allocate(stack, executionContext);
+		allocate(executionContext);
 	}
 
 	public void execute()
 	{
 		start(null);
 
-		doExecute(stack, vkCommandBuffer);
+		doExecute(executionContext, vkCommandBuffer);
 
 		end(null);
 
@@ -60,7 +58,7 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer<IExecution
 	@Override
 	public void start(ECommandStage stage)
 	{
-		final VkCommandBufferBeginInfo beginInfo = VkCommandBufferBeginInfo.callocStack(stack);
+		final var beginInfo = VkCommandBufferBeginInfo.callocStack(stack);
 		beginInfo.sType(VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO);
 		beginInfo.flags(VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT);
 
@@ -72,7 +70,7 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer<IExecution
 	{
 		vkEndCommandBuffer(vkCommandBuffer);
 
-		final PointerBuffer pCommandBuffer = stack.mallocPointer(1);
+		final var pCommandBuffer = stack.mallocPointer(1);
 		pCommandBuffer.put(vkCommandBuffer.address());
 		pCommandBuffer.flip();
 
@@ -98,9 +96,8 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer<IExecution
 		if (lBuffer != null) MemoryUtil.memFree(lBuffer);
 	}
 
-	protected abstract void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer);
+	protected abstract void doExecute(IExecutionContext context, VkCommandBuffer commandBuffer);
 
 	protected void postExecute()
 	{}
-
 }

@@ -4,10 +4,10 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.barrier.IBufferBarrierAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
 import org.sheepy.vulkan.util.VkModelUtil;
 

@@ -4,7 +4,6 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferDataProviderAdapter;
@@ -72,7 +71,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
 		final var physicalDevice = context.getPhysicalDevice();
 
@@ -89,7 +88,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		if (position != 0)
 		{
 			createBuffer(position, usage);
-			bufferBackend.allocate(stack, context);
+			bufferBackend.allocate(context);
 
 			for (final var providerWrapper : providerWrappers)
 			{
@@ -181,12 +180,6 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		bufferBackend.free(context);
 
 		stagingBuffer.removeListener(pushBufferListener);
-	}
-
-	@Override
-	public boolean isAllocationDirty(IExecutionContext context)
-	{
-		return false;
 	}
 
 	@Override

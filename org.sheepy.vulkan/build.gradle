@@ -18,9 +18,7 @@ switch (targetPlatform) {
 
 dependencies {
 
-	api "emf.standalone:org.eclipse.emf.common"
-	api "emf.standalone:org.eclipse.emf.ecore"
-	api "emf.standalone:org.eclipse.emf.ecore.xmi"
+	api 'org.sheepy.lily.core:org.sheepy.lily.core.api'
 
 	api "org.joml:joml:${jomlVersion}"
 

@@ -3,7 +3,6 @@ package org.sheepy.vulkan.execution;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.PointerBuffer;
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkCommandBufferAllocateInfo;
 import org.sheepy.vulkan.log.Logger;
@@ -14,8 +13,9 @@ public abstract class AbstractCommandBuffer<T extends IExecutionContext>
 	protected VkCommandBuffer vkCommandBuffer;
 
 	@Override
-	public void allocate(MemoryStack stack, T context)
+	public void allocate(T context)
 	{
+		final var stack = context.stack();
 		final long commandPoolId = context.getCommandPool().getId();
 		final var vkDevice = context.getVkDevice();
 

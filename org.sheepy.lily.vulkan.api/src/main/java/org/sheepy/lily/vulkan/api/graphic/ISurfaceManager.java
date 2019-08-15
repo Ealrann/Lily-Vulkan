@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.api.graphic;
 
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
-import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.device.capabilities.Capabilities;
 import org.sheepy.vulkan.queue.VulkanQueue;
 import org.sheepy.vulkan.surface.Extent2D;

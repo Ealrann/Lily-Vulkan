@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
@@ -34,12 +34,17 @@ public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicCon
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IGraphicContext context)
+	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
 	{
-		super.allocate(stack, context);
-		final var renderPass = context.getRenderPass();
+		config.addDependencies(List.of(context.getRenderPass()));
+		super.configureAllocation(config, context);
+	}
+
+	@Override
+	public void allocate(IGraphicContext context)
+	{
+		super.allocate(context);
 		final var shaders = pipeline.getShaders();
-		allocationDependencies.add(renderPass);
 
 		final List<VkShaderStage> shaderStages = new ArrayList<>();
 		for (final Shader shader : shaders)
@@ -60,15 +65,12 @@ public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicCon
 		vkGraphicsPipeline = new VkGraphicsPipeline(getVkPipelineLayout(), colorBlend, rasterizer,
 				inputAssembly, viewportState, dynamicState, inputState, shaderStages,
 				specializationData, subpass);
-		vkGraphicsPipeline.allocate(stack, context);
+		vkGraphicsPipeline.allocate(context);
 	}
 
 	@Override
 	public void free(IGraphicContext context)
 	{
-		final var graphicContext = context;
-		final var renderPass = graphicContext.getRenderPass();
-		allocationDependencies.remove(renderPass);
 		vkGraphicsPipeline.free(context);
 		super.free(context);
 	}

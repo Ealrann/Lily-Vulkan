@@ -7,11 +7,12 @@ import java.nio.IntBuffer;
 import java.nio.LongBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.lwjgl.PointerBuffer;
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSubmitInfo;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.execution.ISubmission;
 import org.sheepy.lily.vulkan.api.process.IProcessContext.IRecorderContext;
@@ -59,10 +60,16 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, T context)
+	public void configureAllocation(IAllocationConfiguration config, T context)
+	{
+		config.addDependencies(List.of(commandBuffer));
+	}
+
+	@Override
+	public void allocate(T context)
 	{
 		queue = context.getQueue().vkQueue;
-		if (fence != null) fence.allocate(stack, context);
+		if (fence != null) fence.allocate(context);
 
 		if (waitSemaphores.isEmpty() == false)
 		{
@@ -155,12 +162,6 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 	public VkSubmitInfo getSubmitInfo()
 	{
 		return submitInfo;
-	}
-
-	@Override
-	public boolean isAllocationDirty(T context)
-	{
-		return context.getExecutionRecorders().isAllocationDirty(context);
 	}
 
 	@Override

@@ -2,10 +2,8 @@ package org.sheepy.vulkan.resource.indexed;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferCopy;
-import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
@@ -39,11 +37,11 @@ public class IndexedStagingBuffer implements IAllocable<IExecutionContext>
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
 		this.context = context;
 
-		stagingBuffer.allocate(stack, context);
+		stagingBuffer.allocate(context);
 
 		final int vertexOffset = indexedBuffer.getVertexMemoryOffset();
 		final int indexOffset = indexedBuffer.getIndexMemoryOffset();
@@ -65,12 +63,6 @@ public class IndexedStagingBuffer implements IAllocable<IExecutionContext>
 
 		vertexCopyInfo = null;
 		indexCopyInfo = null;
-	}
-
-	@Override
-	public boolean isAllocationDirty(IExecutionContext context)
-	{
-		return false;
 	}
 
 	public void mapMemory()
@@ -100,7 +92,7 @@ public class IndexedStagingBuffer implements IAllocable<IExecutionContext>
 		final var dstVertexAddress = indexedBuffer.getVertexBufferAddress();
 		final var dstIndexAddress = indexedBuffer.getIndexBufferAddress();
 
-		context.execute((MemoryStack stack, VkCommandBuffer commandBuffer) ->
+		context.execute((context, commandBuffer) ->
 		{
 			vkCmdCopyBuffer(commandBuffer, srcBufferAddress, dstVertexAddress, vertexCopyInfo);
 			vkCmdCopyBuffer(commandBuffer, srcBufferAddress, dstIndexAddress, indexCopyInfo);

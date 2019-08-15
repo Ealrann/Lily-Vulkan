@@ -2,10 +2,12 @@ package org.sheepy.lily.vulkan.process.graphic.resource;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.lwjgl.system.MemoryStack;
+import java.util.List;
+
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.resource.attachment.IDepthAttachmentAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
@@ -28,27 +30,36 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 	private int depthFormat;
 
 	@Override
-	public void allocate(MemoryStack stack, IGraphicContext context)
+	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	{
+		final var surfaceManager = context.getSurfaceManager();
+
+		config.addDependencies(List.of(surfaceManager));
+	}
+
+	@Override
+	public void allocate(IGraphicContext context)
 	{
 		depthFormat = findDepthFormat(context.getPhysicalDevice());
 
 		createDepthImage(context);
-		allocateDepthImage(stack, context);
+		allocateDepthImage(context);
 
 		createAndAllocateImageView(context.getLogicalDevice());
 
-		layoutTransitionOfDepthImage(stack, context);
+		layoutTransitionOfDepthImage(context);
 	}
 
 	private void createAndAllocateImageView(LogicalDevice logicalDevice)
 	{
 		depthImageView = new VkImageView(logicalDevice.getVkDevice());
-		depthImageView.allocate(depthImageBackend.getPtr(), 1, depthFormat, VK_IMAGE_ASPECT_DEPTH_BIT);
+		depthImageView.allocate(depthImageBackend.getPtr(), 1, depthFormat,
+				VK_IMAGE_ASPECT_DEPTH_BIT);
 	}
 
-	private void allocateDepthImage(MemoryStack stack, IGraphicContext context)
+	private void allocateDepthImage(IGraphicContext context)
 	{
-		depthImageBackend.allocate(stack, context);
+		depthImageBackend.allocate(context);
 	}
 
 	private void createDepthImage(IGraphicContext context)
@@ -65,8 +76,9 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 		depthImageBackend = depthImageBuilder.build();
 	}
 
-	private void layoutTransitionOfDepthImage(MemoryStack stack, IExecutionContext context)
+	private void layoutTransitionOfDepthImage(IExecutionContext context)
 	{
+		final var stack = context.stack();
 		final var barrierInfo = VkImageMemoryBarrier.callocStack(1, stack);
 		final var srcStage = EPipelineStage.TOP_OF_PIPE_BIT_VALUE;
 		final var dstStage = EPipelineStage.EARLY_FRAGMENT_TESTS_BIT_VALUE;
@@ -83,11 +95,11 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 		barrierInfo.subresourceRange().baseArrayLayer(0);
 		barrierInfo.subresourceRange().layerCount(1);
 		barrierInfo.subresourceRange().aspectMask(aspectMask);
-		barrierInfo.dstAccessMask(
-				EAccess.DEPTH_STENCIL_ATTACHMENT_READ_BIT_VALUE | EAccess.DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_VALUE);
+		barrierInfo.dstAccessMask(EAccess.DEPTH_STENCIL_ATTACHMENT_READ_BIT_VALUE
+				| EAccess.DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_VALUE);
 
-		context.execute(stack, (stack2, commandBuffer) -> vkCmdPipelineBarrier(commandBuffer, srcStage, dstStage, 0,
-				null, null, barrierInfo));
+		context.execute((context2, commandBuffer) -> vkCmdPipelineBarrier(commandBuffer, srcStage,
+				dstStage, 0, null, null, barrierInfo));
 	}
 
 	private static int findDepthFormat(PhysicalDevice physicalDevice)
@@ -102,12 +114,6 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 	{
 		depthImageView.free();
 		depthImageBackend.free(context);
-	}
-
-	@Override
-	public boolean isAllocationDirty(IGraphicContext context)
-	{
-		return context.getSurfaceManager().isAllocationDirty(context);
 	}
 
 	@Override

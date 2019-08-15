@@ -1,46 +1,51 @@
 package org.sheepy.lily.vulkan.common.allocation;
 
-import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.common.allocation.wrapper.AllocableWrapperFactory;
-import org.sheepy.lily.vulkan.common.allocation.wrapper.IAllocationWrapper;
-import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationContext;
-import org.sheepy.vulkan.allocation.IAllocationObject;
+import org.sheepy.lily.core.api.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocationManager;
+import org.sheepy.lily.core.api.allocation.IAllocationService;
+import org.sheepy.vulkan.device.IVulkanContext;
 
-public class TreeAllocator<T extends IAllocationContext> implements IAllocable<T>
+public class TreeAllocator<T extends IVulkanContext>
 {
-	private final IAllocationWrapper<T> rootWrapper;
+	private final IAllocationService allocationService = IAllocationService.INSTANCE;
+	private final IAllocationManager<T> rootWrapper;
 	private boolean isAllocated = false;
+	private T context;
 
-	public TreeAllocator(IAllocationObject<T> root)
+	public TreeAllocator(IAllocable<T> root)
 	{
-		rootWrapper = AllocableWrapperFactory.INSTANCE.wrap(root);
+		rootWrapper = allocationService.register(root);
 	}
 
-	@Override
-	public void allocate(MemoryStack stack, T context)
+	public void allocate(T context)
 	{
-		rootWrapper.allocate(stack, context);
+		this.context = context;
+		rootWrapper.configure(context);
+
+		context.stackPush();
+		rootWrapper.allocate();
+		context.stackPop();
+
 		isAllocated = true;
 	}
 
-	@Override
-	public void free(T context)
+	public void free()
 	{
-		rootWrapper.free(context);
+		rootWrapper.free();
 		isAllocated = false;
 	}
 
-	@Override
-	public boolean isAllocationDirty(T context)
+	public boolean isAllocationDirty()
 	{
-		return rootWrapper.isAllocationDirty(context);
+		return rootWrapper.isBranchDirty();
 	}
 
-	public void reloadDirtyElements(MemoryStack stack, T context)
+	public void reloadDirtyElements()
 	{
-		rootWrapper.freeDirtyElements(context);
-		rootWrapper.allocate(stack, context);
+		rootWrapper.freeDirtyElements();
+		context.stackPush();
+		rootWrapper.allocate();
+		context.stackPop();
 	}
 
 	public boolean isAllocated()

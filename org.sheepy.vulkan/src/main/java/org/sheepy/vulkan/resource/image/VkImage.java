@@ -9,7 +9,6 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkBufferImageCopy;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkImageCreateInfo;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.sheepy.vulkan.execution.IExecutionContext;
@@ -26,6 +25,8 @@ import org.sheepy.vulkan.util.VkModelUtil;
 
 public final class VkImage
 {
+	private static final String CREATE_ERROR = "Failed to create image!";
+
 	protected long imagePtr;
 	protected long memoryPtr;
 
@@ -66,21 +67,19 @@ public final class VkImage
 		return new VkImageBuilder(width, height, format);
 	}
 
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
-		final var memoryBuilder = new MemoryChunkBuilder(stack, context, properties);
-		allocate(stack, context, memoryBuilder);
-		memory = memoryBuilder.build(stack);
-		memory.allocate(stack, context);
+		final var memoryBuilder = new MemoryChunkBuilder(context, properties);
+		allocate(context, memoryBuilder);
+		memory = memoryBuilder.build();
+		memory.allocate(context);
 	}
 
-	public void allocate(	MemoryStack stack,
-							IExecutionContext context,
-							MemoryChunkBuilder memoryChunkBuilder)
+	public void allocate(IExecutionContext context, MemoryChunkBuilder memoryChunkBuilder)
 	{
 		final var logicalDevice = context.getLogicalDevice();
 
-		imagePtr = allocateImage(stack, logicalDevice.getVkDevice());
+		imagePtr = allocateImage(context);
 
 		memoryChunkBuilder.registerImage(imagePtr, (memoryPtr, memorySize) ->
 		{
@@ -89,39 +88,36 @@ public final class VkImage
 
 			if (fillWith != null)
 			{
-				fillWith(stack, context, fillWith);
+				fillWith(context, fillWith);
 			}
 			else if (fillWithZero)
 			{
-				fillWithZero(stack, context, memorySize);
+				fillWithZero(context, memorySize);
 			}
 		});
 	}
 
-	private void fillWithZero(	MemoryStack stack,
-								final IExecutionContext executionContext,
-								final long memorySize)
+	private void fillWithZero(final IExecutionContext executionContext, final long memorySize)
 	{
 		final ByteBuffer data = MemoryUtil.memCalloc((int) memorySize);
 
-		fillWith(stack, executionContext, data);
+		fillWith(executionContext, data);
 		MemoryUtil.memFree(data);
 	}
 
-	private void fillWith(	MemoryStack _stack,
-							final IExecutionContext executionContext,
-							final ByteBuffer data)
+	private void fillWith(final IExecutionContext context, final ByteBuffer data)
 	{
 		final int usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 		final var size = data.limit();
 
 		final var bufferInfo = new BufferInfo(size, usage, false);
 		final var stagingBuffer = new CPUBufferBackend(bufferInfo, true);
-		stagingBuffer.allocate(_stack, executionContext);
-		stagingBuffer.pushData(executionContext, data);
+		stagingBuffer.allocate(context);
+		stagingBuffer.pushData(context, data);
 
-		executionContext.execute(_stack, (stack, commandBuffer) ->
+		context.execute((_context, commandBuffer) ->
 		{
+			final var stack = _context.stack();
 			List<EAccess> srcAccessMask = List.of();
 			List<EAccess> dstAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
 
@@ -139,7 +135,7 @@ public final class VkImage
 					EImageLayout.GENERAL, srcAccessMask, dstAccessMask);
 		});
 
-		stagingBuffer.free(executionContext);
+		stagingBuffer.free(context);
 	}
 
 	public void fillWithBuffer(VkCommandBuffer commandBuffer, long bufferId)
@@ -212,12 +208,14 @@ public final class VkImage
 		return memoryPtr;
 	}
 
-	private long allocateImage(MemoryStack stack, VkDevice device) throws AssertionError
+	private long allocateImage(IExecutionContext context) throws AssertionError
 	{
+		final var stack = context.stack();
+		final var device = context.getVkDevice();
+
 		final VkImageCreateInfo imageInfo = allocateInfo(stack);
 		final long[] aImageId = new long[1];
-		Logger.check("Failed to create image!",
-				() -> vkCreateImage(device, imageInfo, null, aImageId));
+		Logger.check(CREATE_ERROR, () -> vkCreateImage(device, imageInfo, null, aImageId));
 		return aImageId[0];
 	}
 

@@ -4,7 +4,6 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
 
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.buffer.BufferGPUFiller;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
@@ -35,23 +34,22 @@ public class IndexedBufferWithUniform extends IndexedBuffer
 	}
 
 	@Override
-	protected void allocateBuffers(MemoryStack stack, MemoryChunkBuilder memoryBuilder)
+	protected void allocateBuffers(MemoryChunkBuilder memoryBuilder)
 	{
-		uniformBuffer.allocate(stack, context, memoryBuilder);
+		uniformBuffer.allocate(context, memoryBuilder);
 	}
 
-	public void fillBuffer(	MemoryStack stack,
-							ByteBuffer vertices,
+	public void fillBuffer(	ByteBuffer vertices,
 							int numberOfVertice,
 							ByteBuffer indices,
 							int numberOfIndice,
 							ByteBuffer uniforms,
 							int uniformDataCount)
 	{
-		super.fillBuffer(stack, vertices, numberOfVertice, indices, numberOfIndice);
+		super.fillBuffer(vertices, numberOfVertice, indices, numberOfIndice);
 
 		final int uniformDataByteSize = uniformDataCount;
-		final var uniformFiller = new BufferGPUFiller(stack, context, uniformBuffer.getAddress());
+		final var uniformFiller = new BufferGPUFiller(context, uniformBuffer.getAddress());
 
 		uniformFiller.fill(uniforms, 0, uniformDataByteSize);
 	}

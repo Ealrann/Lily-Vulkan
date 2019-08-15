@@ -6,7 +6,6 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.PointerBuffer;
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.vulkan.device.LogicalDevice;
@@ -14,7 +13,7 @@ import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.memory.MemoryChunk;
 import org.sheepy.vulkan.resource.memory.MemoryChunkBuilder;
 
-public class CPUBufferBackend implements IBufferBackend
+public final class CPUBufferBackend implements IBufferBackend
 {
 	public static final int HOST_VISIBLE = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT
 			| VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
@@ -49,23 +48,21 @@ public class CPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
-		final MemoryChunkBuilder memoryBuilder = new MemoryChunkBuilder(stack, context, properties);
-		allocate(stack, context, memoryBuilder);
-		memory = memoryBuilder.build(stack);
-		memory.allocate(stack, context);
+		final var memoryBuilder = new MemoryChunkBuilder(context, properties);
+		allocate(context, memoryBuilder);
+		memory = memoryBuilder.build();
+		memory.allocate(context);
 	}
 
 	@Override
-	public void allocate(	MemoryStack stack,
-							IExecutionContext context,
-							MemoryChunkBuilder memoryBuilder)
+	public void allocate(IExecutionContext context, MemoryChunkBuilder memoryBuilder)
 	{
 		vkDevice = context.getVkDevice();
 
 		info.computeAlignment(context.getPhysicalDevice());
-		address = VkBufferAllocator.allocate(stack, vkDevice, info);
+		address = VkBufferAllocator.allocate(context, info);
 
 		memoryBuilder.registerBuffer(address, (memoryPtr, memorySize) ->
 		{

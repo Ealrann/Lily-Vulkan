@@ -7,8 +7,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationAdapter;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationNodeAdapter;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
@@ -20,12 +20,13 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 @Statefull
 @Adapter(scope = CompositeTask.class)
 public class CompositeTaskAdapter
-		implements IPipelineTaskAdapter<CompositeTask>, IAllocationNodeAdapter<IProcessContext>
+		implements IPipelineTaskAdapter<CompositeTask>, IAllocableAdapter<IProcessContext>
 {
 	private final List<AdaptedTaskWrapper<?>> adaptedChildren = new ArrayList<>();
-	private final List<IAllocationAdapter<IProcessContext>> allocationChildren = new ArrayList<>();
+	private final List<IAllocableAdapter<IProcessContext>> allocationChildren = new ArrayList<>();
 
 	private boolean dirty = true;
+	private IAllocationConfiguration allocationConfiguration;
 
 	public CompositeTaskAdapter(CompositeTask task)
 	{
@@ -42,10 +43,19 @@ public class CompositeTaskAdapter
 	}
 
 	@Override
-	public List<IAllocationAdapter<IProcessContext>> getAllocationChildren()
+	public void configureAllocation(IAllocationConfiguration config, IProcessContext context)
 	{
-		return allocationChildren;
+		this.allocationConfiguration = config;
+		updateAllocationChildren();
 	}
+
+	@Override
+	public void allocate(IProcessContext context)
+	{}
+
+	@Override
+	public void free(IProcessContext context)
+	{}
 
 	@Override
 	public void update(CompositeTask task)
@@ -69,14 +79,26 @@ public class CompositeTaskAdapter
 		for (final var subTask : task.getTasks())
 		{
 			adaptedChildren.add(new AdaptedTaskWrapper<>(subTask));
-			
-			final var allocationAdapter = IAllocationAdapter.adapt(subTask);
-			if(allocationAdapter != null)
+
+			final var allocationAdapter = IAllocableAdapter.adapt(subTask);
+			if (allocationAdapter != null)
 			{
-				allocationChildren.add((IAllocationAdapter<IProcessContext>) allocationAdapter);
+				allocationChildren.add((IAllocableAdapter<IProcessContext>) allocationAdapter);
 			}
 		}
+
+		updateAllocationChildren();
+
 		dirty = false;
+	}
+
+	private void updateAllocationChildren()
+	{
+		if (allocationConfiguration != null)
+		{
+			allocationConfiguration.clearChildren();
+			allocationConfiguration.addChildren(allocationChildren);
+		}
 	}
 
 	@Override

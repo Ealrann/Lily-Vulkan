@@ -2,7 +2,6 @@ package org.sheepy.vulkan.resource.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkSamplerCreateInfo;
 import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.log.Logger;
@@ -27,8 +26,9 @@ public class VkSampler
 		this.info = info;
 	}
 
-	public void allocate(MemoryStack stack, IVulkanContext context)
+	public void allocate(IVulkanContext context)
 	{
+		final var stack = context.stack();
 		final var samplerInfo = VkSamplerCreateInfo.callocStack(stack);
 		samplerInfo.sType(VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO);
 		samplerInfo.magFilter(info.getMagFilter().getValue());
@@ -50,7 +50,8 @@ public class VkSampler
 		samplerInfo.maxLod(info.getMaxLod());
 
 		final long[] aSamplerId = new long[1];
-		Logger.check(vkCreateSampler(context.getVkDevice(), samplerInfo, null, aSamplerId), FAILED_TO_CREATE_SAMPLER);
+		Logger.check(vkCreateSampler(context.getVkDevice(), samplerInfo, null, aSamplerId),
+				FAILED_TO_CREATE_SAMPLER);
 		samplerPtr = aSamplerId[0];
 	}
 

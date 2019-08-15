@@ -11,6 +11,8 @@ import org.sheepy.vulkan.model.enumeration.EFormat;
 
 public class VkRenderPassAllocator
 {
+	private static final String CREATION_ERROR = "Failed to create render pass";
+
 	private final EFormat swapchainImageFormat;
 	private final VkDevice device;
 
@@ -35,14 +37,14 @@ public class VkRenderPassAllocator
 		final var dependencyInfos = renderPassInfo.getDependencies();
 		final var dependencies = dependencyAllocator.allocate(stack, dependencyInfos);
 
-		final VkRenderPassCreateInfo createInfo = VkRenderPassCreateInfo.callocStack(stack);
+		final var createInfo = VkRenderPassCreateInfo.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO);
 		createInfo.pAttachments(attachments);
 		createInfo.pSubpasses(subpasses);
 		createInfo.pDependencies(dependencies);
 
 		final long[] aRenderPass = new long[1];
-		Logger.check("Failed to create render pass!",
+		Logger.check(CREATION_ERROR,
 				() -> vkCreateRenderPass(device, createInfo, null, aRenderPass));
 		renderPass = aRenderPass[0];
 		return renderPass;

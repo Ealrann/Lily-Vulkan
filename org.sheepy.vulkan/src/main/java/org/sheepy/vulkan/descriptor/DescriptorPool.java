@@ -10,7 +10,7 @@ import java.util.Set;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorPoolCreateInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
-import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.log.Logger;
@@ -29,7 +29,7 @@ public class DescriptorPool implements IAllocable<IExecutionContext>
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
 		final var vkDevice = ((ExecutionContext) context).getVkDevice();
 		int poolSize = 0;
@@ -60,7 +60,7 @@ public class DescriptorPool implements IAllocable<IExecutionContext>
 
 		for (final var descriptorSet : descriptorSets)
 		{
-			descriptorSet.allocate(stack, context, id);
+			descriptorSet.allocate(context, id);
 		}
 	}
 
@@ -103,12 +103,6 @@ public class DescriptorPool implements IAllocable<IExecutionContext>
 	public boolean hasChanged()
 	{
 		return hasChanged;
-	}
-
-	@Override
-	public boolean isAllocationDirty(IExecutionContext context)
-	{
-		return false;
 	}
 
 	@Override

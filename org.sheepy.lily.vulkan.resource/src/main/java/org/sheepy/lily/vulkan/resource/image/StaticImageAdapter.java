@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -46,7 +45,7 @@ public class StaticImageAdapter implements IImageAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
 		this.executionContext = context;
 		final var logicalDevice = executionContext.getLogicalDevice();
@@ -54,22 +53,23 @@ public class StaticImageAdapter implements IImageAdapter
 		builder.fillWith(image.getFillWith());
 
 		imageBackend = builder.build();
-		imageBackend.allocate(stack, context);
+		imageBackend.allocate(context);
 
 		if (image.getInitialLayout() != null)
 		{
-			initialTransition(stack);
+			initialTransition();
 		}
 
 		imageView = new VkImageView(logicalDevice.getVkDevice());
-		imageView.allocate(imageBackend.getPtr(), 1, imageBackend.format, VK_IMAGE_ASPECT_COLOR_BIT);
+		imageView.allocate(imageBackend.getPtr(), 1, imageBackend.format,
+				VK_IMAGE_ASPECT_COLOR_BIT);
 
 		load();
 	}
 
-	private void initialTransition(MemoryStack stack)
+	private void initialTransition()
 	{
-		executionContext.execute(stack, (stack2, commandBuffer) ->
+		executionContext.execute((context2, commandBuffer) ->
 		{
 			final var initialLayout = image.getInitialLayout();
 			final var stage = initialLayout.getStage();
@@ -78,8 +78,9 @@ public class StaticImageAdapter implements IImageAdapter
 			{
 				trgAccess.add(EAccess.SHADER_READ_BIT);
 			}
-			imageBackend.transitionImageLayout(stack2, commandBuffer, EPipelineStage.BOTTOM_OF_PIPE_BIT, stage,
-					EImageLayout.UNDEFINED, initialLayout.getLayout(), Collections.emptyList(), trgAccess);
+			imageBackend.transitionImageLayout(context2.stack(), commandBuffer,
+					EPipelineStage.BOTTOM_OF_PIPE_BIT, stage, EImageLayout.UNDEFINED,
+					initialLayout.getLayout(), Collections.emptyList(), trgAccess);
 		});
 	}
 

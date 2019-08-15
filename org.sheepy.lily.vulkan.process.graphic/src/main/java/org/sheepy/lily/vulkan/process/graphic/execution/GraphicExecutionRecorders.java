@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.process.graphic.execution;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicExecutionRecorders;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
@@ -12,7 +12,7 @@ import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
 import org.sheepy.lily.vulkan.process.execution.WaitData;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 
-public class GraphicExecutionRecorders extends ExecutionRecorders<IGraphicContext>
+public final class GraphicExecutionRecorders extends ExecutionRecorders<IGraphicContext>
 		implements IGraphicExecutionRecorders
 {
 	public final VkSemaphore imageAvailableSemaphore;
@@ -23,15 +23,20 @@ public class GraphicExecutionRecorders extends ExecutionRecorders<IGraphicContex
 	}
 
 	@Override
-	public List<GraphicExecutionRecorder> createRecorders(	MemoryStack stack,
-															IGraphicContext context)
+	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	{
+		config.addChildren(List.of(imageAvailableSemaphore));
+		config.addDependencies(List.of(context.getSwapChainManager()));
+		super.configureAllocation(config, context);
+	}
+
+	@Override
+	public List<GraphicExecutionRecorder> createRecorders(IGraphicContext context)
 	{
 		final List<GraphicExecutionRecorder> res = new ArrayList<>();
 
 		final var process = context.getGraphicProcess();
 		final int executionCount = context.getSwapChainManager().getImageCount();
-
-		imageAvailableSemaphore.allocate(stack, context);
 
 		final var waitForEmitters = gatherWaitDatas(process);
 		final var signals = gatherSinalSemaphores(process);
@@ -39,30 +44,20 @@ public class GraphicExecutionRecorders extends ExecutionRecorders<IGraphicContex
 
 		for (int i = 0; i < executionCount; i++)
 		{
-			final var commandBuffer = new GraphicCommandBuffer(i);
-
-			final var submission = (FrameSubmission) submissionsBuilder
-					.buildSubmission(commandBuffer, i);
-
-			final var recorder = new GraphicExecutionRecorder(commandBuffer, submission, i);
-			res.add(recorder);
+			res.add(createRecorder(submissionsBuilder, i));
 		}
 
 		return res;
 	}
 
-	@Override
-	public boolean isAllocationDirty(IGraphicContext context)
+	private static GraphicExecutionRecorder createRecorder(	final FrameSubmissionsBuilder submissionsBuilder,
+															int index)
 	{
-		return context.getSwapChainManager().isAllocationDirty(context)
-				|| super.isAllocationDirty(context);
-	}
+		final var commandBuffer = new GraphicCommandBuffer(index);
+		final var submission = (FrameSubmission) submissionsBuilder.buildSubmission(commandBuffer,
+				index);
 
-	@Override
-	public void free(IGraphicContext context)
-	{
-		super.free(context);
-		imageAvailableSemaphore.free(context);
+		return new GraphicExecutionRecorder(commandBuffer, submission, index);
 	}
 
 	@Override

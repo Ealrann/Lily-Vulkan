@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.process.graphic.frame;
 
-import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.ISurfaceManager;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
@@ -11,6 +11,7 @@ import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.queue.VulkanQueue;
 import org.sheepy.vulkan.surface.Extent2D;
 import org.sheepy.vulkan.surface.VkSurface;
+import org.sheepy.vulkan.surface.VkSurface.ISurfaceListener;
 import org.sheepy.vulkan.window.IWindowListener;
 
 public class PhysicalDeviceSurfaceManager implements ISurfaceManager
@@ -18,13 +19,12 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	private Capabilities capabilities;
 	private ColorDomains colorDomains;
 
+	private IAllocationConfiguration allocationConfiguration;
 	private ColorDomain requiredColorDomain;
 	private VulkanQueue presentQueue;
 
 	private Extent2D extent;
 	private VkSurface surface;
-
-	public boolean dirty = false;
 
 	private final IWindowListener listener = new IWindowListener()
 	{
@@ -41,12 +41,28 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 		}
 	};
 
+	private final ISurfaceListener surfaceListener = () ->
+	{
+		if (allocationConfiguration != null)
+		{
+			allocationConfiguration.setDirty();
+		}
+	};
+
 	@Override
-	public void allocate(MemoryStack stack, IGraphicContext context)
+	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	{
+		this.allocationConfiguration = config;
+	}
+
+	@Override
+	public void allocate(IGraphicContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
 
 		surface = context.getWindow().createSurface();
+		surface.addListener(surfaceListener);
+
 		presentQueue = logicalDevice.createPresentQueue(surface);
 		context.getWindow().addListener(listener);
 
@@ -57,8 +73,6 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 		extent = new Extent2D(currentExtent.width(), currentExtent.height());
 
 		requiredColorDomain = loadColorDomain(context);
-
-		dirty = false;
 	}
 
 	private ColorDomain loadColorDomain(IGraphicContext context)
@@ -78,7 +92,8 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	@Override
 	public void free(IGraphicContext context)
 	{
-		context.getWindow().addListener(listener);
+		context.getWindow().removeListener(listener);
+		surface.removeListener(surfaceListener);
 
 		capabilities.free();
 		surface.free();
@@ -131,11 +146,6 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 		return capabilities;
 	}
 
-	public ColorDomains getColorDomains()
-	{
-		return colorDomains;
-	}
-
 	@Override
 	public VkSurface getSurface()
 	{
@@ -145,13 +155,7 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	@Override
 	public void setDirty(boolean dirty)
 	{
-		this.dirty = dirty;
-	}
-
-	@Override
-	public boolean isAllocationDirty(IGraphicContext context)
-	{
-		return dirty || surface.isDeprecated();
+		allocationConfiguration.setDirty();
 	}
 
 	@Override

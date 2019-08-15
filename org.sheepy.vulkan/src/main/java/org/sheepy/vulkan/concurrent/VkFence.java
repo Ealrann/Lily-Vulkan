@@ -2,10 +2,9 @@ package org.sheepy.vulkan.concurrent;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkFenceCreateInfo;
-import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.log.Logger;
 
@@ -23,7 +22,7 @@ public class VkFence implements IAllocable<IVulkanContext>
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IVulkanContext context)
+	public void allocate(IVulkanContext context)
 	{
 		device = context.getVkDevice();
 		final VkFenceCreateInfo createInfo = VkFenceCreateInfo.calloc();
@@ -67,12 +66,6 @@ public class VkFence implements IAllocable<IVulkanContext>
 	public long getId()
 	{
 		return id;
-	}
-
-	@Override
-	public boolean isAllocationDirty(IVulkanContext context)
-	{
-		return false;
 	}
 
 	public boolean isUsed()

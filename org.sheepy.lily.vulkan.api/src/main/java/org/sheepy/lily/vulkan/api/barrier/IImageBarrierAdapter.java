@@ -13,11 +13,6 @@ public interface IImageBarrierAdapter<T extends IExecutionContext> extends IVulk
 					VkImageMemoryBarrier info,
 					int swapIndex);
 
-	default boolean isAllocationDirty(T context)
-	{
-		return false;
-	}
-
 	public static IImageBarrierAdapter<?> adapt(AbstractImageBarrier barrier)
 	{
 		return IAdapterFactoryService.INSTANCE.adapt(barrier, IImageBarrierAdapter.class);

@@ -5,7 +5,6 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.ByteBuffer;
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.vulkan.log.Logger;
@@ -86,13 +85,14 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IGraphicContext context)
+	public void allocate(IGraphicContext context)
 	{
 		final var device = context.getVkDevice();
 		final var surfaceManager = context.getSurfaceManager();
 		final var framebuffers = context.getFramebufferManager();
 		final var renderPass = context.getRenderPass();
 		final var extent = surfaceManager.getExtent();
+		final var stack = context.stack();
 
 		final boolean useDepthBuffer = framebuffers.hasDepthAttachment();
 
@@ -138,11 +138,5 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 	public long getPipelineId()
 	{
 		return pipelineId;
-	}
-
-	@Override
-	public boolean isAllocationDirty(IGraphicContext context)
-	{
-		return false;
 	}
 }

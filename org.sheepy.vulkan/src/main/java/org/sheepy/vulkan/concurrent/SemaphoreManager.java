@@ -25,7 +25,7 @@ public class SemaphoreManager
 			throw new AssertionError("Object locked, can't create a Semaphore");
 		}
 		final VkSemaphore res = new VkSemaphore();
-		res.allocate(null, context);
+		res.allocate(context);
 		semaphores.add(res);
 		semaphorePtrs.add(res.getPtr());
 		return res;

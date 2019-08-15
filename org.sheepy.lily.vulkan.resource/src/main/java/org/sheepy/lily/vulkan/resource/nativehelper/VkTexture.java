@@ -5,13 +5,12 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.ByteBuffer;
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
-import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -34,10 +33,10 @@ public class VkTexture implements IAllocable<IExecutionContext>
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
-		image.allocate(stack, context);
+		image.allocate(context);
 
 		final var imageAddress = image.getPtr();
 
@@ -46,8 +45,7 @@ public class VkTexture implements IAllocable<IExecutionContext>
 		imageView.allocate(imageAddress, image.mipLevels, image.format, VK_IMAGE_ASPECT_COLOR_BIT);
 	}
 
-	public void loadImage(	MemoryStack stack,
-							IExecutionContext executionContext,
+	public void loadImage(	IExecutionContext executionContext,
 							ByteBuffer data,
 							ImageLayout targetLayout)
 	{
@@ -58,14 +56,15 @@ public class VkTexture implements IAllocable<IExecutionContext>
 
 		final var bufferInfo = new BufferInfo(size, stagingUsage, false);
 		final var stagingBuffer = new CPUBufferBackend(bufferInfo, true);
-		stagingBuffer.allocate(stack, executionContext);
+		stagingBuffer.allocate(executionContext);
 		stagingBuffer.pushData(executionContext, data);
 
-		executionContext.execute(stack, (MemoryStack stack2, VkCommandBuffer commandBuffer) ->
+		executionContext.execute((context2, commandBuffer) ->
 		{
-			image.transitionImageLayout(stack2, commandBuffer, EPipelineStage.TOP_OF_PIPE_BIT,
-					EPipelineStage.TRANSFER_BIT, EImageLayout.UNDEFINED,
-					EImageLayout.TRANSFER_DST_OPTIMAL, srcAccessMask, dstAccessMask);
+			image.transitionImageLayout(context2.stack(), commandBuffer,
+					EPipelineStage.TOP_OF_PIPE_BIT, EPipelineStage.TRANSFER_BIT,
+					EImageLayout.UNDEFINED, EImageLayout.TRANSFER_DST_OPTIMAL, srcAccessMask,
+					dstAccessMask);
 			image.fillWithBuffer(commandBuffer, stagingBuffer.getAddress());
 			generateMipmaps(commandBuffer, targetLayout);
 		});
@@ -194,11 +193,5 @@ public class VkTexture implements IAllocable<IExecutionContext>
 		image.free(context);
 
 		imageView = null;
-	}
-
-	@Override
-	public boolean isAllocationDirty(IExecutionContext context)
-	{
-		return false;
 	}
 }

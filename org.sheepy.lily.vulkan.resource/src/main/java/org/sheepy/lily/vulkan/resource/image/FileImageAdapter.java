@@ -4,7 +4,6 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
@@ -43,7 +42,9 @@ public class FileImageAdapter implements IImageAdapter
 		final int width = size.x();
 		final int height = size.y();
 
-		final int mipLevels = image.isMipmapEnabled() ? (int) Math.floor(log2nlz(Math.max(width, height))) + 1 : 1;
+		final int mipLevels = image.isMipmapEnabled()
+				? (int) Math.floor(log2nlz(Math.max(width, height))) + 1
+				: 1;
 
 		final int format = VK_FORMAT_R8G8B8A8_UNORM;
 		final int usage = VK_IMAGE_USAGE_TRANSFER_SRC_BIT
@@ -60,14 +61,14 @@ public class FileImageAdapter implements IImageAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
 		final var executionContext = (ExecutionContext) context;
 		final var layout = image.getInitialLayout();
 
 		imageLoader.allocBuffer(image.getFile());
-		vkTexture.allocate(stack, context);
-		vkTexture.loadImage(stack, executionContext, imageLoader.getBuffer(), layout);
+		vkTexture.allocate(context);
+		vkTexture.loadImage(executionContext, imageLoader.getBuffer(), layout);
 
 		imageLoader.free();
 	}

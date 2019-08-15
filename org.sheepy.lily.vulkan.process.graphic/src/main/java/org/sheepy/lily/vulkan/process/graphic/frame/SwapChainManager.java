@@ -9,9 +9,9 @@ import java.nio.LongBuffer;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.ISwapChainManager;
@@ -35,7 +35,13 @@ public class SwapChainManager implements ISwapChainManager
 	private EList<ISwapAttachment> attachments;
 
 	@Override
-	public void allocate(MemoryStack stack, IGraphicContext context)
+	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	{
+		config.addDependencies(List.of(context.getSurfaceManager()));
+	}
+
+	@Override
+	public void allocate(IGraphicContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
 		final var configuration = context.getConfiguration();
@@ -48,14 +54,14 @@ public class SwapChainManager implements ISwapChainManager
 		final var extent = pdsManager.getExtent();
 		final var requiredColorDomain = pdsManager.getColorDomain();
 
+		final var stack = context.stack();
 		final var imageCount = pdsManager.bestSupportedImageCount(requiredImageCount);
 		final var requiredPresentMode = swapchainConfiguration.getPresentationMode();
 		final int swapImageUsage = loadSwapChainUsage(swapchainConfiguration);
-		final int targetPresentMode = selectPresentMode(context, requiredPresentMode,
-				surface);
+		final int targetPresentMode = selectPresentMode(context, requiredPresentMode, surface);
 
 		attachments = swapchainConfiguration.getAtachments();
-		allocateAttachments(stack, context);
+		allocateAttachments(context);
 
 		final VkSwapchainCreateInfoKHR createInfo = VkSwapchainCreateInfoKHR.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR);
@@ -106,12 +112,12 @@ public class SwapChainManager implements ISwapChainManager
 		}
 	}
 
-	private void allocateAttachments(MemoryStack stack, IGraphicContext context)
+	private void allocateAttachments(IGraphicContext context)
 	{
 		for (final ISwapAttachment attachment : attachments)
 		{
 			final var adapter = ISwapAttachmentAdapter.adapt(attachment);
-			adapter.allocate(stack, context);
+			adapter.allocate(context);
 		}
 	}
 
@@ -181,11 +187,5 @@ public class SwapChainManager implements ISwapChainManager
 	public long getAddress()
 	{
 		return swapChain;
-	}
-
-	@Override
-	public boolean isAllocationDirty(IGraphicContext context)
-	{
-		return context.getSurfaceManager().isAllocationDirty(context);
 	}
 }

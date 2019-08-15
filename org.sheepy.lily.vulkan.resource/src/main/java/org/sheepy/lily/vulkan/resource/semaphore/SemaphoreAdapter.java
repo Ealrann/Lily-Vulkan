@@ -1,6 +1,5 @@
 package org.sheepy.lily.vulkan.resource.semaphore;
 
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.ISemaphoreAdapter;
@@ -21,9 +20,9 @@ public class SemaphoreAdapter implements ISemaphoreAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
-		vkSemaphore.allocate(stack, context);
+		vkSemaphore.allocate(context);
 
 		if (semaphore.isSignalizedAtInit())
 		{

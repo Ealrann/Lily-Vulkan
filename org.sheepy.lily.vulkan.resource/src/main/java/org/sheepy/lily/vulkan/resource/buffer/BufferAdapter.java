@@ -3,7 +3,6 @@ package org.sheepy.lily.vulkan.resource.buffer;
 import java.nio.ByteBuffer;
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.DebugUtil;
@@ -35,7 +34,7 @@ public final class BufferAdapter implements IBufferAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
 		executionManager = context;
 		final var info = createInfo(buffer);
@@ -49,7 +48,7 @@ public final class BufferAdapter implements IBufferAdapter
 			bufferBackend = new CPUBufferBackend(info, true);
 		}
 
-		bufferBackend.allocate(stack, context);
+		bufferBackend.allocate(context);
 
 		final ByteBuffer data = buffer.getData();
 		if (data != null)

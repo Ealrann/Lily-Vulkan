@@ -4,7 +4,6 @@ import static org.lwjgl.vulkan.VK10.VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 
 import java.nio.ByteBuffer;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.execution.ISingleTimeCommand;
@@ -14,13 +13,11 @@ public class BufferGPUFiller
 	private static final int STAGING_USAGE = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 	private final IExecutionContext context;
 	private final long targetBufferId;
-	private final MemoryStack stack;
 
 	private CPUBufferBackend stagingBuffer;
 
-	public BufferGPUFiller(MemoryStack stack, IExecutionContext context, long targetBufferId)
+	public BufferGPUFiller(IExecutionContext context, long targetBufferId)
 	{
-		this.stack = stack;
 		this.context = context;
 		this.targetBufferId = targetBufferId;
 	}
@@ -29,10 +26,10 @@ public class BufferGPUFiller
 	{
 		createStagingBuffer(sourceBuffer, byteSize);
 
-		context.execute(stack, new ISingleTimeCommand()
+		context.execute(new ISingleTimeCommand()
 		{
 			@Override
-			public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
+			public void execute(IExecutionContext context, VkCommandBuffer commandBuffer)
 			{
 				fillBuffer(commandBuffer, offset, byteSize);
 			}
@@ -50,7 +47,7 @@ public class BufferGPUFiller
 		final int usage = STAGING_USAGE;
 		final var bufferInfo = new BufferInfo(byteSize, usage, false);
 		stagingBuffer = new CPUBufferBackend(bufferInfo, true);
-		stagingBuffer.allocate(stack, context);
+		stagingBuffer.allocate(context);
 		stagingBuffer.pushData(context, sourceBuffer);
 	}
 

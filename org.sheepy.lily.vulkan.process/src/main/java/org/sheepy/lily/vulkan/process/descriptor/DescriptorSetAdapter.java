@@ -11,9 +11,9 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IDescriptedResourceAdapter;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.descriptor.VkDescriptorSet;
+import org.sheepy.vulkan.device.IVulkanContext;
 
 @Statefull
 @Adapter(scope = DescriptorSet.class)
@@ -30,10 +30,10 @@ public class DescriptorSetAdapter implements IDescriptorSetAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context, long poolAddress)
+	public void allocate(IVulkanContext context, long poolAddress)
 	{
 		vkDescriptorSet = new VkDescriptorSet(getDescriptors());
-		vkDescriptorSet.allocate(stack, context, poolAddress);
+		vkDescriptorSet.allocate(context, poolAddress);
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class DescriptorSetAdapter implements IDescriptorSetAdapter
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IVulkanContext context)
 	{
 		vkDescriptorSet.free(context);
 		vkDescriptorSet = null;

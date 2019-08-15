@@ -1,8 +1,6 @@
 module org.sheepy.vulkan
 {
-	requires transitive org.eclipse.emf.common;
-	requires transitive org.eclipse.emf.ecore;
-	requires transitive org.eclipse.emf.ecore.xmi;
+	requires transitive org.sheepy.lily.core.api;
 
 	requires transitive org.lwjgl;
 	requires transitive org.lwjgl.vulkan;
@@ -31,7 +29,6 @@ module org.sheepy.vulkan
 	exports org.sheepy.vulkan.model.pipeline.impl;
 	exports org.sheepy.vulkan.model.pipeline.util;
 
-	exports org.sheepy.vulkan.allocation;
 	exports org.sheepy.vulkan.concurrent;
 	exports org.sheepy.vulkan.descriptor;
 	exports org.sheepy.vulkan.device;

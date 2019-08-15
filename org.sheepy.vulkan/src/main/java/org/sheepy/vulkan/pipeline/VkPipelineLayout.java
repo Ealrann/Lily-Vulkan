@@ -10,7 +10,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
 import org.lwjgl.vulkan.VkPushConstantRange;
-import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.log.Logger;
@@ -34,8 +34,9 @@ public final class VkPipelineLayout<T extends IExecutionContext> implements IAll
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, T context)
+	public void allocate(T context)
 	{
+		final var stack = context.stack();
 		final var vkDevice = context.getVkDevice();
 
 		final LongBuffer layouts = allocLayouts(stack);
@@ -131,12 +132,6 @@ public final class VkPipelineLayout<T extends IExecutionContext> implements IAll
 		MemoryUtil.memFree(descriptorSetAddressBuffer);
 
 		pipelineLayout = -1;
-	}
-
-	@Override
-	public boolean isAllocationDirty(T context)
-	{
-		return false;
 	}
 
 	public long getId()

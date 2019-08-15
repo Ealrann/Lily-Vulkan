@@ -9,6 +9,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkFramebufferCreateInfo;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.vulkan.api.graphic.ClearInfo;
 import org.sheepy.lily.vulkan.api.graphic.IFramebufferManager;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
@@ -26,8 +27,18 @@ public class FramebufferManager implements IFramebufferManager
 	private EList<ISwapAttachment> attachments;
 
 	@Override
-	public void allocate(MemoryStack stack, IGraphicContext context)
+	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
 	{
+		final var swapChainManager = context.getSwapChainManager();
+		final var imageViewManager = context.getImageViewManager();
+
+		config.addDependencies(List.of(swapChainManager, imageViewManager));
+	}
+
+	@Override
+	public void allocate(IGraphicContext context)
+	{
+		final var stack = context.stack();
 		final var vkDevice = context.getVkDevice();
 		final var imageViews = context.getImageViewManager().getImageViews();
 		final var aFramebufferId = new long[1];
@@ -117,13 +128,6 @@ public class FramebufferManager implements IFramebufferManager
 	public int size()
 	{
 		return framebuffersIds != null ? framebuffersIds.size() : 0;
-	}
-
-	@Override
-	public boolean isAllocationDirty(IGraphicContext context)
-	{
-		return context.getSwapChainManager().isAllocationDirty(context)
-				|| context.getImageViewManager().isAllocationDirty(context);
 	}
 
 	@Override

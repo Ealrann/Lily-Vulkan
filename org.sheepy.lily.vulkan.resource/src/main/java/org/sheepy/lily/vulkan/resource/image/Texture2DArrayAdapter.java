@@ -5,7 +5,6 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IDescriptedResourceAdapter;
@@ -74,7 +73,7 @@ public final class Texture2DArrayAdapter implements IDescriptedResourceAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
 		final var executionContext = (ExecutionContext) context;
 		final var layout = textureArray.getInitialLayout();
@@ -84,8 +83,8 @@ public final class Texture2DArrayAdapter implements IDescriptedResourceAdapter
 			imageLoader.allocBuffer(wrapper.resource);
 			final var buffer = imageLoader.getBuffer();
 
-			wrapper.texture.allocate(stack, context);
-			wrapper.texture.loadImage(stack, executionContext, buffer, layout);
+			wrapper.texture.allocate(context);
+			wrapper.texture.loadImage(executionContext, buffer, layout);
 
 			imageLoader.free();
 		}
@@ -123,7 +122,7 @@ public final class Texture2DArrayAdapter implements IDescriptedResourceAdapter
 
 		return descriptors;
 	}
-	
+
 	public static int log2nlz(int bits)
 	{
 		if (bits == 0) return 0;

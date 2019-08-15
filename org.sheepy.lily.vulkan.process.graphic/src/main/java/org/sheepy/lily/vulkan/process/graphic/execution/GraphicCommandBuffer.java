@@ -2,10 +2,12 @@ package org.sheepy.lily.vulkan.process.graphic.execution;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.lwjgl.system.MemoryStack;
+import java.util.List;
+
 import org.lwjgl.vulkan.VkClearValue;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.log.Logger;
@@ -27,7 +29,13 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IGraphicContext context)
+	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	{
+		config.addDependencies(List.of(context.getFramebufferManager()));
+	}
+
+	@Override
+	public void allocate(IGraphicContext context)
 	{
 		final var extent = context.getSurfaceManager().getExtent();
 		final var framebufferManager = context.getFramebufferManager();
@@ -67,7 +75,7 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 		beginInfo.flags(VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT);
 		beginInfo.pInheritanceInfo(null);
 
-		super.allocate(stack, context);
+		super.allocate(context);
 	}
 
 	@Override
@@ -120,11 +128,4 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 			break;
 		}
 	}
-
-	@Override
-	public boolean isAllocationDirty(IGraphicContext context)
-	{
-		return context.getFramebufferManager().isAllocationDirty(context);
-	}
-
 }

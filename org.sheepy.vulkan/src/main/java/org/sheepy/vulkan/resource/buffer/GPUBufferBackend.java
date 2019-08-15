@@ -4,15 +4,15 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
 
-import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.memory.MemoryChunk;
 import org.sheepy.vulkan.resource.memory.MemoryChunkBuilder;
 import org.sheepy.vulkan.util.VulkanDebugUtil;
 
-public class GPUBufferBackend implements IBufferBackend
+public final class GPUBufferBackend implements IBufferBackend
 {
+	private static final String NO_STAGING_ERROR = "Memory mapping for GPUBuffer is only availlable if keepStagingBuffer is true.";
+
 	public static final int DEVICE_LOCAL = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
 
 	public final int properties;
@@ -42,23 +42,21 @@ public class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
-		final MemoryChunkBuilder memoryBuilder = new MemoryChunkBuilder(stack, context, properties);
-		allocate(stack, context, memoryBuilder);
-		memory = memoryBuilder.build(stack);
-		memory.allocate(stack, context);
+		final var memoryBuilder = new MemoryChunkBuilder(context, properties);
+		allocate(context, memoryBuilder);
+		memory = memoryBuilder.build();
+		memory.allocate(context);
 	}
 
 	@Override
-	public void allocate(	MemoryStack stack,
-							IExecutionContext context,
-							MemoryChunkBuilder memoryBuilder)
+	public void allocate(IExecutionContext context, MemoryChunkBuilder memoryBuilder)
 	{
 		final var vkDevice = context.getVkDevice();
 
 		info.computeAlignment(context.getPhysicalDevice());
-		address = VkBufferAllocator.allocate(stack, vkDevice, info);
+		address = VkBufferAllocator.allocate(context, info);
 
 		memoryBuilder.registerBuffer(address, (memoryPtr, memorySize) ->
 		{
@@ -70,7 +68,7 @@ public class GPUBufferBackend implements IBufferBackend
 
 		if (cpuBackend != null)
 		{
-			cpuBackend.allocate(stack, context);
+			cpuBackend.allocate(context);
 		}
 	}
 
@@ -101,12 +99,9 @@ public class GPUBufferBackend implements IBufferBackend
 
 		if (cpuBackend == null)
 		{
-			try (MemoryStack stack = MemoryStack.stackPush())
-			{
-				final int size = (int) Math.min(data.remaining(), info.size);
-				final var bufferFiller = new BufferGPUFiller(stack, executionContext, address);
-				bufferFiller.fill(data, currentOffset, size);
-			}
+			final int size = (int) Math.min(data.remaining(), info.size);
+			final var bufferFiller = new BufferGPUFiller(executionContext, address);
+			bufferFiller.fill(data, currentOffset, size);
 
 			if (VulkanDebugUtil.DEBUG_ENABLED)
 			{
@@ -126,7 +121,7 @@ public class GPUBufferBackend implements IBufferBackend
 		final int size = (int) Math.min(stagingBuffer.info.size, info.size);
 		final long bufferPtr = stagingBuffer.getAddress();
 
-		executionContext.execute((MemoryStack stack, VkCommandBuffer commandBuffer) ->
+		executionContext.execute((context, commandBuffer) ->
 		{
 			BufferUtils.copyBuffer(commandBuffer, bufferPtr, 0, address, currentOffset, size);
 		});
@@ -135,29 +130,28 @@ public class GPUBufferBackend implements IBufferBackend
 	@Override
 	public long mapMemory()
 	{
-		if (cpuBackend != null)
+		if (cpuBackend == null)
 		{
-			return cpuBackend.mapMemory();
+			throwNoStagingError();
 		}
-		else
-		{
-			throw new AssertionError(
-					"Memory mapping for GPUBuffer is only availlable if keepStagingBuffer is true.");
-		}
+
+		return cpuBackend.mapMemory();
 	}
 
 	@Override
 	public void unmapMemory()
 	{
-		if (cpuBackend != null)
+		if (cpuBackend == null)
 		{
-			cpuBackend.unmapMemory();
+			throwNoStagingError();
 		}
-		else
-		{
-			throw new AssertionError(
-					"Memory mapping for GPUBuffer is only availlable if keepStagingBuffer is true.");
-		}
+
+		cpuBackend.unmapMemory();
+	}
+
+	private static void throwNoStagingError() throws AssertionError
+	{
+		throw new AssertionError(NO_STAGING_ERROR);
 	}
 
 	public void pushStagging(IExecutionContext executionManager)

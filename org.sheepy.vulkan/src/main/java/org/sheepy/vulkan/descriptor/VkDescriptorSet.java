@@ -13,7 +13,7 @@ import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutCreateInfo;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.log.Logger;
 
@@ -38,14 +38,15 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context, long poolAddress)
+	public void allocate(IVulkanContext context, long poolAddress)
 	{
 		if (layoutId != UNINITIALIZED)
 		{
 			return;
 		}
 
-		device = ((ExecutionContext) context).getVkDevice();
+		final var stack = context.stack();
+		device = context.getVkDevice();
 
 		final var layoutBindings = createLayoutBinding(stack);
 
@@ -79,7 +80,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IVulkanContext context)
 	{
 		if (layoutId == UNINITIALIZED)
 		{

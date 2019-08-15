@@ -4,7 +4,6 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.vulkan.log.Logger;
@@ -35,8 +34,9 @@ public class VkComputePipeline extends VkPipeline<IProcessContext>
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IProcessContext context)
+	public void allocate(IProcessContext context)
 	{
+		final var stack = context.stack();
 		final var device = context.getVkDevice();
 
 		// Create Pipeline
@@ -65,12 +65,6 @@ public class VkComputePipeline extends VkPipeline<IProcessContext>
 			vkDestroyPipeline(device, pipelineId, null);
 			pipelineIds[i] = -1;
 		}
-	}
-
-	@Override
-	public boolean isAllocationDirty(IProcessContext context)
-	{
-		return false;
 	}
 
 	@Override

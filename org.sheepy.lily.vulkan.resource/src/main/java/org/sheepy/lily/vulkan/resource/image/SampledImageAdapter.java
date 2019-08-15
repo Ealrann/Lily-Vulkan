@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.resource.image;
 
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
@@ -33,9 +32,9 @@ public class SampledImageAdapter implements ISampledImageAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
-		imageAdapter.allocate(stack, context);
+		imageAdapter.allocate(context);
 		final var samplerInfo = sampledImage.getSampler();
 
 		if (imageAdapter != null)
@@ -45,7 +44,7 @@ public class SampledImageAdapter implements ISampledImageAdapter
 		}
 
 		vkSampler = new VkSampler(samplerInfo);
-		vkSampler.allocate(stack, context);
+		vkSampler.allocate(context);
 	}
 
 	@Override
@@ -110,7 +109,8 @@ public class SampledImageAdapter implements ISampledImageAdapter
 			final var shaderStages = descriptorObject.getShaderStages();
 			final var descriptorType = descriptorObject.getDescriptorType();
 
-			descriptor = new VkImageDescriptor(viewPtrPtr, samplerPtr, layout, descriptorType, shaderStages);
+			descriptor = new VkImageDescriptor(viewPtrPtr, samplerPtr, layout, descriptorType,
+					shaderStages);
 
 			descriptors = List.of(descriptor);
 		}

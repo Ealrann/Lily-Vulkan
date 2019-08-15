@@ -2,9 +2,8 @@ package org.sheepy.vulkan.execution;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandPoolCreateInfo;
-import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 
 public class CommandPool implements IAllocable<IExecutionContext>
 {
@@ -20,8 +19,9 @@ public class CommandPool implements IAllocable<IExecutionContext>
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IExecutionContext context)
+	public void allocate(IExecutionContext context)
 	{
+		final var stack = context.stack();
 		final var device = context.getVkDevice();
 		if (commandPoolId != -1) free(context);
 
@@ -38,12 +38,6 @@ public class CommandPool implements IAllocable<IExecutionContext>
 			throw new AssertionError("Failed to create command pool!");
 		}
 		commandPoolId = aCommandPool[0];
-	}
-
-	@Override
-	public boolean isAllocationDirty(IExecutionContext context)
-	{
-		return false;
 	}
 
 	public long getId()

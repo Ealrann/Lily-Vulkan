@@ -2,10 +2,12 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.lwjgl.system.MemoryStack;
+import java.util.List;
+
 import org.lwjgl.vulkan.VkImageBlit;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
@@ -17,7 +19,8 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 @Statefull
 @Adapter(scope = BlitToSwapImage.class)
-public class BlitToSwapImageAdapter implements IPipelineTaskAdapter<BlitToSwapImage>, IAllocableAdapter<IGraphicContext>
+public class BlitToSwapImageAdapter
+		implements IPipelineTaskAdapter<BlitToSwapImage>, IAllocableAdapter<IGraphicContext>
 {
 	private final BlitToSwapImage blitTask;
 
@@ -31,7 +34,15 @@ public class BlitToSwapImageAdapter implements IPipelineTaskAdapter<BlitToSwapIm
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IGraphicContext context)
+	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	{
+		final var imageViewManager = context.getImageViewManager();
+
+		config.addDependencies(List.of(imageViewManager));
+	}
+
+	@Override
+	public void allocate(IGraphicContext context)
 	{
 		imageViewManager = context.getImageViewManager();
 		final var extent = context.getSurfaceManager().getExtent();
@@ -80,12 +91,7 @@ public class BlitToSwapImageAdapter implements IPipelineTaskAdapter<BlitToSwapIm
 		final var commandBuffer = context.commandBuffer;
 		final int filter = task.getFilter().getValue();
 
-		vkCmdBlitImage(commandBuffer, imagePtr, transfertSrc, swapImage, transfertDst, region, filter);
-	}
-
-	@Override
-	public boolean isAllocationDirty(IGraphicContext context)
-	{
-		return imageViewManager.isAllocationDirty(context);
+		vkCmdBlitImage(commandBuffer, imagePtr, transfertSrc, swapImage, transfertDst, region,
+				filter);
 	}
 }

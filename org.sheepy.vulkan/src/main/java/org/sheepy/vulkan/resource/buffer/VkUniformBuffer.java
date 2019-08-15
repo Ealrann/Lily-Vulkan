@@ -24,11 +24,9 @@ public class VkUniformBuffer implements IVkDescriptor
 		uniformBuffer = new GPUBufferBackend(info, false);
 	}
 
-	public void allocate(	MemoryStack stack,
-							IExecutionContext context,
-							MemoryChunkBuilder memoryBuilder)
+	public void allocate(IExecutionContext context, MemoryChunkBuilder memoryBuilder)
 	{
-		uniformBuffer.allocate(stack, context, memoryBuilder);
+		uniformBuffer.allocate(context, memoryBuilder);
 	}
 
 	public void free(IExecutionContext context)

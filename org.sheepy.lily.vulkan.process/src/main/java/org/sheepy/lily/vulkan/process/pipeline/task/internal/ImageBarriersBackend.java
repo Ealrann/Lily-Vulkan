@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.barrier.IImageBarrierAdapter;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
@@ -11,8 +12,6 @@ import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 public class ImageBarriersBackend
 		extends BarriersBackend<AbstractImageBarrier, VkImageMemoryBarrier.Buffer>
 {
-	private final List<IImageBarrierAdapter<IExecutionContext>> adapters = new ArrayList<>();
-
 	public ImageBarriersBackend(int swapCount,
 								int srcQueueIndex,
 								int dstQueueIndex,
@@ -35,38 +34,31 @@ public class ImageBarriersBackend
 																final int dstQueueIndex)
 	{
 		final var res = VkImageMemoryBarrier.calloc(barriers.size());
-		adapters.clear();
 
+		allocationConfiguration.clearDependencies();
+		allocationConfiguration.clearChildren();
+
+		final List<IAllocable<?>> newDependencies = new ArrayList<>();
 		for (final var imageBarrier : barriers)
 		{
 			final var info = res.get();
 			@SuppressWarnings("unchecked")
 			final var barrierAdapter = (IImageBarrierAdapter<IExecutionContext>) IImageBarrierAdapter
 					.adapt(imageBarrier);
-			adapters.add(barrierAdapter);
+
+			if (barrierAdapter instanceof IAllocable)
+			{
+				newDependencies.add((IAllocable<?>) barrierAdapter);
+			}
+
 			barrierAdapter.fillInfo(context, imageBarrier, info, swapIndex);
 			info.srcQueueFamilyIndex(srcQueueIndex);
 			info.dstQueueFamilyIndex(dstQueueIndex);
 		}
 		res.flip();
 
-		return res;
-	}
-
-	@Override
-	public boolean isAllocationDirty(IExecutionContext context)
-	{
-		boolean res = false;
-
-		for (int i = 0; i < adapters.size(); i++)
-		{
-			final var adapter = adapters.get(i);
-			if (adapter.isAllocationDirty(context))
-			{
-				res = true;
-				break;
-			}
-		}
+		allocationConfiguration.addChildren(newDependencies);
+		allocationConfiguration.addDependencies(newDependencies);
 
 		return res;
 	}
