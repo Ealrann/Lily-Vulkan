@@ -36,7 +36,7 @@ public final class DrawTaskMaintainer
 			createDrawTasks(context, command);
 		}
 
-		if (DebugUtil.DEBUG_ENABLED)
+		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 		{
 			System.out.println("Nuklear draw tasks:");
 			for (final var task : drawCompositeTask.getTasks())
