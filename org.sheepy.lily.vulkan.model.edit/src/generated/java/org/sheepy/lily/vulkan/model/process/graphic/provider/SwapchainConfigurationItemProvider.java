@@ -25,7 +25,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
-import org.sheepy.vulkan.model.enumeration.EPresentMode;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration} object.
@@ -60,34 +59,12 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 		{
 			super.getPropertyDescriptors(object);
 
-			addPresentationModePropertyDescriptor(object);
 			addRequiredSwapImageCountPropertyDescriptor(object);
 			addSwapImageUsagesPropertyDescriptor(object);
+			addPresentWhenVBlankPropertyDescriptor(object);
+			addAcquireWaitForVBlankPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Presentation Mode feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPresentationModePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SwapchainConfiguration_presentationMode_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SwapchainConfiguration_presentationMode_feature", "_UI_SwapchainConfiguration_type"),
-				 GraphicPackage.Literals.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -132,6 +109,52 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Present When VBlank feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPresentWhenVBlankPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SwapchainConfiguration_presentWhenVBlank_feature"),
+				 getString("_UI_SwapchainConfiguration_presentWhenVBlank_description"),
+				 GraphicPackage.Literals.SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Acquire Wait For VBlank feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAcquireWaitForVBlankPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SwapchainConfiguration_acquireWaitForVBlank_feature"),
+				 getString("_UI_SwapchainConfiguration_acquireWaitForVBlank_description"),
+				 GraphicPackage.Literals.SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -190,11 +213,8 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 	@Override
 	public String getText(Object object)
 	{
-		EPresentMode labelValue = ((SwapchainConfiguration)object).getPresentationMode();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_SwapchainConfiguration_type") :
-			getString("_UI_SwapchainConfiguration_type") + " " + label;
+		SwapchainConfiguration swapchainConfiguration = (SwapchainConfiguration)object;
+		return getString("_UI_SwapchainConfiguration_type") + " " + swapchainConfiguration.getRequiredSwapImageCount();
 	}
 
 	/**
@@ -211,9 +231,10 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 
 		switch (notification.getFeatureID(SwapchainConfiguration.class))
 		{
-			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE:
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK:
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:

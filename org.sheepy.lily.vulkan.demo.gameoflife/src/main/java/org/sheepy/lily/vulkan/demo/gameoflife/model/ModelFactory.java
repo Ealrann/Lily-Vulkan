@@ -61,9 +61,10 @@ public class ModelFactory
 		final var swapchainConfiguration = GraphicFactory.eINSTANCE.createSwapchainConfiguration();
 		swapchainConfiguration.getSwapImageUsages().add(EImageUsage.TRANSFER_DST);
 		swapchainConfiguration.getSwapImageUsages().add(EImageUsage.COLOR_ATTACHMENT);
+		swapchainConfiguration.setAcquireWaitForVBlank(false);
+		swapchainConfiguration.setPresentWhenVBlank(false);
 
-		final var framebufferConfiguration = GraphicFactory.eINSTANCE
-				.createFramebufferConfiguration();
+		final var framebufferConfiguration = GraphicFactory.eINSTANCE.createFramebufferConfiguration();
 		final var configuration = GraphicFactory.eINSTANCE.createGraphicConfiguration();
 		configuration.setColorDomain(GraphicFactory.eINSTANCE.createColorDomain());
 		configuration.setAcquireWaitStage(EPipelineStage.TRANSFER_BIT);
@@ -181,8 +182,7 @@ public class ModelFactory
 		lifeShaderFile.setModule(thisModule);
 		lifeShaderFile.setPath(SHADER_LIFE);
 
-		final ModuleResource life2pixelShaderFile = ResourceFactory.eINSTANCE
-				.createModuleResource();
+		final ModuleResource life2pixelShaderFile = ResourceFactory.eINSTANCE.createModuleResource();
 		life2pixelShaderFile.setModule(thisModule);
 		life2pixelShaderFile.setPath(SHADER_LIFE2PIXEL);
 

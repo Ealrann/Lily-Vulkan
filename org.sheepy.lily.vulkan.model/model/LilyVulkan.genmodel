@@ -256,10 +256,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//ColorDomain/colorSpace"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//SwapchainConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//SwapchainConfiguration/presentationMode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//SwapchainConfiguration/requiredSwapImageCount"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//SwapchainConfiguration/swapImageUsages"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//SwapchainConfiguration/atachments"/>
+      <genFeatures createChild="false" propertyDescription="If true, should prevent tearing. The engine will prefer using FIFO or MAILBOX present mode, otherwise (if false), IMMEDIATE will be prefered."
+          ecoreFeature="ecore:EAttribute graphic.ecore#//SwapchainConfiguration/presentWhenVBlank"/>
+      <genFeatures createChild="false" propertyDescription="Will limit FPS, based on VBlank. The engine will prefer using FIFO."
+          ecoreFeature="ecore:EAttribute graphic.ecore#//SwapchainConfiguration/acquireWaitForVBlank"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//FramebufferConfiguration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//FramebufferConfiguration/clearValue"/>

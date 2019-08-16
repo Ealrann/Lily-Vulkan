@@ -4,10 +4,10 @@ import static org.lwjgl.system.MemoryStack.stackPush;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.common.util.EList;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.lwjgl.system.MemoryStack;
@@ -96,8 +96,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 					final Vector2ic newSize = (Vector2ic) notification.getNewValue();
 					window.setSize(newSize.x(), newSize.y());
 				}
-				else if (notification
-						.getFeature() == ApplicationPackage.Literals.APPLICATION__FULLSCREEN)
+				else if (notification.getFeature() == ApplicationPackage.Literals.APPLICATION__FULLSCREEN)
 				{
 					window.requestFullscreen(notification.getNewBooleanValue());
 				}
@@ -131,8 +130,10 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		application = (Application) engine.eContainer();
 		if (application.isHeadless() == false)
 		{
-			window = new Window(application.getSize(), application.getTitle(),
-					application.isResizeable(), application.isFullscreen());
+			window = new Window(application.getSize(),
+								application.getTitle(),
+								application.isResizeable(),
+								application.isFullscreen());
 			inputManager = new VulkanInputManager(application, window);
 		}
 		else
@@ -144,8 +145,9 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 		try (MemoryStack stack = stackPush())
 		{
-			extensionRequirement = new EngineExtensionRequirement(stack, DebugUtil.DEBUG_ENABLED,
-					DebugUtil.DEBUG_VERBOSE_ENABLED);
+			extensionRequirement = new EngineExtensionRequirement(	stack,
+																	DebugUtil.DEBUG_ENABLED,
+																	DebugUtil.DEBUG_VERBOSE_ENABLED);
 		}
 	}
 
@@ -267,8 +269,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		final var resourcePkg = engine.getResourcePkg();
 		if (resourcePkg != null)
 		{
-
-			final EList<IResource> resources = resourcePkg.getResources();
+			final var resources = resourcePkg.getResources();
 			for (final IResource resource : resources)
 			{
 				final var resourceAdapter = IResourceAdapter.adapt(resource);
@@ -294,7 +295,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void stopProcesses()
 	{
-		for (final IProcess process : engine.getProcesses())
+		for (final var process : engine.getProcesses())
 		{
 			final var adapter = IProcessAdapter.adapt(process);
 			adapter.stop(vulkanContext);
@@ -303,15 +304,19 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void createInstance(MemoryStack stack)
 	{
-		vkInstance = new VulkanInstance(application.getTitle(), extensionRequirement,
-				DebugUtil.DEBUG_ENABLED, DebugUtil.DEBUG_VERBOSE_ENABLED);
+		vkInstance = new VulkanInstance(application.getTitle(),
+										extensionRequirement,
+										DebugUtil.DEBUG_ENABLED,
+										DebugUtil.DEBUG_VERBOSE_ENABLED);
 		vkInstance.allocate(stack);
 	}
 
 	private void pickPhysicalDevice(MemoryStack stack, VkSurface dummySurface)
 	{
-		final var deviceSelector = new PhysicalDeviceSelector(vkInstance, extensionRequirement,
-				dummySurface, DebugUtil.DEBUG_VERBOSE_ENABLED);
+		final var deviceSelector = new PhysicalDeviceSelector(	vkInstance,
+																extensionRequirement,
+																dummySurface,
+																DebugUtil.DEBUG_VERBOSE_ENABLED);
 
 		physicalDevice = deviceSelector.findBestPhysicalDevice(stack);
 
@@ -338,11 +343,9 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private void createLogicalDevice(MemoryStack stack, VkSurface dummySurface)
 	{
 		final var features = engine.getFeatures();
-		final List<EPhysicalFeature> vkFeatures = new ArrayList<>();
-		for (final var modelFeature : features)
-		{
-			vkFeatures.add(EPhysicalFeature.valueOf(modelFeature.getName()));
-		}
+		final var vkFeatures = features	.stream()
+										.map(f -> EPhysicalFeature.valueOf(f.getName()))
+										.collect(Collectors.toList());
 
 		logicalDevice = new LogicalDevice(physicalDevice, dummySurface, vkFeatures, true);
 		logicalDevice.allocate(stack);

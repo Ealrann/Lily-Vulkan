@@ -19,6 +19,7 @@ import org.sheepy.lily.vulkan.api.resource.attachment.ISwapAttachmentAdapter;
 import org.sheepy.lily.vulkan.common.util.VulkanBufferUtils;
 import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
+import org.sheepy.lily.vulkan.process.graphic.frame.util.PresentationModeSelector;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
@@ -56,9 +57,8 @@ public class SwapChainManager implements ISwapChainManager
 
 		final var stack = context.stack();
 		final var imageCount = pdsManager.bestSupportedImageCount(requiredImageCount);
-		final var requiredPresentMode = swapchainConfiguration.getPresentationMode();
 		final int swapImageUsage = loadSwapChainUsage(swapchainConfiguration);
-		final int targetPresentMode = selectPresentMode(context, requiredPresentMode, surface);
+		final int targetPresentMode = selectPresentMode(context, swapchainConfiguration, surface);
 
 		attachments = swapchainConfiguration.getAtachments();
 		allocateAttachments(context);
@@ -93,8 +93,8 @@ public class SwapChainManager implements ISwapChainManager
 		createInfo.oldSwapchain(VK_NULL_HANDLE);
 
 		final LongBuffer pSwapChain = stack.mallocLong(1);
-		Logger.check("Failed to create swap chain",
-				() -> vkCreateSwapchainKHR(vkDevice, createInfo, null, pSwapChain));
+		Logger.check(	"Failed to create swap chain",
+						() -> vkCreateSwapchainKHR(vkDevice, createInfo, null, pSwapChain));
 		swapChain = pSwapChain.get(0);
 
 		final IntBuffer pImageCount = stack.mallocInt(1);
@@ -157,18 +157,18 @@ public class SwapChainManager implements ISwapChainManager
 	{
 		final String presentationName = EPresentMode.get(presentMode).getName();
 		final int imageCount = swapChainImages.size();
-		final String message = String.format(
-				"Swapchain created:\n\t- PresentationMode: %s\n\t- Number of images: %d",
-				presentationName, imageCount);
+		final String message = String.format(	"Swapchain created:\n\t- PresentationMode: %s\n\t- Number of images: %d",
+												presentationName,
+												imageCount);
 		System.out.println(message);
 	}
 
 	private static int selectPresentMode(	IGraphicContext context,
-											EPresentMode requiredPresentMode,
+											SwapchainConfiguration configuration,
 											VkSurface surface)
 	{
-		final var selector = new PresentationModeSelector(context.getLogicalDevice(), surface);
-		return selector.findBestMode(requiredPresentMode);
+		final var selector = new PresentationModeSelector(configuration);
+		return selector.findBestMode(context, surface);
 	}
 
 	@Override

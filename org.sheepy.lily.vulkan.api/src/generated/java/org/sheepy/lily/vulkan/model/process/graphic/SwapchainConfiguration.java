@@ -7,7 +7,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
-import org.sheepy.vulkan.model.enumeration.EPresentMode;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,10 +17,11 @@ import org.sheepy.vulkan.model.enumeration.EPresentMode;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getPresentationMode <em>Presentation Mode</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getRequiredSwapImageCount <em>Required Swap Image Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getSwapImageUsages <em>Swap Image Usages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getAtachments <em>Atachments</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isPresentWhenVBlank <em>Present When VBlank</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isAcquireWaitForVBlank <em>Acquire Wait For VBlank</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSwapchainConfiguration()
@@ -30,32 +30,6 @@ import org.sheepy.vulkan.model.enumeration.EPresentMode;
  */
 public interface SwapchainConfiguration extends EObject
 {
-	/**
-	 * Returns the value of the '<em><b>Presentation Mode</b></em>' attribute.
-	 * The default value is <code>"MailBox"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPresentMode}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Presentation Mode</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EPresentMode
-	 * @see #setPresentationMode(EPresentMode)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSwapchainConfiguration_PresentationMode()
-	 * @model default="MailBox" unique="false"
-	 * @generated
-	 */
-	EPresentMode getPresentationMode();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getPresentationMode <em>Presentation Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Presentation Mode</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EPresentMode
-	 * @see #getPresentationMode()
-	 * @generated
-	 */
-	void setPresentationMode(EPresentMode value);
-
 	/**
 	 * Returns the value of the '<em><b>Required Swap Image Count</b></em>' attribute.
 	 * The default value is <code>"3"</code>.
@@ -104,5 +78,51 @@ public interface SwapchainConfiguration extends EObject
 	 * @generated
 	 */
 	EList<ISwapAttachment> getAtachments();
+
+	/**
+	 * Returns the value of the '<em><b>Present When VBlank</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Present When VBlank</em>' attribute.
+	 * @see #setPresentWhenVBlank(boolean)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSwapchainConfiguration_PresentWhenVBlank()
+	 * @model default="true" required="true"
+	 * @generated
+	 */
+	boolean isPresentWhenVBlank();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isPresentWhenVBlank <em>Present When VBlank</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Present When VBlank</em>' attribute.
+	 * @see #isPresentWhenVBlank()
+	 * @generated
+	 */
+	void setPresentWhenVBlank(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Acquire Wait For VBlank</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Acquire Wait For VBlank</em>' attribute.
+	 * @see #setAcquireWaitForVBlank(boolean)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSwapchainConfiguration_AcquireWaitForVBlank()
+	 * @model default="true" required="true"
+	 * @generated
+	 */
+	boolean isAcquireWaitForVBlank();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isAcquireWaitForVBlank <em>Acquire Wait For VBlank</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Acquire Wait For VBlank</em>' attribute.
+	 * @see #isAcquireWaitForVBlank()
+	 * @generated
+	 */
+	void setAcquireWaitForVBlank(boolean value);
 
 } // SwapchainConfiguration

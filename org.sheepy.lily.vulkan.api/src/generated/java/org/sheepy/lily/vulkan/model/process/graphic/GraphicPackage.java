@@ -184,22 +184,13 @@ public interface GraphicPackage extends EPackage
 	int SWAPCHAIN_CONFIGURATION = 2;
 
 	/**
-	 * The feature id for the '<em><b>Presentation Mode</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE = 0;
-
-	/**
 	 * The feature id for the '<em><b>Required Swap Image Count</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT = 1;
+	int SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Swap Image Usages</b></em>' attribute list.
@@ -208,7 +199,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES = 2;
+	int SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES = 1;
 
 	/**
 	 * The feature id for the '<em><b>Atachments</b></em>' containment reference list.
@@ -217,7 +208,25 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SWAPCHAIN_CONFIGURATION__ATACHMENTS = 3;
+	int SWAPCHAIN_CONFIGURATION__ATACHMENTS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Present When VBlank</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK = 3;
+
+	/**
+	 * The feature id for the '<em><b>Acquire Wait For VBlank</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK = 4;
 
 	/**
 	 * The number of structural features of the '<em>Swapchain Configuration</em>' class.
@@ -226,7 +235,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SWAPCHAIN_CONFIGURATION_FEATURE_COUNT = 4;
+	int SWAPCHAIN_CONFIGURATION_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Swapchain Configuration</em>' class.
@@ -2141,17 +2150,6 @@ public interface GraphicPackage extends EPackage
 	EClass getSwapchainConfiguration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getPresentationMode <em>Presentation Mode</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Presentation Mode</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getPresentationMode()
-	 * @see #getSwapchainConfiguration()
-	 * @generated
-	 */
-	EAttribute getSwapchainConfiguration_PresentationMode();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getRequiredSwapImageCount <em>Required Swap Image Count</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2183,6 +2181,28 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EReference getSwapchainConfiguration_Atachments();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isPresentWhenVBlank <em>Present When VBlank</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Present When VBlank</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isPresentWhenVBlank()
+	 * @see #getSwapchainConfiguration()
+	 * @generated
+	 */
+	EAttribute getSwapchainConfiguration_PresentWhenVBlank();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isAcquireWaitForVBlank <em>Acquire Wait For VBlank</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Acquire Wait For VBlank</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isAcquireWaitForVBlank()
+	 * @see #getSwapchainConfiguration()
+	 * @generated
+	 */
+	EAttribute getSwapchainConfiguration_AcquireWaitForVBlank();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration <em>Framebuffer Configuration</em>}'.
@@ -3296,14 +3316,6 @@ public interface GraphicPackage extends EPackage
 		EClass SWAPCHAIN_CONFIGURATION = eINSTANCE.getSwapchainConfiguration();
 
 		/**
-		 * The meta object literal for the '<em><b>Presentation Mode</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE = eINSTANCE.getSwapchainConfiguration_PresentationMode();
-
-		/**
 		 * The meta object literal for the '<em><b>Required Swap Image Count</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3326,6 +3338,22 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference SWAPCHAIN_CONFIGURATION__ATACHMENTS = eINSTANCE.getSwapchainConfiguration_Atachments();
+
+		/**
+		 * The meta object literal for the '<em><b>Present When VBlank</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK = eINSTANCE.getSwapchainConfiguration_PresentWhenVBlank();
+
+		/**
+		 * The meta object literal for the '<em><b>Acquire Wait For VBlank</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK = eINSTANCE.getSwapchainConfiguration_AcquireWaitForVBlank();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl <em>Framebuffer Configuration</em>}' class.

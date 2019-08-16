@@ -26,9 +26,6 @@
         defaultValueLiteral="SRGB_NONLINEAR_KHR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SwapchainConfiguration">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="presentationMode" unique="false"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EPresentMode"
-        defaultValueLiteral="MailBox"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredSwapImageCount"
         unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
         defaultValueLiteral="3"/>
@@ -36,6 +33,18 @@
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EImageUsage"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="atachments" upperBound="-1"
         eType="#//ISwapAttachment" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="presentWhenVBlank" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="propertyDescription" value="If true, should prevent tearing. The engine will prefer using FIFO or MAILBOX present mode, otherwise (if false), IMMEDIATE will be prefered."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="acquireWaitForVBlank" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="propertyDescription" value="Will limit FPS, based on VBlank. The engine will prefer using FIFO."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FramebufferConfiguration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clearValue" unique="false"

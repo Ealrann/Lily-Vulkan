@@ -37,7 +37,7 @@ public class LogicalDevice
 	{
 		this.physicalDevice = physicalDevice;
 		this.dummySurface = dummySurface;
-		this.features = features;
+		this.features = List.copyOf(features);
 
 		queueManager = new QueueManager(physicalDevice.vkPhysicalDevice, needComputeCapability);
 		queueManager.load(dummySurface);

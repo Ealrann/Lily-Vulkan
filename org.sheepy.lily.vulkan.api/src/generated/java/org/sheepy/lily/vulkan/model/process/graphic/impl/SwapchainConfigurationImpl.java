@@ -24,7 +24,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
-import org.sheepy.vulkan.model.enumeration.EPresentMode;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,36 +33,17 @@ import org.sheepy.vulkan.model.enumeration.EPresentMode;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#getPresentationMode <em>Presentation Mode</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#getRequiredSwapImageCount <em>Required Swap Image Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#getSwapImageUsages <em>Swap Image Usages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#getAtachments <em>Atachments</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#isPresentWhenVBlank <em>Present When VBlank</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#isAcquireWaitForVBlank <em>Acquire Wait For VBlank</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container implements SwapchainConfiguration
 {
-	/**
-	 * The default value of the '{@link #getPresentationMode() <em>Presentation Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPresentationMode()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EPresentMode PRESENTATION_MODE_EDEFAULT = EPresentMode.MAIL_BOX;
-
-	/**
-	 * The cached value of the '{@link #getPresentationMode() <em>Presentation Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPresentationMode()
-	 * @generated
-	 * @ordered
-	 */
-	protected EPresentMode presentationMode = PRESENTATION_MODE_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getRequiredSwapImageCount() <em>Required Swap Image Count</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -105,6 +85,46 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	protected EList<ISwapAttachment> atachments;
 
 	/**
+	 * The default value of the '{@link #isPresentWhenVBlank() <em>Present When VBlank</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPresentWhenVBlank()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean PRESENT_WHEN_VBLANK_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isPresentWhenVBlank() <em>Present When VBlank</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPresentWhenVBlank()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean presentWhenVBlank = PRESENT_WHEN_VBLANK_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isAcquireWaitForVBlank() <em>Acquire Wait For VBlank</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAcquireWaitForVBlank()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ACQUIRE_WAIT_FOR_VBLANK_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isAcquireWaitForVBlank() <em>Acquire Wait For VBlank</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAcquireWaitForVBlank()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean acquireWaitForVBlank = ACQUIRE_WAIT_FOR_VBLANK_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -123,31 +143,6 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	protected EClass eStaticClass()
 	{
 		return GraphicPackage.Literals.SWAPCHAIN_CONFIGURATION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EPresentMode getPresentationMode()
-	{
-		return presentationMode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setPresentationMode(EPresentMode newPresentationMode)
-	{
-		EPresentMode oldPresentationMode = presentationMode;
-		presentationMode = newPresentationMode == null ? PRESENTATION_MODE_EDEFAULT : newPresentationMode;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE, oldPresentationMode, presentationMode));
 	}
 
 	/**
@@ -211,6 +206,56 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	 * @generated
 	 */
 	@Override
+	public boolean isPresentWhenVBlank()
+	{
+		return presentWhenVBlank;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPresentWhenVBlank(boolean newPresentWhenVBlank)
+	{
+		boolean oldPresentWhenVBlank = presentWhenVBlank;
+		presentWhenVBlank = newPresentWhenVBlank;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK, oldPresentWhenVBlank, presentWhenVBlank));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isAcquireWaitForVBlank()
+	{
+		return acquireWaitForVBlank;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setAcquireWaitForVBlank(boolean newAcquireWaitForVBlank)
+	{
+		boolean oldAcquireWaitForVBlank = acquireWaitForVBlank;
+		acquireWaitForVBlank = newAcquireWaitForVBlank;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK, oldAcquireWaitForVBlank, acquireWaitForVBlank));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -231,14 +276,16 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE:
-				return getPresentationMode();
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
 				return getRequiredSwapImageCount();
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
 				return getSwapImageUsages();
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
 				return getAtachments();
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK:
+				return isPresentWhenVBlank();
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK:
+				return isAcquireWaitForVBlank();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -254,9 +301,6 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE:
-				setPresentationMode((EPresentMode)newValue);
-				return;
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
 				setRequiredSwapImageCount((Integer)newValue);
 				return;
@@ -267,6 +311,12 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
 				getAtachments().clear();
 				getAtachments().addAll((Collection<? extends ISwapAttachment>)newValue);
+				return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK:
+				setPresentWhenVBlank((Boolean)newValue);
+				return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK:
+				setAcquireWaitForVBlank((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -282,9 +332,6 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE:
-				setPresentationMode(PRESENTATION_MODE_EDEFAULT);
-				return;
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
 				setRequiredSwapImageCount(REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT);
 				return;
@@ -293,6 +340,12 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 				return;
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
 				getAtachments().clear();
+				return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK:
+				setPresentWhenVBlank(PRESENT_WHEN_VBLANK_EDEFAULT);
+				return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK:
+				setAcquireWaitForVBlank(ACQUIRE_WAIT_FOR_VBLANK_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -308,14 +361,16 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE:
-				return presentationMode != PRESENTATION_MODE_EDEFAULT;
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
 				return requiredSwapImageCount != REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT;
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
 				return swapImageUsages != null && !swapImageUsages.isEmpty();
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
 				return atachments != null && !atachments.isEmpty();
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK:
+				return presentWhenVBlank != PRESENT_WHEN_VBLANK_EDEFAULT;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK:
+				return acquireWaitForVBlank != ACQUIRE_WAIT_FOR_VBLANK_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -331,12 +386,14 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container imp
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (presentationMode: ");
-		result.append(presentationMode);
-		result.append(", requiredSwapImageCount: ");
+		result.append(" (requiredSwapImageCount: ");
 		result.append(requiredSwapImageCount);
 		result.append(", swapImageUsages: ");
 		result.append(swapImageUsages);
+		result.append(", presentWhenVBlank: ");
+		result.append(presentWhenVBlank);
+		result.append(", acquireWaitForVBlank: ");
+		result.append(acquireWaitForVBlank);
 		result.append(')');
 		return result.toString();
 	}
