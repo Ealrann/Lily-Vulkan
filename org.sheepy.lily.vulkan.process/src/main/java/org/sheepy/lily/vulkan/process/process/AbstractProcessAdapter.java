@@ -100,6 +100,14 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	public void start(IVulkanContext context)
 	{
 		allocator.allocate(context);
+
+		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
+		{
+			System.out.println(
+					process.eClass().getName() + " " + process.getName() + " Allocation tree:");
+			System.out.println(allocator.toString());
+		}
+
 	}
 
 	@Override

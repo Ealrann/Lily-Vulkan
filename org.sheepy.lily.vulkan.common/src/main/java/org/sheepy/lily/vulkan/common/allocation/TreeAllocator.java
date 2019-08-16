@@ -52,4 +52,10 @@ public class TreeAllocator<T extends IVulkanContext>
 	{
 		return isAllocated;
 	}
+
+	@Override
+	public String toString()
+	{
+		return rootWrapper.toString();
+	}
 }

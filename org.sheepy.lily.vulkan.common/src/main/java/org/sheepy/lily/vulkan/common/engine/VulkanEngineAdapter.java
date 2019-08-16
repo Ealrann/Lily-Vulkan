@@ -241,6 +241,12 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 		allocator.allocate(vulkanContext);
 
+		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
+		{
+			System.out.println("Engine Resources Allocation tree:");
+			System.out.println(allocator.toString());
+		}
+
 		startProcesses();
 
 		allocated = true;
