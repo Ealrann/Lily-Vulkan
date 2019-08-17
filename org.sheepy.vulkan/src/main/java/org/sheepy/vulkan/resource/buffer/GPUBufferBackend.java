@@ -33,8 +33,9 @@ public final class GPUBufferBackend implements IBufferBackend
 
 		if (keepStagingBuffer)
 		{
-			final BufferInfo stagingInfo = new BufferInfo(info.size,
-					VK_BUFFER_USAGE_TRANSFER_SRC_BIT, info.keptMapped);
+			final BufferInfo stagingInfo = new BufferInfo(	info.size,
+															VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+															info.keptMapped);
 			cpuBackend = new CPUBufferBackend(stagingInfo, true);
 		}
 
@@ -105,8 +106,7 @@ public final class GPUBufferBackend implements IBufferBackend
 
 			if (VulkanDebugUtil.DEBUG_ENABLED)
 			{
-				System.err.println(
-						"[Warning] Pushing in a non staged GPU Buffer is slow. Don't use it in the main loop.");
+				System.err.println("[Warning] Pushing in a non staged GPU Buffer is slow. Don't use it in the main loop.");
 			}
 		}
 		else
@@ -123,7 +123,14 @@ public final class GPUBufferBackend implements IBufferBackend
 
 		executionContext.execute((context, commandBuffer) ->
 		{
-			BufferUtils.copyBuffer(commandBuffer, bufferPtr, 0, address, currentOffset, size);
+			final var stack = context.stack();
+			BufferUtils.copyBuffer(	stack,
+									commandBuffer,
+									bufferPtr,
+									0,
+									address,
+									currentOffset,
+									size);
 		});
 	}
 

@@ -4,6 +4,7 @@ import static org.lwjgl.vulkan.VK10.VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 
 import java.nio.ByteBuffer;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.execution.ISingleTimeCommand;
@@ -31,7 +32,8 @@ public class BufferGPUFiller
 			@Override
 			public void execute(IExecutionContext context, VkCommandBuffer commandBuffer)
 			{
-				fillBuffer(commandBuffer, offset, byteSize);
+				final var stack = context.stack();
+				fillBuffer(stack, commandBuffer, offset, byteSize);
 			}
 
 			@Override
@@ -51,10 +53,19 @@ public class BufferGPUFiller
 		stagingBuffer.pushData(context, sourceBuffer);
 	}
 
-	private void fillBuffer(VkCommandBuffer commandBuffer, long offset, long byteSize)
+	private void fillBuffer(MemoryStack stack,
+							VkCommandBuffer commandBuffer,
+							long offset,
+							long byteSize)
 	{
 		final var srcAddress = stagingBuffer.getAddress();
 
-		BufferUtils.copyBuffer(commandBuffer, srcAddress, 0, targetBufferId, offset, byteSize);
+		BufferUtils.copyBuffer(	stack,
+								commandBuffer,
+								srcAddress,
+								0,
+								targetBufferId,
+								offset,
+								byteSize);
 	}
 }

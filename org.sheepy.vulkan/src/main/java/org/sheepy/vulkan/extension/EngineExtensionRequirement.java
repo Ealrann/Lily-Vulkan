@@ -20,7 +20,8 @@ public class EngineExtensionRequirement
 	public EngineExtensionRequirement(MemoryStack stack, boolean debug, boolean verbose)
 	{
 		requiredDeviceExtensions = List.copyOf(gatherDeviceExtensions());
-		availableInstanceExtensions = List.copyOf(gatherAvailableInstanceExtensions(stack, verbose));
+		availableInstanceExtensions = List.copyOf(gatherAvailableInstanceExtensions(stack,
+																					verbose));
 		requiredInstanceExtensions = List.copyOf(gatherInstanceExtensions(debug));
 	}
 
@@ -33,8 +34,8 @@ public class EngineExtensionRequirement
 
 		if (res != null && requiredInstanceExtensions.isEmpty() == false)
 		{
-			res = stack.mallocPointer(
-					glfwRequiredExtensions.capacity() + requiredInstanceExtensions.size());
+			res = stack.mallocPointer(glfwRequiredExtensions.capacity()
+					+ requiredInstanceExtensions.size());
 
 			for (int i = 0; i < glfwRequiredExtensions.capacity(); i++)
 			{
@@ -103,8 +104,7 @@ public class EngineExtensionRequirement
 			requiredExtensions.add(EInstanceExtension.VK_EXT_debug_report);
 		}
 
-		for (final Iterator<EInstanceExtension> iterator = requiredExtensions.iterator(); iterator
-				.hasNext();)
+		for (final Iterator<EInstanceExtension> iterator = requiredExtensions.iterator(); iterator.hasNext();)
 		{
 			final EInstanceExtension extension = iterator.next();
 
@@ -126,5 +126,10 @@ public class EngineExtensionRequirement
 	public List<EInstanceExtension> getRequiredInstanceExtensions()
 	{
 		return requiredInstanceExtensions;
+	}
+
+	public boolean supportDebug()
+	{
+		return getRequiredInstanceExtensions().contains(EInstanceExtension.VK_EXT_debug_report);
 	}
 }

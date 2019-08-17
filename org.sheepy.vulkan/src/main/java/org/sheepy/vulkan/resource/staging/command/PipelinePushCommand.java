@@ -13,7 +13,7 @@ import org.sheepy.vulkan.resource.buffer.BufferUtils;
 import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
 import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket;
 
-public class PipelinePushCommand implements IDataFlowCommand
+public final class PipelinePushCommand implements IDataFlowCommand
 {
 	private final MemoryTicket ticket;
 
@@ -52,7 +52,7 @@ public class PipelinePushCommand implements IDataFlowCommand
 		// https://www.khronos.org/registry/vulkan/specs/1.0/html/vkspec.html#synchronization-submission-host-writes
 		// So no need for a barrier before the transfer
 
-		BufferUtils.copyBuffer(commandBuffer, srcBuffer, offset, trgBuffer, trgOffset, size);
+		BufferUtils.copyBuffer(stack, commandBuffer, srcBuffer, offset, trgBuffer, trgOffset, size);
 
 		final var srcStageVal = EPipelineStage.TRANSFER_BIT_VALUE;
 		final var dstStageVal = dstStage.getValue();

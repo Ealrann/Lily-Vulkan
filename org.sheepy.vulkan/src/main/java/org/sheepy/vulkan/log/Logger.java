@@ -2,26 +2,32 @@ package org.sheepy.vulkan.log;
 
 import org.sheepy.vulkan.util.VulkanDebugUtil;
 
-public class Logger
+public final class Logger
 {
+	private static final String MESSAGE_FORMAT = "%s\n[%s] %s";
+	private static final String ERROR_CODE = "Error code: ";
 	private static final String UNKOWN_ERROR = "UNKOWN_ERROR";
+
+	private Logger()
+	{}
 
 	public static final void check(int status, String message)
 	{
 		check(status, message, false);
 	}
 
-	public static final void check(int status, String message, boolean noException)
+	public static final void check(int statusCode, String message, boolean noException)
 	{
-		final EVulkanErrorStatus error = EVulkanErrorStatus.resolveFromCode(status);
+		final var status = EVulkanErrorStatus.resolveFromCode(statusCode);
 
-		if ((error != null && error.isError) || status < 0)
+		if ((status != null && status.isError) || statusCode < 0)
 		{
-			final String stringError = error != null ? error.name() : UNKOWN_ERROR;
-			final String errorMessage = error != null ? error.message : "Error code: " + status;
-
-			final String messageWithError = String.format("%s\n[%s] %s", message, stringError,
-					errorMessage);
+			final var errorString = status != null ? status.name() : UNKOWN_ERROR;
+			final var errorMessage = status != null ? status.message : ERROR_CODE + statusCode;
+			final var messageWithError = String.format(	MESSAGE_FORMAT,
+														message,
+														errorString,
+														errorMessage);
 
 			if (!noException)
 			{
@@ -40,11 +46,6 @@ public class Logger
 		check(res, message);
 	}
 
-	public interface VkRunnable
-	{
-		int run();
-	}
-
 	public static void log(String message)
 	{
 		log(message, false);
@@ -60,5 +61,10 @@ public class Logger
 		{
 			throw new AssertionError(message);
 		}
+	}
+
+	public static interface VkRunnable
+	{
+		int run();
 	}
 }

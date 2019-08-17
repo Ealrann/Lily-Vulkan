@@ -2,6 +2,7 @@ package org.sheepy.vulkan.resource.buffer;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferCopy;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkMappedMemoryRange;
@@ -10,9 +11,9 @@ import org.sheepy.vulkan.device.LogicalDevice;
 public class BufferUtils
 {
 
-	public static int flush(LogicalDevice logicalDevice, long bufferMemoryId)
+	public static int flush(MemoryStack stack, LogicalDevice logicalDevice, long bufferMemoryId)
 	{
-		return BufferUtils.flush(logicalDevice, bufferMemoryId, VK_WHOLE_SIZE, 0);
+		return BufferUtils.flush(stack, logicalDevice, bufferMemoryId, VK_WHOLE_SIZE, 0);
 	}
 
 	/**
@@ -28,12 +29,13 @@ public class BufferUtils
 	 *
 	 * @return VkResult of the flush call
 	 */
-	public static int flush(LogicalDevice logicalDevice,
+	public static int flush(MemoryStack stack,
+							LogicalDevice logicalDevice,
 							long bufferMemoryId,
 							long size,
 							long offset)
 	{
-		final VkMappedMemoryRange.Buffer mappedRange = VkMappedMemoryRange.create(1);
+		final var mappedRange = VkMappedMemoryRange.callocStack(1, stack);
 		mappedRange.sType(VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE);
 		mappedRange.memory(bufferMemoryId);
 		mappedRange.offset(offset);
@@ -41,9 +43,11 @@ public class BufferUtils
 		return vkFlushMappedMemoryRanges(logicalDevice.getVkDevice(), mappedRange);
 	}
 
-	public static int invalidate(LogicalDevice logicalDevice, long bufferMemoryId)
+	public static int invalidate(	MemoryStack stack,
+									LogicalDevice logicalDevice,
+									long bufferMemoryId)
 	{
-		return BufferUtils.invalidate(logicalDevice, bufferMemoryId, VK_WHOLE_SIZE, 0);
+		return BufferUtils.invalidate(stack, logicalDevice, bufferMemoryId, VK_WHOLE_SIZE, 0);
 	}
 
 	/**
@@ -59,12 +63,13 @@ public class BufferUtils
 	 *
 	 * @return VkResult of the invalidate call
 	 */
-	public static int invalidate(	LogicalDevice logicalDevice,
+	public static int invalidate(	MemoryStack stack,
+									LogicalDevice logicalDevice,
 									long bufferMemoryId,
 									long size,
 									long offset)
 	{
-		final VkMappedMemoryRange.Buffer mappedRange = VkMappedMemoryRange.create(1);
+		final var mappedRange = VkMappedMemoryRange.callocStack(1, stack);
 		mappedRange.sType(VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE);
 		mappedRange.memory(bufferMemoryId);
 		mappedRange.offset(offset);
@@ -72,14 +77,15 @@ public class BufferUtils
 		return vkInvalidateMappedMemoryRanges(logicalDevice.getVkDevice(), mappedRange);
 	}
 
-	public static void copyBuffer(	VkCommandBuffer vkCommandBuffer,
+	public static void copyBuffer(	MemoryStack stack,
+									VkCommandBuffer vkCommandBuffer,
 									long srcBuffer,
 									long srcOffset,
 									long dstBuffer,
 									long dstOffset,
 									long size)
 	{
-		final var copyRegion = VkBufferCopy.create(1);
+		final var copyRegion = VkBufferCopy.mallocStack(1, stack);
 		copyRegion.srcOffset(srcOffset);
 		copyRegion.dstOffset(dstOffset);
 		copyRegion.size(size);

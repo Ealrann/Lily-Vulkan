@@ -6,6 +6,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.PointerBuffer;
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.vulkan.device.LogicalDevice;
@@ -160,14 +161,14 @@ public final class CPUBufferBackend implements IBufferBackend
 		}
 	}
 
-	public void flush(LogicalDevice logicalDevice)
+	public void flush(MemoryStack stack, LogicalDevice logicalDevice)
 	{
-		BufferUtils.flush(logicalDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
+		BufferUtils.flush(stack, logicalDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
 	}
 
-	public void invalidate(LogicalDevice logicalDevice)
+	public void invalidate(MemoryStack stack, LogicalDevice logicalDevice)
 	{
-		BufferUtils.invalidate(logicalDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
+		BufferUtils.invalidate(stack, logicalDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
 	}
 
 	@Override

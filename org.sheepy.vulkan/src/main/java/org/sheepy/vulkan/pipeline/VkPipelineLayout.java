@@ -19,6 +19,8 @@ import org.sheepy.vulkan.util.VkModelUtil;
 
 public final class VkPipelineLayout<T extends IExecutionContext> implements IAllocable<T>
 {
+	private static final String CREATION_ERROR = "Failed to create pipeline layout";
+
 	private final List<IVkDescriptorSet> descriptorSets;
 	private final List<PushConstantRange> constantRanges;
 
@@ -38,12 +40,15 @@ public final class VkPipelineLayout<T extends IExecutionContext> implements IAll
 	{
 		final var stack = context.stack();
 		final var vkDevice = context.getVkDevice();
+		final int size = descriptorSets.size();
 
-		final LongBuffer layouts = allocLayouts(stack);
+		final var layouts = allocLayouts(stack);
+		final var pPushConstantRanges = allocPushConstant(stack);
 
-		descriptorSetAddressBuffer = MemoryUtil.memAllocLong(descriptorSets.size());
-		for (final var descriptorSet : descriptorSets)
+		descriptorSetAddressBuffer = MemoryUtil.memAllocLong(size);
+		for (int i = 0; i < size; i++)
 		{
+			final var descriptorSet = descriptorSets.get(i);
 			final var descriptorId = descriptorSet.getId();
 			descriptorSetAddressBuffer.put(descriptorId);
 		}
@@ -51,13 +56,14 @@ public final class VkPipelineLayout<T extends IExecutionContext> implements IAll
 
 		// Create compute pipeline
 		final long[] aLayout = new long[1];
-		final VkPipelineLayoutCreateInfo info = VkPipelineLayoutCreateInfo.callocStack(stack);
-		info.sType(VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO);
-		info.pSetLayouts(layouts);
-		preparePushConstant(stack, info);
+		final var info = VkPipelineLayoutCreateInfo	.callocStack(stack)
+													.set(	VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO,
+															VK_NULL_HANDLE,
+															0,
+															layouts,
+															pPushConstantRanges);
 
-		Logger.check("Failed to create pipeline layout",
-				() -> vkCreatePipelineLayout(vkDevice, info, null, aLayout));
+		Logger.check(CREATION_ERROR, () -> vkCreatePipelineLayout(vkDevice, info, null, aLayout));
 		pipelineLayout = aLayout[0];
 	}
 
@@ -67,9 +73,11 @@ public final class VkPipelineLayout<T extends IExecutionContext> implements IAll
 
 		if (descriptorSets.isEmpty() == false)
 		{
-			layouts = stack.mallocLong(descriptorSets.size());
-			for (final IVkDescriptorSet vkDescriptorSet : descriptorSets)
+			final int size = descriptorSets.size();
+			layouts = stack.mallocLong(size);
+			for (int i = 0; i < size; i++)
 			{
+				final var vkDescriptorSet = descriptorSets.get(i);
 				if (vkDescriptorSet.descriptorCount() > 0)
 				{
 					layouts.put(vkDescriptorSet.getLayoutId());
@@ -95,20 +103,26 @@ public final class VkPipelineLayout<T extends IExecutionContext> implements IAll
 			}
 			descriptorSetAddressBuffer.flip();
 
-			vkCmdBindDescriptorSets(commandBuffer, bindPoint, pipelineLayout, 0,
-					descriptorSetAddressBuffer, null);
+			vkCmdBindDescriptorSets(commandBuffer,
+									bindPoint,
+									pipelineLayout,
+									0,
+									descriptorSetAddressBuffer,
+									null);
 		}
 	}
 
-	private void preparePushConstant(MemoryStack stack, VkPipelineLayoutCreateInfo info)
+	private VkPushConstantRange.Buffer allocPushConstant(MemoryStack stack)
 	{
 		VkPushConstantRange.Buffer ranges = null;
 
 		if (constantRanges.isEmpty() == false)
 		{
-			ranges = VkPushConstantRange.callocStack(constantRanges.size(), stack);
-			for (final var constantRange : constantRanges)
+			final int rangeCount = constantRanges.size();
+			ranges = VkPushConstantRange.callocStack(rangeCount, stack);
+			for (int i = 0; i < rangeCount; i++)
 			{
+				final var constantRange = constantRanges.get(i);
 				final var range = ranges.get();
 				final int offset = constantRange.getOffset();
 				final int size = constantRange.getSize();
@@ -121,7 +135,7 @@ public final class VkPipelineLayout<T extends IExecutionContext> implements IAll
 			ranges.flip();
 		}
 
-		info.pPushConstantRanges(ranges);
+		return ranges;
 	}
 
 	@Override

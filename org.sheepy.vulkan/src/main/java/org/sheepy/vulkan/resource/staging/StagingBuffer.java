@@ -18,6 +18,8 @@ import org.sheepy.vulkan.resource.staging.memory.MemorySpaceManager.MemorySpace;
 
 public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuffer
 {
+	private static final String MEMORY_RESERVATION_REJECTED = "MemoryTicket reservation was rejected";
+
 	public final CPUBufferBackend bufferBackend;
 
 	private final List<MemoryTicket> tickets = new ArrayList<>();
@@ -37,8 +39,10 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 		this.capacity = capacity;
 		spaceManager = new MemorySpaceManager(capacity);
 
-		final var info = new BufferInfo(capacity, EBufferUsage.TRANSFER_SRC_BIT_VALUE, true,
-				instanceCount);
+		final var info = new BufferInfo(capacity,
+										EBufferUsage.TRANSFER_SRC_BIT_VALUE,
+										true,
+										instanceCount);
 		bufferBackend = new CPUBufferBackend(info, false);
 	}
 
@@ -47,8 +51,9 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	{
 		this.executionContext = context;
 		final var physicalDevice = context.getPhysicalDevice();
-		minMemoryMapAlignment = physicalDevice.getDeviceProperties().limits()
-				.minMemoryMapAlignment();
+		minMemoryMapAlignment = physicalDevice	.getDeviceProperties()
+												.limits()
+												.minMemoryMapAlignment();
 
 		bufferBackend.allocate(context);
 	}
@@ -110,11 +115,11 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	{
 		if (command.getMemoryTicket().getReservationStatus() == EReservationStatus.FLUSHED)
 		{
-			throw new IllegalStateException("MemoryTicket reservation was rejected");
+			throw new IllegalStateException(MEMORY_RESERVATION_REJECTED);
 		}
 		else if (command.getMemoryTicket().getReservationStatus() != EReservationStatus.SUCCESS)
 		{
-			throw new IllegalStateException("MemoryTicket reservation was rejected");
+			throw new IllegalStateException(MEMORY_RESERVATION_REJECTED);
 		}
 
 		switch (command.getFlowType())
@@ -154,46 +159,44 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	{
 		final var logicalDevice = executionContext.getLogicalDevice();
 
-		if (containingPushCommand)
-		{
-			bufferBackend.flush(logicalDevice);
-		}
-		bufferBackend.nextInstance();
-
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{
+			if (containingPushCommand)
+			{
+				bufferBackend.flush(stack, logicalDevice);
+			}
+			bufferBackend.nextInstance();
+
 			while (synchronizedCommands.isEmpty() == false)
 			{
 				synchronizedCommands.pop().execute(stack, commandBuffer);
 			}
-		}
 
-		if (unsynchronizedCommands.isEmpty() == false)
-		{
-			executionContext.execute((context, subCommandBuffer) ->
+			if (unsynchronizedCommands.isEmpty() == false)
 			{
-				final var stack = context.stack();
-
-				for (final var command : unsynchronizedCommands)
+				executionContext.execute((context, subCommandBuffer) ->
 				{
-					command.execute(stack, subCommandBuffer);
-				}
-			});
+					for (final var command : unsynchronizedCommands)
+					{
+						command.execute(stack, subCommandBuffer);
+					}
+				});
 
-			while (unsynchronizedCommands.isEmpty() == false)
-			{
-				final var command = unsynchronizedCommands.pop();
-				final var postAction = command.getPostAction();
-				if (postAction != null)
+				while (unsynchronizedCommands.isEmpty() == false)
 				{
-					postAction.accept(command.getMemoryTicket());
+					final var command = unsynchronizedCommands.pop();
+					final var postAction = command.getPostAction();
+					if (postAction != null)
+					{
+						postAction.accept(command.getMemoryTicket());
+					}
 				}
 			}
-		}
 
-		if (containingGetCommand)
-		{
-			bufferBackend.invalidate(logicalDevice);
+			if (containingGetCommand)
+			{
+				bufferBackend.invalidate(stack, logicalDevice);
+			}
 		}
 
 		clear();
@@ -253,7 +256,11 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 											long bufferOffset,
 											long size)
 	{
-		return new MemoryTicket(EReservationStatus.SUCCESS, space, bufferBackend.getAddress(),
-				memoryPtr, bufferOffset, size);
+		return new MemoryTicket(EReservationStatus.SUCCESS,
+								space,
+								bufferBackend.getAddress(),
+								memoryPtr,
+								bufferOffset,
+								size);
 	}
 }

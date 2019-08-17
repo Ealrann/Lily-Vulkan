@@ -6,14 +6,13 @@ import java.nio.IntBuffer;
 import java.util.HashSet;
 import java.util.List;
 
-import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkDeviceCreateInfo;
 import org.lwjgl.vulkan.VkDeviceQueueCreateInfo;
+import org.lwjgl.vulkan.VkDeviceQueueCreateInfo.Buffer;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
-import org.sheepy.vulkan.extension.EDeviceExtension;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.queue.EQueueType;
 import org.sheepy.vulkan.queue.QueueManager;
@@ -22,6 +21,8 @@ import org.sheepy.vulkan.surface.VkSurface;
 
 public class LogicalDevice
 {
+	private static final String FAILED_TO_CREATE_LOGICAL_DEVICE = "Failed to create logical device";
+	private static final String WAIT_IDLE_FAILED = "Wait idle failed";
 	public final PhysicalDevice physicalDevice;
 	public final VkSurface dummySurface;
 
@@ -45,58 +46,57 @@ public class LogicalDevice
 
 	public void allocate(MemoryStack stack)
 	{
-		final var uniqueQueueIndexes = new HashSet<>(queueManager.getQueueIndexes());
-		final var size = uniqueQueueIndexes.size();
-		final var queueCreateInfos = VkDeviceQueueCreateInfo.callocStack(size, stack);
+		final var queueCreateInfos = allocQueueInfos(stack);
+		final var extensionsBuffer = physicalDevice.allocRetainedExtensions(stack);
+		final var deviceFeatures = allocPhysicalFeatures(stack);
+		final var createInfo = VkDeviceCreateInfo	.mallocStack(stack)
+													.set(	VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
+															VK_NULL_HANDLE,
+															0,
+															queueCreateInfos,
+															null,
+															extensionsBuffer,
+															deviceFeatures);
 
-		for (final int queueIndex : uniqueQueueIndexes)
-		{
-			final var queuePriority = stack.mallocFloat(1).put(1f);
-			queuePriority.flip();
-
-			final var queueCreateInfo = queueCreateInfos.get();
-			queueCreateInfo.sType(VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO);
-			queueCreateInfo.queueFamilyIndex(queueIndex);
-			queueCreateInfo.pQueuePriorities(queuePriority);
-			queueCreateInfo.pNext(VK_NULL_HANDLE);
-		}
-		queueCreateInfos.flip();
-
-		final List<EDeviceExtension> extensions = physicalDevice.getRetainedExtensions();
-
-		// Logical Device
-		final PointerBuffer extensionsBuffer = stack.callocPointer(extensions.size());
-		for (final EDeviceExtension requiredExtension : extensions)
-		{
-			extensionsBuffer.put(stack.UTF8(requiredExtension.name));
-		}
-		extensionsBuffer.flip();
-
-		final VkPhysicalDeviceFeatures deviceFeatures = allocPhysicalFeatures(stack);
-
-		final VkDeviceCreateInfo createInfo = VkDeviceCreateInfo.callocStack(stack);
-		createInfo.sType(VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO);
-		createInfo.pNext(VK_NULL_HANDLE);
-		createInfo.pQueueCreateInfos(queueCreateInfos);
-		createInfo.pEnabledFeatures(deviceFeatures);
-		createInfo.ppEnabledExtensionNames(extensionsBuffer);
-		final PointerBuffer pDevice = stack.callocPointer(1);
-
-		Logger.check("Failed to create logical device",
-				() -> vkCreateDevice(physicalDevice.vkPhysicalDevice, createInfo, null, pDevice));
+		final var pDevice = stack.callocPointer(1);
+		Logger.check(	FAILED_TO_CREATE_LOGICAL_DEVICE,
+						() -> vkCreateDevice(	physicalDevice.vkPhysicalDevice,
+												createInfo,
+												null,
+												pDevice));
 
 		final long deviceId = pDevice.get(0);
 		vkDevice = new VkDevice(deviceId, physicalDevice.vkPhysicalDevice, createInfo);
 	}
 
+	private Buffer allocQueueInfos(MemoryStack stack)
+	{
+		final var uniqueQueueIndexes = new HashSet<>(queueManager.getQueueIndexes());
+		final var queueCount = uniqueQueueIndexes.size();
+		final var queueCreateInfos = VkDeviceQueueCreateInfo.mallocStack(queueCount, stack);
+
+		for (final int queueIndex : uniqueQueueIndexes)
+		{
+			final var queuePriority = stack.mallocFloat(1).put(1f).flip();
+			final var queueCreateInfo = queueCreateInfos.get();
+
+			queueCreateInfo.set(VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
+								VK_NULL_HANDLE,
+								0,
+								queueIndex,
+								queuePriority);
+		}
+		queueCreateInfos.flip();
+		return queueCreateInfos;
+	}
+
 	private VkPhysicalDeviceFeatures allocPhysicalFeatures(MemoryStack stack)
 	{
-		final VkPhysicalDeviceFeatures deviceFeatures = VkPhysicalDeviceFeatures.callocStack(stack);
+		final var deviceFeatures = VkPhysicalDeviceFeatures.callocStack(stack);
 		deviceFeatures.samplerAnisotropy(true);
 
 		final boolean fillModeNonSolid = features.contains(EPhysicalFeature.FILL_MODE_NON_SOLID);
-		final var fragmentStoresAndAtomics = features
-				.contains(EPhysicalFeature.FRAGMENT_STORES_AND_ATOMICS);
+		final var fragmentStoresAndAtomics = features.contains(EPhysicalFeature.FRAGMENT_STORES_AND_ATOMICS);
 		final boolean wideLines = features.contains(EPhysicalFeature.WIDE_LINES);
 		final boolean geometryShader = features.contains(EPhysicalFeature.GEOMETRY_SHADER);
 
@@ -117,7 +117,7 @@ public class LogicalDevice
 	public void waitIdle()
 	{
 		final int res = vkDeviceWaitIdle(vkDevice);
-		Logger.check(res, "Wait idle failed");
+		Logger.check(res, WAIT_IDLE_FAILED);
 	}
 
 	public VkDevice getVkDevice()

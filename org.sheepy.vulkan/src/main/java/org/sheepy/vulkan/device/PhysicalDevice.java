@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkExtensionProperties;
 import org.lwjgl.vulkan.VkFormatProperties;
@@ -26,19 +27,21 @@ import org.sheepy.vulkan.instance.VulkanInstance;
 
 public class PhysicalDevice
 {
+	private static final String FAILED_TO_FIND_SUPPORTED_FORMAT = "Failed to find supported format";
+
 	public final VkPhysicalDevice vkPhysicalDevice;
 	public final VulkanInstance vkInstance;
 	public final DeviceProperties deviceProperties;
 
 	private final String name;
 	private final int driverVersion;
-	private VkPhysicalDeviceMemoryProperties memProperties;
 	private final Map<Integer, VkFormatProperties> formatProperties = new HashMap<>();
 	private final List<EDeviceExtension> retainedExtensions;
 	private final List<String> availableExtensions;
-
-	private List<DisplayInfo> displaysInfomations = null;
 	private final EngineExtensionRequirement extensionRequirement;
+
+	private VkPhysicalDeviceMemoryProperties memProperties;
+	private List<DisplayInfo> displaysInfomations = null;
 
 	public PhysicalDevice(	VkPhysicalDevice vkPhysicalDevice,
 							VulkanInstance vkInstance,
@@ -52,8 +55,8 @@ public class PhysicalDevice
 		name = deviceProperties.vkDeviceProperties.deviceNameString();
 		driverVersion = deviceProperties.vkDeviceProperties.driverVersion();
 
-		availableExtensions = gatherAvailableExtensions();
-		retainedExtensions = gatherSupportedExtensions(extensionRequirement);
+		availableExtensions = List.copyOf(gatherAvailableExtensions());
+		retainedExtensions = List.copyOf(gatherSupportedExtensions(extensionRequirement));
 	}
 
 	public void allocate(MemoryStack stack)
@@ -62,7 +65,7 @@ public class PhysicalDevice
 		vkGetPhysicalDeviceMemoryProperties(vkPhysicalDevice, memProperties);
 
 		if (extensionRequirement.getRequiredInstanceExtensions()
-				.contains(EInstanceExtension.VK_KHR_display))
+								.contains(EInstanceExtension.VK_KHR_display))
 		{
 			displaysInfomations = DisplayInformationLoader.getDisplayInfos(stack, vkPhysicalDevice);
 		}
@@ -73,9 +76,9 @@ public class PhysicalDevice
 		memProperties.free();
 		memProperties = null;
 
-		for (final VkFormatProperties value : formatProperties.values())
+		for (final var formatProperty : formatProperties.values())
 		{
-			value.free();
+			formatProperty.free();
 		}
 
 		formatProperties.clear();
@@ -99,7 +102,7 @@ public class PhysicalDevice
 			}
 		}
 
-		throw new AssertionError("failed to find supported format!");
+		throw new AssertionError(FAILED_TO_FIND_SUPPORTED_FORMAT);
 	}
 
 	public int findMemoryType(int typeFilter, int properties)
@@ -147,13 +150,16 @@ public class PhysicalDevice
 		final List<String> extensions = new ArrayList<>();
 		final IntBuffer extensionCount = memAllocInt(1);
 
-		vkEnumerateDeviceExtensionProperties(vkPhysicalDevice, (ByteBuffer) null, extensionCount,
-				(VkExtensionProperties.Buffer) null);
-		final VkExtensionProperties.Buffer availableExtensions = VkExtensionProperties
-				.calloc(extensionCount.get(0));
+		vkEnumerateDeviceExtensionProperties(	vkPhysicalDevice,
+												(ByteBuffer) null,
+												extensionCount,
+												(VkExtensionProperties.Buffer) null);
+		final var availableExtensions = VkExtensionProperties.calloc(extensionCount.get(0));
 
-		vkEnumerateDeviceExtensionProperties(vkPhysicalDevice, (ByteBuffer) null, extensionCount,
-				availableExtensions);
+		vkEnumerateDeviceExtensionProperties(	vkPhysicalDevice,
+												(ByteBuffer) null,
+												extensionCount,
+												availableExtensions);
 
 		for (final VkExtensionProperties extension : availableExtensions)
 		{
@@ -169,8 +175,7 @@ public class PhysicalDevice
 	private List<EDeviceExtension> gatherSupportedExtensions(EngineExtensionRequirement extensionRequirement)
 	{
 		List<EDeviceExtension> compatibleExtensions = new ArrayList<>();
-		for (final EDeviceExtension requiredExtension : extensionRequirement
-				.getRequiredDeviceExtensions())
+		for (final EDeviceExtension requiredExtension : extensionRequirement.getRequiredDeviceExtensions())
 		{
 			boolean found = false;
 			for (final String extension : availableExtensions)
@@ -195,6 +200,19 @@ public class PhysicalDevice
 	public List<EDeviceExtension> getRetainedExtensions()
 	{
 		return retainedExtensions;
+	}
+
+	public PointerBuffer allocRetainedExtensions(MemoryStack stack)
+	{
+		final int extensionCount = retainedExtensions.size();
+		final var extensionsBuffer = stack.mallocPointer(extensionCount);
+		for (int i = 0; i < extensionCount; i++)
+		{
+			final var requiredExtension = retainedExtensions.get(i);
+			extensionsBuffer.put(stack.UTF8(requiredExtension.name));
+		}
+		extensionsBuffer.flip();
+		return extensionsBuffer;
 	}
 
 	public String getName()

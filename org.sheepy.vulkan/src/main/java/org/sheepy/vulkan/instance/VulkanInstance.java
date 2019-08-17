@@ -9,7 +9,6 @@ import org.lwjgl.vulkan.VkApplicationInfo;
 import org.lwjgl.vulkan.VkDebugReportCallbackEXT;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkInstanceCreateInfo;
-import org.sheepy.vulkan.extension.EInstanceExtension;
 import org.sheepy.vulkan.extension.EngineExtensionRequirement;
 import org.sheepy.vulkan.instance.loader.InstanceUtils;
 import org.sheepy.vulkan.instance.loader.LayerFinder;
@@ -17,6 +16,9 @@ import org.sheepy.vulkan.log.Logger;
 
 public class VulkanInstance
 {
+	private static final String ENGINE_NAME = "Lily";
+	private static final String CREATION_FAILED = "Failed to create VkInstance";
+
 	private static final String[] LAYERS_TO_ENABLE = {
 			"VK_LAYER_KHRONOS_validation",
 			// "VK_LAYER_LUNARG_monitor",
@@ -49,56 +51,62 @@ public class VulkanInstance
 	{
 		if (debug)
 		{
-			ppEnabledLayerNames = LayerFinder.convertToPointerBuffer(stack, LAYERS_TO_ENABLE,
-					verbose);
+			ppEnabledLayerNames = LayerFinder.convertToPointerBuffer(	stack,
+																		LAYERS_TO_ENABLE,
+																		verbose);
 		}
 
-		final VkApplicationInfo appInfo = VkApplicationInfo.callocStack(stack);
-		appInfo.sType(VK_STRUCTURE_TYPE_APPLICATION_INFO);
-		appInfo.pApplicationName(stack.UTF8(title));
-		appInfo.applicationVersion(VK_MAKE_VERSION(1, 0, 0));
-		appInfo.pEngineName(stack.UTF8("Lily"));
-		appInfo.engineVersion(VK_MAKE_VERSION(1, 0, 0));
-		appInfo.apiVersion(VK_MAKE_VERSION(1, 0, 0));
+		final var appInfo = VkApplicationInfo	.mallocStack(stack)
+												.set(	VK_STRUCTURE_TYPE_APPLICATION_INFO,
+														VK_NULL_HANDLE,
+														stack.UTF8(title),
+														VK_MAKE_VERSION(1, 0, 0),
+														stack.UTF8(ENGINE_NAME),
+														VK_MAKE_VERSION(1, 0, 0),
+														VK_MAKE_VERSION(1, 0, 0));
 
 		final var requiredExtensions = requirements.getRequiredInstanceExtensions(stack);
-		final VkInstanceCreateInfo createInfo = VkInstanceCreateInfo.callocStack(stack);
-		createInfo.sType(VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO);
-		createInfo.pApplicationInfo(appInfo);
-		createInfo.ppEnabledExtensionNames(requiredExtensions);
-		createInfo.ppEnabledLayerNames(ppEnabledLayerNames);
+		final var createInfo = VkInstanceCreateInfo	.mallocStack(stack)
+													.set(	VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
+															VK_NULL_HANDLE,
+															0,
+															appInfo,
+															ppEnabledLayerNames,
+															requiredExtensions);
 
-		final var aInstance = stack.mallocPointer(1);
-		final int err = vkCreateInstance(createInfo, null, aInstance);
-		Logger.check(err, "Failed to create VkInstance");
-		final long instance = aInstance.get(0);
+		final var pInstancePtr = stack.mallocPointer(1);
+		Logger.check(CREATION_FAILED, () -> vkCreateInstance(createInfo, null, pInstancePtr));
+		vkInstance = new VkInstance(pInstancePtr.get(0), createInfo);
 
-		vkInstance = new VkInstance(instance, createInfo);
-		if (debug
-				&& requirements.getRequiredInstanceExtensions()
-						.contains(EInstanceExtension.VK_EXT_debug_report))
+		if (debug && requirements.supportDebug())
 		{
-			vkDebugReportCallback = new VkDebugReportCallbackEXT()
-			{
-				@Override
-				public int invoke(	int flags,
-									int objectType,
-									long object,
-									long location,
-									int messageCode,
-									long pLayerPrefix,
-									long pMessage,
-									long pUserData)
-				{
-					final String message = VkDebugReportCallbackEXT.getString(pMessage);
-					System.err.println("ERROR OCCURED: " + message);
-					return 0;
-				}
-			};
-
-			debugCallbackHandle = InstanceUtils.setupDebugCallback(stack, vkInstance,
-					vkDebugReportCallback);
+			installDebugCallback(stack);
 		}
+	}
+
+	private void installDebugCallback(MemoryStack stack)
+	{
+		vkDebugReportCallback = new VkDebugReportCallbackEXT()
+		{
+			@Override
+			public int invoke(	int flags,
+								int objectType,
+								long object,
+								long location,
+								int messageCode,
+								long pLayerPrefix,
+								long pMessage,
+								long pUserData)
+			{
+				final String message = VkDebugReportCallbackEXT.getString(pMessage);
+				System.err.println("ERROR OCCURED: " + message);
+				return 0;
+			}
+		};
+
+		debugCallbackHandle = InstanceUtils.setupDebugCallback(	stack,
+																vkInstance,
+																vkDebugReportCallback);
 	}
 
 	public VkInstance getVkInstance()

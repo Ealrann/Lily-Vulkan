@@ -21,9 +21,7 @@ public final class Extent2D
 	 */
 	public VkExtent2D allocVkExtent2D()
 	{
-		final VkExtent2D vkExtent = VkExtent2D.malloc();
-		vkExtent.set(width, height);
-		return vkExtent;
+		return VkExtent2D.malloc().set(width, height);
 	}
 
 	public int getWidth()

@@ -12,20 +12,24 @@ import org.sheepy.vulkan.log.Logger;
 
 public class InstanceUtils
 {
+	private static final String CREATION_ERROR = "Can't create the Debug Report Callback";
+
 	public static long setupDebugCallback(	MemoryStack stack,
 											VkInstance vkInstance,
 											VkDebugReportCallbackEXT callback)
 	{
-		final VkDebugReportCallbackCreateInfoEXT createInfo = VkDebugReportCallbackCreateInfoEXT
-				.callocStack(stack);
+		final var createInfo = VkDebugReportCallbackCreateInfoEXT.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT);
 		createInfo.flags(VK_DEBUG_REPORT_ERROR_BIT_EXT | VK_DEBUG_REPORT_WARNING_BIT_EXT);
 		createInfo.pfnCallback(callback);
 
 		final LongBuffer pCallback = stack.callocLong(1);
 
-		Logger.check("Can't create the Debug Report Callback",
-				() -> vkCreateDebugReportCallbackEXT(vkInstance, createInfo, null, pCallback));
+		Logger.check(	CREATION_ERROR,
+						() -> vkCreateDebugReportCallbackEXT(	vkInstance,
+																createInfo,
+																null,
+																pCallback));
 
 		return pCallback.get(0);
 	}

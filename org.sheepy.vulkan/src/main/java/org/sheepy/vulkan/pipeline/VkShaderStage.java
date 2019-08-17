@@ -31,7 +31,7 @@ public class VkShaderStage
 		MemoryUtil.memFree(memASCII);
 	}
 
-	private final EShaderStage stage;
+	private final int stage;
 	private final long shaderModule;
 	private final List<SpecializationConstant> specializationConstants;
 
@@ -39,29 +39,37 @@ public class VkShaderStage
 							long shaderModule,
 							List<SpecializationConstant> specializationConstants)
 	{
-		this.stage = stage;
+		this.stage = stage.getValue();
 		this.shaderModule = shaderModule;
-		this.specializationConstants = specializationConstants;
+		this.specializationConstants = List.copyOf(specializationConstants);
 	}
 
 	public void fillInfo(	MemoryStack stack,
 							VkPipelineShaderStageCreateInfo stageInfo,
 							ByteBuffer specializationData)
 	{
+		final var speInfo = allocSpecializationInfo(stack, specializationData);
+
 		stageInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO);
-		stageInfo.stage(stage.getValue());
+		stageInfo.stage(stage);
 		stageInfo.module(shaderModule);
 		stageInfo.pName(MAIN_FUNCTION_NAME);
+		stageInfo.pSpecializationInfo(speInfo);
+	}
 
+	private VkSpecializationInfo allocSpecializationInfo(	MemoryStack stack,
+															ByteBuffer specializationData)
+	{
+		VkSpecializationInfo speInfo = null;
 		if (specializationConstants.isEmpty() == false)
 		{
-			final var speInfo = VkSpecializationInfo.callocStack(stack);
-			final var mapEntries = VkSpecializationMapEntry
-					.mallocStack(specializationConstants.size(), stack);
+			final int constantCount = specializationConstants.size();
+			final var mapEntries = VkSpecializationMapEntry.mallocStack(constantCount, stack);
 
 			int offset = 0;
-			for (final var constant : specializationConstants)
+			for (int i = 0; i < constantCount; i++)
 			{
+				final var constant = specializationConstants.get(i);
 				final var entry = mapEntries.get();
 				final int size = constant.getSize();
 
@@ -74,10 +82,9 @@ public class VkShaderStage
 
 			mapEntries.flip();
 
-			speInfo.pMapEntries(mapEntries);
-			speInfo.pData(specializationData);
-
-			stageInfo.pSpecializationInfo(speInfo);
+			speInfo = VkSpecializationInfo.callocStack(stack);
+			speInfo.set(mapEntries, specializationData);
 		}
+		return speInfo;
 	}
 }

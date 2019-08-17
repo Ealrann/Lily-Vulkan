@@ -30,8 +30,9 @@ public final class MemoryChunk implements IAllocable<IVulkanContext>
 	{
 		ptr = allocateBuffer(context);
 		long offset = 0;
-		for (final MemoryConsumer memoryConsumer : consumers)
+		for (int i = 0; i < consumers.size(); i++)
 		{
+			final var memoryConsumer = consumers.get(i);
 			final var size = memoryConsumer.size;
 			memoryConsumer.callBack.finalize(ptr + offset, size);
 			offset += size;

@@ -13,7 +13,7 @@ import org.sheepy.vulkan.resource.buffer.BufferUtils;
 import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
 import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket;
 
-public class ImmediatePushCommand implements IDataFlowCommand
+public final class ImmediatePushCommand implements IDataFlowCommand
 {
 	private final MemoryTicket ticket;
 
@@ -47,7 +47,7 @@ public class ImmediatePushCommand implements IDataFlowCommand
 
 		vkCmdPipelineBarrier(commandBuffer, srcStage1, dstStage1, 0, null, barrierInfo, null);
 
-		BufferUtils.copyBuffer(commandBuffer, srcBuffer, offset, trgBuffer, trgOffset, size);
+		BufferUtils.copyBuffer(stack, commandBuffer, srcBuffer, offset, trgBuffer, trgOffset, size);
 	}
 
 	@Override

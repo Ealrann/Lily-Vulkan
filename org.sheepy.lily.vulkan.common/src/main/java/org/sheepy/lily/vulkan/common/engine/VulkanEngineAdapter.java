@@ -11,7 +11,6 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Autorun;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
@@ -273,7 +272,10 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 			for (final IResource resource : resources)
 			{
 				final var resourceAdapter = IResourceAdapter.adapt(resource);
-				allocationList.add(resourceAdapter);
+				if (resourceAdapter != null)
+				{
+					allocationList.add(resourceAdapter);
+				}
 			}
 		}
 		return allocationList;
@@ -401,10 +403,5 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	public VulkanInputManager getInputManager()
 	{
 		return inputManager;
-	}
-
-	public static VulkanEngineAdapter adapt(VulkanEngine engine)
-	{
-		return IAdapterFactoryService.INSTANCE.adapt(engine, VulkanEngineAdapter.class);
 	}
 }
