@@ -13,11 +13,12 @@ import org.sheepy.vulkan.pipeline.VkShaderStage;
 
 public class VkComputePipeline extends VkPipeline<IProcessContext>
 {
+	private static final String FAILED_TO_CREATE_COMPUTE_PIPELINE = "Failed to create compute pipeline";
 	private final VkPipelineLayout<? super IProcessContext> pipelineLayout;
 	private final VkShaderStage shaderStage;
 	private final ByteBuffer specializationData;
 
-	protected long[] pipelineIds;
+	protected long pipelineId;
 
 	public VkComputePipeline(	VkPipelineLayout<? super IProcessContext> pipelineLayout,
 								VkShaderStage shaderStage,
@@ -29,8 +30,7 @@ public class VkComputePipeline extends VkPipeline<IProcessContext>
 		this.shaderStage = shaderStage;
 		this.specializationData = specializationData;
 
-		pipelineIds = new long[1];
-		pipelineIds[0] = -1;
+		pipelineId = -1;
 	}
 
 	@Override
@@ -47,29 +47,30 @@ public class VkComputePipeline extends VkPipeline<IProcessContext>
 		pipelineCreateInfo.sType(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO);
 		pipelineCreateInfo.layout(pipelineLayout.getId());
 		shaderStage.fillInfo(stack, pipelineCreateInfo.stage(), specializationData);
-
 		pipelineCreateInfos.flip();
 
-		Logger.check("Failed to create compute pipeline!", () -> vkCreateComputePipelines(device,
-				VK_NULL_HANDLE, pipelineCreateInfos, null, pipelineIds));
+		final var pPipelineId = stack.mallocLong(1);
+		Logger.check(	FAILED_TO_CREATE_COMPUTE_PIPELINE,
+						() -> vkCreateComputePipelines(	device,
+														VK_NULL_HANDLE,
+														pipelineCreateInfos,
+														null,
+														pPipelineId));
+
+		pipelineId = pPipelineId.get(0);
 	}
 
 	@Override
 	public void free(IProcessContext context)
 	{
 		final var device = context.getVkDevice();
-
-		for (int i = 0; i < pipelineIds.length; i++)
-		{
-			final long pipelineId = pipelineIds[i];
-			vkDestroyPipeline(device, pipelineId, null);
-			pipelineIds[i] = -1;
-		}
+		vkDestroyPipeline(device, pipelineId, null);
+		pipelineId = -1;
 	}
 
 	@Override
 	protected long getPipelineId()
 	{
-		return pipelineIds[0];
+		return pipelineId;
 	}
 }

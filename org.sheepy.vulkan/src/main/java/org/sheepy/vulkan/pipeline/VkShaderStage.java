@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.pipeline;
 
-import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
 import java.util.List;
@@ -50,11 +50,13 @@ public class VkShaderStage
 	{
 		final var speInfo = allocSpecializationInfo(stack, specializationData);
 
-		stageInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO);
-		stageInfo.stage(stage);
-		stageInfo.module(shaderModule);
-		stageInfo.pName(MAIN_FUNCTION_NAME);
-		stageInfo.pSpecializationInfo(speInfo);
+		stageInfo.set(	VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO,
+						VK_NULL_HANDLE,
+						0,
+						stage,
+						shaderModule,
+						MAIN_FUNCTION_NAME,
+						speInfo);
 	}
 
 	private VkSpecializationInfo allocSpecializationInfo(	MemoryStack stack,
@@ -72,10 +74,9 @@ public class VkShaderStage
 				final var constant = specializationConstants.get(i);
 				final var entry = mapEntries.get();
 				final int size = constant.getSize();
+				final int constantId = constant.getConstantId();
 
-				entry.constantID(constant.getConstantId());
-				entry.size(size);
-				entry.offset(offset);
+				entry.set(constantId, offset, size);
 
 				offset += size;
 			}

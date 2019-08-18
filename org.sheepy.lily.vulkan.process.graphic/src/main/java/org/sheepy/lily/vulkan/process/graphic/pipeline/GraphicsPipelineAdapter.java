@@ -62,9 +62,16 @@ public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicCon
 		final var dynamicState = pipeline.getDynamicState();
 		final var specializationData = pipeline.getSpecializationData();
 
-		vkGraphicsPipeline = new VkGraphicsPipeline(getVkPipelineLayout(), colorBlend, rasterizer,
-				inputAssembly, viewportState, dynamicState, inputState, shaderStages,
-				specializationData, subpass);
+		vkGraphicsPipeline = new VkGraphicsPipeline(getVkPipelineLayout(),
+													colorBlend,
+													rasterizer,
+													inputAssembly,
+													viewportState,
+													dynamicState,
+													inputState,
+													shaderStages,
+													specializationData,
+													subpass);
 		vkGraphicsPipeline.allocate(context);
 	}
 
