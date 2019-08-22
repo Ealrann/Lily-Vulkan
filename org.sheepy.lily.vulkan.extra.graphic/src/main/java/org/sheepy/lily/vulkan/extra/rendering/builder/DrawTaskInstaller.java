@@ -10,6 +10,10 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.rendering.VertexProvider;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
+import org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer;
+import org.sheepy.lily.vulkan.model.process.graphic.Draw;
+import org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
@@ -32,7 +36,7 @@ public final class DrawTaskInstaller
 		return (int) entities.count();
 	}
 
-	public void install(BufferContext context)
+	public IDrawSetup install(BufferContext context)
 	{
 		final var pipeline = context.pipelineContext.pipeline;
 		final var taskPkg = pipeline.getTaskPkg();
@@ -42,8 +46,8 @@ public final class DrawTaskInstaller
 		final var dataProviders = buffer.getDataProviders();
 
 		final List<VertexBinding> vertexBufferRef = new ArrayList<>();
+		final List<IVertexProviderAdapter> vertexProviders = new ArrayList<>();
 		int indexIndex = -1;
-		int vertexCount = 0;
 
 		for (int i = 0; i < dataProviders.size(); i++)
 		{
@@ -59,7 +63,7 @@ public final class DrawTaskInstaller
 			else if (provider instanceof VertexProvider)
 			{
 				final var adapter = IVertexProviderAdapter.adapt((VertexProvider<?>) provider);
-				vertexCount += adapter.getVertexCount();
+				vertexProviders.add(adapter);
 
 				final var vertexRef = ResourceFactory.eINSTANCE.createCompositeBufferReference();
 				vertexRef.setBuffer(buffer);
@@ -73,8 +77,7 @@ public final class DrawTaskInstaller
 		}
 
 		final var constantBuffer = context.pipelineContext.constantBuffer;
-		final var proxyConstantBuffer = RenderingFactory.eINSTANCE
-				.createRenderProxyConstantBuffer();
+		final var proxyConstantBuffer = RenderingFactory.eINSTANCE.createRenderProxyConstantBuffer();
 		proxyConstantBuffer.setConstantBuffer(constantBuffer);
 		proxyConstantBuffer.setPartIndex(context.part);
 		resourcePkg.getResources().add(proxyConstantBuffer);
@@ -103,18 +106,90 @@ public final class DrawTaskInstaller
 			bindIndex.setIndexType(indexProvider.getIndexType());
 
 			final var drawIndexed = GraphicFactory.eINSTANCE.createDrawIndexed();
-			drawIndexed.setIndexCount(indexProviderAdapter.getIndexCount());
 			drawIndexed.setInstanceCount(instanceCount);
 
 			taskPkg.getTasks().add(bindIndex);
 			taskPkg.getTasks().add(drawIndexed);
+
+			return new IndexedDrawSetup(bindVertex, bindIndex, drawIndexed, indexProviderAdapter);
 		}
 		else
 		{
 			final var draw = GraphicFactory.eINSTANCE.createDraw();
-			draw.setVertexCount(vertexCount);
-
 			taskPkg.getTasks().add(draw);
+
+			return new DrawSetup(bindVertex, draw, vertexProviders);
+		}
+	}
+
+	public static interface IDrawSetup
+	{
+		void update();
+	}
+
+	private static final class IndexedDrawSetup implements IDrawSetup
+	{
+		private final BindVertexBuffer vertexBindTask;
+		private final BindIndexBuffer indexBindTask;
+		private final DrawIndexed drawTask;
+		private final IIndexProviderAdapter indexProvider;
+
+		private boolean dirty = true;
+
+		private IndexedDrawSetup(	BindVertexBuffer vertexBindTask,
+									BindIndexBuffer indexBindTask,
+									DrawIndexed drawTask,
+									IIndexProviderAdapter indexProvider)
+		{
+			this.vertexBindTask = vertexBindTask;
+			this.indexBindTask = indexBindTask;
+			this.drawTask = drawTask;
+			this.indexProvider = indexProvider;
+		}
+
+		@Override
+		public void update()
+		{
+			if (dirty)
+			{
+				drawTask.setIndexCount(indexProvider.getIndexCount());
+				dirty = false;
+			}
+		}
+	}
+
+	private static final class DrawSetup implements IDrawSetup
+	{
+		private final BindVertexBuffer bindTask;
+		private final Draw drawTask;
+		private final List<IVertexProviderAdapter> vertexProviders;
+
+		private boolean dirty = true;
+
+		private DrawSetup(	BindVertexBuffer bindTask,
+							Draw drawTask,
+							List<IVertexProviderAdapter> vertexProviders)
+		{
+			this.bindTask = bindTask;
+			this.drawTask = drawTask;
+			this.vertexProviders = List.copyOf(vertexProviders);
+		}
+
+		@Override
+		public void update()
+		{
+			if (dirty)
+			{
+				int vertexCount = 0;
+				for (final IVertexProviderAdapter vertexProvider : vertexProviders)
+				{
+					vertexCount += vertexProvider.getVertexCount();
+				}
+
+				drawTask.setVertexCount(vertexCount);
+
+				dirty = false;
+			}
 		}
 	}
 }

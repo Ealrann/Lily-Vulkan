@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Autorun;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.adapter.annotation.Tick;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
@@ -18,6 +19,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.rendering.builder.BufferInstaller;
 import org.sheepy.lily.vulkan.extra.rendering.builder.DrawTaskInstaller;
+import org.sheepy.lily.vulkan.extra.rendering.builder.DrawTaskInstaller.IDrawSetup;
 import org.sheepy.lily.vulkan.extra.rendering.builder.PipelineContext;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
@@ -32,13 +34,12 @@ public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 	private final GenericRenderer<T> maintainer;
 	private final GraphicProcess graphicProcess;
 	private final List<PipelineContext> contexts = new ArrayList<>();
-	private final List<DescriptedResource> commonResources;
+	private final List<IDrawSetup> drawSetups = new ArrayList<>();
 
 	public GenericRendererMaintainerAdapter(GenericRenderer<T> maintainer)
 	{
 		this.maintainer = maintainer;
 		this.graphicProcess = ModelUtil.findParent(maintainer, GraphicProcess.class);
-		this.commonResources = List.copyOf(gatherCommonResources(maintainer));
 	}
 
 	@Autorun
@@ -50,11 +51,22 @@ public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 		}
 	}
 
+	@Tick
+	public void update()
+	{
+		for (int i = 0; i < drawSetups.size(); i++)
+		{
+			final var drawSetup = drawSetups.get(i);
+			drawSetup.update();
+		}
+	}
+
 	private void buildPipelines()
 	{
 		final var structures = maintainer.getRenderedStructures().stream();
 		final var structInstaller = new BufferInstaller<>(maintainer);
 		final var presentedEClass = ModelUtil.resolveGenericType(maintainer, RENDERER_ECLASS);
+		final var commonResources = List.copyOf(gatherCommonResources(maintainer));
 		final var pipContextBuilder = new PipelineContext.Builder(commonResources, maintainer);
 
 		structures.forEach(s -> preparePipeline(pipContextBuilder, structInstaller, s));
@@ -94,7 +106,7 @@ public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 		for (int i = 0; i < structureAdapter.getPartCount(); i++)
 		{
 			final var bufferContext = bufferInstaller.install(pipelineContext, structure, i);
-			drawInstaller.install(bufferContext);
+			drawSetups.add(drawInstaller.install(bufferContext));
 		}
 	}
 
@@ -110,7 +122,7 @@ public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 		{
 			final var pipelineContext = newPipelineContext(contextBuilder, pipelineCount + i + 1);
 			final var bufferContext = bufferInstaller.install(pipelineContext, structure, i);
-			drawInstaller.install(bufferContext);
+			drawSetups.add(drawInstaller.install(bufferContext));
 		}
 	}
 
@@ -141,7 +153,9 @@ public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 		final var name = maintainer.getName();
 		final var className = classifier.getSimpleName();
 		final int count = contexts.size();
-		System.out
-				.println(String.format("Create %d pipelines for %s [%s].", count, name, className));
+		System.out.println(String.format(	"Create %d pipelines for %s [%s].",
+											count,
+											name,
+											className));
 	}
 }
