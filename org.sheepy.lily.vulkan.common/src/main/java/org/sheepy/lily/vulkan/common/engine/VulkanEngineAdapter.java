@@ -12,8 +12,6 @@ import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Autorun;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.DebugUtil;
@@ -113,11 +111,11 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 			{
 				if (engine.isEnabled())
 				{
-					start();
+					load();
 				}
 				else
 				{
-					stop();
+					dispose();
 				}
 			}
 		}
@@ -150,32 +148,32 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		}
 	}
 
-	@Autorun
-	public void load()
+	@Override
+	public void start()
 	{
 		application.eAdapters().add(applicationAdapter);
 
 		if (engine.isEnabled())
 		{
-			start();
+			load();
 		}
 	}
 
-	@Dispose
-	public void dispose()
+	@Override
+	public void stop()
 	{
 		if (engine != null)
 		{
 			if (engine.isEnabled())
 			{
-				stop();
+				dispose();
 			}
 		}
 
 		application.eAdapters().remove(applicationAdapter);
 	}
 
-	private void start()
+	private void load()
 	{
 		try
 		{
@@ -219,7 +217,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		}
 	}
 
-	private void stop()
+	private void dispose()
 	{
 		if (allocated == true)
 		{
