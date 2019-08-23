@@ -201,7 +201,8 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 
 		if (vkPipelines.size() == 1)
 		{
-			vkPipelines.get(0).bindPipeline(context.commandBuffer);
+			final var vkPipeline = vkPipelines.get(0);
+			vkPipeline.bindPipeline(context.commandBuffer);
 		}
 
 		for (int i = 0; i < taskWrappers.size(); i++)
