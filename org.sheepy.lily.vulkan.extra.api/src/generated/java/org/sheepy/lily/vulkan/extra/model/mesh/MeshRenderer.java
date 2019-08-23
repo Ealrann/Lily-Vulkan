@@ -14,6 +14,6 @@ import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
  * @model
  * @generated
  */
-public interface MeshRenderer extends GenericRenderer<MeshStructure<?>>
+public interface MeshRenderer extends GenericRenderer<IMeshStructure>
 {
 } // MeshRenderer

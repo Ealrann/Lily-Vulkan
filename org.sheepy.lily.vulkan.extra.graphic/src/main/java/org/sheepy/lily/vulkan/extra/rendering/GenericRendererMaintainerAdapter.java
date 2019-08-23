@@ -26,8 +26,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 
 @Statefull
 @Adapter(scope = GenericRenderer.class, scopeInheritance = true)
-public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
-		implements IVulkanAdapter
+public final class GenericRendererMaintainerAdapter<T extends Structure> implements IVulkanAdapter
 {
 	private static final EClass RENDERER_ECLASS = RenderingPackage.Literals.GENERIC_RENDERER;
 
@@ -103,7 +102,7 @@ public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 		final var drawInstaller = new DrawTaskInstaller(structure);
 		final var pipelineContext = newPipelineContext(contextBuilder, pipelineCount + 1);
 
-		for (int i = 0; i < structureAdapter.getPartCount(); i++)
+		for (int i = 0; i < structureAdapter.getPartCount(structure); i++)
 		{
 			final var bufferContext = bufferInstaller.install(pipelineContext, structure, i);
 			drawSetups.add(drawInstaller.install(bufferContext));
@@ -118,7 +117,7 @@ public final class GenericRendererMaintainerAdapter<T extends Structure<?>>
 		final var structureAdapter = IStructureAdapter.adapt(structure);
 		final var drawInstaller = new DrawTaskInstaller(structure);
 
-		for (int i = 0; i < structureAdapter.getPartCount(); i++)
+		for (int i = 0; i < structureAdapter.getPartCount(structure); i++)
 		{
 			final var pipelineContext = newPipelineContext(contextBuilder, pipelineCount + i + 1);
 			final var bufferContext = bufferInstaller.install(pipelineContext, structure, i);

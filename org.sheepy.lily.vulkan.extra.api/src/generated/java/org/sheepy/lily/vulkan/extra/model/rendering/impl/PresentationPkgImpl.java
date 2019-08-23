@@ -42,7 +42,7 @@ public class PresentationPkgImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Structure<?>> structures;
+	protected EList<Structure> structures;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,11 +70,11 @@ public class PresentationPkgImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public EList<Structure<?>> getStructures()
+	public EList<Structure> getStructures()
 	{
 		if (structures == null)
 		{
-			structures = new EObjectContainmentEList<Structure<?>>(Structure.class, this, RenderingPackage.PRESENTATION_PKG__STRUCTURES);
+			structures = new EObjectContainmentEList<Structure>(Structure.class, this, RenderingPackage.PRESENTATION_PKG__STRUCTURES);
 		}
 		return structures;
 	}
@@ -124,7 +124,7 @@ public class PresentationPkgImpl extends MinimalEObjectImpl.Container implements
 		{
 			case RenderingPackage.PRESENTATION_PKG__STRUCTURES:
 				getStructures().clear();
-				getStructures().addAll((Collection<? extends Structure<?>>)newValue);
+				getStructures().addAll((Collection<? extends Structure>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

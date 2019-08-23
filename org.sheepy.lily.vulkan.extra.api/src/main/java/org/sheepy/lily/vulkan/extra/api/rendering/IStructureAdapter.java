@@ -6,9 +6,10 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
 public interface IStructureAdapter extends IVulkanAdapter
 {
-	int getPartCount();
+	int getPartCount(Structure structure);
+	int getInstanceCount(Structure structure);
 
-	public static IStructureAdapter adapt(Structure<?> structure)
+	public static IStructureAdapter adapt(Structure structure)
 	{
 		return IAdapterFactoryService.INSTANCE.adapt(structure, IStructureAdapter.class);
 	}

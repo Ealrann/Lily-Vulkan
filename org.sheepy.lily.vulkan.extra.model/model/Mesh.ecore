@@ -5,17 +5,18 @@
       eSuperTypes="Rendering.ecore#//Presentation"/>
   <eClassifiers xsi:type="ecore:EClass" name="MeshRenderer">
     <eGenericSuperTypes eClassifier="ecore:EClass Rendering.ecore#//GenericRenderer">
-      <eTypeArguments eClassifier="#//MeshStructure">
-        <eTypeArguments/>
-      </eTypeArguments>
+      <eTypeArguments eClassifier="#//IMeshStructure"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MeshStructure" abstract="true" interface="true">
+  <eClassifiers xsi:type="ecore:EClass" name="MeshStructure" abstract="true" interface="true"
+      eSuperTypes="#//IMeshStructure">
     <eTypeParameters name="T">
       <eBounds eClassifier="#//Mesh"/>
     </eTypeParameters>
-    <eGenericSuperTypes eClassifier="ecore:EClass Rendering.ecore#//Structure">
-      <eTypeArguments eTypeParameter="#//MeshStructure/T"/>
-    </eGenericSuperTypes>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="meshes" lowerBound="1"
+        upperBound="-1" containment="true">
+      <eGenericType eTypeParameter="#//MeshStructure/T"/>
+    </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IMeshStructure" eSuperTypes="Rendering.ecore#//Structure"/>
 </ecore:EPackage>

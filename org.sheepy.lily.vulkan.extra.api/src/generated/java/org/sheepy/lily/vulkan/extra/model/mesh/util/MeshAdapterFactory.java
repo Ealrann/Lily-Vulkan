@@ -99,6 +99,11 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 				return createMeshStructureAdapter();
 			}
 			@Override
+			public Adapter caseIMeshStructure(IMeshStructure object)
+			{
+				return createIMeshStructureAdapter();
+			}
+			@Override
 			public Adapter casePresentation(Presentation object)
 			{
 				return createPresentationAdapter();
@@ -139,12 +144,12 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 				return createMaintainerAdapter();
 			}
 			@Override
-			public <T extends Structure<?>> Adapter caseGenericRenderer(GenericRenderer<T> object)
+			public <T extends Structure> Adapter caseGenericRenderer(GenericRenderer<T> object)
 			{
 				return createGenericRendererAdapter();
 			}
 			@Override
-			public <T extends Presentation> Adapter caseStructure(Structure<T> object)
+			public Adapter caseStructure(Structure object)
 			{
 				return createStructureAdapter();
 			}
@@ -211,6 +216,21 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createMeshStructureAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure <em>IMesh Structure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure
+	 * @generated
+	 */
+	public Adapter createIMeshStructureAdapter()
 	{
 		return null;
 	}

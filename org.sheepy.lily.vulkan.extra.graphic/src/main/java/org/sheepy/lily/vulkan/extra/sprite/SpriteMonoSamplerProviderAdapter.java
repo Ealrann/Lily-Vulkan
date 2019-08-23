@@ -23,8 +23,7 @@ import org.sheepy.vulkan.model.image.ImagePackage;
 @Adapter(scope = SpriteMonoSamplerProvider.class)
 public class SpriteMonoSamplerProviderAdapter implements IResourceProviderAdapter
 {
-	private final List<EStructuralFeature> featureToCopy = List
-			.copyOf(ImagePackage.Literals.SAMPLER_INFO.getEAllStructuralFeatures());
+	private final List<EStructuralFeature> featureToCopy = List.copyOf(ImagePackage.Literals.SAMPLER_INFO.getEAllStructuralFeatures());
 
 	@Override
 	public List<DescriptedResource> getResources(ResourceProvider provider)
@@ -32,7 +31,7 @@ public class SpriteMonoSamplerProviderAdapter implements IResourceProviderAdapte
 		final var spriteProvider = (SpriteMonoSamplerProvider) provider;
 		final var renderer = ModelUtil.findParent(provider, SpriteRenderer.class);
 		final var structures = renderer.getRenderedStructures().stream();
-		final var sprites = structures.flatMap(s -> s.getPresentations().stream());
+		final var sprites = structures.flatMap(s -> s.getSprites().stream());
 		final var spriteFiles = sprites.map(s -> EcoreUtil.copy(s.getFile()));
 		final var samplerInfo = spriteProvider.getSamplerInfo();
 

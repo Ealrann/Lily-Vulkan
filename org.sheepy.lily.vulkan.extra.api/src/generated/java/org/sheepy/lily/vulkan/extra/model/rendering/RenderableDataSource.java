@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface RenderableDataSource<T extends Structure<?>> extends EObject
+public interface RenderableDataSource<T extends Structure> extends EObject
 {
 	/**
 	 * Returns the value of the '<em><b>Structure</b></em>' reference.

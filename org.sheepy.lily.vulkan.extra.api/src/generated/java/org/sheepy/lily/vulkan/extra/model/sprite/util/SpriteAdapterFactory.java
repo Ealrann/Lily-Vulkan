@@ -8,22 +8,17 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
-
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.sprite.*;
-
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IProcessPart;
-
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 
 /**
@@ -145,7 +140,7 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 				return createMaintainerAdapter();
 			}
 			@Override
-			public <T extends Structure<?>> Adapter caseGenericRenderer(GenericRenderer<T> object)
+			public <T extends Structure> Adapter caseGenericRenderer(GenericRenderer<T> object)
 			{
 				return createGenericRendererAdapter();
 			}
@@ -160,7 +155,7 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 				return createResourceProviderAdapter();
 			}
 			@Override
-			public <T extends Presentation> Adapter caseStructure(Structure<T> object)
+			public Adapter caseStructure(Structure object)
 			{
 				return createStructureAdapter();
 			}

@@ -109,6 +109,31 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IMeshStructureItemProvider iMeshStructureItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIMeshStructureAdapter()
+	{
+		if (iMeshStructureItemProvider == null)
+		{
+			iMeshStructureItemProvider = new IMeshStructureItemProvider(this);
+		}
+
+		return iMeshStructureItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -226,6 +251,7 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 	public void dispose()
 	{
 		if (meshRendererItemProvider != null) meshRendererItemProvider.dispose();
+		if (iMeshStructureItemProvider != null) iMeshStructureItemProvider.dispose();
 	}
 
 	/**

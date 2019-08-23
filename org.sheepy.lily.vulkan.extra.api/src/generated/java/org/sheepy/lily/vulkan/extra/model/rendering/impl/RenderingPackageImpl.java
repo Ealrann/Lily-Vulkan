@@ -427,17 +427,6 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getStructure_Presentations()
-	{
-		return (EReference)structureEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getPresentation()
 	{
 		return presentationEClass;
@@ -818,7 +807,6 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		createEAttribute(axisEClass, AXIS__RIGHT_DIRECTION);
 
 		structureEClass = createEClass(STRUCTURE);
-		createEReference(structureEClass, STRUCTURE__PRESENTATIONS);
 
 		presentationEClass = createEClass(PRESENTATION);
 		createEReference(presentationEClass, PRESENTATION__PRESENTED_ENTITIES);
@@ -898,7 +886,6 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 
 		// Create type parameters
-		ETypeParameter structureEClass_T = addETypeParameter(structureEClass, "T");
 		ETypeParameter genericRendererEClass_T = addETypeParameter(genericRendererEClass, "T");
 		ETypeParameter renderDataProviderEClass_T = addETypeParameter(renderDataProviderEClass, "T");
 		ETypeParameter dataProviderPkgEClass_T = addETypeParameter(dataProviderPkgEClass, "T");
@@ -908,35 +895,19 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		ETypeParameter indexProviderEClass_T = addETypeParameter(indexProviderEClass, "T");
 
 		// Set bounds for type parameters
-		EGenericType g1 = createEGenericType(this.getPresentation());
-		structureEClass_T.getEBounds().add(g1);
-		g1 = createEGenericType(this.getStructure());
-		EGenericType g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
+		EGenericType g1 = createEGenericType(this.getStructure());
 		genericRendererEClass_T.getEBounds().add(g1);
 		g1 = createEGenericType(this.getStructure());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
 		renderDataProviderEClass_T.getEBounds().add(g1);
 		g1 = createEGenericType(this.getStructure());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
 		dataProviderPkgEClass_T.getEBounds().add(g1);
 		g1 = createEGenericType(this.getStructure());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
 		describedDataProviderEClass_T.getEBounds().add(g1);
 		g1 = createEGenericType(this.getStructure());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
 		renderableDataSourceEClass_T.getEBounds().add(g1);
 		g1 = createEGenericType(this.getStructure());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
 		vertexProviderEClass_T.getEBounds().add(g1);
 		g1 = createEGenericType(this.getStructure());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
 		indexProviderEClass_T.getEBounds().add(g1);
 
 		// Add supertypes to classes
@@ -946,7 +917,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		g1 = createEGenericType(theGraphicPackage.getGraphicsPipeline());
 		genericRendererEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theMaintainerPackage.getMaintainer());
-		g2 = createEGenericType(theGraphicPackage.getGraphicsPipeline());
+		EGenericType g2 = createEGenericType(theGraphicPackage.getGraphicsPipeline());
 		g1.getETypeArguments().add(g2);
 		genericRendererEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theResourcePackage.getBufferDataProvider());
@@ -992,17 +963,12 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEAttribute(getAxis_RightDirection(), theTypesPackage.getVector3d(), "rightDirection", "0;0;0", 0, 1, Axis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(structureEClass, Structure.class, "Structure", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(structureEClass_T);
-		initEReference(getStructure_Presentations(), g1, null, "presentations", null, 1, -1, Structure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(presentationEClass, Presentation.class, "Presentation", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPresentation_PresentedEntities(), this.getPresentableEntity(), this.getPresentableEntity_Presentation(), "presentedEntities", null, 0, -1, Presentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(presentationPkgEClass, PresentationPkg.class, "PresentationPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(this.getStructure());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		initEReference(getPresentationPkg_Structures(), g1, null, "structures", null, 0, -1, PresentationPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPresentationPkg_Structures(), this.getStructure(), null, "structures", null, 0, -1, PresentationPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(presentableEntityEClass, PresentableEntity.class, "PresentableEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPresentableEntity_Presentation(), this.getPresentation(), this.getPresentation_PresentedEntities(), "presentation", null, 0, 1, PresentableEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

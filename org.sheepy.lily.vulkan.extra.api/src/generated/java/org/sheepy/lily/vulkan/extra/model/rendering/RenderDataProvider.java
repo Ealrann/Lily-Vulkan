@@ -14,6 +14,6 @@ import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface RenderDataProvider<T extends Structure<?>> extends BufferDataProvider<RenderableDataSource<T>>
+public interface RenderDataProvider<T extends Structure> extends BufferDataProvider<RenderableDataSource<T>>
 {
 } // RenderDataProvider

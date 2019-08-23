@@ -16,7 +16,9 @@
     <genClasses ecoreClass="Mesh.ecore#//MeshRenderer"/>
     <genClasses ecoreClass="Mesh.ecore#//MeshStructure">
       <genTypeParameters ecoreTypeParameter="Mesh.ecore#//MeshStructure/T"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mesh.ecore#//MeshStructure/meshes"/>
     </genClasses>
+    <genClasses ecoreClass="Mesh.ecore#//IMeshStructure"/>
   </genPackages>
   <genPackages prefix="Nuklear" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
       ecorePackage="Nuklear.ecore#/">
@@ -55,10 +57,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//Axis/upDirection"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//Axis/rightDirection"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Rendering.ecore#//Structure">
-      <genTypeParameters ecoreTypeParameter="Rendering.ecore#//Structure/T"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//Structure/presentations"/>
-    </genClasses>
+    <genClasses image="false" ecoreClass="Rendering.ecore#//Structure"/>
     <genClasses ecoreClass="Rendering.ecore#//Presentation">
       <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
           ecoreFeature="ecore:EReference Rendering.ecore#//Presentation/presentedEntities"/>
@@ -132,6 +131,7 @@
     <genClasses ecoreClass="Sprite.ecore#//SpriteStructure">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sprite.ecore#//SpriteStructure/width"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sprite.ecore#//SpriteStructure/height"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteStructure/sprites"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -30,7 +30,7 @@ import org.sheepy.lily.vulkan.model.resource.PushBuffer;
  * @model abstract="true"
  * @generated
  */
-public interface GenericRenderer<T extends Structure<?>> extends GraphicsPipeline, Maintainer<GraphicsPipeline>
+public interface GenericRenderer<T extends Structure> extends GraphicsPipeline, Maintainer<GraphicsPipeline>
 {
 	/**
 	 * Returns the value of the '<em><b>Data Provider Pkg</b></em>' containment reference.

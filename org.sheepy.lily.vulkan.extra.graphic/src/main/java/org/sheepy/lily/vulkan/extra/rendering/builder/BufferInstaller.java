@@ -11,7 +11,7 @@ import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 
-public final class BufferInstaller<T extends Structure<?>>
+public final class BufferInstaller<T extends Structure>
 {
 	public final boolean hasDynamicDescriptors;
 	public final boolean hasIndexData;

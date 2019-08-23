@@ -101,7 +101,7 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createAxisAdapter();
 			}
 			@Override
-			public <T extends Presentation> Adapter caseStructure(Structure<T> object)
+			public Adapter caseStructure(Structure object)
 			{
 				return createStructureAdapter();
 			}
@@ -121,37 +121,37 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createPresentableEntityAdapter();
 			}
 			@Override
-			public <T extends Structure<?>> Adapter caseGenericRenderer(GenericRenderer<T> object)
+			public <T extends Structure> Adapter caseGenericRenderer(GenericRenderer<T> object)
 			{
 				return createGenericRendererAdapter();
 			}
 			@Override
-			public <T extends Structure<?>> Adapter caseRenderDataProvider(RenderDataProvider<T> object)
+			public <T extends Structure> Adapter caseRenderDataProvider(RenderDataProvider<T> object)
 			{
 				return createRenderDataProviderAdapter();
 			}
 			@Override
-			public <T extends Structure<?>> Adapter caseDataProviderPkg(DataProviderPkg<T> object)
+			public <T extends Structure> Adapter caseDataProviderPkg(DataProviderPkg<T> object)
 			{
 				return createDataProviderPkgAdapter();
 			}
 			@Override
-			public <T extends Structure<?>> Adapter caseDescribedDataProvider(org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider<T> object)
+			public <T extends Structure> Adapter caseDescribedDataProvider(org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider<T> object)
 			{
 				return createDescribedDataProviderAdapter();
 			}
 			@Override
-			public <T extends Structure<?>> Adapter caseRenderableDataSource(RenderableDataSource<T> object)
+			public <T extends Structure> Adapter caseRenderableDataSource(RenderableDataSource<T> object)
 			{
 				return createRenderableDataSourceAdapter();
 			}
 			@Override
-			public <T extends Structure<?>> Adapter caseVertexProvider(VertexProvider<T> object)
+			public <T extends Structure> Adapter caseVertexProvider(VertexProvider<T> object)
 			{
 				return createVertexProviderAdapter();
 			}
 			@Override
-			public <T extends Structure<?>> Adapter caseIndexProvider(IndexProvider<T> object)
+			public <T extends Structure> Adapter caseIndexProvider(IndexProvider<T> object)
 			{
 				return createIndexProviderAdapter();
 			}

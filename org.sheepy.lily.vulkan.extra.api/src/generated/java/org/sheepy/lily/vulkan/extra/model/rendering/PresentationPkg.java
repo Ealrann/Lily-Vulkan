@@ -26,7 +26,7 @@ public interface PresentationPkg extends EObject
 {
 	/**
 	 * Returns the value of the '<em><b>Structures</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.extra.model.rendering.Structure}<code>&lt;?&gt;</code>.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.extra.model.rendering.Structure}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Structures</em>' containment reference list.
@@ -34,6 +34,6 @@ public interface PresentationPkg extends EObject
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Structure<?>> getStructures();
+	EList<Structure> getStructures();
 
 } // PresentationPkg

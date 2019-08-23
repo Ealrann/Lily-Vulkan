@@ -5,6 +5,7 @@ package org.sheepy.lily.vulkan.extra.model.mesh;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
 /**
@@ -330,6 +331,34 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER_OPERATION_COUNT = RenderingPackage.GENERIC_RENDERER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.impl.IMeshStructureImpl <em>IMesh Structure</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.IMeshStructureImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getIMeshStructure()
+	 * @generated
+	 */
+	int IMESH_STRUCTURE = 3;
+
+	/**
+	 * The number of structural features of the '<em>IMesh Structure</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMESH_STRUCTURE_FEATURE_COUNT = RenderingPackage.STRUCTURE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>IMesh Structure</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMESH_STRUCTURE_OPERATION_COUNT = RenderingPackage.STRUCTURE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure <em>Structure</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -340,13 +369,13 @@ public interface MeshPackage extends EPackage
 	int MESH_STRUCTURE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Presentations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Meshes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_STRUCTURE__PRESENTATIONS = RenderingPackage.STRUCTURE__PRESENTATIONS;
+	int MESH_STRUCTURE__MESHES = IMESH_STRUCTURE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Structure</em>' class.
@@ -355,7 +384,7 @@ public interface MeshPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_STRUCTURE_FEATURE_COUNT = RenderingPackage.STRUCTURE_FEATURE_COUNT + 0;
+	int MESH_STRUCTURE_FEATURE_COUNT = IMESH_STRUCTURE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Structure</em>' class.
@@ -364,7 +393,7 @@ public interface MeshPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_STRUCTURE_OPERATION_COUNT = RenderingPackage.STRUCTURE_OPERATION_COUNT + 0;
+	int MESH_STRUCTURE_OPERATION_COUNT = IMESH_STRUCTURE_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.mesh.Mesh <em>Mesh</em>}'.
@@ -395,6 +424,27 @@ public interface MeshPackage extends EPackage
 	 * @generated
 	 */
 	EClass getMeshStructure();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure#getMeshes <em>Meshes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Meshes</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure#getMeshes()
+	 * @see #getMeshStructure()
+	 * @generated
+	 */
+	EReference getMeshStructure_Meshes();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure <em>IMesh Structure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IMesh Structure</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure
+	 * @generated
+	 */
+	EClass getIMeshStructure();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -446,6 +496,22 @@ public interface MeshPackage extends EPackage
 		 * @generated
 		 */
 		EClass MESH_STRUCTURE = eINSTANCE.getMeshStructure();
+		/**
+		 * The meta object literal for the '<em><b>Meshes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MESH_STRUCTURE__MESHES = eINSTANCE.getMeshStructure_Meshes();
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.impl.IMeshStructureImpl <em>IMesh Structure</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.IMeshStructureImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getIMeshStructure()
+		 * @generated
+		 */
+		EClass IMESH_STRUCTURE = eINSTANCE.getIMeshStructure();
 
 	}
 

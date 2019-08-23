@@ -28,6 +28,8 @@ import org.sheepy.vulkan.resource.indexed.VkInputStateDescriptor;
 
 public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 {
+	private static final String FAILED_TO_CREATE_GRAPHICS_PIPELINE = "Failed to create graphics pipeline";
+
 	private final ShaderStageBuilder shaderStageBuilder;
 	private final InputAssemblyBuilder inputAssemblyBuilder;
 	private final ViewportStateBuilder viewportStateBuilder;
@@ -100,8 +102,9 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 		// -----------------------
 		final var info = VkGraphicsPipelineCreateInfo.callocStack(1, stack);
 		info.sType(VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO);
-		info.pStages(
-				shaderStageBuilder.allocShaderStageInfo(stack, shaderStages, specializationData));
+		info.pStages(shaderStageBuilder.allocShaderStageInfo(	stack,
+																shaderStages,
+																specializationData));
 		info.pVertexInputState(vertexDescriptor.allocCreateInfo(stack));
 		info.pInputAssemblyState(inputAssemblyBuilder.allocCreateInfo(stack, inputAssembly));
 		info.pViewportState(viewportStateBuilder.allocCreateInfo(stack, extent, viewportState));
@@ -120,8 +123,8 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 		info.basePipelineIndex(-1);
 
 		final long[] aId = new long[1];
-		Logger.check("Failed to create graphics pipeline!",
-				() -> vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, info, null, aId));
+		Logger.check(	FAILED_TO_CREATE_GRAPHICS_PIPELINE,
+						() -> vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, info, null, aId));
 		pipelineId = aId[0];
 	}
 

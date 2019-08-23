@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.sprite;
 
+import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
 /**
@@ -15,13 +16,14 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure#getWidth <em>Width</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure#getSprites <em>Sprites</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage#getSpriteStructure()
  * @model
  * @generated
  */
-public interface SpriteStructure extends Structure<Sprite>
+public interface SpriteStructure extends Structure
 {
 	/**
 	 * Returns the value of the '<em><b>Width</b></em>' attribute.
@@ -66,5 +68,17 @@ public interface SpriteStructure extends Structure<Sprite>
 	 * @generated
 	 */
 	void setHeight(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Sprites</b></em>' containment reference list.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.extra.model.sprite.Sprite}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sprites</em>' containment reference list.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage#getSpriteStructure_Sprites()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	EList<Sprite> getSprites();
 
 } // SpriteStructure

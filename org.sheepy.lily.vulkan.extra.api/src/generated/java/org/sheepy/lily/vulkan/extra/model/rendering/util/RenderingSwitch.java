@@ -109,7 +109,7 @@ public class RenderingSwitch<T1> extends Switch<T1>
 			}
 			case RenderingPackage.STRUCTURE:
 			{
-				Structure<?> structure = (Structure<?>)theEObject;
+				Structure structure = (Structure)theEObject;
 				T1 result = caseStructure(structure);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -302,7 +302,7 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Presentation> T1 caseStructure(Structure<T> object)
+	public T1 caseStructure(Structure object)
 	{
 		return null;
 	}
@@ -366,7 +366,7 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Structure<?>> T1 caseGenericRenderer(GenericRenderer<T> object)
+	public <T extends Structure> T1 caseGenericRenderer(GenericRenderer<T> object)
 	{
 		return null;
 	}
@@ -382,7 +382,7 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Structure<?>> T1 caseRenderDataProvider(RenderDataProvider<T> object)
+	public <T extends Structure> T1 caseRenderDataProvider(RenderDataProvider<T> object)
 	{
 		return null;
 	}
@@ -398,7 +398,7 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Structure<?>> T1 caseDataProviderPkg(DataProviderPkg<T> object)
+	public <T extends Structure> T1 caseDataProviderPkg(DataProviderPkg<T> object)
 	{
 		return null;
 	}
@@ -414,7 +414,7 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Structure<?>> T1 caseDescribedDataProvider(org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider<T> object)
+	public <T extends Structure> T1 caseDescribedDataProvider(org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider<T> object)
 	{
 		return null;
 	}
@@ -430,7 +430,7 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Structure<?>> T1 caseRenderableDataSource(RenderableDataSource<T> object)
+	public <T extends Structure> T1 caseRenderableDataSource(RenderableDataSource<T> object)
 	{
 		return null;
 	}
@@ -446,7 +446,7 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Structure<?>> T1 caseVertexProvider(VertexProvider<T> object)
+	public <T extends Structure> T1 caseVertexProvider(VertexProvider<T> object)
 	{
 		return null;
 	}
@@ -462,7 +462,7 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Structure<?>> T1 caseIndexProvider(IndexProvider<T> object)
+	public <T extends Structure> T1 caseIndexProvider(IndexProvider<T> object)
 	{
 		return null;
 	}

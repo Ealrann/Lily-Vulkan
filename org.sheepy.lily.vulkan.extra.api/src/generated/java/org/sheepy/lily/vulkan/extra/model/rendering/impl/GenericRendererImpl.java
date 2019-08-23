@@ -53,7 +53,7 @@ import org.sheepy.lily.vulkan.model.resource.PushBuffer;
  *
  * @generated
  */
-public abstract class GenericRendererImpl<T extends Structure<?>> extends GraphicsPipelineImpl implements GenericRenderer<T>
+public abstract class GenericRendererImpl<T extends Structure> extends GraphicsPipelineImpl implements GenericRenderer<T>
 {
 	/**
 	 * The cached value of the '{@link #getMaintained() <em>Maintained</em>}' reference list.

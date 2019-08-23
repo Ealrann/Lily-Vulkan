@@ -34,7 +34,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
  *
  * @generated
  */
-public class DataProviderPkgImpl<T extends Structure<?>> extends MinimalEObjectImpl.Container implements DataProviderPkg<T>
+public class DataProviderPkgImpl<T extends Structure> extends MinimalEObjectImpl.Container implements DataProviderPkg<T>
 {
 	/**
 	 * The cached value of the '{@link #getDataProviders() <em>Data Providers</em>}' containment reference list.

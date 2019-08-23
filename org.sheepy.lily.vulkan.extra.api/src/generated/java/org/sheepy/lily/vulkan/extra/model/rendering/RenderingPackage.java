@@ -236,22 +236,13 @@ public interface RenderingPackage extends EPackage
 	int STRUCTURE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Presentations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCTURE__PRESENTATIONS = 0;
-
-	/**
 	 * The number of structural features of the '<em>Structure</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURE_FEATURE_COUNT = 1;
+	int STRUCTURE_FEATURE_COUNT = 0;
 
 	/**
 	 * The number of operations of the '<em>Structure</em>' class.
@@ -1308,17 +1299,6 @@ public interface RenderingPackage extends EPackage
 	EClass getStructure();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.Structure#getPresentations <em>Presentations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Presentations</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Structure#getPresentations()
-	 * @see #getStructure()
-	 * @generated
-	 */
-	EReference getStructure_Presentations();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.Presentation <em>Presentation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1763,14 +1743,6 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EClass STRUCTURE = eINSTANCE.getStructure();
-
-		/**
-		 * The meta object literal for the '<em><b>Presentations</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STRUCTURE__PRESENTATIONS = eINSTANCE.getStructure_Presentations();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.Presentation <em>Presentation</em>}' class.

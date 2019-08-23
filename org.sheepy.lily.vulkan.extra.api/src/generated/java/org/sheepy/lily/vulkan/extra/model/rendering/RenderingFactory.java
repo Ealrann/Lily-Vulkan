@@ -56,7 +56,7 @@ public interface RenderingFactory extends EFactory
 	 * @return a new object of class '<em>Data Provider Pkg</em>'.
 	 * @generated
 	 */
-	<T extends Structure<?>> DataProviderPkg<T> createDataProviderPkg();
+	<T extends Structure> DataProviderPkg<T> createDataProviderPkg();
 
 	/**
 	 * Returns a new object of class '<em>Described Data Provider</em>'.
@@ -65,7 +65,7 @@ public interface RenderingFactory extends EFactory
 	 * @return a new object of class '<em>Described Data Provider</em>'.
 	 * @generated
 	 */
-	<T extends Structure<?>> DescribedDataProvider<T> createDescribedDataProvider();
+	<T extends Structure> DescribedDataProvider<T> createDescribedDataProvider();
 
 	/**
 	 * Returns a new object of class '<em>Renderable Data Source</em>'.
@@ -74,7 +74,7 @@ public interface RenderingFactory extends EFactory
 	 * @return a new object of class '<em>Renderable Data Source</em>'.
 	 * @generated
 	 */
-	<T extends Structure<?>> RenderableDataSource<T> createRenderableDataSource();
+	<T extends Structure> RenderableDataSource<T> createRenderableDataSource();
 
 	/**
 	 * Returns a new object of class '<em>Vertex Provider</em>'.
@@ -83,7 +83,7 @@ public interface RenderingFactory extends EFactory
 	 * @return a new object of class '<em>Vertex Provider</em>'.
 	 * @generated
 	 */
-	<T extends Structure<?>> VertexProvider<T> createVertexProvider();
+	<T extends Structure> VertexProvider<T> createVertexProvider();
 
 	/**
 	 * Returns a new object of class '<em>Index Provider</em>'.
@@ -92,7 +92,7 @@ public interface RenderingFactory extends EFactory
 	 * @return a new object of class '<em>Index Provider</em>'.
 	 * @generated
 	 */
-	<T extends Structure<?>> IndexProvider<T> createIndexProvider();
+	<T extends Structure> IndexProvider<T> createIndexProvider();
 
 	/**
 	 * Returns a new object of class '<em>Static Resource Provider</em>'.

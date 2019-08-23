@@ -122,7 +122,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	@Override
-	public <T extends Structure<?>> DataProviderPkg<T> createDataProviderPkg()
+	public <T extends Structure> DataProviderPkg<T> createDataProviderPkg()
 	{
 		DataProviderPkgImpl<T> dataProviderPkg = new DataProviderPkgImpl<T>();
 		return dataProviderPkg;
@@ -134,7 +134,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	@Override
-	public <T extends Structure<?>> DescribedDataProvider<T> createDescribedDataProvider()
+	public <T extends Structure> DescribedDataProvider<T> createDescribedDataProvider()
 	{
 		DescribedDataProviderImpl<T> describedDataProvider = new DescribedDataProviderImpl<T>();
 		return describedDataProvider;
@@ -146,7 +146,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	@Override
-	public <T extends Structure<?>> RenderableDataSource<T> createRenderableDataSource()
+	public <T extends Structure> RenderableDataSource<T> createRenderableDataSource()
 	{
 		RenderableDataSourceImpl<T> renderableDataSource = new RenderableDataSourceImpl<T>();
 		return renderableDataSource;
@@ -158,7 +158,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	@Override
-	public <T extends Structure<?>> VertexProvider<T> createVertexProvider()
+	public <T extends Structure> VertexProvider<T> createVertexProvider()
 	{
 		VertexProviderImpl<T> vertexProvider = new VertexProviderImpl<T>();
 		return vertexProvider;
@@ -170,7 +170,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	@Override
-	public <T extends Structure<?>> IndexProvider<T> createIndexProvider()
+	public <T extends Structure> IndexProvider<T> createIndexProvider()
 	{
 		IndexProviderImpl<T> indexProvider = new IndexProviderImpl<T>();
 		return indexProvider;

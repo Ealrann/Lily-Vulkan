@@ -6,10 +6,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer;
-
-import org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure;
 import org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl;
 
 /**
@@ -19,7 +18,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl;
  *
  * @generated
  */
-public class MeshRendererImpl extends GenericRendererImpl<MeshStructure<?>> implements MeshRenderer
+public class MeshRendererImpl extends GenericRendererImpl<IMeshStructure> implements MeshRenderer
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -49,11 +48,11 @@ public class MeshRendererImpl extends GenericRendererImpl<MeshStructure<?>> impl
 	 * @generated
 	 */
 	@Override
-	public EList<MeshStructure<?>> getRenderedStructures()
+	public EList<IMeshStructure> getRenderedStructures()
 	{
 		if (renderedStructures == null)
 		{
-			renderedStructures = new EObjectResolvingEList<MeshStructure<?>>(MeshStructure.class, this, MeshPackage.MESH_RENDERER__RENDERED_STRUCTURES);
+			renderedStructures = new EObjectResolvingEList<IMeshStructure>(IMeshStructure.class, this, MeshPackage.MESH_RENDERER__RENDERED_STRUCTURES);
 		}
 		return renderedStructures;
 	}

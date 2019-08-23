@@ -22,13 +22,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetResourcePkg" lowerBound="1"
         eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkan.ecore#//ResourcePkg"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SpriteStructure">
+  <eClassifiers xsi:type="ecore:EClass" name="SpriteStructure" eSuperTypes="Rendering.ecore#//Structure">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eGenericSuperTypes eClassifier="ecore:EClass Rendering.ecore#//Structure">
-      <eTypeArguments eClassifier="#//Sprite"/>
-    </eGenericSuperTypes>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sprites" lowerBound="1"
+        upperBound="-1" eType="#//Sprite" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SpriteType">
     <eLiterals name="Floor"/>

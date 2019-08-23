@@ -6,22 +6,17 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
-
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.sprite.*;
-
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IProcessPart;
-
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 
 /**
@@ -317,7 +312,7 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Structure<?>> T1 caseGenericRenderer(GenericRenderer<T> object)
+	public <T extends Structure> T1 caseGenericRenderer(GenericRenderer<T> object)
 	{
 		return null;
 	}
@@ -365,7 +360,7 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Presentation> T1 caseStructure(Structure<T> object)
+	public T1 caseStructure(Structure object)
 	{
 		return null;
 	}

@@ -13,6 +13,6 @@ package org.sheepy.lily.vulkan.extra.model.rendering;
  * @model
  * @generated
  */
-public interface DescribedDataProvider<T extends Structure<?>> extends RenderDataProvider<T>, org.sheepy.lily.vulkan.model.resource.DescribedDataProvider<RenderableDataSource<T>>
+public interface DescribedDataProvider<T extends Structure> extends RenderDataProvider<T>, org.sheepy.lily.vulkan.model.resource.DescribedDataProvider<RenderableDataSource<T>>
 {
 } // DescribedDataProvider

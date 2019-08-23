@@ -20,7 +20,7 @@ import org.sheepy.vulkan.model.enumeration.EIndexType;
  * @model
  * @generated
  */
-public interface IndexProvider<T extends Structure<?>> extends RenderDataProvider<T>
+public interface IndexProvider<T extends Structure> extends RenderDataProvider<T>
 {
 	/**
 	 * Returns the value of the '<em><b>Index Type</b></em>' attribute.

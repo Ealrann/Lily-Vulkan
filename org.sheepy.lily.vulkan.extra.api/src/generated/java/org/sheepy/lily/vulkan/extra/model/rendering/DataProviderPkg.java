@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface DataProviderPkg<T extends Structure<?>> extends EObject
+public interface DataProviderPkg<T extends Structure> extends EObject
 {
 	/**
 	 * Returns the value of the '<em><b>Data Providers</b></em>' containment reference list.

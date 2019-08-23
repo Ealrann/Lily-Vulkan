@@ -30,7 +30,7 @@ import org.sheepy.vulkan.model.enumeration.EIndexType;
  *
  * @generated
  */
-public class IndexProviderImpl<T extends Structure<?>> extends BufferDataProviderImpl<RenderableDataSource<T>> implements IndexProvider<T>
+public class IndexProviderImpl<T extends Structure> extends BufferDataProviderImpl<RenderableDataSource<T>> implements IndexProvider<T>
 {
 	/**
 	 * The default value of the '{@link #getIndexType() <em>Index Type</em>}' attribute.

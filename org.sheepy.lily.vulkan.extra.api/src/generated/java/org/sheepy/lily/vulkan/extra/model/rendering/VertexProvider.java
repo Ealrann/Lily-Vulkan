@@ -13,6 +13,6 @@ package org.sheepy.lily.vulkan.extra.model.rendering;
  * @model
  * @generated
  */
-public interface VertexProvider<T extends Structure<?>> extends RenderDataProvider<T>
+public interface VertexProvider<T extends Structure> extends RenderDataProvider<T>
 {
 } // VertexProvider

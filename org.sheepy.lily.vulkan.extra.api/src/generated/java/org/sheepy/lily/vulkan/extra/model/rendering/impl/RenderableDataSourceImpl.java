@@ -27,7 +27,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
  *
  * @generated
  */
-public class RenderableDataSourceImpl<T extends Structure<?>> extends MinimalEObjectImpl.Container implements RenderableDataSource<T>
+public class RenderableDataSourceImpl<T extends Structure> extends MinimalEObjectImpl.Container implements RenderableDataSource<T>
 {
 	/**
 	 * The cached value of the '{@link #getStructure() <em>Structure</em>}' reference.

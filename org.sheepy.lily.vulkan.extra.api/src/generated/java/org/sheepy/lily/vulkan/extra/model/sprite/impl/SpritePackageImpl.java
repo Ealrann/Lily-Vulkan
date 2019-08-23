@@ -336,6 +336,17 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
+	public EReference getSpriteStructure_Sprites()
+	{
+		return (EReference)spriteStructureEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getSpriteType()
 	{
 		return spriteTypeEEnum;
@@ -387,6 +398,7 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		spriteStructureEClass = createEClass(SPRITE_STRUCTURE);
 		createEAttribute(spriteStructureEClass, SPRITE_STRUCTURE__WIDTH);
 		createEAttribute(spriteStructureEClass, SPRITE_STRUCTURE__HEIGHT);
+		createEReference(spriteStructureEClass, SPRITE_STRUCTURE__SPRITES);
 
 		// Create enums
 		spriteTypeEEnum = createEEnum(SPRITE_TYPE);
@@ -433,10 +445,7 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		spriteRendererEClass.getEGenericSuperTypes().add(g1);
 		spriteEClass.getESuperTypes().add(theRenderingPackage.getPresentation());
 		spriteMonoSamplerProviderEClass.getESuperTypes().add(theRenderingPackage.getResourceProvider());
-		g1 = createEGenericType(theRenderingPackage.getStructure());
-		g2 = createEGenericType(this.getSprite());
-		g1.getETypeArguments().add(g2);
-		spriteStructureEClass.getEGenericSuperTypes().add(g1);
+		spriteStructureEClass.getESuperTypes().add(theRenderingPackage.getStructure());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(spriteRendererEClass, SpriteRenderer.class, "SpriteRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -454,6 +463,7 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		initEClass(spriteStructureEClass, SpriteStructure.class, "SpriteStructure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSpriteStructure_Width(), ecorePackage.getEInt(), "width", null, 1, 1, SpriteStructure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSpriteStructure_Height(), ecorePackage.getEInt(), "height", null, 1, 1, SpriteStructure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpriteStructure_Sprites(), this.getSprite(), null, "sprites", null, 1, -1, SpriteStructure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(spriteTypeEEnum, SpriteType.class, "SpriteType");

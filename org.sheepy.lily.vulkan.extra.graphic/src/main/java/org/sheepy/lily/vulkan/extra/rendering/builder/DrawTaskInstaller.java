@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexProviderAdapter;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IVertexProviderAdapter;
+import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
@@ -21,19 +22,11 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 public final class DrawTaskInstaller
 {
-	private final int instanceCount;
+	private final Structure structure;
 
-	public DrawTaskInstaller(Structure<?> structure)
+	public DrawTaskInstaller(Structure structure)
 	{
-		instanceCount = countInstances(structure);
-	}
-
-	private static final int countInstances(Structure<?> structure)
-	{
-		final var presentations = structure.getPresentations().stream();
-		final var entities = presentations.flatMap(p -> p.getPresentedEntities().stream());
-
-		return (int) entities.count();
+		this.structure = structure;
 	}
 
 	public IDrawSetup install(BufferContext context)
@@ -106,12 +99,15 @@ public final class DrawTaskInstaller
 			bindIndex.setIndexType(indexProvider.getIndexType());
 
 			final var drawIndexed = GraphicFactory.eINSTANCE.createDrawIndexed();
-			drawIndexed.setInstanceCount(instanceCount);
 
 			taskPkg.getTasks().add(bindIndex);
 			taskPkg.getTasks().add(drawIndexed);
 
-			return new IndexedDrawSetup(bindVertex, bindIndex, drawIndexed, indexProviderAdapter);
+			return new IndexedDrawSetup(bindVertex,
+										bindIndex,
+										drawIndexed,
+										indexProviderAdapter,
+										structure);
 		}
 		else
 		{
@@ -133,18 +129,21 @@ public final class DrawTaskInstaller
 		private final BindIndexBuffer indexBindTask;
 		private final DrawIndexed drawTask;
 		private final IIndexProviderAdapter indexProvider;
+		private final Structure structure;
 
 		private boolean dirty = true;
 
 		private IndexedDrawSetup(	BindVertexBuffer vertexBindTask,
 									BindIndexBuffer indexBindTask,
 									DrawIndexed drawTask,
-									IIndexProviderAdapter indexProvider)
+									IIndexProviderAdapter indexProvider,
+									Structure structure)
 		{
 			this.vertexBindTask = vertexBindTask;
 			this.indexBindTask = indexBindTask;
 			this.drawTask = drawTask;
 			this.indexProvider = indexProvider;
+			this.structure = structure;
 		}
 
 		@Override
@@ -152,7 +151,10 @@ public final class DrawTaskInstaller
 		{
 			if (dirty)
 			{
+				final var structureAdapter = IStructureAdapter.adapt(structure);
+				final int instanceCount = structureAdapter.getInstanceCount(structure);
 				drawTask.setIndexCount(indexProvider.getIndexCount());
+				drawTask.setInstanceCount(instanceCount);
 				dirty = false;
 			}
 		}

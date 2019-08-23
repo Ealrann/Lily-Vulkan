@@ -33,7 +33,7 @@ import org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl;
  *
  * @generated
  */
-public class DescribedDataProviderImpl<T extends Structure<?>> extends BufferDataProviderImpl<RenderableDataSource<T>> implements DescribedDataProvider<T>
+public class DescribedDataProviderImpl<T extends Structure> extends BufferDataProviderImpl<RenderableDataSource<T>> implements DescribedDataProvider<T>
 {
 	/**
 	 * The cached value of the '{@link #getDescriptor() <em>Descriptor</em>}' containment reference.

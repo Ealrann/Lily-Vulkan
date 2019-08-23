@@ -18,7 +18,7 @@ import org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl;
  *
  * @generated
  */
-public class VertexProviderImpl<T extends Structure<?>> extends BufferDataProviderImpl<RenderableDataSource<T>> implements VertexProvider<T>
+public class VertexProviderImpl<T extends Structure> extends BufferDataProviderImpl<RenderableDataSource<T>> implements VertexProvider<T>
 {
 	/**
 	 * <!-- begin-user-doc -->

@@ -425,15 +425,6 @@ public interface SpritePackage extends EPackage
 	int SPRITE_STRUCTURE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Presentations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_STRUCTURE__PRESENTATIONS = RenderingPackage.STRUCTURE__PRESENTATIONS;
-
-	/**
 	 * The feature id for the '<em><b>Width</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -452,13 +443,22 @@ public interface SpritePackage extends EPackage
 	int SPRITE_STRUCTURE__HEIGHT = RenderingPackage.STRUCTURE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Sprites</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_STRUCTURE__SPRITES = RenderingPackage.STRUCTURE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Structure</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_STRUCTURE_FEATURE_COUNT = RenderingPackage.STRUCTURE_FEATURE_COUNT + 2;
+	int SPRITE_STRUCTURE_FEATURE_COUNT = RenderingPackage.STRUCTURE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Structure</em>' class.
@@ -608,6 +608,17 @@ public interface SpritePackage extends EPackage
 	EAttribute getSpriteStructure_Height();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure#getSprites <em>Sprites</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Sprites</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure#getSprites()
+	 * @see #getSpriteStructure()
+	 * @generated
+	 */
+	EReference getSpriteStructure_Sprites();
+
+	/**
 	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -732,6 +743,13 @@ public interface SpritePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute SPRITE_STRUCTURE__HEIGHT = eINSTANCE.getSpriteStructure_Height();
+		/**
+		 * The meta object literal for the '<em><b>Sprites</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SPRITE_STRUCTURE__SPRITES = eINSTANCE.getSpriteStructure_Sprites();
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteType <em>Type</em>}' enum.
 		 * <!-- begin-user-doc -->

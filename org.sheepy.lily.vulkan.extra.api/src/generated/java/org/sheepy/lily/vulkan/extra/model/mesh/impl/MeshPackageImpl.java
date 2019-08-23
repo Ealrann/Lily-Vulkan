@@ -5,6 +5,7 @@ package org.sheepy.lily.vulkan.extra.model.mesh.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -22,6 +23,7 @@ import org.sheepy.lily.core.model.root.RootPackage;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure;
 import org.sheepy.lily.vulkan.extra.model.mesh.Mesh;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshFactory;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
@@ -82,6 +84,13 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 	 * @generated
 	 */
 	private EClass meshStructureEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iMeshStructureEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -217,6 +226,28 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getMeshStructure_Meshes()
+	{
+		return (EReference)meshStructureEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIMeshStructure()
+	{
+		return iMeshStructureEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public MeshFactory getMeshFactory()
 	{
 		return (MeshFactory)getEFactoryInstance();
@@ -247,6 +278,9 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 		meshRendererEClass = createEClass(MESH_RENDERER);
 
 		meshStructureEClass = createEClass(MESH_STRUCTURE);
+		createEReference(meshStructureEClass, MESH_STRUCTURE__MESHES);
+
+		iMeshStructureEClass = createEClass(IMESH_STRUCTURE);
 	}
 
 	/**
@@ -286,15 +320,11 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 		// Add supertypes to classes
 		meshEClass.getESuperTypes().add(theRenderingPackage.getPresentation());
 		g1 = createEGenericType(theRenderingPackage.getGenericRenderer());
-		EGenericType g2 = createEGenericType(this.getMeshStructure());
+		EGenericType g2 = createEGenericType(this.getIMeshStructure());
 		g1.getETypeArguments().add(g2);
-		EGenericType g3 = createEGenericType();
-		g2.getETypeArguments().add(g3);
 		meshRendererEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theRenderingPackage.getStructure());
-		g2 = createEGenericType(meshStructureEClass_T);
-		g1.getETypeArguments().add(g2);
-		meshStructureEClass.getEGenericSuperTypes().add(g1);
+		meshStructureEClass.getESuperTypes().add(this.getIMeshStructure());
+		iMeshStructureEClass.getESuperTypes().add(theRenderingPackage.getStructure());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(meshEClass, Mesh.class, "Mesh", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -302,6 +332,10 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 		initEClass(meshRendererEClass, MeshRenderer.class, "MeshRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(meshStructureEClass, MeshStructure.class, "MeshStructure", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(meshStructureEClass_T);
+		initEReference(getMeshStructure_Meshes(), g1, null, "meshes", null, 1, -1, MeshStructure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iMeshStructureEClass, IMeshStructure.class, "IMeshStructure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

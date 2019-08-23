@@ -108,7 +108,16 @@ public class MeshSwitch<T1> extends Switch<T1>
 			{
 				MeshStructure<?> meshStructure = (MeshStructure<?>)theEObject;
 				T1 result = caseMeshStructure(meshStructure);
+				if (result == null) result = caseIMeshStructure(meshStructure);
 				if (result == null) result = caseStructure(meshStructure);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MeshPackage.IMESH_STRUCTURE:
+			{
+				IMeshStructure iMeshStructure = (IMeshStructure)theEObject;
+				T1 result = caseIMeshStructure(iMeshStructure);
+				if (result == null) result = caseStructure(iMeshStructure);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -160,6 +169,22 @@ public class MeshSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public <T extends Mesh> T1 caseMeshStructure(MeshStructure<T> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IMesh Structure</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IMesh Structure</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIMeshStructure(IMeshStructure object)
 	{
 		return null;
 	}
@@ -303,7 +328,7 @@ public class MeshSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Structure<?>> T1 caseGenericRenderer(GenericRenderer<T> object)
+	public <T extends Structure> T1 caseGenericRenderer(GenericRenderer<T> object)
 	{
 		return null;
 	}
@@ -319,7 +344,7 @@ public class MeshSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Presentation> T1 caseStructure(Structure<T> object)
+	public T1 caseStructure(Structure object)
 	{
 		return null;
 	}

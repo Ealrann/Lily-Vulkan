@@ -27,25 +27,15 @@ import org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteStructureImpl#getPresentations <em>Presentations</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteStructureImpl#getWidth <em>Width</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteStructureImpl#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteStructureImpl#getSprites <em>Sprites</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SpriteStructureImpl extends MinimalEObjectImpl.Container implements SpriteStructure
 {
-	/**
-	 * The cached value of the '{@link #getPresentations() <em>Presentations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPresentations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Sprite> presentations;
-
 	/**
 	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -87,6 +77,16 @@ public class SpriteStructureImpl extends MinimalEObjectImpl.Container implements
 	protected int height = HEIGHT_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getSprites() <em>Sprites</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSprites()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Sprite> sprites;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -105,21 +105,6 @@ public class SpriteStructureImpl extends MinimalEObjectImpl.Container implements
 	protected EClass eStaticClass()
 	{
 		return SpritePackage.Literals.SPRITE_STRUCTURE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Sprite> getPresentations()
-	{
-		if (presentations == null)
-		{
-			presentations = new EObjectContainmentEList<Sprite>(Sprite.class, this, SpritePackage.SPRITE_STRUCTURE__PRESENTATIONS);
-		}
-		return presentations;
 	}
 
 	/**
@@ -178,12 +163,27 @@ public class SpriteStructureImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
+	public EList<Sprite> getSprites()
+	{
+		if (sprites == null)
+		{
+			sprites = new EObjectContainmentEList<Sprite>(Sprite.class, this, SpritePackage.SPRITE_STRUCTURE__SPRITES);
+		}
+		return sprites;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case SpritePackage.SPRITE_STRUCTURE__PRESENTATIONS:
-				return ((InternalEList<?>)getPresentations()).basicRemove(otherEnd, msgs);
+			case SpritePackage.SPRITE_STRUCTURE__SPRITES:
+				return ((InternalEList<?>)getSprites()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -198,12 +198,12 @@ public class SpriteStructureImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-			case SpritePackage.SPRITE_STRUCTURE__PRESENTATIONS:
-				return getPresentations();
 			case SpritePackage.SPRITE_STRUCTURE__WIDTH:
 				return getWidth();
 			case SpritePackage.SPRITE_STRUCTURE__HEIGHT:
 				return getHeight();
+			case SpritePackage.SPRITE_STRUCTURE__SPRITES:
+				return getSprites();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -219,15 +219,15 @@ public class SpriteStructureImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-			case SpritePackage.SPRITE_STRUCTURE__PRESENTATIONS:
-				getPresentations().clear();
-				getPresentations().addAll((Collection<? extends Sprite>)newValue);
-				return;
 			case SpritePackage.SPRITE_STRUCTURE__WIDTH:
 				setWidth((Integer)newValue);
 				return;
 			case SpritePackage.SPRITE_STRUCTURE__HEIGHT:
 				setHeight((Integer)newValue);
+				return;
+			case SpritePackage.SPRITE_STRUCTURE__SPRITES:
+				getSprites().clear();
+				getSprites().addAll((Collection<? extends Sprite>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -243,14 +243,14 @@ public class SpriteStructureImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-			case SpritePackage.SPRITE_STRUCTURE__PRESENTATIONS:
-				getPresentations().clear();
-				return;
 			case SpritePackage.SPRITE_STRUCTURE__WIDTH:
 				setWidth(WIDTH_EDEFAULT);
 				return;
 			case SpritePackage.SPRITE_STRUCTURE__HEIGHT:
 				setHeight(HEIGHT_EDEFAULT);
+				return;
+			case SpritePackage.SPRITE_STRUCTURE__SPRITES:
+				getSprites().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -266,12 +266,12 @@ public class SpriteStructureImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-			case SpritePackage.SPRITE_STRUCTURE__PRESENTATIONS:
-				return presentations != null && !presentations.isEmpty();
 			case SpritePackage.SPRITE_STRUCTURE__WIDTH:
 				return width != WIDTH_EDEFAULT;
 			case SpritePackage.SPRITE_STRUCTURE__HEIGHT:
 				return height != HEIGHT_EDEFAULT;
+			case SpritePackage.SPRITE_STRUCTURE__SPRITES:
+				return sprites != null && !sprites.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

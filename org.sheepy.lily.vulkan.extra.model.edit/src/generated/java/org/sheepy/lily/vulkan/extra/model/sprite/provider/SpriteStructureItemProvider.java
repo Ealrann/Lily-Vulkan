@@ -24,8 +24,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
-
-import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure;
@@ -135,7 +133,7 @@ public class SpriteStructureItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RenderingPackage.Literals.STRUCTURE__PRESENTATIONS);
+			childrenFeatures.add(SpritePackage.Literals.SPRITE_STRUCTURE__SPRITES);
 		}
 		return childrenFeatures;
 	}
@@ -198,7 +196,7 @@ public class SpriteStructureItemProvider
 			case SpritePackage.SPRITE_STRUCTURE__HEIGHT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case SpritePackage.SPRITE_STRUCTURE__PRESENTATIONS:
+			case SpritePackage.SPRITE_STRUCTURE__SPRITES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -219,7 +217,7 @@ public class SpriteStructureItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RenderingPackage.Literals.STRUCTURE__PRESENTATIONS,
+				(SpritePackage.Literals.SPRITE_STRUCTURE__SPRITES,
 				 SpriteFactory.eINSTANCE.createSprite()));
 	}
 
