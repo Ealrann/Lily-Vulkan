@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.vulkan.model.IExecutionManager;
@@ -33,7 +34,7 @@ import org.sheepy.lily.vulkan.model.process.compute.*;
  * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage
  * @generated
  */
-public class ComputeSwitch<T> extends Switch<T>
+public class ComputeSwitch<T1> extends Switch<T1>
 {
 	/**
 	 * The cached model package
@@ -79,14 +80,14 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	protected T doSwitch(int classifierID, EObject theEObject)
+	protected T1 doSwitch(int classifierID, EObject theEObject)
 	{
 		switch (classifierID)
 		{
 			case ComputePackage.COMPUTE_PROCESS:
 			{
 				ComputeProcess computeProcess = (ComputeProcess)theEObject;
-				T result = caseComputeProcess(computeProcess);
+				T1 result = caseComputeProcess(computeProcess);
 				if (result == null) result = caseAbstractProcess(computeProcess);
 				if (result == null) result = caseIProcess(computeProcess);
 				if (result == null) result = caseIResourceContainer(computeProcess);
@@ -98,8 +99,9 @@ public class ComputeSwitch<T> extends Switch<T>
 			case ComputePackage.COMPUTE_PIPELINE:
 			{
 				ComputePipeline computePipeline = (ComputePipeline)theEObject;
-				T result = caseComputePipeline(computePipeline);
+				T1 result = caseComputePipeline(computePipeline);
 				if (result == null) result = caseIPipeline(computePipeline);
+				if (result == null) result = caseMaintainable(computePipeline);
 				if (result == null) result = caseLNamedElement(computePipeline);
 				if (result == null) result = caseIResourceContainer(computePipeline);
 				if (result == null) result = caseIProcessPart(computePipeline);
@@ -109,7 +111,7 @@ public class ComputeSwitch<T> extends Switch<T>
 			case ComputePackage.COMPUTER:
 			{
 				Computer computer = (Computer)theEObject;
-				T result = caseComputer(computer);
+				T1 result = caseComputer(computer);
 				if (result == null) result = caseIPipelineTask(computer);
 				if (result == null) result = caseLNamedElement(computer);
 				if (result == null) result = defaultCase(theEObject);
@@ -130,7 +132,7 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseComputeProcess(ComputeProcess object)
+	public T1 caseComputeProcess(ComputeProcess object)
 	{
 		return null;
 	}
@@ -146,7 +148,7 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseComputePipeline(ComputePipeline object)
+	public T1 caseComputePipeline(ComputePipeline object)
 	{
 		return null;
 	}
@@ -162,7 +164,7 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseComputer(Computer object)
+	public T1 caseComputer(Computer object)
 	{
 		return null;
 	}
@@ -178,7 +180,7 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIResourceContainer(IResourceContainer object)
+	public T1 caseIResourceContainer(IResourceContainer object)
 	{
 		return null;
 	}
@@ -194,7 +196,7 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLNamedElement(LNamedElement object)
+	public T1 caseLNamedElement(LNamedElement object)
 	{
 		return null;
 	}
@@ -210,7 +212,7 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIExecutionManager(IExecutionManager object)
+	public T1 caseIExecutionManager(IExecutionManager object)
 	{
 		return null;
 	}
@@ -226,7 +228,7 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIProcess(IProcess object)
+	public T1 caseIProcess(IProcess object)
 	{
 		return null;
 	}
@@ -242,7 +244,7 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAbstractProcess(AbstractProcess object)
+	public T1 caseAbstractProcess(AbstractProcess object)
 	{
 		return null;
 	}
@@ -258,7 +260,7 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIProcessPart(IProcessPart object)
+	public T1 caseIProcessPart(IProcessPart object)
 	{
 		return null;
 	}
@@ -274,7 +276,23 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIPipeline(IPipeline object)
+	public T1 caseIPipeline(IPipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Maintainable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Maintainable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Maintainable<T>> T1 caseMaintainable(Maintainable<T> object)
 	{
 		return null;
 	}
@@ -290,7 +308,7 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIPipelineTask(IPipelineTask object)
+	public T1 caseIPipelineTask(IPipelineTask object)
 	{
 		return null;
 	}
@@ -307,7 +325,7 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	public T defaultCase(EObject object)
+	public T1 defaultCase(EObject object)
 	{
 		return null;
 	}

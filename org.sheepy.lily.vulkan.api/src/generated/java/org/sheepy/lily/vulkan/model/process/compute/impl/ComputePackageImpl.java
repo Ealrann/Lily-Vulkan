@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.model.process.compute.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -312,6 +313,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 
 		// Obtain other dependent packages
 		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
+		MaintainerPackage theMaintainerPackage = (MaintainerPackage)EPackage.Registry.INSTANCE.getEPackage(MaintainerPackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
@@ -321,7 +323,12 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 
 		// Add supertypes to classes
 		computeProcessEClass.getESuperTypes().add(theProcessPackage.getAbstractProcess());
-		computePipelineEClass.getESuperTypes().add(theProcessPackage.getIPipeline());
+		EGenericType g1 = createEGenericType(theProcessPackage.getIPipeline());
+		computePipelineEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theMaintainerPackage.getMaintainable());
+		EGenericType g2 = createEGenericType(this.getComputePipeline());
+		g1.getETypeArguments().add(g2);
+		computePipelineEClass.getEGenericSuperTypes().add(g1);
 		computerEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 
 		// Initialize classes, features, and operations; add parameters

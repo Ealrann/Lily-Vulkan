@@ -20,6 +20,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.model.maintainer.Maintainable;
+import org.sheepy.lily.core.model.maintainer.Maintainer;
+import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -52,6 +55,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getSpecializationData <em>Specialization Data</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getTaskPkg <em>Task Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getMaintainer <em>Maintainer</em>}</li>
  * </ul>
  *
  * @generated
@@ -177,6 +181,16 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected TaskPkg taskPkg;
+
+	/**
+	 * The cached value of the '{@link #getMaintainer() <em>Maintainer</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaintainer()
+	 * @generated
+	 * @ordered
+	 */
+	protected Maintainer<ComputePipeline> maintainer;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -469,6 +483,96 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Maintainer<ComputePipeline> getMaintainer()
+	{
+		if (maintainer != null && maintainer.eIsProxy())
+		{
+			InternalEObject oldMaintainer = (InternalEObject)maintainer;
+			maintainer = (Maintainer<ComputePipeline>)eResolveProxy(oldMaintainer);
+			if (maintainer != oldMaintainer)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ComputePackage.COMPUTE_PIPELINE__MAINTAINER, oldMaintainer, maintainer));
+			}
+		}
+		return maintainer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Maintainer<ComputePipeline> basicGetMaintainer()
+	{
+		return maintainer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetMaintainer(Maintainer<ComputePipeline> newMaintainer, NotificationChain msgs)
+	{
+		Maintainer<ComputePipeline> oldMaintainer = maintainer;
+		maintainer = newMaintainer;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PIPELINE__MAINTAINER, oldMaintainer, newMaintainer);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setMaintainer(Maintainer<ComputePipeline> newMaintainer)
+	{
+		if (newMaintainer != maintainer)
+		{
+			NotificationChain msgs = null;
+			if (maintainer != null)
+				msgs = ((InternalEObject)maintainer).eInverseRemove(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+			if (newMaintainer != null)
+				msgs = ((InternalEObject)newMaintainer).eInverseAdd(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+			msgs = basicSetMaintainer(newMaintainer, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PIPELINE__MAINTAINER, newMaintainer, newMaintainer));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case ComputePackage.COMPUTE_PIPELINE__MAINTAINER:
+				if (maintainer != null)
+					msgs = ((InternalEObject)maintainer).eInverseRemove(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+				return basicSetMaintainer((Maintainer<ComputePipeline>)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -482,6 +586,8 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 				return basicSetDescriptorSetPkg(null, msgs);
 			case ComputePackage.COMPUTE_PIPELINE__TASK_PKG:
 				return basicSetTaskPkg(null, msgs);
+			case ComputePackage.COMPUTE_PIPELINE__MAINTAINER:
+				return basicSetMaintainer(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -512,6 +618,9 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 				return getDescriptorSetPkg();
 			case ComputePackage.COMPUTE_PIPELINE__TASK_PKG:
 				return getTaskPkg();
+			case ComputePackage.COMPUTE_PIPELINE__MAINTAINER:
+				if (resolve) return getMaintainer();
+				return basicGetMaintainer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -552,6 +661,9 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 			case ComputePackage.COMPUTE_PIPELINE__TASK_PKG:
 				setTaskPkg((TaskPkg)newValue);
 				return;
+			case ComputePackage.COMPUTE_PIPELINE__MAINTAINER:
+				setMaintainer((Maintainer<ComputePipeline>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -590,6 +702,9 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 			case ComputePackage.COMPUTE_PIPELINE__TASK_PKG:
 				setTaskPkg((TaskPkg)null);
 				return;
+			case ComputePackage.COMPUTE_PIPELINE__MAINTAINER:
+				setMaintainer((Maintainer<ComputePipeline>)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -620,6 +735,8 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 				return descriptorSetPkg != null;
 			case ComputePackage.COMPUTE_PIPELINE__TASK_PKG:
 				return taskPkg != null;
+			case ComputePackage.COMPUTE_PIPELINE__MAINTAINER:
+				return maintainer != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -647,6 +764,14 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 				default: return -1;
 			}
 		}
+		if (baseClass == Maintainable.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case ComputePackage.COMPUTE_PIPELINE__MAINTAINER: return MaintainerPackage.MAINTAINABLE__MAINTAINER;
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -670,6 +795,14 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 		{
 			switch (baseFeatureID)
 			{
+				default: return -1;
+			}
+		}
+		if (baseClass == Maintainable.class)
+		{
+			switch (baseFeatureID)
+			{
+				case MaintainerPackage.MAINTAINABLE__MAINTAINER: return ComputePackage.COMPUTE_PIPELINE__MAINTAINER;
 				default: return -1;
 			}
 		}

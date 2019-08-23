@@ -242,13 +242,22 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PIPELINE__TASK_PKG = ProcessPackage.IPIPELINE__TASK_PKG;
 
 	/**
+	 * The feature id for the '<em><b>Maintainer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PIPELINE__MAINTAINER = ProcessPackage.IPIPELINE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 0;
+	int COMPUTE_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Pipeline</em>' class.

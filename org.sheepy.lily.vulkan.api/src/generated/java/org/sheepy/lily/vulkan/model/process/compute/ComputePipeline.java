@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process.compute;
 
+import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 
 /**
@@ -14,5 +15,5 @@ import org.sheepy.lily.vulkan.model.process.IPipeline;
  * @model
  * @generated
  */
-public interface ComputePipeline extends IPipeline
+public interface ComputePipeline extends IPipeline, Maintainable<ComputePipeline>
 {} // ComputePipeline
