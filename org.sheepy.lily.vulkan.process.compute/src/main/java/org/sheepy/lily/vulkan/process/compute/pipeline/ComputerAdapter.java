@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.process.compute.pipeline;
 
 import static org.lwjgl.vulkan.VK10.vkCmdDispatch;
 
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
@@ -22,11 +21,6 @@ public class ComputerAdapter implements IPipelineTaskAdapter<Computer>
 		final int groupCountZ = task.getWorkgroupCountZ();
 
 		vkCmdDispatch(commandBuffer, groupCountX, groupCountY, groupCountZ);
-	}
-
-	public static ComputerAdapter adapt(Computer object)
-	{
-		return IAdapterFactoryService.INSTANCE.adapt(object, ComputerAdapter.class);
 	}
 
 	@Override
