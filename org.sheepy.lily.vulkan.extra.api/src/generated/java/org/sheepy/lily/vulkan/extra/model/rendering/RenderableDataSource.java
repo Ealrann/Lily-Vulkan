@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.rendering;
 
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,9 +19,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getRenderableDataSource()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface RenderableDataSource<T extends Structure> extends EObject
+public interface RenderableDataSource<T extends Structure> extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Structure</b></em>' reference.

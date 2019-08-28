@@ -3,9 +3,7 @@
 package org.sheepy.vulkan.model.pipeline;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
-
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 /**
@@ -24,9 +22,10 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  *
  * @see org.sheepy.vulkan.model.pipeline.PipelinePackage#getPushConstantRange()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface PushConstantRange extends EObject
+public interface PushConstantRange extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Stages</b></em>' attribute list.

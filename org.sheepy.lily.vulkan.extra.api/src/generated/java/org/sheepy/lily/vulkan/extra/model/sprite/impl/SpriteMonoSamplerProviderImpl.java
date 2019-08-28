@@ -6,11 +6,11 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
 
@@ -33,7 +33,7 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  *
  * @generated
  */
-public class SpriteMonoSamplerProviderImpl extends MinimalEObjectImpl.Container implements SpriteMonoSamplerProvider
+public class SpriteMonoSamplerProviderImpl extends LilyEObject implements SpriteMonoSamplerProvider
 {
 	/**
 	 * The cached value of the '{@link #getSamplerInfo() <em>Sampler Info</em>}' containment reference.
@@ -221,7 +221,7 @@ public class SpriteMonoSamplerProviderImpl extends MinimalEObjectImpl.Container 
 	@Override
 	public ResourcePkg getTargetResourcePkg()
 	{
-		if (targetResourcePkg != null && targetResourcePkg.eIsProxy())
+		if (targetResourcePkg != null && ((EObject)targetResourcePkg).eIsProxy())
 		{
 			InternalEObject oldTargetResourcePkg = (InternalEObject)targetResourcePkg;
 			targetResourcePkg = (ResourcePkg)eResolveProxy(oldTargetResourcePkg);

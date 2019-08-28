@@ -2,8 +2,7 @@
  */
 package org.sheepy.vulkan.model.graphicpipeline;
 
-import org.eclipse.emf.ecore.EObject;
-
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.vulkan.model.enumeration.EPrimitiveTopology;
 
 /**
@@ -21,9 +20,10 @@ import org.sheepy.vulkan.model.enumeration.EPrimitiveTopology;
  *
  * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getInputAssembly()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface InputAssembly extends EObject
+public interface InputAssembly extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Primitive Restart Enabled</b></em>' attribute.

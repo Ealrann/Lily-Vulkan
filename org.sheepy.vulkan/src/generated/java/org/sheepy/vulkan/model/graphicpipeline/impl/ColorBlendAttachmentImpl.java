@@ -7,8 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.vulkan.model.enumeration.EBlendFactor;
 import org.sheepy.vulkan.model.enumeration.EBlendOp;
 
@@ -38,7 +37,7 @@ import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
  *
  * @generated
  */
-public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container implements ColorBlendAttachment
+public class ColorBlendAttachmentImpl extends LilyEObject implements ColorBlendAttachment
 {
 	/**
 	 * The default value of the '{@link #isBlendEnable() <em>Blend Enable</em>}' attribute.

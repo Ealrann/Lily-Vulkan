@@ -73,16 +73,18 @@ public class DescriptorPool implements IAllocable<IExecutionContext>
 			descriptors = List.copyOf(gatherDescriptors());
 		}
 
-		for (final IVkDescriptor descriptor : descriptors)
+		for (int i = 0; i < descriptors.size(); i++)
 		{
+			final IVkDescriptor descriptor = descriptors.get(i);
 			descriptor.update();
 			hasChanged |= descriptor.hasChanged();
 		}
 
 		if (hasChanged)
 		{
-			for (final IVkDescriptorSet descriptorSet : descriptorSets)
+			for (int i = 0; i < descriptorSets.size(); i++)
 			{
+				final IVkDescriptorSet descriptorSet = descriptorSets.get(i);
 				descriptorSet.updateDescriptorSet(stack);
 			}
 		}

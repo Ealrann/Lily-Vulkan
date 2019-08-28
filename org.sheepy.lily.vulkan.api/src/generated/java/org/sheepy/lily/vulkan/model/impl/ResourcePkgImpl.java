@@ -10,12 +10,10 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -33,7 +31,7 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
  *
  * @generated
  */
-public class ResourcePkgImpl extends MinimalEObjectImpl.Container implements ResourcePkg
+public class ResourcePkgImpl extends LilyEObject implements ResourcePkg
 {
 	/**
 	 * The cached value of the '{@link #getResources() <em>Resources</em>}' containment reference list.

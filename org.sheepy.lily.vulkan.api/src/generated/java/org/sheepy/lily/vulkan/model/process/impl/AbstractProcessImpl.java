@@ -13,10 +13,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
@@ -49,7 +48,7 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  *
  * @generated
  */
-public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container implements AbstractProcess
+public abstract class AbstractProcessImpl extends LilyEObject implements AbstractProcess
 {
 	/**
 	 * The cached value of the '{@link #getResourcePkg() <em>Resource Pkg</em>}' containment reference.

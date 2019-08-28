@@ -7,8 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
@@ -29,7 +28,7 @@ import org.sheepy.vulkan.model.enumeration.EFormat;
  *
  * @generated
  */
-public class ColorDomainImpl extends MinimalEObjectImpl.Container implements ColorDomain
+public class ColorDomainImpl extends LilyEObject implements ColorDomain
 {
 	/**
 	 * The default value of the '{@link #getFormat() <em>Format</em>}' attribute.

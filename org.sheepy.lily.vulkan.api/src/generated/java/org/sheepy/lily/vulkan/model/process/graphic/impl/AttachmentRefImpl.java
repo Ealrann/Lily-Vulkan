@@ -5,11 +5,11 @@ package org.sheepy.lily.vulkan.model.process.graphic.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -30,7 +30,7 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
  *
  * @generated
  */
-public class AttachmentRefImpl extends MinimalEObjectImpl.Container implements AttachmentRef
+public class AttachmentRefImpl extends LilyEObject implements AttachmentRef
 {
 	/**
 	 * The cached value of the '{@link #getAttachment() <em>Attachment</em>}' reference.
@@ -91,7 +91,7 @@ public class AttachmentRefImpl extends MinimalEObjectImpl.Container implements A
 	@Override
 	public AttachmentDescription getAttachment()
 	{
-		if (attachment != null && attachment.eIsProxy())
+		if (attachment != null && ((EObject)attachment).eIsProxy())
 		{
 			InternalEObject oldAttachment = (InternalEObject)attachment;
 			attachment = (AttachmentDescription)eResolveProxy(oldAttachment);

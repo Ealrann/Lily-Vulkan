@@ -5,6 +5,7 @@ package org.sheepy.lily.vulkan.extra.model.rendering.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -88,7 +89,7 @@ public class RenderProxyConstantBufferImpl extends ConstantBufferImpl implements
 	@Override
 	public ConstantBuffer getConstantBuffer()
 	{
-		if (constantBuffer != null && constantBuffer.eIsProxy())
+		if (constantBuffer != null && ((EObject)constantBuffer).eIsProxy())
 		{
 			InternalEObject oldConstantBuffer = (InternalEObject)constantBuffer;
 			constantBuffer = (ConstantBuffer)eResolveProxy(oldConstantBuffer);

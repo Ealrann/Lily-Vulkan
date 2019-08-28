@@ -9,8 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource;
 import org.sheepy.lily.vulkan.model.resource.Descriptor;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
@@ -29,7 +28,7 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  *
  * @generated
  */
-public abstract class BasicDescriptedResourceImpl extends MinimalEObjectImpl.Container
+public abstract class BasicDescriptedResourceImpl extends LilyEObject
 		implements BasicDescriptedResource
 {
 	/**

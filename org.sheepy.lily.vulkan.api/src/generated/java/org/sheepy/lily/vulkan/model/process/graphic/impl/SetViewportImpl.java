@@ -7,8 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.SetViewport;
 
@@ -32,7 +31,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.SetViewport;
  *
  * @generated
  */
-public class SetViewportImpl extends MinimalEObjectImpl.Container implements SetViewport
+public class SetViewportImpl extends LilyEObject implements SetViewport
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

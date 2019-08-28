@@ -11,10 +11,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.Descriptor;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
@@ -35,7 +34,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  *
  * @generated
  */
-public class DescriptorImpl extends MinimalEObjectImpl.Container implements Descriptor
+public class DescriptorImpl extends LilyEObject implements Descriptor
 {
 	/**
 	 * The default value of the '{@link #getDescriptorType() <em>Descriptor Type</em>}' attribute.

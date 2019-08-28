@@ -7,8 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 import org.sheepy.vulkan.model.graphicpipeline.Vec2I;
 
@@ -26,7 +25,7 @@ import org.sheepy.vulkan.model.graphicpipeline.Vec2I;
  *
  * @generated
  */
-public class Vec2IImpl extends MinimalEObjectImpl.Container implements Vec2I
+public class Vec2IImpl extends LilyEObject implements Vec2I
 {
 	/**
 	 * The default value of the '{@link #getX() <em>X</em>}' attribute.

@@ -10,12 +10,10 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
@@ -33,7 +31,7 @@ import org.sheepy.lily.vulkan.model.process.TaskPkg;
  *
  * @generated
  */
-public class TaskPkgImpl extends MinimalEObjectImpl.Container implements TaskPkg
+public class TaskPkgImpl extends LilyEObject implements TaskPkg
 {
 	/**
 	 * The cached value of the '{@link #getTasks() <em>Tasks</em>}' containment reference list.

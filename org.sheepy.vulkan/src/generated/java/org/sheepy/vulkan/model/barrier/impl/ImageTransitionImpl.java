@@ -11,10 +11,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.barrier.ImageTransition;
 
@@ -37,7 +36,7 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
  *
  * @generated
  */
-public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements ImageTransition
+public class ImageTransitionImpl extends LilyEObject implements ImageTransition
 {
 	/**
 	 * The default value of the '{@link #getSrcLayout() <em>Src Layout</em>}' attribute.

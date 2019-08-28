@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -224,7 +225,7 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public ConstantBuffer getConstantBuffer()
 	{
-		if (constantBuffer != null && constantBuffer.eIsProxy())
+		if (constantBuffer != null && ((EObject)constantBuffer).eIsProxy())
 		{
 			InternalEObject oldConstantBuffer = (InternalEObject)constantBuffer;
 			constantBuffer = (ConstantBuffer)eResolveProxy(oldConstantBuffer);
@@ -269,7 +270,7 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public PushBuffer getPushBuffer()
 	{
-		if (pushBuffer != null && pushBuffer.eIsProxy())
+		if (pushBuffer != null && ((EObject)pushBuffer).eIsProxy())
 		{
 			InternalEObject oldPushBuffer = (InternalEObject)pushBuffer;
 			pushBuffer = (PushBuffer)eResolveProxy(oldPushBuffer);

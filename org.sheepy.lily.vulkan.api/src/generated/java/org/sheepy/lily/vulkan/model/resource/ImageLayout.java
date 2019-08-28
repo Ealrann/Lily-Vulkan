@@ -3,9 +3,7 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
-
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
@@ -26,9 +24,10 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageLayout()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface ImageLayout extends EObject
+public interface ImageLayout extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Stage</b></em>' attribute.

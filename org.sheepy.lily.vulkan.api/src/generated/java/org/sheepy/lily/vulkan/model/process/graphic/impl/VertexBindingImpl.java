@@ -9,8 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
 
@@ -29,7 +28,7 @@ import org.sheepy.lily.vulkan.model.resource.IBufferReference;
  *
  * @generated
  */
-public class VertexBindingImpl extends MinimalEObjectImpl.Container implements VertexBinding
+public class VertexBindingImpl extends LilyEObject implements VertexBinding
 {
 	/**
 	 * The cached value of the '{@link #getBufferRef() <em>Buffer Ref</em>}' containment reference.

@@ -7,11 +7,9 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider;
 
@@ -30,7 +28,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
  *
  * @generated
  */
-public class StaticResourceProviderImpl extends MinimalEObjectImpl.Container implements StaticResourceProvider
+public class StaticResourceProviderImpl extends LilyEObject implements StaticResourceProvider
 {
 	/**
 	 * The cached value of the '{@link #getResources() <em>Resources</em>}' reference list.

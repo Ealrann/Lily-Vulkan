@@ -232,8 +232,9 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 
 	private void firePreFlush()
 	{
-		for (final FlushListener flushListener : listeners)
+		for (int i = 0; i < listeners.size(); i++)
 		{
+			final FlushListener flushListener = listeners.get(i);
 			flushListener.preFlush();
 		}
 	}

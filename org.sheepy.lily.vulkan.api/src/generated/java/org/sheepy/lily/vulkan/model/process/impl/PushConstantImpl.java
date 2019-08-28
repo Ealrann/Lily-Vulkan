@@ -11,10 +11,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 
@@ -35,7 +34,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  *
  * @generated
  */
-public abstract class PushConstantImpl extends MinimalEObjectImpl.Container implements PushConstant
+public abstract class PushConstantImpl extends LilyEObject implements PushConstant
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

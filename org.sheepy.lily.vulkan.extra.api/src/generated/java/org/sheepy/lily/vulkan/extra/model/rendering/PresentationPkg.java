@@ -3,8 +3,7 @@
 package org.sheepy.lily.vulkan.extra.model.rendering;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,9 +19,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getPresentationPkg()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface PresentationPkg extends EObject
+public interface PresentationPkg extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Structures</b></em>' containment reference list.

@@ -2,7 +2,7 @@
  */
 package org.sheepy.vulkan.model.graphicpipeline;
 
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,7 +12,8 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getViewportState()
  * @model interface="true" abstract="true"
+ * @extends ILilyEObject
  * @generated
  */
-public interface ViewportState extends EObject
+public interface ViewportState extends ILilyEObject
 {} // ViewportState

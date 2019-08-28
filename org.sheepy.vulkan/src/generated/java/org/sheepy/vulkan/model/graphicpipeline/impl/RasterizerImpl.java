@@ -7,8 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.vulkan.model.enumeration.ECullMode;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
 import org.sheepy.vulkan.model.enumeration.EPolygonMode;
@@ -35,7 +34,7 @@ import org.sheepy.vulkan.model.graphicpipeline.Rasterizer;
  *
  * @generated
  */
-public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rasterizer
+public class RasterizerImpl extends LilyEObject implements Rasterizer
 {
 	/**
 	 * The default value of the '{@link #getCullMode() <em>Cull Mode</em>}' attribute.

@@ -5,11 +5,11 @@ package org.sheepy.lily.vulkan.model.resource.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.CompositeBufferReference;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
@@ -28,7 +28,7 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  *
  * @generated
  */
-public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container implements CompositeBufferReference
+public class CompositeBufferReferenceImpl extends LilyEObject implements CompositeBufferReference
 {
 	/**
 	 * The cached value of the '{@link #getBuffer() <em>Buffer</em>}' reference.
@@ -89,7 +89,7 @@ public class CompositeBufferReferenceImpl extends MinimalEObjectImpl.Container i
 	@Override
 	public CompositeBuffer getBuffer()
 	{
-		if (buffer != null && buffer.eIsProxy())
+		if (buffer != null && ((EObject)buffer).eIsProxy())
 		{
 			InternalEObject oldBuffer = (InternalEObject)buffer;
 			buffer = (CompositeBuffer)eResolveProxy(oldBuffer);

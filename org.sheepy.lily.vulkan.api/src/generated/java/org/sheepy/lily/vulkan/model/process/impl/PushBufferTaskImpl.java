@@ -5,11 +5,11 @@ package org.sheepy.lily.vulkan.model.process.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.PushBufferTask;
 
@@ -30,7 +30,7 @@ import org.sheepy.lily.vulkan.model.resource.PushBuffer;
  *
  * @generated
  */
-public class PushBufferTaskImpl extends MinimalEObjectImpl.Container implements PushBufferTask
+public class PushBufferTaskImpl extends LilyEObject implements PushBufferTask
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -161,7 +161,7 @@ public class PushBufferTaskImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public PushBuffer getPushBuffer()
 	{
-		if (pushBuffer != null && pushBuffer.eIsProxy())
+		if (pushBuffer != null && ((EObject)pushBuffer).eIsProxy())
 		{
 			InternalEObject oldPushBuffer = (InternalEObject)pushBuffer;
 			pushBuffer = (PushBuffer)eResolveProxy(oldPushBuffer);

@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.rendering;
 
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,8 +12,9 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getResourceProvider()
  * @model interface="true" abstract="true"
+ * @extends ILilyEObject
  * @generated
  */
-public interface ResourceProvider extends EObject
+public interface ResourceProvider extends ILilyEObject
 {
 } // ResourceProvider

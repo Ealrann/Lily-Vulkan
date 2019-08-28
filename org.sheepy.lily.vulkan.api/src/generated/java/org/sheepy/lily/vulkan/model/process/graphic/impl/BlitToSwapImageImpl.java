@@ -5,11 +5,11 @@ package org.sheepy.lily.vulkan.model.process.graphic.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
@@ -33,7 +33,7 @@ import org.sheepy.vulkan.model.enumeration.EFilter;
  *
  * @generated
  */
-public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements BlitToSwapImage
+public class BlitToSwapImageImpl extends LilyEObject implements BlitToSwapImage
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -184,7 +184,7 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public Image getImage()
 	{
-		if (image != null && image.eIsProxy())
+		if (image != null && ((EObject)image).eIsProxy())
 		{
 			InternalEObject oldImage = (InternalEObject)image;
 			image = (Image)eResolveProxy(oldImage);

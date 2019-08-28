@@ -5,6 +5,7 @@ package org.sheepy.lily.vulkan.model.process.graphic.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -67,7 +68,7 @@ public class ExtraAttachmentDescriptionImpl extends AttachmentDescriptionImpl im
 	@Override
 	public ISwapAttachment getAttachment()
 	{
-		if (attachment != null && attachment.eIsProxy())
+		if (attachment != null && ((EObject)attachment).eIsProxy())
 		{
 			InternalEObject oldAttachment = (InternalEObject)attachment;
 			attachment = (ISwapAttachment)eResolveProxy(oldAttachment);

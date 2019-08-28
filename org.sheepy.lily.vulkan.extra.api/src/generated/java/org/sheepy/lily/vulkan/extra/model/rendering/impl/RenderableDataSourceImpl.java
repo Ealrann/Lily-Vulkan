@@ -5,10 +5,11 @@ package org.sheepy.lily.vulkan.extra.model.rendering.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
@@ -27,7 +28,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
  *
  * @generated
  */
-public class RenderableDataSourceImpl<T extends Structure> extends MinimalEObjectImpl.Container implements RenderableDataSource<T>
+public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject implements RenderableDataSource<T>
 {
 	/**
 	 * The cached value of the '{@link #getStructure() <em>Structure</em>}' reference.
@@ -89,7 +90,7 @@ public class RenderableDataSourceImpl<T extends Structure> extends MinimalEObjec
 	@Override
 	public T getStructure()
 	{
-		if (structure != null && structure.eIsProxy())
+		if (structure != null && ((EObject)structure).eIsProxy())
 		{
 			InternalEObject oldStructure = (InternalEObject)structure;
 			structure = (T)eResolveProxy(oldStructure);

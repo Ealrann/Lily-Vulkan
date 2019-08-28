@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
@@ -27,7 +27,7 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  *
  * @generated
  */
-public abstract class ImageImpl extends MinimalEObjectImpl.Container implements Image
+public abstract class ImageImpl extends LilyEObject implements Image
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

@@ -9,8 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
@@ -34,7 +33,7 @@ import org.sheepy.vulkan.model.enumeration.EIndexType;
  *
  * @generated
  */
-public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements BindIndexBuffer
+public class BindIndexBufferImpl extends LilyEObject implements BindIndexBuffer
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

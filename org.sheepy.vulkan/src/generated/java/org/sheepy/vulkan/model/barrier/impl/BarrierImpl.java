@@ -5,9 +5,8 @@ package org.sheepy.vulkan.model.barrier.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.vulkan.model.barrier.Barrier;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
@@ -27,7 +26,7 @@ import org.sheepy.vulkan.model.enumeration.EAccess;
  *
  * @generated
  */
-public abstract class BarrierImpl extends MinimalEObjectImpl.Container implements Barrier
+public abstract class BarrierImpl extends LilyEObject implements Barrier
 {
 	/**
 	 * The cached value of the '{@link #getSrcAccessMask() <em>Src Access Mask</em>}' attribute list.

@@ -54,8 +54,9 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 	{
 		waitIdle();
 
-		for (final ECommandStage stage : stages)
+		for (int i = 0; i < stages.size(); i++)
 		{
+			final ECommandStage stage = stages.get(i);
 			commandBuffer.start(stage);
 			recordCommand(recordables, stage);
 			commandBuffer.end(stage);

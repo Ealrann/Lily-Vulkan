@@ -10,12 +10,10 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
@@ -34,7 +32,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
  *
  * @generated
  */
-public class DataProviderPkgImpl<T extends Structure> extends MinimalEObjectImpl.Container implements DataProviderPkg<T>
+public class DataProviderPkgImpl<T extends Structure> extends LilyEObject implements DataProviderPkg<T>
 {
 	/**
 	 * The cached value of the '{@link #getDataProviders() <em>Data Providers</em>}' containment reference list.

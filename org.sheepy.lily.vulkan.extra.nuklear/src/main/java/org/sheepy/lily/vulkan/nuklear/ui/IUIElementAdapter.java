@@ -17,8 +17,8 @@ public interface IUIElementAdapter extends IAdapter
 	{
 		return IAdapterFactoryService.INSTANCE.adapt(object, IUIElementAdapter.class);
 	}
-	
-	static class UIContext
+
+	static final class UIContext
 	{
 		public final Window window;
 		public final NkContext nkContext;

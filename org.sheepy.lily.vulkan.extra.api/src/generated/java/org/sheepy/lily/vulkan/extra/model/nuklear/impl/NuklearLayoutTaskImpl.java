@@ -6,11 +6,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
@@ -37,7 +37,7 @@ import org.sheepy.lily.vulkan.model.resource.PushBuffer;
  *
  * @generated
  */
-public class NuklearLayoutTaskImpl extends MinimalEObjectImpl.Container implements NuklearLayoutTask
+public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutTask
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -198,7 +198,7 @@ public class NuklearLayoutTaskImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public NuklearContext getContext()
 	{
-		if (context != null && context.eIsProxy())
+		if (context != null && ((EObject)context).eIsProxy())
 		{
 			InternalEObject oldContext = (InternalEObject)context;
 			context = (NuklearContext)eResolveProxy(oldContext);
@@ -268,7 +268,7 @@ public class NuklearLayoutTaskImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public CompositeTask getDrawTask()
 	{
-		if (drawTask != null && drawTask.eIsProxy())
+		if (drawTask != null && ((EObject)drawTask).eIsProxy())
 		{
 			InternalEObject oldDrawTask = (InternalEObject)drawTask;
 			drawTask = (CompositeTask)eResolveProxy(oldDrawTask);
@@ -313,7 +313,7 @@ public class NuklearLayoutTaskImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public PushBuffer getPushBuffer()
 	{
-		if (pushBuffer != null && pushBuffer.eIsProxy())
+		if (pushBuffer != null && ((EObject)pushBuffer).eIsProxy())
 		{
 			InternalEObject oldPushBuffer = (InternalEObject)pushBuffer;
 			pushBuffer = (PushBuffer)eResolveProxy(oldPushBuffer);
@@ -358,7 +358,7 @@ public class NuklearLayoutTaskImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public Buffer getVertexBuffer()
 	{
-		if (vertexBuffer != null && vertexBuffer.eIsProxy())
+		if (vertexBuffer != null && ((EObject)vertexBuffer).eIsProxy())
 		{
 			InternalEObject oldVertexBuffer = (InternalEObject)vertexBuffer;
 			vertexBuffer = (Buffer)eResolveProxy(oldVertexBuffer);

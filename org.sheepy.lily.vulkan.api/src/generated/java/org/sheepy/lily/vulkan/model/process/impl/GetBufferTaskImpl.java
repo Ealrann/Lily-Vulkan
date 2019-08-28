@@ -5,11 +5,11 @@ package org.sheepy.lily.vulkan.model.process.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.GetBufferTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
@@ -32,7 +32,7 @@ import org.sheepy.lily.vulkan.model.resource.GetBuffer;
  *
  * @generated
  */
-public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements GetBufferTask
+public class GetBufferTaskImpl extends LilyEObject implements GetBufferTask
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -173,7 +173,7 @@ public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements G
 	@Override
 	public GetBuffer getGetBuffer()
 	{
-		if (getBuffer != null && getBuffer.eIsProxy())
+		if (getBuffer != null && ((EObject)getBuffer).eIsProxy())
 		{
 			InternalEObject oldGetBuffer = (InternalEObject)getBuffer;
 			getBuffer = (GetBuffer)eResolveProxy(oldGetBuffer);
@@ -218,7 +218,7 @@ public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements G
 	@Override
 	public Buffer getDeviceBuffer()
 	{
-		if (deviceBuffer != null && deviceBuffer.eIsProxy())
+		if (deviceBuffer != null && ((EObject)deviceBuffer).eIsProxy())
 		{
 			InternalEObject oldDeviceBuffer = (InternalEObject)deviceBuffer;
 			deviceBuffer = (Buffer)eResolveProxy(oldDeviceBuffer);

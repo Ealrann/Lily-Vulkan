@@ -7,8 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
@@ -37,7 +36,7 @@ import org.sheepy.vulkan.model.enumeration.ESampleCount;
  *
  * @generated
  */
-public abstract class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container implements AttachmentDescription
+public abstract class AttachmentDescriptionImpl extends LilyEObject implements AttachmentDescription
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

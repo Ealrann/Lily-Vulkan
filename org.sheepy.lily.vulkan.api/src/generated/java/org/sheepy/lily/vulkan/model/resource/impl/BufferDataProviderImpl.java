@@ -8,8 +8,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
@@ -31,7 +30,7 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  *
  * @generated
  */
-public abstract class BufferDataProviderImpl<T> extends MinimalEObjectImpl.Container implements BufferDataProvider<T>
+public abstract class BufferDataProviderImpl<T> extends LilyEObject implements BufferDataProvider<T>
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

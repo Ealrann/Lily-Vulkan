@@ -86,8 +86,10 @@ public class NuklearLayoutTaskAdapter
 			final var uiPage = uiView.getCurrentUIPage();
 			if (uiPage != null)
 			{
-				for (final var panel : uiPage.getPanels())
+				final var panels = uiPage.getPanels();
+				for (int i = 0; i < panels.size(); i++)
 				{
+					final var panel = panels.get(i);
 					final var panelAdapter = IUIElementAdapter.adapt(panel);
 					dirty |= panelAdapter.layout(uiContext, panel);
 				}

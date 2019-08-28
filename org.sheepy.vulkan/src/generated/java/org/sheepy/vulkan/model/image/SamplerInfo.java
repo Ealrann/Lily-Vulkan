@@ -2,8 +2,7 @@
  */
 package org.sheepy.vulkan.model.image;
 
-import org.eclipse.emf.ecore.EObject;
-
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.vulkan.model.enumeration.EBorderColor;
 import org.sheepy.vulkan.model.enumeration.EFilter;
 import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode;
@@ -34,9 +33,10 @@ import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode;
  *
  * @see org.sheepy.vulkan.model.image.ImagePackage#getSamplerInfo()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface SamplerInfo extends EObject
+public interface SamplerInfo extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Min Filter</b></em>' attribute.

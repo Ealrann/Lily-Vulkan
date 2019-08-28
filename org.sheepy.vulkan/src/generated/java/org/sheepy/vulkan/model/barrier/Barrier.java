@@ -3,8 +3,7 @@
 package org.sheepy.vulkan.model.barrier;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 
 /**
@@ -22,9 +21,10 @@ import org.sheepy.vulkan.model.enumeration.EAccess;
  *
  * @see org.sheepy.vulkan.model.barrier.BarrierPackage#getBarrier()
  * @model abstract="true"
+ * @extends ILilyEObject
  * @generated
  */
-public interface Barrier extends EObject
+public interface Barrier extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Src Access Mask</b></em>' attribute list.

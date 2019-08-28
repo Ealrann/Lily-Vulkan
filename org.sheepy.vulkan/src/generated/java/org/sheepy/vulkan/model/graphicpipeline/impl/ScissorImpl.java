@@ -9,8 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 import org.sheepy.vulkan.model.graphicpipeline.Scissor;
 import org.sheepy.vulkan.model.graphicpipeline.Vec2I;
@@ -30,7 +29,7 @@ import org.sheepy.vulkan.model.graphicpipeline.Vec2I;
  *
  * @generated
  */
-public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
+public class ScissorImpl extends LilyEObject implements Scissor
 {
 	/**
 	 * The default value of the '{@link #getOffsetX() <em>Offset X</em>}' attribute.

@@ -2,7 +2,7 @@
  */
 package org.sheepy.vulkan.model.graphicpipeline;
 
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,9 +20,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getScissor()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface Scissor extends EObject
+public interface Scissor extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Offset X</b></em>' attribute.

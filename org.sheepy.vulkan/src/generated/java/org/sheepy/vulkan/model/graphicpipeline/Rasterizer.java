@@ -2,8 +2,7 @@
  */
 package org.sheepy.vulkan.model.graphicpipeline;
 
-import org.eclipse.emf.ecore.EObject;
-
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.vulkan.model.enumeration.ECullMode;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
 import org.sheepy.vulkan.model.enumeration.EPolygonMode;
@@ -28,9 +27,10 @@ import org.sheepy.vulkan.model.enumeration.EPolygonMode;
  *
  * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getRasterizer()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface Rasterizer extends EObject
+public interface Rasterizer extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Cull Mode</b></em>' attribute.

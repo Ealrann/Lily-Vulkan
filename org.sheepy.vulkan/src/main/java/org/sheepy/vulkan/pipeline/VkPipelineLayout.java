@@ -97,8 +97,9 @@ public final class VkPipelineLayout<T extends IExecutionContext> implements IAll
 		{
 			descriptorSetAddressBuffer.clear();
 
-			for (final var set : sets)
+			for (int i = 0; i < sets.size(); i++)
 			{
+				final var set = sets.get(i);
 				descriptorSetAddressBuffer.put(set.getId());
 			}
 			descriptorSetAddressBuffer.flip();

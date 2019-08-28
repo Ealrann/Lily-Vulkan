@@ -5,6 +5,7 @@ package org.sheepy.lily.vulkan.model.resource.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -69,7 +70,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	@Override
 	public Buffer getBuffer()
 	{
-		if (buffer != null && buffer.eIsProxy())
+		if (buffer != null && ((EObject)buffer).eIsProxy())
 		{
 			InternalEObject oldBuffer = (InternalEObject)buffer;
 			buffer = (Buffer)eResolveProxy(oldBuffer);

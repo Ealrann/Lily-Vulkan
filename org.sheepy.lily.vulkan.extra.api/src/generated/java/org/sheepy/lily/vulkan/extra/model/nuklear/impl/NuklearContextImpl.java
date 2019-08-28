@@ -6,11 +6,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
@@ -33,7 +33,7 @@ import org.sheepy.lily.vulkan.model.resource.SampledImage;
  *
  * @generated
  */
-public class NuklearContextImpl extends MinimalEObjectImpl.Container implements NuklearContext
+public class NuklearContextImpl extends LilyEObject implements NuklearContext
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -139,7 +139,7 @@ public class NuklearContextImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public NuklearFont getFont()
 	{
-		if (font != null && font.eIsProxy())
+		if (font != null && ((EObject)font).eIsProxy())
 		{
 			InternalEObject oldFont = (InternalEObject)font;
 			font = (NuklearFont)eResolveProxy(oldFont);
@@ -184,7 +184,7 @@ public class NuklearContextImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public SampledImage getNullTexture()
 	{
-		if (nullTexture != null && nullTexture.eIsProxy())
+		if (nullTexture != null && ((EObject)nullTexture).eIsProxy())
 		{
 			InternalEObject oldNullTexture = (InternalEObject)nullTexture;
 			nullTexture = (SampledImage)eResolveProxy(oldNullTexture);
@@ -229,7 +229,7 @@ public class NuklearContextImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public NuklearLayoutTask getLayoutTask()
 	{
-		if (layoutTask != null && layoutTask.eIsProxy())
+		if (layoutTask != null && ((EObject)layoutTask).eIsProxy())
 		{
 			InternalEObject oldLayoutTask = (InternalEObject)layoutTask;
 			layoutTask = (NuklearLayoutTask)eResolveProxy(oldLayoutTask);

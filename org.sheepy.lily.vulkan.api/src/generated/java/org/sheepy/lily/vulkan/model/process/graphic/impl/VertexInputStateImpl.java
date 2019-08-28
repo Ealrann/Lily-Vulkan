@@ -10,12 +10,10 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
@@ -33,7 +31,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
  *
  * @generated
  */
-public class VertexInputStateImpl extends MinimalEObjectImpl.Container implements VertexInputState
+public class VertexInputStateImpl extends LilyEObject implements VertexInputState
 {
 	/**
 	 * The cached value of the '{@link #getInputDescriptor() <em>Input Descriptor</em>}' containment reference list.

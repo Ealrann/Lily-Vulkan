@@ -10,12 +10,10 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
@@ -33,7 +31,7 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  *
  * @generated
  */
-public class DescriptorSetPkgImpl extends MinimalEObjectImpl.Container implements DescriptorSetPkg
+public class DescriptorSetPkgImpl extends LilyEObject implements DescriptorSetPkg
 {
 	/**
 	 * The cached value of the '{@link #getDescriptorSets() <em>Descriptor Sets</em>}' containment reference list.

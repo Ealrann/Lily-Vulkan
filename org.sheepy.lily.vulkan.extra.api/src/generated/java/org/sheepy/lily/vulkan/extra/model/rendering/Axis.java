@@ -2,9 +2,8 @@
  */
 package org.sheepy.lily.vulkan.extra.model.rendering;
 
-import org.eclipse.emf.ecore.EObject;
-
 import org.joml.Vector3dc;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,9 +21,10 @@ import org.joml.Vector3dc;
  *
  * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getAxis()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface Axis extends EObject
+public interface Axis extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Front Direction</b></em>' attribute.

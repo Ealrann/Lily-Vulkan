@@ -234,8 +234,9 @@ public class VulkanInputManager implements IVulkanInputManager
 
 	public void fireEvents()
 	{
-		for (final IInputEvent event : events)
+		for (int i = 0; i < events.size(); i++)
 		{
+			final IInputEvent event = events.get(i);
 			fireEvent(event);
 		}
 		events.clear();

@@ -3,9 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
-
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
@@ -28,9 +26,10 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpassDependency()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface SubpassDependency extends EObject
+public interface SubpassDependency extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Src Subpass</b></em>' reference.

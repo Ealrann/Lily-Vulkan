@@ -3,8 +3,7 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,9 +19,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getDescriptorSetPkg()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface DescriptorSetPkg extends EObject
+public interface DescriptorSetPkg extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Descriptor Sets</b></em>' containment reference list.

@@ -7,10 +7,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.joml.Vector3dc;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
@@ -31,7 +30,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
  *
  * @generated
  */
-public class AxisImpl extends MinimalEObjectImpl.Container implements Axis
+public class AxisImpl extends LilyEObject implements Axis
 {
 	/**
 	 * The default value of the '{@link #getFrontDirection() <em>Front Direction</em>}' attribute.

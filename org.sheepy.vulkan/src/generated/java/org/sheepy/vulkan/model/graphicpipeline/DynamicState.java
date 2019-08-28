@@ -3,9 +3,7 @@
 package org.sheepy.vulkan.model.graphicpipeline;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
-
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.vulkan.model.enumeration.EDynamicState;
 
 /**
@@ -22,9 +20,10 @@ import org.sheepy.vulkan.model.enumeration.EDynamicState;
  *
  * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getDynamicState()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface DynamicState extends EObject
+public interface DynamicState extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>States</b></em>' attribute list.

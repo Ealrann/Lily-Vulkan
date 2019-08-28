@@ -2,8 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic;
 
-import org.eclipse.emf.ecore.EObject;
-
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 
 /**
@@ -20,9 +19,10 @@ import org.sheepy.lily.vulkan.model.resource.IBufferReference;
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getVertexBinding()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface VertexBinding extends EObject
+public interface VertexBinding extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Buffer Ref</b></em>' containment reference.

@@ -21,13 +21,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.core.api.util.LTreeIterator;
 
 import org.sheepy.lily.core.model.inference.IInferenceObject;
@@ -62,7 +61,7 @@ import org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature;
  *
  * @generated
  */
-public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements VulkanEngine
+public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 {
 	/**
 	 * The cached value of the '{@link #getContentObjects() <em>Content Objects</em>}' attribute.

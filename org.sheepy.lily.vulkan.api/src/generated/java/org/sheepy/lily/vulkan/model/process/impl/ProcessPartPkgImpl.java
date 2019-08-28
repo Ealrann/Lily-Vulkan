@@ -10,12 +10,10 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
@@ -33,7 +31,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
  *
  * @generated
  */
-public class ProcessPartPkgImpl extends MinimalEObjectImpl.Container implements ProcessPartPkg
+public class ProcessPartPkgImpl extends LilyEObject implements ProcessPartPkg
 {
 	/**
 	 * The cached value of the '{@link #getParts() <em>Parts</em>}' containment reference list.

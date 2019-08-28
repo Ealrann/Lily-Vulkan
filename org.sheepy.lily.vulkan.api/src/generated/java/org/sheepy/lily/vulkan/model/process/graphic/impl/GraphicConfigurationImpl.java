@@ -9,8 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
 import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
@@ -35,7 +34,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *
  * @generated
  */
-public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container implements GraphicConfiguration
+public class GraphicConfigurationImpl extends LilyEObject implements GraphicConfiguration
 {
 	/**
 	 * The cached value of the '{@link #getSwapchainConfiguration() <em>Swapchain Configuration</em>}' containment reference.

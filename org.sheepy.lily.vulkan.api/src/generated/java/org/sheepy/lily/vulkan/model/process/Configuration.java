@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,7 +12,8 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getConfiguration()
  * @model interface="true" abstract="true"
+ * @extends ILilyEObject
  * @generated
  */
-public interface Configuration extends EObject
+public interface Configuration extends ILilyEObject
 {} // Configuration

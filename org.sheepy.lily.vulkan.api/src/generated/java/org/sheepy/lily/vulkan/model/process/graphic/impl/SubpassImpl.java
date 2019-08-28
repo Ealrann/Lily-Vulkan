@@ -13,11 +13,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
@@ -36,7 +35,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
  *
  * @generated
  */
-public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
+public class SubpassImpl extends LilyEObject implements Subpass
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

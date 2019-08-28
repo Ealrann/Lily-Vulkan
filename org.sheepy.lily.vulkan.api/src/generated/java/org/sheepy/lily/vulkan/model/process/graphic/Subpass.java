@@ -3,8 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,9 +20,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface Subpass extends EObject
+public interface Subpass extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

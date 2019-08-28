@@ -10,12 +10,10 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
@@ -33,7 +31,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
  *
  * @generated
  */
-public class CompositeResourceProviderImpl extends MinimalEObjectImpl.Container implements CompositeResourceProvider
+public class CompositeResourceProviderImpl extends LilyEObject implements CompositeResourceProvider
 {
 	/**
 	 * The cached value of the '{@link #getProviders() <em>Providers</em>}' containment reference list.

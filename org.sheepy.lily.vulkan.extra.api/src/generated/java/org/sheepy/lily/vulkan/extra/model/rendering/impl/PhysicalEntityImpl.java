@@ -9,11 +9,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.joml.Vector2fc;
 import org.joml.Vector3dc;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
@@ -37,7 +36,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
  *
  * @generated
  */
-public abstract class PhysicalEntityImpl extends MinimalEObjectImpl.Container implements PhysicalEntity
+public abstract class PhysicalEntityImpl extends LilyEObject implements PhysicalEntity
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

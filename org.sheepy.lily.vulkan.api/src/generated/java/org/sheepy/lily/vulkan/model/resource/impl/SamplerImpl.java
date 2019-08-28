@@ -5,6 +5,7 @@ package org.sheepy.lily.vulkan.model.resource.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -177,7 +178,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	@Override
 	public Image getImage()
 	{
-		if (image != null && image.eIsProxy())
+		if (image != null && ((EObject)image).eIsProxy())
 		{
 			InternalEObject oldImage = (InternalEObject)image;
 			image = (Image)eResolveProxy(oldImage);

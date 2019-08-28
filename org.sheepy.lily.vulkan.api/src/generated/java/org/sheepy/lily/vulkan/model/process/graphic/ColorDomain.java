@@ -2,8 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic;
 
-import org.eclipse.emf.ecore.EObject;
-
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.vulkan.model.enumeration.EColorSpace;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 
@@ -22,9 +21,10 @@ import org.sheepy.vulkan.model.enumeration.EFormat;
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getColorDomain()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface ColorDomain extends EObject
+public interface ColorDomain extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Format</b></em>' attribute.

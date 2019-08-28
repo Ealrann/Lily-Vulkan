@@ -7,8 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.vulkan.model.enumeration.EBorderColor;
 import org.sheepy.vulkan.model.enumeration.EFilter;
 import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode;
@@ -41,7 +40,7 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  *
  * @generated
  */
-public class SamplerInfoImpl extends MinimalEObjectImpl.Container implements SamplerInfo
+public class SamplerInfoImpl extends LilyEObject implements SamplerInfo
 {
 	/**
 	 * The default value of the '{@link #getMinFilter() <em>Min Filter</em>}' attribute.

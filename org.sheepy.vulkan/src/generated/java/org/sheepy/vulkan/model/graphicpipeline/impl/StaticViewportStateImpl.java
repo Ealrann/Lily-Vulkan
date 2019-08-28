@@ -10,12 +10,10 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 import org.sheepy.vulkan.model.graphicpipeline.Scissor;
 import org.sheepy.vulkan.model.graphicpipeline.StaticViewportState;
@@ -35,7 +33,7 @@ import org.sheepy.vulkan.model.graphicpipeline.Viewport;
  *
  * @generated
  */
-public class StaticViewportStateImpl extends MinimalEObjectImpl.Container implements StaticViewportState
+public class StaticViewportStateImpl extends LilyEObject implements StaticViewportState
 {
 	/**
 	 * The cached value of the '{@link #getViewports() <em>Viewports</em>}' containment reference list.

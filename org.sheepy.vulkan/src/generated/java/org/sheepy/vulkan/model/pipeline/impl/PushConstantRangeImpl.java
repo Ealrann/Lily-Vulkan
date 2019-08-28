@@ -11,8 +11,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
@@ -33,7 +33,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  *
  * @generated
  */
-public class PushConstantRangeImpl extends MinimalEObjectImpl.Container implements PushConstantRange
+public class PushConstantRangeImpl extends LilyEObject implements PushConstantRange
 {
 	/**
 	 * The cached value of the '{@link #getStages() <em>Stages</em>}' attribute list.

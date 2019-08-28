@@ -15,11 +15,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -55,7 +54,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  *
  * @generated
  */
-public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeline
+public class PipelineImpl extends LilyEObject implements Pipeline
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

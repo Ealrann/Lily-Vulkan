@@ -3,9 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
-
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
 /**
@@ -26,9 +24,10 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSwapchainConfiguration()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface SwapchainConfiguration extends EObject
+public interface SwapchainConfiguration extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Required Swap Image Count</b></em>' attribute.

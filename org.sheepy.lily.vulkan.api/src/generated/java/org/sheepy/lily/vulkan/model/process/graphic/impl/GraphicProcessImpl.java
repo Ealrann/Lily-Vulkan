@@ -6,6 +6,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -119,7 +120,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	@Override
 	public Maintainer<GraphicProcess> getMaintainer()
 	{
-		if (maintainer != null && maintainer.eIsProxy())
+		if (maintainer != null && ((EObject)maintainer).eIsProxy())
 		{
 			InternalEObject oldMaintainer = (InternalEObject)maintainer;
 			maintainer = (Maintainer<GraphicProcess>)eResolveProxy(oldMaintainer);

@@ -7,8 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicViewportState;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 
@@ -26,7 +25,7 @@ import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
  *
  * @generated
  */
-public class DynamicViewportStateImpl extends MinimalEObjectImpl.Container implements DynamicViewportState
+public class DynamicViewportStateImpl extends LilyEObject implements DynamicViewportState
 {
 	/**
 	 * The default value of the '{@link #getViewportCount() <em>Viewport Count</em>}' attribute.

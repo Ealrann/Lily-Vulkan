@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model;
 
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,9 +18,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.sheepy.lily.vulkan.model.VulkanPackage#getIResourceContainer()
  * @model interface="true" abstract="true"
+ * @extends ILilyEObject
  * @generated
  */
-public interface IResourceContainer extends EObject
+public interface IResourceContainer extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Resource Pkg</b></em>' containment reference.

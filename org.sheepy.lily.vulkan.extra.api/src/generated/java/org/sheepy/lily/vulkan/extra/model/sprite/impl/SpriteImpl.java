@@ -13,11 +13,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
@@ -41,7 +40,7 @@ import org.sheepy.lily.vulkan.model.resource.PathResource;
  *
  * @generated
  */
-public class SpriteImpl extends MinimalEObjectImpl.Container implements Sprite
+public class SpriteImpl extends LilyEObject implements Sprite
 {
 	/**
 	 * The cached value of the '{@link #getPresentedEntities() <em>Presented Entities</em>}' reference list.

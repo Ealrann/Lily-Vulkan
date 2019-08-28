@@ -2,9 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic;
 
-import org.eclipse.emf.ecore.EObject;
-
 import org.joml.Vector4fc;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,9 +19,10 @@ import org.joml.Vector4fc;
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getFramebufferConfiguration()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface FramebufferConfiguration extends EObject
+public interface FramebufferConfiguration extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Clear Value</b></em>' attribute.

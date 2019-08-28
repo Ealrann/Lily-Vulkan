@@ -2,7 +2,7 @@
  */
 package org.sheepy.vulkan.model.graphicpipeline;
 
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,9 +19,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getVec2I()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface Vec2I extends EObject
+public interface Vec2I extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>X</b></em>' attribute.

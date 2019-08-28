@@ -21,12 +21,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.core.api.util.LTreeIterator;
 
 import org.sheepy.lily.core.model.inference.IInferenceObject;
@@ -67,7 +66,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *
  * @generated
  */
-public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements PipelineBarrier
+public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 {
 	/**
 	 * The cached value of the '{@link #getContentObjects() <em>Content Objects</em>}' attribute.
@@ -358,7 +357,7 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public AbstractProcess getSrcQueue()
 	{
-		if (srcQueue != null && srcQueue.eIsProxy())
+		if (srcQueue != null && ((EObject)srcQueue).eIsProxy())
 		{
 			InternalEObject oldSrcQueue = (InternalEObject)srcQueue;
 			srcQueue = (AbstractProcess)eResolveProxy(oldSrcQueue);
@@ -403,7 +402,7 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public AbstractProcess getDstQueue()
 	{
-		if (dstQueue != null && dstQueue.eIsProxy())
+		if (dstQueue != null && ((EObject)dstQueue).eIsProxy())
 		{
 			InternalEObject oldDstQueue = (InternalEObject)dstQueue;
 			dstQueue = (AbstractProcess)eResolveProxy(oldDstQueue);

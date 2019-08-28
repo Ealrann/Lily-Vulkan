@@ -2,7 +2,7 @@
  */
 package org.sheepy.vulkan.model.graphicpipeline;
 
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.vulkan.model.enumeration.EBlendFactor;
 import org.sheepy.vulkan.model.enumeration.EBlendOp;
 
@@ -30,9 +30,10 @@ import org.sheepy.vulkan.model.enumeration.EBlendOp;
  *
  * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getColorBlendAttachment()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface ColorBlendAttachment extends EObject
+public interface ColorBlendAttachment extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Blend Enable</b></em>' attribute.

@@ -7,11 +7,9 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.vulkan.model.enumeration.EDynamicState;
 
 import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
@@ -30,7 +28,7 @@ import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
  *
  * @generated
  */
-public class DynamicStateImpl extends MinimalEObjectImpl.Container implements DynamicState
+public class DynamicStateImpl extends LilyEObject implements DynamicState
 {
 	/**
 	 * The cached value of the '{@link #getStates() <em>States</em>}' attribute list.

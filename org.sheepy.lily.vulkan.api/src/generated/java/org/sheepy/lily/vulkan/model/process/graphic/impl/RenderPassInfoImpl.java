@@ -13,11 +13,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
@@ -40,7 +39,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
  *
  * @generated
  */
-public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements RenderPassInfo
+public class RenderPassInfoImpl extends LilyEObject implements RenderPassInfo
 {
 	/**
 	 * The cached value of the '{@link #getAttachments() <em>Attachments</em>}' containment reference list.

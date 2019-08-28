@@ -2,7 +2,7 @@
  */
 package org.sheepy.vulkan.model.pipeline;
 
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,9 +20,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.sheepy.vulkan.model.pipeline.PipelinePackage#getSpecializationConstant()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface SpecializationConstant extends EObject
+public interface SpecializationConstant extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

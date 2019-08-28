@@ -13,11 +13,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor;
@@ -39,7 +38,7 @@ import org.sheepy.vulkan.model.enumeration.EInputRate;
  *
  * @generated
  */
-public class InputDescriptorImpl extends MinimalEObjectImpl.Container implements InputDescriptor
+public class InputDescriptorImpl extends LilyEObject implements InputDescriptor
 {
 	/**
 	 * The default value of the '{@link #getInputRate() <em>Input Rate</em>}' attribute.

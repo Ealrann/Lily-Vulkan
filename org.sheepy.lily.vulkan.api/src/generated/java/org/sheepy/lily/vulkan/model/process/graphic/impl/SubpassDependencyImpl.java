@@ -9,13 +9,13 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
@@ -41,7 +41,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *
  * @generated
  */
-public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implements SubpassDependency
+public class SubpassDependencyImpl extends LilyEObject implements SubpassDependency
 {
 	/**
 	 * The cached value of the '{@link #getSrcSubpass() <em>Src Subpass</em>}' reference.
@@ -132,7 +132,7 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public Subpass getSrcSubpass()
 	{
-		if (srcSubpass != null && srcSubpass.eIsProxy())
+		if (srcSubpass != null && ((EObject)srcSubpass).eIsProxy())
 		{
 			InternalEObject oldSrcSubpass = (InternalEObject)srcSubpass;
 			srcSubpass = (Subpass)eResolveProxy(oldSrcSubpass);
@@ -177,7 +177,7 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public Subpass getDstSubpass()
 	{
-		if (dstSubpass != null && dstSubpass.eIsProxy())
+		if (dstSubpass != null && ((EObject)dstSubpass).eIsProxy())
 		{
 			InternalEObject oldDstSubpass = (InternalEObject)dstSubpass;
 			dstSubpass = (Subpass)eResolveProxy(oldDstSubpass);

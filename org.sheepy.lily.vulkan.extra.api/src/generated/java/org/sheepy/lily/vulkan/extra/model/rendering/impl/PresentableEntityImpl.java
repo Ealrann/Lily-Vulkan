@@ -6,6 +6,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -89,7 +90,7 @@ public class PresentableEntityImpl extends PhysicalEntityImpl implements Present
 	@Override
 	public Presentation getPresentation()
 	{
-		if (presentation != null && presentation.eIsProxy())
+		if (presentation != null && ((EObject)presentation).eIsProxy())
 		{
 			InternalEObject oldPresentation = (InternalEObject)presentation;
 			presentation = (Presentation)eResolveProxy(oldPresentation);

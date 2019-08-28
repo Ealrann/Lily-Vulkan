@@ -10,14 +10,14 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
@@ -43,7 +43,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
  *
  * @generated
  */
-public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements CompositeTask
+public class CompositeTaskImpl extends LilyEObject implements CompositeTask
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -205,7 +205,7 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 	@Override
 	public Maintainer<CompositeTask> getMaintainer()
 	{
-		if (maintainer != null && maintainer.eIsProxy())
+		if (maintainer != null && ((EObject)maintainer).eIsProxy())
 		{
 			InternalEObject oldMaintainer = (InternalEObject)maintainer;
 			maintainer = (Maintainer<CompositeTask>)eResolveProxy(oldMaintainer);

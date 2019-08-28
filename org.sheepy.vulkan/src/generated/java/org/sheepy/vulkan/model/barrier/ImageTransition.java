@@ -3,9 +3,7 @@
 package org.sheepy.vulkan.model.barrier;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
-
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
@@ -26,9 +24,10 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
  *
  * @see org.sheepy.vulkan.model.barrier.BarrierPackage#getImageTransition()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface ImageTransition extends EObject
+public interface ImageTransition extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Src Layout</b></em>' attribute.

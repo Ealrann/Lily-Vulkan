@@ -11,10 +11,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
@@ -37,7 +36,7 @@ import org.sheepy.vulkan.model.enumeration.EBindPoint;
  *
  * @generated
  */
-public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container implements BindDescriptorSets
+public class BindDescriptorSetsImpl extends LilyEObject implements BindDescriptorSets
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

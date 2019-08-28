@@ -9,12 +9,13 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.PushBuffer;
@@ -35,7 +36,7 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  *
  * @generated
  */
-public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements CompositeBuffer
+public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -146,7 +147,7 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public PushBuffer getPushBuffer()
 	{
-		if (pushBuffer != null && pushBuffer.eIsProxy())
+		if (pushBuffer != null && ((EObject)pushBuffer).eIsProxy())
 		{
 			InternalEObject oldPushBuffer = (InternalEObject)pushBuffer;
 			pushBuffer = (PushBuffer)eResolveProxy(oldPushBuffer);

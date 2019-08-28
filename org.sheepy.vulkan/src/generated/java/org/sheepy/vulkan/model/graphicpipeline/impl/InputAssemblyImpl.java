@@ -7,8 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.vulkan.model.enumeration.EPrimitiveTopology;
 
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
@@ -28,7 +27,7 @@ import org.sheepy.vulkan.model.graphicpipeline.InputAssembly;
  *
  * @generated
  */
-public class InputAssemblyImpl extends MinimalEObjectImpl.Container implements InputAssembly
+public class InputAssemblyImpl extends LilyEObject implements InputAssembly
 {
 	/**
 	 * The default value of the '{@link #isPrimitiveRestartEnabled() <em>Primitive Restart Enabled</em>}' attribute.

@@ -3,9 +3,7 @@
 package org.sheepy.lily.vulkan.extra.model.mesh.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
 
@@ -16,7 +14,7 @@ import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
  *
  * @generated
  */
-public class IMeshStructureImpl extends MinimalEObjectImpl.Container implements IMeshStructure
+public class IMeshStructureImpl extends LilyEObject implements IMeshStructure
 {
 	/**
 	 * <!-- begin-user-doc -->

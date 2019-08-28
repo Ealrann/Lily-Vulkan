@@ -3,9 +3,7 @@
 package org.sheepy.vulkan.model.graphicpipeline;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
-
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.vulkan.model.enumeration.ELogicOp;
 
 /**
@@ -28,9 +26,10 @@ import org.sheepy.vulkan.model.enumeration.ELogicOp;
  *
  * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getColorBlend()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface ColorBlend extends EObject
+public interface ColorBlend extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Attachments</b></em>' containment reference list.

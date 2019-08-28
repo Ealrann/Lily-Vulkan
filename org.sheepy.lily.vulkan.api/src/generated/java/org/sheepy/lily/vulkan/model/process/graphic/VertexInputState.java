@@ -3,8 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,9 +19,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getVertexInputState()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface VertexInputState extends EObject
+public interface VertexInputState extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Input Descriptor</b></em>' containment reference list.
