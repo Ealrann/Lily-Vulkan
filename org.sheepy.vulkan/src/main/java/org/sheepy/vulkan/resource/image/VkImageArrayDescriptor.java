@@ -2,7 +2,7 @@ package org.sheepy.vulkan.resource.image;
 
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorImageInfo;
@@ -25,7 +25,7 @@ public class VkImageArrayDescriptor implements IVkDescriptor
 	public VkImageArrayDescriptor(	long[] imageViewPtrs,
 									EImageLayout imageLayout,
 									EDescriptorType descriptorType,
-									Collection<EShaderStage> shaderStages)
+									List<EShaderStage> shaderStages)
 	{
 		this.imageViewPtrs = imageViewPtrs;
 		this.imageLayout = imageLayout != null ? imageLayout.getValue() : 0;

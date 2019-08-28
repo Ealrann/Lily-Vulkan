@@ -1,17 +1,18 @@
 package org.sheepy.vulkan.util;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
 
 public class VkModelUtil
 {
-	public static final int getEnumeratedFlag(Collection<? extends Enumerator> enumerates)
+	public static final int getEnumeratedFlag(List<? extends Enumerator> enumerates)
 	{
 		int res = 0;
 
-		for (final Enumerator enumerate : enumerates)
+		for (int i = 0; i < enumerates.size(); i++)
 		{
+			final Enumerator enumerate = enumerates.get(i);
 			res |= enumerate.getValue();
 		}
 
