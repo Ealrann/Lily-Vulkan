@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.mesh.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
@@ -23,12 +24,17 @@ import org.sheepy.lily.core.model.root.RootPackage;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.vulkan.extra.model.mesh.GeometricMesh;
+import org.sheepy.lily.vulkan.extra.model.mesh.GeometricStructure;
 import org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure;
+import org.sheepy.lily.vulkan.extra.model.mesh.IcoSphere;
+import org.sheepy.lily.vulkan.extra.model.mesh.Icosahedron;
 import org.sheepy.lily.vulkan.extra.model.mesh.Mesh;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshFactory;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure;
+import org.sheepy.lily.vulkan.extra.model.mesh.Sphere;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 
 import org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl;
@@ -91,6 +97,41 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 	 * @generated
 	 */
 	private EClass iMeshStructureEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass geometricStructureEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass geometricMeshEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass icosahedronEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass sphereEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass icoSphereEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -248,6 +289,83 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getGeometricStructure()
+	{
+		return geometricStructureEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getGeometricMesh()
+	{
+		return geometricMeshEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIcosahedron()
+	{
+		return icosahedronEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSphere()
+	{
+		return sphereEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSphere_SliceCount()
+	{
+		return (EAttribute)sphereEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIcoSphere()
+	{
+		return icoSphereEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getIcoSphere_SubdivisionCount()
+	{
+		return (EAttribute)icoSphereEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public MeshFactory getMeshFactory()
 	{
 		return (MeshFactory)getEFactoryInstance();
@@ -281,6 +399,18 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 		createEReference(meshStructureEClass, MESH_STRUCTURE__MESHES);
 
 		iMeshStructureEClass = createEClass(IMESH_STRUCTURE);
+
+		geometricStructureEClass = createEClass(GEOMETRIC_STRUCTURE);
+
+		geometricMeshEClass = createEClass(GEOMETRIC_MESH);
+
+		icosahedronEClass = createEClass(ICOSAHEDRON);
+
+		sphereEClass = createEClass(SPHERE);
+		createEAttribute(sphereEClass, SPHERE__SLICE_COUNT);
+
+		icoSphereEClass = createEClass(ICO_SPHERE);
+		createEAttribute(icoSphereEClass, ICO_SPHERE__SUBDIVISION_COUNT);
 	}
 
 	/**
@@ -325,6 +455,14 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 		meshRendererEClass.getEGenericSuperTypes().add(g1);
 		meshStructureEClass.getESuperTypes().add(this.getIMeshStructure());
 		iMeshStructureEClass.getESuperTypes().add(theRenderingPackage.getStructure());
+		g1 = createEGenericType(this.getMeshStructure());
+		g2 = createEGenericType(this.getGeometricMesh());
+		g1.getETypeArguments().add(g2);
+		geometricStructureEClass.getEGenericSuperTypes().add(g1);
+		geometricMeshEClass.getESuperTypes().add(this.getMesh());
+		icosahedronEClass.getESuperTypes().add(this.getGeometricStructure());
+		sphereEClass.getESuperTypes().add(this.getGeometricStructure());
+		icoSphereEClass.getESuperTypes().add(this.getGeometricStructure());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(meshEClass, Mesh.class, "Mesh", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -336,6 +474,18 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 		initEReference(getMeshStructure_Meshes(), g1, null, "meshes", null, 1, -1, MeshStructure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iMeshStructureEClass, IMeshStructure.class, "IMeshStructure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(geometricStructureEClass, GeometricStructure.class, "GeometricStructure", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(geometricMeshEClass, GeometricMesh.class, "GeometricMesh", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(icosahedronEClass, Icosahedron.class, "Icosahedron", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(sphereEClass, Sphere.class, "Sphere", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSphere_SliceCount(), ecorePackage.getEInt(), "sliceCount", "12", 0, 1, Sphere.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(icoSphereEClass, IcoSphere.class, "IcoSphere", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIcoSphere_SubdivisionCount(), ecorePackage.getEInt(), "subdivisionCount", "2", 0, 1, IcoSphere.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

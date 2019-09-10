@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.mesh;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -396,6 +397,209 @@ public interface MeshPackage extends EPackage
 	int MESH_STRUCTURE_OPERATION_COUNT = IMESH_STRUCTURE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.impl.GeometricStructureImpl <em>Geometric Structure</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.GeometricStructureImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getGeometricStructure()
+	 * @generated
+	 */
+	int GEOMETRIC_STRUCTURE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Meshes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRIC_STRUCTURE__MESHES = MESH_STRUCTURE__MESHES;
+
+	/**
+	 * The number of structural features of the '<em>Geometric Structure</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRIC_STRUCTURE_FEATURE_COUNT = MESH_STRUCTURE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Geometric Structure</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRIC_STRUCTURE_OPERATION_COUNT = MESH_STRUCTURE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.impl.GeometricMeshImpl <em>Geometric Mesh</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.GeometricMeshImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getGeometricMesh()
+	 * @generated
+	 */
+	int GEOMETRIC_MESH = 5;
+
+	/**
+	 * The feature id for the '<em><b>Presented Entities</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRIC_MESH__PRESENTED_ENTITIES = MESH__PRESENTED_ENTITIES;
+
+	/**
+	 * The number of structural features of the '<em>Geometric Mesh</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRIC_MESH_FEATURE_COUNT = MESH_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Geometric Mesh</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRIC_MESH_OPERATION_COUNT = MESH_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.impl.IcosahedronImpl <em>Icosahedron</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.IcosahedronImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getIcosahedron()
+	 * @generated
+	 */
+	int ICOSAHEDRON = 6;
+
+	/**
+	 * The feature id for the '<em><b>Meshes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOSAHEDRON__MESHES = GEOMETRIC_STRUCTURE__MESHES;
+
+	/**
+	 * The number of structural features of the '<em>Icosahedron</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOSAHEDRON_FEATURE_COUNT = GEOMETRIC_STRUCTURE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Icosahedron</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOSAHEDRON_OPERATION_COUNT = GEOMETRIC_STRUCTURE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.impl.SphereImpl <em>Sphere</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.SphereImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getSphere()
+	 * @generated
+	 */
+	int SPHERE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Meshes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPHERE__MESHES = GEOMETRIC_STRUCTURE__MESHES;
+
+	/**
+	 * The feature id for the '<em><b>Slice Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPHERE__SLICE_COUNT = GEOMETRIC_STRUCTURE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Sphere</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPHERE_FEATURE_COUNT = GEOMETRIC_STRUCTURE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Sphere</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPHERE_OPERATION_COUNT = GEOMETRIC_STRUCTURE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.impl.IcoSphereImpl <em>Ico Sphere</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.IcoSphereImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getIcoSphere()
+	 * @generated
+	 */
+	int ICO_SPHERE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Meshes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICO_SPHERE__MESHES = GEOMETRIC_STRUCTURE__MESHES;
+
+	/**
+	 * The feature id for the '<em><b>Subdivision Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICO_SPHERE__SUBDIVISION_COUNT = GEOMETRIC_STRUCTURE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Ico Sphere</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICO_SPHERE_FEATURE_COUNT = GEOMETRIC_STRUCTURE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Ico Sphere</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICO_SPHERE_OPERATION_COUNT = GEOMETRIC_STRUCTURE_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.mesh.Mesh <em>Mesh</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -445,6 +649,78 @@ public interface MeshPackage extends EPackage
 	 * @generated
 	 */
 	EClass getIMeshStructure();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.mesh.GeometricStructure <em>Geometric Structure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Geometric Structure</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.GeometricStructure
+	 * @generated
+	 */
+	EClass getGeometricStructure();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.mesh.GeometricMesh <em>Geometric Mesh</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Geometric Mesh</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.GeometricMesh
+	 * @generated
+	 */
+	EClass getGeometricMesh();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.mesh.Icosahedron <em>Icosahedron</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Icosahedron</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.Icosahedron
+	 * @generated
+	 */
+	EClass getIcosahedron();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.mesh.Sphere <em>Sphere</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Sphere</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.Sphere
+	 * @generated
+	 */
+	EClass getSphere();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.mesh.Sphere#getSliceCount <em>Slice Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Slice Count</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.Sphere#getSliceCount()
+	 * @see #getSphere()
+	 * @generated
+	 */
+	EAttribute getSphere_SliceCount();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.mesh.IcoSphere <em>Ico Sphere</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Ico Sphere</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.IcoSphere
+	 * @generated
+	 */
+	EClass getIcoSphere();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.mesh.IcoSphere#getSubdivisionCount <em>Subdivision Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Subdivision Count</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.IcoSphere#getSubdivisionCount()
+	 * @see #getIcoSphere()
+	 * @generated
+	 */
+	EAttribute getIcoSphere_SubdivisionCount();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -512,6 +788,65 @@ public interface MeshPackage extends EPackage
 		 * @generated
 		 */
 		EClass IMESH_STRUCTURE = eINSTANCE.getIMeshStructure();
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.impl.GeometricStructureImpl <em>Geometric Structure</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.GeometricStructureImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getGeometricStructure()
+		 * @generated
+		 */
+		EClass GEOMETRIC_STRUCTURE = eINSTANCE.getGeometricStructure();
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.impl.GeometricMeshImpl <em>Geometric Mesh</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.GeometricMeshImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getGeometricMesh()
+		 * @generated
+		 */
+		EClass GEOMETRIC_MESH = eINSTANCE.getGeometricMesh();
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.impl.IcosahedronImpl <em>Icosahedron</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.IcosahedronImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getIcosahedron()
+		 * @generated
+		 */
+		EClass ICOSAHEDRON = eINSTANCE.getIcosahedron();
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.impl.SphereImpl <em>Sphere</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.SphereImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getSphere()
+		 * @generated
+		 */
+		EClass SPHERE = eINSTANCE.getSphere();
+		/**
+		 * The meta object literal for the '<em><b>Slice Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SPHERE__SLICE_COUNT = eINSTANCE.getSphere_SliceCount();
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.mesh.impl.IcoSphereImpl <em>Ico Sphere</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.IcoSphereImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl#getIcoSphere()
+		 * @generated
+		 */
+		EClass ICO_SPHERE = eINSTANCE.getIcoSphere();
+		/**
+		 * The meta object literal for the '<em><b>Subdivision Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ICO_SPHERE__SUBDIVISION_COUNT = eINSTANCE.getIcoSphere_SubdivisionCount();
 
 	}
 

@@ -134,6 +134,106 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.mesh.GeometricMesh} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GeometricMeshItemProvider geometricMeshItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.mesh.GeometricMesh}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGeometricMeshAdapter()
+	{
+		if (geometricMeshItemProvider == null)
+		{
+			geometricMeshItemProvider = new GeometricMeshItemProvider(this);
+		}
+
+		return geometricMeshItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.mesh.Icosahedron} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IcosahedronItemProvider icosahedronItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.mesh.Icosahedron}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIcosahedronAdapter()
+	{
+		if (icosahedronItemProvider == null)
+		{
+			icosahedronItemProvider = new IcosahedronItemProvider(this);
+		}
+
+		return icosahedronItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.mesh.Sphere} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SphereItemProvider sphereItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.mesh.Sphere}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSphereAdapter()
+	{
+		if (sphereItemProvider == null)
+		{
+			sphereItemProvider = new SphereItemProvider(this);
+		}
+
+		return sphereItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.mesh.IcoSphere} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IcoSphereItemProvider icoSphereItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.mesh.IcoSphere}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIcoSphereAdapter()
+	{
+		if (icoSphereItemProvider == null)
+		{
+			icoSphereItemProvider = new IcoSphereItemProvider(this);
+		}
+
+		return icoSphereItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -252,6 +352,10 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 	{
 		if (meshRendererItemProvider != null) meshRendererItemProvider.dispose();
 		if (iMeshStructureItemProvider != null) iMeshStructureItemProvider.dispose();
+		if (geometricMeshItemProvider != null) geometricMeshItemProvider.dispose();
+		if (icosahedronItemProvider != null) icosahedronItemProvider.dispose();
+		if (sphereItemProvider != null) sphereItemProvider.dispose();
+		if (icoSphereItemProvider != null) icoSphereItemProvider.dispose();
 	}
 
 	/**

@@ -66,6 +66,10 @@ public class MeshFactoryImpl extends EFactoryImpl implements MeshFactory
 		{
 			case MeshPackage.MESH_RENDERER: return createMeshRenderer();
 			case MeshPackage.IMESH_STRUCTURE: return createIMeshStructure();
+			case MeshPackage.GEOMETRIC_MESH: return createGeometricMesh();
+			case MeshPackage.ICOSAHEDRON: return createIcosahedron();
+			case MeshPackage.SPHERE: return createSphere();
+			case MeshPackage.ICO_SPHERE: return createIcoSphere();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -93,6 +97,54 @@ public class MeshFactoryImpl extends EFactoryImpl implements MeshFactory
 	{
 		IMeshStructureImpl iMeshStructure = new IMeshStructureImpl();
 		return iMeshStructure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public GeometricMesh createGeometricMesh()
+	{
+		GeometricMeshImpl geometricMesh = new GeometricMeshImpl();
+		return geometricMesh;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Icosahedron createIcosahedron()
+	{
+		IcosahedronImpl icosahedron = new IcosahedronImpl();
+		return icosahedron;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Sphere createSphere()
+	{
+		SphereImpl sphere = new SphereImpl();
+		return sphere;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IcoSphere createIcoSphere()
+	{
+		IcoSphereImpl icoSphere = new IcoSphereImpl();
+		return icoSphere;
 	}
 
 	/**

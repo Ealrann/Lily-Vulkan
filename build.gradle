@@ -15,6 +15,17 @@ repositories {
 }
 
 project.ext.targetPlatform = OperatingSystem.current()
+switch (targetPlatform) {
+	case OperatingSystem.WINDOWS:
+		project.ext.lwjglNatives = "natives-windows"
+		break
+	case OperatingSystem.LINUX:
+		project.ext.lwjglNatives = "natives-linux"
+		break
+	case OperatingSystem.MAC_OS:
+		project.ext.lwjglNatives = "natives-macos"
+		break
+}
 
 project.ext.jomlVersion = "1.9.17"
 project.ext.lwjglVersion = "3.2.3"

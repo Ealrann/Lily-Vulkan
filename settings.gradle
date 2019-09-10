@@ -13,6 +13,7 @@ include ':org.sheepy.lily.vulkan.process.graphic'
 include ':org.sheepy.lily.vulkan.extra.api'
 include ':org.sheepy.lily.vulkan.extra.base'
 include ':org.sheepy.lily.vulkan.extra.graphic'
+include ':org.sheepy.lily.vulkan.extra.graphic.shape'
 include ':org.sheepy.lily.vulkan.extra.nuklear'
 
 include ':org.sheepy.lily.vulkan.demo.texture'

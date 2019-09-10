@@ -19,6 +19,15 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mesh.ecore#//MeshStructure/meshes"/>
     </genClasses>
     <genClasses ecoreClass="Mesh.ecore#//IMeshStructure"/>
+    <genClasses ecoreClass="Mesh.ecore#//GeometricStructure"/>
+    <genClasses ecoreClass="Mesh.ecore#//GeometricMesh"/>
+    <genClasses ecoreClass="Mesh.ecore#//Icosahedron"/>
+    <genClasses ecoreClass="Mesh.ecore#//Sphere">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mesh.ecore#//Sphere/sliceCount"/>
+    </genClasses>
+    <genClasses ecoreClass="Mesh.ecore#//IcoSphere">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mesh.ecore#//IcoSphere/subdivisionCount"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Nuklear" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
       ecorePackage="Nuklear.ecore#/">

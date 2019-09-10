@@ -121,6 +121,58 @@ public class MeshSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MeshPackage.GEOMETRIC_STRUCTURE:
+			{
+				GeometricStructure geometricStructure = (GeometricStructure)theEObject;
+				T1 result = caseGeometricStructure(geometricStructure);
+				if (result == null) result = caseMeshStructure(geometricStructure);
+				if (result == null) result = caseIMeshStructure(geometricStructure);
+				if (result == null) result = caseStructure(geometricStructure);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MeshPackage.GEOMETRIC_MESH:
+			{
+				GeometricMesh geometricMesh = (GeometricMesh)theEObject;
+				T1 result = caseGeometricMesh(geometricMesh);
+				if (result == null) result = caseMesh(geometricMesh);
+				if (result == null) result = casePresentation(geometricMesh);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MeshPackage.ICOSAHEDRON:
+			{
+				Icosahedron icosahedron = (Icosahedron)theEObject;
+				T1 result = caseIcosahedron(icosahedron);
+				if (result == null) result = caseGeometricStructure(icosahedron);
+				if (result == null) result = caseMeshStructure(icosahedron);
+				if (result == null) result = caseIMeshStructure(icosahedron);
+				if (result == null) result = caseStructure(icosahedron);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MeshPackage.SPHERE:
+			{
+				Sphere sphere = (Sphere)theEObject;
+				T1 result = caseSphere(sphere);
+				if (result == null) result = caseGeometricStructure(sphere);
+				if (result == null) result = caseMeshStructure(sphere);
+				if (result == null) result = caseIMeshStructure(sphere);
+				if (result == null) result = caseStructure(sphere);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MeshPackage.ICO_SPHERE:
+			{
+				IcoSphere icoSphere = (IcoSphere)theEObject;
+				T1 result = caseIcoSphere(icoSphere);
+				if (result == null) result = caseGeometricStructure(icoSphere);
+				if (result == null) result = caseMeshStructure(icoSphere);
+				if (result == null) result = caseIMeshStructure(icoSphere);
+				if (result == null) result = caseStructure(icoSphere);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -185,6 +237,86 @@ public class MeshSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIMeshStructure(IMeshStructure object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Geometric Structure</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Geometric Structure</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseGeometricStructure(GeometricStructure object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Geometric Mesh</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Geometric Mesh</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseGeometricMesh(GeometricMesh object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Icosahedron</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Icosahedron</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIcosahedron(Icosahedron object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sphere</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sphere</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseSphere(Sphere object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ico Sphere</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ico Sphere</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIcoSphere(IcoSphere object)
 	{
 		return null;
 	}

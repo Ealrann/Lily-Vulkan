@@ -104,6 +104,31 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 				return createIMeshStructureAdapter();
 			}
 			@Override
+			public Adapter caseGeometricStructure(GeometricStructure object)
+			{
+				return createGeometricStructureAdapter();
+			}
+			@Override
+			public Adapter caseGeometricMesh(GeometricMesh object)
+			{
+				return createGeometricMeshAdapter();
+			}
+			@Override
+			public Adapter caseIcosahedron(Icosahedron object)
+			{
+				return createIcosahedronAdapter();
+			}
+			@Override
+			public Adapter caseSphere(Sphere object)
+			{
+				return createSphereAdapter();
+			}
+			@Override
+			public Adapter caseIcoSphere(IcoSphere object)
+			{
+				return createIcoSphereAdapter();
+			}
+			@Override
 			public Adapter casePresentation(Presentation object)
 			{
 				return createPresentationAdapter();
@@ -231,6 +256,81 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIMeshStructureAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.mesh.GeometricStructure <em>Geometric Structure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.GeometricStructure
+	 * @generated
+	 */
+	public Adapter createGeometricStructureAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.mesh.GeometricMesh <em>Geometric Mesh</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.GeometricMesh
+	 * @generated
+	 */
+	public Adapter createGeometricMeshAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.mesh.Icosahedron <em>Icosahedron</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.Icosahedron
+	 * @generated
+	 */
+	public Adapter createIcosahedronAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.mesh.Sphere <em>Sphere</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.Sphere
+	 * @generated
+	 */
+	public Adapter createSphereAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.mesh.IcoSphere <em>Ico Sphere</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.IcoSphere
+	 * @generated
+	 */
+	public Adapter createIcoSphereAdapter()
 	{
 		return null;
 	}
