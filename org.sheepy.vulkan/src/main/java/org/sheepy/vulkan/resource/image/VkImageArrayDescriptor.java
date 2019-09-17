@@ -64,6 +64,7 @@ public class VkImageArrayDescriptor implements IVkDescriptor
 		imageInfos.flip();
 
 		writeDescriptor.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
+		writeDescriptor.descriptorCount(imageViewPtrs.length);
 		writeDescriptor.dstArrayElement(0);
 		writeDescriptor.descriptorType(descriptorType);
 		writeDescriptor.pBufferInfo(null);
