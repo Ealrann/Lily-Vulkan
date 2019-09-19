@@ -25,8 +25,6 @@ Export-Package: org.sheepy.lily.vulkan.model,
  org.sheepy.lily.vulkan.model.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.xtext.xbase.lib,
- org.eclipse.emf.ecore.xcore.lib,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.sheepy.lily.core.model;bundle-version="0.1.0";visibility:=reexport,
  org.sheepy.vulkan.model;bundle-version="0.1.0";visibility:=reexport
