@@ -12,18 +12,18 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @Statefull
 @Adapter(scope = PushBufferTask.class)
-public class PushBufferTaskAdapter implements IPipelineTaskAdapter<PushBufferTask>
+public final class PushBufferTaskAdapter implements IPipelineTaskAdapter<PushBufferTask>
 {
-	private final boolean[] stagingFlushHistory;
 	private final IPushBufferAdapter pushBufferAdapter;
 	private final IPushBufferUpdater updater;
 	private final PushBuffer pushBuffer;
+
+	private int stagingFlushHistory = 0;
 
 	public PushBufferTaskAdapter(PushBufferTask task)
 	{
 		pushBuffer = task.getPushBuffer();
 		updater = IPushBufferUpdater.adapt(pushBuffer);
-		stagingFlushHistory = new boolean[pushBuffer.getInstanceCount()];
 		pushBufferAdapter = IPushBufferAdapter.adapt(pushBuffer);
 	}
 
@@ -36,7 +36,7 @@ public class PushBufferTaskAdapter implements IPipelineTaskAdapter<PushBufferTas
 
 			if (stagingBuffer.isEmpty() == false)
 			{
-				stagingFlushHistory[context.index] = true;
+				setFlushHistory(context);
 				stagingBuffer.flushCommands(context.commandBuffer);
 			}
 		}
@@ -55,11 +55,7 @@ public class PushBufferTaskAdapter implements IPipelineTaskAdapter<PushBufferTas
 			}
 
 			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
-			final boolean previousRecordMadeFlush = stagingFlushHistory[index];
-			if (previousRecordMadeFlush)
-			{
-				stagingFlushHistory[index] = false;
-			}
+			final boolean previousRecordMadeFlush = getAndClearHistory(index);
 
 			stagingBuffer.prepare();
 			res |= !stagingBuffer.isEmpty();
@@ -67,6 +63,23 @@ public class PushBufferTaskAdapter implements IPipelineTaskAdapter<PushBufferTas
 		}
 
 		return res;
+	}
+
+	private void setFlushHistory(RecordContext context)
+	{
+		final int flushIndexFlag = 1 << context.index;
+		stagingFlushHistory |= flushIndexFlag;
+	}
+
+	private boolean getAndClearHistory(final int index)
+	{
+		final int flushIndexFlag = 1 << index;
+		final boolean previousRecordMadeFlush = (stagingFlushHistory | flushIndexFlag) != 0;
+		if (previousRecordMadeFlush)
+		{
+			stagingFlushHistory ^= flushIndexFlag;
+		}
+		return previousRecordMadeFlush;
 	}
 
 	@Override
