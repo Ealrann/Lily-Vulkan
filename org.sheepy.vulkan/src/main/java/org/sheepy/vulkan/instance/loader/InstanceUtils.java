@@ -10,7 +10,7 @@ import org.lwjgl.vulkan.VkDebugReportCallbackEXT;
 import org.lwjgl.vulkan.VkInstance;
 import org.sheepy.vulkan.log.Logger;
 
-public class InstanceUtils
+public final class InstanceUtils
 {
 	private static final String CREATION_ERROR = "Can't create the Debug Report Callback";
 

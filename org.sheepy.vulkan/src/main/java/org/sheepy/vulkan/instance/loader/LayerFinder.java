@@ -11,7 +11,7 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkLayerProperties;
 
-public class LayerFinder
+public final class LayerFinder
 {
 	public static PointerBuffer convertToPointerBuffer(	MemoryStack stack,
 														String[] requiredLayers,
@@ -73,6 +73,7 @@ public class LayerFinder
 			{
 				System.out.println("System Layers:");
 			}
+
 			for (int i = 0; i < count; i++)
 			{
 				final String layerName = instanceLayers.get(i).layerNameString();
@@ -82,6 +83,11 @@ public class LayerFinder
 					System.out.println("\t" + layerName);
 				}
 				res.add(layerName);
+			}
+
+			if (verbose)
+			{
+				System.out.println("");
 			}
 		}
 

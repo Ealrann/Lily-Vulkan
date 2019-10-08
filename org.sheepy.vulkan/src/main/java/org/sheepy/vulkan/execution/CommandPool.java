@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.vulkan.VkCommandPoolCreateInfo;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 
-public class CommandPool implements IAllocable<IExecutionContext>
+public final class CommandPool implements IAllocable<IExecutionContext>
 {
 	private final int queueIndex;
 	private final boolean allowReset;

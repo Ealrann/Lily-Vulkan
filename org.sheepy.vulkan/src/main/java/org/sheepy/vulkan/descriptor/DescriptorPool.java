@@ -15,7 +15,7 @@ import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.log.Logger;
 
-public class DescriptorPool implements IAllocable<IExecutionContext>
+public final class DescriptorPool implements IAllocable<IExecutionContext>
 {
 	private final List<IVkDescriptorSet> descriptorSets;
 

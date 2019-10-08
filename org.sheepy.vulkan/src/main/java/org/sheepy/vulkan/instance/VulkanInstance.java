@@ -14,7 +14,7 @@ import org.sheepy.vulkan.instance.loader.InstanceUtils;
 import org.sheepy.vulkan.instance.loader.LayerFinder;
 import org.sheepy.vulkan.log.Logger;
 
-public class VulkanInstance
+public final class VulkanInstance
 {
 	private static final String ENGINE_NAME = "Lily";
 	private static final String CREATION_FAILED = "Failed to create VkInstance";

@@ -14,7 +14,7 @@ import org.lwjgl.vulkan.VkSpecializationMapEntry;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
 
-public class VkShaderStage
+public final class VkShaderStage
 {
 	private static final ByteBuffer MAIN_FUNCTION_NAME;
 	static

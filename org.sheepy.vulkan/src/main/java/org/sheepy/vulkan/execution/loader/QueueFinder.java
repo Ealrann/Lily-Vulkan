@@ -11,7 +11,7 @@ import org.lwjgl.vulkan.VkQueueFamilyProperties;
 import org.lwjgl.vulkan.VkQueueFamilyProperties.Buffer;
 import org.sheepy.vulkan.surface.VkSurface;
 
-public class QueueFinder
+public final class QueueFinder
 {
 	private final VkQueueFamilyProperties.Buffer queueProps;
 	private final VkPhysicalDevice physicalDevice;

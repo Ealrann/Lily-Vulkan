@@ -3,11 +3,11 @@ package org.sheepy.vulkan.extension;
 import static org.lwjgl.vulkan.VK10.vkEnumerateInstanceExtensionProperties;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkExtensionProperties;
 import org.sheepy.vulkan.window.Window;
 
@@ -16,9 +16,11 @@ public class EngineExtensionRequirement
 	private final List<EInstanceExtension> requiredInstanceExtensions;
 	private final List<String> availableInstanceExtensions;
 	private final List<EDeviceExtension> requiredDeviceExtensions;
+	private final boolean debug;
 
 	public EngineExtensionRequirement(MemoryStack stack, boolean debug, boolean verbose)
 	{
+		this.debug = debug;
 		requiredDeviceExtensions = List.copyOf(gatherDeviceExtensions());
 		availableInstanceExtensions = List.copyOf(gatherAvailableInstanceExtensions(stack,
 																					verbose));
@@ -37,14 +39,37 @@ public class EngineExtensionRequirement
 			res = stack.mallocPointer(glfwRequiredExtensions.capacity()
 					+ requiredInstanceExtensions.size());
 
+			if (debug)
+			{
+				System.out.println("Using Instance Extensions:");
+			}
+
 			for (int i = 0; i < glfwRequiredExtensions.capacity(); i++)
 			{
-				res.put(glfwRequiredExtensions.get(i));
+				final long extNamePtr = glfwRequiredExtensions.get(i);
+
+				res.put(extNamePtr);
+
+				if (debug)
+				{
+					final var name = MemoryUtil.memUTF8(extNamePtr);
+					System.out.println("\t" + name);
+				}
 			}
 
 			for (final EInstanceExtension extension : requiredInstanceExtensions)
 			{
 				res.put(stack.UTF8Safe(extension.name));
+
+				if (debug)
+				{
+					System.out.println("\t" + extension.name);
+				}
+			}
+
+			if (debug)
+			{
+				System.out.println("");
 			}
 
 			res.flip();
@@ -104,7 +129,8 @@ public class EngineExtensionRequirement
 			requiredExtensions.add(EInstanceExtension.VK_EXT_debug_report);
 		}
 
-		for (final Iterator<EInstanceExtension> iterator = requiredExtensions.iterator(); iterator.hasNext();)
+		final var iterator = requiredExtensions.iterator();
+		while (iterator.hasNext())
 		{
 			final EInstanceExtension extension = iterator.next();
 
