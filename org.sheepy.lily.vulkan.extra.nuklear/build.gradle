@@ -23,3 +23,10 @@ dependencies {
 
 	implementation "org.lwjgl:lwjgl-nuklear:$lwjglVersion:$lwjglNatives"
 }
+
+sourceSets {
+	main {
+		java.srcDirs = ['src/main/java',
+			'src/main/shader']
+	}
+}
