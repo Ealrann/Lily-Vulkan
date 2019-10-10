@@ -170,6 +170,21 @@ public class PresentationPkgItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES,
+				 MeshFactory.eINSTANCE.createIcosahedron()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES,
+				 MeshFactory.eINSTANCE.createSphere()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES,
+				 MeshFactory.eINSTANCE.createIcoSphere()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES,
 				 SpriteFactory.eINSTANCE.createSpriteStructure()));
 	}
 

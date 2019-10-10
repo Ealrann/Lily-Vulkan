@@ -1060,6 +1060,79 @@ public interface ProcessPackage extends EPackage
 	int GET_BUFFER_TASK_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl <em>Copy Buffer Task</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getCopyBufferTask()
+	 * @generated
+	 */
+	int COPY_BUFFER_TASK = 15;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPY_BUFFER_TASK__NAME = IPIPELINE_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPY_BUFFER_TASK__ENABLED = IPIPELINE_TASK__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Src Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPY_BUFFER_TASK__SRC_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Trg Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPY_BUFFER_TASK__TRG_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPY_BUFFER_TASK__STAGE = IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Copy Buffer Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPY_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Copy Buffer Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPY_BUFFER_TASK_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1518,6 +1591,49 @@ public interface ProcessPackage extends EPackage
 	EReference getGetBufferTask_DeviceBuffer();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask <em>Copy Buffer Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Copy Buffer Task</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.CopyBufferTask
+	 * @generated
+	 */
+	EClass getCopyBufferTask();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getSrcBuffer <em>Src Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Src Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.CopyBufferTask#getSrcBuffer()
+	 * @see #getCopyBufferTask()
+	 * @generated
+	 */
+	EReference getCopyBufferTask_SrcBuffer();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getTrgBuffer <em>Trg Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Trg Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.CopyBufferTask#getTrgBuffer()
+	 * @see #getCopyBufferTask()
+	 * @generated
+	 */
+	EReference getCopyBufferTask_TrgBuffer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getStage <em>Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stage</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.CopyBufferTask#getStage()
+	 * @see #getCopyBufferTask()
+	 * @generated
+	 */
+	EAttribute getCopyBufferTask_Stage();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1914,6 +2030,40 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference GET_BUFFER_TASK__DEVICE_BUFFER = eINSTANCE.getGetBufferTask_DeviceBuffer();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl <em>Copy Buffer Task</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getCopyBufferTask()
+		 * @generated
+		 */
+		EClass COPY_BUFFER_TASK = eINSTANCE.getCopyBufferTask();
+
+		/**
+		 * The meta object literal for the '<em><b>Src Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COPY_BUFFER_TASK__SRC_BUFFER = eINSTANCE.getCopyBufferTask_SrcBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Trg Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COPY_BUFFER_TASK__TRG_BUFFER = eINSTANCE.getCopyBufferTask_TrgBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COPY_BUFFER_TASK__STAGE = eINSTANCE.getCopyBufferTask_Stage();
 
 	}
 

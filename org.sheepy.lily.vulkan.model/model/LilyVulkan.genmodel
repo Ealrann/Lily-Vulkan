@@ -97,6 +97,11 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//GetBufferTask/getBuffer"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//GetBufferTask/deviceBuffer"/>
     </genClasses>
+    <genClasses ecoreClass="process.ecore#//CopyBufferTask">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//CopyBufferTask/srcBuffer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//CopyBufferTask/trgBuffer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CopyBufferTask/stage"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Vulkan" basePackage="org.sheepy.lily.vulkan" resource="XMI"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
@@ -143,10 +148,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/size"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/usages"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/data"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/oftenUpdated"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/gpuBuffer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/keptMapped"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/hostVisible"/>
       <genFeatures createChild="false" propertyDescription="Every push in this buffer will write on the next instance, and update the descriptor acordingly"
           ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/instanceCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/coherent"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//CompositeBuffer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/dataProviders"/>

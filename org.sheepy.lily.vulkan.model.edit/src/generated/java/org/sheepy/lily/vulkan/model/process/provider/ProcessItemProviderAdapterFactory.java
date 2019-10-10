@@ -316,6 +316,31 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.CopyBufferTask} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CopyBufferTaskItemProvider copyBufferTaskItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.CopyBufferTask}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCopyBufferTaskAdapter()
+	{
+		if (copyBufferTaskItemProvider == null)
+		{
+			copyBufferTaskItemProvider = new CopyBufferTaskItemProvider(this);
+		}
+
+		return copyBufferTaskItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -473,6 +498,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 		if (pushConstantBufferItemProvider != null) pushConstantBufferItemProvider.dispose();
 		if (pushBufferTaskItemProvider != null) pushBufferTaskItemProvider.dispose();
 		if (getBufferTaskItemProvider != null) getBufferTaskItemProvider.dispose();
+		if (copyBufferTaskItemProvider != null) copyBufferTaskItemProvider.dispose();
 	}
 
 }

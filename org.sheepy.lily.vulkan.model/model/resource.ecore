@@ -28,12 +28,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usages" upperBound="-1"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EBufferUsage"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" unique="false" eType="#//ByteBuffer"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="oftenUpdated" unique="false"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="keptMapped" unique="false"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
         defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gpuBuffer" unique="false"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostVisible" unique="false"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
-        defaultValueLiteral="true"/>
+        defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceCount" unique="false"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
         defaultValueLiteral="1">
@@ -41,6 +41,9 @@
         <details key="propertyDescription" value="Every push in this buffer will write on the next instance, and update the descriptor acordingly"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="coherent" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeBuffer" eSuperTypes="#//DescriptedResource #//IBuffer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataProviders" upperBound="-1"

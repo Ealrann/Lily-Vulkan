@@ -425,22 +425,22 @@ public interface ResourcePackage extends EPackage
 	int BUFFER__DATA = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Often Updated</b></em>' attribute.
+	 * The feature id for the '<em><b>Kept Mapped</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER__OFTEN_UPDATED = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 3;
+	int BUFFER__KEPT_MAPPED = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Gpu Buffer</b></em>' attribute.
+	 * The feature id for the '<em><b>Host Visible</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER__GPU_BUFFER = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 4;
+	int BUFFER__HOST_VISIBLE = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
@@ -452,13 +452,22 @@ public interface ResourcePackage extends EPackage
 	int BUFFER__INSTANCE_COUNT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Coherent</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER__COHERENT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Buffer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_FEATURE_COUNT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 6;
+	int BUFFER_FEATURE_COUNT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Buffer</em>' class.
@@ -2286,26 +2295,26 @@ public interface ResourcePackage extends EPackage
 	EAttribute getBuffer_Data();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Buffer#isOftenUpdated <em>Often Updated</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Buffer#isKeptMapped <em>Kept Mapped</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Often Updated</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Buffer#isOftenUpdated()
+	 * @return the meta object for the attribute '<em>Kept Mapped</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.Buffer#isKeptMapped()
 	 * @see #getBuffer()
 	 * @generated
 	 */
-	EAttribute getBuffer_OftenUpdated();
+	EAttribute getBuffer_KeptMapped();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Buffer#isGpuBuffer <em>Gpu Buffer</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Buffer#isHostVisible <em>Host Visible</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Gpu Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Buffer#isGpuBuffer()
+	 * @return the meta object for the attribute '<em>Host Visible</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.Buffer#isHostVisible()
 	 * @see #getBuffer()
 	 * @generated
 	 */
-	EAttribute getBuffer_GpuBuffer();
+	EAttribute getBuffer_HostVisible();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Buffer#getInstanceCount <em>Instance Count</em>}'.
@@ -2317,6 +2326,17 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getBuffer_InstanceCount();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Buffer#isCoherent <em>Coherent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Coherent</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.Buffer#isCoherent()
+	 * @see #getBuffer()
+	 * @generated
+	 */
+	EAttribute getBuffer_Coherent();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer <em>Composite Buffer</em>}'.
@@ -3220,20 +3240,20 @@ public interface ResourcePackage extends EPackage
 		EAttribute BUFFER__DATA = eINSTANCE.getBuffer_Data();
 
 		/**
-		 * The meta object literal for the '<em><b>Often Updated</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Kept Mapped</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BUFFER__OFTEN_UPDATED = eINSTANCE.getBuffer_OftenUpdated();
+		EAttribute BUFFER__KEPT_MAPPED = eINSTANCE.getBuffer_KeptMapped();
 
 		/**
-		 * The meta object literal for the '<em><b>Gpu Buffer</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Host Visible</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BUFFER__GPU_BUFFER = eINSTANCE.getBuffer_GpuBuffer();
+		EAttribute BUFFER__HOST_VISIBLE = eINSTANCE.getBuffer_HostVisible();
 
 		/**
 		 * The meta object literal for the '<em><b>Instance Count</b></em>' attribute feature.
@@ -3242,6 +3262,14 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute BUFFER__INSTANCE_COUNT = eINSTANCE.getBuffer_InstanceCount();
+
+		/**
+		 * The meta object literal for the '<em><b>Coherent</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER__COHERENT = eINSTANCE.getBuffer_Coherent();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl <em>Composite Buffer</em>}' class.

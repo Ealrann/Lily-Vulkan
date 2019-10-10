@@ -21,6 +21,7 @@ public final class CPUBufferBackend implements IBufferBackend
 
 	public final int properties;
 	public final BufferInfo info;
+	public final boolean coherent;
 
 	private long address = -1;
 	private long memoryAddress;
@@ -34,6 +35,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	public CPUBufferBackend(BufferInfo info, boolean coherent)
 	{
 		this.info = info;
+		this.coherent = coherent;
 
 		properties = createPropertyMask(coherent);
 	}
@@ -161,14 +163,37 @@ public final class CPUBufferBackend implements IBufferBackend
 		}
 	}
 
+	/**
+	 * Flush a memory range of the buffer to make it visible to the device
+	 *
+	 * @note Only required for non-coherent memory
+	 *
+	 */
+	@Override
 	public void flush(MemoryStack stack, LogicalDevice logicalDevice)
 	{
-		BufferUtils.flush(stack, logicalDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
+		if (coherent == false)
+		{
+			BufferUtils.flush(stack, logicalDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
+		}
 	}
 
+	/**
+	 * Invalidate a memory range of the buffer to make it visible to the host
+	 *
+	 * @note Only required for non-coherent memory
+	 */
+	@Override
 	public void invalidate(MemoryStack stack, LogicalDevice logicalDevice)
 	{
-		BufferUtils.invalidate(stack, logicalDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
+		if (coherent == false)
+		{
+			BufferUtils.invalidate(	stack,
+									logicalDevice,
+									memoryAddress,
+									VK_WHOLE_SIZE,
+									currentOffset);
+		}
 	}
 
 	@Override

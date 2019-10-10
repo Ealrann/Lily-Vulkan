@@ -49,9 +49,10 @@ public class BufferItemProvider extends BasicDescriptedResourceItemProvider
 			addSizePropertyDescriptor(object);
 			addUsagesPropertyDescriptor(object);
 			addDataPropertyDescriptor(object);
-			addOftenUpdatedPropertyDescriptor(object);
-			addGpuBufferPropertyDescriptor(object);
+			addKeptMappedPropertyDescriptor(object);
+			addHostVisiblePropertyDescriptor(object);
 			addInstanceCountPropertyDescriptor(object);
+			addCoherentPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -126,20 +127,20 @@ public class BufferItemProvider extends BasicDescriptedResourceItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Often Updated feature.
+	 * This adds a property descriptor for the Kept Mapped feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOftenUpdatedPropertyDescriptor(Object object)
+	protected void addKeptMappedPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Buffer_oftenUpdated_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_oftenUpdated_feature", "_UI_Buffer_type"),
-				 ResourcePackage.Literals.BUFFER__OFTEN_UPDATED,
+				 getString("_UI_Buffer_keptMapped_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_keptMapped_feature", "_UI_Buffer_type"),
+				 ResourcePackage.Literals.BUFFER__KEPT_MAPPED,
 				 true,
 				 false,
 				 false,
@@ -149,20 +150,20 @@ public class BufferItemProvider extends BasicDescriptedResourceItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Gpu Buffer feature.
+	 * This adds a property descriptor for the Host Visible feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGpuBufferPropertyDescriptor(Object object)
+	protected void addHostVisiblePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Buffer_gpuBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_gpuBuffer_feature", "_UI_Buffer_type"),
-				 ResourcePackage.Literals.BUFFER__GPU_BUFFER,
+				 getString("_UI_Buffer_hostVisible_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_hostVisible_feature", "_UI_Buffer_type"),
+				 ResourcePackage.Literals.BUFFER__HOST_VISIBLE,
 				 true,
 				 false,
 				 false,
@@ -190,6 +191,29 @@ public class BufferItemProvider extends BasicDescriptedResourceItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Coherent feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCoherentPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Buffer_coherent_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_coherent_feature", "_UI_Buffer_type"),
+				 ResourcePackage.Literals.BUFFER__COHERENT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -238,9 +262,10 @@ public class BufferItemProvider extends BasicDescriptedResourceItemProvider
 			case ResourcePackage.BUFFER__SIZE:
 			case ResourcePackage.BUFFER__USAGES:
 			case ResourcePackage.BUFFER__DATA:
-			case ResourcePackage.BUFFER__OFTEN_UPDATED:
-			case ResourcePackage.BUFFER__GPU_BUFFER:
+			case ResourcePackage.BUFFER__KEPT_MAPPED:
+			case ResourcePackage.BUFFER__HOST_VISIBLE:
 			case ResourcePackage.BUFFER__INSTANCE_COUNT:
+			case ResourcePackage.BUFFER__COHERENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

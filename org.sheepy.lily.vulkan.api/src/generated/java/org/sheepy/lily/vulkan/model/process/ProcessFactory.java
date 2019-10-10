@@ -104,6 +104,15 @@ public interface ProcessFactory extends EFactory
 	GetBufferTask createGetBufferTask();
 
 	/**
+	 * Returns a new object of class '<em>Copy Buffer Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Copy Buffer Task</em>'.
+	 * @generated
+	 */
+	CopyBufferTask createCopyBufferTask();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

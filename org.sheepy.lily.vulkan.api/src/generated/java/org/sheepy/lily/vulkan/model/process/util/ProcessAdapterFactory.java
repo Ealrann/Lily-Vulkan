@@ -161,6 +161,11 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 				return createGetBufferTaskAdapter();
 			}
 			@Override
+			public Adapter caseCopyBufferTask(CopyBufferTask object)
+			{
+				return createCopyBufferTaskAdapter();
+			}
+			@Override
 			public Adapter caseIResourceContainer(IResourceContainer object)
 			{
 				return createIResourceContainerAdapter();
@@ -437,6 +442,21 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createGetBufferTaskAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask <em>Copy Buffer Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.CopyBufferTask
+	 * @generated
+	 */
+	public Adapter createCopyBufferTaskAdapter()
 	{
 		return null;
 	}

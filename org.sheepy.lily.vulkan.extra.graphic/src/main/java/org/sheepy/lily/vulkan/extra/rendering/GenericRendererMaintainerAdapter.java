@@ -114,7 +114,7 @@ public final class GenericRendererMaintainerAdapter<T extends Structure> impleme
 											T structure)
 	{
 		final int pipelineCount = graphicProcess.getPartPkg().getParts().size();
-		final var structureAdapter = IStructureAdapter.adapt(structure);
+		final var structureAdapter = structure.adaptNotNull(IStructureAdapter.class);
 		final var drawInstaller = new DrawTaskInstaller(structure);
 
 		for (int i = 0; i < structureAdapter.getPartCount(structure); i++)

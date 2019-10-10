@@ -4,6 +4,8 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
 
+import org.lwjgl.system.MemoryStack;
+import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.memory.MemoryChunk;
 import org.sheepy.vulkan.resource.memory.MemoryChunkBuilder;
@@ -205,5 +207,17 @@ public final class GPUBufferBackend implements IBufferBackend
 	public int getProperties()
 	{
 		return properties;
+	}
+
+	@Override
+	public void flush(MemoryStack stack, LogicalDevice logicalDevice)
+	{
+		// Nothing to flush for device local buffer
+	}
+
+	@Override
+	public void invalidate(MemoryStack stack, LogicalDevice logicalDevice)
+	{
+		// Nothing to invalidate for device local buffer
 	}
 }

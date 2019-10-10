@@ -11,7 +11,22 @@ public interface IBufferAdapter extends IDescriptedResourceAdapter, IResourceAda
 {
 	long getPtr();
 	long getMemoryPtr();
-	
+
+	/**
+	 * Flush a memory range of the buffer to make it visible to the device
+	 *
+	 * @note Only required for host visible, non-coherent memory
+	 *
+	 */
+	public void flush();
+
+	/**
+	 * Invalidate a memory range of the buffer to make it visible to the host
+	 *
+	 * @note Only required for host visible, non-coherent memory
+	 */
+	public void invalidate();
+
 	@Deprecated
 	void pushData(ByteBuffer data);
 

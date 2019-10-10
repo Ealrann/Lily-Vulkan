@@ -76,10 +76,14 @@ public class PipelineBarrierAdapter
 			}
 		}
 
-		imageBarrierInfos = new ImageBarriersBackend(swapCount, srcQueueIndex, dstQueueIndex,
-				imageBarriers);
-		bufferBarrierInfos = new BufferBarriersBackend(swapCount, srcQueueIndex, dstQueueIndex,
-				bufferBarriers);
+		imageBarrierInfos = new ImageBarriersBackend(	swapCount,
+														srcQueueIndex,
+														dstQueueIndex,
+														imageBarriers);
+		bufferBarrierInfos = new BufferBarriersBackend(	swapCount,
+														srcQueueIndex,
+														dstQueueIndex,
+														bufferBarriers);
 
 		allocationConfiguration.addChildren(List.of(imageBarrierInfos, bufferBarrierInfos));
 		allocationConfiguration.addDependencies(List.of(imageBarrierInfos, bufferBarrierInfos));
@@ -101,8 +105,13 @@ public class PipelineBarrierAdapter
 		final var bufferInfo = bufferBarrierInfos.get(context.index);
 		final var imageInfo = imageBarrierInfos.get(context.index);
 
-		vkCmdPipelineBarrier(context.commandBuffer, srcStage, dstStage, 0, null, bufferInfo,
-				imageInfo);
+		vkCmdPipelineBarrier(	context.commandBuffer,
+								srcStage,
+								dstStage,
+								0,
+								null,
+								bufferInfo,
+								imageInfo);
 	}
 
 	private static int getQueueFamillyIndex(LogicalDevice logicalDevice, AbstractProcess process)

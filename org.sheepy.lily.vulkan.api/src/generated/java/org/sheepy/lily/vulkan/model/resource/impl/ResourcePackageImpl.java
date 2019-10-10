@@ -612,7 +612,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBuffer_OftenUpdated()
+	public EAttribute getBuffer_KeptMapped()
 	{
 		return (EAttribute)bufferEClass.getEStructuralFeatures().get(3);
 	}
@@ -623,7 +623,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBuffer_GpuBuffer()
+	public EAttribute getBuffer_HostVisible()
 	{
 		return (EAttribute)bufferEClass.getEStructuralFeatures().get(4);
 	}
@@ -637,6 +637,17 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EAttribute getBuffer_InstanceCount()
 	{
 		return (EAttribute)bufferEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBuffer_Coherent()
+	{
+		return (EAttribute)bufferEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1452,9 +1463,10 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(bufferEClass, BUFFER__SIZE);
 		createEAttribute(bufferEClass, BUFFER__USAGES);
 		createEAttribute(bufferEClass, BUFFER__DATA);
-		createEAttribute(bufferEClass, BUFFER__OFTEN_UPDATED);
-		createEAttribute(bufferEClass, BUFFER__GPU_BUFFER);
+		createEAttribute(bufferEClass, BUFFER__KEPT_MAPPED);
+		createEAttribute(bufferEClass, BUFFER__HOST_VISIBLE);
 		createEAttribute(bufferEClass, BUFFER__INSTANCE_COUNT);
+		createEAttribute(bufferEClass, BUFFER__COHERENT);
 
 		compositeBufferEClass = createEClass(COMPOSITE_BUFFER);
 		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__DATA_PROVIDERS);
@@ -1660,9 +1672,10 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getBuffer_Size(), theEcorePackage.getELong(), "size", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBuffer_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 0, -1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_OftenUpdated(), theEcorePackage.getEBoolean(), "oftenUpdated", "false", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_GpuBuffer(), theEcorePackage.getEBoolean(), "gpuBuffer", "true", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_KeptMapped(), theEcorePackage.getEBoolean(), "keptMapped", "false", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_HostVisible(), theEcorePackage.getEBoolean(), "hostVisible", "false", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBuffer_InstanceCount(), theEcorePackage.getEInt(), "instanceCount", "1", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_Coherent(), theEcorePackage.getEBoolean(), "coherent", "true", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeBufferEClass, CompositeBuffer.class, "CompositeBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(this.getBufferDataProvider());

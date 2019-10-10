@@ -30,15 +30,12 @@ public final class PushBufferTaskAdapter implements IPipelineTaskAdapter<PushBuf
 	@Override
 	public void record(PushBufferTask task, RecordContext context)
 	{
-		if (context.stage == ECommandStage.TRANSFER)
-		{
-			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
+		final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
 
-			if (stagingBuffer.isEmpty() == false)
-			{
-				setFlushHistory(context);
-				stagingBuffer.flushCommands(context.commandBuffer);
-			}
+		if (stagingBuffer.isEmpty() == false)
+		{
+			setFlushHistory(context);
+			stagingBuffer.flushCommands(context.commandBuffer);
 		}
 	}
 

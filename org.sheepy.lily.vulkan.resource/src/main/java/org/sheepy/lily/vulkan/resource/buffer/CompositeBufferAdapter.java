@@ -94,8 +94,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			{
 				if (providerWrapper.dataProvider instanceof DescribedDataProvider)
 				{
-					final var descriptor = providerWrapper
-							.createDescriptor(bufferBackend.getAddress());
+					final var descriptor = providerWrapper.createDescriptor(bufferBackend.getAddress());
 					descriptors.add(descriptor);
 				}
 			}
@@ -248,7 +247,10 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			adapter.fill(memTicket.getMemoryPtr());
 
 			final var pushCommand = IDataFlowCommand.newPipelinePushCommand(memTicket,
-					bufferAddress, alignedOffset, stage, access);
+																			bufferAddress,
+																			alignedOffset,
+																			stage,
+																			access);
 
 			stagingBuffer.addStagingCommand(pushCommand);
 
@@ -322,5 +324,17 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		}
 
 		return res;
+	}
+
+	@Override
+	public void flush()
+	{
+		// Nothing to flush for device local buffer
+	}
+
+	@Override
+	public void invalidate()
+	{
+		// Nothing to invalidate for device local buffer
 	}
 }

@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.resource.buffer;
 import java.nio.ByteBuffer;
 import java.util.List;
 
+import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.DebugUtil;
@@ -39,13 +40,13 @@ public final class BufferAdapter implements IBufferAdapter
 		executionManager = context;
 		final var info = createInfo(buffer);
 
-		if (buffer.isGpuBuffer())
+		if (!buffer.isHostVisible())
 		{
-			bufferBackend = new GPUBufferBackend(info, buffer.isOftenUpdated());
+			bufferBackend = new GPUBufferBackend(info, buffer.isKeptMapped());
 		}
 		else
 		{
-			bufferBackend = new CPUBufferBackend(info, true);
+			bufferBackend = new CPUBufferBackend(info, buffer.isCoherent());
 		}
 
 		bufferBackend.allocate(context);
@@ -62,8 +63,7 @@ public final class BufferAdapter implements IBufferAdapter
 	{
 		if (DebugUtil.DEBUG_ENABLED)
 		{
-			System.err.println(
-					"[Warning] BufferAdapter.pushData() is slow. Don't use it in the main loop.");
+			System.err.println("[Warning] BufferAdapter.pushData() is slow. Don't use it in the main loop.");
 		}
 
 		bufferBackend.nextInstance();
@@ -117,9 +117,27 @@ public final class BufferAdapter implements IBufferAdapter
 	{
 		final var size = buffer.getSize();
 		final int usage = VkModelUtil.getEnumeratedFlag(buffer.getUsages());
-		final var keptMapped = buffer.isOftenUpdated();
+		final var keptMapped = buffer.isKeptMapped();
 		final int instanceCount = buffer.getInstanceCount();
 
 		return new BufferInfo(size, usage, keptMapped, instanceCount);
+	}
+
+	@Override
+	public void flush()
+	{
+		try (MemoryStack stack = MemoryStack.stackPush())
+		{
+			bufferBackend.flush(stack, executionManager.getLogicalDevice());
+		}
+	}
+
+	@Override
+	public void invalidate()
+	{
+		try (MemoryStack stack = MemoryStack.stackPush())
+		{
+			bufferBackend.invalidate(stack, executionManager.getLogicalDevice());
+		}
 	}
 }

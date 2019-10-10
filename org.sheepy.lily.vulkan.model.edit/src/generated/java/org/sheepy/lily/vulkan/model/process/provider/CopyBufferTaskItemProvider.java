@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process.provider;
 
+
 import java.util.Collection;
 import java.util.List;
 
@@ -9,8 +10,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
@@ -23,22 +22,26 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.sheepy.lily.core.model.types.TypesPackage;
 
-import org.sheepy.lily.vulkan.model.process.CompositeTask;
-import org.sheepy.lily.vulkan.model.process.ProcessFactory;
+import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.CompositeTask} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.CopyBufferTask} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CompositeTaskItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class CopyBufferTaskItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -46,7 +49,7 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeTaskItemProvider(AdapterFactory adapterFactory)
+	public CopyBufferTaskItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -66,7 +69,9 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
-			addRepeatCountPropertyDescriptor(object);
+			addSrcBufferPropertyDescriptor(object);
+			addTrgBufferPropertyDescriptor(object);
+			addStagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -118,63 +123,76 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Repeat Count feature.
+	 * This adds a property descriptor for the Src Buffer feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRepeatCountPropertyDescriptor(Object object)
+	protected void addSrcBufferPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_CompositeTask_repeatCount_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeTask_repeatCount_feature", "_UI_CompositeTask_type"),
-				 ProcessPackage.Literals.COMPOSITE_TASK__REPEAT_COUNT,
+				 getString("_UI_CopyBufferTask_srcBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CopyBufferTask_srcBuffer_feature", "_UI_CopyBufferTask_type"),
+				 ProcessPackage.Literals.COPY_BUFFER_TASK__SRC_BUFFER,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Trg Buffer feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
+	protected void addTrgBufferPropertyDescriptor(Object object)
 	{
-		if (childrenFeatures == null)
-		{
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(ProcessPackage.Literals.COMPOSITE_TASK__TASKS);
-		}
-		return childrenFeatures;
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CopyBufferTask_trgBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CopyBufferTask_trgBuffer_feature", "_UI_CopyBufferTask_type"),
+				 ProcessPackage.Literals.COPY_BUFFER_TASK__TRG_BUFFER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
+	 * This adds a property descriptor for the Stage feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child)
+	protected void addStagePropertyDescriptor(Object object)
 	{
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CopyBufferTask_stage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CopyBufferTask_stage_feature", "_UI_CopyBufferTask_type"),
+				 ProcessPackage.Literals.COPY_BUFFER_TASK__STAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns CompositeTask.gif.
+	 * This returns CopyBufferTask.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -182,7 +200,7 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/CompositeTask"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CopyBufferTask"));
 	}
 
 	/**
@@ -194,11 +212,12 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((CompositeTask)object).getName();
+		String label = ((CopyBufferTask)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_CompositeTask_type") :
-			getString("_UI_CompositeTask_type") + " " + label;
+			getString("_UI_CopyBufferTask_type") :
+			getString("_UI_CopyBufferTask_type") + " " + label;
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -212,15 +231,12 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CompositeTask.class))
+		switch (notification.getFeatureID(CopyBufferTask.class))
 		{
-			case ProcessPackage.COMPOSITE_TASK__NAME:
-			case ProcessPackage.COMPOSITE_TASK__ENABLED:
-			case ProcessPackage.COMPOSITE_TASK__REPEAT_COUNT:
+			case ProcessPackage.COPY_BUFFER_TASK__NAME:
+			case ProcessPackage.COPY_BUFFER_TASK__ENABLED:
+			case ProcessPackage.COPY_BUFFER_TASK__STAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ProcessPackage.COMPOSITE_TASK__TASKS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -237,81 +253,6 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 ProcessFactory.eINSTANCE.createPipelineBarrier()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 ProcessFactory.eINSTANCE.createCompositeTask()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 ProcessFactory.eINSTANCE.createBindDescriptorSets()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 ProcessFactory.eINSTANCE.createPushConstantBuffer()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 ProcessFactory.eINSTANCE.createPushBufferTask()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 ProcessFactory.eINSTANCE.createGetBufferTask()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 ProcessFactory.eINSTANCE.createCopyBufferTask()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 ComputeFactory.eINSTANCE.createComputer()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 GraphicFactory.eINSTANCE.createBlitToSwapImage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 GraphicFactory.eINSTANCE.createDrawIndexed()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 GraphicFactory.eINSTANCE.createDraw()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 GraphicFactory.eINSTANCE.createBindVertexBuffer()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 GraphicFactory.eINSTANCE.createSetScissor()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 GraphicFactory.eINSTANCE.createSetViewport()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 GraphicFactory.eINSTANCE.createBindIndexBuffer()));
 	}
 
 	/**

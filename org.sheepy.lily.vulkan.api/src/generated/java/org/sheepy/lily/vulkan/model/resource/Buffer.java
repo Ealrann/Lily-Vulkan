@@ -20,9 +20,10 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#getUsages <em>Usages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#getData <em>Data</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#isOftenUpdated <em>Often Updated</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#isGpuBuffer <em>Gpu Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#isKeptMapped <em>Kept Mapped</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#isHostVisible <em>Host Visible</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#getInstanceCount <em>Instance Count</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#isCoherent <em>Coherent</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer()
@@ -90,50 +91,50 @@ public interface Buffer extends BasicDescriptedResource, IBuffer
 	void setData(ByteBuffer value);
 
 	/**
-	 * Returns the value of the '<em><b>Often Updated</b></em>' attribute.
+	 * Returns the value of the '<em><b>Kept Mapped</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Often Updated</em>' attribute.
-	 * @see #setOftenUpdated(boolean)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_OftenUpdated()
+	 * @return the value of the '<em>Kept Mapped</em>' attribute.
+	 * @see #setKeptMapped(boolean)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_KeptMapped()
 	 * @model default="false" unique="false"
 	 * @generated
 	 */
-	boolean isOftenUpdated();
+	boolean isKeptMapped();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Buffer#isOftenUpdated <em>Often Updated</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Buffer#isKeptMapped <em>Kept Mapped</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Often Updated</em>' attribute.
-	 * @see #isOftenUpdated()
+	 * @param value the new value of the '<em>Kept Mapped</em>' attribute.
+	 * @see #isKeptMapped()
 	 * @generated
 	 */
-	void setOftenUpdated(boolean value);
+	void setKeptMapped(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Gpu Buffer</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
+	 * Returns the value of the '<em><b>Host Visible</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Gpu Buffer</em>' attribute.
-	 * @see #setGpuBuffer(boolean)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_GpuBuffer()
-	 * @model default="true" unique="false"
+	 * @return the value of the '<em>Host Visible</em>' attribute.
+	 * @see #setHostVisible(boolean)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_HostVisible()
+	 * @model default="false" unique="false"
 	 * @generated
 	 */
-	boolean isGpuBuffer();
+	boolean isHostVisible();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Buffer#isGpuBuffer <em>Gpu Buffer</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Buffer#isHostVisible <em>Host Visible</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Gpu Buffer</em>' attribute.
-	 * @see #isGpuBuffer()
+	 * @param value the new value of the '<em>Host Visible</em>' attribute.
+	 * @see #isHostVisible()
 	 * @generated
 	 */
-	void setGpuBuffer(boolean value);
+	void setHostVisible(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Instance Count</b></em>' attribute.
@@ -157,5 +158,28 @@ public interface Buffer extends BasicDescriptedResource, IBuffer
 	 * @generated
 	 */
 	void setInstanceCount(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Coherent</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Coherent</em>' attribute.
+	 * @see #setCoherent(boolean)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_Coherent()
+	 * @model default="true" unique="false"
+	 * @generated
+	 */
+	boolean isCoherent();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Buffer#isCoherent <em>Coherent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Coherent</em>' attribute.
+	 * @see #isCoherent()
+	 * @generated
+	 */
+	void setCoherent(boolean value);
 
 } // Buffer

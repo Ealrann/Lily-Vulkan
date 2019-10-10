@@ -73,6 +73,7 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 			case ProcessPackage.PUSH_CONSTANT_BUFFER: return createPushConstantBuffer();
 			case ProcessPackage.PUSH_BUFFER_TASK: return createPushBufferTask();
 			case ProcessPackage.GET_BUFFER_TASK: return createGetBufferTask();
+			case ProcessPackage.COPY_BUFFER_TASK: return createCopyBufferTask();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -184,6 +185,18 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		GetBufferTaskImpl getBufferTask = new GetBufferTaskImpl();
 		return getBufferTask;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CopyBufferTask createCopyBufferTask()
+	{
+		CopyBufferTaskImpl copyBufferTask = new CopyBufferTaskImpl();
+		return copyBufferTask;
 	}
 
 	/**

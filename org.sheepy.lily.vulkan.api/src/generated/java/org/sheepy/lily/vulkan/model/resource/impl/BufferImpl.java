@@ -32,9 +32,10 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getUsages <em>Usages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getData <em>Data</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#isOftenUpdated <em>Often Updated</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#isGpuBuffer <em>Gpu Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#isKeptMapped <em>Kept Mapped</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#isHostVisible <em>Host Visible</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getInstanceCount <em>Instance Count</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#isCoherent <em>Coherent</em>}</li>
  * </ul>
  *
  * @generated
@@ -92,44 +93,44 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	protected ByteBuffer data = DATA_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isOftenUpdated() <em>Often Updated</em>}' attribute.
+	 * The default value of the '{@link #isKeptMapped() <em>Kept Mapped</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isOftenUpdated()
+	 * @see #isKeptMapped()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean OFTEN_UPDATED_EDEFAULT = false;
+	protected static final boolean KEPT_MAPPED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isOftenUpdated() <em>Often Updated</em>}' attribute.
+	 * The cached value of the '{@link #isKeptMapped() <em>Kept Mapped</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isOftenUpdated()
+	 * @see #isKeptMapped()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean oftenUpdated = OFTEN_UPDATED_EDEFAULT;
+	protected boolean keptMapped = KEPT_MAPPED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isGpuBuffer() <em>Gpu Buffer</em>}' attribute.
+	 * The default value of the '{@link #isHostVisible() <em>Host Visible</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isGpuBuffer()
+	 * @see #isHostVisible()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean GPU_BUFFER_EDEFAULT = true;
+	protected static final boolean HOST_VISIBLE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isGpuBuffer() <em>Gpu Buffer</em>}' attribute.
+	 * The cached value of the '{@link #isHostVisible() <em>Host Visible</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isGpuBuffer()
+	 * @see #isHostVisible()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean gpuBuffer = GPU_BUFFER_EDEFAULT;
+	protected boolean hostVisible = HOST_VISIBLE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
@@ -150,6 +151,26 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	 * @ordered
 	 */
 	protected int instanceCount = INSTANCE_COUNT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isCoherent() <em>Coherent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCoherent()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean COHERENT_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isCoherent() <em>Coherent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCoherent()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean coherent = COHERENT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -243,9 +264,9 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	 * @generated
 	 */
 	@Override
-	public boolean isOftenUpdated()
+	public boolean isKeptMapped()
 	{
-		return oftenUpdated;
+		return keptMapped;
 	}
 
 	/**
@@ -254,12 +275,12 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	 * @generated
 	 */
 	@Override
-	public void setOftenUpdated(boolean newOftenUpdated)
+	public void setKeptMapped(boolean newKeptMapped)
 	{
-		boolean oldOftenUpdated = oftenUpdated;
-		oftenUpdated = newOftenUpdated;
+		boolean oldKeptMapped = keptMapped;
+		keptMapped = newKeptMapped;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__OFTEN_UPDATED, oldOftenUpdated, oftenUpdated));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__KEPT_MAPPED, oldKeptMapped, keptMapped));
 	}
 
 	/**
@@ -268,9 +289,9 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	 * @generated
 	 */
 	@Override
-	public boolean isGpuBuffer()
+	public boolean isHostVisible()
 	{
-		return gpuBuffer;
+		return hostVisible;
 	}
 
 	/**
@@ -279,12 +300,12 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	 * @generated
 	 */
 	@Override
-	public void setGpuBuffer(boolean newGpuBuffer)
+	public void setHostVisible(boolean newHostVisible)
 	{
-		boolean oldGpuBuffer = gpuBuffer;
-		gpuBuffer = newGpuBuffer;
+		boolean oldHostVisible = hostVisible;
+		hostVisible = newHostVisible;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__GPU_BUFFER, oldGpuBuffer, gpuBuffer));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__HOST_VISIBLE, oldHostVisible, hostVisible));
 	}
 
 	/**
@@ -318,6 +339,31 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	 * @generated
 	 */
 	@Override
+	public boolean isCoherent()
+	{
+		return coherent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCoherent(boolean newCoherent)
+	{
+		boolean oldCoherent = coherent;
+		coherent = newCoherent;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__COHERENT, oldCoherent, coherent));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -328,12 +374,14 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 				return getUsages();
 			case ResourcePackage.BUFFER__DATA:
 				return getData();
-			case ResourcePackage.BUFFER__OFTEN_UPDATED:
-				return isOftenUpdated();
-			case ResourcePackage.BUFFER__GPU_BUFFER:
-				return isGpuBuffer();
+			case ResourcePackage.BUFFER__KEPT_MAPPED:
+				return isKeptMapped();
+			case ResourcePackage.BUFFER__HOST_VISIBLE:
+				return isHostVisible();
 			case ResourcePackage.BUFFER__INSTANCE_COUNT:
 				return getInstanceCount();
+			case ResourcePackage.BUFFER__COHERENT:
+				return isCoherent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -359,14 +407,17 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 			case ResourcePackage.BUFFER__DATA:
 				setData((ByteBuffer)newValue);
 				return;
-			case ResourcePackage.BUFFER__OFTEN_UPDATED:
-				setOftenUpdated((Boolean)newValue);
+			case ResourcePackage.BUFFER__KEPT_MAPPED:
+				setKeptMapped((Boolean)newValue);
 				return;
-			case ResourcePackage.BUFFER__GPU_BUFFER:
-				setGpuBuffer((Boolean)newValue);
+			case ResourcePackage.BUFFER__HOST_VISIBLE:
+				setHostVisible((Boolean)newValue);
 				return;
 			case ResourcePackage.BUFFER__INSTANCE_COUNT:
 				setInstanceCount((Integer)newValue);
+				return;
+			case ResourcePackage.BUFFER__COHERENT:
+				setCoherent((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -391,14 +442,17 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 			case ResourcePackage.BUFFER__DATA:
 				setData(DATA_EDEFAULT);
 				return;
-			case ResourcePackage.BUFFER__OFTEN_UPDATED:
-				setOftenUpdated(OFTEN_UPDATED_EDEFAULT);
+			case ResourcePackage.BUFFER__KEPT_MAPPED:
+				setKeptMapped(KEPT_MAPPED_EDEFAULT);
 				return;
-			case ResourcePackage.BUFFER__GPU_BUFFER:
-				setGpuBuffer(GPU_BUFFER_EDEFAULT);
+			case ResourcePackage.BUFFER__HOST_VISIBLE:
+				setHostVisible(HOST_VISIBLE_EDEFAULT);
 				return;
 			case ResourcePackage.BUFFER__INSTANCE_COUNT:
 				setInstanceCount(INSTANCE_COUNT_EDEFAULT);
+				return;
+			case ResourcePackage.BUFFER__COHERENT:
+				setCoherent(COHERENT_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -420,12 +474,14 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 				return usages != null && !usages.isEmpty();
 			case ResourcePackage.BUFFER__DATA:
 				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
-			case ResourcePackage.BUFFER__OFTEN_UPDATED:
-				return oftenUpdated != OFTEN_UPDATED_EDEFAULT;
-			case ResourcePackage.BUFFER__GPU_BUFFER:
-				return gpuBuffer != GPU_BUFFER_EDEFAULT;
+			case ResourcePackage.BUFFER__KEPT_MAPPED:
+				return keptMapped != KEPT_MAPPED_EDEFAULT;
+			case ResourcePackage.BUFFER__HOST_VISIBLE:
+				return hostVisible != HOST_VISIBLE_EDEFAULT;
 			case ResourcePackage.BUFFER__INSTANCE_COUNT:
 				return instanceCount != INSTANCE_COUNT_EDEFAULT;
+			case ResourcePackage.BUFFER__COHERENT:
+				return coherent != COHERENT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -447,12 +503,14 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 		result.append(usages);
 		result.append(", data: ");
 		result.append(data);
-		result.append(", oftenUpdated: ");
-		result.append(oftenUpdated);
-		result.append(", gpuBuffer: ");
-		result.append(gpuBuffer);
+		result.append(", keptMapped: ");
+		result.append(keptMapped);
+		result.append(", hostVisible: ");
+		result.append(hostVisible);
 		result.append(", instanceCount: ");
 		result.append(instanceCount);
+		result.append(", coherent: ");
+		result.append(coherent);
 		result.append(')');
 		return result.toString();
 	}

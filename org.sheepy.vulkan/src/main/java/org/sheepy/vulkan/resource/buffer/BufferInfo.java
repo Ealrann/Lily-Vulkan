@@ -12,16 +12,16 @@ public class BufferInfo
 	private long instanceSize;
 	private long totalSize;
 
-	public BufferInfo(long size, int usage, boolean keepMapped)
+	public BufferInfo(long size, int usage, boolean keptMapped)
 	{
-		this(size, usage, keepMapped, 1);
+		this(size, usage, keptMapped, 1);
 	}
 
-	public BufferInfo(long size, int usage, boolean keepMapped, int instanceCount)
+	public BufferInfo(long size, int usage, boolean keptMapped, int instanceCount)
 	{
 		this.size = size;
 		this.usage = usage;
-		this.keptMapped = keepMapped;
+		this.keptMapped = keptMapped;
 		this.instanceCount = instanceCount;
 	}
 
