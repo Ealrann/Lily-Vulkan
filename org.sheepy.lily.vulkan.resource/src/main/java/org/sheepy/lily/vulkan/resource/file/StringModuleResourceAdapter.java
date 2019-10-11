@@ -12,7 +12,7 @@ public class StringModuleResourceAdapter extends AbstractModuleResourceAdapter
 	@Override
 	protected Module getModule(AbstractModuleResource resource)
 	{
-		String moduleName = ((StringModuleResource) resource).getModuleName();
+		final String moduleName = ((StringModuleResource) resource).getModuleName();
 		return ModuleLayer.boot().findModule(moduleName).orElse(null);
 	}
 
