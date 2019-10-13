@@ -28,4 +28,12 @@
         defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IExecutionManager" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RunProcess" eSuperTypes="../../org.sheepy.lily.core.model/model/cadence.ecore#//ICadenceTask">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="process" lowerBound="1"
+        eType="#//IProcess"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WaitProcessIdle" eSuperTypes="../../org.sheepy.lily.core.model/model/cadence.ecore#//ICadenceTask">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="process" lowerBound="1"
+        eType="#//IProcess"/>
+  </eClassifiers>
 </ecore:EPackage>

@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.sheepy.lily.core.model.application.IEngine;
 
+import org.sheepy.lily.core.model.cadence.ICadenceTask;
 import org.sheepy.lily.core.model.inference.IInferenceObject;
 
 import org.sheepy.lily.core.model.root.LObject;
@@ -112,6 +113,16 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 				return createIExecutionManagerAdapter();
 			}
 			@Override
+			public Adapter caseRunProcess(RunProcess object)
+			{
+				return createRunProcessAdapter();
+			}
+			@Override
+			public Adapter caseWaitProcessIdle(WaitProcessIdle object)
+			{
+				return createWaitProcessIdleAdapter();
+			}
+			@Override
 			public Adapter caseIInferenceObject(IInferenceObject object)
 			{
 				return createIInferenceObjectAdapter();
@@ -130,6 +141,11 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
+			}
+			@Override
+			public Adapter caseICadenceTask(ICadenceTask object)
+			{
+				return createICadenceTaskAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -243,6 +259,36 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.RunProcess <em>Run Process</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.RunProcess
+	 * @generated
+	 */
+	public Adapter createRunProcessAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.WaitProcessIdle <em>Wait Process Idle</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.WaitProcessIdle
+	 * @generated
+	 */
+	public Adapter createWaitProcessIdleAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.inference.IInferenceObject <em>IInference Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -298,6 +344,21 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createLNamedElementAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.cadence.ICadenceTask <em>ICadence Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.core.model.cadence.ICadenceTask
+	 * @generated
+	 */
+	public Adapter createICadenceTaskAdapter()
 	{
 		return null;
 	}

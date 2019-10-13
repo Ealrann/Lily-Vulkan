@@ -147,6 +147,56 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.RunProcess} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RunProcessItemProvider runProcessItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.RunProcess}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRunProcessAdapter()
+	{
+		if (runProcessItemProvider == null)
+		{
+			runProcessItemProvider = new RunProcessItemProvider(this);
+		}
+
+		return runProcessItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.WaitProcessIdle} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WaitProcessIdleItemProvider waitProcessIdleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.WaitProcessIdle}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWaitProcessIdleAdapter()
+	{
+		if (waitProcessIdleItemProvider == null)
+		{
+			waitProcessIdleItemProvider = new WaitProcessIdleItemProvider(this);
+		}
+
+		return waitProcessIdleItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -297,6 +347,8 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	{
 		if (vulkanEngineItemProvider != null) vulkanEngineItemProvider.dispose();
 		if (resourcePkgItemProvider != null) resourcePkgItemProvider.dispose();
+		if (runProcessItemProvider != null) runProcessItemProvider.dispose();
+		if (waitProcessIdleItemProvider != null) waitProcessIdleItemProvider.dispose();
 	}
 
 	/**

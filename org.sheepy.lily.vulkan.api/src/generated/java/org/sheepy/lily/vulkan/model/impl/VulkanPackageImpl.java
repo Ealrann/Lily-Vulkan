@@ -14,6 +14,7 @@ import org.sheepy.lily.core.model.action.ActionPackage;
 
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 
+import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.core.model.root.RootPackage;
@@ -25,9 +26,11 @@ import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
+import org.sheepy.lily.vulkan.model.RunProcess;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.WaitProcessIdle;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl;
@@ -93,6 +96,20 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	private EClass iExecutionManagerEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass runProcessEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass waitProcessIdleEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -154,6 +171,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
+		CadencePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ComputePackage.eNS_URI);
@@ -325,6 +343,50 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getRunProcess()
+	{
+		return runProcessEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getRunProcess_Process()
+	{
+		return (EReference)runProcessEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getWaitProcessIdle()
+	{
+		return waitProcessIdleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getWaitProcessIdle_Process()
+	{
+		return (EReference)waitProcessIdleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public VulkanFactory getVulkanFactory()
 	{
 		return (VulkanFactory)getEFactoryInstance();
@@ -367,6 +429,12 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		createEAttribute(iProcessEClass, IPROCESS__ENABLED);
 
 		iExecutionManagerEClass = createEClass(IEXECUTION_MANAGER);
+
+		runProcessEClass = createEClass(RUN_PROCESS);
+		createEReference(runProcessEClass, RUN_PROCESS__PROCESS);
+
+		waitProcessIdleEClass = createEClass(WAIT_PROCESS_IDLE);
+		createEReference(waitProcessIdleEClass, WAIT_PROCESS_IDLE__PROCESS);
 	}
 
 	/**
@@ -398,6 +466,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+		CadencePackage theCadencePackage = (CadencePackage)EPackage.Registry.INSTANCE.getEPackage(CadencePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -411,6 +480,8 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		iProcessEClass.getESuperTypes().add(this.getIResourceContainer());
 		iProcessEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		iProcessEClass.getESuperTypes().add(this.getIExecutionManager());
+		runProcessEClass.getESuperTypes().add(theCadencePackage.getICadenceTask());
+		waitProcessIdleEClass.getESuperTypes().add(theCadencePackage.getICadenceTask());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(vulkanEngineEClass, VulkanEngine.class, "VulkanEngine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -430,6 +501,12 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		initEAttribute(getIProcess_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true", 0, 1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iExecutionManagerEClass, IExecutionManager.class, "IExecutionManager", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(runProcessEClass, RunProcess.class, "RunProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRunProcess_Process(), this.getIProcess(), null, "process", null, 1, 1, RunProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(waitProcessIdleEClass, WaitProcessIdle.class, "WaitProcessIdle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWaitProcessIdle_Process(), this.getIProcess(), null, "process", null, 1, 1, WaitProcessIdle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

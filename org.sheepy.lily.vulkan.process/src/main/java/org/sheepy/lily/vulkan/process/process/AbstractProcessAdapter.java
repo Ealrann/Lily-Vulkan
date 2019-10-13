@@ -103,8 +103,10 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 
 		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 		{
-			System.out.println(
-					process.eClass().getName() + " " + process.getName() + " Allocation tree:");
+			System.out.println(process.eClass().getName()
+					+ " "
+					+ process.getName()
+					+ " Allocation tree:");
 			System.out.println(allocator.toString());
 		}
 
@@ -117,7 +119,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	}
 
 	@Override
-	public void prepareNextAndExecute()
+	public void run()
 	{
 		final Integer next = prepareNext();
 
@@ -127,8 +129,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 		}
 	}
 
-	@Override
-	public Integer prepareNext()
+	private Integer prepareNext()
 	{
 		if (DebugUtil.DEBUG_ENABLED)
 		{
@@ -141,8 +142,8 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 
 		if (DebugUtil.DEBUG_ENABLED)
 		{
-			IStatistics.INSTANCE.addTime(getClass().getSimpleName(),
-					System.nanoTime() - startPrepareNs);
+			IStatistics.INSTANCE.addTime(	getClass().getSimpleName(),
+											System.nanoTime() - startPrepareNs);
 		}
 
 		return nextIndex;
@@ -168,8 +169,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 		return next;
 	}
 
-	@Override
-	public void execute(int next)
+	private void execute(int next)
 	{
 		final var recorders = context.getRecorders();
 		final var recorder = recorders.get(next);

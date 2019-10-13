@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.demo.rotating;
 
-import org.sheepy.lily.core.api.application.ApplicationLauncher;
+import org.sheepy.lily.core.api.LilyLauncher;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.lily.vulkan.demo.mesh.MeshMainLoop;
@@ -20,7 +20,7 @@ public class MainRotating
 		final var modelFactory = createFactory();
 
 		final MeshMainLoop mainLoop = new MeshMainLoop(modelFactory);
-		ApplicationLauncher.launch(modelFactory.application, mainLoop);
+		LilyLauncher.launch(modelFactory.application, mainLoop);
 	}
 
 	static MeshModelFactory createFactory()

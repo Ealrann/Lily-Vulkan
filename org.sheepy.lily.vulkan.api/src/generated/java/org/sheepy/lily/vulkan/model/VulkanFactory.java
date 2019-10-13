@@ -41,6 +41,24 @@ public interface VulkanFactory extends EFactory
 	ResourcePkg createResourcePkg();
 
 	/**
+	 * Returns a new object of class '<em>Run Process</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Run Process</em>'.
+	 * @generated
+	 */
+	RunProcess createRunProcess();
+
+	/**
+	 * Returns a new object of class '<em>Wait Process Idle</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Wait Process Idle</em>'.
+	 * @generated
+	 */
+	WaitProcessIdle createWaitProcessIdle();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

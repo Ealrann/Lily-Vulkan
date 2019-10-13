@@ -66,6 +66,8 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 		{
 			case VulkanPackage.VULKAN_ENGINE: return createVulkanEngine();
 			case VulkanPackage.RESOURCE_PKG: return createResourcePkg();
+			case VulkanPackage.RUN_PROCESS: return createRunProcess();
+			case VulkanPackage.WAIT_PROCESS_IDLE: return createWaitProcessIdle();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -93,6 +95,30 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 	{
 		ResourcePkgImpl resourcePkg = new ResourcePkgImpl();
 		return resourcePkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RunProcess createRunProcess()
+	{
+		RunProcessImpl runProcess = new RunProcessImpl();
+		return runProcess;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public WaitProcessIdle createWaitProcessIdle()
+	{
+		WaitProcessIdleImpl waitProcessIdle = new WaitProcessIdleImpl();
+		return waitProcessIdle;
 	}
 
 	/**

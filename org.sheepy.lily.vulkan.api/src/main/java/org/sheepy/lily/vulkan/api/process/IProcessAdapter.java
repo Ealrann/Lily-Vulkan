@@ -12,10 +12,7 @@ public interface IProcessAdapter extends IVulkanAdapter
 	void start(IVulkanContext context);
 	void stop(IVulkanContext context);
 
-	void prepareNextAndExecute();
-	
-	Integer prepareNext();
-	void execute(int next);
+	void run();
 
 	VulkanQueue getQueue();
 	EQueueType getQueueType();

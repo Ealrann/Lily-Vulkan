@@ -7,7 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.sheepy.lily.core.api.application.ApplicationLauncher;
+import org.sheepy.lily.core.api.LilyLauncher;
 import org.sheepy.lily.core.api.cadence.IMainLoop;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.common.test.BasicModelFactory;
@@ -32,9 +32,8 @@ public class WindowTest
 	@Test
 	public void testNewWindow()
 	{
-		ApplicationLauncher.launch(application, new IMainLoop()
+		LilyLauncher.launch(application, new IMainLoop()
 		{
-
 			@Override
 			public void step(Application application)
 			{
@@ -63,7 +62,7 @@ public class WindowTest
 		final int timeoutMs = 1000;
 		final long setSizeDate = System.currentTimeMillis();
 
-		ApplicationLauncher.launch(application, new IMainLoop()
+		LilyLauncher.launch(application, new IMainLoop()
 		{
 			Random random = new Random();
 			int expectedWidth = BasicModelFactory.WIDTH;

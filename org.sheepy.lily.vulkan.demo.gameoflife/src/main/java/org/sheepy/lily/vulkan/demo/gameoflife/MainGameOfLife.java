@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.demo.gameoflife;
 
-import org.sheepy.lily.core.api.application.ApplicationLauncher;
+import org.sheepy.lily.core.api.LilyLauncher;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.demo.gameoflife.model.ModelFactory;
 
@@ -12,9 +12,9 @@ public class MainGameOfLife
 	public static void main(String[] args)
 	{
 		DebugUtil.DEBUG_ENABLED = true;
-	
-		final ModelFactory factory = new ModelFactory(WIDTH, HEIGHT);
-		final MainLoop mainLoop = new MainLoop(factory);
-		ApplicationLauncher.launch(factory.application, mainLoop);
+
+		final var factory = new ModelFactory(WIDTH, HEIGHT);
+
+		LilyLauncher.launch(factory.application);
 	}
 }

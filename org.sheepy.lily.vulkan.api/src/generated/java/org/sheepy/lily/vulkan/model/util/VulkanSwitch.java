@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.util.Switch;
 
 import org.sheepy.lily.core.model.application.IEngine;
 
+import org.sheepy.lily.core.model.cadence.ICadenceTask;
 import org.sheepy.lily.core.model.inference.IInferenceObject;
 
 import org.sheepy.lily.core.model.root.LObject;
@@ -131,6 +132,22 @@ public class VulkanSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case VulkanPackage.RUN_PROCESS:
+			{
+				RunProcess runProcess = (RunProcess)theEObject;
+				T result = caseRunProcess(runProcess);
+				if (result == null) result = caseICadenceTask(runProcess);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanPackage.WAIT_PROCESS_IDLE:
+			{
+				WaitProcessIdle waitProcessIdle = (WaitProcessIdle)theEObject;
+				T result = caseWaitProcessIdle(waitProcessIdle);
+				if (result == null) result = caseICadenceTask(waitProcessIdle);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -232,6 +249,38 @@ public class VulkanSwitch<T> extends Switch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Run Process</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Run Process</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRunProcess(RunProcess object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Wait Process Idle</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Wait Process Idle</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWaitProcessIdle(WaitProcessIdle object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>IInference Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -291,6 +340,22 @@ public class VulkanSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseLNamedElement(LNamedElement object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ICadence Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ICadence Task</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseICadenceTask(ICadenceTask object)
 	{
 		return null;
 	}

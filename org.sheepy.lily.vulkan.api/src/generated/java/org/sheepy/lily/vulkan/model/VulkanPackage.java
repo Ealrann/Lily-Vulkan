@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 
+import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 /**
@@ -374,6 +375,80 @@ public interface VulkanPackage extends EPackage
 	int IEXECUTION_MANAGER_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.impl.RunProcessImpl <em>Run Process</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.impl.RunProcessImpl
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getRunProcess()
+	 * @generated
+	 */
+	int RUN_PROCESS = 6;
+
+	/**
+	 * The feature id for the '<em><b>Process</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RUN_PROCESS__PROCESS = CadencePackage.ICADENCE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Run Process</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RUN_PROCESS_FEATURE_COUNT = CadencePackage.ICADENCE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Run Process</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RUN_PROCESS_OPERATION_COUNT = CadencePackage.ICADENCE_TASK_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.impl.WaitProcessIdleImpl <em>Wait Process Idle</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.impl.WaitProcessIdleImpl
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getWaitProcessIdle()
+	 * @generated
+	 */
+	int WAIT_PROCESS_IDLE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Process</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WAIT_PROCESS_IDLE__PROCESS = CadencePackage.ICADENCE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Wait Process Idle</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WAIT_PROCESS_IDLE_FEATURE_COUNT = CadencePackage.ICADENCE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Wait Process Idle</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WAIT_PROCESS_IDLE_OPERATION_COUNT = CadencePackage.ICADENCE_TASK_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.VulkanEngine <em>Engine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -498,6 +573,48 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 */
 	EClass getIExecutionManager();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.RunProcess <em>Run Process</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Run Process</em>'.
+	 * @see org.sheepy.lily.vulkan.model.RunProcess
+	 * @generated
+	 */
+	EClass getRunProcess();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.RunProcess#getProcess <em>Process</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Process</em>'.
+	 * @see org.sheepy.lily.vulkan.model.RunProcess#getProcess()
+	 * @see #getRunProcess()
+	 * @generated
+	 */
+	EReference getRunProcess_Process();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.WaitProcessIdle <em>Wait Process Idle</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Wait Process Idle</em>'.
+	 * @see org.sheepy.lily.vulkan.model.WaitProcessIdle
+	 * @generated
+	 */
+	EClass getWaitProcessIdle();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.WaitProcessIdle#getProcess <em>Process</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Process</em>'.
+	 * @see org.sheepy.lily.vulkan.model.WaitProcessIdle#getProcess()
+	 * @see #getWaitProcessIdle()
+	 * @generated
+	 */
+	EReference getWaitProcessIdle_Process();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -630,6 +747,42 @@ public interface VulkanPackage extends EPackage
 		 * @generated
 		 */
 		EClass IEXECUTION_MANAGER = eINSTANCE.getIExecutionManager();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.RunProcessImpl <em>Run Process</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.impl.RunProcessImpl
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getRunProcess()
+		 * @generated
+		 */
+		EClass RUN_PROCESS = eINSTANCE.getRunProcess();
+
+		/**
+		 * The meta object literal for the '<em><b>Process</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RUN_PROCESS__PROCESS = eINSTANCE.getRunProcess_Process();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.WaitProcessIdleImpl <em>Wait Process Idle</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.impl.WaitProcessIdleImpl
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getWaitProcessIdle()
+		 * @generated
+		 */
+		EClass WAIT_PROCESS_IDLE = eINSTANCE.getWaitProcessIdle();
+
+		/**
+		 * The meta object literal for the '<em><b>Process</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WAIT_PROCESS_IDLE__PROCESS = eINSTANCE.getWaitProcessIdle_Process();
 
 	}
 

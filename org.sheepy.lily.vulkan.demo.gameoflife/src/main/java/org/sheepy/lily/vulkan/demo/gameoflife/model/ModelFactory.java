@@ -3,6 +3,8 @@ package org.sheepy.lily.vulkan.demo.gameoflife.model;
 import org.joml.Vector2i;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationFactory;
+import org.sheepy.lily.core.model.cadence.Cadence;
+import org.sheepy.lily.core.model.cadence.CadenceFactory;
 import org.sheepy.lily.vulkan.demo.gameoflife.compute.Board;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
@@ -52,6 +54,11 @@ public class ModelFactory
 
 	public ModelFactory(int width, int height)
 	{
+		this(width, height, -1);
+	}
+
+	public ModelFactory(int width, int height, int frameCount)
+	{
 		size = new Vector2i(width, height);
 
 		application.setTitle("Vulkan - Game of Life");
@@ -81,6 +88,8 @@ public class ModelFactory
 		engine.getProcesses().add(process2);
 		engine.getProcesses().add(imageProcess);
 		engine.setResourcePkg(sharedResources);
+
+		application.setCadence(buildCadence(frameCount));
 	}
 
 	private static RenderPassInfo newInfo()
@@ -265,5 +274,50 @@ public class ModelFactory
 		final var res = ComputeFactory.eINSTANCE.createComputer();
 		res.setShader(shader);
 		return res;
+	}
+
+	private final Cadence buildCadence(int frameCount)
+	{
+		final var runCompute1Task = VulkanFactory.eINSTANCE.createRunProcess();
+		runCompute1Task.setProcess(process1);
+		final var waitCompute1Idle = VulkanFactory.eINSTANCE.createWaitProcessIdle();
+		waitCompute1Idle.setProcess(process1);
+		final var runCompute2Task = VulkanFactory.eINSTANCE.createRunProcess();
+		runCompute2Task.setProcess(process2);
+		final var waitCompute2Idle = VulkanFactory.eINSTANCE.createWaitProcessIdle();
+		waitCompute2Idle.setProcess(process2);
+		final var runGraphicTask = VulkanFactory.eINSTANCE.createRunProcess();
+		runGraphicTask.setProcess(imageProcess);
+		final var executeWhile = CadenceFactory.eINSTANCE.createExecuteWhile();
+		final var printUPS = CadenceFactory.eINSTANCE.createPrintUPS();
+		printUPS.setPrintEveryMs(1200);
+		final var cadence = CadenceFactory.eINSTANCE.createCadence();
+		cadence.setFrequency(60);
+		final var haveTime = CadenceFactory.eINSTANCE.createHaveTime();
+		final var loopTasks = executeWhile.getTasks();
+
+		cadence.getTasks().add(runGraphicTask);
+
+		executeWhile.getConditions().add(haveTime);
+		loopTasks.add(printUPS);
+		loopTasks.add(runCompute1Task);
+		loopTasks.add(waitCompute1Idle);
+		loopTasks.add(runCompute2Task);
+		loopTasks.add(waitCompute2Idle);
+		cadence.getTasks().add(executeWhile);
+
+		if (frameCount > 0)
+		{
+			final var executeIf = CadenceFactory.eINSTANCE.createExecuteIf();
+			final var countUntil = CadenceFactory.eINSTANCE.createCountUntil();
+			final var closeApp = CadenceFactory.eINSTANCE.createCloseApplication();
+			countUntil.setTotalCount(frameCount);
+			executeIf.getConditions().add(countUntil);
+			executeIf.getTasks().add(closeApp);
+
+			loopTasks.add(executeIf);
+		}
+
+		return cadence;
 	}
 }

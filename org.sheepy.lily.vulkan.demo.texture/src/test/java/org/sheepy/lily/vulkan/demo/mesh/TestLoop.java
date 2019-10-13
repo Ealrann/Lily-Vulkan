@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.demo.mesh;
 
-import org.sheepy.lily.core.api.application.ApplicationLauncher;
+import org.sheepy.lily.core.api.LilyLauncher;
 import org.sheepy.lily.core.model.application.Application;
 
 public class TestLoop extends MeshMainLoop
@@ -22,7 +22,7 @@ public class TestLoop extends MeshMainLoop
 
 		if (stepIndex >= stepCount)
 		{
-			ApplicationLauncher.stop(application);
+			LilyLauncher.stop(application);
 		}
 
 		stepIndex++;
