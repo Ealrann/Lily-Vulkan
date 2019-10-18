@@ -95,6 +95,18 @@ public final class BufferAdapter implements IBufferAdapter
 	}
 
 	@Override
+	public long mapMemory()
+	{
+		return bufferBackend.mapMemory();
+	}
+
+	@Override
+	public void unmapMemory()
+	{
+		bufferBackend.unmapMemory();
+	}
+
+	@Override
 	public List<IVkDescriptor> getDescriptors()
 	{
 		if (descriptors == null)

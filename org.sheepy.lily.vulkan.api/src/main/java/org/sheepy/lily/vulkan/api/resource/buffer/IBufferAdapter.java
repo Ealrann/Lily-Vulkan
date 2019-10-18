@@ -12,6 +12,9 @@ public interface IBufferAdapter extends IDescriptedResourceAdapter, IResourceAda
 	long getPtr();
 	long getMemoryPtr();
 
+	public long mapMemory();
+	public void unmapMemory();
+
 	/**
 	 * Flush a memory range of the buffer to make it visible to the device
 	 *
