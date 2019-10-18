@@ -50,6 +50,9 @@
       <extender
             uri="org.sheepy.lily.core.model.application"
             class="org.sheepy.lily.vulkan.model.provider.VulkanItemProviderAdapterFactory$ApplicationChildCreationExtender"/>
+      <extender
+            uri="org.sheepy.lily.core.model.cadence"
+            class="org.sheepy.lily.vulkan.model.provider.VulkanItemProviderAdapterFactory$CadenceChildCreationExtender"/>
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
