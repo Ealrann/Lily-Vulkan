@@ -9,6 +9,7 @@ import org.sheepy.lily.vulkan.api.execution.IRecordable;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.execution.ISubmission;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
+import org.sheepy.vulkan.concurrent.IFenceView;
 import org.sheepy.vulkan.execution.ICommandBuffer;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
@@ -99,9 +100,9 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 	}
 
 	@Override
-	public void play()
+	public IFenceView play()
 	{
-		submission.submit();
+		return submission.submit();
 	}
 
 	@Override

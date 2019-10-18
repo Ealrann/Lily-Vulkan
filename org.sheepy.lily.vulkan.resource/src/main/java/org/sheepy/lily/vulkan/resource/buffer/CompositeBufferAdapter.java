@@ -182,6 +182,18 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	}
 
 	@Override
+	public long mapMemory()
+	{
+		throw new AssertionError("Forbidden operation");
+	}
+
+	@Override
+	public void unmapMemory()
+	{
+		throw new AssertionError("Forbidden operation");
+	}
+
+	@Override
 	public List<IVkDescriptor> getDescriptors()
 	{
 		assert allocated == true;

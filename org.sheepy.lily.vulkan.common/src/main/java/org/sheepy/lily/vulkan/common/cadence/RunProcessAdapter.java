@@ -8,9 +8,8 @@ import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.model.RunProcess;
 
 @Adapter(scope = RunProcess.class)
-public class RunProcessAdapter implements ICadenceTaskAdapter
+public final class RunProcessAdapter implements ICadenceTaskAdapter
 {
-
 	@Override
 	public void execute(ICadenceTask task, ICadenceContext context)
 	{

@@ -16,6 +16,7 @@ import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.execution.ISubmission;
 import org.sheepy.lily.vulkan.api.process.IProcessContext.IRecorderContext;
+import org.sheepy.vulkan.concurrent.IFenceView;
 import org.sheepy.vulkan.concurrent.VkFence;
 import org.sheepy.vulkan.execution.ICommandBuffer;
 import org.sheepy.vulkan.log.EVulkanErrorStatus;
@@ -124,7 +125,7 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 	}
 
 	@Override
-	public void submit()
+	public IFenceView submit()
 	{
 		final long fenceId = fence != null ? fence.getId() : 0;
 
@@ -140,6 +141,8 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 			final var status = EVulkanErrorStatus.resolveFromCode(res);
 			System.err.println("[Submit] " + status.message);
 		}
+
+		return fence;
 	}
 
 	@Override

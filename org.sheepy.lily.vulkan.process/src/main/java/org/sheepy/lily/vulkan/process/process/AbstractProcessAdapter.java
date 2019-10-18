@@ -18,6 +18,7 @@ import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
 import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
+import org.sheepy.vulkan.concurrent.IFenceView;
 import org.sheepy.vulkan.descriptor.DescriptorPool;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.device.IVulkanContext;
@@ -119,13 +120,17 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	}
 
 	@Override
-	public void run()
+	public IFenceView run()
 	{
 		final Integer next = prepareNext();
 
 		if (next != null)
 		{
-			execute(next);
+			return execute(next);
+		}
+		else
+		{
+			return null;
 		}
 	}
 
@@ -169,7 +174,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 		return next;
 	}
 
-	private void execute(int next)
+	private IFenceView execute(int next)
 	{
 		final var recorders = context.getRecorders();
 		final var recorder = recorders.get(next);
@@ -188,7 +193,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 			}
 		}
 
-		recorder.play();
+		return recorder.play();
 	}
 
 	@SuppressWarnings("unchecked")

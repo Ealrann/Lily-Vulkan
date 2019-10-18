@@ -15,6 +15,7 @@ import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.process.execution.Submission;
 import org.sheepy.lily.vulkan.process.execution.WaitData;
+import org.sheepy.vulkan.concurrent.IFenceView;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.execution.ICommandBuffer;
 import org.sheepy.vulkan.log.EVulkanErrorStatus;
@@ -104,7 +105,7 @@ public class FrameSubmission extends Submission<IGraphicContext>
 	}
 
 	@Override
-	public void submit()
+	public IFenceView submit()
 	{
 		super.submit();
 
@@ -121,6 +122,8 @@ public class FrameSubmission extends Submission<IGraphicContext>
 			}
 			presentWaitSemaphore.signalSemaphore(context);
 		}
+
+		return fence;
 	}
 
 	public VkPresentInfoKHR getPresentInfo()

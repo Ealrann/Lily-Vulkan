@@ -8,7 +8,7 @@ import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.log.Logger;
 
-public class VkFence implements IAllocable<IVulkanContext>
+public class VkFence implements IAllocable<IVulkanContext>, IFenceView
 {
 	private final boolean signaled;
 	private long id;
@@ -51,6 +51,7 @@ public class VkFence implements IAllocable<IVulkanContext>
 		return res == VK_SUCCESS;
 	}
 
+	@Override
 	public boolean isSignaled()
 	{
 		final int status = vkGetFenceStatus(device, id);
