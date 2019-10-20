@@ -10,7 +10,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
 import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 
 @Adapter(scope = CompositeResourceProvider.class)
-public class CompositeResourceProviderAdapter implements IResourceProviderAdapter
+public final class CompositeResourceProviderAdapter implements IResourceProviderAdapter
 {
 	@Override
 	public List<DescriptedResource> getResources(ResourceProvider provider)

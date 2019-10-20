@@ -18,8 +18,6 @@ public final class BufferInstaller<T extends Structure>
 
 	private final GenericRenderer<T> maintainer;
 
-	private CompositeBuffer buffer;
-
 	public BufferInstaller(GenericRenderer<T> maintainer)
 	{
 		this.maintainer = maintainer;
@@ -40,17 +38,18 @@ public final class BufferInstaller<T extends Structure>
 		return dataProviders.stream().anyMatch(IndexProvider.class::isInstance);
 	}
 
-	public BufferContext install(PipelineContext pipelineContext, T structure, int part)
+	public BufferContext install(RenderPipelineContext pipelineContext, T structure, int part)
 	{
 		final var taskPkg = pipelineContext.pipeline.getTaskPkg();
-
-		createBuffer(pipelineContext, structure, part);
-		setupDescriptorSet(pipelineContext, taskPkg);
+		final var buffer = createBuffer(pipelineContext, structure, part);
+		setupDescriptorSet(pipelineContext, taskPkg, buffer);
 
 		return new BufferContext(pipelineContext, buffer, part);
 	}
 
-	private void setupDescriptorSet(PipelineContext pipelineContext, final TaskPkg taskPkg)
+	private void setupDescriptorSet(RenderPipelineContext pipelineContext,
+									final TaskPkg taskPkg,
+									CompositeBuffer buffer)
 	{
 		if (hasDynamicDescriptors)
 		{
@@ -71,9 +70,11 @@ public final class BufferInstaller<T extends Structure>
 		}
 	}
 
-	private void createBuffer(PipelineContext pipelineContext, T structure, int part)
+	private CompositeBuffer createBuffer(	RenderPipelineContext pipelineContext,
+											T structure,
+											int part)
 	{
-		buffer = ResourceFactory.eINSTANCE.createCompositeBuffer();
+		final CompositeBuffer buffer = ResourceFactory.eINSTANCE.createCompositeBuffer();
 		final var dataProviders = maintainer.getDataProviderPkg().getDataProviders();
 
 		for (final var dataProvider : dataProviders)
@@ -90,5 +91,6 @@ public final class BufferInstaller<T extends Structure>
 		buffer.setPushBuffer(pipelineContext.pushBuffer);
 
 		pipelineContext.pipeline.getResourcePkg().getResources().add(buffer);
+		return buffer;
 	}
 }

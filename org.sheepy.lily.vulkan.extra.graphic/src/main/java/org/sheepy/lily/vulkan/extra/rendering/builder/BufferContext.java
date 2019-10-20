@@ -4,11 +4,11 @@ import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 
 public final class BufferContext
 {
-	public final PipelineContext pipelineContext;
+	public final RenderPipelineContext pipelineContext;
 	public final CompositeBuffer buffer;
 	public final int part;
 
-	public BufferContext(PipelineContext pipelineContext, CompositeBuffer buffer, int part)
+	public BufferContext(RenderPipelineContext pipelineContext, CompositeBuffer buffer, int part)
 	{
 		this.pipelineContext = pipelineContext;
 		this.buffer = buffer;
