@@ -36,9 +36,8 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 
 	private final TaskPkg taskPkg;
 
-	private final List<TaskWrapper<?>> taskWrappers;
+	private List<TaskWrapper<?>> taskWrappers;
 	private VkPipelineLayout<? super T> vkPipelineLayout;
-	private boolean taskListDirty = false;
 
 	protected boolean recordNeeded = false;
 
@@ -49,7 +48,8 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		{
 			if (notification.getFeature() == ProcessPackage.Literals.TASK_PKG__TASKS)
 			{
-				taskListDirty = true;
+				reloadTasks();
+				reloadAllocables();
 			}
 		}
 	};
@@ -65,6 +65,11 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 			taskPkg.eAdapters().add(taskListener);
 		}
 
+		reloadTasks();
+	}
+
+	private void reloadTasks()
+	{
 		taskWrappers = List.copyOf(collectTasks());
 	}
 
@@ -125,7 +130,14 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	public void configureAllocation(IAllocationConfiguration config, T context)
 	{
 		this.allocationConfig = config;
-		config.addChildren(collectAllocables());
+		reloadAllocables();
+	}
+
+	private void reloadAllocables()
+	{
+		allocationConfig.clearChildren();
+		allocationConfig.addChildren(collectAllocables());
+		allocationConfig.setDirty();
 	}
 
 	@Override
@@ -159,12 +171,6 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	@Override
 	public void update()
 	{
-		if (taskListDirty)
-		{
-			collectTasks();
-			allocationConfig.setDirty();
-		}
-
 		for (int i = 0; i < taskWrappers.size(); i++)
 		{
 			final var wrapper = taskWrappers.get(i);
