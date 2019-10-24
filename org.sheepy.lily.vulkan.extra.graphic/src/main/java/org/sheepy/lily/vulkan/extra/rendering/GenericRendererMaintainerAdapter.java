@@ -131,7 +131,9 @@ public final class GenericRendererMaintainerAdapter<T extends Structure> impleme
 															final int pipelineCount)
 	{
 		final var context = pipelineBuilder.build(pipelineCount + 1);
-		graphicProcess.getPartPkg().getParts().add(context.pipeline);
+		final var parts = graphicProcess.getPartPkg().getParts();
+		final int maintainerIndex = parts.indexOf(maintainer);
+		parts.add(maintainerIndex, context.pipeline);
 		contexts.add(context);
 		return context;
 	}
