@@ -1,6 +1,7 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.resource.provider;
+package org.sheepy.vulkan.model.image.provider;
+
 
 import java.util.Collection;
 import java.util.List;
@@ -11,7 +12,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -21,18 +21,28 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.resource.ImageLayout;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+
+import org.sheepy.vulkan.model.barrier.provider.VulkanEditPlugin;
+
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
+import org.sheepy.vulkan.model.image.ImageLayout;
+import org.sheepy.vulkan.model.image.ImagePackage;
+
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageLayout} object.
+ * This is the item provider adapter for a {@link org.sheepy.vulkan.model.image.ImageLayout} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ImageLayoutItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class ImageLayoutItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -79,7 +89,7 @@ public class ImageLayoutItemProvider extends ItemProviderAdapter implements IEdi
 				 getResourceLocator(),
 				 getString("_UI_ImageLayout_stage_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_stage_feature", "_UI_ImageLayout_type"),
-				 ResourcePackage.Literals.IMAGE_LAYOUT__STAGE,
+				 ImagePackage.Literals.IMAGE_LAYOUT__STAGE,
 				 true,
 				 false,
 				 false,
@@ -102,7 +112,7 @@ public class ImageLayoutItemProvider extends ItemProviderAdapter implements IEdi
 				 getResourceLocator(),
 				 getString("_UI_ImageLayout_layout_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_layout_feature", "_UI_ImageLayout_type"),
-				 ResourcePackage.Literals.IMAGE_LAYOUT__LAYOUT,
+				 ImagePackage.Literals.IMAGE_LAYOUT__LAYOUT,
 				 true,
 				 false,
 				 false,
@@ -125,7 +135,7 @@ public class ImageLayoutItemProvider extends ItemProviderAdapter implements IEdi
 				 getResourceLocator(),
 				 getString("_UI_ImageLayout_accessMask_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_accessMask_feature", "_UI_ImageLayout_type"),
-				 ResourcePackage.Literals.IMAGE_LAYOUT__ACCESS_MASK,
+				 ImagePackage.Literals.IMAGE_LAYOUT__ACCESS_MASK,
 				 true,
 				 false,
 				 false,
@@ -162,6 +172,7 @@ public class ImageLayoutItemProvider extends ItemProviderAdapter implements IEdi
 			getString("_UI_ImageLayout_type") + " " + label;
 	}
 
+
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
@@ -176,9 +187,9 @@ public class ImageLayoutItemProvider extends ItemProviderAdapter implements IEdi
 
 		switch (notification.getFeatureID(ImageLayout.class))
 		{
-			case ResourcePackage.IMAGE_LAYOUT__STAGE:
-			case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
-			case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
+			case ImagePackage.IMAGE_LAYOUT__STAGE:
+			case ImagePackage.IMAGE_LAYOUT__LAYOUT:
+			case ImagePackage.IMAGE_LAYOUT__ACCESS_MASK:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -207,7 +218,7 @@ public class ImageLayoutItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return VulkanEditPlugin.INSTANCE;
 	}
 
 }

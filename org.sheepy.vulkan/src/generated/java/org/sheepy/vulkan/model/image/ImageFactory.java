@@ -41,6 +41,15 @@ public interface ImageFactory extends EFactory
 	ImageInfo createImageInfo();
 
 	/**
+	 * Returns a new object of class '<em>Layout</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Layout</em>'.
+	 * @generated
+	 */
+	ImageLayout createImageLayout();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

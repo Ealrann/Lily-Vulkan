@@ -4,7 +4,7 @@
     editDirectory="/org.sheepy.lily.vulkan.extra.model.edit/src/generated/java" modelPluginID="org.sheepy.lily.vulkan.extra.model"
     modelName="Extra" rootExtendsInterface="org.sheepy.lily.core.api.adapter.ILilyEObject"
     rootExtendsClass="org.sheepy.lily.core.api.adapter.LilyEObject" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="11.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//process ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//model ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//resource ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//graphic ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//image"
+    complianceLevel="11.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//process ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//model ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//resource ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//graphic ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//image ../../org.sheepy.lily.core.model/model/Lily.genmodel#//cadence"
     operationReflection="true" importOrganizing="true" cleanup="true">
   <foreignModel>Mesh.ecore</foreignModel>
   <foreignModel>Nuklear.ecore</foreignModel>
@@ -41,6 +41,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/drawTask"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/pushBuffer"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/vertexBuffer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/imageArray"/>
     </genClasses>
     <genClasses ecoreClass="Nuklear.ecore#//NuklearContext">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/font"/>
@@ -85,6 +86,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/constantBuffer"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/pushBuffer"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/commonResourceProvider"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/specialization"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Rendering.ecore#//RenderDataProvider">
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//RenderDataProvider/T"/>
@@ -119,6 +121,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//RenderProxyConstantBuffer/constantBuffer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//RenderProxyConstantBuffer/partIndex"/>
     </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//ISpecialization"/>
   </genPackages>
   <genPackages prefix="Sprite" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
       childCreationExtenders="true" ecorePackage="Sprite.ecore#/">
@@ -133,14 +136,15 @@
     </genClasses>
     <genClasses ecoreClass="Sprite.ecore#//SpriteMonoSamplerProvider">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteMonoSamplerProvider/samplerInfo"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sprite.ecore#//SpriteMonoSamplerProvider/width"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sprite.ecore#//SpriteMonoSamplerProvider/height"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteMonoSamplerProvider/targetResourcePkg"/>
     </genClasses>
     <genClasses ecoreClass="Sprite.ecore#//SpriteStructure">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sprite.ecore#//SpriteStructure/width"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sprite.ecore#//SpriteStructure/height"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteStructure/sprites"/>
+    </genClasses>
+    <genClasses ecoreClass="Sprite.ecore#//SpriteCountSpecialization">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteCountSpecialization/provider"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

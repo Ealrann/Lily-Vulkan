@@ -19,7 +19,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
@@ -69,57 +68,9 @@ public class SpriteMonoSamplerProviderItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addWidthPropertyDescriptor(object);
-			addHeightPropertyDescriptor(object);
 			addTargetResourcePkgPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Width feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addWidthPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SpriteMonoSamplerProvider_width_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SpriteMonoSamplerProvider_width_feature", "_UI_SpriteMonoSamplerProvider_type"),
-				 SpritePackage.Literals.SPRITE_MONO_SAMPLER_PROVIDER__WIDTH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Height feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addHeightPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SpriteMonoSamplerProvider_height_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SpriteMonoSamplerProvider_height_feature", "_UI_SpriteMonoSamplerProvider_type"),
-				 SpritePackage.Literals.SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -199,8 +150,7 @@ public class SpriteMonoSamplerProviderItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		SpriteMonoSamplerProvider spriteMonoSamplerProvider = (SpriteMonoSamplerProvider)object;
-		return getString("_UI_SpriteMonoSamplerProvider_type") + " " + spriteMonoSamplerProvider.getWidth();
+		return getString("_UI_SpriteMonoSamplerProvider_type");
 	}
 
 
@@ -218,10 +168,6 @@ public class SpriteMonoSamplerProviderItemProvider
 
 		switch (notification.getFeatureID(SpriteMonoSamplerProvider.class))
 		{
-			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__WIDTH:
-			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

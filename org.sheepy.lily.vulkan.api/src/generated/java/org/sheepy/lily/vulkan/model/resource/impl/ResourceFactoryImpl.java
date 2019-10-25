@@ -78,7 +78,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.DESCRIBED_DATA_PROVIDER: return createDescribedDataProvider();
 			case ResourcePackage.STATIC_IMAGE: return createStaticImage();
 			case ResourcePackage.FILE_IMAGE: return createFileImage();
-			case ResourcePackage.IMAGE_LAYOUT: return createImageLayout();
 			case ResourcePackage.SAMPLED_IMAGE: return createSampledImage();
 			case ResourcePackage.SAMPLER: return createSampler();
 			case ResourcePackage.SEMAPHORE: return createSemaphore();
@@ -266,18 +265,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		FileImageImpl fileImage = new FileImageImpl();
 		return fileImage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ImageLayout createImageLayout()
-	{
-		ImageLayoutImpl imageLayout = new ImageLayoutImpl();
-		return imageLayout;
 	}
 
 	/**

@@ -3,6 +3,7 @@ import org.sheepy.lily.vulkan.extra.rendering.CompositeResourceProviderAdapter;
 import org.sheepy.lily.vulkan.extra.rendering.GenericRendererMaintainerAdapter;
 import org.sheepy.lily.vulkan.extra.rendering.StaticResourceProviderAdapter;
 import org.sheepy.lily.vulkan.extra.rendering.buffer.RenderProxyConstantBufferAdapter;
+import org.sheepy.lily.vulkan.extra.sprite.SpriteCountSpecializationAdapter;
 import org.sheepy.lily.vulkan.extra.sprite.SpriteMonoSamplerProviderAdapter;
 
 @Adapters(classifiers = {
@@ -10,7 +11,8 @@ import org.sheepy.lily.vulkan.extra.sprite.SpriteMonoSamplerProviderAdapter;
 		StaticResourceProviderAdapter.class,
 		CompositeResourceProviderAdapter.class,
 		SpriteMonoSamplerProviderAdapter.class,
-		RenderProxyConstantBufferAdapter.class
+		RenderProxyConstantBufferAdapter.class,
+		SpriteCountSpecializationAdapter.class
 })
 
 module org.sheepy.lily.vulkan.extra.graphic

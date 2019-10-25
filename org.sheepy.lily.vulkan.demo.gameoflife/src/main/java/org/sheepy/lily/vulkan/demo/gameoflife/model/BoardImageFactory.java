@@ -12,6 +12,7 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
+import org.sheepy.vulkan.model.image.ImageFactory;
 
 public class BoardImageFactory
 {
@@ -21,7 +22,7 @@ public class BoardImageFactory
 	{
 		final var res = ResourceFactory.eINSTANCE.createStaticImage();
 
-		final var initialLayout = ResourceFactory.eINSTANCE.createImageLayout();
+		final var initialLayout = ImageFactory.eINSTANCE.createImageLayout();
 		initialLayout.setStage(EPipelineStage.COMPUTE_SHADER_BIT);
 		initialLayout.setLayout(EImageLayout.GENERAL);
 		initialLayout.getAccessMask().add(EAccess.SHADER_WRITE_BIT);

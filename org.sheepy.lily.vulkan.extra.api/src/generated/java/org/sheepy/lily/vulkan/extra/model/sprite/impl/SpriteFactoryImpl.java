@@ -69,6 +69,7 @@ public class SpriteFactoryImpl extends EFactoryImpl implements SpriteFactory
 			case SpritePackage.SPRITE: return createSprite();
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER: return createSpriteMonoSamplerProvider();
 			case SpritePackage.SPRITE_STRUCTURE: return createSpriteStructure();
+			case SpritePackage.SPRITE_COUNT_SPECIALIZATION: return createSpriteCountSpecialization();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -154,6 +155,18 @@ public class SpriteFactoryImpl extends EFactoryImpl implements SpriteFactory
 	{
 		SpriteStructureImpl spriteStructure = new SpriteStructureImpl();
 		return spriteStructure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SpriteCountSpecialization createSpriteCountSpecialization()
+	{
+		SpriteCountSpecializationImpl spriteCountSpecialization = new SpriteCountSpecializationImpl();
+		return spriteCountSpecialization;
 	}
 
 	/**

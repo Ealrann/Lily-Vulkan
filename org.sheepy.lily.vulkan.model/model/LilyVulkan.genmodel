@@ -194,11 +194,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//FileImage/file"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//FileImage/mipmapEnabled"/>
     </genClasses>
-    <genClasses ecoreClass="resource.ecore#//ImageLayout">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ImageLayout/stage"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ImageLayout/layout"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ImageLayout/accessMask"/>
-    </genClasses>
     <genClasses ecoreClass="resource.ecore#//SampledImage">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//SampledImage/sampler"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//SampledImage/image"/>
@@ -248,8 +243,6 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//Texture2DArray">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Texture2DArray/files"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Texture2DArray/width"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Texture2DArray/height"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Texture2DArray/mipmapEnabled"/>
     </genClasses>
   </genPackages>

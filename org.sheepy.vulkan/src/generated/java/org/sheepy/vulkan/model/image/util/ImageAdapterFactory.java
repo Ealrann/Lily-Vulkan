@@ -84,6 +84,11 @@ public class ImageAdapterFactory extends AdapterFactoryImpl
 				return createImageInfoAdapter();
 			}
 			@Override
+			public Adapter caseImageLayout(ImageLayout object)
+			{
+				return createImageLayoutAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object)
 			{
 				return createEObjectAdapter();
@@ -130,6 +135,21 @@ public class ImageAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createImageInfoAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.image.ImageLayout <em>Layout</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.image.ImageLayout
+	 * @generated
+	 */
+	public Adapter createImageLayoutAdapter()
 	{
 		return null;
 	}

@@ -18,6 +18,7 @@ import org.sheepy.lily.vulkan.model.process.CompositeTask;
 
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.PushBuffer;
+import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,6 +34,7 @@ import org.sheepy.lily.vulkan.model.resource.PushBuffer;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearLayoutTaskImpl#getDrawTask <em>Draw Task</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearLayoutTaskImpl#getPushBuffer <em>Push Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearLayoutTaskImpl#getVertexBuffer <em>Vertex Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearLayoutTaskImpl#getImageArray <em>Image Array</em>}</li>
  * </ul>
  *
  * @generated
@@ -118,6 +120,16 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 	 * @ordered
 	 */
 	protected Buffer vertexBuffer;
+
+	/**
+	 * The cached value of the '{@link #getImageArray() <em>Image Array</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getImageArray()
+	 * @generated
+	 * @ordered
+	 */
+	protected Texture2DArray imageArray;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -401,6 +413,51 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 	 * @generated
 	 */
 	@Override
+	public Texture2DArray getImageArray()
+	{
+		if (imageArray != null && ((EObject)imageArray).eIsProxy())
+		{
+			InternalEObject oldImageArray = (InternalEObject)imageArray;
+			imageArray = (Texture2DArray)eResolveProxy(oldImageArray);
+			if (imageArray != oldImageArray)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY, oldImageArray, imageArray));
+			}
+		}
+		return imageArray;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Texture2DArray basicGetImageArray()
+	{
+		return imageArray;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setImageArray(Texture2DArray newImageArray)
+	{
+		Texture2DArray oldImageArray = imageArray;
+		imageArray = newImageArray;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY, oldImageArray, imageArray));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -455,6 +512,9 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER:
 				if (resolve) return getVertexBuffer();
 				return basicGetVertexBuffer();
+			case NuklearPackage.NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY:
+				if (resolve) return getImageArray();
+				return basicGetImageArray();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -486,6 +546,9 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 				return;
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER:
 				setVertexBuffer((Buffer)newValue);
+				return;
+			case NuklearPackage.NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY:
+				setImageArray((Texture2DArray)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -519,6 +582,9 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER:
 				setVertexBuffer((Buffer)null);
 				return;
+			case NuklearPackage.NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY:
+				setImageArray((Texture2DArray)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -545,6 +611,8 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 				return pushBuffer != null;
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER:
 				return vertexBuffer != null;
+			case NuklearPackage.NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY:
+				return imageArray != null;
 		}
 		return super.eIsSet(featureID);
 	}

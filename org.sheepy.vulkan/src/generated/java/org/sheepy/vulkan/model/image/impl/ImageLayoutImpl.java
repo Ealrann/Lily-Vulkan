@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.resource.impl;
+package org.sheepy.vulkan.model.image.impl;
 
 import java.util.Collection;
 
@@ -11,27 +11,29 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.vulkan.model.resource.ImageLayout;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
+import org.sheepy.vulkan.model.image.ImageLayout;
+import org.sheepy.vulkan.model.image.ImagePackage;
+
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Image Layout</b></em>'.
+ * An implementation of the model object '<em><b>Layout</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl#getStage <em>Stage</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl#getLayout <em>Layout</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl#getAccessMask <em>Access Mask</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.image.impl.ImageLayoutImpl#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.image.impl.ImageLayoutImpl#getLayout <em>Layout</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.image.impl.ImageLayoutImpl#getAccessMask <em>Access Mask</em>}</li>
  * </ul>
  *
  * @generated
@@ -106,7 +108,7 @@ public class ImageLayoutImpl extends LilyEObject implements ImageLayout
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.IMAGE_LAYOUT;
+		return ImagePackage.Literals.IMAGE_LAYOUT;
 	}
 
 	/**
@@ -131,7 +133,7 @@ public class ImageLayoutImpl extends LilyEObject implements ImageLayout
 		EPipelineStage oldStage = stage;
 		stage = newStage == null ? STAGE_EDEFAULT : newStage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_LAYOUT__STAGE, oldStage, stage));
+			eNotify(new ENotificationImpl(this, Notification.SET, ImagePackage.IMAGE_LAYOUT__STAGE, oldStage, stage));
 	}
 
 	/**
@@ -156,7 +158,7 @@ public class ImageLayoutImpl extends LilyEObject implements ImageLayout
 		EImageLayout oldLayout = layout;
 		layout = newLayout == null ? LAYOUT_EDEFAULT : newLayout;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_LAYOUT__LAYOUT, oldLayout, layout));
+			eNotify(new ENotificationImpl(this, Notification.SET, ImagePackage.IMAGE_LAYOUT__LAYOUT, oldLayout, layout));
 	}
 
 	/**
@@ -169,7 +171,7 @@ public class ImageLayoutImpl extends LilyEObject implements ImageLayout
 	{
 		if (accessMask == null)
 		{
-			accessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK);
+			accessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, ImagePackage.IMAGE_LAYOUT__ACCESS_MASK);
 		}
 		return accessMask;
 	}
@@ -184,11 +186,11 @@ public class ImageLayoutImpl extends LilyEObject implements ImageLayout
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_LAYOUT__STAGE:
+			case ImagePackage.IMAGE_LAYOUT__STAGE:
 				return getStage();
-			case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
+			case ImagePackage.IMAGE_LAYOUT__LAYOUT:
 				return getLayout();
-			case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
+			case ImagePackage.IMAGE_LAYOUT__ACCESS_MASK:
 				return getAccessMask();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -205,13 +207,13 @@ public class ImageLayoutImpl extends LilyEObject implements ImageLayout
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_LAYOUT__STAGE:
+			case ImagePackage.IMAGE_LAYOUT__STAGE:
 				setStage((EPipelineStage)newValue);
 				return;
-			case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
+			case ImagePackage.IMAGE_LAYOUT__LAYOUT:
 				setLayout((EImageLayout)newValue);
 				return;
-			case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
+			case ImagePackage.IMAGE_LAYOUT__ACCESS_MASK:
 				getAccessMask().clear();
 				getAccessMask().addAll((Collection<? extends EAccess>)newValue);
 				return;
@@ -229,13 +231,13 @@ public class ImageLayoutImpl extends LilyEObject implements ImageLayout
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_LAYOUT__STAGE:
+			case ImagePackage.IMAGE_LAYOUT__STAGE:
 				setStage(STAGE_EDEFAULT);
 				return;
-			case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
+			case ImagePackage.IMAGE_LAYOUT__LAYOUT:
 				setLayout(LAYOUT_EDEFAULT);
 				return;
-			case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
+			case ImagePackage.IMAGE_LAYOUT__ACCESS_MASK:
 				getAccessMask().clear();
 				return;
 		}
@@ -252,11 +254,11 @@ public class ImageLayoutImpl extends LilyEObject implements ImageLayout
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_LAYOUT__STAGE:
+			case ImagePackage.IMAGE_LAYOUT__STAGE:
 				return stage != STAGE_EDEFAULT;
-			case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
+			case ImagePackage.IMAGE_LAYOUT__LAYOUT:
 				return layout != LAYOUT_EDEFAULT;
-			case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
+			case ImagePackage.IMAGE_LAYOUT__ACCESS_MASK:
 				return accessMask != null && !accessMask.isEmpty();
 		}
 		return super.eIsSet(featureID);

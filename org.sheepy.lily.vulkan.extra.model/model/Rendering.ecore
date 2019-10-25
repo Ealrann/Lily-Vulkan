@@ -55,6 +55,8 @@
         eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//PushBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="commonResourceProvider"
         eType="#//ResourceProvider" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specialization" eType="#//ISpecialization"
+        containment="true"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/graphic.ecore#//GraphicsPipeline"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.core.model/model/maintainer.ecore#//Maintainer">
       <eTypeArguments eClassifier="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/graphic.ecore#//GraphicsPipeline"/>
@@ -138,4 +140,5 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="partIndex" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ISpecialization"/>
 </ecore:EPackage>

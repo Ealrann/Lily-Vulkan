@@ -1,7 +1,6 @@
 #version 450
-#extension GL_ARB_separate_shader_objects : enable
 
-precision mediump float;
+precision lowp float;
 
 layout (push_constant) uniform PushConstants {
 	mat4 ProjMtx;

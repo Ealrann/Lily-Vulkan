@@ -26,8 +26,6 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteMonoSamplerProviderImpl#getSamplerInfo <em>Sampler Info</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteMonoSamplerProviderImpl#getWidth <em>Width</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteMonoSamplerProviderImpl#getHeight <em>Height</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteMonoSamplerProviderImpl#getTargetResourcePkg <em>Target Resource Pkg</em>}</li>
  * </ul>
  *
@@ -44,43 +42,6 @@ public class SpriteMonoSamplerProviderImpl extends LilyEObject implements Sprite
 	 * @ordered
 	 */
 	protected SamplerInfo samplerInfo;
-
-	/**
-	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWidth()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int WIDTH_EDEFAULT = 0;
-	/**
-	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWidth()
-	 * @generated
-	 * @ordered
-	 */
-	protected int width = WIDTH_EDEFAULT;
-	/**
-	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getHeight()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int HEIGHT_EDEFAULT = 0;
-	/**
-	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getHeight()
-	 * @generated
-	 * @ordered
-	 */
-	protected int height = HEIGHT_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getTargetResourcePkg() <em>Target Resource Pkg</em>}' reference.
@@ -169,56 +130,6 @@ public class SpriteMonoSamplerProviderImpl extends LilyEObject implements Sprite
 	 * @generated
 	 */
 	@Override
-	public int getWidth()
-	{
-		return width;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setWidth(int newWidth)
-	{
-		int oldWidth = width;
-		width = newWidth;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__WIDTH, oldWidth, width));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int getHeight()
-	{
-		return height;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setHeight(int newHeight)
-	{
-		int oldHeight = height;
-		height = newHeight;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT, oldHeight, height));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ResourcePkg getTargetResourcePkg()
 	{
 		if (targetResourcePkg != null && ((EObject)targetResourcePkg).eIsProxy())
@@ -286,10 +197,6 @@ public class SpriteMonoSamplerProviderImpl extends LilyEObject implements Sprite
 		{
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO:
 				return getSamplerInfo();
-			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__WIDTH:
-				return getWidth();
-			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT:
-				return getHeight();
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__TARGET_RESOURCE_PKG:
 				if (resolve) return getTargetResourcePkg();
 				return basicGetTargetResourcePkg();
@@ -309,12 +216,6 @@ public class SpriteMonoSamplerProviderImpl extends LilyEObject implements Sprite
 		{
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO:
 				setSamplerInfo((SamplerInfo)newValue);
-				return;
-			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__WIDTH:
-				setWidth((Integer)newValue);
-				return;
-			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT:
-				setHeight((Integer)newValue);
 				return;
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__TARGET_RESOURCE_PKG:
 				setTargetResourcePkg((ResourcePkg)newValue);
@@ -336,12 +237,6 @@ public class SpriteMonoSamplerProviderImpl extends LilyEObject implements Sprite
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO:
 				setSamplerInfo((SamplerInfo)null);
 				return;
-			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__WIDTH:
-				setWidth(WIDTH_EDEFAULT);
-				return;
-			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT:
-				setHeight(HEIGHT_EDEFAULT);
-				return;
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__TARGET_RESOURCE_PKG:
 				setTargetResourcePkg((ResourcePkg)null);
 				return;
@@ -361,33 +256,10 @@ public class SpriteMonoSamplerProviderImpl extends LilyEObject implements Sprite
 		{
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO:
 				return samplerInfo != null;
-			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__WIDTH:
-				return width != WIDTH_EDEFAULT;
-			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT:
-				return height != HEIGHT_EDEFAULT;
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__TARGET_RESOURCE_PKG:
 				return targetResourcePkg != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (width: ");
-		result.append(width);
-		result.append(", height: ");
-		result.append(height);
-		result.append(')');
-		return result.toString();
 	}
 
 } //SpriteMonoSamplerProviderImpl

@@ -122,6 +122,15 @@ public interface RenderingFactory extends EFactory
 	RenderProxyConstantBuffer createRenderProxyConstantBuffer();
 
 	/**
+	 * Returns a new object of class '<em>ISpecialization</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>ISpecialization</em>'.
+	 * @generated
+	 */
+	ISpecialization createISpecialization();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

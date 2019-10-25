@@ -43,4 +43,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mipLevels" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImageLayout">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" eType="ecore:EEnum enumeration.ecore#//EPipelineStage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="layout" eType="ecore:EEnum enumeration.ecore#//EImageLayout"
+        defaultValueLiteral="SHADER_READ_ONLY_OPTIMAL"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessMask" upperBound="-1"
+        eType="ecore:EEnum enumeration.ecore#//EAccess"/>
+  </eClassifiers>
 </ecore:EPackage>

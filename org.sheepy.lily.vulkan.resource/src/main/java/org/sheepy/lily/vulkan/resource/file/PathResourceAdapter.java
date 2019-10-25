@@ -1,52 +1,39 @@
 package org.sheepy.lily.vulkan.resource.file;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
-import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
+import org.sheepy.lily.vulkan.api.resource.IPathResourceAdapter;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 
-public abstract class PathResourceAdapter implements IVulkanAdapter
+public abstract class PathResourceAdapter implements IPathResourceAdapter
 {
-	public ByteBuffer toByteBuffer(PathResource resource)
+	@Override
+	public ByteBuffer allocByteBuffer(PathResource resource)
 	{
 		ByteBuffer buffer = null;
-		InputStream inputStream = null;
 
-		try
+		try (InputStream inputStream = getInputStream(resource);)
 		{
-			inputStream = getInputStream(resource);
 			final byte[] byteArray = inputStream.readAllBytes();
-
 			buffer = MemoryUtil.memAlloc(byteArray.length);
-
 			buffer.put(byteArray);
 			buffer.flip();
 
 		} catch (final Exception e)
 		{
-			System.err.println("Cannot read: " + resource.getPath());
+			logCantAccess(resource);
 			e.printStackTrace();
-		} finally
-		{
-			if (inputStream != null) try
-			{
-				inputStream.close();
-			} catch (final IOException e)
-			{
-				e.printStackTrace();
-			}
 		}
+
 		return buffer;
 	}
 
-	abstract protected InputStream getInputStream(PathResource resource);
-
-	public static PathResourceAdapter adapt(PathResource pathResource)
+	private static void logCantAccess(PathResource resource)
 	{
-		return IAdapterFactoryService.INSTANCE.adapt(pathResource, PathResourceAdapter.class);
+		System.err.println("Can't access the file : " + resource.getPath());
 	}
+
+	abstract protected InputStream getInputStream(PathResource resource);
 }

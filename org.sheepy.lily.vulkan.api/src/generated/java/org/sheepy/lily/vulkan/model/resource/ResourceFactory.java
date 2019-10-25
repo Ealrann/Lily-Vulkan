@@ -122,15 +122,6 @@ public interface ResourceFactory extends EFactory
 	FileImage createFileImage();
 
 	/**
-	 * Returns a new object of class '<em>Image Layout</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Image Layout</em>'.
-	 * @generated
-	 */
-	ImageLayout createImageLayout();
-
-	/**
 	 * Returns a new object of class '<em>Sampled Image</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

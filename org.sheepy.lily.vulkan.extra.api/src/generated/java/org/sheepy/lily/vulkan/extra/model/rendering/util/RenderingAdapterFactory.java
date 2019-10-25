@@ -176,6 +176,11 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createRenderProxyConstantBufferAdapter();
 			}
 			@Override
+			public Adapter caseISpecialization(ISpecialization object)
+			{
+				return createISpecializationAdapter();
+			}
+			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
@@ -503,6 +508,21 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createRenderProxyConstantBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization <em>ISpecialization</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization
+	 * @generated
+	 */
+	public Adapter createISpecializationAdapter()
 	{
 		return null;
 	}

@@ -366,31 +366,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ImageLayout} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ImageLayoutItemProvider imageLayoutItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageLayout}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createImageLayoutAdapter()
-	{
-		if (imageLayoutItemProvider == null)
-		{
-			imageLayoutItemProvider = new ImageLayoutItemProvider(this);
-		}
-
-		return imageLayoutItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.SampledImage} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -900,7 +875,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (describedDataProviderItemProvider != null) describedDataProviderItemProvider.dispose();
 		if (staticImageItemProvider != null) staticImageItemProvider.dispose();
 		if (fileImageItemProvider != null) fileImageItemProvider.dispose();
-		if (imageLayoutItemProvider != null) imageLayoutItemProvider.dispose();
 		if (sampledImageItemProvider != null) sampledImageItemProvider.dispose();
 		if (samplerItemProvider != null) samplerItemProvider.dispose();
 		if (semaphoreItemProvider != null) semaphoreItemProvider.dispose();

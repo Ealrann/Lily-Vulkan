@@ -24,6 +24,7 @@ import org.sheepy.lily.vulkan.model.resource.PushBuffer;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getConstantBuffer <em>Constant Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getPushBuffer <em>Push Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getCommonResourceProvider <em>Common Resource Provider</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getSpecialization <em>Specialization</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getGenericRenderer()
@@ -130,5 +131,27 @@ public interface GenericRenderer<T extends Structure> extends GraphicsPipeline, 
 	 * @generated
 	 */
 	void setCommonResourceProvider(ResourceProvider value);
+
+	/**
+	 * Returns the value of the '<em><b>Specialization</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Specialization</em>' containment reference.
+	 * @see #setSpecialization(ISpecialization)
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getGenericRenderer_Specialization()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ISpecialization getSpecialization();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getSpecialization <em>Specialization</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Specialization</em>' containment reference.
+	 * @see #getSpecialization()
+	 * @generated
+	 */
+	void setSpecialization(ISpecialization value);
 
 } // GenericRenderer

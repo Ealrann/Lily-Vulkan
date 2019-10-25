@@ -10,6 +10,7 @@ import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
+import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
@@ -121,6 +122,14 @@ public class SpriteSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SpritePackage.SPRITE_COUNT_SPECIALIZATION:
+			{
+				SpriteCountSpecialization spriteCountSpecialization = (SpriteCountSpecialization)theEObject;
+				T1 result = caseSpriteCountSpecialization(spriteCountSpecialization);
+				if (result == null) result = caseISpecialization(spriteCountSpecialization);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -185,6 +194,22 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseSpriteStructure(SpriteStructure object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Count Specialization</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Count Specialization</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseSpriteCountSpecialization(SpriteCountSpecialization object)
 	{
 		return null;
 	}
@@ -361,6 +386,22 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseStructure(Structure object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ISpecialization</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ISpecialization</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseISpecialization(ISpecialization object)
 	{
 		return null;
 	}

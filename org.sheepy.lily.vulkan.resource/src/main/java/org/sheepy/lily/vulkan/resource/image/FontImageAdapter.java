@@ -16,14 +16,14 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IFontImageAdapter;
+import org.sheepy.lily.vulkan.api.resource.IPathResourceAdapter;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
-import org.sheepy.lily.vulkan.resource.file.FileResourceAdapter;
-import org.sheepy.lily.vulkan.resource.nativehelper.VkTexture;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.resource.image.VkImage;
+import org.sheepy.vulkan.resource.image.VkTexture;
 
 @Statefull
 @Adapter(scope = FontImage.class)
@@ -35,8 +35,9 @@ public class FontImageAdapter implements IFontImageAdapter
 	public static final VkImage.Builder imageBuilder;
 	static
 	{
-		final var builder = VkImage.newBuilder(BUFFER_WIDTH, BUFFER_HEIGHT,
-				VK_FORMAT_R8G8B8A8_UNORM);
+		final var builder = VkImage.newBuilder(	BUFFER_WIDTH,
+												BUFFER_HEIGHT,
+												VK_FORMAT_R8G8B8A8_UNORM);
 		builder.usage(VK_IMAGE_USAGE_TRANSFER_DST_BIT
 				| VK_IMAGE_USAGE_SAMPLED_BIT
 				| VK_IMAGE_USAGE_SAMPLED_BIT);
@@ -68,10 +69,10 @@ public class FontImageAdapter implements IFontImageAdapter
 		final var executionContext = (ExecutionContext) context;
 
 		final var file = font.getFile();
-		final var fileAdapter = FileResourceAdapter.adapt(file);
+		final var fileAdapter = file.adapt(IPathResourceAdapter.class);
 		final var targetLayout = font.getInitialLayout();
 
-		bufferedRessource = fileAdapter.toByteBuffer(file);
+		bufferedRessource = fileAdapter.allocByteBuffer(file);
 
 		vkTexture.allocate(context);
 		final var texture = allocDataBuffer(context.stack());

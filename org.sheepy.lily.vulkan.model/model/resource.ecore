@@ -89,7 +89,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="ByteBuffer" instanceClassName="java.nio.ByteBuffer"/>
   <eClassifiers xsi:type="ecore:EClass" name="Image" abstract="true" eSuperTypes="#//DescriptedResource">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="initialLayout" eType="#//ImageLayout"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialLayout" eType="ecore:EClass ../../org.sheepy.vulkan.model/model/Image.ecore#//ImageLayout"
         containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StaticImage" eSuperTypes="#//Image ../../org.sheepy.vulkan.model/model/Image.ecore#//ImageInfo #//BasicDescriptedResource">
@@ -104,14 +104,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mipmapEnabled" unique="false"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
         defaultValueLiteral="false"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ImageLayout">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" unique="false" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EPipelineStage"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="layout" unique="false"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EImageLayout"
-        defaultValueLiteral="SHADER_READ_ONLY_OPTIMAL"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessMask" upperBound="-1"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EAccess"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SampledImage" eSuperTypes="#//BasicDescriptedResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sampler" lowerBound="1"
@@ -183,9 +175,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Texture2DArray" eSuperTypes="#//Image #//BasicDescriptedResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="files" lowerBound="1" upperBound="-1"
         eType="#//PathResource" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mipmapEnabled" unique="false"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
         defaultValueLiteral="false"/>

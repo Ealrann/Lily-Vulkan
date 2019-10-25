@@ -130,7 +130,8 @@ public final class GenericRendererMaintainerAdapter<T extends Structure> impleme
 	private RenderPipelineContext createAndInstallPipeline(	RenderPipelineBuilder pipelineBuilder,
 															final int pipelineCount)
 	{
-		final var context = pipelineBuilder.build(pipelineCount + 1);
+		final var context = pipelineBuilder.build(	pipelineCount + 1,
+													maintainer.getSpecialization());
 		final var parts = graphicProcess.getPartPkg().getParts();
 		final int maintainerIndex = parts.indexOf(maintainer);
 		parts.add(maintainerIndex, context.pipeline);

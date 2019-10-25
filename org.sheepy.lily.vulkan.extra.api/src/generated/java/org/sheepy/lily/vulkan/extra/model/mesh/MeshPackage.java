@@ -314,6 +314,15 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__COMMON_RESOURCE_PROVIDER = RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER;
 
 	/**
+	 * The feature id for the '<em><b>Specialization</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_RENDERER__SPECIALIZATION = RenderingPackage.GENERIC_RENDERER__SPECIALIZATION;
+
+	/**
 	 * The number of structural features of the '<em>Renderer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

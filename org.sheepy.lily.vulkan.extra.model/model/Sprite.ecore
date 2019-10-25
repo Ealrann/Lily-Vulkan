@@ -16,9 +16,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="samplerInfo" lowerBound="1"
         eType="ecore:EClass ../../org.sheepy.vulkan.model/model/Image.ecore#//SamplerInfo"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetResourcePkg" lowerBound="1"
         eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkan.ecore#//ResourcePkg"/>
   </eClassifiers>
@@ -32,5 +29,9 @@
   <eClassifiers xsi:type="ecore:EEnum" name="SpriteType">
     <eLiterals name="Floor"/>
     <eLiterals name="Wall" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SpriteCountSpecialization" eSuperTypes="Rendering.ecore#//ISpecialization">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="provider" lowerBound="1"
+        eType="#//SpriteMonoSamplerProvider"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -284,6 +284,61 @@ public interface ImagePackage extends EPackage
 	int IMAGE_INFO_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.image.impl.ImageLayoutImpl <em>Layout</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.image.impl.ImageLayoutImpl
+	 * @see org.sheepy.vulkan.model.image.impl.ImagePackageImpl#getImageLayout()
+	 * @generated
+	 */
+	int IMAGE_LAYOUT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_LAYOUT__STAGE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_LAYOUT__LAYOUT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Access Mask</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_LAYOUT__ACCESS_MASK = 2;
+
+	/**
+	 * The number of structural features of the '<em>Layout</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_LAYOUT_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Layout</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_LAYOUT_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.image.SamplerInfo <em>Sampler Info</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -513,6 +568,49 @@ public interface ImagePackage extends EPackage
 	EAttribute getImageInfo_MipLevels();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.image.ImageLayout <em>Layout</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Layout</em>'.
+	 * @see org.sheepy.vulkan.model.image.ImageLayout
+	 * @generated
+	 */
+	EClass getImageLayout();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.image.ImageLayout#getStage <em>Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stage</em>'.
+	 * @see org.sheepy.vulkan.model.image.ImageLayout#getStage()
+	 * @see #getImageLayout()
+	 * @generated
+	 */
+	EAttribute getImageLayout_Stage();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.image.ImageLayout#getLayout <em>Layout</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Layout</em>'.
+	 * @see org.sheepy.vulkan.model.image.ImageLayout#getLayout()
+	 * @see #getImageLayout()
+	 * @generated
+	 */
+	EAttribute getImageLayout_Layout();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.image.ImageLayout#getAccessMask <em>Access Mask</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Access Mask</em>'.
+	 * @see org.sheepy.vulkan.model.image.ImageLayout#getAccessMask()
+	 * @see #getImageLayout()
+	 * @generated
+	 */
+	EAttribute getImageLayout_AccessMask();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -707,6 +805,40 @@ public interface ImagePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute IMAGE_INFO__MIP_LEVELS = eINSTANCE.getImageInfo_MipLevels();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.image.impl.ImageLayoutImpl <em>Layout</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.image.impl.ImageLayoutImpl
+		 * @see org.sheepy.vulkan.model.image.impl.ImagePackageImpl#getImageLayout()
+		 * @generated
+		 */
+		EClass IMAGE_LAYOUT = eINSTANCE.getImageLayout();
+
+		/**
+		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE_LAYOUT__STAGE = eINSTANCE.getImageLayout_Stage();
+
+		/**
+		 * The meta object literal for the '<em><b>Layout</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE_LAYOUT__LAYOUT = eINSTANCE.getImageLayout_Layout();
+
+		/**
+		 * The meta object literal for the '<em><b>Access Mask</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE_LAYOUT__ACCESS_MASK = eINSTANCE.getImageLayout_AccessMask();
 
 	}
 

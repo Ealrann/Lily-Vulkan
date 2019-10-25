@@ -29,8 +29,6 @@ import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl#getDescriptor <em>Descriptor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl#getFiles <em>Files</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl#getWidth <em>Width</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl#getHeight <em>Height</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl#isMipmapEnabled <em>Mipmap Enabled</em>}</li>
  * </ul>
  *
@@ -57,43 +55,6 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 	 * @ordered
 	 */
 	protected EList<PathResource> files;
-
-	/**
-	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWidth()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int WIDTH_EDEFAULT = 0;
-	/**
-	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWidth()
-	 * @generated
-	 * @ordered
-	 */
-	protected int width = WIDTH_EDEFAULT;
-	/**
-	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getHeight()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int HEIGHT_EDEFAULT = 0;
-	/**
-	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getHeight()
-	 * @generated
-	 * @ordered
-	 */
-	protected int height = HEIGHT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isMipmapEnabled() <em>Mipmap Enabled</em>}' attribute.
@@ -207,56 +168,6 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 	 * @generated
 	 */
 	@Override
-	public int getWidth()
-	{
-		return width;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setWidth(int newWidth)
-	{
-		int oldWidth = width;
-		width = newWidth;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE2_DARRAY__WIDTH, oldWidth, width));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int getHeight()
-	{
-		return height;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setHeight(int newHeight)
-	{
-		int oldHeight = height;
-		height = newHeight;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE2_DARRAY__HEIGHT, oldHeight, height));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean isMipmapEnabled()
 	{
 		return mipmapEnabled;
@@ -308,10 +219,6 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 				return getDescriptor();
 			case ResourcePackage.TEXTURE2_DARRAY__FILES:
 				return getFiles();
-			case ResourcePackage.TEXTURE2_DARRAY__WIDTH:
-				return getWidth();
-			case ResourcePackage.TEXTURE2_DARRAY__HEIGHT:
-				return getHeight();
 			case ResourcePackage.TEXTURE2_DARRAY__MIPMAP_ENABLED:
 				return isMipmapEnabled();
 		}
@@ -336,12 +243,6 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 				getFiles().clear();
 				getFiles().addAll((Collection<? extends PathResource>)newValue);
 				return;
-			case ResourcePackage.TEXTURE2_DARRAY__WIDTH:
-				setWidth((Integer)newValue);
-				return;
-			case ResourcePackage.TEXTURE2_DARRAY__HEIGHT:
-				setHeight((Integer)newValue);
-				return;
 			case ResourcePackage.TEXTURE2_DARRAY__MIPMAP_ENABLED:
 				setMipmapEnabled((Boolean)newValue);
 				return;
@@ -365,12 +266,6 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 			case ResourcePackage.TEXTURE2_DARRAY__FILES:
 				getFiles().clear();
 				return;
-			case ResourcePackage.TEXTURE2_DARRAY__WIDTH:
-				setWidth(WIDTH_EDEFAULT);
-				return;
-			case ResourcePackage.TEXTURE2_DARRAY__HEIGHT:
-				setHeight(HEIGHT_EDEFAULT);
-				return;
 			case ResourcePackage.TEXTURE2_DARRAY__MIPMAP_ENABLED:
 				setMipmapEnabled(MIPMAP_ENABLED_EDEFAULT);
 				return;
@@ -392,10 +287,6 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 				return descriptor != null;
 			case ResourcePackage.TEXTURE2_DARRAY__FILES:
 				return files != null && !files.isEmpty();
-			case ResourcePackage.TEXTURE2_DARRAY__WIDTH:
-				return width != WIDTH_EDEFAULT;
-			case ResourcePackage.TEXTURE2_DARRAY__HEIGHT:
-				return height != HEIGHT_EDEFAULT;
 			case ResourcePackage.TEXTURE2_DARRAY__MIPMAP_ENABLED:
 				return mipmapEnabled != MIPMAP_ENABLED_EDEFAULT;
 		}
@@ -451,11 +342,7 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (width: ");
-		result.append(width);
-		result.append(", height: ");
-		result.append(height);
-		result.append(", mipmapEnabled: ");
+		result.append(" (mipmapEnabled: ");
 		result.append(mipmapEnabled);
 		result.append(')');
 		return result.toString();

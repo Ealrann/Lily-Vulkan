@@ -14,6 +14,7 @@ import org.sheepy.lily.core.model.action.ActionPackage;
 
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 
+import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
@@ -151,6 +152,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
+		CadencePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MeshPackage.eNS_URI);
@@ -285,6 +287,17 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getNuklearLayoutTask_ImageArray()
+	{
+		return (EReference)nuklearLayoutTaskEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getNuklearContext()
 	{
 		return nuklearContextEClass;
@@ -386,6 +399,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		createEReference(nuklearLayoutTaskEClass, NUKLEAR_LAYOUT_TASK__DRAW_TASK);
 		createEReference(nuklearLayoutTaskEClass, NUKLEAR_LAYOUT_TASK__PUSH_BUFFER);
 		createEReference(nuklearLayoutTaskEClass, NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER);
+		createEReference(nuklearLayoutTaskEClass, NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY);
 
 		nuklearContextEClass = createEClass(NUKLEAR_CONTEXT);
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__FONT);
@@ -448,6 +462,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		initEReference(getNuklearLayoutTask_DrawTask(), theProcessPackage.getCompositeTask(), null, "drawTask", null, 0, 1, NuklearLayoutTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearLayoutTask_PushBuffer(), theResourcePackage.getPushBuffer(), null, "pushBuffer", null, 0, 1, NuklearLayoutTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearLayoutTask_VertexBuffer(), theResourcePackage.getBuffer(), null, "vertexBuffer", null, 0, 1, NuklearLayoutTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNuklearLayoutTask_ImageArray(), theResourcePackage.getTexture2DArray(), null, "imageArray", null, 0, 1, NuklearLayoutTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nuklearContextEClass, NuklearContext.class, "NuklearContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNuklearContext_Font(), this.getNuklearFont(), null, "font", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -66,6 +66,7 @@ public class ImageFactoryImpl extends EFactoryImpl implements ImageFactory
 		{
 			case ImagePackage.SAMPLER_INFO: return createSamplerInfo();
 			case ImagePackage.IMAGE_INFO: return createImageInfo();
+			case ImagePackage.IMAGE_LAYOUT: return createImageLayout();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -93,6 +94,18 @@ public class ImageFactoryImpl extends EFactoryImpl implements ImageFactory
 	{
 		ImageInfoImpl imageInfo = new ImageInfoImpl();
 		return imageInfo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ImageLayout createImageLayout()
+	{
+		ImageLayoutImpl imageLayout = new ImageLayoutImpl();
+		return imageLayout;
 	}
 
 	/**

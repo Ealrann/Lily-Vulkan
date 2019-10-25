@@ -22,7 +22,7 @@ import org.sheepy.lily.vulkan.nuklear.ui.VariableLabelAdapter;
 		NuklearLayoutTaskAdapter.class,
 		NuklearContextAdapter.class,
 		NuklearFontAdapter.class,
-		NuklearPushConstantsAdapter.class
+		NuklearPushConstantsAdapter.class,
 })
 
 module org.sheepy.lily.vulkan.extra.nuklear

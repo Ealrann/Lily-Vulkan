@@ -25,8 +25,8 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.resource.Image;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.model.image.ImageFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.Image} object.
@@ -212,7 +212,7 @@ public class ImageItemProvider extends ItemProviderAdapter implements IEditingDo
 		newChildDescriptors.add
 			(createChildParameter
 				(ResourcePackage.Literals.IMAGE__INITIAL_LAYOUT,
-				 ResourceFactory.eINSTANCE.createImageLayout()));
+				 ImageFactory.eINSTANCE.createImageLayout()));
 	}
 
 	/**

@@ -86,6 +86,13 @@ public class ImageSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ImagePackage.IMAGE_LAYOUT:
+			{
+				ImageLayout imageLayout = (ImageLayout)theEObject;
+				T result = caseImageLayout(imageLayout);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -118,6 +125,22 @@ public class ImageSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseImageInfo(ImageInfo object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Layout</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Layout</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImageLayout(ImageLayout object)
 	{
 		return null;
 	}

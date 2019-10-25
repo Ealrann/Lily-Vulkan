@@ -146,6 +146,7 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RenderingPackage.Literals.GENERIC_RENDERER__DATA_PROVIDER_PKG);
 			childrenFeatures.add(RenderingPackage.Literals.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER);
+			childrenFeatures.add(RenderingPackage.Literals.GENERIC_RENDERER__SPECIALIZATION);
 		}
 		return childrenFeatures;
 	}
@@ -196,6 +197,7 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 		{
 			case RenderingPackage.GENERIC_RENDERER__DATA_PROVIDER_PKG:
 			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
+			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -233,6 +235,16 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 			(createChildParameter
 				(RenderingPackage.Literals.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER,
 				 SpriteFactory.eINSTANCE.createSpriteMonoSamplerProvider()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RenderingPackage.Literals.GENERIC_RENDERER__SPECIALIZATION,
+				 RenderingFactory.eINSTANCE.createISpecialization()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RenderingPackage.Literals.GENERIC_RENDERER__SPECIALIZATION,
+				 SpriteFactory.eINSTANCE.createSpriteCountSpecialization()));
 	}
 
 }

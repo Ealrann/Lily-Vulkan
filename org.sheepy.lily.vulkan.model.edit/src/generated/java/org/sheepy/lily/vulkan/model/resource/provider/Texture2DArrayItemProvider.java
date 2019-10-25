@@ -48,57 +48,9 @@ public class Texture2DArrayItemProvider extends ImageItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addWidthPropertyDescriptor(object);
-			addHeightPropertyDescriptor(object);
 			addMipmapEnabledPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Width feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addWidthPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Texture2DArray_width_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Texture2DArray_width_feature", "_UI_Texture2DArray_type"),
-				 ResourcePackage.Literals.TEXTURE2_DARRAY__WIDTH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Height feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addHeightPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Texture2DArray_height_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Texture2DArray_height_feature", "_UI_Texture2DArray_type"),
-				 ResourcePackage.Literals.TEXTURE2_DARRAY__HEIGHT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -199,8 +151,6 @@ public class Texture2DArrayItemProvider extends ImageItemProvider
 
 		switch (notification.getFeatureID(Texture2DArray.class))
 		{
-			case ResourcePackage.TEXTURE2_DARRAY__WIDTH:
-			case ResourcePackage.TEXTURE2_DARRAY__HEIGHT:
 			case ResourcePackage.TEXTURE2_DARRAY__MIPMAP_ENABLED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

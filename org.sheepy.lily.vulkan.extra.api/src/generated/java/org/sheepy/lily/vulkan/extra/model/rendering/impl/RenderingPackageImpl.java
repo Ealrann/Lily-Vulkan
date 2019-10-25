@@ -16,6 +16,7 @@ import org.sheepy.lily.core.model.action.ActionPackage;
 
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 
+import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
@@ -38,6 +39,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Entity;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
+import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
@@ -206,6 +208,13 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	private EClass renderProxyConstantBufferEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iSpecializationEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -271,6 +280,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
+		CadencePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MeshPackage.eNS_URI);
@@ -570,6 +580,17 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
+	public EReference getGenericRenderer_Specialization()
+	{
+		return (EReference)genericRendererEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getRenderDataProvider()
 	{
 		return renderDataProviderEClass;
@@ -768,6 +789,17 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
+	public EClass getISpecialization()
+	{
+		return iSpecializationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public RenderingFactory getRenderingFactory()
 	{
 		return (RenderingFactory)getEFactoryInstance();
@@ -824,6 +856,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		createEReference(genericRendererEClass, GENERIC_RENDERER__CONSTANT_BUFFER);
 		createEReference(genericRendererEClass, GENERIC_RENDERER__PUSH_BUFFER);
 		createEReference(genericRendererEClass, GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER);
+		createEReference(genericRendererEClass, GENERIC_RENDERER__SPECIALIZATION);
 
 		renderDataProviderEClass = createEClass(RENDER_DATA_PROVIDER);
 
@@ -852,6 +885,8 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		renderProxyConstantBufferEClass = createEClass(RENDER_PROXY_CONSTANT_BUFFER);
 		createEReference(renderProxyConstantBufferEClass, RENDER_PROXY_CONSTANT_BUFFER__CONSTANT_BUFFER);
 		createEAttribute(renderProxyConstantBufferEClass, RENDER_PROXY_CONSTANT_BUFFER__PART_INDEX);
+
+		iSpecializationEClass = createEClass(ISPECIALIZATION);
 	}
 
 	/**
@@ -984,6 +1019,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEReference(getGenericRenderer_ConstantBuffer(), theResourcePackage.getConstantBuffer(), null, "constantBuffer", null, 0, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGenericRenderer_PushBuffer(), theResourcePackage.getPushBuffer(), null, "pushBuffer", null, 1, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGenericRenderer_CommonResourceProvider(), this.getResourceProvider(), null, "commonResourceProvider", null, 0, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenericRenderer_Specialization(), this.getISpecialization(), null, "specialization", null, 0, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(renderDataProviderEClass, RenderDataProvider.class, "RenderDataProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1016,6 +1052,8 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEClass(renderProxyConstantBufferEClass, RenderProxyConstantBuffer.class, "RenderProxyConstantBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRenderProxyConstantBuffer_ConstantBuffer(), theResourcePackage.getConstantBuffer(), null, "constantBuffer", null, 1, 1, RenderProxyConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRenderProxyConstantBuffer_PartIndex(), ecorePackage.getEInt(), "partIndex", null, 1, 1, RenderProxyConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iSpecializationEClass, ISpecialization.class, "ISpecialization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

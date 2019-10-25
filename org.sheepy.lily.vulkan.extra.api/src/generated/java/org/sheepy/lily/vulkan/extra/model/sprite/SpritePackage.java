@@ -277,6 +277,15 @@ public interface SpritePackage extends EPackage
 	int SPRITE_RENDERER__COMMON_RESOURCE_PROVIDER = RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER;
 
 	/**
+	 * The feature id for the '<em><b>Specialization</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_RENDERER__SPECIALIZATION = RenderingPackage.GENERIC_RENDERER__SPECIALIZATION;
+
+	/**
 	 * The number of structural features of the '<em>Renderer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -370,31 +379,13 @@ public interface SpritePackage extends EPackage
 	int SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO = RenderingPackage.RESOURCE_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Width</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_MONO_SAMPLER_PROVIDER__WIDTH = RenderingPackage.RESOURCE_PROVIDER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT = RenderingPackage.RESOURCE_PROVIDER_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Target Resource Pkg</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_MONO_SAMPLER_PROVIDER__TARGET_RESOURCE_PKG = RenderingPackage.RESOURCE_PROVIDER_FEATURE_COUNT + 3;
+	int SPRITE_MONO_SAMPLER_PROVIDER__TARGET_RESOURCE_PKG = RenderingPackage.RESOURCE_PROVIDER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Mono Sampler Provider</em>' class.
@@ -403,7 +394,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_MONO_SAMPLER_PROVIDER_FEATURE_COUNT = RenderingPackage.RESOURCE_PROVIDER_FEATURE_COUNT + 4;
+	int SPRITE_MONO_SAMPLER_PROVIDER_FEATURE_COUNT = RenderingPackage.RESOURCE_PROVIDER_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Mono Sampler Provider</em>' class.
@@ -470,6 +461,43 @@ public interface SpritePackage extends EPackage
 	int SPRITE_STRUCTURE_OPERATION_COUNT = RenderingPackage.STRUCTURE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteCountSpecializationImpl <em>Count Specialization</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteCountSpecializationImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteCountSpecialization()
+	 * @generated
+	 */
+	int SPRITE_COUNT_SPECIALIZATION = 4;
+
+	/**
+	 * The feature id for the '<em><b>Provider</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_COUNT_SPECIALIZATION__PROVIDER = RenderingPackage.ISPECIALIZATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Count Specialization</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_COUNT_SPECIALIZATION_FEATURE_COUNT = RenderingPackage.ISPECIALIZATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Count Specialization</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_COUNT_SPECIALIZATION_OPERATION_COUNT = RenderingPackage.ISPECIALIZATION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteType <em>Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -477,7 +505,7 @@ public interface SpritePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteType()
 	 * @generated
 	 */
-	int SPRITE_TYPE = 4;
+	int SPRITE_TYPE = 5;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer <em>Renderer</em>}'.
@@ -543,28 +571,6 @@ public interface SpritePackage extends EPackage
 	EReference getSpriteMonoSamplerProvider_SamplerInfo();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getWidth <em>Width</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Width</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getWidth()
-	 * @see #getSpriteMonoSamplerProvider()
-	 * @generated
-	 */
-	EAttribute getSpriteMonoSamplerProvider_Width();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getHeight <em>Height</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Height</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getHeight()
-	 * @see #getSpriteMonoSamplerProvider()
-	 * @generated
-	 */
-	EAttribute getSpriteMonoSamplerProvider_Height();
-
-	/**
 	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getTargetResourcePkg <em>Target Resource Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -617,6 +623,27 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 */
 	EReference getSpriteStructure_Sprites();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization <em>Count Specialization</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Count Specialization</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization
+	 * @generated
+	 */
+	EClass getSpriteCountSpecialization();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization#getProvider <em>Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization#getProvider()
+	 * @see #getSpriteCountSpecialization()
+	 * @generated
+	 */
+	EReference getSpriteCountSpecialization_Provider();
 
 	/**
 	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteType <em>Type</em>}'.
@@ -700,20 +727,6 @@ public interface SpritePackage extends EPackage
 		 */
 		EReference SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO = eINSTANCE.getSpriteMonoSamplerProvider_SamplerInfo();
 		/**
-		 * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SPRITE_MONO_SAMPLER_PROVIDER__WIDTH = eINSTANCE.getSpriteMonoSamplerProvider_Width();
-		/**
-		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SPRITE_MONO_SAMPLER_PROVIDER__HEIGHT = eINSTANCE.getSpriteMonoSamplerProvider_Height();
-		/**
 		 * The meta object literal for the '<em><b>Target Resource Pkg</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -750,6 +763,22 @@ public interface SpritePackage extends EPackage
 		 * @generated
 		 */
 		EReference SPRITE_STRUCTURE__SPRITES = eINSTANCE.getSpriteStructure_Sprites();
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteCountSpecializationImpl <em>Count Specialization</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteCountSpecializationImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteCountSpecialization()
+		 * @generated
+		 */
+		EClass SPRITE_COUNT_SPECIALIZATION = eINSTANCE.getSpriteCountSpecialization();
+		/**
+		 * The meta object literal for the '<em><b>Provider</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SPRITE_COUNT_SPECIALIZATION__PROVIDER = eINSTANCE.getSpriteCountSpecialization_Provider();
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteType <em>Type</em>}' enum.
 		 * <!-- begin-user-doc -->

@@ -25,6 +25,7 @@ import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
+import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
 
@@ -50,6 +51,7 @@ import org.sheepy.lily.vulkan.model.resource.PushBuffer;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getConstantBuffer <em>Constant Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getPushBuffer <em>Push Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getCommonResourceProvider <em>Common Resource Provider</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getSpecialization <em>Specialization</em>}</li>
  * </ul>
  *
  * @generated
@@ -115,6 +117,16 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	 * @ordered
 	 */
 	protected ResourceProvider commonResourceProvider;
+
+	/**
+	 * The cached value of the '{@link #getSpecialization() <em>Specialization</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSpecialization()
+	 * @generated
+	 * @ordered
+	 */
+	protected ISpecialization specialization;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -362,6 +374,56 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public ISpecialization getSpecialization()
+	{
+		return specialization;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSpecialization(ISpecialization newSpecialization, NotificationChain msgs)
+	{
+		ISpecialization oldSpecialization = specialization;
+		specialization = newSpecialization;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER__SPECIALIZATION, oldSpecialization, newSpecialization);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSpecialization(ISpecialization newSpecialization)
+	{
+		if (newSpecialization != specialization)
+		{
+			NotificationChain msgs = null;
+			if (specialization != null)
+				msgs = ((InternalEObject)specialization).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.GENERIC_RENDERER__SPECIALIZATION, null, msgs);
+			if (newSpecialization != null)
+				msgs = ((InternalEObject)newSpecialization).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.GENERIC_RENDERER__SPECIALIZATION, null, msgs);
+			msgs = basicSetSpecialization(newSpecialization, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER__SPECIALIZATION, newSpecialization, newSpecialization));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
@@ -390,6 +452,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 				return basicSetDataProviderPkg(null, msgs);
 			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
 				return basicSetCommonResourceProvider(null, msgs);
+			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
+				return basicSetSpecialization(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -418,6 +482,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 				return basicGetPushBuffer();
 			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
 				return getCommonResourceProvider();
+			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
+				return getSpecialization();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -453,6 +519,9 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
 				setCommonResourceProvider((ResourceProvider)newValue);
 				return;
+			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
+				setSpecialization((ISpecialization)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -485,6 +554,9 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
 				setCommonResourceProvider((ResourceProvider)null);
 				return;
+			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
+				setSpecialization((ISpecialization)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -511,6 +583,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 				return pushBuffer != null;
 			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
 				return commonResourceProvider != null;
+			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
+				return specialization != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -637,13 +637,22 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Specialization</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_RENDERER__SPECIALIZATION = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Generic Renderer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 6;
+	int GENERIC_RENDERER_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Generic Renderer</em>' class.
@@ -1182,6 +1191,35 @@ public interface RenderingPackage extends EPackage
 
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.ISpecializationImpl <em>ISpecialization</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.ISpecializationImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getISpecialization()
+	 * @generated
+	 */
+	int ISPECIALIZATION = 18;
+
+	/**
+	 * The number of structural features of the '<em>ISpecialization</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISPECIALIZATION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>ISpecialization</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISPECIALIZATION_OPERATION_COUNT = 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.Entity <em>Entity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1438,6 +1476,17 @@ public interface RenderingPackage extends EPackage
 	EReference getGenericRenderer_CommonResourceProvider();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getSpecialization <em>Specialization</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Specialization</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getSpecialization()
+	 * @see #getGenericRenderer()
+	 * @generated
+	 */
+	EReference getGenericRenderer_Specialization();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider <em>Render Data Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1624,6 +1673,16 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getRenderProxyConstantBuffer_PartIndex();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization <em>ISpecialization</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>ISpecialization</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization
+	 * @generated
+	 */
+	EClass getISpecialization();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1857,6 +1916,14 @@ public interface RenderingPackage extends EPackage
 		EReference GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER = eINSTANCE.getGenericRenderer_CommonResourceProvider();
 
 		/**
+		 * The meta object literal for the '<em><b>Specialization</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GENERIC_RENDERER__SPECIALIZATION = eINSTANCE.getGenericRenderer_Specialization();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider <em>Render Data Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2019,6 +2086,16 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute RENDER_PROXY_CONSTANT_BUFFER__PART_INDEX = eINSTANCE.getRenderProxyConstantBuffer_PartIndex();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.ISpecializationImpl <em>ISpecialization</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.ISpecializationImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getISpecialization()
+		 * @generated
+		 */
+		EClass ISPECIALIZATION = eINSTANCE.getISpecialization();
 
 	}
 

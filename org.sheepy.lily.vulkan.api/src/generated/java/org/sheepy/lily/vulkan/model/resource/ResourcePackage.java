@@ -1046,61 +1046,6 @@ public interface ResourcePackage extends EPackage
 	int FILE_IMAGE_OPERATION_COUNT = IMAGE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl <em>Image Layout</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageLayout()
-	 * @generated
-	 */
-	int IMAGE_LAYOUT = 17;
-
-	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_LAYOUT__STAGE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Layout</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_LAYOUT__LAYOUT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Access Mask</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_LAYOUT__ACCESS_MASK = 2;
-
-	/**
-	 * The number of structural features of the '<em>Image Layout</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_LAYOUT_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Image Layout</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_LAYOUT_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl <em>Sampled Image</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1108,7 +1053,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampledImage()
 	 * @generated
 	 */
-	int SAMPLED_IMAGE = 18;
+	int SAMPLED_IMAGE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1172,7 +1117,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampler()
 	 * @generated
 	 */
-	int SAMPLER = 19;
+	int SAMPLER = 18;
 
 	/**
 	 * The feature id for the '<em><b>Min Filter</b></em>' attribute.
@@ -1335,7 +1280,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSemaphore()
 	 * @generated
 	 */
-	int SEMAPHORE = 20;
+	int SEMAPHORE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1390,7 +1335,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFontImage()
 	 * @generated
 	 */
-	int FONT_IMAGE = 21;
+	int FONT_IMAGE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1454,7 +1399,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptor()
 	 * @generated
 	 */
-	int DESCRIPTOR = 22;
+	int DESCRIPTOR = 21;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
@@ -1500,7 +1445,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSet()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET = 23;
+	int DESCRIPTOR_SET = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1546,7 +1491,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSetPkg()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET_PKG = 24;
+	int DESCRIPTOR_SET_PKG = 23;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
@@ -1583,7 +1528,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBufferBarrier()
 	 * @generated
 	 */
-	int BUFFER_BARRIER = 25;
+	int BUFFER_BARRIER = 24;
 
 	/**
 	 * The feature id for the '<em><b>Src Access Mask</b></em>' attribute list.
@@ -1638,7 +1583,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageBarrier()
 	 * @generated
 	 */
-	int IMAGE_BARRIER = 26;
+	int IMAGE_BARRIER = 25;
 
 	/**
 	 * The feature id for the '<em><b>Src Access Mask</b></em>' attribute list.
@@ -1711,7 +1656,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getShader()
 	 * @generated
 	 */
-	int SHADER = 27;
+	int SHADER = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1775,7 +1720,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getPathResource()
 	 * @generated
 	 */
-	int PATH_RESOURCE = 28;
+	int PATH_RESOURCE = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1821,7 +1766,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFileResource()
 	 * @generated
 	 */
-	int FILE_RESOURCE = 29;
+	int FILE_RESOURCE = 28;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1867,7 +1812,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractModuleResource()
 	 * @generated
 	 */
-	int ABSTRACT_MODULE_RESOURCE = 30;
+	int ABSTRACT_MODULE_RESOURCE = 29;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1913,7 +1858,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getModuleResource()
 	 * @generated
 	 */
-	int MODULE_RESOURCE = 31;
+	int MODULE_RESOURCE = 30;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1968,7 +1913,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getStringModuleResource()
 	 * @generated
 	 */
-	int STRING_MODULE_RESOURCE = 32;
+	int STRING_MODULE_RESOURCE = 31;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2023,7 +1968,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getTexture2DArray()
 	 * @generated
 	 */
-	int TEXTURE2_DARRAY = 33;
+	int TEXTURE2_DARRAY = 32;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2062,31 +2007,13 @@ public interface ResourcePackage extends EPackage
 	int TEXTURE2_DARRAY__FILES = IMAGE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Width</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXTURE2_DARRAY__WIDTH = IMAGE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXTURE2_DARRAY__HEIGHT = IMAGE_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Mipmap Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE2_DARRAY__MIPMAP_ENABLED = IMAGE_FEATURE_COUNT + 4;
+	int TEXTURE2_DARRAY__MIPMAP_ENABLED = IMAGE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Texture2 DArray</em>' class.
@@ -2095,7 +2022,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE2_DARRAY_FEATURE_COUNT = IMAGE_FEATURE_COUNT + 5;
+	int TEXTURE2_DARRAY_FEATURE_COUNT = IMAGE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Texture2 DArray</em>' class.
@@ -2114,7 +2041,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 34;
+	int BYTE_BUFFER = 33;
 
 	/**
 	 * The meta object id for the '<em>Java Module</em>' data type.
@@ -2124,7 +2051,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
 	 * @generated
 	 */
-	int JAVA_MODULE = 35;
+	int JAVA_MODULE = 34;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
@@ -2594,49 +2521,6 @@ public interface ResourcePackage extends EPackage
 	EAttribute getFileImage_MipmapEnabled();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.ImageLayout <em>Image Layout</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Image Layout</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.ImageLayout
-	 * @generated
-	 */
-	EClass getImageLayout();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ImageLayout#getStage <em>Stage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Stage</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.ImageLayout#getStage()
-	 * @see #getImageLayout()
-	 * @generated
-	 */
-	EAttribute getImageLayout_Stage();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ImageLayout#getLayout <em>Layout</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Layout</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.ImageLayout#getLayout()
-	 * @see #getImageLayout()
-	 * @generated
-	 */
-	EAttribute getImageLayout_Layout();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.ImageLayout#getAccessMask <em>Access Mask</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Access Mask</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.ImageLayout#getAccessMask()
-	 * @see #getImageLayout()
-	 * @generated
-	 */
-	EAttribute getImageLayout_AccessMask();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.SampledImage <em>Sampled Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3015,28 +2899,6 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EReference getTexture2DArray_Files();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray#getWidth <em>Width</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Width</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Texture2DArray#getWidth()
-	 * @see #getTexture2DArray()
-	 * @generated
-	 */
-	EAttribute getTexture2DArray_Width();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray#getHeight <em>Height</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Height</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Texture2DArray#getHeight()
-	 * @see #getTexture2DArray()
-	 * @generated
-	 */
-	EAttribute getTexture2DArray_Height();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray#isMipmapEnabled <em>Mipmap Enabled</em>}'.
@@ -3482,40 +3344,6 @@ public interface ResourcePackage extends EPackage
 		EAttribute FILE_IMAGE__MIPMAP_ENABLED = eINSTANCE.getFileImage_MipmapEnabled();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl <em>Image Layout</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageLayout()
-		 * @generated
-		 */
-		EClass IMAGE_LAYOUT = eINSTANCE.getImageLayout();
-
-		/**
-		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE_LAYOUT__STAGE = eINSTANCE.getImageLayout_Stage();
-
-		/**
-		 * The meta object literal for the '<em><b>Layout</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE_LAYOUT__LAYOUT = eINSTANCE.getImageLayout_Layout();
-
-		/**
-		 * The meta object literal for the '<em><b>Access Mask</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE_LAYOUT__ACCESS_MASK = eINSTANCE.getImageLayout_AccessMask();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl <em>Sampled Image</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3834,22 +3662,6 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EReference TEXTURE2_DARRAY__FILES = eINSTANCE.getTexture2DArray_Files();
-
-		/**
-		 * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEXTURE2_DARRAY__WIDTH = eINSTANCE.getTexture2DArray_Width();
-
-		/**
-		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEXTURE2_DARRAY__HEIGHT = eINSTANCE.getTexture2DArray_Height();
 
 		/**
 		 * The meta object literal for the '<em><b>Mipmap Enabled</b></em>' attribute feature.

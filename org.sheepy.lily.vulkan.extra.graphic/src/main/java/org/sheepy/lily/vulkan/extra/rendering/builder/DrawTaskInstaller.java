@@ -125,7 +125,9 @@ public final class DrawTaskInstaller
 
 	private static final class IndexedDrawSetup implements IDrawSetup
 	{
+		@SuppressWarnings("unused")
 		private final BindVertexBuffer vertexBindTask;
+		@SuppressWarnings("unused")
 		private final BindIndexBuffer indexBindTask;
 		private final DrawIndexed drawTask;
 		private final IIndexProviderAdapter indexProvider;
@@ -162,6 +164,7 @@ public final class DrawTaskInstaller
 
 	private static final class DrawSetup implements IDrawSetup
 	{
+		@SuppressWarnings("unused")
 		private final BindVertexBuffer bindTask;
 		private final Draw drawTask;
 		private final List<IVertexProviderAdapter> vertexProviders;

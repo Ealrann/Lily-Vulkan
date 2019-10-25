@@ -38,11 +38,7 @@ public final class DrawTaskMaintainer
 
 		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 		{
-			System.out.println("Nuklear draw tasks:");
-			for (final var task : drawCompositeTask.getTasks())
-			{
-				System.out.println(task);
-			}
+			printTaskTree();
 		}
 	}
 
@@ -136,6 +132,15 @@ public final class DrawTaskMaintainer
 		drawCompositeTask.getTasks().add(drawIndexed);
 
 		context.indexOffset += commandData.elemCount;
+	}
+
+	private void printTaskTree()
+	{
+		System.out.println("Nuklear draw tasks:");
+		for (final var task : drawCompositeTask.getTasks())
+		{
+			System.out.println(task);
+		}
 	}
 
 	private static final class Context

@@ -1,33 +1,41 @@
 package org.sheepy.lily.vulkan.nuklear.pipeline;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.BiConsumer;
 
+import org.lwjgl.nuklear.NkImage;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Autorun;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.core.model.presentation.IUIView;
+import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IPushBufferAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawTaskMaintainer;
+import org.sheepy.lily.vulkan.nuklear.pipeline.util.NuklearImageInstaller;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.IUIElementAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.IUIElementAdapter.UIContext;
+import org.sheepy.lily.vulkan.nuklear.util.NkUtil;
 import org.sheepy.vulkan.surface.Extent2D;
 import org.sheepy.vulkan.window.Window;
 
 @Statefull
 @Adapter(scope = NuklearLayoutTask.class)
-public class NuklearLayoutTaskAdapter
+public final class NuklearLayoutTaskAdapter
 		implements IPipelineTaskAdapter<NuklearLayoutTask>, IAllocableAdapter<IGraphicContext>
 {
 	private final DrawTaskMaintainer drawTaskMaintainer;
-
 	private final NuklearLayoutTask task;
 
 	private boolean dirty = true;
@@ -38,6 +46,7 @@ public class NuklearLayoutTaskAdapter
 	private NuklearContextAdapter nuklearContextAdapter;
 	private Window window;
 	private Application application;
+	private NuklearImageInstaller imageInstaller = null;
 
 	public NuklearLayoutTaskAdapter(NuklearLayoutTask task)
 	{
@@ -49,16 +58,40 @@ public class NuklearLayoutTaskAdapter
 		drawTaskMaintainer = new DrawTaskMaintainer(drawTask, vertexBuffer);
 	}
 
+	@Autorun
+	public void load()
+	{
+		application = ModelUtil.getApplication(task);
+		setupImageCapability();
+	}
+
+	private void setupImageCapability()
+	{
+		final List<PathResource> imagePaths = collectImages();
+		final var imageArray = task.getImageArray();
+		if (imageArray != null && imagePaths.isEmpty() == false)
+		{
+			final var pipeline = (GraphicsPipeline) task.eContainer().eContainer();
+			imageInstaller = new NuklearImageInstaller(pipeline, imagePaths, imageArray);
+		}
+	}
+
 	@Override
 	public void allocate(IGraphicContext context)
 	{
 		this.context = context;
 		window = context.getWindow();
-		application = ModelUtil.getApplication(task);
 		nuklearContextAdapter = NuklearContextAdapter.adapt(task.getContext());
 
 		// Prepare a first render before the opening of the window
 		layout(List.of());
+	}
+
+	private List<PathResource> collectImages()
+	{
+		final List<PathResource> images = new ArrayList<>();
+		executeOnUIElements((element, adapter) -> adapter.collectImages(images));
+		return List.copyOf(images);
 	}
 
 	@Override
@@ -69,9 +102,8 @@ public class NuklearLayoutTaskAdapter
 
 	public void layout(List<IInputEvent> events)
 	{
-		final var view = application.getCurrentView();
 		final var nkContext = nuklearContextAdapter.getNkContext();
-		final var uiContext = new UIContext(window, nkContext, events);
+		final var uiContext = new UIContext(window, nkContext, getImageMap(), events);
 
 		final var extent = context.getSurfaceManager().getExtent();
 		if (extent != currentExtent)
@@ -80,20 +112,18 @@ public class NuklearLayoutTaskAdapter
 			currentExtent = extent;
 		}
 
-		if (view != null && view instanceof IUIView)
+		executeOnUIElements((element, adapter) -> adapter.layout(uiContext, element));
+	}
+
+	private Map<PathResource, NkImage> getImageMap()
+	{
+		if (imageInstaller != null)
 		{
-			final var uiView = (IUIView) view;
-			final var uiPage = uiView.getCurrentUIPage();
-			if (uiPage != null)
-			{
-				final var panels = uiPage.getPanels();
-				for (int i = 0; i < panels.size(); i++)
-				{
-					final var panel = panels.get(i);
-					final var panelAdapter = IUIElementAdapter.adapt(panel);
-					dirty |= panelAdapter.layout(uiContext, panel);
-				}
-			}
+			return Map.copyOf(imageInstaller.imageMap());
+		}
+		else
+		{
+			return Map.of();
 		}
 	}
 
@@ -148,5 +178,21 @@ public class NuklearLayoutTaskAdapter
 	public boolean needRecord(NuklearLayoutTask task, int index)
 	{
 		return dirty;
+	}
+
+	private void executeOnUIElements(BiConsumer<IUIElement, IUIElementAdapter> consumer)
+	{
+		final var uiPage = NkUtil.resolveUIPage(application);
+
+		if (uiPage != null)
+		{
+			final var panels = uiPage.getPanels();
+			for (int i = 0; i < panels.size(); i++)
+			{
+				final var panel = panels.get(i);
+				final var panelAdapter = IUIElementAdapter.adapt(panel);
+				consumer.accept(panel, panelAdapter);
+			}
+		}
 	}
 }

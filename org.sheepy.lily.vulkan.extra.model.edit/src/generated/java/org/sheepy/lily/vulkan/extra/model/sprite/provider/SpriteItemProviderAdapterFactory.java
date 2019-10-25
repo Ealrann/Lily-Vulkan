@@ -182,6 +182,31 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SpriteCountSpecializationItemProvider spriteCountSpecializationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSpriteCountSpecializationAdapter()
+	{
+		if (spriteCountSpecializationItemProvider == null)
+		{
+			spriteCountSpecializationItemProvider = new SpriteCountSpecializationItemProvider(this);
+		}
+
+		return spriteCountSpecializationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -302,6 +327,7 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 		if (spriteItemProvider != null) spriteItemProvider.dispose();
 		if (spriteMonoSamplerProviderItemProvider != null) spriteMonoSamplerProviderItemProvider.dispose();
 		if (spriteStructureItemProvider != null) spriteStructureItemProvider.dispose();
+		if (spriteCountSpecializationItemProvider != null) spriteCountSpecializationItemProvider.dispose();
 	}
 
 	/**

@@ -73,6 +73,7 @@ public class NuklearLayoutTaskItemProvider
 			addDrawTaskPropertyDescriptor(object);
 			addPushBufferPropertyDescriptor(object);
 			addVertexBufferPropertyDescriptor(object);
+			addImageArrayPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -207,6 +208,29 @@ public class NuklearLayoutTaskItemProvider
 				 getString("_UI_NuklearLayoutTask_vertexBuffer_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearLayoutTask_vertexBuffer_feature", "_UI_NuklearLayoutTask_type"),
 				 NuklearPackage.Literals.NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Image Array feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addImageArrayPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NuklearLayoutTask_imageArray_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearLayoutTask_imageArray_feature", "_UI_NuklearLayoutTask_type"),
+				 NuklearPackage.Literals.NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY,
 				 true,
 				 false,
 				 true,

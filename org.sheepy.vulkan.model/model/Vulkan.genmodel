@@ -594,6 +594,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageInfo/tiling"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageInfo/mipLevels"/>
     </genClasses>
+    <genClasses ecoreClass="Image.ecore#//ImageLayout">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageLayout/stage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageLayout/layout"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageLayout/accessMask"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Pipeline" basePackage="org.sheepy.vulkan.model" resource="XMI"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"

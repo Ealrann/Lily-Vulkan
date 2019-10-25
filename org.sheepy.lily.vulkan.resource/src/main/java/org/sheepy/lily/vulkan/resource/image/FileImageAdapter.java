@@ -4,19 +4,22 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.util.List;
 
+import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.api.util.ImageBuffer;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
-import org.sheepy.lily.vulkan.resource.nativehelper.VkTexture;
-import org.sheepy.lily.vulkan.resource.util.STBImageLoader;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.resource.image.STBImageLoader;
 import org.sheepy.vulkan.resource.image.VkImage;
 import org.sheepy.vulkan.resource.image.VkImage.Builder;
 import org.sheepy.vulkan.resource.image.VkImageDescriptor;
+import org.sheepy.vulkan.resource.image.VkTexture;
 
 @Statefull
 @Adapter(scope = FileImage.class)
@@ -25,24 +28,34 @@ public class FileImageAdapter implements IImageAdapter
 	private final STBImageLoader imageLoader = new STBImageLoader();
 	private final VkTexture vkTexture;
 	private final FileImage image;
+	private final ImageBuffer imageBuffer;
 
 	private List<IVkDescriptor> descriptors = null;
 
 	public FileImageAdapter(FileImage image)
 	{
 		this.image = image;
-		final var imageBuilder = createBuilder(image);
+		imageBuffer = new ImageBuffer(image.getFile());
+		imageBuffer.allocate();
+		final var imageBuilder = createBuilder(imageBuffer.getImageSize(), image.isMipmapEnabled());
 
 		vkTexture = new VkTexture(imageBuilder);
 	}
 
-	private static Builder createBuilder(FileImage image)
+	@Dispose
+	public void dispose()
 	{
-		final var size = STBImageLoader.getSize(image.getFile());
+		// if this FileImageAdapter was never allocated,
+		// we still kept the buffer allocation in constructor
+		imageBuffer.free();
+	}
+
+	private static Builder createBuilder(Vector2ic size, boolean mipmapEnabled)
+	{
 		final int width = size.x();
 		final int height = size.y();
 
-		final int mipLevels = image.isMipmapEnabled()
+		final int mipLevels = mipmapEnabled
 				? (int) Math.floor(log2nlz(Math.max(width, height))) + 1
 				: 1;
 
@@ -66,10 +79,12 @@ public class FileImageAdapter implements IImageAdapter
 		final var executionContext = (ExecutionContext) context;
 		final var layout = image.getInitialLayout();
 
-		imageLoader.allocBuffer(image.getFile());
+		imageBuffer.allocate();
+		imageLoader.allocBuffer(imageBuffer.getByteBuffer());
 		vkTexture.allocate(context);
 		vkTexture.loadImage(executionContext, imageLoader.getBuffer(), layout);
 
+		imageBuffer.free();
 		imageLoader.free();
 	}
 

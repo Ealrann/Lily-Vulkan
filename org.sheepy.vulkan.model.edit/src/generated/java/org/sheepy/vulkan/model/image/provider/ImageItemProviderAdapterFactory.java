@@ -125,6 +125,31 @@ public class ImageItemProviderAdapterFactory extends ImageAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.image.ImageLayout} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ImageLayoutItemProvider imageLayoutItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.vulkan.model.image.ImageLayout}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createImageLayoutAdapter()
+	{
+		if (imageLayoutItemProvider == null)
+		{
+			imageLayoutItemProvider = new ImageLayoutItemProvider(this);
+		}
+
+		return imageLayoutItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -243,6 +268,7 @@ public class ImageItemProviderAdapterFactory extends ImageAdapterFactory
 	{
 		if (samplerInfoItemProvider != null) samplerInfoItemProvider.dispose();
 		if (imageInfoItemProvider != null) imageInfoItemProvider.dispose();
+		if (imageLayoutItemProvider != null) imageLayoutItemProvider.dispose();
 	}
 
 }

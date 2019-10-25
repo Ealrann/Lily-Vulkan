@@ -13,6 +13,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="drawTask" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/process.ecore#//CompositeTask"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pushBuffer" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//PushBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="vertexBuffer" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//Buffer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imageArray" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//Texture2DArray"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NuklearContext" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkan.ecore#//IResource ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//DescriptedResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="font" lowerBound="1" eType="#//NuklearFont"/>

@@ -373,6 +373,31 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ISpecializationItemProvider iSpecializationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createISpecializationAdapter()
+	{
+		if (iSpecializationItemProvider == null)
+		{
+			iSpecializationItemProvider = new ISpecializationItemProvider(this);
+		}
+
+		return iSpecializationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -532,6 +557,7 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 		if (staticResourceProviderItemProvider != null) staticResourceProviderItemProvider.dispose();
 		if (compositeResourceProviderItemProvider != null) compositeResourceProviderItemProvider.dispose();
 		if (renderProxyConstantBufferItemProvider != null) renderProxyConstantBufferItemProvider.dispose();
+		if (iSpecializationItemProvider != null) iSpecializationItemProvider.dispose();
 	}
 
 	/**

@@ -7,21 +7,22 @@ import java.util.List;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.resource.IDescriptedResourceAdapter;
+import org.sheepy.lily.vulkan.api.resource.ITexture2DArrayAdapter;
+import org.sheepy.lily.vulkan.api.util.ImageBuffer;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
-import org.sheepy.lily.vulkan.resource.nativehelper.VkTexture;
-import org.sheepy.lily.vulkan.resource.util.STBImageLoader;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.resource.image.STBImageLoader;
 import org.sheepy.vulkan.resource.image.VkImage;
 import org.sheepy.vulkan.resource.image.VkImage.Builder;
 import org.sheepy.vulkan.resource.image.VkImageArrayDescriptor;
+import org.sheepy.vulkan.resource.image.VkTexture;
 
 @Statefull
 @Adapter(scope = Texture2DArray.class)
-public final class Texture2DArrayAdapter implements IDescriptedResourceAdapter
+public final class Texture2DArrayAdapter implements ITexture2DArrayAdapter
 {
 	private final Texture2DArray textureArray;
 	private final STBImageLoader imageLoader = new STBImageLoader();
@@ -32,44 +33,20 @@ public final class Texture2DArrayAdapter implements IDescriptedResourceAdapter
 	public Texture2DArrayAdapter(Texture2DArray textureArray)
 	{
 		this.textureArray = textureArray;
-		final var imageBuilder = createBuilder();
-
-		textureWrappers = List.copyOf(createTextureList(imageBuilder));
+		textureWrappers = List.copyOf(createTextureList());
 	}
 
-	private List<FileTextureWrapper> createTextureList(final Builder imageBuilder)
+	private List<FileTextureWrapper> createTextureList()
 	{
 		final List<FileTextureWrapper> res = new ArrayList<>();
+		final boolean mipmapEnabled = textureArray.isMipmapEnabled();
+
 		for (final var resource : textureArray.getFiles())
 		{
-			final var texture = new VkTexture(imageBuilder);
-			res.add(new FileTextureWrapper(texture, resource));
+			res.add(new FileTextureWrapper(resource, mipmapEnabled));
 		}
 
 		return res;
-	}
-
-	private Builder createBuilder()
-	{
-		final int width = textureArray.getWidth();
-		final int height = textureArray.getHeight();
-
-		final int mipLevels = textureArray.isMipmapEnabled()
-				? (int) Math.floor(log2nlz(Math.max(width, height))) + 1
-				: 1;
-
-		final int format = VK_FORMAT_R8G8B8A8_UNORM;
-		final int usage = VK_IMAGE_USAGE_TRANSFER_SRC_BIT
-				| VK_IMAGE_USAGE_TRANSFER_DST_BIT
-				| VK_IMAGE_USAGE_SAMPLED_BIT;
-
-		final var imageBuilder = VkImage.newBuilder(width, height, format);
-		imageBuilder.usage(usage);
-		imageBuilder.properties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
-		imageBuilder.tiling(VK_IMAGE_TILING_OPTIMAL);
-		imageBuilder.mipLevels(mipLevels);
-
-		return imageBuilder.copyImmutable();
 	}
 
 	@Override
@@ -80,10 +57,11 @@ public final class Texture2DArrayAdapter implements IDescriptedResourceAdapter
 
 		for (final var wrapper : textureWrappers)
 		{
-			imageLoader.allocBuffer(wrapper.resource);
+			wrapper.allocate(context);
+
+			imageLoader.allocBuffer(wrapper.imageBuffer.getByteBuffer());
 			final var buffer = imageLoader.getBuffer();
 
-			wrapper.texture.allocate(context);
 			wrapper.texture.loadImage(executionContext, buffer, layout);
 
 			imageLoader.free();
@@ -95,8 +73,21 @@ public final class Texture2DArrayAdapter implements IDescriptedResourceAdapter
 	{
 		for (final var wrapper : textureWrappers)
 		{
-			wrapper.texture.free(context);
+			wrapper.free(context);
 		}
+	}
+
+	@Override
+	public List<VkTexture> getTextures()
+	{
+		final List<VkTexture> res = new ArrayList<>();
+
+		for (final var wrapper : textureWrappers)
+		{
+			res.add(wrapper.texture);
+		}
+
+		return List.copyOf(res);
 	}
 
 	@Override
@@ -132,12 +123,52 @@ public final class Texture2DArrayAdapter implements IDescriptedResourceAdapter
 	private static final class FileTextureWrapper
 	{
 		private final VkTexture texture;
-		private final PathResource resource;
+		private final ImageBuffer imageBuffer;
+		private final boolean mipmapEnabled;
 
-		public FileTextureWrapper(VkTexture texture, PathResource resource)
+		public FileTextureWrapper(PathResource resource, boolean mipmapEnabled)
 		{
-			this.texture = texture;
-			this.resource = resource;
+			this.mipmapEnabled = mipmapEnabled;
+			this.imageBuffer = new ImageBuffer(resource);
+			imageBuffer.allocate();
+
+			final var imageBuilder = createBuilder();
+			this.texture = new VkTexture(imageBuilder);
+		}
+
+		public void allocate(IExecutionContext context)
+		{
+			texture.allocate(context);
+		}
+
+		public void free(IExecutionContext context)
+		{
+			imageBuffer.free();
+			texture.free(context);
+		}
+
+		private Builder createBuilder()
+		{
+			final var size = imageBuffer.getImageSize();
+			final int width = size.x();
+			final int height = size.y();
+
+			final int mipLevels = mipmapEnabled
+					? (int) Math.floor(log2nlz(Math.max(width, height))) + 1
+					: 1;
+
+			final int format = VK_FORMAT_R8G8B8A8_UNORM;
+			final int usage = VK_IMAGE_USAGE_TRANSFER_SRC_BIT
+					| VK_IMAGE_USAGE_TRANSFER_DST_BIT
+					| VK_IMAGE_USAGE_SAMPLED_BIT;
+
+			final var imageBuilder = VkImage.newBuilder(width, height, format);
+			imageBuilder.usage(usage);
+			imageBuilder.properties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+			imageBuilder.tiling(VK_IMAGE_TILING_OPTIMAL);
+			imageBuilder.mipLevels(mipLevels);
+
+			return imageBuilder.copyImmutable();
 		}
 	}
 }

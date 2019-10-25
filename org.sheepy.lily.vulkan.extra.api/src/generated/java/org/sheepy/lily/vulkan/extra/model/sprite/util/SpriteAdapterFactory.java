@@ -12,6 +12,7 @@ import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
+import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
@@ -105,6 +106,11 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 				return createSpriteStructureAdapter();
 			}
 			@Override
+			public Adapter caseSpriteCountSpecialization(SpriteCountSpecialization object)
+			{
+				return createSpriteCountSpecializationAdapter();
+			}
+			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
@@ -158,6 +164,11 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseStructure(Structure object)
 			{
 				return createStructureAdapter();
+			}
+			@Override
+			public Adapter caseISpecialization(ISpecialization object)
+			{
+				return createISpecializationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -237,6 +248,21 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createSpriteStructureAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization <em>Count Specialization</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization
+	 * @generated
+	 */
+	public Adapter createSpriteCountSpecializationAdapter()
 	{
 		return null;
 	}
@@ -402,6 +428,21 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createStructureAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization <em>ISpecialization</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization
+	 * @generated
+	 */
+	public Adapter createISpecializationAdapter()
 	{
 		return null;
 	}

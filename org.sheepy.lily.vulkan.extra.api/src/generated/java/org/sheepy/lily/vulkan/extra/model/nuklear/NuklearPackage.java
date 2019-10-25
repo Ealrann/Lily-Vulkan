@@ -208,13 +208,22 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Image Array</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Layout Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_LAYOUT_TASK_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 4;
+	int NUKLEAR_LAYOUT_TASK_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Layout Task</em>' class.
@@ -435,6 +444,17 @@ public interface NuklearPackage extends EPackage
 	EReference getNuklearLayoutTask_VertexBuffer();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getImageArray <em>Image Array</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Image Array</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getImageArray()
+	 * @see #getNuklearLayoutTask()
+	 * @generated
+	 */
+	EReference getNuklearLayoutTask_ImageArray();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext <em>Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -596,6 +616,14 @@ public interface NuklearPackage extends EPackage
 		 * @generated
 		 */
 		EReference NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER = eINSTANCE.getNuklearLayoutTask_VertexBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Image Array</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY = eINSTANCE.getNuklearLayoutTask_ImageArray();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl <em>Context</em>}' class.

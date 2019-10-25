@@ -23,6 +23,7 @@ import org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl;
 
 import org.sheepy.vulkan.model.image.ImageFactory;
 import org.sheepy.vulkan.model.image.ImageInfo;
+import org.sheepy.vulkan.model.image.ImageLayout;
 import org.sheepy.vulkan.model.image.ImagePackage;
 import org.sheepy.vulkan.model.image.SamplerInfo;
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
@@ -50,6 +51,13 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 	 * @generated
 	 */
 	private EClass imageInfoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass imageLayoutEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -372,6 +380,50 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 	 * @generated
 	 */
 	@Override
+	public EClass getImageLayout()
+	{
+		return imageLayoutEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImageLayout_Stage()
+	{
+		return (EAttribute)imageLayoutEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImageLayout_Layout()
+	{
+		return (EAttribute)imageLayoutEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImageLayout_AccessMask()
+	{
+		return (EAttribute)imageLayoutEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ImageFactory getImageFactory()
 	{
 		return (ImageFactory)getEFactoryInstance();
@@ -419,6 +471,11 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 		createEAttribute(imageInfoEClass, IMAGE_INFO__PROPERTIES);
 		createEAttribute(imageInfoEClass, IMAGE_INFO__TILING);
 		createEAttribute(imageInfoEClass, IMAGE_INFO__MIP_LEVELS);
+
+		imageLayoutEClass = createEClass(IMAGE_LAYOUT);
+		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__STAGE);
+		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__LAYOUT);
+		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__ACCESS_MASK);
 	}
 
 	/**
@@ -477,6 +534,11 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 		initEAttribute(getImageInfo_Properties(), ecorePackage.getEInt(), "properties", "0", 0, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageInfo_Tiling(), ecorePackage.getEInt(), "tiling", "0", 1, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageInfo_MipLevels(), ecorePackage.getEInt(), "mipLevels", "1", 1, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(imageLayoutEClass, ImageLayout.class, "ImageLayout", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getImageLayout_Stage(), theEnumerationPackage.getEPipelineStage(), "stage", null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageLayout_Layout(), theEnumerationPackage.getEImageLayout(), "layout", "SHADER_READ_ONLY_OPTIMAL", 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageLayout_AccessMask(), theEnumerationPackage.getEAccess(), "accessMask", null, 0, -1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

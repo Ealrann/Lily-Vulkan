@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.resource.nativehelper;
+package org.sheepy.vulkan.resource.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -10,15 +10,13 @@ import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
 import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.vulkan.model.resource.ImageLayout;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.model.image.ImageLayout;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
-import org.sheepy.vulkan.resource.image.VkImage;
-import org.sheepy.vulkan.resource.image.VkImageView;
 import org.sheepy.vulkan.util.VkModelUtil;
 
 public class VkTexture implements IAllocable<IExecutionContext>

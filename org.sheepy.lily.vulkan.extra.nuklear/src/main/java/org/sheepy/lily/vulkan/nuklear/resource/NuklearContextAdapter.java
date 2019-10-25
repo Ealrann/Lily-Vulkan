@@ -28,6 +28,7 @@ import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
+import org.sheepy.lily.vulkan.api.resource.ITexture2DArrayAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
@@ -35,6 +36,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
+import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawCommandData;
 import org.sheepy.lily.vulkan.nuklear.input.NuklearInputCatcher;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
@@ -240,6 +242,14 @@ public class NuklearContextAdapter implements IResourceAdapter
 				final var adapter = ISampledImageAdapter.adapt((SampledImage) descriptor);
 				final long ptr = adapter.getSamplerPtr();
 				texturePtrs.add(ptr);
+			}
+			else if (descriptor instanceof Texture2DArray)
+			{
+				final var adapter = descriptor.adapt(ITexture2DArrayAdapter.class);
+				for (final var texture : adapter.getTextures())
+				{
+					texturePtrs.add(texture.getViewPtr());
+				}
 			}
 		}
 	}
