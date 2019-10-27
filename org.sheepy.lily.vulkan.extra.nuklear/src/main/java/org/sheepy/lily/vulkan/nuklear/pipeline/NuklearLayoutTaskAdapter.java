@@ -112,7 +112,14 @@ public final class NuklearLayoutTaskAdapter
 			currentExtent = extent;
 		}
 
-		executeOnUIElements((element, adapter) -> adapter.layout(uiContext, element));
+		executeOnUIElements((element, adapter) -> layoutElement(uiContext, element, adapter));
+	}
+
+	private void layoutElement(	final UIContext uiContext,
+								IUIElement element,
+								IUIElementAdapter adapter)
+	{
+		dirty |= adapter.layout(uiContext, element);
 	}
 
 	private Map<PathResource, NkImage> getImageMap()
@@ -190,7 +197,7 @@ public final class NuklearLayoutTaskAdapter
 			for (int i = 0; i < panels.size(); i++)
 			{
 				final var panel = panels.get(i);
-				final var panelAdapter = IUIElementAdapter.adapt(panel);
+				final var panelAdapter = panel.adaptNotNull(IUIElementAdapter.class);
 				consumer.accept(panel, panelAdapter);
 			}
 		}

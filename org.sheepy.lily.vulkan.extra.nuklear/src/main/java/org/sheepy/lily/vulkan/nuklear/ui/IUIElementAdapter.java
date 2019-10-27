@@ -6,7 +6,6 @@ import java.util.Map;
 import org.lwjgl.nuklear.NkContext;
 import org.lwjgl.nuklear.NkImage;
 import org.sheepy.lily.core.api.adapter.IAdapter;
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
@@ -18,11 +17,6 @@ public interface IUIElementAdapter extends IAdapter
 
 	default void collectImages(List<PathResource> imageCollection)
 	{};
-
-	public static IUIElementAdapter adapt(IUIElement object)
-	{
-		return IAdapterFactoryService.INSTANCE.adapt(object, IUIElementAdapter.class);
-	}
 
 	static final class UIContext
 	{
@@ -39,7 +33,7 @@ public interface IUIElementAdapter extends IAdapter
 			this.window = window;
 			this.nkContext = nkContext;
 			this.imageMap = Map.copyOf(imageMap);
-			this.events = events;
+			this.events = List.copyOf(events);
 		}
 	}
 }

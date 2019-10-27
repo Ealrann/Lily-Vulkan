@@ -120,7 +120,7 @@ public class PanelAdapter implements IUIElementAdapter
 				for (int i = 0; i < controls.size(); i++)
 				{
 					final IControl child = controls.get(i);
-					final var adapter = IUIElementAdapter.adapt(child);
+					final var adapter = child.adaptNotNull(IUIElementAdapter.class);
 					res |= adapter.layout(context, child);
 				}
 			}
