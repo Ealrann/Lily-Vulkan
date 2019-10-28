@@ -7,6 +7,7 @@ import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferReferenceAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
+import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 
 @Adapter(scope = BindIndexBuffer.class)
 public final class BindIndexBufferAdapter implements IPipelineTaskAdapter<BindIndexBuffer>
@@ -15,7 +16,7 @@ public final class BindIndexBufferAdapter implements IPipelineTaskAdapter<BindIn
 	public void record(BindIndexBuffer task, RecordContext context)
 	{
 		final var bufferRef = task.getBufferRef();
-		final var adapter = IBufferReferenceAdapter.adapt(bufferRef);
+		final var adapter = bufferRef.<IBufferReferenceAdapter<IBufferReference>> adaptNotNullGeneric(IBufferReferenceAdapter.class);
 		final var indexPtr = adapter.getBufferPtr(bufferRef);
 		final var indexOffset = adapter.getOffset(bufferRef);
 		final var indexType = task.getIndexType().getValue();

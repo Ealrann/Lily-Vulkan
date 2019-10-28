@@ -50,7 +50,7 @@ public abstract class ExecutionRecorders<T extends IProcessContext>
 		final var res = new ArrayList<VkSemaphore>();
 		for (final var semaphore : process.getSignals())
 		{
-			res.add(ISemaphoreAdapter.adapt(semaphore).getVkSemaphore());
+			res.add(semaphore.adaptNotNull(ISemaphoreAdapter.class).getVkSemaphore());
 		}
 		return res;
 	}
@@ -68,7 +68,7 @@ public abstract class ExecutionRecorders<T extends IProcessContext>
 
 	protected static WaitData convertToData(Semaphore semaphore)
 	{
-		final var adapter = ISemaphoreAdapter.adapt(semaphore);
+		final var adapter = semaphore.adaptNotNull(ISemaphoreAdapter.class);
 		final var waitStage = semaphore.getWaitStage();
 		return new WaitData(adapter.getVkSemaphore(), waitStage);
 	}

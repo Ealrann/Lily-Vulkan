@@ -43,7 +43,7 @@ public class BufferBarriersBackend
 		for (final var bufferBarrier : barriers)
 		{
 			final var info = res.get();
-			final var barrierAdapter = IBufferBarrierAdapter.adapt(bufferBarrier);
+			final var barrierAdapter = bufferBarrier.adaptNotNull(IBufferBarrierAdapter.class);
 
 			if (barrierAdapter instanceof IAllocable)
 			{

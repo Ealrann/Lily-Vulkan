@@ -20,7 +20,7 @@ public final class CompositeResourceProviderAdapter implements IResourceProvider
 
 		for (final var subProvider : compositeProvider.getProviders())
 		{
-			final var adapter = IResourceProviderAdapter.adapt(subProvider);
+			final var adapter = subProvider.adaptNotNull(IResourceProviderAdapter.class);
 			res.addAll(adapter.getResources(subProvider));
 		}
 

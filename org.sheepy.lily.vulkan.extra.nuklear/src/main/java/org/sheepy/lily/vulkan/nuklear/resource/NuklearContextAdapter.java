@@ -18,14 +18,12 @@ import org.lwjgl.nuklear.NkDrawNullTexture;
 import org.lwjgl.nuklear.NkDrawVertexLayoutElement;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
 import org.sheepy.lily.vulkan.api.resource.ITexture2DArrayAdapter;
@@ -106,16 +104,16 @@ public class NuklearContextAdapter implements IResourceAdapter
 	public void allocate(IExecutionContext context)
 	{
 		final var font = nuklearContext.getFont();
-		final var fontAdapter = NuklearFontAdapter.adapt(font);
+		final var fontAdapter = font.adaptNotNull(NuklearFontAdapter.class);
 		final var nullTexture = nuklearContext.getNullTexture();
-		final var nullTextureAdapter = ISampledImageAdapter.adapt(nullTexture);
+		final var nullTextureAdapter = nullTexture.adaptNotNull(ISampledImageAdapter.class);
 		final var defaultFont = fontAdapter.getNkFont();
 		final var layoutTask = nuklearContext.getLayoutTask();
 		final var pipeline = ModelUtil.findParent(layoutTask, GraphicsPipeline.class);
 		final var descriptorSet = pipeline.getDescriptorSetPkg().getDescriptorSets().get(0);
-		final var layoutTaskAdapter = (NuklearLayoutTaskAdapter) IPipelineTaskAdapter.adapt(layoutTask);
+		final var layoutTaskAdapter = layoutTask.adaptNotNull(NuklearLayoutTaskAdapter.class);
 		final var engine = VulkanModelUtil.getEngine(nuklearContext);
-		final var inputManager = IVulkanEngineAdapter.adapt(engine).getInputManager();
+		final var inputManager = engine.adaptNotNull(IVulkanEngineAdapter.class).getInputManager();
 		final var inputCatcher = NuklearInputCatcher.INSTANCE;
 
 		reloadTexturePtrs(descriptorSet);
@@ -178,7 +176,7 @@ public class NuklearContextAdapter implements IResourceAdapter
 
 		try
 		{
-			final var vertexBufferAdapter = IBufferAdapter.adapt(vertexBuffer);
+			final var vertexBufferAdapter = vertexBuffer.adaptNotNull(IBufferAdapter.class);
 			final var bufferPtr = vertexBufferAdapter.getPtr();
 
 			final long vertexBufferSize = VERTEX_BUFFER_SIZE;
@@ -239,7 +237,7 @@ public class NuklearContextAdapter implements IResourceAdapter
 		{
 			if (descriptor instanceof SampledImage)
 			{
-				final var adapter = ISampledImageAdapter.adapt((SampledImage) descriptor);
+				final var adapter = descriptor.adaptNotNull(ISampledImageAdapter.class);
 				final long ptr = adapter.getSamplerPtr();
 				texturePtrs.add(ptr);
 			}
@@ -316,10 +314,5 @@ public class NuklearContextAdapter implements IResourceAdapter
 	public NkContext getNkContext()
 	{
 		return nkContext;
-	}
-
-	public static final NuklearContextAdapter adapt(NuklearContext context)
-	{
-		return IAdapterFactoryService.INSTANCE.adapt(context, NuklearContextAdapter.class);
 	}
 }

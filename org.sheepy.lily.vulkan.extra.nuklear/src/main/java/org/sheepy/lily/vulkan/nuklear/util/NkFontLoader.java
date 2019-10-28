@@ -73,7 +73,7 @@ public class NkFontLoader
 
 	public NkUserFont createNkFont(long id)
 	{
-		adapter = IFontImageAdapter.adapt(font);
+		adapter = font.adaptNotNull(IFontImageAdapter.class);
 		width = adapter.getBufferWidth();
 		height = adapter.getBufferHeight();
 

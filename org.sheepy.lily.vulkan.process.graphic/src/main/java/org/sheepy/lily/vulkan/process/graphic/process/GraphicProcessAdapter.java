@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.process.graphic.process;
 
 import java.util.List;
 
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
@@ -17,9 +16,11 @@ import org.sheepy.vulkan.queue.VulkanQueue;
 @Adapter(scope = GraphicProcess.class)
 public class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphicContext>
 {
-	private static final List<ECommandStage> stages = List.of(ECommandStage.TRANSFER,
-			ECommandStage.COMPUTE, ECommandStage.PRE_RENDER, ECommandStage.RENDER,
-			ECommandStage.POST_RENDER);
+	private static final List<ECommandStage> stages = List.of(	ECommandStage.TRANSFER,
+																ECommandStage.COMPUTE,
+																ECommandStage.PRE_RENDER,
+																ECommandStage.RENDER,
+																ECommandStage.POST_RENDER);
 
 	private final ImageAcquirer acquirer = new ImageAcquirer();
 
@@ -33,8 +34,10 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphicContex
 	@Override
 	protected IGraphicContext createContext()
 	{
-		return new GraphicContext(getQueueType(), isResetAllowed(), descriptorPool,
-				(GraphicProcess) process);
+		return new GraphicContext(	getQueueType(),
+									isResetAllowed(),
+									descriptorPool,
+									(GraphicProcess) process);
 	}
 
 	@Override
@@ -55,11 +58,6 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphicContex
 	public EQueueType getQueueType()
 	{
 		return EQueueType.Graphic;
-	}
-
-	public static GraphicProcessAdapter adapt(GraphicProcess object)
-	{
-		return IAdapterFactoryService.INSTANCE.adapt(object, GraphicProcessAdapter.class);
 	}
 
 	@Override

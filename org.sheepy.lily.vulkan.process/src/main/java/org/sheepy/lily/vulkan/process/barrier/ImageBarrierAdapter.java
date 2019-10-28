@@ -23,7 +23,7 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter<IExecutionConte
 	{
 		final var imageBarrier = (ImageBarrier) barrier;
 		final var image = imageBarrier.getImage();
-		final var imageAdapter = IImageAdapter.adapt(image);
+		final var imageAdapter = image.adaptNotNull(IImageAdapter.class);
 		final var imageInfo = imageAdapter.getVkImage();
 
 		final int mipLevels = imageInfo.mipLevels;

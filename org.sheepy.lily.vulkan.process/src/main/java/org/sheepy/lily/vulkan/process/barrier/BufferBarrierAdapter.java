@@ -22,7 +22,7 @@ public class BufferBarrierAdapter implements IBufferBarrierAdapter
 	{
 		final var bufferBarrier = (BufferBarrier) barrier;
 		final var buffer = bufferBarrier.getBuffer();
-		final var bufferAdapter = IBufferAdapter.adapt(buffer);
+		final var bufferAdapter = buffer.adaptNotNull(IBufferAdapter.class);
 
 		final int srcAccessMask = VkModelUtil.getEnumeratedFlag(barrier.getSrcAccessMask());
 		final int dstAccessMask = VkModelUtil.getEnumeratedFlag(barrier.getDstAccessMask());

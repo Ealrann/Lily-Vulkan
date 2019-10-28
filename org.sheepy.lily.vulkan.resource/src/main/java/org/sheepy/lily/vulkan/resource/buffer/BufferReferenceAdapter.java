@@ -12,7 +12,7 @@ public class BufferReferenceAdapter implements IBufferReferenceAdapter<BufferRef
 	public long getBufferPtr(BufferReference ref)
 	{
 		final var buffer = ref.getBuffer();
-		final var adapter = IBufferAdapter.adapt(buffer);
+		final var adapter = buffer.adaptNotNull(IBufferAdapter.class);
 		return adapter.getPtr();
 	}
 

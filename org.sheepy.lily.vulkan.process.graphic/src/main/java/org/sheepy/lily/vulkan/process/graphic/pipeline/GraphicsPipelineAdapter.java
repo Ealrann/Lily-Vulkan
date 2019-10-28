@@ -49,7 +49,7 @@ public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicCon
 		final List<VkShaderStage> shaderStages = new ArrayList<>();
 		for (final Shader shader : shaders)
 		{
-			shaderStages.add(IShaderAdapter.adapt(shader).getVkShaderStage());
+			shaderStages.add(shader.adaptNotNull(IShaderAdapter.class).getVkShaderStage());
 		}
 
 		final var vertexInputState = pipeline.getVertexInputState();

@@ -35,10 +35,11 @@ public class SliderAdapter implements IUIElementAdapter
 
 	private boolean dirty = false;
 
+	@SuppressWarnings("unchecked")
 	public SliderAdapter(Slider slider)
 	{
 		variableResolver = slider.getVariableResolver();
-		resolverAdapter = IVariableResolverAdapter.adapt(variableResolver);
+		resolverAdapter = variableResolver.adaptNotNull(IVariableResolverAdapter.class);
 
 		updateValue();
 
@@ -66,8 +67,11 @@ public class SliderAdapter implements IUIElementAdapter
 		boolean res = dirty;
 		dirty = false;
 
-		nk_slider_int(context.nkContext, slider.getMinValue(), buffer, slider.getMaxValue(),
-				slider.getStep());
+		nk_slider_int(	context.nkContext,
+						slider.getMinValue(),
+						buffer,
+						slider.getMaxValue(),
+						slider.getStep());
 
 		final Integer val = (Integer) resolverAdapter.getValue(variableResolver);
 		if (val != buffer.get(0))

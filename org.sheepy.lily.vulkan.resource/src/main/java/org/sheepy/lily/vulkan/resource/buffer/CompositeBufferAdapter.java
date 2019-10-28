@@ -58,7 +58,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	public CompositeBufferAdapter(CompositeBuffer compositeBuffer)
 	{
 		this.pushBuffer = compositeBuffer.getPushBuffer();
-		final var pushBufferAdapter = IPushBufferAdapter.adapt(pushBuffer);
+		final var pushBufferAdapter = pushBuffer.adaptNotNull(IPushBufferAdapter.class);
 		stagingBuffer = pushBufferAdapter.getStagingBuffer();
 
 		final List<DataProviderWrapper> tmpList = new ArrayList<>();
@@ -224,7 +224,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		private DataProviderWrapper(BufferDataProvider<?> dataProvider)
 		{
 			this.dataProvider = dataProvider;
-			this.adapter = IBufferDataProviderAdapter.adapt(dataProvider);
+			this.adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
 			usage = dataProvider.getUsage().getValue();
 
 			access = guessAccessFromUsage(usage);

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
@@ -61,8 +60,10 @@ public class StaticImageAdapter implements IImageAdapter
 		}
 
 		imageView = new VkImageView(logicalDevice.getVkDevice());
-		imageView.allocate(imageBackend.getPtr(), 1, imageBackend.format,
-				VK_IMAGE_ASPECT_COLOR_BIT);
+		imageView.allocate(	imageBackend.getPtr(),
+							1,
+							imageBackend.format,
+							VK_IMAGE_ASPECT_COLOR_BIT);
 
 		load();
 	}
@@ -78,9 +79,14 @@ public class StaticImageAdapter implements IImageAdapter
 			{
 				trgAccess.add(EAccess.SHADER_READ_BIT);
 			}
-			imageBackend.transitionImageLayout(context2.stack(), commandBuffer,
-					EPipelineStage.BOTTOM_OF_PIPE_BIT, stage, EImageLayout.UNDEFINED,
-					initialLayout.getLayout(), Collections.emptyList(), trgAccess);
+			imageBackend.transitionImageLayout(	context2.stack(),
+												commandBuffer,
+												EPipelineStage.BOTTOM_OF_PIPE_BIT,
+												stage,
+												EImageLayout.UNDEFINED,
+												initialLayout.getLayout(),
+												Collections.emptyList(),
+												trgAccess);
 		});
 	}
 
@@ -147,10 +153,5 @@ public class StaticImageAdapter implements IImageAdapter
 	public static interface IImageLoader
 	{
 		void load(IExecutionContext executionManager, VkImage backendBuffer);
-	}
-
-	public static StaticImageAdapter adapt(StaticImage image)
-	{
-		return IAdapterFactoryService.INSTANCE.adapt(image, StaticImageAdapter.class);
 	}
 }

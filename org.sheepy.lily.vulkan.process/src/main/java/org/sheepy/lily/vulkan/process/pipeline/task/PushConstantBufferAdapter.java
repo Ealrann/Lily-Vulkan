@@ -42,7 +42,7 @@ public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConst
 	public PushConstantBufferAdapter(PushConstantBuffer task)
 	{
 		buffer = task.getBuffer();
-		updater = IConstantBufferUpdater.adapt(buffer);
+		updater = buffer.adapt(IConstantBufferUpdater.class);
 		buffer.eAdapters().add(bufferListener);
 	}
 
@@ -56,7 +56,7 @@ public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConst
 	public void record(PushConstantBuffer pushConstant, RecordContext context)
 	{
 		final var pipeline = ModelUtil.findParent(pushConstant, IPipeline.class);
-		final var pipelineAdapter = IPipelineAdapter.adapt(pipeline);
+		final var pipelineAdapter = pipeline.<IPipelineAdapter<?>> adaptNotNullGeneric(IPipelineAdapter.class);
 
 		if (updater != null)
 		{

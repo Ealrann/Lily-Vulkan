@@ -116,7 +116,7 @@ public class SwapChainManager implements ISwapChainManager
 	{
 		for (final ISwapAttachment attachment : attachments)
 		{
-			final var adapter = ISwapAttachmentAdapter.adapt(attachment);
+			final var adapter = attachment.adaptNotNull(ISwapAttachmentAdapter.class);
 			adapter.allocate(context);
 		}
 	}
@@ -148,7 +148,7 @@ public class SwapChainManager implements ISwapChainManager
 	{
 		for (final ISwapAttachment attachment : attachments)
 		{
-			final var adapter = ISwapAttachmentAdapter.adapt(attachment);
+			final var adapter = attachment.adaptNotNull(ISwapAttachmentAdapter.class);
 			adapter.free(context);
 		}
 	}

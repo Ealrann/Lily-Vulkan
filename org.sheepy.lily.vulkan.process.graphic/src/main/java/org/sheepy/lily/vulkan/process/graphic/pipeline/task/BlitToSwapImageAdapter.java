@@ -48,7 +48,7 @@ public class BlitToSwapImageAdapter
 		final var extent = context.getSurfaceManager().getExtent();
 
 		final var image = blitTask.getImage();
-		final var imageAdapter = IImageAdapter.adapt(image);
+		final var imageAdapter = image.adaptNotNull(IImageAdapter.class);
 		final var imageInfo = imageAdapter.getVkImage();
 
 		imagePtr = imageAdapter.getImagePtr();
@@ -91,7 +91,12 @@ public class BlitToSwapImageAdapter
 		final var commandBuffer = context.commandBuffer;
 		final int filter = task.getFilter().getValue();
 
-		vkCmdBlitImage(commandBuffer, imagePtr, transfertSrc, swapImage, transfertDst, region,
-				filter);
+		vkCmdBlitImage(	commandBuffer,
+						imagePtr,
+						transfertSrc,
+						swapImage,
+						transfertDst,
+						region,
+						filter);
 	}
 }

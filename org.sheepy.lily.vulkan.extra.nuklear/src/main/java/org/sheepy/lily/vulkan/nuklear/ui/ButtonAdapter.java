@@ -36,7 +36,7 @@ public class ButtonAdapter implements IUIElementAdapter
 		{
 			final var executor = button.getExecutor();
 			final var application = (Application) EcoreUtil.getRootContainer(executor);
-			final var cadencer = IApplicationAdapter.adapt(application).getCadencer();
+			final var cadencer = application.adaptNotNull(IApplicationAdapter.class).getCadencer();
 
 			for (final Action action : button.getActions())
 			{

@@ -12,7 +12,7 @@ public class VulkanApplicationUtil
 	{
 		final VulkanEngine vulkanEngine = getEngine(application);
 
-		return IVulkanEngineAdapter.adapt(vulkanEngine);
+		return vulkanEngine.adapt(IVulkanEngineAdapter.class);
 	}
 
 	public static VulkanEngine getEngine(Application application)

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
@@ -47,7 +46,7 @@ public final class ComputePipelineAdapter extends AbstractPipelineAdapter<IProce
 			{
 				final var computer = (Computer) task;
 				final var shader = computer.getShader();
-				final var shaderAdapter = IShaderAdapter.adapt(shader);
+				final var shaderAdapter = shader.adaptNotNull(IShaderAdapter.class);
 				final var shaderStage = shaderAdapter.getVkShaderStage();
 				final ByteBuffer specializationData = pipeline.getSpecializationData();
 
@@ -84,11 +83,6 @@ public final class ComputePipelineAdapter extends AbstractPipelineAdapter<IProce
 	public long getPipelineId(int index)
 	{
 		return vkPipelines.get(index).getPipelineId();
-	}
-
-	public static ComputePipelineAdapter adapt(ComputePipeline object)
-	{
-		return IAdapterFactoryService.INSTANCE.adapt(object, ComputePipelineAdapter.class);
 	}
 
 	@Override

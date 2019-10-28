@@ -30,8 +30,8 @@ public class VkSubpassDescriptionAllocator
 			subpasses.colorAttachmentCount(colorAttachmentCount);
 
 			final var refs = subpassDescription.getRefs();
-			final var colorAttachmentRef = VkAttachmentReference.callocStack(colorAttachmentCount,
-					stack);
+			final var colorAttachmentRef = VkAttachmentReference.callocStack(	colorAttachmentCount,
+																				stack);
 			for (final AttachmentRef ref : refs)
 			{
 				VkAttachmentReference vkAttachmentRef = null;
@@ -41,9 +41,8 @@ public class VkSubpassDescriptionAllocator
 				if (ref.getAttachment() instanceof ExtraAttachmentDescription)
 				{
 
-					final var attachment = ((ExtraAttachmentDescription) ref.getAttachment())
-							.getAttachment();
-					final var adapter = ISwapAttachmentAdapter.adapt(attachment);
+					final var attachment = ((ExtraAttachmentDescription) ref.getAttachment()).getAttachment();
+					final var adapter = attachment.adaptNotNull(ISwapAttachmentAdapter.class);
 					isDepth = adapter.isDepthAttachment();
 				}
 				if (isDepth)
@@ -77,9 +76,8 @@ public class VkSubpassDescriptionAllocator
 			boolean isDepth = false;
 			if (attachmentDescription instanceof ExtraAttachmentDescription)
 			{
-				final var attachment = ((ExtraAttachmentDescription) attachmentDescription)
-						.getAttachment();
-				final var adapter = ISwapAttachmentAdapter.adapt(attachment);
+				final var attachment = ((ExtraAttachmentDescription) attachmentDescription).getAttachment();
+				final var adapter = attachment.adaptNotNull(ISwapAttachmentAdapter.class);
 				isDepth = adapter.isDepthAttachment();
 			}
 

@@ -35,11 +35,12 @@ public class VariableLabelAdapter implements IUIElementAdapter
 
 	private boolean dirty = false;
 
+	@SuppressWarnings("unchecked")
 	public VariableLabelAdapter(VariableLabel label)
 	{
 		this.label = label;
-		var variableResolver = label.getVariableResolver();
-		adapter = IVariableResolverAdapter.adapt(variableResolver);
+		final var variableResolver = label.getVariableResolver();
+		adapter = variableResolver.adaptNotNull(IVariableResolverAdapter.class);
 
 		updateText(String.valueOf(adapter.getValue(variableResolver)));
 
@@ -56,8 +57,8 @@ public class VariableLabelAdapter implements IUIElementAdapter
 	@Override
 	public boolean layout(UIContext context, IUIElement control)
 	{
-		boolean res = dirty;
-		VariableLabel label = (VariableLabel) control;
+		final boolean res = dirty;
+		final VariableLabel label = (VariableLabel) control;
 
 		int align = 0;
 		switch (label.getHorizontalRelative())
@@ -81,7 +82,7 @@ public class VariableLabelAdapter implements IUIElementAdapter
 
 	private void updateText(String value)
 	{
-		String labelText = label.getText();
+		final String labelText = label.getText();
 		String resultString = "";
 
 		if (labelText.isBlank()) resultString = String.format("%s%s", labelText, value);

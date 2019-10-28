@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.process.pipeline.task;
 
 import static org.lwjgl.vulkan.VK10.vkCmdCopyBuffer;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.vulkan.VkBufferCopy;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
@@ -28,21 +27,15 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 	{
 		this.task = task;
 		copyInfo = VkBufferCopy.calloc(1);
-
 		updateSize();
 	}
 
-	@NotifyChanged
-	public void notifyChanged(Notification notification)
+	@NotifyChanged(featureIds = {
+			ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER, ProcessPackage.COPY_BUFFER_TASK__TRG_BUFFER
+	})
+	public void notifyChanged()
 	{
-		final var feature = notification.getFeature();
-		if (feature == ProcessPackage.Literals.COPY_BUFFER_TASK__SRC_BUFFER
-				|| feature == ProcessPackage.Literals.COPY_BUFFER_TASK__TRG_BUFFER)
-		{
-			updateSize();
-
-			dirty = true;
-		}
+		updateSize();
 	}
 
 	private void updateSize()
@@ -54,6 +47,7 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 		final var size = Math.min(srcSize, trgSize);
 
 		copyInfo.size(size);
+		dirty = true;
 	}
 
 	@Dispose
@@ -67,8 +61,8 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 	{
 		final var srcBuffer = task.getSrcBuffer();
 		final var trgBuffer = task.getTrgBuffer();
-		final var srcBufferAdapter = IBufferAdapter.adapt(srcBuffer);
-		final var trgBufferAdapter = IBufferAdapter.adapt(trgBuffer);
+		final var srcBufferAdapter = srcBuffer.adaptNotNull(IBufferAdapter.class);
+		final var trgBufferAdapter = trgBuffer.adaptNotNull(IBufferAdapter.class);
 		final var commandBuffer = context.commandBuffer;
 		final var srcBufferPtr = srcBufferAdapter.getPtr();
 		final var trgBufferPtr = trgBufferAdapter.getPtr();

@@ -13,16 +13,15 @@ public class CompositeBufferReferenceAdapter
 	public long getBufferPtr(CompositeBufferReference ref)
 	{
 		final var buffer = ref.getBuffer();
-		final var adapter = ICompositeBufferAdapter.adapt(buffer);
+		final var adapter = buffer.adaptNotNull(ICompositeBufferAdapter.class);
 		return adapter.getPtr();
 	}
 
 	@Override
 	public long getOffset(CompositeBufferReference ref)
 	{
-		final var cRef = ref;
-		final var buffer = cRef.getBuffer();
-		final var adapter = ICompositeBufferAdapter.adapt(buffer);
-		return adapter.getOffset(cRef.getPart());
+		final var buffer = ref.getBuffer();
+		final var adapter = buffer.adaptNotNull(ICompositeBufferAdapter.class);
+		return adapter.getOffset(ref.getPart());
 	}
 }

@@ -42,9 +42,7 @@ public class ImageBarriersBackend
 		for (final var imageBarrier : barriers)
 		{
 			final var info = res.get();
-			@SuppressWarnings("unchecked")
-			final var barrierAdapter = (IImageBarrierAdapter<IExecutionContext>) IImageBarrierAdapter
-					.adapt(imageBarrier);
+			final var barrierAdapter = imageBarrier.<IImageBarrierAdapter<IExecutionContext>> adaptNotNullGeneric(IImageBarrierAdapter.class);
 
 			if (barrierAdapter instanceof IAllocable)
 			{

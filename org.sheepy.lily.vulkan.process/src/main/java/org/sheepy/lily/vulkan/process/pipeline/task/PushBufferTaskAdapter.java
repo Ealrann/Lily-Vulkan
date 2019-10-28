@@ -23,8 +23,8 @@ public final class PushBufferTaskAdapter implements IPipelineTaskAdapter<PushBuf
 	public PushBufferTaskAdapter(PushBufferTask task)
 	{
 		pushBuffer = task.getPushBuffer();
-		updater = IPushBufferUpdater.adapt(pushBuffer);
-		pushBufferAdapter = IPushBufferAdapter.adapt(pushBuffer);
+		updater = pushBuffer.adapt(IPushBufferUpdater.class);
+		pushBufferAdapter = pushBuffer.adaptNotNull(IPushBufferAdapter.class);
 	}
 
 	@Override

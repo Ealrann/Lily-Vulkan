@@ -101,22 +101,19 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		}
 	};
 
-	@NotifyChanged
+	@NotifyChanged(featureIds = VulkanPackage.VULKAN_ENGINE__ENABLED)
 	public void notifyChanged(Notification notification)
 	{
-		if (notification.getFeature() == VulkanPackage.Literals.VULKAN_ENGINE__ENABLED)
+		if (engine != null
+				&& notification.getNewBooleanValue() != notification.getOldBooleanValue())
 		{
-			if (engine != null
-					&& notification.getNewBooleanValue() != notification.getOldBooleanValue())
+			if (engine.isEnabled())
 			{
-				if (engine.isEnabled())
-				{
-					load();
-				}
-				else
-				{
-					dispose();
-				}
+				load();
+			}
+			else
+			{
+				dispose();
 			}
 		}
 	}
@@ -255,7 +252,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	{
 		for (final IProcess process : engine.getProcesses())
 		{
-			final var adapter = IProcessAdapter.adapt(process);
+			final var adapter = process.adaptNotNull(IProcessAdapter.class);
 			adapter.start(vulkanContext);
 		}
 	}
@@ -269,7 +266,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 			final var resources = resourcePkg.getResources();
 			for (final IResource resource : resources)
 			{
-				final var resourceAdapter = IResourceAdapter.adapt(resource);
+				final var resourceAdapter = resource.adapt(IResourceAdapter.class);
 				if (resourceAdapter != null)
 				{
 					allocationList.add(resourceAdapter);
@@ -297,7 +294,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	{
 		for (final var process : engine.getProcesses())
 		{
-			final var adapter = IProcessAdapter.adapt(process);
+			final var adapter = process.adaptNotNull(IProcessAdapter.class);
 			adapter.stop(vulkanContext);
 		}
 	}

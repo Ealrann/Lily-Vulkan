@@ -55,8 +55,8 @@ public class FramebufferManager implements IFramebufferManager
 		{
 			fillAttachments(attachmentsBuffer, imageView.getPtr(), configuration);
 
-			Logger.check("Failed to create framebuffer!",
-					() -> vkCreateFramebuffer(vkDevice, createInfo, null, aFramebufferId));
+			Logger.check(	"Failed to create framebuffer!",
+							() -> vkCreateFramebuffer(vkDevice, createInfo, null, aFramebufferId));
 			framebuffersIds.add(aFramebufferId[0]);
 		}
 
@@ -74,7 +74,7 @@ public class FramebufferManager implements IFramebufferManager
 
 		for (final var attachment : attachments)
 		{
-			final var adapter = ISwapAttachmentAdapter.adapt(attachment);
+			final var adapter = attachment.adaptNotNull(ISwapAttachmentAdapter.class);
 
 			depthAttachment |= adapter.isDepthAttachment();
 			clearInfos.add(adapter.getClearInfos());

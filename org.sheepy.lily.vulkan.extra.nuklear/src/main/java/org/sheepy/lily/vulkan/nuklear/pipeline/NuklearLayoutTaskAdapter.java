@@ -81,7 +81,7 @@ public final class NuklearLayoutTaskAdapter
 	{
 		this.context = context;
 		window = context.getWindow();
-		nuklearContextAdapter = NuklearContextAdapter.adapt(task.getContext());
+		nuklearContextAdapter = task.getContext().adaptNotNull(NuklearContextAdapter.class);
 
 		// Prepare a first render before the opening of the window
 		layout(List.of());
@@ -145,7 +145,7 @@ public final class NuklearLayoutTaskAdapter
 		if (dirty)
 		{
 			final var pushBuffer = task.getPushBuffer();
-			final var pushBufferAdapter = IPushBufferAdapter.adapt(pushBuffer);
+			final var pushBufferAdapter = pushBuffer.adaptNotNull(IPushBufferAdapter.class);
 			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
 			final var vertexBuffer = task.getVertexBuffer();
 

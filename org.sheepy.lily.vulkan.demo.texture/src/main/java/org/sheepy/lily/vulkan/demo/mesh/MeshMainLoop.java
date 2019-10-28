@@ -23,7 +23,7 @@ public class MeshMainLoop implements IMainLoop
 	{
 		final var graphicProcess = factory.graphicProcess;
 
-		processAdapter = IProcessAdapter.adapt(graphicProcess);
+		processAdapter = graphicProcess.adaptNotNull(IProcessAdapter.class);
 
 		meter = new UPSMeter(2000);
 	}

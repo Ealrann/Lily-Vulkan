@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 
 import org.lwjgl.nuklear.NkUserFont;
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IDescriptedResourceAdapter;
@@ -29,7 +28,7 @@ public class NuklearFontAdapter implements IDescriptedResourceAdapter
 	{
 		this.nuklearFont = nuklearFont;
 		final var sampler = nuklearFont.getFontSampledImage();
-		samplerAdapter = ISampledImageAdapter.adapt(sampler);
+		samplerAdapter = sampler.adaptNotNull(ISampledImageAdapter.class);
 	}
 
 	@Override
@@ -66,10 +65,5 @@ public class NuklearFontAdapter implements IDescriptedResourceAdapter
 	public List<IVkDescriptor> getDescriptors()
 	{
 		return samplerAdapter.getDescriptors();
-	}
-
-	public static NuklearFontAdapter adapt(NuklearFont resource)
-	{
-		return IAdapterFactoryService.INSTANCE.adapt(resource, NuklearFontAdapter.class);
 	}
 }

@@ -21,7 +21,7 @@ public class VkAttachmentDescriptionAllocator
 	{
 		final var attachmentDescriptions = renderPassInfo.getAttachments();
 		final var attachments = VkAttachmentDescription.callocStack(attachmentDescriptions.size(),
-				stack);
+																	stack);
 		for (final AttachmentDescription attachmentDescription : attachmentDescriptions)
 		{
 			fillAttachment(attachments.get(), attachmentDescription);
@@ -48,9 +48,8 @@ public class VkAttachmentDescriptionAllocator
 	{
 		if (attachmentDescription instanceof ExtraAttachmentDescription)
 		{
-			final var depthImage = ((ExtraAttachmentDescription) attachmentDescription)
-					.getAttachment();
-			final var adapter = ISwapAttachmentAdapter.adapt(depthImage);
+			final var depthImage = ((ExtraAttachmentDescription) attachmentDescription).getAttachment();
+			final var adapter = depthImage.adaptNotNull(ISwapAttachmentAdapter.class);
 			return adapter.getImageFormat();
 		}
 		else

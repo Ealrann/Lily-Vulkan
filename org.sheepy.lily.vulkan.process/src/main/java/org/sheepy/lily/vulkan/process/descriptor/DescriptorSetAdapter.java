@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorPoolSize.Buffer;
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IDescriptedResourceAdapter;
@@ -93,7 +92,7 @@ public class DescriptorSetAdapter implements IDescriptorSetAdapter
 			vkDescriptors = new ArrayList<>(descriptors.size());
 			for (final var descriptor : descriptors)
 			{
-				final var adapter = IDescriptedResourceAdapter.adapt(descriptor);
+				final var adapter = descriptor.adaptNotNull(IDescriptedResourceAdapter.class);
 				final var gatherDescriptors = adapter.getDescriptors();
 				vkDescriptors.addAll(gatherDescriptors);
 			}
@@ -105,10 +104,5 @@ public class DescriptorSetAdapter implements IDescriptorSetAdapter
 	public String toString()
 	{
 		return vkDescriptorSet.toString();
-	}
-
-	public static DescriptorSetAdapter adapt(DescriptorSet object)
-	{
-		return IAdapterFactoryService.INSTANCE.adapt(object, DescriptorSetAdapter.class);
 	}
 }

@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.vulkan.model.resource.FileResource;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
@@ -28,10 +27,5 @@ public class FileResourceAdapter extends PathResourceAdapter
 		}
 
 		return null;
-	}
-
-	public static FileResourceAdapter adapt(FileResource fileResource)
-	{
-		return IAdapterFactoryService.INSTANCE.adapt(fileResource, FileResourceAdapter.class);
 	}
 }

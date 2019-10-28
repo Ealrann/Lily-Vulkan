@@ -29,22 +29,18 @@ public final class BindDescriptorSetsAdapter implements IPipelineTaskAdapter<Bin
 		sets = reloadSetAdapters(task);
 	}
 
-	@NotifyChanged
+	@NotifyChanged(featureIds = ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS)
 	public void notifyChanged(Notification notification)
 	{
-		if (notification.getFeature() == ProcessPackage.Literals.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS)
-		{
-			sets = reloadSetAdapters((BindDescriptorSets) notification.getNotifier());
-
-			dirty = true;
-		}
+		sets = reloadSetAdapters((BindDescriptorSets) notification.getNotifier());
+		dirty = true;
 	}
 
 	@Override
 	public void record(BindDescriptorSets task, RecordContext context)
 	{
 		final var pipeline = ModelUtil.findParent(task, IPipeline.class);
-		final var pipelineAdapter = IPipelineAdapter.adapt(pipeline);
+		final var pipelineAdapter = pipeline.<IPipelineAdapter<?>> adaptNotNullGeneric(IPipelineAdapter.class);
 		final var pipelineLayout = pipelineAdapter.getVkPipelineLayout();
 		final int bindPoint = task.getBindPoint().getValue();
 
@@ -58,7 +54,7 @@ public final class BindDescriptorSetsAdapter implements IPipelineTaskAdapter<Bin
 		final List<IVkDescriptorSet> tmpList = new ArrayList<>();
 		for (final var modelSet : task.getDescriptorSets())
 		{
-			tmpList.add(IDescriptorSetAdapter.adapt(modelSet));
+			tmpList.add(modelSet.adaptNotNull(IDescriptorSetAdapter.class));
 		}
 		return List.copyOf(tmpList);
 	}

@@ -3,7 +3,6 @@ package org.sheepy.lily.vulkan.process.pipeline.task;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -33,13 +32,10 @@ public class CompositeTaskAdapter
 		reloadChildren(task);
 	}
 
-	@NotifyChanged
-	public void notifyChanged(Notification notification)
+	@NotifyChanged(featureIds = ProcessPackage.COMPOSITE_TASK__TASKS)
+	public void notifyChanged()
 	{
-		if (notification.getFeature() == ProcessPackage.Literals.COMPOSITE_TASK__TASKS)
-		{
-			dirty = true;
-		}
+		dirty = true;
 	}
 
 	@Override
@@ -80,10 +76,10 @@ public class CompositeTaskAdapter
 		{
 			adaptedChildren.add(new AdaptedTaskWrapper<>(subTask));
 
-			final var allocationAdapter = IAllocableAdapter.adapt(subTask);
+			final var allocationAdapter = subTask.adapt(IAllocableAdapter.class);
 			if (allocationAdapter != null)
 			{
-				allocationChildren.add((IAllocableAdapter<IProcessContext>) allocationAdapter);
+				allocationChildren.add(allocationAdapter);
 			}
 		}
 
@@ -147,7 +143,7 @@ public class CompositeTaskAdapter
 		private AdaptedTaskWrapper(T task)
 		{
 			this.task = task;
-			this.adapter = IPipelineTaskAdapter.adapt(task);
+			adapter = task.<IPipelineTaskAdapter<T>> adaptNotNullGeneric(IPipelineTaskAdapter.class);
 		}
 
 		public void update()

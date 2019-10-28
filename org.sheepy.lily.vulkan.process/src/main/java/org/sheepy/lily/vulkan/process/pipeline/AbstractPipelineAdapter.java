@@ -88,7 +88,7 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 
 		for (final var taskWrapper : taskWrappers)
 		{
-			final var adapter = IAllocableAdapter.adapt(taskWrapper.task);
+			final var adapter = taskWrapper.task.adapt(IAllocableAdapter.class);
 			if (adapter != null)
 			{
 				res.add(adapter);
@@ -116,11 +116,10 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		return res;
 	}
 
-	@NotifyChanged
+	@NotifyChanged(featureIds = ProcessPackage.IPIPELINE__ENABLED)
 	public void notifyChanged(Notification notification)
 	{
-		if (notification.getFeature() == ProcessPackage.Literals.IPIPELINE__ENABLED
-				&& notification.getOldBooleanValue() != notification.getNewBooleanValue())
+		if (notification.getOldBooleanValue() != notification.getNewBooleanValue())
 		{
 			recordNeeded = true;
 		}
@@ -237,7 +236,7 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		{
 			for (final var resource : resourcePkg.getResources())
 			{
-				final var adapter = IResourceAdapter.adapt(resource);
+				final var adapter = resource.adapt(IResourceAdapter.class);
 				if (adapter != null)
 				{
 					collectIn.add(adapter);
@@ -254,7 +253,7 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		{
 			for (final var descriptorSet : descriptorSetPkg.getDescriptorSets())
 			{
-				final var adapter = IDescriptorSetAdapter.adapt(descriptorSet);
+				final var adapter = descriptorSet.adaptNotNull(IDescriptorSetAdapter.class);
 				collectIn.add(adapter);
 			}
 		}
@@ -303,7 +302,7 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		public TaskWrapper(T task)
 		{
 			this.task = task;
-			adapter = IPipelineTaskAdapter.adapt(task);
+			adapter = task.<IPipelineTaskAdapter<T>> adaptNotNullGeneric(IPipelineTaskAdapter.class);
 		}
 
 		public void record(RecordContext context)

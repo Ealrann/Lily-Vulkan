@@ -22,6 +22,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 public final class DrawTaskInstaller
 {
+	private static final String ONLY_ONE_INDEX_PROVIDER_IS_ALLOWED = "Only one IndexProvider is allowed";
 	private final Structure structure;
 
 	public DrawTaskInstaller(Structure structure)
@@ -49,13 +50,13 @@ public final class DrawTaskInstaller
 			{
 				if (indexIndex != -1)
 				{
-					throw new IllegalStateException("Only one IndexProvider is allowed");
+					throw new IllegalStateException(ONLY_ONE_INDEX_PROVIDER_IS_ALLOWED);
 				}
 				indexIndex = i;
 			}
 			else if (provider instanceof VertexProvider)
 			{
-				final var adapter = IVertexProviderAdapter.adapt((VertexProvider<?>) provider);
+				final var adapter = provider.adapt(IVertexProviderAdapter.class);
 				vertexProviders.add(adapter);
 
 				final var vertexRef = ResourceFactory.eINSTANCE.createCompositeBufferReference();
@@ -88,7 +89,7 @@ public final class DrawTaskInstaller
 		if (indexIndex != -1)
 		{
 			final var indexProvider = (IndexProvider<?>) dataProviders.get(indexIndex);
-			final var indexProviderAdapter = IIndexProviderAdapter.adapt(indexProvider);
+			final var indexProviderAdapter = indexProvider.adaptNotNull(IIndexProviderAdapter.class);
 
 			final var indexRef = ResourceFactory.eINSTANCE.createCompositeBufferReference();
 			indexRef.setBuffer(buffer);
@@ -153,7 +154,7 @@ public final class DrawTaskInstaller
 		{
 			if (dirty)
 			{
-				final var structureAdapter = IStructureAdapter.adapt(structure);
+				final var structureAdapter = structure.adaptNotNull(IStructureAdapter.class);
 				final int instanceCount = structureAdapter.getInstanceCount(structure);
 				drawTask.setIndexCount(indexProvider.getIndexCount());
 				drawTask.setInstanceCount(instanceCount);

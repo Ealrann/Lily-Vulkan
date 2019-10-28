@@ -40,7 +40,7 @@ public class NuklearPushConstantsAdapter implements IPipelineTaskAdapter<Nuklear
 	public void record(NuklearPushConstants pushConstant, RecordContext context)
 	{
 		final var pipeline = ModelUtil.findParent(pushConstant, IPipeline.class);
-		final var pipelineAdapter = IPipelineAdapter.adapt(pipeline);
+		final var pipelineAdapter = pipeline.<IPipelineAdapter<?>> adaptNotNullGeneric(IPipelineAdapter.class);
 		final long layoutId = pipelineAdapter.getVkPipelineLayout().getId();
 
 		vkCmdPushConstants(context.commandBuffer, layoutId, STAGE_FLAGS, 0, buffer);

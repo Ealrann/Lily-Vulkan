@@ -28,7 +28,7 @@ public class SampledImageAdapter implements ISampledImageAdapter
 	{
 		this.sampledImage = sampledImage;
 		final var image = sampledImage.getImage();
-		imageAdapter = image != null ? IImageAdapter.adapt(image) : null;
+		imageAdapter = image != null ? image.adaptNotNull(IImageAdapter.class) : null;
 	}
 
 	@Override
@@ -109,8 +109,11 @@ public class SampledImageAdapter implements ISampledImageAdapter
 			final var shaderStages = descriptorObject.getShaderStages();
 			final var descriptorType = descriptorObject.getDescriptorType();
 
-			descriptor = new VkImageDescriptor(viewPtrPtr, samplerPtr, layout, descriptorType,
-					shaderStages);
+			descriptor = new VkImageDescriptor(	viewPtrPtr,
+												samplerPtr,
+												layout,
+												descriptorType,
+												shaderStages);
 
 			descriptors = List.of(descriptor);
 		}

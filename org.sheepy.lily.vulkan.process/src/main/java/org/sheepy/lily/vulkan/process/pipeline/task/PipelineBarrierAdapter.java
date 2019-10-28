@@ -119,7 +119,7 @@ public class PipelineBarrierAdapter
 		int res = VK_QUEUE_FAMILY_IGNORED;
 		if (process != null)
 		{
-			final var queueType = IProcessAdapter.adapt(process).getQueueType();
+			final var queueType = process.adaptNotNull(IProcessAdapter.class).getQueueType();
 			res = logicalDevice.getQueueIndex(queueType);
 		}
 		return res;

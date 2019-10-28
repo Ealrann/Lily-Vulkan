@@ -88,7 +88,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 			for (int i = 0; i < parts.size(); i++)
 			{
 				final var part = parts.get(i);
-				final var adapter = IProcessPartAdapter.adapt(part);
+				final var adapter = part.adapt(IProcessPartAdapter.class);
 				if (adapter != null)
 				{
 					partAdapters.add(adapter);
@@ -196,7 +196,6 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 		return recorder.play();
 	}
 
-	@SuppressWarnings("unchecked")
 	protected void collectAllocationPipelines(List<? super IAllocable<? super T>> collectIn)
 	{
 		final var partPkg = process.getPartPkg();
@@ -204,10 +203,10 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 		{
 			for (final var part : partPkg.getParts())
 			{
-				final var adapter = IAllocableAdapter.adapt(part);
+				final var adapter = part.<IAllocableAdapter<? super T>> adaptGeneric(IAllocableAdapter.class);
 				if (adapter != null)
 				{
-					collectIn.add((IAllocable<? super T>) adapter);
+					collectIn.add(adapter);
 				}
 			}
 		}
@@ -222,7 +221,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 		{
 			for (final IResource resource : resourcePkg.getResources())
 			{
-				final IResourceAdapter resourceAdapter = IResourceAdapter.adapt(resource);
+				final var resourceAdapter = resource.adapt(IResourceAdapter.class);
 				if (resourceAdapter != null)
 				{
 					resources.add(resourceAdapter);
