@@ -7,13 +7,13 @@ import java.util.Map;
 import org.lwjgl.nuklear.NkImage;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Autorun;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
-import org.sheepy.lily.core.api.util.ModelExplorer;
+import org.sheepy.lily.core.api.util.AdapterSetRegistry;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
-import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.presentation.PresentationPackage;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
@@ -26,8 +26,8 @@ import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawTaskMaintainer;
 import org.sheepy.lily.vulkan.nuklear.pipeline.util.NuklearImageInstaller;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
-import org.sheepy.lily.vulkan.nuklear.ui.IUIElementAdapter;
-import org.sheepy.lily.vulkan.nuklear.ui.IUIElementAdapter.UIContext;
+import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter;
+import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 import org.sheepy.vulkan.surface.Extent2D;
 import org.sheepy.vulkan.window.Window;
 
@@ -36,9 +36,10 @@ import org.sheepy.vulkan.window.Window;
 public final class NuklearLayoutTaskAdapter
 		implements IPipelineTaskAdapter<NuklearLayoutTask>, IAllocableAdapter<IGraphicContext>
 {
-	private final ModelExplorer PANEL_EXPLORER = new ModelExplorer(List.of(	ApplicationPackage.Literals.APPLICATION__CURRENT_VIEW,
-																			PresentationPackage.Literals.IUI_VIEW__CURRENT_UI_PAGE,
-																			PresentationPackage.Literals.UI_PAGE__PANELS));
+	private final AdapterSetRegistry<IPanelAdapter> PANEL_REGISTRY = new AdapterSetRegistry<>(	IPanelAdapter.class,
+																								List.of(ApplicationPackage.Literals.APPLICATION__CURRENT_VIEW,
+																										PresentationPackage.Literals.IUI_VIEW__CURRENT_UI_PAGE,
+																										PresentationPackage.Literals.UI_PAGE__PANELS));
 
 	private final DrawTaskMaintainer drawTaskMaintainer;
 	private final NuklearLayoutTask task;
@@ -67,7 +68,14 @@ public final class NuklearLayoutTaskAdapter
 	public void load()
 	{
 		application = ModelUtil.getApplication(task);
+		PANEL_REGISTRY.startRegister(application);
 		setupImageCapability();
+	}
+
+	@Dispose
+	public void dispose()
+	{
+		PANEL_REGISTRY.stopRegister(application);
 	}
 
 	private void setupImageCapability()
@@ -96,8 +104,12 @@ public final class NuklearLayoutTaskAdapter
 	{
 		final List<PathResource> images = new ArrayList<>();
 
-		PANEL_EXPLORER	.streamAdaptNotNull(application, IUIElementAdapter.class)
-						.forEach(adapter -> adapter.collectImages(images));
+		final var panelAdapters = PANEL_REGISTRY.getAdapters();
+		for (int i = 0; i < panelAdapters.size(); i++)
+		{
+			final var panelAdapter = panelAdapters.get(i);
+			panelAdapter.collectImages(images);
+		}
 
 		return List.copyOf(images);
 	}
@@ -120,14 +132,12 @@ public final class NuklearLayoutTaskAdapter
 			currentExtent = extent;
 		}
 
-		PANEL_EXPLORER	.stream(application, IUIElement.class)
-						.forEach(element -> layoutElement(uiContext, element));
-	}
-
-	private void layoutElement(final UIContext uiContext, IUIElement element)
-	{
-		final var adapter = element.adaptNotNull(IUIElementAdapter.class);
-		dirty |= adapter.layout(uiContext, element);
+		final var panelAdapters = PANEL_REGISTRY.getAdapters();
+		for (int i = 0; i < panelAdapters.size(); i++)
+		{
+			final var panelAdapter = panelAdapters.get(i);
+			dirty |= panelAdapter.layout(uiContext);
+		}
 	}
 
 	private Map<PathResource, NkImage> getImageMap()

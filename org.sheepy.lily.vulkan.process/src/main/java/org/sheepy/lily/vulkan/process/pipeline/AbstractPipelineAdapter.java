@@ -2,26 +2,30 @@ package org.sheepy.lily.vulkan.process.pipeline;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.util.AbstractModelSetRegistry;
 import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.TaskPkg;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -31,89 +35,38 @@ import org.sheepy.vulkan.pipeline.VkPipelineLayout;
 public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		implements IAllocableAdapter<T>, IPipelineAdapter<T>
 {
+	private static final ModelExplorer RESOURCE_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+																						VulkanPackage.Literals.RESOURCE_PKG__RESOURCES));
+	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
+																							ResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));
+
+	private final TaskObserver taskRegister = new TaskObserver(List.of(	ProcessPackage.Literals.IPIPELINE__TASK_PKG,
+																		ProcessPackage.Literals.TASK_PKG__TASKS));
 
 	protected final IPipeline pipeline;
 
-	private final TaskPkg taskPkg;
-
-	private List<TaskWrapper<?>> taskWrappers;
+	private final List<TaskWrapper<?>> taskWrappers = new ArrayList<>();
 	private VkPipelineLayout<? super T> vkPipelineLayout;
-
-	protected boolean recordNeeded = false;
-
-	private final Adapter taskListener = new AdapterImpl()
-	{
-		@Override
-		public void notifyChanged(Notification notification)
-		{
-			if (notification.getFeature() == ProcessPackage.Literals.TASK_PKG__TASKS)
-			{
-				reloadTasks();
-				reloadAllocables();
-			}
-		}
-	};
+	private boolean recordNeeded = false;
 
 	private IAllocationConfiguration allocationConfig;
 
 	public AbstractPipelineAdapter(IPipeline pipeline)
 	{
 		this.pipeline = pipeline;
-		taskPkg = pipeline.getTaskPkg();
-		if (taskPkg != null)
-		{
-			taskPkg.eAdapters().add(taskListener);
-		}
-
-		reloadTasks();
 	}
 
-	private void reloadTasks()
+	@Override
+	public void configureAllocation(IAllocationConfiguration config, T context)
 	{
-		taskWrappers = List.copyOf(collectTasks());
+		this.allocationConfig = config;
+		taskRegister.startRegister(pipeline);
 	}
 
 	@Dispose
 	public void dispose()
 	{
-		if (taskPkg != null)
-		{
-			taskPkg.eAdapters().remove(taskListener);
-		}
-	}
-
-	private List<IAllocable<?>> collectAllocables()
-	{
-		final List<IAllocable<?>> res = new ArrayList<>();
-
-		for (final var taskWrapper : taskWrappers)
-		{
-			final var adapter = taskWrapper.task.adapt(IAllocableAdapter.class);
-			if (adapter != null)
-			{
-				res.add(adapter);
-			}
-		}
-
-		return res;
-	}
-
-	private List<TaskWrapper<?>> collectTasks()
-	{
-		final List<TaskWrapper<?>> res = new ArrayList<>();
-
-		if (taskPkg != null)
-		{
-			final var tasks = taskPkg.getTasks();
-			for (int i = 0; i < tasks.size(); i++)
-			{
-				final var task = tasks.get(i);
-
-				res.add(new TaskWrapper<>(task));
-			}
-		}
-
-		return res;
+		taskRegister.stopRegister(pipeline);
 	}
 
 	@NotifyChanged(featureIds = ProcessPackage.IPIPELINE__ENABLED)
@@ -123,20 +76,6 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		{
 			recordNeeded = true;
 		}
-	}
-
-	@Override
-	public void configureAllocation(IAllocationConfiguration config, T context)
-	{
-		this.allocationConfig = config;
-		reloadAllocables();
-	}
-
-	private void reloadAllocables()
-	{
-		allocationConfig.clearChildren();
-		allocationConfig.addChildren(collectAllocables());
-		allocationConfig.setDirty();
 	}
 
 	@Override
@@ -231,32 +170,15 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	@Override
 	public void collectResources(List<IAllocable<? super IExecutionContext>> collectIn)
 	{
-		final var resourcePkg = pipeline.getResourcePkg();
-		if (resourcePkg != null)
-		{
-			for (final var resource : resourcePkg.getResources())
-			{
-				final var adapter = resource.adapt(IResourceAdapter.class);
-				if (adapter != null)
-				{
-					collectIn.add(adapter);
-				}
-			}
-		}
+		RESOURCE_EXPLORER	.streamAdapt(pipeline, IResourceAdapter.class)
+							.collect(Collectors.toCollection(() -> collectIn));
 	}
 
 	@Override
 	public void collectDescriptorSets(List<IVkDescriptorSet> collectIn)
 	{
-		final var descriptorSetPkg = pipeline.getDescriptorSetPkg();
-		if (descriptorSetPkg != null)
-		{
-			for (final var descriptorSet : descriptorSetPkg.getDescriptorSets())
-			{
-				final var adapter = descriptorSet.adaptNotNull(IDescriptorSetAdapter.class);
-				collectIn.add(adapter);
-			}
-		}
+		DERSCRIPTOR_SET_EXPLORER.streamAdaptNotNull(pipeline, IDescriptorSetAdapter.class)
+								.collect(Collectors.toCollection(() -> collectIn));
 	}
 
 	@Override
@@ -294,6 +216,43 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		return res;
 	}
 
+	private final class TaskObserver extends AbstractModelSetRegistry
+	{
+		public TaskObserver(List<EStructuralFeature> features)
+		{
+			super(features);
+		}
+
+		@Override
+		protected void add(LilyEObject newValue)
+		{
+			final var task = (IPipelineTask) newValue;
+			taskWrappers.add(new TaskWrapper<>(task));
+
+			final var adapter = task.<IAllocableAdapter<?>> adaptGeneric(IAllocableAdapter.class);
+			if (adapter != null)
+			{
+				allocationConfig.addChildren(List.of(adapter));
+				allocationConfig.setDirty();
+			}
+		}
+
+		@SuppressWarnings("unlikely-arg-type")
+		@Override
+		protected void remove(LilyEObject oldValue)
+		{
+			final var task = (IPipelineTask) oldValue;
+			taskWrappers.remove(task);
+
+			final var adapter = task.<IAllocableAdapter<?>> adaptGeneric(IAllocableAdapter.class);
+			if (adapter != null)
+			{
+				allocationConfig.removeChildren(List.of(adapter));
+				allocationConfig.setDirty();
+			}
+		}
+	}
+
 	private static final class TaskWrapper<T extends IPipelineTask>
 	{
 		private final T task;
@@ -328,6 +287,12 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		public void update()
 		{
 			adapter.update(task);
+		}
+
+		@Override
+		public boolean equals(Object o)
+		{
+			return task == o || super.equals(o);
 		}
 	}
 }

@@ -2,9 +2,8 @@ package org.sheepy.lily.vulkan.extra.rendering.buffer;
 
 import java.nio.ByteBuffer;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.lwjgl.system.MemoryUtil;
+import org.sheepy.lily.core.api.adapter.INotificationListener;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Autorun;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
@@ -20,20 +19,9 @@ public class RenderProxyConstantBufferAdapter implements IVulkanAdapter
 {
 	private final RenderProxyConstantBuffer proxyConstantBuffer;
 	private final ConstantBuffer nestedConstantBuffer;
+	private final INotificationListener nestedBufferListener = notification -> updateBuffer();
 
 	private ByteBuffer buffer = null;
-
-	private final AdapterImpl nestedBufferListener = new AdapterImpl()
-	{
-		@Override
-		public void notifyChanged(Notification notification)
-		{
-			if (notification.getFeature() == ResourcePackage.Literals.CONSTANT_BUFFER__DATA)
-			{
-				updateBuffer();
-			}
-		}
-	};
 
 	@Autorun
 	public RenderProxyConstantBufferAdapter(RenderProxyConstantBuffer constantBuffer)
@@ -43,7 +31,8 @@ public class RenderProxyConstantBufferAdapter implements IVulkanAdapter
 		nestedConstantBuffer = constantBuffer.getConstantBuffer();
 		if (nestedConstantBuffer != null)
 		{
-			nestedConstantBuffer.eAdapters().add(nestedBufferListener);
+			nestedConstantBuffer.addListener(	nestedBufferListener,
+												ResourcePackage.CONSTANT_BUFFER__DATA);
 		}
 
 		updateBuffer();
@@ -51,6 +40,17 @@ public class RenderProxyConstantBufferAdapter implements IVulkanAdapter
 
 	@Dispose
 	public void dispose()
+	{
+		if (nestedConstantBuffer != null)
+		{
+			nestedConstantBuffer.removeListener(nestedBufferListener,
+												ResourcePackage.CONSTANT_BUFFER__DATA);
+		}
+
+		disposeBuffer();
+	}
+
+	private void disposeBuffer()
 	{
 		if (buffer != null)
 		{
@@ -69,7 +69,7 @@ public class RenderProxyConstantBufferAdapter implements IVulkanAdapter
 
 		if (buffer == null || buffer.capacity() != newSize)
 		{
-			dispose();
+			disposeBuffer();
 			buffer = MemoryUtil.memAlloc(newSize);
 		}
 

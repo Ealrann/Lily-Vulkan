@@ -11,7 +11,6 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
@@ -20,7 +19,7 @@ import org.sheepy.vulkan.window.Window;
 
 @Statefull
 @Adapter(scope = Panel.class)
-public class PanelAdapter implements IUIElementAdapter
+public class PanelAdapter implements IPanelAdapter
 {
 	private final IWindowListener listener = new IWindowListener()
 	{
@@ -87,7 +86,7 @@ public class PanelAdapter implements IUIElementAdapter
 	}
 
 	@Override
-	public boolean layout(UIContext context, IUIElement control)
+	public boolean layout(UIContext context)
 	{
 		boolean res = false;
 		final var nkContext = context.nkContext;

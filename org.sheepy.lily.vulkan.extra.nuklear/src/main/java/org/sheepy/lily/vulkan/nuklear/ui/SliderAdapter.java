@@ -13,6 +13,7 @@ import org.sheepy.lily.core.api.variable.IVariableResolverAdapter.IVariableListe
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.Slider;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
+import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
 @Statefull
 @Adapter(scope = Slider.class)

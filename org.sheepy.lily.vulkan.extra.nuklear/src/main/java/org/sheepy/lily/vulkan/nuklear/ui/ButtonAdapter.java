@@ -14,6 +14,7 @@ import org.sheepy.lily.core.model.action.Action;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.Button;
+import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
 @Statefull
 @Adapter(scope = Button.class)

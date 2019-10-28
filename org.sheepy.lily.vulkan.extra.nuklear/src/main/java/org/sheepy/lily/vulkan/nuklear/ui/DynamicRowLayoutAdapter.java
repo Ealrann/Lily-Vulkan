@@ -5,6 +5,7 @@ import static org.lwjgl.nuklear.Nuklear.nk_layout_row_dynamic;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.DynamicRowLayout;
+import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
 @Adapter(scope = DynamicRowLayout.class)
 public class DynamicRowLayoutAdapter implements IUIElementAdapter

@@ -10,6 +10,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.Label;
+import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
 @Statefull
 @Adapter(scope = Label.class)
@@ -31,7 +32,7 @@ public class LabelAdapter implements IUIElementAdapter
 	@Override
 	public boolean layout(UIContext context, IUIElement control)
 	{
-		Label label = (Label) control;
+		final Label label = (Label) control;
 
 		int align = 0;
 		switch (label.getHorizontalRelative())
