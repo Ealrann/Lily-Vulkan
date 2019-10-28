@@ -3,16 +3,18 @@ package org.sheepy.lily.vulkan.nuklear.pipeline;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 import org.lwjgl.nuklear.NkImage;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Autorun;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
+import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.Application;
+import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.presentation.IUIElement;
+import org.sheepy.lily.core.model.presentation.PresentationPackage;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
@@ -26,7 +28,6 @@ import org.sheepy.lily.vulkan.nuklear.pipeline.util.NuklearImageInstaller;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.IUIElementAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.IUIElementAdapter.UIContext;
-import org.sheepy.lily.vulkan.nuklear.util.NkUtil;
 import org.sheepy.vulkan.surface.Extent2D;
 import org.sheepy.vulkan.window.Window;
 
@@ -35,6 +36,10 @@ import org.sheepy.vulkan.window.Window;
 public final class NuklearLayoutTaskAdapter
 		implements IPipelineTaskAdapter<NuklearLayoutTask>, IAllocableAdapter<IGraphicContext>
 {
+	private final ModelExplorer PANEL_EXPLORER = new ModelExplorer(List.of(	ApplicationPackage.Literals.APPLICATION__CURRENT_VIEW,
+																			PresentationPackage.Literals.IUI_VIEW__CURRENT_UI_PAGE,
+																			PresentationPackage.Literals.UI_PAGE__PANELS));
+
 	private final DrawTaskMaintainer drawTaskMaintainer;
 	private final NuklearLayoutTask task;
 
@@ -90,7 +95,10 @@ public final class NuklearLayoutTaskAdapter
 	private List<PathResource> collectImages()
 	{
 		final List<PathResource> images = new ArrayList<>();
-		executeOnUIElements((element, adapter) -> adapter.collectImages(images));
+
+		PANEL_EXPLORER	.streamAdaptNotNull(application, IUIElementAdapter.class)
+						.forEach(adapter -> adapter.collectImages(images));
+
 		return List.copyOf(images);
 	}
 
@@ -112,13 +120,13 @@ public final class NuklearLayoutTaskAdapter
 			currentExtent = extent;
 		}
 
-		executeOnUIElements((element, adapter) -> layoutElement(uiContext, element, adapter));
+		PANEL_EXPLORER	.stream(application, IUIElement.class)
+						.forEach(element -> layoutElement(uiContext, element));
 	}
 
-	private void layoutElement(	final UIContext uiContext,
-								IUIElement element,
-								IUIElementAdapter adapter)
+	private void layoutElement(final UIContext uiContext, IUIElement element)
 	{
+		final var adapter = element.adaptNotNull(IUIElementAdapter.class);
 		dirty |= adapter.layout(uiContext, element);
 	}
 
@@ -185,21 +193,5 @@ public final class NuklearLayoutTaskAdapter
 	public boolean needRecord(NuklearLayoutTask task, int index)
 	{
 		return dirty;
-	}
-
-	private void executeOnUIElements(BiConsumer<IUIElement, IUIElementAdapter> consumer)
-	{
-		final var uiPage = NkUtil.resolveUIPage(application);
-
-		if (uiPage != null)
-		{
-			final var panels = uiPage.getPanels();
-			for (int i = 0; i < panels.size(); i++)
-			{
-				final var panel = panels.get(i);
-				final var panelAdapter = panel.adaptNotNull(IUIElementAdapter.class);
-				consumer.accept(panel, panelAdapter);
-			}
-		}
 	}
 }

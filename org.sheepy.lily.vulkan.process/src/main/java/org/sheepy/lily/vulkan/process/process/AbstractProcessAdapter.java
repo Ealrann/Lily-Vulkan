@@ -9,15 +9,16 @@ import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.core.api.cadence.IStatistics;
 import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.api.process.IProcessPartAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
-import org.sheepy.lily.vulkan.model.IResource;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.concurrent.IFenceView;
 import org.sheepy.vulkan.descriptor.DescriptorPool;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
@@ -29,11 +30,16 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorderContext<T>>
 		implements IProcessAdapter, IAllocable<IVulkanContext>
 {
+	private final ModelExplorer RESOURCE_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+																				VulkanPackage.Literals.RESOURCE_PKG__RESOURCES));
+	private final ModelExplorer PARTS_EXPLORER = new ModelExplorer(List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PART_PKG,
+																			ProcessPackage.Literals.PROCESS_PART_PKG__PARTS));
+
 	protected final AbstractProcess process;
 	protected final DescriptorPool descriptorPool;
 	protected final T context;
 	protected final List<IAllocable<? super T>> allocationList;
-	protected final List<IProcessPartAdapter> partAdapters = new ArrayList<>();
+	protected final List<IProcessPartAdapter> partAdapters;
 
 	private final TreeAllocator<IVulkanContext> allocator;
 
@@ -42,11 +48,10 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	public AbstractProcessAdapter(AbstractProcess process)
 	{
 		this.process = process;
-		gatherProcessPartAdapters(process);
+		partAdapters = PARTS_EXPLORER.exploreAdapt(process, IProcessPartAdapter.class);
 		descriptorPool = new DescriptorPool(gatherDescriptorLists());
 		context = createContext();
 		allocator = new TreeAllocator<IVulkanContext>(this);
-
 		allocationList = gatherAllocationList();
 	}
 
@@ -77,24 +82,6 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 
 		assert res.contains(null) == false;
 		return res;
-	}
-
-	private void gatherProcessPartAdapters(AbstractProcess process)
-	{
-		final ProcessPartPkg partPkg = process.getPartPkg();
-		if (partPkg != null)
-		{
-			final var parts = partPkg.getParts();
-			for (int i = 0; i < parts.size(); i++)
-			{
-				final var part = parts.get(i);
-				final var adapter = part.adapt(IProcessPartAdapter.class);
-				if (adapter != null)
-				{
-					partAdapters.add(adapter);
-				}
-			}
-		}
 	}
 
 	@Override
@@ -212,22 +199,11 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 		}
 	}
 
-	protected List<IAllocable<? super IExecutionContext>> gatherResources()
+	private List<IAllocable<? super IExecutionContext>> gatherResources()
 	{
 		final List<IAllocable<? super IExecutionContext>> resources = new ArrayList<>();
 
-		final var resourcePkg = process.getResourcePkg();
-		if (resourcePkg != null)
-		{
-			for (final IResource resource : resourcePkg.getResources())
-			{
-				final var resourceAdapter = resource.adapt(IResourceAdapter.class);
-				if (resourceAdapter != null)
-				{
-					resources.add(resourceAdapter);
-				}
-			}
-		}
+		resources.addAll(RESOURCE_EXPLORER.exploreAdapt(process, IResourceAdapter.class));
 
 		for (int i = 0; i < partAdapters.size(); i++)
 		{
