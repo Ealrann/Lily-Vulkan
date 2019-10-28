@@ -85,7 +85,6 @@ public class Window
 		mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
 		id = glfwCreateWindow(size.x, size.y, title, monitor, 0);
-		createSurface();
 		hideCursor(cursorHide);
 		callback = new GLFWWindowSizeCallback()
 		{
