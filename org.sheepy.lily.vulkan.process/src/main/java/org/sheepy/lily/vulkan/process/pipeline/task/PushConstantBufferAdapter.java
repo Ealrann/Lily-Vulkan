@@ -2,8 +2,7 @@ package org.sheepy.lily.vulkan.process.pipeline.task;
 
 import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.sheepy.lily.core.api.adapter.INotificationListener;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -22,18 +21,7 @@ import org.sheepy.vulkan.util.VkModelUtil;
 @Adapter(scope = PushConstantBuffer.class)
 public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConstantBuffer>
 {
-	private final org.eclipse.emf.common.notify.Adapter bufferListener = new AdapterImpl()
-	{
-		@Override
-		public void notifyChanged(Notification notification)
-		{
-			if (notification.getFeature() == ResourcePackage.Literals.CONSTANT_BUFFER__DATA)
-			{
-				dirty = true;
-			}
-		}
-	};
-
+	private final INotificationListener bufferListener = n -> dirty = true;
 	private final ConstantBuffer buffer;
 	private final IConstantBufferUpdater updater;
 
@@ -43,13 +31,13 @@ public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConst
 	{
 		buffer = task.getBuffer();
 		updater = buffer.adapt(IConstantBufferUpdater.class);
-		buffer.eAdapters().add(bufferListener);
+		buffer.addListener(bufferListener, ResourcePackage.CONSTANT_BUFFER__DATA);
 	}
 
 	@Dispose
 	public void dispose()
 	{
-		buffer.eAdapters().add(bufferListener);
+		buffer.removeListener(bufferListener, ResourcePackage.CONSTANT_BUFFER__DATA);
 	}
 
 	@Override

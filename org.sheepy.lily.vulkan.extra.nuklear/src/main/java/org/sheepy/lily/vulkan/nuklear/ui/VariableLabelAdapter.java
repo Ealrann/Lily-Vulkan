@@ -5,11 +5,11 @@ import static org.lwjgl.nuklear.Nuklear.*;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryUtil;
+import org.sheepy.lily.core.api.adapter.INotificationListener;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
-import org.sheepy.lily.core.api.variable.IVariableResolverAdapter.IVariableListener;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.VariableLabel;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
@@ -19,15 +19,7 @@ import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 @Adapter(scope = VariableLabel.class)
 public class VariableLabelAdapter implements IUIElementAdapter
 {
-	private final IVariableListener listener = new IVariableListener()
-	{
-		@Override
-		public void onVariableChange(Object oldValue, Object newValue)
-		{
-			updateText(String.valueOf(newValue));
-		}
-	};
-
+	private final INotificationListener listener = n -> updateText(String.valueOf(n.getNewValue()));
 	private final VariableLabel label;
 	private final IVariableResolverAdapter<IVariableResolver> adapter;
 

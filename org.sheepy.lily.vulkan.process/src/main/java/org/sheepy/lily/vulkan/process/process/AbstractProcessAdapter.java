@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.process;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -91,13 +92,8 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 
 		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 		{
-			System.out.println(process.eClass().getName()
-					+ " "
-					+ process.getName()
-					+ " Allocation tree:");
-			System.out.println(allocator.toString());
+			printAllocationTree();
 		}
-
 	}
 
 	@Override
@@ -202,15 +198,13 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	private List<IAllocable<? super IExecutionContext>> gatherResources()
 	{
 		final List<IAllocable<? super IExecutionContext>> resources = new ArrayList<>();
-
-		resources.addAll(RESOURCE_EXPLORER.exploreAdapt(process, IResourceAdapter.class));
-
+		RESOURCE_EXPLORER	.streamAdapt(process, IResourceAdapter.class)
+							.collect(Collectors.toCollection(() -> resources));
 		for (int i = 0; i < partAdapters.size(); i++)
 		{
 			final var pipelineAdapter = partAdapters.get(i);
 			pipelineAdapter.collectResources(resources);
 		}
-
 		return resources;
 	}
 
@@ -323,6 +317,15 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	protected boolean isResetAllowed()
 	{
 		return process.isResetAllowed();
+	}
+
+	private void printAllocationTree()
+	{
+		System.out.println(process.eClass().getName()
+				+ " "
+				+ process.getName()
+				+ " Allocation tree:");
+		System.out.println(allocator.toString());
 	}
 
 	protected abstract Integer prepareNextExecution();

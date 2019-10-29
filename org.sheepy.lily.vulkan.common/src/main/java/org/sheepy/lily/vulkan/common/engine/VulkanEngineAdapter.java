@@ -7,14 +7,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.core.api.adapter.INotificationListener;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
@@ -24,7 +25,6 @@ import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
 import org.sheepy.lily.vulkan.common.engine.utils.VulkanEngineAllocationRoot;
 import org.sheepy.lily.vulkan.common.input.VulkanInputManager;
 import org.sheepy.lily.vulkan.model.IProcess;
-import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.vulkan.concurrent.VkFence;
@@ -44,8 +44,10 @@ import org.sheepy.vulkan.window.Window;
 
 @Statefull
 @Adapter(scope = VulkanEngine.class)
-public class VulkanEngineAdapter implements IVulkanEngineAdapter
+public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 {
+	private static final ModelExplorer RESOURCE_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+																						VulkanPackage.Literals.RESOURCE_PKG__RESOURCES));
 	private static final String USING_GRAPHIC_DEVICE = "\nUsing Graphic Device: %s (%s)";
 
 	private final IWindowListener windowListener = new IWindowListener()
@@ -53,7 +55,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		@Override
 		public void onResize(Vector2i size)
 		{
-			resize(size);
+			windowResize(size);
 		}
 
 		@Override
@@ -68,55 +70,19 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private final VulkanEngine engine;
 	private final Application application;
 	private final EngineExtensionRequirement extensionRequirement;
+	private final INotificationListener sizeListener = this::appResize;
 
-	protected VulkanInstance vkInstance;
-	protected PhysicalDevice physicalDevice;
-	protected LogicalDevice logicalDevice = null;
-	protected VulkanContext vulkanContext = null;
-	protected TreeAllocator<IVulkanContext> allocator;
+	private VulkanInstance vkInstance;
+	private PhysicalDevice physicalDevice;
+	private LogicalDevice logicalDevice = null;
+	private VulkanContext vulkanContext = null;
+	private TreeAllocator<IVulkanContext> allocator;
 	private VulkanEngineAllocationRoot allocationRoot;
 	private boolean allocated = false;
 	private ExecutionContext executionContext = null;
 
-	protected Window window;
+	private Window window;
 	private boolean listeningResize = true;
-
-	private final AdapterImpl applicationAdapter = new AdapterImpl()
-	{
-		@Override
-		public void notifyChanged(Notification notification)
-		{
-			if (listeningResize)
-			{
-				if (notification.getFeature() == ApplicationPackage.Literals.APPLICATION__SIZE)
-				{
-					final Vector2ic newSize = (Vector2ic) notification.getNewValue();
-					window.setSize(newSize.x(), newSize.y());
-				}
-				else if (notification.getFeature() == ApplicationPackage.Literals.APPLICATION__FULLSCREEN)
-				{
-					window.requestFullscreen(notification.getNewBooleanValue());
-				}
-			}
-		}
-	};
-
-	@NotifyChanged(featureIds = VulkanPackage.VULKAN_ENGINE__ENABLED)
-	public void notifyChanged(Notification notification)
-	{
-		if (engine != null
-				&& notification.getNewBooleanValue() != notification.getOldBooleanValue())
-		{
-			if (engine.isEnabled())
-			{
-				load();
-			}
-			else
-			{
-				dispose();
-			}
-		}
-	}
 
 	public VulkanEngineAdapter(VulkanEngine engine)
 	{
@@ -145,11 +111,29 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		}
 	}
 
+	@NotifyChanged(featureIds = VulkanPackage.VULKAN_ENGINE__ENABLED)
+	public void notifyChanged(Notification notification)
+	{
+		if (engine != null
+				&& notification.getNewBooleanValue() != notification.getOldBooleanValue())
+		{
+			if (engine.isEnabled())
+			{
+				load();
+			}
+			else
+			{
+				dispose();
+			}
+		}
+	}
+
 	@Override
 	public void start()
 	{
-		application.eAdapters().add(applicationAdapter);
-
+		application.addListener(sizeListener,
+								ApplicationPackage.APPLICATION__SIZE,
+								ApplicationPackage.APPLICATION__FULLSCREEN);
 		if (engine.isEnabled())
 		{
 			load();
@@ -167,28 +151,30 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 			}
 		}
 
-		application.eAdapters().remove(applicationAdapter);
+		application.removeListener(	sizeListener,
+									ApplicationPackage.APPLICATION__SIZE,
+									ApplicationPackage.APPLICATION__FULLSCREEN);
 	}
 
 	private void load()
 	{
+		try (MemoryStack stack = stackPush())
+		{
+			createInstance(stack);
+			if (window != null) window.open(vkInstance.getVkInstance());
+
+			final var dummySurface = window != null ? window.createSurface() : null;
+			pickPhysicalDevice(stack, dummySurface);
+			createLogicalDevice(stack, dummySurface);
+			if (dummySurface != null) dummySurface.free();
+
+			vulkanContext = new VulkanContext(logicalDevice, window);
+			if (inputManager != null) inputManager.load();
+			if (window != null) window.addListener(windowListener);
+		}
+
 		try
 		{
-			try (MemoryStack stack = stackPush())
-			{
-				createInstance(stack);
-				if (window != null) window.open(vkInstance.getVkInstance());
-
-				final var dummySurface = window != null ? window.createSurface() : null;
-				pickPhysicalDevice(stack, dummySurface);
-				createLogicalDevice(stack, dummySurface);
-				if (dummySurface != null) dummySurface.free();
-
-				vulkanContext = new VulkanContext(logicalDevice, window);
-				if (inputManager != null) inputManager.load();
-				if (window != null) window.addListener(windowListener);
-			}
-
 			allocate();
 
 		} catch (final Throwable e)
@@ -197,7 +183,23 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		}
 	}
 
-	private void resize(Vector2i size)
+	private void appResize(Notification notification)
+	{
+		if (listeningResize)
+		{
+			if (notification.getFeature() == ApplicationPackage.Literals.APPLICATION__SIZE)
+			{
+				final Vector2ic newSize = (Vector2ic) notification.getNewValue();
+				window.setSize(newSize.x(), newSize.y());
+			}
+			else if (notification.getFeature() == ApplicationPackage.Literals.APPLICATION__FULLSCREEN)
+			{
+				window.requestFullscreen(notification.getNewBooleanValue());
+			}
+		}
+	}
+
+	private void windowResize(Vector2i size)
 	{
 		listeningResize = false;
 
@@ -232,7 +234,8 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void allocate()
 	{
-		allocationRoot = new VulkanEngineAllocationRoot(executionContext, gatherResourceAdapters());
+		final var adapters = RESOURCE_EXPLORER.exploreAdapt(engine, IResourceAdapter.class);
+		allocationRoot = new VulkanEngineAllocationRoot(executionContext, adapters);
 		allocator = new TreeAllocator<IVulkanContext>(allocationRoot);
 
 		allocator.allocate(vulkanContext);
@@ -255,25 +258,6 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 			final var adapter = process.adaptNotNull(IProcessAdapter.class);
 			adapter.start(vulkanContext);
 		}
-	}
-
-	private List<IResourceAdapter> gatherResourceAdapters()
-	{
-		final List<IResourceAdapter> allocationList = new ArrayList<>();
-		final var resourcePkg = engine.getResourcePkg();
-		if (resourcePkg != null)
-		{
-			final var resources = resourcePkg.getResources();
-			for (final IResource resource : resources)
-			{
-				final var resourceAdapter = resource.adapt(IResourceAdapter.class);
-				if (resourceAdapter != null)
-				{
-					allocationList.add(resourceAdapter);
-				}
-			}
-		}
-		return allocationList;
 	}
 
 	private void free()
