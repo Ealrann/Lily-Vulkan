@@ -264,6 +264,16 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 																			stage,
 																			access);
 
+//			System.out.println(String.format(	"[%s] push %d bytes",
+//												dataProvider.eClass().getName(),
+//												memTicket.getSize()));
+//			System.out.println(String.format(	"from buffer %d, offset %d",
+//												bufferAddress,
+//												alignedOffset));
+//			System.out.println(String.format(	"to buffer %d, offset %d",
+//												memTicket.getBufferPtr(),
+//												memTicket.getBufferOffset()));
+
 			stagingBuffer.addStagingCommand(pushCommand);
 
 			needUpdate = false;
