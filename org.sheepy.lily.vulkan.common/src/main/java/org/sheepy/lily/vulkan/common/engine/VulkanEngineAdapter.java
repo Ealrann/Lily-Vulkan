@@ -39,7 +39,8 @@ import org.sheepy.vulkan.extension.EngineExtensionRequirement;
 import org.sheepy.vulkan.instance.VulkanInstance;
 import org.sheepy.vulkan.queue.EQueueType;
 import org.sheepy.vulkan.surface.VkSurface;
-import org.sheepy.vulkan.window.IWindowListener;
+import org.sheepy.vulkan.window.IWindowListener.IOpenListener;
+import org.sheepy.vulkan.window.IWindowListener.ISizeListener;
 import org.sheepy.vulkan.window.Window;
 
 @Statefull
@@ -50,27 +51,15 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 																						VulkanPackage.Literals.RESOURCE_PKG__RESOURCES));
 	private static final String USING_GRAPHIC_DEVICE = "\nUsing Graphic Device: %s (%s)";
 
-	private final IWindowListener windowListener = new IWindowListener()
-	{
-		@Override
-		public void onResize(Vector2i size)
-		{
-			windowResize(size);
-		}
-
-		@Override
-		public void onOpen(long id)
-		{
-			inputManager.load();
-		}
-	};
-
 	private final List<VkFence> fences = new ArrayList<>();
 	private final VulkanInputManager inputManager;
 	private final VulkanEngine engine;
 	private final Application application;
 	private final EngineExtensionRequirement extensionRequirement;
 	private final INotificationListener sizeListener = this::appResize;
+
+	private final ISizeListener resizeListener = this::windowResize;
+	private final IOpenListener openListener = id -> loadInputManager();
 
 	private VulkanInstance vkInstance;
 	private PhysicalDevice physicalDevice;
@@ -169,8 +158,12 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 			if (dummySurface != null) dummySurface.free();
 
 			vulkanContext = new VulkanContext(logicalDevice, window);
-			if (inputManager != null) inputManager.load();
-			if (window != null) window.addListener(windowListener);
+			if (application.isHeadless() == false)
+			{
+				loadInputManager();
+				window.addListener(resizeListener);
+				window.addListener(openListener);
+			}
 		}
 
 		try
@@ -228,7 +221,11 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 			logicalDevice.waitIdle();
 		}
 
-		if (window != null) window.removeListener(windowListener);
+		if (window != null)
+		{
+			window.removeListener(resizeListener);
+			window.removeListener(openListener);
+		}
 		cleanup();
 	}
 
@@ -344,6 +341,11 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 		vkInstance.free();
 		vkInstance = null;
+	}
+
+	private void loadInputManager()
+	{
+		inputManager.load();
 	}
 
 	@Override

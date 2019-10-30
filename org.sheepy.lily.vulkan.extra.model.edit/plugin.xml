@@ -39,6 +39,19 @@
                org.eclipse.emf.edit.provider.IItemPropertySource"/>
    </extension>
 
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <!-- @generated Extra -->
+      <extender
+            uri="org.sheepy.lily.vulkan.model.process"
+            class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$ProcessChildCreationExtender"/>
+      <extender
+            uri="org.sheepy.lily.vulkan.model"
+            class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$VulkanChildCreationExtender"/>
+      <extender
+            uri="org.sheepy.lily.core.model.presentation"
+            class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$PresentationChildCreationExtender"/>
+   </extension>
+
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated Extra -->
       <factory

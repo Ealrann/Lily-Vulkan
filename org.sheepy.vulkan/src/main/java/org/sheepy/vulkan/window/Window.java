@@ -14,12 +14,19 @@ import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.vulkan.VkInstance;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.surface.VkSurface;
+import org.sheepy.vulkan.window.IWindowListener.ICloseListener;
+import org.sheepy.vulkan.window.IWindowListener.IOpenListener;
+import org.sheepy.vulkan.window.IWindowListener.ISizeListener;
+import org.sheepy.vulkan.window.IWindowListener.ISurfaceDeprecatedListener;
 
 public class Window
 {
 	private static final String FAILED_TO_CREATE_SURFACE = "Failed to create surface";
 
-	private final List<IWindowListener> listeners = new ArrayList<>();
+	private final List<ISizeListener> sizeListeners = new ArrayList<>();
+	private final List<ICloseListener> closeListeners = new ArrayList<>();
+	private final List<IOpenListener> openListeners = new ArrayList<>();
+	private final List<ISurfaceDeprecatedListener> surfaceListeners = new ArrayList<>();
 
 	private long id;
 
@@ -168,45 +175,17 @@ public class Window
 		}
 	}
 
-	public void addListener(IWindowListener listener)
+	public void hideCursor(boolean hide)
 	{
-		listeners.add(listener);
-	}
-
-	public void removeListener(IWindowListener listener)
-	{
-		listeners.remove(listener);
-	}
-
-	private void fireResizeEvent()
-	{
-		for (final IWindowListener listener : listeners)
+		if (hide)
 		{
-			listener.onResize(size);
+			cursorHide = true;
+			glfwSetInputMode(id, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 		}
-	}
-
-	private void fireCloseWindow()
-	{
-		for (final IWindowListener listener : listeners)
+		else
 		{
-			listener.onClose(id);
-		}
-	}
-
-	private void fireOpenWindow()
-	{
-		for (final IWindowListener listener : listeners)
-		{
-			listener.onOpen(id);
-		}
-	}
-
-	private void fireSurfaceDeprecation()
-	{
-		for (final IWindowListener listener : listeners)
-		{
-			listener.onSurfaceDeprecation();
+			cursorHide = false;
+			glfwSetInputMode(id, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 		}
 	}
 
@@ -220,17 +199,52 @@ public class Window
 		return opened;
 	}
 
-	public void hideCursor(boolean hide)
+	public void addListener(IWindowListener l)
 	{
-		if (hide)
+		if (l instanceof ISizeListener) sizeListeners.add((ISizeListener) l);
+		else if (l instanceof ICloseListener) closeListeners.add((ICloseListener) l);
+		else if (l instanceof IOpenListener) openListeners.add((IOpenListener) l);
+		else if (l instanceof ISurfaceDeprecatedListener)
+			surfaceListeners.add((ISurfaceDeprecatedListener) l);
+	}
+
+	public void removeListener(IWindowListener l)
+	{
+		if (l instanceof ISizeListener) sizeListeners.remove(l);
+		else if (l instanceof ICloseListener) closeListeners.remove(l);
+		else if (l instanceof IOpenListener) openListeners.remove(l);
+		else if (l instanceof ISurfaceDeprecatedListener) surfaceListeners.remove(l);
+	}
+
+	private void fireResizeEvent()
+	{
+		for (final var listener : sizeListeners)
 		{
-			cursorHide = true;
-			glfwSetInputMode(id, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+			listener.onResize(size);
 		}
-		else
+	}
+
+	private void fireCloseWindow()
+	{
+		for (final var listener : closeListeners)
 		{
-			cursorHide = false;
-			glfwSetInputMode(id, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+			listener.onClose(id);
+		}
+	}
+
+	private void fireOpenWindow()
+	{
+		for (final var listener : openListeners)
+		{
+			listener.onOpen(id);
+		}
+	}
+
+	private void fireSurfaceDeprecation()
+	{
+		for (final var listener : surfaceListeners)
+		{
+			listener.onSurfaceDeprecation();
 		}
 	}
 }

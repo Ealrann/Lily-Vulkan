@@ -7,6 +7,7 @@ module org.sheepy.lily.vulkan.extra.api
 
 	exports org.sheepy.lily.vulkan.extra.api.mesh;
 	exports org.sheepy.lily.vulkan.extra.api.mesh.data;
+	exports org.sheepy.lily.vulkan.extra.api.nuklear;
 	exports org.sheepy.lily.vulkan.extra.api.rendering;
 
 	exports org.sheepy.lily.vulkan.extra.model.nuklear;

@@ -12,10 +12,15 @@ import org.sheepy.vulkan.queue.VulkanQueue;
 import org.sheepy.vulkan.surface.Extent2D;
 import org.sheepy.vulkan.surface.VkSurface;
 import org.sheepy.vulkan.surface.VkSurface.ISurfaceListener;
-import org.sheepy.vulkan.window.IWindowListener;
+import org.sheepy.vulkan.window.IWindowListener.ISizeListener;
+import org.sheepy.vulkan.window.IWindowListener.ISurfaceDeprecatedListener;
 
 public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 {
+	private final ISizeListener sizeListener = size -> setDirty(true);
+	private final ISurfaceDeprecatedListener surfaceDeprecationListener = () -> setDirty(true);
+	private final ISurfaceListener surfaceListener = () -> setDirty(true);
+
 	private Capabilities capabilities;
 	private ColorDomains colorDomains;
 
@@ -25,29 +30,6 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 
 	private Extent2D extent;
 	private VkSurface surface;
-
-	private final IWindowListener listener = new IWindowListener()
-	{
-		@Override
-		public void onResize(org.joml.Vector2i size)
-		{
-			setDirty(true);
-		}
-
-		@Override
-		public void onSurfaceDeprecation()
-		{
-			setDirty(true);
-		}
-	};
-
-	private final ISurfaceListener surfaceListener = () ->
-	{
-		if (allocationConfiguration != null)
-		{
-			allocationConfiguration.setDirty();
-		}
-	};
 
 	@Override
 	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
@@ -64,7 +46,8 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 		surface.addListener(surfaceListener);
 
 		presentQueue = logicalDevice.createPresentQueue(surface);
-		context.getWindow().addListener(listener);
+		context.getWindow().addListener(sizeListener);
+		context.getWindow().addListener(surfaceDeprecationListener);
 
 		capabilities = new Capabilities(context.getVkPhysicalDevice(), surface);
 		colorDomains = new ColorDomains(context.getVkPhysicalDevice(), surface);
@@ -79,7 +62,7 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	{
 		final var colorDomain = context.getConfiguration().getColorDomain();
 		final var vkColorDomain = new VkColorDomain(colorDomain.getFormat().getValue(),
-				colorDomain.getColorSpace().getValue());
+													colorDomain.getColorSpace().getValue());
 
 		if (colorDomains.isColorDomainAvaillable(vkColorDomain) == false)
 		{
@@ -92,7 +75,8 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	@Override
 	public void free(IGraphicContext context)
 	{
-		context.getWindow().removeListener(listener);
+		context.getWindow().removeListener(sizeListener);
+		context.getWindow().removeListener(surfaceDeprecationListener);
 		surface.removeListener(surfaceListener);
 
 		capabilities.free();
@@ -155,7 +139,10 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	@Override
 	public void setDirty(boolean dirty)
 	{
-		allocationConfiguration.setDirty();
+		if (allocationConfiguration != null)
+		{
+			allocationConfiguration.setDirty();
+		}
 	}
 
 	@Override

@@ -59,6 +59,15 @@ public interface NuklearFactory extends EFactory
 	NuklearFont createNuklearFont();
 
 	/**
+	 * Returns a new object of class '<em>Selector Panel</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Selector Panel</em>'.
+	 * @generated
+	 */
+	SelectorPanel createSelectorPanel();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

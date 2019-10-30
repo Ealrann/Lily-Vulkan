@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.sheepy.lily.core.model.presentation.PresentationPackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -347,6 +348,224 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_FONT_OPERATION_COUNT = ResourcePackage.BASIC_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl <em>Selector Panel</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getSelectorPanel()
+	 * @generated
+	 */
+	int SELECTOR_PANEL = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__NAME = PresentationPackage.IPANEL__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__CONTENT_OBJECTS = PresentationPackage.IPANEL__CONTENT_OBJECTS;
+
+	/**
+	 * The feature id for the '<em><b>Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__POSITION = PresentationPackage.IPANEL__POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Vertical Relative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__VERTICAL_RELATIVE = PresentationPackage.IPANEL__VERTICAL_RELATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Horizontal Relative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__HORIZONTAL_RELATIVE = PresentationPackage.IPANEL__HORIZONTAL_RELATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Button Size Px</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__BUTTON_SIZE_PX = PresentationPackage.IPANEL_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Selection R</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__SELECTION_R = PresentationPackage.IPANEL_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Selection G</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__SELECTION_G = PresentationPackage.IPANEL_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Selection B</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__SELECTION_B = PresentationPackage.IPANEL_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Print Labels</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__PRINT_LABELS = PresentationPackage.IPANEL_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Variable Resolver</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__VARIABLE_RESOLVER = PresentationPackage.IPANEL_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Input Provider</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__INPUT_PROVIDER = PresentationPackage.IPANEL_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Vertical</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__VERTICAL = PresentationPackage.IPANEL_FEATURE_COUNT + 7;
+
+	/**
+	 * The number of structural features of the '<em>Selector Panel</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL_FEATURE_COUNT = PresentationPackage.IPANEL_FEATURE_COUNT + 8;
+
+	/**
+	 * The operation id for the '<em>LInference Object</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL___LINFERENCE_OBJECT = PresentationPackage.IPANEL___LINFERENCE_OBJECT;
+
+	/**
+	 * The operation id for the '<em>Create Containment EList</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL___CREATE_CONTAINMENT_ELIST__ECLASS = PresentationPackage.IPANEL___CREATE_CONTAINMENT_ELIST__ECLASS;
+
+	/**
+	 * The operation id for the '<em>LContents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL___LCONTENTS = PresentationPackage.IPANEL___LCONTENTS;
+
+	/**
+	 * The operation id for the '<em>LParent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL___LPARENT = PresentationPackage.IPANEL___LPARENT;
+
+	/**
+	 * The operation id for the '<em>LAll Contents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL___LALL_CONTENTS = PresentationPackage.IPANEL___LALL_CONTENTS;
+
+	/**
+	 * The number of operations of the '<em>Selector Panel</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL_OPERATION_COUNT = PresentationPackage.IPANEL_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider <em>IInput Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getIInputProvider()
+	 * @generated
+	 */
+	int IINPUT_PROVIDER = 5;
+
+	/**
+	 * The number of structural features of the '<em>IInput Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IINPUT_PROVIDER_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>IInput Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IINPUT_PROVIDER_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants <em>Push Constants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -519,6 +738,114 @@ public interface NuklearPackage extends EPackage
 	EReference getNuklearFont_FontSampledImage();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel <em>Selector Panel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Selector Panel</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel
+	 * @generated
+	 */
+	EClass getSelectorPanel();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getButtonSizePx <em>Button Size Px</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Button Size Px</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getButtonSizePx()
+	 * @see #getSelectorPanel()
+	 * @generated
+	 */
+	EAttribute getSelectorPanel_ButtonSizePx();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getSelectionR <em>Selection R</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Selection R</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getSelectionR()
+	 * @see #getSelectorPanel()
+	 * @generated
+	 */
+	EAttribute getSelectorPanel_SelectionR();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getSelectionG <em>Selection G</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Selection G</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getSelectionG()
+	 * @see #getSelectorPanel()
+	 * @generated
+	 */
+	EAttribute getSelectorPanel_SelectionG();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getSelectionB <em>Selection B</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Selection B</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getSelectionB()
+	 * @see #getSelectorPanel()
+	 * @generated
+	 */
+	EAttribute getSelectorPanel_SelectionB();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isPrintLabels <em>Print Labels</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Print Labels</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isPrintLabels()
+	 * @see #getSelectorPanel()
+	 * @generated
+	 */
+	EAttribute getSelectorPanel_PrintLabels();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getVariableResolver <em>Variable Resolver</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Variable Resolver</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getVariableResolver()
+	 * @see #getSelectorPanel()
+	 * @generated
+	 */
+	EReference getSelectorPanel_VariableResolver();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getInputProvider <em>Input Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Input Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getInputProvider()
+	 * @see #getSelectorPanel()
+	 * @generated
+	 */
+	EReference getSelectorPanel_InputProvider();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isVertical <em>Vertical</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Vertical</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isVertical()
+	 * @see #getSelectorPanel()
+	 * @generated
+	 */
+	EAttribute getSelectorPanel_Vertical();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider <em>IInput Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IInput Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider
+	 * @generated
+	 */
+	EClass getIInputProvider();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -676,6 +1003,90 @@ public interface NuklearPackage extends EPackage
 		 * @generated
 		 */
 		EReference NUKLEAR_FONT__FONT_SAMPLED_IMAGE = eINSTANCE.getNuklearFont_FontSampledImage();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl <em>Selector Panel</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getSelectorPanel()
+		 * @generated
+		 */
+		EClass SELECTOR_PANEL = eINSTANCE.getSelectorPanel();
+
+		/**
+		 * The meta object literal for the '<em><b>Button Size Px</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SELECTOR_PANEL__BUTTON_SIZE_PX = eINSTANCE.getSelectorPanel_ButtonSizePx();
+
+		/**
+		 * The meta object literal for the '<em><b>Selection R</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SELECTOR_PANEL__SELECTION_R = eINSTANCE.getSelectorPanel_SelectionR();
+
+		/**
+		 * The meta object literal for the '<em><b>Selection G</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SELECTOR_PANEL__SELECTION_G = eINSTANCE.getSelectorPanel_SelectionG();
+
+		/**
+		 * The meta object literal for the '<em><b>Selection B</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SELECTOR_PANEL__SELECTION_B = eINSTANCE.getSelectorPanel_SelectionB();
+
+		/**
+		 * The meta object literal for the '<em><b>Print Labels</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SELECTOR_PANEL__PRINT_LABELS = eINSTANCE.getSelectorPanel_PrintLabels();
+
+		/**
+		 * The meta object literal for the '<em><b>Variable Resolver</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SELECTOR_PANEL__VARIABLE_RESOLVER = eINSTANCE.getSelectorPanel_VariableResolver();
+
+		/**
+		 * The meta object literal for the '<em><b>Input Provider</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SELECTOR_PANEL__INPUT_PROVIDER = eINSTANCE.getSelectorPanel_InputProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Vertical</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SELECTOR_PANEL__VERTICAL = eINSTANCE.getSelectorPanel_Vertical();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider <em>IInput Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getIInputProvider()
+		 * @generated
+		 */
+		EClass IINPUT_PROVIDER = eINSTANCE.getIInputProvider();
 
 	}
 

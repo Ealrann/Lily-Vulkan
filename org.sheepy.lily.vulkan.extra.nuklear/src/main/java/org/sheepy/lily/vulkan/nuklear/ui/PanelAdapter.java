@@ -14,22 +14,14 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
-import org.sheepy.vulkan.window.IWindowListener;
+import org.sheepy.vulkan.window.IWindowListener.ISizeListener;
 import org.sheepy.vulkan.window.Window;
 
 @Statefull
 @Adapter(scope = Panel.class)
 public class PanelAdapter implements IPanelAdapter
 {
-	private final IWindowListener listener = new IWindowListener()
-	{
-		@Override
-		public void onResize(Vector2i size)
-		{
-			updateLocation(size);
-		}
-	};
-
+	private final ISizeListener listener = this::updateLocation;
 	private final Panel panel;
 	private final ByteBuffer textBuffer;
 

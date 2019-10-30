@@ -4,7 +4,7 @@
     editDirectory="/org.sheepy.lily.vulkan.extra.model.edit/src/generated/java" modelPluginID="org.sheepy.lily.vulkan.extra.model"
     modelName="Extra" rootExtendsInterface="org.sheepy.lily.core.api.adapter.ILilyEObject"
     rootExtendsClass="org.sheepy.lily.core.api.adapter.LilyEObject" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="11.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//process ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//model ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//resource ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//graphic ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//image ../../org.sheepy.lily.core.model/model/Lily.genmodel#//cadence"
+    complianceLevel="11.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//process ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//model ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//resource ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//graphic ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//image ../../org.sheepy.lily.core.model/model/Lily.genmodel#//cadence ../../org.sheepy.lily.core.model/model/Lily.genmodel#//presentation ../../org.sheepy.lily.core.model/model/Lily.genmodel#//variable"
     operationReflection="true" importOrganizing="true" cleanup="true">
   <foreignModel>Mesh.ecore</foreignModel>
   <foreignModel>Nuklear.ecore</foreignModel>
@@ -30,7 +30,7 @@
     </genClasses>
   </genPackages>
   <genPackages prefix="Nuklear" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
-      ecorePackage="Nuklear.ecore#/">
+      extensibleProviderFactory="true" childCreationExtenders="true" ecorePackage="Nuklear.ecore#/">
     <genClasses ecoreClass="Nuklear.ecore#//NuklearPushConstants">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//NuklearPushConstants/width"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//NuklearPushConstants/height"/>
@@ -51,6 +51,17 @@
     <genClasses ecoreClass="Nuklear.ecore#//NuklearFont">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearFont/fontSampledImage"/>
     </genClasses>
+    <genClasses ecoreClass="Nuklear.ecore#//SelectorPanel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/buttonSizePx"/>
+      <genFeatures createChild="false" propertyCategory="Selection Color" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/selectionR"/>
+      <genFeatures createChild="false" propertyCategory="Selection Color" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/selectionG"/>
+      <genFeatures createChild="false" propertyCategory="Selection Color" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/selectionB"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/printLabels"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Nuklear.ecore#//SelectorPanel/variableResolver"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Nuklear.ecore#//SelectorPanel/inputProvider"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/vertical"/>
+    </genClasses>
+    <genClasses ecoreClass="Nuklear.ecore#//IInputProvider"/>
   </genPackages>
   <genPackages prefix="Rendering" basePackage="org.sheepy.lily.vulkan.extra.model"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"

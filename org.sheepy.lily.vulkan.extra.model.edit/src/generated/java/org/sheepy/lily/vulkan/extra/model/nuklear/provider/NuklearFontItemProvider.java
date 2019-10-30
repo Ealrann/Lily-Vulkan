@@ -8,16 +8,10 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
-
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 
@@ -159,18 +153,6 @@ public class NuklearFontItemProvider extends BasicResourceItemProvider
 			(createChildParameter
 				(NuklearPackage.Literals.NUKLEAR_FONT__FONT_SAMPLED_IMAGE,
 				 ResourceFactory.eINSTANCE.createSampledImage()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator()
-	{
-		return ExtraEditPlugin.INSTANCE;
 	}
 
 }

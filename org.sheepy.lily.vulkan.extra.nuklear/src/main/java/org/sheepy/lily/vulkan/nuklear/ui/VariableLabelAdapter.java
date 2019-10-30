@@ -21,7 +21,7 @@ public class VariableLabelAdapter implements IUIElementAdapter
 {
 	private final INotificationListener listener = n -> updateText(String.valueOf(n.getNewValue()));
 	private final VariableLabel label;
-	private final IVariableResolverAdapter<IVariableResolver> adapter;
+	private final IVariableResolverAdapter<IVariableResolver> resolver;
 
 	private String text = "";
 	private ByteBuffer textBuffer = null;
@@ -33,17 +33,17 @@ public class VariableLabelAdapter implements IUIElementAdapter
 	{
 		this.label = label;
 		final var variableResolver = label.getVariableResolver();
-		adapter = variableResolver.adaptNotNull(IVariableResolverAdapter.class);
+		resolver = variableResolver.adaptNotNull(IVariableResolverAdapter.class);
 
-		updateText(String.valueOf(adapter.getValue(variableResolver)));
+		updateText(String.valueOf(resolver.getValue(variableResolver)));
 
-		adapter.addListener(listener);
+		resolver.addListener(listener);
 	}
 
 	@Dispose
 	public void unsetTarget()
 	{
-		adapter.removeListener(listener);
+		resolver.removeListener(listener);
 		MemoryUtil.memFree(textBuffer);
 	}
 
