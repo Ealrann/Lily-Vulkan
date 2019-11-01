@@ -6,8 +6,8 @@ import java.util.Map;
 
 import org.lwjgl.nuklear.NkImage;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Autorun;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
 import org.sheepy.lily.core.api.util.AdapterSetRegistry;
@@ -32,7 +32,7 @@ import org.sheepy.vulkan.surface.Extent2D;
 import org.sheepy.vulkan.window.Window;
 
 @Statefull
-@Adapter(scope = NuklearLayoutTask.class)
+@Adapter(scope = NuklearLayoutTask.class, lazy = false)
 public final class NuklearLayoutTaskAdapter
 		implements IPipelineTaskAdapter<NuklearLayoutTask>, IAllocableAdapter<IGraphicContext>
 {
@@ -64,7 +64,7 @@ public final class NuklearLayoutTaskAdapter
 		drawTaskMaintainer = new DrawTaskMaintainer(drawTask, vertexBuffer);
 	}
 
-	@Autorun
+	@Load
 	public void load()
 	{
 		application = ModelUtil.getApplication(task);

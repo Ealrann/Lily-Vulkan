@@ -17,6 +17,8 @@ import org.sheepy.vulkan.log.Logger;
 
 public final class DescriptorPool implements IAllocable<IExecutionContext>
 {
+	private static final String FAILED_TO_CREATE_DESCRIPTOR_POOL = "Failed to create descriptor pool";
+
 	private final List<IVkDescriptorSet> descriptorSets;
 
 	private List<IVkDescriptor> descriptors = null;
@@ -33,16 +35,18 @@ public final class DescriptorPool implements IAllocable<IExecutionContext>
 	{
 		final var vkDevice = ((ExecutionContext) context).getVkDevice();
 		int poolSize = 0;
-		for (final var descriptorSet : descriptorSets)
+		for (int i = 0; i < descriptorSets.size(); i++)
 		{
+			final var descriptorSet = descriptorSets.get(i);
 			poolSize += descriptorSet.descriptorCount();
 		}
 
 		if (poolSize > 0)
 		{
 			final var poolSizes = VkDescriptorPoolSize.callocStack(poolSize);
-			for (final var descriptorSet : descriptorSets)
+			for (int i = 0; i < descriptorSets.size(); i++)
 			{
+				final var descriptorSet = descriptorSets.get(i);
 				descriptorSet.fillPoolSizes(poolSizes);
 			}
 			poolSizes.flip();
@@ -53,8 +57,8 @@ public final class DescriptorPool implements IAllocable<IExecutionContext>
 			poolInfo.maxSets(descriptorSets.size());
 
 			final long[] aDescriptor = new long[1];
-			Logger.check("Failed to create descriptor pool",
-					() -> vkCreateDescriptorPool(vkDevice, poolInfo, null, aDescriptor));
+			Logger.check(	FAILED_TO_CREATE_DESCRIPTOR_POOL,
+							() -> vkCreateDescriptorPool(vkDevice, poolInfo, null, aDescriptor));
 			id = aDescriptor[0];
 		}
 

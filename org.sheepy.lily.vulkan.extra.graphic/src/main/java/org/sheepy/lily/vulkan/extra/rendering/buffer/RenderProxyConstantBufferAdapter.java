@@ -5,7 +5,6 @@ import java.nio.ByteBuffer;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.INotificationListener;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Autorun;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
@@ -14,7 +13,7 @@ import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 @Statefull
-@Adapter(scope = RenderProxyConstantBuffer.class)
+@Adapter(scope = RenderProxyConstantBuffer.class, lazy = false)
 public class RenderProxyConstantBufferAdapter implements IVulkanAdapter
 {
 	private final RenderProxyConstantBuffer proxyConstantBuffer;
@@ -23,7 +22,6 @@ public class RenderProxyConstantBufferAdapter implements IVulkanAdapter
 
 	private ByteBuffer buffer = null;
 
-	@Autorun
 	public RenderProxyConstantBufferAdapter(RenderProxyConstantBuffer constantBuffer)
 	{
 		this.proxyConstantBuffer = constantBuffer;

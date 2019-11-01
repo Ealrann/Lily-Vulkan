@@ -3,19 +3,19 @@ package org.sheepy.lily.vulkan.extra.sprite;
 import java.nio.ByteBuffer;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Autorun;
+import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.extra.api.rendering.ISpecializationAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization;
 
 @Statefull
-@Adapter(scope = SpriteCountSpecialization.class)
+@Adapter(scope = SpriteCountSpecialization.class, lazy = false)
 public class SpriteCountSpecializationAdapter implements ISpecializationAdapter
 {
 	private int size;
 
-	@Autorun
+	@Load
 	public void load(SpriteCountSpecialization specialization)
 	{
 		final var spriteCount = specialization;

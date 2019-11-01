@@ -14,7 +14,7 @@ public class TreeAllocator<T extends IVulkanContext>
 
 	public TreeAllocator(IAllocable<T> root)
 	{
-		rootWrapper = allocationService.register(root);
+		rootWrapper = allocationService.createManager(root);
 	}
 
 	public void allocate(T context)

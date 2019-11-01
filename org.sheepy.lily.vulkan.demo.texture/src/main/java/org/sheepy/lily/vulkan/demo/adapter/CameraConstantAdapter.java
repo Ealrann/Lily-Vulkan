@@ -7,8 +7,8 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Autorun;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.adapter.annotation.Tick;
 import org.sheepy.lily.core.api.util.ModelUtil;
@@ -18,7 +18,7 @@ import org.sheepy.lily.vulkan.api.util.SizeOf;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 
 @Statefull
-@Adapter(scope = ConstantBuffer.class, name = CameraConstantAdapter.DEMO_CAMERA)
+@Adapter(scope = ConstantBuffer.class, name = CameraConstantAdapter.DEMO_CAMERA, lazy = false)
 public class CameraConstantAdapter implements IVulkanAdapter
 {
 	public static final String DEMO_CAMERA = "DemoCameraPushConstant";
@@ -48,7 +48,7 @@ public class CameraConstantAdapter implements IVulkanAdapter
 		this.application = ModelUtil.getApplication(buffer);
 	}
 
-	@Autorun
+	@Load
 	public void allocate()
 	{
 		stagingBuffer = MemoryUtil.memAlloc(SIZE_OF);

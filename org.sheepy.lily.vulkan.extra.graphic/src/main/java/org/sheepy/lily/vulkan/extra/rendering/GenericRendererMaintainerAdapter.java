@@ -6,7 +6,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Autorun;
+import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.adapter.annotation.Tick;
 import org.sheepy.lily.core.api.util.DebugUtil;
@@ -26,7 +26,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 
 @Statefull
-@Adapter(scope = GenericRenderer.class, scopeInheritance = true)
+@Adapter(scope = GenericRenderer.class, scopeInheritance = true, lazy = false)
 public final class GenericRendererMaintainerAdapter<T extends Structure> implements IVulkanAdapter
 {
 	private static final EClass RENDERER_ECLASS = RenderingPackage.Literals.GENERIC_RENDERER;
@@ -42,7 +42,7 @@ public final class GenericRendererMaintainerAdapter<T extends Structure> impleme
 		this.graphicProcess = ModelUtil.findParent(maintainer, GraphicProcess.class);
 	}
 
-	@Autorun
+	@Load
 	public void load()
 	{
 		if (maintainer.isEnabled())
