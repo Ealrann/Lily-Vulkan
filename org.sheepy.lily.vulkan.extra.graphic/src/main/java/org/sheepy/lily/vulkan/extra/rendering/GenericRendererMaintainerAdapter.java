@@ -4,42 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.adapter.annotation.Tick;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
-import org.sheepy.lily.vulkan.extra.api.rendering.IResourceProviderAdapter;
+import org.sheepy.lily.vulkan.extra.api.mesh.data.IEntityResolver;
+import org.sheepy.lily.vulkan.extra.api.rendering.IGenericRendererAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
+import org.sheepy.lily.vulkan.extra.api.rendering.RenderPointer;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
+import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
-import org.sheepy.lily.vulkan.extra.rendering.builder.BufferInstaller;
-import org.sheepy.lily.vulkan.extra.rendering.builder.DrawTaskInstaller;
-import org.sheepy.lily.vulkan.extra.rendering.builder.DrawTaskInstaller.IDrawSetup;
-import org.sheepy.lily.vulkan.extra.rendering.builder.RenderPipelineBuilder;
-import org.sheepy.lily.vulkan.extra.rendering.builder.RenderPipelineContext;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
+import org.sheepy.lily.vulkan.extra.rendering.builder.StructureDrawInstaller;
+import org.sheepy.lily.vulkan.extra.rendering.data.IStructurePartDrawSetup;
 
 @Statefull
 @Adapter(scope = GenericRenderer.class, scopeInheritance = true, lazy = false)
-public final class GenericRendererMaintainerAdapter<T extends Structure> implements IVulkanAdapter
+public final class GenericRendererMaintainerAdapter<T extends Structure>
+		implements IGenericRendererAdapter
 {
 	private static final EClass RENDERER_ECLASS = RenderingPackage.Literals.GENERIC_RENDERER;
 
 	private final GenericRenderer<T> maintainer;
-	private final GraphicProcess graphicProcess;
-	private final List<RenderPipelineContext> contexts = new ArrayList<>();
-	private final List<IDrawSetup> drawSetups = new ArrayList<>();
+	private final List<IStructurePartDrawSetup> structurePartDrawSetups = new ArrayList<>();
 
 	public GenericRendererMaintainerAdapter(GenericRenderer<T> maintainer)
 	{
 		this.maintainer = maintainer;
-		this.graphicProcess = ModelUtil.findParent(maintainer, GraphicProcess.class);
 	}
 
 	@Load
@@ -54,111 +48,89 @@ public final class GenericRendererMaintainerAdapter<T extends Structure> impleme
 	@Tick
 	public void update()
 	{
-		for (int i = 0; i < drawSetups.size(); i++)
+		for (int i = 0; i < structurePartDrawSetups.size(); i++)
 		{
-			final var drawSetup = drawSetups.get(i);
+			final var drawSetup = structurePartDrawSetups.get(i);
 			drawSetup.update();
 		}
 	}
 
 	private void buildPipelines()
 	{
-		final var structures = maintainer.getRenderedStructures().stream();
-		final var structInstaller = new BufferInstaller<>(maintainer);
-		final var presentedEClass = ModelUtil.resolveGenericType(maintainer, RENDERER_ECLASS);
-		final var commonResources = List.copyOf(gatherCommonResources(maintainer));
-		final var pipContextBuilder = new RenderPipelineBuilder(commonResources, maintainer);
+		final var structures = maintainer.getRenderedStructures();
+		final var structureDrawInstaller = new StructureDrawInstaller<>(maintainer);
 
-		structures.forEach(s -> preparePipeline(pipContextBuilder, structInstaller, s));
+		for (final var structure : structures)
+		{
+			final var drawSetups = structureDrawInstaller.install(structure);
+			structurePartDrawSetups.addAll(drawSetups);
+		}
 
 		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 		{
-			printDebugInfo(presentedEClass);
+			printDebugInfo();
 		}
 	}
 
-	private void preparePipeline(	RenderPipelineBuilder pipelineBuilder,
-									BufferInstaller<T> bufferInstaller,
-									T structure)
+	@Override
+	public PresentableEntity resolvePresentedEntity(RenderPointer renderPointer)
 	{
-		final boolean needMultiplePipelines = bufferInstaller.hasDynamicDescriptors
-				|| bufferInstaller.hasIndexData;
+		final int drawCall = renderPointer.drawcall;
+		final var drawSetup = structurePartDrawSetups.get(drawCall);
+		final var structure = drawSetup.getStructure();
+		final var structureAdapter = structure.adaptNotNull(IStructureAdapter.class);
+		final var resolver = findEntityResolver(drawSetup, structureAdapter);
 
-		if (needMultiplePipelines)
+		return resolver.resolveEntity(renderPointer);
+	}
+
+	private IEntityResolver findEntityResolver(	final IStructurePartDrawSetup drawSetup,
+												IStructureAdapter structureAdapter)
+			throws AssertionError
+	{
+		IEntityResolver resolver = null;
+		if (structureAdapter instanceof IEntityResolver)
 		{
-			prepareMultiplePipelines(pipelineBuilder, bufferInstaller, structure);
+			resolver = (IEntityResolver) structureAdapter;
 		}
 		else
 		{
-			prepareSinglePipeline(pipelineBuilder, bufferInstaller, structure);
+			final var dataProviders = drawSetup.getDataProviders();
+			for (int i = 0; i < dataProviders.size(); i++)
+			{
+				final var dataProvider = dataProviders.get(i);
+				if (dataProvider instanceof IEntityResolver)
+				{
+					resolver = (IEntityResolver) dataProvider;
+					break;
+				}
+			}
 		}
-	}
-
-	private void prepareSinglePipeline(	RenderPipelineBuilder pipelineBuilder,
-										BufferInstaller<T> bufferInstaller,
-										T structure)
-	{
-		final int pipelineCount = graphicProcess.getPartPkg().getParts().size();
-		final var structureAdapter = structure.adaptNotNull(IStructureAdapter.class);
-		final var drawInstaller = new DrawTaskInstaller(structure);
-		final var pipelineContext = createAndInstallPipeline(pipelineBuilder, pipelineCount + 1);
-
-		for (int i = 0; i < structureAdapter.getPartCount(structure); i++)
+		if (resolver == null)
 		{
-			final var bufferContext = bufferInstaller.install(pipelineContext, structure, i);
-			drawSetups.add(drawInstaller.install(bufferContext));
+			throwResolverNotFoundError();
 		}
+		return resolver;
 	}
 
-	private void prepareMultiplePipelines(	RenderPipelineBuilder pipelineBuilder,
-											BufferInstaller<T> bufferInstaller,
-											T structure)
+	private void printDebugInfo()
 	{
-		final int pipelineCount = graphicProcess.getPartPkg().getParts().size();
-		final var structureAdapter = structure.adaptNotNull(IStructureAdapter.class);
-		final var drawInstaller = new DrawTaskInstaller(structure);
-
-		for (int i = 0; i < structureAdapter.getPartCount(structure); i++)
-		{
-			final var pipelineContext = createAndInstallPipeline(	pipelineBuilder,
-																	pipelineCount + i + 1);
-			final var bufferContext = bufferInstaller.install(pipelineContext, structure, i);
-			drawSetups.add(drawInstaller.install(bufferContext));
-		}
-	}
-
-	private RenderPipelineContext createAndInstallPipeline(	RenderPipelineBuilder pipelineBuilder,
-															final int pipelineCount)
-	{
-		final var context = pipelineBuilder.build(	pipelineCount + 1,
-													maintainer.getSpecialization());
-		final var parts = graphicProcess.getPartPkg().getParts();
-		final int maintainerIndex = parts.indexOf(maintainer);
-		parts.add(maintainerIndex, context.pipeline);
-		contexts.add(context);
-		return context;
-	}
-
-	private static List<DescriptedResource> gatherCommonResources(GenericRenderer<?> maintainer)
-	{
-		final var resourceProvider = maintainer.getCommonResourceProvider();
-		if (resourceProvider != null)
-		{
-			final var providerAdapter = resourceProvider.adaptNotNull(IResourceProviderAdapter.class);
-			return List.copyOf(providerAdapter.getResources(resourceProvider));
-		}
-		return List.of();
-	}
-
-	private void printDebugInfo(final EClassifier presentedEClass)
-	{
+		final var presentedEClass = ModelUtil.resolveGenericType(maintainer, RENDERER_ECLASS);
 		final var classifier = presentedEClass.getInstanceClass();
 		final var name = maintainer.getName();
 		final var className = classifier.getSimpleName();
-		final int count = contexts.size();
+		final int count = structurePartDrawSetups.size();
 		System.out.println(String.format(	"Create %d pipelines for %s [%s].",
 											count,
 											name,
 											className));
+	}
+
+	private void throwResolverNotFoundError() throws AssertionError
+	{
+		throw new AssertionError("The StructureAdapter or one DataProviderAdapter of "
+				+ maintainer.eClass().getName()
+				+ " must implements "
+				+ IEntityResolver.class.getSimpleName());
 	}
 }

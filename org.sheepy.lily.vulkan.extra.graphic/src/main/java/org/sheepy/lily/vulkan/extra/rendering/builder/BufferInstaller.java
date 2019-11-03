@@ -7,6 +7,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
@@ -38,47 +39,51 @@ public final class BufferInstaller<T extends Structure>
 		return dataProviders.stream().anyMatch(IndexProvider.class::isInstance);
 	}
 
-	public BufferContext install(RenderPipelineContext pipelineContext, T structure, int part)
+	public BufferContext install(GraphicsPipeline pipeline, T structure, int part)
 	{
-		final var taskPkg = pipelineContext.pipeline.getTaskPkg();
-		final var buffer = createBuffer(pipelineContext, structure, part);
-		setupDescriptorSet(pipelineContext, taskPkg, buffer);
+		final var taskPkg = pipeline.getTaskPkg();
+		final var buffer = createBuffer(structure, part);
 
-		return new BufferContext(pipelineContext, buffer, part);
+		installBuffer(pipeline, buffer);
+		installDescriptorSet(pipeline, taskPkg, buffer);
+
+		return new BufferContext(pipeline, buffer, part);
 	}
 
-	private void setupDescriptorSet(RenderPipelineContext pipelineContext,
-									final TaskPkg taskPkg,
-									CompositeBuffer buffer)
+	private static void installBuffer(GraphicsPipeline pipeline, final CompositeBuffer buffer)
+	{
+		pipeline.getResourcePkg().getResources().add(buffer);
+	}
+
+	private void installDescriptorSet(	GraphicsPipeline pipeline,
+										final TaskPkg taskPkg,
+										CompositeBuffer buffer)
 	{
 		if (hasDynamicDescriptors)
 		{
 			final var descriptorSet = ResourceFactory.eINSTANCE.createDescriptorSet();
 			descriptorSet.getDescriptors().add(buffer);
-
-			pipelineContext.pipeline.getDescriptorSetPkg().getDescriptorSets().add(descriptorSet);
+			pipeline.getDescriptorSetPkg().getDescriptorSets().add(descriptorSet);
 		}
 
-		final var dSets = pipelineContext.pipeline.getDescriptorSetPkg().getDescriptorSets();
+		final var dSets = pipeline.getDescriptorSetPkg().getDescriptorSets();
 
 		if (dSets.isEmpty() == false)
 		{
 			final var bindDS = ProcessFactory.eINSTANCE.createBindDescriptorSets();
 			bindDS.getDescriptorSets().addAll(dSets);
-
 			taskPkg.getTasks().add(bindDS);
 		}
 	}
 
-	private CompositeBuffer createBuffer(	RenderPipelineContext pipelineContext,
-											T structure,
-											int part)
+	private CompositeBuffer createBuffer(T structure, int part)
 	{
 		final CompositeBuffer buffer = ResourceFactory.eINSTANCE.createCompositeBuffer();
 		final var dataProviders = maintainer.getDataProviderPkg().getDataProviders();
 
-		for (final var dataProvider : dataProviders)
+		for (int i = 0; i < dataProviders.size(); i++)
 		{
+			final var dataProvider = dataProviders.get(i);
 			final var dataSource = RenderingFactory.eINSTANCE.<T> createRenderableDataSource();
 			dataSource.setPart(part);
 			dataSource.setStructure(structure);
@@ -88,9 +93,8 @@ public final class BufferInstaller<T extends Structure>
 			buffer.getDataProviders().add(copy);
 		}
 
-		buffer.setPushBuffer(pipelineContext.pushBuffer);
+		buffer.setPushBuffer(maintainer.getPushBuffer());
 
-		pipelineContext.pipeline.getResourcePkg().getResources().add(buffer);
 		return buffer;
 	}
 }

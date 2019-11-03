@@ -10,6 +10,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 
@@ -25,11 +26,9 @@ public final class RenderPipelineBuilder
 		this.renderer = renderer;
 	}
 
-	public RenderPipelineContext build(int index, ISpecialization specialization)
+	public GraphicsPipeline build(int index, ISpecialization specialization)
 	{
 		final var pipeline = MaintainerUtil.instanciateMaintainer(renderer);
-		final var constantBuffer = renderer.getConstantBuffer();
-		final var pushBuffer = renderer.getPushBuffer();
 
 		final var range = pipeline.getPushConstantRanges();
 		final var rangeSize = range.get(0).getSize();
@@ -49,7 +48,7 @@ public final class RenderPipelineBuilder
 			pipeline.getDescriptorSetPkg().getDescriptorSets().add(descriptorSet);
 		}
 
-		return new RenderPipelineContext(pipeline, constantBuffer, pushBuffer);
+		return pipeline;
 	}
 
 	private static ByteBuffer prepareSpecializationBuffer(int index, ISpecialization specialization)
