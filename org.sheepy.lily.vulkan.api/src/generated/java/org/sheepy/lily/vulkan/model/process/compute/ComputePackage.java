@@ -142,6 +142,15 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__WAIT_FOR = ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR;
 
 	/**
+	 * The feature id for the '<em><b>Extension Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PROCESS__EXTENSION_PKG = ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG;
+
+	/**
 	 * The number of structural features of the '<em>Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -341,6 +341,31 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ProcessExtensionPkgItemProvider processExtensionPkgItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createProcessExtensionPkgAdapter()
+	{
+		if (processExtensionPkgItemProvider == null)
+		{
+			processExtensionPkgItemProvider = new ProcessExtensionPkgItemProvider(this);
+		}
+
+		return processExtensionPkgItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -499,6 +524,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 		if (pushBufferTaskItemProvider != null) pushBufferTaskItemProvider.dispose();
 		if (getBufferTaskItemProvider != null) getBufferTaskItemProvider.dispose();
 		if (copyBufferTaskItemProvider != null) copyBufferTaskItemProvider.dispose();
+		if (processExtensionPkgItemProvider != null) processExtensionPkgItemProvider.dispose();
 	}
 
 }

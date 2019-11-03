@@ -23,6 +23,7 @@ import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
 
@@ -44,6 +45,7 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getSignals <em>Signals</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getWaitFor <em>Wait For</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getExtensionPkg <em>Extension Pkg</em>}</li>
  * </ul>
  *
  * @generated
@@ -169,6 +171,16 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @ordered
 	 */
 	protected EList<Semaphore> waitFor;
+
+	/**
+	 * The cached value of the '{@link #getExtensionPkg() <em>Extension Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtensionPkg()
+	 * @generated
+	 * @ordered
+	 */
+	protected ProcessExtensionPkg extensionPkg;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -427,6 +439,56 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 */
 	@Override
+	public ProcessExtensionPkg getExtensionPkg()
+	{
+		return extensionPkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetExtensionPkg(ProcessExtensionPkg newExtensionPkg, NotificationChain msgs)
+	{
+		ProcessExtensionPkg oldExtensionPkg = extensionPkg;
+		extensionPkg = newExtensionPkg;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG, oldExtensionPkg, newExtensionPkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setExtensionPkg(ProcessExtensionPkg newExtensionPkg)
+	{
+		if (newExtensionPkg != extensionPkg)
+		{
+			NotificationChain msgs = null;
+			if (extensionPkg != null)
+				msgs = ((InternalEObject)extensionPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG, null, msgs);
+			if (newExtensionPkg != null)
+				msgs = ((InternalEObject)newExtensionPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG, null, msgs);
+			msgs = basicSetExtensionPkg(newExtensionPkg, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG, newExtensionPkg, newExtensionPkg));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -435,6 +497,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return basicSetResourcePkg(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
 				return basicSetPartPkg(null, msgs);
+			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
+				return basicSetExtensionPkg(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -465,6 +529,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return getSignals();
 			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR:
 				return getWaitFor();
+			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
+				return getExtensionPkg();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -506,6 +572,9 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				getWaitFor().clear();
 				getWaitFor().addAll((Collection<? extends Semaphore>)newValue);
 				return;
+			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
+				setExtensionPkg((ProcessExtensionPkg)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -544,6 +613,9 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR:
 				getWaitFor().clear();
 				return;
+			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
+				setExtensionPkg((ProcessExtensionPkg)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -574,6 +646,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return signals != null && !signals.isEmpty();
 			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR:
 				return waitFor != null && !waitFor.isEmpty();
+			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
+				return extensionPkg != null;
 		}
 		return super.eIsSet(featureID);
 	}

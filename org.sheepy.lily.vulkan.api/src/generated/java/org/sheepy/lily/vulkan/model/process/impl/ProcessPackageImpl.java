@@ -34,9 +34,11 @@ import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
 import org.sheepy.lily.vulkan.model.process.GetBufferTask;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
+import org.sheepy.lily.vulkan.model.process.IProcessExtension;
 import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
+import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
@@ -176,6 +178,20 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass copyBufferTaskEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iProcessExtensionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass processExtensionPkgEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -337,6 +353,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	public EReference getAbstractProcess_WaitFor()
 	{
 		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAbstractProcess_ExtensionPkg()
+	{
+		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -796,6 +823,39 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getIProcessExtension()
+	{
+		return iProcessExtensionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getProcessExtensionPkg()
+	{
+		return processExtensionPkgEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getProcessExtensionPkg_Extensions()
+	{
+		return (EReference)processExtensionPkgEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ProcessFactory getProcessFactory()
 	{
 		return (ProcessFactory)getEFactoryInstance();
@@ -827,6 +887,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__RESET_ALLOWED);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__SIGNALS);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__WAIT_FOR);
+		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__EXTENSION_PKG);
 
 		configurationEClass = createEClass(CONFIGURATION);
 
@@ -883,6 +944,11 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEReference(copyBufferTaskEClass, COPY_BUFFER_TASK__SRC_BUFFER);
 		createEReference(copyBufferTaskEClass, COPY_BUFFER_TASK__TRG_BUFFER);
 		createEAttribute(copyBufferTaskEClass, COPY_BUFFER_TASK__STAGE);
+
+		iProcessExtensionEClass = createEClass(IPROCESS_EXTENSION);
+
+		processExtensionPkgEClass = createEClass(PROCESS_EXTENSION_PKG);
+		createEReference(processExtensionPkgEClass, PROCESS_EXTENSION_PKG__EXTENSIONS);
 	}
 
 	/**
@@ -953,6 +1019,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEAttribute(getAbstractProcess_ResetAllowed(), theEcorePackage.getEBoolean(), "resetAllowed", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_Signals(), theResourcePackage.getSemaphore(), null, "signals", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_WaitFor(), theResourcePackage.getSemaphore(), null, "waitFor", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractProcess_ExtensionPkg(), this.getProcessExtensionPkg(), null, "extensionPkg", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configurationEClass, Configuration.class, "Configuration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1009,6 +1076,11 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEReference(getCopyBufferTask_SrcBuffer(), theResourcePackage.getBuffer(), null, "srcBuffer", null, 1, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCopyBufferTask_TrgBuffer(), theResourcePackage.getBuffer(), null, "trgBuffer", null, 1, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCopyBufferTask_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Transfer", 1, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iProcessExtensionEClass, IProcessExtension.class, "IProcessExtension", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(processExtensionPkgEClass, ProcessExtensionPkg.class, "ProcessExtensionPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProcessExtensionPkg_Extensions(), this.getIProcessExtension(), null, "extensions", null, 0, -1, ProcessExtensionPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

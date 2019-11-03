@@ -48,6 +48,7 @@
           propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//AbstractProcess/signals"/>
       <genFeatures notify="false" createChild="false" propertyCategory="Semaphores"
           propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//AbstractProcess/waitFor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//AbstractProcess/extensionPkg"/>
     </genClasses>
     <genClasses image="false" ecoreClass="process.ecore#//Configuration"/>
     <genClasses ecoreClass="process.ecore#//ProcessPartPkg">
@@ -101,6 +102,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//CopyBufferTask/srcBuffer"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//CopyBufferTask/trgBuffer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CopyBufferTask/stage"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="process.ecore#//IProcessExtension"/>
+    <genClasses ecoreClass="process.ecore#//ProcessExtensionPkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//ProcessExtensionPkg/extensions"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Vulkan" basePackage="org.sheepy.lily.vulkan" resource="XMI"

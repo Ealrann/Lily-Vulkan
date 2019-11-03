@@ -113,6 +113,15 @@ public interface ProcessFactory extends EFactory
 	CopyBufferTask createCopyBufferTask();
 
 	/**
+	 * Returns a new object of class '<em>Extension Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Extension Pkg</em>'.
+	 * @generated
+	 */
+	ProcessExtensionPkg createProcessExtensionPkg();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

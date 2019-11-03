@@ -146,13 +146,22 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS__WAIT_FOR = VulkanPackage.IPROCESS_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Extension Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PROCESS__EXTENSION_PKG = VulkanPackage.IPROCESS_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Abstract Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 5;
+	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Abstract Process</em>' class.
@@ -1133,6 +1142,71 @@ public interface ProcessPackage extends EPackage
 	int COPY_BUFFER_TASK_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.IProcessExtension <em>IProcess Extension</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.IProcessExtension
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIProcessExtension()
+	 * @generated
+	 */
+	int IPROCESS_EXTENSION = 16;
+
+	/**
+	 * The number of structural features of the '<em>IProcess Extension</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROCESS_EXTENSION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>IProcess Extension</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROCESS_EXTENSION_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessExtensionPkgImpl <em>Extension Pkg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessExtensionPkgImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessExtensionPkg()
+	 * @generated
+	 */
+	int PROCESS_EXTENSION_PKG = 17;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_EXTENSION_PKG__EXTENSIONS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Extension Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_EXTENSION_PKG_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Extension Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_EXTENSION_PKG_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1196,6 +1270,17 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getAbstractProcess_WaitFor();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getExtensionPkg <em>Extension Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Extension Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getExtensionPkg()
+	 * @see #getAbstractProcess()
+	 * @generated
+	 */
+	EReference getAbstractProcess_ExtensionPkg();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}'.
@@ -1634,6 +1719,37 @@ public interface ProcessPackage extends EPackage
 	EAttribute getCopyBufferTask_Stage();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.IProcessExtension <em>IProcess Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IProcess Extension</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.IProcessExtension
+	 * @generated
+	 */
+	EClass getIProcessExtension();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg <em>Extension Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Extension Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg
+	 * @generated
+	 */
+	EClass getProcessExtensionPkg();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg#getExtensions <em>Extensions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Extensions</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg#getExtensions()
+	 * @see #getProcessExtensionPkg()
+	 * @generated
+	 */
+	EReference getProcessExtensionPkg_Extensions();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1706,6 +1822,14 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference ABSTRACT_PROCESS__WAIT_FOR = eINSTANCE.getAbstractProcess_WaitFor();
+
+		/**
+		 * The meta object literal for the '<em><b>Extension Pkg</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_PROCESS__EXTENSION_PKG = eINSTANCE.getAbstractProcess_ExtensionPkg();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}' class.
@@ -2064,6 +2188,34 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute COPY_BUFFER_TASK__STAGE = eINSTANCE.getCopyBufferTask_Stage();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.IProcessExtension <em>IProcess Extension</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.IProcessExtension
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIProcessExtension()
+		 * @generated
+		 */
+		EClass IPROCESS_EXTENSION = eINSTANCE.getIProcessExtension();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessExtensionPkgImpl <em>Extension Pkg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessExtensionPkgImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessExtensionPkg()
+		 * @generated
+		 */
+		EClass PROCESS_EXTENSION_PKG = eINSTANCE.getProcessExtensionPkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Extensions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS_EXTENSION_PKG__EXTENSIONS = eINSTANCE.getProcessExtensionPkg_Extensions();
 
 	}
 

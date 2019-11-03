@@ -166,6 +166,16 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 				return createCopyBufferTaskAdapter();
 			}
 			@Override
+			public Adapter caseIProcessExtension(IProcessExtension object)
+			{
+				return createIProcessExtensionAdapter();
+			}
+			@Override
+			public Adapter caseProcessExtensionPkg(ProcessExtensionPkg object)
+			{
+				return createProcessExtensionPkgAdapter();
+			}
+			@Override
 			public Adapter caseIResourceContainer(IResourceContainer object)
 			{
 				return createIResourceContainerAdapter();
@@ -457,6 +467,36 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createCopyBufferTaskAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IProcessExtension <em>IProcess Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.IProcessExtension
+	 * @generated
+	 */
+	public Adapter createIProcessExtensionAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg <em>Extension Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg
+	 * @generated
+	 */
+	public Adapter createProcessExtensionPkgAdapter()
 	{
 		return null;
 	}

@@ -22,6 +22,7 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isResetAllowed <em>Reset Allowed</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getSignals <em>Signals</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getWaitFor <em>Wait For</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getExtensionPkg <em>Extension Pkg</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess()
@@ -120,5 +121,27 @@ public interface AbstractProcess extends IProcess
 	 * @generated
 	 */
 	EList<Semaphore> getWaitFor();
+
+	/**
+	 * Returns the value of the '<em><b>Extension Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extension Pkg</em>' containment reference.
+	 * @see #setExtensionPkg(ProcessExtensionPkg)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_ExtensionPkg()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ProcessExtensionPkg getExtensionPkg();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getExtensionPkg <em>Extension Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Extension Pkg</em>' containment reference.
+	 * @see #getExtensionPkg()
+	 * @generated
+	 */
+	void setExtensionPkg(ProcessExtensionPkg value);
 
 } // AbstractProcess
