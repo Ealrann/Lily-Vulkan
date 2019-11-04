@@ -16,8 +16,9 @@ include ':org.sheepy.lily.vulkan.extra.graphic'
 include ':org.sheepy.lily.vulkan.extra.graphic.shape'
 include ':org.sheepy.lily.vulkan.extra.nuklear'
 
-include ':org.sheepy.lily.vulkan.demo.texture'
 include ':org.sheepy.lily.vulkan.demo.gameoflife'
+include ':org.sheepy.lily.vulkan.demo.test'
+include ':org.sheepy.lily.vulkan.demo.texture'
 
 // Lily-Core
 includeBuild 'Lily-core'

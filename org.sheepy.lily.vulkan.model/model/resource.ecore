@@ -67,8 +67,7 @@
         eType="#//CompositeBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="part" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BufferDataProvider" abstract="true"
-      eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="BufferDataProvider" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
     <eTypeParameters name="T"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usage" unique="false" lowerBound="1"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EBufferUsage"/>

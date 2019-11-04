@@ -21,4 +21,19 @@ public class BufferReferenceAdapter implements IBufferReferenceAdapter<BufferRef
 	{
 		return ref.getOffset();
 	}
+
+	@Override
+	public long getSize(BufferReference ref)
+	{
+		final var buffer = ref.getBuffer();
+		return buffer.getSize() - ref.getOffset();
+	}
+
+	@Override
+	public void flush(BufferReference ref)
+	{
+		final var buffer = ref.getBuffer();
+		final var adapter = buffer.adaptNotNull(IBufferAdapter.class);
+		adapter.flush();
+	}
 }

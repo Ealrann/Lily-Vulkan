@@ -32,7 +32,6 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	private boolean containingPushCommand = false;
 	private boolean containingGetCommand = false;
 	private IExecutionContext executionContext;
-	private long minMemoryMapAlignment;
 
 	public StagingBuffer(long capacity, int instanceCount)
 	{
@@ -50,11 +49,6 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	public void allocate(IExecutionContext context)
 	{
 		this.executionContext = context;
-		final var physicalDevice = context.getPhysicalDevice();
-		minMemoryMapAlignment = physicalDevice	.getDeviceProperties()
-												.limits()
-												.minMemoryMapAlignment();
-
 		bufferBackend.allocate(context);
 	}
 
@@ -69,15 +63,13 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	{
 		MemoryTicket res = null;
 
-		final long alignedSize = align(size, minMemoryMapAlignment);
-
-		if (alignedSize > capacity)
+		if (size > capacity)
 		{
 			res = newFailTicket(EReservationStatus.ERROR__REQUEST_TOO_BIG);
 		}
 		else
 		{
-			final var space = spaceManager.reserveMemory(alignedSize);
+			final var space = spaceManager.reserveMemory(size);
 
 			if (space == null)
 			{
@@ -96,12 +88,6 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 		}
 
 		return res;
-	}
-
-	private static final long align(long index, long alignment)
-	{
-		final int chunkCount = (int) Math.ceil(((double) index) / alignment);
-		return chunkCount * alignment;
 	}
 
 	@Override

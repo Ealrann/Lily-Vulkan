@@ -1097,31 +1097,40 @@ public interface ProcessPackage extends EPackage
 	int COPY_BUFFER_TASK__ENABLED = IPIPELINE_TASK__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Src Buffer</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COPY_BUFFER_TASK__SRC_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Trg Buffer</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COPY_BUFFER_TASK__TRG_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COPY_BUFFER_TASK__STAGE = IPIPELINE_TASK_FEATURE_COUNT + 2;
+	int COPY_BUFFER_TASK__STAGE = IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPY_BUFFER_TASK__SIZE = IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Src Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPY_BUFFER_TASK__SRC_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Dst Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPY_BUFFER_TASK__DST_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Copy Buffer Task</em>' class.
@@ -1130,7 +1139,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COPY_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 3;
+	int COPY_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Copy Buffer Task</em>' class.
@@ -1686,10 +1695,10 @@ public interface ProcessPackage extends EPackage
 	EClass getCopyBufferTask();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getSrcBuffer <em>Src Buffer</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getSrcBuffer <em>Src Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Src Buffer</em>'.
+	 * @return the meta object for the containment reference '<em>Src Buffer</em>'.
 	 * @see org.sheepy.lily.vulkan.model.process.CopyBufferTask#getSrcBuffer()
 	 * @see #getCopyBufferTask()
 	 * @generated
@@ -1697,15 +1706,15 @@ public interface ProcessPackage extends EPackage
 	EReference getCopyBufferTask_SrcBuffer();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getTrgBuffer <em>Trg Buffer</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getDstBuffer <em>Dst Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Trg Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.CopyBufferTask#getTrgBuffer()
+	 * @return the meta object for the containment reference '<em>Dst Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.CopyBufferTask#getDstBuffer()
 	 * @see #getCopyBufferTask()
 	 * @generated
 	 */
-	EReference getCopyBufferTask_TrgBuffer();
+	EReference getCopyBufferTask_DstBuffer();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getStage <em>Stage</em>}'.
@@ -1717,6 +1726,17 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getCopyBufferTask_Stage();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getSize <em>Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Size</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.CopyBufferTask#getSize()
+	 * @see #getCopyBufferTask()
+	 * @generated
+	 */
+	EAttribute getCopyBufferTask_Size();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.IProcessExtension <em>IProcess Extension</em>}'.
@@ -2166,7 +2186,7 @@ public interface ProcessPackage extends EPackage
 		EClass COPY_BUFFER_TASK = eINSTANCE.getCopyBufferTask();
 
 		/**
-		 * The meta object literal for the '<em><b>Src Buffer</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Src Buffer</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2174,12 +2194,12 @@ public interface ProcessPackage extends EPackage
 		EReference COPY_BUFFER_TASK__SRC_BUFFER = eINSTANCE.getCopyBufferTask_SrcBuffer();
 
 		/**
-		 * The meta object literal for the '<em><b>Trg Buffer</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Dst Buffer</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COPY_BUFFER_TASK__TRG_BUFFER = eINSTANCE.getCopyBufferTask_TrgBuffer();
+		EReference COPY_BUFFER_TASK__DST_BUFFER = eINSTANCE.getCopyBufferTask_DstBuffer();
 
 		/**
 		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
@@ -2188,6 +2208,14 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute COPY_BUFFER_TASK__STAGE = eINSTANCE.getCopyBufferTask_Stage();
+
+		/**
+		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COPY_BUFFER_TASK__SIZE = eINSTANCE.getCopyBufferTask_Size();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.IProcessExtension <em>IProcess Extension</em>}' class.

@@ -291,6 +291,31 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BufferDataProviderItemProvider bufferDataProviderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBufferDataProviderAdapter()
+	{
+		if (bufferDataProviderItemProvider == null)
+		{
+			bufferDataProviderItemProvider = new BufferDataProviderItemProvider(this);
+		}
+
+		return bufferDataProviderItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.DescribedDataProvider} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -872,6 +897,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (compositeBufferItemProvider != null) compositeBufferItemProvider.dispose();
 		if (bufferReferenceItemProvider != null) bufferReferenceItemProvider.dispose();
 		if (compositeBufferReferenceItemProvider != null) compositeBufferReferenceItemProvider.dispose();
+		if (bufferDataProviderItemProvider != null) bufferDataProviderItemProvider.dispose();
 		if (describedDataProviderItemProvider != null) describedDataProviderItemProvider.dispose();
 		if (staticImageItemProvider != null) staticImageItemProvider.dispose();
 		if (fileImageItemProvider != null) fileImageItemProvider.dispose();

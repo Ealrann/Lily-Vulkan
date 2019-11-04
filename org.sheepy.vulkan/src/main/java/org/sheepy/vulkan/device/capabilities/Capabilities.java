@@ -10,6 +10,7 @@ import org.sheepy.vulkan.surface.VkSurface;
 public class Capabilities
 {
 	private static final String FAILED_TO_GET_SURFACE_CAPABILITIES = "Failed to get physical device surface capabilities";
+
 	public VkSurfaceCapabilitiesKHR vkCapabilities;
 
 	public Capabilities(VkPhysicalDevice device, VkSurface surface)
@@ -18,8 +19,9 @@ public class Capabilities
 
 		if (surface.isDeprecated() == false && surface.ptr > 0)
 		{
-			final var err = vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, surface.ptr,
-					vkCapabilities);
+			final var err = vkGetPhysicalDeviceSurfaceCapabilitiesKHR(	device,
+																		surface.ptr,
+																		vkCapabilities);
 			Logger.check(err, FAILED_TO_GET_SURFACE_CAPABILITIES);
 		}
 	}

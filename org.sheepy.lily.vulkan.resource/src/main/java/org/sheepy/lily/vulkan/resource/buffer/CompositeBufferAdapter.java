@@ -264,15 +264,15 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 																			stage,
 																			access);
 
-//			System.out.println(String.format(	"[%s] push %d bytes",
-//												dataProvider.eClass().getName(),
-//												memTicket.getSize()));
-//			System.out.println(String.format(	"from buffer %d, offset %d",
-//												bufferAddress,
-//												alignedOffset));
-//			System.out.println(String.format(	"to buffer %d, offset %d",
-//												memTicket.getBufferPtr(),
-//												memTicket.getBufferOffset()));
+			// System.out.println(String.format( "[%s] push %d bytes",
+			// dataProvider.eClass().getName(),
+			// memTicket.getSize()));
+			// System.out.println(String.format( "from buffer %d, offset %d",
+			// bufferAddress,
+			// alignedOffset));
+			// System.out.println(String.format( "to buffer %d, offset %d",
+			// memTicket.getBufferPtr(),
+			// memTicket.getBufferOffset()));
 
 			stagingBuffer.addStagingCommand(pushCommand);
 
@@ -324,6 +324,9 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		case EBufferUsage.UNIFORM_BUFFER_BIT_VALUE:
 			res = EPipelineStage.VERTEX_SHADER_BIT;
 			break;
+		case EBufferUsage.TRANSFER_SRC_BIT_VALUE:
+			res = EPipelineStage.TRANSFER_BIT;
+			break;
 		}
 
 		return res;
@@ -342,6 +345,9 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			break;
 		case EBufferUsage.UNIFORM_BUFFER_BIT_VALUE:
 			res = EAccess.UNIFORM_READ_BIT;
+			break;
+		case EBufferUsage.TRANSFER_SRC_BIT_VALUE:
+			res = EAccess.TRANSFER_READ_BIT;
 			break;
 		}
 

@@ -75,6 +75,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.COMPOSITE_BUFFER: return createCompositeBuffer();
 			case ResourcePackage.BUFFER_REFERENCE: return createBufferReference();
 			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE: return createCompositeBufferReference();
+			case ResourcePackage.BUFFER_DATA_PROVIDER: return createBufferDataProvider();
 			case ResourcePackage.DESCRIBED_DATA_PROVIDER: return createDescribedDataProvider();
 			case ResourcePackage.STATIC_IMAGE: return createStaticImage();
 			case ResourcePackage.FILE_IMAGE: return createFileImage();
@@ -229,6 +230,18 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		CompositeBufferReferenceImpl compositeBufferReference = new CompositeBufferReferenceImpl();
 		return compositeBufferReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public <T> BufferDataProvider<T> createBufferDataProvider()
+	{
+		BufferDataProviderImpl<T> bufferDataProvider = new BufferDataProviderImpl<T>();
+		return bufferDataProvider;
 	}
 
 	/**

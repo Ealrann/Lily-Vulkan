@@ -24,4 +24,16 @@ public class CompositeBufferReferenceAdapter
 		final var adapter = buffer.adaptNotNull(ICompositeBufferAdapter.class);
 		return adapter.getOffset(ref.getPart());
 	}
+
+	@Override
+	public long getSize(CompositeBufferReference ref)
+	{
+		final var buffer = ref.getBuffer();
+		final var adapter = buffer.adaptNotNull(ICompositeBufferAdapter.class);
+		return adapter.getSize(ref.getPart());
+	}
+
+	@Override
+	public void flush(CompositeBufferReference ref)
+	{}
 }

@@ -792,7 +792,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getCopyBufferTask_SrcBuffer()
 	{
-		return (EReference)copyBufferTaskEClass.getEStructuralFeatures().get(0);
+		return (EReference)copyBufferTaskEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -801,9 +801,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getCopyBufferTask_TrgBuffer()
+	public EReference getCopyBufferTask_DstBuffer()
 	{
-		return (EReference)copyBufferTaskEClass.getEStructuralFeatures().get(1);
+		return (EReference)copyBufferTaskEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -814,7 +814,18 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EAttribute getCopyBufferTask_Stage()
 	{
-		return (EAttribute)copyBufferTaskEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)copyBufferTaskEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCopyBufferTask_Size()
+	{
+		return (EAttribute)copyBufferTaskEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -941,9 +952,10 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEReference(getBufferTaskEClass, GET_BUFFER_TASK__DEVICE_BUFFER);
 
 		copyBufferTaskEClass = createEClass(COPY_BUFFER_TASK);
-		createEReference(copyBufferTaskEClass, COPY_BUFFER_TASK__SRC_BUFFER);
-		createEReference(copyBufferTaskEClass, COPY_BUFFER_TASK__TRG_BUFFER);
 		createEAttribute(copyBufferTaskEClass, COPY_BUFFER_TASK__STAGE);
+		createEAttribute(copyBufferTaskEClass, COPY_BUFFER_TASK__SIZE);
+		createEReference(copyBufferTaskEClass, COPY_BUFFER_TASK__SRC_BUFFER);
+		createEReference(copyBufferTaskEClass, COPY_BUFFER_TASK__DST_BUFFER);
 
 		iProcessExtensionEClass = createEClass(IPROCESS_EXTENSION);
 
@@ -1073,9 +1085,10 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEReference(getGetBufferTask_DeviceBuffer(), theResourcePackage.getBuffer(), null, "deviceBuffer", null, 0, 1, GetBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(copyBufferTaskEClass, CopyBufferTask.class, "CopyBufferTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCopyBufferTask_SrcBuffer(), theResourcePackage.getBuffer(), null, "srcBuffer", null, 1, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCopyBufferTask_TrgBuffer(), theResourcePackage.getBuffer(), null, "trgBuffer", null, 1, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCopyBufferTask_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Transfer", 1, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCopyBufferTask_Size(), ecorePackage.getELong(), "size", null, 0, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCopyBufferTask_SrcBuffer(), theResourcePackage.getIBufferReference(), null, "srcBuffer", null, 1, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCopyBufferTask_DstBuffer(), theResourcePackage.getIBufferReference(), null, "dstBuffer", null, 1, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iProcessExtensionEClass, IProcessExtension.class, "IProcessExtension", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

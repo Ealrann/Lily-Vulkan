@@ -30,7 +30,7 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  *
  * @generated
  */
-public abstract class BufferDataProviderImpl<T> extends LilyEObject implements BufferDataProvider<T>
+public class BufferDataProviderImpl<T> extends LilyEObject implements BufferDataProvider<T>
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

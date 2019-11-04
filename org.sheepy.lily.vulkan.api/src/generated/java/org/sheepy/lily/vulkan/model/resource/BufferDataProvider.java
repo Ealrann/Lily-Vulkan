@@ -21,7 +21,7 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface BufferDataProvider<T> extends LNamedElement

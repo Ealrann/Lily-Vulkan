@@ -214,6 +214,11 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 		newChildDescriptors.add
 			(createChildParameter
 				(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
+				 ResourceFactory.eINSTANCE.createBufferDataProvider()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
 				 ResourceFactory.eINSTANCE.createDescribedDataProvider()));
 	}
 

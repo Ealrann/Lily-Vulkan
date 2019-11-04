@@ -4,8 +4,8 @@ package org.sheepy.lily.vulkan.model.process.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -14,9 +14,7 @@ import org.sheepy.lily.core.api.adapter.LilyEObject;
 
 import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
-import org.sheepy.lily.vulkan.model.resource.Buffer;
-
+import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
@@ -29,9 +27,10 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl#getSrcBuffer <em>Src Buffer</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl#getTrgBuffer <em>Trg Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl#getSize <em>Size</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl#getSrcBuffer <em>Src Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl#getDstBuffer <em>Dst Buffer</em>}</li>
  * </ul>
  *
  * @generated
@@ -79,26 +78,6 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	protected boolean enabled = ENABLED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSrcBuffer() <em>Src Buffer</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSrcBuffer()
-	 * @generated
-	 * @ordered
-	 */
-	protected Buffer srcBuffer;
-
-	/**
-	 * The cached value of the '{@link #getTrgBuffer() <em>Trg Buffer</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTrgBuffer()
-	 * @generated
-	 * @ordered
-	 */
-	protected Buffer trgBuffer;
-
-	/**
 	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -117,6 +96,55 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	 * @ordered
 	 */
 	protected ECommandStage stage = STAGE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSize()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long SIZE_EDEFAULT = 0L;
+
+	/**
+	 * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSize()
+	 * @generated
+	 * @ordered
+	 */
+	protected long size = SIZE_EDEFAULT;
+
+	/**
+	 * This is true if the Size attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean sizeESet;
+
+	/**
+	 * The cached value of the '{@link #getSrcBuffer() <em>Src Buffer</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSrcBuffer()
+	 * @generated
+	 * @ordered
+	 */
+	protected IBufferReference srcBuffer;
+
+	/**
+	 * The cached value of the '{@link #getDstBuffer() <em>Dst Buffer</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDstBuffer()
+	 * @generated
+	 * @ordered
+	 */
+	protected IBufferReference dstBuffer;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -195,27 +223,7 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	 * @generated
 	 */
 	@Override
-	public Buffer getSrcBuffer()
-	{
-		if (srcBuffer != null && ((EObject)srcBuffer).eIsProxy())
-		{
-			InternalEObject oldSrcBuffer = (InternalEObject)srcBuffer;
-			srcBuffer = (Buffer)eResolveProxy(oldSrcBuffer);
-			if (srcBuffer != oldSrcBuffer)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER, oldSrcBuffer, srcBuffer));
-			}
-		}
-		return srcBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Buffer basicGetSrcBuffer()
+	public IBufferReference getSrcBuffer()
 	{
 		return srcBuffer;
 	}
@@ -225,44 +233,16 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setSrcBuffer(Buffer newSrcBuffer)
+	public NotificationChain basicSetSrcBuffer(IBufferReference newSrcBuffer, NotificationChain msgs)
 	{
-		Buffer oldSrcBuffer = srcBuffer;
+		IBufferReference oldSrcBuffer = srcBuffer;
 		srcBuffer = newSrcBuffer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER, oldSrcBuffer, srcBuffer));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Buffer getTrgBuffer()
-	{
-		if (trgBuffer != null && ((EObject)trgBuffer).eIsProxy())
 		{
-			InternalEObject oldTrgBuffer = (InternalEObject)trgBuffer;
-			trgBuffer = (Buffer)eResolveProxy(oldTrgBuffer);
-			if (trgBuffer != oldTrgBuffer)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.COPY_BUFFER_TASK__TRG_BUFFER, oldTrgBuffer, trgBuffer));
-			}
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER, oldSrcBuffer, newSrcBuffer);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return trgBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Buffer basicGetTrgBuffer()
-	{
-		return trgBuffer;
+		return msgs;
 	}
 
 	/**
@@ -271,12 +251,88 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	 * @generated
 	 */
 	@Override
-	public void setTrgBuffer(Buffer newTrgBuffer)
+	public void setSrcBuffer(IBufferReference newSrcBuffer)
 	{
-		Buffer oldTrgBuffer = trgBuffer;
-		trgBuffer = newTrgBuffer;
+		if (newSrcBuffer != srcBuffer)
+		{
+			NotificationChain msgs = null;
+			if (srcBuffer != null)
+				msgs = ((InternalEObject)srcBuffer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER, null, msgs);
+			if (newSrcBuffer != null)
+				msgs = ((InternalEObject)newSrcBuffer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER, null, msgs);
+			msgs = basicSetSrcBuffer(newSrcBuffer, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER, newSrcBuffer, newSrcBuffer));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IBufferReference getDstBuffer()
+	{
+		return dstBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDstBuffer(IBufferReference newDstBuffer, NotificationChain msgs)
+	{
+		IBufferReference oldDstBuffer = dstBuffer;
+		dstBuffer = newDstBuffer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.COPY_BUFFER_TASK__TRG_BUFFER, oldTrgBuffer, trgBuffer));
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER, oldDstBuffer, newDstBuffer);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDstBuffer(IBufferReference newDstBuffer)
+	{
+		if (newDstBuffer != dstBuffer)
+		{
+			NotificationChain msgs = null;
+			if (dstBuffer != null)
+				msgs = ((InternalEObject)dstBuffer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER, null, msgs);
+			if (newDstBuffer != null)
+				msgs = ((InternalEObject)newDstBuffer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER, null, msgs);
+			msgs = basicSetDstBuffer(newDstBuffer, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER, newDstBuffer, newDstBuffer));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER:
+				return basicSetSrcBuffer(null, msgs);
+			case ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER:
+				return basicSetDstBuffer(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -310,6 +366,60 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	 * @generated
 	 */
 	@Override
+	public long getSize()
+	{
+		return size;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSize(long newSize)
+	{
+		long oldSize = size;
+		size = newSize;
+		boolean oldSizeESet = sizeESet;
+		sizeESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.COPY_BUFFER_TASK__SIZE, oldSize, size, !oldSizeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetSize()
+	{
+		long oldSize = size;
+		boolean oldSizeESet = sizeESet;
+		size = SIZE_EDEFAULT;
+		sizeESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, ProcessPackage.COPY_BUFFER_TASK__SIZE, oldSize, SIZE_EDEFAULT, oldSizeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetSize()
+	{
+		return sizeESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -318,14 +428,14 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 				return getName();
 			case ProcessPackage.COPY_BUFFER_TASK__ENABLED:
 				return isEnabled();
-			case ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER:
-				if (resolve) return getSrcBuffer();
-				return basicGetSrcBuffer();
-			case ProcessPackage.COPY_BUFFER_TASK__TRG_BUFFER:
-				if (resolve) return getTrgBuffer();
-				return basicGetTrgBuffer();
 			case ProcessPackage.COPY_BUFFER_TASK__STAGE:
 				return getStage();
+			case ProcessPackage.COPY_BUFFER_TASK__SIZE:
+				return getSize();
+			case ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER:
+				return getSrcBuffer();
+			case ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER:
+				return getDstBuffer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -346,14 +456,17 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 			case ProcessPackage.COPY_BUFFER_TASK__ENABLED:
 				setEnabled((Boolean)newValue);
 				return;
-			case ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER:
-				setSrcBuffer((Buffer)newValue);
-				return;
-			case ProcessPackage.COPY_BUFFER_TASK__TRG_BUFFER:
-				setTrgBuffer((Buffer)newValue);
-				return;
 			case ProcessPackage.COPY_BUFFER_TASK__STAGE:
 				setStage((ECommandStage)newValue);
+				return;
+			case ProcessPackage.COPY_BUFFER_TASK__SIZE:
+				setSize((Long)newValue);
+				return;
+			case ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER:
+				setSrcBuffer((IBufferReference)newValue);
+				return;
+			case ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER:
+				setDstBuffer((IBufferReference)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -375,14 +488,17 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 			case ProcessPackage.COPY_BUFFER_TASK__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
-			case ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER:
-				setSrcBuffer((Buffer)null);
-				return;
-			case ProcessPackage.COPY_BUFFER_TASK__TRG_BUFFER:
-				setTrgBuffer((Buffer)null);
-				return;
 			case ProcessPackage.COPY_BUFFER_TASK__STAGE:
 				setStage(STAGE_EDEFAULT);
+				return;
+			case ProcessPackage.COPY_BUFFER_TASK__SIZE:
+				unsetSize();
+				return;
+			case ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER:
+				setSrcBuffer((IBufferReference)null);
+				return;
+			case ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER:
+				setDstBuffer((IBufferReference)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -402,12 +518,14 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.COPY_BUFFER_TASK__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
-			case ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER:
-				return srcBuffer != null;
-			case ProcessPackage.COPY_BUFFER_TASK__TRG_BUFFER:
-				return trgBuffer != null;
 			case ProcessPackage.COPY_BUFFER_TASK__STAGE:
 				return stage != STAGE_EDEFAULT;
+			case ProcessPackage.COPY_BUFFER_TASK__SIZE:
+				return isSetSize();
+			case ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER:
+				return srcBuffer != null;
+			case ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER:
+				return dstBuffer != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -429,6 +547,8 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 		result.append(enabled);
 		result.append(", stage: ");
 		result.append(stage);
+		result.append(", size: ");
+		if (sizeESet) result.append(size); else result.append("<unset>");
 		result.append(')');
 		return result.toString();
 	}
