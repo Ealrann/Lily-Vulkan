@@ -14,6 +14,9 @@ import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 
 public final class BufferInstaller<T extends Structure>
 {
+	private static final int BUFFER_MIN_SIZE = 1 << 16;
+	private static final float BUFFER_GROW_FACTOR = 1.5f;
+
 	public final boolean hasDynamicDescriptors;
 	public final boolean hasIndexData;
 
@@ -79,6 +82,8 @@ public final class BufferInstaller<T extends Structure>
 	private CompositeBuffer createBuffer(T structure, int part)
 	{
 		final CompositeBuffer buffer = ResourceFactory.eINSTANCE.createCompositeBuffer();
+		buffer.setGrowFactor(BUFFER_GROW_FACTOR);
+		buffer.setMinSize(BUFFER_MIN_SIZE);
 		final var dataProviders = maintainer.getDataProviderPkg().getDataProviders();
 
 		for (int i = 0; i < dataProviders.size(); i++)

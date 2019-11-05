@@ -14,11 +14,13 @@ import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 @Adapter(scope = BufferDataProvider.class, name = TestDataProviderAdapter.NAME)
 public class TestDataProviderAdapter implements IBufferDataProviderAdapter
 {
-	public static final int TARGET_BYTES = 100000;
 	public static final String NAME = "TestDataProvider";
+
+	public static final int MAX_SIZE = 1000000;
 
 	private final Random random;
 
+	public int currentSize = 100000;
 	private int[] previous = null;
 
 	public TestDataProviderAdapter(BufferDataProvider<?> provider)
@@ -34,13 +36,13 @@ public class TestDataProviderAdapter implements IBufferDataProviderAdapter
 	@Override
 	public long getSize()
 	{
-		return TARGET_BYTES;
+		return currentSize;
 	}
 
 	@Override
 	public void fill(long memoryAddress)
 	{
-		final int size = TARGET_BYTES / 4;
+		final int size = currentSize / 4;
 		previous = new int[size];
 		final var buffer = MemoryUtil.memIntBuffer(memoryAddress, size);
 		for (int i = 0; i < size; i++)
@@ -53,6 +55,9 @@ public class TestDataProviderAdapter implements IBufferDataProviderAdapter
 
 	public boolean check(long memoryAddress)
 	{
+		currentSize += 5000;
+		currentSize = Math.min(MAX_SIZE, currentSize);
+
 		final var buffer = MemoryUtil.memIntBuffer(memoryAddress, previous.length);
 		for (int i = 0; i < previous.length; i++)
 		{

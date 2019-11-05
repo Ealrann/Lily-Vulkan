@@ -40,7 +40,7 @@ class TestResourceFactory
 	private static PushBuffer buildPushBuffer(int bufferCount)
 	{
 		final var res = ResourceFactory.eINSTANCE.createPushBuffer();
-		res.setSize(TestDataProviderAdapter.TARGET_BYTES * bufferCount);
+		res.setSize(TestDataProviderAdapter.MAX_SIZE * bufferCount);
 		res.setInstanceCount(1);
 		return res;
 	}
@@ -74,7 +74,7 @@ class TestResourceFactory
 
 			buffer.setKeptMapped(true);
 			buffer.setHostVisible(true);
-			buffer.setSize(TestDataProviderAdapter.TARGET_BYTES);
+			buffer.setSize(TestDataProviderAdapter.MAX_SIZE);
 			buffer.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
 
 			res.add(buffer);

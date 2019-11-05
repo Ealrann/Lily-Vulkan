@@ -65,6 +65,8 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 
 			addNamePropertyDescriptor(object);
 			addPushBufferPropertyDescriptor(object);
+			addMinSizePropertyDescriptor(object);
+			addGrowFactorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -111,6 +113,52 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Min Size feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMinSizePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositeBuffer_minSize_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeBuffer_minSize_feature", "_UI_CompositeBuffer_type"),
+				 ResourcePackage.Literals.COMPOSITE_BUFFER__MIN_SIZE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Grow Factor feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGrowFactorPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositeBuffer_growFactor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeBuffer_growFactor_feature", "_UI_CompositeBuffer_type"),
+				 ResourcePackage.Literals.COMPOSITE_BUFFER__GROW_FACTOR,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -190,6 +238,8 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 		switch (notification.getFeatureID(CompositeBuffer.class))
 		{
 			case ResourcePackage.COMPOSITE_BUFFER__NAME:
+			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
+			case ResourcePackage.COMPOSITE_BUFFER__GROW_FACTOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:

@@ -49,7 +49,6 @@ public class BufferReferenceImpl extends LilyEObject implements BufferReference
 	 * @ordered
 	 */
 	protected static final long OFFSET_EDEFAULT = 0L;
-
 	/**
 	 * The cached value of the '{@link #getOffset() <em>Offset</em>}' attribute.
 	 * <!-- begin-user-doc -->

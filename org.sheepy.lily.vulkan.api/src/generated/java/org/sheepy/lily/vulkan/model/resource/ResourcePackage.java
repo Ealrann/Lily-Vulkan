@@ -516,13 +516,31 @@ public interface ResourcePackage extends EPackage
 	int COMPOSITE_BUFFER__PUSH_BUFFER = DESCRIPTED_RESOURCE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Min Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BUFFER__MIN_SIZE = DESCRIPTED_RESOURCE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BUFFER__GROW_FACTOR = DESCRIPTED_RESOURCE_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Composite Buffer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_BUFFER_FEATURE_COUNT = DESCRIPTED_RESOURCE_FEATURE_COUNT + 2;
+	int COMPOSITE_BUFFER_FEATURE_COUNT = DESCRIPTED_RESOURCE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Composite Buffer</em>' class.
@@ -2298,6 +2316,28 @@ public interface ResourcePackage extends EPackage
 	EReference getCompositeBuffer_PushBuffer();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getMinSize <em>Min Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Min Size</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getMinSize()
+	 * @see #getCompositeBuffer()
+	 * @generated
+	 */
+	EAttribute getCompositeBuffer_MinSize();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getGrowFactor <em>Grow Factor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Grow Factor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getGrowFactor()
+	 * @see #getCompositeBuffer()
+	 * @generated
+	 */
+	EAttribute getCompositeBuffer_GrowFactor();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.IBufferReference <em>IBuffer Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3158,6 +3198,22 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EReference COMPOSITE_BUFFER__PUSH_BUFFER = eINSTANCE.getCompositeBuffer_PushBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPOSITE_BUFFER__MIN_SIZE = eINSTANCE.getCompositeBuffer_MinSize();
+
+		/**
+		 * The meta object literal for the '<em><b>Grow Factor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPOSITE_BUFFER__GROW_FACTOR = eINSTANCE.getCompositeBuffer_GrowFactor();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.IBufferReference <em>IBuffer Reference</em>}' class.

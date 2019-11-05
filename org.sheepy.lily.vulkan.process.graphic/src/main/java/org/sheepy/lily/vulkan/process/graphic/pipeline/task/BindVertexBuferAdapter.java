@@ -7,7 +7,6 @@ import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferReferenceAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer;
-import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 
 @Adapter(scope = BindVertexBuffer.class)
 public class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBuffer>
@@ -26,7 +25,7 @@ public class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBu
 		{
 			final var binding = bindings.get(i);
 			final var bufferRef = binding.getBufferRef();
-			final var adapter = bufferRef.<IBufferReferenceAdapter<IBufferReference>> adaptNotNullGeneric(IBufferReferenceAdapter.class);
+			final var adapter = bufferRef.adaptNotNull(IBufferReferenceAdapter.class);
 
 			vertexBuffers[i] = adapter.getBufferPtr(bufferRef);
 			offsets[i] = adapter.getOffset(bufferRef);

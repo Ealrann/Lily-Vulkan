@@ -53,7 +53,7 @@ public class MainCompositeBufferTest
 			count++;
 
 			// System.out.println("End step " + count);
-			if (count == 100)
+			if (count == 50)
 			{
 				factory.application.setRun(false);
 			}

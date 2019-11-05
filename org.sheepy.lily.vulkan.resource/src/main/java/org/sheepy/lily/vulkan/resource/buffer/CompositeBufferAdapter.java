@@ -6,28 +6,20 @@ import java.util.List;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.resource.buffer.IBufferDataProviderAdapter;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.resource.buffer.ICompositeBufferAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IPushBufferAdapter;
-import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
-import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
 import org.sheepy.lily.vulkan.model.resource.PushBuffer;
+import org.sheepy.lily.vulkan.resource.buffer.provider.DataProviderWrapper;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
-import org.sheepy.vulkan.device.PhysicalDevice;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
-import org.sheepy.vulkan.resource.buffer.IBufferBackend;
-import org.sheepy.vulkan.resource.buffer.VkBufferDescriptor;
-import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
 import org.sheepy.vulkan.resource.staging.IStagingBuffer;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer.FlushListener;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket.EReservationStatus;
+import org.sheepy.vulkan.resource.staging.IStagingBuffer.FlushListener.PreFlushListener;
 
 @Statefull
 @Adapter(scope = CompositeBuffer.class)
@@ -35,78 +27,72 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 {
 	private final List<DataProviderWrapper> providerWrappers;
 	private final List<IVkDescriptor> descriptors = new ArrayList<>();
-
+	private final PreFlushListener pushBufferListener = this::update;
+	private final CompositeBuffer compositeBuffer;
 	private final PushBuffer pushBuffer;
 	private final IStagingBuffer stagingBuffer;
 
-	private IBufferBackend bufferBackend;
+	private GPUBufferBackend oldBufferBackend;
+	private GPUBufferBackend bufferBackend;
 	private boolean allocated = false;
-
-	private final FlushListener pushBufferListener = new FlushListener()
-	{
-		@Override
-		public void preFlush()
-		{
-			update();
-		}
-
-		@Override
-		public void postFlush()
-		{}
-	};
+	private IExecutionContext context;
+	private int freeOldBufferIn = 0;
 
 	public CompositeBufferAdapter(CompositeBuffer compositeBuffer)
 	{
+		this.compositeBuffer = compositeBuffer;
 		this.pushBuffer = compositeBuffer.getPushBuffer();
 		final var pushBufferAdapter = pushBuffer.adaptNotNull(IPushBufferAdapter.class);
 		stagingBuffer = pushBufferAdapter.getStagingBuffer();
+		this.providerWrappers = List.copyOf(buildProviderWrapers(compositeBuffer));
+	}
 
-		final List<DataProviderWrapper> tmpList = new ArrayList<>();
-		for (final var dataProvider : compositeBuffer.getDataProviders())
-		{
-			tmpList.add(new DataProviderWrapper(dataProvider));
-		}
-
-		this.providerWrappers = List.copyOf(tmpList);
+	@Override
+	public void configureAllocation(IAllocationConfiguration configuration,
+									IExecutionContext context)
+	{
+		configuration.addChildren(providerWrappers);
 	}
 
 	@Override
 	public void allocate(IExecutionContext context)
 	{
-		final var physicalDevice = context.getPhysicalDevice();
+		this.context = context;
 
-		int usage = EBufferUsage.TRANSFER_DST_BIT_VALUE;
-		long position = 0;
-		for (final var providerWrapper : providerWrappers)
+		refreshConfiguration(true);
+
+		stagingBuffer.addListener(pushBufferListener);
+
+		for (int i = 0; i < providerWrappers.size(); i++)
 		{
-			providerWrapper.updateAlignement(physicalDevice, position);
-			position = providerWrapper.alignedOffset + providerWrapper.alignedSize;
-
-			usage |= providerWrapper.dataProvider.getUsage().getValue();
-		}
-
-		if (position != 0)
-		{
-			createBuffer(position, usage);
-			bufferBackend.allocate(context);
-
-			for (final var providerWrapper : providerWrappers)
+			final var providerWrapper = providerWrappers.get(i);
+			final var descriptor = providerWrapper.getDescriptor();
+			if (descriptor != null)
 			{
-				if (providerWrapper.dataProvider instanceof DescribedDataProvider)
-				{
-					final var descriptor = providerWrapper.createDescriptor(bufferBackend.getAddress());
-					descriptors.add(descriptor);
-				}
+				descriptors.add(descriptor);
 			}
-
-			stagingBuffer.addListener(pushBufferListener);
 		}
 
 		allocated = true;
 	}
 
+	@Override
+	public void free(IExecutionContext context)
+	{
+		allocated = false;
+		if (oldBufferBackend != null)
+		{
+			oldBufferBackend.free(context);
+			oldBufferBackend = null;
+		}
+		bufferBackend.free(context);
+		stagingBuffer.removeListener(pushBufferListener);
+	}
+
 	public void update()
 	{
+		refreshConfiguration(false);
+
 		final List<DataProviderWrapper> providersToPush = new ArrayList<>();
 		boolean reservationSuccessfull = true;
 
@@ -137,10 +123,94 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		}
 	}
 
-	private void createBuffer(long size, int usage)
+	private void refreshConfiguration(boolean force)
 	{
-		final BufferInfo info = new BufferInfo(size, usage, false);
-		bufferBackend = new GPUBufferBackend(info, false);
+		checkOldBuffer();
+
+		int usage = EBufferUsage.TRANSFER_DST_BIT_VALUE;
+		long position = 0;
+		boolean found = force;
+
+		for (int i = 0; i < providerWrappers.size(); i++)
+		{
+			final var providerWrapper = providerWrappers.get(i);
+			if (providerWrapper.hasChanged())
+			{
+				found |= true;
+				break;
+			}
+		}
+
+		if (found)
+		{
+			for (int i = 0; i < providerWrappers.size(); i++)
+			{
+				final var providerWrapper = providerWrappers.get(i);
+				providerWrapper.updateAlignement(position);
+				position = providerWrapper.getOffset() + providerWrapper.getSize();
+				usage |= providerWrapper.dataProvider.getUsage().getValue();
+			}
+
+			final long size = Math.max(Math.max(position, compositeBuffer.getMinSize()), 1);
+			updateBuffer(size, usage);
+		}
+	}
+
+	private void updateBuffer(long size, int usage)
+	{
+		if (bufferBackend != null)
+		{
+			if (bufferBackend.getInfos().getInstanceSize() < size)
+			{
+				planFreeBuffer();
+				bufferBackend = null;
+				if (DebugUtil.DEBUG_ENABLED)
+				{
+					System.out.println("Resize composite buffer");
+				}
+			}
+		}
+
+		if (bufferBackend == null)
+		{
+			final long targetSize = (long) (size * compositeBuffer.getGrowFactor());
+			final var info = new BufferInfo(targetSize, usage, false);
+			bufferBackend = new GPUBufferBackend(info, false);
+			bufferBackend.allocate(context);
+
+			for (int i = 0; i < providerWrappers.size(); i++)
+			{
+				final var providerWrapper = providerWrappers.get(i);
+				providerWrapper.updateBuffer(bufferBackend.getAddress());
+			}
+		}
+	}
+
+	private void checkOldBuffer()
+	{
+		if (oldBufferBackend != null)
+		{
+			if (freeOldBufferIn == 0)
+			{
+				oldBufferBackend.free(context);
+				oldBufferBackend = null;
+			}
+			else
+			{
+				freeOldBufferIn--;
+			}
+		}
+	}
+
+	private void planFreeBuffer()
+	{
+		if (oldBufferBackend != null)
+		{
+			oldBufferBackend.free(context);
+			oldBufferBackend = null;
+		}
+		oldBufferBackend = bufferBackend;
+		freeOldBufferIn = 20;
 	}
 
 	@Override
@@ -158,28 +228,18 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	@Override
 	public long getSize(int componentIndex)
 	{
-		return providerWrappers.get(componentIndex).alignedSize;
+		return providerWrappers.get(componentIndex).getSize();
 	}
 
 	@Override
 	public long getOffset(int componentIndex)
 	{
-		return providerWrappers.get(componentIndex).alignedOffset;
+		return providerWrappers.get(componentIndex).getOffset();
 	}
 
 	@Override
 	public void pushData(ByteBuffer data)
 	{}
-
-	@Override
-	public void free(IExecutionContext context)
-	{
-		allocated = false;
-
-		bufferBackend.free(context);
-
-		stagingBuffer.removeListener(pushBufferListener);
-	}
 
 	@Override
 	public long mapMemory()
@@ -205,155 +265,6 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		return bufferBackend.getAddress();
 	}
 
-	private final class DataProviderWrapper
-	{
-		private final int usage;
-		private final BufferDataProvider<?> dataProvider;
-		private final IBufferDataProviderAdapter adapter;
-
-		private final EAccess access;
-		private final EPipelineStage stage;
-
-		private long alignedOffset;
-		private long alignedSize;
-
-		private boolean needUpdate = true;
-		private MemoryTicket memTicket;
-		private IStagingBuffer stagingBuffer;
-
-		private DataProviderWrapper(BufferDataProvider<?> dataProvider)
-		{
-			this.dataProvider = dataProvider;
-			this.adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
-			usage = dataProvider.getUsage().getValue();
-
-			access = guessAccessFromUsage(usage);
-			stage = guessStageFromUsage(usage);
-		}
-
-		public boolean needUpdate()
-		{
-			return needUpdate || adapter.hasChanged();
-		}
-
-		public boolean reserveMemory(IStagingBuffer stagingBuffer)
-		{
-			this.stagingBuffer = stagingBuffer;
-			final long size = adapter.getSize();
-			memTicket = stagingBuffer.reserveMemory(size);
-
-			return memTicket.getReservationStatus() == EReservationStatus.SUCCESS;
-		}
-
-		public void releaseMemory()
-		{
-			stagingBuffer.releaseTicket(memTicket);
-		}
-
-		private void pushProvidedData()
-		{
-			assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
-
-			final long bufferAddress = bufferBackend.getAddress();
-
-			adapter.fill(memTicket.getMemoryPtr());
-
-			final var pushCommand = IDataFlowCommand.newPipelinePushCommand(memTicket,
-																			bufferAddress,
-																			alignedOffset,
-																			stage,
-																			access);
-
-			// System.out.println(String.format( "[%s] push %d bytes",
-			// dataProvider.eClass().getName(),
-			// memTicket.getSize()));
-			// System.out.println(String.format( "from buffer %d, offset %d",
-			// bufferAddress,
-			// alignedOffset));
-			// System.out.println(String.format( "to buffer %d, offset %d",
-			// memTicket.getBufferPtr(),
-			// memTicket.getBufferOffset()));
-
-			stagingBuffer.addStagingCommand(pushCommand);
-
-			needUpdate = false;
-		}
-
-		public IVkDescriptor createDescriptor(long bufferPtr)
-		{
-			assert dataProvider instanceof DescribedDataProvider;
-
-			final var described = (DescribedDataProvider<?>) dataProvider;
-			final var descriptor = described.getDescriptor();
-
-			assert descriptor != null;
-
-			final var type = descriptor.getDescriptorType();
-			final var stages = descriptor.getShaderStages();
-
-			return new VkBufferDescriptor(bufferPtr, alignedSize, alignedOffset, type, stages);
-		}
-
-		public void updateAlignement(PhysicalDevice physicalDevice, long desiredOffset)
-		{
-			final long size = adapter.getSize();
-			final long alignment = physicalDevice.getBufferAlignement(usage);
-
-			this.alignedOffset = align(desiredOffset, alignment);
-			this.alignedSize = align(size, alignment);
-		}
-	}
-
-	private static long align(long index, long alignment)
-	{
-		final int chunkCount = (int) Math.ceil(((double) index) / alignment);
-		return chunkCount * alignment;
-	}
-
-	private static EPipelineStage guessStageFromUsage(int usage)
-	{
-		EPipelineStage res = null;
-		switch (usage)
-		{
-		case EBufferUsage.VERTEX_BUFFER_BIT_VALUE:
-			res = EPipelineStage.VERTEX_INPUT_BIT;
-			break;
-		case EBufferUsage.INDEX_BUFFER_BIT_VALUE:
-			res = EPipelineStage.VERTEX_INPUT_BIT;
-			break;
-		case EBufferUsage.UNIFORM_BUFFER_BIT_VALUE:
-			res = EPipelineStage.VERTEX_SHADER_BIT;
-			break;
-		case EBufferUsage.TRANSFER_SRC_BIT_VALUE:
-			res = EPipelineStage.TRANSFER_BIT;
-			break;
-		}
-
-		return res;
-	}
-
-	private static EAccess guessAccessFromUsage(int usage)
-	{
-		EAccess res = null;
-		switch (usage)
-		{
-		case EBufferUsage.VERTEX_BUFFER_BIT_VALUE:
-			res = EAccess.VERTEX_ATTRIBUTE_READ_BIT;
-			break;
-		case EBufferUsage.INDEX_BUFFER_BIT_VALUE:
-			res = EAccess.VERTEX_ATTRIBUTE_READ_BIT;
-			break;
-		case EBufferUsage.UNIFORM_BUFFER_BIT_VALUE:
-			res = EAccess.UNIFORM_READ_BIT;
-			break;
-		case EBufferUsage.TRANSFER_SRC_BIT_VALUE:
-			res = EAccess.TRANSFER_READ_BIT;
-			break;
-		}
-
-		return res;
-	}
-
 	@Override
 	public void flush()
 	{
@@ -364,5 +275,15 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	public void invalidate()
 	{
 		// Nothing to invalidate for device local buffer
+	}
+
+	private static List<DataProviderWrapper> buildProviderWrapers(CompositeBuffer compositeBuffer)
+	{
+		final List<DataProviderWrapper> res = new ArrayList<>();
+		for (final var child : compositeBuffer.getDataProviders())
+		{
+			res.add(child.adaptNotNull(DataProviderWrapper.class));
+		}
+		return res;
 	}
 }

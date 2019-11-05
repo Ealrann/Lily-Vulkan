@@ -123,7 +123,7 @@ public final class DrawTaskInstaller
 			return new DrawSetup(bindVertex, draw, adaptedDataProviders, structure);
 		}
 	}
-	
+
 	private static final class IndexedDrawSetup implements IStructurePartDrawSetup
 	{
 		@SuppressWarnings("unused")
@@ -155,7 +155,7 @@ public final class DrawTaskInstaller
 		@Override
 		public void update()
 		{
-			if (dirty)
+			if (dirty || indexProvider.hasChanged())
 			{
 				final var structureAdapter = structure.adaptNotNull(IStructureAdapter.class);
 				final int instanceCount = structureAdapter.getInstanceCount(structure);

@@ -4,6 +4,7 @@ import org.sheepy.lily.vulkan.resource.buffer.BufferReferenceAdapter;
 import org.sheepy.lily.vulkan.resource.buffer.CompositeBufferAdapter;
 import org.sheepy.lily.vulkan.resource.buffer.CompositeBufferReferenceAdapter;
 import org.sheepy.lily.vulkan.resource.buffer.PushBufferAdapter;
+import org.sheepy.lily.vulkan.resource.buffer.provider.DataProviderWrapper;
 import org.sheepy.lily.vulkan.resource.file.FileResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.ModuleResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.StringModuleResourceAdapter;
@@ -32,7 +33,8 @@ import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 		ShaderAdapter.class,
 		StaticImageAdapter.class,
 		StringModuleResourceAdapter.class,
-		Texture2DArrayAdapter.class
+		Texture2DArrayAdapter.class,
+		DataProviderWrapper.class
 })
 
 module org.sheepy.lily.vulkan.resource
@@ -43,6 +45,7 @@ module org.sheepy.lily.vulkan.resource
 	exports org.sheepy.lily.vulkan.resource.semaphore;
 
 	opens org.sheepy.lily.vulkan.resource.buffer;
+	opens org.sheepy.lily.vulkan.resource.buffer.provider;
 	opens org.sheepy.lily.vulkan.resource.file;
 	opens org.sheepy.lily.vulkan.resource.image;
 	opens org.sheepy.lily.vulkan.resource.semaphore;

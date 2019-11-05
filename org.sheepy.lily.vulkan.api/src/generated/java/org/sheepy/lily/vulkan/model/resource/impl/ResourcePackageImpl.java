@@ -683,6 +683,28 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getCompositeBuffer_MinSize()
+	{
+		return (EAttribute)compositeBufferEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCompositeBuffer_GrowFactor()
+	{
+		return (EAttribute)compositeBufferEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getIBufferReference()
 	{
 		return iBufferReferenceEClass;
@@ -1399,6 +1421,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		compositeBufferEClass = createEClass(COMPOSITE_BUFFER);
 		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__DATA_PROVIDERS);
 		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__PUSH_BUFFER);
+		createEAttribute(compositeBufferEClass, COMPOSITE_BUFFER__MIN_SIZE);
+		createEAttribute(compositeBufferEClass, COMPOSITE_BUFFER__GROW_FACTOR);
 
 		iBufferReferenceEClass = createEClass(IBUFFER_REFERENCE);
 
@@ -1604,12 +1628,14 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		g1.getETypeArguments().add(g2);
 		initEReference(getCompositeBuffer_DataProviders(), g1, null, "dataProviders", null, 0, -1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCompositeBuffer_PushBuffer(), this.getPushBuffer(), null, "pushBuffer", null, 1, 1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCompositeBuffer_MinSize(), ecorePackage.getELong(), "minSize", "0", 1, 1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCompositeBuffer_GrowFactor(), ecorePackage.getEFloat(), "growFactor", "1", 1, 1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iBufferReferenceEClass, IBufferReference.class, "IBufferReference", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(bufferReferenceEClass, BufferReference.class, "BufferReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBufferReference_Buffer(), this.getBuffer(), null, "buffer", null, 1, 1, BufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBufferReference_Offset(), theEcorePackage.getELong(), "offset", null, 0, 1, BufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferReference_Offset(), ecorePackage.getELong(), "offset", "0", 1, 1, BufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeBufferReferenceEClass, CompositeBufferReference.class, "CompositeBufferReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeBufferReference_Buffer(), this.getCompositeBuffer(), null, "buffer", null, 1, 1, CompositeBufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -12,6 +12,8 @@ import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
+import org.sheepy.vulkan.resource.staging.IStagingBuffer.FlushListener.PostFlushListener;
+import org.sheepy.vulkan.resource.staging.IStagingBuffer.FlushListener.PreFlushListener;
 import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket.EReservationStatus;
 import org.sheepy.vulkan.resource.staging.memory.MemorySpaceManager;
 import org.sheepy.vulkan.resource.staging.memory.MemorySpaceManager.MemorySpace;
@@ -27,7 +29,8 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	private final Deque<IDataFlowCommand> unsynchronizedCommands = new ArrayDeque<>();
 	private final long capacity;
 	private final MemorySpaceManager spaceManager;
-	private final List<FlushListener> listeners = new ArrayList<>();
+	private final List<PreFlushListener> preFlushListeners = new ArrayList<>();
+	private final List<PostFlushListener> postFlushListeners = new ArrayList<>();
 
 	private boolean containingPushCommand = false;
 	private boolean containingGetCommand = false;
@@ -205,30 +208,33 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	}
 
 	@Override
-	public void addListener(FlushListener listener)
+	public void addListener(FlushListener l)
 	{
-		listeners.add(listener);
+		if (l instanceof PreFlushListener) preFlushListeners.add((PreFlushListener) l);
+		else if (l instanceof PostFlushListener) postFlushListeners.add((PostFlushListener) l);
 	}
 
 	@Override
-	public void removeListener(FlushListener listener)
+	public void removeListener(FlushListener l)
 	{
-		listeners.remove(listener);
+		if (l instanceof PreFlushListener) preFlushListeners.add((PreFlushListener) l);
+		else if (l instanceof PostFlushListener) postFlushListeners.add((PostFlushListener) l);
 	}
 
 	private void firePreFlush()
 	{
-		for (int i = 0; i < listeners.size(); i++)
+		for (int i = 0; i < preFlushListeners.size(); i++)
 		{
-			final FlushListener flushListener = listeners.get(i);
+			final var flushListener = preFlushListeners.get(i);
 			flushListener.preFlush();
 		}
 	}
 
 	private void firePostFlush()
 	{
-		for (final FlushListener flushListener : listeners)
+		for (int i = 0; i < postFlushListeners.size(); i++)
 		{
+			final var flushListener = postFlushListeners.get(i);
 			flushListener.postFlush();
 		}
 	}

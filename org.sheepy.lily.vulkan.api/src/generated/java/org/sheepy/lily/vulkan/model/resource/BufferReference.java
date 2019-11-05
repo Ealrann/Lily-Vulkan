@@ -45,12 +45,13 @@ public interface BufferReference extends IBufferReference
 
 	/**
 	 * Returns the value of the '<em><b>Offset</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Offset</em>' attribute.
 	 * @see #setOffset(long)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferReference_Offset()
-	 * @model unique="false"
+	 * @model default="0" required="true"
 	 * @generated
 	 */
 	long getOffset();

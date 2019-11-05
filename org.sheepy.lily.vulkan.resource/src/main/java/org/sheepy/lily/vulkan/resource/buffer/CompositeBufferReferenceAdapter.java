@@ -1,39 +1,63 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
+import org.sheepy.lily.core.api.adapter.INotificationListener;
+import org.sheepy.lily.core.api.adapter.NotifierAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferReferenceAdapter;
-import org.sheepy.lily.vulkan.api.resource.buffer.ICompositeBufferAdapter;
 import org.sheepy.lily.vulkan.model.resource.CompositeBufferReference;
+import org.sheepy.lily.vulkan.model.resource.IBufferReference;
+import org.sheepy.lily.vulkan.resource.buffer.provider.DataProviderWrapper;
 
-@Adapter(scope = CompositeBufferReference.class)
-public class CompositeBufferReferenceAdapter
-		implements IBufferReferenceAdapter<CompositeBufferReference>
+@Statefull
+@Adapter(scope = CompositeBufferReference.class, lazy = false)
+public class CompositeBufferReferenceAdapter extends NotifierAdapter
+		implements IBufferReferenceAdapter
 {
-	@Override
-	public long getBufferPtr(CompositeBufferReference ref)
+	private final INotificationListener listenerProxy = this::fireNotification;
+	private final DataProviderWrapper providerAdapter;
+
+	public CompositeBufferReferenceAdapter(CompositeBufferReference ref)
 	{
-		final var buffer = ref.getBuffer();
-		final var adapter = buffer.adaptNotNull(ICompositeBufferAdapter.class);
-		return adapter.getPtr();
+		super(FEATURES.values().length);
+
+		final var provider = ref.getBuffer().getDataProviders().get(ref.getPart());
+		providerAdapter = provider.adapt(DataProviderWrapper.class);
+		providerAdapter.addListener(listenerProxy,
+									DataProviderWrapper.FEATURES.SIZE.ordinal(),
+									DataProviderWrapper.FEATURES.OFFSET.ordinal(),
+									DataProviderWrapper.FEATURES.BUFFER_PTR.ordinal());
+	}
+
+	@Dispose
+	public void dispose()
+	{
+		providerAdapter.removeListener(	listenerProxy,
+										DataProviderWrapper.FEATURES.SIZE.ordinal(),
+										DataProviderWrapper.FEATURES.OFFSET.ordinal(),
+										DataProviderWrapper.FEATURES.BUFFER_PTR.ordinal());
 	}
 
 	@Override
-	public long getOffset(CompositeBufferReference ref)
-	{
-		final var buffer = ref.getBuffer();
-		final var adapter = buffer.adaptNotNull(ICompositeBufferAdapter.class);
-		return adapter.getOffset(ref.getPart());
-	}
-
-	@Override
-	public long getSize(CompositeBufferReference ref)
-	{
-		final var buffer = ref.getBuffer();
-		final var adapter = buffer.adaptNotNull(ICompositeBufferAdapter.class);
-		return adapter.getSize(ref.getPart());
-	}
-
-	@Override
-	public void flush(CompositeBufferReference ref)
+	public void flush(IBufferReference ref)
 	{}
+
+	@Override
+	public long getBufferPtr(IBufferReference ref)
+	{
+		return providerAdapter.getBufferPtr();
+	}
+
+	@Override
+	public long getOffset(IBufferReference ref)
+	{
+		return providerAdapter.getOffset();
+	}
+
+	@Override
+	public long getSize(IBufferReference ref)
+	{
+		return providerAdapter.getSize();
+	}
 }

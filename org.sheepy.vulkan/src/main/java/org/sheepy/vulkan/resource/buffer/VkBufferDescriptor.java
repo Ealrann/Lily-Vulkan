@@ -16,22 +16,22 @@ import org.sheepy.vulkan.util.VkModelUtil;
 
 public class VkBufferDescriptor implements IVkDescriptor
 {
-	private final long bufferPtr;
-	private final long capacity;
 	private final int descriptorType;
 	private final int shaderStages;
 
 	private boolean hasChanged = false;
+	private long bufferPtr;
+	private long range;
 	private long offset;
 
 	public VkBufferDescriptor(	long bufferPtr,
-								long capacity,
+								long size,
 								long offset,
 								EDescriptorType descriptorType,
 								List<EShaderStage> shaderStages)
 	{
 		this.bufferPtr = bufferPtr;
-		this.capacity = capacity;
+		this.range = size;
 		this.offset = offset;
 		this.descriptorType = descriptorType.getValue();
 		this.shaderStages = VkModelUtil.getEnumeratedFlag(shaderStages);
@@ -75,7 +75,7 @@ public class VkBufferDescriptor implements IVkDescriptor
 		final var bufferInfo = VkDescriptorBufferInfo.callocStack(1, stack);
 		bufferInfo.buffer(bufferPtr);
 		bufferInfo.offset(offset);
-		bufferInfo.range(capacity);
+		bufferInfo.range(range);
 
 		return bufferInfo;
 	}
@@ -83,6 +83,18 @@ public class VkBufferDescriptor implements IVkDescriptor
 	public void updateOffset(long offset)
 	{
 		this.offset = offset;
+		hasChanged = true;
+	}
+
+	public void updateSize(long size)
+	{
+		this.range = size;
+		hasChanged = true;
+	}
+
+	public void updateBufferPtr(long bufferPtr)
+	{
+		this.bufferPtr = bufferPtr;
 		hasChanged = true;
 	}
 
@@ -95,8 +107,18 @@ public class VkBufferDescriptor implements IVkDescriptor
 	@Override
 	public String toString()
 	{
-		return "VkBufferDescriptor [bufferPtr=" + bufferPtr + ", capacity=" + capacity + ", descriptorType="
-				+ descriptorType + ", shaderStages=" + shaderStages + ", hasChanged=" + hasChanged + ", offset="
-				+ offset + "]";
+		return "VkBufferDescriptor [bufferPtr="
+				+ bufferPtr
+				+ ", capacity="
+				+ range
+				+ ", descriptorType="
+				+ descriptorType
+				+ ", shaderStages="
+				+ shaderStages
+				+ ", hasChanged="
+				+ hasChanged
+				+ ", offset="
+				+ offset
+				+ "]";
 	}
 }

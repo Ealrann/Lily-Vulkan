@@ -54,13 +54,17 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pushBuffer" lowerBound="1"
         eType="#//PushBuffer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minSize" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="growFactor" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IBufferReference" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="BufferReference" eSuperTypes="#//IBufferReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="buffer" lowerBound="1"
         eType="#//Buffer"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeBufferReference" eSuperTypes="#//IBufferReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="buffer" lowerBound="1"
