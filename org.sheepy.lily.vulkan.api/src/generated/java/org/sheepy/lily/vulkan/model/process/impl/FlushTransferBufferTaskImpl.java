@@ -9,28 +9,30 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.PushBufferTask;
 
-import org.sheepy.lily.vulkan.model.resource.PushBuffer;
+import org.sheepy.lily.core.api.adapter.LilyEObject;
+
+import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+
+import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Push Buffer Task</b></em>'.
+ * An implementation of the model object '<em><b>Flush Transfer Buffer Task</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PushBufferTaskImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PushBufferTaskImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PushBufferTaskImpl#getPushBuffer <em>Push Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.FlushTransferBufferTaskImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.FlushTransferBufferTaskImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.FlushTransferBufferTaskImpl#getTransferBuffer <em>Transfer Buffer</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PushBufferTaskImpl extends LilyEObject implements PushBufferTask
+public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTransferBufferTask
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -73,21 +75,21 @@ public class PushBufferTaskImpl extends LilyEObject implements PushBufferTask
 	protected boolean enabled = ENABLED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPushBuffer() <em>Push Buffer</em>}' reference.
+	 * The cached value of the '{@link #getTransferBuffer() <em>Transfer Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPushBuffer()
+	 * @see #getTransferBuffer()
 	 * @generated
 	 * @ordered
 	 */
-	protected PushBuffer pushBuffer;
+	protected TransferBuffer transferBuffer;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PushBufferTaskImpl()
+	protected FlushTransferBufferTaskImpl()
 	{
 		super();
 	}
@@ -100,7 +102,7 @@ public class PushBufferTaskImpl extends LilyEObject implements PushBufferTask
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ProcessPackage.Literals.PUSH_BUFFER_TASK;
+		return ProcessPackage.Literals.FLUSH_TRANSFER_BUFFER_TASK;
 	}
 
 	/**
@@ -125,7 +127,7 @@ public class PushBufferTaskImpl extends LilyEObject implements PushBufferTask
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PUSH_BUFFER_TASK__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__NAME, oldName, name));
 	}
 
 	/**
@@ -150,7 +152,7 @@ public class PushBufferTaskImpl extends LilyEObject implements PushBufferTask
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PUSH_BUFFER_TASK__ENABLED, oldEnabled, enabled));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -159,19 +161,19 @@ public class PushBufferTaskImpl extends LilyEObject implements PushBufferTask
 	 * @generated
 	 */
 	@Override
-	public PushBuffer getPushBuffer()
+	public TransferBuffer getTransferBuffer()
 	{
-		if (pushBuffer != null && ((EObject)pushBuffer).eIsProxy())
+		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy())
 		{
-			InternalEObject oldPushBuffer = (InternalEObject)pushBuffer;
-			pushBuffer = (PushBuffer)eResolveProxy(oldPushBuffer);
-			if (pushBuffer != oldPushBuffer)
+			InternalEObject oldTransferBuffer = (InternalEObject)transferBuffer;
+			transferBuffer = (TransferBuffer)eResolveProxy(oldTransferBuffer);
+			if (transferBuffer != oldTransferBuffer)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER, oldPushBuffer, pushBuffer));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
 			}
 		}
-		return pushBuffer;
+		return transferBuffer;
 	}
 
 	/**
@@ -179,9 +181,9 @@ public class PushBufferTaskImpl extends LilyEObject implements PushBufferTask
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PushBuffer basicGetPushBuffer()
+	public TransferBuffer basicGetTransferBuffer()
 	{
-		return pushBuffer;
+		return transferBuffer;
 	}
 
 	/**
@@ -190,12 +192,12 @@ public class PushBufferTaskImpl extends LilyEObject implements PushBufferTask
 	 * @generated
 	 */
 	@Override
-	public void setPushBuffer(PushBuffer newPushBuffer)
+	public void setTransferBuffer(TransferBuffer newTransferBuffer)
 	{
-		PushBuffer oldPushBuffer = pushBuffer;
-		pushBuffer = newPushBuffer;
+		TransferBuffer oldTransferBuffer = transferBuffer;
+		transferBuffer = newTransferBuffer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER, oldPushBuffer, pushBuffer));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
 	}
 
 	/**
@@ -208,13 +210,13 @@ public class PushBufferTaskImpl extends LilyEObject implements PushBufferTask
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PUSH_BUFFER_TASK__NAME:
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__NAME:
 				return getName();
-			case ProcessPackage.PUSH_BUFFER_TASK__ENABLED:
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__ENABLED:
 				return isEnabled();
-			case ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER:
-				if (resolve) return getPushBuffer();
-				return basicGetPushBuffer();
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER:
+				if (resolve) return getTransferBuffer();
+				return basicGetTransferBuffer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -229,14 +231,14 @@ public class PushBufferTaskImpl extends LilyEObject implements PushBufferTask
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PUSH_BUFFER_TASK__NAME:
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__NAME:
 				setName((String)newValue);
 				return;
-			case ProcessPackage.PUSH_BUFFER_TASK__ENABLED:
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__ENABLED:
 				setEnabled((Boolean)newValue);
 				return;
-			case ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER:
-				setPushBuffer((PushBuffer)newValue);
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER:
+				setTransferBuffer((TransferBuffer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -252,14 +254,14 @@ public class PushBufferTaskImpl extends LilyEObject implements PushBufferTask
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PUSH_BUFFER_TASK__NAME:
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ProcessPackage.PUSH_BUFFER_TASK__ENABLED:
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
-			case ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER:
-				setPushBuffer((PushBuffer)null);
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER:
+				setTransferBuffer((TransferBuffer)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -275,12 +277,12 @@ public class PushBufferTaskImpl extends LilyEObject implements PushBufferTask
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PUSH_BUFFER_TASK__NAME:
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ProcessPackage.PUSH_BUFFER_TASK__ENABLED:
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
-			case ProcessPackage.PUSH_BUFFER_TASK__PUSH_BUFFER:
-				return pushBuffer != null;
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER:
+				return transferBuffer != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -304,4 +306,4 @@ public class PushBufferTaskImpl extends LilyEObject implements PushBufferTask
 		return result.toString();
 	}
 
-} //PushBufferTaskImpl
+} //FlushTransferBufferTaskImpl

@@ -46,7 +46,7 @@ public class ModelFactory
 		final var resourcePkg = VulkanFactory.eINSTANCE.createResourcePkg();
 		process.setResourcePkg(resourcePkg);
 		final var resourceList = resourcePkg.getResources();
-		resourceList.add(resourceContainer.pushBuffer);
+		resourceList.add(resourceContainer.transferBuffer);
 		resourceList.add(resourceContainer.compositeBuffer);
 		for (int i = 0; i < BUFFER_COUNT; i++)
 		{
@@ -60,13 +60,13 @@ public class ModelFactory
 
 	private static ComputePipeline createPipeline(ResourceContainer resourceContainer)
 	{
-		final var pushTask = ProcessFactory.eINSTANCE.createPushBufferTask();
-		pushTask.setPushBuffer(resourceContainer.pushBuffer);
+		final var flushTask = ProcessFactory.eINSTANCE.createFlushTransferBufferTask();
+		flushTask.setTransferBuffer(resourceContainer.transferBuffer);
 
 		final var res = ComputeFactory.eINSTANCE.createComputePipeline();
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 		res.setTaskPkg(taskPkg);
-		taskPkg.getTasks().add(pushTask);
+		taskPkg.getTasks().add(flushTask);
 
 		for (int i = 0; i < BUFFER_COUNT; i++)
 		{

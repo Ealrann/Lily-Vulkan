@@ -137,7 +137,15 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	}
 
 	@Override
-	public final void record(RecordContext context)
+	public final void record(RecordContext context, ECommandStage stage)
+	{
+		if (isActive() && shouldRecord(stage))
+		{
+			recordInternal(context);
+		}
+	}
+
+	private final void recordInternal(RecordContext context)
 	{
 		final var pipelineStage = pipeline.getStage();
 		final var vkPipelines = getVkPipelines();

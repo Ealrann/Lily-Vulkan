@@ -9,7 +9,6 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.queue.EQueueType;
-import org.sheepy.vulkan.queue.VulkanQueue;
 
 @Statefull
 @Adapter(scope = ComputeProcess.class)
@@ -33,12 +32,6 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContex
 	protected Integer prepareNextExecution()
 	{
 		return 0;
-	}
-
-	@Override
-	public VulkanQueue getQueue()
-	{
-		return context.getQueue();
 	}
 
 	@Override

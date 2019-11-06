@@ -21,10 +21,12 @@ import org.sheepy.lily.core.model.inference.InferencePackage;
 
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 
+import org.sheepy.lily.core.model.presentation.PresentationPackage;
 import org.sheepy.lily.core.model.root.RootPackage;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
 
 import org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl;
@@ -281,6 +283,8 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		PipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
 		CadencePackage.eINSTANCE.eClass();
+		PresentationPackage.eINSTANCE.eClass();
+		VariablePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MeshPackage.eNS_URI);
@@ -558,7 +562,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getGenericRenderer_PushBuffer()
+	public EReference getGenericRenderer_TransferBuffer()
 	{
 		return (EReference)genericRendererEClass.getEStructuralFeatures().get(3);
 	}
@@ -854,7 +858,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		createEReference(genericRendererEClass, GENERIC_RENDERER__DATA_PROVIDER_PKG);
 		createEReference(genericRendererEClass, GENERIC_RENDERER__RENDERED_STRUCTURES);
 		createEReference(genericRendererEClass, GENERIC_RENDERER__CONSTANT_BUFFER);
-		createEReference(genericRendererEClass, GENERIC_RENDERER__PUSH_BUFFER);
+		createEReference(genericRendererEClass, GENERIC_RENDERER__TRANSFER_BUFFER);
 		createEReference(genericRendererEClass, GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER);
 		createEReference(genericRendererEClass, GENERIC_RENDERER__SPECIALIZATION);
 
@@ -1017,7 +1021,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		g1 = createEGenericType(genericRendererEClass_T);
 		initEReference(getGenericRenderer_RenderedStructures(), g1, null, "renderedStructures", null, 1, -1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGenericRenderer_ConstantBuffer(), theResourcePackage.getConstantBuffer(), null, "constantBuffer", null, 0, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGenericRenderer_PushBuffer(), theResourcePackage.getPushBuffer(), null, "pushBuffer", null, 1, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenericRenderer_TransferBuffer(), theResourcePackage.getTransferBuffer(), null, "transferBuffer", null, 1, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGenericRenderer_CommonResourceProvider(), this.getResourceProvider(), null, "commonResourceProvider", null, 0, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGenericRenderer_Specialization(), this.getISpecialization(), null, "specialization", null, 0, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

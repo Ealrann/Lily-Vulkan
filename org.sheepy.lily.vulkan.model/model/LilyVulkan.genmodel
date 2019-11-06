@@ -5,7 +5,7 @@
     modelPluginID="org.sheepy.lily.vulkan.model" modelName="LilyVulkan" updateClasspath="false"
     rootExtendsInterface="org.sheepy.lily.core.api.adapter.ILilyEObject" rootExtendsClass="org.sheepy.lily.core.api.adapter.LilyEObject"
     testsDirectory="" importerID="org.eclipse.emf.ecore.xcore.importer" complianceLevel="11.0"
-    copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//image ../../org.sheepy.lily.core.model/model/Lily.genmodel#//cadence"
+    copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//image ../../org.sheepy.lily.core.model/model/Lily.genmodel#//cadence #//resource"
     operationReflection="true" importOrganizing="true" cleanup="true" eclipsePlatformVersion="2019-06">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
     <genAnnotations source="selectedPackages">
@@ -91,12 +91,8 @@
     <genClasses ecoreClass="process.ecore#//PushConstantBuffer">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//PushConstantBuffer/buffer"/>
     </genClasses>
-    <genClasses ecoreClass="process.ecore#//PushBufferTask">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//PushBufferTask/pushBuffer"/>
-    </genClasses>
-    <genClasses ecoreClass="process.ecore#//GetBufferTask">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//GetBufferTask/getBuffer"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//GetBufferTask/deviceBuffer"/>
+    <genClasses ecoreClass="process.ecore#//FlushTransferBufferTask">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//FlushTransferBufferTask/transferBuffer"/>
     </genClasses>
     <genClasses ecoreClass="process.ecore#//CopyBufferTask">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CopyBufferTask/stage"/>
@@ -107,6 +103,10 @@
     <genClasses image="false" ecoreClass="process.ecore#//IProcessExtension"/>
     <genClasses ecoreClass="process.ecore#//ProcessExtensionPkg">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//ProcessExtensionPkg/extensions"/>
+    </genClasses>
+    <genClasses ecoreClass="process.ecore#//SetCompositeBufferFlushMode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//SetCompositeBufferFlushMode/compositeBuffer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//SetCompositeBufferFlushMode/mode"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Vulkan" basePackage="org.sheepy.lily.vulkan" resource="XMI"
@@ -138,15 +138,16 @@
   <genPackages prefix="Resource" basePackage="org.sheepy.lily.vulkan.model" resource="XMI"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
       ecorePackage="resource.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="resource.ecore#//EFlushMode">
+      <genEnumLiterals ecoreEnumLiteral="resource.ecore#//EFlushMode/PUSH"/>
+      <genEnumLiterals ecoreEnumLiteral="resource.ecore#//EFlushMode/FETCH"/>
+    </genEnums>
     <genDataTypes ecoreDataType="resource.ecore#//ByteBuffer"/>
     <genDataTypes ecoreDataType="resource.ecore#//JavaModule"/>
     <genClasses ecoreClass="resource.ecore#//BasicResource"/>
-    <genClasses ecoreClass="resource.ecore#//PushBuffer">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//PushBuffer/size"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//PushBuffer/instanceCount"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//GetBuffer">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//GetBuffer/size"/>
+    <genClasses ecoreClass="resource.ecore#//TransferBuffer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/size"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/instanceCount"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//ConstantBuffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ConstantBuffer/data"/>
@@ -168,9 +169,10 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//CompositeBuffer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/dataProviders"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/pushBuffer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/transferBuffer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBuffer/minSize"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBuffer/growFactor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBuffer/mode"/>
     </genClasses>
     <genClasses image="false" ecoreClass="resource.ecore#//IBufferReference"/>
     <genClasses ecoreClass="resource.ecore#//BufferReference">

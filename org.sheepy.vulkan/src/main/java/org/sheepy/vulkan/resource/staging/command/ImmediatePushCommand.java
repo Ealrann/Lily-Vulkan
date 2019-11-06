@@ -11,20 +11,24 @@ import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.buffer.BufferUtils;
 import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket;
+import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket;
 
 public final class ImmediatePushCommand implements IDataFlowCommand
 {
 	private final MemoryTicket ticket;
-
 	private final long trgBuffer;
 	private final long trgOffset;
+	private final Consumer<MemoryTicket> transferDone;
 
-	public ImmediatePushCommand(MemoryTicket ticket, long trgBuffer, long trgOffset)
+	public ImmediatePushCommand(MemoryTicket ticket,
+								long trgBuffer,
+								long trgOffset,
+								Consumer<MemoryTicket> transferDone)
 	{
 		this.ticket = ticket;
 		this.trgBuffer = trgBuffer;
 		this.trgOffset = trgOffset;
+		this.transferDone = transferDone;
 	}
 
 	@Override
@@ -63,14 +67,14 @@ public final class ImmediatePushCommand implements IDataFlowCommand
 	}
 
 	@Override
-	public Consumer<MemoryTicket> getPostAction()
-	{
-		return null;
-	}
-
-	@Override
 	public EFlowType getFlowType()
 	{
 		return EFlowType.PUSH;
+	}
+
+	@Override
+	public Consumer<MemoryTicket> getPostAction()
+	{
+		return transferDone;
 	}
 }

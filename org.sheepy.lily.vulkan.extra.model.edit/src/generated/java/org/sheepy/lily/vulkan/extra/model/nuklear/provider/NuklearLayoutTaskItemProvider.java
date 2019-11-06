@@ -71,7 +71,7 @@ public class NuklearLayoutTaskItemProvider
 			addEnabledPropertyDescriptor(object);
 			addContextPropertyDescriptor(object);
 			addDrawTaskPropertyDescriptor(object);
-			addPushBufferPropertyDescriptor(object);
+			addTransferBufferPropertyDescriptor(object);
 			addVertexBufferPropertyDescriptor(object);
 			addImageArrayPropertyDescriptor(object);
 		}
@@ -171,20 +171,20 @@ public class NuklearLayoutTaskItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Push Buffer feature.
+	 * This adds a property descriptor for the Transfer Buffer feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPushBufferPropertyDescriptor(Object object)
+	protected void addTransferBufferPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_NuklearLayoutTask_pushBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearLayoutTask_pushBuffer_feature", "_UI_NuklearLayoutTask_type"),
-				 NuklearPackage.Literals.NUKLEAR_LAYOUT_TASK__PUSH_BUFFER,
+				 getString("_UI_NuklearLayoutTask_transferBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearLayoutTask_transferBuffer_feature", "_UI_NuklearLayoutTask_type"),
+				 NuklearPackage.Literals.NUKLEAR_LAYOUT_TASK__TRANSFER_BUFFER,
 				 true,
 				 false,
 				 true,

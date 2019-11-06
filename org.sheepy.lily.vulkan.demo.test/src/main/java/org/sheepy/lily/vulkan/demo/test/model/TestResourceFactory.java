@@ -6,50 +6,50 @@ import java.util.List;
 import org.sheepy.lily.vulkan.demo.test.adapter.TestDataProviderAdapter;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
-import org.sheepy.lily.vulkan.model.resource.PushBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 class TestResourceFactory
 {
 	public static ResourceContainer build(int bufferCount)
 	{
-		final var pushBuffer = buildPushBuffer(bufferCount);
-		final var compositeBuffer = buildCompositeBuffer(pushBuffer, bufferCount);
+		final var transferBuffer = buildTransferBuffer(bufferCount);
+		final var compositeBuffer = buildCompositeBuffer(transferBuffer, bufferCount);
 		final var targetBuffers = List.copyOf(buildTargetBuffer(bufferCount));
 
-		return new ResourceContainer(pushBuffer, compositeBuffer, targetBuffers);
+		return new ResourceContainer(transferBuffer, compositeBuffer, targetBuffers);
 	}
 
 	public static final class ResourceContainer
 	{
-		public final PushBuffer pushBuffer;
+		public final TransferBuffer transferBuffer;
 		public final CompositeBuffer compositeBuffer;
 		public final List<Buffer> targetBuffers;
 
-		public ResourceContainer(	PushBuffer pushBuffer,
+		public ResourceContainer(	TransferBuffer transferBuffer,
 									CompositeBuffer compositeBuffer,
 									List<Buffer> targetBuffers)
 		{
-			this.pushBuffer = pushBuffer;
+			this.transferBuffer = transferBuffer;
 			this.compositeBuffer = compositeBuffer;
 			this.targetBuffers = List.copyOf(targetBuffers);
 		}
 	}
 
-	private static PushBuffer buildPushBuffer(int bufferCount)
+	private static TransferBuffer buildTransferBuffer(int bufferCount)
 	{
-		final var res = ResourceFactory.eINSTANCE.createPushBuffer();
+		final var res = ResourceFactory.eINSTANCE.createTransferBuffer();
 		res.setSize(TestDataProviderAdapter.MAX_SIZE * bufferCount);
 		res.setInstanceCount(1);
 		return res;
 	}
 
-	private static CompositeBuffer buildCompositeBuffer(PushBuffer pushBuffer, int bufferCount)
+	private static CompositeBuffer buildCompositeBuffer(TransferBuffer transferBuffer, int bufferCount)
 	{
 		final var res = ResourceFactory.eINSTANCE.createCompositeBuffer();
 
-		res.setPushBuffer(pushBuffer);
+		res.setTransferBuffer(transferBuffer);
 
 		final var providers = res.getDataProviders();
 		for (int i = 0; i < bufferCount; i++)

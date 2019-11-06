@@ -8,7 +8,7 @@ import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.PushBuffer;
+import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +22,7 @@ import org.sheepy.lily.vulkan.model.resource.PushBuffer;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getDataProviderPkg <em>Data Provider Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getRenderedStructures <em>Rendered Structures</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getConstantBuffer <em>Constant Buffer</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getPushBuffer <em>Push Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getTransferBuffer <em>Transfer Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getCommonResourceProvider <em>Common Resource Provider</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getSpecialization <em>Specialization</em>}</li>
  * </ul>
@@ -89,26 +89,26 @@ public interface GenericRenderer<T extends Structure> extends GraphicsPipeline, 
 	void setConstantBuffer(ConstantBuffer value);
 
 	/**
-	 * Returns the value of the '<em><b>Push Buffer</b></em>' reference.
+	 * Returns the value of the '<em><b>Transfer Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Push Buffer</em>' reference.
-	 * @see #setPushBuffer(PushBuffer)
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getGenericRenderer_PushBuffer()
+	 * @return the value of the '<em>Transfer Buffer</em>' reference.
+	 * @see #setTransferBuffer(TransferBuffer)
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getGenericRenderer_TransferBuffer()
 	 * @model required="true"
 	 * @generated
 	 */
-	PushBuffer getPushBuffer();
+	TransferBuffer getTransferBuffer();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getPushBuffer <em>Push Buffer</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getTransferBuffer <em>Transfer Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Push Buffer</em>' reference.
-	 * @see #getPushBuffer()
+	 * @param value the new value of the '<em>Transfer Buffer</em>' reference.
+	 * @see #getTransferBuffer()
 	 * @generated
 	 */
-	void setPushBuffer(PushBuffer value);
+	void setTransferBuffer(TransferBuffer value);
 
 	/**
 	 * Returns the value of the '<em><b>Common Resource Provider</b></em>' containment reference.

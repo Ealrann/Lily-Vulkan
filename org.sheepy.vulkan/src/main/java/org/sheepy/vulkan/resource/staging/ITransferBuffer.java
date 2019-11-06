@@ -5,12 +5,12 @@ import java.util.EventListener;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.resource.staging.memory.MemorySpaceManager.MemorySpace;
 
-public interface IStagingBuffer
+public interface ITransferBuffer
 {
 	MemoryTicket reserveMemory(long size);
 	void releaseTicket(MemoryTicket ticket);
 
-	void addStagingCommand(IDataFlowCommand command);
+	void addTransferCommand(IDataFlowCommand command);
 	boolean isEmpty();
 
 	void prepare();
@@ -19,19 +19,10 @@ public interface IStagingBuffer
 	void addListener(FlushListener listener);
 	void removeListener(FlushListener listener);
 
+	@FunctionalInterface
 	static interface FlushListener extends EventListener
 	{
-		@FunctionalInterface
-		interface PreFlushListener extends FlushListener
-		{
-			void preFlush();
-		}
-
-		@FunctionalInterface
-		interface PostFlushListener extends FlushListener
-		{
-			void postFlush();
-		}
+		void preFlush();
 	}
 
 	static final class MemoryTicket

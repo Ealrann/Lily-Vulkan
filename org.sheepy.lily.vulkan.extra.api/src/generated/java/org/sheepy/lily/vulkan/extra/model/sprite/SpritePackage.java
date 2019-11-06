@@ -259,13 +259,13 @@ public interface SpritePackage extends EPackage
 	int SPRITE_RENDERER__CONSTANT_BUFFER = RenderingPackage.GENERIC_RENDERER__CONSTANT_BUFFER;
 
 	/**
-	 * The feature id for the '<em><b>Push Buffer</b></em>' reference.
+	 * The feature id for the '<em><b>Transfer Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER__PUSH_BUFFER = RenderingPackage.GENERIC_RENDERER__PUSH_BUFFER;
+	int SPRITE_RENDERER__TRANSFER_BUFFER = RenderingPackage.GENERIC_RENDERER__TRANSFER_BUFFER;
 
 	/**
 	 * The feature id for the '<em><b>Common Resource Provider</b></em>' containment reference.

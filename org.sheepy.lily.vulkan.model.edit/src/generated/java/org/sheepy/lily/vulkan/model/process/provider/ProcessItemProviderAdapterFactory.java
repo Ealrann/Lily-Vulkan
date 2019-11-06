@@ -266,53 +266,28 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.PushBufferTask} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PushBufferTaskItemProvider pushBufferTaskItemProvider;
+	protected FlushTransferBufferTaskItemProvider flushTransferBufferTaskItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.PushBufferTask}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPushBufferTaskAdapter()
+	public Adapter createFlushTransferBufferTaskAdapter()
 	{
-		if (pushBufferTaskItemProvider == null)
+		if (flushTransferBufferTaskItemProvider == null)
 		{
-			pushBufferTaskItemProvider = new PushBufferTaskItemProvider(this);
+			flushTransferBufferTaskItemProvider = new FlushTransferBufferTaskItemProvider(this);
 		}
 
-		return pushBufferTaskItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.GetBufferTask} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected GetBufferTaskItemProvider getBufferTaskItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.GetBufferTask}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createGetBufferTaskAdapter()
-	{
-		if (getBufferTaskItemProvider == null)
-		{
-			getBufferTaskItemProvider = new GetBufferTaskItemProvider(this);
-		}
-
-		return getBufferTaskItemProvider;
+		return flushTransferBufferTaskItemProvider;
 	}
 
 	/**
@@ -363,6 +338,31 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 		}
 
 		return processExtensionPkgItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SetCompositeBufferFlushModeItemProvider setCompositeBufferFlushModeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSetCompositeBufferFlushModeAdapter()
+	{
+		if (setCompositeBufferFlushModeItemProvider == null)
+		{
+			setCompositeBufferFlushModeItemProvider = new SetCompositeBufferFlushModeItemProvider(this);
+		}
+
+		return setCompositeBufferFlushModeItemProvider;
 	}
 
 	/**
@@ -521,10 +521,10 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 		if (compositeTaskItemProvider != null) compositeTaskItemProvider.dispose();
 		if (bindDescriptorSetsItemProvider != null) bindDescriptorSetsItemProvider.dispose();
 		if (pushConstantBufferItemProvider != null) pushConstantBufferItemProvider.dispose();
-		if (pushBufferTaskItemProvider != null) pushBufferTaskItemProvider.dispose();
-		if (getBufferTaskItemProvider != null) getBufferTaskItemProvider.dispose();
+		if (flushTransferBufferTaskItemProvider != null) flushTransferBufferTaskItemProvider.dispose();
 		if (copyBufferTaskItemProvider != null) copyBufferTaskItemProvider.dispose();
 		if (processExtensionPkgItemProvider != null) processExtensionPkgItemProvider.dispose();
+		if (setCompositeBufferFlushModeItemProvider != null) setCompositeBufferFlushModeItemProvider.dispose();
 	}
 
 }

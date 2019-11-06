@@ -156,9 +156,9 @@ public class MeshModelFactory
 		indexedVertexBuffer.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
 		indexedVertexBuffer.setData(meshConfiguration.vertexData);
 
-		final var pushBuffer = ResourceFactory.eINSTANCE.createPushBuffer();
-		pushBuffer.setInstanceCount(3);
-		pushBuffer.setSize((long) Math.pow(2, 16));
+		final var transferBuffer = ResourceFactory.eINSTANCE.createTransferBuffer();
+		transferBuffer.setInstanceCount(3);
+		transferBuffer.setSize((long) Math.pow(2, 16));
 
 		PushConstantRange pushConstantRange = null;
 		PushConstantBuffer pushConstants = null;
@@ -265,7 +265,7 @@ public class MeshModelFactory
 
 		resourcePkg.getResources().add(vertexShader);
 		resourcePkg.getResources().add(fragmentShader);
-		resourcePkg.getResources().add(pushBuffer);
+		resourcePkg.getResources().add(transferBuffer);
 		resourcePkg.getResources().add(indexedVertexBuffer);
 		if (constantBuffer != null) resourcePkg.getResources().add(constantBuffer);
 

@@ -201,21 +201,12 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.PUSH_BUFFER_TASK:
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK:
 			{
-				PushBufferTask pushBufferTask = (PushBufferTask)theEObject;
-				T1 result = casePushBufferTask(pushBufferTask);
-				if (result == null) result = caseIPipelineTask(pushBufferTask);
-				if (result == null) result = caseLNamedElement(pushBufferTask);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProcessPackage.GET_BUFFER_TASK:
-			{
-				GetBufferTask getBufferTask = (GetBufferTask)theEObject;
-				T1 result = caseGetBufferTask(getBufferTask);
-				if (result == null) result = caseIPipelineTask(getBufferTask);
-				if (result == null) result = caseLNamedElement(getBufferTask);
+				FlushTransferBufferTask flushTransferBufferTask = (FlushTransferBufferTask)theEObject;
+				T1 result = caseFlushTransferBufferTask(flushTransferBufferTask);
+				if (result == null) result = caseIPipelineTask(flushTransferBufferTask);
+				if (result == null) result = caseLNamedElement(flushTransferBufferTask);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -239,6 +230,15 @@ public class ProcessSwitch<T1> extends Switch<T1>
 			{
 				ProcessExtensionPkg processExtensionPkg = (ProcessExtensionPkg)theEObject;
 				T1 result = caseProcessExtensionPkg(processExtensionPkg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE:
+			{
+				SetCompositeBufferFlushMode setCompositeBufferFlushMode = (SetCompositeBufferFlushMode)theEObject;
+				T1 result = caseSetCompositeBufferFlushMode(setCompositeBufferFlushMode);
+				if (result == null) result = caseIPipelineTask(setCompositeBufferFlushMode);
+				if (result == null) result = caseLNamedElement(setCompositeBufferFlushMode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -455,33 +455,17 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Push Buffer Task</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Flush Transfer Buffer Task</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Push Buffer Task</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Flush Transfer Buffer Task</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePushBufferTask(PushBufferTask object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Get Buffer Task</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Get Buffer Task</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseGetBufferTask(GetBufferTask object)
+	public T1 caseFlushTransferBufferTask(FlushTransferBufferTask object)
 	{
 		return null;
 	}
@@ -530,6 +514,22 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseProcessExtensionPkg(ProcessExtensionPkg object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Set Composite Buffer Flush Mode</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Set Composite Buffer Flush Mode</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseSetCompositeBufferFlushMode(SetCompositeBufferFlushMode object)
 	{
 		return null;
 	}

@@ -19,7 +19,7 @@ import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.api.resource.buffer.IPushBufferAdapter;
+import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
@@ -162,9 +162,9 @@ public final class NuklearLayoutTaskAdapter
 
 		if (dirty)
 		{
-			final var pushBuffer = task.getPushBuffer();
-			final var pushBufferAdapter = pushBuffer.adaptNotNull(IPushBufferAdapter.class);
-			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
+			final var transferBuffer = task.getTransferBuffer();
+			final var transferBufferAdapter = transferBuffer.adaptNotNull(ITransferBufferAdapter.class);
+			final var stagingBuffer = transferBufferAdapter.getTransferBufferBackend();
 			final var vertexBuffer = task.getVertexBuffer();
 
 			vertexUpdated = nuklearContextAdapter.fillVertexBuffer(stagingBuffer, vertexBuffer);

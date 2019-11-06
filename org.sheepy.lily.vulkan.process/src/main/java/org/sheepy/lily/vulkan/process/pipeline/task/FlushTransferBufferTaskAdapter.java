@@ -4,33 +4,30 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.api.resource.buffer.IPushBufferAdapter;
-import org.sheepy.lily.vulkan.api.resource.buffer.IPushBufferUpdater;
-import org.sheepy.lily.vulkan.model.process.PushBufferTask;
-import org.sheepy.lily.vulkan.model.resource.PushBuffer;
+import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter;
+import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
+import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @Statefull
-@Adapter(scope = PushBufferTask.class)
-public final class PushBufferTaskAdapter implements IPipelineTaskAdapter<PushBufferTask>
+@Adapter(scope = FlushTransferBufferTask.class)
+public final class FlushTransferBufferTaskAdapter implements IPipelineTaskAdapter<FlushTransferBufferTask>
 {
-	private final IPushBufferAdapter pushBufferAdapter;
-	private final IPushBufferUpdater updater;
-	private final PushBuffer pushBuffer;
+	private final ITransferBufferAdapter pushBufferAdapter;
+	private final TransferBuffer transferBuffer;
 
 	private int stagingFlushHistory = 0;
 
-	public PushBufferTaskAdapter(PushBufferTask task)
+	public FlushTransferBufferTaskAdapter(FlushTransferBufferTask task)
 	{
-		pushBuffer = task.getPushBuffer();
-		updater = pushBuffer.adapt(IPushBufferUpdater.class);
-		pushBufferAdapter = pushBuffer.adaptNotNull(IPushBufferAdapter.class);
+		transferBuffer = task.getTransferBuffer();
+		pushBufferAdapter = transferBuffer.adaptNotNull(ITransferBufferAdapter.class);
 	}
 
 	@Override
-	public void record(PushBufferTask task, RecordContext context)
+	public void record(FlushTransferBufferTask task, RecordContext context)
 	{
-		final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
+		final var stagingBuffer = pushBufferAdapter.getTransferBufferBackend();
 
 		if (stagingBuffer.isEmpty() == false)
 		{
@@ -40,18 +37,13 @@ public final class PushBufferTaskAdapter implements IPipelineTaskAdapter<PushBuf
 	}
 
 	@Override
-	public boolean needRecord(PushBufferTask task, int index)
+	public boolean needRecord(FlushTransferBufferTask task, int index)
 	{
 		boolean res = false;
 
 		if (pushBufferAdapter != null)
 		{
-			if (updater != null)
-			{
-				updater.beforePush(pushBuffer);
-			}
-
-			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
+			final var stagingBuffer = pushBufferAdapter.getTransferBufferBackend();
 			final boolean previousRecordMadeFlush = getAndClearHistory(index);
 
 			stagingBuffer.prepare();
@@ -80,7 +72,7 @@ public final class PushBufferTaskAdapter implements IPipelineTaskAdapter<PushBuf
 	}
 
 	@Override
-	public ECommandStage getStage(PushBufferTask task)
+	public ECommandStage getStage(FlushTransferBufferTask task)
 	{
 		return ECommandStage.TRANSFER;
 	}

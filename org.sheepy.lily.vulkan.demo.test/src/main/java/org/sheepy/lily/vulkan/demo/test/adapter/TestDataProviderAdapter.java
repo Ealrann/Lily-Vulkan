@@ -53,6 +53,10 @@ public class TestDataProviderAdapter implements IBufferDataProviderAdapter
 		}
 	}
 
+	@Override
+	public void fetch(long memoryAddress)
+	{}
+
 	public boolean check(long memoryAddress)
 	{
 		currentSize += 5000;

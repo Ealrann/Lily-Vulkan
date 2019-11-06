@@ -71,10 +71,10 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 			case ProcessPackage.COMPOSITE_TASK: return createCompositeTask();
 			case ProcessPackage.BIND_DESCRIPTOR_SETS: return createBindDescriptorSets();
 			case ProcessPackage.PUSH_CONSTANT_BUFFER: return createPushConstantBuffer();
-			case ProcessPackage.PUSH_BUFFER_TASK: return createPushBufferTask();
-			case ProcessPackage.GET_BUFFER_TASK: return createGetBufferTask();
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK: return createFlushTransferBufferTask();
 			case ProcessPackage.COPY_BUFFER_TASK: return createCopyBufferTask();
 			case ProcessPackage.PROCESS_EXTENSION_PKG: return createProcessExtensionPkg();
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE: return createSetCompositeBufferFlushMode();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -170,22 +170,10 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	 * @generated
 	 */
 	@Override
-	public PushBufferTask createPushBufferTask()
+	public FlushTransferBufferTask createFlushTransferBufferTask()
 	{
-		PushBufferTaskImpl pushBufferTask = new PushBufferTaskImpl();
-		return pushBufferTask;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public GetBufferTask createGetBufferTask()
-	{
-		GetBufferTaskImpl getBufferTask = new GetBufferTaskImpl();
-		return getBufferTask;
+		FlushTransferBufferTaskImpl flushTransferBufferTask = new FlushTransferBufferTaskImpl();
+		return flushTransferBufferTask;
 	}
 
 	/**
@@ -210,6 +198,18 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		ProcessExtensionPkgImpl processExtensionPkg = new ProcessExtensionPkgImpl();
 		return processExtensionPkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SetCompositeBufferFlushMode createSetCompositeBufferFlushMode()
+	{
+		SetCompositeBufferFlushModeImpl setCompositeBufferFlushMode = new SetCompositeBufferFlushModeImpl();
+		return setCompositeBufferFlushMode;
 	}
 
 	/**

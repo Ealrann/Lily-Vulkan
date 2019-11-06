@@ -10,7 +10,6 @@ import org.sheepy.lily.vulkan.process.graphic.present.ImageAcquirer;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.queue.EQueueType;
-import org.sheepy.vulkan.queue.VulkanQueue;
 
 @Statefull
 @Adapter(scope = GraphicProcess.class)
@@ -46,12 +45,6 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphicContex
 		final Integer nextImage = acquirer.acquireNextImage();
 
 		return nextImage;
-	}
-
-	@Override
-	public VulkanQueue getQueue()
-	{
-		return context.getQueue();
 	}
 
 	@Override

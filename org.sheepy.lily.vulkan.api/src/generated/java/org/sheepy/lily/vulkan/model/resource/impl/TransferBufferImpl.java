@@ -7,26 +7,28 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.vulkan.model.resource.PushBuffer;
+
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Push Buffer</b></em>'.
+ * An implementation of the model object '<em><b>Transfer Buffer</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.PushBufferImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.PushBufferImpl#getSize <em>Size</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.PushBufferImpl#getInstanceCount <em>Instance Count</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TransferBufferImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TransferBufferImpl#getSize <em>Size</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TransferBufferImpl#getInstanceCount <em>Instance Count</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PushBufferImpl extends LilyEObject implements PushBuffer
+public class TransferBufferImpl extends LilyEObject implements TransferBuffer
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -93,7 +95,7 @@ public class PushBufferImpl extends LilyEObject implements PushBuffer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PushBufferImpl()
+	protected TransferBufferImpl()
 	{
 		super();
 	}
@@ -106,7 +108,7 @@ public class PushBufferImpl extends LilyEObject implements PushBuffer
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.PUSH_BUFFER;
+		return ResourcePackage.Literals.TRANSFER_BUFFER;
 	}
 
 	/**
@@ -131,7 +133,7 @@ public class PushBufferImpl extends LilyEObject implements PushBuffer
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.PUSH_BUFFER__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TRANSFER_BUFFER__NAME, oldName, name));
 	}
 
 	/**
@@ -156,7 +158,7 @@ public class PushBufferImpl extends LilyEObject implements PushBuffer
 		long oldSize = size;
 		size = newSize;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.PUSH_BUFFER__SIZE, oldSize, size));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TRANSFER_BUFFER__SIZE, oldSize, size));
 	}
 
 	/**
@@ -181,7 +183,7 @@ public class PushBufferImpl extends LilyEObject implements PushBuffer
 		int oldInstanceCount = instanceCount;
 		instanceCount = newInstanceCount;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
 	}
 
 	/**
@@ -194,11 +196,11 @@ public class PushBufferImpl extends LilyEObject implements PushBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.PUSH_BUFFER__NAME:
+			case ResourcePackage.TRANSFER_BUFFER__NAME:
 				return getName();
-			case ResourcePackage.PUSH_BUFFER__SIZE:
+			case ResourcePackage.TRANSFER_BUFFER__SIZE:
 				return getSize();
-			case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
+			case ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
 				return getInstanceCount();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -214,13 +216,13 @@ public class PushBufferImpl extends LilyEObject implements PushBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.PUSH_BUFFER__NAME:
+			case ResourcePackage.TRANSFER_BUFFER__NAME:
 				setName((String)newValue);
 				return;
-			case ResourcePackage.PUSH_BUFFER__SIZE:
+			case ResourcePackage.TRANSFER_BUFFER__SIZE:
 				setSize((Long)newValue);
 				return;
-			case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
+			case ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
 				setInstanceCount((Integer)newValue);
 				return;
 		}
@@ -237,13 +239,13 @@ public class PushBufferImpl extends LilyEObject implements PushBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.PUSH_BUFFER__NAME:
+			case ResourcePackage.TRANSFER_BUFFER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ResourcePackage.PUSH_BUFFER__SIZE:
+			case ResourcePackage.TRANSFER_BUFFER__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
-			case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
+			case ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
 				setInstanceCount(INSTANCE_COUNT_EDEFAULT);
 				return;
 		}
@@ -260,11 +262,11 @@ public class PushBufferImpl extends LilyEObject implements PushBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.PUSH_BUFFER__NAME:
+			case ResourcePackage.TRANSFER_BUFFER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.PUSH_BUFFER__SIZE:
+			case ResourcePackage.TRANSFER_BUFFER__SIZE:
 				return size != SIZE_EDEFAULT;
-			case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
+			case ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
 				return instanceCount != INSTANCE_COUNT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -291,4 +293,4 @@ public class PushBufferImpl extends LilyEObject implements PushBuffer
 		return result.toString();
 	}
 
-} //PushBufferImpl
+} //TransferBufferImpl

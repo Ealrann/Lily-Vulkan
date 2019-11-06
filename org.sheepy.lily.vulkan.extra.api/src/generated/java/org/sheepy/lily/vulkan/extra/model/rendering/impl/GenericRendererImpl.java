@@ -35,7 +35,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl;
 
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.PushBuffer;
+import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,7 +49,7 @@ import org.sheepy.lily.vulkan.model.resource.PushBuffer;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getDataProviderPkg <em>Data Provider Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getRenderedStructures <em>Rendered Structures</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getConstantBuffer <em>Constant Buffer</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getPushBuffer <em>Push Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getTransferBuffer <em>Transfer Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getCommonResourceProvider <em>Common Resource Provider</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getSpecialization <em>Specialization</em>}</li>
  * </ul>
@@ -99,14 +99,14 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	protected ConstantBuffer constantBuffer;
 
 	/**
-	 * The cached value of the '{@link #getPushBuffer() <em>Push Buffer</em>}' reference.
+	 * The cached value of the '{@link #getTransferBuffer() <em>Transfer Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPushBuffer()
+	 * @see #getTransferBuffer()
 	 * @generated
 	 * @ordered
 	 */
-	protected PushBuffer pushBuffer;
+	protected TransferBuffer transferBuffer;
 
 	/**
 	 * The cached value of the '{@link #getCommonResourceProvider() <em>Common Resource Provider</em>}' containment reference.
@@ -280,19 +280,19 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	 * @generated
 	 */
 	@Override
-	public PushBuffer getPushBuffer()
+	public TransferBuffer getTransferBuffer()
 	{
-		if (pushBuffer != null && ((EObject)pushBuffer).eIsProxy())
+		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy())
 		{
-			InternalEObject oldPushBuffer = (InternalEObject)pushBuffer;
-			pushBuffer = (PushBuffer)eResolveProxy(oldPushBuffer);
-			if (pushBuffer != oldPushBuffer)
+			InternalEObject oldTransferBuffer = (InternalEObject)transferBuffer;
+			transferBuffer = (TransferBuffer)eResolveProxy(oldTransferBuffer);
+			if (transferBuffer != oldTransferBuffer)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.GENERIC_RENDERER__PUSH_BUFFER, oldPushBuffer, pushBuffer));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.GENERIC_RENDERER__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
 			}
 		}
-		return pushBuffer;
+		return transferBuffer;
 	}
 
 	/**
@@ -300,9 +300,9 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PushBuffer basicGetPushBuffer()
+	public TransferBuffer basicGetTransferBuffer()
 	{
-		return pushBuffer;
+		return transferBuffer;
 	}
 
 	/**
@@ -311,12 +311,12 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	 * @generated
 	 */
 	@Override
-	public void setPushBuffer(PushBuffer newPushBuffer)
+	public void setTransferBuffer(TransferBuffer newTransferBuffer)
 	{
-		PushBuffer oldPushBuffer = pushBuffer;
-		pushBuffer = newPushBuffer;
+		TransferBuffer oldTransferBuffer = transferBuffer;
+		transferBuffer = newTransferBuffer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER__PUSH_BUFFER, oldPushBuffer, pushBuffer));
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
 	}
 
 	/**
@@ -477,9 +477,9 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 			case RenderingPackage.GENERIC_RENDERER__CONSTANT_BUFFER:
 				if (resolve) return getConstantBuffer();
 				return basicGetConstantBuffer();
-			case RenderingPackage.GENERIC_RENDERER__PUSH_BUFFER:
-				if (resolve) return getPushBuffer();
-				return basicGetPushBuffer();
+			case RenderingPackage.GENERIC_RENDERER__TRANSFER_BUFFER:
+				if (resolve) return getTransferBuffer();
+				return basicGetTransferBuffer();
 			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
 				return getCommonResourceProvider();
 			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
@@ -513,8 +513,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 			case RenderingPackage.GENERIC_RENDERER__CONSTANT_BUFFER:
 				setConstantBuffer((ConstantBuffer)newValue);
 				return;
-			case RenderingPackage.GENERIC_RENDERER__PUSH_BUFFER:
-				setPushBuffer((PushBuffer)newValue);
+			case RenderingPackage.GENERIC_RENDERER__TRANSFER_BUFFER:
+				setTransferBuffer((TransferBuffer)newValue);
 				return;
 			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
 				setCommonResourceProvider((ResourceProvider)newValue);
@@ -548,8 +548,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 			case RenderingPackage.GENERIC_RENDERER__CONSTANT_BUFFER:
 				setConstantBuffer((ConstantBuffer)null);
 				return;
-			case RenderingPackage.GENERIC_RENDERER__PUSH_BUFFER:
-				setPushBuffer((PushBuffer)null);
+			case RenderingPackage.GENERIC_RENDERER__TRANSFER_BUFFER:
+				setTransferBuffer((TransferBuffer)null);
 				return;
 			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
 				setCommonResourceProvider((ResourceProvider)null);
@@ -579,8 +579,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 				return renderedStructures != null && !renderedStructures.isEmpty();
 			case RenderingPackage.GENERIC_RENDERER__CONSTANT_BUFFER:
 				return constantBuffer != null;
-			case RenderingPackage.GENERIC_RENDERER__PUSH_BUFFER:
-				return pushBuffer != null;
+			case RenderingPackage.GENERIC_RENDERER__TRANSFER_BUFFER:
+				return transferBuffer != null;
 			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
 				return commonResourceProvider != null;
 			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:

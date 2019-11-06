@@ -11,6 +11,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import org.eclipse.emf.edit.provider.ChangeNotifier;
@@ -27,9 +29,20 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.sheepy.lily.vulkan.model.process.compute.provider.LilyVulkanEditPlugin;
+import org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource;
+import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
+import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
+import org.sheepy.lily.vulkan.model.resource.FileImage;
+import org.sheepy.lily.vulkan.model.resource.FontImage;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
+import org.sheepy.lily.vulkan.model.resource.SampledImage;
+import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
 import org.sheepy.lily.vulkan.model.resource.util.ResourceAdapterFactory;
+import org.sheepy.lily.vulkan.model.resource.util.ResourceSwitch;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -116,53 +129,28 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.PushBuffer} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.TransferBuffer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PushBufferItemProvider pushBufferItemProvider;
+	protected TransferBufferItemProvider transferBufferItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.PushBuffer}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.TransferBuffer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPushBufferAdapter()
+	public Adapter createTransferBufferAdapter()
 	{
-		if (pushBufferItemProvider == null)
+		if (transferBufferItemProvider == null)
 		{
-			pushBufferItemProvider = new PushBufferItemProvider(this);
+			transferBufferItemProvider = new TransferBufferItemProvider(this);
 		}
 
-		return pushBufferItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.GetBuffer} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected GetBufferItemProvider getBufferItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.GetBuffer}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createGetBufferAdapter()
-	{
-		if (getBufferItemProvider == null)
-		{
-			getBufferItemProvider = new GetBufferItemProvider(this);
-		}
-
-		return getBufferItemProvider;
+		return transferBufferItemProvider;
 	}
 
 	/**
@@ -890,8 +878,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	public void dispose()
 	{
 		if (basicResourceItemProvider != null) basicResourceItemProvider.dispose();
-		if (pushBufferItemProvider != null) pushBufferItemProvider.dispose();
-		if (getBufferItemProvider != null) getBufferItemProvider.dispose();
+		if (transferBufferItemProvider != null) transferBufferItemProvider.dispose();
 		if (constantBufferItemProvider != null) constantBufferItemProvider.dispose();
 		if (bufferItemProvider != null) bufferItemProvider.dispose();
 		if (compositeBufferItemProvider != null) compositeBufferItemProvider.dispose();
@@ -915,6 +902,295 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (moduleResourceItemProvider != null) moduleResourceItemProvider.dispose();
 		if (stringModuleResourceItemProvider != null) stringModuleResourceItemProvider.dispose();
 		if (texture2DArrayItemProvider != null) texture2DArrayItemProvider.dispose();
+	}
+
+	/**
+	 * A child creation extender for the {@link ResourcePackage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static class ResourceChildCreationExtender implements IChildCreationExtender
+	{
+		/**
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected static class CreationSwitch extends ResourceSwitch<Object>
+		{
+			/**
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected List<Object> newChildDescriptors;
+
+			/**
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected EditingDomain editingDomain;
+
+			/**
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			{
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseBasicDescriptedResource(BasicDescriptedResource object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
+						 ResourceFactory.eINSTANCE.createDescriptor()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseCompositeBuffer(CompositeBuffer object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
+						 ResourceFactory.eINSTANCE.createBufferDataProvider()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
+						 ResourceFactory.eINSTANCE.createDescribedDataProvider()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public <T> Object caseDescribedDataProvider(DescribedDataProvider<T> object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.DESCRIBED_DATA_PROVIDER__DESCRIPTOR,
+						 ResourceFactory.eINSTANCE.createDescriptor()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseFileImage(FileImage object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.FILE_IMAGE__FILE,
+						 ResourceFactory.eINSTANCE.createFileResource()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.FILE_IMAGE__FILE,
+						 ResourceFactory.eINSTANCE.createModuleResource()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.FILE_IMAGE__FILE,
+						 ResourceFactory.eINSTANCE.createStringModuleResource()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseSampledImage(SampledImage object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.SAMPLED_IMAGE__SAMPLER,
+						 ResourceFactory.eINSTANCE.createSampler()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.SAMPLED_IMAGE__IMAGE,
+						 ResourceFactory.eINSTANCE.createStaticImage()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.SAMPLED_IMAGE__IMAGE,
+						 ResourceFactory.eINSTANCE.createFileImage()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.SAMPLED_IMAGE__IMAGE,
+						 ResourceFactory.eINSTANCE.createFontImage()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.SAMPLED_IMAGE__IMAGE,
+						 ResourceFactory.eINSTANCE.createTexture2DArray()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseFontImage(FontImage object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.FONT_IMAGE__FILE,
+						 ResourceFactory.eINSTANCE.createFileResource()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.FONT_IMAGE__FILE,
+						 ResourceFactory.eINSTANCE.createModuleResource()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.FONT_IMAGE__FILE,
+						 ResourceFactory.eINSTANCE.createStringModuleResource()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseDescriptorSetPkg(DescriptorSetPkg object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS,
+						 ResourceFactory.eINSTANCE.createDescriptorSet()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseShader(Shader object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.SHADER__FILE,
+						 ResourceFactory.eINSTANCE.createFileResource()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.SHADER__FILE,
+						 ResourceFactory.eINSTANCE.createModuleResource()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.SHADER__FILE,
+						 ResourceFactory.eINSTANCE.createStringModuleResource()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseTexture2DArray(Texture2DArray object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.TEXTURE2_DARRAY__FILES,
+						 ResourceFactory.eINSTANCE.createFileResource()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.TEXTURE2_DARRAY__FILES,
+						 ResourceFactory.eINSTANCE.createModuleResource()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.TEXTURE2_DARRAY__FILES,
+						 ResourceFactory.eINSTANCE.createStringModuleResource()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected CommandParameter createChildParameter(Object feature, Object child)
+			{
+				return new CommandParameter(null, feature, child);
+			}
+
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
+		{
+			ArrayList<Object> result = new ArrayList<Object>();
+			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			return result;
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public ResourceLocator getResourceLocator()
+		{
+			return LilyVulkanEditPlugin.INSTANCE;
+		}
 	}
 
 }

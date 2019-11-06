@@ -14,9 +14,10 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getDataProviders <em>Data Providers</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getPushBuffer <em>Push Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getTransferBuffer <em>Transfer Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getMinSize <em>Min Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getGrowFactor <em>Grow Factor</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getMode <em>Mode</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getCompositeBuffer()
@@ -38,26 +39,26 @@ public interface CompositeBuffer extends DescriptedResource, IBuffer
 	EList<BufferDataProvider<?>> getDataProviders();
 
 	/**
-	 * Returns the value of the '<em><b>Push Buffer</b></em>' reference.
+	 * Returns the value of the '<em><b>Transfer Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Push Buffer</em>' reference.
-	 * @see #setPushBuffer(PushBuffer)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getCompositeBuffer_PushBuffer()
+	 * @return the value of the '<em>Transfer Buffer</em>' reference.
+	 * @see #setTransferBuffer(TransferBuffer)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getCompositeBuffer_TransferBuffer()
 	 * @model required="true"
 	 * @generated
 	 */
-	PushBuffer getPushBuffer();
+	TransferBuffer getTransferBuffer();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getPushBuffer <em>Push Buffer</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getTransferBuffer <em>Transfer Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Push Buffer</em>' reference.
-	 * @see #getPushBuffer()
+	 * @param value the new value of the '<em>Transfer Buffer</em>' reference.
+	 * @see #getTransferBuffer()
 	 * @generated
 	 */
-	void setPushBuffer(PushBuffer value);
+	void setTransferBuffer(TransferBuffer value);
 
 	/**
 	 * Returns the value of the '<em><b>Min Size</b></em>' attribute.
@@ -104,5 +105,31 @@ public interface CompositeBuffer extends DescriptedResource, IBuffer
 	 * @generated
 	 */
 	void setGrowFactor(float value);
+
+	/**
+	 * Returns the value of the '<em><b>Mode</b></em>' attribute.
+	 * The default value is <code>"PUSH"</code>.
+	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.resource.EFlushMode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mode</em>' attribute.
+	 * @see org.sheepy.lily.vulkan.model.resource.EFlushMode
+	 * @see #setMode(EFlushMode)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getCompositeBuffer_Mode()
+	 * @model default="PUSH" required="true"
+	 * @generated
+	 */
+	EFlushMode getMode();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getMode <em>Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Mode</em>' attribute.
+	 * @see org.sheepy.lily.vulkan.model.resource.EFlushMode
+	 * @see #getMode()
+	 * @generated
+	 */
+	void setMode(EFlushMode value);
 
 } // CompositeBuffer

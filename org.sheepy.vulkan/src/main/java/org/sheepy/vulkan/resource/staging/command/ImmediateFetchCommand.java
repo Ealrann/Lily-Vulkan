@@ -11,31 +11,24 @@ import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.buffer.BufferUtils;
 import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket;
+import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket;
 
-public final class ImmediateGetCommand implements IDataFlowCommand
+public final class ImmediateFetchCommand implements IDataFlowCommand
 {
 	private final MemoryTicket ticket;
-
 	private final long srcBuffer;
 	private final long srcOffset;
-	private final EPipelineStage dstStage;
-	private final EAccess dstAccess;
-	private final Consumer<MemoryTicket> postAction;
+	private final Consumer<MemoryTicket> transferDone;
 
-	public ImmediateGetCommand(	MemoryTicket ticket,
-								long srcBuffer,
-								long srcOffset,
-								EPipelineStage dstStage,
-								EAccess dstAccess,
-								Consumer<MemoryTicket> postAction)
+	public ImmediateFetchCommand(	MemoryTicket ticket,
+									long srcBuffer,
+									long srcOffset,
+									Consumer<MemoryTicket> transferDone)
 	{
 		this.srcBuffer = srcBuffer;
 		this.srcOffset = srcOffset;
 		this.ticket = ticket;
-		this.dstStage = dstStage;
-		this.dstAccess = dstAccess;
-		this.postAction = postAction;
+		this.transferDone = transferDone;
 	}
 
 	@Override
@@ -53,7 +46,7 @@ public final class ImmediateGetCommand implements IDataFlowCommand
 		barrierInfo.dstAccessMask(EAccess.TRANSFER_READ_BIT_VALUE);
 		barrierInfo.size(VK_WHOLE_SIZE);
 
-		final var srcStage1 = EPipelineStage.TOP_OF_PIPE_BIT_VALUE;
+		final var srcStage1 = EPipelineStage.BOTTOM_OF_PIPE_BIT_VALUE;
 		final var dstStage1 = EPipelineStage.TRANSFER_BIT_VALUE;
 
 		vkCmdPipelineBarrier(commandBuffer, srcStage1, dstStage1, 0, null, barrierInfo, null);
@@ -65,14 +58,6 @@ public final class ImmediateGetCommand implements IDataFlowCommand
 								trgBuffer,
 								trgOffset,
 								size);
-
-		final var srcStage2 = EPipelineStage.TRANSFER_BIT_VALUE;
-		final var dstStage2 = dstStage.getValue();
-
-		barrierInfo.srcAccessMask(EAccess.TRANSFER_READ_BIT_VALUE);
-		barrierInfo.dstAccessMask(dstAccess.getValue());
-
-		vkCmdPipelineBarrier(commandBuffer, srcStage2, dstStage2, 0, null, barrierInfo, null);
 	}
 
 	@Override
@@ -88,14 +73,14 @@ public final class ImmediateGetCommand implements IDataFlowCommand
 	}
 
 	@Override
-	public Consumer<MemoryTicket> getPostAction()
+	public EFlowType getFlowType()
 	{
-		return postAction;
+		return EFlowType.FETCH;
 	}
 
 	@Override
-	public EFlowType getFlowType()
+	public Consumer<MemoryTicket> getPostAction()
 	{
-		return EFlowType.GET;
+		return transferDone;
 	}
 }

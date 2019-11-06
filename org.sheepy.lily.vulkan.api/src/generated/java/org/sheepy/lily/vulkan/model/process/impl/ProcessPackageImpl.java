@@ -31,7 +31,7 @@ import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.Configuration;
 import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
-import org.sheepy.lily.vulkan.model.process.GetBufferTask;
+import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.IProcessExtension;
@@ -42,9 +42,9 @@ import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
-import org.sheepy.lily.vulkan.model.process.PushBufferTask;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
+import org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl;
@@ -163,14 +163,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass pushBufferTaskEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass getBufferTaskEClass = null;
+	private EClass flushTransferBufferTaskEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -192,6 +185,13 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass processExtensionPkgEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass setCompositeBufferFlushModeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -724,9 +724,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getPushBufferTask()
+	public EClass getFlushTransferBufferTask()
 	{
-		return pushBufferTaskEClass;
+		return flushTransferBufferTaskEClass;
 	}
 
 	/**
@@ -735,42 +735,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getPushBufferTask_PushBuffer()
+	public EReference getFlushTransferBufferTask_TransferBuffer()
 	{
-		return (EReference)pushBufferTaskEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getGetBufferTask()
-	{
-		return getBufferTaskEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getGetBufferTask_GetBuffer()
-	{
-		return (EReference)getBufferTaskEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getGetBufferTask_DeviceBuffer()
-	{
-		return (EReference)getBufferTaskEClass.getEStructuralFeatures().get(1);
+		return (EReference)flushTransferBufferTaskEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -867,6 +834,39 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getSetCompositeBufferFlushMode()
+	{
+		return setCompositeBufferFlushModeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSetCompositeBufferFlushMode_CompositeBuffer()
+	{
+		return (EReference)setCompositeBufferFlushModeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSetCompositeBufferFlushMode_Mode()
+	{
+		return (EAttribute)setCompositeBufferFlushModeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ProcessFactory getProcessFactory()
 	{
 		return (ProcessFactory)getEFactoryInstance();
@@ -944,12 +944,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		pushConstantBufferEClass = createEClass(PUSH_CONSTANT_BUFFER);
 		createEReference(pushConstantBufferEClass, PUSH_CONSTANT_BUFFER__BUFFER);
 
-		pushBufferTaskEClass = createEClass(PUSH_BUFFER_TASK);
-		createEReference(pushBufferTaskEClass, PUSH_BUFFER_TASK__PUSH_BUFFER);
-
-		getBufferTaskEClass = createEClass(GET_BUFFER_TASK);
-		createEReference(getBufferTaskEClass, GET_BUFFER_TASK__GET_BUFFER);
-		createEReference(getBufferTaskEClass, GET_BUFFER_TASK__DEVICE_BUFFER);
+		flushTransferBufferTaskEClass = createEClass(FLUSH_TRANSFER_BUFFER_TASK);
+		createEReference(flushTransferBufferTaskEClass, FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER);
 
 		copyBufferTaskEClass = createEClass(COPY_BUFFER_TASK);
 		createEAttribute(copyBufferTaskEClass, COPY_BUFFER_TASK__STAGE);
@@ -961,6 +957,10 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		processExtensionPkgEClass = createEClass(PROCESS_EXTENSION_PKG);
 		createEReference(processExtensionPkgEClass, PROCESS_EXTENSION_PKG__EXTENSIONS);
+
+		setCompositeBufferFlushModeEClass = createEClass(SET_COMPOSITE_BUFFER_FLUSH_MODE);
+		createEReference(setCompositeBufferFlushModeEClass, SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER);
+		createEAttribute(setCompositeBufferFlushModeEClass, SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE);
 	}
 
 	/**
@@ -1020,9 +1020,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		bindDescriptorSetsEClass.getESuperTypes().add(this.getIPipelineTask());
 		pushConstantEClass.getESuperTypes().add(this.getIPipelineTask());
 		pushConstantBufferEClass.getESuperTypes().add(this.getPushConstant());
-		pushBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());
-		getBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());
+		flushTransferBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());
 		copyBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());
+		setCompositeBufferFlushModeEClass.getESuperTypes().add(this.getIPipelineTask());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1077,12 +1077,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEClass(pushConstantBufferEClass, PushConstantBuffer.class, "PushConstantBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPushConstantBuffer_Buffer(), theResourcePackage.getConstantBuffer(), null, "buffer", null, 1, 1, PushConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(pushBufferTaskEClass, PushBufferTask.class, "PushBufferTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPushBufferTask_PushBuffer(), theResourcePackage.getPushBuffer(), null, "pushBuffer", null, 1, 1, PushBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(getBufferTaskEClass, GetBufferTask.class, "GetBufferTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGetBufferTask_GetBuffer(), theResourcePackage.getGetBuffer(), null, "getBuffer", null, 1, 1, GetBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGetBufferTask_DeviceBuffer(), theResourcePackage.getBuffer(), null, "deviceBuffer", null, 0, 1, GetBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(flushTransferBufferTaskEClass, FlushTransferBufferTask.class, "FlushTransferBufferTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFlushTransferBufferTask_TransferBuffer(), theResourcePackage.getTransferBuffer(), null, "transferBuffer", null, 1, 1, FlushTransferBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(copyBufferTaskEClass, CopyBufferTask.class, "CopyBufferTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCopyBufferTask_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Transfer", 1, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1094,6 +1090,10 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		initEClass(processExtensionPkgEClass, ProcessExtensionPkg.class, "ProcessExtensionPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProcessExtensionPkg_Extensions(), this.getIProcessExtension(), null, "extensions", null, 0, -1, ProcessExtensionPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(setCompositeBufferFlushModeEClass, SetCompositeBufferFlushMode.class, "SetCompositeBufferFlushMode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSetCompositeBufferFlushMode_CompositeBuffer(), theResourcePackage.getCompositeBuffer(), null, "compositeBuffer", null, 1, 1, SetCompositeBufferFlushMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSetCompositeBufferFlushMode_Mode(), theResourcePackage.getEFlushMode(), "mode", "PUSH", 1, 1, SetCompositeBufferFlushMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

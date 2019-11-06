@@ -7,7 +7,7 @@ import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer;
+import org.sheepy.vulkan.resource.staging.ITransferBuffer;
 
 public interface IMeshObject extends IAllocable<IExecutionContext>
 {
@@ -18,7 +18,7 @@ public interface IMeshObject extends IAllocable<IExecutionContext>
 	long getVertexBufferAddress();
 	long getVertexBufferOffset();
 
-	void update(IStagingBuffer stagingBuffer);
+	void update(ITransferBuffer stagingBuffer);
 	boolean hasChanged();
 
 	void setInstanceCount(int size);

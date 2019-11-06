@@ -49,6 +49,7 @@ public final class LilyVulkanEditPlugin extends EMFPlugin
 		     EcoreEditPlugin.INSTANCE,
 		     LilyEditPlugin.INSTANCE,
 		     VulkanEditPlugin.INSTANCE,
+		     LilyVulkanEditPlugin.INSTANCE,
 		   });
 	}
 

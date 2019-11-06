@@ -8,8 +8,8 @@ import org.sheepy.lily.vulkan.process.pipeline.PipelineAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.BindDescriptorSetsAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.CompositeTaskAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.CopyBufferTaskAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.task.FlushTransferBufferTaskAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.PipelineBarrierAdapter;
-import org.sheepy.lily.vulkan.process.pipeline.task.PushBufferTaskAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.PushConstantBufferAdapter;
 
 @Adapters(classifiers = {
@@ -23,10 +23,9 @@ import org.sheepy.lily.vulkan.process.pipeline.task.PushConstantBufferAdapter;
 		PipelineAdapter.class,
 		BindDescriptorSetsAdapter.class,
 		CompositeTaskAdapter.class,
-		PushBufferTaskAdapter.class,
+		FlushTransferBufferTaskAdapter.class,
 		CopyBufferTaskAdapter.class
 })
-
 
 module org.sheepy.lily.vulkan.process
 {

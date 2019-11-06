@@ -86,22 +86,13 @@ public interface ProcessFactory extends EFactory
 	PushConstantBuffer createPushConstantBuffer();
 
 	/**
-	 * Returns a new object of class '<em>Push Buffer Task</em>'.
+	 * Returns a new object of class '<em>Flush Transfer Buffer Task</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Push Buffer Task</em>'.
+	 * @return a new object of class '<em>Flush Transfer Buffer Task</em>'.
 	 * @generated
 	 */
-	PushBufferTask createPushBufferTask();
-
-	/**
-	 * Returns a new object of class '<em>Get Buffer Task</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Get Buffer Task</em>'.
-	 * @generated
-	 */
-	GetBufferTask createGetBufferTask();
+	FlushTransferBufferTask createFlushTransferBufferTask();
 
 	/**
 	 * Returns a new object of class '<em>Copy Buffer Task</em>'.
@@ -120,6 +111,15 @@ public interface ProcessFactory extends EFactory
 	 * @generated
 	 */
 	ProcessExtensionPkg createProcessExtensionPkg();
+
+	/**
+	 * Returns a new object of class '<em>Set Composite Buffer Flush Mode</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Set Composite Buffer Flush Mode</em>'.
+	 * @generated
+	 */
+	SetCompositeBufferFlushMode createSetCompositeBufferFlushMode();
 
 	/**
 	 * Returns the package supported by this factory.

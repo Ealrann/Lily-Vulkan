@@ -12,13 +12,11 @@ import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer.FlushListener.PostFlushListener;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer.FlushListener.PreFlushListener;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket.EReservationStatus;
+import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket.EReservationStatus;
 import org.sheepy.vulkan.resource.staging.memory.MemorySpaceManager;
 import org.sheepy.vulkan.resource.staging.memory.MemorySpaceManager.MemorySpace;
 
-public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuffer
+public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITransferBuffer
 {
 	private static final String MEMORY_RESERVATION_REJECTED = "MemoryTicket reservation was rejected";
 
@@ -29,14 +27,13 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	private final Deque<IDataFlowCommand> unsynchronizedCommands = new ArrayDeque<>();
 	private final long capacity;
 	private final MemorySpaceManager spaceManager;
-	private final List<PreFlushListener> preFlushListeners = new ArrayList<>();
-	private final List<PostFlushListener> postFlushListeners = new ArrayList<>();
+	private final List<FlushListener> flushListeners = new ArrayList<>();
 
 	private boolean containingPushCommand = false;
-	private boolean containingGetCommand = false;
+	private boolean containingFetchCommand = false;
 	private IExecutionContext executionContext;
 
-	public StagingBuffer(long capacity, int instanceCount)
+	public TransferBufferBackend(long capacity, int instanceCount)
 	{
 		this.capacity = capacity;
 		spaceManager = new MemorySpaceManager(capacity);
@@ -100,7 +97,7 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	}
 
 	@Override
-	public void addStagingCommand(IDataFlowCommand command)
+	public void addTransferCommand(IDataFlowCommand command)
 	{
 		if (command.getMemoryTicket().getReservationStatus() == EReservationStatus.FLUSHED)
 		{
@@ -113,8 +110,8 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 
 		switch (command.getFlowType())
 		{
-		case GET:
-			containingGetCommand = true;
+		case FETCH:
+			containingFetchCommand = true;
 			break;
 		case PUSH:
 			containingPushCommand = true;
@@ -170,26 +167,21 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 						command.execute(stack, subCommandBuffer);
 					}
 				});
-
-				while (unsynchronizedCommands.isEmpty() == false)
-				{
-					final var command = unsynchronizedCommands.pop();
-					final var postAction = command.getPostAction();
-					if (postAction != null)
-					{
-						postAction.accept(command.getMemoryTicket());
-					}
-				}
 			}
 
-			if (containingGetCommand)
+			if (containingFetchCommand)
 			{
 				bufferBackend.invalidate(stack, logicalDevice);
+			}
+
+			while (unsynchronizedCommands.isEmpty() == false)
+			{
+				final var command = unsynchronizedCommands.pop();
+				command.getPostAction().accept(command.getMemoryTicket());
 			}
 		}
 
 		clear();
-		firePostFlush();
 	}
 
 	private void clear()
@@ -200,7 +192,7 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 			ticket.invalidate();
 		}
 
-		containingGetCommand = false;
+		containingFetchCommand = false;
 		containingPushCommand = false;
 		spaceManager.clear();
 
@@ -210,32 +202,21 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	@Override
 	public void addListener(FlushListener l)
 	{
-		if (l instanceof PreFlushListener) preFlushListeners.add((PreFlushListener) l);
-		else if (l instanceof PostFlushListener) postFlushListeners.add((PostFlushListener) l);
+		flushListeners.add(l);
 	}
 
 	@Override
 	public void removeListener(FlushListener l)
 	{
-		if (l instanceof PreFlushListener) preFlushListeners.add((PreFlushListener) l);
-		else if (l instanceof PostFlushListener) postFlushListeners.add((PostFlushListener) l);
+		flushListeners.remove(l);
 	}
 
 	private void firePreFlush()
 	{
-		for (int i = 0; i < preFlushListeners.size(); i++)
+		for (int i = 0; i < flushListeners.size(); i++)
 		{
-			final var flushListener = preFlushListeners.get(i);
+			final var flushListener = flushListeners.get(i);
 			flushListener.preFlush();
-		}
-	}
-
-	private void firePostFlush()
-	{
-		for (int i = 0; i < postFlushListeners.size(); i++)
-		{
-			final var flushListener = postFlushListeners.get(i);
-			flushListener.postFlush();
 		}
 	}
 

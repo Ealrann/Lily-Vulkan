@@ -161,12 +161,7 @@ public class ResourcePkgItemProvider extends ItemProviderAdapter implements IEdi
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				 ResourceFactory.eINSTANCE.createPushBuffer()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-				 ResourceFactory.eINSTANCE.createGetBuffer()));
+				 ResourceFactory.eINSTANCE.createTransferBuffer()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -237,6 +232,30 @@ public class ResourcePkgItemProvider extends ItemProviderAdapter implements IEdi
 			(createChildParameter
 				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
 				 ResourceFactory.eINSTANCE.createTexture2DArray()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection)
+	{
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == VulkanPackage.Literals.RESOURCE_PKG__RESOURCES;
+
+		if (qualify)
+		{
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

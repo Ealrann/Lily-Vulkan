@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.process.compute.execution;
 import java.util.List;
 
 import org.sheepy.lily.vulkan.api.execution.IRecordable;
+import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.process.IComputeContext;
 import org.sheepy.lily.vulkan.process.execution.AbstractExecutionRecorder;
 import org.sheepy.lily.vulkan.process.execution.Submission;
@@ -18,12 +19,14 @@ public class ComputeExecutionRecorder extends AbstractExecutionRecorder<ICompute
 	}
 
 	@Override
-	protected void recordCommand(List<? extends IRecordable> recordables, ECommandStage stage)
+	protected void recordCommand(	List<? extends IRecordable> recordables,
+									RecordContext context,
+									ECommandStage stage)
 	{
 		for (int i = 0; i < recordables.size(); i++)
 		{
 			final var pipelineAdapter = recordables.get(i);
-			record(pipelineAdapter, stage);
+			pipelineAdapter.record(context, stage);
 		}
 	}
 }

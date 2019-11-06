@@ -11,14 +11,15 @@ import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.buffer.BufferUtils;
 import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket;
+import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket;
 
 public final class PipelinePushCommand implements IDataFlowCommand
 {
 	private final MemoryTicket ticket;
-
 	private final long trgBuffer;
 	private final long trgOffset;
+	private final Consumer<MemoryTicket> transferDone;
+
 	private EPipelineStage dstStage = null;
 	private EAccess dstAccess = null;
 
@@ -26,7 +27,8 @@ public final class PipelinePushCommand implements IDataFlowCommand
 								long trgBuffer,
 								long trgOffset,
 								EPipelineStage dstStage,
-								EAccess dstAccess)
+								EAccess dstAccess,
+								Consumer<MemoryTicket> transferDone)
 	{
 		assert dstStage != null;
 		assert dstAccess != null;
@@ -39,6 +41,7 @@ public final class PipelinePushCommand implements IDataFlowCommand
 		this.trgOffset = trgOffset;
 		this.dstStage = dstStage;
 		this.dstAccess = dstAccess;
+		this.transferDone = transferDone;
 	}
 
 	@Override
@@ -81,14 +84,14 @@ public final class PipelinePushCommand implements IDataFlowCommand
 	}
 
 	@Override
-	public Consumer<MemoryTicket> getPostAction()
-	{
-		return null;
-	}
-
-	@Override
 	public EFlowType getFlowType()
 	{
 		return EFlowType.PUSH;
+	}
+
+	@Override
+	public Consumer<MemoryTicket> getPostAction()
+	{
+		return transferDone;
 	}
 }

@@ -11,12 +11,12 @@ import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.process.pipeline.task.internal.BufferBarriersBackend;
 import org.sheepy.lily.vulkan.process.pipeline.task.internal.ImageBarriersBackend;
+import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
@@ -119,7 +119,7 @@ public class PipelineBarrierAdapter
 		int res = VK_QUEUE_FAMILY_IGNORED;
 		if (process != null)
 		{
-			final var queueType = process.adaptNotNull(IProcessAdapter.class).getQueueType();
+			final var queueType = process.adaptNotNull(AbstractProcessAdapter.class).getQueueType();
 			res = logicalDevice.getQueueIndex(queueType);
 		}
 		return res;

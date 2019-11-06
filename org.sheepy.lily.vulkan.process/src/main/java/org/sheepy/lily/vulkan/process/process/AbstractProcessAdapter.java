@@ -26,6 +26,7 @@ import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.queue.EQueueType;
 
 @Statefull
 public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorderContext<T>>
@@ -179,6 +180,17 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 		return recorder.play();
 	}
 
+	@Override
+	public void waitIdle()
+	{
+		final var recorders = context.getRecorders();
+		for (int i = 0; i < recorders.size(); i++)
+		{
+			final var recorder = recorders.get(i);
+			recorder.waitIdle();
+		}
+	}
+
 	protected void collectAllocationPipelines(List<? super IAllocable<? super T>> collectIn)
 	{
 		final var partPkg = process.getPartPkg();
@@ -329,8 +341,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	}
 
 	protected abstract Integer prepareNextExecution();
-
 	protected abstract List<ECommandStage> getStages();
-
 	protected abstract T createContext();
+	public abstract EQueueType getQueueType();
 }

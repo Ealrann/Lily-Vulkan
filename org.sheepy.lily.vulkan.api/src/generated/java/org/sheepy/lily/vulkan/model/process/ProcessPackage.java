@@ -950,14 +950,14 @@ public interface ProcessPackage extends EPackage
 	int PUSH_CONSTANT_BUFFER_OPERATION_COUNT = PUSH_CONSTANT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushBufferTaskImpl <em>Push Buffer Task</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.FlushTransferBufferTaskImpl <em>Flush Transfer Buffer Task</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.impl.PushBufferTaskImpl
-	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPushBufferTask()
+	 * @see org.sheepy.lily.vulkan.model.process.impl.FlushTransferBufferTaskImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getFlushTransferBufferTask()
 	 * @generated
 	 */
-	int PUSH_BUFFER_TASK = 13;
+	int FLUSH_TRANSFER_BUFFER_TASK = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -966,7 +966,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_BUFFER_TASK__NAME = IPIPELINE_TASK__NAME;
+	int FLUSH_TRANSFER_BUFFER_TASK__NAME = IPIPELINE_TASK__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -975,98 +975,34 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_BUFFER_TASK__ENABLED = IPIPELINE_TASK__ENABLED;
+	int FLUSH_TRANSFER_BUFFER_TASK__ENABLED = IPIPELINE_TASK__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Push Buffer</b></em>' reference.
+	 * The feature id for the '<em><b>Transfer Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_BUFFER_TASK__PUSH_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 0;
+	int FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Push Buffer Task</em>' class.
+	 * The number of structural features of the '<em>Flush Transfer Buffer Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 1;
+	int FLUSH_TRANSFER_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Push Buffer Task</em>' class.
+	 * The number of operations of the '<em>Flush Transfer Buffer Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_BUFFER_TASK_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.GetBufferTaskImpl <em>Get Buffer Task</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.impl.GetBufferTaskImpl
-	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getGetBufferTask()
-	 * @generated
-	 */
-	int GET_BUFFER_TASK = 14;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GET_BUFFER_TASK__NAME = IPIPELINE_TASK__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GET_BUFFER_TASK__ENABLED = IPIPELINE_TASK__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Get Buffer</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GET_BUFFER_TASK__GET_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Device Buffer</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GET_BUFFER_TASK__DEVICE_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Get Buffer Task</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GET_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Get Buffer Task</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GET_BUFFER_TASK_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
+	int FLUSH_TRANSFER_BUFFER_TASK_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl <em>Copy Buffer Task</em>}' class.
@@ -1076,7 +1012,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getCopyBufferTask()
 	 * @generated
 	 */
-	int COPY_BUFFER_TASK = 15;
+	int COPY_BUFFER_TASK = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1158,7 +1094,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIProcessExtension()
 	 * @generated
 	 */
-	int IPROCESS_EXTENSION = 16;
+	int IPROCESS_EXTENSION = 15;
 
 	/**
 	 * The number of structural features of the '<em>IProcess Extension</em>' class.
@@ -1186,7 +1122,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessExtensionPkg()
 	 * @generated
 	 */
-	int PROCESS_EXTENSION_PKG = 17;
+	int PROCESS_EXTENSION_PKG = 16;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1214,6 +1150,70 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int PROCESS_EXTENSION_PKG_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl <em>Set Composite Buffer Flush Mode</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getSetCompositeBufferFlushMode()
+	 * @generated
+	 */
+	int SET_COMPOSITE_BUFFER_FLUSH_MODE = 17;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_COMPOSITE_BUFFER_FLUSH_MODE__NAME = IPIPELINE_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_COMPOSITE_BUFFER_FLUSH_MODE__ENABLED = IPIPELINE_TASK__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Composite Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE = IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Set Composite Buffer Flush Mode</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_COMPOSITE_BUFFER_FLUSH_MODE_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Set Composite Buffer Flush Mode</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_COMPOSITE_BUFFER_FLUSH_MODE_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
@@ -1632,57 +1632,25 @@ public interface ProcessPackage extends EPackage
 	EReference getPushConstantBuffer_Buffer();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PushBufferTask <em>Push Buffer Task</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask <em>Flush Transfer Buffer Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Push Buffer Task</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.PushBufferTask
+	 * @return the meta object for class '<em>Flush Transfer Buffer Task</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask
 	 * @generated
 	 */
-	EClass getPushBufferTask();
+	EClass getFlushTransferBufferTask();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.PushBufferTask#getPushBuffer <em>Push Buffer</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#getTransferBuffer <em>Transfer Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Push Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.PushBufferTask#getPushBuffer()
-	 * @see #getPushBufferTask()
+	 * @return the meta object for the reference '<em>Transfer Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#getTransferBuffer()
+	 * @see #getFlushTransferBufferTask()
 	 * @generated
 	 */
-	EReference getPushBufferTask_PushBuffer();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.GetBufferTask <em>Get Buffer Task</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Get Buffer Task</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.GetBufferTask
-	 * @generated
-	 */
-	EClass getGetBufferTask();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.GetBufferTask#getGetBuffer <em>Get Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Get Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.GetBufferTask#getGetBuffer()
-	 * @see #getGetBufferTask()
-	 * @generated
-	 */
-	EReference getGetBufferTask_GetBuffer();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.GetBufferTask#getDeviceBuffer <em>Device Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Device Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.GetBufferTask#getDeviceBuffer()
-	 * @see #getGetBufferTask()
-	 * @generated
-	 */
-	EReference getGetBufferTask_DeviceBuffer();
+	EReference getFlushTransferBufferTask_TransferBuffer();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask <em>Copy Buffer Task</em>}'.
@@ -1768,6 +1736,38 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getProcessExtensionPkg_Extensions();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode <em>Set Composite Buffer Flush Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Set Composite Buffer Flush Mode</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode
+	 * @generated
+	 */
+	EClass getSetCompositeBufferFlushMode();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getCompositeBuffer <em>Composite Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Composite Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getCompositeBuffer()
+	 * @see #getSetCompositeBufferFlushMode()
+	 * @generated
+	 */
+	EReference getSetCompositeBufferFlushMode_CompositeBuffer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getMode <em>Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mode</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getMode()
+	 * @see #getSetCompositeBufferFlushMode()
+	 * @generated
+	 */
+	EAttribute getSetCompositeBufferFlushMode_Mode();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2132,48 +2132,22 @@ public interface ProcessPackage extends EPackage
 		EReference PUSH_CONSTANT_BUFFER__BUFFER = eINSTANCE.getPushConstantBuffer_Buffer();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushBufferTaskImpl <em>Push Buffer Task</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.FlushTransferBufferTaskImpl <em>Flush Transfer Buffer Task</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.impl.PushBufferTaskImpl
-		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPushBufferTask()
+		 * @see org.sheepy.lily.vulkan.model.process.impl.FlushTransferBufferTaskImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getFlushTransferBufferTask()
 		 * @generated
 		 */
-		EClass PUSH_BUFFER_TASK = eINSTANCE.getPushBufferTask();
+		EClass FLUSH_TRANSFER_BUFFER_TASK = eINSTANCE.getFlushTransferBufferTask();
 
 		/**
-		 * The meta object literal for the '<em><b>Push Buffer</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Transfer Buffer</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PUSH_BUFFER_TASK__PUSH_BUFFER = eINSTANCE.getPushBufferTask_PushBuffer();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.GetBufferTaskImpl <em>Get Buffer Task</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.impl.GetBufferTaskImpl
-		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getGetBufferTask()
-		 * @generated
-		 */
-		EClass GET_BUFFER_TASK = eINSTANCE.getGetBufferTask();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Buffer</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GET_BUFFER_TASK__GET_BUFFER = eINSTANCE.getGetBufferTask_GetBuffer();
-
-		/**
-		 * The meta object literal for the '<em><b>Device Buffer</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GET_BUFFER_TASK__DEVICE_BUFFER = eINSTANCE.getGetBufferTask_DeviceBuffer();
+		EReference FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER = eINSTANCE.getFlushTransferBufferTask_TransferBuffer();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl <em>Copy Buffer Task</em>}' class.
@@ -2244,6 +2218,32 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference PROCESS_EXTENSION_PKG__EXTENSIONS = eINSTANCE.getProcessExtensionPkg_Extensions();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl <em>Set Composite Buffer Flush Mode</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getSetCompositeBufferFlushMode()
+		 * @generated
+		 */
+		EClass SET_COMPOSITE_BUFFER_FLUSH_MODE = eINSTANCE.getSetCompositeBufferFlushMode();
+
+		/**
+		 * The meta object literal for the '<em><b>Composite Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER = eINSTANCE.getSetCompositeBufferFlushMode_CompositeBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE = eINSTANCE.getSetCompositeBufferFlushMode_Mode();
 
 	}
 

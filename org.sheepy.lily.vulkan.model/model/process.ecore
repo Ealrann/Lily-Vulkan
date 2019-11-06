@@ -98,14 +98,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="buffer" lowerBound="1"
         eType="ecore:EClass resource.ecore#//ConstantBuffer"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PushBufferTask" eSuperTypes="#//IPipelineTask">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pushBuffer" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//PushBuffer"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GetBufferTask" eSuperTypes="#//IPipelineTask">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="getBuffer" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//GetBuffer"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="deviceBuffer" eType="ecore:EClass resource.ecore#//Buffer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FlushTransferBufferTask" eSuperTypes="#//IPipelineTask">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transferBuffer" lowerBound="1"
+        eType="ecore:EClass resource.ecore#//TransferBuffer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CopyBufferTask" eSuperTypes="#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" lowerBound="1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
@@ -121,5 +116,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="ProcessExtensionPkg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensions" upperBound="-1"
         eType="#//IProcessExtension" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SetCompositeBufferFlushMode" eSuperTypes="#//IPipelineTask">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeBuffer" lowerBound="1"
+        eType="ecore:EClass resource.ecore#//CompositeBuffer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" lowerBound="1" eType="ecore:EEnum resource.ecore#//EFlushMode"
+        defaultValueLiteral="PUSH"/>
   </eClassifiers>
 </ecore:EPackage>

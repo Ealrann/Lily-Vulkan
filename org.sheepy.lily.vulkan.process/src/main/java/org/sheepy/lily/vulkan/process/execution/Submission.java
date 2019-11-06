@@ -14,6 +14,7 @@ import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext.IExecutionIdleListener;
 import org.sheepy.lily.vulkan.api.execution.ISubmission;
 import org.sheepy.lily.vulkan.api.process.IProcessContext.IRecorderContext;
 import org.sheepy.vulkan.concurrent.IFenceView;
@@ -39,6 +40,7 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 	protected LongBuffer bSignalSemaphores;
 
 	public final VkFence fence;
+	private List<IExecutionIdleListener> listeners;
 	private VkQueue queue;
 
 	public Submission(	ICommandBuffer<? super T> commandBuffer,
@@ -159,6 +161,20 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 			}
 			fence.reset();
 		}
+
+		if (listeners != null)
+		{
+			for (final var listener : listeners)
+			{
+				listener.onExecutionIdle();
+			}
+		}
+	}
+
+	@Override
+	public void setExecutionIdleListeners(List<IExecutionIdleListener> listeners)
+	{
+		this.listeners = listeners;
 	}
 
 	@Override

@@ -191,13 +191,13 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_LAYOUT_TASK__DRAW_TASK = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Push Buffer</b></em>' reference.
+	 * The feature id for the '<em><b>Transfer Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_LAYOUT_TASK__PUSH_BUFFER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
+	int NUKLEAR_LAYOUT_TASK__TRANSFER_BUFFER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Vertex Buffer</b></em>' reference.
@@ -641,15 +641,15 @@ public interface NuklearPackage extends EPackage
 	EReference getNuklearLayoutTask_DrawTask();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getPushBuffer <em>Push Buffer</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getTransferBuffer <em>Transfer Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Push Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getPushBuffer()
+	 * @return the meta object for the reference '<em>Transfer Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getTransferBuffer()
 	 * @see #getNuklearLayoutTask()
 	 * @generated
 	 */
-	EReference getNuklearLayoutTask_PushBuffer();
+	EReference getNuklearLayoutTask_TransferBuffer();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getVertexBuffer <em>Vertex Buffer</em>}'.
@@ -929,12 +929,12 @@ public interface NuklearPackage extends EPackage
 		EReference NUKLEAR_LAYOUT_TASK__DRAW_TASK = eINSTANCE.getNuklearLayoutTask_DrawTask();
 
 		/**
-		 * The meta object literal for the '<em><b>Push Buffer</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Transfer Buffer</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NUKLEAR_LAYOUT_TASK__PUSH_BUFFER = eINSTANCE.getNuklearLayoutTask_PushBuffer();
+		EReference NUKLEAR_LAYOUT_TASK__TRANSFER_BUFFER = eINSTANCE.getNuklearLayoutTask_TransferBuffer();
 
 		/**
 		 * The meta object literal for the '<em><b>Vertex Buffer</b></em>' reference feature.

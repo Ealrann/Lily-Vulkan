@@ -98,7 +98,7 @@ public final class BufferInstaller<T extends Structure>
 			buffer.getDataProviders().add(copy);
 		}
 
-		buffer.setPushBuffer(maintainer.getPushBuffer());
+		buffer.setTransferBuffer(maintainer.getTransferBuffer());
 
 		return buffer;
 	}

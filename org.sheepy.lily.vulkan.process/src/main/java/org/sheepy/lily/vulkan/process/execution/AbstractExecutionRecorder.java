@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.process.execution;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.sheepy.lily.core.api.allocation.IAllocable;
@@ -7,6 +8,7 @@ import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.api.execution.IRecordable;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
+import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext.IExecutionIdleListener;
 import org.sheepy.lily.vulkan.api.execution.ISubmission;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.vulkan.concurrent.IFenceView;
@@ -55,24 +57,24 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 	{
 		waitIdle();
 
+		final List<IExecutionIdleListener> listeners = new ArrayList<>();
 		for (int i = 0; i < stages.size(); i++)
 		{
 			final ECommandStage stage = stages.get(i);
 			commandBuffer.start(stage);
-			recordCommand(recordables, stage);
+			final var context = getOrCreateContext(stage);
+			recordCommand(recordables, context, stage);
 			commandBuffer.end(stage);
+
+			if (context != null)
+			{
+				listeners.addAll(context.getExecutionIdleListeners());
+			}
 		}
+
+		submission.setExecutionIdleListeners(listeners);
 
 		setDirty(false);
-	}
-
-	protected final void record(final IRecordable recordable, ECommandStage stage)
-	{
-		if (recordable.isActive() && recordable.shouldRecord(stage))
-		{
-			final var context = getOrCreateContext(stage);
-			recordable.record(context);
-		}
 	}
 
 	private final RecordContext getOrCreateContext(ECommandStage stage)
@@ -130,6 +132,7 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 	}
 
 	protected abstract void recordCommand(	List<? extends IRecordable> adapters,
+											RecordContext context,
 											ECommandStage stage);
 
 }

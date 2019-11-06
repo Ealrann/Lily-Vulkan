@@ -619,13 +619,13 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__CONSTANT_BUFFER = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Push Buffer</b></em>' reference.
+	 * The feature id for the '<em><b>Transfer Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER__PUSH_BUFFER = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 4;
+	int GENERIC_RENDERER__TRANSFER_BUFFER = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Common Resource Provider</b></em>' containment reference.
@@ -1454,15 +1454,15 @@ public interface RenderingPackage extends EPackage
 	EReference getGenericRenderer_ConstantBuffer();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getPushBuffer <em>Push Buffer</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getTransferBuffer <em>Transfer Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Push Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getPushBuffer()
+	 * @return the meta object for the reference '<em>Transfer Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getTransferBuffer()
 	 * @see #getGenericRenderer()
 	 * @generated
 	 */
-	EReference getGenericRenderer_PushBuffer();
+	EReference getGenericRenderer_TransferBuffer();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getCommonResourceProvider <em>Common Resource Provider</em>}'.
@@ -1900,12 +1900,12 @@ public interface RenderingPackage extends EPackage
 		EReference GENERIC_RENDERER__CONSTANT_BUFFER = eINSTANCE.getGenericRenderer_ConstantBuffer();
 
 		/**
-		 * The meta object literal for the '<em><b>Push Buffer</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Transfer Buffer</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GENERIC_RENDERER__PUSH_BUFFER = eINSTANCE.getGenericRenderer_PushBuffer();
+		EReference GENERIC_RENDERER__TRANSFER_BUFFER = eINSTANCE.getGenericRenderer_TransferBuffer();
 
 		/**
 		 * The meta object literal for the '<em><b>Common Resource Provider</b></em>' containment reference feature.

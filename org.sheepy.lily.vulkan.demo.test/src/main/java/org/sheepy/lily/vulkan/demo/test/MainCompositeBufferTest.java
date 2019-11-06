@@ -34,7 +34,7 @@ public class MainCompositeBufferTest
 		public void step(Application application)
 		{
 			processAdapter.run();
-			processAdapter.getQueue().waitIdle();
+			processAdapter.waitIdle();
 
 			final var providers = factory.resourceContainer.compositeBuffer.getDataProviders();
 			final var targetBuffers = factory.resourceContainer.targetBuffers;

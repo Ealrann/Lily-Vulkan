@@ -42,8 +42,8 @@ import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket.EReservationStatus;
+import org.sheepy.vulkan.resource.staging.ITransferBuffer;
+import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket.EReservationStatus;
 
 @Statefull
 @Adapter(scope = NuklearContext.class)
@@ -170,7 +170,7 @@ public class NuklearContextAdapter implements IResourceAdapter
 		config.line_AA(NK_ANTI_ALIASING_ON);
 	}
 
-	public boolean fillVertexBuffer(IStagingBuffer stagingBuffer, Buffer vertexBuffer)
+	public boolean fillVertexBuffer(ITransferBuffer stagingBuffer, Buffer vertexBuffer)
 	{
 		boolean res = true;
 
@@ -206,10 +206,10 @@ public class NuklearContextAdapter implements IResourceAdapter
 																						EAccess.VERTEX_ATTRIBUTE_READ_BIT);
 
 				nnk_buffer_init_fixed(vbuf.address(), vertexMemoryMap, vertexBufferSize);
-				stagingBuffer.addStagingCommand(vertexPushCommand);
+				stagingBuffer.addTransferCommand(vertexPushCommand);
 
 				nnk_buffer_init_fixed(ebuf.address(), indexMemoryMap, indexBufferSize);
-				stagingBuffer.addStagingCommand(indexPushCommand);
+				stagingBuffer.addTransferCommand(indexPushCommand);
 
 				// load draw vertices & elements directly into vertex + element buffer
 				final int result = nk_convert(nkContext, cmds, vbuf, ebuf, config);

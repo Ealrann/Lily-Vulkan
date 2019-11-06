@@ -9,17 +9,17 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.resource.buffer.ICompositeBufferAdapter;
-import org.sheepy.lily.vulkan.api.resource.buffer.IPushBufferAdapter;
+import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
-import org.sheepy.lily.vulkan.model.resource.PushBuffer;
+import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.lily.vulkan.resource.buffer.provider.DataProviderWrapper;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer.FlushListener.PreFlushListener;
+import org.sheepy.vulkan.resource.staging.ITransferBuffer;
+import org.sheepy.vulkan.resource.staging.ITransferBuffer.FlushListener;
 
 @Statefull
 @Adapter(scope = CompositeBuffer.class)
@@ -27,10 +27,9 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 {
 	private final List<DataProviderWrapper> providerWrappers;
 	private final List<IVkDescriptor> descriptors = new ArrayList<>();
-	private final PreFlushListener pushBufferListener = this::update;
 	private final CompositeBuffer compositeBuffer;
-	private final PushBuffer pushBuffer;
-	private final IStagingBuffer stagingBuffer;
+	private final ITransferBuffer transferBuffer;
+	private final FlushListener flushListener = this::update;
 
 	private GPUBufferBackend oldBufferBackend;
 	private GPUBufferBackend bufferBackend;
@@ -41,9 +40,9 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	public CompositeBufferAdapter(CompositeBuffer compositeBuffer)
 	{
 		this.compositeBuffer = compositeBuffer;
-		this.pushBuffer = compositeBuffer.getPushBuffer();
-		final var pushBufferAdapter = pushBuffer.adaptNotNull(IPushBufferAdapter.class);
-		stagingBuffer = pushBufferAdapter.getStagingBuffer();
+		final var pushBuffer = compositeBuffer.getTransferBuffer();
+		final var pushBufferAdapter = pushBuffer.adaptNotNull(ITransferBufferAdapter.class);
+		transferBuffer = pushBufferAdapter.getTransferBufferBackend();
 		this.providerWrappers = List.copyOf(buildProviderWrapers(compositeBuffer));
 	}
 
@@ -61,7 +60,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 
 		refreshConfiguration(true);
 
-		stagingBuffer.addListener(pushBufferListener);
+		transferBuffer.addListener(flushListener);
 
 		for (int i = 0; i < providerWrappers.size(); i++)
 		{
@@ -86,21 +85,26 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			oldBufferBackend = null;
 		}
 		bufferBackend.free(context);
-		stagingBuffer.removeListener(pushBufferListener);
+		transferBuffer.removeListener(flushListener);
 	}
 
-	public void update()
+	private void update()
 	{
-		refreshConfiguration(false);
+		final var mode = compositeBuffer.getMode();
+
+		if (mode == EFlushMode.PUSH)
+		{
+			refreshConfiguration(false);
+		}
 
 		final List<DataProviderWrapper> providersToPush = new ArrayList<>();
 		boolean reservationSuccessfull = true;
 
 		for (final var providerWrapper : providerWrappers)
 		{
-			if (providerWrapper.needUpdate())
+			if (mode == EFlushMode.FETCH || providerWrapper.needPush())
 			{
-				if (providerWrapper.reserveMemory(stagingBuffer) == false)
+				if (providerWrapper.reserveMemory(transferBuffer) == false)
 				{
 					reservationSuccessfull = false;
 					break;
@@ -114,7 +118,14 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		{
 			if (reservationSuccessfull)
 			{
-				providerWrapper.pushProvidedData();
+				if (mode == EFlushMode.PUSH)
+				{
+					providerWrapper.pushProvidedData();
+				}
+				else if (mode == EFlushMode.FETCH)
+				{
+					providerWrapper.fetchDeviceData();
+				}
 			}
 			else
 			{

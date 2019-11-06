@@ -5,6 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.List;
 
 import org.sheepy.lily.vulkan.api.execution.IRecordable;
+import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.process.execution.AbstractExecutionRecorder;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
@@ -20,7 +21,9 @@ public class GraphicExecutionRecorder extends AbstractExecutionRecorder<IGraphic
 	}
 
 	@Override
-	protected void recordCommand(List<? extends IRecordable> adapters, ECommandStage stage)
+	protected void recordCommand(	List<? extends IRecordable> adapters,
+									RecordContext context,
+									ECommandStage stage)
 	{
 		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 		int subpassCount = 1;
@@ -50,7 +53,7 @@ public class GraphicExecutionRecorder extends AbstractExecutionRecorder<IGraphic
 
 				if (pipelineSubpass == currentSubpass)
 				{
-					record(recordable, stage);
+					recordable.record(context, stage);
 				}
 			}
 

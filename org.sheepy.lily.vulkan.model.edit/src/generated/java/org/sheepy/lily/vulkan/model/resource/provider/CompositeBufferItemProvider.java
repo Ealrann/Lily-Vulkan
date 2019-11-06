@@ -64,9 +64,10 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addPushBufferPropertyDescriptor(object);
+			addTransferBufferPropertyDescriptor(object);
 			addMinSizePropertyDescriptor(object);
 			addGrowFactorPropertyDescriptor(object);
+			addModePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -95,20 +96,20 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This adds a property descriptor for the Push Buffer feature.
+	 * This adds a property descriptor for the Transfer Buffer feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPushBufferPropertyDescriptor(Object object)
+	protected void addTransferBufferPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_CompositeBuffer_pushBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeBuffer_pushBuffer_feature", "_UI_CompositeBuffer_type"),
-				 ResourcePackage.Literals.COMPOSITE_BUFFER__PUSH_BUFFER,
+				 getString("_UI_CompositeBuffer_transferBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeBuffer_transferBuffer_feature", "_UI_CompositeBuffer_type"),
+				 ResourcePackage.Literals.COMPOSITE_BUFFER__TRANSFER_BUFFER,
 				 true,
 				 false,
 				 true,
@@ -159,6 +160,29 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 				 false,
 				 false,
 				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Mode feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addModePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositeBuffer_mode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeBuffer_mode_feature", "_UI_CompositeBuffer_type"),
+				 ResourcePackage.Literals.COMPOSITE_BUFFER__MODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -240,6 +264,7 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 			case ResourcePackage.COMPOSITE_BUFFER__NAME:
 			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
 			case ResourcePackage.COMPOSITE_BUFFER__GROW_FACTOR:
+			case ResourcePackage.COMPOSITE_BUFFER__MODE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:

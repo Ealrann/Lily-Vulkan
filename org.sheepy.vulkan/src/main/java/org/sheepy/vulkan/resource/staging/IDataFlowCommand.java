@@ -6,7 +6,8 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket;
+import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket;
+import org.sheepy.vulkan.resource.staging.command.ImmediateFetchCommand;
 import org.sheepy.vulkan.resource.staging.command.ImmediatePushCommand;
 import org.sheepy.vulkan.resource.staging.command.PipelinePushCommand;
 
@@ -24,7 +25,7 @@ public interface IDataFlowCommand
 													long trgBuffer,
 													long trgOffset)
 	{
-		return new ImmediatePushCommand(ticket, trgBuffer, trgOffset);
+		return new ImmediatePushCommand(ticket, trgBuffer, trgOffset, null);
 	}
 
 	static IDataFlowCommand newPipelinePushCommand(	MemoryTicket ticket,
@@ -33,12 +34,27 @@ public interface IDataFlowCommand
 													EPipelineStage dstStage,
 													EAccess dstAccess)
 	{
-		return new PipelinePushCommand(ticket, trgBuffer, trgOffset, dstStage, dstAccess);
+		return new PipelinePushCommand(ticket, trgBuffer, trgOffset, dstStage, dstAccess, null);
+	}
+
+	static IDataFlowCommand newImmediateFetchCommand(	MemoryTicket ticket,
+														long srcBuffer,
+														long srcOffset)
+	{
+		return new ImmediateFetchCommand(ticket, srcBuffer, srcOffset, null);
+	}
+
+	static IDataFlowCommand newPipelineFetchCommand(MemoryTicket ticket,
+													long srcBuffer,
+													long srcOffset,
+													Consumer<MemoryTicket> transferDone)
+	{
+		return new ImmediateFetchCommand(ticket, srcBuffer, srcOffset, transferDone);
 	}
 
 	static enum EFlowType
 	{
 		PUSH,
-		GET
+		FETCH
 	}
 }

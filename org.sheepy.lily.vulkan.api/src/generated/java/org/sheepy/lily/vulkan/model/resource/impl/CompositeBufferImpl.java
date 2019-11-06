@@ -18,8 +18,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
-import org.sheepy.lily.vulkan.model.resource.PushBuffer;
+import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,9 +32,10 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getDataProviders <em>Data Providers</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getPushBuffer <em>Push Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getTransferBuffer <em>Transfer Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getMinSize <em>Min Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getGrowFactor <em>Grow Factor</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getMode <em>Mode</em>}</li>
  * </ul>
  *
  * @generated
@@ -71,14 +73,14 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 	protected EList<BufferDataProvider<?>> dataProviders;
 
 	/**
-	 * The cached value of the '{@link #getPushBuffer() <em>Push Buffer</em>}' reference.
+	 * The cached value of the '{@link #getTransferBuffer() <em>Transfer Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPushBuffer()
+	 * @see #getTransferBuffer()
 	 * @generated
 	 * @ordered
 	 */
-	protected PushBuffer pushBuffer;
+	protected TransferBuffer transferBuffer;
 
 	/**
 	 * The default value of the '{@link #getMinSize() <em>Min Size</em>}' attribute.
@@ -119,6 +121,26 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 	 * @ordered
 	 */
 	protected float growFactor = GROW_FACTOR_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EFlushMode MODE_EDEFAULT = EFlushMode.PUSH;
+
+	/**
+	 * The cached value of the '{@link #getMode() <em>Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected EFlushMode mode = MODE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -187,19 +209,19 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 	 * @generated
 	 */
 	@Override
-	public PushBuffer getPushBuffer()
+	public TransferBuffer getTransferBuffer()
 	{
-		if (pushBuffer != null && ((EObject)pushBuffer).eIsProxy())
+		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy())
 		{
-			InternalEObject oldPushBuffer = (InternalEObject)pushBuffer;
-			pushBuffer = (PushBuffer)eResolveProxy(oldPushBuffer);
-			if (pushBuffer != oldPushBuffer)
+			InternalEObject oldTransferBuffer = (InternalEObject)transferBuffer;
+			transferBuffer = (TransferBuffer)eResolveProxy(oldTransferBuffer);
+			if (transferBuffer != oldTransferBuffer)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER, oldPushBuffer, pushBuffer));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.COMPOSITE_BUFFER__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
 			}
 		}
-		return pushBuffer;
+		return transferBuffer;
 	}
 
 	/**
@@ -207,9 +229,9 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PushBuffer basicGetPushBuffer()
+	public TransferBuffer basicGetTransferBuffer()
 	{
-		return pushBuffer;
+		return transferBuffer;
 	}
 
 	/**
@@ -218,12 +240,12 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 	 * @generated
 	 */
 	@Override
-	public void setPushBuffer(PushBuffer newPushBuffer)
+	public void setTransferBuffer(TransferBuffer newTransferBuffer)
 	{
-		PushBuffer oldPushBuffer = pushBuffer;
-		pushBuffer = newPushBuffer;
+		TransferBuffer oldTransferBuffer = transferBuffer;
+		transferBuffer = newTransferBuffer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER, oldPushBuffer, pushBuffer));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_BUFFER__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
 	}
 
 	/**
@@ -282,6 +304,31 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 	 * @generated
 	 */
 	@Override
+	public EFlushMode getMode()
+	{
+		return mode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setMode(EFlushMode newMode)
+	{
+		EFlushMode oldMode = mode;
+		mode = newMode == null ? MODE_EDEFAULT : newMode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_BUFFER__MODE, oldMode, mode));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -306,13 +353,15 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 				return getName();
 			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
 				return getDataProviders();
-			case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
-				if (resolve) return getPushBuffer();
-				return basicGetPushBuffer();
+			case ResourcePackage.COMPOSITE_BUFFER__TRANSFER_BUFFER:
+				if (resolve) return getTransferBuffer();
+				return basicGetTransferBuffer();
 			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
 				return getMinSize();
 			case ResourcePackage.COMPOSITE_BUFFER__GROW_FACTOR:
 				return getGrowFactor();
+			case ResourcePackage.COMPOSITE_BUFFER__MODE:
+				return getMode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -335,14 +384,17 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 				getDataProviders().clear();
 				getDataProviders().addAll((Collection<? extends BufferDataProvider<?>>)newValue);
 				return;
-			case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
-				setPushBuffer((PushBuffer)newValue);
+			case ResourcePackage.COMPOSITE_BUFFER__TRANSFER_BUFFER:
+				setTransferBuffer((TransferBuffer)newValue);
 				return;
 			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
 				setMinSize((Long)newValue);
 				return;
 			case ResourcePackage.COMPOSITE_BUFFER__GROW_FACTOR:
 				setGrowFactor((Float)newValue);
+				return;
+			case ResourcePackage.COMPOSITE_BUFFER__MODE:
+				setMode((EFlushMode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -364,14 +416,17 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
 				getDataProviders().clear();
 				return;
-			case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
-				setPushBuffer((PushBuffer)null);
+			case ResourcePackage.COMPOSITE_BUFFER__TRANSFER_BUFFER:
+				setTransferBuffer((TransferBuffer)null);
 				return;
 			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
 				setMinSize(MIN_SIZE_EDEFAULT);
 				return;
 			case ResourcePackage.COMPOSITE_BUFFER__GROW_FACTOR:
 				setGrowFactor(GROW_FACTOR_EDEFAULT);
+				return;
+			case ResourcePackage.COMPOSITE_BUFFER__MODE:
+				setMode(MODE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -391,12 +446,14 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
 				return dataProviders != null && !dataProviders.isEmpty();
-			case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
-				return pushBuffer != null;
+			case ResourcePackage.COMPOSITE_BUFFER__TRANSFER_BUFFER:
+				return transferBuffer != null;
 			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
 				return minSize != MIN_SIZE_EDEFAULT;
 			case ResourcePackage.COMPOSITE_BUFFER__GROW_FACTOR:
 				return growFactor != GROW_FACTOR_EDEFAULT;
+			case ResourcePackage.COMPOSITE_BUFFER__MODE:
+				return mode != MODE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -418,6 +475,8 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 		result.append(minSize);
 		result.append(", growFactor: ");
 		result.append(growFactor);
+		result.append(", mode: ");
+		result.append(mode);
 		result.append(')');
 		return result.toString();
 	}

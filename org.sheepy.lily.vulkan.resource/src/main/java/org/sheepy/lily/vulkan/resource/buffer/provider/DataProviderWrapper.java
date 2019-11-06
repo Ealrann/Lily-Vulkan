@@ -1,5 +1,7 @@
 package org.sheepy.lily.vulkan.resource.buffer.provider;
 
+import java.util.function.Consumer;
+
 import org.sheepy.lily.core.api.adapter.NotifierAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -15,9 +17,9 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.buffer.VkBufferDescriptor;
 import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket;
-import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket.EReservationStatus;
+import org.sheepy.vulkan.resource.staging.ITransferBuffer;
+import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket;
+import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket.EReservationStatus;
 
 @Statefull
 @Adapter(scope = BufferDataProvider.class, scopeInheritance = true)
@@ -45,9 +47,9 @@ public class DataProviderWrapper extends NotifierAdapter
 	private long alignedOffset;
 	private long alignedSize;
 
-	private boolean needUpdate = true;
+	private boolean needPush = true;
 	private MemoryTicket memTicket;
-	private IStagingBuffer stagingBuffer;
+	private ITransferBuffer transferBuffer;
 
 	private long providedSize = 0;
 
@@ -124,23 +126,22 @@ public class DataProviderWrapper extends NotifierAdapter
 		}
 	}
 
-	public boolean needUpdate()
+	public boolean needPush()
 	{
-		return (needUpdate || adapter.hasChanged()) && adapter.getSize() > 0;
+		return (needPush || adapter.hasChanged()) && adapter.getSize() > 0;
 	}
 
-	public boolean reserveMemory(IStagingBuffer stagingBuffer)
+	public boolean reserveMemory(ITransferBuffer stagingBuffer)
 	{
-		this.stagingBuffer = stagingBuffer;
-		final long size = adapter.getSize();
-		memTicket = stagingBuffer.reserveMemory(size);
+		this.transferBuffer = stagingBuffer;
+		memTicket = stagingBuffer.reserveMemory(alignedSize);
 
 		return memTicket.getReservationStatus() == EReservationStatus.SUCCESS;
 	}
 
 	public void releaseMemory()
 	{
-		stagingBuffer.releaseTicket(memTicket);
+		transferBuffer.releaseTicket(memTicket);
 	}
 
 	public void pushProvidedData()
@@ -164,9 +165,23 @@ public class DataProviderWrapper extends NotifierAdapter
 		// memTicket.getBufferPtr(),
 		// memTicket.getBufferOffset()));
 
-		stagingBuffer.addStagingCommand(pushCommand);
+		transferBuffer.addTransferCommand(pushCommand);
 
-		needUpdate = false;
+		needPush = false;
+	}
+
+	public void fetchDeviceData()
+	{
+		assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
+
+		final Consumer<MemoryTicket> transferDone = ticket -> adapter.fetch(memTicket.getMemoryPtr());
+
+		final var pushCommand = IDataFlowCommand.newPipelineFetchCommand(	memTicket,
+																			bufferPtr,
+																			alignedOffset,
+																			transferDone);
+
+		transferBuffer.addTransferCommand(pushCommand);
 	}
 
 	public boolean hasChanged()

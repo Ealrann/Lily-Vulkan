@@ -91,21 +91,12 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.PUSH_BUFFER:
+			case ResourcePackage.TRANSFER_BUFFER:
 			{
-				PushBuffer pushBuffer = (PushBuffer)theEObject;
-				T1 result = casePushBuffer(pushBuffer);
-				if (result == null) result = caseIResource(pushBuffer);
-				if (result == null) result = caseLNamedElement(pushBuffer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.GET_BUFFER:
-			{
-				GetBuffer getBuffer = (GetBuffer)theEObject;
-				T1 result = caseGetBuffer(getBuffer);
-				if (result == null) result = caseIResource(getBuffer);
-				if (result == null) result = caseLNamedElement(getBuffer);
+				TransferBuffer transferBuffer = (TransferBuffer)theEObject;
+				T1 result = caseTransferBuffer(transferBuffer);
+				if (result == null) result = caseIResource(transferBuffer);
+				if (result == null) result = caseLNamedElement(transferBuffer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -427,33 +418,17 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Push Buffer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Transfer Buffer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Push Buffer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Transfer Buffer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePushBuffer(PushBuffer object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Get Buffer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Get Buffer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseGetBuffer(GetBuffer object)
+	public T1 caseTransferBuffer(TransferBuffer object)
 	{
 		return null;
 	}

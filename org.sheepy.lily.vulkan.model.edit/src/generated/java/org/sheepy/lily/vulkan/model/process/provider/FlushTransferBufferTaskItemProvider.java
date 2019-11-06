@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process.provider;
 
+
 import java.util.Collection;
 import java.util.List;
 
@@ -24,17 +25,23 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.PushBufferTask;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.PushBufferTask} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PushBufferTaskItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class FlushTransferBufferTaskItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -42,7 +49,7 @@ public class PushBufferTaskItemProvider extends ItemProviderAdapter implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PushBufferTaskItemProvider(AdapterFactory adapterFactory)
+	public FlushTransferBufferTaskItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -62,7 +69,7 @@ public class PushBufferTaskItemProvider extends ItemProviderAdapter implements I
 
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
-			addPushBufferPropertyDescriptor(object);
+			addTransferBufferPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -114,20 +121,20 @@ public class PushBufferTaskItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This adds a property descriptor for the Push Buffer feature.
+	 * This adds a property descriptor for the Transfer Buffer feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPushBufferPropertyDescriptor(Object object)
+	protected void addTransferBufferPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PushBufferTask_pushBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PushBufferTask_pushBuffer_feature", "_UI_PushBufferTask_type"),
-				 ProcessPackage.Literals.PUSH_BUFFER_TASK__PUSH_BUFFER,
+				 getString("_UI_FlushTransferBufferTask_transferBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FlushTransferBufferTask_transferBuffer_feature", "_UI_FlushTransferBufferTask_type"),
+				 ProcessPackage.Literals.FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER,
 				 true,
 				 false,
 				 true,
@@ -137,7 +144,7 @@ public class PushBufferTaskItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This returns PushBufferTask.gif.
+	 * This returns FlushTransferBufferTask.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -145,7 +152,7 @@ public class PushBufferTaskItemProvider extends ItemProviderAdapter implements I
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PushBufferTask"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FlushTransferBufferTask"));
 	}
 
 	/**
@@ -157,11 +164,12 @@ public class PushBufferTaskItemProvider extends ItemProviderAdapter implements I
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((PushBufferTask)object).getName();
+		String label = ((FlushTransferBufferTask)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_PushBufferTask_type") :
-			getString("_UI_PushBufferTask_type") + " " + label;
+			getString("_UI_FlushTransferBufferTask_type") :
+			getString("_UI_FlushTransferBufferTask_type") + " " + label;
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -175,10 +183,10 @@ public class PushBufferTaskItemProvider extends ItemProviderAdapter implements I
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PushBufferTask.class))
+		switch (notification.getFeatureID(FlushTransferBufferTask.class))
 		{
-			case ProcessPackage.PUSH_BUFFER_TASK__NAME:
-			case ProcessPackage.PUSH_BUFFER_TASK__ENABLED:
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__NAME:
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__ENABLED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

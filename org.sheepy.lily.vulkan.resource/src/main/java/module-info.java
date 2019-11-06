@@ -3,7 +3,7 @@ import org.sheepy.lily.vulkan.resource.buffer.BufferAdapter;
 import org.sheepy.lily.vulkan.resource.buffer.BufferReferenceAdapter;
 import org.sheepy.lily.vulkan.resource.buffer.CompositeBufferAdapter;
 import org.sheepy.lily.vulkan.resource.buffer.CompositeBufferReferenceAdapter;
-import org.sheepy.lily.vulkan.resource.buffer.PushBufferAdapter;
+import org.sheepy.lily.vulkan.resource.buffer.TransferBufferAdapter;
 import org.sheepy.lily.vulkan.resource.buffer.provider.DataProviderWrapper;
 import org.sheepy.lily.vulkan.resource.file.FileResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.ModuleResourceAdapter;
@@ -26,7 +26,7 @@ import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 		FileResourceAdapter.class,
 		FontImageAdapter.class,
 		ModuleResourceAdapter.class,
-		PushBufferAdapter.class,
+		TransferBufferAdapter.class,
 		SamplerAdapter.class,
 		SampledImageAdapter.class,
 		SemaphoreAdapter.class,

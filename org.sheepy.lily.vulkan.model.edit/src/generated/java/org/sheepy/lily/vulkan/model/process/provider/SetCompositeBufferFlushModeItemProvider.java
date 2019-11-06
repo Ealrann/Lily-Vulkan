@@ -1,6 +1,7 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.resource.provider;
+package org.sheepy.lily.vulkan.model.process.provider;
+
 
 import java.util.Collection;
 import java.util.List;
@@ -24,17 +25,23 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
-import org.sheepy.lily.vulkan.model.resource.PushBuffer;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.PushBuffer} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PushBufferItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class SetCompositeBufferFlushModeItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -42,7 +49,7 @@ public class PushBufferItemProvider extends ItemProviderAdapter implements IEdit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PushBufferItemProvider(AdapterFactory adapterFactory)
+	public SetCompositeBufferFlushModeItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -61,8 +68,9 @@ public class PushBufferItemProvider extends ItemProviderAdapter implements IEdit
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addSizePropertyDescriptor(object);
-			addInstanceCountPropertyDescriptor(object);
+			addEnabledPropertyDescriptor(object);
+			addCompositeBufferPropertyDescriptor(object);
+			addModePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -91,53 +99,76 @@ public class PushBufferItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This adds a property descriptor for the Size feature.
+	 * This adds a property descriptor for the Enabled feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSizePropertyDescriptor(Object object)
+	protected void addEnabledPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PushBuffer_size_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PushBuffer_size_feature", "_UI_PushBuffer_type"),
-				 ResourcePackage.Literals.PUSH_BUFFER__SIZE,
+				 getString("_UI_IPipelineTask_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature", "_UI_IPipelineTask_type"),
+				 ProcessPackage.Literals.IPIPELINE_TASK__ENABLED,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Instance Count feature.
+	 * This adds a property descriptor for the Composite Buffer feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInstanceCountPropertyDescriptor(Object object)
+	protected void addCompositeBufferPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PushBuffer_instanceCount_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PushBuffer_instanceCount_feature", "_UI_PushBuffer_type"),
-				 ResourcePackage.Literals.PUSH_BUFFER__INSTANCE_COUNT,
+				 getString("_UI_SetCompositeBufferFlushMode_compositeBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SetCompositeBufferFlushMode_compositeBuffer_feature", "_UI_SetCompositeBufferFlushMode_type"),
+				 ProcessPackage.Literals.SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns PushBuffer.gif.
+	 * This adds a property descriptor for the Mode feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addModePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SetCompositeBufferFlushMode_mode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SetCompositeBufferFlushMode_mode_feature", "_UI_SetCompositeBufferFlushMode_type"),
+				 ProcessPackage.Literals.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns SetCompositeBufferFlushMode.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -145,7 +176,7 @@ public class PushBufferItemProvider extends ItemProviderAdapter implements IEdit
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PushBuffer"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SetCompositeBufferFlushMode"));
 	}
 
 	/**
@@ -157,11 +188,12 @@ public class PushBufferItemProvider extends ItemProviderAdapter implements IEdit
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((PushBuffer)object).getName();
+		String label = ((SetCompositeBufferFlushMode)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_PushBuffer_type") :
-			getString("_UI_PushBuffer_type") + " " + label;
+			getString("_UI_SetCompositeBufferFlushMode_type") :
+			getString("_UI_SetCompositeBufferFlushMode_type") + " " + label;
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -175,11 +207,11 @@ public class PushBufferItemProvider extends ItemProviderAdapter implements IEdit
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PushBuffer.class))
+		switch (notification.getFeatureID(SetCompositeBufferFlushMode.class))
 		{
-			case ResourcePackage.PUSH_BUFFER__NAME:
-			case ResourcePackage.PUSH_BUFFER__SIZE:
-			case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__NAME:
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__ENABLED:
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

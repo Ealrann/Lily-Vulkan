@@ -68,8 +68,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 		switch (eClass.getClassifierID())
 		{
 			case ResourcePackage.BASIC_RESOURCE: return createBasicResource();
-			case ResourcePackage.PUSH_BUFFER: return createPushBuffer();
-			case ResourcePackage.GET_BUFFER: return createGetBuffer();
+			case ResourcePackage.TRANSFER_BUFFER: return createTransferBuffer();
 			case ResourcePackage.CONSTANT_BUFFER: return createConstantBuffer();
 			case ResourcePackage.BUFFER: return createBuffer();
 			case ResourcePackage.COMPOSITE_BUFFER: return createCompositeBuffer();
@@ -108,6 +107,8 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eDataType.getClassifierID())
 		{
+			case ResourcePackage.EFLUSH_MODE:
+				return createEFlushModeFromString(eDataType, initialValue);
 			case ResourcePackage.BYTE_BUFFER:
 				return createByteBufferFromString(eDataType, initialValue);
 			case ResourcePackage.JAVA_MODULE:
@@ -127,6 +128,8 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eDataType.getClassifierID())
 		{
+			case ResourcePackage.EFLUSH_MODE:
+				return convertEFlushModeToString(eDataType, instanceValue);
 			case ResourcePackage.BYTE_BUFFER:
 				return convertByteBufferToString(eDataType, instanceValue);
 			case ResourcePackage.JAVA_MODULE:
@@ -154,22 +157,10 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
-	public PushBuffer createPushBuffer()
+	public TransferBuffer createTransferBuffer()
 	{
-		PushBufferImpl pushBuffer = new PushBufferImpl();
-		return pushBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public GetBuffer createGetBuffer()
-	{
-		GetBufferImpl getBuffer = new GetBufferImpl();
-		return getBuffer;
+		TransferBufferImpl transferBuffer = new TransferBufferImpl();
+		return transferBuffer;
 	}
 
 	/**
@@ -446,6 +437,28 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		Texture2DArrayImpl texture2DArray = new Texture2DArrayImpl();
 		return texture2DArray;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EFlushMode createEFlushModeFromString(EDataType eDataType, String initialValue)
+	{
+		EFlushMode result = EFlushMode.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEFlushModeToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

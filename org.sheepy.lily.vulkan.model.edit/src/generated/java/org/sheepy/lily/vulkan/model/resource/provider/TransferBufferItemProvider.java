@@ -1,6 +1,7 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.process.provider;
+package org.sheepy.lily.vulkan.model.resource.provider;
+
 
 import java.util.Collection;
 import java.util.List;
@@ -24,17 +25,23 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
-import org.sheepy.lily.vulkan.model.process.GetBufferTask;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.GetBufferTask} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.TransferBuffer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GetBufferTaskItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class TransferBufferItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -42,7 +49,7 @@ public class GetBufferTaskItemProvider extends ItemProviderAdapter implements IE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GetBufferTaskItemProvider(AdapterFactory adapterFactory)
+	public TransferBufferItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -61,9 +68,8 @@ public class GetBufferTaskItemProvider extends ItemProviderAdapter implements IE
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addEnabledPropertyDescriptor(object);
-			addGetBufferPropertyDescriptor(object);
-			addDeviceBufferPropertyDescriptor(object);
+			addSizePropertyDescriptor(object);
+			addInstanceCountPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -92,76 +98,53 @@ public class GetBufferTaskItemProvider extends ItemProviderAdapter implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Enabled feature.
+	 * This adds a property descriptor for the Size feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEnabledPropertyDescriptor(Object object)
+	protected void addSizePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_IPipelineTask_enabled_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature", "_UI_IPipelineTask_type"),
-				 ProcessPackage.Literals.IPIPELINE_TASK__ENABLED,
+				 getString("_UI_TransferBuffer_size_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TransferBuffer_size_feature", "_UI_TransferBuffer_type"),
+				 ResourcePackage.Literals.TRANSFER_BUFFER__SIZE,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Get Buffer feature.
+	 * This adds a property descriptor for the Instance Count feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGetBufferPropertyDescriptor(Object object)
+	protected void addInstanceCountPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GetBufferTask_getBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GetBufferTask_getBuffer_feature", "_UI_GetBufferTask_type"),
-				 ProcessPackage.Literals.GET_BUFFER_TASK__GET_BUFFER,
+				 getString("_UI_TransferBuffer_instanceCount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TransferBuffer_instanceCount_feature", "_UI_TransferBuffer_type"),
+				 ResourcePackage.Literals.TRANSFER_BUFFER__INSTANCE_COUNT,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Device Buffer feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDeviceBufferPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GetBufferTask_deviceBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GetBufferTask_deviceBuffer_feature", "_UI_GetBufferTask_type"),
-				 ProcessPackage.Literals.GET_BUFFER_TASK__DEVICE_BUFFER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns GetBufferTask.gif.
+	 * This returns TransferBuffer.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -169,7 +152,7 @@ public class GetBufferTaskItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/GetBufferTask"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/TransferBuffer"));
 	}
 
 	/**
@@ -181,11 +164,12 @@ public class GetBufferTaskItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((GetBufferTask)object).getName();
+		String label = ((TransferBuffer)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_GetBufferTask_type") :
-			getString("_UI_GetBufferTask_type") + " " + label;
+			getString("_UI_TransferBuffer_type") :
+			getString("_UI_TransferBuffer_type") + " " + label;
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -199,10 +183,11 @@ public class GetBufferTaskItemProvider extends ItemProviderAdapter implements IE
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GetBufferTask.class))
+		switch (notification.getFeatureID(TransferBuffer.class))
 		{
-			case ProcessPackage.GET_BUFFER_TASK__NAME:
-			case ProcessPackage.GET_BUFFER_TASK__ENABLED:
+			case ResourcePackage.TRANSFER_BUFFER__NAME:
+			case ResourcePackage.TRANSFER_BUFFER__SIZE:
+			case ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

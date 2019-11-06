@@ -9,30 +9,32 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.vulkan.model.process.GetBufferTask;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
-import org.sheepy.lily.vulkan.model.resource.Buffer;
-import org.sheepy.lily.vulkan.model.resource.GetBuffer;
+import org.sheepy.lily.core.api.adapter.LilyEObject;
+
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode;
+
+import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Get Buffer Task</b></em>'.
+ * An implementation of the model object '<em><b>Set Composite Buffer Flush Mode</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.GetBufferTaskImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.GetBufferTaskImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.GetBufferTaskImpl#getGetBuffer <em>Get Buffer</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.GetBufferTaskImpl#getDeviceBuffer <em>Device Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl#getCompositeBuffer <em>Composite Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl#getMode <em>Mode</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class GetBufferTaskImpl extends LilyEObject implements GetBufferTask
+public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetCompositeBufferFlushMode
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -75,31 +77,41 @@ public class GetBufferTaskImpl extends LilyEObject implements GetBufferTask
 	protected boolean enabled = ENABLED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getGetBuffer() <em>Get Buffer</em>}' reference.
+	 * The cached value of the '{@link #getCompositeBuffer() <em>Composite Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGetBuffer()
+	 * @see #getCompositeBuffer()
 	 * @generated
 	 * @ordered
 	 */
-	protected GetBuffer getBuffer;
+	protected CompositeBuffer compositeBuffer;
 
 	/**
-	 * The cached value of the '{@link #getDeviceBuffer() <em>Device Buffer</em>}' reference.
+	 * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDeviceBuffer()
+	 * @see #getMode()
 	 * @generated
 	 * @ordered
 	 */
-	protected Buffer deviceBuffer;
+	protected static final EFlushMode MODE_EDEFAULT = EFlushMode.PUSH;
+
+	/**
+	 * The cached value of the '{@link #getMode() <em>Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected EFlushMode mode = MODE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GetBufferTaskImpl()
+	protected SetCompositeBufferFlushModeImpl()
 	{
 		super();
 	}
@@ -112,7 +124,7 @@ public class GetBufferTaskImpl extends LilyEObject implements GetBufferTask
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ProcessPackage.Literals.GET_BUFFER_TASK;
+		return ProcessPackage.Literals.SET_COMPOSITE_BUFFER_FLUSH_MODE;
 	}
 
 	/**
@@ -137,7 +149,7 @@ public class GetBufferTaskImpl extends LilyEObject implements GetBufferTask
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.GET_BUFFER_TASK__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__NAME, oldName, name));
 	}
 
 	/**
@@ -162,7 +174,7 @@ public class GetBufferTaskImpl extends LilyEObject implements GetBufferTask
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.GET_BUFFER_TASK__ENABLED, oldEnabled, enabled));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -171,19 +183,19 @@ public class GetBufferTaskImpl extends LilyEObject implements GetBufferTask
 	 * @generated
 	 */
 	@Override
-	public GetBuffer getGetBuffer()
+	public CompositeBuffer getCompositeBuffer()
 	{
-		if (getBuffer != null && ((EObject)getBuffer).eIsProxy())
+		if (compositeBuffer != null && ((EObject)compositeBuffer).eIsProxy())
 		{
-			InternalEObject oldGetBuffer = (InternalEObject)getBuffer;
-			getBuffer = (GetBuffer)eResolveProxy(oldGetBuffer);
-			if (getBuffer != oldGetBuffer)
+			InternalEObject oldCompositeBuffer = (InternalEObject)compositeBuffer;
+			compositeBuffer = (CompositeBuffer)eResolveProxy(oldCompositeBuffer);
+			if (compositeBuffer != oldCompositeBuffer)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.GET_BUFFER_TASK__GET_BUFFER, oldGetBuffer, getBuffer));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER, oldCompositeBuffer, compositeBuffer));
 			}
 		}
-		return getBuffer;
+		return compositeBuffer;
 	}
 
 	/**
@@ -191,9 +203,9 @@ public class GetBufferTaskImpl extends LilyEObject implements GetBufferTask
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GetBuffer basicGetGetBuffer()
+	public CompositeBuffer basicGetCompositeBuffer()
 	{
-		return getBuffer;
+		return compositeBuffer;
 	}
 
 	/**
@@ -202,12 +214,12 @@ public class GetBufferTaskImpl extends LilyEObject implements GetBufferTask
 	 * @generated
 	 */
 	@Override
-	public void setGetBuffer(GetBuffer newGetBuffer)
+	public void setCompositeBuffer(CompositeBuffer newCompositeBuffer)
 	{
-		GetBuffer oldGetBuffer = getBuffer;
-		getBuffer = newGetBuffer;
+		CompositeBuffer oldCompositeBuffer = compositeBuffer;
+		compositeBuffer = newCompositeBuffer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.GET_BUFFER_TASK__GET_BUFFER, oldGetBuffer, getBuffer));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER, oldCompositeBuffer, compositeBuffer));
 	}
 
 	/**
@@ -216,29 +228,9 @@ public class GetBufferTaskImpl extends LilyEObject implements GetBufferTask
 	 * @generated
 	 */
 	@Override
-	public Buffer getDeviceBuffer()
+	public EFlushMode getMode()
 	{
-		if (deviceBuffer != null && ((EObject)deviceBuffer).eIsProxy())
-		{
-			InternalEObject oldDeviceBuffer = (InternalEObject)deviceBuffer;
-			deviceBuffer = (Buffer)eResolveProxy(oldDeviceBuffer);
-			if (deviceBuffer != oldDeviceBuffer)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER, oldDeviceBuffer, deviceBuffer));
-			}
-		}
-		return deviceBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Buffer basicGetDeviceBuffer()
-	{
-		return deviceBuffer;
+		return mode;
 	}
 
 	/**
@@ -247,12 +239,12 @@ public class GetBufferTaskImpl extends LilyEObject implements GetBufferTask
 	 * @generated
 	 */
 	@Override
-	public void setDeviceBuffer(Buffer newDeviceBuffer)
+	public void setMode(EFlushMode newMode)
 	{
-		Buffer oldDeviceBuffer = deviceBuffer;
-		deviceBuffer = newDeviceBuffer;
+		EFlushMode oldMode = mode;
+		mode = newMode == null ? MODE_EDEFAULT : newMode;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER, oldDeviceBuffer, deviceBuffer));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE, oldMode, mode));
 	}
 
 	/**
@@ -265,16 +257,15 @@ public class GetBufferTaskImpl extends LilyEObject implements GetBufferTask
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.GET_BUFFER_TASK__NAME:
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__NAME:
 				return getName();
-			case ProcessPackage.GET_BUFFER_TASK__ENABLED:
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__ENABLED:
 				return isEnabled();
-			case ProcessPackage.GET_BUFFER_TASK__GET_BUFFER:
-				if (resolve) return getGetBuffer();
-				return basicGetGetBuffer();
-			case ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER:
-				if (resolve) return getDeviceBuffer();
-				return basicGetDeviceBuffer();
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER:
+				if (resolve) return getCompositeBuffer();
+				return basicGetCompositeBuffer();
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE:
+				return getMode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -289,17 +280,17 @@ public class GetBufferTaskImpl extends LilyEObject implements GetBufferTask
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.GET_BUFFER_TASK__NAME:
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__NAME:
 				setName((String)newValue);
 				return;
-			case ProcessPackage.GET_BUFFER_TASK__ENABLED:
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__ENABLED:
 				setEnabled((Boolean)newValue);
 				return;
-			case ProcessPackage.GET_BUFFER_TASK__GET_BUFFER:
-				setGetBuffer((GetBuffer)newValue);
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER:
+				setCompositeBuffer((CompositeBuffer)newValue);
 				return;
-			case ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER:
-				setDeviceBuffer((Buffer)newValue);
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE:
+				setMode((EFlushMode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -315,17 +306,17 @@ public class GetBufferTaskImpl extends LilyEObject implements GetBufferTask
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.GET_BUFFER_TASK__NAME:
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ProcessPackage.GET_BUFFER_TASK__ENABLED:
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
-			case ProcessPackage.GET_BUFFER_TASK__GET_BUFFER:
-				setGetBuffer((GetBuffer)null);
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER:
+				setCompositeBuffer((CompositeBuffer)null);
 				return;
-			case ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER:
-				setDeviceBuffer((Buffer)null);
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE:
+				setMode(MODE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -341,14 +332,14 @@ public class GetBufferTaskImpl extends LilyEObject implements GetBufferTask
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.GET_BUFFER_TASK__NAME:
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ProcessPackage.GET_BUFFER_TASK__ENABLED:
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
-			case ProcessPackage.GET_BUFFER_TASK__GET_BUFFER:
-				return getBuffer != null;
-			case ProcessPackage.GET_BUFFER_TASK__DEVICE_BUFFER:
-				return deviceBuffer != null;
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER:
+				return compositeBuffer != null;
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE:
+				return mode != MODE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -368,8 +359,10 @@ public class GetBufferTaskImpl extends LilyEObject implements GetBufferTask
 		result.append(name);
 		result.append(", enabled: ");
 		result.append(enabled);
+		result.append(", mode: ");
+		result.append(mode);
 		result.append(')');
 		return result.toString();
 	}
 
-} //GetBufferTaskImpl
+} //SetCompositeBufferFlushModeImpl

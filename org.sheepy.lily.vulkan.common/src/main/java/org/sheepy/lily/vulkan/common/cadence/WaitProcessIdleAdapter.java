@@ -17,6 +17,6 @@ public class WaitProcessIdleAdapter implements ICadenceTaskAdapter
 		final var runProcess = (WaitProcessIdle) task;
 		final var processAdapter = runProcess.getProcess().adapt(IProcessAdapter.class);
 
-		processAdapter.getQueue().waitIdle();
+		processAdapter.waitIdle();
 	}
 }

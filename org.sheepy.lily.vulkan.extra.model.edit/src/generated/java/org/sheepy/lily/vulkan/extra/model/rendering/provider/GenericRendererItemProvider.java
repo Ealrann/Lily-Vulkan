@@ -56,7 +56,7 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 
 			addRenderedStructuresPropertyDescriptor(object);
 			addConstantBufferPropertyDescriptor(object);
-			addPushBufferPropertyDescriptor(object);
+			addTransferBufferPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -108,20 +108,20 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Push Buffer feature.
+	 * This adds a property descriptor for the Transfer Buffer feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPushBufferPropertyDescriptor(Object object)
+	protected void addTransferBufferPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GenericRenderer_pushBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GenericRenderer_pushBuffer_feature", "_UI_GenericRenderer_type"),
-				 RenderingPackage.Literals.GENERIC_RENDERER__PUSH_BUFFER,
+				 getString("_UI_GenericRenderer_transferBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenericRenderer_transferBuffer_feature", "_UI_GenericRenderer_type"),
+				 RenderingPackage.Literals.GENERIC_RENDERER__TRANSFER_BUFFER,
 				 true,
 				 false,
 				 true,
