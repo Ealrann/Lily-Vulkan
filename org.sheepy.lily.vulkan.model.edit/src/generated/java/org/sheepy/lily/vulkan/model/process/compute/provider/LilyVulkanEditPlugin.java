@@ -3,11 +3,8 @@
 package org.sheepy.lily.vulkan.model.process.compute.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-
 import org.sheepy.lily.core.model.types.provider.LilyEditPlugin;
 import org.sheepy.vulkan.model.barrier.provider.VulkanEditPlugin;
 
@@ -49,7 +46,6 @@ public final class LilyVulkanEditPlugin extends EMFPlugin
 		     EcoreEditPlugin.INSTANCE,
 		     LilyEditPlugin.INSTANCE,
 		     VulkanEditPlugin.INSTANCE,
-		     LilyVulkanEditPlugin.INSTANCE,
 		   });
 	}
 

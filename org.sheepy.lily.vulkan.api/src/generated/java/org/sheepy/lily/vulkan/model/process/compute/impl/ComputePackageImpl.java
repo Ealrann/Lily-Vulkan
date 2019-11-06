@@ -131,12 +131,12 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
+		CadencePackage.eINSTANCE.eClass();
 		BarrierPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 		GraphicpipelinePackage.eINSTANCE.eClass();
-		PipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
-		CadencePackage.eINSTANCE.eClass();
+		PipelinePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
