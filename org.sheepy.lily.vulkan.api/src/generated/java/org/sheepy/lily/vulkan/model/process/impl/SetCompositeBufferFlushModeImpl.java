@@ -17,6 +17,7 @@ import org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode;
 
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,6 +31,7 @@ import org.sheepy.lily.vulkan.model.resource.EFlushMode;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl#getCompositeBuffer <em>Composite Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl#getMode <em>Mode</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl#getStage <em>Stage</em>}</li>
  * </ul>
  *
  * @generated
@@ -105,6 +107,35 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 	 * @ordered
 	 */
 	protected EFlushMode mode = MODE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ECommandStage STAGE_EDEFAULT = ECommandStage.TRANSFER;
+
+	/**
+	 * The cached value of the '{@link #getStage() <em>Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStage()
+	 * @generated
+	 * @ordered
+	 */
+	protected ECommandStage stage = STAGE_EDEFAULT;
+
+	/**
+	 * This is true if the Stage attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean stageESet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -253,6 +284,60 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 	 * @generated
 	 */
 	@Override
+	public ECommandStage getStage()
+	{
+		return stage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setStage(ECommandStage newStage)
+	{
+		ECommandStage oldStage = stage;
+		stage = newStage == null ? STAGE_EDEFAULT : newStage;
+		boolean oldStageESet = stageESet;
+		stageESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE, oldStage, stage, !oldStageESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetStage()
+	{
+		ECommandStage oldStage = stage;
+		boolean oldStageESet = stageESet;
+		stage = STAGE_EDEFAULT;
+		stageESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE, oldStage, STAGE_EDEFAULT, oldStageESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetStage()
+	{
+		return stageESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -266,6 +351,8 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 				return basicGetCompositeBuffer();
 			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE:
 				return getMode();
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE:
+				return getStage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -291,6 +378,9 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 				return;
 			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE:
 				setMode((EFlushMode)newValue);
+				return;
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE:
+				setStage((ECommandStage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -318,6 +408,9 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE:
 				setMode(MODE_EDEFAULT);
 				return;
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE:
+				unsetStage();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -340,6 +433,8 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 				return compositeBuffer != null;
 			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE:
 				return mode != MODE_EDEFAULT;
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE:
+				return isSetStage();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -361,6 +456,8 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 		result.append(enabled);
 		result.append(", mode: ");
 		result.append(mode);
+		result.append(", stage: ");
+		if (stageESet) result.append(stage); else result.append("<unset>");
 		result.append(')');
 		return result.toString();
 	}

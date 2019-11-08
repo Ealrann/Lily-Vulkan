@@ -168,14 +168,14 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.DESCRIBED_DATA_PROVIDER:
+			case RenderingPackage.RENDER_DESCRIBED_DATA_PROVIDER:
 			{
-				org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider<?> describedDataProvider = (org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider<?>)theEObject;
-				T1 result = caseDescribedDataProvider(describedDataProvider);
-				if (result == null) result = caseRenderDataProvider(describedDataProvider);
-				if (result == null) result = caseResource_DescribedDataProvider(describedDataProvider);
-				if (result == null) result = caseBufferDataProvider(describedDataProvider);
-				if (result == null) result = caseLNamedElement(describedDataProvider);
+				RenderDescribedDataProvider<?> renderDescribedDataProvider = (RenderDescribedDataProvider<?>)theEObject;
+				T1 result = caseRenderDescribedDataProvider(renderDescribedDataProvider);
+				if (result == null) result = caseRenderDataProvider(renderDescribedDataProvider);
+				if (result == null) result = caseDescribedDataProvider(renderDescribedDataProvider);
+				if (result == null) result = caseBufferDataProvider(renderDescribedDataProvider);
+				if (result == null) result = caseLNamedElement(renderDescribedDataProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -411,17 +411,17 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Described Data Provider</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Render Described Data Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Described Data Provider</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Render Described Data Provider</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Structure> T1 caseDescribedDataProvider(org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider<T> object)
+	public <T extends Structure> T1 caseRenderDescribedDataProvider(RenderDescribedDataProvider<T> object)
 	{
 		return null;
 	}
@@ -693,7 +693,7 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T> T1 caseResource_DescribedDataProvider(DescribedDataProvider<T> object)
+	public <T> T1 caseDescribedDataProvider(DescribedDataProvider<T> object)
 	{
 		return null;
 	}

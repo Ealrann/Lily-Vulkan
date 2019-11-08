@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.process;
 
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,6 +15,7 @@ import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#getTransferBuffer <em>Transfer Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#getStage <em>Stage</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getFlushTransferBufferTask()
@@ -43,5 +45,31 @@ public interface FlushTransferBufferTask extends IPipelineTask
 	 * @generated
 	 */
 	void setTransferBuffer(TransferBuffer value);
+
+	/**
+	 * Returns the value of the '<em><b>Stage</b></em>' attribute.
+	 * The default value is <code>"Transfer"</code>.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.ECommandStage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Stage</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
+	 * @see #setStage(ECommandStage)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getFlushTransferBufferTask_Stage()
+	 * @model default="Transfer" required="true"
+	 * @generated
+	 */
+	ECommandStage getStage();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#getStage <em>Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Stage</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
+	 * @see #getStage()
+	 * @generated
+	 */
+	void setStage(ECommandStage value);
 
 } // FlushTransferBufferTask

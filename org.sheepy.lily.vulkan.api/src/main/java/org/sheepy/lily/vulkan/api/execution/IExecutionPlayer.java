@@ -7,4 +7,5 @@ public interface IExecutionPlayer
 	IFenceView play();
 
 	void waitIdle();
+	void checkFence();
 }

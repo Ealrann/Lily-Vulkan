@@ -11,6 +11,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Tick;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IEntityResolver;
+import org.sheepy.lily.vulkan.extra.api.mesh.data.IRenderDataProviderAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IGenericRendererAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.RenderPointer;
@@ -99,9 +100,10 @@ public final class GenericRendererMaintainerAdapter<T extends Structure>
 			for (int i = 0; i < dataProviders.size(); i++)
 			{
 				final var dataProvider = dataProviders.get(i);
-				if (dataProvider instanceof IEntityResolver)
+				final var dataProviderAdapter = dataProvider.adapt(IRenderDataProviderAdapter.class);
+				if (dataProviderAdapter instanceof IEntityResolver)
 				{
-					resolver = (IEntityResolver) dataProvider;
+					resolver = (IEntityResolver) dataProviderAdapter;
 					break;
 				}
 			}

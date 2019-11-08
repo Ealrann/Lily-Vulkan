@@ -317,6 +317,11 @@ public class PipelineBarrierItemProvider extends ItemProviderAdapter implements 
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
+				 ResourceFactory.eINSTANCE.createCompositeBufferBarrier()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
 				 ResourceFactory.eINSTANCE.createImageBarrier()));
 
 		newChildDescriptors.add

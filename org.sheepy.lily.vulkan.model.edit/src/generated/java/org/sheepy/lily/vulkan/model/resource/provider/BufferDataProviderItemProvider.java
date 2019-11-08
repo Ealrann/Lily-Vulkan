@@ -20,9 +20,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.sheepy.lily.core.model.types.TypesPackage;
-
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
@@ -63,6 +61,14 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 			addUsagePropertyDescriptor(object);
 			addInstanceCountPropertyDescriptor(object);
 			addDataSourcePropertyDescriptor(object);
+			addInstancePropertyDescriptor(object);
+			addFirstDescriptorPropertyDescriptor(object);
+			addUsedToPushPropertyDescriptor(object);
+			addUsedToFetchPropertyDescriptor(object);
+			addStageBeforePushPropertyDescriptor(object);
+			addAccessBeforePushPropertyDescriptor(object);
+			addStageBeforeFetchPropertyDescriptor(object);
+			addAccessBeforeFetchPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -151,10 +157,194 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 				 getString("_UI_BufferDataProvider_dataSource_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_dataSource_feature", "_UI_BufferDataProvider_type"),
 				 ResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Instance feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInstancePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BufferDataProvider_instance_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_instance_feature", "_UI_BufferDataProvider_type"),
+				 ResourcePackage.Literals.BUFFER_DATA_PROVIDER__INSTANCE,
 				 true,
 				 false,
-				 true,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the First Descriptor feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFirstDescriptorPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BufferDataProvider_firstDescriptor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_firstDescriptor_feature", "_UI_BufferDataProvider_type"),
+				 ResourcePackage.Literals.BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Used To Push feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUsedToPushPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BufferDataProvider_usedToPush_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_usedToPush_feature", "_UI_BufferDataProvider_type"),
+				 ResourcePackage.Literals.BUFFER_DATA_PROVIDER__USED_TO_PUSH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Used To Fetch feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUsedToFetchPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BufferDataProvider_usedToFetch_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_usedToFetch_feature", "_UI_BufferDataProvider_type"),
+				 ResourcePackage.Literals.BUFFER_DATA_PROVIDER__USED_TO_FETCH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Stage Before Push feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStageBeforePushPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BufferDataProvider_stageBeforePush_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_stageBeforePush_feature", "_UI_BufferDataProvider_type"),
+				 ResourcePackage.Literals.BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Access Before Push feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAccessBeforePushPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BufferDataProvider_accessBeforePush_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_accessBeforePush_feature", "_UI_BufferDataProvider_type"),
+				 ResourcePackage.Literals.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Stage Before Fetch feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStageBeforeFetchPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BufferDataProvider_stageBeforeFetch_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_stageBeforeFetch_feature", "_UI_BufferDataProvider_type"),
+				 ResourcePackage.Literals.BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Access Before Fetch feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAccessBeforeFetchPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BufferDataProvider_accessBeforeFetch_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_accessBeforeFetch_feature", "_UI_BufferDataProvider_type"),
+				 ResourcePackage.Literals.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -203,6 +393,15 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 			case ResourcePackage.BUFFER_DATA_PROVIDER__NAME:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__USAGE:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
+			case ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
+			case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE:
+			case ResourcePackage.BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR:
+			case ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH:
+			case ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_FETCH:
+			case ResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH:
+			case ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH:
+			case ResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH:
+			case ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
-import org.sheepy.lily.vulkan.api.execution.IRecordable;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.execution.IRecordable;
 
 public interface IProcessPartAdapter extends IVulkanAdapter, IRecordable
 {

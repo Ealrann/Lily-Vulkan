@@ -70,6 +70,8 @@ public class TransferBufferItemProvider
 			addNamePropertyDescriptor(object);
 			addSizePropertyDescriptor(object);
 			addInstanceCountPropertyDescriptor(object);
+			addUsedToPushPropertyDescriptor(object);
+			addUsedToFetchPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -144,6 +146,52 @@ public class TransferBufferItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Used To Push feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUsedToPushPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TransferBuffer_usedToPush_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TransferBuffer_usedToPush_feature", "_UI_TransferBuffer_type"),
+				 ResourcePackage.Literals.TRANSFER_BUFFER__USED_TO_PUSH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Used To Fetch feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUsedToFetchPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TransferBuffer_usedToFetch_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TransferBuffer_usedToFetch_feature", "_UI_TransferBuffer_type"),
+				 ResourcePackage.Literals.TRANSFER_BUFFER__USED_TO_FETCH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns TransferBuffer.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -188,6 +236,8 @@ public class TransferBufferItemProvider
 			case ResourcePackage.TRANSFER_BUFFER__NAME:
 			case ResourcePackage.TRANSFER_BUFFER__SIZE:
 			case ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
+			case ResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
+			case ResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

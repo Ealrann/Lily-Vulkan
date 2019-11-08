@@ -60,6 +60,7 @@ public class CompositeBufferReferenceItemProvider extends ItemProviderAdapter im
 
 			addBufferPropertyDescriptor(object);
 			addPartPropertyDescriptor(object);
+			addInstancePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -111,6 +112,29 @@ public class CompositeBufferReferenceItemProvider extends ItemProviderAdapter im
 	}
 
 	/**
+	 * This adds a property descriptor for the Instance feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInstancePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositeBufferReference_instance_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeBufferReference_instance_feature", "_UI_CompositeBufferReference_type"),
+				 ResourcePackage.Literals.COMPOSITE_BUFFER_REFERENCE__INSTANCE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns CompositeBufferReference.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -150,6 +174,7 @@ public class CompositeBufferReferenceItemProvider extends ItemProviderAdapter im
 		switch (notification.getFeatureID(CompositeBufferReference.class))
 		{
 			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__PART:
+			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE__INSTANCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

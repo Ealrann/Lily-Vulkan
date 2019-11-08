@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexProviderAdapter;
-import org.sheepy.lily.vulkan.extra.api.mesh.data.IRenderDataProviderAdapter;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IVertexProviderAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
@@ -19,6 +18,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.Draw;
 import org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
+import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
@@ -45,14 +45,11 @@ public final class DrawTaskInstaller
 		final var dataProviders = buffer.getDataProviders();
 
 		final List<VertexBinding> vertexBufferRef = new ArrayList<>();
-		final List<IRenderDataProviderAdapter> adaptedDataProviders = new ArrayList<>();
 		int indexIndex = -1;
 
 		for (int i = 0; i < dataProviders.size(); i++)
 		{
 			final var provider = dataProviders.get(i);
-			final var adapter = provider.adaptNotNull(IRenderDataProviderAdapter.class);
-			adaptedDataProviders.add(adapter);
 
 			if (provider instanceof IndexProvider)
 			{
@@ -112,7 +109,7 @@ public final class DrawTaskInstaller
 										bindIndex,
 										drawIndexed,
 										indexProviderAdapter,
-										adaptedDataProviders,
+										dataProviders,
 										structure);
 		}
 		else
@@ -120,7 +117,7 @@ public final class DrawTaskInstaller
 			final var draw = GraphicFactory.eINSTANCE.createDraw();
 			taskPkg.getTasks().add(draw);
 
-			return new DrawSetup(bindVertex, draw, adaptedDataProviders, structure);
+			return new DrawSetup(bindVertex, draw, dataProviders, structure);
 		}
 	}
 
@@ -132,7 +129,7 @@ public final class DrawTaskInstaller
 		private final BindIndexBuffer indexBindTask;
 		private final DrawIndexed drawTask;
 		private final IIndexProviderAdapter indexProvider;
-		private final List<IRenderDataProviderAdapter> dataProviders;
+		private final List<BufferDataProvider<?>> dataProviders;
 		private final Structure structure;
 
 		private boolean dirty = true;
@@ -141,7 +138,7 @@ public final class DrawTaskInstaller
 									BindIndexBuffer indexBindTask,
 									DrawIndexed drawTask,
 									IIndexProviderAdapter indexProvider,
-									List<IRenderDataProviderAdapter> dataProviders,
+									List<BufferDataProvider<?>> dataProviders,
 									Structure structure)
 		{
 			this.vertexBindTask = vertexBindTask;
@@ -172,7 +169,7 @@ public final class DrawTaskInstaller
 		}
 
 		@Override
-		public List<? extends IRenderDataProviderAdapter> getDataProviders()
+		public List<BufferDataProvider<?>> getDataProviders()
 		{
 			return dataProviders;
 		}
@@ -183,20 +180,35 @@ public final class DrawTaskInstaller
 		@SuppressWarnings("unused")
 		private final BindVertexBuffer bindTask;
 		private final Draw drawTask;
-		private final List<IRenderDataProviderAdapter> dataProviders;
+		private final List<BufferDataProvider<?>> dataProviders;
+		private final List<VertexProvider<?>> vertexProviders;
 		private final Structure structure;
 
 		private boolean dirty = true;
 
 		private DrawSetup(	BindVertexBuffer bindTask,
 							Draw drawTask,
-							List<IRenderDataProviderAdapter> dataProviders,
+							List<BufferDataProvider<?>> dataProviders,
 							Structure structure)
 		{
 			this.bindTask = bindTask;
 			this.drawTask = drawTask;
 			this.structure = structure;
 			this.dataProviders = List.copyOf(dataProviders);
+			this.vertexProviders = List.copyOf(collectVertexProviders(dataProviders));
+		}
+
+		private static List<VertexProvider<?>> collectVertexProviders(List<BufferDataProvider<?>> dataProviders)
+		{
+			final List<VertexProvider<?>> res = new ArrayList<>();
+			for (final var provider : dataProviders)
+			{
+				if (provider instanceof VertexProvider<?>)
+				{
+					res.add((VertexProvider<?>) provider);
+				}
+			}
+			return res;
 		}
 
 		@Override
@@ -205,12 +217,10 @@ public final class DrawTaskInstaller
 			if (dirty)
 			{
 				int vertexCount = 0;
-				for (final var vertexProvider : dataProviders)
+				for (final var vertexProvider : vertexProviders)
 				{
-					if (vertexProvider instanceof IVertexProviderAdapter)
-					{
-						vertexCount += ((IVertexProviderAdapter) vertexProvider).getVertexCount();
-					}
+					final var vertexProviderAdapter = vertexProvider.adaptNotNull(IVertexProviderAdapter.class);
+					vertexCount += vertexProviderAdapter.getVertexCount();
 				}
 
 				drawTask.setVertexCount(vertexCount);
@@ -226,7 +236,7 @@ public final class DrawTaskInstaller
 		}
 
 		@Override
-		public List<? extends IRenderDataProviderAdapter> getDataProviders()
+		public List<BufferDataProvider<?>> getDataProviders()
 		{
 			return dataProviders;
 		}

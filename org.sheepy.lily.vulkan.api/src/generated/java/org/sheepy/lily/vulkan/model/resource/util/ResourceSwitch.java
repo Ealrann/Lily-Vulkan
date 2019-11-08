@@ -310,6 +310,15 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ResourcePackage.COMPOSITE_BUFFER_BARRIER:
+			{
+				CompositeBufferBarrier compositeBufferBarrier = (CompositeBufferBarrier)theEObject;
+				T1 result = caseCompositeBufferBarrier(compositeBufferBarrier);
+				if (result == null) result = caseAbstractBufferBarrier(compositeBufferBarrier);
+				if (result == null) result = caseBarrier(compositeBufferBarrier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ResourcePackage.IMAGE_BARRIER:
 			{
 				ImageBarrier imageBarrier = (ImageBarrier)theEObject;
@@ -781,6 +790,22 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseBufferBarrier(BufferBarrier object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Composite Buffer Barrier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Composite Buffer Barrier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseCompositeBufferBarrier(CompositeBufferBarrier object)
 	{
 		return null;
 	}

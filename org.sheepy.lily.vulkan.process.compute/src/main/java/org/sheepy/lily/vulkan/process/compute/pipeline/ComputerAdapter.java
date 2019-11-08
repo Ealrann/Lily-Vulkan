@@ -4,9 +4,9 @@ import static org.lwjgl.vulkan.VK10.vkCmdDispatch;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.model.process.compute.Computer;
+import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 
 @Statefull
 @Adapter(scope = Computer.class)

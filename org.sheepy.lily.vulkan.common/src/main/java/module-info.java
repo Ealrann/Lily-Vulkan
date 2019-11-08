@@ -12,6 +12,7 @@ module org.sheepy.lily.vulkan.common
 	requires transitive org.sheepy.lily.vulkan.api;
 
 	exports org.sheepy.lily.vulkan.common.allocation;
+	exports org.sheepy.lily.vulkan.common.resource;
 	exports org.sheepy.lily.vulkan.common.util;
 
 	opens org.sheepy.lily.vulkan.common.cadence;

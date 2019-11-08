@@ -19,8 +19,10 @@ public class TransferBufferAdapter implements ITransferBufferAdapter, IResourceA
 	{
 		final long size = transferBuffer.getSize();
 		final int instanceCount = transferBuffer.getInstanceCount();
+		final boolean usedToPush = transferBuffer.isUsedToPush();
+		final boolean usedToFetch = transferBuffer.isUsedToFetch();
 
-		backendBuffer = new TransferBufferBackend(size, instanceCount);
+		backendBuffer = new TransferBufferBackend(size, instanceCount, usedToPush, usedToFetch);
 	}
 
 	@Override

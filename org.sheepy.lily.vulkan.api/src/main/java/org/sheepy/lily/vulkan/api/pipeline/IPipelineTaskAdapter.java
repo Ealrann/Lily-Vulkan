@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.api.pipeline;
 
 import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
-import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
+import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 public interface IPipelineTaskAdapter<T extends IPipelineTask> extends IVulkanAdapter

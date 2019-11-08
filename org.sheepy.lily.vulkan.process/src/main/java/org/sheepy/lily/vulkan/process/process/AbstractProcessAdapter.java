@@ -104,6 +104,20 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	}
 
 	@Override
+	public void checkFence()
+	{
+		if (context != null)
+		{
+			final var recorders = context.getRecorders();
+			for (int i = 0; i < recorders.size(); i++)
+			{
+				final var recorder = recorders.get(i);
+				recorder.checkFence();
+			}
+		}
+	}
+
+	@Override
 	public IFenceView run()
 	{
 		final Integer next = prepareNext();

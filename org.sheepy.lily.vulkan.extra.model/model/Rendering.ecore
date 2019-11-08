@@ -84,16 +84,16 @@
       </eGenericType>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DescribedDataProvider">
+  <eClassifiers xsi:type="ecore:EClass" name="RenderDescribedDataProvider">
     <eTypeParameters name="T">
       <eBounds eClassifier="#//Structure"/>
     </eTypeParameters>
     <eGenericSuperTypes eClassifier="#//RenderDataProvider">
-      <eTypeArguments eTypeParameter="#//DescribedDataProvider/T"/>
+      <eTypeArguments eTypeParameter="#//RenderDescribedDataProvider/T"/>
     </eGenericSuperTypes>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//DescribedDataProvider">
       <eTypeArguments eClassifier="#//RenderableDataSource">
-        <eTypeArguments eTypeParameter="#//DescribedDataProvider/T"/>
+        <eTypeArguments eTypeParameter="#//RenderDescribedDataProvider/T"/>
       </eTypeArguments>
     </eGenericSuperTypes>
   </eClassifiers>

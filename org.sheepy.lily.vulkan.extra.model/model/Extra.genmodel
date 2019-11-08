@@ -106,8 +106,8 @@
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//DataProviderPkg/T"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//DataProviderPkg/dataProviders"/>
     </genClasses>
-    <genClasses ecoreClass="Rendering.ecore#//DescribedDataProvider">
-      <genTypeParameters ecoreTypeParameter="Rendering.ecore#//DescribedDataProvider/T"/>
+    <genClasses ecoreClass="Rendering.ecore#//RenderDescribedDataProvider">
+      <genTypeParameters ecoreTypeParameter="Rendering.ecore#//RenderDescribedDataProvider/T"/>
     </genClasses>
     <genClasses ecoreClass="Rendering.ecore#//RenderableDataSource">
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//RenderableDataSource/T"/>

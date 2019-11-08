@@ -24,6 +24,8 @@ import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TransferBufferImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TransferBufferImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TransferBufferImpl#getInstanceCount <em>Instance Count</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TransferBufferImpl#isUsedToPush <em>Used To Push</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TransferBufferImpl#isUsedToFetch <em>Used To Fetch</em>}</li>
  * </ul>
  *
  * @generated
@@ -89,6 +91,46 @@ public class TransferBufferImpl extends LilyEObject implements TransferBuffer
 	 * @ordered
 	 */
 	protected int instanceCount = INSTANCE_COUNT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isUsedToPush() <em>Used To Push</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUsedToPush()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean USED_TO_PUSH_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isUsedToPush() <em>Used To Push</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUsedToPush()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean usedToPush = USED_TO_PUSH_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isUsedToFetch() <em>Used To Fetch</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUsedToFetch()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean USED_TO_FETCH_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isUsedToFetch() <em>Used To Fetch</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUsedToFetch()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean usedToFetch = USED_TO_FETCH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -192,6 +234,56 @@ public class TransferBufferImpl extends LilyEObject implements TransferBuffer
 	 * @generated
 	 */
 	@Override
+	public boolean isUsedToPush()
+	{
+		return usedToPush;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setUsedToPush(boolean newUsedToPush)
+	{
+		boolean oldUsedToPush = usedToPush;
+		usedToPush = newUsedToPush;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH, oldUsedToPush, usedToPush));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isUsedToFetch()
+	{
+		return usedToFetch;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setUsedToFetch(boolean newUsedToFetch)
+	{
+		boolean oldUsedToFetch = usedToFetch;
+		usedToFetch = newUsedToFetch;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH, oldUsedToFetch, usedToFetch));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -202,6 +294,10 @@ public class TransferBufferImpl extends LilyEObject implements TransferBuffer
 				return getSize();
 			case ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
 				return getInstanceCount();
+			case ResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
+				return isUsedToPush();
+			case ResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
+				return isUsedToFetch();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -224,6 +320,12 @@ public class TransferBufferImpl extends LilyEObject implements TransferBuffer
 				return;
 			case ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
 				setInstanceCount((Integer)newValue);
+				return;
+			case ResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
+				setUsedToPush((Boolean)newValue);
+				return;
+			case ResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
+				setUsedToFetch((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -248,6 +350,12 @@ public class TransferBufferImpl extends LilyEObject implements TransferBuffer
 			case ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
 				setInstanceCount(INSTANCE_COUNT_EDEFAULT);
 				return;
+			case ResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
+				setUsedToPush(USED_TO_PUSH_EDEFAULT);
+				return;
+			case ResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
+				setUsedToFetch(USED_TO_FETCH_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -268,6 +376,10 @@ public class TransferBufferImpl extends LilyEObject implements TransferBuffer
 				return size != SIZE_EDEFAULT;
 			case ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
 				return instanceCount != INSTANCE_COUNT_EDEFAULT;
+			case ResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
+				return usedToPush != USED_TO_PUSH_EDEFAULT;
+			case ResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
+				return usedToFetch != USED_TO_FETCH_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -289,6 +401,10 @@ public class TransferBufferImpl extends LilyEObject implements TransferBuffer
 		result.append(size);
 		result.append(", instanceCount: ");
 		result.append(instanceCount);
+		result.append(", usedToPush: ");
+		result.append(usedToPush);
+		result.append(", usedToFetch: ");
+		result.append(usedToFetch);
 		result.append(')');
 		return result.toString();
 	}

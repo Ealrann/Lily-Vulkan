@@ -9,6 +9,7 @@ import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 class TestResourceFactory
 {
@@ -57,6 +58,7 @@ class TestResourceFactory
 			final var provider = ResourceFactory.eINSTANCE.createBufferDataProvider();
 			provider.setName(TestDataProviderAdapter.NAME);
 			provider.setUsage(EBufferUsage.TRANSFER_SRC_BIT);
+			provider.setStageBeforePush(EPipelineStage.TRANSFER_BIT);
 
 			providers.add(provider);
 		}

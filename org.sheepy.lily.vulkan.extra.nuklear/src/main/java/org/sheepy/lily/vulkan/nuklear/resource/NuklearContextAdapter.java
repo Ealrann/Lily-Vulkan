@@ -197,13 +197,13 @@ public class NuklearContextAdapter implements IResourceAdapter
 																						bufferPtr,
 																						vertexOffset,
 																						EPipelineStage.VERTEX_INPUT_BIT,
-																						EAccess.VERTEX_ATTRIBUTE_READ_BIT);
+																						EAccess.VERTEX_ATTRIBUTE_READ_BIT_VALUE);
 
 				final var indexPushCommand = IDataFlowCommand.newPipelinePushCommand(	indexMemoryTicket,
 																						bufferPtr,
 																						indexOffset,
 																						EPipelineStage.VERTEX_INPUT_BIT,
-																						EAccess.VERTEX_ATTRIBUTE_READ_BIT);
+																						EAccess.VERTEX_ATTRIBUTE_READ_BIT_VALUE);
 
 				nnk_buffer_init_fixed(vbuf.address(), vertexMemoryMap, vertexBufferSize);
 				stagingBuffer.addTransferCommand(vertexPushCommand);

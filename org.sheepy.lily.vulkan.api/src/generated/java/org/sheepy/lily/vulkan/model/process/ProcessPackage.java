@@ -987,13 +987,22 @@ public interface ProcessPackage extends EPackage
 	int FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLUSH_TRANSFER_BUFFER_TASK__STAGE = IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Flush Transfer Buffer Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLUSH_TRANSFER_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 1;
+	int FLUSH_TRANSFER_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Flush Transfer Buffer Task</em>' class.
@@ -1198,13 +1207,22 @@ public interface ProcessPackage extends EPackage
 	int SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE = IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Set Composite Buffer Flush Mode</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SET_COMPOSITE_BUFFER_FLUSH_MODE_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 2;
+	int SET_COMPOSITE_BUFFER_FLUSH_MODE_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Set Composite Buffer Flush Mode</em>' class.
@@ -1653,6 +1671,17 @@ public interface ProcessPackage extends EPackage
 	EReference getFlushTransferBufferTask_TransferBuffer();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#getStage <em>Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stage</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#getStage()
+	 * @see #getFlushTransferBufferTask()
+	 * @generated
+	 */
+	EAttribute getFlushTransferBufferTask_Stage();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask <em>Copy Buffer Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1768,6 +1797,17 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getSetCompositeBufferFlushMode_Mode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getStage <em>Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stage</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getStage()
+	 * @see #getSetCompositeBufferFlushMode()
+	 * @generated
+	 */
+	EAttribute getSetCompositeBufferFlushMode_Stage();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2150,6 +2190,14 @@ public interface ProcessPackage extends EPackage
 		EReference FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER = eINSTANCE.getFlushTransferBufferTask_TransferBuffer();
 
 		/**
+		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FLUSH_TRANSFER_BUFFER_TASK__STAGE = eINSTANCE.getFlushTransferBufferTask_Stage();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl <em>Copy Buffer Task</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2244,6 +2292,14 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE = eINSTANCE.getSetCompositeBufferFlushMode_Mode();
+
+		/**
+		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE = eINSTANCE.getSetCompositeBufferFlushMode_Stage();
 
 	}
 

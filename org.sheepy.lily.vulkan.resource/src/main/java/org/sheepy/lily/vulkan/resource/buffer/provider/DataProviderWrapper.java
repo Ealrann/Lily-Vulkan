@@ -1,51 +1,49 @@
 package org.sheepy.lily.vulkan.resource.buffer.provider;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
+import org.sheepy.lily.core.api.adapter.INotificationListener;
 import org.sheepy.lily.core.api.adapter.NotifierAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.adapter.notification.LongNotification;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferDataProviderAdapter;
+import org.sheepy.lily.vulkan.common.resource.IDataProviderAlignmentAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.buffer.VkBufferDescriptor;
 import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
 import org.sheepy.vulkan.resource.staging.ITransferBuffer;
 import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket;
 import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket.EReservationStatus;
+import org.sheepy.vulkan.util.VkModelUtil;
 
 @Statefull
 @Adapter(scope = BufferDataProvider.class, scopeInheritance = true)
-public class DataProviderWrapper extends NotifierAdapter
-		implements IAllocableAdapter<IExecutionContext>
+public final class DataProviderWrapper extends NotifierAdapter
+		implements IAllocableAdapter<IExecutionContext>, IDataProviderAlignmentAdapter
 {
-	public static enum FEATURES
-	{
-		SIZE,
-		OFFSET,
-		BUFFER_PTR
-	};
-
 	public final BufferDataProvider<?> dataProvider;
 
 	private final int usage;
-	private final IBufferDataProviderAdapter adapter;
-	private final EAccess access;
-	private final EPipelineStage stage;
-	private final VkBufferDescriptor descriptor;
+	private final List<VkBufferDescriptor> descriptors;
+	private final INotificationListener firstDescriptorListener = n -> updateDescriptors();
+	private final int accessBeforePush;
 
 	private long alignment;
 
 	private long bufferPtr;
-	private long alignedOffset;
-	private long alignedSize;
+	private long offset;
+	private long instanceSize;
 
 	private boolean needPush = true;
 	private MemoryTicket memTicket;
@@ -57,12 +55,38 @@ public class DataProviderWrapper extends NotifierAdapter
 	{
 		super(FEATURES.values().length);
 		this.dataProvider = dataProvider;
-		this.adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
-		usage = dataProvider.getUsage().getValue();
+		usage = computeUsage(dataProvider);
 
-		access = guessAccessFromUsage(usage);
-		stage = guessStageFromUsage(usage);
-		descriptor = createDescriptor(dataProvider);
+		accessBeforePush = VkModelUtil.getEnumeratedFlag(dataProvider.getAccessBeforePush());
+
+		// access = guessAccessFromUsage(usage);
+		// stage = guessStageFromUsage(usage);
+		descriptors = createDescriptors(dataProvider);
+	}
+
+	private static int computeUsage(BufferDataProvider<?> dataProvider)
+	{
+		final int usage = dataProvider.getUsage().getValue();
+		final int pushUsage = dataProvider.isUsedToPush() ? EBufferUsage.TRANSFER_DST_BIT_VALUE : 0;
+		final int fetchUsage = dataProvider.isUsedToFetch()
+				? EBufferUsage.TRANSFER_SRC_BIT_VALUE
+				: 0;
+
+		return usage | pushUsage | fetchUsage;
+	}
+
+	@Load
+	public void load()
+	{
+		dataProvider.addListener(	firstDescriptorListener,
+									ResourcePackage.BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR);
+	}
+
+	@Dispose
+	public void dispose()
+	{
+		dataProvider.removeListener(firstDescriptorListener,
+									ResourcePackage.BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR);
 	}
 
 	@Override
@@ -78,32 +102,45 @@ public class DataProviderWrapper extends NotifierAdapter
 
 	public void updateAlignement(long desiredOffset)
 	{
-		final long oldSize = this.alignedSize;
-		final long oldOffset = this.alignedOffset;
+		final long oldSize = this.instanceSize;
+		final long oldOffset = this.offset;
 
+		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
 		providedSize = adapter.getSize();
-		this.alignedSize = align(providedSize, alignment);
-		this.alignedOffset = align(desiredOffset, alignment);
+		this.instanceSize = align(providedSize, alignment);
+		this.offset = align(desiredOffset, alignment);
 
-		if (descriptor != null)
-		{
-			descriptor.updateSize(getSize());
-			descriptor.updateOffset(getOffset());
-		}
+		updateDescriptors();
 
-		if (oldSize != this.alignedSize)
+		if (oldSize != this.instanceSize)
 		{
 			fireNotification(new LongNotification(	this,
 													FEATURES.SIZE.ordinal(),
 													oldSize,
-													this.alignedSize));
+													this.instanceSize));
 		}
-		if (oldOffset != this.alignedOffset)
+		if (oldOffset != this.offset)
 		{
 			fireNotification(new LongNotification(	this,
 													FEATURES.OFFSET.ordinal(),
 													oldOffset,
-													this.alignedOffset));
+													this.offset));
+		}
+	}
+
+	private void updateDescriptors()
+	{
+		long currentOffset = offset;
+		final var instanceCount = dataProvider.getInstanceCount();
+		final int firstDescriptor = dataProvider.getFirstDescriptor();
+		final int end = firstDescriptor + descriptors.size();
+		for (int i = firstDescriptor; i < end; i++)
+		{
+			final int index = i % instanceCount;
+			final var descriptor = descriptors.get(index);
+			descriptor.updateSize(instanceSize);
+			descriptor.updateOffset(currentOffset);
+			currentOffset += instanceSize;
 		}
 	}
 
@@ -112,7 +149,7 @@ public class DataProviderWrapper extends NotifierAdapter
 		final long oldBufferPtr = this.bufferPtr;
 		this.bufferPtr = bufferPtr;
 
-		if (descriptor != null)
+		for (final var descriptor : descriptors)
 		{
 			descriptor.updateBufferPtr(bufferPtr);
 		}
@@ -128,13 +165,14 @@ public class DataProviderWrapper extends NotifierAdapter
 
 	public boolean needPush()
 	{
-		return (needPush || adapter.hasChanged()) && adapter.getSize() > 0;
+		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
+		return (needPush || adapter.hasChanged()) && providedSize > 0;
 	}
 
 	public boolean reserveMemory(ITransferBuffer stagingBuffer)
 	{
 		this.transferBuffer = stagingBuffer;
-		memTicket = stagingBuffer.reserveMemory(alignedSize);
+		memTicket = stagingBuffer.reserveMemory(instanceSize);
 
 		return memTicket.getReservationStatus() == EReservationStatus.SUCCESS;
 	}
@@ -147,13 +185,17 @@ public class DataProviderWrapper extends NotifierAdapter
 	public void pushProvidedData()
 	{
 		assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
+
+		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
 		adapter.fill(memTicket.getMemoryPtr());
+		final long instanceOffset = getCurrentOffset();
+		final var stage = dataProvider.getStageBeforePush();
 
 		final var pushCommand = IDataFlowCommand.newPipelinePushCommand(memTicket,
 																		bufferPtr,
-																		alignedOffset,
+																		instanceOffset,
 																		stage,
-																		access);
+																		accessBeforePush);
 
 		// System.out.println(String.format( "[%s] push %d bytes",
 		// dataProvider.eClass().getName(),
@@ -170,15 +212,22 @@ public class DataProviderWrapper extends NotifierAdapter
 		needPush = false;
 	}
 
+	private long getCurrentOffset()
+	{
+		return offset + (instanceSize * dataProvider.getInstance());
+	}
+
 	public void fetchDeviceData()
 	{
 		assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
 
+		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
 		final Consumer<MemoryTicket> transferDone = ticket -> adapter.fetch(memTicket.getMemoryPtr());
+		final long instanceOffset = getCurrentOffset();
 
 		final var pushCommand = IDataFlowCommand.newPipelineFetchCommand(	memTicket,
 																			bufferPtr,
-																			alignedOffset,
+																			instanceOffset,
 																			transferDone);
 
 		transferBuffer.addTransferCommand(pushCommand);
@@ -186,24 +235,33 @@ public class DataProviderWrapper extends NotifierAdapter
 
 	public boolean hasChanged()
 	{
+		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
 		return providedSize != adapter.getSize();
 	}
 
-	public long getSize()
+	@Override
+	public long getInstanceSize()
 	{
-		return alignedSize;
+		return instanceSize;
 	}
 
-	public long getOffset()
+	public long getTotalSize()
 	{
-		return alignedOffset;
+		return instanceSize * dataProvider.getInstanceCount();
 	}
 
-	public IVkDescriptor getDescriptor()
+	@Override
+	public long getInstanceOffset(int instance)
 	{
-		return descriptor;
+		return offset + (instance * instanceSize);
 	}
 
+	public List<? extends IVkDescriptor> getDescriptors()
+	{
+		return descriptors;
+	}
+
+	@Override
 	public long getBufferPtr()
 	{
 		return bufferPtr;
@@ -215,67 +273,32 @@ public class DataProviderWrapper extends NotifierAdapter
 		return chunkCount * alignment;
 	}
 
-	private static EPipelineStage guessStageFromUsage(int usage)
-	{
-		EPipelineStage res = null;
-		switch (usage)
-		{
-		case EBufferUsage.VERTEX_BUFFER_BIT_VALUE:
-			res = EPipelineStage.VERTEX_INPUT_BIT;
-			break;
-		case EBufferUsage.INDEX_BUFFER_BIT_VALUE:
-			res = EPipelineStage.VERTEX_INPUT_BIT;
-			break;
-		case EBufferUsage.UNIFORM_BUFFER_BIT_VALUE:
-			res = EPipelineStage.VERTEX_SHADER_BIT;
-			break;
-		case EBufferUsage.TRANSFER_SRC_BIT_VALUE:
-			res = EPipelineStage.TRANSFER_BIT;
-			break;
-		}
-
-		return res;
-	}
-
-	private static EAccess guessAccessFromUsage(int usage)
-	{
-		EAccess res = null;
-		switch (usage)
-		{
-		case EBufferUsage.VERTEX_BUFFER_BIT_VALUE:
-			res = EAccess.VERTEX_ATTRIBUTE_READ_BIT;
-			break;
-		case EBufferUsage.INDEX_BUFFER_BIT_VALUE:
-			res = EAccess.VERTEX_ATTRIBUTE_READ_BIT;
-			break;
-		case EBufferUsage.UNIFORM_BUFFER_BIT_VALUE:
-			res = EAccess.UNIFORM_READ_BIT;
-			break;
-		case EBufferUsage.TRANSFER_SRC_BIT_VALUE:
-			res = EAccess.TRANSFER_READ_BIT;
-			break;
-		}
-
-		return res;
-	}
-
-	private static final VkBufferDescriptor createDescriptor(BufferDataProvider<?> dataProvider)
+	private static List<VkBufferDescriptor> createDescriptors(BufferDataProvider<?> dataProvider)
 	{
 		if (dataProvider instanceof DescribedDataProvider<?>)
 		{
 			final var described = (DescribedDataProvider<?>) dataProvider;
 			final var descriptor = described.getDescriptor();
-
-			assert descriptor != null;
-
 			final var type = descriptor.getDescriptorType();
 			final var stages = descriptor.getShaderStages();
 
-			return new VkBufferDescriptor(0, 0, 0, type, stages);
+			assert descriptor != null;
+
+			final List<VkBufferDescriptor> res = new ArrayList<>();
+			for (int i = 0; i < dataProvider.getInstanceCount(); i++)
+			{
+				res.add(new VkBufferDescriptor(0, 0, 0, type, stages));
+			}
+			return List.copyOf(res);
 		}
 		else
 		{
-			return null;
+			return List.of();
 		}
+	}
+
+	public int getUsage()
+	{
+		return usage;
 	}
 }

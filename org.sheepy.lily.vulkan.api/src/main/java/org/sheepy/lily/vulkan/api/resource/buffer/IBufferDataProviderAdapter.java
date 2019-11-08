@@ -10,5 +10,4 @@ public interface IBufferDataProviderAdapter extends IVulkanAdapter
 	void fetch(long memoryAddress);
 
 	boolean hasChanged();
-
 }

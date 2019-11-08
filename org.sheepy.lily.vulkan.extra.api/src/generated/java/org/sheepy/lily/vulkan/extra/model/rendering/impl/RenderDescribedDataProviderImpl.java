@@ -10,11 +10,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderDescribedDataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
-
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
+
+import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
 import org.sheepy.lily.vulkan.model.resource.Descriptor;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
@@ -22,18 +23,18 @@ import org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Described Data Provider</b></em>'.
+ * An implementation of the model object '<em><b>Render Described Data Provider</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DescribedDataProviderImpl#getDescriptor <em>Descriptor</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderDescribedDataProviderImpl#getDescriptor <em>Descriptor</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DescribedDataProviderImpl<T extends Structure> extends BufferDataProviderImpl<RenderableDataSource<T>> implements DescribedDataProvider<T>
+public class RenderDescribedDataProviderImpl<T extends Structure> extends BufferDataProviderImpl<RenderableDataSource<T>> implements RenderDescribedDataProvider<T>
 {
 	/**
 	 * The cached value of the '{@link #getDescriptor() <em>Descriptor</em>}' containment reference.
@@ -50,7 +51,7 @@ public class DescribedDataProviderImpl<T extends Structure> extends BufferDataPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DescribedDataProviderImpl()
+	protected RenderDescribedDataProviderImpl()
 	{
 		super();
 	}
@@ -63,7 +64,7 @@ public class DescribedDataProviderImpl<T extends Structure> extends BufferDataPr
 	@Override
 	protected EClass eStaticClass()
 	{
-		return RenderingPackage.Literals.DESCRIBED_DATA_PROVIDER;
+		return RenderingPackage.Literals.RENDER_DESCRIBED_DATA_PROVIDER;
 	}
 
 	/**
@@ -100,7 +101,7 @@ public class DescribedDataProviderImpl<T extends Structure> extends BufferDataPr
 		descriptor = newDescriptor;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderingPackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR, oldDescriptor, newDescriptor);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderingPackage.RENDER_DESCRIBED_DATA_PROVIDER__DESCRIPTOR, oldDescriptor, newDescriptor);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -118,14 +119,14 @@ public class DescribedDataProviderImpl<T extends Structure> extends BufferDataPr
 		{
 			NotificationChain msgs = null;
 			if (descriptor != null)
-				msgs = ((InternalEObject)descriptor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR, null, msgs);
+				msgs = ((InternalEObject)descriptor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.RENDER_DESCRIBED_DATA_PROVIDER__DESCRIPTOR, null, msgs);
 			if (newDescriptor != null)
-				msgs = ((InternalEObject)newDescriptor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR, null, msgs);
+				msgs = ((InternalEObject)newDescriptor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.RENDER_DESCRIBED_DATA_PROVIDER__DESCRIPTOR, null, msgs);
 			msgs = basicSetDescriptor(newDescriptor, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR, newDescriptor, newDescriptor));
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.RENDER_DESCRIBED_DATA_PROVIDER__DESCRIPTOR, newDescriptor, newDescriptor));
 	}
 
 	/**
@@ -138,7 +139,7 @@ public class DescribedDataProviderImpl<T extends Structure> extends BufferDataPr
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR:
+			case RenderingPackage.RENDER_DESCRIBED_DATA_PROVIDER__DESCRIPTOR:
 				return basicSetDescriptor(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -154,7 +155,7 @@ public class DescribedDataProviderImpl<T extends Structure> extends BufferDataPr
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR:
+			case RenderingPackage.RENDER_DESCRIBED_DATA_PROVIDER__DESCRIPTOR:
 				return getDescriptor();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -170,7 +171,7 @@ public class DescribedDataProviderImpl<T extends Structure> extends BufferDataPr
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR:
+			case RenderingPackage.RENDER_DESCRIBED_DATA_PROVIDER__DESCRIPTOR:
 				setDescriptor((Descriptor)newValue);
 				return;
 		}
@@ -187,7 +188,7 @@ public class DescribedDataProviderImpl<T extends Structure> extends BufferDataPr
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR:
+			case RenderingPackage.RENDER_DESCRIBED_DATA_PROVIDER__DESCRIPTOR:
 				setDescriptor((Descriptor)null);
 				return;
 		}
@@ -204,7 +205,7 @@ public class DescribedDataProviderImpl<T extends Structure> extends BufferDataPr
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR:
+			case RenderingPackage.RENDER_DESCRIBED_DATA_PROVIDER__DESCRIPTOR:
 				return descriptor != null;
 		}
 		return super.eIsSet(featureID);
@@ -218,11 +219,11 @@ public class DescribedDataProviderImpl<T extends Structure> extends BufferDataPr
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == org.sheepy.lily.vulkan.model.resource.DescribedDataProvider.class)
+		if (baseClass == DescribedDataProvider.class)
 		{
 			switch (derivedFeatureID)
 			{
-				case RenderingPackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR: return ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR;
+				case RenderingPackage.RENDER_DESCRIBED_DATA_PROVIDER__DESCRIPTOR: return ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR;
 				default: return -1;
 			}
 		}
@@ -237,15 +238,15 @@ public class DescribedDataProviderImpl<T extends Structure> extends BufferDataPr
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == org.sheepy.lily.vulkan.model.resource.DescribedDataProvider.class)
+		if (baseClass == DescribedDataProvider.class)
 		{
 			switch (baseFeatureID)
 			{
-				case ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR: return RenderingPackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR;
+				case ResourcePackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR: return RenderingPackage.RENDER_DESCRIBED_DATA_PROVIDER__DESCRIPTOR;
 				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
-} //DescribedDataProviderImpl
+} //RenderDescribedDataProviderImpl

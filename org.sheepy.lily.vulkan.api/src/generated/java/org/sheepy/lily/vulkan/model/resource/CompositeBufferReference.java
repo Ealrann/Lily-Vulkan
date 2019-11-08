@@ -13,6 +13,7 @@ package org.sheepy.lily.vulkan.model.resource;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositeBufferReference#getBuffer <em>Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositeBufferReference#getPart <em>Part</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositeBufferReference#getInstance <em>Instance</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getCompositeBufferReference()
@@ -64,5 +65,28 @@ public interface CompositeBufferReference extends IBufferReference
 	 * @generated
 	 */
 	void setPart(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Instance</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Instance</em>' attribute.
+	 * @see #setInstance(int)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getCompositeBufferReference_Instance()
+	 * @model default="0" required="true"
+	 * @generated
+	 */
+	int getInstance();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.CompositeBufferReference#getInstance <em>Instance</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Instance</em>' attribute.
+	 * @see #getInstance()
+	 * @generated
+	 */
+	void setInstance(int value);
 
 } // CompositeBufferReference

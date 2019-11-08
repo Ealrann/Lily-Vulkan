@@ -6,9 +6,9 @@ import java.util.Deque;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
@@ -33,15 +33,19 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 	private boolean containingFetchCommand = false;
 	private IExecutionContext executionContext;
 
-	public TransferBufferBackend(long capacity, int instanceCount)
+	public TransferBufferBackend(	long capacity,
+									int instanceCount,
+									boolean usedToPush,
+									boolean usedToFetch)
 	{
 		this.capacity = capacity;
 		spaceManager = new MemorySpaceManager(capacity);
 
-		final var info = new BufferInfo(capacity,
-										EBufferUsage.TRANSFER_SRC_BIT_VALUE,
-										true,
-										instanceCount);
+		final int pushUsage = usedToPush ? EBufferUsage.TRANSFER_SRC_BIT_VALUE : 0;
+		final int fetchUsage = usedToFetch ? EBufferUsage.TRANSFER_DST_BIT_VALUE : 0;
+		final int usage = pushUsage | fetchUsage;
+
+		final var info = new BufferInfo(capacity, usage, true, instanceCount);
 		bufferBackend = new CPUBufferBackend(info, false);
 	}
 
@@ -141,9 +145,10 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 	}
 
 	@Override
-	public void flushCommands(VkCommandBuffer commandBuffer)
+	public void flushCommands(RecordContext context)
 	{
 		final var logicalDevice = executionContext.getLogicalDevice();
+		final var commandBuffer = context.commandBuffer;
 
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{
@@ -160,7 +165,7 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 
 			if (unsynchronizedCommands.isEmpty() == false)
 			{
-				executionContext.execute((context, subCommandBuffer) ->
+				executionContext.execute((ctx, subCommandBuffer) ->
 				{
 					for (final var command : unsynchronizedCommands)
 					{
@@ -177,7 +182,8 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 			while (unsynchronizedCommands.isEmpty() == false)
 			{
 				final var command = unsynchronizedCommands.pop();
-				command.getPostAction().accept(command.getMemoryTicket());
+				context.addListener(() -> command	.getPostAction()
+													.accept(command.getMemoryTicket()));
 			}
 		}
 

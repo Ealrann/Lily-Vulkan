@@ -2,9 +2,12 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
+import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,6 +21,14 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getInstanceCount <em>Instance Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource <em>Data Source</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getInstance <em>Instance</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getFirstDescriptor <em>First Descriptor</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#isUsedToPush <em>Used To Push</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#isUsedToFetch <em>Used To Fetch</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getStageBeforePush <em>Stage Before Push</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getAccessBeforePush <em>Access Before Push</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getStageBeforeFetch <em>Stage Before Fetch</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getAccessBeforeFetch <em>Access Before Fetch</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider()
@@ -95,5 +106,175 @@ public interface BufferDataProvider<T> extends LNamedElement
 	 * @generated
 	 */
 	void setDataSource(T value);
+
+	/**
+	 * Returns the value of the '<em><b>Instance</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Instance</em>' attribute.
+	 * @see #setInstance(int)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_Instance()
+	 * @model default="0" required="true"
+	 * @generated
+	 */
+	int getInstance();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getInstance <em>Instance</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Instance</em>' attribute.
+	 * @see #getInstance()
+	 * @generated
+	 */
+	void setInstance(int value);
+
+	/**
+	 * Returns the value of the '<em><b>First Descriptor</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>First Descriptor</em>' attribute.
+	 * @see #setFirstDescriptor(int)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_FirstDescriptor()
+	 * @model default="0" required="true"
+	 * @generated
+	 */
+	int getFirstDescriptor();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getFirstDescriptor <em>First Descriptor</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>First Descriptor</em>' attribute.
+	 * @see #getFirstDescriptor()
+	 * @generated
+	 */
+	void setFirstDescriptor(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Used To Push</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Used To Push</em>' attribute.
+	 * @see #setUsedToPush(boolean)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_UsedToPush()
+	 * @model default="true" required="true"
+	 * @generated
+	 */
+	boolean isUsedToPush();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#isUsedToPush <em>Used To Push</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Used To Push</em>' attribute.
+	 * @see #isUsedToPush()
+	 * @generated
+	 */
+	void setUsedToPush(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Used To Fetch</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Used To Fetch</em>' attribute.
+	 * @see #setUsedToFetch(boolean)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_UsedToFetch()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isUsedToFetch();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#isUsedToFetch <em>Used To Fetch</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Used To Fetch</em>' attribute.
+	 * @see #isUsedToFetch()
+	 * @generated
+	 */
+	void setUsedToFetch(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Stage Before Push</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Stage Before Push</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
+	 * @see #setStageBeforePush(EPipelineStage)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_StageBeforePush()
+	 * @model
+	 * @generated
+	 */
+	EPipelineStage getStageBeforePush();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getStageBeforePush <em>Stage Before Push</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Stage Before Push</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
+	 * @see #getStageBeforePush()
+	 * @generated
+	 */
+	void setStageBeforePush(EPipelineStage value);
+
+	/**
+	 * Returns the value of the '<em><b>Access Before Push</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Access Before Push</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_AccessBeforePush()
+	 * @model
+	 * @generated
+	 */
+	EList<EAccess> getAccessBeforePush();
+
+	/**
+	 * Returns the value of the '<em><b>Stage Before Fetch</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Stage Before Fetch</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
+	 * @see #setStageBeforeFetch(EPipelineStage)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_StageBeforeFetch()
+	 * @model
+	 * @generated
+	 */
+	EPipelineStage getStageBeforeFetch();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getStageBeforeFetch <em>Stage Before Fetch</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Stage Before Fetch</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
+	 * @see #getStageBeforeFetch()
+	 * @generated
+	 */
+	void setStageBeforeFetch(EPipelineStage value);
+
+	/**
+	 * Returns the value of the '<em><b>Access Before Fetch</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Access Before Fetch</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_AccessBeforeFetch()
+	 * @model
+	 * @generated
+	 */
+	EList<EAccess> getAccessBeforeFetch();
 
 } // BufferDataProvider

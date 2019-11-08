@@ -10,7 +10,10 @@ public interface IProcessAdapter extends IVulkanAdapter
 	void stop(IVulkanContext context);
 
 	IFenceView run();
-	
+
 	void waitIdle();
-//	EQueueType getQueueType();
+	
+	// Can fire the fence listeners (for TransferBuffer Fetch).
+	// TODO really sad that the client need to call that...
+	void checkFence();
 }

@@ -198,28 +198,28 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDescribedDataProvider} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DescribedDataProviderItemProvider describedDataProviderItemProvider;
+	protected RenderDescribedDataProviderItemProvider renderDescribedDataProviderItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDescribedDataProvider}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createDescribedDataProviderAdapter()
+	public Adapter createRenderDescribedDataProviderAdapter()
 	{
-		if (describedDataProviderItemProvider == null)
+		if (renderDescribedDataProviderItemProvider == null)
 		{
-			describedDataProviderItemProvider = new DescribedDataProviderItemProvider(this);
+			renderDescribedDataProviderItemProvider = new RenderDescribedDataProviderItemProvider(this);
 		}
 
-		return describedDataProviderItemProvider;
+		return renderDescribedDataProviderItemProvider;
 	}
 
 	/**
@@ -550,7 +550,7 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 		if (presentationPkgItemProvider != null) presentationPkgItemProvider.dispose();
 		if (presentableEntityItemProvider != null) presentableEntityItemProvider.dispose();
 		if (dataProviderPkgItemProvider != null) dataProviderPkgItemProvider.dispose();
-		if (describedDataProviderItemProvider != null) describedDataProviderItemProvider.dispose();
+		if (renderDescribedDataProviderItemProvider != null) renderDescribedDataProviderItemProvider.dispose();
 		if (renderableDataSourceItemProvider != null) renderableDataSourceItemProvider.dispose();
 		if (vertexProviderItemProvider != null) vertexProviderItemProvider.dispose();
 		if (indexProviderItemProvider != null) indexProviderItemProvider.dispose();
@@ -710,7 +710,7 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 				newChildDescriptors.add
 					(createChildParameter
 						(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
-						 RenderingFactory.eINSTANCE.createDescribedDataProvider()));
+						 RenderingFactory.eINSTANCE.createRenderDescribedDataProvider()));
 
 				newChildDescriptors.add
 					(createChildParameter

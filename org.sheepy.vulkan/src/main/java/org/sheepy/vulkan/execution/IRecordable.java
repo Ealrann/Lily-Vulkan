@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.api.execution;
+package org.sheepy.vulkan.execution;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,6 +47,11 @@ public interface IRecordable
 		public List<IExecutionIdleListener> getExecutionIdleListeners()
 		{
 			return Collections.unmodifiableList(listeners);
+		}
+
+		public void clearListeners()
+		{
+			listeners.clear();
 		}
 	}
 }

@@ -93,6 +93,7 @@
     </genClasses>
     <genClasses ecoreClass="process.ecore#//FlushTransferBufferTask">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//FlushTransferBufferTask/transferBuffer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//FlushTransferBufferTask/stage"/>
     </genClasses>
     <genClasses ecoreClass="process.ecore#//CopyBufferTask">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CopyBufferTask/stage"/>
@@ -107,6 +108,7 @@
     <genClasses ecoreClass="process.ecore#//SetCompositeBufferFlushMode">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//SetCompositeBufferFlushMode/compositeBuffer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//SetCompositeBufferFlushMode/mode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//SetCompositeBufferFlushMode/stage"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Vulkan" basePackage="org.sheepy.lily.vulkan" resource="XMI"
@@ -148,6 +150,8 @@
     <genClasses ecoreClass="resource.ecore#//TransferBuffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/size"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/instanceCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/usedToPush"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/usedToFetch"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//ConstantBuffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ConstantBuffer/data"/>
@@ -182,12 +186,21 @@
     <genClasses ecoreClass="resource.ecore#//CompositeBufferReference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBufferReference/buffer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBufferReference/part"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBufferReference/instance"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//BufferDataProvider">
       <genTypeParameters ecoreTypeParameter="resource.ecore#//BufferDataProvider/T"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usage"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/instanceCount"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//BufferDataProvider/dataSource"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EReference resource.ecore#//BufferDataProvider/dataSource"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/instance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/firstDescriptor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usedToPush"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usedToFetch"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/stageBeforePush"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/accessBeforePush"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/stageBeforeFetch"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/accessBeforeFetch"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//DescribedDataProvider">
       <genTypeParameters ecoreTypeParameter="resource.ecore#//DescribedDataProvider/T"/>
@@ -231,6 +244,10 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//BufferBarrier">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//BufferBarrier/buffer"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//CompositeBufferBarrier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBufferBarrier/instance"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBufferBarrier/dataProvider"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//ImageBarrier">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//ImageBarrier/image"/>

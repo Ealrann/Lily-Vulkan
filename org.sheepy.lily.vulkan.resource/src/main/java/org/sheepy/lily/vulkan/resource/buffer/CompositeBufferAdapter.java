@@ -15,14 +15,13 @@ import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.lily.vulkan.resource.buffer.provider.DataProviderWrapper;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
 import org.sheepy.vulkan.resource.staging.ITransferBuffer;
 import org.sheepy.vulkan.resource.staging.ITransferBuffer.FlushListener;
 
 @Statefull
-@Adapter(scope = CompositeBuffer.class)
+@Adapter(scope = CompositeBuffer.class, lazy = false)
 public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 {
 	private final List<DataProviderWrapper> providerWrappers;
@@ -41,8 +40,8 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	{
 		this.compositeBuffer = compositeBuffer;
 		final var pushBuffer = compositeBuffer.getTransferBuffer();
-		final var pushBufferAdapter = pushBuffer.adaptNotNull(ITransferBufferAdapter.class);
-		transferBuffer = pushBufferAdapter.getTransferBufferBackend();
+		final var transferBufferAdapter = pushBuffer.adaptNotNull(ITransferBufferAdapter.class);
+		transferBuffer = transferBufferAdapter.getTransferBufferBackend();
 		this.providerWrappers = List.copyOf(buildProviderWrapers(compositeBuffer));
 	}
 
@@ -65,11 +64,8 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		for (int i = 0; i < providerWrappers.size(); i++)
 		{
 			final var providerWrapper = providerWrappers.get(i);
-			final var descriptor = providerWrapper.getDescriptor();
-			if (descriptor != null)
-			{
-				descriptors.add(descriptor);
-			}
+			final var providedDescriptors = providerWrapper.getDescriptors();
+			this.descriptors.addAll(providedDescriptors);
 		}
 
 		allocated = true;
@@ -138,8 +134,6 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	{
 		checkOldBuffer();
 
-		int usage = EBufferUsage.TRANSFER_DST_BIT_VALUE;
-		long position = 0;
 		boolean found = force;
 
 		for (int i = 0; i < providerWrappers.size(); i++)
@@ -154,17 +148,28 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 
 		if (found)
 		{
-			for (int i = 0; i < providerWrappers.size(); i++)
-			{
-				final var providerWrapper = providerWrappers.get(i);
-				providerWrapper.updateAlignement(position);
-				position = providerWrapper.getOffset() + providerWrapper.getSize();
-				usage |= providerWrapper.dataProvider.getUsage().getValue();
-			}
-
-			final long size = Math.max(Math.max(position, compositeBuffer.getMinSize()), 1);
-			updateBuffer(size, usage);
+			final var usageSize = alignData();
+			final long size = Math.max(	Math.max(usageSize.position, compositeBuffer.getMinSize()),
+										1);
+			updateBuffer(size, usageSize.usage);
 		}
+	}
+
+	private UsageSize alignData()
+	{
+		final var usageSize = new UsageSize();
+		for (int i = 0; i < providerWrappers.size(); i++)
+		{
+			final var providerWrapper = providerWrappers.get(i);
+			providerWrapper.updateAlignement(usageSize.position);
+
+			final long offset = providerWrapper.getInstanceOffset(0);
+			final long size = providerWrapper.getTotalSize();
+
+			usageSize.position = offset + size;
+			usageSize.usage |= providerWrapper.getUsage();
+		}
+		return usageSize;
 	}
 
 	private void updateBuffer(long size, int usage)
@@ -239,13 +244,13 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	@Override
 	public long getSize(int componentIndex)
 	{
-		return providerWrappers.get(componentIndex).getSize();
+		return providerWrappers.get(componentIndex).getInstanceSize();
 	}
 
 	@Override
-	public long getOffset(int componentIndex)
+	public long getOffset(int componentIndex, int instance)
 	{
-		return providerWrappers.get(componentIndex).getOffset();
+		return providerWrappers.get(componentIndex).getInstanceOffset(instance);
 	}
 
 	@Override
@@ -296,5 +301,11 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			res.add(child.adaptNotNull(DataProviderWrapper.class));
 		}
 		return res;
+	}
+
+	private static final class UsageSize
+	{
+		long position = 0;
+		int usage = 0;
 	}
 }

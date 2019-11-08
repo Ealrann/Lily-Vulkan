@@ -19,19 +19,17 @@ public final class PipelinePushCommand implements IDataFlowCommand
 	private final long trgBuffer;
 	private final long trgOffset;
 	private final Consumer<MemoryTicket> transferDone;
-
-	private EPipelineStage dstStage = null;
-	private EAccess dstAccess = null;
+	private final EPipelineStage dstStage;
+	private final int dstAccess;
 
 	public PipelinePushCommand(	MemoryTicket ticket,
 								long trgBuffer,
 								long trgOffset,
 								EPipelineStage dstStage,
-								EAccess dstAccess,
+								int dstAccess,
 								Consumer<MemoryTicket> transferDone)
 	{
 		assert dstStage != null;
-		assert dstAccess != null;
 		assert trgBuffer > 0;
 		assert trgOffset >= 0;
 		assert ticket != null;
@@ -66,7 +64,7 @@ public final class PipelinePushCommand implements IDataFlowCommand
 		barrierInfo.offset(trgOffset);
 		barrierInfo.size(size);
 		barrierInfo.srcAccessMask(EAccess.TRANSFER_WRITE_BIT_VALUE);
-		barrierInfo.dstAccessMask(dstAccess.getValue());
+		barrierInfo.dstAccessMask(dstAccess);
 
 		vkCmdPipelineBarrier(commandBuffer, srcStageVal, dstStageVal, 0, null, barrierInfo, null);
 	}

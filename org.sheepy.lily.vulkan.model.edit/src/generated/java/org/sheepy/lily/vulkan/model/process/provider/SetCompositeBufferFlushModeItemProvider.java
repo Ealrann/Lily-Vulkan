@@ -71,6 +71,7 @@ public class SetCompositeBufferFlushModeItemProvider
 			addEnabledPropertyDescriptor(object);
 			addCompositeBufferPropertyDescriptor(object);
 			addModePropertyDescriptor(object);
+			addStagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -168,6 +169,29 @@ public class SetCompositeBufferFlushModeItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Stage feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStagePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SetCompositeBufferFlushMode_stage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SetCompositeBufferFlushMode_stage_feature", "_UI_SetCompositeBufferFlushMode_type"),
+				 ProcessPackage.Literals.SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns SetCompositeBufferFlushMode.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -212,6 +236,7 @@ public class SetCompositeBufferFlushModeItemProvider
 			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__NAME:
 			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__ENABLED:
 			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE:
+			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

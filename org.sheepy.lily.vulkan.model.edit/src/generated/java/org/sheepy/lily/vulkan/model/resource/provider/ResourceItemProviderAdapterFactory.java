@@ -565,6 +565,31 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CompositeBufferBarrierItemProvider compositeBufferBarrierItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCompositeBufferBarrierAdapter()
+	{
+		if (compositeBufferBarrierItemProvider == null)
+		{
+			compositeBufferBarrierItemProvider = new CompositeBufferBarrierItemProvider(this);
+		}
+
+		return compositeBufferBarrierItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ImageBarrier} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -882,6 +907,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (descriptorSetItemProvider != null) descriptorSetItemProvider.dispose();
 		if (descriptorSetPkgItemProvider != null) descriptorSetPkgItemProvider.dispose();
 		if (bufferBarrierItemProvider != null) bufferBarrierItemProvider.dispose();
+		if (compositeBufferBarrierItemProvider != null) compositeBufferBarrierItemProvider.dispose();
 		if (imageBarrierItemProvider != null) imageBarrierItemProvider.dispose();
 		if (shaderItemProvider != null) shaderItemProvider.dispose();
 		if (fileResourceItemProvider != null) fileResourceItemProvider.dispose();

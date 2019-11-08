@@ -38,15 +38,15 @@ public final class RenderPipelineBuilder
 		pipeline.setResourcePkg(VulkanFactory.eINSTANCE.createResourcePkg());
 		pipeline.setDescriptorSetPkg(ResourceFactory.eINSTANCE.createDescriptorSetPkg());
 
-		final var specializationData = prepareSpecializationBuffer(index, specialization);
-		pipeline.setSpecializationData(specializationData);
-
 		if (commonResources.isEmpty() == false)
 		{
 			final var descriptorSet = ResourceFactory.eINSTANCE.createDescriptorSet();
 			descriptorSet.getDescriptors().addAll(commonResources);
 			pipeline.getDescriptorSetPkg().getDescriptorSets().add(descriptorSet);
 		}
+
+		final var specializationData = prepareSpecializationBuffer(index, specialization);
+		pipeline.setSpecializationData(specializationData);
 
 		return pipeline;
 	}
@@ -68,7 +68,6 @@ public final class RenderPipelineBuilder
 		constantsData.flip();
 		return constantsData;
 	}
-
 	private static ISpecializationAdapter resolveSpecializationAdapter(ISpecialization specialization)
 	{
 		if (specialization != null)

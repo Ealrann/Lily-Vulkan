@@ -4,9 +4,9 @@ import static org.lwjgl.vulkan.VK10.vkCmdSetScissor;
 
 import org.lwjgl.vulkan.VkRect2D;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.SetScissor;
+import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 
 @Adapter(scope = SetScissor.class)
 public class SetScissorAdapter implements IPipelineTaskAdapter<SetScissor>

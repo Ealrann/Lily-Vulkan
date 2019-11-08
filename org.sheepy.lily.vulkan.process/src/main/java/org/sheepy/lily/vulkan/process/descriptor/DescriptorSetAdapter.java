@@ -74,7 +74,7 @@ public class DescriptorSetAdapter implements IDescriptorSetAdapter
 	@Override
 	public int descriptorCount()
 	{
-		return descriptorSet.getDescriptors().size();
+		return getDescriptors().size();
 	}
 
 	@Override

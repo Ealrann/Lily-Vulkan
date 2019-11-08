@@ -3,9 +3,9 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 import static org.lwjgl.vulkan.VK10.vkCmdDrawIndexed;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed;
+import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 
 @Adapter(scope = DrawIndexed.class)
 public class DrawIndexedAdapter implements IPipelineTaskAdapter<DrawIndexed>

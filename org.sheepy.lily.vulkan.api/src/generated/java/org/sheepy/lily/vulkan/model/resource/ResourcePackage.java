@@ -141,13 +141,31 @@ public interface ResourcePackage extends EPackage
 	int TRANSFER_BUFFER__INSTANCE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFER_BUFFER__USED_TO_PUSH = VulkanPackage.IRESOURCE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Used To Fetch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFER_BUFFER__USED_TO_FETCH = VulkanPackage.IRESOURCE_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Transfer Buffer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFER_BUFFER_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 2;
+	int TRANSFER_BUFFER_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Transfer Buffer</em>' class.
@@ -618,13 +636,22 @@ public interface ResourcePackage extends EPackage
 	int COMPOSITE_BUFFER_REFERENCE__PART = IBUFFER_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Instance</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BUFFER_REFERENCE__INSTANCE = IBUFFER_REFERENCE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Composite Buffer Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_BUFFER_REFERENCE_FEATURE_COUNT = IBUFFER_REFERENCE_FEATURE_COUNT + 2;
+	int COMPOSITE_BUFFER_REFERENCE_FEATURE_COUNT = IBUFFER_REFERENCE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Composite Buffer Reference</em>' class.
@@ -682,13 +709,85 @@ public interface ResourcePackage extends EPackage
 	int BUFFER_DATA_PROVIDER__DATA_SOURCE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Instance</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__INSTANCE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>First Descriptor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__USED_TO_PUSH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Used To Fetch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__USED_TO_FETCH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Stage Before Push</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Access Before Push</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Stage Before Fetch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Access Before Fetch</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 10;
+
+	/**
 	 * The number of structural features of the '<em>Buffer Data Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 3;
+	int BUFFER_DATA_PROVIDER_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of operations of the '<em>Buffer Data Provider</em>' class.
@@ -744,6 +843,78 @@ public interface ResourcePackage extends EPackage
 	 * @ordered
 	 */
 	int DESCRIBED_DATA_PROVIDER__DATA_SOURCE = BUFFER_DATA_PROVIDER__DATA_SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Instance</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER__INSTANCE = BUFFER_DATA_PROVIDER__INSTANCE;
+
+	/**
+	 * The feature id for the '<em><b>First Descriptor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER__FIRST_DESCRIPTOR = BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR;
+
+	/**
+	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER__USED_TO_PUSH = BUFFER_DATA_PROVIDER__USED_TO_PUSH;
+
+	/**
+	 * The feature id for the '<em><b>Used To Fetch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER__USED_TO_FETCH = BUFFER_DATA_PROVIDER__USED_TO_FETCH;
+
+	/**
+	 * The feature id for the '<em><b>Stage Before Push</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER__STAGE_BEFORE_PUSH = BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH;
+
+	/**
+	 * The feature id for the '<em><b>Access Before Push</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER__ACCESS_BEFORE_PUSH = BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH;
+
+	/**
+	 * The feature id for the '<em><b>Stage Before Fetch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER__STAGE_BEFORE_FETCH = BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH;
+
+	/**
+	 * The feature id for the '<em><b>Access Before Fetch</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER__ACCESS_BEFORE_FETCH = BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
@@ -1558,6 +1729,70 @@ public interface ResourcePackage extends EPackage
 	int BUFFER_BARRIER_OPERATION_COUNT = BarrierPackage.ABSTRACT_BUFFER_BARRIER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferBarrierImpl <em>Composite Buffer Barrier</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferBarrierImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getCompositeBufferBarrier()
+	 * @generated
+	 */
+	int COMPOSITE_BUFFER_BARRIER = 24;
+
+	/**
+	 * The feature id for the '<em><b>Src Access Mask</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BUFFER_BARRIER__SRC_ACCESS_MASK = BarrierPackage.ABSTRACT_BUFFER_BARRIER__SRC_ACCESS_MASK;
+
+	/**
+	 * The feature id for the '<em><b>Dst Access Mask</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BUFFER_BARRIER__DST_ACCESS_MASK = BarrierPackage.ABSTRACT_BUFFER_BARRIER__DST_ACCESS_MASK;
+
+	/**
+	 * The feature id for the '<em><b>Instance</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BUFFER_BARRIER__INSTANCE = BarrierPackage.ABSTRACT_BUFFER_BARRIER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Data Provider</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BUFFER_BARRIER__DATA_PROVIDER = BarrierPackage.ABSTRACT_BUFFER_BARRIER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Composite Buffer Barrier</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BUFFER_BARRIER_FEATURE_COUNT = BarrierPackage.ABSTRACT_BUFFER_BARRIER_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Composite Buffer Barrier</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BUFFER_BARRIER_OPERATION_COUNT = BarrierPackage.ABSTRACT_BUFFER_BARRIER_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl <em>Image Barrier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1565,7 +1800,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageBarrier()
 	 * @generated
 	 */
-	int IMAGE_BARRIER = 24;
+	int IMAGE_BARRIER = 25;
 
 	/**
 	 * The feature id for the '<em><b>Src Access Mask</b></em>' attribute list.
@@ -1638,7 +1873,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getShader()
 	 * @generated
 	 */
-	int SHADER = 25;
+	int SHADER = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1702,7 +1937,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getPathResource()
 	 * @generated
 	 */
-	int PATH_RESOURCE = 26;
+	int PATH_RESOURCE = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1748,7 +1983,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFileResource()
 	 * @generated
 	 */
-	int FILE_RESOURCE = 27;
+	int FILE_RESOURCE = 28;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1794,7 +2029,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractModuleResource()
 	 * @generated
 	 */
-	int ABSTRACT_MODULE_RESOURCE = 28;
+	int ABSTRACT_MODULE_RESOURCE = 29;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1840,7 +2075,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getModuleResource()
 	 * @generated
 	 */
-	int MODULE_RESOURCE = 29;
+	int MODULE_RESOURCE = 30;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1895,7 +2130,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getStringModuleResource()
 	 * @generated
 	 */
-	int STRING_MODULE_RESOURCE = 30;
+	int STRING_MODULE_RESOURCE = 31;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1950,7 +2185,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getTexture2DArray()
 	 * @generated
 	 */
-	int TEXTURE2_DARRAY = 31;
+	int TEXTURE2_DARRAY = 32;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2023,7 +2258,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getEFlushMode()
 	 * @generated
 	 */
-	int EFLUSH_MODE = 32;
+	int EFLUSH_MODE = 33;
 
 	/**
 	 * The meta object id for the '<em>Byte Buffer</em>' data type.
@@ -2033,7 +2268,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 33;
+	int BYTE_BUFFER = 34;
 
 	/**
 	 * The meta object id for the '<em>Java Module</em>' data type.
@@ -2043,7 +2278,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
 	 * @generated
 	 */
-	int JAVA_MODULE = 34;
+	int JAVA_MODULE = 35;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
@@ -2086,6 +2321,28 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getTransferBuffer_InstanceCount();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#isUsedToPush <em>Used To Push</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Used To Push</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.TransferBuffer#isUsedToPush()
+	 * @see #getTransferBuffer()
+	 * @generated
+	 */
+	EAttribute getTransferBuffer_UsedToPush();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#isUsedToFetch <em>Used To Fetch</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Used To Fetch</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.TransferBuffer#isUsedToFetch()
+	 * @see #getTransferBuffer()
+	 * @generated
+	 */
+	EAttribute getTransferBuffer_UsedToFetch();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.ConstantBuffer <em>Constant Buffer</em>}'.
@@ -2376,6 +2633,17 @@ public interface ResourcePackage extends EPackage
 	EAttribute getCompositeBufferReference_Part();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.CompositeBufferReference#getInstance <em>Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Instance</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.CompositeBufferReference#getInstance()
+	 * @see #getCompositeBufferReference()
+	 * @generated
+	 */
+	EAttribute getCompositeBufferReference_Instance();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider <em>Buffer Data Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2417,6 +2685,94 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EReference getBufferDataProvider_DataSource();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getInstance <em>Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Instance</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getInstance()
+	 * @see #getBufferDataProvider()
+	 * @generated
+	 */
+	EAttribute getBufferDataProvider_Instance();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getFirstDescriptor <em>First Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>First Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getFirstDescriptor()
+	 * @see #getBufferDataProvider()
+	 * @generated
+	 */
+	EAttribute getBufferDataProvider_FirstDescriptor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#isUsedToPush <em>Used To Push</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Used To Push</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#isUsedToPush()
+	 * @see #getBufferDataProvider()
+	 * @generated
+	 */
+	EAttribute getBufferDataProvider_UsedToPush();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#isUsedToFetch <em>Used To Fetch</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Used To Fetch</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#isUsedToFetch()
+	 * @see #getBufferDataProvider()
+	 * @generated
+	 */
+	EAttribute getBufferDataProvider_UsedToFetch();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getStageBeforePush <em>Stage Before Push</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stage Before Push</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getStageBeforePush()
+	 * @see #getBufferDataProvider()
+	 * @generated
+	 */
+	EAttribute getBufferDataProvider_StageBeforePush();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getAccessBeforePush <em>Access Before Push</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Access Before Push</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getAccessBeforePush()
+	 * @see #getBufferDataProvider()
+	 * @generated
+	 */
+	EAttribute getBufferDataProvider_AccessBeforePush();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getStageBeforeFetch <em>Stage Before Fetch</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stage Before Fetch</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getStageBeforeFetch()
+	 * @see #getBufferDataProvider()
+	 * @generated
+	 */
+	EAttribute getBufferDataProvider_StageBeforeFetch();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getAccessBeforeFetch <em>Access Before Fetch</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Access Before Fetch</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getAccessBeforeFetch()
+	 * @see #getBufferDataProvider()
+	 * @generated
+	 */
+	EAttribute getBufferDataProvider_AccessBeforeFetch();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.DescribedDataProvider <em>Described Data Provider</em>}'.
@@ -2737,6 +3093,38 @@ public interface ResourcePackage extends EPackage
 	EReference getBufferBarrier_Buffer();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier <em>Composite Buffer Barrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Composite Buffer Barrier</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier
+	 * @generated
+	 */
+	EClass getCompositeBufferBarrier();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier#getInstance <em>Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Instance</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier#getInstance()
+	 * @see #getCompositeBufferBarrier()
+	 * @generated
+	 */
+	EAttribute getCompositeBufferBarrier_Instance();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier#getDataProvider <em>Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Data Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier#getDataProvider()
+	 * @see #getCompositeBufferBarrier()
+	 * @generated
+	 */
+	EReference getCompositeBufferBarrier_DataProvider();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.ImageBarrier <em>Image Barrier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3008,6 +3396,22 @@ public interface ResourcePackage extends EPackage
 		EAttribute TRANSFER_BUFFER__INSTANCE_COUNT = eINSTANCE.getTransferBuffer_InstanceCount();
 
 		/**
+		 * The meta object literal for the '<em><b>Used To Push</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSFER_BUFFER__USED_TO_PUSH = eINSTANCE.getTransferBuffer_UsedToPush();
+
+		/**
+		 * The meta object literal for the '<em><b>Used To Fetch</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSFER_BUFFER__USED_TO_FETCH = eINSTANCE.getTransferBuffer_UsedToFetch();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantBufferImpl <em>Constant Buffer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3242,6 +3646,14 @@ public interface ResourcePackage extends EPackage
 		EAttribute COMPOSITE_BUFFER_REFERENCE__PART = eINSTANCE.getCompositeBufferReference_Part();
 
 		/**
+		 * The meta object literal for the '<em><b>Instance</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPOSITE_BUFFER_REFERENCE__INSTANCE = eINSTANCE.getCompositeBufferReference_Instance();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl <em>Buffer Data Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3274,6 +3686,70 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EReference BUFFER_DATA_PROVIDER__DATA_SOURCE = eINSTANCE.getBufferDataProvider_DataSource();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER_DATA_PROVIDER__INSTANCE = eINSTANCE.getBufferDataProvider_Instance();
+
+		/**
+		 * The meta object literal for the '<em><b>First Descriptor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR = eINSTANCE.getBufferDataProvider_FirstDescriptor();
+
+		/**
+		 * The meta object literal for the '<em><b>Used To Push</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER_DATA_PROVIDER__USED_TO_PUSH = eINSTANCE.getBufferDataProvider_UsedToPush();
+
+		/**
+		 * The meta object literal for the '<em><b>Used To Fetch</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER_DATA_PROVIDER__USED_TO_FETCH = eINSTANCE.getBufferDataProvider_UsedToFetch();
+
+		/**
+		 * The meta object literal for the '<em><b>Stage Before Push</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH = eINSTANCE.getBufferDataProvider_StageBeforePush();
+
+		/**
+		 * The meta object literal for the '<em><b>Access Before Push</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH = eINSTANCE.getBufferDataProvider_AccessBeforePush();
+
+		/**
+		 * The meta object literal for the '<em><b>Stage Before Fetch</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH = eINSTANCE.getBufferDataProvider_StageBeforeFetch();
+
+		/**
+		 * The meta object literal for the '<em><b>Access Before Fetch</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH = eINSTANCE.getBufferDataProvider_AccessBeforeFetch();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescribedDataProviderImpl <em>Described Data Provider</em>}' class.
@@ -3538,6 +4014,32 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EReference BUFFER_BARRIER__BUFFER = eINSTANCE.getBufferBarrier_Buffer();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferBarrierImpl <em>Composite Buffer Barrier</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferBarrierImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getCompositeBufferBarrier()
+		 * @generated
+		 */
+		EClass COMPOSITE_BUFFER_BARRIER = eINSTANCE.getCompositeBufferBarrier();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPOSITE_BUFFER_BARRIER__INSTANCE = eINSTANCE.getCompositeBufferBarrier_Instance();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Provider</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITE_BUFFER_BARRIER__DATA_PROVIDER = eINSTANCE.getCompositeBufferBarrier_DataProvider();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl <em>Image Barrier</em>}' class.

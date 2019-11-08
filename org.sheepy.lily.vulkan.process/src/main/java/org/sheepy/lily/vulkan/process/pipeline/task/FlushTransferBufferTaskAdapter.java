@@ -2,16 +2,17 @@ package org.sheepy.lily.vulkan.process.pipeline.task;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter;
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @Statefull
 @Adapter(scope = FlushTransferBufferTask.class)
-public final class FlushTransferBufferTaskAdapter implements IPipelineTaskAdapter<FlushTransferBufferTask>
+public final class FlushTransferBufferTaskAdapter
+		implements IPipelineTaskAdapter<FlushTransferBufferTask>
 {
 	private final ITransferBufferAdapter pushBufferAdapter;
 	private final TransferBuffer transferBuffer;
@@ -32,7 +33,7 @@ public final class FlushTransferBufferTaskAdapter implements IPipelineTaskAdapte
 		if (stagingBuffer.isEmpty() == false)
 		{
 			setFlushHistory(context);
-			stagingBuffer.flushCommands(context.commandBuffer);
+			stagingBuffer.flushCommands(context);
 		}
 	}
 
@@ -74,6 +75,6 @@ public final class FlushTransferBufferTaskAdapter implements IPipelineTaskAdapte
 	@Override
 	public ECommandStage getStage(FlushTransferBufferTask task)
 	{
-		return ECommandStage.TRANSFER;
+		return task.getStage();
 	}
 }

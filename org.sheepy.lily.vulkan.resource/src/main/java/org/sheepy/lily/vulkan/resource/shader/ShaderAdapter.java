@@ -12,9 +12,7 @@ import org.sheepy.vulkan.pipeline.VkShaderStage;
 public class ShaderAdapter implements IShaderAdapter
 {
 	private final Shader shader;
-
 	private ShaderBackend shaderBackend;
-
 	private VkShaderStage shaderStage;
 
 	public ShaderAdapter(Shader shader)
@@ -36,6 +34,7 @@ public class ShaderAdapter implements IShaderAdapter
 		final var stage = shader.getStage();
 
 		shaderStage = new VkShaderStage(stage, id, specializationConstants);
+		// System.out.println(shaderBackend.getId() + " - " + shader.getName());
 	}
 
 	@Override

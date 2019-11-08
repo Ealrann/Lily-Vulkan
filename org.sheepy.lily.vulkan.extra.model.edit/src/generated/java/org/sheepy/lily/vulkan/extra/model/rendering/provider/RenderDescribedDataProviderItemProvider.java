@@ -13,22 +13,20 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderDescribedDataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
-
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 import org.sheepy.lily.vulkan.model.resource.provider.BufferDataProviderItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.DescribedDataProvider} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDescribedDataProvider} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DescribedDataProviderItemProvider extends BufferDataProviderItemProvider
+public class RenderDescribedDataProviderItemProvider extends BufferDataProviderItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -36,7 +34,7 @@ public class DescribedDataProviderItemProvider extends BufferDataProviderItemPro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DescribedDataProviderItemProvider(AdapterFactory adapterFactory)
+	public RenderDescribedDataProviderItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -92,7 +90,7 @@ public class DescribedDataProviderItemProvider extends BufferDataProviderItemPro
 	}
 
 	/**
-	 * This returns DescribedDataProvider.gif.
+	 * This returns RenderDescribedDataProvider.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -100,7 +98,7 @@ public class DescribedDataProviderItemProvider extends BufferDataProviderItemPro
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DescribedDataProvider"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/RenderDescribedDataProvider"));
 	}
 
 	/**
@@ -112,10 +110,10 @@ public class DescribedDataProviderItemProvider extends BufferDataProviderItemPro
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((DescribedDataProvider<?>)object).getName();
+		String label = ((RenderDescribedDataProvider<?>)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_DescribedDataProvider_type") :
-			getString("_UI_DescribedDataProvider_type") + " " + label;
+			getString("_UI_RenderDescribedDataProvider_type") :
+			getString("_UI_RenderDescribedDataProvider_type") + " " + label;
 	}
 
 
@@ -131,9 +129,9 @@ public class DescribedDataProviderItemProvider extends BufferDataProviderItemPro
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DescribedDataProvider.class))
+		switch (notification.getFeatureID(RenderDescribedDataProvider.class))
 		{
-			case RenderingPackage.DESCRIBED_DATA_PROVIDER__DESCRIPTOR:
+			case RenderingPackage.RENDER_DESCRIBED_DATA_PROVIDER__DESCRIPTOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

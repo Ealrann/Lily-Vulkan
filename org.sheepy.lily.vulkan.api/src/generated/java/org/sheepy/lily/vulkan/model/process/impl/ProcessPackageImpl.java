@@ -746,6 +746,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getFlushTransferBufferTask_Stage()
+	{
+		return (EAttribute)flushTransferBufferTaskEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getCopyBufferTask()
 	{
 		return copyBufferTaskEClass;
@@ -867,6 +878,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getSetCompositeBufferFlushMode_Stage()
+	{
+		return (EAttribute)setCompositeBufferFlushModeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ProcessFactory getProcessFactory()
 	{
 		return (ProcessFactory)getEFactoryInstance();
@@ -946,6 +968,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		flushTransferBufferTaskEClass = createEClass(FLUSH_TRANSFER_BUFFER_TASK);
 		createEReference(flushTransferBufferTaskEClass, FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER);
+		createEAttribute(flushTransferBufferTaskEClass, FLUSH_TRANSFER_BUFFER_TASK__STAGE);
 
 		copyBufferTaskEClass = createEClass(COPY_BUFFER_TASK);
 		createEAttribute(copyBufferTaskEClass, COPY_BUFFER_TASK__STAGE);
@@ -961,6 +984,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		setCompositeBufferFlushModeEClass = createEClass(SET_COMPOSITE_BUFFER_FLUSH_MODE);
 		createEReference(setCompositeBufferFlushModeEClass, SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER);
 		createEAttribute(setCompositeBufferFlushModeEClass, SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE);
+		createEAttribute(setCompositeBufferFlushModeEClass, SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE);
 	}
 
 	/**
@@ -1079,6 +1103,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		initEClass(flushTransferBufferTaskEClass, FlushTransferBufferTask.class, "FlushTransferBufferTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFlushTransferBufferTask_TransferBuffer(), theResourcePackage.getTransferBuffer(), null, "transferBuffer", null, 1, 1, FlushTransferBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFlushTransferBufferTask_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Transfer", 1, 1, FlushTransferBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(copyBufferTaskEClass, CopyBufferTask.class, "CopyBufferTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCopyBufferTask_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Transfer", 1, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1094,6 +1119,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEClass(setCompositeBufferFlushModeEClass, SetCompositeBufferFlushMode.class, "SetCompositeBufferFlushMode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSetCompositeBufferFlushMode_CompositeBuffer(), theResourcePackage.getCompositeBuffer(), null, "compositeBuffer", null, 1, 1, SetCompositeBufferFlushMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSetCompositeBufferFlushMode_Mode(), theResourcePackage.getEFlushMode(), "mode", "PUSH", 1, 1, SetCompositeBufferFlushMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSetCompositeBufferFlushMode_Stage(), theEnumerationPackage.getECommandStage(), "stage", null, 1, 1, SetCompositeBufferFlushMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

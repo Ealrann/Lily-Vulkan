@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.model.process;
 
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,6 +17,7 @@ import org.sheepy.lily.vulkan.model.resource.EFlushMode;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getCompositeBuffer <em>Composite Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getMode <em>Mode</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getStage <em>Stage</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getSetCompositeBufferFlushMode()
@@ -71,5 +73,57 @@ public interface SetCompositeBufferFlushMode extends IPipelineTask
 	 * @generated
 	 */
 	void setMode(EFlushMode value);
+
+	/**
+	 * Returns the value of the '<em><b>Stage</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.ECommandStage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Stage</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
+	 * @see #isSetStage()
+	 * @see #unsetStage()
+	 * @see #setStage(ECommandStage)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getSetCompositeBufferFlushMode_Stage()
+	 * @model unsettable="true" required="true"
+	 * @generated
+	 */
+	ECommandStage getStage();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getStage <em>Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Stage</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
+	 * @see #isSetStage()
+	 * @see #unsetStage()
+	 * @see #getStage()
+	 * @generated
+	 */
+	void setStage(ECommandStage value);
+
+	/**
+	 * Unsets the value of the '{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getStage <em>Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetStage()
+	 * @see #getStage()
+	 * @see #setStage(ECommandStage)
+	 * @generated
+	 */
+	void unsetStage();
+
+	/**
+	 * Returns whether the value of the '{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getStage <em>Stage</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Stage</em>' attribute is set.
+	 * @see #unsetStage()
+	 * @see #getStage()
+	 * @see #setStage(ECommandStage)
+	 * @generated
+	 */
+	boolean isSetStage();
 
 } // SetCompositeBufferFlushMode

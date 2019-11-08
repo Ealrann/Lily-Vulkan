@@ -243,6 +243,11 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 				allocationConfig.addChildren(List.of(adapter));
 				allocationConfig.setDirty();
 			}
+
+			if (task.isEnabled())
+			{
+				recordNeeded = true;
+			}
 		}
 
 		@SuppressWarnings("unlikely-arg-type")
@@ -257,6 +262,11 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 			{
 				allocationConfig.removeChildren(List.of(adapter));
 				allocationConfig.setDirty();
+			}
+
+			if (task.isEnabled())
+			{
+				recordNeeded = true;
 			}
 		}
 	}

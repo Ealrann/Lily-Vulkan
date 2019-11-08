@@ -9,7 +9,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
-import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
@@ -18,6 +17,7 @@ import org.sheepy.lily.vulkan.process.pipeline.task.internal.BufferBarriersBacke
 import org.sheepy.lily.vulkan.process.pipeline.task.internal.ImageBarriersBackend;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.vulkan.device.LogicalDevice;
+import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 

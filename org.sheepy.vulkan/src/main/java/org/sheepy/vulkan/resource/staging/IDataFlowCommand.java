@@ -4,7 +4,6 @@ import java.util.function.Consumer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket;
 import org.sheepy.vulkan.resource.staging.command.ImmediateFetchCommand;
@@ -32,7 +31,7 @@ public interface IDataFlowCommand
 													long trgBuffer,
 													long trgOffset,
 													EPipelineStage dstStage,
-													EAccess dstAccess)
+													int dstAccess)
 	{
 		return new PipelinePushCommand(ticket, trgBuffer, trgOffset, dstStage, dstAccess, null);
 	}

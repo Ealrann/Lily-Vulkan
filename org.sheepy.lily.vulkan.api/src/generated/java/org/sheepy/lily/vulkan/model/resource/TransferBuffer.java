@@ -15,6 +15,8 @@ import org.sheepy.lily.vulkan.model.IResource;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#getInstanceCount <em>Instance Count</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#isUsedToPush <em>Used To Push</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#isUsedToFetch <em>Used To Fetch</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getTransferBuffer()
@@ -67,5 +69,51 @@ public interface TransferBuffer extends IResource
 	 * @generated
 	 */
 	void setInstanceCount(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Used To Push</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Used To Push</em>' attribute.
+	 * @see #setUsedToPush(boolean)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getTransferBuffer_UsedToPush()
+	 * @model default="true" required="true"
+	 * @generated
+	 */
+	boolean isUsedToPush();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#isUsedToPush <em>Used To Push</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Used To Push</em>' attribute.
+	 * @see #isUsedToPush()
+	 * @generated
+	 */
+	void setUsedToPush(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Used To Fetch</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Used To Fetch</em>' attribute.
+	 * @see #setUsedToFetch(boolean)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getTransferBuffer_UsedToFetch()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isUsedToFetch();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#isUsedToFetch <em>Used To Fetch</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Used To Fetch</em>' attribute.
+	 * @see #isUsedToFetch()
+	 * @generated
+	 */
+	void setUsedToFetch(boolean value);
 
 } // TransferBuffer

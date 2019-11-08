@@ -86,6 +86,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.DESCRIPTOR_SET: return createDescriptorSet();
 			case ResourcePackage.DESCRIPTOR_SET_PKG: return createDescriptorSetPkg();
 			case ResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
+			case ResourcePackage.COMPOSITE_BUFFER_BARRIER: return createCompositeBufferBarrier();
 			case ResourcePackage.IMAGE_BARRIER: return createImageBarrier();
 			case ResourcePackage.SHADER: return createShader();
 			case ResourcePackage.FILE_RESOURCE: return createFileResource();
@@ -365,6 +366,18 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		BufferBarrierImpl bufferBarrier = new BufferBarrierImpl();
 		return bufferBarrier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CompositeBufferBarrier createCompositeBufferBarrier()
+	{
+		CompositeBufferBarrierImpl compositeBufferBarrier = new CompositeBufferBarrierImpl();
+		return compositeBufferBarrier;
 	}
 
 	/**

@@ -6,13 +6,13 @@ import java.util.List;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
-import org.sheepy.lily.vulkan.api.execution.IRecordable;
-import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
-import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext.IExecutionIdleListener;
 import org.sheepy.lily.vulkan.api.execution.ISubmission;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.vulkan.concurrent.IFenceView;
 import org.sheepy.vulkan.execution.ICommandBuffer;
+import org.sheepy.vulkan.execution.IRecordable;
+import org.sheepy.vulkan.execution.IRecordable.RecordContext;
+import org.sheepy.vulkan.execution.IRecordable.RecordContext.IExecutionIdleListener;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 public abstract class AbstractExecutionRecorder<T extends IProcessContext>
@@ -63,13 +63,10 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 			final ECommandStage stage = stages.get(i);
 			commandBuffer.start(stage);
 			final var context = getOrCreateContext(stage);
+			context.clearListeners();
 			recordCommand(recordables, context, stage);
 			commandBuffer.end(stage);
-
-			if (context != null)
-			{
-				listeners.addAll(context.getExecutionIdleListeners());
-			}
+			listeners.addAll(context.getExecutionIdleListeners());
 		}
 
 		submission.setExecutionIdleListeners(listeners);
@@ -93,6 +90,12 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 	public boolean isBusy()
 	{
 		return submission.isBusy();
+	}
+
+	@Override
+	public void checkFence()
+	{
+		submission.checkFence();
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 import org.sheepy.lily.core.api.adapter.annotation.Adapters;
 import org.sheepy.lily.vulkan.process.barrier.BufferBarrierAdapter;
+import org.sheepy.lily.vulkan.process.barrier.CompositeBufferBarrierAdapter;
 import org.sheepy.lily.vulkan.process.barrier.ImageBarrierAdapter;
 import org.sheepy.lily.vulkan.process.barrier.ReferenceBufferBarrierAdapter;
 import org.sheepy.lily.vulkan.process.barrier.ReferenceImageBarrierAdapter;
@@ -11,6 +12,7 @@ import org.sheepy.lily.vulkan.process.pipeline.task.CopyBufferTaskAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.FlushTransferBufferTaskAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.PipelineBarrierAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.PushConstantBufferAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.task.SetCompositeBufferFlushModeAdapter;
 
 @Adapters(classifiers = {
 		PipelineBarrierAdapter.class,
@@ -24,7 +26,9 @@ import org.sheepy.lily.vulkan.process.pipeline.task.PushConstantBufferAdapter;
 		BindDescriptorSetsAdapter.class,
 		CompositeTaskAdapter.class,
 		FlushTransferBufferTaskAdapter.class,
-		CopyBufferTaskAdapter.class
+		CopyBufferTaskAdapter.class,
+		SetCompositeBufferFlushModeAdapter.class,
+		CompositeBufferBarrierAdapter.class
 })
 
 module org.sheepy.lily.vulkan.process
@@ -42,4 +46,5 @@ module org.sheepy.lily.vulkan.process
 	opens org.sheepy.lily.vulkan.process.barrier;
 	opens org.sheepy.lily.vulkan.process.pipeline;
 	opens org.sheepy.lily.vulkan.process.pipeline.task;
+	opens org.sheepy.lily.vulkan.process.process;
 }

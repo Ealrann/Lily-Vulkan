@@ -2,7 +2,7 @@ package org.sheepy.vulkan.resource.staging;
 
 import java.util.EventListener;
 
-import org.lwjgl.vulkan.VkCommandBuffer;
+import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.resource.staging.memory.MemorySpaceManager.MemorySpace;
 
 public interface ITransferBuffer
@@ -14,7 +14,7 @@ public interface ITransferBuffer
 	boolean isEmpty();
 
 	void prepare();
-	void flushCommands(VkCommandBuffer commandBuffer);
+	void flushCommands(RecordContext context);
 
 	void addListener(FlushListener listener);
 	void removeListener(FlushListener listener);

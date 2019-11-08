@@ -14,12 +14,12 @@ import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext.IExecutionIdleListener;
 import org.sheepy.lily.vulkan.api.execution.ISubmission;
 import org.sheepy.lily.vulkan.api.process.IProcessContext.IRecorderContext;
 import org.sheepy.vulkan.concurrent.IFenceView;
 import org.sheepy.vulkan.concurrent.VkFence;
 import org.sheepy.vulkan.execution.ICommandBuffer;
+import org.sheepy.vulkan.execution.IRecordable.RecordContext.IExecutionIdleListener;
 import org.sheepy.vulkan.log.EVulkanErrorStatus;
 import org.sheepy.vulkan.log.Logger;
 
@@ -148,27 +148,45 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 	}
 
 	@Override
-	public void waitIdle()
+	public void checkFence()
 	{
-		if (fence != null)
+//		if (fence.isUsed() && fence.isSignaled())
 		{
-			if (fence.isUsed() && fence.isSignaled() == false)
-			{
-				if (fence.waitForSignal(TIMEOUT) == false)
-				{
-					Logger.log(FENCE_TIMEOUT, true);
-				}
-			}
-			fence.reset();
+//			resetFence();
 		}
+	}
 
-		if (listeners != null)
+	private void resetFence()
+	{
+		if (fence.isUsed() && listeners != null)
 		{
 			for (final var listener : listeners)
 			{
 				listener.onExecutionIdle();
 			}
 		}
+
+		fence.reset();
+	}
+
+	@Override
+	public void waitIdle()
+	{
+		if (fence != null)
+		{
+			if (fence.isUsed())
+			{
+				if (fence.isSignaled() == false)
+				{
+					if (fence.waitForSignal(TIMEOUT) == false)
+					{
+						Logger.log(FENCE_TIMEOUT, true);
+					}
+				}
+			}
+			resetFence();
+		}
+
 	}
 
 	@Override

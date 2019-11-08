@@ -194,6 +194,15 @@ public interface ResourceFactory extends EFactory
 	BufferBarrier createBufferBarrier();
 
 	/**
+	 * Returns a new object of class '<em>Composite Buffer Barrier</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Composite Buffer Barrier</em>'.
+	 * @generated
+	 */
+	CompositeBufferBarrier createCompositeBufferBarrier();
+
+	/**
 	 * Returns a new object of class '<em>Image Barrier</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
