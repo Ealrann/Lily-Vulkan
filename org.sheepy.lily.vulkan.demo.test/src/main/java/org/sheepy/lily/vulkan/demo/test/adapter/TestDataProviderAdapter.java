@@ -40,12 +40,12 @@ public class TestDataProviderAdapter implements IBufferDataProviderAdapter
 	}
 
 	@Override
-	public void fill(long memoryAddress)
+	public void fill(long memoryAddress, int size)
 	{
-		final int size = currentSize / 4;
-		previous = new int[size];
-		final var buffer = MemoryUtil.memIntBuffer(memoryAddress, size);
-		for (int i = 0; i < size; i++)
+		final int intSize = size / 4;
+		previous = new int[intSize];
+		final var buffer = MemoryUtil.memIntBuffer(memoryAddress, intSize);
+		for (int i = 0; i < intSize; i++)
 		{
 			final int rand = random.nextInt();
 			buffer.put(rand);
@@ -54,7 +54,7 @@ public class TestDataProviderAdapter implements IBufferDataProviderAdapter
 	}
 
 	@Override
-	public void fetch(long memoryAddress)
+	public void fetch(long memoryAddress, int size)
 	{}
 
 	public boolean check(long memoryAddress)

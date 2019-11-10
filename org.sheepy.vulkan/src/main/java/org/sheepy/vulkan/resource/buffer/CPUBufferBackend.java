@@ -196,6 +196,26 @@ public final class CPUBufferBackend implements IBufferBackend
 		}
 	}
 
+	/**
+	 * Invalidate a memory range of the buffer to make it visible to the host
+	 *
+	 * @note Only required for non-coherent memory
+	 */
+	public void invalidate(LogicalDevice logicalDevice)
+	{
+		if (coherent == false)
+		{
+			try (final MemoryStack stack = MemoryStack.stackPush())
+			{
+				BufferUtils.invalidate(	stack,
+										logicalDevice,
+										memoryAddress,
+										VK_WHOLE_SIZE,
+										currentOffset);
+			}
+		}
+	}
+
 	@Override
 	public long getOffset()
 	{

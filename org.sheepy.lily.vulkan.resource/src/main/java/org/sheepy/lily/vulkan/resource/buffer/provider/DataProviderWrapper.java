@@ -187,7 +187,7 @@ public final class DataProviderWrapper extends NotifierAdapter
 		assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
 
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
-		adapter.fill(memTicket.getMemoryPtr());
+		adapter.fill(memTicket.getMemoryPtr(), (int) memTicket.getSize());
 		final long instanceOffset = getCurrentOffset();
 		final var stage = dataProvider.getStageBeforePush();
 
@@ -222,7 +222,8 @@ public final class DataProviderWrapper extends NotifierAdapter
 		assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
 
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
-		final Consumer<MemoryTicket> transferDone = ticket -> adapter.fetch(memTicket.getMemoryPtr());
+		final Consumer<MemoryTicket> transferDone = ticket -> adapter.fetch(memTicket.getMemoryPtr(),
+																			(int) memTicket.getSize());
 		final long instanceOffset = getCurrentOffset();
 
 		final var pushCommand = IDataFlowCommand.newPipelineFetchCommand(	memTicket,

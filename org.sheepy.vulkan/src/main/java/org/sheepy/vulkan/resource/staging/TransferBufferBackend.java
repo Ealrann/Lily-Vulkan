@@ -150,7 +150,7 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 		final var logicalDevice = executionContext.getLogicalDevice();
 		final var commandBuffer = context.commandBuffer;
 
-		try (MemoryStack stack = MemoryStack.stackPush())
+		try (final MemoryStack stack = MemoryStack.stackPush())
 		{
 			if (containingPushCommand)
 			{
@@ -179,11 +179,15 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 				bufferBackend.invalidate(stack, logicalDevice);
 			}
 
-			while (unsynchronizedCommands.isEmpty() == false)
+			if (unsynchronizedCommands.isEmpty() == false)
 			{
-				final var command = unsynchronizedCommands.pop();
-				context.addListener(() -> command	.getPostAction()
-													.accept(command.getMemoryTicket()));
+				context.addListener(() -> bufferBackend.invalidate(logicalDevice));
+				while (unsynchronizedCommands.isEmpty() == false)
+				{
+					final var command = unsynchronizedCommands.pop();
+					context.addListener(() -> command	.getPostAction()
+														.accept(command.getMemoryTicket()));
+				}
 			}
 		}
 

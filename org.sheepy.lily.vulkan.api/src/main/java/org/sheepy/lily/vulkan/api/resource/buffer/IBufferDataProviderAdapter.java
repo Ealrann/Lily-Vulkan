@@ -6,8 +6,8 @@ public interface IBufferDataProviderAdapter extends IVulkanAdapter
 {
 	long getSize();
 
-	void fill(long memoryAddress);
-	void fetch(long memoryAddress);
+	void fill(long memoryAddress, int size);
+	void fetch(long memoryAddress, int size);
 
 	boolean hasChanged();
 }
