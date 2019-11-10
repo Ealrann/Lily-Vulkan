@@ -55,23 +55,20 @@ public class TestDataProviderAdapter implements IBufferDataProviderAdapter
 
 	@Override
 	public void fetch(long memoryAddress, int size)
-	{}
-
-	public boolean check(long memoryAddress)
 	{
-		currentSize += 5000;
-		currentSize = Math.min(MAX_SIZE, currentSize);
-
 		final var buffer = MemoryUtil.memIntBuffer(memoryAddress, previous.length);
 		for (int i = 0; i < previous.length; i++)
 		{
 			final int prev = buffer.get();
 			if (prev != previous[i])
 			{
-				return false;
+				throw new AssertionError("Data are not the same after fetch");
 			}
 		}
-		return true;
+
+		currentSize += 5000;
+		currentSize = Math.min(MAX_SIZE, currentSize);
+		// System.out.println(currentSize);
 	}
 
 	@Override

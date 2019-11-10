@@ -47,7 +47,6 @@ public final class FlushTransferBufferTaskAdapter
 			final var stagingBuffer = pushBufferAdapter.getTransferBufferBackend();
 			final boolean previousRecordMadeFlush = getAndClearHistory(index);
 
-			stagingBuffer.prepare();
 			res |= !stagingBuffer.isEmpty();
 			res |= previousRecordMadeFlush;
 		}

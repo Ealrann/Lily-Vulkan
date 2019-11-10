@@ -323,6 +323,15 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__SPECIALIZATION = RenderingPackage.GENERIC_RENDERER__SPECIALIZATION;
 
 	/**
+	 * The feature id for the '<em><b>Flush Transfer Buffer Task</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_RENDERER__FLUSH_TRANSFER_BUFFER_TASK = RenderingPackage.GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK;
+
+	/**
 	 * The number of structural features of the '<em>Renderer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

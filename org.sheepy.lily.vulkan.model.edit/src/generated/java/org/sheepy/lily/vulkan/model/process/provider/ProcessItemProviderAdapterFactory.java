@@ -341,28 +341,28 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SetCompositeBufferFlushModeItemProvider setCompositeBufferFlushModeItemProvider;
+	protected PrepareCompositeTransferItemProvider prepareCompositeTransferItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSetCompositeBufferFlushModeAdapter()
+	public Adapter createPrepareCompositeTransferAdapter()
 	{
-		if (setCompositeBufferFlushModeItemProvider == null)
+		if (prepareCompositeTransferItemProvider == null)
 		{
-			setCompositeBufferFlushModeItemProvider = new SetCompositeBufferFlushModeItemProvider(this);
+			prepareCompositeTransferItemProvider = new PrepareCompositeTransferItemProvider(this);
 		}
 
-		return setCompositeBufferFlushModeItemProvider;
+		return prepareCompositeTransferItemProvider;
 	}
 
 	/**
@@ -524,7 +524,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 		if (flushTransferBufferTaskItemProvider != null) flushTransferBufferTaskItemProvider.dispose();
 		if (copyBufferTaskItemProvider != null) copyBufferTaskItemProvider.dispose();
 		if (processExtensionPkgItemProvider != null) processExtensionPkgItemProvider.dispose();
-		if (setCompositeBufferFlushModeItemProvider != null) setCompositeBufferFlushModeItemProvider.dispose();
+		if (prepareCompositeTransferItemProvider != null) prepareCompositeTransferItemProvider.dispose();
 	}
 
 }

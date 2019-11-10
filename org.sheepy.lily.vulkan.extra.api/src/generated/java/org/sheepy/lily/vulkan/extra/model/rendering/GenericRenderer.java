@@ -5,6 +5,7 @@ package org.sheepy.lily.vulkan.extra.model.rendering;
 import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 
+import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
@@ -25,6 +26,7 @@ import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getTransferBuffer <em>Transfer Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getCommonResourceProvider <em>Common Resource Provider</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getSpecialization <em>Specialization</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getFlushTransferBufferTask <em>Flush Transfer Buffer Task</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getGenericRenderer()
@@ -153,5 +155,27 @@ public interface GenericRenderer<T extends Structure> extends GraphicsPipeline, 
 	 * @generated
 	 */
 	void setSpecialization(ISpecialization value);
+
+	/**
+	 * Returns the value of the '<em><b>Flush Transfer Buffer Task</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Flush Transfer Buffer Task</em>' reference.
+	 * @see #setFlushTransferBufferTask(FlushTransferBufferTask)
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getGenericRenderer_FlushTransferBufferTask()
+	 * @model required="true"
+	 * @generated
+	 */
+	FlushTransferBufferTask getFlushTransferBufferTask();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getFlushTransferBufferTask <em>Flush Transfer Buffer Task</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Flush Transfer Buffer Task</em>' reference.
+	 * @see #getFlushTransferBufferTask()
+	 * @generated
+	 */
+	void setFlushTransferBufferTask(FlushTransferBufferTask value);
 
 } // GenericRenderer

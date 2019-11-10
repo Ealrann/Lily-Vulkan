@@ -95,7 +95,7 @@ public class CompositeBufferBarrierImpl extends AbstractBufferBarrierImpl implem
 	@Override
 	public void setInstance(int newInstance)
 	{
-		final int oldInstance = instance;
+		int oldInstance = instance;
 		instance = newInstance;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_BUFFER_BARRIER__INSTANCE, oldInstance, instance));
@@ -111,7 +111,7 @@ public class CompositeBufferBarrierImpl extends AbstractBufferBarrierImpl implem
 	{
 		if (dataProvider != null && ((EObject)dataProvider).eIsProxy())
 		{
-			final InternalEObject oldDataProvider = (InternalEObject)dataProvider;
+			InternalEObject oldDataProvider = (InternalEObject)dataProvider;
 			dataProvider = (BufferDataProvider<?>)eResolveProxy(oldDataProvider);
 			if (dataProvider != oldDataProvider)
 			{
@@ -140,7 +140,7 @@ public class CompositeBufferBarrierImpl extends AbstractBufferBarrierImpl implem
 	@Override
 	public void setDataProvider(BufferDataProvider<?> newDataProvider)
 	{
-		final BufferDataProvider<?> oldDataProvider = dataProvider;
+		BufferDataProvider<?> oldDataProvider = dataProvider;
 		dataProvider = newDataProvider;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_BUFFER_BARRIER__DATA_PROVIDER, oldDataProvider, dataProvider));
@@ -233,7 +233,7 @@ public class CompositeBufferBarrierImpl extends AbstractBufferBarrierImpl implem
 	{
 		if (eIsProxy()) return super.toString();
 
-		final StringBuilder result = new StringBuilder(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (instance: ");
 		result.append(instance);
 		result.append(')');

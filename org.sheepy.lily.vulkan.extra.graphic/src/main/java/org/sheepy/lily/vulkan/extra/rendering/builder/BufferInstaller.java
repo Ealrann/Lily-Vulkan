@@ -1,15 +1,19 @@
 package org.sheepy.lily.vulkan.extra.rendering.builder;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
+import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
+import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 
 public final class BufferInstaller<T extends Structure>
@@ -99,6 +103,18 @@ public final class BufferInstaller<T extends Structure>
 		}
 
 		buffer.setTransferBuffer(maintainer.getTransferBuffer());
+
+		final var flushTransferTask = maintainer.getFlushTransferBufferTask();
+		final var prepareTranferTask = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
+		prepareTranferTask.setCompositeBuffer(buffer);
+		prepareTranferTask.setMode(EFlushMode.PUSH);
+		prepareTranferTask.setStage(flushTransferTask.getStage());
+
+		@SuppressWarnings("unchecked")
+		final var containingList = (List<IPipelineTask>) flushTransferTask	.eContainer()
+																			.eGet(flushTransferTask.eContainingFeature());
+		final int index = containingList.indexOf(flushTransferTask);
+		containingList.add(index, prepareTranferTask);
 
 		return buffer;
 	}

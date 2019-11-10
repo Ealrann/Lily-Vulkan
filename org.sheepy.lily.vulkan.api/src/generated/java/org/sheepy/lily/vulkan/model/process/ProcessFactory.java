@@ -113,13 +113,13 @@ public interface ProcessFactory extends EFactory
 	ProcessExtensionPkg createProcessExtensionPkg();
 
 	/**
-	 * Returns a new object of class '<em>Set Composite Buffer Flush Mode</em>'.
+	 * Returns a new object of class '<em>Prepare Composite Transfer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Set Composite Buffer Flush Mode</em>'.
+	 * @return a new object of class '<em>Prepare Composite Transfer</em>'.
 	 * @generated
 	 */
-	SetCompositeBufferFlushMode createSetCompositeBufferFlushMode();
+	PrepareCompositeTransfer createPrepareCompositeTransfer();
 
 	/**
 	 * Returns the package supported by this factory.

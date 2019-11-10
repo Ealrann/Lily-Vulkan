@@ -171,9 +171,9 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 				return createProcessExtensionPkgAdapter();
 			}
 			@Override
-			public Adapter caseSetCompositeBufferFlushMode(SetCompositeBufferFlushMode object)
+			public Adapter casePrepareCompositeTransfer(PrepareCompositeTransfer object)
 			{
-				return createSetCompositeBufferFlushModeAdapter();
+				return createPrepareCompositeTransferAdapter();
 			}
 			@Override
 			public Adapter caseIResourceContainer(IResourceContainer object)
@@ -487,16 +487,16 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode <em>Set Composite Buffer Flush Mode</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer <em>Prepare Composite Transfer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode
+	 * @see org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer
 	 * @generated
 	 */
-	public Adapter createSetCompositeBufferFlushModeAdapter()
+	public Adapter createPrepareCompositeTransferAdapter()
 	{
 		return null;
 	}

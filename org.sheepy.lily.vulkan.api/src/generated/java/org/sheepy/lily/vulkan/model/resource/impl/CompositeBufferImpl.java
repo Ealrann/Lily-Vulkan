@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
-import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 
@@ -35,7 +34,6 @@ import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getTransferBuffer <em>Transfer Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getMinSize <em>Min Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getGrowFactor <em>Grow Factor</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getMode <em>Mode</em>}</li>
  * </ul>
  *
  * @generated
@@ -121,26 +119,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 	 * @ordered
 	 */
 	protected float growFactor = GROW_FACTOR_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMode()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EFlushMode MODE_EDEFAULT = EFlushMode.PUSH;
-
-	/**
-	 * The cached value of the '{@link #getMode() <em>Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMode()
-	 * @generated
-	 * @ordered
-	 */
-	protected EFlushMode mode = MODE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -304,31 +282,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 	 * @generated
 	 */
 	@Override
-	public EFlushMode getMode()
-	{
-		return mode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setMode(EFlushMode newMode)
-	{
-		EFlushMode oldMode = mode;
-		mode = newMode == null ? MODE_EDEFAULT : newMode;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_BUFFER__MODE, oldMode, mode));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -360,8 +313,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 				return getMinSize();
 			case ResourcePackage.COMPOSITE_BUFFER__GROW_FACTOR:
 				return getGrowFactor();
-			case ResourcePackage.COMPOSITE_BUFFER__MODE:
-				return getMode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -393,9 +344,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 			case ResourcePackage.COMPOSITE_BUFFER__GROW_FACTOR:
 				setGrowFactor((Float)newValue);
 				return;
-			case ResourcePackage.COMPOSITE_BUFFER__MODE:
-				setMode((EFlushMode)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -425,9 +373,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 			case ResourcePackage.COMPOSITE_BUFFER__GROW_FACTOR:
 				setGrowFactor(GROW_FACTOR_EDEFAULT);
 				return;
-			case ResourcePackage.COMPOSITE_BUFFER__MODE:
-				setMode(MODE_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -452,8 +397,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 				return minSize != MIN_SIZE_EDEFAULT;
 			case ResourcePackage.COMPOSITE_BUFFER__GROW_FACTOR:
 				return growFactor != GROW_FACTOR_EDEFAULT;
-			case ResourcePackage.COMPOSITE_BUFFER__MODE:
-				return mode != MODE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -475,8 +418,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 		result.append(minSize);
 		result.append(", growFactor: ");
 		result.append(growFactor);
-		result.append(", mode: ");
-		result.append(mode);
 		result.append(')');
 		return result.toString();
 	}

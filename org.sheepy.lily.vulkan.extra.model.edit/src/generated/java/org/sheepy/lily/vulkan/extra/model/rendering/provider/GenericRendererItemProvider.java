@@ -57,6 +57,7 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 			addRenderedStructuresPropertyDescriptor(object);
 			addConstantBufferPropertyDescriptor(object);
 			addTransferBufferPropertyDescriptor(object);
+			addFlushTransferBufferTaskPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -122,6 +123,29 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 				 getString("_UI_GenericRenderer_transferBuffer_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_GenericRenderer_transferBuffer_feature", "_UI_GenericRenderer_type"),
 				 RenderingPackage.Literals.GENERIC_RENDERER__TRANSFER_BUFFER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Flush Transfer Buffer Task feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFlushTransferBufferTaskPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenericRenderer_flushTransferBufferTask_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenericRenderer_flushTransferBufferTask_feature", "_UI_GenericRenderer_type"),
+				 RenderingPackage.Literals.GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK,
 				 true,
 				 false,
 				 true,

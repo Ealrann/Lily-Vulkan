@@ -27,7 +27,6 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 	private final Deque<IDataFlowCommand> unsynchronizedCommands = new ArrayDeque<>();
 	private final long capacity;
 	private final MemorySpaceManager spaceManager;
-	private final List<FlushListener> flushListeners = new ArrayList<>();
 
 	private boolean containingPushCommand = false;
 	private boolean containingFetchCommand = false;
@@ -139,12 +138,6 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 	}
 
 	@Override
-	public void prepare()
-	{
-		firePreFlush();
-	}
-
-	@Override
 	public void flushCommands(RecordContext context)
 	{
 		final var logicalDevice = executionContext.getLogicalDevice();
@@ -152,46 +145,52 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 
 		try (final MemoryStack stack = MemoryStack.stackPush())
 		{
+			final int instance = bufferBackend.getCurrentInstance();
 			if (containingPushCommand)
 			{
-				bufferBackend.flush(stack, logicalDevice);
+				bufferBackend.flush(stack, logicalDevice, instance);
 			}
 			bufferBackend.nextInstance();
 
+			if (containingFetchCommand)
+			{
+				context.addListener(() -> invalidate(instance));
+			}
+
 			while (synchronizedCommands.isEmpty() == false)
 			{
-				synchronizedCommands.pop().execute(stack, commandBuffer);
+				final var command = synchronizedCommands.pop();
+				command.execute(stack, commandBuffer);
+				final var postAction = command.getPostAction();
+				if (postAction != null)
+				{
+					context.addListener(() -> postAction.accept(command.getMemoryTicket()));
+				}
 			}
 
 			if (unsynchronizedCommands.isEmpty() == false)
 			{
 				executionContext.execute((ctx, subCommandBuffer) ->
 				{
-					for (final var command : unsynchronizedCommands)
+					while (unsynchronizedCommands.isEmpty() == false)
 					{
+						final var command = unsynchronizedCommands.pop();
 						command.execute(stack, subCommandBuffer);
 					}
 				});
 			}
-
-			if (containingFetchCommand)
-			{
-				bufferBackend.invalidate(stack, logicalDevice);
-			}
-
-			if (unsynchronizedCommands.isEmpty() == false)
-			{
-				context.addListener(() -> bufferBackend.invalidate(logicalDevice));
-				while (unsynchronizedCommands.isEmpty() == false)
-				{
-					final var command = unsynchronizedCommands.pop();
-					context.addListener(() -> command	.getPostAction()
-														.accept(command.getMemoryTicket()));
-				}
-			}
 		}
 
 		clear();
+	}
+
+	private void invalidate(int instance)
+	{
+		final var logicalDevice = executionContext.getLogicalDevice();
+		try (final MemoryStack stack = MemoryStack.stackPush())
+		{
+			bufferBackend.invalidate(stack, logicalDevice, instance);
+		}
 	}
 
 	private void clear()
@@ -207,27 +206,6 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 		spaceManager.clear();
 
 		tickets.clear();
-	}
-
-	@Override
-	public void addListener(FlushListener l)
-	{
-		flushListeners.add(l);
-	}
-
-	@Override
-	public void removeListener(FlushListener l)
-	{
-		flushListeners.remove(l);
-	}
-
-	private void firePreFlush()
-	{
-		for (int i = 0; i < flushListeners.size(); i++)
-		{
-			final var flushListener = flushListeners.get(i);
-			flushListener.preFlush();
-		}
 	}
 
 	private static MemoryTicket newFailTicket(EReservationStatus failure)

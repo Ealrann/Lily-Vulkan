@@ -13,30 +13,30 @@ import org.sheepy.vulkan.resource.buffer.BufferUtils;
 import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
 import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket;
 
-public final class PipelinePushCommand implements IDataFlowCommand
+public final class PipelineFetchCommand implements IDataFlowCommand
 {
 	private final MemoryTicket ticket;
-	private final long trgBuffer;
-	private final long trgOffset;
+	private final long srcBuffer;
+	private final long srcOffset;
 	private final Consumer<MemoryTicket> transferDone;
 	private final EPipelineStage srcStage;
 	private final int srcAccess;
 
-	public PipelinePushCommand(	MemoryTicket ticket,
-								long trgBuffer,
-								long trgOffset,
+	public PipelineFetchCommand(MemoryTicket ticket,
+								long srcBuffer,
+								long srcOffset,
 								EPipelineStage srcStage,
 								int srcAccess,
 								Consumer<MemoryTicket> transferDone)
 	{
 		assert srcStage != null;
-		assert trgBuffer > 0;
-		assert trgOffset >= 0;
+		assert srcBuffer > 0;
+		assert srcOffset >= 0;
 		assert ticket != null;
 
 		this.ticket = ticket;
-		this.trgBuffer = trgBuffer;
-		this.trgOffset = trgOffset;
+		this.srcBuffer = srcBuffer;
+		this.srcOffset = srcOffset;
 		this.srcStage = srcStage;
 		this.srcAccess = srcAccess;
 		this.transferDone = transferDone;
@@ -45,8 +45,8 @@ public final class PipelinePushCommand implements IDataFlowCommand
 	@Override
 	public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
 	{
-		final var srcBuffer = ticket.getBufferPtr();
-		final var srcoffset = ticket.getBufferOffset();
+		final var trgBuffer = ticket.getBufferPtr();
+		final var trgOffset = ticket.getBufferOffset();
 		final var size = ticket.getSize();
 
 		// Submission guarantees the host write being complete, as per
@@ -58,15 +58,21 @@ public final class PipelinePushCommand implements IDataFlowCommand
 
 		final var barrierInfo = VkBufferMemoryBarrier.callocStack(1, stack);
 		barrierInfo.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
-		barrierInfo.buffer(trgBuffer);
-		barrierInfo.offset(trgOffset);
+		barrierInfo.buffer(srcBuffer);
+		barrierInfo.offset(srcOffset);
 		barrierInfo.size(size);
 		barrierInfo.srcAccessMask(srcAccess);
-		barrierInfo.dstAccessMask(EAccess.TRANSFER_WRITE_BIT_VALUE);
+		barrierInfo.dstAccessMask(EAccess.TRANSFER_READ_BIT_VALUE);
 
 		vkCmdPipelineBarrier(commandBuffer, srcStageVal, dstStageVal, 0, null, barrierInfo, null);
 
-		BufferUtils.copyBuffer(stack, commandBuffer, srcBuffer, srcoffset, trgBuffer, trgOffset, size);
+		BufferUtils.copyBuffer(	stack,
+								commandBuffer,
+								srcBuffer,
+								srcOffset,
+								trgBuffer,
+								trgOffset,
+								size);
 	}
 
 	@Override
@@ -84,7 +90,7 @@ public final class PipelinePushCommand implements IDataFlowCommand
 	@Override
 	public EFlowType getFlowType()
 	{
-		return EFlowType.PUSH;
+		return EFlowType.FETCH;
 	}
 
 	@Override

@@ -1,7 +1,5 @@
 package org.sheepy.vulkan.resource.staging;
 
-import java.util.EventListener;
-
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.resource.staging.memory.MemorySpaceManager.MemorySpace;
 
@@ -13,17 +11,7 @@ public interface ITransferBuffer
 	void addTransferCommand(IDataFlowCommand command);
 	boolean isEmpty();
 
-	void prepare();
 	void flushCommands(RecordContext context);
-
-	void addListener(FlushListener listener);
-	void removeListener(FlushListener listener);
-
-	@FunctionalInterface
-	static interface FlushListener extends EventListener
-	{
-		void preFlush();
-	}
 
 	static final class MemoryTicket
 	{

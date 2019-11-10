@@ -12,31 +12,33 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 
+import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode;
 
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
+
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Set Composite Buffer Flush Mode</b></em>'.
+ * An implementation of the model object '<em><b>Prepare Composite Transfer</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl#getCompositeBuffer <em>Composite Buffer</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl#getMode <em>Mode</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.SetCompositeBufferFlushModeImpl#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getCompositeBuffer <em>Composite Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getMode <em>Mode</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getInstance <em>Instance</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetCompositeBufferFlushMode
+public class PrepareCompositeTransferImpl extends LilyEObject implements PrepareCompositeTransfer
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -138,11 +140,31 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 	protected boolean stageESet;
 
 	/**
+	 * The default value of the '{@link #getInstance() <em>Instance</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstance()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int INSTANCE_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getInstance() <em>Instance</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstance()
+	 * @generated
+	 * @ordered
+	 */
+	protected int instance = INSTANCE_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SetCompositeBufferFlushModeImpl()
+	protected PrepareCompositeTransferImpl()
 	{
 		super();
 	}
@@ -155,7 +177,7 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ProcessPackage.Literals.SET_COMPOSITE_BUFFER_FLUSH_MODE;
+		return ProcessPackage.Literals.PREPARE_COMPOSITE_TRANSFER;
 	}
 
 	/**
@@ -180,7 +202,7 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__NAME, oldName, name));
 	}
 
 	/**
@@ -205,7 +227,7 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__ENABLED, oldEnabled, enabled));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -223,7 +245,7 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 			if (compositeBuffer != oldCompositeBuffer)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER, oldCompositeBuffer, compositeBuffer));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__COMPOSITE_BUFFER, oldCompositeBuffer, compositeBuffer));
 			}
 		}
 		return compositeBuffer;
@@ -250,7 +272,7 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 		CompositeBuffer oldCompositeBuffer = compositeBuffer;
 		compositeBuffer = newCompositeBuffer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER, oldCompositeBuffer, compositeBuffer));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__COMPOSITE_BUFFER, oldCompositeBuffer, compositeBuffer));
 	}
 
 	/**
@@ -275,7 +297,7 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 		EFlushMode oldMode = mode;
 		mode = newMode == null ? MODE_EDEFAULT : newMode;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE, oldMode, mode));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__MODE, oldMode, mode));
 	}
 
 	/**
@@ -302,7 +324,7 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 		boolean oldStageESet = stageESet;
 		stageESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE, oldStage, stage, !oldStageESet));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE, oldStage, stage, !oldStageESet));
 	}
 
 	/**
@@ -318,7 +340,7 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 		stage = STAGE_EDEFAULT;
 		stageESet = false;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE, oldStage, STAGE_EDEFAULT, oldStageESet));
+			eNotify(new ENotificationImpl(this, Notification.UNSET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE, oldStage, STAGE_EDEFAULT, oldStageESet));
 	}
 
 	/**
@@ -338,21 +360,48 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 	 * @generated
 	 */
 	@Override
+	public int getInstance()
+	{
+		return instance;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setInstance(int newInstance)
+	{
+		int oldInstance = instance;
+		instance = newInstance;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE, oldInstance, instance));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__NAME:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__NAME:
 				return getName();
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__ENABLED:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__ENABLED:
 				return isEnabled();
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__COMPOSITE_BUFFER:
 				if (resolve) return getCompositeBuffer();
 				return basicGetCompositeBuffer();
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__MODE:
 				return getMode();
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
 				return getStage();
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE:
+				return getInstance();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -367,20 +416,23 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__NAME:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__NAME:
 				setName((String)newValue);
 				return;
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__ENABLED:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__ENABLED:
 				setEnabled((Boolean)newValue);
 				return;
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__COMPOSITE_BUFFER:
 				setCompositeBuffer((CompositeBuffer)newValue);
 				return;
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__MODE:
 				setMode((EFlushMode)newValue);
 				return;
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
 				setStage((ECommandStage)newValue);
+				return;
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE:
+				setInstance((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -396,20 +448,23 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__NAME:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__ENABLED:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__COMPOSITE_BUFFER:
 				setCompositeBuffer((CompositeBuffer)null);
 				return;
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__MODE:
 				setMode(MODE_EDEFAULT);
 				return;
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
 				unsetStage();
+				return;
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE:
+				setInstance(INSTANCE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -425,16 +480,18 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__NAME:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__ENABLED:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__COMPOSITE_BUFFER:
 				return compositeBuffer != null;
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__MODE:
 				return mode != MODE_EDEFAULT;
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
 				return isSetStage();
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE:
+				return instance != INSTANCE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -458,8 +515,10 @@ public class SetCompositeBufferFlushModeImpl extends LilyEObject implements SetC
 		result.append(mode);
 		result.append(", stage: ");
 		if (stageESet) result.append(stage); else result.append("<unset>");
+		result.append(", instance: ");
+		result.append(instance);
 		result.append(')');
 		return result.toString();
 	}
 
-} //SetCompositeBufferFlushModeImpl
+} //PrepareCompositeTransferImpl

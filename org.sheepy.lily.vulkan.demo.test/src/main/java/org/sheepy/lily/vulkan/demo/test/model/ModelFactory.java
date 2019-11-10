@@ -10,7 +10,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 public class ModelFactory
@@ -48,10 +48,6 @@ public class ModelFactory
 		final var resourceList = resourcePkg.getResources();
 		resourceList.add(resourceContainer.transferBuffer);
 		resourceList.add(resourceContainer.compositeBuffer);
-		for (int i = 0; i < BUFFER_COUNT; i++)
-		{
-			resourceList.add(resourceContainer.targetBuffers.get(i));
-		}
 
 		process.setResetAllowed(true);
 
@@ -60,28 +56,29 @@ public class ModelFactory
 
 	private static ComputePipeline createPipeline(ResourceContainer resourceContainer)
 	{
-		final var flushTask = ProcessFactory.eINSTANCE.createFlushTransferBufferTask();
-		flushTask.setTransferBuffer(resourceContainer.transferBuffer);
+		final var pushTask = ProcessFactory.eINSTANCE.createFlushTransferBufferTask();
+		pushTask.setTransferBuffer(resourceContainer.transferBuffer);
+		pushTask.setStage(ECommandStage.TRANSFER);
+		final var fetchTask = ProcessFactory.eINSTANCE.createFlushTransferBufferTask();
+		fetchTask.setTransferBuffer(resourceContainer.transferBuffer);
+		fetchTask.setStage(ECommandStage.TRANSFER);
+		final var preparePush = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
+		preparePush.setMode(EFlushMode.PUSH);
+		preparePush.setCompositeBuffer(resourceContainer.compositeBuffer);
+		preparePush.setStage(ECommandStage.TRANSFER);
+		final var prepareFetch = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
+		prepareFetch.setMode(EFlushMode.FETCH);
+		prepareFetch.setCompositeBuffer(resourceContainer.compositeBuffer);
+		prepareFetch.setStage(ECommandStage.TRANSFER);
 
 		final var res = ComputeFactory.eINSTANCE.createComputePipeline();
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 		res.setTaskPkg(taskPkg);
-		taskPkg.getTasks().add(flushTask);
 
-		for (int i = 0; i < BUFFER_COUNT; i++)
-		{
-			final var copyTask = ProcessFactory.eINSTANCE.createCopyBufferTask();
-			final var srcBuffer = ResourceFactory.eINSTANCE.createCompositeBufferReference();
-			srcBuffer.setBuffer(resourceContainer.compositeBuffer);
-			srcBuffer.setPart(i);
-
-			final var dstBuffer = ResourceFactory.eINSTANCE.createBufferReference();
-			dstBuffer.setBuffer(resourceContainer.targetBuffers.get(i));
-			copyTask.setSrcBuffer(srcBuffer);
-			copyTask.setDstBuffer(dstBuffer);
-
-			taskPkg.getTasks().add(copyTask);
-		}
+		taskPkg.getTasks().add(preparePush);
+		taskPkg.getTasks().add(pushTask);
+		taskPkg.getTasks().add(prepareFetch);
+		taskPkg.getTasks().add(fetchTask);
 
 		res.setStage(ECommandStage.TRANSFER);
 

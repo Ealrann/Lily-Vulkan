@@ -38,6 +38,7 @@ public final class DataProviderWrapper extends NotifierAdapter
 	private final List<VkBufferDescriptor> descriptors;
 	private final INotificationListener firstDescriptorListener = n -> updateDescriptors();
 	private final int accessBeforePush;
+	private final int accessBeforeFetch;
 
 	private long alignment;
 
@@ -58,9 +59,7 @@ public final class DataProviderWrapper extends NotifierAdapter
 		usage = computeUsage(dataProvider);
 
 		accessBeforePush = VkModelUtil.getEnumeratedFlag(dataProvider.getAccessBeforePush());
-
-		// access = guessAccessFromUsage(usage);
-		// stage = guessStageFromUsage(usage);
+		accessBeforeFetch = VkModelUtil.getEnumeratedFlag(dataProvider.getAccessBeforeFetch());
 		descriptors = createDescriptors(dataProvider);
 	}
 
@@ -182,13 +181,13 @@ public final class DataProviderWrapper extends NotifierAdapter
 		transferBuffer.releaseTicket(memTicket);
 	}
 
-	public void pushProvidedData()
+	public void pushProvidedData(int instance)
 	{
 		assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
 
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
 		adapter.fill(memTicket.getMemoryPtr(), (int) memTicket.getSize());
-		final long instanceOffset = getCurrentOffset();
+		final long instanceOffset = getInstanceOffset(instance);
 		final var stage = dataProvider.getStageBeforePush();
 
 		final var pushCommand = IDataFlowCommand.newPipelinePushCommand(memTicket,
@@ -212,26 +211,24 @@ public final class DataProviderWrapper extends NotifierAdapter
 		needPush = false;
 	}
 
-	private long getCurrentOffset()
-	{
-		return offset + (instanceSize * dataProvider.getInstance());
-	}
-
-	public void fetchDeviceData()
+	public void fetchDeviceData(int instance)
 	{
 		assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
 
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
 		final Consumer<MemoryTicket> transferDone = ticket -> adapter.fetch(memTicket.getMemoryPtr(),
 																			(int) memTicket.getSize());
-		final long instanceOffset = getCurrentOffset();
+		final long instanceOffset = getInstanceOffset(instance);
+		final var stage = dataProvider.getStageBeforeFetch();
 
-		final var pushCommand = IDataFlowCommand.newPipelineFetchCommand(	memTicket,
+		final var fetchCommand = IDataFlowCommand.newPipelineFetchCommand(	memTicket,
 																			bufferPtr,
 																			instanceOffset,
+																			stage,
+																			accessBeforeFetch,
 																			transferDone);
 
-		transferBuffer.addTransferCommand(pushCommand);
+		transferBuffer.addTransferCommand(fetchCommand);
 	}
 
 	public boolean hasChanged()

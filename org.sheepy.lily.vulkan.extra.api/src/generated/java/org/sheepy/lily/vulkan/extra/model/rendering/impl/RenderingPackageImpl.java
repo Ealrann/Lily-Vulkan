@@ -595,6 +595,17 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
+	public EReference getGenericRenderer_FlushTransferBufferTask()
+	{
+		return (EReference)genericRendererEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getRenderDataProvider()
 	{
 		return renderDataProviderEClass;
@@ -861,6 +872,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		createEReference(genericRendererEClass, GENERIC_RENDERER__TRANSFER_BUFFER);
 		createEReference(genericRendererEClass, GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER);
 		createEReference(genericRendererEClass, GENERIC_RENDERER__SPECIALIZATION);
+		createEReference(genericRendererEClass, GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK);
 
 		renderDataProviderEClass = createEClass(RENDER_DATA_PROVIDER);
 
@@ -922,6 +934,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		GraphicPackage theGraphicPackage = (GraphicPackage)EPackage.Registry.INSTANCE.getEPackage(GraphicPackage.eNS_URI);
 		MaintainerPackage theMaintainerPackage = (MaintainerPackage)EPackage.Registry.INSTANCE.getEPackage(MaintainerPackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 
 		// Create type parameters
@@ -1024,6 +1037,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEReference(getGenericRenderer_TransferBuffer(), theResourcePackage.getTransferBuffer(), null, "transferBuffer", null, 1, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGenericRenderer_CommonResourceProvider(), this.getResourceProvider(), null, "commonResourceProvider", null, 0, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGenericRenderer_Specialization(), this.getISpecialization(), null, "specialization", null, 0, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenericRenderer_FlushTransferBufferTask(), theProcessPackage.getFlushTransferBufferTask(), null, "flushTransferBufferTask", null, 1, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(renderDataProviderEClass, RenderDataProvider.class, "RenderDataProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

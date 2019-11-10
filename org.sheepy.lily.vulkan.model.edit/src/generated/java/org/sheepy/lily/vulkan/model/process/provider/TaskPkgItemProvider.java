@@ -188,7 +188,7 @@ public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditing
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.TASK_PKG__TASKS,
-				 ProcessFactory.eINSTANCE.createSetCompositeBufferFlushMode()));
+				 ProcessFactory.eINSTANCE.createPrepareCompositeTransfer()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -22,7 +22,7 @@ public class CompositeBufferBarrierAdapter implements IBufferBarrierAdapter
 	{
 		final var bufferBarrier = (CompositeBufferBarrier) barrier;
 		final var dataProvider = bufferBarrier.getDataProvider();
-		final int instance = dataProvider.getInstance();
+		final int instance = bufferBarrier.getInstance();
 		final var adapter = dataProvider.adapt(IDataProviderAlignmentAdapter.class);
 		final long ptr = adapter.getBufferPtr();
 		final long size = adapter.getInstanceSize();

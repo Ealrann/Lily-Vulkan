@@ -8,6 +8,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket;
 import org.sheepy.vulkan.resource.staging.command.ImmediateFetchCommand;
 import org.sheepy.vulkan.resource.staging.command.ImmediatePushCommand;
+import org.sheepy.vulkan.resource.staging.command.PipelineFetchCommand;
 import org.sheepy.vulkan.resource.staging.command.PipelinePushCommand;
 
 public interface IDataFlowCommand
@@ -30,10 +31,10 @@ public interface IDataFlowCommand
 	static IDataFlowCommand newPipelinePushCommand(	MemoryTicket ticket,
 													long trgBuffer,
 													long trgOffset,
-													EPipelineStage dstStage,
-													int dstAccess)
+													EPipelineStage srcStage,
+													int srcAccess)
 	{
-		return new PipelinePushCommand(ticket, trgBuffer, trgOffset, dstStage, dstAccess, null);
+		return new PipelinePushCommand(ticket, trgBuffer, trgOffset, srcStage, srcAccess, null);
 	}
 
 	static IDataFlowCommand newImmediateFetchCommand(	MemoryTicket ticket,
@@ -46,9 +47,16 @@ public interface IDataFlowCommand
 	static IDataFlowCommand newPipelineFetchCommand(MemoryTicket ticket,
 													long srcBuffer,
 													long srcOffset,
+													EPipelineStage srcStage,
+													int srcAccess,
 													Consumer<MemoryTicket> transferDone)
 	{
-		return new ImmediateFetchCommand(ticket, srcBuffer, srcOffset, transferDone);
+		return new PipelineFetchCommand(ticket,
+										srcBuffer,
+										srcOffset,
+										srcStage,
+										srcAccess,
+										transferDone);
 	}
 
 	static enum EFlowType

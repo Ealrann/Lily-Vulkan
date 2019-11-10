@@ -26,7 +26,7 @@ import org.sheepy.vulkan.log.Logger;
 public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 {
 	private static final String FENCE_TIMEOUT = "Fence timeout";
-	private static final int TIMEOUT = (int) 1e8;
+	private static final int TIMEOUT = (int) 1e9;
 	private static final String FAILED_SUBMIT = "Failed to submit command buffer";
 
 	protected final ICommandBuffer<? super T> commandBuffer;
@@ -150,9 +150,9 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 	@Override
 	public void checkFence()
 	{
-//		if (fence.isUsed() && fence.isSignaled())
+		if (fence.isUsed() && fence.isSignaled())
 		{
-//			resetFence();
+			resetFence();
 		}
 	}
 

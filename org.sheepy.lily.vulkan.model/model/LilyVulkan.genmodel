@@ -105,10 +105,11 @@
     <genClasses ecoreClass="process.ecore#//ProcessExtensionPkg">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//ProcessExtensionPkg/extensions"/>
     </genClasses>
-    <genClasses ecoreClass="process.ecore#//SetCompositeBufferFlushMode">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//SetCompositeBufferFlushMode/compositeBuffer"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//SetCompositeBufferFlushMode/mode"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//SetCompositeBufferFlushMode/stage"/>
+    <genClasses ecoreClass="process.ecore#//PrepareCompositeTransfer">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//PrepareCompositeTransfer/compositeBuffer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PrepareCompositeTransfer/mode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PrepareCompositeTransfer/stage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PrepareCompositeTransfer/instance"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Vulkan" basePackage="org.sheepy.lily.vulkan" resource="XMI"
@@ -176,7 +177,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/transferBuffer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBuffer/minSize"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBuffer/growFactor"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBuffer/mode"/>
     </genClasses>
     <genClasses image="false" ecoreClass="resource.ecore#//IBufferReference"/>
     <genClasses ecoreClass="resource.ecore#//BufferReference">
@@ -193,7 +193,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usage"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/instanceCount"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EReference resource.ecore#//BufferDataProvider/dataSource"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/instance"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/firstDescriptor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usedToPush"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usedToFetch"/>

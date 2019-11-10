@@ -507,22 +507,13 @@ public interface ResourcePackage extends EPackage
 	int COMPOSITE_BUFFER__GROW_FACTOR = DESCRIPTED_RESOURCE_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Mode</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_BUFFER__MODE = DESCRIPTED_RESOURCE_FEATURE_COUNT + 4;
-
-	/**
 	 * The number of structural features of the '<em>Composite Buffer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_BUFFER_FEATURE_COUNT = DESCRIPTED_RESOURCE_FEATURE_COUNT + 5;
+	int COMPOSITE_BUFFER_FEATURE_COUNT = DESCRIPTED_RESOURCE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Composite Buffer</em>' class.
@@ -709,22 +700,13 @@ public interface ResourcePackage extends EPackage
 	int BUFFER_DATA_PROVIDER__DATA_SOURCE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Instance</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_DATA_PROVIDER__INSTANCE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>First Descriptor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 4;
+	int BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
@@ -733,7 +715,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__USED_TO_PUSH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 5;
+	int BUFFER_DATA_PROVIDER__USED_TO_PUSH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Used To Fetch</b></em>' attribute.
@@ -742,7 +724,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__USED_TO_FETCH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 6;
+	int BUFFER_DATA_PROVIDER__USED_TO_FETCH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Stage Before Push</b></em>' attribute.
@@ -751,7 +733,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 7;
+	int BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Access Before Push</b></em>' attribute list.
@@ -760,7 +742,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 8;
+	int BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Stage Before Fetch</b></em>' attribute.
@@ -769,7 +751,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 9;
+	int BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Access Before Fetch</b></em>' attribute list.
@@ -778,7 +760,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 10;
+	int BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of structural features of the '<em>Buffer Data Provider</em>' class.
@@ -787,7 +769,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 11;
+	int BUFFER_DATA_PROVIDER_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>Buffer Data Provider</em>' class.
@@ -843,15 +825,6 @@ public interface ResourcePackage extends EPackage
 	 * @ordered
 	 */
 	int DESCRIBED_DATA_PROVIDER__DATA_SOURCE = BUFFER_DATA_PROVIDER__DATA_SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Instance</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIBED_DATA_PROVIDER__INSTANCE = BUFFER_DATA_PROVIDER__INSTANCE;
 
 	/**
 	 * The feature id for the '<em><b>First Descriptor</b></em>' attribute.
@@ -2548,17 +2521,6 @@ public interface ResourcePackage extends EPackage
 	EAttribute getCompositeBuffer_GrowFactor();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getMode <em>Mode</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Mode</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getMode()
-	 * @see #getCompositeBuffer()
-	 * @generated
-	 */
-	EAttribute getCompositeBuffer_Mode();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.IBufferReference <em>IBuffer Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2685,17 +2647,6 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EReference getBufferDataProvider_DataSource();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getInstance <em>Instance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Instance</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getInstance()
-	 * @see #getBufferDataProvider()
-	 * @generated
-	 */
-	EAttribute getBufferDataProvider_Instance();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getFirstDescriptor <em>First Descriptor</em>}'.
@@ -3576,14 +3527,6 @@ public interface ResourcePackage extends EPackage
 		EAttribute COMPOSITE_BUFFER__GROW_FACTOR = eINSTANCE.getCompositeBuffer_GrowFactor();
 
 		/**
-		 * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMPOSITE_BUFFER__MODE = eINSTANCE.getCompositeBuffer_Mode();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.IBufferReference <em>IBuffer Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3686,14 +3629,6 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EReference BUFFER_DATA_PROVIDER__DATA_SOURCE = eINSTANCE.getBufferDataProvider_DataSource();
-
-		/**
-		 * The meta object literal for the '<em><b>Instance</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUFFER_DATA_PROVIDER__INSTANCE = eINSTANCE.getBufferDataProvider_Instance();
 
 		/**
 		 * The meta object literal for the '<em><b>First Descriptor</b></em>' attribute feature.

@@ -18,7 +18,6 @@ import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
 import org.sheepy.vulkan.resource.staging.ITransferBuffer;
-import org.sheepy.vulkan.resource.staging.ITransferBuffer.FlushListener;
 
 @Statefull
 @Adapter(scope = CompositeBuffer.class, lazy = false)
@@ -28,7 +27,6 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	private final List<IVkDescriptor> descriptors = new ArrayList<>();
 	private final CompositeBuffer compositeBuffer;
 	private final ITransferBuffer transferBuffer;
-	private final FlushListener flushListener = this::update;
 
 	private GPUBufferBackend oldBufferBackend;
 	private GPUBufferBackend bufferBackend;
@@ -59,8 +57,6 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 
 		refreshConfiguration(true);
 
-		transferBuffer.addListener(flushListener);
-
 		for (int i = 0; i < providerWrappers.size(); i++)
 		{
 			final var providerWrapper = providerWrappers.get(i);
@@ -69,6 +65,20 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		}
 
 		allocated = true;
+	}
+
+	@Override
+	public boolean needRecord()
+	{
+		for (final var wrapper : providerWrappers)
+		{
+			if (wrapper.hasChanged())
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	@Override
@@ -81,13 +91,11 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			oldBufferBackend = null;
 		}
 		bufferBackend.free(context);
-		transferBuffer.removeListener(flushListener);
 	}
 
-	private void update()
+	@Override
+	public void prepareFlush(EFlushMode mode, int instance)
 	{
-		final var mode = compositeBuffer.getMode();
-
 		if (mode == EFlushMode.PUSH)
 		{
 			refreshConfiguration(false);
@@ -116,11 +124,11 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			{
 				if (mode == EFlushMode.PUSH)
 				{
-					providerWrapper.pushProvidedData();
+					providerWrapper.pushProvidedData(instance);
 				}
 				else if (mode == EFlushMode.FETCH)
 				{
-					providerWrapper.fetchDeviceData();
+					providerWrapper.fetchDeviceData(instance);
 				}
 			}
 			else
@@ -241,7 +249,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		return bufferBackend.getMemoryAddress();
 	}
 
-	@Override
+	// @Override
 	public long getSize(int componentIndex)
 	{
 		return providerWrappers.get(componentIndex).getInstanceSize();

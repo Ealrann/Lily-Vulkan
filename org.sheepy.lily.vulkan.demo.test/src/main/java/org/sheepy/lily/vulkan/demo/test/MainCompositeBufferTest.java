@@ -4,8 +4,6 @@ import org.sheepy.lily.core.api.LilyLauncher;
 import org.sheepy.lily.core.api.cadence.IMainLoop;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
-import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
-import org.sheepy.lily.vulkan.demo.test.adapter.TestDataProviderAdapter;
 import org.sheepy.lily.vulkan.demo.test.model.ModelFactory;
 
 public class MainCompositeBufferTest
@@ -36,24 +34,10 @@ public class MainCompositeBufferTest
 			processAdapter.run();
 			processAdapter.waitIdle();
 
-			final var providers = factory.resourceContainer.compositeBuffer.getDataProviders();
-			final var targetBuffers = factory.resourceContainer.targetBuffers;
-			for (int i = 0; i < targetBuffers.size(); i++)
-			{
-				final var buffer = targetBuffers.get(i).adapt(IBufferAdapter.class);
-				final var provider = providers.get(i).adapt(TestDataProviderAdapter.class);
-
-				buffer.invalidate();
-				if (provider.check(buffer.mapMemory()) == false)
-				{
-					throw new AssertionError("Not valid !!");
-				}
-			}
-
 			count++;
 
-			// System.out.println("End step " + count);
-			if (count == 50)
+			// System.out.println("Step " + count);
+			if (count == 150)
 			{
 				factory.application.setRun(false);
 			}

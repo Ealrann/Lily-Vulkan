@@ -233,12 +233,12 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER:
 			{
-				SetCompositeBufferFlushMode setCompositeBufferFlushMode = (SetCompositeBufferFlushMode)theEObject;
-				T1 result = caseSetCompositeBufferFlushMode(setCompositeBufferFlushMode);
-				if (result == null) result = caseIPipelineTask(setCompositeBufferFlushMode);
-				if (result == null) result = caseLNamedElement(setCompositeBufferFlushMode);
+				PrepareCompositeTransfer prepareCompositeTransfer = (PrepareCompositeTransfer)theEObject;
+				T1 result = casePrepareCompositeTransfer(prepareCompositeTransfer);
+				if (result == null) result = caseIPipelineTask(prepareCompositeTransfer);
+				if (result == null) result = caseLNamedElement(prepareCompositeTransfer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -519,17 +519,17 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Set Composite Buffer Flush Mode</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Prepare Composite Transfer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Set Composite Buffer Flush Mode</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Prepare Composite Transfer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSetCompositeBufferFlushMode(SetCompositeBufferFlushMode object)
+	public T1 casePrepareCompositeTransfer(PrepareCompositeTransfer object)
 	{
 		return null;
 	}

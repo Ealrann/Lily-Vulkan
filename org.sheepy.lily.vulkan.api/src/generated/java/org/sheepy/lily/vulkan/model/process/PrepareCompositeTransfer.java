@@ -4,27 +4,29 @@ package org.sheepy.lily.vulkan.model.process;
 
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
+
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Set Composite Buffer Flush Mode</b></em>'.
+ * A representation of the model object '<em><b>Prepare Composite Transfer</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getCompositeBuffer <em>Composite Buffer</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getMode <em>Mode</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getCompositeBuffer <em>Composite Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getMode <em>Mode</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getInstance <em>Instance</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getSetCompositeBufferFlushMode()
+ * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPrepareCompositeTransfer()
  * @model
  * @generated
  */
-public interface SetCompositeBufferFlushMode extends IPipelineTask
+public interface PrepareCompositeTransfer extends IPipelineTask
 {
 	/**
 	 * Returns the value of the '<em><b>Composite Buffer</b></em>' reference.
@@ -32,14 +34,14 @@ public interface SetCompositeBufferFlushMode extends IPipelineTask
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Composite Buffer</em>' reference.
 	 * @see #setCompositeBuffer(CompositeBuffer)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getSetCompositeBufferFlushMode_CompositeBuffer()
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPrepareCompositeTransfer_CompositeBuffer()
 	 * @model required="true"
 	 * @generated
 	 */
 	CompositeBuffer getCompositeBuffer();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getCompositeBuffer <em>Composite Buffer</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getCompositeBuffer <em>Composite Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Composite Buffer</em>' reference.
@@ -57,14 +59,14 @@ public interface SetCompositeBufferFlushMode extends IPipelineTask
 	 * @return the value of the '<em>Mode</em>' attribute.
 	 * @see org.sheepy.lily.vulkan.model.resource.EFlushMode
 	 * @see #setMode(EFlushMode)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getSetCompositeBufferFlushMode_Mode()
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPrepareCompositeTransfer_Mode()
 	 * @model default="PUSH" required="true"
 	 * @generated
 	 */
 	EFlushMode getMode();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getMode <em>Mode</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getMode <em>Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Mode</em>' attribute.
@@ -84,14 +86,14 @@ public interface SetCompositeBufferFlushMode extends IPipelineTask
 	 * @see #isSetStage()
 	 * @see #unsetStage()
 	 * @see #setStage(ECommandStage)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getSetCompositeBufferFlushMode_Stage()
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPrepareCompositeTransfer_Stage()
 	 * @model unsettable="true" required="true"
 	 * @generated
 	 */
 	ECommandStage getStage();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getStage <em>Stage</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getStage <em>Stage</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Stage</em>' attribute.
@@ -104,7 +106,7 @@ public interface SetCompositeBufferFlushMode extends IPipelineTask
 	void setStage(ECommandStage value);
 
 	/**
-	 * Unsets the value of the '{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getStage <em>Stage</em>}' attribute.
+	 * Unsets the value of the '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getStage <em>Stage</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isSetStage()
@@ -115,7 +117,7 @@ public interface SetCompositeBufferFlushMode extends IPipelineTask
 	void unsetStage();
 
 	/**
-	 * Returns whether the value of the '{@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode#getStage <em>Stage</em>}' attribute is set.
+	 * Returns whether the value of the '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getStage <em>Stage</em>}' attribute is set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return whether the value of the '<em>Stage</em>' attribute is set.
@@ -126,4 +128,27 @@ public interface SetCompositeBufferFlushMode extends IPipelineTask
 	 */
 	boolean isSetStage();
 
-} // SetCompositeBufferFlushMode
+	/**
+	 * Returns the value of the '<em><b>Instance</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Instance</em>' attribute.
+	 * @see #setInstance(int)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPrepareCompositeTransfer_Instance()
+	 * @model default="0" required="true"
+	 * @generated
+	 */
+	int getInstance();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getInstance <em>Instance</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Instance</em>' attribute.
+	 * @see #getInstance()
+	 * @generated
+	 */
+	void setInstance(int value);
+
+} // PrepareCompositeTransfer

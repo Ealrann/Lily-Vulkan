@@ -11,8 +11,8 @@ import org.sheepy.lily.vulkan.process.pipeline.task.CompositeTaskAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.CopyBufferTaskAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.FlushTransferBufferTaskAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.PipelineBarrierAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.task.PrepareCompositeTransferAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.PushConstantBufferAdapter;
-import org.sheepy.lily.vulkan.process.pipeline.task.SetCompositeBufferFlushModeAdapter;
 
 @Adapters(classifiers = {
 		PipelineBarrierAdapter.class,
@@ -27,7 +27,7 @@ import org.sheepy.lily.vulkan.process.pipeline.task.SetCompositeBufferFlushModeA
 		CompositeTaskAdapter.class,
 		FlushTransferBufferTaskAdapter.class,
 		CopyBufferTaskAdapter.class,
-		SetCompositeBufferFlushModeAdapter.class,
+		PrepareCompositeTransferAdapter.class,
 		CompositeBufferBarrierAdapter.class
 })
 

@@ -67,7 +67,6 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 			addTransferBufferPropertyDescriptor(object);
 			addMinSizePropertyDescriptor(object);
 			addGrowFactorPropertyDescriptor(object);
-			addModePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -165,29 +164,6 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This adds a property descriptor for the Mode feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addModePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CompositeBuffer_mode_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeBuffer_mode_feature", "_UI_CompositeBuffer_type"),
-				 ResourcePackage.Literals.COMPOSITE_BUFFER__MODE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -264,7 +240,6 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 			case ResourcePackage.COMPOSITE_BUFFER__NAME:
 			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
 			case ResourcePackage.COMPOSITE_BUFFER__GROW_FACTOR:
-			case ResourcePackage.COMPOSITE_BUFFER__MODE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:

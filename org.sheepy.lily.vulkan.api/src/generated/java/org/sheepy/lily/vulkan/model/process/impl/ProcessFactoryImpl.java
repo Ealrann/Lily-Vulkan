@@ -74,7 +74,7 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK: return createFlushTransferBufferTask();
 			case ProcessPackage.COPY_BUFFER_TASK: return createCopyBufferTask();
 			case ProcessPackage.PROCESS_EXTENSION_PKG: return createProcessExtensionPkg();
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE: return createSetCompositeBufferFlushMode();
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER: return createPrepareCompositeTransfer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -206,10 +206,10 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	 * @generated
 	 */
 	@Override
-	public SetCompositeBufferFlushMode createSetCompositeBufferFlushMode()
+	public PrepareCompositeTransfer createPrepareCompositeTransfer()
 	{
-		SetCompositeBufferFlushModeImpl setCompositeBufferFlushMode = new SetCompositeBufferFlushModeImpl();
-		return setCompositeBufferFlushMode;
+		PrepareCompositeTransferImpl prepareCompositeTransfer = new PrepareCompositeTransferImpl();
+		return prepareCompositeTransfer;
 	}
 
 	/**

@@ -119,12 +119,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensions" upperBound="-1"
         eType="#//IProcessExtension" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SetCompositeBufferFlushMode" eSuperTypes="#//IPipelineTask">
+  <eClassifiers xsi:type="ecore:EClass" name="PrepareCompositeTransfer" eSuperTypes="#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="compositeBuffer" lowerBound="1"
         eType="ecore:EClass resource.ecore#//CompositeBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" lowerBound="1" eType="ecore:EEnum resource.ecore#//EFlushMode"
         defaultValueLiteral="PUSH"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" lowerBound="1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
         unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instance" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
   </eClassifiers>
 </ecore:EPackage>

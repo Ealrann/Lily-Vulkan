@@ -646,13 +646,22 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__SPECIALIZATION = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Flush Transfer Buffer Task</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Generic Renderer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 7;
+	int GENERIC_RENDERER_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Generic Renderer</em>' class.
@@ -708,15 +717,6 @@ public interface RenderingPackage extends EPackage
 	 * @ordered
 	 */
 	int RENDER_DATA_PROVIDER__DATA_SOURCE = ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Instance</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DATA_PROVIDER__INSTANCE = ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE;
 
 	/**
 	 * The feature id for the '<em><b>First Descriptor</b></em>' attribute.
@@ -881,15 +881,6 @@ public interface RenderingPackage extends EPackage
 	 * @ordered
 	 */
 	int RENDER_DESCRIBED_DATA_PROVIDER__DATA_SOURCE = RENDER_DATA_PROVIDER__DATA_SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Instance</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DESCRIBED_DATA_PROVIDER__INSTANCE = RENDER_DATA_PROVIDER__INSTANCE;
 
 	/**
 	 * The feature id for the '<em><b>First Descriptor</b></em>' attribute.
@@ -1075,15 +1066,6 @@ public interface RenderingPackage extends EPackage
 	int VERTEX_PROVIDER__DATA_SOURCE = RENDER_DATA_PROVIDER__DATA_SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Instance</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERTEX_PROVIDER__INSTANCE = RENDER_DATA_PROVIDER__INSTANCE;
-
-	/**
 	 * The feature id for the '<em><b>First Descriptor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1209,15 +1191,6 @@ public interface RenderingPackage extends EPackage
 	 * @ordered
 	 */
 	int INDEX_PROVIDER__DATA_SOURCE = RENDER_DATA_PROVIDER__DATA_SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Instance</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDEX_PROVIDER__INSTANCE = RENDER_DATA_PROVIDER__INSTANCE;
 
 	/**
 	 * The feature id for the '<em><b>First Descriptor</b></em>' attribute.
@@ -1775,6 +1748,17 @@ public interface RenderingPackage extends EPackage
 	EReference getGenericRenderer_Specialization();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getFlushTransferBufferTask <em>Flush Transfer Buffer Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Flush Transfer Buffer Task</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getFlushTransferBufferTask()
+	 * @see #getGenericRenderer()
+	 * @generated
+	 */
+	EReference getGenericRenderer_FlushTransferBufferTask();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider <em>Render Data Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2210,6 +2194,14 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EReference GENERIC_RENDERER__SPECIALIZATION = eINSTANCE.getGenericRenderer_Specialization();
+
+		/**
+		 * The meta object literal for the '<em><b>Flush Transfer Buffer Task</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK = eINSTANCE.getGenericRenderer_FlushTransferBufferTask();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider <em>Render Data Provider</em>}' class.

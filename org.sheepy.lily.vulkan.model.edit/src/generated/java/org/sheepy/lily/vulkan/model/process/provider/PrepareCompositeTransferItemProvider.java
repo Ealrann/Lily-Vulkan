@@ -25,16 +25,16 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.SetCompositeBufferFlushMode} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SetCompositeBufferFlushModeItemProvider 
+public class PrepareCompositeTransferItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -49,7 +49,7 @@ public class SetCompositeBufferFlushModeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SetCompositeBufferFlushModeItemProvider(AdapterFactory adapterFactory)
+	public PrepareCompositeTransferItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -72,6 +72,7 @@ public class SetCompositeBufferFlushModeItemProvider
 			addCompositeBufferPropertyDescriptor(object);
 			addModePropertyDescriptor(object);
 			addStagePropertyDescriptor(object);
+			addInstancePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -134,9 +135,9 @@ public class SetCompositeBufferFlushModeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SetCompositeBufferFlushMode_compositeBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SetCompositeBufferFlushMode_compositeBuffer_feature", "_UI_SetCompositeBufferFlushMode_type"),
-				 ProcessPackage.Literals.SET_COMPOSITE_BUFFER_FLUSH_MODE__COMPOSITE_BUFFER,
+				 getString("_UI_PrepareCompositeTransfer_compositeBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PrepareCompositeTransfer_compositeBuffer_feature", "_UI_PrepareCompositeTransfer_type"),
+				 ProcessPackage.Literals.PREPARE_COMPOSITE_TRANSFER__COMPOSITE_BUFFER,
 				 true,
 				 false,
 				 true,
@@ -157,9 +158,9 @@ public class SetCompositeBufferFlushModeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SetCompositeBufferFlushMode_mode_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SetCompositeBufferFlushMode_mode_feature", "_UI_SetCompositeBufferFlushMode_type"),
-				 ProcessPackage.Literals.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE,
+				 getString("_UI_PrepareCompositeTransfer_mode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PrepareCompositeTransfer_mode_feature", "_UI_PrepareCompositeTransfer_type"),
+				 ProcessPackage.Literals.PREPARE_COMPOSITE_TRANSFER__MODE,
 				 true,
 				 false,
 				 false,
@@ -180,9 +181,9 @@ public class SetCompositeBufferFlushModeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SetCompositeBufferFlushMode_stage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SetCompositeBufferFlushMode_stage_feature", "_UI_SetCompositeBufferFlushMode_type"),
-				 ProcessPackage.Literals.SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE,
+				 getString("_UI_PrepareCompositeTransfer_stage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PrepareCompositeTransfer_stage_feature", "_UI_PrepareCompositeTransfer_type"),
+				 ProcessPackage.Literals.PREPARE_COMPOSITE_TRANSFER__STAGE,
 				 true,
 				 false,
 				 false,
@@ -192,7 +193,30 @@ public class SetCompositeBufferFlushModeItemProvider
 	}
 
 	/**
-	 * This returns SetCompositeBufferFlushMode.gif.
+	 * This adds a property descriptor for the Instance feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInstancePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PrepareCompositeTransfer_instance_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PrepareCompositeTransfer_instance_feature", "_UI_PrepareCompositeTransfer_type"),
+				 ProcessPackage.Literals.PREPARE_COMPOSITE_TRANSFER__INSTANCE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns PrepareCompositeTransfer.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -200,7 +224,7 @@ public class SetCompositeBufferFlushModeItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SetCompositeBufferFlushMode"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PrepareCompositeTransfer"));
 	}
 
 	/**
@@ -212,10 +236,10 @@ public class SetCompositeBufferFlushModeItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((SetCompositeBufferFlushMode)object).getName();
+		String label = ((PrepareCompositeTransfer)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_SetCompositeBufferFlushMode_type") :
-			getString("_UI_SetCompositeBufferFlushMode_type") + " " + label;
+			getString("_UI_PrepareCompositeTransfer_type") :
+			getString("_UI_PrepareCompositeTransfer_type") + " " + label;
 	}
 
 
@@ -231,12 +255,13 @@ public class SetCompositeBufferFlushModeItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SetCompositeBufferFlushMode.class))
+		switch (notification.getFeatureID(PrepareCompositeTransfer.class))
 		{
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__NAME:
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__ENABLED:
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__MODE:
-			case ProcessPackage.SET_COMPOSITE_BUFFER_FLUSH_MODE__STAGE:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__NAME:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__ENABLED:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__MODE:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

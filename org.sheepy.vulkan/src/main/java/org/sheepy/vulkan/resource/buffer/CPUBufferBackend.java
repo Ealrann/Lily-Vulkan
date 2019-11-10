@@ -155,7 +155,7 @@ public final class CPUBufferBackend implements IBufferBackend
 			currentInstance = 0;
 		}
 
-		currentOffset = currentInstance * info.getInstanceSize();
+		currentOffset = getOffset(currentInstance);
 
 		if (wasMapped)
 		{
@@ -175,6 +175,22 @@ public final class CPUBufferBackend implements IBufferBackend
 		if (coherent == false)
 		{
 			BufferUtils.flush(stack, logicalDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
+		}
+	}
+
+	/**
+	 * Flush a memory range of the buffer to make it visible to the device
+	 *
+	 * @note Only required for non-coherent memory
+	 *
+	 */
+	public void flush(MemoryStack stack, LogicalDevice logicalDevice, int instance)
+	{
+		if (coherent == false)
+		{
+			final long size = info.getInstanceSize();
+			final long offset = getOffset(instance);
+			BufferUtils.flush(stack, logicalDevice, memoryAddress, size, offset);
 		}
 	}
 
@@ -201,19 +217,19 @@ public final class CPUBufferBackend implements IBufferBackend
 	 *
 	 * @note Only required for non-coherent memory
 	 */
-	public void invalidate(LogicalDevice logicalDevice)
+	public void invalidate(MemoryStack stack, LogicalDevice logicalDevice, int instance)
 	{
 		if (coherent == false)
 		{
-			try (final MemoryStack stack = MemoryStack.stackPush())
-			{
-				BufferUtils.invalidate(	stack,
-										logicalDevice,
-										memoryAddress,
-										VK_WHOLE_SIZE,
-										currentOffset);
-			}
+			final long size = info.getInstanceSize();
+			final long offset = getOffset(instance);
+			BufferUtils.invalidate(stack, logicalDevice, memoryAddress, size, offset);
 		}
+	}
+
+	private long getOffset(int instance)
+	{
+		return instance * info.getInstanceSize();
 	}
 
 	@Override
@@ -248,5 +264,10 @@ public final class CPUBufferBackend implements IBufferBackend
 	public int getProperties()
 	{
 		return properties;
+	}
+
+	public int getCurrentInstance()
+	{
+		return currentInstance;
 	}
 }

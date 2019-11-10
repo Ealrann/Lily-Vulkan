@@ -30,6 +30,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
+import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl;
@@ -52,6 +53,7 @@ import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getTransferBuffer <em>Transfer Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getCommonResourceProvider <em>Common Resource Provider</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getSpecialization <em>Specialization</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getFlushTransferBufferTask <em>Flush Transfer Buffer Task</em>}</li>
  * </ul>
  *
  * @generated
@@ -127,6 +129,16 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	 * @ordered
 	 */
 	protected ISpecialization specialization;
+
+	/**
+	 * The cached value of the '{@link #getFlushTransferBufferTask() <em>Flush Transfer Buffer Task</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFlushTransferBufferTask()
+	 * @generated
+	 * @ordered
+	 */
+	protected FlushTransferBufferTask flushTransferBufferTask;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -424,6 +436,51 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public FlushTransferBufferTask getFlushTransferBufferTask()
+	{
+		if (flushTransferBufferTask != null && ((EObject)flushTransferBufferTask).eIsProxy())
+		{
+			InternalEObject oldFlushTransferBufferTask = (InternalEObject)flushTransferBufferTask;
+			flushTransferBufferTask = (FlushTransferBufferTask)eResolveProxy(oldFlushTransferBufferTask);
+			if (flushTransferBufferTask != oldFlushTransferBufferTask)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK, oldFlushTransferBufferTask, flushTransferBufferTask));
+			}
+		}
+		return flushTransferBufferTask;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FlushTransferBufferTask basicGetFlushTransferBufferTask()
+	{
+		return flushTransferBufferTask;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFlushTransferBufferTask(FlushTransferBufferTask newFlushTransferBufferTask)
+	{
+		FlushTransferBufferTask oldFlushTransferBufferTask = flushTransferBufferTask;
+		flushTransferBufferTask = newFlushTransferBufferTask;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK, oldFlushTransferBufferTask, flushTransferBufferTask));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
@@ -484,6 +541,9 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 				return getCommonResourceProvider();
 			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
 				return getSpecialization();
+			case RenderingPackage.GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK:
+				if (resolve) return getFlushTransferBufferTask();
+				return basicGetFlushTransferBufferTask();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -522,6 +582,9 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
 				setSpecialization((ISpecialization)newValue);
 				return;
+			case RenderingPackage.GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK:
+				setFlushTransferBufferTask((FlushTransferBufferTask)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -557,6 +620,9 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
 				setSpecialization((ISpecialization)null);
 				return;
+			case RenderingPackage.GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK:
+				setFlushTransferBufferTask((FlushTransferBufferTask)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -585,6 +651,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 				return commonResourceProvider != null;
 			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
 				return specialization != null;
+			case RenderingPackage.GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK:
+				return flushTransferBufferTask != null;
 		}
 		return super.eIsSet(featureID);
 	}

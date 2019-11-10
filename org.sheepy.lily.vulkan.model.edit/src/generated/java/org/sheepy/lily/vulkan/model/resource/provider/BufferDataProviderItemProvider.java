@@ -61,7 +61,6 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 			addUsagePropertyDescriptor(object);
 			addInstanceCountPropertyDescriptor(object);
 			addDataSourcePropertyDescriptor(object);
-			addInstancePropertyDescriptor(object);
 			addFirstDescriptorPropertyDescriptor(object);
 			addUsedToPushPropertyDescriptor(object);
 			addUsedToFetchPropertyDescriptor(object);
@@ -161,29 +160,6 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 				 false,
 				 false,
 				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Instance feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addInstancePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BufferDataProvider_instance_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_instance_feature", "_UI_BufferDataProvider_type"),
-				 ResourcePackage.Literals.BUFFER_DATA_PROVIDER__INSTANCE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -394,7 +370,6 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 			case ResourcePackage.BUFFER_DATA_PROVIDER__USAGE:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
-			case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_FETCH:
