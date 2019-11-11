@@ -160,6 +160,7 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 			while (synchronizedCommands.isEmpty() == false)
 			{
 				final var command = synchronizedCommands.pop();
+				// System.out.println(command.toString());
 				command.execute(stack, commandBuffer);
 				final var postAction = command.getPostAction();
 				if (postAction != null)

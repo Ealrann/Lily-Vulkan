@@ -56,17 +56,33 @@ public final class PipelinePushCommand implements IDataFlowCommand
 		final var srcStageVal = srcStage.getValue();
 		final var dstStageVal = EPipelineStage.TRANSFER_BIT_VALUE;
 
-		final var barrierInfo = VkBufferMemoryBarrier.callocStack(1, stack);
-		barrierInfo.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
-		barrierInfo.buffer(trgBuffer);
-		barrierInfo.offset(trgOffset);
-		barrierInfo.size(size);
-		barrierInfo.srcAccessMask(srcAccess);
-		barrierInfo.dstAccessMask(EAccess.TRANSFER_WRITE_BIT_VALUE);
+		final var barriers = VkBufferMemoryBarrier.callocStack(2, stack);
 
-		vkCmdPipelineBarrier(commandBuffer, srcStageVal, dstStageVal, 0, null, barrierInfo, null);
+		final var deviceBarrier = barriers.get(0);
+		deviceBarrier.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
+		deviceBarrier.buffer(trgBuffer);
+		deviceBarrier.offset(trgOffset);
+		deviceBarrier.size(size);
+		deviceBarrier.srcAccessMask(srcAccess);
+		deviceBarrier.dstAccessMask(EAccess.TRANSFER_WRITE_BIT_VALUE);
 
-		BufferUtils.copyBuffer(stack, commandBuffer, srcBuffer, srcoffset, trgBuffer, trgOffset, size);
+		final var hostBarrier = barriers.get(1);
+		hostBarrier.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
+		hostBarrier.buffer(srcBuffer);
+		hostBarrier.offset(srcoffset);
+		hostBarrier.size(size);
+		hostBarrier.srcAccessMask(0);
+		hostBarrier.dstAccessMask(EAccess.TRANSFER_READ_BIT_VALUE);
+
+		vkCmdPipelineBarrier(commandBuffer, srcStageVal, dstStageVal, 0, null, barriers, null);
+
+		BufferUtils.copyBuffer(	stack,
+								commandBuffer,
+								srcBuffer,
+								srcoffset,
+								trgBuffer,
+								trgOffset,
+								size);
 	}
 
 	@Override
@@ -91,5 +107,11 @@ public final class PipelinePushCommand implements IDataFlowCommand
 	public Consumer<MemoryTicket> getPostAction()
 	{
 		return transferDone;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "PipelinePushCommand  [trgBuffer=" + trgBuffer + ", trgOffset=" + trgOffset + "]";
 	}
 }

@@ -77,4 +77,10 @@ public final class ImmediatePushCommand implements IDataFlowCommand
 	{
 		return transferDone;
 	}
+
+	@Override
+	public String toString()
+	{
+		return "ImmediatePushCommand  [trgBuffer=" + trgBuffer + ", trgOffset=" + trgOffset + "]";
+	}
 }

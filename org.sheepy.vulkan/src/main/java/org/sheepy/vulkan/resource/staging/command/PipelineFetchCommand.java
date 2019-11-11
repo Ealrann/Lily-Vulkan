@@ -56,15 +56,25 @@ public final class PipelineFetchCommand implements IDataFlowCommand
 		final var srcStageVal = srcStage.getValue();
 		final var dstStageVal = EPipelineStage.TRANSFER_BIT_VALUE;
 
-		final var barrierInfo = VkBufferMemoryBarrier.callocStack(1, stack);
-		barrierInfo.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
-		barrierInfo.buffer(srcBuffer);
-		barrierInfo.offset(srcOffset);
-		barrierInfo.size(size);
-		barrierInfo.srcAccessMask(srcAccess);
-		barrierInfo.dstAccessMask(EAccess.TRANSFER_READ_BIT_VALUE);
+		final var barriers = VkBufferMemoryBarrier.callocStack(2, stack);
 
-		vkCmdPipelineBarrier(commandBuffer, srcStageVal, dstStageVal, 0, null, barrierInfo, null);
+		final var deviceBarrier = barriers.get(0);
+		deviceBarrier.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
+		deviceBarrier.buffer(srcBuffer);
+		deviceBarrier.offset(srcOffset);
+		deviceBarrier.size(size);
+		deviceBarrier.srcAccessMask(srcAccess);
+		deviceBarrier.dstAccessMask(EAccess.TRANSFER_READ_BIT_VALUE);
+
+		final var hostBarrier = barriers.get(1);
+		hostBarrier.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
+		hostBarrier.buffer(trgBuffer);
+		hostBarrier.offset(trgOffset);
+		hostBarrier.size(size);
+		hostBarrier.srcAccessMask(0);
+		hostBarrier.dstAccessMask(EAccess.TRANSFER_WRITE_BIT_VALUE);
+
+		vkCmdPipelineBarrier(commandBuffer, srcStageVal, dstStageVal, 0, null, barriers, null);
 
 		BufferUtils.copyBuffer(	stack,
 								commandBuffer,
@@ -73,6 +83,22 @@ public final class PipelineFetchCommand implements IDataFlowCommand
 								trgBuffer,
 								trgOffset,
 								size);
+
+		final var targethostBarrier = VkBufferMemoryBarrier.callocStack(1, stack);
+		targethostBarrier.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
+		targethostBarrier.buffer(trgBuffer);
+		targethostBarrier.offset(trgOffset);
+		targethostBarrier.size(size);
+		targethostBarrier.srcAccessMask(EAccess.TRANSFER_WRITE_BIT_VALUE);
+		targethostBarrier.dstAccessMask(EAccess.HOST_READ_BIT_VALUE | EAccess.HOST_WRITE_BIT_VALUE);
+
+		vkCmdPipelineBarrier(	commandBuffer,
+								EPipelineStage.TRANSFER_BIT_VALUE,
+								EPipelineStage.HOST_BIT_VALUE,
+								0,
+								null,
+								targethostBarrier,
+								null);
 	}
 
 	@Override
@@ -97,5 +123,11 @@ public final class PipelineFetchCommand implements IDataFlowCommand
 	public Consumer<MemoryTicket> getPostAction()
 	{
 		return transferDone;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "PipelineFetchCommand [srcBuffer=" + srcBuffer + ", srcOffset=" + srcOffset + "]";
 	}
 }

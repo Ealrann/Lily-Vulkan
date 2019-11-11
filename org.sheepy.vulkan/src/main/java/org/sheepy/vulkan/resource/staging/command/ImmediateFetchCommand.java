@@ -83,4 +83,10 @@ public final class ImmediateFetchCommand implements IDataFlowCommand
 	{
 		return transferDone;
 	}
+
+	@Override
+	public String toString()
+	{
+		return "ImmediateFetchCommand [srcBuffer=" + srcBuffer + ", srcOffset=" + srcOffset + "]";
+	}
 }
