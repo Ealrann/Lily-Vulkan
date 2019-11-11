@@ -56,6 +56,7 @@
     <eLiterals name="PreRender" value="2"/>
     <eLiterals name="Render" value="3"/>
     <eLiterals name="PostRender" value="4"/>
+    <eLiterals name="Inherited" value="-1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EAttachmentLoadOp">
     <eLiterals name="LOAD"/>

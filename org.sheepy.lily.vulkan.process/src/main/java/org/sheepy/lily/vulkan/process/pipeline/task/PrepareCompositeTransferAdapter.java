@@ -32,6 +32,6 @@ public class PrepareCompositeTransferAdapter
 	@Override
 	public ECommandStage getStage(PrepareCompositeTransfer task)
 	{
-		return task.isSetStage() ? task.getStage() : null;
+		return task.getStage();
 	}
 }

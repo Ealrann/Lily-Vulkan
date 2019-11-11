@@ -67,7 +67,15 @@ public enum ECommandStage implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	POST_RENDER(4, "PostRender", "PostRender");
+	POST_RENDER(4, "PostRender", "PostRender"), /**
+	 * The '<em><b>Inherited</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #INHERITED_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	INHERITED(-1, "Inherited", "Inherited");
 
 	/**
 	 * The '<em><b>Transfer</b></em>' literal value.
@@ -125,6 +133,17 @@ public enum ECommandStage implements Enumerator
 	public static final int POST_RENDER_VALUE = 4;
 
 	/**
+	 * The '<em><b>Inherited</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #INHERITED
+	 * @model name="Inherited"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int INHERITED_VALUE = -1;
+
+	/**
 	 * An array of all the '<em><b>ECommand Stage</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -137,6 +156,7 @@ public enum ECommandStage implements Enumerator
 			PRE_RENDER,
 			RENDER,
 			POST_RENDER,
+			INHERITED,
 		};
 
 	/**
@@ -206,6 +226,7 @@ public enum ECommandStage implements Enumerator
 			case PRE_RENDER_VALUE: return PRE_RENDER;
 			case RENDER_VALUE: return RENDER;
 			case POST_RENDER_VALUE: return POST_RENDER;
+			case INHERITED_VALUE: return INHERITED;
 		}
 		return null;
 	}

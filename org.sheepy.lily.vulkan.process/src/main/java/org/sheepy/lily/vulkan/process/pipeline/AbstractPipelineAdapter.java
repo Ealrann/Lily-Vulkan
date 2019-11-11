@@ -235,7 +235,7 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		protected void add(LilyEObject newValue)
 		{
 			final var task = (IPipelineTask) newValue;
-			taskWrappers.add(new TaskWrapper<>(task));
+			taskWrappers.add(new TaskWrapper<>(task, pipeline.getStage()));
 
 			final var adapter = task.<IAllocableAdapter<?>> adaptGeneric(IAllocableAdapter.class);
 			if (adapter != null)
@@ -275,11 +275,23 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	{
 		private final T task;
 		private final IPipelineTaskAdapter<T> adapter;
+		private final ECommandStage stage;
 
-		public TaskWrapper(T task)
+		public TaskWrapper(T task, ECommandStage pipelineStage)
 		{
 			this.task = task;
-			adapter = task.<IPipelineTaskAdapter<T>> adaptNotNullGeneric(IPipelineTaskAdapter.class);
+			this.adapter = task.<IPipelineTaskAdapter<T>> adaptNotNullGeneric(IPipelineTaskAdapter.class);
+			this.stage = computeStage(pipelineStage);
+		}
+
+		private ECommandStage computeStage(ECommandStage pipelineStage)
+		{
+			var taskStage = adapter.getStage(task);
+			if (taskStage == null || taskStage == ECommandStage.INHERITED)
+			{
+				taskStage = pipelineStage;
+			}
+			return taskStage;
 		}
 
 		public void record(RecordContext context)
@@ -289,7 +301,7 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 
 		public ECommandStage getStage()
 		{
-			return adapter.getStage(task);
+			return stage;
 		}
 
 		public boolean needRecord(int index)

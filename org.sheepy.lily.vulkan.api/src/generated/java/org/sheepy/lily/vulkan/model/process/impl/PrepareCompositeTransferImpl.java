@@ -118,7 +118,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ECommandStage STAGE_EDEFAULT = ECommandStage.TRANSFER;
+	protected static final ECommandStage STAGE_EDEFAULT = ECommandStage.INHERITED;
 
 	/**
 	 * The cached value of the '{@link #getStage() <em>Stage</em>}' attribute.
@@ -129,15 +129,6 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * @ordered
 	 */
 	protected ECommandStage stage = STAGE_EDEFAULT;
-
-	/**
-	 * This is true if the Stage attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean stageESet;
 
 	/**
 	 * The default value of the '{@link #getInstance() <em>Instance</em>}' attribute.
@@ -321,37 +312,8 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	{
 		ECommandStage oldStage = stage;
 		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		boolean oldStageESet = stageESet;
-		stageESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE, oldStage, stage, !oldStageESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void unsetStage()
-	{
-		ECommandStage oldStage = stage;
-		boolean oldStageESet = stageESet;
-		stage = STAGE_EDEFAULT;
-		stageESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE, oldStage, STAGE_EDEFAULT, oldStageESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetStage()
-	{
-		return stageESet;
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE, oldStage, stage));
 	}
 
 	/**
@@ -461,7 +423,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 				setMode(MODE_EDEFAULT);
 				return;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
-				unsetStage();
+				setStage(STAGE_EDEFAULT);
 				return;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE:
 				setInstance(INSTANCE_EDEFAULT);
@@ -489,7 +451,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__MODE:
 				return mode != MODE_EDEFAULT;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
-				return isSetStage();
+				return stage != STAGE_EDEFAULT;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE:
 				return instance != INSTANCE_EDEFAULT;
 		}
@@ -514,7 +476,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 		result.append(", mode: ");
 		result.append(mode);
 		result.append(", stage: ");
-		if (stageESet) result.append(stage); else result.append("<unset>");
+		result.append(stage);
 		result.append(", instance: ");
 		result.append(instance);
 		result.append(')');

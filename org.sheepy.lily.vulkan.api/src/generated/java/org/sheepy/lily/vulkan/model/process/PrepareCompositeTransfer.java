@@ -78,16 +78,15 @@ public interface PrepareCompositeTransfer extends IPipelineTask
 
 	/**
 	 * Returns the value of the '<em><b>Stage</b></em>' attribute.
+	 * The default value is <code>"Inherited"</code>.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.ECommandStage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Stage</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
-	 * @see #isSetStage()
-	 * @see #unsetStage()
 	 * @see #setStage(ECommandStage)
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPrepareCompositeTransfer_Stage()
-	 * @model unsettable="true" required="true"
+	 * @model default="Inherited"
 	 * @generated
 	 */
 	ECommandStage getStage();
@@ -98,35 +97,10 @@ public interface PrepareCompositeTransfer extends IPipelineTask
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Stage</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
-	 * @see #isSetStage()
-	 * @see #unsetStage()
 	 * @see #getStage()
 	 * @generated
 	 */
 	void setStage(ECommandStage value);
-
-	/**
-	 * Unsets the value of the '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getStage <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetStage()
-	 * @see #getStage()
-	 * @see #setStage(ECommandStage)
-	 * @generated
-	 */
-	void unsetStage();
-
-	/**
-	 * Returns whether the value of the '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getStage <em>Stage</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Stage</em>' attribute is set.
-	 * @see #unsetStage()
-	 * @see #getStage()
-	 * @see #setStage(ECommandStage)
-	 * @generated
-	 */
-	boolean isSetStage();
 
 	/**
 	 * Returns the value of the '<em><b>Instance</b></em>' attribute.

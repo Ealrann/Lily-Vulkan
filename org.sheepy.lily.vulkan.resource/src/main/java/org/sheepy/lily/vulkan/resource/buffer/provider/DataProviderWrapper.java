@@ -140,7 +140,7 @@ public final class DataProviderWrapper extends NotifierAdapter
 			final var descriptor = descriptors.get(index);
 			descriptor.updateSize(instanceSize);
 			descriptor.updateOffset(currentOffset);
-			System.out.println(String.format("DS %d: offset = %d", index, currentOffset));
+			// System.out.println(String.format("DS %d: offset = %d", index, currentOffset));
 			currentOffset += instanceSize;
 		}
 	}

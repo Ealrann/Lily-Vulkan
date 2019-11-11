@@ -844,6 +844,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(eCommandStageEEnum, ECommandStage.PRE_RENDER);
 		addEEnumLiteral(eCommandStageEEnum, ECommandStage.RENDER);
 		addEEnumLiteral(eCommandStageEEnum, ECommandStage.POST_RENDER);
+		addEEnumLiteral(eCommandStageEEnum, ECommandStage.INHERITED);
 
 		initEEnum(eAttachmentLoadOpEEnum, EAttachmentLoadOp.class, "EAttachmentLoadOp");
 		addEEnumLiteral(eAttachmentLoadOpEEnum, EAttachmentLoadOp.LOAD);
