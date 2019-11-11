@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.demo.test.adapter;
+package org.sheepy.lily.vulkan.demo.test.composite.grow.adapter;
 
 import java.util.List;
 import java.util.Random;
@@ -16,7 +16,7 @@ public class TestDataProviderAdapter implements IBufferDataProviderAdapter
 {
 	public static final String NAME = "TestDataProvider";
 
-	public static final int MAX_SIZE = 1000000;
+	public static final int MAX_SIZE = 4000000;
 
 	private final Random random;
 
@@ -66,7 +66,7 @@ public class TestDataProviderAdapter implements IBufferDataProviderAdapter
 			}
 		}
 
-		currentSize += 5000;
+		currentSize += 40000;
 		currentSize = Math.min(MAX_SIZE, currentSize);
 		// System.out.println(currentSize);
 	}

@@ -1,16 +1,16 @@
-package org.sheepy.lily.vulkan.demo.test;
+package org.sheepy.lily.vulkan.demo.test.composite.instance;
 
 import org.sheepy.lily.core.api.LilyLauncher;
 import org.sheepy.lily.core.api.cadence.IMainLoop;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
-import org.sheepy.lily.vulkan.demo.test.model.ModelFactory;
+import org.sheepy.lily.vulkan.demo.test.composite.instance.model.InstanceModelFactory;
 
-public class MainCompositeBufferTest
+public class MainCompositeInstanceTest
 {
 	public static void main(String[] args)
 	{
-		final var factory = new ModelFactory();
+		final var factory = new InstanceModelFactory();
 		final var mainLoop = new MainLoop(factory);
 
 		LilyLauncher.launch(factory.application, mainLoop);
@@ -18,12 +18,12 @@ public class MainCompositeBufferTest
 
 	static final class MainLoop implements IMainLoop
 	{
-		private final ModelFactory factory;
+		private final InstanceModelFactory factory;
 
 		private IProcessAdapter processAdapter;
 		private int count = 0;
 
-		public MainLoop(ModelFactory factory)
+		public MainLoop(InstanceModelFactory factory)
 		{
 			this.factory = factory;
 		}
@@ -31,13 +31,16 @@ public class MainCompositeBufferTest
 		@Override
 		public void step(Application application)
 		{
+			factory.taskManager.configure();
+
 			processAdapter.run();
 			processAdapter.waitIdle();
 
+			factory.taskManager.nextInstance();
+
 			count++;
 
-			// System.out.println("Step " + count);
-			if (count == 150)
+			if (count == 100)
 			{
 				factory.application.setRun(false);
 			}

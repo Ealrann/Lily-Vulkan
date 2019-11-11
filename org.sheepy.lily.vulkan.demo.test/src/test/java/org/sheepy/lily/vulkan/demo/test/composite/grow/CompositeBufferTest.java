@@ -1,9 +1,9 @@
-package org.sheepy.lily.vulkan.demo.test;
+package org.sheepy.lily.vulkan.demo.test.composite.grow;
 
 import org.junit.jupiter.api.Test;
 import org.sheepy.lily.core.api.LilyLauncher;
-import org.sheepy.lily.vulkan.demo.test.MainCompositeBufferTest.MainLoop;
-import org.sheepy.lily.vulkan.demo.test.model.ModelFactory;
+import org.sheepy.lily.vulkan.demo.test.composite.grow.MainCompositeBufferTest.MainLoop;
+import org.sheepy.lily.vulkan.demo.test.composite.grow.model.ModelFactory;
 
 public class CompositeBufferTest
 {
