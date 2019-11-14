@@ -1,5 +1,8 @@
 package org.sheepy.vulkan.resource.staging;
 
+import java.nio.ByteBuffer;
+
+import org.lwjgl.system.MemoryUtil;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.resource.staging.memory.MemorySpaceManager.MemorySpace;
 
@@ -57,6 +60,18 @@ public interface ITransferBuffer
 		public long getMemoryPtr()
 		{
 			return memoryPtr;
+		}
+
+		public ByteBuffer toBuffer()
+		{
+			return MemoryUtil.memByteBuffer(memoryPtr, (int) size);
+		}
+
+		public ByteBuffer toReadBuffer()
+		{
+			final var res = toBuffer();
+			res.limit(res.capacity());
+			return res;
 		}
 
 		public long getSize()

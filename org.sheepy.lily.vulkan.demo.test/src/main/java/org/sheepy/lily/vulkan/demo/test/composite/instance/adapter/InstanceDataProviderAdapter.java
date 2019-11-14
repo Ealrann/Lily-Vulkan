@@ -1,10 +1,10 @@
 package org.sheepy.lily.vulkan.demo.test.composite.instance.adapter;
 
+import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Random;
 
 import org.eclipse.emf.ecore.EObject;
-import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferDataProviderAdapter;
@@ -41,26 +41,26 @@ public class InstanceDataProviderAdapter implements IBufferDataProviderAdapter
 	int index = 0;
 
 	@Override
-	public void fill(long memoryAddress, int size)
+	public void fill(ByteBuffer buffer)
 	{
-		final int intSize = size / 4;
+		final var intBuffer = buffer.asIntBuffer();
+		final int intSize = intBuffer.capacity();
 		previous = new int[intSize];
-		final var buffer = MemoryUtil.memIntBuffer(memoryAddress, intSize);
 		for (int i = 0; i < intSize; i++)
 		{
 			final int rand = random.nextInt();
-			buffer.put(rand);
+			intBuffer.put(rand);
 			previous[i] = rand;
 		}
 	}
 
 	@Override
-	public void fetch(long memoryAddress, int size)
+	public void fetch(ByteBuffer buffer)
 	{
-		final var buffer = MemoryUtil.memIntBuffer(memoryAddress, previous.length);
+		final var intBuffer = buffer.asIntBuffer();
 		for (int i = 0; i < previous.length; i++)
 		{
-			final int currentVal = buffer.get();
+			final int currentVal = intBuffer.get();
 			final int prevIncr = previous[i] + 1;
 			if (currentVal != prevIncr)
 			{

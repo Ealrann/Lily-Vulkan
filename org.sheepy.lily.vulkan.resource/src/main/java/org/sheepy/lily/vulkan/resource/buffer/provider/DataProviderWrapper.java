@@ -55,6 +55,9 @@ public final class DataProviderWrapper extends NotifierAdapter
 	public DataProviderWrapper(BufferDataProvider<?> dataProvider)
 	{
 		super(FEATURES.values().length);
+
+		assert dataProvider != null;
+
 		this.dataProvider = dataProvider;
 		usage = computeUsage(dataProvider);
 
@@ -188,7 +191,7 @@ public final class DataProviderWrapper extends NotifierAdapter
 		assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
 
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
-		adapter.fill(memTicket.getMemoryPtr(), (int) memTicket.getSize());
+		adapter.fill(memTicket.toBuffer());
 		final long instanceOffset = getInstanceOffset(instance);
 		final var stage = dataProvider.getStageBeforePush();
 
@@ -218,8 +221,8 @@ public final class DataProviderWrapper extends NotifierAdapter
 		assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
 
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
-		final Consumer<MemoryTicket> transferDone = ticket -> adapter.fetch(memTicket.getMemoryPtr(),
-																			(int) memTicket.getSize());
+		final Consumer<MemoryTicket> transferDone = ticket -> adapter.fetch(memTicket.toReadBuffer());
+
 		final long instanceOffset = getInstanceOffset(instance);
 		final var stage = dataProvider.getStageBeforeFetch();
 
