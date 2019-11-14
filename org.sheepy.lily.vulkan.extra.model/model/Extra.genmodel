@@ -134,6 +134,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//RenderProxyConstantBuffer/partIndex"/>
     </genClasses>
     <genClasses ecoreClass="Rendering.ecore#//ISpecialization"/>
+    <genClasses image="false" ecoreClass="Rendering.ecore#//EntityPkg">
+      <genTypeParameters ecoreTypeParameter="Rendering.ecore#//EntityPkg/T"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//EntityPkg/entities"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Sprite" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
       childCreationExtenders="true" ecorePackage="Sprite.ecore#/">

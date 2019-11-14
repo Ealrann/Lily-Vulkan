@@ -1481,6 +1481,44 @@ public interface RenderingPackage extends EPackage
 
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.EntityPkgImpl <em>Entity Pkg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.EntityPkgImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEntityPkg()
+	 * @generated
+	 */
+	int ENTITY_PKG = 19;
+
+	/**
+	 * The feature id for the '<em><b>Entities</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTITY_PKG__ENTITIES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Entity Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTITY_PKG_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Entity Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTITY_PKG_OPERATION_COUNT = 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.Entity <em>Entity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1957,6 +1995,27 @@ public interface RenderingPackage extends EPackage
 	EClass getISpecialization();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.EntityPkg <em>Entity Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Entity Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.EntityPkg
+	 * @generated
+	 */
+	EClass getEntityPkg();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.EntityPkg#getEntities <em>Entities</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Entities</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.EntityPkg#getEntities()
+	 * @see #getEntityPkg()
+	 * @generated
+	 */
+	EReference getEntityPkg_Entities();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2376,6 +2435,24 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EClass ISPECIALIZATION = eINSTANCE.getISpecialization();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.EntityPkgImpl <em>Entity Pkg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.EntityPkgImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEntityPkg()
+		 * @generated
+		 */
+		EClass ENTITY_PKG = eINSTANCE.getEntityPkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Entities</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENTITY_PKG__ENTITIES = eINSTANCE.getEntityPkg_Entities();
 
 	}
 

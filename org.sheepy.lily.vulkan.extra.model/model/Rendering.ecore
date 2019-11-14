@@ -143,4 +143,13 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ISpecialization"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EntityPkg" abstract="true">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="#//Entity"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entities" upperBound="-1"
+        containment="true">
+      <eGenericType eTypeParameter="#//EntityPkg/T"/>
+    </eStructuralFeatures>
+  </eClassifiers>
 </ecore:EPackage>

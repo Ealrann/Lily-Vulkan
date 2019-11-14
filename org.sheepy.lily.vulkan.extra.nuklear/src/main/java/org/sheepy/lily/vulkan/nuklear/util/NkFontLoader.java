@@ -116,7 +116,7 @@ public class NkFontLoader
 		return new QueryData(quad, advanceQuery.get(0));
 	}
 
-	class QueryData
+	private final class QueryData
 	{
 		private final NkUserFontGlyph patternGlyph = NkUserFontGlyph.create();
 
@@ -146,7 +146,7 @@ public class NkFontLoader
 		}
 	}
 
-	private class TextWidthCallback extends NkTextWidthCallback
+	private final class TextWidthCallback extends NkTextWidthCallback
 	{
 		private final STBTTFontinfo fontInfo;
 		private final float scale;

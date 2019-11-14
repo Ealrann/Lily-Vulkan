@@ -39,6 +39,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
 import org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.Entity;
+import org.sheepy.lily.vulkan.extra.model.rendering.EntityPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
@@ -215,6 +216,13 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	private EClass iSpecializationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass entityPkgEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -815,6 +823,28 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
+	public EClass getEntityPkg()
+	{
+		return entityPkgEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getEntityPkg_Entities()
+	{
+		return (EReference)entityPkgEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public RenderingFactory getRenderingFactory()
 	{
 		return (RenderingFactory)getEFactoryInstance();
@@ -903,6 +933,9 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		createEAttribute(renderProxyConstantBufferEClass, RENDER_PROXY_CONSTANT_BUFFER__PART_INDEX);
 
 		iSpecializationEClass = createEClass(ISPECIALIZATION);
+
+		entityPkgEClass = createEClass(ENTITY_PKG);
+		createEReference(entityPkgEClass, ENTITY_PKG__ENTITIES);
 	}
 
 	/**
@@ -945,6 +978,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		ETypeParameter renderableDataSourceEClass_T = addETypeParameter(renderableDataSourceEClass, "T");
 		ETypeParameter vertexProviderEClass_T = addETypeParameter(vertexProviderEClass, "T");
 		ETypeParameter indexProviderEClass_T = addETypeParameter(indexProviderEClass, "T");
+		ETypeParameter entityPkgEClass_T = addETypeParameter(entityPkgEClass, "T");
 
 		// Set bounds for type parameters
 		EGenericType g1 = createEGenericType(this.getStructure());
@@ -961,6 +995,8 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		vertexProviderEClass_T.getEBounds().add(g1);
 		g1 = createEGenericType(this.getStructure());
 		indexProviderEClass_T.getEBounds().add(g1);
+		g1 = createEGenericType(this.getEntity());
+		entityPkgEClass_T.getEBounds().add(g1);
 
 		// Add supertypes to classes
 		entityEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
@@ -1072,6 +1108,10 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEAttribute(getRenderProxyConstantBuffer_PartIndex(), ecorePackage.getEInt(), "partIndex", null, 1, 1, RenderProxyConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iSpecializationEClass, ISpecialization.class, "ISpecialization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(entityPkgEClass, EntityPkg.class, "EntityPkg", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(entityPkgEClass_T);
+		initEReference(getEntityPkg_Entities(), g1, null, "entities", null, 0, -1, EntityPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
