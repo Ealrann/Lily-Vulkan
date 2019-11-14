@@ -268,6 +268,16 @@ public class PhysicalDevice
 	{
 		System.out.println("\nPhysical Properties:");
 		deviceProperties.print();
+
+		System.out.println("\nPhysical Memory Properties:");
+		final int count = memProperties.memoryHeapCount();
+		for (int i = 0; i < count; i++)
+		{
+			final var heap = memProperties.memoryHeaps(i);
+			final var flag = heap.flags();
+			final var size = heap.size();
+			System.out.println(String.format("\tHeap %d: flags: %d - size: %d", i, flag, size));
+		}
 	}
 
 	public List<DisplayInfo> getDisplaysInfomations()
