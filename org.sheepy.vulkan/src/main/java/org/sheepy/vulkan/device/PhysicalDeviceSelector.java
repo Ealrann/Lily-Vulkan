@@ -78,10 +78,11 @@ public class PhysicalDeviceSelector
 		final var vulkanInstance = vkInstance.getVkInstance();
 		for (int i = 0; i < pPhysicalDeviceCount.get(0); i++)
 		{
-			final var vkPhysicalDevice = new VkPhysicalDevice(pPhysicalDevices.get(i),
-					vulkanInstance);
-			final var physicalDevice = new PhysicalDevice(vkPhysicalDevice, vkInstance,
-					extensionRequirement);
+			final var vkPhysicalDevice = new VkPhysicalDevice(	pPhysicalDevices.get(i),
+																vulkanInstance);
+			final var physicalDevice = new PhysicalDevice(	vkPhysicalDevice,
+															vkInstance,
+															extensionRequirement);
 
 			final int deviceScore = surface != null
 					? PhysicalDeviceJudge.rateDeviceSuitability(physicalDevice, surface)
@@ -89,8 +90,10 @@ public class PhysicalDeviceSelector
 
 			if (printAvailableExtensions)
 			{
-				System.out.println(String.format("[%s (%d)]: %d points", physicalDevice.getName(),
-						physicalDevice.getDriverVersion(), deviceScore));
+				System.out.println(String.format(	"[%s (%d)]: %d points",
+													physicalDevice.name,
+													physicalDevice.driverVersion,
+													deviceScore));
 				physicalDevice.printAvailableExtensions();
 			}
 

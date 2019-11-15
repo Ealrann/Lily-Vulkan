@@ -33,7 +33,7 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphicContex
 	@Override
 	protected IGraphicContext createContext()
 	{
-		return new GraphicContext(	getQueueType(),
+		return new GraphicContext(	getExecutionQueueType(),
 									isResetAllowed(),
 									descriptorPool,
 									(GraphicProcess) process);
@@ -48,14 +48,20 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphicContex
 	}
 
 	@Override
-	public EQueueType getQueueType()
+	protected List<ECommandStage> getStages()
+	{
+		return stages;
+	}
+
+	@Override
+	public EQueueType getExecutionQueueType()
 	{
 		return EQueueType.Graphic;
 	}
 
 	@Override
-	protected List<ECommandStage> getStages()
+	public boolean needPresentQueue()
 	{
-		return stages;
+		return true;
 	}
 }

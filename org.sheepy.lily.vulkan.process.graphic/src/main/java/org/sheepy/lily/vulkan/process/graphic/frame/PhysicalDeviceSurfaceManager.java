@@ -45,7 +45,7 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 		surface = context.getWindow().createSurface();
 		surface.addListener(surfaceListener);
 
-		presentQueue = logicalDevice.createPresentQueue(surface);
+		presentQueue = logicalDevice.borrowPresentQueue(surface);
 		context.getWindow().addListener(sizeListener);
 		context.getWindow().addListener(surfaceDeprecationListener);
 
@@ -75,6 +75,9 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	@Override
 	public void free(IGraphicContext context)
 	{
+		final var logicalDevice = context.getLogicalDevice();
+
+		logicalDevice.returnQueue(presentQueue);
 		context.getWindow().removeListener(sizeListener);
 		context.getWindow().removeListener(surfaceDeprecationListener);
 		surface.removeListener(surfaceListener);

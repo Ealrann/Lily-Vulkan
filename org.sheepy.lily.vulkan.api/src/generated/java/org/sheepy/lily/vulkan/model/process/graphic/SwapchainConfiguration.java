@@ -20,6 +20,7 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getAtachments <em>Atachments</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isPresentWhenVBlank <em>Present When VBlank</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isAcquireWaitForVBlank <em>Acquire Wait For VBlank</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isAllowingAccessFromCompute <em>Allowing Access From Compute</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSwapchainConfiguration()
@@ -123,5 +124,28 @@ public interface SwapchainConfiguration extends ILilyEObject
 	 * @generated
 	 */
 	void setAcquireWaitForVBlank(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Allowing Access From Compute</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Allowing Access From Compute</em>' attribute.
+	 * @see #setAllowingAccessFromCompute(boolean)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSwapchainConfiguration_AllowingAccessFromCompute()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isAllowingAccessFromCompute();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isAllowingAccessFromCompute <em>Allowing Access From Compute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Allowing Access From Compute</em>' attribute.
+	 * @see #isAllowingAccessFromCompute()
+	 * @generated
+	 */
+	void setAllowingAccessFromCompute(boolean value);
 
 } // SwapchainConfiguration

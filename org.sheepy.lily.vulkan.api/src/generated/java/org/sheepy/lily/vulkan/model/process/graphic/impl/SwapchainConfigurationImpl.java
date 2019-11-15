@@ -37,6 +37,7 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#getAtachments <em>Atachments</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#isPresentWhenVBlank <em>Present When VBlank</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#isAcquireWaitForVBlank <em>Acquire Wait For VBlank</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#isAllowingAccessFromCompute <em>Allowing Access From Compute</em>}</li>
  * </ul>
  *
  * @generated
@@ -122,6 +123,26 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 	 * @ordered
 	 */
 	protected boolean acquireWaitForVBlank = ACQUIRE_WAIT_FOR_VBLANK_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isAllowingAccessFromCompute() <em>Allowing Access From Compute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAllowingAccessFromCompute()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ALLOWING_ACCESS_FROM_COMPUTE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isAllowingAccessFromCompute() <em>Allowing Access From Compute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAllowingAccessFromCompute()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean allowingAccessFromCompute = ALLOWING_ACCESS_FROM_COMPUTE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -255,6 +276,31 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 	 * @generated
 	 */
 	@Override
+	public boolean isAllowingAccessFromCompute()
+	{
+		return allowingAccessFromCompute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setAllowingAccessFromCompute(boolean newAllowingAccessFromCompute)
+	{
+		boolean oldAllowingAccessFromCompute = allowingAccessFromCompute;
+		allowingAccessFromCompute = newAllowingAccessFromCompute;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SWAPCHAIN_CONFIGURATION__ALLOWING_ACCESS_FROM_COMPUTE, oldAllowingAccessFromCompute, allowingAccessFromCompute));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -285,6 +331,8 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 				return isPresentWhenVBlank();
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK:
 				return isAcquireWaitForVBlank();
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ALLOWING_ACCESS_FROM_COMPUTE:
+				return isAllowingAccessFromCompute();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -317,6 +365,9 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK:
 				setAcquireWaitForVBlank((Boolean)newValue);
 				return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ALLOWING_ACCESS_FROM_COMPUTE:
+				setAllowingAccessFromCompute((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -346,6 +397,9 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK:
 				setAcquireWaitForVBlank(ACQUIRE_WAIT_FOR_VBLANK_EDEFAULT);
 				return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ALLOWING_ACCESS_FROM_COMPUTE:
+				setAllowingAccessFromCompute(ALLOWING_ACCESS_FROM_COMPUTE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -370,6 +424,8 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 				return presentWhenVBlank != PRESENT_WHEN_VBLANK_EDEFAULT;
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK:
 				return acquireWaitForVBlank != ACQUIRE_WAIT_FOR_VBLANK_EDEFAULT;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ALLOWING_ACCESS_FROM_COMPUTE:
+				return allowingAccessFromCompute != ALLOWING_ACCESS_FROM_COMPUTE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -393,6 +449,8 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 		result.append(presentWhenVBlank);
 		result.append(", acquireWaitForVBlank: ");
 		result.append(acquireWaitForVBlank);
+		result.append(", allowingAccessFromCompute: ");
+		result.append(allowingAccessFromCompute);
 		result.append(')');
 		return result.toString();
 	}

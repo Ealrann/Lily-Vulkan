@@ -63,6 +63,7 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 			addSwapImageUsagesPropertyDescriptor(object);
 			addPresentWhenVBlankPropertyDescriptor(object);
 			addAcquireWaitForVBlankPropertyDescriptor(object);
+			addAllowingAccessFromComputePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -160,6 +161,29 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 	}
 
 	/**
+	 * This adds a property descriptor for the Allowing Access From Compute feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAllowingAccessFromComputePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SwapchainConfiguration_allowingAccessFromCompute_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SwapchainConfiguration_allowingAccessFromCompute_feature", "_UI_SwapchainConfiguration_type"),
+				 GraphicPackage.Literals.SWAPCHAIN_CONFIGURATION__ALLOWING_ACCESS_FROM_COMPUTE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -235,6 +259,7 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK:
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK:
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ALLOWING_ACCESS_FROM_COMPUTE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:

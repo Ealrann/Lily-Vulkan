@@ -2,15 +2,11 @@ package org.sheepy.vulkan.device;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import java.nio.IntBuffer;
-import java.util.HashSet;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkDeviceCreateInfo;
-import org.lwjgl.vulkan.VkDeviceQueueCreateInfo;
-import org.lwjgl.vulkan.VkDeviceQueueCreateInfo.Buffer;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
 import org.sheepy.vulkan.log.Logger;
@@ -32,21 +28,20 @@ public class LogicalDevice
 	private VkDevice vkDevice;
 
 	public LogicalDevice(	PhysicalDevice physicalDevice,
+							List<EQueueType> queueTypes,
 							VkSurface dummySurface,
-							List<EPhysicalFeature> features,
-							boolean needComputeCapability)
+							List<EPhysicalFeature> features)
 	{
 		this.physicalDevice = physicalDevice;
 		this.dummySurface = dummySurface;
 		this.features = List.copyOf(features);
 
-		queueManager = new QueueManager(physicalDevice.vkPhysicalDevice, needComputeCapability);
-		queueManager.load(dummySurface);
+		queueManager = new QueueManager(physicalDevice.vkPhysicalDevice, queueTypes, dummySurface);
 	}
 
 	public void allocate(MemoryStack stack)
 	{
-		final var queueCreateInfos = allocQueueInfos(stack);
+		final var queueCreateInfos = queueManager.allocQueueInfos(stack);
 		final var extensionsBuffer = physicalDevice.allocRetainedExtensions(stack);
 		final var deviceFeatures = allocPhysicalFeatures(stack);
 		final var createInfo = VkDeviceCreateInfo	.mallocStack(stack)
@@ -67,27 +62,8 @@ public class LogicalDevice
 
 		final long deviceId = pDevice.get(0);
 		vkDevice = new VkDevice(deviceId, physicalDevice.vkPhysicalDevice, createInfo);
-	}
 
-	private Buffer allocQueueInfos(MemoryStack stack)
-	{
-		final var uniqueQueueIndexes = new HashSet<>(queueManager.getQueueIndexes());
-		final var queueCount = uniqueQueueIndexes.size();
-		final var queueCreateInfos = VkDeviceQueueCreateInfo.mallocStack(queueCount, stack);
-
-		for (final int queueIndex : uniqueQueueIndexes)
-		{
-			final var queuePriority = stack.mallocFloat(1).put(1f).flip();
-			final var queueCreateInfo = queueCreateInfos.get();
-
-			queueCreateInfo.set(VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
-								VK_NULL_HANDLE,
-								0,
-								queueIndex,
-								queuePriority);
-		}
-		queueCreateInfos.flip();
-		return queueCreateInfos;
+		queueManager.allocate(vkDevice);
 	}
 
 	private VkPhysicalDeviceFeatures allocPhysicalFeatures(MemoryStack stack)
@@ -110,6 +86,7 @@ public class LogicalDevice
 
 	public void free()
 	{
+		queueManager.free();
 		vkDestroyDevice(vkDevice, null);
 		vkDevice = null;
 	}
@@ -135,19 +112,24 @@ public class LogicalDevice
 		return physicalDevice;
 	}
 
-	public VulkanQueue createGraphicQueue()
+	public VulkanQueue borrowGraphicQueue()
 	{
-		return queueManager.createGraphicQueue(vkDevice);
+		return queueManager.borrowGraphicQueue();
 	}
 
-	public VulkanQueue createComputeQueue()
+	public VulkanQueue borrowComputeQueue()
 	{
-		return queueManager.createComputeQueue(vkDevice);
+		return queueManager.borrowComputeQueue();
 	}
 
-	public VulkanQueue createPresentQueue(VkSurface surface)
+	public VulkanQueue borrowPresentQueue(VkSurface surface)
 	{
-		return queueManager.createPresentQueue(vkDevice, surface);
+		return queueManager.borrowPresentQueue(surface);
+	}
+
+	public void returnQueue(VulkanQueue queue)
+	{
+		queueManager.returnQueue(queue);
 	}
 
 	public boolean isQueueExclusive()
@@ -155,13 +137,8 @@ public class LogicalDevice
 		return queueManager.isExclusive();
 	}
 
-	public IntBuffer allocQueueIndices()
+	public int getQueueFamilyIndex(EQueueType queueType)
 	{
-		return queueManager.allocIndices();
-	}
-
-	public int getQueueIndex(EQueueType queueType)
-	{
-		return queueManager.getQueueIndex(queueType);
+		return queueManager.getQueueFamilyIndex(queueType);
 	}
 }

@@ -1,76 +1,120 @@
 package org.sheepy.vulkan.queue;
 
 import static org.lwjgl.system.MemoryUtil.*;
-import static org.lwjgl.vulkan.VK10.vkGetDeviceQueue;
+import static org.lwjgl.vulkan.VK10.*;
 
-import java.nio.IntBuffer;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.nio.FloatBuffer;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
 
 import org.lwjgl.PointerBuffer;
-import org.lwjgl.system.MemoryUtil;
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
+import org.lwjgl.vulkan.VkDeviceQueueCreateInfo;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkQueue;
+import org.lwjgl.vulkan.VkQueueFamilyProperties;
 import org.sheepy.vulkan.execution.loader.QueueFinder;
 import org.sheepy.vulkan.surface.VkSurface;
 
 public class QueueManager
 {
-	private final boolean loadComputeQueue;
 	private final QueueFinder queueFinder;
-	private final Map<EQueueType, Integer> indexMap = new HashMap<>(3);
-
+	private final QueueFamilyHolder[] queueFamilyHolders;
+	private final int[] queueFamilyIndices;
 	private boolean exclusive = false;
 
-	public QueueManager(VkPhysicalDevice physicalDevice, boolean loadComputeQueue)
+	public QueueManager(VkPhysicalDevice physicalDevice,
+						List<EQueueType> requestedQueueTypes,
+						VkSurface surface)
 	{
-		this.loadComputeQueue = loadComputeQueue;
 		queueFinder = new QueueFinder(physicalDevice);
+		queueFamilyIndices = new int[EQueueType.values().length];
+		queueFamilyHolders = new QueueFamilyHolder[queueFinder.getFamilyCount()];
+
+		buildQueueHolders(requestedQueueTypes, surface);
+		determineExclusitvity();
 	}
 
-	public void load(VkSurface surface)
+	private void buildQueueHolders(List<EQueueType> requestedQueueTypes, VkSurface surface)
 	{
-		loadGraphicFamilly();
-
-		if (loadComputeQueue)
+		final QueueFamilyHolder.Builder[] builders = new QueueFamilyHolder.Builder[queueFinder.getFamilyCount()];
+		final var uniqueTypes = EnumSet.copyOf(requestedQueueTypes);
+		for (final var type : uniqueTypes)
 		{
-			loadComputeFamilly();
+			int count = 0;
+			for (final var request : requestedQueueTypes)
+			{
+				if (request == type) count++;
+			}
+
+			final int familyIndex = findQueueFamilyIndex(type, surface);
+			queueFamilyIndices[type.ordinal()] = familyIndex;
+
+			var builder = builders[familyIndex];
+			if (builder == null)
+			{
+				final var properties = queueFinder.getProperties(familyIndex);
+				builder = new QueueFamilyHolder.Builder(familyIndex, properties);
+				builders[familyIndex] = builder;
+			}
+
+			builder.addCount(count);
+			builder.addType(type);
 		}
 
-		if (surface != null)
+		for (final var builder : builders)
 		{
-			loadPresentFamilly(surface);
+			if (builder != null)
+			{
+				queueFamilyHolders[builder.familyIndex] = builder.build();
+			}
 		}
+	}
 
-		determineExclusitvity();
+	private Integer findQueueFamilyIndex(final EQueueType type, VkSurface surface)
+	{
+		switch (type)
+		{
+		case Graphic:
+			return queueFinder.findGraphicQueueIndex();
+		case Compute:
+			return queueFinder.findComputeQueueIndex();
+		case Present:
+			return queueFinder.findPresentQueueIndex(surface);
+		default:
+			throw new IllegalArgumentException();
+		}
+	}
+
+	public void allocate(VkDevice device)
+	{
+		for (final QueueFamilyHolder queueHolder : queueFamilyHolders)
+		{
+			queueHolder.createQueues(device);
+		}
+	}
+
+	public void free()
+	{
+		for (final QueueFamilyHolder queueHolder : queueFamilyHolders)
+		{
+			queueHolder.freeQueues();
+		}
 	}
 
 	private void determineExclusitvity()
 	{
-		final Set<Integer> uniqueIndexes = new HashSet<>(indexMap.values());
-		exclusive = uniqueIndexes.size() == 1;
-	}
-
-	private void loadGraphicFamilly()
-	{
-		final var graphicQueueIndex = queueFinder.findGraphicQueueIndex();
-		indexMap.put(EQueueType.Graphic, graphicQueueIndex);
-	}
-
-	private void loadComputeFamilly()
-	{
-		final var computeQueueIndex = queueFinder.findComputeQueueIndex();
-		indexMap.put(EQueueType.Compute, computeQueueIndex);
-	}
-
-	private void loadPresentFamilly(VkSurface surface)
-	{
-		final var presentQueueIndex = queueFinder.findPresentQueueIndex(surface);
-		indexMap.put(EQueueType.Present, presentQueueIndex);
+		int count = 0;
+		for (final QueueFamilyHolder queueFamilyHolder : queueFamilyHolders)
+		{
+			if (queueFamilyHolder != null)
+			{
+				count++;
+			}
+		}
+		exclusive = count == 1;
 	}
 
 	public boolean isExclusive()
@@ -78,63 +122,197 @@ public class QueueManager
 		return exclusive;
 	}
 
-	public Collection<Integer> getQueueIndexes()
+	public int getQueueFamilyIndex(EQueueType queueType)
 	{
-		return indexMap.values();
+		return queueFamilyIndices[queueType.ordinal()];
 	}
 
-	public IntBuffer allocIndices()
+	public VulkanQueue borrowComputeQueue()
 	{
-		final IntBuffer res = MemoryUtil.memAllocInt(indexMap.size());
-		for (final int index : getQueueIndexes())
-		{
-			res.put(index);
-		}
-		res.flip();
+		return borrowQueue(EQueueType.Compute);
+	}
 
+	public VulkanQueue borrowGraphicQueue()
+	{
+		return borrowQueue(EQueueType.Graphic);
+	}
+
+	public VulkanQueue borrowPresentQueue(VkSurface surface)
+	{
+		queueFinder.findPresentQueueIndex(surface);
+		return borrowQueue(EQueueType.Present);
+	}
+
+	public void returnQueue(VulkanQueue queue)
+	{
+		queueFamilyHolders[queue.familyIndex].returnQueue(queue);
+	}
+
+	private VulkanQueue borrowQueue(EQueueType type)
+	{
+		final var queueHolder = queueFamilyHolders[queueFamilyIndices[type.ordinal()]];
+		final var res = queueHolder.borrowQueue();
+		assert res != null;
 		return res;
 	}
 
-	private VulkanQueue createQueue(VkDevice device, EQueueType type)
+	public VkDeviceQueueCreateInfo.Buffer allocQueueInfos(MemoryStack stack)
 	{
-		final var queueFamilyIndex = indexMap.get(type);
-		final var vkQueue = retrieveDeviceQueue(device, queueFamilyIndex);
-		final var graphicQueue = new VulkanQueue(type, queueFamilyIndex, vkQueue);
-
-		return graphicQueue;
-	}
-
-	private static VkQueue retrieveDeviceQueue(VkDevice device, int queueFamilyIndex)
-	{
-		final PointerBuffer pQueue = memAllocPointer(1);
-		vkGetDeviceQueue(device, queueFamilyIndex, 0, pQueue);
-		final long queue = pQueue.get(0);
-		memFree(pQueue);
-		return new VkQueue(queue, device);
-	}
-
-	public VulkanQueue createGraphicQueue(VkDevice device)
-	{
-		return createQueue(device, EQueueType.Graphic);
-	}
-
-	public VulkanQueue createComputeQueue(VkDevice device)
-	{
-		if (loadComputeQueue == false)
+		int familyCount = 0;
+		for (int i = 0; i < queueFamilyHolders.length; i++)
 		{
-			throw new AssertionError("Compute support was not turned on.");
+			if (queueFamilyHolders[i] != null)
+			{
+				familyCount++;
+			}
 		}
-		return createQueue(device, EQueueType.Compute);
+		final var queueCreateInfos = VkDeviceQueueCreateInfo.mallocStack(familyCount, stack);
+
+		for (final var familyHolder : queueFamilyHolders)
+		{
+			if (familyHolder != null)
+			{
+				final var queuePriorities = familyHolder.allocPriorities(stack);
+
+				final var queueCreateInfo = queueCreateInfos.get();
+				queueCreateInfo.set(VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
+									VK_NULL_HANDLE,
+									0,
+									familyHolder.familyIndex,
+									queuePriorities);
+			}
+		}
+		queueCreateInfos.flip();
+		return queueCreateInfos;
 	}
 
-	public VulkanQueue createPresentQueue(VkDevice device, VkSurface surface)
+	private static final class QueueFamilyHolder
 	{
-		loadPresentFamilly(surface);
-		return createQueue(device, EQueueType.Present);
-	}
+		// private final Set<EQueueType> types;
+		private final int familyIndex;
+		private final List<VulkanQueue> queues;
+		private final List<Boolean> revervations;
+		private final int requestedQueueCount;
+		private final int effectiveQueueCount;
 
-	public int getQueueIndex(EQueueType queueType)
-	{
-		return indexMap.get(queueType);
+		public QueueFamilyHolder(	EnumSet<EQueueType> types,
+									int familyIndex,
+									int requestedQueueCount,
+									int effectiveQueueCount)
+		{
+			// this.types = EnumSet.copyOf(types);
+			this.requestedQueueCount = requestedQueueCount;
+			this.effectiveQueueCount = effectiveQueueCount;
+			this.familyIndex = familyIndex;
+			queues = new ArrayList<>(requestedQueueCount);
+			revervations = new ArrayList<>(requestedQueueCount);
+
+			for (int i = 0; i < requestedQueueCount; i++)
+			{
+				revervations.add(false);
+			}
+		}
+
+		public FloatBuffer allocPriorities(MemoryStack stack)
+		{
+			final var queuePriorities = stack.mallocFloat(effectiveQueueCount);
+			for (int i = 0; i < effectiveQueueCount; i++)
+				queuePriorities.put(1f);
+			queuePriorities.flip();
+			return queuePriorities;
+		}
+
+		public void createQueues(VkDevice device)
+		{
+			assert queues.isEmpty();
+
+			for (int i = 0; i < effectiveQueueCount; i++)
+			{
+				final var vkQueue = retrieveDeviceQueue(device, familyIndex, i);
+				final var queue = new VulkanQueue(familyIndex, vkQueue, false);
+				queues.add(queue);
+			}
+
+			if (effectiveQueueCount < requestedQueueCount)
+			{
+				final int lastIndex = queues.size() - 1;
+				final var lastQueue = queues.get(lastIndex);
+				for (int i = lastIndex; i < requestedQueueCount; i++)
+				{
+					queues.add(lastQueue.share());
+				}
+			}
+		}
+
+		public void freeQueues()
+		{
+			queues.clear();
+		}
+
+		public VulkanQueue borrowQueue()
+		{
+			VulkanQueue res = null;
+			for (int i = 0; i < revervations.size(); i++)
+			{
+				if (revervations.get(i) == false)
+				{
+					res = queues.get(i);
+					revervations.set(i, true);
+					break;
+				}
+			}
+			return res;
+		}
+
+		public void returnQueue(VulkanQueue queue)
+		{
+			final int index = queues.indexOf(queue);
+			revervations.set(index, false);
+		}
+
+		private static VkQueue retrieveDeviceQueue(	VkDevice device,
+													int queueFamilyIndex,
+													int queueIndex)
+		{
+			final PointerBuffer pQueue = memAllocPointer(1);
+			vkGetDeviceQueue(device, queueFamilyIndex, 0, pQueue);
+			final long queue = pQueue.get(queueIndex);
+			memFree(pQueue);
+			return new VkQueue(queue, device);
+		}
+
+		private static final class Builder
+		{
+			private final int familyIndex;
+			private int requestedQueueCount = 0;
+			private final List<EQueueType> types = new ArrayList<>();
+			private final VkQueueFamilyProperties properties;
+
+			public Builder(int familyIndex, VkQueueFamilyProperties properties)
+			{
+				this.familyIndex = familyIndex;
+				this.properties = properties;
+			}
+
+			public void addCount(int count)
+			{
+				this.requestedQueueCount += count;
+			}
+
+			public void addType(EQueueType type)
+			{
+				types.add(type);
+			}
+
+			public QueueFamilyHolder build()
+			{
+				final int effectiveQueueCount = Math.min(	requestedQueueCount,
+															properties.queueCount());
+				return new QueueFamilyHolder(	EnumSet.copyOf(types),
+												familyIndex,
+												requestedQueueCount,
+												effectiveQueueCount);
+			}
+		}
 	}
 }

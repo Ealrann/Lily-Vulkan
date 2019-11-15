@@ -25,7 +25,10 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContex
 	@Override
 	protected IComputeContext createContext()
 	{
-		return new ComputeContext(getQueueType(), isResetAllowed(), descriptorPool, process);
+		return new ComputeContext(	getExecutionQueueType(),
+									isResetAllowed(),
+									descriptorPool,
+									process);
 	}
 
 	@Override
@@ -35,14 +38,20 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContex
 	}
 
 	@Override
-	public EQueueType getQueueType()
+	protected List<ECommandStage> getStages()
+	{
+		return stages;
+	}
+
+	@Override
+	public EQueueType getExecutionQueueType()
 	{
 		return EQueueType.Compute;
 	}
 
 	@Override
-	protected List<ECommandStage> getStages()
+	public boolean needPresentQueue()
 	{
-		return stages;
+		return false;
 	}
 }

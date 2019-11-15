@@ -23,6 +23,7 @@ import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
 import org.sheepy.lily.vulkan.common.engine.utils.VulkanEngineAllocationRoot;
+import org.sheepy.lily.vulkan.common.engine.utils.VulkanEngineUtils;
 import org.sheepy.lily.vulkan.common.input.VulkanInputManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
@@ -47,9 +48,9 @@ import org.sheepy.vulkan.window.Window;
 @Adapter(scope = VulkanEngine.class)
 public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 {
+	private static final EQueueType ENGINE_QUEUE_TYPE = EQueueType.Graphic;
 	private static final ModelExplorer RESOURCE_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 																						VulkanPackage.Literals.RESOURCE_PKG__RESOURCES));
-	private static final String USING_GRAPHIC_DEVICE = "\nUsing Graphic Device: %s (%s)";
 
 	private final List<VkFence> fences = new ArrayList<>();
 	private final VulkanInputManager inputManager;
@@ -90,7 +91,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 			window = null;
 			inputManager = null;
 		}
-		executionContext = new ExecutionContext(EQueueType.Graphic, false);
+		executionContext = new ExecutionContext(ENGINE_QUEUE_TYPE, false);
 
 		try (MemoryStack stack = stackPush())
 		{
@@ -298,7 +299,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 		physicalDevice = deviceSelector.findBestPhysicalDevice(stack);
 
-		printDeviceInfo();
+		physicalDevice.printInfo();
 
 		if (DebugUtil.DEBUG_ENABLED)
 		{
@@ -310,14 +311,6 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 		}
 	}
 
-	private void printDeviceInfo()
-	{
-		final String name = physicalDevice.getName();
-		final int driverVersion = physicalDevice.getDriverVersion();
-		final var deviceInfo = String.format(USING_GRAPHIC_DEVICE, name, driverVersion);
-		System.out.println(deviceInfo);
-	}
-
 	private void createLogicalDevice(MemoryStack stack, VkSurface dummySurface)
 	{
 		final var features = engine.getFeatures();
@@ -325,7 +318,9 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 										.map(f -> EPhysicalFeature.valueOf(f.getName()))
 										.collect(Collectors.toList());
 
-		logicalDevice = new LogicalDevice(physicalDevice, dummySurface, vkFeatures, true);
+		final var queueList = VulkanEngineUtils.generateQueueList(engine);
+		queueList.add(ENGINE_QUEUE_TYPE);
+		logicalDevice = new LogicalDevice(physicalDevice, queueList, dummySurface, vkFeatures);
 		logicalDevice.allocate(stack);
 	}
 

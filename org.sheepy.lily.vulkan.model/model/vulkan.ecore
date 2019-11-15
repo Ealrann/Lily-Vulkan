@@ -26,6 +26,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" unique="false"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
         defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="queuePriority" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="1.0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IExecutionManager" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="RunProcess" eSuperTypes="../../org.sheepy.lily.core.model/model/cadence.ecore#//ICadenceTask">

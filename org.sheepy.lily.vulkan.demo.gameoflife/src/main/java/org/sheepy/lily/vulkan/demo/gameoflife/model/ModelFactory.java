@@ -70,6 +70,7 @@ public class ModelFactory
 		swapchainConfiguration.getSwapImageUsages().add(EImageUsage.COLOR_ATTACHMENT);
 		swapchainConfiguration.setAcquireWaitForVBlank(false);
 		swapchainConfiguration.setPresentWhenVBlank(false);
+		swapchainConfiguration.setAllowingAccessFromCompute(true);
 
 		final var framebufferConfiguration = GraphicFactory.eINSTANCE.createFramebufferConfiguration();
 		final var configuration = GraphicFactory.eINSTANCE.createGraphicConfiguration();

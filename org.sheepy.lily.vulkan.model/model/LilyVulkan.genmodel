@@ -294,6 +294,7 @@
           ecoreFeature="ecore:EAttribute graphic.ecore#//SwapchainConfiguration/presentWhenVBlank"/>
       <genFeatures createChild="false" propertyDescription="Will limit FPS, based on VBlank. The engine will prefer using FIFO."
           ecoreFeature="ecore:EAttribute graphic.ecore#//SwapchainConfiguration/acquireWaitForVBlank"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//SwapchainConfiguration/allowingAccessFromCompute"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//FramebufferConfiguration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//FramebufferConfiguration/clearValue"/>

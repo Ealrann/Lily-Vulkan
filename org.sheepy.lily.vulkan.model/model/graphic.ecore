@@ -45,6 +45,9 @@
         <details key="propertyDescription" value="Will limit FPS, based on VBlank. The engine will prefer using FIFO."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowingAccessFromCompute"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FramebufferConfiguration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clearValue" unique="false"

@@ -5,19 +5,31 @@ import org.lwjgl.vulkan.VkQueue;
 
 public class VulkanQueue
 {
-	public final EQueueType type;
-	public final int index;
+	public final int familyIndex;
 	public final VkQueue vkQueue;
 
-	public VulkanQueue(EQueueType type, int index, VkQueue vkQueue)
+	private boolean isShared;
+
+	public VulkanQueue(int familyIndex, VkQueue vkQueue, boolean isShared)
 	{
-		this.type = type;
-		this.index = index;
+		this.familyIndex = familyIndex;
 		this.vkQueue = vkQueue;
+		this.isShared = isShared;
 	}
-	
+
 	public void waitIdle()
 	{
 		VK10.vkQueueWaitIdle(vkQueue);
+	}
+
+	public boolean isShared()
+	{
+		return isShared;
+	}
+
+	public VulkanQueue share()
+	{
+		isShared = true;
+		return new VulkanQueue(familyIndex, vkQueue, true);
 	}
 }

@@ -31,13 +31,14 @@ public class ExecutionContext extends DelegatedVulkanContext
 	{
 		super.allocate(context);
 
+		final var logicalDevice = getLogicalDevice();
 		switch (queueType)
 		{
 		case Compute:
-			queue = getLogicalDevice().createComputeQueue();
+			queue = logicalDevice.borrowComputeQueue();
 			break;
 		case Graphic:
-			queue = getLogicalDevice().createGraphicQueue();
+			queue = logicalDevice.borrowGraphicQueue();
 			break;
 		case Present:
 			throw new AssertionError("Present is not a valid ExecutionContext");
@@ -45,13 +46,14 @@ public class ExecutionContext extends DelegatedVulkanContext
 			break;
 		}
 
-		commandPool = new CommandPool(queue.index, resetAllowed);
+		commandPool = new CommandPool(queue.familyIndex, resetAllowed);
 		commandPool.allocate(this);
 	}
 
 	@Override
 	public void free(IVulkanContext context)
 	{
+		getLogicalDevice().returnQueue(queue);
 		commandPool.free(this);
 	}
 

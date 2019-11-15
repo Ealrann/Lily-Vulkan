@@ -28,13 +28,14 @@ import org.sheepy.vulkan.instance.VulkanInstance;
 public class PhysicalDevice
 {
 	private static final String FAILED_TO_FIND_SUPPORTED_FORMAT = "Failed to find supported format";
+	private static final String USING_GRAPHIC_DEVICE = "\nUsing Graphic Device: %s (%s)";
 
 	public final VkPhysicalDevice vkPhysicalDevice;
 	public final VulkanInstance vkInstance;
 	public final DeviceProperties deviceProperties;
+	public final String name;
+	public final int driverVersion;
 
-	private final String name;
-	private final int driverVersion;
 	private final Map<Integer, VkFormatProperties> formatProperties = new HashMap<>();
 	private final List<EDeviceExtension> retainedExtensions;
 	private final List<String> availableExtensions;
@@ -215,16 +216,6 @@ public class PhysicalDevice
 		return extensionsBuffer;
 	}
 
-	public String getName()
-	{
-		return name;
-	}
-
-	public int getDriverVersion()
-	{
-		return driverVersion;
-	}
-
 	public long getBufferAlignement(int usage)
 	{
 		final var limits = getDeviceProperties().limits();
@@ -288,5 +279,11 @@ public class PhysicalDevice
 	public VkPhysicalDeviceProperties getDeviceProperties()
 	{
 		return deviceProperties.vkDeviceProperties;
+	}
+
+	public void printInfo()
+	{
+		final var deviceInfo = String.format(USING_GRAPHIC_DEVICE, name, driverVersion);
+		System.out.println(deviceInfo);
 	}
 }

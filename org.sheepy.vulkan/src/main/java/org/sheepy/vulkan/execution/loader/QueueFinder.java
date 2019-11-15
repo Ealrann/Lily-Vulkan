@@ -65,8 +65,10 @@ public final class QueueFinder
 		for (int index = 0; index < queueProps.capacity(); index++)
 		{
 			final int[] supportsPresent = new int[1];
-			vkGetPhysicalDeviceSurfaceSupportKHR(physicalDevice, index, surface.ptr,
-					supportsPresent);
+			vkGetPhysicalDeviceSurfaceSupportKHR(	physicalDevice,
+													index,
+													surface.ptr,
+													supportsPresent);
 
 			if (supportsPresent[0] == VK_TRUE)
 			{
@@ -76,5 +78,15 @@ public final class QueueFinder
 		}
 
 		return res;
+	}
+	
+	public VkQueueFamilyProperties getProperties(int familyIndex)
+	{
+		return queueProps.get(familyIndex);
+	}
+	
+	public int getFamilyCount()
+	{
+		return queueProps.capacity();
 	}
 }

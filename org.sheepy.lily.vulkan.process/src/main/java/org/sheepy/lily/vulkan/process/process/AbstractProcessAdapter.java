@@ -12,11 +12,11 @@ import org.sheepy.lily.core.api.cadence.IStatistics;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
-import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.api.process.IProcessPartAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
+import org.sheepy.lily.vulkan.common.process.IExecutionProcessAdapter;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -26,11 +26,10 @@ import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.vulkan.queue.EQueueType;
 
 @Statefull
 public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorderContext<T>>
-		implements IProcessAdapter, IAllocable<IVulkanContext>
+		implements IExecutionProcessAdapter, IAllocable<IVulkanContext>
 {
 	private final ModelExplorer RESOURCE_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 																				VulkanPackage.Literals.RESOURCE_PKG__RESOURCES));
@@ -354,8 +353,13 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 		System.out.println(allocator.toString());
 	}
 
+	@Override
+	public boolean isMultithreadAllowed()
+	{
+		return context.getQueue().isShared() == false;
+	}
+
 	protected abstract Integer prepareNextExecution();
 	protected abstract List<ECommandStage> getStages();
 	protected abstract T createContext();
-	public abstract EQueueType getQueueType();
 }

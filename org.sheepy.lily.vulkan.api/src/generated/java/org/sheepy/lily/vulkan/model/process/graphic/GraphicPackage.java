@@ -229,13 +229,22 @@ public interface GraphicPackage extends EPackage
 	int SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK = 4;
 
 	/**
+	 * The feature id for the '<em><b>Allowing Access From Compute</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAPCHAIN_CONFIGURATION__ALLOWING_ACCESS_FROM_COMPUTE = 5;
+
+	/**
 	 * The number of structural features of the '<em>Swapchain Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SWAPCHAIN_CONFIGURATION_FEATURE_COUNT = 5;
+	int SWAPCHAIN_CONFIGURATION_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Swapchain Configuration</em>' class.
@@ -2214,6 +2223,17 @@ public interface GraphicPackage extends EPackage
 	EAttribute getSwapchainConfiguration_AcquireWaitForVBlank();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isAllowingAccessFromCompute <em>Allowing Access From Compute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Allowing Access From Compute</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isAllowingAccessFromCompute()
+	 * @see #getSwapchainConfiguration()
+	 * @generated
+	 */
+	EAttribute getSwapchainConfiguration_AllowingAccessFromCompute();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration <em>Framebuffer Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3363,6 +3383,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK = eINSTANCE.getSwapchainConfiguration_AcquireWaitForVBlank();
+
+		/**
+		 * The meta object literal for the '<em><b>Allowing Access From Compute</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SWAPCHAIN_CONFIGURATION__ALLOWING_ACCESS_FROM_COMPUTE = eINSTANCE.getSwapchainConfiguration_AllowingAccessFromCompute();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl <em>Framebuffer Configuration</em>}' class.

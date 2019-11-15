@@ -6,7 +6,10 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.function.Function;
 
 import org.eclipse.emf.common.util.EList;
 import org.lwjgl.system.MemoryUtil;
@@ -20,13 +23,15 @@ import org.sheepy.lily.vulkan.common.util.VulkanBufferUtils;
 import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 import org.sheepy.lily.vulkan.process.graphic.frame.util.PresentationModeSelector;
+import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
+import org.sheepy.vulkan.queue.EQueueType;
 import org.sheepy.vulkan.surface.VkSurface;
 import org.sheepy.vulkan.util.VkModelUtil;
 
-public class SwapChainManager implements ISwapChainManager
+public final class SwapChainManager implements ISwapChainManager
 {
 	private Long swapChain = null;
 	private List<Long> swapChainImages = null;
@@ -63,7 +68,7 @@ public class SwapChainManager implements ISwapChainManager
 		attachments = swapchainConfiguration.getAtachments();
 		allocateAttachments(context);
 
-		final VkSwapchainCreateInfoKHR createInfo = VkSwapchainCreateInfoKHR.callocStack(stack);
+		final var createInfo = VkSwapchainCreateInfoKHR.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR);
 		createInfo.surface(surface.ptr);
 		createInfo.minImageCount(imageCount);
@@ -76,7 +81,8 @@ public class SwapChainManager implements ISwapChainManager
 
 		if (logicalDevice.isQueueExclusive() == false)
 		{
-			indices = logicalDevice.allocQueueIndices();
+			final boolean accessFromCompute = swapchainConfiguration.isAllowingAccessFromCompute();
+			indices = allocQueueIndices(logicalDevice, accessFromCompute);
 			createInfo.imageSharingMode(VK_SHARING_MODE_CONCURRENT);
 			createInfo.pQueueFamilyIndices(indices);
 		}
@@ -110,6 +116,24 @@ public class SwapChainManager implements ISwapChainManager
 			printSwapChainInformations(targetPresentMode);
 			first = false;
 		}
+	}
+
+	public static IntBuffer allocQueueIndices(LogicalDevice logicalDevice, boolean computeAcces)
+	{
+		final Function<EQueueType, Integer> indexOf = logicalDevice::getQueueFamilyIndex;
+		final Set<Integer> indices = new HashSet<>();
+		indices.add(indexOf.apply(EQueueType.Graphic));
+		indices.add(indexOf.apply(EQueueType.Present));
+		if (computeAcces) indices.add(indexOf.apply(EQueueType.Compute));
+
+		final IntBuffer res = MemoryUtil.memAllocInt(indices.size());
+		for (final Integer index : indices)
+		{
+			res.put(index);
+		}
+		res.flip();
+
+		return res;
 	}
 
 	private void allocateAttachments(IGraphicContext context)

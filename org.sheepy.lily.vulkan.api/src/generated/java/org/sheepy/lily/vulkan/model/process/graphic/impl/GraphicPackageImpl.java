@@ -531,6 +531,17 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getSwapchainConfiguration_AllowingAccessFromCompute()
+	{
+		return (EAttribute)swapchainConfigurationEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getFramebufferConfiguration()
 	{
 		return framebufferConfigurationEClass;
@@ -1606,6 +1617,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(swapchainConfigurationEClass, SWAPCHAIN_CONFIGURATION__ATACHMENTS);
 		createEAttribute(swapchainConfigurationEClass, SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK);
 		createEAttribute(swapchainConfigurationEClass, SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK);
+		createEAttribute(swapchainConfigurationEClass, SWAPCHAIN_CONFIGURATION__ALLOWING_ACCESS_FROM_COMPUTE);
 
 		framebufferConfigurationEClass = createEClass(FRAMEBUFFER_CONFIGURATION);
 		createEAttribute(framebufferConfigurationEClass, FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE);
@@ -1811,6 +1823,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEReference(getSwapchainConfiguration_Atachments(), this.getISwapAttachment(), null, "atachments", null, 0, -1, SwapchainConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSwapchainConfiguration_PresentWhenVBlank(), ecorePackage.getEBoolean(), "presentWhenVBlank", "true", 1, 1, SwapchainConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSwapchainConfiguration_AcquireWaitForVBlank(), ecorePackage.getEBoolean(), "acquireWaitForVBlank", "true", 1, 1, SwapchainConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSwapchainConfiguration_AllowingAccessFromCompute(), ecorePackage.getEBoolean(), "allowingAccessFromCompute", "false", 1, 1, SwapchainConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(framebufferConfigurationEClass, FramebufferConfiguration.class, "FramebufferConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFramebufferConfiguration_ClearValue(), theTypesPackage.getColor4f(), "clearValue", "0;0;0;0", 0, 1, FramebufferConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
