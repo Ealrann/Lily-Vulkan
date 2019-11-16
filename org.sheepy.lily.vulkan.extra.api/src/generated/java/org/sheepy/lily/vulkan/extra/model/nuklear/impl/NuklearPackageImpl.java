@@ -483,6 +483,28 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getSelectorPanel_AutoHideLabels()
+	{
+		return (EAttribute)selectorPanelEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSelectorPanel_FadeOutMs()
+	{
+		return (EAttribute)selectorPanelEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getIInputProvider()
 	{
 		return iInputProviderEClass;
@@ -548,6 +570,8 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		createEReference(selectorPanelEClass, SELECTOR_PANEL__VARIABLE_RESOLVER);
 		createEReference(selectorPanelEClass, SELECTOR_PANEL__INPUT_PROVIDER);
 		createEAttribute(selectorPanelEClass, SELECTOR_PANEL__VERTICAL);
+		createEAttribute(selectorPanelEClass, SELECTOR_PANEL__AUTO_HIDE_LABELS);
+		createEAttribute(selectorPanelEClass, SELECTOR_PANEL__FADE_OUT_MS);
 
 		iInputProviderEClass = createEClass(IINPUT_PROVIDER);
 	}
@@ -626,6 +650,8 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		initEReference(getSelectorPanel_VariableResolver(), theVariablePackage.getDirectVariableResolver(), null, "variableResolver", null, 1, 1, SelectorPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSelectorPanel_InputProvider(), this.getIInputProvider(), null, "inputProvider", null, 1, 1, SelectorPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSelectorPanel_Vertical(), ecorePackage.getEBoolean(), "vertical", "true", 1, 1, SelectorPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSelectorPanel_AutoHideLabels(), ecorePackage.getEBoolean(), "autoHideLabels", "true", 1, 1, SelectorPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSelectorPanel_FadeOutMs(), ecorePackage.getEInt(), "fadeOutMs", "500", 1, 1, SelectorPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iInputProviderEClass, IInputProvider.class, "IInputProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

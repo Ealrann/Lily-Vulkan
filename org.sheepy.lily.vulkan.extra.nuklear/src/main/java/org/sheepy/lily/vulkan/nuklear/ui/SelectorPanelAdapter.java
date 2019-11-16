@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.joml.Vector2i;
+import org.lwjgl.nuklear.NkColor;
 import org.lwjgl.nuklear.NkImage;
 import org.lwjgl.nuklear.NkRect;
 import org.lwjgl.system.MemoryUtil;
@@ -42,16 +43,22 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 	private final SelectorButtonDrawer buttonDrawer;
 	private final int width;
 	private final int height;
+	private final NkColor labelColor;
 
+	private boolean showText = false;
+	private boolean fading = false;
+	private long fadingSince = 0;
 	private boolean loaded = false;
 	private boolean dirty = false;
 	private Object selectedElement;
+
+	private NkColor backgroundColor;
 
 	public SelectorPanelAdapter(SelectorPanel panel)
 	{
 		if (panel.isPrintLabels() && panel.isVertical() == false)
 		{
-			throw new AssertionError("Panel horizontal with labels are not supported");
+			throw new AssertionError("Horizontal panel with labels is not supported");
 		}
 
 		final var inputProvider = panel.getInputProvider();
@@ -63,6 +70,8 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 		inputProviderAdapter = inputProvider.adapt(IInputProviderAdapter.class);
 		datas = List.copyOf(buildLineDatas(inputProviderAdapter.getElements(inputProvider)));
 		buttonDrawer = new SelectorButtonDrawer(panel);
+		labelColor = NkColor.malloc();
+		labelColor.set((byte) 188, (byte) 188, (byte) 188, (byte) 255);
 
 		final var printLabels = panel.isPrintLabels();
 		if (panel.isVertical())
@@ -104,7 +113,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 	public void unsetTarget()
 	{
 		resolverAdapter.removeListener(layerListener);
-
+		labelColor.free();
 		for (final LineData data : datas)
 		{
 			data.free();
@@ -117,6 +126,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 
 		updateDataLocations(surface);
 		context.window.addListener(listener);
+		backgroundColor = context.nkContext.style().window().fixed_background().data().color();
 	}
 
 	public void updateDataLocations(Vector2i size)
@@ -140,6 +150,8 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 		// -------------------- ^^^
 
 		final var nkContext = context.nkContext;
+		boolean labelPanelHovered = false;
+		boolean buttonPanelHovered = false;
 
 		if (loaded == false)
 		{
@@ -147,7 +159,6 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 			loaded = true;
 		}
 
-		final var backgroundColor = nkContext.style().window().fixed_background().data().color();
 		final byte defaultAlpha = backgroundColor.a();
 
 		buttonDrawer.prepare(nkContext);
@@ -167,8 +178,13 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 								data.rectLabel,
 								NK_WINDOW_NO_SCROLLBAR | NK_WINDOW_BACKGROUND | NK_WINDOW_NO_INPUT))
 				{
-					nk_layout_row_dynamic(context.nkContext, buttonSize, 1);
-					nk_label(nkContext, data.textBuffer, NK_TEXT_RIGHT);
+					if (showText || panel.isAutoHideLabels() == false)
+					{
+						nk_layout_row_dynamic(context.nkContext, buttonSize, 1);
+						nk_label_colored(nkContext, data.textBuffer, NK_TEXT_RIGHT, labelColor);
+					}
+
+					labelPanelHovered |= nk_window_is_hovered(nkContext);
 				}
 				nk_end(nkContext);
 			}
@@ -183,11 +199,63 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 				resolverAdapter.setValue(resolver, newSelection);
 				dirty = true;
 			}
+
+			buttonPanelHovered |= buttonDrawer.isHovered();
+		}
+
+		if (panel.isAutoHideLabels())
+		{
+			updateHoverStatus(labelPanelHovered || buttonPanelHovered);
 		}
 
 		buttonDrawer.finish();
 		backgroundColor.a(defaultAlpha);
+
 		return res;
+	}
+
+	private void updateHoverStatus(boolean hovered)
+	{
+		if (hovered)
+		{
+			if (showText == false)
+			{
+				showText = true;
+				dirty = true;
+			}
+			if (fading)
+			{
+				fading = false;
+				labelColor.a((byte) 255);
+			}
+		}
+		else
+		{
+			if (showText == true && fading == false)
+			{
+				fading = true;
+				fadingSince = System.currentTimeMillis();
+				dirty = true;
+			}
+		}
+
+		if (fading)
+		{
+			final long time = System.currentTimeMillis();
+			final float fadeProgress = ((float) (time - fadingSince)) / panel.getFadeOutMs();
+			if (fadeProgress > 1)
+			{
+				fading = false;
+				labelColor.a((byte) 255);
+				showText = false;
+				dirty = true;
+			}
+			else
+			{
+				labelColor.a((byte) (255f * (1f - fadeProgress)));
+				dirty = true;
+			}
+		}
 	}
 
 	@Override

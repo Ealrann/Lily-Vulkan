@@ -129,6 +129,7 @@
     <genClasses image="false" ecoreClass="vulkan.ecore#//IResource"/>
     <genClasses image="false" ecoreClass="vulkan.ecore#//IProcess">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IProcess/enabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IProcess/queuePriority"/>
     </genClasses>
     <genClasses image="false" ecoreClass="vulkan.ecore#//IExecutionManager"/>
     <genClasses ecoreClass="vulkan.ecore#//RunProcess">

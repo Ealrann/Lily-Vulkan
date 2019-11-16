@@ -56,6 +56,10 @@
         eType="#//IInputProvider" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vertical" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="autoHideLabels" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fadeOutMs" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="500"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IInputProvider" abstract="true" interface="true"/>
 </ecore:EPackage>

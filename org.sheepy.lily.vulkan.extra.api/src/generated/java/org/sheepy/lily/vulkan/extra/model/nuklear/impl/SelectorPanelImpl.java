@@ -74,6 +74,8 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#getVariableResolver <em>Variable Resolver</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#getInputProvider <em>Input Provider</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#isVertical <em>Vertical</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#isAutoHideLabels <em>Auto Hide Labels</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#getFadeOutMs <em>Fade Out Ms</em>}</li>
  * </ul>
  *
  * @generated
@@ -309,6 +311,46 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	 * @ordered
 	 */
 	protected boolean vertical = VERTICAL_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isAutoHideLabels() <em>Auto Hide Labels</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAutoHideLabels()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean AUTO_HIDE_LABELS_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isAutoHideLabels() <em>Auto Hide Labels</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAutoHideLabels()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean autoHideLabels = AUTO_HIDE_LABELS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFadeOutMs() <em>Fade Out Ms</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFadeOutMs()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int FADE_OUT_MS_EDEFAULT = 500;
+
+	/**
+	 * The cached value of the '{@link #getFadeOutMs() <em>Fade Out Ms</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFadeOutMs()
+	 * @generated
+	 * @ordered
+	 */
+	protected int fadeOutMs = FADE_OUT_MS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -712,6 +754,56 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	 * @generated
 	 */
 	@Override
+	public boolean isAutoHideLabels()
+	{
+		return autoHideLabels;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setAutoHideLabels(boolean newAutoHideLabels)
+	{
+		boolean oldAutoHideLabels = autoHideLabels;
+		autoHideLabels = newAutoHideLabels;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.SELECTOR_PANEL__AUTO_HIDE_LABELS, oldAutoHideLabels, autoHideLabels));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getFadeOutMs()
+	{
+		return fadeOutMs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFadeOutMs(int newFadeOutMs)
+	{
+		int oldFadeOutMs = fadeOutMs;
+		fadeOutMs = newFadeOutMs;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.SELECTOR_PANEL__FADE_OUT_MS, oldFadeOutMs, fadeOutMs));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public <T extends LObject> EList<T> createContainmentEList(final EClass targetEClass)
 	{
 		EList<T> res = null;
@@ -854,6 +946,10 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 				return getInputProvider();
 			case NuklearPackage.SELECTOR_PANEL__VERTICAL:
 				return isVertical();
+			case NuklearPackage.SELECTOR_PANEL__AUTO_HIDE_LABELS:
+				return isAutoHideLabels();
+			case NuklearPackage.SELECTOR_PANEL__FADE_OUT_MS:
+				return getFadeOutMs();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -908,6 +1004,12 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 			case NuklearPackage.SELECTOR_PANEL__VERTICAL:
 				setVertical((Boolean)newValue);
 				return;
+			case NuklearPackage.SELECTOR_PANEL__AUTO_HIDE_LABELS:
+				setAutoHideLabels((Boolean)newValue);
+				return;
+			case NuklearPackage.SELECTOR_PANEL__FADE_OUT_MS:
+				setFadeOutMs((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -961,6 +1063,12 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 			case NuklearPackage.SELECTOR_PANEL__VERTICAL:
 				setVertical(VERTICAL_EDEFAULT);
 				return;
+			case NuklearPackage.SELECTOR_PANEL__AUTO_HIDE_LABELS:
+				setAutoHideLabels(AUTO_HIDE_LABELS_EDEFAULT);
+				return;
+			case NuklearPackage.SELECTOR_PANEL__FADE_OUT_MS:
+				setFadeOutMs(FADE_OUT_MS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1001,6 +1109,10 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 				return inputProvider != null;
 			case NuklearPackage.SELECTOR_PANEL__VERTICAL:
 				return vertical != VERTICAL_EDEFAULT;
+			case NuklearPackage.SELECTOR_PANEL__AUTO_HIDE_LABELS:
+				return autoHideLabels != AUTO_HIDE_LABELS_EDEFAULT;
+			case NuklearPackage.SELECTOR_PANEL__FADE_OUT_MS:
+				return fadeOutMs != FADE_OUT_MS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1192,6 +1304,10 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 		result.append(printLabels);
 		result.append(", vertical: ");
 		result.append(vertical);
+		result.append(", autoHideLabels: ");
+		result.append(autoHideLabels);
+		result.append(", fadeOutMs: ");
+		result.append(fadeOutMs);
 		result.append(')');
 		return result.toString();
 	}

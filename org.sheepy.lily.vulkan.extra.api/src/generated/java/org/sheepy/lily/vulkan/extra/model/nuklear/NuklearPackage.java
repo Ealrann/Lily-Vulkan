@@ -475,13 +475,31 @@ public interface NuklearPackage extends EPackage
 	int SELECTOR_PANEL__VERTICAL = PresentationPackage.IPANEL_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Auto Hide Labels</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__AUTO_HIDE_LABELS = PresentationPackage.IPANEL_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Fade Out Ms</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__FADE_OUT_MS = PresentationPackage.IPANEL_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Selector Panel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SELECTOR_PANEL_FEATURE_COUNT = PresentationPackage.IPANEL_FEATURE_COUNT + 8;
+	int SELECTOR_PANEL_FEATURE_COUNT = PresentationPackage.IPANEL_FEATURE_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -836,6 +854,28 @@ public interface NuklearPackage extends EPackage
 	EAttribute getSelectorPanel_Vertical();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isAutoHideLabels <em>Auto Hide Labels</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Auto Hide Labels</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isAutoHideLabels()
+	 * @see #getSelectorPanel()
+	 * @generated
+	 */
+	EAttribute getSelectorPanel_AutoHideLabels();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getFadeOutMs <em>Fade Out Ms</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Fade Out Ms</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getFadeOutMs()
+	 * @see #getSelectorPanel()
+	 * @generated
+	 */
+	EAttribute getSelectorPanel_FadeOutMs();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider <em>IInput Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1077,6 +1117,22 @@ public interface NuklearPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute SELECTOR_PANEL__VERTICAL = eINSTANCE.getSelectorPanel_Vertical();
+
+		/**
+		 * The meta object literal for the '<em><b>Auto Hide Labels</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SELECTOR_PANEL__AUTO_HIDE_LABELS = eINSTANCE.getSelectorPanel_AutoHideLabels();
+
+		/**
+		 * The meta object literal for the '<em><b>Fade Out Ms</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SELECTOR_PANEL__FADE_OUT_MS = eINSTANCE.getSelectorPanel_FadeOutMs();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider <em>IInput Provider</em>}' class.

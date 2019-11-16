@@ -23,6 +23,8 @@ import org.sheepy.lily.core.model.variable.DirectVariableResolver;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getVariableResolver <em>Variable Resolver</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getInputProvider <em>Input Provider</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isVertical <em>Vertical</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isAutoHideLabels <em>Auto Hide Labels</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getFadeOutMs <em>Fade Out Ms</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getSelectorPanel()
@@ -211,5 +213,51 @@ public interface SelectorPanel extends IPanel
 	 * @generated
 	 */
 	void setVertical(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Auto Hide Labels</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Auto Hide Labels</em>' attribute.
+	 * @see #setAutoHideLabels(boolean)
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getSelectorPanel_AutoHideLabels()
+	 * @model default="true" required="true"
+	 * @generated
+	 */
+	boolean isAutoHideLabels();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isAutoHideLabels <em>Auto Hide Labels</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Auto Hide Labels</em>' attribute.
+	 * @see #isAutoHideLabels()
+	 * @generated
+	 */
+	void setAutoHideLabels(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Fade Out Ms</b></em>' attribute.
+	 * The default value is <code>"500"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fade Out Ms</em>' attribute.
+	 * @see #setFadeOutMs(int)
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getSelectorPanel_FadeOutMs()
+	 * @model default="500" required="true"
+	 * @generated
+	 */
+	int getFadeOutMs();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getFadeOutMs <em>Fade Out Ms</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Fade Out Ms</em>' attribute.
+	 * @see #getFadeOutMs()
+	 * @generated
+	 */
+	void setFadeOutMs(int value);
 
 } // SelectorPanel

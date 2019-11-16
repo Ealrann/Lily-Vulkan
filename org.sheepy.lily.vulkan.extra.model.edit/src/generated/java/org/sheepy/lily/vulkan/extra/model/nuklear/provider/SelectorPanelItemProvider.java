@@ -82,6 +82,8 @@ public class SelectorPanelItemProvider
 			addSelectionBPropertyDescriptor(object);
 			addPrintLabelsPropertyDescriptor(object);
 			addVerticalPropertyDescriptor(object);
+			addAutoHideLabelsPropertyDescriptor(object);
+			addFadeOutMsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -317,6 +319,52 @@ public class SelectorPanelItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Auto Hide Labels feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAutoHideLabelsPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SelectorPanel_autoHideLabels_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SelectorPanel_autoHideLabels_feature", "_UI_SelectorPanel_type"),
+				 NuklearPackage.Literals.SELECTOR_PANEL__AUTO_HIDE_LABELS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Fade Out Ms feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFadeOutMsPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SelectorPanel_fadeOutMs_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SelectorPanel_fadeOutMs_feature", "_UI_SelectorPanel_type"),
+				 NuklearPackage.Literals.SELECTOR_PANEL__FADE_OUT_MS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -403,6 +451,8 @@ public class SelectorPanelItemProvider
 			case NuklearPackage.SELECTOR_PANEL__SELECTION_B:
 			case NuklearPackage.SELECTOR_PANEL__PRINT_LABELS:
 			case NuklearPackage.SELECTOR_PANEL__VERTICAL:
+			case NuklearPackage.SELECTOR_PANEL__AUTO_HIDE_LABELS:
+			case NuklearPackage.SELECTOR_PANEL__FADE_OUT_MS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case NuklearPackage.SELECTOR_PANEL__VARIABLE_RESOLVER:

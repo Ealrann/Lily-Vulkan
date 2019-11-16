@@ -24,6 +24,7 @@ public final class SelectorButtonDrawer
 
 	private NkColor borderColor;
 	private NkVec2 padding;
+	private boolean isHovered = false;
 
 	public SelectorButtonDrawer(SelectorPanel panel)
 	{
@@ -71,6 +72,8 @@ public final class SelectorButtonDrawer
 
 		if (nk_begin(nkContext, id, rect, STYLE))
 		{
+			isHovered = nk_window_is_hovered(nkContext);
+
 			nk_layout_row_dynamic(nkContext, buttonSize, 1);
 			if (nk_button_image(nkContext, image))
 			{
@@ -94,5 +97,10 @@ public final class SelectorButtonDrawer
 	public void finish()
 	{
 		borderColor.a(defaultBorderColor.a());
+	}
+
+	public boolean isHovered()
+	{
+		return isHovered;
 	}
 }

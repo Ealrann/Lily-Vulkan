@@ -60,6 +60,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Nuklear.ecore#//SelectorPanel/variableResolver"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Nuklear.ecore#//SelectorPanel/inputProvider"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/vertical"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/autoHideLabels"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/fadeOutMs"/>
     </genClasses>
     <genClasses ecoreClass="Nuklear.ecore#//IInputProvider"/>
   </genPackages>
