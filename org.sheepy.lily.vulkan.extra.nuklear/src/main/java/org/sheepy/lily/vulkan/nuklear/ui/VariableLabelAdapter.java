@@ -78,7 +78,8 @@ public class VariableLabelAdapter implements IUIElementAdapter
 		final String labelText = label.getText();
 		String resultString = "";
 
-		if (labelText.isBlank()) resultString = String.format("%s%s", labelText, value);
+		if (label.isShowName() == false) resultString = String.format("%s", value);
+		else if (labelText.isBlank()) resultString = String.format("%s%s", labelText, value);
 		else resultString = String.format("%s: %s", labelText, value);
 
 		if (resultString.equals(text) == false)

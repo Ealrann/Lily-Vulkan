@@ -17,10 +17,11 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
+import org.sheepy.lily.core.model.types.EHorizontalRelative;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
-import org.sheepy.lily.vulkan.extra.api.nuklear.IInputProviderAdapter;
+import org.sheepy.lily.vulkan.extra.api.nuklear.ISelectorInputProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.nuklear.ui.internal.SelectorButtonDrawer;
@@ -32,14 +33,14 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 {
 	private static final int MARGING_W = 5;
 
-	private final INotificationListener layerListener = this::updateValue;
+	private final INotificationListener selectionListener = this::updateValue;
 	private final ISizeListener listener = this::updateDataLocations;
 	private final SelectorPanel panel;
 	private final List<LineData> datas;
 	private final int buttonSize;
 	private final IVariableResolverAdapter<IVariableResolver> resolverAdapter;
 	private final DirectVariableResolver resolver;
-	private final IInputProviderAdapter inputProviderAdapter;
+	private final ISelectorInputProviderAdapter inputProviderAdapter;
 	private final SelectorButtonDrawer buttonDrawer;
 	private final int width;
 	private final int height;
@@ -67,7 +68,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 		buttonSize = panel.getButtonSizePx();
 		resolver = panel.getVariableResolver();
 		resolverAdapter = resolver.adaptNotNullGeneric(IVariableResolverAdapter.class);
-		inputProviderAdapter = inputProvider.adapt(IInputProviderAdapter.class);
+		inputProviderAdapter = inputProvider.adapt(ISelectorInputProviderAdapter.class);
 		datas = List.copyOf(buildLineDatas(inputProviderAdapter.getElements(inputProvider)));
 		buttonDrawer = new SelectorButtonDrawer(panel);
 		labelColor = NkColor.malloc();
@@ -85,7 +86,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 			width = (buttonSize + MARGING_W) * datas.size();
 		}
 
-		resolverAdapter.addListener(layerListener);
+		resolverAdapter.addListener(selectionListener);
 		selectedElement = resolverAdapter.getValue(resolver);
 	}
 
@@ -97,6 +98,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 
 	private List<LineData> buildLineDatas(List<? extends Object> elements)
 	{
+		final boolean right = panel.getHorizontalRelative() == EHorizontalRelative.RIGHT;
 		final List<LineData> tmpDatas = new ArrayList<>();
 		for (final var element : elements)
 		{
@@ -104,7 +106,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 
 			final var name = inputProviderAdapter.getName(element);
 
-			tmpDatas.add(new LineData(element, name, image));
+			tmpDatas.add(new LineData(element, name, image, right));
 		}
 		return tmpDatas;
 	}
@@ -112,7 +114,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 	@Dispose
 	public void unsetTarget()
 	{
-		resolverAdapter.removeListener(layerListener);
+		resolverAdapter.removeListener(selectionListener);
 		labelColor.free();
 		for (final LineData data : datas)
 		{
@@ -133,6 +135,11 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 	{
 		int x = UIUtil.computeXRelative(size, panel, width);
 		int y = UIUtil.computeYRelative(size, panel, height);
+		if(panel.getHorizontalRelative() == EHorizontalRelative.LEFT)
+		{
+			x += MARGING_W;
+		}
+		
 		for (final LineData data : datas)
 		{
 			data.updateRect(x, y, buttonSize + MARGING_W, panel.isPrintLabels());
@@ -279,11 +286,13 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 		public final ByteBuffer panelLabelId;
 		public final ByteBuffer panelButton1Id;
 		private final PathResource image;
+		private final boolean right;
 
-		public LineData(Object input, String name, PathResource image)
+		public LineData(Object input, String name, PathResource image, boolean right)
 		{
 			this.element = input;
 			this.image = image;
+			this.right = right;
 
 			panelLabelId = MemoryUtil.memUTF8("Label" + name);
 			panelButton1Id = MemoryUtil.memUTF8("Button" + name);
@@ -299,8 +308,16 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 
 		public void updateRect(int x, int y, int buttonSize, boolean withText)
 		{
-			rectLabel.set(x, y, withText ? TEXT_WIDTH : 0, buttonSize);
-			rectButton.set(x + (withText ? TEXT_WIDTH : 0), y, buttonSize, buttonSize);
+			if (right)
+			{
+				rectLabel.set(x, y, withText ? TEXT_WIDTH : 0, buttonSize);
+				rectButton.set(x + (withText ? TEXT_WIDTH : 0), y, buttonSize, buttonSize);
+			}
+			else
+			{
+				rectButton.set(x, y, buttonSize, buttonSize);
+				rectLabel.set(x + buttonSize, y, withText ? TEXT_WIDTH : 0, buttonSize);
+			}
 		}
 	}
 }

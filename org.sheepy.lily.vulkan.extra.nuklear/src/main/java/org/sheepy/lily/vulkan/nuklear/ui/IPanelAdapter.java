@@ -5,12 +5,12 @@ import java.util.Map;
 
 import org.lwjgl.nuklear.NkContext;
 import org.lwjgl.nuklear.NkImage;
+import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
-import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.vulkan.window.Window;
 
-public interface IPanelAdapter extends IVulkanAdapter
+public interface IPanelAdapter extends IAdapter
 {
 	boolean layout(UIContext context);
 

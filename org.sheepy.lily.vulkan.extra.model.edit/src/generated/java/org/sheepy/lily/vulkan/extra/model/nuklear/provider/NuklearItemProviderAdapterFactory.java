@@ -227,6 +227,31 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TableViewerItemProvider tableViewerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTableViewerAdapter()
+	{
+		if (tableViewerItemProvider == null)
+		{
+			tableViewerItemProvider = new TableViewerItemProvider(this);
+		}
+
+		return tableViewerItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -380,6 +405,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 		if (nuklearContextItemProvider != null) nuklearContextItemProvider.dispose();
 		if (nuklearFontItemProvider != null) nuklearFontItemProvider.dispose();
 		if (selectorPanelItemProvider != null) selectorPanelItemProvider.dispose();
+		if (tableViewerItemProvider != null) tableViewerItemProvider.dispose();
 	}
 
 	/**
@@ -660,6 +686,11 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 					(createChildParameter
 						(PresentationPackage.Literals.UI_PAGE__PANELS,
 						 NuklearFactory.eINSTANCE.createSelectorPanel()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(PresentationPackage.Literals.UI_PAGE__PANELS,
+						 NuklearFactory.eINSTANCE.createTableViewer()));
 
 				return null;
 			}

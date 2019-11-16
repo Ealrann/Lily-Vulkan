@@ -62,4 +62,9 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="500"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IInputProvider" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TableViewer" eSuperTypes="../../org.sheepy.lily.core.model/model/ui.ecore#//Panel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variableResolver" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.core.model/model/variable.ecore#//DirectVariableResolver"
+        containment="true"/>
+  </eClassifiers>
 </ecore:EPackage>

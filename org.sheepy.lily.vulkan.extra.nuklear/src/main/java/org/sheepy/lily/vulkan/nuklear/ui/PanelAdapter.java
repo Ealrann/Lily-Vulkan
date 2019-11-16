@@ -77,18 +77,22 @@ public class PanelAdapter implements IPanelAdapter
 		rect.set(x, y, width, height);
 	}
 
-	@Override
-	public boolean layout(UIContext context)
+	protected void updateWindow(UIContext context)
 	{
-		boolean res = false;
-		final var nkContext = context.nkContext;
-
 		if (window == null)
 		{
 			window = context.window;
 			updateLocation(window.getSize());
 			window.addListener(listener);
 		}
+	}
+
+	@Override
+	public boolean layout(UIContext context)
+	{
+		boolean res = false;
+		final var nkContext = context.nkContext;
+		updateWindow(context);
 
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{

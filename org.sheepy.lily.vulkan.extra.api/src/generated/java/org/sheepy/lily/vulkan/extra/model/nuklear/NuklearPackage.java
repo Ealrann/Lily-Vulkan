@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.sheepy.lily.core.model.presentation.PresentationPackage;
+import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -584,6 +585,196 @@ public interface NuklearPackage extends EPackage
 	int IINPUT_PROVIDER_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.TableViewerImpl <em>Table Viewer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.TableViewerImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getTableViewer()
+	 * @generated
+	 */
+	int TABLE_VIEWER = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER__NAME = UiPackage.PANEL__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER__CONTENT_OBJECTS = UiPackage.PANEL__CONTENT_OBJECTS;
+
+	/**
+	 * The feature id for the '<em><b>Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER__POSITION = UiPackage.PANEL__POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Vertical Relative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER__VERTICAL_RELATIVE = UiPackage.PANEL__VERTICAL_RELATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Horizontal Relative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER__HORIZONTAL_RELATIVE = UiPackage.PANEL__HORIZONTAL_RELATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER__WIDTH = UiPackage.PANEL__WIDTH;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER__HEIGHT = UiPackage.PANEL__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Controls</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER__CONTROLS = UiPackage.PANEL__CONTROLS;
+
+	/**
+	 * The feature id for the '<em><b>Show Title</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER__SHOW_TITLE = UiPackage.PANEL__SHOW_TITLE;
+
+	/**
+	 * The feature id for the '<em><b>Minimizable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER__MINIMIZABLE = UiPackage.PANEL__MINIMIZABLE;
+
+	/**
+	 * The feature id for the '<em><b>Movable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER__MOVABLE = UiPackage.PANEL__MOVABLE;
+
+	/**
+	 * The feature id for the '<em><b>Minimized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER__MINIMIZED = UiPackage.PANEL__MINIMIZED;
+
+	/**
+	 * The feature id for the '<em><b>Variable Resolver</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER__VARIABLE_RESOLVER = UiPackage.PANEL_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Table Viewer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER_FEATURE_COUNT = UiPackage.PANEL_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>LInference Object</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER___LINFERENCE_OBJECT = UiPackage.PANEL___LINFERENCE_OBJECT;
+
+	/**
+	 * The operation id for the '<em>Create Containment EList</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER___CREATE_CONTAINMENT_ELIST__ECLASS = UiPackage.PANEL___CREATE_CONTAINMENT_ELIST__ECLASS;
+
+	/**
+	 * The operation id for the '<em>LContents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER___LCONTENTS = UiPackage.PANEL___LCONTENTS;
+
+	/**
+	 * The operation id for the '<em>LParent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER___LPARENT = UiPackage.PANEL___LPARENT;
+
+	/**
+	 * The operation id for the '<em>LAll Contents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER___LALL_CONTENTS = UiPackage.PANEL___LALL_CONTENTS;
+
+	/**
+	 * The number of operations of the '<em>Table Viewer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_VIEWER_OPERATION_COUNT = UiPackage.PANEL_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants <em>Push Constants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -886,6 +1077,27 @@ public interface NuklearPackage extends EPackage
 	EClass getIInputProvider();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer <em>Table Viewer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Table Viewer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer
+	 * @generated
+	 */
+	EClass getTableViewer();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer#getVariableResolver <em>Variable Resolver</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Variable Resolver</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer#getVariableResolver()
+	 * @see #getTableViewer()
+	 * @generated
+	 */
+	EReference getTableViewer_VariableResolver();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1143,6 +1355,24 @@ public interface NuklearPackage extends EPackage
 		 * @generated
 		 */
 		EClass IINPUT_PROVIDER = eINSTANCE.getIInputProvider();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.TableViewerImpl <em>Table Viewer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.TableViewerImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getTableViewer()
+		 * @generated
+		 */
+		EClass TABLE_VIEWER = eINSTANCE.getTableViewer();
+
+		/**
+		 * The meta object literal for the '<em><b>Variable Resolver</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_VIEWER__VARIABLE_RESOLVER = eINSTANCE.getTableViewer_VariableResolver();
 
 	}
 

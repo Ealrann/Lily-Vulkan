@@ -6,7 +6,7 @@ import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 
-public interface IInputProviderAdapter extends IAdapter
+public interface ISelectorInputProviderAdapter extends IAdapter
 {
 	List<? extends Object> getElements(IInputProvider inputProvider);
 

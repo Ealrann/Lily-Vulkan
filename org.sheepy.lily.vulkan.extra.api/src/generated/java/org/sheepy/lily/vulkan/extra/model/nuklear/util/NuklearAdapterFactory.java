@@ -12,10 +12,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.model.inference.IInferenceObject;
 import org.sheepy.lily.core.model.presentation.IPanel;
 import org.sheepy.lily.core.model.presentation.IPositionElement;
+import org.sheepy.lily.core.model.presentation.ISizedElement;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.root.LObject;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
+import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.vulkan.extra.model.nuklear.*;
 
 import org.sheepy.lily.vulkan.model.IResource;
@@ -120,6 +122,11 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 				return createIInputProviderAdapter();
 			}
 			@Override
+			public Adapter caseTableViewer(TableViewer object)
+			{
+				return createTableViewerAdapter();
+			}
+			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
@@ -173,6 +180,16 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIPanel(IPanel object)
 			{
 				return createIPanelAdapter();
+			}
+			@Override
+			public Adapter caseISizedElement(ISizedElement object)
+			{
+				return createISizedElementAdapter();
+			}
+			@Override
+			public Adapter casePanel(Panel object)
+			{
+				return createPanelAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -282,6 +299,21 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIInputProviderAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer <em>Table Viewer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer
+	 * @generated
+	 */
+	public Adapter createTableViewerAdapter()
 	{
 		return null;
 	}
@@ -447,6 +479,36 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIPanelAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.presentation.ISizedElement <em>ISized Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.core.model.presentation.ISizedElement
+	 * @generated
+	 */
+	public Adapter createISizedElementAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.ui.Panel <em>Panel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.core.model.ui.Panel
+	 * @generated
+	 */
+	public Adapter createPanelAdapter()
 	{
 		return null;
 	}

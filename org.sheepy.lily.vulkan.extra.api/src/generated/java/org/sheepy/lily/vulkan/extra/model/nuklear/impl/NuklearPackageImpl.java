@@ -24,6 +24,7 @@ import org.sheepy.lily.core.model.root.RootPackage;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
 import org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl;
@@ -35,6 +36,7 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
+import org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
@@ -105,6 +107,13 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	private EClass iInputProviderEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tableViewerEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -173,6 +182,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		CadencePackage.eINSTANCE.eClass();
 		PresentationPackage.eINSTANCE.eClass();
 		VariablePackage.eINSTANCE.eClass();
+		UiPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MeshPackage.eNS_URI);
@@ -516,6 +526,28 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getTableViewer()
+	{
+		return tableViewerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTableViewer_VariableResolver()
+	{
+		return (EReference)tableViewerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NuklearFactory getNuklearFactory()
 	{
 		return (NuklearFactory)getEFactoryInstance();
@@ -574,6 +606,9 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		createEAttribute(selectorPanelEClass, SELECTOR_PANEL__FADE_OUT_MS);
 
 		iInputProviderEClass = createEClass(IINPUT_PROVIDER);
+
+		tableViewerEClass = createEClass(TABLE_VIEWER);
+		createEReference(tableViewerEClass, TABLE_VIEWER__VARIABLE_RESOLVER);
 	}
 
 	/**
@@ -607,6 +642,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		PresentationPackage thePresentationPackage = (PresentationPackage)EPackage.Registry.INSTANCE.getEPackage(PresentationPackage.eNS_URI);
 		VariablePackage theVariablePackage = (VariablePackage)EPackage.Registry.INSTANCE.getEPackage(VariablePackage.eNS_URI);
+		UiPackage theUiPackage = (UiPackage)EPackage.Registry.INSTANCE.getEPackage(UiPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -619,6 +655,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		nuklearContextEClass.getESuperTypes().add(theResourcePackage.getDescriptedResource());
 		nuklearFontEClass.getESuperTypes().add(theResourcePackage.getBasicResource());
 		selectorPanelEClass.getESuperTypes().add(thePresentationPackage.getIPanel());
+		tableViewerEClass.getESuperTypes().add(theUiPackage.getPanel());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(nuklearPushConstantsEClass, NuklearPushConstants.class, "NuklearPushConstants", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -654,6 +691,9 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		initEAttribute(getSelectorPanel_FadeOutMs(), ecorePackage.getEInt(), "fadeOutMs", "500", 1, 1, SelectorPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iInputProviderEClass, IInputProvider.class, "IInputProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(tableViewerEClass, TableViewer.class, "TableViewer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTableViewer_VariableResolver(), theVariablePackage.getDirectVariableResolver(), null, "variableResolver", null, 1, 1, TableViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -68,6 +68,15 @@ public interface NuklearFactory extends EFactory
 	SelectorPanel createSelectorPanel();
 
 	/**
+	 * Returns a new object of class '<em>Table Viewer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Table Viewer</em>'.
+	 * @generated
+	 */
+	TableViewer createTableViewer();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

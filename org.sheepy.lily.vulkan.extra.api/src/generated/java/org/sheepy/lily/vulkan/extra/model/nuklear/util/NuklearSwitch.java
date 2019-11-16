@@ -10,10 +10,12 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.sheepy.lily.core.model.inference.IInferenceObject;
 import org.sheepy.lily.core.model.presentation.IPanel;
 import org.sheepy.lily.core.model.presentation.IPositionElement;
+import org.sheepy.lily.core.model.presentation.ISizedElement;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.root.LObject;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
+import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.vulkan.extra.model.nuklear.*;
 
 import org.sheepy.lily.vulkan.model.IResource;
@@ -146,6 +148,21 @@ public class NuklearSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case NuklearPackage.TABLE_VIEWER:
+			{
+				TableViewer tableViewer = (TableViewer)theEObject;
+				T result = caseTableViewer(tableViewer);
+				if (result == null) result = casePanel(tableViewer);
+				if (result == null) result = caseIPanel(tableViewer);
+				if (result == null) result = caseISizedElement(tableViewer);
+				if (result == null) result = caseLNamedElement(tableViewer);
+				if (result == null) result = caseIUIElement(tableViewer);
+				if (result == null) result = caseIPositionElement(tableViewer);
+				if (result == null) result = caseLObject(tableViewer);
+				if (result == null) result = caseIInferenceObject(tableViewer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -242,6 +259,22 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIInputProvider(IInputProvider object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Table Viewer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Table Viewer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTableViewer(TableViewer object)
 	{
 		return null;
 	}
@@ -418,6 +451,38 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIPanel(IPanel object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ISized Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ISized Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseISizedElement(ISizedElement object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Panel</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Panel</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePanel(Panel object)
 	{
 		return null;
 	}
