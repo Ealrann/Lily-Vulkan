@@ -14,7 +14,6 @@ import org.sheepy.lily.core.model.types.EHorizontalRelative;
 import org.sheepy.lily.core.model.ui.UiFactory;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
-import org.sheepy.lily.core.model.variable.VariableFactory;
 import org.sheepy.lily.vulkan.extra.api.nuklear.ITableInputProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
@@ -63,19 +62,16 @@ public final class TableViewerAdapter extends PanelAdapter implements IPanelAdap
 		final var adapter = selectedElement.adapt(ITableInputProviderAdapter.class);
 		if (adapter == null) return;
 
-		final var features = adapter.getFeatures(selectedElement);
-		final var uri = selectedElement.eClass().getEPackage().getNsURI();
-		final var className = selectedElement.eClass().getName();
-		final var baseDefinition = uri + "#" + className + "#";
+		final var elementProviders = adapter.buildElementProviders(selectedElement);
 
 		final var layout = UiFactory.eINSTANCE.createDynamicRowLayout();
 		layout.setColumnCount(2);
 		layout.setHeight(16);
 		controls.add(layout);
 
-		for (final var feature : features)
+		for (final var provider : elementProviders)
 		{
-			final var name = adapter.getName(feature);
+			final var name = provider.name;
 			final var labelName = UiFactory.eINSTANCE.createLabel();
 			labelName.setText(name);
 
@@ -83,15 +79,7 @@ public final class TableViewerAdapter extends PanelAdapter implements IPanelAdap
 			labelValue.setText(name + "_varLabel");
 			labelValue.setShowName(false);
 			labelValue.setHorizontalRelative(EHorizontalRelative.RIGHT);
-
-			final var featureName = feature.getName();
-			final var definition = baseDefinition + featureName;
-
-			final var resolver = VariableFactory.eINSTANCE.createDirectVariableResolver();
-			resolver.setTarget(selectedElement);
-			resolver.setVariableDefinition(definition);
-
-			labelValue.setVariableResolver(resolver);
+			labelValue.setVariableResolver(provider.resolver);
 
 			controls.add(labelName);
 			controls.add(labelValue);
