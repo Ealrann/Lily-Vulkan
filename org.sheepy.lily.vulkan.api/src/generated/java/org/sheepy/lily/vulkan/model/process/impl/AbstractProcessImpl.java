@@ -40,6 +40,7 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getResourcePkg <em>Resource Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getQueuePriority <em>Queue Priority</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getPartPkg <em>Part Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
@@ -101,6 +102,26 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @ordered
 	 */
 	protected boolean enabled = ENABLED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getQueuePriority() <em>Queue Priority</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQueuePriority()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final float QUEUE_PRIORITY_EDEFAULT = 1.0F;
+
+	/**
+	 * The cached value of the '{@link #getQueuePriority() <em>Queue Priority</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQueuePriority()
+	 * @generated
+	 * @ordered
+	 */
+	protected float queuePriority = QUEUE_PRIORITY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isWaitingFenceDuringAcquire() <em>Waiting Fence During Acquire</em>}' attribute.
@@ -301,6 +322,31 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 		enabled = newEnabled;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__ENABLED, oldEnabled, enabled));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public float getQueuePriority()
+	{
+		return queuePriority;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setQueuePriority(float newQueuePriority)
+	{
+		float oldQueuePriority = queuePriority;
+		queuePriority = newQueuePriority;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__QUEUE_PRIORITY, oldQueuePriority, queuePriority));
 	}
 
 	/**
@@ -519,6 +565,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return getName();
 			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 				return isEnabled();
+			case ProcessPackage.ABSTRACT_PROCESS__QUEUE_PRIORITY:
+				return getQueuePriority();
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				return isWaitingFenceDuringAcquire();
 			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
@@ -554,6 +602,9 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 				setEnabled((Boolean)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__QUEUE_PRIORITY:
+				setQueuePriority((Float)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				setWaitingFenceDuringAcquire((Boolean)newValue);
@@ -598,6 +649,9 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
+			case ProcessPackage.ABSTRACT_PROCESS__QUEUE_PRIORITY:
+				setQueuePriority(QUEUE_PRIORITY_EDEFAULT);
+				return;
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				setWaitingFenceDuringAcquire(WAITING_FENCE_DURING_ACQUIRE_EDEFAULT);
 				return;
@@ -636,6 +690,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
+			case ProcessPackage.ABSTRACT_PROCESS__QUEUE_PRIORITY:
+				return queuePriority != QUEUE_PRIORITY_EDEFAULT;
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				return waitingFenceDuringAcquire != WAITING_FENCE_DURING_ACQUIRE_EDEFAULT;
 			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
@@ -719,6 +775,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 		result.append(name);
 		result.append(", enabled: ");
 		result.append(enabled);
+		result.append(", queuePriority: ");
+		result.append(queuePriority);
 		result.append(", waitingFenceDuringAcquire: ");
 		result.append(waitingFenceDuringAcquire);
 		result.append(", resetAllowed: ");

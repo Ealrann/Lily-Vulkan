@@ -332,6 +332,17 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getIProcess_QueuePriority()
+	{
+		return (EAttribute)iProcessEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getIExecutionManager()
 	{
 		return iExecutionManagerEClass;
@@ -427,6 +438,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		iProcessEClass = createEClass(IPROCESS);
 		createEAttribute(iProcessEClass, IPROCESS__ENABLED);
+		createEAttribute(iProcessEClass, IPROCESS__QUEUE_PRIORITY);
 
 		iExecutionManagerEClass = createEClass(IEXECUTION_MANAGER);
 
@@ -499,6 +511,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		initEClass(iProcessEClass, IProcess.class, "IProcess", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIProcess_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true", 0, 1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIProcess_QueuePriority(), ecorePackage.getEFloat(), "queuePriority", "1.0", 1, 1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iExecutionManagerEClass, IExecutionManager.class, "IExecutionManager", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -26,6 +26,7 @@ import org.sheepy.lily.core.model.root.RootPackage;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.vulkan.extra.model.mesh.GeometricMesh;
 import org.sheepy.lily.vulkan.extra.model.mesh.GeometricStructure;
@@ -205,6 +206,7 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 		CadencePackage.eINSTANCE.eClass();
 		PresentationPackage.eINSTANCE.eClass();
 		VariablePackage.eINSTANCE.eClass();
+		UiPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(NuklearPackage.eNS_URI);

@@ -35,8 +35,8 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants;
+import org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
-import org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
@@ -111,7 +111,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass tableViewerEClass = null;
+	private EClass panelViewerEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -526,9 +526,9 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getTableViewer()
+	public EClass getPanelViewer()
 	{
-		return tableViewerEClass;
+		return panelViewerEClass;
 	}
 
 	/**
@@ -537,9 +537,9 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getTableViewer_VariableResolver()
+	public EReference getPanelViewer_VariableResolver()
 	{
-		return (EReference)tableViewerEClass.getEStructuralFeatures().get(0);
+		return (EReference)panelViewerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -607,8 +607,8 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 
 		iInputProviderEClass = createEClass(IINPUT_PROVIDER);
 
-		tableViewerEClass = createEClass(TABLE_VIEWER);
-		createEReference(tableViewerEClass, TABLE_VIEWER__VARIABLE_RESOLVER);
+		panelViewerEClass = createEClass(PANEL_VIEWER);
+		createEReference(panelViewerEClass, PANEL_VIEWER__VARIABLE_RESOLVER);
 	}
 
 	/**
@@ -655,7 +655,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		nuklearContextEClass.getESuperTypes().add(theResourcePackage.getDescriptedResource());
 		nuklearFontEClass.getESuperTypes().add(theResourcePackage.getBasicResource());
 		selectorPanelEClass.getESuperTypes().add(thePresentationPackage.getIPanel());
-		tableViewerEClass.getESuperTypes().add(theUiPackage.getPanel());
+		panelViewerEClass.getESuperTypes().add(theUiPackage.getPanel());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(nuklearPushConstantsEClass, NuklearPushConstants.class, "NuklearPushConstants", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -692,8 +692,8 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 
 		initEClass(iInputProviderEClass, IInputProvider.class, "IInputProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(tableViewerEClass, TableViewer.class, "TableViewer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTableViewer_VariableResolver(), theVariablePackage.getDirectVariableResolver(), null, "variableResolver", null, 1, 1, TableViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(panelViewerEClass, PanelViewer.class, "PanelViewer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPanelViewer_VariableResolver(), theVariablePackage.getDirectVariableResolver(), null, "variableResolver", null, 1, 1, PanelViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

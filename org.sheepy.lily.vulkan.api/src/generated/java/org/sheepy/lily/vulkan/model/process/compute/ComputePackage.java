@@ -97,6 +97,15 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__ENABLED = ProcessPackage.ABSTRACT_PROCESS__ENABLED;
 
 	/**
+	 * The feature id for the '<em><b>Queue Priority</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PROCESS__QUEUE_PRIORITY = ProcessPackage.ABSTRACT_PROCESS__QUEUE_PRIORITY;
+
+	/**
 	 * The feature id for the '<em><b>Waiting Fence During Acquire</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

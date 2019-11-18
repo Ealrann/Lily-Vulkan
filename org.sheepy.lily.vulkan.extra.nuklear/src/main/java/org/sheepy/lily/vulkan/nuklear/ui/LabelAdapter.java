@@ -14,7 +14,7 @@ import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
 @Statefull
 @Adapter(scope = Label.class)
-public class LabelAdapter implements IUIElementAdapter
+public final class LabelAdapter implements IUIElementAdapter
 {
 	private final ByteBuffer textBuffer;
 

@@ -10,27 +10,25 @@ import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
-import org.sheepy.lily.core.model.types.EHorizontalRelative;
-import org.sheepy.lily.core.model.ui.UiFactory;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
-import org.sheepy.lily.vulkan.extra.api.nuklear.ITableInputProviderAdapter;
-import org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer;
+import org.sheepy.lily.vulkan.extra.api.nuklear.IControlProviderAdapter;
+import org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 
 @Statefull
-@Adapter(scope = TableViewer.class)
-public final class TableViewerAdapter extends PanelAdapter implements IPanelAdapter
+@Adapter(scope = PanelViewer.class)
+public final class PanelViewerAdapter extends PanelAdapter implements IPanelAdapter
 {
 	private final INotificationListener selectionListener = this::updateValue;
-	private final TableViewer viewer;
+	private final PanelViewer viewer;
 	private final DirectVariableResolver resolver;
 
 	private IVariableResolverAdapter<IVariableResolver> resolverAdapter;
 	private boolean dirty = false;
 	private LilyEObject selectedElement;
 
-	public TableViewerAdapter(TableViewer viewer)
+	public PanelViewerAdapter(PanelViewer viewer)
 	{
 		super(viewer);
 		this.viewer = viewer;
@@ -57,32 +55,13 @@ public final class TableViewerAdapter extends PanelAdapter implements IPanelAdap
 		final var controls = viewer.getControls();
 		controls.clear();
 		dirty = true;
-		if (selectedElement == null) return;
-
-		final var adapter = selectedElement.adapt(ITableInputProviderAdapter.class);
-		if (adapter == null) return;
-
-		final var elementProviders = adapter.buildElementProviders(selectedElement);
-
-		final var layout = UiFactory.eINSTANCE.createDynamicRowLayout();
-		layout.setColumnCount(2);
-		layout.setHeight(16);
-		controls.add(layout);
-
-		for (final var provider : elementProviders)
+		if (selectedElement != null)
 		{
-			final var name = provider.name;
-			final var labelName = UiFactory.eINSTANCE.createLabel();
-			labelName.setText(name);
-
-			final var labelValue = UiFactory.eINSTANCE.createVariableLabel();
-			labelValue.setText(name + "_varLabel");
-			labelValue.setShowName(false);
-			labelValue.setHorizontalRelative(EHorizontalRelative.RIGHT);
-			labelValue.setVariableResolver(provider.resolver);
-
-			controls.add(labelName);
-			controls.add(labelValue);
+			final var adapter = selectedElement.adapt(IControlProviderAdapter.class);
+			if (adapter != null)
+			{
+				controls.addAll(adapter.buildControls(selectedElement));
+			}
 		}
 	}
 

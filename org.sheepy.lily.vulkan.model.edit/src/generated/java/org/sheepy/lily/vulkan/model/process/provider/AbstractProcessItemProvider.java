@@ -63,6 +63,7 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
+			addQueuePriorityPropertyDescriptor(object);
 			addWaitingFenceDuringAcquirePropertyDescriptor(object);
 			addResetAllowedPropertyDescriptor(object);
 			addSignalsPropertyDescriptor(object);
@@ -113,6 +114,29 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Queue Priority feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addQueuePriorityPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IProcess_queuePriority_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IProcess_queuePriority_feature", "_UI_IProcess_type"),
+				 VulkanPackage.Literals.IPROCESS__QUEUE_PRIORITY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -275,6 +299,7 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 		{
 			case ProcessPackage.ABSTRACT_PROCESS__NAME:
 			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
+			case ProcessPackage.ABSTRACT_PROCESS__QUEUE_PRIORITY:
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

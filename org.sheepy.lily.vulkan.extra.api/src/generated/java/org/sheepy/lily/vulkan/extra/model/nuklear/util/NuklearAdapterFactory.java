@@ -122,9 +122,9 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 				return createIInputProviderAdapter();
 			}
 			@Override
-			public Adapter caseTableViewer(TableViewer object)
+			public Adapter casePanelViewer(PanelViewer object)
 			{
-				return createTableViewerAdapter();
+				return createPanelViewerAdapter();
 			}
 			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
@@ -304,16 +304,16 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer <em>Table Viewer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer <em>Panel Viewer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer
 	 * @generated
 	 */
-	public Adapter createTableViewerAdapter()
+	public Adapter createPanelViewerAdapter()
 	{
 		return null;
 	}

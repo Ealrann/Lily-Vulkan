@@ -148,18 +148,18 @@ public class NuklearSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NuklearPackage.TABLE_VIEWER:
+			case NuklearPackage.PANEL_VIEWER:
 			{
-				TableViewer tableViewer = (TableViewer)theEObject;
-				T result = caseTableViewer(tableViewer);
-				if (result == null) result = casePanel(tableViewer);
-				if (result == null) result = caseIPanel(tableViewer);
-				if (result == null) result = caseISizedElement(tableViewer);
-				if (result == null) result = caseLNamedElement(tableViewer);
-				if (result == null) result = caseIUIElement(tableViewer);
-				if (result == null) result = caseIPositionElement(tableViewer);
-				if (result == null) result = caseLObject(tableViewer);
-				if (result == null) result = caseIInferenceObject(tableViewer);
+				PanelViewer panelViewer = (PanelViewer)theEObject;
+				T result = casePanelViewer(panelViewer);
+				if (result == null) result = casePanel(panelViewer);
+				if (result == null) result = caseIPanel(panelViewer);
+				if (result == null) result = caseISizedElement(panelViewer);
+				if (result == null) result = caseLNamedElement(panelViewer);
+				if (result == null) result = caseIUIElement(panelViewer);
+				if (result == null) result = caseIPositionElement(panelViewer);
+				if (result == null) result = caseLObject(panelViewer);
+				if (result == null) result = caseIInferenceObject(panelViewer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -264,17 +264,17 @@ public class NuklearSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Table Viewer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Panel Viewer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Table Viewer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Panel Viewer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTableViewer(TableViewer object)
+	public T casePanelViewer(PanelViewer object)
 	{
 		return null;
 	}

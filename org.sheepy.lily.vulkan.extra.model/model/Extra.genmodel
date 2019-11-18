@@ -64,8 +64,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/fadeOutMs"/>
     </genClasses>
     <genClasses ecoreClass="Nuklear.ecore#//IInputProvider"/>
-    <genClasses ecoreClass="Nuklear.ecore#//TableViewer">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Nuklear.ecore#//TableViewer/variableResolver"/>
+    <genClasses ecoreClass="Nuklear.ecore#//PanelViewer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Nuklear.ecore#//PanelViewer/variableResolver"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Rendering" basePackage="org.sheepy.lily.vulkan.extra.model"

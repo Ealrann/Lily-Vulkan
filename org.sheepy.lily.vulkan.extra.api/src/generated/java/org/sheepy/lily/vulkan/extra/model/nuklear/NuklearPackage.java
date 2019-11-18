@@ -585,14 +585,14 @@ public interface NuklearPackage extends EPackage
 	int IINPUT_PROVIDER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.TableViewerImpl <em>Table Viewer</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.PanelViewerImpl <em>Panel Viewer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.TableViewerImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getTableViewer()
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.PanelViewerImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getPanelViewer()
 	 * @generated
 	 */
-	int TABLE_VIEWER = 6;
+	int PANEL_VIEWER = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -601,7 +601,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER__NAME = UiPackage.PANEL__NAME;
+	int PANEL_VIEWER__NAME = UiPackage.PANEL__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -610,7 +610,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER__CONTENT_OBJECTS = UiPackage.PANEL__CONTENT_OBJECTS;
+	int PANEL_VIEWER__CONTENT_OBJECTS = UiPackage.PANEL__CONTENT_OBJECTS;
 
 	/**
 	 * The feature id for the '<em><b>Position</b></em>' attribute.
@@ -619,7 +619,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER__POSITION = UiPackage.PANEL__POSITION;
+	int PANEL_VIEWER__POSITION = UiPackage.PANEL__POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Vertical Relative</b></em>' attribute.
@@ -628,7 +628,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER__VERTICAL_RELATIVE = UiPackage.PANEL__VERTICAL_RELATIVE;
+	int PANEL_VIEWER__VERTICAL_RELATIVE = UiPackage.PANEL__VERTICAL_RELATIVE;
 
 	/**
 	 * The feature id for the '<em><b>Horizontal Relative</b></em>' attribute.
@@ -637,7 +637,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER__HORIZONTAL_RELATIVE = UiPackage.PANEL__HORIZONTAL_RELATIVE;
+	int PANEL_VIEWER__HORIZONTAL_RELATIVE = UiPackage.PANEL__HORIZONTAL_RELATIVE;
 
 	/**
 	 * The feature id for the '<em><b>Width</b></em>' attribute.
@@ -646,7 +646,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER__WIDTH = UiPackage.PANEL__WIDTH;
+	int PANEL_VIEWER__WIDTH = UiPackage.PANEL__WIDTH;
 
 	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
@@ -655,7 +655,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER__HEIGHT = UiPackage.PANEL__HEIGHT;
+	int PANEL_VIEWER__HEIGHT = UiPackage.PANEL__HEIGHT;
 
 	/**
 	 * The feature id for the '<em><b>Controls</b></em>' containment reference list.
@@ -664,7 +664,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER__CONTROLS = UiPackage.PANEL__CONTROLS;
+	int PANEL_VIEWER__CONTROLS = UiPackage.PANEL__CONTROLS;
 
 	/**
 	 * The feature id for the '<em><b>Show Title</b></em>' attribute.
@@ -673,7 +673,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER__SHOW_TITLE = UiPackage.PANEL__SHOW_TITLE;
+	int PANEL_VIEWER__SHOW_TITLE = UiPackage.PANEL__SHOW_TITLE;
 
 	/**
 	 * The feature id for the '<em><b>Minimizable</b></em>' attribute.
@@ -682,7 +682,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER__MINIMIZABLE = UiPackage.PANEL__MINIMIZABLE;
+	int PANEL_VIEWER__MINIMIZABLE = UiPackage.PANEL__MINIMIZABLE;
 
 	/**
 	 * The feature id for the '<em><b>Movable</b></em>' attribute.
@@ -691,7 +691,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER__MOVABLE = UiPackage.PANEL__MOVABLE;
+	int PANEL_VIEWER__MOVABLE = UiPackage.PANEL__MOVABLE;
 
 	/**
 	 * The feature id for the '<em><b>Minimized</b></em>' attribute.
@@ -700,7 +700,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER__MINIMIZED = UiPackage.PANEL__MINIMIZED;
+	int PANEL_VIEWER__MINIMIZED = UiPackage.PANEL__MINIMIZED;
 
 	/**
 	 * The feature id for the '<em><b>Variable Resolver</b></em>' containment reference.
@@ -709,16 +709,16 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER__VARIABLE_RESOLVER = UiPackage.PANEL_FEATURE_COUNT + 0;
+	int PANEL_VIEWER__VARIABLE_RESOLVER = UiPackage.PANEL_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Table Viewer</em>' class.
+	 * The number of structural features of the '<em>Panel Viewer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER_FEATURE_COUNT = UiPackage.PANEL_FEATURE_COUNT + 1;
+	int PANEL_VIEWER_FEATURE_COUNT = UiPackage.PANEL_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -727,7 +727,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER___LINFERENCE_OBJECT = UiPackage.PANEL___LINFERENCE_OBJECT;
+	int PANEL_VIEWER___LINFERENCE_OBJECT = UiPackage.PANEL___LINFERENCE_OBJECT;
 
 	/**
 	 * The operation id for the '<em>Create Containment EList</em>' operation.
@@ -736,7 +736,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER___CREATE_CONTAINMENT_ELIST__ECLASS = UiPackage.PANEL___CREATE_CONTAINMENT_ELIST__ECLASS;
+	int PANEL_VIEWER___CREATE_CONTAINMENT_ELIST__ECLASS = UiPackage.PANEL___CREATE_CONTAINMENT_ELIST__ECLASS;
 
 	/**
 	 * The operation id for the '<em>LContents</em>' operation.
@@ -745,7 +745,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER___LCONTENTS = UiPackage.PANEL___LCONTENTS;
+	int PANEL_VIEWER___LCONTENTS = UiPackage.PANEL___LCONTENTS;
 
 	/**
 	 * The operation id for the '<em>LParent</em>' operation.
@@ -754,7 +754,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER___LPARENT = UiPackage.PANEL___LPARENT;
+	int PANEL_VIEWER___LPARENT = UiPackage.PANEL___LPARENT;
 
 	/**
 	 * The operation id for the '<em>LAll Contents</em>' operation.
@@ -763,16 +763,16 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER___LALL_CONTENTS = UiPackage.PANEL___LALL_CONTENTS;
+	int PANEL_VIEWER___LALL_CONTENTS = UiPackage.PANEL___LALL_CONTENTS;
 
 	/**
-	 * The number of operations of the '<em>Table Viewer</em>' class.
+	 * The number of operations of the '<em>Panel Viewer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_VIEWER_OPERATION_COUNT = UiPackage.PANEL_OPERATION_COUNT + 0;
+	int PANEL_VIEWER_OPERATION_COUNT = UiPackage.PANEL_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants <em>Push Constants</em>}'.
@@ -1077,25 +1077,25 @@ public interface NuklearPackage extends EPackage
 	EClass getIInputProvider();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer <em>Table Viewer</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer <em>Panel Viewer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Table Viewer</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer
+	 * @return the meta object for class '<em>Panel Viewer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer
 	 * @generated
 	 */
-	EClass getTableViewer();
+	EClass getPanelViewer();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer#getVariableResolver <em>Variable Resolver</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer#getVariableResolver <em>Variable Resolver</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Variable Resolver</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer#getVariableResolver()
-	 * @see #getTableViewer()
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer#getVariableResolver()
+	 * @see #getPanelViewer()
 	 * @generated
 	 */
-	EReference getTableViewer_VariableResolver();
+	EReference getPanelViewer_VariableResolver();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1357,14 +1357,14 @@ public interface NuklearPackage extends EPackage
 		EClass IINPUT_PROVIDER = eINSTANCE.getIInputProvider();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.TableViewerImpl <em>Table Viewer</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.PanelViewerImpl <em>Panel Viewer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.TableViewerImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getTableViewer()
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.PanelViewerImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getPanelViewer()
 		 * @generated
 		 */
-		EClass TABLE_VIEWER = eINSTANCE.getTableViewer();
+		EClass PANEL_VIEWER = eINSTANCE.getPanelViewer();
 
 		/**
 		 * The meta object literal for the '<em><b>Variable Resolver</b></em>' containment reference feature.
@@ -1372,7 +1372,7 @@ public interface NuklearPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TABLE_VIEWER__VARIABLE_RESOLVER = eINSTANCE.getTableViewer_VariableResolver();
+		EReference PANEL_VIEWER__VARIABLE_RESOLVER = eINSTANCE.getPanelViewer_VariableResolver();
 
 	}
 

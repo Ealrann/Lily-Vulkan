@@ -10,7 +10,7 @@ import org.sheepy.lily.vulkan.nuklear.ui.LabelAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.PanelAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.SelectorPanelAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.SliderAdapter;
-import org.sheepy.lily.vulkan.nuklear.ui.TableViewerAdapter;
+import org.sheepy.lily.vulkan.nuklear.ui.PanelViewerAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.VariableLabelAdapter;
 
 @Adapters(classifiers = {
@@ -26,7 +26,7 @@ import org.sheepy.lily.vulkan.nuklear.ui.VariableLabelAdapter;
 		NuklearFontAdapter.class,
 		NuklearPushConstantsAdapter.class,
 		SelectorPanelAdapter.class,
-		TableViewerAdapter.class
+		PanelViewerAdapter.class
 })
 
 module org.sheepy.lily.vulkan.extra.nuklear

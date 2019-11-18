@@ -19,7 +19,7 @@ import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 @Adapter(scope = VariableLabel.class)
 public class VariableLabelAdapter implements IUIElementAdapter
 {
-	private final INotificationListener listener = n -> updateText(String.valueOf(n.getNewValue()));
+	private final INotificationListener listener = n -> updateText(n.getNewValue());
 	private final VariableLabel label;
 	private final IVariableResolverAdapter<IVariableResolver> resolver;
 
@@ -35,7 +35,7 @@ public class VariableLabelAdapter implements IUIElementAdapter
 		final var variableResolver = label.getVariableResolver();
 		resolver = variableResolver.adaptNotNull(IVariableResolverAdapter.class);
 
-		updateText(String.valueOf(resolver.getValue(variableResolver)));
+		updateText(resolver.getValue(variableResolver));
 
 		resolver.addListener(listener);
 	}
@@ -73,8 +73,12 @@ public class VariableLabelAdapter implements IUIElementAdapter
 		return res;
 	}
 
-	private void updateText(String value)
+	private void updateText(Object val)
 	{
+		final var format = label.getFormat();
+		final String value = (format != null && !format.isBlank())
+				? String.format(format, val)
+				: String.valueOf(val);
 		final String labelText = label.getText();
 		String resultString = "";
 

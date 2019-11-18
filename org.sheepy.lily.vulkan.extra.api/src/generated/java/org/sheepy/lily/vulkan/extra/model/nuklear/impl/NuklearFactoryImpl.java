@@ -69,7 +69,7 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 			case NuklearPackage.NUKLEAR_CONTEXT: return createNuklearContext();
 			case NuklearPackage.NUKLEAR_FONT: return createNuklearFont();
 			case NuklearPackage.SELECTOR_PANEL: return createSelectorPanel();
-			case NuklearPackage.TABLE_VIEWER: return createTableViewer();
+			case NuklearPackage.PANEL_VIEWER: return createPanelViewer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -141,10 +141,10 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 	 * @generated
 	 */
 	@Override
-	public TableViewer createTableViewer()
+	public PanelViewer createPanelViewer()
 	{
-		TableViewerImpl tableViewer = new TableViewerImpl();
-		return tableViewer;
+		PanelViewerImpl panelViewer = new PanelViewerImpl();
+		return panelViewer;
 	}
 
 	/**

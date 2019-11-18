@@ -101,6 +101,15 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS__ENABLED = VulkanPackage.IPROCESS__ENABLED;
 
 	/**
+	 * The feature id for the '<em><b>Queue Priority</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PROCESS__QUEUE_PRIORITY = VulkanPackage.IPROCESS__QUEUE_PRIORITY;
+
+	/**
 	 * The feature id for the '<em><b>Waiting Fence During Acquire</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

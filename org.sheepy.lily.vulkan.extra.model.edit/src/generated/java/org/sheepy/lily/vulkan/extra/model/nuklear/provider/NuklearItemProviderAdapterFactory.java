@@ -227,28 +227,28 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TableViewerItemProvider tableViewerItemProvider;
+	protected PanelViewerItemProvider panelViewerItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createTableViewerAdapter()
+	public Adapter createPanelViewerAdapter()
 	{
-		if (tableViewerItemProvider == null)
+		if (panelViewerItemProvider == null)
 		{
-			tableViewerItemProvider = new TableViewerItemProvider(this);
+			panelViewerItemProvider = new PanelViewerItemProvider(this);
 		}
 
-		return tableViewerItemProvider;
+		return panelViewerItemProvider;
 	}
 
 	/**
@@ -405,7 +405,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 		if (nuklearContextItemProvider != null) nuklearContextItemProvider.dispose();
 		if (nuklearFontItemProvider != null) nuklearFontItemProvider.dispose();
 		if (selectorPanelItemProvider != null) selectorPanelItemProvider.dispose();
-		if (tableViewerItemProvider != null) tableViewerItemProvider.dispose();
+		if (panelViewerItemProvider != null) panelViewerItemProvider.dispose();
 	}
 
 	/**
@@ -690,7 +690,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 				newChildDescriptors.add
 					(createChildParameter
 						(PresentationPackage.Literals.UI_PAGE__PANELS,
-						 NuklearFactory.eINSTANCE.createTableViewer()));
+						 NuklearFactory.eINSTANCE.createPanelViewer()));
 
 				return null;
 			}

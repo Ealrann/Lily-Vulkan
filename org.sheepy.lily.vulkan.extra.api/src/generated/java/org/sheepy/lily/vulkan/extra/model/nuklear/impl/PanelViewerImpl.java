@@ -4,28 +4,33 @@ package org.sheepy.lily.vulkan.extra.model.nuklear.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.sheepy.lily.core.model.ui.impl.PanelImpl;
+
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
+
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
-import org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer;
+import org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Table Viewer</b></em>'.
+ * An implementation of the model object '<em><b>Panel Viewer</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.TableViewerImpl#getVariableResolver <em>Variable Resolver</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.PanelViewerImpl#getVariableResolver <em>Variable Resolver</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TableViewerImpl extends PanelImpl implements TableViewer
+public class PanelViewerImpl extends PanelImpl implements PanelViewer
 {
 	/**
 	 * The cached value of the '{@link #getVariableResolver() <em>Variable Resolver</em>}' containment reference.
@@ -42,7 +47,7 @@ public class TableViewerImpl extends PanelImpl implements TableViewer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TableViewerImpl()
+	protected PanelViewerImpl()
 	{
 		super();
 	}
@@ -55,7 +60,7 @@ public class TableViewerImpl extends PanelImpl implements TableViewer
 	@Override
 	protected EClass eStaticClass()
 	{
-		return NuklearPackage.Literals.TABLE_VIEWER;
+		return NuklearPackage.Literals.PANEL_VIEWER;
 	}
 
 	/**
@@ -76,11 +81,11 @@ public class TableViewerImpl extends PanelImpl implements TableViewer
 	 */
 	public NotificationChain basicSetVariableResolver(DirectVariableResolver newVariableResolver, NotificationChain msgs)
 	{
-		final DirectVariableResolver oldVariableResolver = variableResolver;
+		DirectVariableResolver oldVariableResolver = variableResolver;
 		variableResolver = newVariableResolver;
 		if (eNotificationRequired())
 		{
-			final ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NuklearPackage.TABLE_VIEWER__VARIABLE_RESOLVER, oldVariableResolver, newVariableResolver);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER, oldVariableResolver, newVariableResolver);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -98,14 +103,14 @@ public class TableViewerImpl extends PanelImpl implements TableViewer
 		{
 			NotificationChain msgs = null;
 			if (variableResolver != null)
-				msgs = ((InternalEObject)variableResolver).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NuklearPackage.TABLE_VIEWER__VARIABLE_RESOLVER, null, msgs);
+				msgs = ((InternalEObject)variableResolver).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER, null, msgs);
 			if (newVariableResolver != null)
-				msgs = ((InternalEObject)newVariableResolver).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NuklearPackage.TABLE_VIEWER__VARIABLE_RESOLVER, null, msgs);
+				msgs = ((InternalEObject)newVariableResolver).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER, null, msgs);
 			msgs = basicSetVariableResolver(newVariableResolver, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.TABLE_VIEWER__VARIABLE_RESOLVER, newVariableResolver, newVariableResolver));
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER, newVariableResolver, newVariableResolver));
 	}
 
 	/**
@@ -118,7 +123,7 @@ public class TableViewerImpl extends PanelImpl implements TableViewer
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.TABLE_VIEWER__VARIABLE_RESOLVER:
+			case NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER:
 				return basicSetVariableResolver(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -134,7 +139,7 @@ public class TableViewerImpl extends PanelImpl implements TableViewer
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.TABLE_VIEWER__VARIABLE_RESOLVER:
+			case NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER:
 				return getVariableResolver();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -150,7 +155,7 @@ public class TableViewerImpl extends PanelImpl implements TableViewer
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.TABLE_VIEWER__VARIABLE_RESOLVER:
+			case NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER:
 				setVariableResolver((DirectVariableResolver)newValue);
 				return;
 		}
@@ -167,7 +172,7 @@ public class TableViewerImpl extends PanelImpl implements TableViewer
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.TABLE_VIEWER__VARIABLE_RESOLVER:
+			case NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER:
 				setVariableResolver((DirectVariableResolver)null);
 				return;
 		}
@@ -184,10 +189,10 @@ public class TableViewerImpl extends PanelImpl implements TableViewer
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.TABLE_VIEWER__VARIABLE_RESOLVER:
+			case NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER:
 				return variableResolver != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //TableViewerImpl
+} //PanelViewerImpl

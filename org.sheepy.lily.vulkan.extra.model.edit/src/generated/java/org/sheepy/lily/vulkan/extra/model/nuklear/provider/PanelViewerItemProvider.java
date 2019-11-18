@@ -8,23 +8,26 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.sheepy.lily.core.model.ui.provider.PanelItemProvider;
+
 import org.sheepy.lily.core.model.variable.VariableFactory;
 
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
-import org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer;
+import org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.TableViewer} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TableViewerItemProvider 
-	extends PanelItemProvider
+public class PanelViewerItemProvider extends PanelItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -32,7 +35,7 @@ public class TableViewerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TableViewerItemProvider(AdapterFactory adapterFactory)
+	public PanelViewerItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -68,7 +71,7 @@ public class TableViewerItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(NuklearPackage.Literals.TABLE_VIEWER__VARIABLE_RESOLVER);
+			childrenFeatures.add(NuklearPackage.Literals.PANEL_VIEWER__VARIABLE_RESOLVER);
 		}
 		return childrenFeatures;
 	}
@@ -88,7 +91,7 @@ public class TableViewerItemProvider
 	}
 
 	/**
-	 * This returns TableViewer.gif.
+	 * This returns PanelViewer.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -96,7 +99,7 @@ public class TableViewerItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TableViewer"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PanelViewer"));
 	}
 
 	/**
@@ -108,10 +111,10 @@ public class TableViewerItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((TableViewer)object).getName();
+		String label = ((PanelViewer)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_TableViewer_type") :
-			getString("_UI_TableViewer_type") + " " + label;
+			getString("_UI_PanelViewer_type") :
+			getString("_UI_PanelViewer_type") + " " + label;
 	}
 
 
@@ -127,9 +130,9 @@ public class TableViewerItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TableViewer.class))
+		switch (notification.getFeatureID(PanelViewer.class))
 		{
-			case NuklearPackage.TABLE_VIEWER__VARIABLE_RESOLVER:
+			case NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -150,7 +153,7 @@ public class TableViewerItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(NuklearPackage.Literals.TABLE_VIEWER__VARIABLE_RESOLVER,
+				(NuklearPackage.Literals.PANEL_VIEWER__VARIABLE_RESOLVER,
 				 VariableFactory.eINSTANCE.createDirectVariableResolver()));
 	}
 

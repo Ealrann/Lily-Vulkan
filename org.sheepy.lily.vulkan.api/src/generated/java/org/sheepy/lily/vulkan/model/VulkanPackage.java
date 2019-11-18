@@ -329,13 +329,22 @@ public interface VulkanPackage extends EPackage
 	int IPROCESS__ENABLED = IRESOURCE_CONTAINER_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Queue Priority</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROCESS__QUEUE_PRIORITY = IRESOURCE_CONTAINER_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>IProcess</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPROCESS_FEATURE_COUNT = IRESOURCE_CONTAINER_FEATURE_COUNT + 2;
+	int IPROCESS_FEATURE_COUNT = IRESOURCE_CONTAINER_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>IProcess</em>' class.
@@ -565,6 +574,17 @@ public interface VulkanPackage extends EPackage
 	EAttribute getIProcess_Enabled();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.IProcess#getQueuePriority <em>Queue Priority</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Queue Priority</em>'.
+	 * @see org.sheepy.lily.vulkan.model.IProcess#getQueuePriority()
+	 * @see #getIProcess()
+	 * @generated
+	 */
+	EAttribute getIProcess_QueuePriority();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IExecutionManager <em>IExecution Manager</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -737,6 +757,14 @@ public interface VulkanPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute IPROCESS__ENABLED = eINSTANCE.getIProcess_Enabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Queue Priority</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IPROCESS__QUEUE_PRIORITY = eINSTANCE.getIProcess_QueuePriority();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IExecutionManager <em>IExecution Manager</em>}' class.
