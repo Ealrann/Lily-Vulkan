@@ -10,6 +10,7 @@ import org.lwjgl.nuklear.NkImage;
 import org.sheepy.lily.vulkan.api.resource.ITexture2DArrayAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
 import org.sheepy.vulkan.resource.image.VkTexture;
 
@@ -35,7 +36,12 @@ public final class NuklearImageInstaller
 		final var specializationBuffer = BufferUtils.createByteBuffer(4);
 		specializationBuffer.putInt(imagePaths.size());
 		specializationBuffer.flip();
-		pipeline.setSpecializationData(specializationBuffer);
+
+		final var constantBuffer = ResourceFactory.eINSTANCE.createConstantBuffer();
+		constantBuffer.setData(specializationBuffer);
+
+		pipeline.getResourcePkg().getResources().add(constantBuffer);
+		pipeline.setSpecializationData(constantBuffer);
 	}
 
 	public Map<PathResource, NkImage> imageMap()

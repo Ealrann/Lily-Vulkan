@@ -2,8 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.impl;
 
-import java.nio.ByteBuffer;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -12,6 +10,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -28,6 +27,7 @@ import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 
+import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -137,24 +137,14 @@ public class PipelineImpl extends LilyEObject implements Pipeline
 	protected EList<PushConstantRange> pushConstantRanges;
 
 	/**
-	 * The default value of the '{@link #getSpecializationData() <em>Specialization Data</em>}' attribute.
+	 * The cached value of the '{@link #getSpecializationData() <em>Specialization Data</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSpecializationData()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ByteBuffer SPECIALIZATION_DATA_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getSpecializationData() <em>Specialization Data</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSpecializationData()
-	 * @generated
-	 * @ordered
-	 */
-	protected ByteBuffer specializationData = SPECIALIZATION_DATA_EDEFAULT;
+	protected ConstantBuffer specializationData;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorSetPkg() <em>Descriptor Set Pkg</em>}' containment reference.
@@ -343,7 +333,27 @@ public class PipelineImpl extends LilyEObject implements Pipeline
 	 * @generated
 	 */
 	@Override
-	public ByteBuffer getSpecializationData()
+	public ConstantBuffer getSpecializationData()
+	{
+		if (specializationData != null && ((EObject)specializationData).eIsProxy())
+		{
+			InternalEObject oldSpecializationData = (InternalEObject)specializationData;
+			specializationData = (ConstantBuffer)eResolveProxy(oldSpecializationData);
+			if (specializationData != oldSpecializationData)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
+			}
+		}
+		return specializationData;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConstantBuffer basicGetSpecializationData()
 	{
 		return specializationData;
 	}
@@ -354,9 +364,9 @@ public class PipelineImpl extends LilyEObject implements Pipeline
 	 * @generated
 	 */
 	@Override
-	public void setSpecializationData(ByteBuffer newSpecializationData)
+	public void setSpecializationData(ConstantBuffer newSpecializationData)
 	{
-		ByteBuffer oldSpecializationData = specializationData;
+		ConstantBuffer oldSpecializationData = specializationData;
 		specializationData = newSpecializationData;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
@@ -505,7 +515,8 @@ public class PipelineImpl extends LilyEObject implements Pipeline
 			case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
 				return getPushConstantRanges();
 			case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
-				return getSpecializationData();
+				if (resolve) return getSpecializationData();
+				return basicGetSpecializationData();
 			case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
 				return getDescriptorSetPkg();
 			case ProcessPackage.PIPELINE__TASK_PKG:
@@ -542,7 +553,7 @@ public class PipelineImpl extends LilyEObject implements Pipeline
 				getPushConstantRanges().addAll((Collection<? extends PushConstantRange>)newValue);
 				return;
 			case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
-				setSpecializationData((ByteBuffer)newValue);
+				setSpecializationData((ConstantBuffer)newValue);
 				return;
 			case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
 				setDescriptorSetPkg((DescriptorSetPkg)newValue);
@@ -580,7 +591,7 @@ public class PipelineImpl extends LilyEObject implements Pipeline
 				getPushConstantRanges().clear();
 				return;
 			case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
-				setSpecializationData(SPECIALIZATION_DATA_EDEFAULT);
+				setSpecializationData((ConstantBuffer)null);
 				return;
 			case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
 				setDescriptorSetPkg((DescriptorSetPkg)null);
@@ -613,7 +624,7 @@ public class PipelineImpl extends LilyEObject implements Pipeline
 			case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
 				return pushConstantRanges != null && !pushConstantRanges.isEmpty();
 			case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
-				return SPECIALIZATION_DATA_EDEFAULT == null ? specializationData != null : !SPECIALIZATION_DATA_EDEFAULT.equals(specializationData);
+				return specializationData != null;
 			case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
 				return descriptorSetPkg != null;
 			case ProcessPackage.PIPELINE__TASK_PKG:
@@ -691,8 +702,6 @@ public class PipelineImpl extends LilyEObject implements Pipeline
 		result.append(enabled);
 		result.append(", stage: ");
 		result.append(stage);
-		result.append(", specializationData: ");
-		result.append(specializationData);
 		result.append(')');
 		return result.toString();
 	}

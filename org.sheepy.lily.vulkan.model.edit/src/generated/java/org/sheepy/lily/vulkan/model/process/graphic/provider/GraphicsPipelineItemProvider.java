@@ -162,7 +162,7 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
 				 null,
 				 null));
 	}

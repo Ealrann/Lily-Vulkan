@@ -1,6 +1,5 @@
 package org.sheepy.lily.vulkan.process.compute.pipeline;
 
-import java.nio.ByteBuffer;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -80,11 +79,14 @@ public final class ComputePipelineAdapter extends AbstractPipelineAdapter<IProce
 				final var shader = computer.getShader();
 				final var shaderAdapter = shader.adaptNotNull(IShaderAdapter.class);
 				final var shaderStage = shaderAdapter.getVkShaderStage();
-				final ByteBuffer specializationData = pipeline.getSpecializationData();
+				final var specializationData = pipeline.getSpecializationData();
+				final var specializationBuffer = specializationData != null
+						? specializationData.getData()
+						: null;
 
 				final var vkPipeline = new VkComputePipeline(	getVkPipelineLayout(),
 																shaderStage,
-																specializationData);
+																specializationBuffer);
 				vkPipeline.allocate(context);
 				vkPipelines.add(vkPipeline);
 			}

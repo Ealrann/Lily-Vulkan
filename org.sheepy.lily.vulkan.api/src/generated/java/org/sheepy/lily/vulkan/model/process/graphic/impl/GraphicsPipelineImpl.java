@@ -2,8 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
-import java.nio.ByteBuffer;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -36,6 +34,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
 
+import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 
@@ -161,24 +160,14 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	protected EList<PushConstantRange> pushConstantRanges;
 
 	/**
-	 * The default value of the '{@link #getSpecializationData() <em>Specialization Data</em>}' attribute.
+	 * The cached value of the '{@link #getSpecializationData() <em>Specialization Data</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSpecializationData()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ByteBuffer SPECIALIZATION_DATA_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getSpecializationData() <em>Specialization Data</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSpecializationData()
-	 * @generated
-	 * @ordered
-	 */
-	protected ByteBuffer specializationData = SPECIALIZATION_DATA_EDEFAULT;
+	protected ConstantBuffer specializationData;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorSetPkg() <em>Descriptor Set Pkg</em>}' containment reference.
@@ -467,7 +456,27 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	 * @generated
 	 */
 	@Override
-	public ByteBuffer getSpecializationData()
+	public ConstantBuffer getSpecializationData()
+	{
+		if (specializationData != null && ((EObject)specializationData).eIsProxy())
+		{
+			InternalEObject oldSpecializationData = (InternalEObject)specializationData;
+			specializationData = (ConstantBuffer)eResolveProxy(oldSpecializationData);
+			if (specializationData != oldSpecializationData)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
+			}
+		}
+		return specializationData;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConstantBuffer basicGetSpecializationData()
 	{
 		return specializationData;
 	}
@@ -478,9 +487,9 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	 * @generated
 	 */
 	@Override
-	public void setSpecializationData(ByteBuffer newSpecializationData)
+	public void setSpecializationData(ConstantBuffer newSpecializationData)
 	{
-		ByteBuffer oldSpecializationData = specializationData;
+		ConstantBuffer oldSpecializationData = specializationData;
 		specializationData = newSpecializationData;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
@@ -1073,7 +1082,8 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 			case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
 				return getPushConstantRanges();
 			case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
-				return getSpecializationData();
+				if (resolve) return getSpecializationData();
+				return basicGetSpecializationData();
 			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
 				return getDescriptorSetPkg();
 			case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
@@ -1129,7 +1139,7 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				getPushConstantRanges().addAll((Collection<? extends PushConstantRange>)newValue);
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
-				setSpecializationData((ByteBuffer)newValue);
+				setSpecializationData((ConstantBuffer)newValue);
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
 				setDescriptorSetPkg((DescriptorSetPkg)newValue);
@@ -1195,7 +1205,7 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				getPushConstantRanges().clear();
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
-				setSpecializationData(SPECIALIZATION_DATA_EDEFAULT);
+				setSpecializationData((ConstantBuffer)null);
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
 				setDescriptorSetPkg((DescriptorSetPkg)null);
@@ -1255,7 +1265,7 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 			case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
 				return pushConstantRanges != null && !pushConstantRanges.isEmpty();
 			case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
-				return SPECIALIZATION_DATA_EDEFAULT == null ? specializationData != null : !SPECIALIZATION_DATA_EDEFAULT.equals(specializationData);
+				return specializationData != null;
 			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
 				return descriptorSetPkg != null;
 			case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
@@ -1367,8 +1377,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 		result.append(enabled);
 		result.append(", stage: ");
 		result.append(stage);
-		result.append(", specializationData: ");
-		result.append(specializationData);
 		result.append(", subpass: ");
 		result.append(subpass);
 		result.append(')');

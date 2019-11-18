@@ -164,7 +164,7 @@ public class PipelineItemProvider extends ItemProviderAdapter implements IEditin
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
 				 null,
 				 null));
 	}

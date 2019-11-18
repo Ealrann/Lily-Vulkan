@@ -1160,7 +1160,7 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES = ProcessPackage.IPIPELINE__PUSH_CONSTANT_RANGES;
 
 	/**
-	 * The feature id for the '<em><b>Specialization Data</b></em>' attribute.
+	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

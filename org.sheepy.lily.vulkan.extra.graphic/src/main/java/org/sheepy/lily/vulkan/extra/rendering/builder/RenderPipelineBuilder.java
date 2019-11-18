@@ -46,7 +46,11 @@ public final class RenderPipelineBuilder
 		}
 
 		final var specializationData = prepareSpecializationBuffer(index, specialization);
-		pipeline.setSpecializationData(specializationData);
+		final var constantBuffer = ResourceFactory.eINSTANCE.createConstantBuffer();
+		constantBuffer.setData(specializationData);
+
+		pipeline.getResourcePkg().getResources().add(constantBuffer);
+		pipeline.setSpecializationData(constantBuffer);
 
 		return pipeline;
 	}

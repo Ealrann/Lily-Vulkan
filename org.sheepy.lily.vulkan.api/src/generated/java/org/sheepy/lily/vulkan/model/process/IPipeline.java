@@ -2,14 +2,13 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
-import java.nio.ByteBuffer;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 
+import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -101,26 +100,26 @@ public interface IPipeline extends LNamedElement, IResourceContainer, IProcessPa
 	EList<PushConstantRange> getPushConstantRanges();
 
 	/**
-	 * Returns the value of the '<em><b>Specialization Data</b></em>' attribute.
+	 * Returns the value of the '<em><b>Specialization Data</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Specialization Data</em>' attribute.
-	 * @see #setSpecializationData(ByteBuffer)
+	 * @return the value of the '<em>Specialization Data</em>' reference.
+	 * @see #setSpecializationData(ConstantBuffer)
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getIPipeline_SpecializationData()
-	 * @model unique="false" dataType="org.sheepy.lily.vulkan.model.resource.ByteBuffer"
+	 * @model
 	 * @generated
 	 */
-	ByteBuffer getSpecializationData();
+	ConstantBuffer getSpecializationData();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getSpecializationData <em>Specialization Data</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getSpecializationData <em>Specialization Data</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Specialization Data</em>' attribute.
+	 * @param value the new value of the '<em>Specialization Data</em>' reference.
 	 * @see #getSpecializationData()
 	 * @generated
 	 */
-	void setSpecializationData(ByteBuffer value);
+	void setSpecializationData(ConstantBuffer value);
 
 	/**
 	 * Returns the value of the '<em><b>Descriptor Set Pkg</b></em>' containment reference.

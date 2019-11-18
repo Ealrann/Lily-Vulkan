@@ -50,8 +50,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="pushConstantRanges" upperBound="-1"
         eType="ecore:EClass ../../org.sheepy.vulkan.model/model/pipeline.ecore#//PushConstantRange"
         containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="specializationData" unique="false"
-        eType="ecore:EDataType resource.ecore#//ByteBuffer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specializationData" eType="ecore:EClass resource.ecore#//ConstantBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorSetPkg" eType="ecore:EClass resource.ecore#//DescriptorSetPkg"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="taskPkg" eType="#//TaskPkg"

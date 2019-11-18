@@ -376,7 +376,7 @@ public interface ProcessPackage extends EPackage
 	int IPIPELINE__PUSH_CONSTANT_RANGES = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Specialization Data</b></em>' attribute.
+	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -513,7 +513,7 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE__PUSH_CONSTANT_RANGES = IPIPELINE__PUSH_CONSTANT_RANGES;
 
 	/**
-	 * The feature id for the '<em><b>Specialization Data</b></em>' attribute.
+	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1433,15 +1433,15 @@ public interface ProcessPackage extends EPackage
 	EReference getIPipeline_PushConstantRanges();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getSpecializationData <em>Specialization Data</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getSpecializationData <em>Specialization Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Specialization Data</em>'.
+	 * @return the meta object for the reference '<em>Specialization Data</em>'.
 	 * @see org.sheepy.lily.vulkan.model.process.IPipeline#getSpecializationData()
 	 * @see #getIPipeline()
 	 * @generated
 	 */
-	EAttribute getIPipeline_SpecializationData();
+	EReference getIPipeline_SpecializationData();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}'.
@@ -2011,12 +2011,12 @@ public interface ProcessPackage extends EPackage
 		EReference IPIPELINE__PUSH_CONSTANT_RANGES = eINSTANCE.getIPipeline_PushConstantRanges();
 
 		/**
-		 * The meta object literal for the '<em><b>Specialization Data</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Specialization Data</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IPIPELINE__SPECIALIZATION_DATA = eINSTANCE.getIPipeline_SpecializationData();
+		EReference IPIPELINE__SPECIALIZATION_DATA = eINSTANCE.getIPipeline_SpecializationData();
 
 		/**
 		 * The meta object literal for the '<em><b>Descriptor Set Pkg</b></em>' containment reference feature.
