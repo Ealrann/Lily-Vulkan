@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.joml.Vector2i;
+import org.joml.Vector3fc;
 import org.lwjgl.nuklear.NkColor;
 import org.lwjgl.nuklear.NkImage;
 import org.lwjgl.nuklear.NkRect;
@@ -103,10 +104,10 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 		for (final var element : elements)
 		{
 			final var image = inputProviderAdapter.getImage(element);
-
+			final var color = inputProviderAdapter.getColor(element);
 			final var name = inputProviderAdapter.getName(element);
 
-			tmpDatas.add(new LineData(element, name, image, right));
+			tmpDatas.add(new LineData(element, name, panel.getName(), image, color, right));
 		}
 		return tmpDatas;
 	}
@@ -135,11 +136,11 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 	{
 		int x = UIUtil.computeXRelative(size, panel, width);
 		int y = UIUtil.computeYRelative(size, panel, height);
-		if(panel.getHorizontalRelative() == EHorizontalRelative.LEFT)
+		if (panel.getHorizontalRelative() == EHorizontalRelative.LEFT)
 		{
 			x += MARGING_W;
 		}
-		
+
 		for (final LineData data : datas)
 		{
 			data.updateRect(x, y, buttonSize + MARGING_W, panel.isPrintLabels());
@@ -175,7 +176,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 		for (int i = 0; i < datas.size(); i++)
 		{
 			final LineData data = datas.get(i);
-			final NkImage image = context.imageMap.get(data.image);
+			final NkImage image = data.image != null ? context.imageMap.get(data.image) : null;
 			final boolean isSelected = data.element == selectedElement;
 
 			if (panel.isPrintLabels())
@@ -199,6 +200,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 			if (buttonDrawer.draw(	nkContext,
 									isSelected,
 									image,
+									data.color,
 									data.panelButton1Id,
 									data.rectButton))
 			{
@@ -234,6 +236,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 			{
 				fading = false;
 				labelColor.a((byte) 255);
+				dirty = true;
 			}
 		}
 		else
@@ -270,12 +273,15 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 	{
 		for (int i = 0; i < datas.size(); i++)
 		{
-			final LineData data = datas.get(i);
-			images.add(data.image);
+			final var data = datas.get(i);
+			if (data.image != null)
+			{
+				images.add(data.image);
+			}
 		}
 	}
 
-	public static final class LineData
+	private static final class LineData
 	{
 		public static final int TEXT_WIDTH = 100;
 
@@ -285,18 +291,32 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 		public final NkRect rectButton = NkRect.create();
 		public final ByteBuffer panelLabelId;
 		public final ByteBuffer panelButton1Id;
-		private final PathResource image;
-		private final boolean right;
+		public final PathResource image;
+		public final NkColor color;
+		public final boolean right;
 
-		public LineData(Object input, String name, PathResource image, boolean right)
+		public LineData(Object input,
+						String name,
+						String panelName,
+						PathResource image,
+						Vector3fc color,
+						boolean right)
 		{
 			this.element = input;
 			this.image = image;
 			this.right = right;
 
-			panelLabelId = MemoryUtil.memUTF8("Label" + name);
-			panelButton1Id = MemoryUtil.memUTF8("Button" + name);
+			panelLabelId = MemoryUtil.memUTF8("Label" + panelName + name);
+			panelButton1Id = MemoryUtil.memUTF8("Button" + panelName + name);
 			textBuffer = MemoryUtil.memUTF8(name);
+
+			this.color = color != null ? allocColor(color) : null;
+		}
+
+		private static NkColor allocColor(Vector3fc color)
+		{
+			return NkColor	.calloc()
+							.set((byte) color.x(), (byte) color.y(), (byte) color.z(), (byte) 255);
 		}
 
 		public void free()
@@ -304,6 +324,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 			MemoryUtil.memFree(panelLabelId);
 			MemoryUtil.memFree(panelButton1Id);
 			MemoryUtil.memFree(textBuffer);
+			if (color != null) color.free();
 		}
 
 		public void updateRect(int x, int y, int buttonSize, boolean withText)

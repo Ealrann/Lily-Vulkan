@@ -54,6 +54,7 @@ public final class SelectorButtonDrawer
 	public boolean draw(NkContext nkContext,
 						boolean selected,
 						NkImage image,
+						NkColor color,
 						ByteBuffer id,
 						NkRect rect)
 	{
@@ -75,9 +76,13 @@ public final class SelectorButtonDrawer
 			isHovered = nk_window_is_hovered(nkContext);
 
 			nk_layout_row_dynamic(nkContext, buttonSize, 1);
-			if (nk_button_image(nkContext, image))
+			if (image != null)
 			{
-				res = true;
+				res |= nk_button_image(nkContext, image);
+			}
+			else
+			{
+				res |= nk_button_color(nkContext, color);
 			}
 		}
 		nk_end(nkContext);
