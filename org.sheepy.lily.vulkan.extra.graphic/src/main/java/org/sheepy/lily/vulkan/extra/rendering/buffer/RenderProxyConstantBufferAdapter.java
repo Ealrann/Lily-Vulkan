@@ -3,18 +3,18 @@ package org.sheepy.lily.vulkan.extra.rendering.buffer;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryUtil;
+import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.adapter.INotificationListener;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 @Statefull
 @Adapter(scope = RenderProxyConstantBuffer.class, lazy = false)
-public class RenderProxyConstantBufferAdapter implements IVulkanAdapter
+public class RenderProxyConstantBufferAdapter implements IAdapter
 {
 	private final RenderProxyConstantBuffer proxyConstantBuffer;
 	private final ConstantBuffer nestedConstantBuffer;

@@ -1,10 +1,10 @@
 package org.sheepy.lily.vulkan.api.process;
 
-import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
+import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.vulkan.concurrent.IFenceView;
 import org.sheepy.vulkan.device.IVulkanContext;
 
-public interface IProcessAdapter extends IVulkanAdapter
+public interface IProcessAdapter extends IAdapter
 {
 	void start(IVulkanContext context);
 	void stop(IVulkanContext context);

@@ -2,9 +2,9 @@ package org.sheepy.lily.vulkan.api.resource.buffer;
 
 import java.nio.ByteBuffer;
 
-import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
+import org.sheepy.lily.core.api.adapter.IAdapter;
 
-public interface IBufferDataProviderAdapter extends IVulkanAdapter
+public interface IBufferDataProviderAdapter extends IAdapter
 {
 	long getSize();
 
