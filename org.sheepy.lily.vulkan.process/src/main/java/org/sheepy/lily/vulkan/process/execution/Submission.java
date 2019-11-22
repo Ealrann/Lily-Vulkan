@@ -133,8 +133,8 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 
 		waitIdle();
 
-		final var res = vkQueueSubmit(queue, submitInfo, fenceId);
 		if (fence != null) fence.setUsed(true);
+		final var res = vkQueueSubmit(queue, submitInfo, fenceId);
 
 		Logger.check(res, FAILED_SUBMIT, true);
 
@@ -158,15 +158,18 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 
 	private void resetFence()
 	{
-		if (fence.isUsed() && listeners != null)
+		if (fence.isUsed())
 		{
-			for (final var listener : listeners)
+			assert fence.isSignaled();
+			if (listeners != null)
 			{
-				listener.onExecutionIdle();
+				for (final var listener : listeners)
+				{
+					listener.onExecutionIdle();
+				}
 			}
+			fence.reset();
 		}
-
-		fence.reset();
 	}
 
 	@Override
@@ -174,19 +177,15 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 	{
 		if (fence != null)
 		{
-			if (fence.isUsed())
+			if (fence.isUsed() && fence.isSignaled() == false)
 			{
-				if (fence.isSignaled() == false)
+				if (fence.waitForSignal(TIMEOUT) == false)
 				{
-					if (fence.waitForSignal(TIMEOUT) == false)
-					{
-						Logger.log(FENCE_TIMEOUT, true);
-					}
+					Logger.log(FENCE_TIMEOUT, true);
 				}
 			}
 			resetFence();
 		}
-
 	}
 
 	@Override

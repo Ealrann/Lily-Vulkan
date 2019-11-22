@@ -10,7 +10,7 @@ import org.sheepy.vulkan.log.Logger;
 
 public class VkFence implements IAllocable<IVulkanContext>, IFenceView
 {
-	private final boolean signaled;
+	private final boolean signaledAfterAllocation;
 	private long id;
 
 	private boolean used = false;
@@ -18,7 +18,7 @@ public class VkFence implements IAllocable<IVulkanContext>, IFenceView
 
 	public VkFence(boolean signaled)
 	{
-		this.signaled = signaled;
+		this.signaledAfterAllocation = signaled;
 	}
 
 	@Override
@@ -28,14 +28,14 @@ public class VkFence implements IAllocable<IVulkanContext>, IFenceView
 		final VkFenceCreateInfo createInfo = VkFenceCreateInfo.calloc();
 		createInfo.sType(VK_STRUCTURE_TYPE_FENCE_CREATE_INFO);
 		createInfo.pNext(VK_NULL_HANDLE);
-		createInfo.flags(signaled ? VK_FENCE_CREATE_SIGNALED_BIT : 0);
+		createInfo.flags(signaledAfterAllocation ? VK_FENCE_CREATE_SIGNALED_BIT : 0);
 
 		final long[] resArray = new long[1];
 		Logger.check(vkCreateFence(device, createInfo, null, resArray), "Failed to create Fence");
 
 		createInfo.free();
 		id = resArray[0];
-		used = false;
+		used = signaledAfterAllocation;
 	}
 
 	@Override
