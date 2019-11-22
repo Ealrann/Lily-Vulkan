@@ -143,6 +143,13 @@
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//EntityPkg/T"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//EntityPkg/entities"/>
     </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//RenderDrawTask">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//RenderDrawTask/vertexProviders"/>
+    </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//RenderIndexedDrawTask">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//RenderIndexedDrawTask/indexProvider"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//RenderIndexedDrawTask/structure"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Sprite" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
       childCreationExtenders="true" ecorePackage="Sprite.ecore#/">

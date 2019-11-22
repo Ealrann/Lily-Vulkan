@@ -16,6 +16,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.*;
 import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
@@ -186,6 +187,16 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createEntityPkgAdapter();
 			}
 			@Override
+			public Adapter caseRenderDrawTask(RenderDrawTask object)
+			{
+				return createRenderDrawTaskAdapter();
+			}
+			@Override
+			public Adapter caseRenderIndexedDrawTask(RenderIndexedDrawTask object)
+			{
+				return createRenderIndexedDrawTaskAdapter();
+			}
+			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
@@ -239,6 +250,11 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseConstantBuffer(ConstantBuffer object)
 			{
 				return createConstantBufferAdapter();
+			}
+			@Override
+			public Adapter caseIPipelineTask(IPipelineTask object)
+			{
+				return createIPipelineTaskAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -563,6 +579,36 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDrawTask <em>Render Draw Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderDrawTask
+	 * @generated
+	 */
+	public Adapter createRenderDrawTaskAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderIndexedDrawTask <em>Render Indexed Draw Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderIndexedDrawTask
+	 * @generated
+	 */
+	public Adapter createRenderIndexedDrawTaskAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.types.LNamedElement <em>LNamed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -708,6 +754,21 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createConstantBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IPipelineTask <em>IPipeline Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.IPipelineTask
+	 * @generated
+	 */
+	public Adapter createIPipelineTaskAdapter()
 	{
 		return null;
 	}

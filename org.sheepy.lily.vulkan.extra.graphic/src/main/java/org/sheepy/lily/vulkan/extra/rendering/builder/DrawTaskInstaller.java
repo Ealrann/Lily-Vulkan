@@ -3,9 +3,6 @@ package org.sheepy.lily.vulkan.extra.rendering.builder;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexProviderAdapter;
-import org.sheepy.lily.vulkan.extra.api.mesh.data.IVertexProviderAdapter;
-import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
@@ -14,8 +11,6 @@ import org.sheepy.lily.vulkan.extra.rendering.data.IStructurePartDrawSetup;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer;
-import org.sheepy.lily.vulkan.model.process.graphic.Draw;
-import org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
@@ -41,8 +36,8 @@ public final class DrawTaskInstaller
 		final var taskPkg = pipeline.getTaskPkg();
 		final var resourcePkg = pipeline.getResourcePkg();
 		final var buffer = context.buffer;
-
 		final var dataProviders = buffer.getDataProviders();
+		final List<VertexProvider<?>> vertexProviders = new ArrayList<>();
 
 		final List<VertexBinding> vertexBufferRef = new ArrayList<>();
 		int indexIndex = -1;
@@ -69,6 +64,8 @@ public final class DrawTaskInstaller
 				vertexBinding.setBufferRef(vertexRef);
 
 				vertexBufferRef.add(vertexBinding);
+
+				vertexProviders.add((VertexProvider<?>) provider);
 			}
 		}
 
@@ -90,7 +87,6 @@ public final class DrawTaskInstaller
 		if (indexIndex != -1)
 		{
 			final var indexProvider = (IndexProvider<?>) dataProviders.get(indexIndex);
-			final var indexProviderAdapter = indexProvider.adaptNotNull(IIndexProviderAdapter.class);
 
 			final var indexRef = ResourceFactory.eINSTANCE.createCompositeBufferReference();
 			indexRef.setBuffer(buffer);
@@ -100,24 +96,23 @@ public final class DrawTaskInstaller
 			bindIndex.setBufferRef(indexRef);
 			bindIndex.setIndexType(indexProvider.getIndexType());
 
-			final var drawIndexed = GraphicFactory.eINSTANCE.createDrawIndexed();
+			final var indexedDraw = RenderingFactory.eINSTANCE.createRenderIndexedDrawTask();
+			indexedDraw.setStructure(structure);
+			indexedDraw.setIndexProvider(indexProvider);
 
 			taskPkg.getTasks().add(bindIndex);
-			taskPkg.getTasks().add(drawIndexed);
+			taskPkg.getTasks().add(indexedDraw);
 
-			return new IndexedDrawSetup(bindVertex,
-										bindIndex,
-										drawIndexed,
-										indexProviderAdapter,
-										dataProviders,
-										structure);
+			return new IndexedDrawSetup(bindVertex, bindIndex, dataProviders, structure);
 		}
 		else
 		{
-			final var draw = GraphicFactory.eINSTANCE.createDraw();
+			final var draw = RenderingFactory.eINSTANCE.createRenderDrawTask();
+			draw.getVertexProviders().addAll(vertexProviders);
+
 			taskPkg.getTasks().add(draw);
 
-			return new DrawSetup(bindVertex, draw, dataProviders, structure);
+			return new DrawSetup(bindVertex, dataProviders, structure);
 		}
 	}
 
@@ -127,39 +122,18 @@ public final class DrawTaskInstaller
 		private final BindVertexBuffer vertexBindTask;
 		@SuppressWarnings("unused")
 		private final BindIndexBuffer indexBindTask;
-		private final DrawIndexed drawTask;
-		private final IIndexProviderAdapter indexProvider;
 		private final List<BufferDataProvider<?>> dataProviders;
 		private final Structure structure;
 
-		private boolean dirty = true;
-
 		private IndexedDrawSetup(	BindVertexBuffer vertexBindTask,
 									BindIndexBuffer indexBindTask,
-									DrawIndexed drawTask,
-									IIndexProviderAdapter indexProvider,
 									List<BufferDataProvider<?>> dataProviders,
 									Structure structure)
 		{
 			this.vertexBindTask = vertexBindTask;
 			this.indexBindTask = indexBindTask;
-			this.drawTask = drawTask;
-			this.indexProvider = indexProvider;
 			this.structure = structure;
 			this.dataProviders = List.copyOf(dataProviders);
-		}
-
-		@Override
-		public void update()
-		{
-			if (dirty || indexProvider.hasChanged())
-			{
-				final var structureAdapter = structure.adaptNotNull(IStructureAdapter.class);
-				final int instanceCount = structureAdapter.getInstanceCount(structure);
-				drawTask.setIndexCount(indexProvider.getIndexCount());
-				drawTask.setInstanceCount(instanceCount);
-				dirty = false;
-			}
 		}
 
 		@Override
@@ -179,54 +153,16 @@ public final class DrawTaskInstaller
 	{
 		@SuppressWarnings("unused")
 		private final BindVertexBuffer bindTask;
-		private final Draw drawTask;
 		private final List<BufferDataProvider<?>> dataProviders;
-		private final List<VertexProvider<?>> vertexProviders;
 		private final Structure structure;
 
-		private boolean dirty = true;
-
 		private DrawSetup(	BindVertexBuffer bindTask,
-							Draw drawTask,
 							List<BufferDataProvider<?>> dataProviders,
 							Structure structure)
 		{
 			this.bindTask = bindTask;
-			this.drawTask = drawTask;
 			this.structure = structure;
 			this.dataProviders = List.copyOf(dataProviders);
-			this.vertexProviders = List.copyOf(collectVertexProviders(dataProviders));
-		}
-
-		private static List<VertexProvider<?>> collectVertexProviders(List<BufferDataProvider<?>> dataProviders)
-		{
-			final List<VertexProvider<?>> res = new ArrayList<>();
-			for (final var provider : dataProviders)
-			{
-				if (provider instanceof VertexProvider<?>)
-				{
-					res.add((VertexProvider<?>) provider);
-				}
-			}
-			return res;
-		}
-
-		@Override
-		public void update()
-		{
-			if (dirty)
-			{
-				int vertexCount = 0;
-				for (final var vertexProvider : vertexProviders)
-				{
-					final var vertexProviderAdapter = vertexProvider.adaptNotNull(IVertexProviderAdapter.class);
-					vertexCount += vertexProviderAdapter.getVertexCount();
-				}
-
-				drawTask.setVertexCount(vertexCount);
-
-				dirty = false;
-			}
 		}
 
 		@Override

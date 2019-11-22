@@ -50,6 +50,8 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderDescribedDataProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderDrawTask;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderIndexedDrawTask;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
@@ -224,6 +226,20 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	private EClass entityPkgEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass renderDrawTaskEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass renderIndexedDrawTaskEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -847,6 +863,61 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
+	public EClass getRenderDrawTask()
+	{
+		return renderDrawTaskEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getRenderDrawTask_VertexProviders()
+	{
+		return (EReference)renderDrawTaskEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getRenderIndexedDrawTask()
+	{
+		return renderIndexedDrawTaskEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getRenderIndexedDrawTask_IndexProvider()
+	{
+		return (EReference)renderIndexedDrawTaskEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getRenderIndexedDrawTask_Structure()
+	{
+		return (EReference)renderIndexedDrawTaskEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public RenderingFactory getRenderingFactory()
 	{
 		return (RenderingFactory)getEFactoryInstance();
@@ -938,6 +1009,13 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 
 		entityPkgEClass = createEClass(ENTITY_PKG);
 		createEReference(entityPkgEClass, ENTITY_PKG__ENTITIES);
+
+		renderDrawTaskEClass = createEClass(RENDER_DRAW_TASK);
+		createEReference(renderDrawTaskEClass, RENDER_DRAW_TASK__VERTEX_PROVIDERS);
+
+		renderIndexedDrawTaskEClass = createEClass(RENDER_INDEXED_DRAW_TASK);
+		createEReference(renderIndexedDrawTaskEClass, RENDER_INDEXED_DRAW_TASK__INDEX_PROVIDER);
+		createEReference(renderIndexedDrawTaskEClass, RENDER_INDEXED_DRAW_TASK__STRUCTURE);
 	}
 
 	/**
@@ -1037,6 +1115,8 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		staticResourceProviderEClass.getESuperTypes().add(this.getResourceProvider());
 		compositeResourceProviderEClass.getESuperTypes().add(this.getResourceProvider());
 		renderProxyConstantBufferEClass.getESuperTypes().add(theResourcePackage.getConstantBuffer());
+		renderDrawTaskEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
+		renderIndexedDrawTaskEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(entityEClass, Entity.class, "Entity", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1114,6 +1194,19 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEClass(entityPkgEClass, EntityPkg.class, "EntityPkg", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(entityPkgEClass_T);
 		initEReference(getEntityPkg_Entities(), g1, null, "entities", null, 0, -1, EntityPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(renderDrawTaskEClass, RenderDrawTask.class, "RenderDrawTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(this.getVertexProvider());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		initEReference(getRenderDrawTask_VertexProviders(), g1, null, "vertexProviders", null, 1, -1, RenderDrawTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(renderIndexedDrawTaskEClass, RenderIndexedDrawTask.class, "RenderIndexedDrawTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(this.getIndexProvider());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		initEReference(getRenderIndexedDrawTask_IndexProvider(), g1, null, "indexProvider", null, 1, 1, RenderIndexedDrawTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRenderIndexedDrawTask_Structure(), this.getStructure(), null, "structure", null, 1, 1, RenderIndexedDrawTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

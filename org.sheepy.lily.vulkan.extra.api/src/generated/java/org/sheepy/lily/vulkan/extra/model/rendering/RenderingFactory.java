@@ -131,6 +131,24 @@ public interface RenderingFactory extends EFactory
 	ISpecialization createISpecialization();
 
 	/**
+	 * Returns a new object of class '<em>Render Draw Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Render Draw Task</em>'.
+	 * @generated
+	 */
+	RenderDrawTask createRenderDrawTask();
+
+	/**
+	 * Returns a new object of class '<em>Render Indexed Draw Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Render Indexed Draw Task</em>'.
+	 * @generated
+	 */
+	RenderIndexedDrawTask createRenderIndexedDrawTask();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.adapter.annotation.Tick;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IEntityResolver;
@@ -43,16 +42,6 @@ public final class GenericRendererMaintainerAdapter<T extends Structure>
 		if (maintainer.isEnabled())
 		{
 			buildPipelines();
-		}
-	}
-
-	@Tick
-	public void update()
-	{
-		for (int i = 0; i < structurePartDrawSetups.size(); i++)
-		{
-			final var drawSetup = structurePartDrawSetups.get(i);
-			drawSetup.update();
 		}
 	}
 

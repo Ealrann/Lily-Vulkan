@@ -9,7 +9,5 @@ public interface IStructurePartDrawSetup
 {
 	List<BufferDataProvider<?>> getDataProviders();
 
-	void update();
-
 	Structure getStructure();
 }
