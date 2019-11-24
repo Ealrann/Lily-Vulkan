@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.sheepy.lily.core.api.adapter.LilyEObject;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -22,6 +23,7 @@ import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -226,16 +228,32 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 
 	private final class TaskObserver extends AbstractModelSetRegistry
 	{
+		private final AbstractModelSetRegistry compositeTaskObserver = new AbstractModelSetRegistry(List.of(ProcessPackage.Literals.COMPOSITE_TASK__TASKS))
+		{
+			@Override
+			protected void add(ILilyEObject newValue)
+			{
+				TaskObserver.this.add(newValue);
+			}
+
+			@Override
+			protected void remove(ILilyEObject oldValue)
+			{
+				TaskObserver.this.remove(oldValue);
+			}
+		};
+
 		public TaskObserver(List<EStructuralFeature> features)
 		{
 			super(features);
 		}
 
 		@Override
-		protected void add(LilyEObject newValue)
+		protected void add(ILilyEObject newValue)
 		{
 			final var task = (IPipelineTask) newValue;
-			taskWrappers.add(new TaskWrapper<>(task, pipeline.getStage()));
+			final int taskIndex = taskIndex(task);
+			taskWrappers.add(taskIndex, new TaskWrapper<>(task, pipeline.getStage()));
 
 			final var adapter = task.<IAllocableAdapter<?>> adaptGeneric(IAllocableAdapter.class);
 			if (adapter != null)
@@ -248,14 +266,33 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 			{
 				recordNeeded = true;
 			}
+
+			if (task instanceof CompositeTask)
+			{
+				compositeTaskObserver.startRegister(task);
+			}
 		}
 
-		@SuppressWarnings("unlikely-arg-type")
+		private int taskIndex(IPipelineTask task)
+		{
+			final var container = task.eContainer();
+			@SuppressWarnings("unchecked")
+			final var containningList = (List<EObject>) container.eGet(task.eContainingFeature());
+			int index = containningList.indexOf(task);
+
+			if (container instanceof IPipelineTask)
+			{
+				index += taskIndex((IPipelineTask) container);
+			}
+
+			return index;
+		}
+
 		@Override
-		protected void remove(LilyEObject oldValue)
+		protected void remove(ILilyEObject oldValue)
 		{
 			final var task = (IPipelineTask) oldValue;
-			taskWrappers.remove(task);
+			taskWrappers.removeIf(wrapper -> wrapper.task == task);
 
 			final var adapter = task.<IAllocableAdapter<?>> adaptGeneric(IAllocableAdapter.class);
 			if (adapter != null)
@@ -267,6 +304,11 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 			if (task.isEnabled())
 			{
 				recordNeeded = true;
+			}
+
+			if (task instanceof CompositeTask)
+			{
+				compositeTaskObserver.stopRegister(task);
 			}
 		}
 	}

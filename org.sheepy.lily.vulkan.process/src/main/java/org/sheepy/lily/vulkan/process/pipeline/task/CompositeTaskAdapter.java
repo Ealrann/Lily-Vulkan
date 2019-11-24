@@ -131,8 +131,7 @@ public class CompositeTaskAdapter
 	@Override
 	public ECommandStage getStage(CompositeTask task)
 	{
-		// null means use the pipeline default stage
-		return null;
+		return ECommandStage.INHERITED;
 	}
 
 	private static final class AdaptedTaskWrapper<T extends IPipelineTask>
