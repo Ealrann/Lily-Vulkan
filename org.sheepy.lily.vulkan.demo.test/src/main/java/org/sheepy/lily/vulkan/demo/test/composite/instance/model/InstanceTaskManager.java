@@ -10,7 +10,7 @@ import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
-import org.sheepy.lily.vulkan.model.process.compute.Computer;
+import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
@@ -30,7 +30,7 @@ public class InstanceTaskManager
 
 	public final BindDescriptorSets bindDS = ProcessFactory.eINSTANCE.createBindDescriptorSets();
 
-	public final Computer computer = ComputeFactory.eINSTANCE.createComputer();
+	public final DispatchTask dispatch = ComputeFactory.eINSTANCE.createDispatchTask();
 	public final PrepareCompositeTransfer preparePush = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
 	public final PrepareCompositeTransfer prepareFetch = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
 
@@ -58,8 +58,7 @@ public class InstanceTaskManager
 		bindDS.setBindPoint(EBindPoint.COMPUTE);
 		bindDS.getDescriptorSets().add(resourceContainer.ds);
 
-		computer.setShader(resourceContainer.shader);
-		computer.setWorkgroupCountX(31250);
+		dispatch.setWorkgroupCountX(31250);
 
 		prepareFetch.setCompositeBuffer(resourceContainer.compositeBuffer);
 		prepareFetch.setMode(EFlushMode.FETCH);
@@ -75,7 +74,7 @@ public class InstanceTaskManager
 
 		tasks.add(barrier);
 		tasks.add(bindDS);
-		tasks.add(computer);
+		tasks.add(dispatch);
 
 		tasks.add(prepareFetch);
 		tasks.add(fetchTask);

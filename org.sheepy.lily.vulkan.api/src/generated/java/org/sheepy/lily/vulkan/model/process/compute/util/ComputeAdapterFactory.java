@@ -96,9 +96,9 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 				return createComputePipelineAdapter();
 			}
 			@Override
-			public Adapter caseComputer(Computer object)
+			public Adapter caseDispatchTask(DispatchTask object)
 			{
-				return createComputerAdapter();
+				return createDispatchTaskAdapter();
 			}
 			@Override
 			public Adapter caseIResourceContainer(IResourceContainer object)
@@ -197,16 +197,16 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.compute.Computer <em>Computer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.compute.DispatchTask <em>Dispatch Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.compute.Computer
+	 * @see org.sheepy.lily.vulkan.model.process.compute.DispatchTask
 	 * @generated
 	 */
-	public Adapter createComputerAdapter()
+	public Adapter createDispatchTaskAdapter()
 	{
 		return null;
 	}

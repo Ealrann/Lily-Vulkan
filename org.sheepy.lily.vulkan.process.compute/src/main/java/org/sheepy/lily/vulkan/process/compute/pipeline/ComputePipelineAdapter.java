@@ -1,18 +1,10 @@
 package org.sheepy.lily.vulkan.process.compute.pipeline;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
-
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
-import org.sheepy.lily.vulkan.model.process.CompositeTask;
-import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
-import org.sheepy.lily.vulkan.model.process.compute.Computer;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 
 @Statefull
@@ -20,7 +12,8 @@ import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 public final class ComputePipelineAdapter extends AbstractPipelineAdapter<IProcessContext>
 {
 	private final ComputePipeline pipeline;
-	private final List<VkComputePipeline> vkPipelines = new ArrayList<>();
+
+	private VkComputePipeline vkPipeline = null;
 
 	public ComputePipelineAdapter(ComputePipeline pipeline)
 	{
@@ -33,62 +26,37 @@ public final class ComputePipelineAdapter extends AbstractPipelineAdapter<IProce
 	{
 		super.allocate(context);
 
-		final var tasks = pipeline.getTaskPkg().getTasks();
+		final var shader = pipeline.getShader();
+		final var shaderAdapter = shader.adaptNotNull(IShaderAdapter.class);
+		final var shaderStage = shaderAdapter.getVkShaderStage();
+		final var specializationData = pipeline.getSpecializationData();
+		final var specializationBuffer = specializationData != null
+				? specializationData.getData()
+				: null;
 
-		final Deque<IPipelineTask> course = new ArrayDeque<>();
-		course.addAll(tasks);
-		while (course.isEmpty() == false)
-		{
-			final IPipelineTask task = course.removeFirst();
-			if (task instanceof Computer)
-			{
-				final var computer = (Computer) task;
-				final var shader = computer.getShader();
-				final var shaderAdapter = shader.adaptNotNull(IShaderAdapter.class);
-				final var shaderStage = shaderAdapter.getVkShaderStage();
-				final var specializationData = pipeline.getSpecializationData();
-				final var specializationBuffer = specializationData != null
-						? specializationData.getData()
-						: null;
-
-				final var vkPipeline = new VkComputePipeline(	getVkPipelineLayout(),
-																shaderStage,
-																specializationBuffer);
-				vkPipeline.allocate(context);
-				vkPipelines.add(vkPipeline);
-			}
-			else if (task instanceof CompositeTask)
-			{
-				final var subTasks = ((CompositeTask) task).getTasks();
-				for (int i = subTasks.size(); i > 0; i--)
-				{
-					final var subTask = subTasks.get(i - 1);
-					course.addFirst(subTask);
-				}
-			}
-		}
+		vkPipeline = new VkComputePipeline(	getVkPipelineLayout(),
+											shaderStage,
+											specializationBuffer);
+		vkPipeline.allocate(context);
 	}
 
 	@Override
 	public void free(IProcessContext context)
 	{
-		for (final var pipeline : vkPipelines)
-		{
-			pipeline.free(context);
-		}
-		vkPipelines.clear();
+		vkPipeline.free(context);
+		vkPipeline = null;
 
 		super.free(context);
 	}
 
-	public long getPipelineId(int index)
-	{
-		return vkPipelines.get(index).getPipelineId();
-	}
+//	public long getPipelineId(int index)
+//	{
+//		return vkPipelines.get(index).getPipelineId();
+//	}
 
 	@Override
-	public List<VkComputePipeline> getVkPipelines()
+	public VkComputePipeline getVkPipeline()
 	{
-		return vkPipelines;
+		return vkPipeline;
 	}
 }

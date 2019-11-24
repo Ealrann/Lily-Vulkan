@@ -65,6 +65,7 @@ public class InstanceModelFactory
 		final var res = ComputeFactory.eINSTANCE.createComputePipeline();
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 		res.setTaskPkg(taskPkg);
+		res.setShader(resourceContainer.shader);
 		res.setStage(ECommandStage.COMPUTE);
 		final DescriptorSetPkg dsPkg = ResourceFactory.eINSTANCE.createDescriptorSetPkg();
 		res.setDescriptorSetPkg(dsPkg);

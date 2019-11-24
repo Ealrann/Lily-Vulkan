@@ -66,7 +66,7 @@ public class ComputeFactoryImpl extends EFactoryImpl implements ComputeFactory
 		{
 			case ComputePackage.COMPUTE_PROCESS: return createComputeProcess();
 			case ComputePackage.COMPUTE_PIPELINE: return createComputePipeline();
-			case ComputePackage.COMPUTER: return createComputer();
+			case ComputePackage.DISPATCH_TASK: return createDispatchTask();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -102,10 +102,10 @@ public class ComputeFactoryImpl extends EFactoryImpl implements ComputeFactory
 	 * @generated
 	 */
 	@Override
-	public Computer createComputer()
+	public DispatchTask createDispatchTask()
 	{
-		ComputerImpl computer = new ComputerImpl();
-		return computer;
+		DispatchTaskImpl dispatchTask = new DispatchTaskImpl();
+		return dispatchTask;
 	}
 
 	/**

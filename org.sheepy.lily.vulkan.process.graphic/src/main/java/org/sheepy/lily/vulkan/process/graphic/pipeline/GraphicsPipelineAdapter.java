@@ -1,7 +1,6 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
@@ -107,9 +106,9 @@ public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicCon
 	}
 
 	@Override
-	public List<VkPipeline<IGraphicContext>> getVkPipelines()
+	public VkPipeline<IGraphicContext> getVkPipeline()
 	{
-		return Collections.singletonList(vkGraphicsPipeline);
+		return vkGraphicsPipeline;
 	}
 
 	public int getSubpass()

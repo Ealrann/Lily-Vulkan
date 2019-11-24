@@ -14,7 +14,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
-import org.sheepy.lily.vulkan.model.process.compute.Computer;
+import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
@@ -209,17 +209,11 @@ public class ModelFactory
 		final Buffer boardBuffer2 = BoardBufferFactory.createBoardBuffer(board);
 		boardImage = BoardImageFactory.createBoardImage(size);
 
-		final Computer lifeComputer1 = createComputer(lifeShader);
-		final Computer pixelComputer1 = createComputer(life2pixelShader);
+		final var lifePipeline1 = createPipeline(lifeShader, boardBuffer1, boardBuffer2);
+		final var lifePipeline2 = createPipeline(lifeShader, boardBuffer2, boardBuffer1);
 
-		final Computer lifeComputer2 = createComputer(lifeShader);
-		final Computer pixelComputer2 = createComputer(life2pixelShader);
-
-		final var lifePipeline1 = createPipeline(lifeComputer1, boardBuffer1, boardBuffer2);
-		final var lifePipeline2 = createPipeline(lifeComputer2, boardBuffer2, boardBuffer1);
-
-		final var pixelPipeline1 = createPipeline(pixelComputer1, boardBuffer2, boardImage);
-		final var pixelPipeline2 = createPipeline(pixelComputer2, boardBuffer1, boardImage);
+		final var pixelPipeline1 = createPipeline(life2pixelShader, boardBuffer2, boardImage);
+		final var pixelPipeline2 = createPipeline(life2pixelShader, boardBuffer1, boardImage);
 
 		final ProcessPartPkg pipelines1 = ProcessFactory.eINSTANCE.createProcessPartPkg();
 		process1.setPartPkg(pipelines1);
@@ -243,7 +237,7 @@ public class ModelFactory
 		process2.setResetAllowed(true);
 	}
 
-	private ComputePipeline createPipeline(Computer computer, DescriptedResource... descriptors)
+	private ComputePipeline createPipeline(Shader shader, DescriptedResource... descriptors)
 	{
 		final var descriptorSet = ResourceFactory.eINSTANCE.createDescriptorSet();
 		for (final var descriptor : descriptors)
@@ -255,25 +249,26 @@ public class ModelFactory
 		bindDescriptorSet.getDescriptorSets().add(descriptorSet);
 		bindDescriptorSet.setBindPoint(EBindPoint.COMPUTE);
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
+		final var dispatch = createComputer();
 
 		final var res = ComputeFactory.eINSTANCE.createComputePipeline();
-		computer.setWorkgroupCountX(application.getSize().x() / WORKGROUP_SIDE);
-		computer.setWorkgroupCountY(application.getSize().y() / WORKGROUP_SIDE);
 		res.setTaskPkg(taskPkg);
 		taskPkg.getTasks().add(bindDescriptorSet);
-		taskPkg.getTasks().add(computer);
+		taskPkg.getTasks().add(dispatch);
 
 		res.setDescriptorSetPkg(ResourceFactory.eINSTANCE.createDescriptorSetPkg());
 		res.getDescriptorSetPkg().getDescriptorSets().add(descriptorSet);
+		res.setShader(shader);
 		res.setStage(ECommandStage.COMPUTE);
 
 		return res;
 	}
 
-	private static Computer createComputer(final Shader shader)
+	private DispatchTask createComputer()
 	{
-		final var res = ComputeFactory.eINSTANCE.createComputer();
-		res.setShader(shader);
+		final var res = ComputeFactory.eINSTANCE.createDispatchTask();
+		res.setWorkgroupCountX(application.getSize().x() / WORKGROUP_SIDE);
+		res.setWorkgroupCountY(application.getSize().y() / WORKGROUP_SIDE);
 		return res;
 	}
 

@@ -5,35 +5,32 @@ package org.sheepy.lily.vulkan.model.process.compute.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
-import org.sheepy.lily.vulkan.model.process.compute.Computer;
 
-import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.core.api.adapter.LilyEObject;
+
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Computer</b></em>'.
+ * An implementation of the model object '<em><b>Dispatch Task</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#getShader <em>Shader</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#getWorkgroupCountX <em>Workgroup Count X</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#getWorkgroupCountY <em>Workgroup Count Y</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#getWorkgroupCountZ <em>Workgroup Count Z</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.DispatchTaskImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.DispatchTaskImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.DispatchTaskImpl#getWorkgroupCountX <em>Workgroup Count X</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.DispatchTaskImpl#getWorkgroupCountY <em>Workgroup Count Y</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.DispatchTaskImpl#getWorkgroupCountZ <em>Workgroup Count Z</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ComputerImpl extends LilyEObject implements Computer
+public class DispatchTaskImpl extends LilyEObject implements DispatchTask
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -74,16 +71,6 @@ public class ComputerImpl extends LilyEObject implements Computer
 	 * @ordered
 	 */
 	protected boolean enabled = ENABLED_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getShader() <em>Shader</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getShader()
-	 * @generated
-	 * @ordered
-	 */
-	protected Shader shader;
 
 	/**
 	 * The default value of the '{@link #getWorkgroupCountX() <em>Workgroup Count X</em>}' attribute.
@@ -150,7 +137,7 @@ public class ComputerImpl extends LilyEObject implements Computer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComputerImpl()
+	protected DispatchTaskImpl()
 	{
 		super();
 	}
@@ -163,7 +150,7 @@ public class ComputerImpl extends LilyEObject implements Computer
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ComputePackage.Literals.COMPUTER;
+		return ComputePackage.Literals.DISPATCH_TASK;
 	}
 
 	/**
@@ -188,7 +175,7 @@ public class ComputerImpl extends LilyEObject implements Computer
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.DISPATCH_TASK__NAME, oldName, name));
 	}
 
 	/**
@@ -213,52 +200,7 @@ public class ComputerImpl extends LilyEObject implements Computer
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__ENABLED, oldEnabled, enabled));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Shader getShader()
-	{
-		if (shader != null && ((EObject)shader).eIsProxy())
-		{
-			InternalEObject oldShader = (InternalEObject)shader;
-			shader = (Shader)eResolveProxy(oldShader);
-			if (shader != oldShader)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ComputePackage.COMPUTER__SHADER, oldShader, shader));
-			}
-		}
-		return shader;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Shader basicGetShader()
-	{
-		return shader;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setShader(Shader newShader)
-	{
-		Shader oldShader = shader;
-		shader = newShader;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__SHADER, oldShader, shader));
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.DISPATCH_TASK__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -283,7 +225,7 @@ public class ComputerImpl extends LilyEObject implements Computer
 		int oldWorkgroupCountX = workgroupCountX;
 		workgroupCountX = newWorkgroupCountX;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__WORKGROUP_COUNT_X, oldWorkgroupCountX, workgroupCountX));
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_X, oldWorkgroupCountX, workgroupCountX));
 	}
 
 	/**
@@ -308,7 +250,7 @@ public class ComputerImpl extends LilyEObject implements Computer
 		int oldWorkgroupCountY = workgroupCountY;
 		workgroupCountY = newWorkgroupCountY;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__WORKGROUP_COUNT_Y, oldWorkgroupCountY, workgroupCountY));
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_Y, oldWorkgroupCountY, workgroupCountY));
 	}
 
 	/**
@@ -333,7 +275,7 @@ public class ComputerImpl extends LilyEObject implements Computer
 		int oldWorkgroupCountZ = workgroupCountZ;
 		workgroupCountZ = newWorkgroupCountZ;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__WORKGROUP_COUNT_Z, oldWorkgroupCountZ, workgroupCountZ));
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_Z, oldWorkgroupCountZ, workgroupCountZ));
 	}
 
 	/**
@@ -346,18 +288,15 @@ public class ComputerImpl extends LilyEObject implements Computer
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTER__NAME:
+			case ComputePackage.DISPATCH_TASK__NAME:
 				return getName();
-			case ComputePackage.COMPUTER__ENABLED:
+			case ComputePackage.DISPATCH_TASK__ENABLED:
 				return isEnabled();
-			case ComputePackage.COMPUTER__SHADER:
-				if (resolve) return getShader();
-				return basicGetShader();
-			case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
+			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_X:
 				return getWorkgroupCountX();
-			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
+			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_Y:
 				return getWorkgroupCountY();
-			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
+			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_Z:
 				return getWorkgroupCountZ();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -373,22 +312,19 @@ public class ComputerImpl extends LilyEObject implements Computer
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTER__NAME:
+			case ComputePackage.DISPATCH_TASK__NAME:
 				setName((String)newValue);
 				return;
-			case ComputePackage.COMPUTER__ENABLED:
+			case ComputePackage.DISPATCH_TASK__ENABLED:
 				setEnabled((Boolean)newValue);
 				return;
-			case ComputePackage.COMPUTER__SHADER:
-				setShader((Shader)newValue);
-				return;
-			case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
+			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_X:
 				setWorkgroupCountX((Integer)newValue);
 				return;
-			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
+			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_Y:
 				setWorkgroupCountY((Integer)newValue);
 				return;
-			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
+			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_Z:
 				setWorkgroupCountZ((Integer)newValue);
 				return;
 		}
@@ -405,22 +341,19 @@ public class ComputerImpl extends LilyEObject implements Computer
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTER__NAME:
+			case ComputePackage.DISPATCH_TASK__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ComputePackage.COMPUTER__ENABLED:
+			case ComputePackage.DISPATCH_TASK__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
-			case ComputePackage.COMPUTER__SHADER:
-				setShader((Shader)null);
-				return;
-			case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
+			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_X:
 				setWorkgroupCountX(WORKGROUP_COUNT_X_EDEFAULT);
 				return;
-			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
+			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_Y:
 				setWorkgroupCountY(WORKGROUP_COUNT_Y_EDEFAULT);
 				return;
-			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
+			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_Z:
 				setWorkgroupCountZ(WORKGROUP_COUNT_Z_EDEFAULT);
 				return;
 		}
@@ -437,17 +370,15 @@ public class ComputerImpl extends LilyEObject implements Computer
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTER__NAME:
+			case ComputePackage.DISPATCH_TASK__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ComputePackage.COMPUTER__ENABLED:
+			case ComputePackage.DISPATCH_TASK__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
-			case ComputePackage.COMPUTER__SHADER:
-				return shader != null;
-			case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
+			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_X:
 				return workgroupCountX != WORKGROUP_COUNT_X_EDEFAULT;
-			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
+			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_Y:
 				return workgroupCountY != WORKGROUP_COUNT_Y_EDEFAULT;
-			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
+			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_Z:
 				return workgroupCountZ != WORKGROUP_COUNT_Z_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -478,4 +409,4 @@ public class ComputerImpl extends LilyEObject implements Computer
 		return result.toString();
 	}
 
-} //ComputerImpl
+} //DispatchTaskImpl

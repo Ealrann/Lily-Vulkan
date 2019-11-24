@@ -122,28 +122,28 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.compute.Computer} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.compute.DispatchTask} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComputerItemProvider computerItemProvider;
+	protected DispatchTaskItemProvider dispatchTaskItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.Computer}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.DispatchTask}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createComputerAdapter()
+	public Adapter createDispatchTaskAdapter()
 	{
-		if (computerItemProvider == null)
+		if (dispatchTaskItemProvider == null)
 		{
-			computerItemProvider = new ComputerItemProvider(this);
+			dispatchTaskItemProvider = new DispatchTaskItemProvider(this);
 		}
 
-		return computerItemProvider;
+		return dispatchTaskItemProvider;
 	}
 
 	/**
@@ -265,7 +265,7 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 	{
 		if (computeProcessItemProvider != null) computeProcessItemProvider.dispose();
 		if (computePipelineItemProvider != null) computePipelineItemProvider.dispose();
-		if (computerItemProvider != null) computerItemProvider.dispose();
+		if (dispatchTaskItemProvider != null) dispatchTaskItemProvider.dispose();
 	}
 
 }

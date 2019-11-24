@@ -1,8 +1,5 @@
 package org.sheepy.lily.vulkan.process.pipeline;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
@@ -20,8 +17,8 @@ public class PipelineAdapter<T extends IProcessContext> extends AbstractPipeline
 	}
 
 	@Override
-	public List<? extends VkPipeline<? super T>> getVkPipelines()
+	public VkPipeline<? super T> getVkPipeline()
 	{
-		return Collections.emptyList();
+		return null;
 	}
 }

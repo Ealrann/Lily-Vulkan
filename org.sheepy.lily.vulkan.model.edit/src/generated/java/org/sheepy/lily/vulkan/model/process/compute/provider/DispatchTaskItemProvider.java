@@ -2,12 +2,15 @@
  */
 package org.sheepy.lily.vulkan.model.process.compute.provider;
 
+
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -18,19 +21,28 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.sheepy.lily.core.model.types.TypesPackage;
+
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
-import org.sheepy.lily.vulkan.model.process.compute.Computer;
+import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.Computer} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.DispatchTask} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComputerItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class DispatchTaskItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -38,7 +50,7 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComputerItemProvider(AdapterFactory adapterFactory)
+	public DispatchTaskItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -58,7 +70,6 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
-			addShaderPropertyDescriptor(object);
 			addWorkgroupCountXPropertyDescriptor(object);
 			addWorkgroupCountYPropertyDescriptor(object);
 			addWorkgroupCountZPropertyDescriptor(object);
@@ -113,29 +124,6 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Shader feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addShaderPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Computer_shader_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Computer_shader_feature", "_UI_Computer_type"),
-				 ComputePackage.Literals.COMPUTER__SHADER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Workgroup Count X feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -147,9 +135,9 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Computer_workgroupCountX_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Computer_workgroupCountX_feature", "_UI_Computer_type"),
-				 ComputePackage.Literals.COMPUTER__WORKGROUP_COUNT_X,
+				 getString("_UI_DispatchTask_workgroupCountX_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DispatchTask_workgroupCountX_feature", "_UI_DispatchTask_type"),
+				 ComputePackage.Literals.DISPATCH_TASK__WORKGROUP_COUNT_X,
 				 true,
 				 false,
 				 false,
@@ -170,9 +158,9 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Computer_workgroupCountY_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Computer_workgroupCountY_feature", "_UI_Computer_type"),
-				 ComputePackage.Literals.COMPUTER__WORKGROUP_COUNT_Y,
+				 getString("_UI_DispatchTask_workgroupCountY_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DispatchTask_workgroupCountY_feature", "_UI_DispatchTask_type"),
+				 ComputePackage.Literals.DISPATCH_TASK__WORKGROUP_COUNT_Y,
 				 true,
 				 false,
 				 false,
@@ -193,9 +181,9 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Computer_workgroupCountZ_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Computer_workgroupCountZ_feature", "_UI_Computer_type"),
-				 ComputePackage.Literals.COMPUTER__WORKGROUP_COUNT_Z,
+				 getString("_UI_DispatchTask_workgroupCountZ_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DispatchTask_workgroupCountZ_feature", "_UI_DispatchTask_type"),
+				 ComputePackage.Literals.DISPATCH_TASK__WORKGROUP_COUNT_Z,
 				 true,
 				 false,
 				 false,
@@ -205,7 +193,7 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * This returns Computer.gif.
+	 * This returns DispatchTask.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -213,7 +201,7 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Computer"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DispatchTask"));
 	}
 
 	/**
@@ -225,11 +213,12 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Computer)object).getName();
+		String label = ((DispatchTask)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Computer_type") :
-			getString("_UI_Computer_type") + " " + label;
+			getString("_UI_DispatchTask_type") :
+			getString("_UI_DispatchTask_type") + " " + label;
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -243,13 +232,13 @@ public class ComputerItemProvider extends ItemProviderAdapter implements IEditin
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Computer.class))
+		switch (notification.getFeatureID(DispatchTask.class))
 		{
-			case ComputePackage.COMPUTER__NAME:
-			case ComputePackage.COMPUTER__ENABLED:
-			case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
-			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
-			case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
+			case ComputePackage.DISPATCH_TASK__NAME:
+			case ComputePackage.DISPATCH_TASK__ENABLED:
+			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_X:
+			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_Y:
+			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_Z:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

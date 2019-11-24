@@ -34,6 +34,7 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 
+import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
@@ -55,6 +56,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getTaskPkg <em>Task Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getMaintainer <em>Maintainer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getShader <em>Shader</em>}</li>
  * </ul>
  *
  * @generated
@@ -180,6 +182,16 @@ public class ComputePipelineImpl extends LilyEObject implements ComputePipeline
 	 * @ordered
 	 */
 	protected Maintainer<ComputePipeline> maintainer;
+
+	/**
+	 * The cached value of the '{@link #getShader() <em>Shader</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getShader()
+	 * @generated
+	 * @ordered
+	 */
+	protected Shader shader;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -563,6 +575,51 @@ public class ComputePipelineImpl extends LilyEObject implements ComputePipeline
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public Shader getShader()
+	{
+		if (shader != null && ((EObject)shader).eIsProxy())
+		{
+			InternalEObject oldShader = (InternalEObject)shader;
+			shader = (Shader)eResolveProxy(oldShader);
+			if (shader != oldShader)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ComputePackage.COMPUTE_PIPELINE__SHADER, oldShader, shader));
+			}
+		}
+		return shader;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Shader basicGetShader()
+	{
+		return shader;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setShader(Shader newShader)
+	{
+		Shader oldShader = shader;
+		shader = newShader;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PIPELINE__SHADER, oldShader, shader));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
@@ -631,6 +688,9 @@ public class ComputePipelineImpl extends LilyEObject implements ComputePipeline
 			case ComputePackage.COMPUTE_PIPELINE__MAINTAINER:
 				if (resolve) return getMaintainer();
 				return basicGetMaintainer();
+			case ComputePackage.COMPUTE_PIPELINE__SHADER:
+				if (resolve) return getShader();
+				return basicGetShader();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -674,6 +734,9 @@ public class ComputePipelineImpl extends LilyEObject implements ComputePipeline
 			case ComputePackage.COMPUTE_PIPELINE__MAINTAINER:
 				setMaintainer((Maintainer<ComputePipeline>)newValue);
 				return;
+			case ComputePackage.COMPUTE_PIPELINE__SHADER:
+				setShader((Shader)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -715,6 +778,9 @@ public class ComputePipelineImpl extends LilyEObject implements ComputePipeline
 			case ComputePackage.COMPUTE_PIPELINE__MAINTAINER:
 				setMaintainer((Maintainer<ComputePipeline>)null);
 				return;
+			case ComputePackage.COMPUTE_PIPELINE__SHADER:
+				setShader((Shader)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -747,6 +813,8 @@ public class ComputePipelineImpl extends LilyEObject implements ComputePipeline
 				return taskPkg != null;
 			case ComputePackage.COMPUTE_PIPELINE__MAINTAINER:
 				return maintainer != null;
+			case ComputePackage.COMPUTE_PIPELINE__SHADER:
+				return shader != null;
 		}
 		return super.eIsSet(featureID);
 	}

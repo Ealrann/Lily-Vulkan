@@ -72,6 +72,7 @@ public class CompositeTaskAdapter
 	private void reloadChildren(CompositeTask task)
 	{
 		adaptedChildren.clear();
+		allocationChildren.clear();
 		for (final var subTask : task.getTasks())
 		{
 			adaptedChildren.add(new AdaptedTaskWrapper<>(subTask));

@@ -276,7 +276,7 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 ComputeFactory.eINSTANCE.createComputer()));
+				 ComputeFactory.eINSTANCE.createDispatchTask()));
 
 		newChildDescriptors.add
 			(createChildParameter

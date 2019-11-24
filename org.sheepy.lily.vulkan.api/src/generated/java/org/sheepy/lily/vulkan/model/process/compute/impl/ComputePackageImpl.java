@@ -32,7 +32,7 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
-import org.sheepy.lily.vulkan.model.process.compute.Computer;
+import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl;
 import org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl;
@@ -72,7 +72,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass computerEClass = null;
+	private EClass dispatchTaskEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -198,9 +198,9 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getComputer()
+	public EReference getComputePipeline_Shader()
 	{
-		return computerEClass;
+		return (EReference)computePipelineEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -209,9 +209,9 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getComputer_Shader()
+	public EClass getDispatchTask()
 	{
-		return (EReference)computerEClass.getEStructuralFeatures().get(0);
+		return dispatchTaskEClass;
 	}
 
 	/**
@@ -220,9 +220,9 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getComputer_WorkgroupCountX()
+	public EAttribute getDispatchTask_WorkgroupCountX()
 	{
-		return (EAttribute)computerEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)dispatchTaskEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -231,9 +231,9 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getComputer_WorkgroupCountY()
+	public EAttribute getDispatchTask_WorkgroupCountY()
 	{
-		return (EAttribute)computerEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)dispatchTaskEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -242,9 +242,9 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getComputer_WorkgroupCountZ()
+	public EAttribute getDispatchTask_WorkgroupCountZ()
 	{
-		return (EAttribute)computerEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)dispatchTaskEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -281,12 +281,12 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		computeProcessEClass = createEClass(COMPUTE_PROCESS);
 
 		computePipelineEClass = createEClass(COMPUTE_PIPELINE);
+		createEReference(computePipelineEClass, COMPUTE_PIPELINE__SHADER);
 
-		computerEClass = createEClass(COMPUTER);
-		createEReference(computerEClass, COMPUTER__SHADER);
-		createEAttribute(computerEClass, COMPUTER__WORKGROUP_COUNT_X);
-		createEAttribute(computerEClass, COMPUTER__WORKGROUP_COUNT_Y);
-		createEAttribute(computerEClass, COMPUTER__WORKGROUP_COUNT_Z);
+		dispatchTaskEClass = createEClass(DISPATCH_TASK);
+		createEAttribute(dispatchTaskEClass, DISPATCH_TASK__WORKGROUP_COUNT_X);
+		createEAttribute(dispatchTaskEClass, DISPATCH_TASK__WORKGROUP_COUNT_Y);
+		createEAttribute(dispatchTaskEClass, DISPATCH_TASK__WORKGROUP_COUNT_Z);
 	}
 
 	/**
@@ -331,18 +331,18 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		EGenericType g2 = createEGenericType(this.getComputePipeline());
 		g1.getETypeArguments().add(g2);
 		computePipelineEClass.getEGenericSuperTypes().add(g1);
-		computerEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
+		dispatchTaskEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(computeProcessEClass, ComputeProcess.class, "ComputeProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(computePipelineEClass, ComputePipeline.class, "ComputePipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getComputePipeline_Shader(), theResourcePackage.getShader(), null, "shader", null, 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(computerEClass, Computer.class, "Computer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComputer_Shader(), theResourcePackage.getShader(), null, "shader", null, 0, 1, Computer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getComputer_WorkgroupCountX(), theEcorePackage.getEInt(), "workgroupCountX", "1", 0, 1, Computer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getComputer_WorkgroupCountY(), theEcorePackage.getEInt(), "workgroupCountY", "1", 0, 1, Computer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getComputer_WorkgroupCountZ(), theEcorePackage.getEInt(), "workgroupCountZ", "1", 0, 1, Computer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(dispatchTaskEClass, DispatchTask.class, "DispatchTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDispatchTask_WorkgroupCountX(), theEcorePackage.getEInt(), "workgroupCountX", "1", 0, 1, DispatchTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDispatchTask_WorkgroupCountY(), theEcorePackage.getEInt(), "workgroupCountY", "1", 0, 1, DispatchTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDispatchTask_WorkgroupCountZ(), theEcorePackage.getEInt(), "workgroupCountZ", "1", 0, 1, DispatchTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

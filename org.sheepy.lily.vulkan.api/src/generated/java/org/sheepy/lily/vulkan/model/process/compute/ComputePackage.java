@@ -269,13 +269,22 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PIPELINE__MAINTAINER = ProcessPackage.IPIPELINE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Shader</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PIPELINE__SHADER = ProcessPackage.IPIPELINE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 1;
+	int COMPUTE_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Pipeline</em>' class.
@@ -287,14 +296,14 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PIPELINE_OPERATION_COUNT = ProcessPackage.IPIPELINE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl <em>Computer</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.DispatchTaskImpl <em>Dispatch Task</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl
-	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getComputer()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.DispatchTaskImpl
+	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getDispatchTask()
 	 * @generated
 	 */
-	int COMPUTER = 2;
+	int DISPATCH_TASK = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -303,7 +312,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTER__NAME = ProcessPackage.IPIPELINE_TASK__NAME;
+	int DISPATCH_TASK__NAME = ProcessPackage.IPIPELINE_TASK__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -312,16 +321,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTER__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Shader</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTER__SHADER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
+	int DISPATCH_TASK__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Workgroup Count X</b></em>' attribute.
@@ -330,7 +330,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTER__WORKGROUP_COUNT_X = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+	int DISPATCH_TASK__WORKGROUP_COUNT_X = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Workgroup Count Y</b></em>' attribute.
@@ -339,7 +339,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTER__WORKGROUP_COUNT_Y = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
+	int DISPATCH_TASK__WORKGROUP_COUNT_Y = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Workgroup Count Z</b></em>' attribute.
@@ -348,25 +348,25 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTER__WORKGROUP_COUNT_Z = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 3;
+	int DISPATCH_TASK__WORKGROUP_COUNT_Z = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Computer</em>' class.
+	 * The number of structural features of the '<em>Dispatch Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTER_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 4;
+	int DISPATCH_TASK_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of operations of the '<em>Computer</em>' class.
+	 * The number of operations of the '<em>Dispatch Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTER_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
+	int DISPATCH_TASK_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess <em>Process</em>}'.
@@ -389,58 +389,58 @@ public interface ComputePackage extends EPackage
 	EClass getComputePipeline();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.Computer <em>Computer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Computer</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.compute.Computer
-	 * @generated
-	 */
-	EClass getComputer();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getShader <em>Shader</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getShader <em>Shader</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Shader</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.compute.Computer#getShader()
-	 * @see #getComputer()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getShader()
+	 * @see #getComputePipeline()
 	 * @generated
 	 */
-	EReference getComputer_Shader();
+	EReference getComputePipeline_Shader();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountX <em>Workgroup Count X</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.DispatchTask <em>Dispatch Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Dispatch Task</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.DispatchTask
+	 * @generated
+	 */
+	EClass getDispatchTask();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.DispatchTask#getWorkgroupCountX <em>Workgroup Count X</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Workgroup Count X</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountX()
-	 * @see #getComputer()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.DispatchTask#getWorkgroupCountX()
+	 * @see #getDispatchTask()
 	 * @generated
 	 */
-	EAttribute getComputer_WorkgroupCountX();
+	EAttribute getDispatchTask_WorkgroupCountX();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountY <em>Workgroup Count Y</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.DispatchTask#getWorkgroupCountY <em>Workgroup Count Y</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Workgroup Count Y</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountY()
-	 * @see #getComputer()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.DispatchTask#getWorkgroupCountY()
+	 * @see #getDispatchTask()
 	 * @generated
 	 */
-	EAttribute getComputer_WorkgroupCountY();
+	EAttribute getDispatchTask_WorkgroupCountY();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountZ <em>Workgroup Count Z</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.DispatchTask#getWorkgroupCountZ <em>Workgroup Count Z</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Workgroup Count Z</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountZ()
-	 * @see #getComputer()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.DispatchTask#getWorkgroupCountZ()
+	 * @see #getDispatchTask()
 	 * @generated
 	 */
-	EAttribute getComputer_WorkgroupCountZ();
+	EAttribute getDispatchTask_WorkgroupCountZ();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -487,22 +487,22 @@ public interface ComputePackage extends EPackage
 		EClass COMPUTE_PIPELINE = eINSTANCE.getComputePipeline();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl <em>Computer</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl
-		 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getComputer()
-		 * @generated
-		 */
-		EClass COMPUTER = eINSTANCE.getComputer();
-
-		/**
 		 * The meta object literal for the '<em><b>Shader</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPUTER__SHADER = eINSTANCE.getComputer_Shader();
+		EReference COMPUTE_PIPELINE__SHADER = eINSTANCE.getComputePipeline_Shader();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.DispatchTaskImpl <em>Dispatch Task</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.compute.impl.DispatchTaskImpl
+		 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getDispatchTask()
+		 * @generated
+		 */
+		EClass DISPATCH_TASK = eINSTANCE.getDispatchTask();
 
 		/**
 		 * The meta object literal for the '<em><b>Workgroup Count X</b></em>' attribute feature.
@@ -510,7 +510,7 @@ public interface ComputePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COMPUTER__WORKGROUP_COUNT_X = eINSTANCE.getComputer_WorkgroupCountX();
+		EAttribute DISPATCH_TASK__WORKGROUP_COUNT_X = eINSTANCE.getDispatchTask_WorkgroupCountX();
 
 		/**
 		 * The meta object literal for the '<em><b>Workgroup Count Y</b></em>' attribute feature.
@@ -518,7 +518,7 @@ public interface ComputePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COMPUTER__WORKGROUP_COUNT_Y = eINSTANCE.getComputer_WorkgroupCountY();
+		EAttribute DISPATCH_TASK__WORKGROUP_COUNT_Y = eINSTANCE.getDispatchTask_WorkgroupCountY();
 
 		/**
 		 * The meta object literal for the '<em><b>Workgroup Count Z</b></em>' attribute feature.
@@ -526,7 +526,7 @@ public interface ComputePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COMPUTER__WORKGROUP_COUNT_Z = eINSTANCE.getComputer_WorkgroupCountZ();
+		EAttribute DISPATCH_TASK__WORKGROUP_COUNT_Z = eINSTANCE.getDispatchTask_WorkgroupCountZ();
 
 	}
 

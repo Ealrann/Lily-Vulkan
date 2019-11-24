@@ -41,13 +41,13 @@ public interface ComputeFactory extends EFactory
 	ComputePipeline createComputePipeline();
 
 	/**
-	 * Returns a new object of class '<em>Computer</em>'.
+	 * Returns a new object of class '<em>Dispatch Task</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Computer</em>'.
+	 * @return a new object of class '<em>Dispatch Task</em>'.
 	 * @generated
 	 */
-	Computer createComputer();
+	DispatchTask createDispatchTask();
 
 	/**
 	 * Returns the package supported by this factory.

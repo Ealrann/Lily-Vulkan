@@ -1,10 +1,10 @@
 import org.sheepy.lily.core.api.adapter.annotation.Adapters;
 import org.sheepy.lily.vulkan.process.compute.pipeline.ComputePipelineAdapter;
-import org.sheepy.lily.vulkan.process.compute.pipeline.ComputerAdapter;
+import org.sheepy.lily.vulkan.process.compute.pipeline.DispatchTaskAdapter;
 import org.sheepy.lily.vulkan.process.compute.process.ComputeProcessAdapter;
 
 @Adapters(classifiers = {
-		ComputeProcessAdapter.class, ComputePipelineAdapter.class, ComputerAdapter.class
+		ComputeProcessAdapter.class, ComputePipelineAdapter.class, DispatchTaskAdapter.class
 })
 
 module org.sheepy.lily.vulkan.process.compute

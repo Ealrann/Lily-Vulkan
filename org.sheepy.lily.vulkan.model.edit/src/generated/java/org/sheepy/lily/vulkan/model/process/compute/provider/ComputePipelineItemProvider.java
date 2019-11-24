@@ -66,6 +66,7 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter implements 
 			addEnabledPropertyDescriptor(object);
 			addStagePropertyDescriptor(object);
 			addSpecializationDataPropertyDescriptor(object);
+			addShaderPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -157,6 +158,29 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter implements 
 				 true,
 				 false,
 				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Shader feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addShaderPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ComputePipeline_shader_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ComputePipeline_shader_feature", "_UI_ComputePipeline_type"),
+				 ComputePackage.Literals.COMPUTE_PIPELINE__SHADER,
+				 true,
+				 false,
+				 true,
 				 null,
 				 null,
 				 null));

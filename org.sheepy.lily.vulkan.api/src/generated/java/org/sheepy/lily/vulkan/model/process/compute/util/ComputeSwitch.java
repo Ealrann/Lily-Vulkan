@@ -108,12 +108,12 @@ public class ComputeSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ComputePackage.COMPUTER:
+			case ComputePackage.DISPATCH_TASK:
 			{
-				Computer computer = (Computer)theEObject;
-				T1 result = caseComputer(computer);
-				if (result == null) result = caseIPipelineTask(computer);
-				if (result == null) result = caseLNamedElement(computer);
+				DispatchTask dispatchTask = (DispatchTask)theEObject;
+				T1 result = caseDispatchTask(dispatchTask);
+				if (result == null) result = caseIPipelineTask(dispatchTask);
+				if (result == null) result = caseLNamedElement(dispatchTask);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -154,17 +154,17 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Computer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Dispatch Task</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Computer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Dispatch Task</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseComputer(Computer object)
+	public T1 caseDispatchTask(DispatchTask object)
 	{
 		return null;
 	}

@@ -23,7 +23,6 @@ import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -150,12 +149,10 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	private final void recordInternal(RecordContext context)
 	{
 		final var pipelineStage = pipeline.getStage();
-		final var vkPipelines = getVkPipelines();
+		final var vkPipeline = getVkPipeline();
 		final var currentStage = context.stage;
-
-		if (vkPipelines.size() == 1)
+		if (vkPipeline != null && pipelineStage == currentStage)
 		{
-			final var vkPipeline = vkPipelines.get(0);
 			vkPipeline.bindPipeline(context.commandBuffer);
 		}
 
@@ -228,21 +225,6 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 
 	private final class TaskObserver extends AbstractModelSetRegistry
 	{
-		private final AbstractModelSetRegistry compositeTaskObserver = new AbstractModelSetRegistry(List.of(ProcessPackage.Literals.COMPOSITE_TASK__TASKS))
-		{
-			@Override
-			protected void add(ILilyEObject newValue)
-			{
-				TaskObserver.this.add(newValue);
-			}
-
-			@Override
-			protected void remove(ILilyEObject oldValue)
-			{
-				TaskObserver.this.remove(oldValue);
-			}
-		};
-
 		public TaskObserver(List<EStructuralFeature> features)
 		{
 			super(features);
@@ -265,11 +247,6 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 			if (task.isEnabled())
 			{
 				recordNeeded = true;
-			}
-
-			if (task instanceof CompositeTask)
-			{
-				compositeTaskObserver.startRegister(task);
 			}
 		}
 
@@ -304,11 +281,6 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 			if (task.isEnabled())
 			{
 				recordNeeded = true;
-			}
-
-			if (task instanceof CompositeTask)
-			{
-				compositeTaskObserver.stopRegister(task);
 			}
 		}
 	}

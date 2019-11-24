@@ -28,12 +28,13 @@
       resource="XMI" disposableProviderFactory="true" childCreationExtenders="true"
       ecorePackage="compute.ecore#/">
     <genClasses ecoreClass="compute.ecore#//ComputeProcess"/>
-    <genClasses ecoreClass="compute.ecore#//ComputePipeline"/>
-    <genClasses ecoreClass="compute.ecore#//Computer">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compute.ecore#//Computer/shader"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute compute.ecore#//Computer/workgroupCountX"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute compute.ecore#//Computer/workgroupCountY"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute compute.ecore#//Computer/workgroupCountZ"/>
+    <genClasses ecoreClass="compute.ecore#//ComputePipeline">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compute.ecore#//ComputePipeline/shader"/>
+    </genClasses>
+    <genClasses ecoreClass="compute.ecore#//DispatchTask">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute compute.ecore#//DispatchTask/workgroupCountX"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute compute.ecore#//DispatchTask/workgroupCountY"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute compute.ecore#//DispatchTask/workgroupCountZ"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Process" basePackage="org.sheepy.lily.vulkan.model" resource="XMI"
@@ -62,7 +63,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//IPipeline/enabled"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//IPipeline/stage"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//IPipeline/pushConstantRanges"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//IPipeline/specializationData"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference process.ecore#//IPipeline/specializationData"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//IPipeline/descriptorSetPkg"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//IPipeline/taskPkg"/>
     </genClasses>
