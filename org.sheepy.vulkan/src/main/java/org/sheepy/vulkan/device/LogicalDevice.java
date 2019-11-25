@@ -63,7 +63,7 @@ public class LogicalDevice
 		final long deviceId = pDevice.get(0);
 		vkDevice = new VkDevice(deviceId, physicalDevice.vkPhysicalDevice, createInfo);
 
-		queueManager.allocate(vkDevice);
+		queueManager.allocate(stack, vkDevice);
 	}
 
 	private VkPhysicalDeviceFeatures allocPhysicalFeatures(MemoryStack stack)

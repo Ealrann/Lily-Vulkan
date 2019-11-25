@@ -99,6 +99,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	@Override
 	public void stop(IVulkanContext context)
 	{
+		waitIdle();
 		allocator.free();
 	}
 

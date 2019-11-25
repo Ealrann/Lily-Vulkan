@@ -261,9 +261,8 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private void free()
 	{
 		executionContext.getQueue().waitIdle();
-		allocator.free();
-
 		stopProcesses();
+		allocator.free();
 
 		for (final VkFence fence : fences)
 		{
