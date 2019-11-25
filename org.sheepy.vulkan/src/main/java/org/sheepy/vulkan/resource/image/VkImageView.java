@@ -10,9 +10,8 @@ public class VkImageView
 {
 	private final VkDevice device;
 
-	private long imagePtr;
 	private int imageFormat;
-
+	private long imagePtr = -1;
 	private long imageViewPtr = -1;
 
 	public static VkImageView alloc(VkDevice device, long imageAddress, int format, int aspectMask)

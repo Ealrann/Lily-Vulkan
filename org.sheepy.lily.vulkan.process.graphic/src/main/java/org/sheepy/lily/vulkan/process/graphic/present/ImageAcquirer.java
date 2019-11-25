@@ -44,11 +44,14 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 
 	@Override
 	public void free(IGraphicContext context)
-	{}
+	{
+		container = null;
+	}
 
 	public Integer acquireNextImage()
 	{
-		return container.acquireNextImage(nextImageArray);
+		if (container != null) return container.acquireNextImage(nextImageArray);
+		else return null;
 	}
 
 	private static final class Container
@@ -71,8 +74,12 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 		public Integer acquireNextImage(int[] nextImageArray)
 		{
 			final long semaphorePtr = semaphore.getPtr();
-			final int res = vkAcquireNextImageKHR(device, swapChain, TIMEOUT_NS, semaphorePtr, 0,
-					nextImageArray);
+			final int res = vkAcquireNextImageKHR(	device,
+													swapChain,
+													TIMEOUT_NS,
+													semaphorePtr,
+													0,
+													nextImageArray);
 
 			Logger.check(res, FAILED_ACQUIRE_IMAGE, true);
 

@@ -59,8 +59,10 @@ public class Window
 	private void load()
 	{
 		glfwInit();
+		glfwDefaultWindowHints();
 		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 		glfwWindowHint(GLFW_AUTO_ICONIFY, GLFW_FALSE);
+        glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 
 		if (resizeable) glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 	}
@@ -108,6 +110,8 @@ public class Window
 
 		fireOpenWindow();
 		fireResizeEvent();
+		
+		glfwShowWindow(id);
 	}
 
 	public int getRefreshRate()
@@ -173,6 +177,15 @@ public class Window
 		{
 			glfwSetWindowSize(id, x, y);
 		}
+	}
+
+	public Vector2ic getFramebufferSize()
+	{
+		int[] width = new int[1];
+		int[] height = new int[1];
+
+		glfwGetFramebufferSize(id, width, height);
+		return new Vector2i(width[0], height[0]);
 	}
 
 	public void hideCursor(boolean hide)

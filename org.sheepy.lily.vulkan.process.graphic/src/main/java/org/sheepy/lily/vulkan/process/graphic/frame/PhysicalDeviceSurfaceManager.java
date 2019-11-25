@@ -14,6 +14,7 @@ import org.sheepy.vulkan.surface.VkSurface;
 import org.sheepy.vulkan.surface.VkSurface.ISurfaceListener;
 import org.sheepy.vulkan.window.IWindowListener.ISizeListener;
 import org.sheepy.vulkan.window.IWindowListener.ISurfaceDeprecatedListener;
+import org.sheepy.vulkan.window.Window;
 
 public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 {
@@ -42,20 +43,34 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	{
 		final var logicalDevice = context.getLogicalDevice();
 
-		surface = context.getWindow().createSurface();
+		var window = context.getWindow();
+		surface = window.createSurface();
 		surface.addListener(surfaceListener);
 
 		presentQueue = logicalDevice.borrowPresentQueue(surface);
-		context.getWindow().addListener(sizeListener);
-		context.getWindow().addListener(surfaceDeprecationListener);
+		window.addListener(sizeListener);
+		window.addListener(surfaceDeprecationListener);
 
 		capabilities = new Capabilities(context.getVkPhysicalDevice(), surface);
 		colorDomains = new ColorDomains(context.getVkPhysicalDevice(), surface);
-
-		final var currentExtent = capabilities.vkCapabilities.currentExtent();
-		extent = new Extent2D(currentExtent.width(), currentExtent.height());
+		extent = updateExtent(window);
 
 		requiredColorDomain = loadColorDomain(context);
+	}
+
+	private Extent2D updateExtent(Window window)
+	{
+		final var currentExtent = capabilities.vkCapabilities.currentExtent();
+		if (currentExtent.width() == -1 || currentExtent.height() == -1)
+		{
+			// -1 is special case, the surface will take the framebuffer size later.
+			var size = window.getFramebufferSize();
+			return new Extent2D(size.x(), size.y());
+		}
+		else
+		{
+			return new Extent2D(currentExtent.width(), currentExtent.height());
+		}
 	}
 
 	private ColorDomain loadColorDomain(IGraphicContext context)
@@ -152,5 +167,11 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	public VulkanQueue getPresentQueue()
 	{
 		return presentQueue;
+	}
+
+	@Override
+	public boolean isPresentable()
+	{
+		return extent.width != 0 && extent.height != 0;
 	}
 }

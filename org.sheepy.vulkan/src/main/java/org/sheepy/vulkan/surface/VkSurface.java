@@ -28,7 +28,6 @@ public class VkSurface
 		{
 			vkDestroySurfaceKHR(vkInstance, ptr, null);
 			destroyed = true;
-			ptr = -1;
 
 			fireDeprecation();
 		}

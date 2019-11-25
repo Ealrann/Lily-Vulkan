@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.process.graphic.frame;
 
-import static org.lwjgl.vulkan.KHRSurface.VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;
+import static org.lwjgl.vulkan.KHRSurface.*;
 import static org.lwjgl.vulkan.KHRSwapchain.*;
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 
-import org.eclipse.emf.common.util.EList;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
 import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
@@ -33,33 +32,36 @@ import org.sheepy.vulkan.util.VkModelUtil;
 
 public final class SwapChainManager implements ISwapChainManager
 {
-	private Long swapChain = null;
+	private static final String FAILED_TO_CREATE_SWAP_CHAIN = "Failed to create swap chain";
+
+	private long swapChainPtr = -1;
 	private List<Long> swapChainImages = null;
 	private IntBuffer indices = null;
 	private int swapImageCount;
 	private boolean first = true;
-	private EList<ISwapAttachment> attachments;
+	private List<ISwapAttachment> attachments;
 
 	@Override
 	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
 	{
 		config.addDependencies(List.of(context.getSurfaceManager()));
+		config.setAllocationCondition(c -> ((IGraphicContext) c).getSurfaceManager()
+																.isPresentable());
 	}
 
 	@Override
 	public void allocate(IGraphicContext context)
 	{
+		final var pdsManager = context.getSurfaceManager();
+		final var extent = pdsManager.getExtent();
 		final var logicalDevice = context.getLogicalDevice();
 		final var configuration = context.getConfiguration();
 		final var swapchainConfiguration = configuration.getSwapchainConfiguration();
 		final var requiredImageCount = swapchainConfiguration.getRequiredSwapImageCount();
-		final var pdsManager = context.getSurfaceManager();
 		final var vkDevice = context.getVkDevice();
 		final var capabilities = pdsManager.getCapabilities().vkCapabilities;
 		final var surface = pdsManager.getSurface();
-		final var extent = pdsManager.getExtent();
 		final var requiredColorDomain = pdsManager.getColorDomain();
-
 		final var stack = context.stack();
 		final var imageCount = pdsManager.bestSupportedImageCount(requiredImageCount);
 		final int swapImageUsage = loadSwapChainUsage(swapchainConfiguration);
@@ -99,15 +101,15 @@ public final class SwapChainManager implements ISwapChainManager
 		createInfo.oldSwapchain(VK_NULL_HANDLE);
 
 		final LongBuffer pSwapChain = stack.mallocLong(1);
-		Logger.check(	"Failed to create swap chain",
+		Logger.check(	FAILED_TO_CREATE_SWAP_CHAIN,
 						() -> vkCreateSwapchainKHR(vkDevice, createInfo, null, pSwapChain));
-		swapChain = pSwapChain.get(0);
+		swapChainPtr = pSwapChain.get(0);
 
 		final IntBuffer pImageCount = stack.mallocInt(1);
-		vkGetSwapchainImagesKHR(vkDevice, swapChain, pImageCount, null);
+		vkGetSwapchainImagesKHR(vkDevice, swapChainPtr, pImageCount, null);
 		swapImageCount = pImageCount.get(0);
 		final LongBuffer pSwapchainImages = stack.mallocLong(swapImageCount);
-		vkGetSwapchainImagesKHR(vkDevice, swapChain, pImageCount, pSwapchainImages);
+		vkGetSwapchainImagesKHR(vkDevice, swapChainPtr, pImageCount, pSwapchainImages);
 
 		swapChainImages = List.copyOf(VulkanBufferUtils.toList(pSwapchainImages));
 
@@ -116,6 +118,18 @@ public final class SwapChainManager implements ISwapChainManager
 			printSwapChainInformations(targetPresentMode);
 			first = false;
 		}
+	}
+
+	@Override
+	public void free(IGraphicContext context)
+	{
+		vkDestroySwapchainKHR(context.getVkDevice(), swapChainPtr, null);
+		freeAttachments(context);
+		if (indices != null) MemoryUtil.memFree(indices);
+		swapChainPtr = -1;
+		swapChainImages = null;
+		indices = null;
+		attachments = null;
 	}
 
 	public static IntBuffer allocQueueIndices(LogicalDevice logicalDevice, boolean computeAcces)
@@ -156,18 +170,6 @@ public final class SwapChainManager implements ISwapChainManager
 		return res;
 	}
 
-	@Override
-	public void free(IGraphicContext context)
-	{
-		vkDestroySwapchainKHR(context.getVkDevice(), swapChain, null);
-		if (indices != null) MemoryUtil.memFree(indices);
-		swapChain = null;
-		swapChainImages = null;
-		indices = null;
-
-		freeAttachments(context);
-	}
-
 	private void freeAttachments(IGraphicContext context)
 	{
 		for (final ISwapAttachment attachment : attachments)
@@ -204,12 +206,12 @@ public final class SwapChainManager implements ISwapChainManager
 	@Override
 	public int getImageCount()
 	{
-		return swapChainImages.size();
+		return swapChainImages != null ? swapChainImages.size() : 0;
 	}
 
 	@Override
 	public long getAddress()
 	{
-		return swapChain;
+		return swapChainPtr;
 	}
 }

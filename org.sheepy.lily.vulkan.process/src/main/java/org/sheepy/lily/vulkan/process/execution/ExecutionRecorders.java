@@ -42,7 +42,7 @@ public abstract class ExecutionRecorders<T extends IProcessContext>
 	@Override
 	public List<IExecutionRecorder<? super T>> getRecorders()
 	{
-		return recorders;
+		return recorders != null ? recorders : List.of();
 	}
 
 	protected List<VkSemaphore> gatherSinalSemaphores(AbstractProcess process)

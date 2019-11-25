@@ -7,10 +7,12 @@ import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
 import java.util.Collection;
+import java.util.List;
 
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
 import org.lwjgl.vulkan.VkQueue;
+import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.process.execution.Submission;
@@ -51,10 +53,17 @@ public class FrameSubmission extends Submission<IGraphicContext>
 	}
 
 	@Override
+	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	{
+		super.configureAllocation(config, context);
+		config.addDependencies(List.of(context.getSwapChainManager()));
+	}
+
+	@Override
 	public void allocate(IGraphicContext context)
 	{
-		this.context = context;
 		final var swapChain = context.getSwapChainManager();
+		this.context = context;
 
 		presentQueue = context.getSurfaceManager().getPresentQueue().vkQueue;
 
@@ -88,15 +97,13 @@ public class FrameSubmission extends Submission<IGraphicContext>
 	@Override
 	public void free(IGraphicContext context)
 	{
+		presentWaitSemaphore.free(context);
 		presentInfo.free();
-		presentInfo = null;
-
 		memFree(bImageIndex);
 		memFree(bSwapChains);
 		memFree(bPresentWaitSemaphores);
 
-		presentWaitSemaphore.free(context);
-
+		presentInfo = null;
 		bImageIndex = null;
 		bSwapChains = null;
 		bPresentWaitSemaphores = null;

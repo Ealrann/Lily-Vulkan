@@ -17,7 +17,7 @@ public class Capabilities
 	{
 		vkCapabilities = VkSurfaceCapabilitiesKHR.calloc();
 
-		if (surface.isDeprecated() == false && surface.ptr > 0)
+		if (surface.isDeprecated() == false)
 		{
 			final var err = vkGetPhysicalDeviceSurfaceCapabilitiesKHR(	device,
 																		surface.ptr,

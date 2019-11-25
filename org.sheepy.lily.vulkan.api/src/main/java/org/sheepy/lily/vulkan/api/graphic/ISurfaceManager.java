@@ -21,5 +21,7 @@ public interface ISurfaceManager extends IAllocable<IGraphicContext>
 
 	VulkanQueue getPresentQueue();
 
+	boolean isPresentable();
+
 	void setDirty(boolean dirty);
 }
