@@ -8,10 +8,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferDataProviderAdapter;
-import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
+import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 
 @Statefull
-@Adapter(scope = DescribedDataProvider.class, name = InstanceDataProviderAdapter.NAME)
+@Adapter(scope = BufferDataProvider.class, name = InstanceDataProviderAdapter.NAME)
 public class InstanceDataProviderAdapter implements IBufferDataProviderAdapter
 {
 	public static final String NAME = "InstanceDataProvider";
@@ -22,7 +22,7 @@ public class InstanceDataProviderAdapter implements IBufferDataProviderAdapter
 
 	private int[] previous = null;
 
-	public InstanceDataProviderAdapter(DescribedDataProvider<?> provider)
+	public InstanceDataProviderAdapter(BufferDataProvider<?> provider)
 	{
 		@SuppressWarnings("unchecked")
 		final var parentList = (List<EObject>) provider	.eContainer()

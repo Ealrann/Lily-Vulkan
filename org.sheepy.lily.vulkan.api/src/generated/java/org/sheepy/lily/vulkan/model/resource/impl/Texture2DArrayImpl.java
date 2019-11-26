@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource;
-import org.sheepy.lily.vulkan.model.resource.Descriptor;
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
+import org.sheepy.vulkan.model.image.ImageLayout;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,24 +27,35 @@ import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl#getDescriptor <em>Descriptor</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl#getFiles <em>Files</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl#isMipmapEnabled <em>Mipmap Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl#getInitialLayout <em>Initial Layout</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
+public class Texture2DArrayImpl extends LilyEObject implements Texture2DArray
 {
 	/**
-	 * The cached value of the '{@link #getDescriptor() <em>Descriptor</em>}' containment reference.
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDescriptor()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected Descriptor descriptor;
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getFiles() <em>Files</em>}' containment reference list.
@@ -77,6 +88,16 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 	protected boolean mipmapEnabled = MIPMAP_ENABLED_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getInitialLayout() <em>Initial Layout</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInitialLayout()
+	 * @generated
+	 * @ordered
+	 */
+	protected ImageLayout initialLayout;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -103,26 +124,9 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 	 * @generated
 	 */
 	@Override
-	public Descriptor getDescriptor()
+	public String getName()
 	{
-		return descriptor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDescriptor(Descriptor newDescriptor, NotificationChain msgs)
-	{
-		Descriptor oldDescriptor = descriptor;
-		descriptor = newDescriptor;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE2_DARRAY__DESCRIPTOR, oldDescriptor, newDescriptor);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+		return name;
 	}
 
 	/**
@@ -131,20 +135,12 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 	 * @generated
 	 */
 	@Override
-	public void setDescriptor(Descriptor newDescriptor)
+	public void setName(String newName)
 	{
-		if (newDescriptor != descriptor)
-		{
-			NotificationChain msgs = null;
-			if (descriptor != null)
-				msgs = ((InternalEObject)descriptor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.TEXTURE2_DARRAY__DESCRIPTOR, null, msgs);
-			if (newDescriptor != null)
-				msgs = ((InternalEObject)newDescriptor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.TEXTURE2_DARRAY__DESCRIPTOR, null, msgs);
-			msgs = basicSetDescriptor(newDescriptor, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE2_DARRAY__DESCRIPTOR, newDescriptor, newDescriptor));
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE2_DARRAY__NAME, oldName, name));
 	}
 
 	/**
@@ -193,14 +189,64 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 	 * @generated
 	 */
 	@Override
+	public ImageLayout getInitialLayout()
+	{
+		return initialLayout;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetInitialLayout(ImageLayout newInitialLayout, NotificationChain msgs)
+	{
+		ImageLayout oldInitialLayout = initialLayout;
+		initialLayout = newInitialLayout;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE2_DARRAY__INITIAL_LAYOUT, oldInitialLayout, newInitialLayout);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setInitialLayout(ImageLayout newInitialLayout)
+	{
+		if (newInitialLayout != initialLayout)
+		{
+			NotificationChain msgs = null;
+			if (initialLayout != null)
+				msgs = ((InternalEObject)initialLayout).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.TEXTURE2_DARRAY__INITIAL_LAYOUT, null, msgs);
+			if (newInitialLayout != null)
+				msgs = ((InternalEObject)newInitialLayout).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.TEXTURE2_DARRAY__INITIAL_LAYOUT, null, msgs);
+			msgs = basicSetInitialLayout(newInitialLayout, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE2_DARRAY__INITIAL_LAYOUT, newInitialLayout, newInitialLayout));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE2_DARRAY__DESCRIPTOR:
-				return basicSetDescriptor(null, msgs);
 			case ResourcePackage.TEXTURE2_DARRAY__FILES:
 				return ((InternalEList<?>)getFiles()).basicRemove(otherEnd, msgs);
+			case ResourcePackage.TEXTURE2_DARRAY__INITIAL_LAYOUT:
+				return basicSetInitialLayout(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -215,12 +261,14 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE2_DARRAY__DESCRIPTOR:
-				return getDescriptor();
+			case ResourcePackage.TEXTURE2_DARRAY__NAME:
+				return getName();
 			case ResourcePackage.TEXTURE2_DARRAY__FILES:
 				return getFiles();
 			case ResourcePackage.TEXTURE2_DARRAY__MIPMAP_ENABLED:
 				return isMipmapEnabled();
+			case ResourcePackage.TEXTURE2_DARRAY__INITIAL_LAYOUT:
+				return getInitialLayout();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -236,8 +284,8 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE2_DARRAY__DESCRIPTOR:
-				setDescriptor((Descriptor)newValue);
+			case ResourcePackage.TEXTURE2_DARRAY__NAME:
+				setName((String)newValue);
 				return;
 			case ResourcePackage.TEXTURE2_DARRAY__FILES:
 				getFiles().clear();
@@ -245,6 +293,9 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 				return;
 			case ResourcePackage.TEXTURE2_DARRAY__MIPMAP_ENABLED:
 				setMipmapEnabled((Boolean)newValue);
+				return;
+			case ResourcePackage.TEXTURE2_DARRAY__INITIAL_LAYOUT:
+				setInitialLayout((ImageLayout)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -260,14 +311,17 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE2_DARRAY__DESCRIPTOR:
-				setDescriptor((Descriptor)null);
+			case ResourcePackage.TEXTURE2_DARRAY__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 			case ResourcePackage.TEXTURE2_DARRAY__FILES:
 				getFiles().clear();
 				return;
 			case ResourcePackage.TEXTURE2_DARRAY__MIPMAP_ENABLED:
 				setMipmapEnabled(MIPMAP_ENABLED_EDEFAULT);
+				return;
+			case ResourcePackage.TEXTURE2_DARRAY__INITIAL_LAYOUT:
+				setInitialLayout((ImageLayout)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -283,52 +337,16 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE2_DARRAY__DESCRIPTOR:
-				return descriptor != null;
+			case ResourcePackage.TEXTURE2_DARRAY__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ResourcePackage.TEXTURE2_DARRAY__FILES:
 				return files != null && !files.isEmpty();
 			case ResourcePackage.TEXTURE2_DARRAY__MIPMAP_ENABLED:
 				return mipmapEnabled != MIPMAP_ENABLED_EDEFAULT;
+			case ResourcePackage.TEXTURE2_DARRAY__INITIAL_LAYOUT:
+				return initialLayout != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
-	{
-		if (baseClass == BasicDescriptedResource.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case ResourcePackage.TEXTURE2_DARRAY__DESCRIPTOR: return ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
-	{
-		if (baseClass == BasicDescriptedResource.class)
-		{
-			switch (baseFeatureID)
-			{
-				case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR: return ResourcePackage.TEXTURE2_DARRAY__DESCRIPTOR;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -342,7 +360,9 @@ public class Texture2DArrayImpl extends ImageImpl implements Texture2DArray
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (mipmapEnabled: ");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", mipmapEnabled: ");
 		result.append(mipmapEnabled);
 		result.append(')');
 		return result.toString();

@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.sheepy.vulkan.resource.image.VkTexture;
 
-public interface ITexture2DArrayAdapter extends IDescriptedResourceAdapter
+public interface ITexture2DArrayAdapter extends IResourceAdapter
 {
 	List<VkTexture> getTextures();
+
+	long[] getViewPtrs();
 }

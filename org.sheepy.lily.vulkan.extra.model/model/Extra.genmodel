@@ -112,9 +112,6 @@
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//DataProviderPkg/T"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//DataProviderPkg/dataProviders"/>
     </genClasses>
-    <genClasses ecoreClass="Rendering.ecore#//RenderDescribedDataProvider">
-      <genTypeParameters ecoreTypeParameter="Rendering.ecore#//RenderDescribedDataProvider/T"/>
-    </genClasses>
     <genClasses ecoreClass="Rendering.ecore#//RenderableDataSource">
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//RenderableDataSource/T"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//RenderableDataSource/structure"/>

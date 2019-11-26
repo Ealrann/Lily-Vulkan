@@ -6,8 +6,6 @@ import org.sheepy.lily.vulkan.demo.gameoflife.compute.Board;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
-import org.sheepy.vulkan.model.enumeration.EDescriptorType;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 public class BoardBufferFactory
 {
@@ -27,11 +25,6 @@ public class BoardBufferFactory
 		res.getUsages().add(EBufferUsage.STORAGE_BUFFER_BIT);
 		res.getUsages().add(EBufferUsage.TRANSFER_SRC_BIT);
 		res.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
-
-		final var descriptor = ResourceFactory.eINSTANCE.createDescriptor();
-		descriptor.setDescriptorType(EDescriptorType.STORAGE_BUFFER);
-		descriptor.getShaderStages().add(EShaderStage.COMPUTE_BIT);
-		res.setDescriptor(descriptor);
 
 		final var byteBuffer = MemoryUtil.memAlloc(byteSize);
 		final var intBufferView = byteBuffer.asIntBuffer();

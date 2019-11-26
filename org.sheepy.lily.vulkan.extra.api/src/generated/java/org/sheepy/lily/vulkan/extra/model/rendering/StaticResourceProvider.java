@@ -4,7 +4,7 @@ package org.sheepy.lily.vulkan.extra.model.rendering;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
+import org.sheepy.lily.vulkan.model.IResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +26,7 @@ public interface StaticResourceProvider extends ResourceProvider
 {
 	/**
 	 * Returns the value of the '<em><b>Resources</b></em>' reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.DescriptedResource}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.IResource}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Resources</em>' reference list.
@@ -34,6 +34,6 @@ public interface StaticResourceProvider extends ResourceProvider
 	 * @model required="true"
 	 * @generated
 	 */
-	EList<DescriptedResource> getResources();
+	EList<IResource> getResources();
 
 } // StaticResourceProvider

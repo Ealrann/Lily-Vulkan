@@ -11,8 +11,6 @@ public interface IVkDescriptor
 	VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack);
 	void fillWriteDescriptor(MemoryStack stack, VkWriteDescriptorSet writeDescriptor);
 
-	default void update()
-	{}
 	default boolean hasChanged()
 	{
 		return false;

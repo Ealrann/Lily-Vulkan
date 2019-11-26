@@ -652,8 +652,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		nuklearPushConstantsEClass.getESuperTypes().add(theProcessPackage.getPushConstant());
 		nuklearLayoutTaskEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		nuklearContextEClass.getESuperTypes().add(theVulkanPackage.getIResource());
-		nuklearContextEClass.getESuperTypes().add(theResourcePackage.getDescriptedResource());
-		nuklearFontEClass.getESuperTypes().add(theResourcePackage.getBasicResource());
+		nuklearFontEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		selectorPanelEClass.getESuperTypes().add(thePresentationPackage.getIPanel());
 		panelViewerEClass.getESuperTypes().add(theUiPackage.getPanel());
 

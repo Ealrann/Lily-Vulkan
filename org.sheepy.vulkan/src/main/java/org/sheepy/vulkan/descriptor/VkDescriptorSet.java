@@ -55,8 +55,11 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		layoutInfo.pBindings(layoutBindings);
 
 		final long[] aDescriptorSetLayout = new long[1];
-		Logger.check(FAILED_TO_CREATE_DESCRIPTOR_SET_LAYOUT,
-				() -> vkCreateDescriptorSetLayout(device, layoutInfo, null, aDescriptorSetLayout));
+		Logger.check(	FAILED_TO_CREATE_DESCRIPTOR_SET_LAYOUT,
+						() -> vkCreateDescriptorSetLayout(	device,
+															layoutInfo,
+															null,
+															aDescriptorSetLayout));
 		layoutId = aDescriptorSetLayout[0];
 
 		final LongBuffer layouts = stack.callocLong(1);
@@ -69,8 +72,8 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		allocInfo.pSetLayouts(layouts);
 
 		bDescriptorSet = MemoryUtil.memAllocLong(1);
-		Logger.check(FAILED_TO_ALLOCATE_DESCRIPTOR_SET,
-				() -> vkAllocateDescriptorSets(device, allocInfo, bDescriptorSet));
+		Logger.check(	FAILED_TO_ALLOCATE_DESCRIPTOR_SET,
+						() -> vkAllocateDescriptorSets(device, allocInfo, bDescriptorSet));
 		descriptorSetId = bDescriptorSet.get(0);
 
 		bDescriptorSet.put(descriptorSetId);
@@ -149,9 +152,21 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	}
 
 	@Override
-	public List<IVkDescriptor> getDescriptors()
+	public boolean hasChanged()
 	{
-		return descriptors;
+		boolean hasChanged = false;
+
+		for (int i = 0; i < descriptors.size(); i++)
+		{
+			final var descriptor = descriptors.get(i);
+			if (descriptor.hasChanged())
+			{
+				hasChanged = true;
+				break;
+			}
+		}
+
+		return hasChanged;
 	}
 
 	@Override

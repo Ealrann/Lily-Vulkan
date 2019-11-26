@@ -23,9 +23,6 @@ import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 
-import org.sheepy.lily.vulkan.model.resource.BasicResource;
-import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
-
 /**
  * <!-- begin-user-doc -->
  * The <b>Switch</b> for the model's inheritance hierarchy.
@@ -112,7 +109,6 @@ public class NuklearSwitch<T> extends Switch<T>
 			{
 				NuklearContext nuklearContext = (NuklearContext)theEObject;
 				T result = caseNuklearContext(nuklearContext);
-				if (result == null) result = caseDescriptedResource(nuklearContext);
 				if (result == null) result = caseIResource(nuklearContext);
 				if (result == null) result = caseLNamedElement(nuklearContext);
 				if (result == null) result = defaultCase(theEObject);
@@ -122,7 +118,6 @@ public class NuklearSwitch<T> extends Switch<T>
 			{
 				NuklearFont nuklearFont = (NuklearFont)theEObject;
 				T result = caseNuklearFont(nuklearFont);
-				if (result == null) result = caseBasicResource(nuklearFont);
 				if (result == null) result = caseIResource(nuklearFont);
 				if (result == null) result = caseLNamedElement(nuklearFont);
 				if (result == null) result = defaultCase(theEObject);
@@ -339,38 +334,6 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIResource(IResource object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Descripted Resource</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Descripted Resource</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDescriptedResource(DescriptedResource object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Basic Resource</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Basic Resource</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBasicResource(BasicResource object)
 	{
 		return null;
 	}

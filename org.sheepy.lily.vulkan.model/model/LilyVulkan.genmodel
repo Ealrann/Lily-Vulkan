@@ -149,7 +149,6 @@
     </genEnums>
     <genDataTypes ecoreDataType="resource.ecore#//ByteBuffer"/>
     <genDataTypes ecoreDataType="resource.ecore#//JavaModule"/>
-    <genClasses ecoreClass="resource.ecore#//BasicResource"/>
     <genClasses ecoreClass="resource.ecore#//TransferBuffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/size"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/instanceCount"/>
@@ -158,10 +157,6 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//ConstantBuffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ConstantBuffer/data"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="resource.ecore#//DescriptedResource"/>
-    <genClasses image="false" ecoreClass="resource.ecore#//BasicDescriptedResource">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//BasicDescriptedResource/descriptor"/>
     </genClasses>
     <genClasses image="false" ecoreClass="resource.ecore#//IBuffer"/>
     <genClasses ecoreClass="resource.ecore#//Buffer">
@@ -195,17 +190,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usage"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/instanceCount"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EReference resource.ecore#//BufferDataProvider/dataSource"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/firstDescriptor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usedToPush"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usedToFetch"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/stageBeforePush"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/accessBeforePush"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/stageBeforeFetch"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/accessBeforeFetch"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//DescribedDataProvider">
-      <genTypeParameters ecoreTypeParameter="resource.ecore#//DescribedDataProvider/T"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//DescribedDataProvider/descriptor"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//Image">
       <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Image/initialLayout"/>
@@ -237,8 +227,23 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Descriptor/descriptorType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Descriptor/shaderStages"/>
     </genClasses>
+    <genClasses ecoreClass="resource.ecore#//BufferDescriptor">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//BufferDescriptor/bufferReference"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//ImageDescriptor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//ImageDescriptor/image"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//SampledImageDescriptor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//SampledImageDescriptor/sampledImage"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//SamplerDescriptor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//SamplerDescriptor/sampler"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//Texture2DArrayDescriptor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//Texture2DArrayDescriptor/texture2DArray"/>
+    </genClasses>
     <genClasses ecoreClass="resource.ecore#//DescriptorSet">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//DescriptorSet/descriptors"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//DescriptorSet/descriptors"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//DescriptorSetPkg">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//DescriptorSetPkg/descriptorSets"/>
@@ -272,6 +277,7 @@
     <genClasses ecoreClass="resource.ecore#//Texture2DArray">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Texture2DArray/files"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Texture2DArray/mipmapEnabled"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Texture2DArray/initialLayout"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Graphic" basePackage="org.sheepy.lily.vulkan.model.process"

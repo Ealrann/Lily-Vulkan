@@ -36,11 +36,13 @@ public class InstanceTaskManager
 
 	private final BufferDataProvider<?> dataProvider;
 	private final int instanceCount;
+	private final ResourceContainer resourceContainer;
 
 	private int instance = 0;
 
 	public InstanceTaskManager(ResourceContainer resourceContainer, int instanceCount)
 	{
+		this.resourceContainer = resourceContainer;
 		this.instanceCount = instanceCount;
 		dataProvider = resourceContainer.compositeBuffer.getDataProviders().get(0);
 
@@ -83,13 +85,15 @@ public class InstanceTaskManager
 	public void nextInstance()
 	{
 		instance = (instance + 1) % instanceCount;
+		final int nextInstance = (instance + 1) % instanceCount;
+
+		resourceContainer.setupDescriptor(instance, nextInstance);
 	}
 
 	public void configure()
 	{
 		final int nextInstance = (instance + 1) % instanceCount;
 
-		dataProvider.setFirstDescriptor(instance);
 		preparePush.setInstance(instance);
 		prepareFetch.setInstance(nextInstance);
 

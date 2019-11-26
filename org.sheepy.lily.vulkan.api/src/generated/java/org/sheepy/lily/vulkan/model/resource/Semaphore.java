@@ -23,7 +23,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * @model
  * @generated
  */
-public interface Semaphore extends BasicResource, LNamedElement
+public interface Semaphore extends LNamedElement
 {
 	/**
 	 * Returns the value of the '<em><b>Signalized At Init</b></em>' attribute.

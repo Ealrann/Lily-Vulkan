@@ -30,7 +30,7 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * @model
  * @generated
  */
-public interface Buffer extends BasicDescriptedResource, IBuffer
+public interface Buffer extends IBuffer
 {
 	/**
 	 * Returns the value of the '<em><b>Size</b></em>' attribute.

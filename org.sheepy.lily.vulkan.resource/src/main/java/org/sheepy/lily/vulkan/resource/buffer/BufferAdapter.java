@@ -1,7 +1,6 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
 import java.nio.ByteBuffer;
-import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
@@ -9,7 +8,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
-import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
@@ -25,7 +23,6 @@ public final class BufferAdapter implements IBufferAdapter
 	protected Buffer buffer;
 	protected IBufferBackend bufferBackend;
 
-	private List<IVkDescriptor> descriptors = null;
 	private IExecutionContext executionManager;
 	private VkBufferDescriptor vkDescriptor;
 
@@ -104,25 +101,6 @@ public final class BufferAdapter implements IBufferAdapter
 	public void unmapMemory()
 	{
 		bufferBackend.unmapMemory();
-	}
-
-	@Override
-	public List<IVkDescriptor> getDescriptors()
-	{
-		if (descriptors == null)
-		{
-			final var descriptor = buffer.getDescriptor();
-			final long bufferPtr = bufferBackend.getAddress();
-			final long size = buffer.getSize();
-			final var type = descriptor.getDescriptorType();
-			final var shaderStages = descriptor.getShaderStages();
-			final var offset = bufferBackend.getOffset();
-
-			vkDescriptor = new VkBufferDescriptor(bufferPtr, size, offset, type, shaderStages);
-			descriptors = List.of(vkDescriptor);
-		}
-
-		return descriptors;
 	}
 
 	private static BufferInfo createInfo(Buffer buffer)

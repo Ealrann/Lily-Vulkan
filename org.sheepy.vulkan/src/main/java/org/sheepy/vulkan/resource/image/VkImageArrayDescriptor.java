@@ -17,10 +17,12 @@ import org.sheepy.vulkan.util.VkModelUtil;
 
 public class VkImageArrayDescriptor implements IVkDescriptor
 {
-	private final long[] imageViewPtrs;
 	private final int descriptorType;
 	private final int shaderStages;
 	private final int imageLayout;
+
+	private long[] imageViewPtrs;
+	private boolean changed = true;
 
 	public VkImageArrayDescriptor(	long[] imageViewPtrs,
 									EImageLayout imageLayout,
@@ -70,6 +72,25 @@ public class VkImageArrayDescriptor implements IVkDescriptor
 		writeDescriptor.pBufferInfo(null);
 		writeDescriptor.pImageInfo(imageInfos);
 		writeDescriptor.pTexelBufferView(null);
+
+		changed = false;
+	}
+
+	public void updateViewPtrs(long[] viewPtrs)
+	{
+		this.imageViewPtrs = viewPtrs;
+		changed = true;
+	}
+	
+	public long[] getViewPtrs()
+	{
+		return imageViewPtrs;
+	}
+
+	@Override
+	public boolean hasChanged()
+	{
+		return changed;
 	}
 
 	@Override

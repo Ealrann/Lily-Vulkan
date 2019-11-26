@@ -20,7 +20,7 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  * @model
  * @generated
  */
-public interface Sampler extends SamplerInfo, BasicDescriptedResource
+public interface Sampler extends SamplerInfo
 {
 	/**
 	 * Returns the value of the '<em><b>Image</b></em>' reference.

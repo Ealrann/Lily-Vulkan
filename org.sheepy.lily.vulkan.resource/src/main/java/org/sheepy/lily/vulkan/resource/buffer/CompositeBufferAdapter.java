@@ -13,7 +13,6 @@ import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.lily.vulkan.resource.buffer.provider.DataProviderWrapper;
-import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
@@ -24,13 +23,11 @@ import org.sheepy.vulkan.resource.staging.ITransferBuffer;
 public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 {
 	private final List<DataProviderWrapper> providerWrappers;
-	private final List<IVkDescriptor> descriptors = new ArrayList<>();
 	private final CompositeBuffer compositeBuffer;
 	private final ITransferBuffer transferBuffer;
 
 	private GPUBufferBackend oldBufferBackend;
 	private GPUBufferBackend bufferBackend;
-	private boolean allocated = false;
 	private IExecutionContext context;
 	private int freeOldBufferIn = 0;
 
@@ -56,15 +53,6 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		this.context = context;
 
 		refreshConfiguration(true);
-
-		for (int i = 0; i < providerWrappers.size(); i++)
-		{
-			final var providerWrapper = providerWrappers.get(i);
-			final var providedDescriptors = providerWrapper.getDescriptors();
-			this.descriptors.addAll(providedDescriptors);
-		}
-
-		allocated = true;
 	}
 
 	@Override
@@ -84,7 +72,6 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	@Override
 	public void free(IExecutionContext context)
 	{
-		allocated = false;
 		if (oldBufferBackend != null)
 		{
 			oldBufferBackend.free(context);
@@ -275,13 +262,6 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	public void unmapMemory()
 	{
 		throw new AssertionError("Forbidden operation");
-	}
-
-	@Override
-	public List<IVkDescriptor> getDescriptors()
-	{
-		assert allocated == true;
-		return descriptors;
 	}
 
 	public long getBufferAddress()

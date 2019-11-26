@@ -20,7 +20,7 @@ package org.sheepy.lily.vulkan.model.resource;
  * @model
  * @generated
  */
-public interface FileImage extends Image, BasicDescriptedResource
+public interface FileImage extends Image
 {
 	/**
 	 * Returns the value of the '<em><b>File</b></em>' containment reference.

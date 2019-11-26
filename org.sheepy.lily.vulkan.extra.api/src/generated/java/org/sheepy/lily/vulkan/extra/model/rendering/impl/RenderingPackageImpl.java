@@ -49,7 +49,6 @@ import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider;
-import org.sheepy.lily.vulkan.extra.model.rendering.RenderDescribedDataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderDrawTask;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderIndexedDrawTask;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
@@ -156,13 +155,6 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	private EClass dataProviderPkgEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass renderDescribedDataProviderEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -665,17 +657,6 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
-	public EClass getRenderDescribedDataProvider()
-	{
-		return renderDescribedDataProviderEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getRenderableDataSource()
 	{
 		return renderableDataSourceEClass;
@@ -982,8 +963,6 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		dataProviderPkgEClass = createEClass(DATA_PROVIDER_PKG);
 		createEReference(dataProviderPkgEClass, DATA_PROVIDER_PKG__DATA_PROVIDERS);
 
-		renderDescribedDataProviderEClass = createEClass(RENDER_DESCRIBED_DATA_PROVIDER);
-
 		renderableDataSourceEClass = createEClass(RENDERABLE_DATA_SOURCE);
 		createEReference(renderableDataSourceEClass, RENDERABLE_DATA_SOURCE__STRUCTURE);
 		createEAttribute(renderableDataSourceEClass, RENDERABLE_DATA_SOURCE__PART);
@@ -1049,12 +1028,12 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
+		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 
 		// Create type parameters
 		ETypeParameter genericRendererEClass_T = addETypeParameter(genericRendererEClass, "T");
 		ETypeParameter renderDataProviderEClass_T = addETypeParameter(renderDataProviderEClass, "T");
 		ETypeParameter dataProviderPkgEClass_T = addETypeParameter(dataProviderPkgEClass, "T");
-		ETypeParameter renderDescribedDataProviderEClass_T = addETypeParameter(renderDescribedDataProviderEClass, "T");
 		ETypeParameter renderableDataSourceEClass_T = addETypeParameter(renderableDataSourceEClass, "T");
 		ETypeParameter vertexProviderEClass_T = addETypeParameter(vertexProviderEClass, "T");
 		ETypeParameter indexProviderEClass_T = addETypeParameter(indexProviderEClass, "T");
@@ -1067,8 +1046,6 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		renderDataProviderEClass_T.getEBounds().add(g1);
 		g1 = createEGenericType(this.getStructure());
 		dataProviderPkgEClass_T.getEBounds().add(g1);
-		g1 = createEGenericType(this.getStructure());
-		renderDescribedDataProviderEClass_T.getEBounds().add(g1);
 		g1 = createEGenericType(this.getStructure());
 		renderableDataSourceEClass_T.getEBounds().add(g1);
 		g1 = createEGenericType(this.getStructure());
@@ -1094,16 +1071,6 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		EGenericType g3 = createEGenericType(renderDataProviderEClass_T);
 		g2.getETypeArguments().add(g3);
 		renderDataProviderEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getRenderDataProvider());
-		g2 = createEGenericType(renderDescribedDataProviderEClass_T);
-		g1.getETypeArguments().add(g2);
-		renderDescribedDataProviderEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theResourcePackage.getDescribedDataProvider());
-		g2 = createEGenericType(this.getRenderableDataSource());
-		g1.getETypeArguments().add(g2);
-		g3 = createEGenericType(renderDescribedDataProviderEClass_T);
-		g2.getETypeArguments().add(g3);
-		renderDescribedDataProviderEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getRenderDataProvider());
 		g2 = createEGenericType(vertexProviderEClass_T);
 		g1.getETypeArguments().add(g2);
@@ -1165,8 +1132,6 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		g1.getETypeArguments().add(g2);
 		initEReference(getDataProviderPkg_DataProviders(), g1, null, "dataProviders", null, 1, -1, DataProviderPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(renderDescribedDataProviderEClass, RenderDescribedDataProvider.class, "RenderDescribedDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(renderableDataSourceEClass, RenderableDataSource.class, "RenderableDataSource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(renderableDataSourceEClass_T);
 		initEReference(getRenderableDataSource_Structure(), g1, null, "structure", null, 1, 1, RenderableDataSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1180,7 +1145,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEClass(resourceProviderEClass, ResourceProvider.class, "ResourceProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(staticResourceProviderEClass, StaticResourceProvider.class, "StaticResourceProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStaticResourceProvider_Resources(), theResourcePackage.getDescriptedResource(), null, "resources", null, 1, -1, StaticResourceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStaticResourceProvider_Resources(), theVulkanPackage.getIResource(), null, "resources", null, 1, -1, StaticResourceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeResourceProviderEClass, CompositeResourceProvider.class, "CompositeResourceProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeResourceProvider_Providers(), this.getResourceProvider(), null, "providers", null, 0, -1, CompositeResourceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

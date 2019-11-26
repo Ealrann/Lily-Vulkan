@@ -164,11 +164,6 @@ public class DataProviderPkgItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RenderingPackage.Literals.DATA_PROVIDER_PKG__DATA_PROVIDERS,
-				 RenderingFactory.eINSTANCE.createRenderDescribedDataProvider()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderingPackage.Literals.DATA_PROVIDER_PKG__DATA_PROVIDERS,
 				 RenderingFactory.eINSTANCE.createVertexProvider()));
 
 		newChildDescriptors.add

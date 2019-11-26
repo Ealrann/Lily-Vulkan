@@ -1,26 +1,17 @@
 package org.sheepy.lily.vulkan.resource.buffer.provider;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
 
-import org.sheepy.lily.core.api.adapter.INotificationListener;
 import org.sheepy.lily.core.api.adapter.NotifierAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.adapter.notification.LongNotification;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.common.resource.IDataProviderAlignmentAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
-import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
-import org.sheepy.vulkan.resource.buffer.VkBufferDescriptor;
 import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
 import org.sheepy.vulkan.resource.staging.ITransferBuffer;
 import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket;
@@ -35,8 +26,6 @@ public final class DataProviderWrapper extends NotifierAdapter
 	public final BufferDataProvider<?> dataProvider;
 
 	private final int usage;
-	private final List<VkBufferDescriptor> descriptors;
-	private final INotificationListener firstDescriptorListener = n -> updateDescriptors();
 	private final int accessBeforePush;
 	private final int accessBeforeFetch;
 
@@ -63,7 +52,6 @@ public final class DataProviderWrapper extends NotifierAdapter
 
 		accessBeforePush = VkModelUtil.getEnumeratedFlag(dataProvider.getAccessBeforePush());
 		accessBeforeFetch = VkModelUtil.getEnumeratedFlag(dataProvider.getAccessBeforeFetch());
-		descriptors = createDescriptors(dataProvider);
 	}
 
 	private static int computeUsage(BufferDataProvider<?> dataProvider)
@@ -75,20 +63,6 @@ public final class DataProviderWrapper extends NotifierAdapter
 				: 0;
 
 		return usage | pushUsage | fetchUsage;
-	}
-
-	@Load
-	public void load()
-	{
-		dataProvider.addListener(	firstDescriptorListener,
-									ResourcePackage.BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR);
-	}
-
-	@Dispose
-	public void dispose()
-	{
-		dataProvider.removeListener(firstDescriptorListener,
-									ResourcePackage.BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR);
 	}
 
 	@Override
@@ -112,39 +86,13 @@ public final class DataProviderWrapper extends NotifierAdapter
 		this.instanceSize = align(providedSize, alignment);
 		this.offset = align(desiredOffset, alignment);
 
-		updateDescriptors();
-
 		if (oldSize != this.instanceSize)
 		{
-			fireNotification(new LongNotification(	this,
-													FEATURES.SIZE.ordinal(),
-													oldSize,
-													this.instanceSize));
+			fireNotification(new LongNotification(this, FEATURES.SIZE, oldSize, this.instanceSize));
 		}
 		if (oldOffset != this.offset)
 		{
-			fireNotification(new LongNotification(	this,
-													FEATURES.OFFSET.ordinal(),
-													oldOffset,
-													this.offset));
-		}
-	}
-
-	private void updateDescriptors()
-	{
-		long currentOffset = offset;
-		final var instanceCount = dataProvider.getInstanceCount();
-		final int start = -dataProvider.getFirstDescriptor() + instanceCount;
-		final int end = start + descriptors.size();
-
-		for (int i = start; i < end; i++)
-		{
-			final int index = i % instanceCount;
-			final var descriptor = descriptors.get(index);
-			descriptor.updateSize(instanceSize);
-			descriptor.updateOffset(currentOffset);
-			// System.out.println(String.format("DS %d: offset = %d", index, currentOffset));
-			currentOffset += instanceSize;
+			fireNotification(new LongNotification(this, FEATURES.OFFSET, oldOffset, this.offset));
 		}
 	}
 
@@ -153,15 +101,10 @@ public final class DataProviderWrapper extends NotifierAdapter
 		final long oldBufferPtr = this.bufferPtr;
 		this.bufferPtr = bufferPtr;
 
-		for (final var descriptor : descriptors)
-		{
-			descriptor.updateBufferPtr(bufferPtr);
-		}
-
 		if (oldBufferPtr != bufferPtr)
 		{
 			fireNotification(new LongNotification(	this,
-													FEATURES.BUFFER_PTR.ordinal(),
+													FEATURES.BUFFER_PTR,
 													oldBufferPtr,
 													this.bufferPtr));
 		}
@@ -259,11 +202,6 @@ public final class DataProviderWrapper extends NotifierAdapter
 		return offset + (instance * instanceSize);
 	}
 
-	public List<? extends IVkDescriptor> getDescriptors()
-	{
-		return descriptors;
-	}
-
 	@Override
 	public long getBufferPtr()
 	{
@@ -274,30 +212,6 @@ public final class DataProviderWrapper extends NotifierAdapter
 	{
 		final int chunkCount = (int) Math.ceil(((double) index) / alignment);
 		return chunkCount * alignment;
-	}
-
-	private static List<VkBufferDescriptor> createDescriptors(BufferDataProvider<?> dataProvider)
-	{
-		if (dataProvider instanceof DescribedDataProvider<?>)
-		{
-			final var described = (DescribedDataProvider<?>) dataProvider;
-			final var descriptor = described.getDescriptor();
-			final var type = descriptor.getDescriptorType();
-			final var stages = descriptor.getShaderStages();
-
-			assert descriptor != null;
-
-			final List<VkBufferDescriptor> res = new ArrayList<>();
-			for (int i = 0; i < dataProvider.getInstanceCount(); i++)
-			{
-				res.add(new VkBufferDescriptor(0, 0, 0, type, stages));
-			}
-			return List.copyOf(res);
-		}
-		else
-		{
-			return List.of();
-		}
 	}
 
 	public int getUsage()

@@ -19,7 +19,6 @@ import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -166,17 +165,6 @@ public class RenderingSwitch<T1> extends Switch<T1>
 			{
 				DataProviderPkg<?> dataProviderPkg = (DataProviderPkg<?>)theEObject;
 				T1 result = caseDataProviderPkg(dataProviderPkg);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RenderingPackage.RENDER_DESCRIBED_DATA_PROVIDER:
-			{
-				RenderDescribedDataProvider<?> renderDescribedDataProvider = (RenderDescribedDataProvider<?>)theEObject;
-				T1 result = caseRenderDescribedDataProvider(renderDescribedDataProvider);
-				if (result == null) result = caseRenderDataProvider(renderDescribedDataProvider);
-				if (result == null) result = caseDescribedDataProvider(renderDescribedDataProvider);
-				if (result == null) result = caseBufferDataProvider(renderDescribedDataProvider);
-				if (result == null) result = caseLNamedElement(renderDescribedDataProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -432,22 +420,6 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public <T extends Structure> T1 caseDataProviderPkg(DataProviderPkg<T> object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Render Described Data Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Render Described Data Provider</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <T extends Structure> T1 caseRenderDescribedDataProvider(RenderDescribedDataProvider<T> object)
 	{
 		return null;
 	}
@@ -752,22 +724,6 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public <T> T1 caseBufferDataProvider(BufferDataProvider<T> object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Described Data Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Described Data Provider</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <T> T1 caseDescribedDataProvider(DescribedDataProvider<T> object)
 	{
 		return null;
 	}

@@ -86,19 +86,6 @@
       </eGenericType>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RenderDescribedDataProvider">
-    <eTypeParameters name="T">
-      <eBounds eClassifier="#//Structure"/>
-    </eTypeParameters>
-    <eGenericSuperTypes eClassifier="#//RenderDataProvider">
-      <eTypeArguments eTypeParameter="#//RenderDescribedDataProvider/T"/>
-    </eGenericSuperTypes>
-    <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//DescribedDataProvider">
-      <eTypeArguments eClassifier="#//RenderableDataSource">
-        <eTypeArguments eTypeParameter="#//RenderDescribedDataProvider/T"/>
-      </eTypeArguments>
-    </eGenericSuperTypes>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RenderableDataSource">
     <eTypeParameters name="T">
       <eBounds eClassifier="#//Structure"/>
@@ -130,7 +117,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ResourceProvider" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="StaticResourceProvider" eSuperTypes="#//ResourceProvider">
     <eStructuralFeatures xsi:type="ecore:EReference" name="resources" lowerBound="1"
-        upperBound="-1" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//DescriptedResource"/>
+        upperBound="-1" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkan.ecore#//IResource"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeResourceProvider" eSuperTypes="#//ResourceProvider">
     <eStructuralFeatures xsi:type="ecore:EReference" name="providers" upperBound="-1"

@@ -4,19 +4,16 @@ import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
-import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.image.VkImage;
-import org.sheepy.vulkan.resource.image.VkImageDescriptor;
 import org.sheepy.vulkan.resource.image.VkImageView;
 
 @Statefull
@@ -30,8 +27,6 @@ public class StaticImageAdapter implements IImageAdapter
 
 	private IImageLoader loader = null;
 	private IExecutionContext executionContext;
-
-	private List<IVkDescriptor> descriptors = null;
 
 	public StaticImageAdapter(StaticImage image)
 	{
@@ -106,24 +101,6 @@ public class StaticImageAdapter implements IImageAdapter
 
 		imageBackend.free(context);
 		imageBackend = null;
-	}
-
-	@Override
-	public List<IVkDescriptor> getDescriptors()
-	{
-		if (descriptors == null)
-		{
-			final var descriptor = image.getDescriptor();
-			final var type = descriptor.getDescriptorType();
-			final var stages = descriptor.getShaderStages();
-			final var layout = EImageLayout.GENERAL;
-			final long viewPtr = getViewPtr();
-
-			final var vkImageDescriptor = new VkImageDescriptor(viewPtr, 0, layout, type, stages);
-			descriptors = List.of(vkImageDescriptor);
-		}
-
-		return descriptors;
 	}
 
 	@Override

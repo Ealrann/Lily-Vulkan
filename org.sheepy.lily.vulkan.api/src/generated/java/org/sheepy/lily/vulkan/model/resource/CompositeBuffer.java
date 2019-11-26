@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface CompositeBuffer extends DescriptedResource, IBuffer
+public interface CompositeBuffer extends IBuffer
 {
 	/**
 	 * Returns the value of the '<em><b>Data Providers</b></em>' containment reference list.

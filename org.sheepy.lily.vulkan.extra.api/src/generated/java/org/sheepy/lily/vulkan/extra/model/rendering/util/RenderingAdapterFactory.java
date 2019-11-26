@@ -21,7 +21,6 @@ import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -137,11 +136,6 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createDataProviderPkgAdapter();
 			}
 			@Override
-			public <T extends Structure> Adapter caseRenderDescribedDataProvider(RenderDescribedDataProvider<T> object)
-			{
-				return createRenderDescribedDataProviderAdapter();
-			}
-			@Override
 			public <T extends Structure> Adapter caseRenderableDataSource(RenderableDataSource<T> object)
 			{
 				return createRenderableDataSourceAdapter();
@@ -235,11 +229,6 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 			public <T> Adapter caseBufferDataProvider(BufferDataProvider<T> object)
 			{
 				return createBufferDataProviderAdapter();
-			}
-			@Override
-			public <T> Adapter caseDescribedDataProvider(DescribedDataProvider<T> object)
-			{
-				return createDescribedDataProviderAdapter();
 			}
 			@Override
 			public Adapter caseIResource(IResource object)
@@ -424,21 +413,6 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createDataProviderPkgAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDescribedDataProvider <em>Render Described Data Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderDescribedDataProvider
-	 * @generated
-	 */
-	public Adapter createRenderDescribedDataProviderAdapter()
 	{
 		return null;
 	}
@@ -769,21 +743,6 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIPipelineTaskAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DescribedDataProvider <em>Described Data Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.DescribedDataProvider
-	 * @generated
-	 */
-	public Adapter createDescribedDataProviderAdapter()
 	{
 		return null;
 	}

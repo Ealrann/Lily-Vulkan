@@ -5,15 +5,12 @@ import static org.lwjgl.nuklear.Nuklear.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import org.lwjgl.nuklear.NkAllocator;
 import org.lwjgl.nuklear.NkBuffer;
 import org.lwjgl.nuklear.NkContext;
 import org.lwjgl.nuklear.NkConvertConfig;
-import org.lwjgl.nuklear.NkDrawCommand;
 import org.lwjgl.nuklear.NkDrawNullTexture;
 import org.lwjgl.nuklear.NkDrawVertexLayoutElement;
 import org.lwjgl.system.MemoryStack;
@@ -21,21 +18,13 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
-import org.sheepy.lily.vulkan.api.resource.ITexture2DArrayAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.lily.vulkan.model.resource.SampledImage;
-import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
-import org.sheepy.lily.vulkan.nuklear.draw.DrawCommandData;
 import org.sheepy.lily.vulkan.nuklear.input.NuklearInputCatcher;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
 import org.sheepy.vulkan.execution.IExecutionContext;
@@ -82,8 +71,6 @@ public class NuklearContextAdapter implements IResourceAdapter
 	private NkBuffer vbuf;
 	private NkBuffer ebuf;
 
-	private final List<Long> texturePtrs = new ArrayList<>();
-
 	public NuklearContextAdapter(NuklearContext context)
 	{
 		this.nuklearContext = context;
@@ -109,14 +96,10 @@ public class NuklearContextAdapter implements IResourceAdapter
 		final var nullTextureAdapter = nullTexture.adaptNotNull(ISampledImageAdapter.class);
 		final var defaultFont = fontAdapter.getNkFont();
 		final var layoutTask = nuklearContext.getLayoutTask();
-		final var pipeline = ModelUtil.findParent(layoutTask, GraphicsPipeline.class);
-		final var descriptorSet = pipeline.getDescriptorSetPkg().getDescriptorSets().get(0);
 		final var layoutTaskAdapter = layoutTask.adaptNotNull(NuklearLayoutTaskAdapter.class);
 		final var engine = VulkanModelUtil.getEngine(nuklearContext);
 		final var inputManager = engine.adaptNotNull(IVulkanEngineAdapter.class).getInputManager();
 		final var inputCatcher = NuklearInputCatcher.INSTANCE;
-
-		reloadTexturePtrs(descriptorSet);
 
 		nkContext = NkContext.create();
 		cmds = NkBuffer.create();
@@ -230,28 +213,6 @@ public class NuklearContextAdapter implements IResourceAdapter
 		return res;
 	}
 
-	private void reloadTexturePtrs(DescriptorSet descriptorSet)
-	{
-		texturePtrs.clear();
-		for (final var descriptor : descriptorSet.getDescriptors())
-		{
-			if (descriptor instanceof SampledImage)
-			{
-				final var adapter = descriptor.adaptNotNull(ISampledImageAdapter.class);
-				final long ptr = adapter.getSamplerPtr();
-				texturePtrs.add(ptr);
-			}
-			else if (descriptor instanceof Texture2DArray)
-			{
-				final var adapter = descriptor.adapt(ITexture2DArrayAdapter.class);
-				for (final var texture : adapter.getTextures())
-				{
-					texturePtrs.add(texture.getViewPtr());
-				}
-			}
-		}
-	}
-
 	@Override
 	public void free(IExecutionContext context)
 	{
@@ -270,42 +231,6 @@ public class NuklearContextAdapter implements IResourceAdapter
 		ebuf = null;
 	}
 
-	public List<DrawCommandData> prepareDrawCommands()
-	{
-		final List<DrawCommandData> res = new ArrayList<>();
-		int drawedIndexes = 0;
-		int previousDrawedIndexes = 0;
-
-		for (NkDrawCommand cmd = nk__draw_begin(nkContext,
-												cmds); cmd != null; cmd = nk__draw_next(cmd,
-																						cmds,
-																						nkContext))
-		{
-			final int elemCount = cmd.elem_count();
-			if (elemCount <= 0)
-			{
-				continue;
-			}
-			else
-			{
-				drawedIndexes += elemCount;
-
-				final var texturePtr = cmd.texture().ptr();
-				final int descriptorIndex = texturePtrs.indexOf(texturePtr);
-
-				res.add(new DrawCommandData(cmd, descriptorIndex));
-			}
-		}
-
-		if (DebugUtil.DEBUG_VERBOSE_ENABLED && previousDrawedIndexes != drawedIndexes)
-		{
-			System.out.println("Nuklear Index count:" + drawedIndexes);
-			previousDrawedIndexes = drawedIndexes;
-		}
-
-		return res;
-	}
-
 	public void clearFrame()
 	{
 		nk_clear(nkContext);
@@ -314,5 +239,10 @@ public class NuklearContextAdapter implements IResourceAdapter
 	public NkContext getNkContext()
 	{
 		return nkContext;
+	}
+
+	public NkBuffer getCmds()
+	{
+		return cmds;
 	}
 }

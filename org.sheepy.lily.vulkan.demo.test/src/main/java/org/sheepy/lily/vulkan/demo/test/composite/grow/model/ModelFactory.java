@@ -5,10 +5,10 @@ import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.vulkan.demo.test.composite.grow.model.TestResourceFactory.ResourceContainer;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
+import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
-import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
@@ -57,9 +57,9 @@ public class ModelFactory
 		return process;
 	}
 
-	private static ComputePipeline createPipeline()
+	private static Pipeline createPipeline()
 	{
-		final var res = ComputeFactory.eINSTANCE.createComputePipeline();
+		final var res = ProcessFactory.eINSTANCE.createPipeline();
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 		res.setTaskPkg(taskPkg);
 		res.setStage(ECommandStage.TRANSFER);

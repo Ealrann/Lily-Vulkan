@@ -2,10 +2,9 @@ package org.sheepy.lily.vulkan.api.resource.buffer;
 
 import java.nio.ByteBuffer;
 
-import org.sheepy.lily.vulkan.api.resource.IDescriptedResourceAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 
-public interface IBufferAdapter extends IDescriptedResourceAdapter, IResourceAdapter
+public interface IBufferAdapter extends IResourceAdapter
 {
 	long getPtr();
 	long getMemoryPtr();

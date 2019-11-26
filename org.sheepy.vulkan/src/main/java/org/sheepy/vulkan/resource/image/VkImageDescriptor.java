@@ -17,11 +17,13 @@ import org.sheepy.vulkan.util.VkModelUtil;
 
 public class VkImageDescriptor implements IVkDescriptor
 {
-	private final long imageViewPtr;
-	private final long samplerPtr;
 	private final int descriptorType;
 	private final int shaderStages;
 	private final int imageLayout;
+
+	private long imageViewPtr;
+	private long samplerPtr;
+	private boolean changed = true;
 
 	public VkImageDescriptor(	long imageViewPtr,
 								long samplerPtr,
@@ -29,8 +31,8 @@ public class VkImageDescriptor implements IVkDescriptor
 								EDescriptorType descriptorType,
 								List<EShaderStage> shaderStages)
 	{
-		this.imageViewPtr = imageViewPtr != -1 ? imageViewPtr : 0;
-		this.samplerPtr = samplerPtr != -1 ? samplerPtr : 0;
+		this.imageViewPtr = imageViewPtr;
+		this.samplerPtr = samplerPtr;
 		this.imageLayout = imageLayout != null ? imageLayout.getValue() : 0;
 		this.descriptorType = descriptorType.getValue();
 		this.shaderStages = VkModelUtil.getEnumeratedFlag(shaderStages);
@@ -68,6 +70,31 @@ public class VkImageDescriptor implements IVkDescriptor
 		writeDescriptor.pBufferInfo(null);
 		writeDescriptor.pImageInfo(imageInfo);
 		writeDescriptor.pTexelBufferView(null);
+
+		changed = false;
+	}
+
+	public void updateSamplerPtr(long samplerPtr)
+	{
+		this.samplerPtr = samplerPtr;
+		changed = true;
+	}
+
+	public void updateViewPtr(long viewPtr)
+	{
+		this.imageViewPtr = viewPtr;
+		changed = true;
+	}
+	
+	public long getSamplerPtr()
+	{
+		return samplerPtr;
+	}
+
+	@Override
+	public boolean hasChanged()
+	{
+		return changed;
 	}
 
 	@Override

@@ -115,7 +115,7 @@ public interface SpritePackage extends EPackage
 	int SPRITE_RENDERER__PUSH_CONSTANT_RANGES = RenderingPackage.GENERIC_RENDERER__PUSH_CONSTANT_RANGES;
 
 	/**
-	 * The feature id for the '<em><b>Specialization Data</b></em>' attribute.
+	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

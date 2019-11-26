@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.lily.core.api.adapter.ILilyEObject;
+import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
@@ -21,11 +21,10 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getDescriptor()
- * @model
- * @extends ILilyEObject
+ * @model interface="true" abstract="true"
  * @generated
  */
-public interface Descriptor extends ILilyEObject
+public interface Descriptor extends LNamedElement
 {
 	/**
 	 * Returns the value of the '<em><b>Descriptor Type</b></em>' attribute.

@@ -1,22 +1,20 @@
 package org.sheepy.lily.vulkan.nuklear.resource;
 
-import java.util.List;
 import java.util.Objects;
 
 import org.lwjgl.nuklear.NkUserFont;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.resource.IDescriptedResourceAdapter;
+import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.lily.vulkan.nuklear.util.NkFontLoader;
-import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
 
 @Statefull
 @Adapter(scope = NuklearFont.class)
-public class NuklearFontAdapter implements IDescriptedResourceAdapter
+public class NuklearFontAdapter implements IResourceAdapter
 {
 	private final NuklearFont nuklearFont;
 	private final ISampledImageAdapter samplerAdapter;
@@ -59,11 +57,5 @@ public class NuklearFontAdapter implements IDescriptedResourceAdapter
 	public NkUserFont getNkFont()
 	{
 		return defaultFont;
-	}
-
-	@Override
-	public List<IVkDescriptor> getDescriptors()
-	{
-		return samplerAdapter.getDescriptors();
 	}
 }

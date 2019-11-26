@@ -23,15 +23,6 @@ public interface ResourceFactory extends EFactory
 	ResourceFactory eINSTANCE = org.sheepy.lily.vulkan.model.resource.impl.ResourceFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Basic Resource</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Basic Resource</em>'.
-	 * @generated
-	 */
-	BasicResource createBasicResource();
-
-	/**
 	 * Returns a new object of class '<em>Transfer Buffer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,15 +86,6 @@ public interface ResourceFactory extends EFactory
 	<T> BufferDataProvider<T> createBufferDataProvider();
 
 	/**
-	 * Returns a new object of class '<em>Described Data Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Described Data Provider</em>'.
-	 * @generated
-	 */
-	<T> DescribedDataProvider<T> createDescribedDataProvider();
-
-	/**
 	 * Returns a new object of class '<em>Static Image</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -158,13 +140,49 @@ public interface ResourceFactory extends EFactory
 	FontImage createFontImage();
 
 	/**
-	 * Returns a new object of class '<em>Descriptor</em>'.
+	 * Returns a new object of class '<em>Buffer Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Descriptor</em>'.
+	 * @return a new object of class '<em>Buffer Descriptor</em>'.
 	 * @generated
 	 */
-	Descriptor createDescriptor();
+	BufferDescriptor createBufferDescriptor();
+
+	/**
+	 * Returns a new object of class '<em>Image Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Image Descriptor</em>'.
+	 * @generated
+	 */
+	ImageDescriptor createImageDescriptor();
+
+	/**
+	 * Returns a new object of class '<em>Sampled Image Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sampled Image Descriptor</em>'.
+	 * @generated
+	 */
+	SampledImageDescriptor createSampledImageDescriptor();
+
+	/**
+	 * Returns a new object of class '<em>Sampler Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sampler Descriptor</em>'.
+	 * @generated
+	 */
+	SamplerDescriptor createSamplerDescriptor();
+
+	/**
+	 * Returns a new object of class '<em>Texture2 DArray Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Texture2 DArray Descriptor</em>'.
+	 * @generated
+	 */
+	Texture2DArrayDescriptor createTexture2DArrayDescriptor();
 
 	/**
 	 * Returns a new object of class '<em>Descriptor Set</em>'.

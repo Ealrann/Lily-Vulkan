@@ -19,7 +19,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
-import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
+import org.sheepy.lily.vulkan.model.resource.Descriptor;
+import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Shader;
@@ -29,6 +30,7 @@ import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
 import org.sheepy.vulkan.model.enumeration.EBindPoint;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
@@ -209,11 +211,19 @@ public class ModelFactory
 		final Buffer boardBuffer2 = BoardBufferFactory.createBoardBuffer(board);
 		boardImage = BoardImageFactory.createBoardImage(size);
 
-		final var lifePipeline1 = createPipeline(lifeShader, boardBuffer1, boardBuffer2);
-		final var lifePipeline2 = createPipeline(lifeShader, boardBuffer2, boardBuffer1);
+		final var lifePipeline1 = createPipeline(	lifeShader,
+													newDescriptor(boardBuffer1),
+													newDescriptor(boardBuffer2));
+		final var lifePipeline2 = createPipeline(	lifeShader,
+													newDescriptor(boardBuffer2),
+													newDescriptor(boardBuffer1));
 
-		final var pixelPipeline1 = createPipeline(life2pixelShader, boardBuffer2, boardImage);
-		final var pixelPipeline2 = createPipeline(life2pixelShader, boardBuffer1, boardImage);
+		final var pixelPipeline1 = createPipeline(	life2pixelShader,
+													newDescriptor(boardBuffer2),
+													newDescriptor(boardImage));
+		final var pixelPipeline2 = createPipeline(	life2pixelShader,
+													newDescriptor(boardBuffer1),
+													newDescriptor(boardImage));
 
 		final ProcessPartPkg pipelines1 = ProcessFactory.eINSTANCE.createProcessPartPkg();
 		process1.setPartPkg(pipelines1);
@@ -237,7 +247,7 @@ public class ModelFactory
 		process2.setResetAllowed(true);
 	}
 
-	private ComputePipeline createPipeline(Shader shader, DescriptedResource... descriptors)
+	private ComputePipeline createPipeline(Shader shader, Descriptor... descriptors)
 	{
 		final var descriptorSet = ResourceFactory.eINSTANCE.createDescriptorSet();
 		for (final var descriptor : descriptors)
@@ -249,7 +259,7 @@ public class ModelFactory
 		bindDescriptorSet.getDescriptorSets().add(descriptorSet);
 		bindDescriptorSet.setBindPoint(EBindPoint.COMPUTE);
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
-		final var dispatch = createComputer();
+		final var dispatch = createDispatchTask();
 
 		final var res = ComputeFactory.eINSTANCE.createComputePipeline();
 		res.setTaskPkg(taskPkg);
@@ -264,7 +274,7 @@ public class ModelFactory
 		return res;
 	}
 
-	private DispatchTask createComputer()
+	private DispatchTask createDispatchTask()
 	{
 		final var res = ComputeFactory.eINSTANCE.createDispatchTask();
 		res.setWorkgroupCountX(application.getSize().x() / WORKGROUP_SIDE);
@@ -315,5 +325,26 @@ public class ModelFactory
 		}
 
 		return cadence;
+	}
+
+	private static Descriptor newDescriptor(Buffer buffer)
+	{
+		final var reference = ResourceFactory.eINSTANCE.createBufferReference();
+		reference.setBuffer(buffer);
+
+		final var descriptor = ResourceFactory.eINSTANCE.createBufferDescriptor();
+		descriptor.setDescriptorType(EDescriptorType.STORAGE_BUFFER);
+		descriptor.getShaderStages().add(EShaderStage.COMPUTE_BIT);
+		descriptor.setBufferReference(reference);
+		return descriptor;
+	}
+
+	private static Descriptor newDescriptor(Image image)
+	{
+		final var descriptor = ResourceFactory.eINSTANCE.createImageDescriptor();
+		descriptor.setDescriptorType(EDescriptorType.STORAGE_IMAGE);
+		descriptor.getShaderStages().add(EShaderStage.COMPUTE_BIT);
+		descriptor.setImage(image);
+		return descriptor;
 	}
 }

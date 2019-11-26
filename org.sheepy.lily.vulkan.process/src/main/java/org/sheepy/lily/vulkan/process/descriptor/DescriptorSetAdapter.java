@@ -7,7 +7,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorPoolSize.Buffer;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.resource.IDescriptedResourceAdapter;
+import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
@@ -16,32 +16,49 @@ import org.sheepy.vulkan.device.IVulkanContext;
 
 @Statefull
 @Adapter(scope = DescriptorSet.class)
-public class DescriptorSetAdapter implements IDescriptorSetAdapter
+public final class DescriptorSetAdapter implements IDescriptorSetAdapter
 {
-	protected VkDescriptorSet vkDescriptorSet;
-	protected DescriptorSet descriptorSet = null;
+	private final List<IDescriptorAdapter> descriptors;
 
-	private List<IVkDescriptor> vkDescriptors = null;
+	private VkDescriptorSet vkDescriptorSet;
 
 	public DescriptorSetAdapter(DescriptorSet descriptorSet)
 	{
-		this.descriptorSet = descriptorSet;
+		descriptors = List.copyOf(gatherDescriptors(descriptorSet));
 	}
 
 	@Override
 	public void allocate(IVulkanContext context, long poolAddress)
 	{
-		vkDescriptorSet = new VkDescriptorSet(getDescriptors());
+		final List<IVkDescriptor> vkDescriptors = new ArrayList<>();
+		for (final var descriptor : descriptors)
+		{
+			descriptor.allocate();
+			vkDescriptors.add(descriptor.getVkDescriptor());
+		}
+
+		vkDescriptorSet = new VkDescriptorSet(vkDescriptors);
 		vkDescriptorSet.allocate(context, poolAddress);
+	}
+
+	@Override
+	public void free(IVulkanContext context)
+	{
+		for (final var descriptor : descriptors)
+		{
+			descriptor.free();
+		}
+		vkDescriptorSet.free(context);
+		vkDescriptorSet = null;
 	}
 
 	@Override
 	public void fillPoolSizes(Buffer poolSizes)
 	{
-		for (final var descriptor : getDescriptors())
+		for (final var descriptor : descriptors)
 		{
 			final var poolSize = poolSizes.get();
-			descriptor.fillPoolSize(poolSize);
+			descriptor.getVkDescriptor().fillPoolSize(poolSize);
 		}
 	}
 
@@ -64,40 +81,27 @@ public class DescriptorSetAdapter implements IDescriptorSetAdapter
 	}
 
 	@Override
-	public void free(IVulkanContext context)
-	{
-		vkDescriptorSet.free(context);
-		vkDescriptorSet = null;
-		vkDescriptors = null;
-	}
-
-	@Override
 	public int descriptorCount()
 	{
-		return getDescriptors().size();
+		return descriptors.size();
+	}
+
+	private static List<IDescriptorAdapter> gatherDescriptors(DescriptorSet descriptorSet)
+	{
+		final var descriptors = descriptorSet.getDescriptors();
+		final List<IDescriptorAdapter> vkDescriptors = new ArrayList<>(descriptors.size());
+		for (final var descriptor : descriptors)
+		{
+			final var adapter = descriptor.adaptNotNull(IDescriptorAdapter.class);
+			vkDescriptors.add(adapter);
+		}
+		return List.copyOf(vkDescriptors);
 	}
 
 	@Override
-	public List<IVkDescriptor> getDescriptors()
+	public boolean hasChanged()
 	{
-		gatherDescriptors();
-		return vkDescriptors;
-	}
-
-	private void gatherDescriptors()
-	{
-		if (vkDescriptors == null)
-		{
-			final var descriptors = descriptorSet.getDescriptors();
-			vkDescriptors = new ArrayList<>(descriptors.size());
-			for (final var descriptor : descriptors)
-			{
-				final var adapter = descriptor.adaptNotNull(IDescriptedResourceAdapter.class);
-				final var gatherDescriptors = adapter.getDescriptors();
-				vkDescriptors.addAll(gatherDescriptors);
-			}
-			vkDescriptors = List.copyOf(vkDescriptors);
-		}
+		return vkDescriptorSet.hasChanged();
 	}
 
 	@Override

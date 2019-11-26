@@ -202,31 +202,6 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDescribedDataProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected RenderDescribedDataProviderItemProvider renderDescribedDataProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDescribedDataProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createRenderDescribedDataProviderAdapter()
-	{
-		if (renderDescribedDataProviderItemProvider == null)
-		{
-			renderDescribedDataProviderItemProvider = new RenderDescribedDataProviderItemProvider(this);
-		}
-
-		return renderDescribedDataProviderItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -604,7 +579,6 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 		if (presentationPkgItemProvider != null) presentationPkgItemProvider.dispose();
 		if (presentableEntityItemProvider != null) presentableEntityItemProvider.dispose();
 		if (dataProviderPkgItemProvider != null) dataProviderPkgItemProvider.dispose();
-		if (renderDescribedDataProviderItemProvider != null) renderDescribedDataProviderItemProvider.dispose();
 		if (renderableDataSourceItemProvider != null) renderableDataSourceItemProvider.dispose();
 		if (vertexProviderItemProvider != null) vertexProviderItemProvider.dispose();
 		if (indexProviderItemProvider != null) indexProviderItemProvider.dispose();
@@ -885,11 +859,6 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 			@Override
 			public Object caseCompositeBuffer(CompositeBuffer object)
 			{
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
-						 RenderingFactory.eINSTANCE.createRenderDescribedDataProvider()));
-
 				newChildDescriptors.add
 					(createChildParameter
 						(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,

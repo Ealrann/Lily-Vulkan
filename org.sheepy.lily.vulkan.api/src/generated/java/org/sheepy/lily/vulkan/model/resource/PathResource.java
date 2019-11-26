@@ -2,6 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
+import org.sheepy.lily.vulkan.model.IResource;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Path Resource</b></em>'.
@@ -18,7 +20,7 @@ package org.sheepy.lily.vulkan.model.resource;
  * @model abstract="true"
  * @generated
  */
-public interface PathResource extends BasicResource
+public interface PathResource extends IResource
 {
 	/**
 	 * Returns the value of the '<em><b>Path</b></em>' attribute.

@@ -11,7 +11,7 @@ public class InstanceCompositeBufferTest
 	public void main()
 	{
 		final var factory = new InstanceModelFactory();
-		final var mainLoop = new MainLoop(factory);
+		final var mainLoop = new MainLoop(factory, 50);
 
 		LilyLauncher.launch(factory.application, mainLoop);
 	}

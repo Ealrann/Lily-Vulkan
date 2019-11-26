@@ -10,12 +10,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
-
-import org.sheepy.lily.vulkan.model.resource.impl.BasicResourceImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,13 +24,32 @@ import org.sheepy.lily.vulkan.model.resource.impl.BasicResourceImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearFontImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearFontImpl#getFontSampledImage <em>Font Sampled Image</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class NuklearFontImpl extends BasicResourceImpl implements NuklearFont
+public class NuklearFontImpl extends LilyEObject implements NuklearFont
 {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getFontSampledImage() <em>Font Sampled Image</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -61,6 +79,31 @@ public class NuklearFontImpl extends BasicResourceImpl implements NuklearFont
 	protected EClass eStaticClass()
 	{
 		return NuklearPackage.Literals.NUKLEAR_FONT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_FONT__NAME, oldName, name));
 	}
 
 	/**
@@ -139,6 +182,8 @@ public class NuklearFontImpl extends BasicResourceImpl implements NuklearFont
 	{
 		switch (featureID)
 		{
+			case NuklearPackage.NUKLEAR_FONT__NAME:
+				return getName();
 			case NuklearPackage.NUKLEAR_FONT__FONT_SAMPLED_IMAGE:
 				return getFontSampledImage();
 		}
@@ -155,6 +200,9 @@ public class NuklearFontImpl extends BasicResourceImpl implements NuklearFont
 	{
 		switch (featureID)
 		{
+			case NuklearPackage.NUKLEAR_FONT__NAME:
+				setName((String)newValue);
+				return;
 			case NuklearPackage.NUKLEAR_FONT__FONT_SAMPLED_IMAGE:
 				setFontSampledImage((SampledImage)newValue);
 				return;
@@ -172,6 +220,9 @@ public class NuklearFontImpl extends BasicResourceImpl implements NuklearFont
 	{
 		switch (featureID)
 		{
+			case NuklearPackage.NUKLEAR_FONT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case NuklearPackage.NUKLEAR_FONT__FONT_SAMPLED_IMAGE:
 				setFontSampledImage((SampledImage)null);
 				return;
@@ -189,10 +240,29 @@ public class NuklearFontImpl extends BasicResourceImpl implements NuklearFont
 	{
 		switch (featureID)
 		{
+			case NuklearPackage.NUKLEAR_FONT__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case NuklearPackage.NUKLEAR_FONT__FONT_SAMPLED_IMAGE:
 				return fontSampledImage != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //NuklearFontImpl

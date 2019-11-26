@@ -94,7 +94,6 @@ public class FileImageItemProvider extends ImageItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR);
 			childrenFeatures.add(ResourcePackage.Literals.FILE_IMAGE__FILE);
 		}
 		return childrenFeatures;
@@ -159,7 +158,6 @@ public class FileImageItemProvider extends ImageItemProvider
 			case ResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ResourcePackage.FILE_IMAGE__DESCRIPTOR:
 			case ResourcePackage.FILE_IMAGE__FILE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -178,11 +176,6 @@ public class FileImageItemProvider extends ImageItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR,
-				 ResourceFactory.eINSTANCE.createDescriptor()));
 
 		newChildDescriptors.add
 			(createChildParameter

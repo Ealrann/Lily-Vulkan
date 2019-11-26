@@ -59,7 +59,7 @@ public class CompositeBufferReferenceAdapter extends NotifierAdapter
 	{
 		final long oldOffset = providerAdapter.getInstanceOffset(notification.getOldIntValue());
 		final var newNotification = new LongNotification(	ref,
-															IBufferReferenceAdapter.FEATURES.OFFSET.ordinal(),
+															IBufferReferenceAdapter.FEATURES.OFFSET,
 															oldOffset,
 															getOffset(ref));
 		fireNotification(newNotification);

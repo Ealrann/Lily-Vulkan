@@ -67,7 +67,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case ResourcePackage.BASIC_RESOURCE: return createBasicResource();
 			case ResourcePackage.TRANSFER_BUFFER: return createTransferBuffer();
 			case ResourcePackage.CONSTANT_BUFFER: return createConstantBuffer();
 			case ResourcePackage.BUFFER: return createBuffer();
@@ -75,14 +74,17 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.BUFFER_REFERENCE: return createBufferReference();
 			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE: return createCompositeBufferReference();
 			case ResourcePackage.BUFFER_DATA_PROVIDER: return createBufferDataProvider();
-			case ResourcePackage.DESCRIBED_DATA_PROVIDER: return createDescribedDataProvider();
 			case ResourcePackage.STATIC_IMAGE: return createStaticImage();
 			case ResourcePackage.FILE_IMAGE: return createFileImage();
 			case ResourcePackage.SAMPLED_IMAGE: return createSampledImage();
 			case ResourcePackage.SAMPLER: return createSampler();
 			case ResourcePackage.SEMAPHORE: return createSemaphore();
 			case ResourcePackage.FONT_IMAGE: return createFontImage();
-			case ResourcePackage.DESCRIPTOR: return createDescriptor();
+			case ResourcePackage.BUFFER_DESCRIPTOR: return createBufferDescriptor();
+			case ResourcePackage.IMAGE_DESCRIPTOR: return createImageDescriptor();
+			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR: return createSampledImageDescriptor();
+			case ResourcePackage.SAMPLER_DESCRIPTOR: return createSamplerDescriptor();
+			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR: return createTexture2DArrayDescriptor();
 			case ResourcePackage.DESCRIPTOR_SET: return createDescriptorSet();
 			case ResourcePackage.DESCRIPTOR_SET_PKG: return createDescriptorSetPkg();
 			case ResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
@@ -138,18 +140,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public BasicResource createBasicResource()
-	{
-		BasicResourceImpl basicResource = new BasicResourceImpl();
-		return basicResource;
 	}
 
 	/**
@@ -242,18 +232,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
-	public <T> DescribedDataProvider<T> createDescribedDataProvider()
-	{
-		DescribedDataProviderImpl<T> describedDataProvider = new DescribedDataProviderImpl<T>();
-		return describedDataProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public StaticImage createStaticImage()
 	{
 		StaticImageImpl staticImage = new StaticImageImpl();
@@ -326,10 +304,58 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
-	public Descriptor createDescriptor()
+	public BufferDescriptor createBufferDescriptor()
 	{
-		DescriptorImpl descriptor = new DescriptorImpl();
-		return descriptor;
+		BufferDescriptorImpl bufferDescriptor = new BufferDescriptorImpl();
+		return bufferDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ImageDescriptor createImageDescriptor()
+	{
+		ImageDescriptorImpl imageDescriptor = new ImageDescriptorImpl();
+		return imageDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SampledImageDescriptor createSampledImageDescriptor()
+	{
+		SampledImageDescriptorImpl sampledImageDescriptor = new SampledImageDescriptorImpl();
+		return sampledImageDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SamplerDescriptor createSamplerDescriptor()
+	{
+		SamplerDescriptorImpl samplerDescriptor = new SamplerDescriptorImpl();
+		return samplerDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Texture2DArrayDescriptor createTexture2DArrayDescriptor()
+	{
+		Texture2DArrayDescriptorImpl texture2DArrayDescriptor = new Texture2DArrayDescriptorImpl();
+		return texture2DArrayDescriptor;
 	}
 
 	/**

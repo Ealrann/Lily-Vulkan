@@ -84,11 +84,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	protected ResourceSwitch<Adapter> modelSwitch = new ResourceSwitch<Adapter>()
 		{
 			@Override
-			public Adapter caseBasicResource(BasicResource object)
-			{
-				return createBasicResourceAdapter();
-			}
-			@Override
 			public Adapter caseTransferBuffer(TransferBuffer object)
 			{
 				return createTransferBufferAdapter();
@@ -97,16 +92,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseConstantBuffer(ConstantBuffer object)
 			{
 				return createConstantBufferAdapter();
-			}
-			@Override
-			public Adapter caseDescriptedResource(DescriptedResource object)
-			{
-				return createDescriptedResourceAdapter();
-			}
-			@Override
-			public Adapter caseBasicDescriptedResource(BasicDescriptedResource object)
-			{
-				return createBasicDescriptedResourceAdapter();
 			}
 			@Override
 			public Adapter caseIBuffer(IBuffer object)
@@ -142,11 +127,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			public <T> Adapter caseBufferDataProvider(BufferDataProvider<T> object)
 			{
 				return createBufferDataProviderAdapter();
-			}
-			@Override
-			public <T> Adapter caseDescribedDataProvider(DescribedDataProvider<T> object)
-			{
-				return createDescribedDataProviderAdapter();
 			}
 			@Override
 			public Adapter caseImage(Image object)
@@ -187,6 +167,31 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseDescriptor(Descriptor object)
 			{
 				return createDescriptorAdapter();
+			}
+			@Override
+			public Adapter caseBufferDescriptor(BufferDescriptor object)
+			{
+				return createBufferDescriptorAdapter();
+			}
+			@Override
+			public Adapter caseImageDescriptor(ImageDescriptor object)
+			{
+				return createImageDescriptorAdapter();
+			}
+			@Override
+			public Adapter caseSampledImageDescriptor(SampledImageDescriptor object)
+			{
+				return createSampledImageDescriptorAdapter();
+			}
+			@Override
+			public Adapter caseSamplerDescriptor(SamplerDescriptor object)
+			{
+				return createSamplerDescriptorAdapter();
+			}
+			@Override
+			public Adapter caseTexture2DArrayDescriptor(Texture2DArrayDescriptor object)
+			{
+				return createTexture2DArrayDescriptorAdapter();
 			}
 			@Override
 			public Adapter caseDescriptorSet(DescriptorSet object)
@@ -305,21 +310,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.BasicResource
-	 * @generated
-	 */
-	public Adapter createBasicResourceAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer <em>Transfer Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -345,36 +335,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createConstantBufferAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DescriptedResource <em>Descripted Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.DescriptedResource
-	 * @generated
-	 */
-	public Adapter createDescriptedResourceAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource <em>Basic Descripted Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource
-	 * @generated
-	 */
-	public Adapter createBasicDescriptedResourceAdapter()
 	{
 		return null;
 	}
@@ -480,21 +440,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createBufferDataProviderAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DescribedDataProvider <em>Described Data Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.DescribedDataProvider
-	 * @generated
-	 */
-	public Adapter createDescribedDataProviderAdapter()
 	{
 		return null;
 	}
@@ -615,6 +560,81 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createDescriptorAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.BufferDescriptor <em>Buffer Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDescriptor
+	 * @generated
+	 */
+	public Adapter createBufferDescriptorAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.ImageDescriptor <em>Image Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageDescriptor
+	 * @generated
+	 */
+	public Adapter createImageDescriptorAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor <em>Sampled Image Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor
+	 * @generated
+	 */
+	public Adapter createSampledImageDescriptorAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.SamplerDescriptor <em>Sampler Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.SamplerDescriptor
+	 * @generated
+	 */
+	public Adapter createSamplerDescriptorAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor <em>Texture2 DArray Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor
+	 * @generated
+	 */
+	public Adapter createTexture2DArrayDescriptorAdapter()
 	{
 		return null;
 	}

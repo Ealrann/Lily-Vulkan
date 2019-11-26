@@ -720,15 +720,6 @@ public interface RenderingPackage extends EPackage
 	int RENDER_DATA_PROVIDER__DATA_SOURCE = ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>First Descriptor</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DATA_PROVIDER__FIRST_DESCRIPTOR = ResourcePackage.BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR;
-
-	/**
 	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -838,142 +829,6 @@ public interface RenderingPackage extends EPackage
 	int DATA_PROVIDER_PKG_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderDescribedDataProviderImpl <em>Render Described Data Provider</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderDescribedDataProviderImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderDescribedDataProvider()
-	 * @generated
-	 */
-	int RENDER_DESCRIBED_DATA_PROVIDER = 10;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DESCRIBED_DATA_PROVIDER__NAME = RENDER_DATA_PROVIDER__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Usage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DESCRIBED_DATA_PROVIDER__USAGE = RENDER_DATA_PROVIDER__USAGE;
-
-	/**
-	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DESCRIBED_DATA_PROVIDER__INSTANCE_COUNT = RENDER_DATA_PROVIDER__INSTANCE_COUNT;
-
-	/**
-	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DESCRIBED_DATA_PROVIDER__DATA_SOURCE = RENDER_DATA_PROVIDER__DATA_SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>First Descriptor</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DESCRIBED_DATA_PROVIDER__FIRST_DESCRIPTOR = RENDER_DATA_PROVIDER__FIRST_DESCRIPTOR;
-
-	/**
-	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DESCRIBED_DATA_PROVIDER__USED_TO_PUSH = RENDER_DATA_PROVIDER__USED_TO_PUSH;
-
-	/**
-	 * The feature id for the '<em><b>Used To Fetch</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DESCRIBED_DATA_PROVIDER__USED_TO_FETCH = RENDER_DATA_PROVIDER__USED_TO_FETCH;
-
-	/**
-	 * The feature id for the '<em><b>Stage Before Push</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DESCRIBED_DATA_PROVIDER__STAGE_BEFORE_PUSH = RENDER_DATA_PROVIDER__STAGE_BEFORE_PUSH;
-
-	/**
-	 * The feature id for the '<em><b>Access Before Push</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DESCRIBED_DATA_PROVIDER__ACCESS_BEFORE_PUSH = RENDER_DATA_PROVIDER__ACCESS_BEFORE_PUSH;
-
-	/**
-	 * The feature id for the '<em><b>Stage Before Fetch</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DESCRIBED_DATA_PROVIDER__STAGE_BEFORE_FETCH = RENDER_DATA_PROVIDER__STAGE_BEFORE_FETCH;
-
-	/**
-	 * The feature id for the '<em><b>Access Before Fetch</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DESCRIBED_DATA_PROVIDER__ACCESS_BEFORE_FETCH = RENDER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DESCRIBED_DATA_PROVIDER__DESCRIPTOR = RENDER_DATA_PROVIDER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Render Described Data Provider</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DESCRIBED_DATA_PROVIDER_FEATURE_COUNT = RENDER_DATA_PROVIDER_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Render Described Data Provider</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DESCRIBED_DATA_PROVIDER_OPERATION_COUNT = RENDER_DATA_PROVIDER_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl <em>Renderable Data Source</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -981,7 +836,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderableDataSource()
 	 * @generated
 	 */
-	int RENDERABLE_DATA_SOURCE = 11;
+	int RENDERABLE_DATA_SOURCE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Structure</b></em>' reference.
@@ -1028,7 +883,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getVertexProvider()
 	 * @generated
 	 */
-	int VERTEX_PROVIDER = 12;
+	int VERTEX_PROVIDER = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1065,15 +920,6 @@ public interface RenderingPackage extends EPackage
 	 * @ordered
 	 */
 	int VERTEX_PROVIDER__DATA_SOURCE = RENDER_DATA_PROVIDER__DATA_SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>First Descriptor</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERTEX_PROVIDER__FIRST_DESCRIPTOR = RENDER_DATA_PROVIDER__FIRST_DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
@@ -1155,7 +1001,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getIndexProvider()
 	 * @generated
 	 */
-	int INDEX_PROVIDER = 13;
+	int INDEX_PROVIDER = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1192,15 +1038,6 @@ public interface RenderingPackage extends EPackage
 	 * @ordered
 	 */
 	int INDEX_PROVIDER__DATA_SOURCE = RENDER_DATA_PROVIDER__DATA_SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>First Descriptor</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDEX_PROVIDER__FIRST_DESCRIPTOR = RENDER_DATA_PROVIDER__FIRST_DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
@@ -1291,7 +1128,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getResourceProvider()
 	 * @generated
 	 */
-	int RESOURCE_PROVIDER = 14;
+	int RESOURCE_PROVIDER = 13;
 
 	/**
 	 * The number of structural features of the '<em>Resource Provider</em>' class.
@@ -1319,7 +1156,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getStaticResourceProvider()
 	 * @generated
 	 */
-	int STATIC_RESOURCE_PROVIDER = 15;
+	int STATIC_RESOURCE_PROVIDER = 14;
 
 	/**
 	 * The feature id for the '<em><b>Resources</b></em>' reference list.
@@ -1357,7 +1194,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCompositeResourceProvider()
 	 * @generated
 	 */
-	int COMPOSITE_RESOURCE_PROVIDER = 16;
+	int COMPOSITE_RESOURCE_PROVIDER = 15;
 
 	/**
 	 * The feature id for the '<em><b>Providers</b></em>' containment reference list.
@@ -1395,7 +1232,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderProxyConstantBuffer()
 	 * @generated
 	 */
-	int RENDER_PROXY_CONSTANT_BUFFER = 17;
+	int RENDER_PROXY_CONSTANT_BUFFER = 16;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1460,7 +1297,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getISpecialization()
 	 * @generated
 	 */
-	int ISPECIALIZATION = 18;
+	int ISPECIALIZATION = 17;
 
 	/**
 	 * The number of structural features of the '<em>ISpecialization</em>' class.
@@ -1489,7 +1326,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEntityPkg()
 	 * @generated
 	 */
-	int ENTITY_PKG = 19;
+	int ENTITY_PKG = 18;
 
 	/**
 	 * The feature id for the '<em><b>Entities</b></em>' containment reference list.
@@ -1527,7 +1364,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderDrawTask()
 	 * @generated
 	 */
-	int RENDER_DRAW_TASK = 20;
+	int RENDER_DRAW_TASK = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1582,7 +1419,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderIndexedDrawTask()
 	 * @generated
 	 */
-	int RENDER_INDEXED_DRAW_TASK = 21;
+	int RENDER_INDEXED_DRAW_TASK = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1947,16 +1784,6 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 */
 	EReference getDataProviderPkg_DataProviders();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDescribedDataProvider <em>Render Described Data Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Render Described Data Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderDescribedDataProvider
-	 * @generated
-	 */
-	EClass getRenderDescribedDataProvider();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource <em>Renderable Data Source</em>}'.
@@ -2463,16 +2290,6 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EReference DATA_PROVIDER_PKG__DATA_PROVIDERS = eINSTANCE.getDataProviderPkg_DataProviders();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderDescribedDataProviderImpl <em>Render Described Data Provider</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderDescribedDataProviderImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderDescribedDataProvider()
-		 * @generated
-		 */
-		EClass RENDER_DESCRIBED_DATA_PROVIDER = eINSTANCE.getRenderDescribedDataProvider();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl <em>Renderable Data Source</em>}' class.

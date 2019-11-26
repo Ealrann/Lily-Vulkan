@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
@@ -26,7 +27,7 @@ import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
  * @model
  * @generated
  */
-public interface Shader extends BasicResource
+public interface Shader extends IResource
 {
 	/**
 	 * Returns the value of the '<em><b>File</b></em>' containment reference.

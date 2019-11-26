@@ -1,16 +1,11 @@
 package org.sheepy.lily.vulkan.resource.image;
 
-import java.util.List;
-
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.api.resource.ISamplerAdapter;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
-import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.vulkan.resource.image.VkImageDescriptor;
 import org.sheepy.vulkan.resource.image.VkSampler;
 
 @Statefull
@@ -18,15 +13,10 @@ import org.sheepy.vulkan.resource.image.VkSampler;
 public class SamplerAdapter implements ISamplerAdapter
 {
 	private final VkSampler vkSampler;
-	private final Sampler sampler;
 	private final IImageAdapter imageAdapter;
-
-	private List<IVkDescriptor> descriptors;
 
 	public SamplerAdapter(Sampler sampler)
 	{
-		this.sampler = sampler;
-
 		final var image = sampler.getImage();
 		imageAdapter = image != null ? image.adaptNotNull(IImageAdapter.class) : null;
 
@@ -65,28 +55,8 @@ public class SamplerAdapter implements ISamplerAdapter
 	}
 
 	@Override
-	public List<IVkDescriptor> getDescriptors()
+	public long getViewPtr()
 	{
-		if (descriptors == null)
-		{
-			IVkDescriptor descriptor = null;
-			final var descriptorObject = sampler.getDescriptor();
-
-			final long samplerPtr = vkSampler.getPtr();
-			final long viewPtrPtr = imageAdapter != null ? imageAdapter.getViewPtr() : -1;
-			final var layout = EImageLayout.GENERAL;
-			final var shaderStages = descriptorObject.getShaderStages();
-			final var descriptorType = descriptorObject.getDescriptorType();
-
-			descriptor = new VkImageDescriptor(	viewPtrPtr,
-												samplerPtr,
-												layout,
-												descriptorType,
-												shaderStages);
-
-			descriptors = List.of(descriptor);
-		}
-
-		return descriptors;
+		return imageAdapter != null ? imageAdapter.getViewPtr() : 0;
 	}
 }

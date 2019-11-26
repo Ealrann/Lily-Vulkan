@@ -1,17 +1,12 @@
 package org.sheepy.lily.vulkan.resource.image;
 
-import java.util.List;
-
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
-import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.resource.image.VkImage;
-import org.sheepy.vulkan.resource.image.VkImageDescriptor;
 import org.sheepy.vulkan.resource.image.VkSampler;
 
 @Statefull
@@ -22,7 +17,6 @@ public class SampledImageAdapter implements ISampledImageAdapter
 	private final IImageAdapter imageAdapter;
 
 	private VkSampler vkSampler;
-	private List<IVkDescriptor> descriptors = null;
 
 	public SampledImageAdapter(SampledImage sampledImage)
 	{
@@ -90,34 +84,5 @@ public class SampledImageAdapter implements ISampledImageAdapter
 	public long getMemoryPtr()
 	{
 		return imageAdapter.getMemoryPtr();
-	}
-
-	@Override
-	public List<IVkDescriptor> getDescriptors()
-	{
-		if (descriptors == null)
-		{
-			IVkDescriptor descriptor = null;
-			final var descriptorObject = sampledImage.getDescriptor();
-
-			final long samplerPtr = vkSampler.getPtr();
-			final long viewPtrPtr = imageAdapter.getViewPtr();
-			final var initialLayout = sampledImage.getImage().getInitialLayout();
-			final var layout = initialLayout != null
-					? initialLayout.getLayout()
-					: EImageLayout.SHADER_READ_ONLY_OPTIMAL;
-			final var shaderStages = descriptorObject.getShaderStages();
-			final var descriptorType = descriptorObject.getDescriptorType();
-
-			descriptor = new VkImageDescriptor(	viewPtrPtr,
-												samplerPtr,
-												layout,
-												descriptorType,
-												shaderStages);
-
-			descriptors = List.of(descriptor);
-		}
-
-		return descriptors;
 	}
 }

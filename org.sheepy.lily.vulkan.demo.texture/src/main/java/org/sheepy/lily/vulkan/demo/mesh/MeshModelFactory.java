@@ -282,19 +282,19 @@ public class MeshModelFactory
 			texture.setFile(imageFile);
 			texture.setMipmapEnabled(meshConfiguration.mipmap);
 
-			final var descriptor = ResourceFactory.eINSTANCE.createDescriptor();
-			descriptor.setDescriptorType(EDescriptorType.COMBINED_IMAGE_SAMPLER);
-			descriptor.getShaderStages().add(EShaderStage.FRAGMENT_BIT);
-
 			final var sampler = ImageFactory.eINSTANCE.createSamplerInfo();
 
 			final var sampledImage = ResourceFactory.eINSTANCE.createSampledImage();
 			sampledImage.setSampler(sampler);
 			sampledImage.setImage(texture);
-			sampledImage.setDescriptor(descriptor);
+
+			final var sampledImageDescriptor = ResourceFactory.eINSTANCE.createSampledImageDescriptor();
+			sampledImageDescriptor.setDescriptorType(EDescriptorType.COMBINED_IMAGE_SAMPLER);
+			sampledImageDescriptor.getShaderStages().add(EShaderStage.FRAGMENT_BIT);
+			sampledImageDescriptor.setSampledImage(sampledImage);
 
 			resourcePkg.getResources().add(sampledImage);
-			descriptorSet.getDescriptors().add(sampledImage);
+			descriptorSet.getDescriptors().add(sampledImageDescriptor);
 		}
 
 		if (descriptorSet.getDescriptors().isEmpty() == false)

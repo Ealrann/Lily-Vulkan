@@ -31,7 +31,6 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getInstanceCount <em>Instance Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getDataSource <em>Data Source</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getFirstDescriptor <em>First Descriptor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#isUsedToPush <em>Used To Push</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#isUsedToFetch <em>Used To Fetch</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getStageBeforePush <em>Stage Before Push</em>}</li>
@@ -113,26 +112,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 	 * @ordered
 	 */
 	protected T dataSource;
-
-	/**
-	 * The default value of the '{@link #getFirstDescriptor() <em>First Descriptor</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFirstDescriptor()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int FIRST_DESCRIPTOR_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getFirstDescriptor() <em>First Descriptor</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFirstDescriptor()
-	 * @generated
-	 * @ordered
-	 */
-	protected int firstDescriptor = FIRST_DESCRIPTOR_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isUsedToPush() <em>Used To Push</em>}' attribute.
@@ -386,31 +365,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 	 * @generated
 	 */
 	@Override
-	public int getFirstDescriptor()
-	{
-		return firstDescriptor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setFirstDescriptor(int newFirstDescriptor)
-	{
-		int oldFirstDescriptor = firstDescriptor;
-		firstDescriptor = newFirstDescriptor;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR, oldFirstDescriptor, firstDescriptor));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean isUsedToPush()
 	{
 		return usedToPush;
@@ -569,8 +523,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 				return getInstanceCount();
 			case ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
 				return getDataSource();
-			case ResourcePackage.BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR:
-				return getFirstDescriptor();
 			case ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH:
 				return isUsedToPush();
 			case ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_FETCH:
@@ -609,9 +561,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 				return;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
 				setDataSource((T)newValue);
-				return;
-			case ResourcePackage.BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR:
-				setFirstDescriptor((Integer)newValue);
 				return;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH:
 				setUsedToPush((Boolean)newValue);
@@ -659,9 +608,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 			case ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
 				setDataSource((T)null);
 				return;
-			case ResourcePackage.BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR:
-				setFirstDescriptor(FIRST_DESCRIPTOR_EDEFAULT);
-				return;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH:
 				setUsedToPush(USED_TO_PUSH_EDEFAULT);
 				return;
@@ -702,8 +648,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 				return instanceCount != INSTANCE_COUNT_EDEFAULT;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
 				return dataSource != null;
-			case ResourcePackage.BUFFER_DATA_PROVIDER__FIRST_DESCRIPTOR:
-				return firstDescriptor != FIRST_DESCRIPTOR_EDEFAULT;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH:
 				return usedToPush != USED_TO_PUSH_EDEFAULT;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_FETCH:
@@ -737,8 +681,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 		result.append(usage);
 		result.append(", instanceCount: ");
 		result.append(instanceCount);
-		result.append(", firstDescriptor: ");
-		result.append(firstDescriptor);
 		result.append(", usedToPush: ");
 		result.append(usedToPush);
 		result.append(", usedToFetch: ");

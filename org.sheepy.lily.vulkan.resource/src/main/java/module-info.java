@@ -1,5 +1,6 @@
 import org.sheepy.lily.core.api.adapter.annotation.Adapters;
 import org.sheepy.lily.vulkan.resource.buffer.BufferAdapter;
+import org.sheepy.lily.vulkan.resource.buffer.BufferDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.buffer.BufferReferenceAdapter;
 import org.sheepy.lily.vulkan.resource.buffer.CompositeBufferAdapter;
 import org.sheepy.lily.vulkan.resource.buffer.CompositeBufferReferenceAdapter;
@@ -10,10 +11,13 @@ import org.sheepy.lily.vulkan.resource.file.ModuleResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.StringModuleResourceAdapter;
 import org.sheepy.lily.vulkan.resource.image.FileImageAdapter;
 import org.sheepy.lily.vulkan.resource.image.FontImageAdapter;
+import org.sheepy.lily.vulkan.resource.image.ImageDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.image.SampledImageAdapter;
+import org.sheepy.lily.vulkan.resource.image.SampledImageDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.image.SamplerAdapter;
 import org.sheepy.lily.vulkan.resource.image.StaticImageAdapter;
 import org.sheepy.lily.vulkan.resource.image.Texture2DArrayAdapter;
+import org.sheepy.lily.vulkan.resource.image.Texture2DArrayDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.semaphore.SemaphoreAdapter;
 import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 
@@ -34,7 +38,11 @@ import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 		StaticImageAdapter.class,
 		StringModuleResourceAdapter.class,
 		Texture2DArrayAdapter.class,
-		DataProviderWrapper.class
+		DataProviderWrapper.class,
+		BufferDescriptorAdapter.class,
+		ImageDescriptorAdapter.class,
+		SampledImageDescriptorAdapter.class,
+		Texture2DArrayDescriptorAdapter.class
 })
 
 module org.sheepy.lily.vulkan.resource

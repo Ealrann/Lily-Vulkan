@@ -22,7 +22,7 @@ import org.sheepy.vulkan.model.image.ImageInfo;
  * @model
  * @generated
  */
-public interface StaticImage extends Image, ImageInfo, BasicDescriptedResource
+public interface StaticImage extends Image, ImageInfo
 {
 	/**
 	 * Returns the value of the '<em><b>Fill With Zero</b></em>' attribute.

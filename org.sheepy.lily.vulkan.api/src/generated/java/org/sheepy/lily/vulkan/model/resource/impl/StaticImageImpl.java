@@ -6,18 +6,12 @@ import java.nio.ByteBuffer;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource;
-import org.sheepy.lily.vulkan.model.resource.Descriptor;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
 
@@ -41,7 +35,6 @@ import org.sheepy.vulkan.model.image.ImagePackage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.StaticImageImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.StaticImageImpl#getTiling <em>Tiling</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.StaticImageImpl#getMipLevels <em>Mip Levels</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.StaticImageImpl#getDescriptor <em>Descriptor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.StaticImageImpl#isFillWithZero <em>Fill With Zero</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.StaticImageImpl#getFillWith <em>Fill With</em>}</li>
  * </ul>
@@ -179,16 +172,6 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 	 * @ordered
 	 */
 	protected int mipLevels = MIP_LEVELS_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getDescriptor() <em>Descriptor</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescriptor()
-	 * @generated
-	 * @ordered
-	 */
-	protected Descriptor descriptor;
 
 	/**
 	 * The default value of the '{@link #isFillWithZero() <em>Fill With Zero</em>}' attribute.
@@ -422,56 +405,6 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 	 * @generated
 	 */
 	@Override
-	public Descriptor getDescriptor()
-	{
-		return descriptor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDescriptor(Descriptor newDescriptor, NotificationChain msgs)
-	{
-		Descriptor oldDescriptor = descriptor;
-		descriptor = newDescriptor;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.STATIC_IMAGE__DESCRIPTOR, oldDescriptor, newDescriptor);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDescriptor(Descriptor newDescriptor)
-	{
-		if (newDescriptor != descriptor)
-		{
-			NotificationChain msgs = null;
-			if (descriptor != null)
-				msgs = ((InternalEObject)descriptor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.STATIC_IMAGE__DESCRIPTOR, null, msgs);
-			if (newDescriptor != null)
-				msgs = ((InternalEObject)newDescriptor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.STATIC_IMAGE__DESCRIPTOR, null, msgs);
-			msgs = basicSetDescriptor(newDescriptor, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.STATIC_IMAGE__DESCRIPTOR, newDescriptor, newDescriptor));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean isFillWithZero()
 	{
 		return fillWithZero;
@@ -522,22 +455,6 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case ResourcePackage.STATIC_IMAGE__DESCRIPTOR:
-				return basicSetDescriptor(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -556,8 +473,6 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 				return getTiling();
 			case ResourcePackage.STATIC_IMAGE__MIP_LEVELS:
 				return getMipLevels();
-			case ResourcePackage.STATIC_IMAGE__DESCRIPTOR:
-				return getDescriptor();
 			case ResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
 				return isFillWithZero();
 			case ResourcePackage.STATIC_IMAGE__FILL_WITH:
@@ -598,9 +513,6 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 				return;
 			case ResourcePackage.STATIC_IMAGE__MIP_LEVELS:
 				setMipLevels((Integer)newValue);
-				return;
-			case ResourcePackage.STATIC_IMAGE__DESCRIPTOR:
-				setDescriptor((Descriptor)newValue);
 				return;
 			case ResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
 				setFillWithZero((Boolean)newValue);
@@ -643,9 +555,6 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 			case ResourcePackage.STATIC_IMAGE__MIP_LEVELS:
 				setMipLevels(MIP_LEVELS_EDEFAULT);
 				return;
-			case ResourcePackage.STATIC_IMAGE__DESCRIPTOR:
-				setDescriptor((Descriptor)null);
-				return;
 			case ResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
 				setFillWithZero(FILL_WITH_ZERO_EDEFAULT);
 				return;
@@ -680,8 +589,6 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 				return tiling != TILING_EDEFAULT;
 			case ResourcePackage.STATIC_IMAGE__MIP_LEVELS:
 				return mipLevels != MIP_LEVELS_EDEFAULT;
-			case ResourcePackage.STATIC_IMAGE__DESCRIPTOR:
-				return descriptor != null;
 			case ResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
 				return fillWithZero != FILL_WITH_ZERO_EDEFAULT;
 			case ResourcePackage.STATIC_IMAGE__FILL_WITH:
@@ -712,14 +619,6 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 				default: return -1;
 			}
 		}
-		if (baseClass == BasicDescriptedResource.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case ResourcePackage.STATIC_IMAGE__DESCRIPTOR: return ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR;
-				default: return -1;
-			}
-		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -742,14 +641,6 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 				case ImagePackage.IMAGE_INFO__PROPERTIES: return ResourcePackage.STATIC_IMAGE__PROPERTIES;
 				case ImagePackage.IMAGE_INFO__TILING: return ResourcePackage.STATIC_IMAGE__TILING;
 				case ImagePackage.IMAGE_INFO__MIP_LEVELS: return ResourcePackage.STATIC_IMAGE__MIP_LEVELS;
-				default: return -1;
-			}
-		}
-		if (baseClass == BasicDescriptedResource.class)
-		{
-			switch (baseFeatureID)
-			{
-				case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR: return ResourcePackage.STATIC_IMAGE__DESCRIPTOR;
 				default: return -1;
 			}
 		}

@@ -12,7 +12,6 @@ import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -319,7 +318,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT__NAME = ResourcePackage.BASIC_RESOURCE__NAME;
+	int NUKLEAR_FONT__NAME = VulkanPackage.IRESOURCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Font Sampled Image</b></em>' containment reference.
@@ -328,7 +327,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT__FONT_SAMPLED_IMAGE = ResourcePackage.BASIC_RESOURCE_FEATURE_COUNT + 0;
+	int NUKLEAR_FONT__FONT_SAMPLED_IMAGE = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Font</em>' class.
@@ -337,7 +336,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT_FEATURE_COUNT = ResourcePackage.BASIC_RESOURCE_FEATURE_COUNT + 1;
+	int NUKLEAR_FONT_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Font</em>' class.
@@ -346,7 +345,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT_OPERATION_COUNT = ResourcePackage.BASIC_RESOURCE_OPERATION_COUNT + 0;
+	int NUKLEAR_FONT_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl <em>Selector Panel</em>}' class.

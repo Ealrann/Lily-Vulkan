@@ -2,8 +2,6 @@ package org.sheepy.lily.vulkan.resource.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import java.util.List;
-
 import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
@@ -11,14 +9,11 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.api.util.ImageBuffer;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
-import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.resource.image.STBImageLoader;
 import org.sheepy.vulkan.resource.image.VkImage;
 import org.sheepy.vulkan.resource.image.VkImage.Builder;
-import org.sheepy.vulkan.resource.image.VkImageDescriptor;
 import org.sheepy.vulkan.resource.image.VkTexture;
 
 @Statefull
@@ -29,8 +24,6 @@ public class FileImageAdapter implements IImageAdapter
 	private final VkTexture vkTexture;
 	private final FileImage image;
 	private final ImageBuffer imageBuffer;
-
-	private List<IVkDescriptor> descriptors = null;
 
 	public FileImageAdapter(FileImage image)
 	{
@@ -116,24 +109,6 @@ public class FileImageAdapter implements IImageAdapter
 	public long getViewPtr()
 	{
 		return vkTexture.getViewPtr();
-	}
-
-	@Override
-	public List<IVkDescriptor> getDescriptors()
-	{
-		if (descriptors == null)
-		{
-			final var descriptor = image.getDescriptor();
-			final var type = descriptor.getDescriptorType();
-			final var stages = descriptor.getShaderStages();
-			final var layout = EImageLayout.GENERAL;
-			final long viewPtr = getViewPtr();
-
-			final var vkImageDescriptor = new VkImageDescriptor(viewPtr, 0, layout, type, stages);
-			descriptors = List.of(vkImageDescriptor);
-		}
-
-		return descriptors;
 	}
 
 	public static int log2nlz(int bits)

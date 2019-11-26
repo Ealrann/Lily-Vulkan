@@ -2,9 +2,10 @@ package org.sheepy.lily.vulkan.api.resource;
 
 import org.sheepy.vulkan.resource.image.VkSampler;
 
-public interface ISamplerAdapter extends IDescriptedResourceAdapter
+public interface ISamplerAdapter extends IResourceAdapter
 {
 	VkSampler getVkSampler();
 
 	long getSamplerPtr();
+	long getViewPtr();
 }

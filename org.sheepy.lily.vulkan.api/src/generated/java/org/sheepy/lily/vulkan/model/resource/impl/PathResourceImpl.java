@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
@@ -19,13 +20,34 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.PathResourceImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.PathResourceImpl#getPath <em>Path</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class PathResourceImpl extends BasicResourceImpl implements PathResource
+public abstract class PathResourceImpl extends LilyEObject implements PathResource
 {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getPath() <em>Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -73,6 +95,31 @@ public abstract class PathResourceImpl extends BasicResourceImpl implements Path
 	 * @generated
 	 */
 	@Override
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.PATH_RESOURCE__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String getPath()
 	{
 		return path;
@@ -102,6 +149,8 @@ public abstract class PathResourceImpl extends BasicResourceImpl implements Path
 	{
 		switch (featureID)
 		{
+			case ResourcePackage.PATH_RESOURCE__NAME:
+				return getName();
 			case ResourcePackage.PATH_RESOURCE__PATH:
 				return getPath();
 		}
@@ -118,6 +167,9 @@ public abstract class PathResourceImpl extends BasicResourceImpl implements Path
 	{
 		switch (featureID)
 		{
+			case ResourcePackage.PATH_RESOURCE__NAME:
+				setName((String)newValue);
+				return;
 			case ResourcePackage.PATH_RESOURCE__PATH:
 				setPath((String)newValue);
 				return;
@@ -135,6 +187,9 @@ public abstract class PathResourceImpl extends BasicResourceImpl implements Path
 	{
 		switch (featureID)
 		{
+			case ResourcePackage.PATH_RESOURCE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case ResourcePackage.PATH_RESOURCE__PATH:
 				setPath(PATH_EDEFAULT);
 				return;
@@ -152,6 +207,8 @@ public abstract class PathResourceImpl extends BasicResourceImpl implements Path
 	{
 		switch (featureID)
 		{
+			case ResourcePackage.PATH_RESOURCE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ResourcePackage.PATH_RESOURCE__PATH:
 				return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
 		}
@@ -169,7 +226,9 @@ public abstract class PathResourceImpl extends BasicResourceImpl implements Path
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (path: ");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", path: ");
 		result.append(path);
 		result.append(')');
 		return result.toString();

@@ -21,7 +21,6 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getInstanceCount <em>Instance Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource <em>Data Source</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getFirstDescriptor <em>First Descriptor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#isUsedToPush <em>Used To Push</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#isUsedToFetch <em>Used To Fetch</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getStageBeforePush <em>Stage Before Push</em>}</li>
@@ -105,29 +104,6 @@ public interface BufferDataProvider<T> extends LNamedElement
 	 * @generated
 	 */
 	void setDataSource(T value);
-
-	/**
-	 * Returns the value of the '<em><b>First Descriptor</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>First Descriptor</em>' attribute.
-	 * @see #setFirstDescriptor(int)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_FirstDescriptor()
-	 * @model default="0" required="true"
-	 * @generated
-	 */
-	int getFirstDescriptor();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getFirstDescriptor <em>First Descriptor</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>First Descriptor</em>' attribute.
-	 * @see #getFirstDescriptor()
-	 * @generated
-	 */
-	void setFirstDescriptor(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Used To Push</b></em>' attribute.

@@ -25,15 +25,15 @@ import org.sheepy.lily.core.model.types.LNamedElement;
 public interface DescriptorSet extends LNamedElement
 {
 	/**
-	 * Returns the value of the '<em><b>Descriptors</b></em>' reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.DescriptedResource}.
+	 * Returns the value of the '<em><b>Descriptors</b></em>' containment reference list.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.Descriptor}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Descriptors</em>' reference list.
+	 * @return the value of the '<em>Descriptors</em>' containment reference list.
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getDescriptorSet_Descriptors()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<DescriptedResource> getDescriptors();
+	EList<Descriptor> getDescriptors();
 
 } // DescriptorSet

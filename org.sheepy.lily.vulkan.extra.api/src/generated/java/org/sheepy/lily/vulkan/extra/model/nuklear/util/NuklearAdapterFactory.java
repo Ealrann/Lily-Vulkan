@@ -25,9 +25,6 @@ import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 
-import org.sheepy.lily.vulkan.model.resource.BasicResource;
-import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
-
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
@@ -145,16 +142,6 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIResource(IResource object)
 			{
 				return createIResourceAdapter();
-			}
-			@Override
-			public Adapter caseDescriptedResource(DescriptedResource object)
-			{
-				return createDescriptedResourceAdapter();
-			}
-			@Override
-			public Adapter caseBasicResource(BasicResource object)
-			{
-				return createBasicResourceAdapter();
 			}
 			@Override
 			public Adapter caseIInferenceObject(IInferenceObject object)
@@ -374,36 +361,6 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIResourceAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DescriptedResource <em>Descripted Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.DescriptedResource
-	 * @generated
-	 */
-	public Adapter createDescriptedResourceAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.BasicResource
-	 * @generated
-	 */
-	public Adapter createBasicResourceAdapter()
 	{
 		return null;
 	}

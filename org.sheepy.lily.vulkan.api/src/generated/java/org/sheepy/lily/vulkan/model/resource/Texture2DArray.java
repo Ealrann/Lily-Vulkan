@@ -3,6 +3,8 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
+import org.sheepy.lily.vulkan.model.IResource;
+import org.sheepy.vulkan.model.image.ImageLayout;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,13 +17,14 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray#getFiles <em>Files</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray#isMipmapEnabled <em>Mipmap Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray#getInitialLayout <em>Initial Layout</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getTexture2DArray()
  * @model
  * @generated
  */
-public interface Texture2DArray extends Image, BasicDescriptedResource
+public interface Texture2DArray extends IResource
 {
 	/**
 	 * Returns the value of the '<em><b>Files</b></em>' containment reference list.
@@ -57,5 +60,27 @@ public interface Texture2DArray extends Image, BasicDescriptedResource
 	 * @generated
 	 */
 	void setMipmapEnabled(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Initial Layout</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Initial Layout</em>' containment reference.
+	 * @see #setInitialLayout(ImageLayout)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getTexture2DArray_InitialLayout()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ImageLayout getInitialLayout();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray#getInitialLayout <em>Initial Layout</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Initial Layout</em>' containment reference.
+	 * @see #getInitialLayout()
+	 * @generated
+	 */
+	void setInitialLayout(ImageLayout value);
 
 } // Texture2DArray

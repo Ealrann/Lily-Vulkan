@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.nuklear;
 
-import org.sheepy.lily.vulkan.model.resource.BasicResource;
+import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 
 /**
@@ -21,7 +21,7 @@ import org.sheepy.lily.vulkan.model.resource.SampledImage;
  * @model
  * @generated
  */
-public interface NuklearFont extends BasicResource
+public interface NuklearFont extends IResource
 {
 	/**
 	 * Returns the value of the '<em><b>Font Sampled Image</b></em>' containment reference.

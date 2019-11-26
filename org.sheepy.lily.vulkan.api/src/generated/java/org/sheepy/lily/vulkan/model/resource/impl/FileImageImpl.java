@@ -9,9 +9,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource;
-import org.sheepy.lily.vulkan.model.resource.Descriptor;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
@@ -24,7 +21,6 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.FileImageImpl#getDescriptor <em>Descriptor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.FileImageImpl#getFile <em>File</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.FileImageImpl#isMipmapEnabled <em>Mipmap Enabled</em>}</li>
  * </ul>
@@ -33,16 +29,6 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  */
 public class FileImageImpl extends ImageImpl implements FileImage
 {
-	/**
-	 * The cached value of the '{@link #getDescriptor() <em>Descriptor</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescriptor()
-	 * @generated
-	 * @ordered
-	 */
-	protected Descriptor descriptor;
-
 	/**
 	 * The cached value of the '{@link #getFile() <em>File</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -92,56 +78,6 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	protected EClass eStaticClass()
 	{
 		return ResourcePackage.Literals.FILE_IMAGE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Descriptor getDescriptor()
-	{
-		return descriptor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDescriptor(Descriptor newDescriptor, NotificationChain msgs)
-	{
-		Descriptor oldDescriptor = descriptor;
-		descriptor = newDescriptor;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.FILE_IMAGE__DESCRIPTOR, oldDescriptor, newDescriptor);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDescriptor(Descriptor newDescriptor)
-	{
-		if (newDescriptor != descriptor)
-		{
-			NotificationChain msgs = null;
-			if (descriptor != null)
-				msgs = ((InternalEObject)descriptor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.FILE_IMAGE__DESCRIPTOR, null, msgs);
-			if (newDescriptor != null)
-				msgs = ((InternalEObject)newDescriptor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.FILE_IMAGE__DESCRIPTOR, null, msgs);
-			msgs = basicSetDescriptor(newDescriptor, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.FILE_IMAGE__DESCRIPTOR, newDescriptor, newDescriptor));
 	}
 
 	/**
@@ -229,8 +165,6 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FILE_IMAGE__DESCRIPTOR:
-				return basicSetDescriptor(null, msgs);
 			case ResourcePackage.FILE_IMAGE__FILE:
 				return basicSetFile(null, msgs);
 		}
@@ -247,8 +181,6 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FILE_IMAGE__DESCRIPTOR:
-				return getDescriptor();
 			case ResourcePackage.FILE_IMAGE__FILE:
 				return getFile();
 			case ResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
@@ -267,9 +199,6 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FILE_IMAGE__DESCRIPTOR:
-				setDescriptor((Descriptor)newValue);
-				return;
 			case ResourcePackage.FILE_IMAGE__FILE:
 				setFile((PathResource)newValue);
 				return;
@@ -290,9 +219,6 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FILE_IMAGE__DESCRIPTOR:
-				setDescriptor((Descriptor)null);
-				return;
 			case ResourcePackage.FILE_IMAGE__FILE:
 				setFile((PathResource)null);
 				return;
@@ -313,52 +239,12 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FILE_IMAGE__DESCRIPTOR:
-				return descriptor != null;
 			case ResourcePackage.FILE_IMAGE__FILE:
 				return file != null;
 			case ResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
 				return mipmapEnabled != MIPMAP_ENABLED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
-	{
-		if (baseClass == BasicDescriptedResource.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case ResourcePackage.FILE_IMAGE__DESCRIPTOR: return ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
-	{
-		if (baseClass == BasicDescriptedResource.class)
-		{
-			switch (baseFeatureID)
-			{
-				case ResourcePackage.BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR: return ResourcePackage.FILE_IMAGE__DESCRIPTOR;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

@@ -1,7 +1,11 @@
 package org.sheepy.lily.vulkan.demo.test.composite.instance.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.sheepy.lily.vulkan.demo.test.composite.instance.adapter.InstanceDataProviderAdapter;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.CompositeBufferReference;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Shader;
@@ -18,9 +22,6 @@ class InstanceTestResourceFactory
 	{
 		final var transferBuffer = buildTransferBuffer();
 		final var compositeBuffer = buildCompositeBuffer(transferBuffer, instanceCount);
-		final var ds = ResourceFactory.eINSTANCE.createDescriptorSet();
-		ds.getDescriptors().add(compositeBuffer);
-
 		final var shader = ResourceFactory.eINSTANCE.createShader();
 		final var moduleResource = ResourceFactory.eINSTANCE.createModuleResource();
 		moduleResource.setModule(InstanceTaskManager.class.getModule());
@@ -28,7 +29,26 @@ class InstanceTestResourceFactory
 		shader.setFile(moduleResource);
 		shader.setStage(EShaderStage.COMPUTE_BIT);
 
-		return new ResourceContainer(transferBuffer, compositeBuffer, ds, shader);
+		final var ds = ResourceFactory.eINSTANCE.createDescriptorSet();
+
+		final List<CompositeBufferReference> refs = new ArrayList<>();
+		for (int i = 0; i < 2; i++)
+		{
+			final var reference = ResourceFactory.eINSTANCE.createCompositeBufferReference();
+			reference.setBuffer(compositeBuffer);
+			reference.setPart(0);
+			reference.setInstance(i);
+			refs.add(reference);
+
+			final var descriptor = ResourceFactory.eINSTANCE.createBufferDescriptor();
+			descriptor.setDescriptorType(EDescriptorType.STORAGE_BUFFER);
+			descriptor.getShaderStages().add(EShaderStage.COMPUTE_BIT);
+			descriptor.setBufferReference(reference);
+
+			ds.getDescriptors().add(descriptor);
+		}
+
+		return new ResourceContainer(transferBuffer, compositeBuffer, ds, refs, shader);
 	}
 
 	public static final class ResourceContainer
@@ -37,16 +57,25 @@ class InstanceTestResourceFactory
 		public final CompositeBuffer compositeBuffer;
 		public final DescriptorSet ds;
 		public final Shader shader;
+		public final List<CompositeBufferReference> refs;
 
 		public ResourceContainer(	TransferBuffer transferBuffer,
 									CompositeBuffer compositeBuffer,
 									DescriptorSet ds,
+									List<CompositeBufferReference> refs,
 									Shader shader)
 		{
 			this.transferBuffer = transferBuffer;
 			this.compositeBuffer = compositeBuffer;
 			this.ds = ds;
+			this.refs = List.copyOf(refs);
 			this.shader = shader;
+		}
+
+		public void setupDescriptor(int first, int second)
+		{
+			refs.get(0).setInstance(first);
+			refs.get(1).setInstance(second);
 		}
 	}
 
@@ -66,12 +95,7 @@ class InstanceTestResourceFactory
 
 		res.setTransferBuffer(transferBuffer);
 
-		final var descriptor = ResourceFactory.eINSTANCE.createDescriptor();
-		descriptor.setDescriptorType(EDescriptorType.STORAGE_BUFFER);
-		descriptor.getShaderStages().add(EShaderStage.COMPUTE_BIT);
-
-		final var providers = res.getDataProviders();
-		final var provider = ResourceFactory.eINSTANCE.createDescribedDataProvider();
+		final var provider = ResourceFactory.eINSTANCE.createBufferDataProvider();
 		provider.setName(InstanceDataProviderAdapter.NAME);
 		provider.setUsage(EBufferUsage.STORAGE_BUFFER_BIT);
 		provider.setStageBeforePush(EPipelineStage.TRANSFER_BIT);
@@ -79,8 +103,8 @@ class InstanceTestResourceFactory
 		provider.getAccessBeforeFetch().add(EAccess.SHADER_WRITE_BIT);
 		provider.setUsedToFetch(true);
 		provider.setInstanceCount(instanceCount);
-		provider.setDescriptor(descriptor);
 
+		final var providers = res.getDataProviders();
 		providers.add(provider);
 
 		return res;

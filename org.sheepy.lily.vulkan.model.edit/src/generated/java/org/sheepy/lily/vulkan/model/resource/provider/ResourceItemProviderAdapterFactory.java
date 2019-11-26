@@ -90,31 +90,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BasicResource} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BasicResourceItemProvider basicResourceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.BasicResource}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createBasicResourceAdapter()
-	{
-		if (basicResourceItemProvider == null)
-		{
-			basicResourceItemProvider = new BasicResourceItemProvider(this);
-		}
-
-		return basicResourceItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.TransferBuffer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -290,31 +265,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.DescribedDataProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DescribedDataProviderItemProvider describedDataProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.DescribedDataProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDescribedDataProviderAdapter()
-	{
-		if (describedDataProviderItemProvider == null)
-		{
-			describedDataProviderItemProvider = new DescribedDataProviderItemProvider(this);
-		}
-
-		return describedDataProviderItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.StaticImage} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -465,28 +415,128 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Descriptor} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BufferDescriptor} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DescriptorItemProvider descriptorItemProvider;
+	protected BufferDescriptorItemProvider bufferDescriptorItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Descriptor}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferDescriptor}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createDescriptorAdapter()
+	public Adapter createBufferDescriptorAdapter()
 	{
-		if (descriptorItemProvider == null)
+		if (bufferDescriptorItemProvider == null)
 		{
-			descriptorItemProvider = new DescriptorItemProvider(this);
+			bufferDescriptorItemProvider = new BufferDescriptorItemProvider(this);
 		}
 
-		return descriptorItemProvider;
+		return bufferDescriptorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ImageDescriptor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ImageDescriptorItemProvider imageDescriptorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageDescriptor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createImageDescriptorAdapter()
+	{
+		if (imageDescriptorItemProvider == null)
+		{
+			imageDescriptorItemProvider = new ImageDescriptorItemProvider(this);
+		}
+
+		return imageDescriptorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SampledImageDescriptorItemProvider sampledImageDescriptorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSampledImageDescriptorAdapter()
+	{
+		if (sampledImageDescriptorItemProvider == null)
+		{
+			sampledImageDescriptorItemProvider = new SampledImageDescriptorItemProvider(this);
+		}
+
+		return sampledImageDescriptorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.SamplerDescriptor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SamplerDescriptorItemProvider samplerDescriptorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.SamplerDescriptor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSamplerDescriptorAdapter()
+	{
+		if (samplerDescriptorItemProvider == null)
+		{
+			samplerDescriptorItemProvider = new SamplerDescriptorItemProvider(this);
+		}
+
+		return samplerDescriptorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Texture2DArrayDescriptorItemProvider texture2DArrayDescriptorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTexture2DArrayDescriptorAdapter()
+	{
+		if (texture2DArrayDescriptorItemProvider == null)
+		{
+			texture2DArrayDescriptorItemProvider = new Texture2DArrayDescriptorItemProvider(this);
+		}
+
+		return texture2DArrayDescriptorItemProvider;
 	}
 
 	/**
@@ -888,7 +938,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	@Override
 	public void dispose()
 	{
-		if (basicResourceItemProvider != null) basicResourceItemProvider.dispose();
 		if (transferBufferItemProvider != null) transferBufferItemProvider.dispose();
 		if (constantBufferItemProvider != null) constantBufferItemProvider.dispose();
 		if (bufferItemProvider != null) bufferItemProvider.dispose();
@@ -896,14 +945,17 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (bufferReferenceItemProvider != null) bufferReferenceItemProvider.dispose();
 		if (compositeBufferReferenceItemProvider != null) compositeBufferReferenceItemProvider.dispose();
 		if (bufferDataProviderItemProvider != null) bufferDataProviderItemProvider.dispose();
-		if (describedDataProviderItemProvider != null) describedDataProviderItemProvider.dispose();
 		if (staticImageItemProvider != null) staticImageItemProvider.dispose();
 		if (fileImageItemProvider != null) fileImageItemProvider.dispose();
 		if (sampledImageItemProvider != null) sampledImageItemProvider.dispose();
 		if (samplerItemProvider != null) samplerItemProvider.dispose();
 		if (semaphoreItemProvider != null) semaphoreItemProvider.dispose();
 		if (fontImageItemProvider != null) fontImageItemProvider.dispose();
-		if (descriptorItemProvider != null) descriptorItemProvider.dispose();
+		if (bufferDescriptorItemProvider != null) bufferDescriptorItemProvider.dispose();
+		if (imageDescriptorItemProvider != null) imageDescriptorItemProvider.dispose();
+		if (sampledImageDescriptorItemProvider != null) sampledImageDescriptorItemProvider.dispose();
+		if (samplerDescriptorItemProvider != null) samplerDescriptorItemProvider.dispose();
+		if (texture2DArrayDescriptorItemProvider != null) texture2DArrayDescriptorItemProvider.dispose();
 		if (descriptorSetItemProvider != null) descriptorSetItemProvider.dispose();
 		if (descriptorSetPkgItemProvider != null) descriptorSetPkgItemProvider.dispose();
 		if (bufferBarrierItemProvider != null) bufferBarrierItemProvider.dispose();

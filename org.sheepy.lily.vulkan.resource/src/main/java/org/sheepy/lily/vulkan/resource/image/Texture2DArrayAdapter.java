@@ -11,13 +11,11 @@ import org.sheepy.lily.vulkan.api.resource.ITexture2DArrayAdapter;
 import org.sheepy.lily.vulkan.api.util.ImageBuffer;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
-import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.image.STBImageLoader;
 import org.sheepy.vulkan.resource.image.VkImage;
 import org.sheepy.vulkan.resource.image.VkImage.Builder;
-import org.sheepy.vulkan.resource.image.VkImageArrayDescriptor;
 import org.sheepy.vulkan.resource.image.VkTexture;
 
 @Statefull
@@ -27,8 +25,6 @@ public final class Texture2DArrayAdapter implements ITexture2DArrayAdapter
 	private final Texture2DArray textureArray;
 	private final STBImageLoader imageLoader = new STBImageLoader();
 	private final List<FileTextureWrapper> textureWrappers;
-
-	private List<IVkDescriptor> descriptors = null;
 
 	public Texture2DArrayAdapter(Texture2DArray textureArray)
 	{
@@ -91,27 +87,17 @@ public final class Texture2DArrayAdapter implements ITexture2DArrayAdapter
 	}
 
 	@Override
-	public List<IVkDescriptor> getDescriptors()
+	public long[] getViewPtrs()
 	{
-		if (descriptors == null)
+		final int size = textureWrappers.size();
+		final long[] viewPtrs = new long[size];
+
+		for (int i = 0; i < size; i++)
 		{
-			final var descriptor = textureArray.getDescriptor();
-			final var type = descriptor.getDescriptorType();
-			final var stages = descriptor.getShaderStages();
-			final var layout = textureArray.getInitialLayout().getLayout();
-			final long[] viewPtrs = new long[textureArray.getFiles().size()];
-
-			for (int i = 0; i < textureWrappers.size(); i++)
-			{
-				final var wrapper = textureWrappers.get(i);
-				viewPtrs[i] = wrapper.texture.getViewPtr();
-			}
-
-			final var vkDescriptor = new VkImageArrayDescriptor(viewPtrs, layout, type, stages);
-			descriptors = List.of(vkDescriptor);
+			final var wrapper = textureWrappers.get(i);
+			viewPtrs[i] = wrapper.texture.getViewPtr();
 		}
-
-		return descriptors;
+		return viewPtrs;
 	}
 
 	public static int log2nlz(int bits)

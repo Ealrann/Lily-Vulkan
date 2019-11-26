@@ -11,7 +11,7 @@ public class MainCompositeInstanceTest
 	public static void main(String[] args)
 	{
 		final var factory = new InstanceModelFactory();
-		final var mainLoop = new MainLoop(factory);
+		final var mainLoop = new MainLoop(factory, 150);
 
 		LilyLauncher.launch(factory.application, mainLoop);
 	}
@@ -19,13 +19,15 @@ public class MainCompositeInstanceTest
 	static final class MainLoop implements IMainLoop
 	{
 		private final InstanceModelFactory factory;
+		private final int maxCount;
 
 		private IProcessAdapter processAdapter;
 		private int count = 0;
 
-		public MainLoop(InstanceModelFactory factory)
+		public MainLoop(InstanceModelFactory factory, int maxCount)
 		{
 			this.factory = factory;
+			this.maxCount = maxCount;
 		}
 
 		@Override
@@ -40,7 +42,7 @@ public class MainCompositeInstanceTest
 
 			count++;
 
-			if (count == 100)
+			if (count == maxCount)
 			{
 				factory.application.setRun(false);
 			}

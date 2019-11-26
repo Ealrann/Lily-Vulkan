@@ -13,7 +13,7 @@ import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider;
 
-import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
+import org.sheepy.lily.vulkan.model.IResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +38,7 @@ public class StaticResourceProviderImpl extends LilyEObject implements StaticRes
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DescriptedResource> resources;
+	protected EList<IResource> resources;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,11 +66,11 @@ public class StaticResourceProviderImpl extends LilyEObject implements StaticRes
 	 * @generated
 	 */
 	@Override
-	public EList<DescriptedResource> getResources()
+	public EList<IResource> getResources()
 	{
 		if (resources == null)
 		{
-			resources = new EObjectResolvingEList<DescriptedResource>(DescriptedResource.class, this, RenderingPackage.STATIC_RESOURCE_PROVIDER__RESOURCES);
+			resources = new EObjectResolvingEList<IResource>(IResource.class, this, RenderingPackage.STATIC_RESOURCE_PROVIDER__RESOURCES);
 		}
 		return resources;
 	}
@@ -104,7 +104,7 @@ public class StaticResourceProviderImpl extends LilyEObject implements StaticRes
 		{
 			case RenderingPackage.STATIC_RESOURCE_PROVIDER__RESOURCES:
 				getResources().clear();
-				getResources().addAll((Collection<? extends DescriptedResource>)newValue);
+				getResources().addAll((Collection<? extends IResource>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

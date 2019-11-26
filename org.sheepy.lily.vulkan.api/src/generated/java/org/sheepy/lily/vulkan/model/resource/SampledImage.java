@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
+import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.vulkan.model.image.SamplerInfo;
 
 /**
@@ -21,7 +22,7 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  * @model
  * @generated
  */
-public interface SampledImage extends BasicDescriptedResource
+public interface SampledImage extends IResource
 {
 	/**
 	 * Returns the value of the '<em><b>Sampler</b></em>' containment reference.

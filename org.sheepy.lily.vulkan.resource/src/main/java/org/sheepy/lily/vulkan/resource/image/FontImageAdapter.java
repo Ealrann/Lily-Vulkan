@@ -6,7 +6,6 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
-import java.util.List;
 
 import org.lwjgl.stb.STBTTFontinfo;
 import org.lwjgl.stb.STBTTPackContext;
@@ -18,7 +17,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IFontImageAdapter;
 import org.sheepy.lily.vulkan.api.resource.IPathResourceAdapter;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
-import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.log.Logger;
@@ -189,12 +187,6 @@ public class FontImageAdapter implements IFontImageAdapter
 	public float getScale()
 	{
 		return scale;
-	}
-
-	@Override
-	public List<IVkDescriptor> getDescriptors()
-	{
-		return List.of();
 	}
 
 	@Override

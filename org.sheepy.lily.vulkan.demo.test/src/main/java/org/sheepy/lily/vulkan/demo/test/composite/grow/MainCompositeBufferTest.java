@@ -11,7 +11,7 @@ public class MainCompositeBufferTest
 	public static void main(String[] args)
 	{
 		final var factory = new ModelFactory();
-		final var mainLoop = new MainLoop(factory);
+		final var mainLoop = new MainLoop(factory, 200);
 
 		LilyLauncher.launch(factory.application, mainLoop);
 	}
@@ -19,13 +19,15 @@ public class MainCompositeBufferTest
 	static final class MainLoop implements IMainLoop
 	{
 		private final ModelFactory factory;
+		private final int maxCount;
 
 		private IProcessAdapter processAdapter;
 		private int count = 0;
 
-		public MainLoop(ModelFactory factory)
+		public MainLoop(ModelFactory factory, int maxCount)
 		{
 			this.factory = factory;
+			this.maxCount = maxCount;
 		}
 
 		@Override
@@ -41,7 +43,7 @@ public class MainCompositeBufferTest
 			count++;
 
 			// System.out.println("Step " + count);
-			if (count == 150)
+			if (count == maxCount)
 			{
 				factory.application.setRun(false);
 			}
