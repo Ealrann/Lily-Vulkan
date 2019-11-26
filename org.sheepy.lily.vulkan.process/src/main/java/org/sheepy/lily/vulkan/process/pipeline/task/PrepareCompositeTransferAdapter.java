@@ -5,14 +5,13 @@ import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.ICompositeBufferAdapter;
 import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @Adapter(scope = PrepareCompositeTransfer.class)
 public class PrepareCompositeTransferAdapter
 		implements IPipelineTaskAdapter<PrepareCompositeTransfer>
 {
 	@Override
-	public void record(PrepareCompositeTransfer task, RecordContext context)
+	public void update(PrepareCompositeTransfer task, int index)
 	{
 		final var compositeBuffer = task.getCompositeBuffer();
 		final var adapter = compositeBuffer.adapt(ICompositeBufferAdapter.class);
@@ -21,17 +20,12 @@ public class PrepareCompositeTransferAdapter
 	}
 
 	@Override
-	public boolean needRecord(PrepareCompositeTransfer task, int index)
-	{
-		final var compositeBuffer = task.getCompositeBuffer();
-		final var adapter = compositeBuffer.adapt(ICompositeBufferAdapter.class);
-
-		return adapter.needRecord();
-	}
+	public void record(PrepareCompositeTransfer task, RecordContext context)
+	{}
 
 	@Override
-	public ECommandStage getStage(PrepareCompositeTransfer task)
+	public boolean needRecord(PrepareCompositeTransfer task, int index)
 	{
-		return task.getStage();
+		return false;
 	}
 }

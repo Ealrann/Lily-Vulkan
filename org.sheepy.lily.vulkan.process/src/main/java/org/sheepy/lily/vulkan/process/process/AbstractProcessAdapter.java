@@ -260,7 +260,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 
 	private void prepareRecord(int index)
 	{
-		updatePipelines();
+		updatePipelines(index);
 
 		if (isRecordNeeded(index))
 		{
@@ -314,14 +314,14 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 		return dirty;
 	}
 
-	private void updatePipelines()
+	private void updatePipelines(int index)
 	{
 		for (int i = 0; i < partAdapters.size(); i++)
 		{
 			final var pipelineAdapter = partAdapters.get(i);
 			if (pipelineAdapter.isActive())
 			{
-				pipelineAdapter.update();
+				pipelineAdapter.update(index);
 			}
 		}
 	}

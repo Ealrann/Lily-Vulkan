@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.extra.model.nuklear.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -32,9 +33,11 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFactory;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
+import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants;
+import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
@@ -112,6 +115,20 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	private EClass panelViewerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass nuklearVertexProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass nuklearIndexProviderEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -295,7 +312,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getNuklearLayoutTask_TransferBuffer()
+	public EReference getNuklearLayoutTask_VertexBuffer()
 	{
 		return (EReference)nuklearLayoutTaskEClass.getEStructuralFeatures().get(2);
 	}
@@ -306,20 +323,9 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getNuklearLayoutTask_VertexBuffer()
-	{
-		return (EReference)nuklearLayoutTaskEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getNuklearLayoutTask_ImageArray()
 	{
-		return (EReference)nuklearLayoutTaskEClass.getEStructuralFeatures().get(4);
+		return (EReference)nuklearLayoutTaskEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -548,6 +554,50 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getNuklearVertexProvider()
+	{
+		return nuklearVertexProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getNuklearVertexProvider_Context()
+	{
+		return (EReference)nuklearVertexProviderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getNuklearIndexProvider()
+	{
+		return nuklearIndexProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getNuklearIndexProvider_Context()
+	{
+		return (EReference)nuklearIndexProviderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NuklearFactory getNuklearFactory()
 	{
 		return (NuklearFactory)getEFactoryInstance();
@@ -581,7 +631,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		nuklearLayoutTaskEClass = createEClass(NUKLEAR_LAYOUT_TASK);
 		createEReference(nuklearLayoutTaskEClass, NUKLEAR_LAYOUT_TASK__CONTEXT);
 		createEReference(nuklearLayoutTaskEClass, NUKLEAR_LAYOUT_TASK__DRAW_TASK);
-		createEReference(nuklearLayoutTaskEClass, NUKLEAR_LAYOUT_TASK__TRANSFER_BUFFER);
 		createEReference(nuklearLayoutTaskEClass, NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER);
 		createEReference(nuklearLayoutTaskEClass, NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY);
 
@@ -609,6 +658,12 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 
 		panelViewerEClass = createEClass(PANEL_VIEWER);
 		createEReference(panelViewerEClass, PANEL_VIEWER__VARIABLE_RESOLVER);
+
+		nuklearVertexProviderEClass = createEClass(NUKLEAR_VERTEX_PROVIDER);
+		createEReference(nuklearVertexProviderEClass, NUKLEAR_VERTEX_PROVIDER__CONTEXT);
+
+		nuklearIndexProviderEClass = createEClass(NUKLEAR_INDEX_PROVIDER);
+		createEReference(nuklearIndexProviderEClass, NUKLEAR_INDEX_PROVIDER__CONTEXT);
 	}
 
 	/**
@@ -655,6 +710,14 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		nuklearFontEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		selectorPanelEClass.getESuperTypes().add(thePresentationPackage.getIPanel());
 		panelViewerEClass.getESuperTypes().add(theUiPackage.getPanel());
+		EGenericType g1 = createEGenericType(theResourcePackage.getBufferDataProvider());
+		EGenericType g2 = createEGenericType(this.getNuklearContext());
+		g1.getETypeArguments().add(g2);
+		nuklearVertexProviderEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theResourcePackage.getBufferDataProvider());
+		g2 = createEGenericType(this.getNuklearContext());
+		g1.getETypeArguments().add(g2);
+		nuklearIndexProviderEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(nuklearPushConstantsEClass, NuklearPushConstants.class, "NuklearPushConstants", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -665,8 +728,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		initEClass(nuklearLayoutTaskEClass, NuklearLayoutTask.class, "NuklearLayoutTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNuklearLayoutTask_Context(), this.getNuklearContext(), this.getNuklearContext_LayoutTask(), "context", null, 1, 1, NuklearLayoutTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearLayoutTask_DrawTask(), theProcessPackage.getCompositeTask(), null, "drawTask", null, 0, 1, NuklearLayoutTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNuklearLayoutTask_TransferBuffer(), theResourcePackage.getTransferBuffer(), null, "transferBuffer", null, 0, 1, NuklearLayoutTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNuklearLayoutTask_VertexBuffer(), theResourcePackage.getBuffer(), null, "vertexBuffer", null, 0, 1, NuklearLayoutTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNuklearLayoutTask_VertexBuffer(), theResourcePackage.getCompositeBuffer(), null, "vertexBuffer", null, 1, 1, NuklearLayoutTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearLayoutTask_ImageArray(), theResourcePackage.getTexture2DArray(), null, "imageArray", null, 0, 1, NuklearLayoutTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nuklearContextEClass, NuklearContext.class, "NuklearContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -693,6 +755,12 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 
 		initEClass(panelViewerEClass, PanelViewer.class, "PanelViewer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPanelViewer_VariableResolver(), theVariablePackage.getDirectVariableResolver(), null, "variableResolver", null, 1, 1, PanelViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(nuklearVertexProviderEClass, NuklearVertexProvider.class, "NuklearVertexProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNuklearVertexProvider_Context(), this.getNuklearContext(), null, "context", null, 1, 1, NuklearVertexProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(nuklearIndexProviderEClass, NuklearIndexProvider.class, "NuklearIndexProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNuklearIndexProvider_Context(), this.getNuklearContext(), null, "context", null, 1, 1, NuklearIndexProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -26,12 +26,10 @@ public class TaskManager
 		this.instanceCount = instanceCount;
 		preparePush.setCompositeBuffer(resourceContainer.compositeBuffer);
 		preparePush.setMode(EFlushMode.PUSH);
-		preparePush.setStage(ECommandStage.TRANSFER);
 		pushTask.setTransferBuffer(resourceContainer.transferBuffer);
 		pushTask.setStage(ECommandStage.TRANSFER);
 		prepareFetch.setCompositeBuffer(resourceContainer.compositeBuffer);
 		prepareFetch.setMode(EFlushMode.FETCH);
-		prepareFetch.setStage(ECommandStage.TRANSFER);
 		fetchTask.setTransferBuffer(resourceContainer.transferBuffer);
 		fetchTask.setStage(ECommandStage.TRANSFER);
 	}

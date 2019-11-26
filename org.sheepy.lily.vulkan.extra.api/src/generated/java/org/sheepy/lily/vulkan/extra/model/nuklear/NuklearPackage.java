@@ -12,6 +12,7 @@ import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -191,22 +192,13 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_LAYOUT_TASK__DRAW_TASK = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Transfer Buffer</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_LAYOUT_TASK__TRANSFER_BUFFER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Vertex Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 3;
+	int NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Image Array</b></em>' reference.
@@ -215,7 +207,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 4;
+	int NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Layout Task</em>' class.
@@ -224,7 +216,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_LAYOUT_TASK_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 5;
+	int NUKLEAR_LAYOUT_TASK_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Layout Task</em>' class.
@@ -774,6 +766,260 @@ public interface NuklearPackage extends EPackage
 	int PANEL_VIEWER_OPERATION_COUNT = UiPackage.PANEL_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearVertexProviderImpl <em>Vertex Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearVertexProviderImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getNuklearVertexProvider()
+	 * @generated
+	 */
+	int NUKLEAR_VERTEX_PROVIDER = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER__NAME = ResourcePackage.BUFFER_DATA_PROVIDER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Usage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER__USAGE = ResourcePackage.BUFFER_DATA_PROVIDER__USAGE;
+
+	/**
+	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER__INSTANCE_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT;
+
+	/**
+	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER__DATA_SOURCE = ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER__USED_TO_PUSH = ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH;
+
+	/**
+	 * The feature id for the '<em><b>Used To Fetch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER__USED_TO_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_FETCH;
+
+	/**
+	 * The feature id for the '<em><b>Stage Before Push</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER__STAGE_BEFORE_PUSH = ResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH;
+
+	/**
+	 * The feature id for the '<em><b>Access Before Push</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER__ACCESS_BEFORE_PUSH = ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH;
+
+	/**
+	 * The feature id for the '<em><b>Stage Before Fetch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER__STAGE_BEFORE_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH;
+
+	/**
+	 * The feature id for the '<em><b>Access Before Fetch</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER__ACCESS_BEFORE_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER__CONTEXT = ResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Vertex Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER_FEATURE_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Vertex Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER_OPERATION_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearIndexProviderImpl <em>Index Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearIndexProviderImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getNuklearIndexProvider()
+	 * @generated
+	 */
+	int NUKLEAR_INDEX_PROVIDER = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER__NAME = ResourcePackage.BUFFER_DATA_PROVIDER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Usage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER__USAGE = ResourcePackage.BUFFER_DATA_PROVIDER__USAGE;
+
+	/**
+	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER__INSTANCE_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT;
+
+	/**
+	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER__DATA_SOURCE = ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER__USED_TO_PUSH = ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH;
+
+	/**
+	 * The feature id for the '<em><b>Used To Fetch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER__USED_TO_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_FETCH;
+
+	/**
+	 * The feature id for the '<em><b>Stage Before Push</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER__STAGE_BEFORE_PUSH = ResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH;
+
+	/**
+	 * The feature id for the '<em><b>Access Before Push</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER__ACCESS_BEFORE_PUSH = ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH;
+
+	/**
+	 * The feature id for the '<em><b>Stage Before Fetch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER__STAGE_BEFORE_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH;
+
+	/**
+	 * The feature id for the '<em><b>Access Before Fetch</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER__ACCESS_BEFORE_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER__CONTEXT = ResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Index Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER_FEATURE_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Index Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER_OPERATION_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants <em>Push Constants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -847,17 +1093,6 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 */
 	EReference getNuklearLayoutTask_DrawTask();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getTransferBuffer <em>Transfer Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Transfer Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getTransferBuffer()
-	 * @see #getNuklearLayoutTask()
-	 * @generated
-	 */
-	EReference getNuklearLayoutTask_TransferBuffer();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getVertexBuffer <em>Vertex Buffer</em>}'.
@@ -1097,6 +1332,48 @@ public interface NuklearPackage extends EPackage
 	EReference getPanelViewer_VariableResolver();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider <em>Vertex Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Vertex Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider
+	 * @generated
+	 */
+	EClass getNuklearVertexProvider();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider#getContext <em>Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Context</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider#getContext()
+	 * @see #getNuklearVertexProvider()
+	 * @generated
+	 */
+	EReference getNuklearVertexProvider_Context();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider <em>Index Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Index Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider
+	 * @generated
+	 */
+	EClass getNuklearIndexProvider();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider#getContext <em>Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Context</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider#getContext()
+	 * @see #getNuklearIndexProvider()
+	 * @generated
+	 */
+	EReference getNuklearIndexProvider_Context();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1178,14 +1455,6 @@ public interface NuklearPackage extends EPackage
 		 * @generated
 		 */
 		EReference NUKLEAR_LAYOUT_TASK__DRAW_TASK = eINSTANCE.getNuklearLayoutTask_DrawTask();
-
-		/**
-		 * The meta object literal for the '<em><b>Transfer Buffer</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NUKLEAR_LAYOUT_TASK__TRANSFER_BUFFER = eINSTANCE.getNuklearLayoutTask_TransferBuffer();
 
 		/**
 		 * The meta object literal for the '<em><b>Vertex Buffer</b></em>' reference feature.
@@ -1372,6 +1641,42 @@ public interface NuklearPackage extends EPackage
 		 * @generated
 		 */
 		EReference PANEL_VIEWER__VARIABLE_RESOLVER = eINSTANCE.getPanelViewer_VariableResolver();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearVertexProviderImpl <em>Vertex Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearVertexProviderImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getNuklearVertexProvider()
+		 * @generated
+		 */
+		EClass NUKLEAR_VERTEX_PROVIDER = eINSTANCE.getNuklearVertexProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NUKLEAR_VERTEX_PROVIDER__CONTEXT = eINSTANCE.getNuklearVertexProvider_Context();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearIndexProviderImpl <em>Index Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearIndexProviderImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getNuklearIndexProvider()
+		 * @generated
+		 */
+		EClass NUKLEAR_INDEX_PROVIDER = eINSTANCE.getNuklearIndexProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NUKLEAR_INDEX_PROVIDER__CONTEXT = eINSTANCE.getNuklearIndexProvider_Context();
 
 	}
 

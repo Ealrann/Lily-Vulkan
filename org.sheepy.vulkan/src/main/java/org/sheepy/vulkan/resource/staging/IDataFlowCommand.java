@@ -6,14 +6,11 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket;
-import org.sheepy.vulkan.resource.staging.command.ImmediateFetchCommand;
-import org.sheepy.vulkan.resource.staging.command.ImmediatePushCommand;
-import org.sheepy.vulkan.resource.staging.command.PipelineFetchCommand;
-import org.sheepy.vulkan.resource.staging.command.PipelinePushCommand;
+import org.sheepy.vulkan.resource.staging.command.FetchCommand;
+import org.sheepy.vulkan.resource.staging.command.PushCommand;
 
 public interface IDataFlowCommand
 {
-	boolean isPipelined();
 	MemoryTicket getMemoryTicket();
 
 	EFlowType getFlowType();
@@ -21,42 +18,23 @@ public interface IDataFlowCommand
 
 	Consumer<MemoryTicket> getPostAction();
 
-	static IDataFlowCommand newImmediatePushCommand(MemoryTicket ticket,
-													long trgBuffer,
-													long trgOffset)
+	static IDataFlowCommand newPushCommand(	MemoryTicket ticket,
+											long trgBuffer,
+											long trgOffset,
+											EPipelineStage srcStage,
+											int srcAccess)
 	{
-		return new ImmediatePushCommand(ticket, trgBuffer, trgOffset, null);
+		return new PushCommand(ticket, trgBuffer, trgOffset, srcStage, srcAccess, null);
 	}
 
-	static IDataFlowCommand newPipelinePushCommand(	MemoryTicket ticket,
-													long trgBuffer,
-													long trgOffset,
-													EPipelineStage srcStage,
-													int srcAccess)
+	static IDataFlowCommand newFetchCommand(MemoryTicket ticket,
+											long srcBuffer,
+											long srcOffset,
+											EPipelineStage srcStage,
+											int srcAccess,
+											Consumer<MemoryTicket> transferDone)
 	{
-		return new PipelinePushCommand(ticket, trgBuffer, trgOffset, srcStage, srcAccess, null);
-	}
-
-	static IDataFlowCommand newImmediateFetchCommand(	MemoryTicket ticket,
-														long srcBuffer,
-														long srcOffset)
-	{
-		return new ImmediateFetchCommand(ticket, srcBuffer, srcOffset, null);
-	}
-
-	static IDataFlowCommand newPipelineFetchCommand(MemoryTicket ticket,
-													long srcBuffer,
-													long srcOffset,
-													EPipelineStage srcStage,
-													int srcAccess,
-													Consumer<MemoryTicket> transferDone)
-	{
-		return new PipelineFetchCommand(ticket,
-										srcBuffer,
-										srcOffset,
-										srcStage,
-										srcAccess,
-										transferDone);
+		return new FetchCommand(ticket, srcBuffer, srcOffset, srcStage, srcAccess, transferDone);
 	}
 
 	static enum EFlowType

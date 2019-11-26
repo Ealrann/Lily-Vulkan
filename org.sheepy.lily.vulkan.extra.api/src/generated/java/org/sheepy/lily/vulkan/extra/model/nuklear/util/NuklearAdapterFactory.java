@@ -24,6 +24,7 @@ import org.sheepy.lily.vulkan.model.IResource;
 
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
+import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -124,6 +125,16 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 				return createPanelViewerAdapter();
 			}
 			@Override
+			public Adapter caseNuklearVertexProvider(NuklearVertexProvider object)
+			{
+				return createNuklearVertexProviderAdapter();
+			}
+			@Override
+			public Adapter caseNuklearIndexProvider(NuklearIndexProvider object)
+			{
+				return createNuklearIndexProviderAdapter();
+			}
+			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
@@ -177,6 +188,11 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 			public Adapter casePanel(Panel object)
 			{
 				return createPanelAdapter();
+			}
+			@Override
+			public <T> Adapter caseBufferDataProvider(BufferDataProvider<T> object)
+			{
+				return createBufferDataProviderAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -301,6 +317,36 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createPanelViewerAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider <em>Vertex Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider
+	 * @generated
+	 */
+	public Adapter createNuklearVertexProviderAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider <em>Index Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider
+	 * @generated
+	 */
+	public Adapter createNuklearIndexProviderAdapter()
 	{
 		return null;
 	}
@@ -466,6 +512,21 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createPanelAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider <em>Buffer Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider
+	 * @generated
+	 */
+	public Adapter createBufferDataProviderAdapter()
 	{
 		return null;
 	}

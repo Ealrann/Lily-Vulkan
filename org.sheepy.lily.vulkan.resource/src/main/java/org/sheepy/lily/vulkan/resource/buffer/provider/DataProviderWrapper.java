@@ -138,11 +138,11 @@ public final class DataProviderWrapper extends NotifierAdapter
 		final long instanceOffset = getInstanceOffset(instance);
 		final var stage = dataProvider.getStageBeforePush();
 
-		final var pushCommand = IDataFlowCommand.newPipelinePushCommand(memTicket,
-																		bufferPtr,
-																		instanceOffset,
-																		stage,
-																		accessBeforePush);
+		final var pushCommand = IDataFlowCommand.newPushCommand(memTicket,
+																bufferPtr,
+																instanceOffset,
+																stage,
+																accessBeforePush);
 
 		// System.out.println(String.format( "[%s] push %d bytes",
 		// dataProvider.eClass().getName(),
@@ -169,12 +169,12 @@ public final class DataProviderWrapper extends NotifierAdapter
 		final long instanceOffset = getInstanceOffset(instance);
 		final var stage = dataProvider.getStageBeforeFetch();
 
-		final var fetchCommand = IDataFlowCommand.newPipelineFetchCommand(	memTicket,
-																			bufferPtr,
-																			instanceOffset,
-																			stage,
-																			accessBeforeFetch,
-																			transferDone);
+		final var fetchCommand = IDataFlowCommand.newFetchCommand(	memTicket,
+																	bufferPtr,
+																	instanceOffset,
+																	stage,
+																	accessBeforeFetch,
+																	transferDone);
 
 		transferBuffer.addTransferCommand(fetchCommand);
 	}

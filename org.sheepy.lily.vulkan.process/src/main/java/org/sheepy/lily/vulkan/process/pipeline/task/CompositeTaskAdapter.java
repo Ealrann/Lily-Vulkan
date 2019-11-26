@@ -54,7 +54,7 @@ public class CompositeTaskAdapter
 	{}
 
 	@Override
-	public void update(CompositeTask task)
+	public void update(CompositeTask task, int index)
 	{
 		if (dirty)
 		{
@@ -64,7 +64,7 @@ public class CompositeTaskAdapter
 		for (int i = 0; i < adaptedChildren.size(); i++)
 		{
 			final var child = adaptedChildren.get(i);
-			child.update();
+			child.update(index);
 		}
 	}
 
@@ -146,9 +146,9 @@ public class CompositeTaskAdapter
 			adapter = task.<IPipelineTaskAdapter<T>> adaptNotNullGeneric(IPipelineTaskAdapter.class);
 		}
 
-		public void update()
+		public void update(int index)
 		{
-			adapter.update(task);
+			adapter.update(task, index);
 		}
 
 		public boolean needRecord(int index)

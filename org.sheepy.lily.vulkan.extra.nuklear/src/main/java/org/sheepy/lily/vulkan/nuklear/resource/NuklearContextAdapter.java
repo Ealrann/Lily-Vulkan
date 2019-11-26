@@ -17,22 +17,16 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
-import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
-import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.nuklear.input.NuklearInputCatcher;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.model.enumeration.EAccess;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
-import org.sheepy.vulkan.resource.staging.ITransferBuffer;
-import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket.EReservationStatus;
 
 @Statefull
 @Adapter(scope = NuklearContext.class)
@@ -45,7 +39,6 @@ public class NuklearContextAdapter implements IResourceAdapter
 	public static final long INDEX_OFFSET = INDEXED_BUFFER_SIZE - INDEX_BUFFER_SIZE;
 
 	private static final int BUFFER_INITIAL_SIZE = 4 * 1024;
-	private static final String NK_CONVERT_FAILED = "nk_convert failed: ";
 	private static final NkDrawVertexLayoutElement.Buffer VERTEX_LAYOUT;
 	static
 	{
@@ -61,22 +54,31 @@ public class NuklearContextAdapter implements IResourceAdapter
 	}
 
 	private final NuklearContext nuklearContext;
-	private final NkAllocator ALLOCATOR;
-
-	private NkBuffer cmds;
-	private NkContext nkContext;
 	private final NkDrawNullTexture nkNullTexture = NkDrawNullTexture.create();
 	private final NkConvertConfig config = NkConvertConfig.create();
 
+	private NkAllocator ALLOCATOR;
+	private NkBuffer cmds;
+	private NkContext nkContext;
+
 	private NkBuffer vbuf;
 	private NkBuffer ebuf;
+	private NuklearLayoutTaskAdapter layoutTaskAdapter;
 
 	public NuklearContextAdapter(NuklearContext context)
 	{
 		this.nuklearContext = context;
+	}
+
+	@Load
+	private void load()
+	{
 		ALLOCATOR = NkAllocator	.calloc()
 								.alloc((handle, old, size) -> nmemAllocChecked(size))
 								.mfree((handle, ptr) -> nmemFree(ptr));
+
+		final var layoutTask = nuklearContext.getLayoutTask();
+		layoutTaskAdapter = layoutTask.adaptNotNull(NuklearLayoutTaskAdapter.class);
 	}
 
 	@Dispose
@@ -95,8 +97,6 @@ public class NuklearContextAdapter implements IResourceAdapter
 		final var nullTexture = nuklearContext.getNullTexture();
 		final var nullTextureAdapter = nullTexture.adaptNotNull(ISampledImageAdapter.class);
 		final var defaultFont = fontAdapter.getNkFont();
-		final var layoutTask = nuklearContext.getLayoutTask();
-		final var layoutTaskAdapter = layoutTask.adaptNotNull(NuklearLayoutTaskAdapter.class);
 		final var engine = VulkanModelUtil.getEngine(nuklearContext);
 		final var inputManager = engine.adaptNotNull(IVulkanEngineAdapter.class).getInputManager();
 		final var inputCatcher = NuklearInputCatcher.INSTANCE;
@@ -153,66 +153,6 @@ public class NuklearContextAdapter implements IResourceAdapter
 		config.line_AA(NK_ANTI_ALIASING_ON);
 	}
 
-	public boolean fillVertexBuffer(ITransferBuffer stagingBuffer, Buffer vertexBuffer)
-	{
-		boolean res = true;
-
-		try
-		{
-			final var vertexBufferAdapter = vertexBuffer.adaptNotNull(IBufferAdapter.class);
-			final var bufferPtr = vertexBufferAdapter.getPtr();
-
-			final long vertexBufferSize = VERTEX_BUFFER_SIZE;
-			final long indexBufferSize = INDEX_BUFFER_SIZE;
-			final var vertexOffset = 0;
-
-			final var vertexMemoryTicket = stagingBuffer.reserveMemory(vertexBufferSize);
-			final var indexMemoryTicket = stagingBuffer.reserveMemory(indexBufferSize);
-
-			if (vertexMemoryTicket.getReservationStatus() == EReservationStatus.SUCCESS
-					&& indexMemoryTicket.getReservationStatus() == EReservationStatus.SUCCESS)
-			{
-				final var vertexMemoryMap = vertexMemoryTicket.getMemoryPtr();
-				final var indexMemoryMap = indexMemoryTicket.getMemoryPtr();
-				final var indexOffset = vertexBufferSize;
-
-				final var vertexPushCommand = IDataFlowCommand.newPipelinePushCommand(	vertexMemoryTicket,
-																						bufferPtr,
-																						vertexOffset,
-																						EPipelineStage.VERTEX_INPUT_BIT,
-																						EAccess.VERTEX_ATTRIBUTE_READ_BIT_VALUE);
-
-				final var indexPushCommand = IDataFlowCommand.newPipelinePushCommand(	indexMemoryTicket,
-																						bufferPtr,
-																						indexOffset,
-																						EPipelineStage.VERTEX_INPUT_BIT,
-																						EAccess.VERTEX_ATTRIBUTE_READ_BIT_VALUE);
-
-				nnk_buffer_init_fixed(vbuf.address(), vertexMemoryMap, vertexBufferSize);
-				stagingBuffer.addTransferCommand(vertexPushCommand);
-
-				nnk_buffer_init_fixed(ebuf.address(), indexMemoryMap, indexBufferSize);
-				stagingBuffer.addTransferCommand(indexPushCommand);
-
-				// load draw vertices & elements directly into vertex + element buffer
-				final int result = nk_convert(nkContext, cmds, vbuf, ebuf, config);
-				if (result != 0)
-				{
-					System.err.println(NK_CONVERT_FAILED + result);
-				}
-			}
-			else
-			{
-				res = false;
-			}
-		} catch (final Throwable t)
-		{
-			t.printStackTrace();
-		}
-
-		return res;
-	}
-
 	@Override
 	public void free(IExecutionContext context)
 	{
@@ -231,6 +171,11 @@ public class NuklearContextAdapter implements IResourceAdapter
 		ebuf = null;
 	}
 
+	public boolean isDirty()
+	{
+		return layoutTaskAdapter.isDirty();
+	}
+
 	public void clearFrame()
 	{
 		nk_clear(nkContext);
@@ -244,5 +189,20 @@ public class NuklearContextAdapter implements IResourceAdapter
 	public NkBuffer getCmds()
 	{
 		return cmds;
+	}
+
+	public NkBuffer getVBuf()
+	{
+		return vbuf;
+	}
+
+	public NkBuffer getEBuf()
+	{
+		return ebuf;
+	}
+
+	public NkConvertConfig getConfig()
+	{
+		return config;
 	}
 }

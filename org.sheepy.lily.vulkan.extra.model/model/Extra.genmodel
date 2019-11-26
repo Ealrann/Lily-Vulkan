@@ -39,7 +39,6 @@
     <genClasses ecoreClass="Nuklear.ecore#//NuklearLayoutTask">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/context"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/drawTask"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/transferBuffer"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/vertexBuffer"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/imageArray"/>
     </genClasses>
@@ -66,6 +65,12 @@
     <genClasses ecoreClass="Nuklear.ecore#//IInputProvider"/>
     <genClasses ecoreClass="Nuklear.ecore#//PanelViewer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Nuklear.ecore#//PanelViewer/variableResolver"/>
+    </genClasses>
+    <genClasses ecoreClass="Nuklear.ecore#//NuklearVertexProvider">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearVertexProvider/context"/>
+    </genClasses>
+    <genClasses ecoreClass="Nuklear.ecore#//NuklearIndexProvider">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearIndexProvider/context"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Rendering" basePackage="org.sheepy.lily.vulkan.extra.model"

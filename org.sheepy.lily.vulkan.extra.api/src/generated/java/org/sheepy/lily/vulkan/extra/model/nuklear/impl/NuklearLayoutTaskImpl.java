@@ -15,10 +15,8 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
-
-import org.sheepy.lily.vulkan.model.resource.Buffer;
+import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
-import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +30,6 @@ import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearLayoutTaskImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearLayoutTaskImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearLayoutTaskImpl#getDrawTask <em>Draw Task</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearLayoutTaskImpl#getTransferBuffer <em>Transfer Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearLayoutTaskImpl#getVertexBuffer <em>Vertex Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearLayoutTaskImpl#getImageArray <em>Image Array</em>}</li>
  * </ul>
@@ -102,16 +99,6 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 	protected CompositeTask drawTask;
 
 	/**
-	 * The cached value of the '{@link #getTransferBuffer() <em>Transfer Buffer</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTransferBuffer()
-	 * @generated
-	 * @ordered
-	 */
-	protected TransferBuffer transferBuffer;
-
-	/**
 	 * The cached value of the '{@link #getVertexBuffer() <em>Vertex Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -119,7 +106,7 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 	 * @generated
 	 * @ordered
 	 */
-	protected Buffer vertexBuffer;
+	protected CompositeBuffer vertexBuffer;
 
 	/**
 	 * The cached value of the '{@link #getImageArray() <em>Image Array</em>}' reference.
@@ -323,57 +310,12 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 	 * @generated
 	 */
 	@Override
-	public TransferBuffer getTransferBuffer()
-	{
-		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy())
-		{
-			InternalEObject oldTransferBuffer = (InternalEObject)transferBuffer;
-			transferBuffer = (TransferBuffer)eResolveProxy(oldTransferBuffer);
-			if (transferBuffer != oldTransferBuffer)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_LAYOUT_TASK__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
-			}
-		}
-		return transferBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TransferBuffer basicGetTransferBuffer()
-	{
-		return transferBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTransferBuffer(TransferBuffer newTransferBuffer)
-	{
-		TransferBuffer oldTransferBuffer = transferBuffer;
-		transferBuffer = newTransferBuffer;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_LAYOUT_TASK__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Buffer getVertexBuffer()
+	public CompositeBuffer getVertexBuffer()
 	{
 		if (vertexBuffer != null && ((EObject)vertexBuffer).eIsProxy())
 		{
 			InternalEObject oldVertexBuffer = (InternalEObject)vertexBuffer;
-			vertexBuffer = (Buffer)eResolveProxy(oldVertexBuffer);
+			vertexBuffer = (CompositeBuffer)eResolveProxy(oldVertexBuffer);
 			if (vertexBuffer != oldVertexBuffer)
 			{
 				if (eNotificationRequired())
@@ -388,7 +330,7 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Buffer basicGetVertexBuffer()
+	public CompositeBuffer basicGetVertexBuffer()
 	{
 		return vertexBuffer;
 	}
@@ -399,9 +341,9 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 	 * @generated
 	 */
 	@Override
-	public void setVertexBuffer(Buffer newVertexBuffer)
+	public void setVertexBuffer(CompositeBuffer newVertexBuffer)
 	{
-		Buffer oldVertexBuffer = vertexBuffer;
+		CompositeBuffer oldVertexBuffer = vertexBuffer;
 		vertexBuffer = newVertexBuffer;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER, oldVertexBuffer, vertexBuffer));
@@ -506,9 +448,6 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__DRAW_TASK:
 				if (resolve) return getDrawTask();
 				return basicGetDrawTask();
-			case NuklearPackage.NUKLEAR_LAYOUT_TASK__TRANSFER_BUFFER:
-				if (resolve) return getTransferBuffer();
-				return basicGetTransferBuffer();
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER:
 				if (resolve) return getVertexBuffer();
 				return basicGetVertexBuffer();
@@ -541,11 +480,8 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__DRAW_TASK:
 				setDrawTask((CompositeTask)newValue);
 				return;
-			case NuklearPackage.NUKLEAR_LAYOUT_TASK__TRANSFER_BUFFER:
-				setTransferBuffer((TransferBuffer)newValue);
-				return;
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER:
-				setVertexBuffer((Buffer)newValue);
+				setVertexBuffer((CompositeBuffer)newValue);
 				return;
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY:
 				setImageArray((Texture2DArray)newValue);
@@ -576,11 +512,8 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__DRAW_TASK:
 				setDrawTask((CompositeTask)null);
 				return;
-			case NuklearPackage.NUKLEAR_LAYOUT_TASK__TRANSFER_BUFFER:
-				setTransferBuffer((TransferBuffer)null);
-				return;
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER:
-				setVertexBuffer((Buffer)null);
+				setVertexBuffer((CompositeBuffer)null);
 				return;
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY:
 				setImageArray((Texture2DArray)null);
@@ -607,8 +540,6 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 				return context != null;
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__DRAW_TASK:
 				return drawTask != null;
-			case NuklearPackage.NUKLEAR_LAYOUT_TASK__TRANSFER_BUFFER:
-				return transferBuffer != null;
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER:
 				return vertexBuffer != null;
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY:

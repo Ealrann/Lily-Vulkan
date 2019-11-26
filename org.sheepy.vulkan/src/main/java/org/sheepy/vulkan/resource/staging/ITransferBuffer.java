@@ -14,8 +14,13 @@ public interface ITransferBuffer
 	void addTransferCommand(IDataFlowCommand command);
 	boolean isEmpty();
 
-	void flushCommands(RecordContext context);
+	IFlushRecorder recordFlush();
 
+	interface IFlushRecorder
+	{
+		void flush(RecordContext context);
+	}
+	
 	static final class MemoryTicket
 	{
 		final MemorySpace memorySpace;

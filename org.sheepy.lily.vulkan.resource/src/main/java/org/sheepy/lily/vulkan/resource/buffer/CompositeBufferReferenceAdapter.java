@@ -30,7 +30,6 @@ public class CompositeBufferReferenceAdapter extends NotifierAdapter
 	{
 		super(FEATURES.values().length);
 		this.ref = ref;
-
 	}
 
 	@Load

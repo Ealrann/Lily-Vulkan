@@ -1,17 +1,18 @@
 package org.sheepy.vulkan.resource.staging;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
+import java.util.Collection;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.allocation.IAllocable;
+import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
+import org.sheepy.vulkan.resource.staging.IDataFlowCommand.EFlowType;
 import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket.EReservationStatus;
 import org.sheepy.vulkan.resource.staging.memory.MemorySpaceManager;
 import org.sheepy.vulkan.resource.staging.memory.MemorySpaceManager.MemorySpace;
@@ -23,13 +24,10 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 	public final CPUBufferBackend bufferBackend;
 
 	private final List<MemoryTicket> tickets = new ArrayList<>();
-	private final Deque<IDataFlowCommand> synchronizedCommands = new ArrayDeque<>();
-	private final Deque<IDataFlowCommand> unsynchronizedCommands = new ArrayDeque<>();
+	private final List<IDataFlowCommand> commands = new ArrayList<>();
 	private final long capacity;
 	private final MemorySpaceManager spaceManager;
 
-	private boolean containingPushCommand = false;
-	private boolean containingFetchCommand = false;
 	private IExecutionContext executionContext;
 
 	public TransferBufferBackend(	long capacity,
@@ -111,87 +109,23 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 			throw new IllegalStateException(MEMORY_RESERVATION_REJECTED);
 		}
 
-		switch (command.getFlowType())
-		{
-		case FETCH:
-			containingFetchCommand = true;
-			break;
-		case PUSH:
-			containingPushCommand = true;
-			break;
-		}
-
-		if (command.isPipelined())
-		{
-			synchronizedCommands.add(command);
-		}
-		else
-		{
-			unsynchronizedCommands.add(command);
-		}
+		commands.add(command);
 	}
 
 	@Override
 	public boolean isEmpty()
 	{
-		return synchronizedCommands.isEmpty() && unsynchronizedCommands.isEmpty();
+		return commands.isEmpty();
 	}
 
 	@Override
-	public void flushCommands(RecordContext context)
+	public IFlushRecorder recordFlush()
 	{
 		final var logicalDevice = executionContext.getLogicalDevice();
-		final var commandBuffer = context.commandBuffer;
-
-		try (final MemoryStack stack = MemoryStack.stackPush())
-		{
-			final int instance = bufferBackend.getCurrentInstance();
-			if (containingPushCommand)
-			{
-				bufferBackend.flush(stack, logicalDevice, instance);
-			}
-			bufferBackend.nextInstance();
-
-			if (containingFetchCommand)
-			{
-				context.addListener(() -> invalidate(instance));
-			}
-
-			while (synchronizedCommands.isEmpty() == false)
-			{
-				final var command = synchronizedCommands.pop();
-				// System.out.println(command.toString());
-				command.execute(stack, commandBuffer);
-				final var postAction = command.getPostAction();
-				if (postAction != null)
-				{
-					context.addListener(() -> postAction.accept(command.getMemoryTicket()));
-				}
-			}
-
-			if (unsynchronizedCommands.isEmpty() == false)
-			{
-				executionContext.execute((ctx, subCommandBuffer) ->
-				{
-					while (unsynchronizedCommands.isEmpty() == false)
-					{
-						final var command = unsynchronizedCommands.pop();
-						command.execute(stack, subCommandBuffer);
-					}
-				});
-			}
-		}
-
+		final int instance = bufferBackend.getCurrentInstance();
+		final var res = new FlushRecord(logicalDevice, bufferBackend, instance, commands);
 		clear();
-	}
-
-	private void invalidate(int instance)
-	{
-		final var logicalDevice = executionContext.getLogicalDevice();
-		try (final MemoryStack stack = MemoryStack.stackPush())
-		{
-			bufferBackend.invalidate(stack, logicalDevice, instance);
-		}
+		return res;
 	}
 
 	private void clear()
@@ -202,10 +136,9 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 			ticket.invalidate();
 		}
 
-		containingFetchCommand = false;
-		containingPushCommand = false;
+		bufferBackend.nextInstance();
+		commands.clear();
 		spaceManager.clear();
-
 		tickets.clear();
 	}
 
@@ -225,5 +158,85 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 								memoryPtr,
 								bufferOffset,
 								size);
+	}
+
+	private static final class FlushRecord implements IFlushRecorder
+	{
+		private final LogicalDevice logicalDevice;
+		private final CPUBufferBackend bufferBackend;
+		private final List<IDataFlowCommand> commands;
+
+		private final boolean containingPushCommand;
+		private final boolean containingFetchCommand;
+		private final int instance;
+
+		public FlushRecord(	LogicalDevice logicalDevice,
+							CPUBufferBackend bufferBackend,
+							int instance,
+							Collection<IDataFlowCommand> commands)
+		{
+			this.logicalDevice = logicalDevice;
+			this.bufferBackend = bufferBackend;
+			this.instance = instance;
+			this.commands = List.copyOf(commands);
+
+			containingPushCommand = containsType(commands, EFlowType.PUSH);
+			containingFetchCommand = containsType(commands, EFlowType.FETCH);
+
+			if (containingPushCommand)
+			{
+				try (MemoryStack stack = MemoryStack.stackPush())
+				{
+					bufferBackend.flush(stack, logicalDevice, instance);
+				}
+			}
+		}
+
+		@Override
+		public void flush(RecordContext context)
+		{
+			final var commandBuffer = context.commandBuffer;
+
+			try (final MemoryStack stack = MemoryStack.stackPush())
+			{
+				if (containingFetchCommand)
+				{
+					context.addListener(() -> invalidate(instance));
+				}
+
+				for (int i = 0; i < commands.size(); i++)
+				{
+					final var command = commands.get(i);
+					// System.out.println(command.toString());
+					command.execute(stack, commandBuffer);
+					final var postAction = command.getPostAction();
+					if (postAction != null)
+					{
+						context.addListener(() -> postAction.accept(command.getMemoryTicket()));
+					}
+				}
+			}
+		}
+
+		private void invalidate(int instance)
+		{
+			try (final MemoryStack stack = MemoryStack.stackPush())
+			{
+				bufferBackend.invalidate(stack, logicalDevice, instance);
+			}
+		}
+
+		private static boolean containsType(Collection<IDataFlowCommand> commands, EFlowType type)
+		{
+			boolean res = false;
+			for (final IDataFlowCommand command : commands)
+			{
+				if (command.getFlowType() == type)
+				{
+					res = true;
+				}
+			}
+			return res;
+		}
 	}
 }

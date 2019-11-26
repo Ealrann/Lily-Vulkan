@@ -1216,22 +1216,13 @@ public interface ProcessPackage extends EPackage
 	int PREPARE_COMPOSITE_TRANSFER__MODE = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREPARE_COMPOSITE_TRANSFER__STAGE = IPIPELINE_TASK_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Instance</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREPARE_COMPOSITE_TRANSFER__INSTANCE = IPIPELINE_TASK_FEATURE_COUNT + 3;
+	int PREPARE_COMPOSITE_TRANSFER__INSTANCE = IPIPELINE_TASK_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Prepare Composite Transfer</em>' class.
@@ -1240,7 +1231,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PREPARE_COMPOSITE_TRANSFER_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 4;
+	int PREPARE_COMPOSITE_TRANSFER_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Prepare Composite Transfer</em>' class.
@@ -1817,17 +1808,6 @@ public interface ProcessPackage extends EPackage
 	EAttribute getPrepareCompositeTransfer_Mode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getStage <em>Stage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Stage</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getStage()
-	 * @see #getPrepareCompositeTransfer()
-	 * @generated
-	 */
-	EAttribute getPrepareCompositeTransfer_Stage();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getInstance <em>Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2321,14 +2301,6 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute PREPARE_COMPOSITE_TRANSFER__MODE = eINSTANCE.getPrepareCompositeTransfer_Mode();
-
-		/**
-		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PREPARE_COMPOSITE_TRANSFER__STAGE = eINSTANCE.getPrepareCompositeTransfer_Stage();
 
 		/**
 		 * The meta object literal for the '<em><b>Instance</b></em>' attribute feature.

@@ -8,6 +8,7 @@ import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.resource.staging.ITransferBuffer.IFlushRecorder;
 
 @Statefull
 @Adapter(scope = FlushTransferBufferTask.class)
@@ -18,6 +19,7 @@ public final class FlushTransferBufferTaskAdapter
 	private final TransferBuffer transferBuffer;
 
 	private int stagingFlushHistory = 0;
+	private IFlushRecorder record;
 
 	public FlushTransferBufferTaskAdapter(FlushTransferBufferTask task)
 	{
@@ -26,30 +28,38 @@ public final class FlushTransferBufferTaskAdapter
 	}
 
 	@Override
-	public void record(FlushTransferBufferTask task, RecordContext context)
+	public void update(FlushTransferBufferTask task, int index)
 	{
 		final var stagingBuffer = pushBufferAdapter.getTransferBufferBackend();
 
 		if (stagingBuffer.isEmpty() == false)
 		{
+			record = stagingBuffer.recordFlush();
+		}
+		else
+		{
+			record = null;
+		}
+	}
+
+	@Override
+	public void record(FlushTransferBufferTask task, RecordContext context)
+	{
+		if (record != null)
+		{
 			setFlushHistory(context);
-			stagingBuffer.flushCommands(context);
+			record.flush(context);
 		}
 	}
 
 	@Override
 	public boolean needRecord(FlushTransferBufferTask task, int index)
 	{
+		final boolean previousRecordMadeFlush = getAndClearHistory(index);
+
 		boolean res = false;
-
-		if (pushBufferAdapter != null)
-		{
-			final var stagingBuffer = pushBufferAdapter.getTransferBufferBackend();
-			final boolean previousRecordMadeFlush = getAndClearHistory(index);
-
-			res |= !stagingBuffer.isEmpty();
-			res |= previousRecordMadeFlush;
-		}
+		res |= record != null;
+		res |= previousRecordMadeFlush;
 
 		return res;
 	}

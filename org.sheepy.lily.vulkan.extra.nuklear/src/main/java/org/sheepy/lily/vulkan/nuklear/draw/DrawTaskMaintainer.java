@@ -6,9 +6,8 @@ import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFactory;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
-import org.sheepy.lily.vulkan.model.resource.Buffer;
+import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
 import org.sheepy.vulkan.model.enumeration.EIndexType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.surface.Extent2D;
@@ -16,9 +15,9 @@ import org.sheepy.vulkan.surface.Extent2D;
 public final class DrawTaskMaintainer
 {
 	private final CompositeTask drawCompositeTask;
-	private final Buffer vertexBuffer;
+	private final CompositeBuffer vertexBuffer;
 
-	public DrawTaskMaintainer(CompositeTask drawCompositeTask, Buffer vertexBuffer)
+	public DrawTaskMaintainer(CompositeTask drawCompositeTask, CompositeBuffer vertexBuffer)
 	{
 		this.drawCompositeTask = drawCompositeTask;
 		this.vertexBuffer = vertexBuffer;
@@ -44,13 +43,15 @@ public final class DrawTaskMaintainer
 
 	private void createBindTasks(Extent2D extent)
 	{
-		final var vertexRef = ResourceFactory.eINSTANCE.createBufferReference();
-		vertexRef.setOffset(0);
+		final var vertexRef = ResourceFactory.eINSTANCE.createCompositeBufferReference();
 		vertexRef.setBuffer(vertexBuffer);
+		vertexRef.setInstance(0);
+		vertexRef.setPart(0);
 
-		final var indexRef = ResourceFactory.eINSTANCE.createBufferReference();
-		indexRef.setOffset(NuklearContextAdapter.INDEX_OFFSET);
+		final var indexRef = ResourceFactory.eINSTANCE.createCompositeBufferReference();
 		indexRef.setBuffer(vertexBuffer);
+		indexRef.setInstance(0);
+		indexRef.setPart(1);
 
 		final var vertexBinding = GraphicFactory.eINSTANCE.createVertexBinding();
 		vertexBinding.setBufferRef(vertexRef);

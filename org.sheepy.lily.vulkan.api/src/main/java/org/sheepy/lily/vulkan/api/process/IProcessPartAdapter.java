@@ -10,7 +10,7 @@ import org.sheepy.vulkan.execution.IRecordable;
 
 public interface IProcessPartAdapter extends IAdapter, IRecordable
 {
-	default void update()
+	default void update(int index)
 	{}
 
 	default void prepareExecution(IExecutionContext context)

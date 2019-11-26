@@ -88,7 +88,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			refreshConfiguration(false);
 		}
 
-		final List<DataProviderWrapper> providersToPush = new ArrayList<>();
+		final List<DataProviderWrapper> providersToFlush = new ArrayList<>();
 		boolean reservationSuccessfull = true;
 
 		for (final var providerWrapper : providerWrappers)
@@ -101,11 +101,11 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 					break;
 				}
 
-				providersToPush.add(providerWrapper);
+				providersToFlush.add(providerWrapper);
 			}
 		}
 
-		for (final var providerWrapper : providersToPush)
+		for (final var providerWrapper : providersToFlush)
 		{
 			if (reservationSuccessfull)
 			{

@@ -108,14 +108,14 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	}
 
 	@Override
-	public void update()
+	public void update(int index)
 	{
 		for (int i = 0; i < taskWrappers.size(); i++)
 		{
 			final var wrapper = taskWrappers.get(i);
 			if (wrapper.isEnabled())
 			{
-				wrapper.update();
+				wrapper.update(index);
 			}
 		}
 	}
@@ -328,9 +328,9 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 			return task.isEnabled();
 		}
 
-		public void update()
+		public void update(int index)
 		{
-			adapter.update(task);
+			adapter.update(task, index);
 		}
 
 		@Override

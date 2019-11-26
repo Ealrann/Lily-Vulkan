@@ -18,8 +18,6 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Prepare Composite Transfer</b></em>'.
@@ -32,7 +30,6 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getCompositeBuffer <em>Composite Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getMode <em>Mode</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getInstance <em>Instance</em>}</li>
  * </ul>
  *
@@ -109,26 +106,6 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * @ordered
 	 */
 	protected EFlushMode mode = MODE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final ECommandStage STAGE_EDEFAULT = ECommandStage.INHERITED;
-
-	/**
-	 * The cached value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected ECommandStage stage = STAGE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getInstance() <em>Instance</em>}' attribute.
@@ -297,31 +274,6 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * @generated
 	 */
 	@Override
-	public ECommandStage getStage()
-	{
-		return stage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setStage(ECommandStage newStage)
-	{
-		ECommandStage oldStage = stage;
-		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE, oldStage, stage));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public int getInstance()
 	{
 		return instance;
@@ -360,8 +312,6 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 				return basicGetCompositeBuffer();
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__MODE:
 				return getMode();
-			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
-				return getStage();
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE:
 				return getInstance();
 		}
@@ -389,9 +339,6 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 				return;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__MODE:
 				setMode((EFlushMode)newValue);
-				return;
-			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
-				setStage((ECommandStage)newValue);
 				return;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE:
 				setInstance((Integer)newValue);
@@ -422,9 +369,6 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__MODE:
 				setMode(MODE_EDEFAULT);
 				return;
-			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
-				setStage(STAGE_EDEFAULT);
-				return;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE:
 				setInstance(INSTANCE_EDEFAULT);
 				return;
@@ -450,8 +394,6 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 				return compositeBuffer != null;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__MODE:
 				return mode != MODE_EDEFAULT;
-			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
-				return stage != STAGE_EDEFAULT;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE:
 				return instance != INSTANCE_EDEFAULT;
 		}
@@ -475,8 +417,6 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 		result.append(enabled);
 		result.append(", mode: ");
 		result.append(mode);
-		result.append(", stage: ");
-		result.append(stage);
 		result.append(", instance: ");
 		result.append(instance);
 		result.append(')');

@@ -22,7 +22,6 @@ import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
-import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
@@ -44,6 +43,8 @@ import org.sheepy.vulkan.window.Window;
 public final class NuklearLayoutTaskAdapter
 		implements IPipelineTaskAdapter<NuklearLayoutTask>, IAllocableAdapter<IGraphicContext>
 {
+	private static final String NK_CONVERT_FAILED = "nk_convert failed: ";
+
 	private final AdapterSetRegistry<IPanelAdapter> PANEL_REGISTRY = new AdapterSetRegistry<>(	IPanelAdapter.class,
 																								List.of(ApplicationPackage.Literals.APPLICATION__CURRENT_VIEW,
 																										PresentationPackage.Literals.IUI_VIEW__CURRENT_UI_PAGE,
@@ -166,7 +167,7 @@ public final class NuklearLayoutTaskAdapter
 	}
 
 	@Override
-	public void update(NuklearLayoutTask task)
+	public void update(NuklearLayoutTask task, int index)
 	{
 		// if (nk_item_is_any_active(nkContext))
 		// {
@@ -175,21 +176,12 @@ public final class NuklearLayoutTaskAdapter
 
 		if (dirty)
 		{
-			final var transferBuffer = task.getTransferBuffer();
-			final var transferBufferAdapter = transferBuffer.adaptNotNull(ITransferBufferAdapter.class);
-			final var stagingBuffer = transferBufferAdapter.getTransferBufferBackend();
-			final var vertexBuffer = task.getVertexBuffer();
-
-			vertexUpdated = nuklearContextAdapter.fillVertexBuffer(stagingBuffer, vertexBuffer);
+			vertexUpdated = fillVertexBuffer();
 
 			if (vertexUpdated == true)
 			{
 				final var commands = prepareDrawCommands();
 				drawTaskMaintainer.reloadTasks(commands, currentExtent);
-			}
-			else
-			{
-				vertexUpdated = false;
 			}
 
 			// Print vertex buffer
@@ -204,6 +196,27 @@ public final class NuklearLayoutTaskAdapter
 		}
 
 		nuklearContextAdapter.clearFrame();
+	}
+
+	public boolean fillVertexBuffer()
+	{
+		boolean res = true;
+
+		final var nkContext = nuklearContextAdapter.getNkContext();
+		final var cmds = nuklearContextAdapter.getCmds();
+		final var vbuf = nuklearContextAdapter.getVBuf();
+		final var ebuf = nuklearContextAdapter.getEBuf();
+		final var config = nuklearContextAdapter.getConfig();
+
+		// load draw vertices & elements directly into vertex + element buffer
+		final int result = nk_convert(nkContext, cmds, vbuf, ebuf, config);
+		if (result != 0)
+		{
+			res = false;
+			System.err.println(NK_CONVERT_FAILED + result);
+		}
+
+		return res;
 	}
 
 	private void reloadTexturePtrs(DescriptorSet descriptorSet)
@@ -272,6 +285,11 @@ public final class NuklearLayoutTaskAdapter
 
 	@Override
 	public boolean needRecord(NuklearLayoutTask task, int index)
+	{
+		return dirty;
+	}
+
+	public boolean isDirty()
 	{
 		return dirty;
 	}

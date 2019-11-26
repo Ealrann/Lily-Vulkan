@@ -142,24 +142,25 @@ public final class CPUBufferBackend implements IBufferBackend
 	@Override
 	public void nextInstance()
 	{
-		final boolean wasMapped = memoryMap != -1;
+		final int newInstance = (currentInstance + 1) % info.instanceCount;
 
-		if (wasMapped)
+		if (newInstance != currentInstance)
 		{
-			unmapMemory();
-		}
+			final boolean wasMapped = memoryMap != -1;
 
-		currentInstance++;
-		if (currentInstance >= info.instanceCount)
-		{
-			currentInstance = 0;
-		}
+			if (wasMapped)
+			{
+				unmapMemory();
+			}
 
-		currentOffset = getOffset(currentInstance);
+			currentInstance = newInstance;
 
-		if (wasMapped)
-		{
-			mapMemory();
+			currentOffset = getOffset(currentInstance);
+
+			if (wasMapped)
+			{
+				mapMemory();
+			}
 		}
 	}
 

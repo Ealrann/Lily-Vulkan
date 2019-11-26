@@ -48,7 +48,6 @@ public class InstanceTaskManager
 
 		preparePush.setCompositeBuffer(resourceContainer.compositeBuffer);
 		preparePush.setMode(EFlushMode.PUSH);
-		preparePush.setStage(ECommandStage.TRANSFER);
 		pushTask.setTransferBuffer(resourceContainer.transferBuffer);
 		pushTask.setStage(ECommandStage.TRANSFER);
 
@@ -64,7 +63,6 @@ public class InstanceTaskManager
 
 		prepareFetch.setCompositeBuffer(resourceContainer.compositeBuffer);
 		prepareFetch.setMode(EFlushMode.FETCH);
-		prepareFetch.setStage(ECommandStage.COMPUTE);
 		fetchTask.setTransferBuffer(resourceContainer.transferBuffer);
 		fetchTask.setStage(ECommandStage.COMPUTE);
 	}

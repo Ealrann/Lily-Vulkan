@@ -48,6 +48,9 @@
             uri="org.sheepy.lily.vulkan.model"
             class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$VulkanChildCreationExtender"/>
       <extender
+            uri="org.sheepy.lily.vulkan.model.resource"
+            class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$ResourceChildCreationExtender"/>
+      <extender
             uri="org.sheepy.lily.core.model.presentation"
             class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$PresentationChildCreationExtender"/>
    </extension>
