@@ -11,9 +11,4 @@ public interface IBufferBarrierAdapter extends IAdapter
 					AbstractBufferBarrier barrier,
 					VkBufferMemoryBarrier info,
 					int index);
-
-	default boolean isAllocationDirty(IAllocationContext context)
-	{
-		return false;
-	}
 }

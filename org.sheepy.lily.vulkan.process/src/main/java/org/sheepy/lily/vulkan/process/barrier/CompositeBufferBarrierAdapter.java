@@ -38,10 +38,4 @@ public class CompositeBufferBarrierAdapter implements IBufferBarrierAdapter
 		info.offset(offset);
 		info.size(size);
 	}
-	
-	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
-	{
-		return IBufferBarrierAdapter.super.isAllocationDirty(context);
-	}
 }
