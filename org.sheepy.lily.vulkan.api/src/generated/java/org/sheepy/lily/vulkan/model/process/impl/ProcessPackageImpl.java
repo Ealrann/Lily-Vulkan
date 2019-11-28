@@ -622,6 +622,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getPipelineBarrier_RecordDuringStage()
+	{
+		return (EAttribute)pipelineBarrierEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getCompositeTask()
 	{
 		return compositeTaskEClass;
@@ -992,6 +1003,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEAttribute(pipelineBarrierEClass, PIPELINE_BARRIER__DST_STAGE);
 		createEReference(pipelineBarrierEClass, PIPELINE_BARRIER__SRC_QUEUE);
 		createEReference(pipelineBarrierEClass, PIPELINE_BARRIER__DST_QUEUE);
+		createEAttribute(pipelineBarrierEClass, PIPELINE_BARRIER__RECORD_DURING_STAGE);
 
 		compositeTaskEClass = createEClass(COMPOSITE_TASK);
 		createEAttribute(compositeTaskEClass, COMPOSITE_TASK__REPEAT_COUNT);
@@ -1133,6 +1145,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEAttribute(getPipelineBarrier_DstStage(), theEnumerationPackage.getEPipelineStage(), "dstStage", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPipelineBarrier_SrcQueue(), this.getAbstractProcess(), null, "srcQueue", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPipelineBarrier_DstQueue(), this.getAbstractProcess(), null, "dstQueue", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPipelineBarrier_RecordDuringStage(), theEnumerationPackage.getECommandStage(), "recordDuringStage", "Inherited", 1, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeTaskEClass, CompositeTask.class, "CompositeTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCompositeTask_RepeatCount(), theEcorePackage.getEInt(), "repeatCount", "1", 0, 1, CompositeTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

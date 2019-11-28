@@ -67,6 +67,7 @@ public class PipelineBarrierItemProvider extends ItemProviderAdapter implements 
 			addDstStagePropertyDescriptor(object);
 			addSrcQueuePropertyDescriptor(object);
 			addDstQueuePropertyDescriptor(object);
+			addRecordDuringStagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -210,6 +211,29 @@ public class PipelineBarrierItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
+	 * This adds a property descriptor for the Record During Stage feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRecordDuringStagePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PipelineBarrier_recordDuringStage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PipelineBarrier_recordDuringStage_feature", "_UI_PipelineBarrier_type"),
+				 ProcessPackage.Literals.PIPELINE_BARRIER__RECORD_DURING_STAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -288,6 +312,7 @@ public class PipelineBarrierItemProvider extends ItemProviderAdapter implements 
 			case ProcessPackage.PIPELINE_BARRIER__ENABLED:
 			case ProcessPackage.PIPELINE_BARRIER__SRC_STAGE:
 			case ProcessPackage.PIPELINE_BARRIER__DST_STAGE:
+			case ProcessPackage.PIPELINE_BARRIER__RECORD_DURING_STAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ProcessPackage.PIPELINE_BARRIER__BARRIERS:

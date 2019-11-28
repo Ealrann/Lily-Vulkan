@@ -44,6 +44,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.vulkan.model.barrier.Barrier;
 
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
@@ -62,6 +63,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getDstStage <em>Dst Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getSrcQueue <em>Src Queue</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getDstQueue <em>Dst Queue</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getRecordDuringStage <em>Record During Stage</em>}</li>
  * </ul>
  *
  * @generated
@@ -187,6 +189,26 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	 * @ordered
 	 */
 	protected AbstractProcess dstQueue;
+
+	/**
+	 * The default value of the '{@link #getRecordDuringStage() <em>Record During Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRecordDuringStage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ECommandStage RECORD_DURING_STAGE_EDEFAULT = ECommandStage.INHERITED;
+
+	/**
+	 * The cached value of the '{@link #getRecordDuringStage() <em>Record During Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRecordDuringStage()
+	 * @generated
+	 * @ordered
+	 */
+	protected ECommandStage recordDuringStage = RECORD_DURING_STAGE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -445,6 +467,31 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	 * @generated
 	 */
 	@Override
+	public ECommandStage getRecordDuringStage()
+	{
+		return recordDuringStage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setRecordDuringStage(ECommandStage newRecordDuringStage)
+	{
+		ECommandStage oldRecordDuringStage = recordDuringStage;
+		recordDuringStage = newRecordDuringStage == null ? RECORD_DURING_STAGE_EDEFAULT : newRecordDuringStage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE_BARRIER__RECORD_DURING_STAGE, oldRecordDuringStage, recordDuringStage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public <T extends LObject> EList<T> createContainmentEList(final EClass targetEClass)
 	{
 		EList<T> res = null;
@@ -577,6 +624,8 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 			case ProcessPackage.PIPELINE_BARRIER__DST_QUEUE:
 				if (resolve) return getDstQueue();
 				return basicGetDstQueue();
+			case ProcessPackage.PIPELINE_BARRIER__RECORD_DURING_STAGE:
+				return getRecordDuringStage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -617,6 +666,9 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 			case ProcessPackage.PIPELINE_BARRIER__DST_QUEUE:
 				setDstQueue((AbstractProcess)newValue);
 				return;
+			case ProcessPackage.PIPELINE_BARRIER__RECORD_DURING_STAGE:
+				setRecordDuringStage((ECommandStage)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -655,6 +707,9 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 			case ProcessPackage.PIPELINE_BARRIER__DST_QUEUE:
 				setDstQueue((AbstractProcess)null);
 				return;
+			case ProcessPackage.PIPELINE_BARRIER__RECORD_DURING_STAGE:
+				setRecordDuringStage(RECORD_DURING_STAGE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -685,6 +740,8 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 				return srcQueue != null;
 			case ProcessPackage.PIPELINE_BARRIER__DST_QUEUE:
 				return dstQueue != null;
+			case ProcessPackage.PIPELINE_BARRIER__RECORD_DURING_STAGE:
+				return recordDuringStage != RECORD_DURING_STAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -788,6 +845,8 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 		result.append(srcStage);
 		result.append(", dstStage: ");
 		result.append(dstStage);
+		result.append(", recordDuringStage: ");
+		result.append(recordDuringStage);
 		result.append(')');
 		return result.toString();
 	}

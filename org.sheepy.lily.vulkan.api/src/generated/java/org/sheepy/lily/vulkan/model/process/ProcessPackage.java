@@ -668,13 +668,22 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE_BARRIER__DST_QUEUE = RootPackage.LOBJECT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Record During Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_BARRIER__RECORD_DURING_STAGE = RootPackage.LOBJECT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Pipeline Barrier</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE_BARRIER_FEATURE_COUNT = RootPackage.LOBJECT_FEATURE_COUNT + 7;
+	int PIPELINE_BARRIER_FEATURE_COUNT = RootPackage.LOBJECT_FEATURE_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -1627,6 +1636,17 @@ public interface ProcessPackage extends EPackage
 	EReference getPipelineBarrier_DstQueue();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getRecordDuringStage <em>Record During Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Record During Stage</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getRecordDuringStage()
+	 * @see #getPipelineBarrier()
+	 * @generated
+	 */
+	EAttribute getPipelineBarrier_RecordDuringStage();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.CompositeTask <em>Composite Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2197,6 +2217,14 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference PIPELINE_BARRIER__DST_QUEUE = eINSTANCE.getPipelineBarrier_DstQueue();
+
+		/**
+		 * The meta object literal for the '<em><b>Record During Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PIPELINE_BARRIER__RECORD_DURING_STAGE = eINSTANCE.getPipelineBarrier_RecordDuringStage();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl <em>Composite Task</em>}' class.

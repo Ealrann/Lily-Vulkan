@@ -98,6 +98,7 @@ public final class DataProviderWrapper extends NotifierAdapter
 
 	public void updateBuffer(long bufferPtr)
 	{
+		assert bufferPtr != 0;
 		final long oldBufferPtr = this.bufferPtr;
 		this.bufferPtr = bufferPtr;
 

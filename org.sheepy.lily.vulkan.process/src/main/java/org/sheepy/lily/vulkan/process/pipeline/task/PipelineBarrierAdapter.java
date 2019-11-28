@@ -20,6 +20,7 @@ import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @Statefull
 @Adapter(scope = PipelineBarrier.class)
@@ -88,6 +89,12 @@ public class PipelineBarrierAdapter
 		allocationConfiguration.addChildren(List.of(imageBarrierInfos, bufferBarrierInfos));
 		allocationConfiguration.addDependencies(List.of(imageBarrierInfos, bufferBarrierInfos));
 	}
+	
+	@Override
+	public ECommandStage getStage(PipelineBarrier task)
+	{
+		return task.getRecordDuringStage();
+	}
 
 	@Override
 	public void free(IProcessContext context)
@@ -98,7 +105,7 @@ public class PipelineBarrierAdapter
 		imageBarrierInfos = null;
 		bufferBarrierInfos = null;
 	}
-
+	
 	@Override
 	public void record(PipelineBarrier barrier, RecordContext context)
 	{

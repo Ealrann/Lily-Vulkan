@@ -26,6 +26,8 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
+import org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor;
+import org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawCommandData;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawTaskMaintainer;
 import org.sheepy.lily.vulkan.nuklear.pipeline.util.NuklearImageInstaller;
@@ -226,12 +228,12 @@ public final class NuklearLayoutTaskAdapter
 		{
 			final var adapter = descriptor.adaptNotNull(IDescriptorAdapter.class);
 			final var vkDescriptor = adapter.getVkDescriptor();
-			if (vkDescriptor instanceof VkImageDescriptor)
+			if (descriptor instanceof SampledImageDescriptor)
 			{
 				final long ptr = ((VkImageDescriptor) vkDescriptor).getSamplerPtr();
 				texturePtrs.add(ptr);
 			}
-			else if (vkDescriptor instanceof VkImageArrayDescriptor)
+			else if (descriptor instanceof Texture2DArrayDescriptor)
 			{
 				final var ptrs = ((VkImageArrayDescriptor) vkDescriptor).getViewPtrs();
 				for (int i = 0; i < ptrs.length; i++)

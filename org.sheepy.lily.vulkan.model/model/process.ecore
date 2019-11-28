@@ -71,6 +71,9 @@
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EPipelineStage"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="srcQueue" eType="#//AbstractProcess"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dstQueue" eType="#//AbstractProcess"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="recordDuringStage" lowerBound="1"
+        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
+        defaultValueLiteral="Inherited"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeTask">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="repeatCount" unique="false"
