@@ -2,6 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
+import org.sheepy.lily.vulkan.model.IDescriptor;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +21,7 @@ package org.sheepy.lily.vulkan.model.resource;
  * @model
  * @generated
  */
-public interface SamplerDescriptor extends Descriptor
+public interface SamplerDescriptor extends IDescriptor
 {
 	/**
 	 * Returns the value of the '<em><b>Sampler</b></em>' reference.

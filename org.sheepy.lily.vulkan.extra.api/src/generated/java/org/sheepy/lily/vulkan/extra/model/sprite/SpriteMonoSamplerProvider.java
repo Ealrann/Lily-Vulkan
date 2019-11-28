@@ -2,9 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.sprite;
 
-import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
-
-import org.sheepy.lily.vulkan.model.ResourcePkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.vulkan.model.image.SamplerInfo;
 
 /**
@@ -17,14 +15,13 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getSamplerInfo <em>Sampler Info</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getTargetResourcePkg <em>Target Resource Pkg</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage#getSpriteMonoSamplerProvider()
  * @model
  * @generated
  */
-public interface SpriteMonoSamplerProvider extends ResourceProvider
+public interface SpriteMonoSamplerProvider extends ResourceDescriptorProvider
 {
 	/**
 	 * Returns the value of the '<em><b>Sampler Info</b></em>' containment reference.
@@ -47,27 +44,5 @@ public interface SpriteMonoSamplerProvider extends ResourceProvider
 	 * @generated
 	 */
 	void setSamplerInfo(SamplerInfo value);
-
-	/**
-	 * Returns the value of the '<em><b>Target Resource Pkg</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target Resource Pkg</em>' reference.
-	 * @see #setTargetResourcePkg(ResourcePkg)
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage#getSpriteMonoSamplerProvider_TargetResourcePkg()
-	 * @model required="true"
-	 * @generated
-	 */
-	ResourcePkg getTargetResourcePkg();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getTargetResourcePkg <em>Target Resource Pkg</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Resource Pkg</em>' reference.
-	 * @see #getTargetResourcePkg()
-	 * @generated
-	 */
-	void setTargetResourcePkg(ResourcePkg value);
 
 } // SpriteMonoSamplerProvider

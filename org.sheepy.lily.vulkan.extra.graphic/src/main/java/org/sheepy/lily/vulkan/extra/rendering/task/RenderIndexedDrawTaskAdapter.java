@@ -19,7 +19,7 @@ public class RenderIndexedDrawTaskAdapter implements IPipelineTaskAdapter<Render
 	private boolean hasChanged = true;
 
 	@Override
-	public void update(RenderIndexedDrawTask task)
+	public void update(RenderIndexedDrawTask task, int index)
 	{
 		final var structure = task.getStructure();
 		final var structureAdapter = structure.adaptNotNull(IStructureAdapter.class);

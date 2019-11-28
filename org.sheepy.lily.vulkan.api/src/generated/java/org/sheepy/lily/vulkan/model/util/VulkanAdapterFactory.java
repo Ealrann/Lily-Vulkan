@@ -123,6 +123,16 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 				return createWaitProcessIdleAdapter();
 			}
 			@Override
+			public Adapter caseDescriptorPkg(DescriptorPkg object)
+			{
+				return createDescriptorPkgAdapter();
+			}
+			@Override
+			public Adapter caseIDescriptor(IDescriptor object)
+			{
+				return createIDescriptorAdapter();
+			}
+			@Override
 			public Adapter caseIInferenceObject(IInferenceObject object)
 			{
 				return createIInferenceObjectAdapter();
@@ -284,6 +294,36 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createWaitProcessIdleAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.DescriptorPkg <em>Descriptor Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.DescriptorPkg
+	 * @generated
+	 */
+	public Adapter createDescriptorPkgAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IDescriptor <em>IDescriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.IDescriptor
+	 * @generated
+	 */
+	public Adapter createIDescriptorAdapter()
 	{
 		return null;
 	}

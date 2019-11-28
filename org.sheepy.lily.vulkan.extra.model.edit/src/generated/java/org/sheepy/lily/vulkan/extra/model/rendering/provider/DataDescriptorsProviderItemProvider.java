@@ -23,19 +23,17 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
-import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
-
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CompositeResourceProviderItemProvider 
+public class DataDescriptorsProviderItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -50,7 +48,7 @@ public class CompositeResourceProviderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeResourceProviderItemProvider(AdapterFactory adapterFactory)
+	public DataDescriptorsProviderItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -86,7 +84,7 @@ public class CompositeResourceProviderItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RenderingPackage.Literals.COMPOSITE_RESOURCE_PROVIDER__PROVIDERS);
+			childrenFeatures.add(RenderingPackage.Literals.DATA_DESCRIPTORS_PROVIDER__DATA_DESCRIPTORS);
 		}
 		return childrenFeatures;
 	}
@@ -106,7 +104,7 @@ public class CompositeResourceProviderItemProvider
 	}
 
 	/**
-	 * This returns CompositeResourceProvider.gif.
+	 * This returns DataDescriptorsProvider.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -114,7 +112,7 @@ public class CompositeResourceProviderItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/CompositeResourceProvider"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DataDescriptorsProvider"));
 	}
 
 	/**
@@ -126,7 +124,7 @@ public class CompositeResourceProviderItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		return getString("_UI_CompositeResourceProvider_type");
+		return getString("_UI_DataDescriptorsProvider_type");
 	}
 
 
@@ -142,9 +140,9 @@ public class CompositeResourceProviderItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CompositeResourceProvider.class))
+		switch (notification.getFeatureID(DataDescriptorsProvider.class))
 		{
-			case RenderingPackage.COMPOSITE_RESOURCE_PROVIDER__PROVIDERS:
+			case RenderingPackage.DATA_DESCRIPTORS_PROVIDER__DATA_DESCRIPTORS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -165,18 +163,8 @@ public class CompositeResourceProviderItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RenderingPackage.Literals.COMPOSITE_RESOURCE_PROVIDER__PROVIDERS,
-				 RenderingFactory.eINSTANCE.createStaticResourceProvider()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderingPackage.Literals.COMPOSITE_RESOURCE_PROVIDER__PROVIDERS,
-				 RenderingFactory.eINSTANCE.createCompositeResourceProvider()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderingPackage.Literals.COMPOSITE_RESOURCE_PROVIDER__PROVIDERS,
-				 SpriteFactory.eINSTANCE.createSpriteMonoSamplerProvider()));
+				(RenderingPackage.Literals.DATA_DESCRIPTORS_PROVIDER__DATA_DESCRIPTORS,
+				 RenderingFactory.eINSTANCE.createDataDescriptor()));
 	}
 
 	/**

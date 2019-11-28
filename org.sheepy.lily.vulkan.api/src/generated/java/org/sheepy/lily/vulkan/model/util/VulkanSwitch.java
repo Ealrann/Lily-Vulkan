@@ -148,6 +148,21 @@ public class VulkanSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case VulkanPackage.DESCRIPTOR_PKG:
+			{
+				DescriptorPkg descriptorPkg = (DescriptorPkg)theEObject;
+				T result = caseDescriptorPkg(descriptorPkg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanPackage.IDESCRIPTOR:
+			{
+				IDescriptor iDescriptor = (IDescriptor)theEObject;
+				T result = caseIDescriptor(iDescriptor);
+				if (result == null) result = caseLNamedElement(iDescriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -276,6 +291,38 @@ public class VulkanSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseWaitProcessIdle(WaitProcessIdle object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Descriptor Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Descriptor Pkg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDescriptorPkg(DescriptorPkg object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IDescriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IDescriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIDescriptor(IDescriptor object)
 	{
 		return null;
 	}

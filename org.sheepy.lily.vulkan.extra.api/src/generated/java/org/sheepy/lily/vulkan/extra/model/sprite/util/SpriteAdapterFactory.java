@@ -14,7 +14,7 @@ import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
-import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.sprite.*;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
@@ -156,9 +156,9 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 				return createPresentationAdapter();
 			}
 			@Override
-			public Adapter caseResourceProvider(ResourceProvider object)
+			public Adapter caseResourceDescriptorProvider(ResourceDescriptorProvider object)
 			{
-				return createResourceProviderAdapter();
+				return createResourceDescriptorProviderAdapter();
 			}
 			@Override
 			public Adapter caseStructure(Structure object)
@@ -403,16 +403,16 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider <em>Resource Provider</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider <em>Resource Descriptor Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider
 	 * @generated
 	 */
-	public Adapter createResourceProviderAdapter()
+	public Adapter createResourceDescriptorProviderAdapter()
 	{
 		return null;
 	}

@@ -15,6 +15,7 @@ import org.sheepy.lily.vulkan.resource.image.ImageDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.image.SampledImageAdapter;
 import org.sheepy.lily.vulkan.resource.image.SampledImageDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.image.SamplerAdapter;
+import org.sheepy.lily.vulkan.resource.image.SamplerDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.image.StaticImageAdapter;
 import org.sheepy.lily.vulkan.resource.image.Texture2DArrayAdapter;
 import org.sheepy.lily.vulkan.resource.image.Texture2DArrayDescriptorAdapter;
@@ -42,7 +43,8 @@ import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 		BufferDescriptorAdapter.class,
 		ImageDescriptorAdapter.class,
 		SampledImageDescriptorAdapter.class,
-		Texture2DArrayDescriptorAdapter.class
+		Texture2DArrayDescriptorAdapter.class,
+		SamplerDescriptorAdapter.class
 })
 
 module org.sheepy.lily.vulkan.resource

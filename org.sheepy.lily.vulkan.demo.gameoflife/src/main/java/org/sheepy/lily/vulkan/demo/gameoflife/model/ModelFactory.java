@@ -1,16 +1,20 @@
 package org.sheepy.lily.vulkan.demo.gameoflife.model;
 
+import java.util.List;
+
 import org.joml.Vector2i;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.core.model.cadence.Cadence;
 import org.sheepy.lily.core.model.cadence.CadenceFactory;
 import org.sheepy.lily.vulkan.demo.gameoflife.compute.Board;
+import org.sheepy.lily.vulkan.model.DescriptorPkg;
+import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
+import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
-import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
@@ -19,7 +23,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
-import org.sheepy.lily.vulkan.model.resource.Descriptor;
+import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
@@ -46,13 +50,16 @@ public class ModelFactory
 
 	public final Application application = ApplicationFactory.eINSTANCE.createApplication();
 	public final VulkanEngine engine = VulkanFactory.eINSTANCE.createVulkanEngine();
-	public final GraphicProcess imageProcess;
-	public ComputeProcess process1;
-	public ComputeProcess process2;
+	public final GraphicProcess presentProcess;
+	public ComputeProcess lifeProcess;
+	public ComputeProcess pixelProcess;
 	public ResourcePkg sharedResources = VulkanFactory.eINSTANCE.createResourcePkg();
+	public DescriptorPkg sharedDescriptors = VulkanFactory.eINSTANCE.createDescriptorPkg();
 
-	private StaticImage boardImage;
 	private final Vector2i size;
+	private StaticImage boardImage;
+	private Container lifePipelineContainer;
+	private Container pixelPipelineContainer;
 
 	public ModelFactory(int width, int height)
 	{
@@ -83,14 +90,15 @@ public class ModelFactory
 
 		createComputeProcessPool();
 
-		imageProcess = newImageProcess();
-		imageProcess.setConfiguration(configuration);
-		imageProcess.setRenderPassInfo(newInfo());
+		presentProcess = newImageProcess();
+		presentProcess.setConfiguration(configuration);
+		presentProcess.setRenderPassInfo(newInfo());
 
-		engine.getProcesses().add(process1);
-		engine.getProcesses().add(process2);
-		engine.getProcesses().add(imageProcess);
+		engine.getProcesses().add(lifeProcess);
+		engine.getProcesses().add(pixelProcess);
+		engine.getProcesses().add(presentProcess);
 		engine.setResourcePkg(sharedResources);
+		engine.setDescriptorPkg(sharedDescriptors);
 
 		application.setCadence(buildCadence(frameCount));
 	}
@@ -186,8 +194,8 @@ public class ModelFactory
 
 	private void createComputeProcessPool()
 	{
-		process1 = ComputeFactory.eINSTANCE.createComputeProcess();
-		process2 = ComputeFactory.eINSTANCE.createComputeProcess();
+		lifeProcess = ComputeFactory.eINSTANCE.createComputeProcess();
+		pixelProcess = ComputeFactory.eINSTANCE.createComputeProcess();
 		final Module thisModule = getClass().getModule();
 
 		final ModuleResource lifeShaderFile = ResourceFactory.eINSTANCE.createModuleResource();
@@ -211,31 +219,39 @@ public class ModelFactory
 		final Buffer boardBuffer2 = BoardBufferFactory.createBoardBuffer(board);
 		boardImage = BoardImageFactory.createBoardImage(size);
 
-		final var lifePipeline1 = createPipeline(	lifeShader,
-													newDescriptor(boardBuffer1),
-													newDescriptor(boardBuffer2));
-		final var lifePipeline2 = createPipeline(	lifeShader,
-													newDescriptor(boardBuffer2),
-													newDescriptor(boardBuffer1));
+		final var boardBuffer1Descriptor = newDescriptor(boardBuffer1);
+		final var boardBuffer2Descriptor = newDescriptor(boardBuffer2);
+		final var boardImageDescriptor = newDescriptor(boardImage);
 
-		final var pixelPipeline1 = createPipeline(	life2pixelShader,
-													newDescriptor(boardBuffer2),
-													newDescriptor(boardImage));
-		final var pixelPipeline2 = createPipeline(	life2pixelShader,
-													newDescriptor(boardBuffer1),
-													newDescriptor(boardImage));
+		final var lifeDescriptorSet1 = ResourceFactory.eINSTANCE.createDescriptorSet();
+		final var lifeDescriptorSet2 = ResourceFactory.eINSTANCE.createDescriptorSet();
+		final var pixelDescriptorSet1 = ResourceFactory.eINSTANCE.createDescriptorSet();
+		final var pixelDescriptorSet2 = ResourceFactory.eINSTANCE.createDescriptorSet();
 
-		final ProcessPartPkg pipelines1 = ProcessFactory.eINSTANCE.createProcessPartPkg();
-		process1.setPartPkg(pipelines1);
+		lifeDescriptorSet1.getDescriptors().add(boardBuffer1Descriptor);
+		lifeDescriptorSet1.getDescriptors().add(boardBuffer2Descriptor);
+		lifeDescriptorSet1.getDescriptors().add(boardImageDescriptor);
+		lifeDescriptorSet2.getDescriptors().add(boardBuffer2Descriptor);
+		lifeDescriptorSet2.getDescriptors().add(boardBuffer1Descriptor);
+		lifeDescriptorSet2.getDescriptors().add(boardImageDescriptor);
+		pixelDescriptorSet1.getDescriptors().add(boardBuffer2Descriptor);
+		pixelDescriptorSet1.getDescriptors().add(boardImageDescriptor);
+		pixelDescriptorSet2.getDescriptors().add(boardBuffer1Descriptor);
+		pixelDescriptorSet2.getDescriptors().add(boardImageDescriptor);
 
-		pipelines1.getParts().add(lifePipeline1);
-		pipelines1.getParts().add(pixelPipeline1);
+		lifePipelineContainer = createPipeline(	lifeShader,
+												List.of(lifeDescriptorSet1, lifeDescriptorSet2));
 
-		final ProcessPartPkg pipelines2 = ProcessFactory.eINSTANCE.createProcessPartPkg();
-		process2.setPartPkg(pipelines2);
+		pixelPipelineContainer = createPipeline(life2pixelShader,
+												List.of(pixelDescriptorSet1, pixelDescriptorSet2));
 
-		pipelines2.getParts().add(lifePipeline2);
-		pipelines2.getParts().add(pixelPipeline2);
+		final var lifeProcessPkg = ProcessFactory.eINSTANCE.createProcessPartPkg();
+		lifeProcessPkg.getParts().add(lifePipelineContainer.pipeline);
+		lifeProcess.setPartPkg(lifeProcessPkg);
+
+		final var pixelProcessPkg = ProcessFactory.eINSTANCE.createProcessPartPkg();
+		pixelProcessPkg.getParts().add(pixelPipelineContainer.pipeline);
+		pixelProcess.setPartPkg(pixelProcessPkg);
 
 		sharedResources.getResources().add(lifeShader);
 		sharedResources.getResources().add(life2pixelShader);
@@ -243,35 +259,46 @@ public class ModelFactory
 		sharedResources.getResources().add(boardBuffer2);
 		sharedResources.getResources().add(boardImage);
 
-		process1.setResetAllowed(true);
-		process2.setResetAllowed(true);
+		sharedDescriptors.getDescriptors().add(boardBuffer1Descriptor);
+		sharedDescriptors.getDescriptors().add(boardBuffer2Descriptor);
+		sharedDescriptors.getDescriptors().add(boardImageDescriptor);
+
+		lifeProcess.setResetAllowed(true);
+		pixelProcess.setResetAllowed(true);
 	}
 
-	private ComputePipeline createPipeline(Shader shader, Descriptor... descriptors)
+	private Container createPipeline(Shader shader, List<DescriptorSet> dSets)
 	{
-		final var descriptorSet = ResourceFactory.eINSTANCE.createDescriptorSet();
-		for (final var descriptor : descriptors)
-		{
-			descriptorSet.getDescriptors().add(descriptor);
-		}
-
 		final var bindDescriptorSet = ProcessFactory.eINSTANCE.createBindDescriptorSets();
-		bindDescriptorSet.getDescriptorSets().add(descriptorSet);
 		bindDescriptorSet.setBindPoint(EBindPoint.COMPUTE);
+		bindDescriptorSet.getDescriptorSets().add(dSets.get(0));
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 		final var dispatch = createDispatchTask();
 
-		final var res = ComputeFactory.eINSTANCE.createComputePipeline();
-		res.setTaskPkg(taskPkg);
+		final var pipeline = ComputeFactory.eINSTANCE.createComputePipeline();
+		pipeline.setTaskPkg(taskPkg);
 		taskPkg.getTasks().add(bindDescriptorSet);
 		taskPkg.getTasks().add(dispatch);
 
-		res.setDescriptorSetPkg(ResourceFactory.eINSTANCE.createDescriptorSetPkg());
-		res.getDescriptorSetPkg().getDescriptorSets().add(descriptorSet);
-		res.setShader(shader);
-		res.setStage(ECommandStage.COMPUTE);
+		final var dSetPkg = ResourceFactory.eINSTANCE.createDescriptorSetPkg();
+		dSetPkg.getDescriptorSets().addAll(dSets);
 
+		pipeline.setShader(shader);
+		pipeline.setStage(ECommandStage.COMPUTE);
+		pipeline.setDescriptorSetPkg(dSetPkg);
+
+		final var res = new Container();
+		res.pipeline = pipeline;
+		res.bindDescriptorSet = bindDescriptorSet;
+		res.descriptorSets = dSets;
 		return res;
+	}
+
+	private class Container
+	{
+		public ComputePipeline pipeline;
+		public BindDescriptorSets bindDescriptorSet;
+		public List<DescriptorSet> descriptorSets;
 	}
 
 	private DispatchTask createDispatchTask()
@@ -284,32 +311,34 @@ public class ModelFactory
 
 	private final Cadence buildCadence(int frameCount)
 	{
-		final var runCompute1Task = VulkanFactory.eINSTANCE.createRunProcess();
-		runCompute1Task.setProcess(process1);
-		final var waitCompute1Idle = VulkanFactory.eINSTANCE.createWaitProcessIdle();
-		waitCompute1Idle.setProcess(process1);
-		final var runCompute2Task = VulkanFactory.eINSTANCE.createRunProcess();
-		runCompute2Task.setProcess(process2);
-		final var waitCompute2Idle = VulkanFactory.eINSTANCE.createWaitProcessIdle();
-		waitCompute2Idle.setProcess(process2);
+		final var runComputeLifeTask = VulkanFactory.eINSTANCE.createRunProcess();
+		final var runComputePixelTask = VulkanFactory.eINSTANCE.createRunProcess();
 		final var runGraphicTask = VulkanFactory.eINSTANCE.createRunProcess();
-		runGraphicTask.setProcess(imageProcess);
 		final var executeWhile = CadenceFactory.eINSTANCE.createExecuteWhile();
 		final var printUPS = CadenceFactory.eINSTANCE.createPrintUPS();
-		printUPS.setPrintEveryMs(1200);
 		final var cadence = CadenceFactory.eINSTANCE.createCadence();
-		cadence.setFrequency(60);
 		final var haveTime = CadenceFactory.eINSTANCE.createHaveTime();
 		final var loopTasks = executeWhile.getTasks();
+		final var swapLifeBindings = ProcessFactory.eINSTANCE.createSwapBindingsTask();
+		final var swapPixelBindings = ProcessFactory.eINSTANCE.createSwapBindingsTask();
 
-		cadence.getTasks().add(runGraphicTask);
-
+		runComputeLifeTask.setProcess(lifeProcess);
+		runComputePixelTask.setProcess(pixelProcess);
+		runGraphicTask.setProcess(presentProcess);
+		printUPS.setPrintEveryMs(1200);
+		cadence.setFrequency(60);
+		swapLifeBindings.setTask(lifePipelineContainer.bindDescriptorSet);
+		swapLifeBindings.getDescriptorSets().addAll(lifePipelineContainer.descriptorSets);
+		swapPixelBindings.setTask(pixelPipelineContainer.bindDescriptorSet);
+		swapPixelBindings.getDescriptorSets().addAll(pixelPipelineContainer.descriptorSets);
 		executeWhile.getConditions().add(haveTime);
 		loopTasks.add(printUPS);
-		loopTasks.add(runCompute1Task);
-		loopTasks.add(waitCompute1Idle);
-		loopTasks.add(runCompute2Task);
-		loopTasks.add(waitCompute2Idle);
+		loopTasks.add(swapLifeBindings);
+		loopTasks.add(swapPixelBindings);
+		loopTasks.add(runComputeLifeTask);
+
+		cadence.getTasks().add(runComputePixelTask);
+		cadence.getTasks().add(runGraphicTask);
 		cadence.getTasks().add(executeWhile);
 
 		if (frameCount > 0)
@@ -327,22 +356,22 @@ public class ModelFactory
 		return cadence;
 	}
 
-	private static Descriptor newDescriptor(Buffer buffer)
+	private static IDescriptor newDescriptor(Buffer buffer)
 	{
 		final var reference = ResourceFactory.eINSTANCE.createBufferReference();
 		reference.setBuffer(buffer);
 
 		final var descriptor = ResourceFactory.eINSTANCE.createBufferDescriptor();
-		descriptor.setDescriptorType(EDescriptorType.STORAGE_BUFFER);
+		descriptor.setType(EDescriptorType.STORAGE_BUFFER);
 		descriptor.getShaderStages().add(EShaderStage.COMPUTE_BIT);
 		descriptor.setBufferReference(reference);
 		return descriptor;
 	}
 
-	private static Descriptor newDescriptor(Image image)
+	private static IDescriptor newDescriptor(Image image)
 	{
 		final var descriptor = ResourceFactory.eINSTANCE.createImageDescriptor();
-		descriptor.setDescriptorType(EDescriptorType.STORAGE_IMAGE);
+		descriptor.setType(EDescriptorType.STORAGE_IMAGE);
 		descriptor.getShaderStages().add(EShaderStage.COMPUTE_BIT);
 		descriptor.setImage(image);
 		return descriptor;

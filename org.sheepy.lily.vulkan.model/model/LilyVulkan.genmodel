@@ -111,6 +111,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PrepareCompositeTransfer/mode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PrepareCompositeTransfer/instance"/>
     </genClasses>
+    <genClasses ecoreClass="process.ecore#//SwapBindingsTask">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//SwapBindingsTask/task"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//SwapBindingsTask/descriptorSets"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Vulkan" basePackage="org.sheepy.lily.vulkan" resource="XMI"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
@@ -122,6 +126,7 @@
     </genClasses>
     <genClasses image="false" ecoreClass="vulkan.ecore#//IResourceContainer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//IResourceContainer/resourcePkg"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//IResourceContainer/descriptorPkg"/>
     </genClasses>
     <genClasses ecoreClass="vulkan.ecore#//ResourcePkg">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//ResourcePkg/resources"/>
@@ -137,6 +142,13 @@
     </genClasses>
     <genClasses ecoreClass="vulkan.ecore#//WaitProcessIdle">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference vulkan.ecore#//WaitProcessIdle/process"/>
+    </genClasses>
+    <genClasses ecoreClass="vulkan.ecore#//DescriptorPkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//DescriptorPkg/descriptors"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="vulkan.ecore#//IDescriptor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IDescriptor/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IDescriptor/shaderStages"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Resource" basePackage="org.sheepy.lily.vulkan.model" resource="XMI"
@@ -222,10 +234,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//FontImage/file"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//FontImage/height"/>
     </genClasses>
-    <genClasses ecoreClass="resource.ecore#//Descriptor">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Descriptor/descriptorType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Descriptor/shaderStages"/>
-    </genClasses>
     <genClasses ecoreClass="resource.ecore#//BufferDescriptor">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//BufferDescriptor/bufferReference"/>
     </genClasses>
@@ -242,7 +250,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//Texture2DArrayDescriptor/texture2DArray"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//DescriptorSet">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//DescriptorSet/descriptors"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//DescriptorSet/descriptors"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//DescriptorSetPkg">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//DescriptorSetPkg/descriptorSets"/>

@@ -25,6 +25,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor;
 
@@ -68,7 +69,7 @@ public class Texture2DArrayDescriptorItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addDescriptorTypePropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
 			addShaderStagesPropertyDescriptor(object);
 			addTexture2DArrayPropertyDescriptor(object);
 		}
@@ -99,20 +100,20 @@ public class Texture2DArrayDescriptorItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Descriptor Type feature.
+	 * This adds a property descriptor for the Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDescriptorTypePropertyDescriptor(Object object)
+	protected void addTypePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Descriptor_descriptorType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Descriptor_descriptorType_feature", "_UI_Descriptor_type"),
-				 ResourcePackage.Literals.DESCRIPTOR__DESCRIPTOR_TYPE,
+				 getString("_UI_IDescriptor_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IDescriptor_type_feature", "_UI_IDescriptor_type"),
+				 VulkanPackage.Literals.IDESCRIPTOR__TYPE,
 				 true,
 				 false,
 				 false,
@@ -133,9 +134,9 @@ public class Texture2DArrayDescriptorItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Descriptor_shaderStages_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Descriptor_shaderStages_feature", "_UI_Descriptor_type"),
-				 ResourcePackage.Literals.DESCRIPTOR__SHADER_STAGES,
+				 getString("_UI_IDescriptor_shaderStages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IDescriptor_shaderStages_feature", "_UI_IDescriptor_type"),
+				 VulkanPackage.Literals.IDESCRIPTOR__SHADER_STAGES,
 				 true,
 				 false,
 				 false,
@@ -210,7 +211,7 @@ public class Texture2DArrayDescriptorItemProvider
 		switch (notification.getFeatureID(Texture2DArrayDescriptor.class))
 		{
 			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__NAME:
-			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__DESCRIPTOR_TYPE:
+			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TYPE:
 			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__SHADER_STAGES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

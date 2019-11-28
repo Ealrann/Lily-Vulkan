@@ -3,48 +3,48 @@
 package org.sheepy.lily.vulkan.extra.model.rendering.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
-import org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider;
 
-import org.sheepy.lily.vulkan.model.IResource;
+import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+
+import org.sheepy.lily.vulkan.model.IDescriptor;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Static Resource Provider</b></em>'.
+ * An implementation of the model object '<em><b>Descriptors Provider</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.StaticResourceProviderImpl#getResources <em>Resources</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DescriptorsProviderImpl#getDescriptors <em>Descriptors</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class StaticResourceProviderImpl extends LilyEObject implements StaticResourceProvider
+public class DescriptorsProviderImpl extends LilyEObject implements DescriptorsProvider
 {
 	/**
-	 * The cached value of the '{@link #getResources() <em>Resources</em>}' reference list.
+	 * The cached value of the '{@link #getDescriptors() <em>Descriptors</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getResources()
+	 * @see #getDescriptors()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IResource> resources;
+	protected EList<IDescriptor> descriptors;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StaticResourceProviderImpl()
+	protected DescriptorsProviderImpl()
 	{
 		super();
 	}
@@ -57,7 +57,7 @@ public class StaticResourceProviderImpl extends LilyEObject implements StaticRes
 	@Override
 	protected EClass eStaticClass()
 	{
-		return RenderingPackage.Literals.STATIC_RESOURCE_PROVIDER;
+		return RenderingPackage.Literals.DESCRIPTORS_PROVIDER;
 	}
 
 	/**
@@ -66,13 +66,13 @@ public class StaticResourceProviderImpl extends LilyEObject implements StaticRes
 	 * @generated
 	 */
 	@Override
-	public EList<IResource> getResources()
+	public EList<IDescriptor> getDescriptors()
 	{
-		if (resources == null)
+		if (descriptors == null)
 		{
-			resources = new EObjectResolvingEList<IResource>(IResource.class, this, RenderingPackage.STATIC_RESOURCE_PROVIDER__RESOURCES);
+			descriptors = new EObjectResolvingEList<IDescriptor>(IDescriptor.class, this, RenderingPackage.DESCRIPTORS_PROVIDER__DESCRIPTORS);
 		}
-		return resources;
+		return descriptors;
 	}
 
 	/**
@@ -85,8 +85,8 @@ public class StaticResourceProviderImpl extends LilyEObject implements StaticRes
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.STATIC_RESOURCE_PROVIDER__RESOURCES:
-				return getResources();
+			case RenderingPackage.DESCRIPTORS_PROVIDER__DESCRIPTORS:
+				return getDescriptors();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -102,9 +102,9 @@ public class StaticResourceProviderImpl extends LilyEObject implements StaticRes
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.STATIC_RESOURCE_PROVIDER__RESOURCES:
-				getResources().clear();
-				getResources().addAll((Collection<? extends IResource>)newValue);
+			case RenderingPackage.DESCRIPTORS_PROVIDER__DESCRIPTORS:
+				getDescriptors().clear();
+				getDescriptors().addAll((Collection<? extends IDescriptor>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -120,8 +120,8 @@ public class StaticResourceProviderImpl extends LilyEObject implements StaticRes
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.STATIC_RESOURCE_PROVIDER__RESOURCES:
-				getResources().clear();
+			case RenderingPackage.DESCRIPTORS_PROVIDER__DESCRIPTORS:
+				getDescriptors().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -137,10 +137,10 @@ public class StaticResourceProviderImpl extends LilyEObject implements StaticRes
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.STATIC_RESOURCE_PROVIDER__RESOURCES:
-				return resources != null && !resources.isEmpty();
+			case RenderingPackage.DESCRIPTORS_PROVIDER__DESCRIPTORS:
+				return descriptors != null && !descriptors.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //StaticResourceProviderImpl
+} //DescriptorsProviderImpl

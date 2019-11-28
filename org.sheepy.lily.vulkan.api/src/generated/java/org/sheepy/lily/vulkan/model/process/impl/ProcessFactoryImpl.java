@@ -64,17 +64,18 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case ProcessPackage.PROCESS_PART_PKG: return createProcessPartPkg();
-			case ProcessPackage.TASK_PKG: return createTaskPkg();
-			case ProcessPackage.PIPELINE: return createPipeline();
-			case ProcessPackage.PIPELINE_BARRIER: return createPipelineBarrier();
-			case ProcessPackage.COMPOSITE_TASK: return createCompositeTask();
-			case ProcessPackage.BIND_DESCRIPTOR_SETS: return createBindDescriptorSets();
-			case ProcessPackage.PUSH_CONSTANT_BUFFER: return createPushConstantBuffer();
-			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK: return createFlushTransferBufferTask();
-			case ProcessPackage.COPY_BUFFER_TASK: return createCopyBufferTask();
-			case ProcessPackage.PROCESS_EXTENSION_PKG: return createProcessExtensionPkg();
-			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER: return createPrepareCompositeTransfer();
+			case ProcessPackage.PROCESS_PART_PKG: return (EObject)createProcessPartPkg();
+			case ProcessPackage.TASK_PKG: return (EObject)createTaskPkg();
+			case ProcessPackage.PIPELINE: return (EObject)createPipeline();
+			case ProcessPackage.PIPELINE_BARRIER: return (EObject)createPipelineBarrier();
+			case ProcessPackage.COMPOSITE_TASK: return (EObject)createCompositeTask();
+			case ProcessPackage.BIND_DESCRIPTOR_SETS: return (EObject)createBindDescriptorSets();
+			case ProcessPackage.PUSH_CONSTANT_BUFFER: return (EObject)createPushConstantBuffer();
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK: return (EObject)createFlushTransferBufferTask();
+			case ProcessPackage.COPY_BUFFER_TASK: return (EObject)createCopyBufferTask();
+			case ProcessPackage.PROCESS_EXTENSION_PKG: return (EObject)createProcessExtensionPkg();
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER: return (EObject)createPrepareCompositeTransfer();
+			case ProcessPackage.SWAP_BINDINGS_TASK: return (EObject)createSwapBindingsTask();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -210,6 +211,18 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		PrepareCompositeTransferImpl prepareCompositeTransfer = new PrepareCompositeTransferImpl();
 		return prepareCompositeTransfer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SwapBindingsTask createSwapBindingsTask()
+	{
+		SwapBindingsTaskImpl swapBindingsTask = new SwapBindingsTaskImpl();
+		return swapBindingsTask;
 	}
 
 	/**

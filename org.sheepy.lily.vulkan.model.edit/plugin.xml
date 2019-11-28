@@ -32,6 +32,13 @@
                org.eclipse.emf.edit.provider.IItemPropertySource"/>
    </extension>
 
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <!-- @generated LilyVulkan -->
+      <extender
+            uri="org.sheepy.lily.core.model.cadence"
+            class="org.sheepy.lily.vulkan.model.process.provider.ProcessItemProviderAdapterFactory$CadenceChildCreationExtender"/>
+   </extension>
+
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated LilyVulkan -->
       <factory

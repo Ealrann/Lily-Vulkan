@@ -27,8 +27,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
-import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
-
+import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
@@ -51,9 +50,10 @@ import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getRenderedStructures <em>Rendered Structures</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getConstantBuffer <em>Constant Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getTransferBuffer <em>Transfer Buffer</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getCommonResourceProvider <em>Common Resource Provider</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getDescriptorProviderPkg <em>Descriptor Provider Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getSpecialization <em>Specialization</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getFlushTransferBufferTask <em>Flush Transfer Buffer Task</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#isOnePipelinePerPart <em>One Pipeline Per Part</em>}</li>
  * </ul>
  *
  * @generated
@@ -111,14 +111,14 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	protected TransferBuffer transferBuffer;
 
 	/**
-	 * The cached value of the '{@link #getCommonResourceProvider() <em>Common Resource Provider</em>}' containment reference.
+	 * The cached value of the '{@link #getDescriptorProviderPkg() <em>Descriptor Provider Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCommonResourceProvider()
+	 * @see #getDescriptorProviderPkg()
 	 * @generated
 	 * @ordered
 	 */
-	protected ResourceProvider commonResourceProvider;
+	protected ResourceDescriptorProviderPkg descriptorProviderPkg;
 
 	/**
 	 * The cached value of the '{@link #getSpecialization() <em>Specialization</em>}' containment reference.
@@ -139,6 +139,26 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	 * @ordered
 	 */
 	protected FlushTransferBufferTask flushTransferBufferTask;
+
+	/**
+	 * The default value of the '{@link #isOnePipelinePerPart() <em>One Pipeline Per Part</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOnePipelinePerPart()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ONE_PIPELINE_PER_PART_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isOnePipelinePerPart() <em>One Pipeline Per Part</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOnePipelinePerPart()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean onePipelinePerPart = ONE_PIPELINE_PER_PART_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -337,9 +357,9 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	 * @generated
 	 */
 	@Override
-	public ResourceProvider getCommonResourceProvider()
+	public ResourceDescriptorProviderPkg getDescriptorProviderPkg()
 	{
-		return commonResourceProvider;
+		return descriptorProviderPkg;
 	}
 
 	/**
@@ -347,13 +367,13 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCommonResourceProvider(ResourceProvider newCommonResourceProvider, NotificationChain msgs)
+	public NotificationChain basicSetDescriptorProviderPkg(ResourceDescriptorProviderPkg newDescriptorProviderPkg, NotificationChain msgs)
 	{
-		ResourceProvider oldCommonResourceProvider = commonResourceProvider;
-		commonResourceProvider = newCommonResourceProvider;
+		ResourceDescriptorProviderPkg oldDescriptorProviderPkg = descriptorProviderPkg;
+		descriptorProviderPkg = newDescriptorProviderPkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER, oldCommonResourceProvider, newCommonResourceProvider);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG, oldDescriptorProviderPkg, newDescriptorProviderPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -365,20 +385,20 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	 * @generated
 	 */
 	@Override
-	public void setCommonResourceProvider(ResourceProvider newCommonResourceProvider)
+	public void setDescriptorProviderPkg(ResourceDescriptorProviderPkg newDescriptorProviderPkg)
 	{
-		if (newCommonResourceProvider != commonResourceProvider)
+		if (newDescriptorProviderPkg != descriptorProviderPkg)
 		{
 			NotificationChain msgs = null;
-			if (commonResourceProvider != null)
-				msgs = ((InternalEObject)commonResourceProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER, null, msgs);
-			if (newCommonResourceProvider != null)
-				msgs = ((InternalEObject)newCommonResourceProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER, null, msgs);
-			msgs = basicSetCommonResourceProvider(newCommonResourceProvider, msgs);
+			if (descriptorProviderPkg != null)
+				msgs = ((InternalEObject)descriptorProviderPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG, null, msgs);
+			if (newDescriptorProviderPkg != null)
+				msgs = ((InternalEObject)newDescriptorProviderPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG, null, msgs);
+			msgs = basicSetDescriptorProviderPkg(newDescriptorProviderPkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER, newCommonResourceProvider, newCommonResourceProvider));
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG, newDescriptorProviderPkg, newDescriptorProviderPkg));
 	}
 
 	/**
@@ -481,6 +501,31 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public boolean isOnePipelinePerPart()
+	{
+		return onePipelinePerPart;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOnePipelinePerPart(boolean newOnePipelinePerPart)
+	{
+		boolean oldOnePipelinePerPart = onePipelinePerPart;
+		onePipelinePerPart = newOnePipelinePerPart;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER__ONE_PIPELINE_PER_PART, oldOnePipelinePerPart, onePipelinePerPart));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
@@ -507,8 +552,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 				return ((InternalEList<?>)getMaintained()).basicRemove(otherEnd, msgs);
 			case RenderingPackage.GENERIC_RENDERER__DATA_PROVIDER_PKG:
 				return basicSetDataProviderPkg(null, msgs);
-			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
-				return basicSetCommonResourceProvider(null, msgs);
+			case RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG:
+				return basicSetDescriptorProviderPkg(null, msgs);
 			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
 				return basicSetSpecialization(null, msgs);
 		}
@@ -537,13 +582,15 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 			case RenderingPackage.GENERIC_RENDERER__TRANSFER_BUFFER:
 				if (resolve) return getTransferBuffer();
 				return basicGetTransferBuffer();
-			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
-				return getCommonResourceProvider();
+			case RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG:
+				return getDescriptorProviderPkg();
 			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
 				return getSpecialization();
 			case RenderingPackage.GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK:
 				if (resolve) return getFlushTransferBufferTask();
 				return basicGetFlushTransferBufferTask();
+			case RenderingPackage.GENERIC_RENDERER__ONE_PIPELINE_PER_PART:
+				return isOnePipelinePerPart();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -576,14 +623,17 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 			case RenderingPackage.GENERIC_RENDERER__TRANSFER_BUFFER:
 				setTransferBuffer((TransferBuffer)newValue);
 				return;
-			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
-				setCommonResourceProvider((ResourceProvider)newValue);
+			case RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG:
+				setDescriptorProviderPkg((ResourceDescriptorProviderPkg)newValue);
 				return;
 			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
 				setSpecialization((ISpecialization)newValue);
 				return;
 			case RenderingPackage.GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK:
 				setFlushTransferBufferTask((FlushTransferBufferTask)newValue);
+				return;
+			case RenderingPackage.GENERIC_RENDERER__ONE_PIPELINE_PER_PART:
+				setOnePipelinePerPart((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -614,14 +664,17 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 			case RenderingPackage.GENERIC_RENDERER__TRANSFER_BUFFER:
 				setTransferBuffer((TransferBuffer)null);
 				return;
-			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
-				setCommonResourceProvider((ResourceProvider)null);
+			case RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG:
+				setDescriptorProviderPkg((ResourceDescriptorProviderPkg)null);
 				return;
 			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
 				setSpecialization((ISpecialization)null);
 				return;
 			case RenderingPackage.GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK:
 				setFlushTransferBufferTask((FlushTransferBufferTask)null);
+				return;
+			case RenderingPackage.GENERIC_RENDERER__ONE_PIPELINE_PER_PART:
+				setOnePipelinePerPart(ONE_PIPELINE_PER_PART_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -647,12 +700,14 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 				return constantBuffer != null;
 			case RenderingPackage.GENERIC_RENDERER__TRANSFER_BUFFER:
 				return transferBuffer != null;
-			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
-				return commonResourceProvider != null;
+			case RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG:
+				return descriptorProviderPkg != null;
 			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
 				return specialization != null;
 			case RenderingPackage.GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK:
 				return flushTransferBufferTask != null;
+			case RenderingPackage.GENERIC_RENDERER__ONE_PIPELINE_PER_PART:
+				return onePipelinePerPart != ONE_PIPELINE_PER_PART_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -693,6 +748,23 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (onePipelinePerPart: ");
+		result.append(onePipelinePerPart);
+		result.append(')');
+		return result.toString();
 	}
 
 } //GenericRendererImpl

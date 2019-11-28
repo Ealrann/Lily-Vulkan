@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
 
+import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.IResource;
 
 import org.sheepy.lily.vulkan.model.resource.*;
@@ -164,11 +165,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createFontImageAdapter();
 			}
 			@Override
-			public Adapter caseDescriptor(Descriptor object)
-			{
-				return createDescriptorAdapter();
-			}
-			@Override
 			public Adapter caseBufferDescriptor(BufferDescriptor object)
 			{
 				return createBufferDescriptorAdapter();
@@ -272,6 +268,11 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseSamplerInfo(SamplerInfo object)
 			{
 				return createSamplerInfoAdapter();
+			}
+			@Override
+			public Adapter caseIDescriptor(IDescriptor object)
+			{
+				return createIDescriptorAdapter();
 			}
 			@Override
 			public Adapter caseBarrier(Barrier object)
@@ -545,21 +546,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createFontImageAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Descriptor <em>Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.Descriptor
-	 * @generated
-	 */
-	public Adapter createDescriptorAdapter()
 	{
 		return null;
 	}
@@ -875,6 +861,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createSamplerInfoAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IDescriptor <em>IDescriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.IDescriptor
+	 * @generated
+	 */
+	public Adapter createIDescriptorAdapter()
 	{
 		return null;
 	}

@@ -34,7 +34,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayDescriptorImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayDescriptorImpl#getDescriptorType <em>Descriptor Type</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayDescriptorImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayDescriptorImpl#getShaderStages <em>Shader Stages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayDescriptorImpl#getTexture2DArray <em>Texture2 DArray</em>}</li>
  * </ul>
@@ -64,24 +64,24 @@ public class Texture2DArrayDescriptorImpl extends LilyEObject implements Texture
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDescriptorType() <em>Descriptor Type</em>}' attribute.
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDescriptorType()
+	 * @see #getType()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EDescriptorType DESCRIPTOR_TYPE_EDEFAULT = EDescriptorType.SAMPLER;
+	protected static final EDescriptorType TYPE_EDEFAULT = EDescriptorType.SAMPLER;
 
 	/**
-	 * The cached value of the '{@link #getDescriptorType() <em>Descriptor Type</em>}' attribute.
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDescriptorType()
+	 * @see #getType()
 	 * @generated
 	 * @ordered
 	 */
-	protected EDescriptorType descriptorType = DESCRIPTOR_TYPE_EDEFAULT;
+	protected EDescriptorType type = TYPE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getShaderStages() <em>Shader Stages</em>}' attribute list.
@@ -155,9 +155,9 @@ public class Texture2DArrayDescriptorImpl extends LilyEObject implements Texture
 	 * @generated
 	 */
 	@Override
-	public EDescriptorType getDescriptorType()
+	public EDescriptorType getType()
 	{
-		return descriptorType;
+		return type;
 	}
 
 	/**
@@ -166,12 +166,12 @@ public class Texture2DArrayDescriptorImpl extends LilyEObject implements Texture
 	 * @generated
 	 */
 	@Override
-	public void setDescriptorType(EDescriptorType newDescriptorType)
+	public void setType(EDescriptorType newType)
 	{
-		EDescriptorType oldDescriptorType = descriptorType;
-		descriptorType = newDescriptorType == null ? DESCRIPTOR_TYPE_EDEFAULT : newDescriptorType;
+		EDescriptorType oldType = type;
+		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TYPE, oldType, type));
 	}
 
 	/**
@@ -246,8 +246,8 @@ public class Texture2DArrayDescriptorImpl extends LilyEObject implements Texture
 		{
 			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__NAME:
 				return getName();
-			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__DESCRIPTOR_TYPE:
-				return getDescriptorType();
+			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TYPE:
+				return getType();
 			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__SHADER_STAGES:
 				return getShaderStages();
 			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE2_DARRAY:
@@ -271,8 +271,8 @@ public class Texture2DArrayDescriptorImpl extends LilyEObject implements Texture
 			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__NAME:
 				setName((String)newValue);
 				return;
-			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__DESCRIPTOR_TYPE:
-				setDescriptorType((EDescriptorType)newValue);
+			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TYPE:
+				setType((EDescriptorType)newValue);
 				return;
 			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__SHADER_STAGES:
 				getShaderStages().clear();
@@ -298,8 +298,8 @@ public class Texture2DArrayDescriptorImpl extends LilyEObject implements Texture
 			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__DESCRIPTOR_TYPE:
-				setDescriptorType(DESCRIPTOR_TYPE_EDEFAULT);
+			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TYPE:
+				setType(TYPE_EDEFAULT);
 				return;
 			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__SHADER_STAGES:
 				getShaderStages().clear();
@@ -323,8 +323,8 @@ public class Texture2DArrayDescriptorImpl extends LilyEObject implements Texture
 		{
 			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__DESCRIPTOR_TYPE:
-				return descriptorType != DESCRIPTOR_TYPE_EDEFAULT;
+			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TYPE:
+				return type != TYPE_EDEFAULT;
 			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__SHADER_STAGES:
 				return shaderStages != null && !shaderStages.isEmpty();
 			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE2_DARRAY:
@@ -346,8 +346,8 @@ public class Texture2DArrayDescriptorImpl extends LilyEObject implements Texture
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", descriptorType: ");
-		result.append(descriptorType);
+		result.append(", type: ");
+		result.append(type);
 		result.append(", shaderStages: ");
 		result.append(shaderStages);
 		result.append(')');

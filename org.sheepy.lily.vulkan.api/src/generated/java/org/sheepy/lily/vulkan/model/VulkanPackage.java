@@ -91,13 +91,22 @@ public interface VulkanPackage extends EPackage
 	int VULKAN_ENGINE__RESOURCE_PKG = ApplicationPackage.IENGINE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VULKAN_ENGINE__DESCRIPTOR_PKG = ApplicationPackage.IENGINE_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VULKAN_ENGINE__ENABLED = ApplicationPackage.IENGINE_FEATURE_COUNT + 1;
+	int VULKAN_ENGINE__ENABLED = ApplicationPackage.IENGINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Processes</b></em>' containment reference list.
@@ -106,7 +115,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VULKAN_ENGINE__PROCESSES = ApplicationPackage.IENGINE_FEATURE_COUNT + 2;
+	int VULKAN_ENGINE__PROCESSES = ApplicationPackage.IENGINE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Features</b></em>' attribute list.
@@ -115,7 +124,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VULKAN_ENGINE__FEATURES = ApplicationPackage.IENGINE_FEATURE_COUNT + 3;
+	int VULKAN_ENGINE__FEATURES = ApplicationPackage.IENGINE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Engine</em>' class.
@@ -124,7 +133,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VULKAN_ENGINE_FEATURE_COUNT = ApplicationPackage.IENGINE_FEATURE_COUNT + 4;
+	int VULKAN_ENGINE_FEATURE_COUNT = ApplicationPackage.IENGINE_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -200,13 +209,22 @@ public interface VulkanPackage extends EPackage
 	int IRESOURCE_CONTAINER__RESOURCE_PKG = 0;
 
 	/**
+	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IRESOURCE_CONTAINER__DESCRIPTOR_PKG = 1;
+
+	/**
 	 * The number of structural features of the '<em>IResource Container</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IRESOURCE_CONTAINER_FEATURE_COUNT = 1;
+	int IRESOURCE_CONTAINER_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>IResource Container</em>' class.
@@ -309,6 +327,15 @@ public interface VulkanPackage extends EPackage
 	 * @ordered
 	 */
 	int IPROCESS__RESOURCE_PKG = IRESOURCE_CONTAINER__RESOURCE_PKG;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROCESS__DESCRIPTOR_PKG = IRESOURCE_CONTAINER__DESCRIPTOR_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -458,6 +485,98 @@ public interface VulkanPackage extends EPackage
 	int WAIT_PROCESS_IDLE_OPERATION_COUNT = CadencePackage.ICADENCE_TASK_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.impl.DescriptorPkgImpl <em>Descriptor Pkg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.impl.DescriptorPkgImpl
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getDescriptorPkg()
+	 * @generated
+	 */
+	int DESCRIPTOR_PKG = 8;
+
+	/**
+	 * The feature id for the '<em><b>Descriptors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIPTOR_PKG__DESCRIPTORS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Descriptor Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIPTOR_PKG_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Descriptor Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIPTOR_PKG_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IDescriptor <em>IDescriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.IDescriptor
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIDescriptor()
+	 * @generated
+	 */
+	int IDESCRIPTOR = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDESCRIPTOR__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDESCRIPTOR__TYPE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDESCRIPTOR__SHADER_STAGES = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>IDescriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDESCRIPTOR_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>IDescriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDESCRIPTOR_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.VulkanEngine <em>Engine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -520,6 +639,17 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 */
 	EReference getIResourceContainer_ResourcePkg();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.IResourceContainer#getDescriptorPkg <em>Descriptor Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Descriptor Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.IResourceContainer#getDescriptorPkg()
+	 * @see #getIResourceContainer()
+	 * @generated
+	 */
+	EReference getIResourceContainer_DescriptorPkg();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.ResourcePkg <em>Resource Pkg</em>}'.
@@ -637,6 +767,59 @@ public interface VulkanPackage extends EPackage
 	EReference getWaitProcessIdle_Process();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.DescriptorPkg <em>Descriptor Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Descriptor Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.DescriptorPkg
+	 * @generated
+	 */
+	EClass getDescriptorPkg();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.DescriptorPkg#getDescriptors <em>Descriptors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Descriptors</em>'.
+	 * @see org.sheepy.lily.vulkan.model.DescriptorPkg#getDescriptors()
+	 * @see #getDescriptorPkg()
+	 * @generated
+	 */
+	EReference getDescriptorPkg_Descriptors();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IDescriptor <em>IDescriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IDescriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.IDescriptor
+	 * @generated
+	 */
+	EClass getIDescriptor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.IDescriptor#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.sheepy.lily.vulkan.model.IDescriptor#getType()
+	 * @see #getIDescriptor()
+	 * @generated
+	 */
+	EAttribute getIDescriptor_Type();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.IDescriptor#getShaderStages <em>Shader Stages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Shader Stages</em>'.
+	 * @see org.sheepy.lily.vulkan.model.IDescriptor#getShaderStages()
+	 * @see #getIDescriptor()
+	 * @generated
+	 */
+	EAttribute getIDescriptor_ShaderStages();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -711,6 +894,14 @@ public interface VulkanPackage extends EPackage
 		 * @generated
 		 */
 		EReference IRESOURCE_CONTAINER__RESOURCE_PKG = eINSTANCE.getIResourceContainer_ResourcePkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Descriptor Pkg</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IRESOURCE_CONTAINER__DESCRIPTOR_PKG = eINSTANCE.getIResourceContainer_DescriptorPkg();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl <em>Resource Pkg</em>}' class.
@@ -811,6 +1002,50 @@ public interface VulkanPackage extends EPackage
 		 * @generated
 		 */
 		EReference WAIT_PROCESS_IDLE__PROCESS = eINSTANCE.getWaitProcessIdle_Process();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.DescriptorPkgImpl <em>Descriptor Pkg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.impl.DescriptorPkgImpl
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getDescriptorPkg()
+		 * @generated
+		 */
+		EClass DESCRIPTOR_PKG = eINSTANCE.getDescriptorPkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Descriptors</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DESCRIPTOR_PKG__DESCRIPTORS = eINSTANCE.getDescriptorPkg_Descriptors();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IDescriptor <em>IDescriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.IDescriptor
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIDescriptor()
+		 * @generated
+		 */
+		EClass IDESCRIPTOR = eINSTANCE.getIDescriptor();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IDESCRIPTOR__TYPE = eINSTANCE.getIDescriptor_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Shader Stages</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IDESCRIPTOR__SHADER_STAGES = eINSTANCE.getIDescriptor_ShaderStages();
 
 	}
 

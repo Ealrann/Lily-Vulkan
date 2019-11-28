@@ -14,6 +14,7 @@ import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.api.process.IProcessPartAdapter;
+import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
 import org.sheepy.lily.vulkan.common.process.IExecutionProcessAdapter;
@@ -31,8 +32,10 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorderContext<T>>
 		implements IExecutionProcessAdapter, IAllocable<IVulkanContext>
 {
-	private final ModelExplorer RESOURCE_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																				VulkanPackage.Literals.RESOURCE_PKG__RESOURCES));
+	private static final ModelExplorer RESOURCE_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+																						VulkanPackage.Literals.RESOURCE_PKG__RESOURCES));
+	private static final ModelExplorer DESCRIPTOR_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+																						VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS));
 	private final ModelExplorer PARTS_EXPLORER = new ModelExplorer(List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PART_PKG,
 																			ProcessPackage.Literals.PROCESS_PART_PKG__PARTS));
 
@@ -225,6 +228,8 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	{
 		final List<IAllocable<? super IExecutionContext>> resources = new ArrayList<>();
 		RESOURCE_EXPLORER	.streamAdapt(process, IResourceAdapter.class)
+							.collect(Collectors.toCollection(() -> resources));
+		DESCRIPTOR_EXPLORER	.streamAdapt(process, IDescriptorAdapter.class)
 							.collect(Collectors.toCollection(() -> resources));
 		for (int i = 0; i < partAdapters.size(); i++)
 		{

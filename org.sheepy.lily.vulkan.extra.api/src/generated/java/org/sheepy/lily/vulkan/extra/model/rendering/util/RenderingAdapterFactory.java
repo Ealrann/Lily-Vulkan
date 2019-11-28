@@ -151,19 +151,29 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createIndexProviderAdapter();
 			}
 			@Override
-			public Adapter caseResourceProvider(ResourceProvider object)
+			public Adapter caseResourceDescriptorProvider(ResourceDescriptorProvider object)
 			{
-				return createResourceProviderAdapter();
+				return createResourceDescriptorProviderAdapter();
 			}
 			@Override
-			public Adapter caseStaticResourceProvider(StaticResourceProvider object)
+			public Adapter caseDescriptorsProvider(DescriptorsProvider object)
 			{
-				return createStaticResourceProviderAdapter();
+				return createDescriptorsProviderAdapter();
 			}
 			@Override
-			public Adapter caseCompositeResourceProvider(CompositeResourceProvider object)
+			public Adapter caseDataDescriptorsProvider(DataDescriptorsProvider object)
 			{
-				return createCompositeResourceProviderAdapter();
+				return createDataDescriptorsProviderAdapter();
+			}
+			@Override
+			public Adapter caseDataDescriptor(DataDescriptor object)
+			{
+				return createDataDescriptorAdapter();
+			}
+			@Override
+			public Adapter caseResourceDescriptorProviderPkg(ResourceDescriptorProviderPkg object)
+			{
+				return createResourceDescriptorProviderPkgAdapter();
 			}
 			@Override
 			public Adapter caseRenderProxyConstantBuffer(RenderProxyConstantBuffer object)
@@ -463,46 +473,76 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider <em>Resource Provider</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider <em>Resource Descriptor Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider
 	 * @generated
 	 */
-	public Adapter createResourceProviderAdapter()
+	public Adapter createResourceDescriptorProviderAdapter()
 	{
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider <em>Static Resource Provider</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider <em>Descriptors Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider
 	 * @generated
 	 */
-	public Adapter createStaticResourceProviderAdapter()
+	public Adapter createDescriptorsProviderAdapter()
 	{
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider <em>Composite Resource Provider</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider <em>Data Descriptors Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider
 	 * @generated
 	 */
-	public Adapter createCompositeResourceProviderAdapter()
+	public Adapter createDataDescriptorsProviderAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor <em>Data Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor
+	 * @generated
+	 */
+	public Adapter createDataDescriptorAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg <em>Resource Descriptor Provider Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg
+	 * @generated
+	 */
+	public Adapter createResourceDescriptorProviderPkgAdapter()
 	{
 		return null;
 	}

@@ -37,8 +37,10 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
-import org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Entity;
 import org.sheepy.lily.vulkan.extra.model.rendering.EntityPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
@@ -55,8 +57,8 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
-import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
-import org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.rendering.VertexProvider;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
@@ -182,21 +184,35 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass resourceProviderEClass = null;
+	private EClass resourceDescriptorProviderEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass staticResourceProviderEClass = null;
+	private EClass descriptorsProviderEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass compositeResourceProviderEClass = null;
+	private EClass dataDescriptorsProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dataDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass resourceDescriptorProviderPkgEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -290,6 +306,10 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
+		PresentationPackage.eINSTANCE.eClass();
+		UiPackage.eINSTANCE.eClass();
+		VariablePackage.eINSTANCE.eClass();
+		CadencePackage.eINSTANCE.eClass();
 		ProcessPackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
@@ -297,12 +317,8 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		BarrierPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 		GraphicpipelinePackage.eINSTANCE.eClass();
-		PipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
-		CadencePackage.eINSTANCE.eClass();
-		PresentationPackage.eINSTANCE.eClass();
-		VariablePackage.eINSTANCE.eClass();
-		UiPackage.eINSTANCE.eClass();
+		PipelinePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MeshPackage.eNS_URI);
@@ -591,7 +607,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getGenericRenderer_CommonResourceProvider()
+	public EReference getGenericRenderer_DescriptorProviderPkg()
 	{
 		return (EReference)genericRendererEClass.getEStructuralFeatures().get(4);
 	}
@@ -616,6 +632,17 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	public EReference getGenericRenderer_FlushTransferBufferTask()
 	{
 		return (EReference)genericRendererEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGenericRenderer_OnePipelinePerPart()
+	{
+		return (EAttribute)genericRendererEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -723,9 +750,9 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
-	public EClass getResourceProvider()
+	public EClass getResourceDescriptorProvider()
 	{
-		return resourceProviderEClass;
+		return resourceDescriptorProviderEClass;
 	}
 
 	/**
@@ -734,9 +761,9 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
-	public EClass getStaticResourceProvider()
+	public EClass getDescriptorsProvider()
 	{
-		return staticResourceProviderEClass;
+		return descriptorsProviderEClass;
 	}
 
 	/**
@@ -745,9 +772,9 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getStaticResourceProvider_Resources()
+	public EReference getDescriptorsProvider_Descriptors()
 	{
-		return (EReference)staticResourceProviderEClass.getEStructuralFeatures().get(0);
+		return (EReference)descriptorsProviderEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -756,9 +783,9 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
-	public EClass getCompositeResourceProvider()
+	public EClass getDataDescriptorsProvider()
 	{
-		return compositeResourceProviderEClass;
+		return dataDescriptorsProviderEClass;
 	}
 
 	/**
@@ -767,9 +794,86 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getCompositeResourceProvider_Providers()
+	public EReference getDataDescriptorsProvider_DataDescriptors()
 	{
-		return (EReference)compositeResourceProviderEClass.getEStructuralFeatures().get(0);
+		return (EReference)dataDescriptorsProviderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getDataDescriptor()
+	{
+		return dataDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataDescriptor_Part()
+	{
+		return (EAttribute)dataDescriptorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataDescriptor_Instance()
+	{
+		return (EAttribute)dataDescriptorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataDescriptor_DescriptorType()
+	{
+		return (EAttribute)dataDescriptorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataDescriptor_Stages()
+	{
+		return (EAttribute)dataDescriptorEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getResourceDescriptorProviderPkg()
+	{
+		return resourceDescriptorProviderPkgEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getResourceDescriptorProviderPkg_ResourceDescriptorProviders()
+	{
+		return (EReference)resourceDescriptorProviderPkgEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -954,9 +1058,10 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		createEReference(genericRendererEClass, GENERIC_RENDERER__RENDERED_STRUCTURES);
 		createEReference(genericRendererEClass, GENERIC_RENDERER__CONSTANT_BUFFER);
 		createEReference(genericRendererEClass, GENERIC_RENDERER__TRANSFER_BUFFER);
-		createEReference(genericRendererEClass, GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER);
+		createEReference(genericRendererEClass, GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG);
 		createEReference(genericRendererEClass, GENERIC_RENDERER__SPECIALIZATION);
 		createEReference(genericRendererEClass, GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK);
+		createEAttribute(genericRendererEClass, GENERIC_RENDERER__ONE_PIPELINE_PER_PART);
 
 		renderDataProviderEClass = createEClass(RENDER_DATA_PROVIDER);
 
@@ -972,13 +1077,22 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		indexProviderEClass = createEClass(INDEX_PROVIDER);
 		createEAttribute(indexProviderEClass, INDEX_PROVIDER__INDEX_TYPE);
 
-		resourceProviderEClass = createEClass(RESOURCE_PROVIDER);
+		resourceDescriptorProviderEClass = createEClass(RESOURCE_DESCRIPTOR_PROVIDER);
 
-		staticResourceProviderEClass = createEClass(STATIC_RESOURCE_PROVIDER);
-		createEReference(staticResourceProviderEClass, STATIC_RESOURCE_PROVIDER__RESOURCES);
+		descriptorsProviderEClass = createEClass(DESCRIPTORS_PROVIDER);
+		createEReference(descriptorsProviderEClass, DESCRIPTORS_PROVIDER__DESCRIPTORS);
 
-		compositeResourceProviderEClass = createEClass(COMPOSITE_RESOURCE_PROVIDER);
-		createEReference(compositeResourceProviderEClass, COMPOSITE_RESOURCE_PROVIDER__PROVIDERS);
+		dataDescriptorsProviderEClass = createEClass(DATA_DESCRIPTORS_PROVIDER);
+		createEReference(dataDescriptorsProviderEClass, DATA_DESCRIPTORS_PROVIDER__DATA_DESCRIPTORS);
+
+		dataDescriptorEClass = createEClass(DATA_DESCRIPTOR);
+		createEAttribute(dataDescriptorEClass, DATA_DESCRIPTOR__PART);
+		createEAttribute(dataDescriptorEClass, DATA_DESCRIPTOR__INSTANCE);
+		createEAttribute(dataDescriptorEClass, DATA_DESCRIPTOR__DESCRIPTOR_TYPE);
+		createEAttribute(dataDescriptorEClass, DATA_DESCRIPTOR__STAGES);
+
+		resourceDescriptorProviderPkgEClass = createEClass(RESOURCE_DESCRIPTOR_PROVIDER_PKG);
+		createEReference(resourceDescriptorProviderPkgEClass, RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS);
 
 		renderProxyConstantBufferEClass = createEClass(RENDER_PROXY_CONSTANT_BUFFER);
 		createEReference(renderProxyConstantBufferEClass, RENDER_PROXY_CONSTANT_BUFFER__CONSTANT_BUFFER);
@@ -1079,8 +1193,8 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		g2 = createEGenericType(indexProviderEClass_T);
 		g1.getETypeArguments().add(g2);
 		indexProviderEClass.getEGenericSuperTypes().add(g1);
-		staticResourceProviderEClass.getESuperTypes().add(this.getResourceProvider());
-		compositeResourceProviderEClass.getESuperTypes().add(this.getResourceProvider());
+		descriptorsProviderEClass.getESuperTypes().add(this.getResourceDescriptorProvider());
+		dataDescriptorsProviderEClass.getESuperTypes().add(this.getResourceDescriptorProvider());
 		renderProxyConstantBufferEClass.getESuperTypes().add(theResourcePackage.getConstantBuffer());
 		renderDrawTaskEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		renderIndexedDrawTaskEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
@@ -1120,9 +1234,10 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEReference(getGenericRenderer_RenderedStructures(), g1, null, "renderedStructures", null, 1, -1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGenericRenderer_ConstantBuffer(), theResourcePackage.getConstantBuffer(), null, "constantBuffer", null, 0, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGenericRenderer_TransferBuffer(), theResourcePackage.getTransferBuffer(), null, "transferBuffer", null, 1, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGenericRenderer_CommonResourceProvider(), this.getResourceProvider(), null, "commonResourceProvider", null, 0, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenericRenderer_DescriptorProviderPkg(), this.getResourceDescriptorProviderPkg(), null, "descriptorProviderPkg", null, 0, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGenericRenderer_Specialization(), this.getISpecialization(), null, "specialization", null, 0, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGenericRenderer_FlushTransferBufferTask(), theProcessPackage.getFlushTransferBufferTask(), null, "flushTransferBufferTask", null, 1, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGenericRenderer_OnePipelinePerPart(), ecorePackage.getEBoolean(), "onePipelinePerPart", "false", 1, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(renderDataProviderEClass, RenderDataProvider.class, "RenderDataProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1142,13 +1257,22 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEClass(indexProviderEClass, IndexProvider.class, "IndexProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIndexProvider_IndexType(), theEnumerationPackage.getEIndexType(), "indexType", "UINT32", 1, 1, IndexProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(resourceProviderEClass, ResourceProvider.class, "ResourceProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(resourceDescriptorProviderEClass, ResourceDescriptorProvider.class, "ResourceDescriptorProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(staticResourceProviderEClass, StaticResourceProvider.class, "StaticResourceProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStaticResourceProvider_Resources(), theVulkanPackage.getIResource(), null, "resources", null, 1, -1, StaticResourceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(descriptorsProviderEClass, DescriptorsProvider.class, "DescriptorsProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDescriptorsProvider_Descriptors(), theVulkanPackage.getIDescriptor(), null, "descriptors", null, 1, -1, DescriptorsProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(compositeResourceProviderEClass, CompositeResourceProvider.class, "CompositeResourceProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositeResourceProvider_Providers(), this.getResourceProvider(), null, "providers", null, 0, -1, CompositeResourceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(dataDescriptorsProviderEClass, DataDescriptorsProvider.class, "DataDescriptorsProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDataDescriptorsProvider_DataDescriptors(), this.getDataDescriptor(), null, "dataDescriptors", null, 1, -1, DataDescriptorsProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dataDescriptorEClass, DataDescriptor.class, "DataDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDataDescriptor_Part(), ecorePackage.getEInt(), "part", null, 1, 1, DataDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataDescriptor_Instance(), ecorePackage.getEInt(), "instance", null, 1, 1, DataDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataDescriptor_DescriptorType(), theEnumerationPackage.getEDescriptorType(), "descriptorType", null, 1, 1, DataDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataDescriptor_Stages(), theEnumerationPackage.getEShaderStage(), "stages", null, 1, -1, DataDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(resourceDescriptorProviderPkgEClass, ResourceDescriptorProviderPkg.class, "ResourceDescriptorProviderPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getResourceDescriptorProviderPkg_ResourceDescriptorProviders(), this.getResourceDescriptorProvider(), null, "resourceDescriptorProviders", null, 0, -1, ResourceDescriptorProviderPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(renderProxyConstantBufferEClass, RenderProxyConstantBuffer.class, "RenderProxyConstantBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRenderProxyConstantBuffer_ConstantBuffer(), theResourcePackage.getConstantBuffer(), null, "constantBuffer", null, 1, 1, RenderProxyConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.util.Switch;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
 
+import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.IResource;
 
 import org.sheepy.lily.vulkan.model.resource.*;
@@ -204,6 +205,8 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				Sampler sampler = (Sampler)theEObject;
 				T1 result = caseSampler(sampler);
 				if (result == null) result = caseSamplerInfo(sampler);
+				if (result == null) result = caseIResource(sampler);
+				if (result == null) result = caseLNamedElement(sampler);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -225,19 +228,11 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.DESCRIPTOR:
-			{
-				Descriptor descriptor = (Descriptor)theEObject;
-				T1 result = caseDescriptor(descriptor);
-				if (result == null) result = caseLNamedElement(descriptor);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ResourcePackage.BUFFER_DESCRIPTOR:
 			{
 				BufferDescriptor bufferDescriptor = (BufferDescriptor)theEObject;
 				T1 result = caseBufferDescriptor(bufferDescriptor);
-				if (result == null) result = caseDescriptor(bufferDescriptor);
+				if (result == null) result = caseIDescriptor(bufferDescriptor);
 				if (result == null) result = caseLNamedElement(bufferDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -246,7 +241,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 			{
 				ImageDescriptor imageDescriptor = (ImageDescriptor)theEObject;
 				T1 result = caseImageDescriptor(imageDescriptor);
-				if (result == null) result = caseDescriptor(imageDescriptor);
+				if (result == null) result = caseIDescriptor(imageDescriptor);
 				if (result == null) result = caseLNamedElement(imageDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -255,7 +250,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 			{
 				SampledImageDescriptor sampledImageDescriptor = (SampledImageDescriptor)theEObject;
 				T1 result = caseSampledImageDescriptor(sampledImageDescriptor);
-				if (result == null) result = caseDescriptor(sampledImageDescriptor);
+				if (result == null) result = caseIDescriptor(sampledImageDescriptor);
 				if (result == null) result = caseLNamedElement(sampledImageDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -264,7 +259,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 			{
 				SamplerDescriptor samplerDescriptor = (SamplerDescriptor)theEObject;
 				T1 result = caseSamplerDescriptor(samplerDescriptor);
-				if (result == null) result = caseDescriptor(samplerDescriptor);
+				if (result == null) result = caseIDescriptor(samplerDescriptor);
 				if (result == null) result = caseLNamedElement(samplerDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -273,7 +268,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 			{
 				Texture2DArrayDescriptor texture2DArrayDescriptor = (Texture2DArrayDescriptor)theEObject;
 				T1 result = caseTexture2DArrayDescriptor(texture2DArrayDescriptor);
-				if (result == null) result = caseDescriptor(texture2DArrayDescriptor);
+				if (result == null) result = caseIDescriptor(texture2DArrayDescriptor);
 				if (result == null) result = caseLNamedElement(texture2DArrayDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -650,22 +645,6 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseDescriptor(Descriptor object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Buffer Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -997,6 +976,22 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseSamplerInfo(SamplerInfo object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IDescriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IDescriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIDescriptor(IDescriptor object)
 	{
 		return null;
 	}

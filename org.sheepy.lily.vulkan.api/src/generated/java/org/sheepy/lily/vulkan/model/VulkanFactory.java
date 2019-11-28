@@ -59,6 +59,15 @@ public interface VulkanFactory extends EFactory
 	WaitProcessIdle createWaitProcessIdle();
 
 	/**
+	 * Returns a new object of class '<em>Descriptor Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Descriptor Pkg</em>'.
+	 * @generated
+	 */
+	DescriptorPkg createDescriptorPkg();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

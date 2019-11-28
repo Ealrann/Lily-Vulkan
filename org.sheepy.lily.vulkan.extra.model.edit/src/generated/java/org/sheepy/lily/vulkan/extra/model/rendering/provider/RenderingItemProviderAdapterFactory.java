@@ -277,53 +277,103 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StaticResourceProviderItemProvider staticResourceProviderItemProvider;
+	protected DescriptorsProviderItemProvider descriptorsProviderItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createStaticResourceProviderAdapter()
+	public Adapter createDescriptorsProviderAdapter()
 	{
-		if (staticResourceProviderItemProvider == null)
+		if (descriptorsProviderItemProvider == null)
 		{
-			staticResourceProviderItemProvider = new StaticResourceProviderItemProvider(this);
+			descriptorsProviderItemProvider = new DescriptorsProviderItemProvider(this);
 		}
 
-		return staticResourceProviderItemProvider;
+		return descriptorsProviderItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompositeResourceProviderItemProvider compositeResourceProviderItemProvider;
+	protected DataDescriptorsProviderItemProvider dataDescriptorsProviderItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createCompositeResourceProviderAdapter()
+	public Adapter createDataDescriptorsProviderAdapter()
 	{
-		if (compositeResourceProviderItemProvider == null)
+		if (dataDescriptorsProviderItemProvider == null)
 		{
-			compositeResourceProviderItemProvider = new CompositeResourceProviderItemProvider(this);
+			dataDescriptorsProviderItemProvider = new DataDescriptorsProviderItemProvider(this);
 		}
 
-		return compositeResourceProviderItemProvider;
+		return dataDescriptorsProviderItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DataDescriptorItemProvider dataDescriptorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDataDescriptorAdapter()
+	{
+		if (dataDescriptorItemProvider == null)
+		{
+			dataDescriptorItemProvider = new DataDescriptorItemProvider(this);
+		}
+
+		return dataDescriptorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ResourceDescriptorProviderPkgItemProvider resourceDescriptorProviderPkgItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createResourceDescriptorProviderPkgAdapter()
+	{
+		if (resourceDescriptorProviderPkgItemProvider == null)
+		{
+			resourceDescriptorProviderPkgItemProvider = new ResourceDescriptorProviderPkgItemProvider(this);
+		}
+
+		return resourceDescriptorProviderPkgItemProvider;
 	}
 
 	/**
@@ -582,8 +632,10 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 		if (renderableDataSourceItemProvider != null) renderableDataSourceItemProvider.dispose();
 		if (vertexProviderItemProvider != null) vertexProviderItemProvider.dispose();
 		if (indexProviderItemProvider != null) indexProviderItemProvider.dispose();
-		if (staticResourceProviderItemProvider != null) staticResourceProviderItemProvider.dispose();
-		if (compositeResourceProviderItemProvider != null) compositeResourceProviderItemProvider.dispose();
+		if (descriptorsProviderItemProvider != null) descriptorsProviderItemProvider.dispose();
+		if (dataDescriptorsProviderItemProvider != null) dataDescriptorsProviderItemProvider.dispose();
+		if (dataDescriptorItemProvider != null) dataDescriptorItemProvider.dispose();
+		if (resourceDescriptorProviderPkgItemProvider != null) resourceDescriptorProviderPkgItemProvider.dispose();
 		if (renderProxyConstantBufferItemProvider != null) renderProxyConstantBufferItemProvider.dispose();
 		if (iSpecializationItemProvider != null) iSpecializationItemProvider.dispose();
 		if (renderDrawTaskItemProvider != null) renderDrawTaskItemProvider.dispose();

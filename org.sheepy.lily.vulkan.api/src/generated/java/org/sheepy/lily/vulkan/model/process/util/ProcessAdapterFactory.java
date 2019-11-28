@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.sheepy.lily.core.model.cadence.ICadenceTask;
 import org.sheepy.lily.core.model.inference.IInferenceObject;
 
 import org.sheepy.lily.core.model.maintainer.Maintainable;
@@ -176,6 +177,11 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 				return createPrepareCompositeTransferAdapter();
 			}
 			@Override
+			public Adapter caseSwapBindingsTask(SwapBindingsTask object)
+			{
+				return createSwapBindingsTaskAdapter();
+			}
+			@Override
 			public Adapter caseIResourceContainer(IResourceContainer object)
 			{
 				return createIResourceContainerAdapter();
@@ -209,6 +215,11 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 			public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object)
 			{
 				return createMaintainableAdapter();
+			}
+			@Override
+			public Adapter caseICadenceTask(ICadenceTask object)
+			{
+				return createICadenceTaskAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -502,6 +513,21 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.SwapBindingsTask <em>Swap Bindings Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.SwapBindingsTask
+	 * @generated
+	 */
+	public Adapter createSwapBindingsTaskAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IResourceContainer <em>IResource Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -602,6 +628,21 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createMaintainableAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.cadence.ICadenceTask <em>ICadence Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.core.model.cadence.ICadenceTask
+	 * @generated
+	 */
+	public Adapter createICadenceTaskAdapter()
 	{
 		return null;
 	}

@@ -21,6 +21,8 @@ import org.sheepy.lily.core.model.root.RootPackage;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.vulkan.model.DescriptorPkg;
+import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResource;
@@ -108,6 +110,20 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	private EClass waitProcessIdleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass descriptorPkgEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iDescriptorEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -277,6 +293,17 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getIResourceContainer_DescriptorPkg()
+	{
+		return (EReference)iResourceContainerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getResourcePkg()
 	{
 		return resourcePkgEClass;
@@ -398,6 +425,61 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getDescriptorPkg()
+	{
+		return descriptorPkgEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getDescriptorPkg_Descriptors()
+	{
+		return (EReference)descriptorPkgEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIDescriptor()
+	{
+		return iDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getIDescriptor_Type()
+	{
+		return (EAttribute)iDescriptorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getIDescriptor_ShaderStages()
+	{
+		return (EAttribute)iDescriptorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public VulkanFactory getVulkanFactory()
 	{
 		return (VulkanFactory)getEFactoryInstance();
@@ -430,6 +512,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		iResourceContainerEClass = createEClass(IRESOURCE_CONTAINER);
 		createEReference(iResourceContainerEClass, IRESOURCE_CONTAINER__RESOURCE_PKG);
+		createEReference(iResourceContainerEClass, IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
 
 		resourcePkgEClass = createEClass(RESOURCE_PKG);
 		createEReference(resourcePkgEClass, RESOURCE_PKG__RESOURCES);
@@ -447,6 +530,13 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		waitProcessIdleEClass = createEClass(WAIT_PROCESS_IDLE);
 		createEReference(waitProcessIdleEClass, WAIT_PROCESS_IDLE__PROCESS);
+
+		descriptorPkgEClass = createEClass(DESCRIPTOR_PKG);
+		createEReference(descriptorPkgEClass, DESCRIPTOR_PKG__DESCRIPTORS);
+
+		iDescriptorEClass = createEClass(IDESCRIPTOR);
+		createEAttribute(iDescriptorEClass, IDESCRIPTOR__TYPE);
+		createEAttribute(iDescriptorEClass, IDESCRIPTOR__SHADER_STAGES);
 	}
 
 	/**
@@ -494,6 +584,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		iProcessEClass.getESuperTypes().add(this.getIExecutionManager());
 		runProcessEClass.getESuperTypes().add(theCadencePackage.getICadenceTask());
 		waitProcessIdleEClass.getESuperTypes().add(theCadencePackage.getICadenceTask());
+		iDescriptorEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(vulkanEngineEClass, VulkanEngine.class, "VulkanEngine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -503,6 +594,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		initEClass(iResourceContainerEClass, IResourceContainer.class, "IResourceContainer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getIResourceContainer_ResourcePkg(), this.getResourcePkg(), null, "resourcePkg", null, 0, 1, IResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIResourceContainer_DescriptorPkg(), this.getDescriptorPkg(), null, "descriptorPkg", null, 0, 1, IResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(resourcePkgEClass, ResourcePkg.class, "ResourcePkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getResourcePkg_Resources(), this.getIResource(), null, "resources", null, 0, -1, ResourcePkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -520,6 +612,13 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		initEClass(waitProcessIdleEClass, WaitProcessIdle.class, "WaitProcessIdle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWaitProcessIdle_Process(), this.getIProcess(), null, "process", null, 1, 1, WaitProcessIdle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(descriptorPkgEClass, DescriptorPkg.class, "DescriptorPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDescriptorPkg_Descriptors(), this.getIDescriptor(), null, "descriptors", null, 0, -1, DescriptorPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iDescriptorEClass, IDescriptor.class, "IDescriptor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIDescriptor_Type(), theEnumerationPackage.getEDescriptorType(), "type", null, 1, 1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIDescriptor_ShaderStages(), theEnumerationPackage.getEShaderStage(), "shaderStages", null, 1, -1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

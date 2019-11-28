@@ -1,7 +1,6 @@
 package org.sheepy.lily.vulkan.extra.rendering.builder;
 
 import java.nio.ByteBuffer;
-import java.util.List;
 
 import org.lwjgl.BufferUtils;
 import org.sheepy.lily.core.api.maintainer.MaintainerUtil;
@@ -11,18 +10,14 @@ import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 
 public final class RenderPipelineBuilder
 {
-	private final List<DescriptedResource> commonResources;
 	private final GenericRenderer<?> renderer;
 
-	public RenderPipelineBuilder(	List<DescriptedResource> commonResources,
-									GenericRenderer<?> renderer)
+	public RenderPipelineBuilder(GenericRenderer<?> renderer)
 	{
-		this.commonResources = commonResources;
 		this.renderer = renderer;
 	}
 
@@ -34,16 +29,10 @@ public final class RenderPipelineBuilder
 		final var rangeSize = range.get(0).getSize();
 		range.get(0).setSize(rangeSize + 4);
 
+		pipeline.setDescriptorPkg(VulkanFactory.eINSTANCE.createDescriptorPkg());
 		pipeline.setTaskPkg(ProcessFactory.eINSTANCE.createTaskPkg());
 		pipeline.setResourcePkg(VulkanFactory.eINSTANCE.createResourcePkg());
 		pipeline.setDescriptorSetPkg(ResourceFactory.eINSTANCE.createDescriptorSetPkg());
-
-		if (commonResources.isEmpty() == false)
-		{
-			final var descriptorSet = ResourceFactory.eINSTANCE.createDescriptorSet();
-			descriptorSet.getDescriptors().addAll(commonResources);
-			pipeline.getDescriptorSetPkg().getDescriptorSets().add(descriptorSet);
-		}
 
 		final var specializationData = prepareSpecializationBuffer(index, specialization);
 		final var constantBuffer = ResourceFactory.eINSTANCE.createConstantBuffer();

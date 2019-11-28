@@ -4,7 +4,7 @@
     editDirectory="/org.sheepy.lily.vulkan.extra.model.edit/src/generated/java" modelPluginID="org.sheepy.lily.vulkan.extra.model"
     modelName="Extra" rootExtendsInterface="org.sheepy.lily.core.api.adapter.ILilyEObject"
     rootExtendsClass="org.sheepy.lily.core.api.adapter.LilyEObject" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="11.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//process ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//model ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//resource ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//graphic ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//image ../../org.sheepy.lily.core.model/model/Lily.genmodel#//cadence ../../org.sheepy.lily.core.model/model/Lily.genmodel#//presentation ../../org.sheepy.lily.core.model/model/Lily.genmodel#//variable ../../org.sheepy.lily.core.model/model/Lily.genmodel#//ui"
+    complianceLevel="11.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.lily.core.model/model/Lily.genmodel#//presentation ../../org.sheepy.lily.core.model/model/Lily.genmodel#//ui ../../org.sheepy.lily.core.model/model/Lily.genmodel#//variable ../../org.sheepy.lily.core.model/model/Lily.genmodel#//cadence ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//process ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//model ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//resource ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//graphic ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//image ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline"
     operationReflection="true" importOrganizing="true" cleanup="true">
   <foreignModel>Mesh.ecore</foreignModel>
   <foreignModel>Nuklear.ecore</foreignModel>
@@ -106,9 +106,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/renderedStructures"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/constantBuffer"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/transferBuffer"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/commonResourceProvider"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/descriptorProviderPkg"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/specialization"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/flushTransferBufferTask"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//GenericRenderer/onePipelinePerPart"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Rendering.ecore#//RenderDataProvider">
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//RenderDataProvider/T"/>
@@ -129,12 +130,21 @@
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//IndexProvider/T"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//IndexProvider/indexType"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Rendering.ecore#//ResourceProvider"/>
-    <genClasses ecoreClass="Rendering.ecore#//StaticResourceProvider">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//StaticResourceProvider/resources"/>
+    <genClasses image="false" ecoreClass="Rendering.ecore#//ResourceDescriptorProvider"/>
+    <genClasses ecoreClass="Rendering.ecore#//DescriptorsProvider">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//DescriptorsProvider/descriptors"/>
     </genClasses>
-    <genClasses ecoreClass="Rendering.ecore#//CompositeResourceProvider">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//CompositeResourceProvider/providers"/>
+    <genClasses ecoreClass="Rendering.ecore#//DataDescriptorsProvider">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//DataDescriptorsProvider/dataDescriptors"/>
+    </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//DataDescriptor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//DataDescriptor/part"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//DataDescriptor/instance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//DataDescriptor/descriptorType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//DataDescriptor/stages"/>
+    </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//ResourceDescriptorProviderPkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//ResourceDescriptorProviderPkg/resourceDescriptorProviders"/>
     </genClasses>
     <genClasses ecoreClass="Rendering.ecore#//RenderProxyConstantBuffer">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//RenderProxyConstantBuffer/constantBuffer"/>
@@ -166,7 +176,6 @@
     </genClasses>
     <genClasses ecoreClass="Sprite.ecore#//SpriteMonoSamplerProvider">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteMonoSamplerProvider/samplerInfo"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteMonoSamplerProvider/targetResourcePkg"/>
     </genClasses>
     <genClasses ecoreClass="Sprite.ecore#//SpriteStructure">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sprite.ecore#//SpriteStructure/width"/>

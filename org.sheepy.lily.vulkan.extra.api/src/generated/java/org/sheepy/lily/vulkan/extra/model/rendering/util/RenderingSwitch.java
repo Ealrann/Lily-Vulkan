@@ -195,26 +195,40 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.RESOURCE_PROVIDER:
+			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER:
 			{
-				ResourceProvider resourceProvider = (ResourceProvider)theEObject;
-				T1 result = caseResourceProvider(resourceProvider);
+				ResourceDescriptorProvider resourceDescriptorProvider = (ResourceDescriptorProvider)theEObject;
+				T1 result = caseResourceDescriptorProvider(resourceDescriptorProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.STATIC_RESOURCE_PROVIDER:
+			case RenderingPackage.DESCRIPTORS_PROVIDER:
 			{
-				StaticResourceProvider staticResourceProvider = (StaticResourceProvider)theEObject;
-				T1 result = caseStaticResourceProvider(staticResourceProvider);
-				if (result == null) result = caseResourceProvider(staticResourceProvider);
+				DescriptorsProvider descriptorsProvider = (DescriptorsProvider)theEObject;
+				T1 result = caseDescriptorsProvider(descriptorsProvider);
+				if (result == null) result = caseResourceDescriptorProvider(descriptorsProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.COMPOSITE_RESOURCE_PROVIDER:
+			case RenderingPackage.DATA_DESCRIPTORS_PROVIDER:
 			{
-				CompositeResourceProvider compositeResourceProvider = (CompositeResourceProvider)theEObject;
-				T1 result = caseCompositeResourceProvider(compositeResourceProvider);
-				if (result == null) result = caseResourceProvider(compositeResourceProvider);
+				DataDescriptorsProvider dataDescriptorsProvider = (DataDescriptorsProvider)theEObject;
+				T1 result = caseDataDescriptorsProvider(dataDescriptorsProvider);
+				if (result == null) result = caseResourceDescriptorProvider(dataDescriptorsProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.DATA_DESCRIPTOR:
+			{
+				DataDescriptor dataDescriptor = (DataDescriptor)theEObject;
+				T1 result = caseDataDescriptor(dataDescriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG:
+			{
+				ResourceDescriptorProviderPkg resourceDescriptorProviderPkg = (ResourceDescriptorProviderPkg)theEObject;
+				T1 result = caseResourceDescriptorProviderPkg(resourceDescriptorProviderPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -473,49 +487,81 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Resource Provider</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Resource Descriptor Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Resource Provider</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Resource Descriptor Provider</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseResourceProvider(ResourceProvider object)
+	public T1 caseResourceDescriptorProvider(ResourceDescriptorProvider object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Static Resource Provider</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Descriptors Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Static Resource Provider</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Descriptors Provider</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseStaticResourceProvider(StaticResourceProvider object)
+	public T1 caseDescriptorsProvider(DescriptorsProvider object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Composite Resource Provider</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Data Descriptors Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Composite Resource Provider</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Data Descriptors Provider</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCompositeResourceProvider(CompositeResourceProvider object)
+	public T1 caseDataDescriptorsProvider(DataDescriptorsProvider object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Data Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Data Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseDataDescriptor(DataDescriptor object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Resource Descriptor Provider Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Resource Descriptor Provider Pkg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseResourceDescriptorProviderPkg(ResourceDescriptorProviderPkg object)
 	{
 		return null;
 	}

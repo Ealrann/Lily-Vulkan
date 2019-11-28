@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.extra.sprite;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -7,11 +8,13 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.vulkan.extra.api.rendering.IResourceProviderAdapter;
-import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
+import org.sheepy.lily.vulkan.extra.api.rendering.IDescriptorProviderAdapter;
+import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer;
-import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
+import org.sheepy.lily.vulkan.model.IDescriptor;
+import org.sheepy.lily.vulkan.model.IResource;
+import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EAccess;
@@ -23,28 +26,30 @@ import org.sheepy.vulkan.model.image.ImageFactory;
 import org.sheepy.vulkan.model.image.ImagePackage;
 
 @Adapter(scope = SpriteMonoSamplerProvider.class)
-public class SpriteMonoSamplerProviderAdapter implements IResourceProviderAdapter
+public class SpriteMonoSamplerProviderAdapter implements IDescriptorProviderAdapter
 {
 	private static final List<EStructuralFeature> featureToCopy = List.copyOf(ImagePackage.Literals.SAMPLER_INFO.getEAllStructuralFeatures());
 
 	@Override
-	public List<DescriptedResource> getResources(ResourceProvider provider)
+	public ResourceDescriptor buildForPart(	ResourceDescriptorProvider provider,
+											CompositeBuffer compositeBuffer)
 	{
-		final var spriteProvider = (SpriteMonoSamplerProvider) provider;
-		final var resources = gatherResources(provider);
-		final var samplerInfo = spriteProvider.getSamplerInfo();
+		return null;
+	}
 
-		final var descriptorSampler = ResourceFactory.eINSTANCE.createDescriptor();
-		descriptorSampler.setDescriptorType(EDescriptorType.SAMPLER);
-		descriptorSampler.getShaderStages().add(EShaderStage.FRAGMENT_BIT);
+	@Override
+	public ResourceDescriptor buildForPipeline(ResourceDescriptorProvider provider)
+	{
+		final List<IResource> resources = new ArrayList<>();
+		final List<IDescriptor> descriptors = new ArrayList<>();
+
+		// Resources
+		final var spriteProvider = (SpriteMonoSamplerProvider) provider;
+		final var srcResources = gatherResources(provider);
+		final var samplerInfo = spriteProvider.getSamplerInfo();
 
 		final var sampler = ResourceFactory.eINSTANCE.createSampler();
 		ModelUtil.copyFeatures(samplerInfo, sampler, featureToCopy);
-		sampler.setDescriptor(descriptorSampler);
-
-		final var descriptorTexture = ResourceFactory.eINSTANCE.createDescriptor();
-		descriptorTexture.setDescriptorType(EDescriptorType.SAMPLED_IMAGE);
-		descriptorTexture.getShaderStages().add(EShaderStage.FRAGMENT_BIT);
 
 		final var intialLayout = ImageFactory.eINSTANCE.createImageLayout();
 		intialLayout.setLayout(EImageLayout.SHADER_READ_ONLY_OPTIMAL);
@@ -52,16 +57,30 @@ public class SpriteMonoSamplerProviderAdapter implements IResourceProviderAdapte
 		intialLayout.setStage(EPipelineStage.FRAGMENT_SHADER_BIT);
 
 		final var texture2DArray = ResourceFactory.eINSTANCE.createTexture2DArray();
-		texture2DArray.getFiles().addAll(resources);
-		texture2DArray.setDescriptor(descriptorTexture);
+		texture2DArray.getFiles().addAll(srcResources);
 		texture2DArray.setInitialLayout(intialLayout);
 
-		final List<DescriptedResource> res = List.of(sampler, texture2DArray);
-		spriteProvider.getTargetResourcePkg().getResources().addAll(res);
-		return res;
+		resources.add(sampler);
+		resources.add(texture2DArray);
+
+		// Descriptors
+		final var samplerDescriptor = ResourceFactory.eINSTANCE.createSamplerDescriptor();
+		samplerDescriptor.setSampler(sampler);
+		samplerDescriptor.setType(EDescriptorType.SAMPLER);
+		samplerDescriptor.getShaderStages().add(EShaderStage.FRAGMENT_BIT);
+
+		final var textureArrayDescriptor = ResourceFactory.eINSTANCE.createTexture2DArrayDescriptor();
+		textureArrayDescriptor.setTexture2DArray(texture2DArray);
+		textureArrayDescriptor.setType(EDescriptorType.SAMPLED_IMAGE);
+		textureArrayDescriptor.getShaderStages().add(EShaderStage.FRAGMENT_BIT);
+
+		descriptors.add(samplerDescriptor);
+		descriptors.add(textureArrayDescriptor);
+
+		return new ResourceDescriptor(resources, descriptors);
 	}
 
-	public List<PathResource> gatherResources(ResourceProvider provider)
+	public static List<PathResource> gatherResources(ResourceDescriptorProvider provider)
 	{
 		final var renderer = ModelUtil.findParent(provider, SpriteRenderer.class);
 		final var structures = renderer.getRenderedStructures().stream();

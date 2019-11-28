@@ -125,6 +125,15 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__RESOURCE_PKG = RenderingPackage.GENERIC_RENDERER__RESOURCE_PKG;
 
 	/**
+	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_RENDERER__DESCRIPTOR_PKG = RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PKG;
+
+	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -305,13 +314,13 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__TRANSFER_BUFFER = RenderingPackage.GENERIC_RENDERER__TRANSFER_BUFFER;
 
 	/**
-	 * The feature id for the '<em><b>Common Resource Provider</b></em>' containment reference.
+	 * The feature id for the '<em><b>Descriptor Provider Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_RENDERER__COMMON_RESOURCE_PROVIDER = RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER;
+	int MESH_RENDERER__DESCRIPTOR_PROVIDER_PKG = RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Specialization</b></em>' containment reference.
@@ -330,6 +339,15 @@ public interface MeshPackage extends EPackage
 	 * @ordered
 	 */
 	int MESH_RENDERER__FLUSH_TRANSFER_BUFFER_TASK = RenderingPackage.GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK;
+
+	/**
+	 * The feature id for the '<em><b>One Pipeline Per Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_RENDERER__ONE_PIPELINE_PER_PART = RenderingPackage.GENERIC_RENDERER__ONE_PIPELINE_PER_PART;
 
 	/**
 	 * The number of structural features of the '<em>Renderer</em>' class.

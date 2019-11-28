@@ -41,7 +41,7 @@ class InstanceTestResourceFactory
 			refs.add(reference);
 
 			final var descriptor = ResourceFactory.eINSTANCE.createBufferDescriptor();
-			descriptor.setDescriptorType(EDescriptorType.STORAGE_BUFFER);
+			descriptor.setType(EDescriptorType.STORAGE_BUFFER);
 			descriptor.getShaderStages().add(EShaderStage.COMPUTE_BIT);
 			descriptor.setBufferReference(reference);
 

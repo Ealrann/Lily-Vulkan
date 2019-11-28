@@ -19,6 +19,7 @@ import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 
@@ -26,7 +27,6 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
-
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 
 /**
@@ -38,6 +38,7 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getResourcePkg <em>Resource Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getDescriptorPkg <em>Descriptor Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getQueuePriority <em>Queue Priority</em>}</li>
@@ -62,6 +63,16 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @ordered
 	 */
 	protected ResourcePkg resourcePkg;
+
+	/**
+	 * The cached value of the '{@link #getDescriptorPkg() <em>Descriptor Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescriptorPkg()
+	 * @generated
+	 * @ordered
+	 */
+	protected DescriptorPkg descriptorPkg;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -535,12 +546,64 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 */
 	@Override
+	public DescriptorPkg getDescriptorPkg()
+	{
+		return descriptorPkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDescriptorPkg(DescriptorPkg newDescriptorPkg, NotificationChain msgs)
+	{
+		DescriptorPkg oldDescriptorPkg = descriptorPkg;
+		descriptorPkg = newDescriptorPkg;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG, oldDescriptorPkg, newDescriptorPkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDescriptorPkg(DescriptorPkg newDescriptorPkg)
+	{
+		if (newDescriptorPkg != descriptorPkg)
+		{
+			NotificationChain msgs = null;
+			if (descriptorPkg != null)
+				msgs = ((InternalEObject)descriptorPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG, null, msgs);
+			if (newDescriptorPkg != null)
+				msgs = ((InternalEObject)newDescriptorPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG, null, msgs);
+			msgs = basicSetDescriptorPkg(newDescriptorPkg, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG, newDescriptorPkg, newDescriptorPkg));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
 			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
 				return basicSetResourcePkg(null, msgs);
+			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
+				return basicSetDescriptorPkg(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
 				return basicSetPartPkg(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
@@ -561,6 +624,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 		{
 			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
 				return getResourcePkg();
+			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
+				return getDescriptorPkg();
 			case ProcessPackage.ABSTRACT_PROCESS__NAME:
 				return getName();
 			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
@@ -596,6 +661,9 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 		{
 			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
 				setResourcePkg((ResourcePkg)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
+				setDescriptorPkg((DescriptorPkg)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__NAME:
 				setName((String)newValue);
@@ -643,6 +711,9 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
 				setResourcePkg((ResourcePkg)null);
 				return;
+			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
+				setDescriptorPkg((DescriptorPkg)null);
+				return;
 			case ProcessPackage.ABSTRACT_PROCESS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -686,6 +757,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 		{
 			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
 				return resourcePkg != null;
+			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
+				return descriptorPkg != null;
 			case ProcessPackage.ABSTRACT_PROCESS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:

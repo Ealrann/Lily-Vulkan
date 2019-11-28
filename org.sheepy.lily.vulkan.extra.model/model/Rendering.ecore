@@ -53,12 +53,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="constantBuffer" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//ConstantBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transferBuffer" lowerBound="1"
         eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//TransferBuffer"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="commonResourceProvider"
-        eType="#//ResourceProvider" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorProviderPkg"
+        eType="#//ResourceDescriptorProviderPkg" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="specialization" eType="#//ISpecialization"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="flushTransferBufferTask"
         lowerBound="1" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/process.ecore#//FlushTransferBufferTask"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="onePipelinePerPart" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/graphic.ecore#//GraphicsPipeline"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.core.model/model/maintainer.ecore#//Maintainer">
       <eTypeArguments eClassifier="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/graphic.ecore#//GraphicsPipeline"/>
@@ -114,14 +116,28 @@
       <eTypeArguments eTypeParameter="#//IndexProvider/T"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ResourceProvider" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="StaticResourceProvider" eSuperTypes="#//ResourceProvider">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="resources" lowerBound="1"
-        upperBound="-1" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkan.ecore#//IResource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ResourceDescriptorProvider" abstract="true"
+      interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DescriptorsProvider" eSuperTypes="#//ResourceDescriptorProvider">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptors" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkan.ecore#//IDescriptor"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompositeResourceProvider" eSuperTypes="#//ResourceProvider">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="providers" upperBound="-1"
-        eType="#//ResourceProvider" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataDescriptorsProvider" eSuperTypes="#//ResourceDescriptorProvider">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataDescriptors" lowerBound="1"
+        upperBound="-1" eType="#//DataDescriptor" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataDescriptor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="part" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instance" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="descriptorType" lowerBound="1"
+        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EDescriptorType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stages" lowerBound="1"
+        upperBound="-1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EShaderStage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ResourceDescriptorProviderPkg">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resourceDescriptorProviders"
+        upperBound="-1" eType="#//ResourceDescriptorProvider" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RenderProxyConstantBuffer" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/resource.ecore#//ConstantBuffer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="constantBuffer" lowerBound="1"

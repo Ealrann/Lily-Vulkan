@@ -6,6 +6,7 @@ import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
 import org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
+import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.resource.image.VkImageDescriptor;
 
@@ -28,12 +29,12 @@ public class SampledImageDescriptorAdapter implements IDescriptorAdapter
 		vkDescriptor = new VkImageDescriptor(	0,
 												0,
 												layout,
-												descriptor.getDescriptorType(),
+												descriptor.getType(),
 												descriptor.getShaderStages());
 	}
 
 	@Override
-	public void allocate()
+	public void allocate(IExecutionContext context)
 	{
 		final var sampledImage = descriptor.getSampledImage();
 		final var imageAdapter = sampledImage.adaptNotNull(ISampledImageAdapter.class);
@@ -43,7 +44,7 @@ public class SampledImageDescriptorAdapter implements IDescriptorAdapter
 	}
 
 	@Override
-	public void free()
+	public void free(IExecutionContext context)
 	{}
 
 	@Override

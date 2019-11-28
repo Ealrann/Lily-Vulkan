@@ -248,6 +248,7 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
+			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__PART_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__EXTENSION_PKG);
 		}
@@ -305,6 +306,7 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
 			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
 			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -329,6 +331,11 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 			(createChildParameter
 				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 				 VulkanFactory.eINSTANCE.createResourcePkg()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+				 VulkanFactory.eINSTANCE.createDescriptorPkg()));
 
 		newChildDescriptors.add
 			(createChildParameter

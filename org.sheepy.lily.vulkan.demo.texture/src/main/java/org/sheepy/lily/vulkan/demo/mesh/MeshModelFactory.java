@@ -289,12 +289,16 @@ public class MeshModelFactory
 			sampledImage.setImage(texture);
 
 			final var sampledImageDescriptor = ResourceFactory.eINSTANCE.createSampledImageDescriptor();
-			sampledImageDescriptor.setDescriptorType(EDescriptorType.COMBINED_IMAGE_SAMPLER);
+			sampledImageDescriptor.setType(EDescriptorType.COMBINED_IMAGE_SAMPLER);
 			sampledImageDescriptor.getShaderStages().add(EShaderStage.FRAGMENT_BIT);
 			sampledImageDescriptor.setSampledImage(sampledImage);
 
 			resourcePkg.getResources().add(sampledImage);
 			descriptorSet.getDescriptors().add(sampledImageDescriptor);
+
+			final var descriptorPkg = VulkanFactory.eINSTANCE.createDescriptorPkg();
+			descriptorPkg.getDescriptors().add(sampledImageDescriptor);
+			graphicPipeline.setDescriptorPkg(descriptorPkg);
 		}
 
 		if (descriptorSet.getDescriptors().isEmpty() == false)

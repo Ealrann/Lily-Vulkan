@@ -119,7 +119,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="image" lowerBound="1" eType="#//Image"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Sampler" eSuperTypes="../../org.sheepy.vulkan.model/model/Image.ecore#//SamplerInfo">
+  <eClassifiers xsi:type="ecore:EClass" name="Sampler" eSuperTypes="../../org.sheepy.vulkan.model/model/Image.ecore#//SamplerInfo vulkan.ecore#//IResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="image" eType="#//Image"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Semaphore" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
@@ -137,34 +137,27 @@
         defaultValueLiteral="18"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="JavaModule" instanceClassName="java.lang.Module"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Descriptor" abstract="true" interface="true"
-      eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="descriptorType" unique="false"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EDescriptorType"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shaderStages" upperBound="-1"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EShaderStage"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BufferDescriptor" eSuperTypes="#//Descriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="BufferDescriptor" eSuperTypes="vulkan.ecore#//IDescriptor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bufferReference" lowerBound="1"
         eType="#//IBufferReference" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ImageDescriptor" eSuperTypes="#//Descriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="ImageDescriptor" eSuperTypes="vulkan.ecore#//IDescriptor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="image" lowerBound="1" eType="#//Image"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SampledImageDescriptor" eSuperTypes="#//Descriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="SampledImageDescriptor" eSuperTypes="vulkan.ecore#//IDescriptor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sampledImage" eType="#//SampledImage"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SamplerDescriptor" eSuperTypes="#//Descriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="SamplerDescriptor" eSuperTypes="vulkan.ecore#//IDescriptor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sampler" lowerBound="1"
         eType="#//Sampler"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Texture2DArrayDescriptor" eSuperTypes="#//Descriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="Texture2DArrayDescriptor" eSuperTypes="vulkan.ecore#//IDescriptor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="texture2DArray" lowerBound="1"
         eType="#//Texture2DArray"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DescriptorSet" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="descriptors" lowerBound="1"
-        upperBound="-1" eType="#//Descriptor" containment="true"/>
+        upperBound="-1" eType="ecore:EClass vulkan.ecore#//IDescriptor"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DescriptorSetPkg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorSets" upperBound="-1"

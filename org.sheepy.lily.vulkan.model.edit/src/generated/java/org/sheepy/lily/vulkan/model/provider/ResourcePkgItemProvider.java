@@ -191,6 +191,11 @@ public class ResourcePkgItemProvider extends ItemProviderAdapter implements IEdi
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+				 ResourceFactory.eINSTANCE.createSampler()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
 				 ResourceFactory.eINSTANCE.createFontImage()));
 
 		newChildDescriptors.add

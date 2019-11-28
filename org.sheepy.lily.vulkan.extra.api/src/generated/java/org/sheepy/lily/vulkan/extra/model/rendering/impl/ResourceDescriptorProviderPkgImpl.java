@@ -10,45 +10,47 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider;
+
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
-import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Composite Resource Provider</b></em>'.
+ * An implementation of the model object '<em><b>Resource Descriptor Provider Pkg</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CompositeResourceProviderImpl#getProviders <em>Providers</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.ResourceDescriptorProviderPkgImpl#getResourceDescriptorProviders <em>Resource Descriptor Providers</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class CompositeResourceProviderImpl extends LilyEObject implements CompositeResourceProvider
+public class ResourceDescriptorProviderPkgImpl extends LilyEObject implements ResourceDescriptorProviderPkg
 {
 	/**
-	 * The cached value of the '{@link #getProviders() <em>Providers</em>}' containment reference list.
+	 * The cached value of the '{@link #getResourceDescriptorProviders() <em>Resource Descriptor Providers</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProviders()
+	 * @see #getResourceDescriptorProviders()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ResourceProvider> providers;
+	protected EList<ResourceDescriptorProvider> resourceDescriptorProviders;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompositeResourceProviderImpl()
+	protected ResourceDescriptorProviderPkgImpl()
 	{
 		super();
 	}
@@ -61,7 +63,7 @@ public class CompositeResourceProviderImpl extends LilyEObject implements Compos
 	@Override
 	protected EClass eStaticClass()
 	{
-		return RenderingPackage.Literals.COMPOSITE_RESOURCE_PROVIDER;
+		return RenderingPackage.Literals.RESOURCE_DESCRIPTOR_PROVIDER_PKG;
 	}
 
 	/**
@@ -70,13 +72,13 @@ public class CompositeResourceProviderImpl extends LilyEObject implements Compos
 	 * @generated
 	 */
 	@Override
-	public EList<ResourceProvider> getProviders()
+	public EList<ResourceDescriptorProvider> getResourceDescriptorProviders()
 	{
-		if (providers == null)
+		if (resourceDescriptorProviders == null)
 		{
-			providers = new EObjectContainmentEList<ResourceProvider>(ResourceProvider.class, this, RenderingPackage.COMPOSITE_RESOURCE_PROVIDER__PROVIDERS);
+			resourceDescriptorProviders = new EObjectContainmentEList<ResourceDescriptorProvider>(ResourceDescriptorProvider.class, this, RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS);
 		}
-		return providers;
+		return resourceDescriptorProviders;
 	}
 
 	/**
@@ -89,8 +91,8 @@ public class CompositeResourceProviderImpl extends LilyEObject implements Compos
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.COMPOSITE_RESOURCE_PROVIDER__PROVIDERS:
-				return ((InternalEList<?>)getProviders()).basicRemove(otherEnd, msgs);
+			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS:
+				return ((InternalEList<?>)getResourceDescriptorProviders()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -105,8 +107,8 @@ public class CompositeResourceProviderImpl extends LilyEObject implements Compos
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.COMPOSITE_RESOURCE_PROVIDER__PROVIDERS:
-				return getProviders();
+			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS:
+				return getResourceDescriptorProviders();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -122,9 +124,9 @@ public class CompositeResourceProviderImpl extends LilyEObject implements Compos
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.COMPOSITE_RESOURCE_PROVIDER__PROVIDERS:
-				getProviders().clear();
-				getProviders().addAll((Collection<? extends ResourceProvider>)newValue);
+			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS:
+				getResourceDescriptorProviders().clear();
+				getResourceDescriptorProviders().addAll((Collection<? extends ResourceDescriptorProvider>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,8 +142,8 @@ public class CompositeResourceProviderImpl extends LilyEObject implements Compos
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.COMPOSITE_RESOURCE_PROVIDER__PROVIDERS:
-				getProviders().clear();
+			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS:
+				getResourceDescriptorProviders().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -157,10 +159,10 @@ public class CompositeResourceProviderImpl extends LilyEObject implements Compos
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.COMPOSITE_RESOURCE_PROVIDER__PROVIDERS:
-				return providers != null && !providers.isEmpty();
+			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS:
+				return resourceDescriptorProviders != null && !resourceDescriptorProviders.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //CompositeResourceProviderImpl
+} //ResourceDescriptorProviderPkgImpl

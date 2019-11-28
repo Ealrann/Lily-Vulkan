@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.root.RootPackage;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
@@ -81,6 +82,15 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int ABSTRACT_PROCESS__RESOURCE_PKG = VulkanPackage.IPROCESS__RESOURCE_PKG;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PROCESS__DESCRIPTOR_PKG = VulkanPackage.IPROCESS__DESCRIPTOR_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -349,13 +359,22 @@ public interface ProcessPackage extends EPackage
 	int IPIPELINE__RESOURCE_PKG = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE__DESCRIPTOR_PKG = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE__ENABLED = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
+	int IPIPELINE__ENABLED = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -364,7 +383,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE__STAGE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
+	int IPIPELINE__STAGE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Push Constant Ranges</b></em>' containment reference list.
@@ -373,7 +392,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE__PUSH_CONSTANT_RANGES = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 3;
+	int IPIPELINE__PUSH_CONSTANT_RANGES = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.
@@ -382,7 +401,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE__SPECIALIZATION_DATA = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 4;
+	int IPIPELINE__SPECIALIZATION_DATA = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
@@ -391,7 +410,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE__DESCRIPTOR_SET_PKG = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 5;
+	int IPIPELINE__DESCRIPTOR_SET_PKG = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
@@ -400,7 +419,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE__TASK_PKG = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 6;
+	int IPIPELINE__TASK_PKG = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>IPipeline</em>' class.
@@ -409,7 +428,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 7;
+	int IPIPELINE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>IPipeline</em>' class.
@@ -484,6 +503,15 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int PIPELINE__RESOURCE_PKG = IPIPELINE__RESOURCE_PKG;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE__DESCRIPTOR_PKG = IPIPELINE__DESCRIPTOR_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -1243,6 +1271,52 @@ public interface ProcessPackage extends EPackage
 	int PREPARE_COMPOSITE_TRANSFER_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.SwapBindingsTaskImpl <em>Swap Bindings Task</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.impl.SwapBindingsTaskImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getSwapBindingsTask()
+	 * @generated
+	 */
+	int SWAP_BINDINGS_TASK = 18;
+
+	/**
+	 * The feature id for the '<em><b>Task</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAP_BINDINGS_TASK__TASK = CadencePackage.ICADENCE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Sets</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAP_BINDINGS_TASK__DESCRIPTOR_SETS = CadencePackage.ICADENCE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Swap Bindings Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAP_BINDINGS_TASK_FEATURE_COUNT = CadencePackage.ICADENCE_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Swap Bindings Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAP_BINDINGS_TASK_OPERATION_COUNT = CadencePackage.ICADENCE_TASK_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1819,6 +1893,38 @@ public interface ProcessPackage extends EPackage
 	EAttribute getPrepareCompositeTransfer_Instance();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.SwapBindingsTask <em>Swap Bindings Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Swap Bindings Task</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.SwapBindingsTask
+	 * @generated
+	 */
+	EClass getSwapBindingsTask();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.SwapBindingsTask#getTask <em>Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Task</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.SwapBindingsTask#getTask()
+	 * @see #getSwapBindingsTask()
+	 * @generated
+	 */
+	EReference getSwapBindingsTask_Task();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.SwapBindingsTask#getDescriptorSets <em>Descriptor Sets</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Descriptor Sets</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.SwapBindingsTask#getDescriptorSets()
+	 * @see #getSwapBindingsTask()
+	 * @generated
+	 */
+	EReference getSwapBindingsTask_DescriptorSets();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2309,6 +2415,32 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute PREPARE_COMPOSITE_TRANSFER__INSTANCE = eINSTANCE.getPrepareCompositeTransfer_Instance();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.SwapBindingsTaskImpl <em>Swap Bindings Task</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.SwapBindingsTaskImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getSwapBindingsTask()
+		 * @generated
+		 */
+		EClass SWAP_BINDINGS_TASK = eINSTANCE.getSwapBindingsTask();
+
+		/**
+		 * The meta object literal for the '<em><b>Task</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SWAP_BINDINGS_TASK__TASK = eINSTANCE.getSwapBindingsTask_Task();
+
+		/**
+		 * The meta object literal for the '<em><b>Descriptor Sets</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SWAP_BINDINGS_TASK__DESCRIPTOR_SETS = eINSTANCE.getSwapBindingsTask_DescriptorSets();
 
 	}
 

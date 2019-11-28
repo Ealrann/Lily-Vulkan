@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer;
-
 import org.sheepy.lily.vulkan.extra.model.rendering.provider.GenericRendererItemProvider;
 
 /**

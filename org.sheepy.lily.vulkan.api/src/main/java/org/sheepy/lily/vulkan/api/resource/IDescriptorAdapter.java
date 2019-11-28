@@ -1,12 +1,10 @@
 package org.sheepy.lily.vulkan.api.resource;
 
-import org.sheepy.lily.core.api.adapter.IAdapter;
+import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
+import org.sheepy.vulkan.execution.IExecutionContext;
 
-public interface IDescriptorAdapter extends IAdapter
+public interface IDescriptorAdapter extends IAllocableAdapter<IExecutionContext>
 {
 	IVkDescriptor getVkDescriptor();
-	
-	void allocate();
-	void free();
 }

@@ -15,7 +15,7 @@ public class RenderDrawTaskAdapter implements IPipelineTaskAdapter<RenderDrawTas
 	private boolean hasChanged = true;
 
 	@Override
-	public void update(RenderDrawTask task)
+	public void update(RenderDrawTask task, int index)
 	{
 		int newVertexCount = 0;
 		for (final var vertexProvider : task.getVertexProviders())

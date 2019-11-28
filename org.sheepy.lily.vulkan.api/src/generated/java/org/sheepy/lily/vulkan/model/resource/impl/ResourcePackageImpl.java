@@ -203,13 +203,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass descriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass bufferDescriptorEClass = null;
 
 	/**
@@ -1085,39 +1078,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getDescriptor()
-	{
-		return descriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getDescriptor_DescriptorType()
-	{
-		return (EAttribute)descriptorEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getDescriptor_ShaderStages()
-	{
-		return (EAttribute)descriptorEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getBufferDescriptor()
 	{
 		return bufferDescriptorEClass;
@@ -1657,10 +1617,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEReference(fontImageEClass, FONT_IMAGE__FILE);
 		createEAttribute(fontImageEClass, FONT_IMAGE__HEIGHT);
 
-		descriptorEClass = createEClass(DESCRIPTOR);
-		createEAttribute(descriptorEClass, DESCRIPTOR__DESCRIPTOR_TYPE);
-		createEAttribute(descriptorEClass, DESCRIPTOR__SHADER_STAGES);
-
 		bufferDescriptorEClass = createEClass(BUFFER_DESCRIPTOR);
 		createEReference(bufferDescriptorEClass, BUFFER_DESCRIPTOR__BUFFER_REFERENCE);
 
@@ -1776,14 +1732,14 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		fileImageEClass.getESuperTypes().add(this.getImage());
 		sampledImageEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		samplerEClass.getESuperTypes().add(theImagePackage.getSamplerInfo());
+		samplerEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		semaphoreEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		fontImageEClass.getESuperTypes().add(this.getImage());
-		descriptorEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		bufferDescriptorEClass.getESuperTypes().add(this.getDescriptor());
-		imageDescriptorEClass.getESuperTypes().add(this.getDescriptor());
-		sampledImageDescriptorEClass.getESuperTypes().add(this.getDescriptor());
-		samplerDescriptorEClass.getESuperTypes().add(this.getDescriptor());
-		texture2DArrayDescriptorEClass.getESuperTypes().add(this.getDescriptor());
+		bufferDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
+		imageDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
+		sampledImageDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
+		samplerDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
+		texture2DArrayDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		descriptorSetEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		bufferBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractBufferBarrier());
 		compositeBufferBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractBufferBarrier());
@@ -1875,10 +1831,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getFontImage_File(), this.getPathResource(), null, "file", null, 0, 1, FontImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFontImage_Height(), theEcorePackage.getEInt(), "height", "18", 0, 1, FontImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(descriptorEClass, org.sheepy.lily.vulkan.model.resource.Descriptor.class, "Descriptor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDescriptor_DescriptorType(), theEnumerationPackage.getEDescriptorType(), "descriptorType", null, 0, 1, org.sheepy.lily.vulkan.model.resource.Descriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDescriptor_ShaderStages(), theEnumerationPackage.getEShaderStage(), "shaderStages", null, 0, -1, org.sheepy.lily.vulkan.model.resource.Descriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(bufferDescriptorEClass, BufferDescriptor.class, "BufferDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBufferDescriptor_BufferReference(), this.getIBufferReference(), null, "bufferReference", null, 1, 1, BufferDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1895,7 +1847,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getTexture2DArrayDescriptor_Texture2DArray(), this.getTexture2DArray(), null, "texture2DArray", null, 1, 1, Texture2DArrayDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(descriptorSetEClass, DescriptorSet.class, "DescriptorSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDescriptorSet_Descriptors(), this.getDescriptor(), null, "descriptors", null, 1, -1, DescriptorSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDescriptorSet_Descriptors(), theVulkanPackage.getIDescriptor(), null, "descriptors", null, 1, -1, DescriptorSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(descriptorSetPkgEClass, DescriptorSetPkg.class, "DescriptorSetPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDescriptorSetPkg_DescriptorSets(), this.getDescriptorSet(), null, "descriptorSets", null, 0, -1, DescriptorSetPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

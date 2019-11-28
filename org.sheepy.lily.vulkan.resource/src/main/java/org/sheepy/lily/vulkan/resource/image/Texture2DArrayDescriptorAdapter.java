@@ -6,6 +6,7 @@ import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.resource.ITexture2DArrayAdapter;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
+import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.image.VkImageArrayDescriptor;
 
 @Statefull
@@ -23,12 +24,12 @@ public class Texture2DArrayDescriptorAdapter implements IDescriptorAdapter
 		final var initialLayout = texture2DArray.getInitialLayout().getLayout();
 		vkDescriptor = new VkImageArrayDescriptor(	new long[texture2DArray.getFiles().size()],
 		                                          	initialLayout,
-													descriptor.getDescriptorType(),
+													descriptor.getType(),
 													descriptor.getShaderStages());
 	}
 
 	@Override
-	public void allocate()
+	public void allocate(IExecutionContext context)
 	{
 		final var texture2DArray = descriptor.getTexture2DArray();
 		final var adapter = texture2DArray.adaptNotNull(ITexture2DArrayAdapter.class);
@@ -37,7 +38,7 @@ public class Texture2DArrayDescriptorAdapter implements IDescriptorAdapter
 	}
 
 	@Override
-	public void free()
+	public void free(IExecutionContext context)
 	{}
 
 	@Override

@@ -4,50 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.vulkan.extra.api.rendering.IResourceProviderAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
+import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.rendering.data.IStructurePartDrawSetup;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 
 public final class StructureDrawInstaller<T extends Structure>
 {
 	private final GenericRenderer<T> maintainer;
 	private final GraphicProcess graphicProcess;
 	private final RenderPipelineBuilder pipelineBuilder;
-	private final BufferInstaller<T> bufferInstaller;
 
 	public StructureDrawInstaller(GenericRenderer<T> maintainer)
 	{
 		this.maintainer = maintainer;
 
-		final var commonResources = List.copyOf(gatherCommonResources(maintainer));
-		final var pipelineBuilder = new RenderPipelineBuilder(commonResources, maintainer);
+		final var pipelineBuilder = new RenderPipelineBuilder(maintainer);
 
 		this.pipelineBuilder = pipelineBuilder;
-		this.bufferInstaller = new BufferInstaller<>(maintainer);
 		this.graphicProcess = ModelUtil.findParent(maintainer, GraphicProcess.class);
-	}
-
-	private static List<DescriptedResource> gatherCommonResources(GenericRenderer<?> maintainer)
-	{
-		final var resourceProvider = maintainer.getCommonResourceProvider();
-		if (resourceProvider != null)
-		{
-			final var providerAdapter = resourceProvider.adaptNotNull(IResourceProviderAdapter.class);
-			return List.copyOf(providerAdapter.getResources(resourceProvider));
-		}
-		return List.of();
 	}
 
 	public List<IStructurePartDrawSetup> install(T structure)
 	{
-		final boolean needMultiplePipelines = bufferInstaller.hasDynamicDescriptors
-				|| bufferInstaller.hasIndexData;
-
+		final boolean needMultiplePipelines = maintainer.isOnePipelinePerPart()
+				|| isContainingIndexData();
 		final var drawInstaller = new DrawTaskInstaller(structure, maintainer.getConstantBuffer());
 		final var structureAdapter = structure.adaptNotNull(IStructureAdapter.class);
 		final int count = structureAdapter.getPartCount(structure);
@@ -62,16 +46,25 @@ public final class StructureDrawInstaller<T extends Structure>
 		}
 	}
 
+	private boolean isContainingIndexData()
+	{
+		final var dataProviders = maintainer.getDataProviderPkg().getDataProviders();
+		return dataProviders.stream().anyMatch(IndexProvider.class::isInstance);
+	}
+
 	private List<IStructurePartDrawSetup> prepareSinglePipeline(T structure,
 																DrawTaskInstaller drawInstaller,
 																int count)
 	{
 		final List<IStructurePartDrawSetup> res = new ArrayList<>();
-		final var pipelineContext = createAndInstallPipeline(pipelineBuilder);
+		final var pipeline = createAndInstallPipeline(pipelineBuilder);
+		final var resourceInstaller = new ResourceInstaller<>(maintainer);
+		resourceInstaller.prepare(pipeline, structure, count);
 
 		for (int index = 0; index < count; index++)
 		{
-			res.add(installDraw(structure, drawInstaller, pipelineContext, index));
+			final var bufferContext = resourceInstaller.setupBindTask(pipeline, index);
+			res.add(drawInstaller.install(bufferContext));
 		}
 
 		return res;
@@ -85,20 +78,14 @@ public final class StructureDrawInstaller<T extends Structure>
 
 		for (int index = 0; index < count; index++)
 		{
-			final var pipelineContext = createAndInstallPipeline(pipelineBuilder);
-			res.add(installDraw(structure, drawInstaller, pipelineContext, index));
+			final var pipeline = createAndInstallPipeline(pipelineBuilder);
+			final var resourceInstaller = new ResourceInstaller<>(maintainer);
+			resourceInstaller.prepare(pipeline, structure, count);
+			final var bufferContext = resourceInstaller.setupBindTask(pipeline, index);
+			res.add(drawInstaller.install(bufferContext));
 		}
 
 		return res;
-	}
-
-	private IStructurePartDrawSetup installDraw(T structure,
-												DrawTaskInstaller drawInstaller,
-												GraphicsPipeline pipeline,
-												int index)
-	{
-		final var bufferContext = bufferInstaller.install(pipeline, structure, index);
-		return drawInstaller.install(bufferContext);
 	}
 
 	private GraphicsPipeline createAndInstallPipeline(RenderPipelineBuilder pipelineBuilder)

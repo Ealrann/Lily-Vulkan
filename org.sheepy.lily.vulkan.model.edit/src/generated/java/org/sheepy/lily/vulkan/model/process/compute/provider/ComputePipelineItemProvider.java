@@ -201,6 +201,7 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter implements 
 		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
+			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES);
 			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__TASK_PKG);
@@ -270,6 +271,7 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter implements 
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ComputePackage.COMPUTE_PIPELINE__RESOURCE_PKG:
+			case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_PKG:
 			case ComputePackage.COMPUTE_PIPELINE__PUSH_CONSTANT_RANGES:
 			case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG:
 			case ComputePackage.COMPUTE_PIPELINE__TASK_PKG:
@@ -295,6 +297,11 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter implements 
 			(createChildParameter
 				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 				 VulkanFactory.eINSTANCE.createResourcePkg()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+				 VulkanFactory.eINSTANCE.createDescriptorPkg()));
 
 		newChildDescriptors.add
 			(createChildParameter

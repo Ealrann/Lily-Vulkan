@@ -21,8 +21,7 @@ public class SpriteCountSpecializationAdapter implements ISpecializationAdapter
 	{
 		final var spriteCount = (SpriteCountSpecialization) specialization;
 		final var provider = spriteCount.getProvider();
-		final var adapter = provider.adapt(SpriteMonoSamplerProviderAdapter.class);
-		final int size = adapter.gatherResources(provider).size();
+		final int size = SpriteMonoSamplerProviderAdapter.gatherResources(provider).size();
 
 		buffer.putInt(size);
 	}

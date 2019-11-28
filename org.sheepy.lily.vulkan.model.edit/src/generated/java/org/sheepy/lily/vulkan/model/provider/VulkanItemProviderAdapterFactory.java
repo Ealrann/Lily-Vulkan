@@ -200,6 +200,31 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.DescriptorPkg} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DescriptorPkgItemProvider descriptorPkgItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.DescriptorPkg}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDescriptorPkgAdapter()
+	{
+		if (descriptorPkgItemProvider == null)
+		{
+			descriptorPkgItemProvider = new DescriptorPkgItemProvider(this);
+		}
+
+		return descriptorPkgItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -352,6 +377,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 		if (resourcePkgItemProvider != null) resourcePkgItemProvider.dispose();
 		if (runProcessItemProvider != null) runProcessItemProvider.dispose();
 		if (waitProcessIdleItemProvider != null) waitProcessIdleItemProvider.dispose();
+		if (descriptorPkgItemProvider != null) descriptorPkgItemProvider.dispose();
 	}
 
 	/**

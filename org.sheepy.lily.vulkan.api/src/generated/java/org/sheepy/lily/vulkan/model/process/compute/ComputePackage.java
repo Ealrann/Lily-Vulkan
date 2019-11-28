@@ -79,6 +79,15 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__RESOURCE_PKG = ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG;
 
 	/**
+	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PROCESS__DESCRIPTOR_PKG = ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -204,6 +213,15 @@ public interface ComputePackage extends EPackage
 	 * @ordered
 	 */
 	int COMPUTE_PIPELINE__RESOURCE_PKG = ProcessPackage.IPIPELINE__RESOURCE_PKG;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PIPELINE__DESCRIPTOR_PKG = ProcessPackage.IPIPELINE__DESCRIPTOR_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.

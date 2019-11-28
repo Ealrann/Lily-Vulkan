@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
@@ -58,6 +59,7 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 			addConstantBufferPropertyDescriptor(object);
 			addTransferBufferPropertyDescriptor(object);
 			addFlushTransferBufferTaskPropertyDescriptor(object);
+			addOnePipelinePerPartPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -155,6 +157,29 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the One Pipeline Per Part feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOnePipelinePerPartPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenericRenderer_onePipelinePerPart_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenericRenderer_onePipelinePerPart_feature", "_UI_GenericRenderer_type"),
+				 RenderingPackage.Literals.GENERIC_RENDERER__ONE_PIPELINE_PER_PART,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -169,7 +194,7 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RenderingPackage.Literals.GENERIC_RENDERER__DATA_PROVIDER_PKG);
-			childrenFeatures.add(RenderingPackage.Literals.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER);
+			childrenFeatures.add(RenderingPackage.Literals.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG);
 			childrenFeatures.add(RenderingPackage.Literals.GENERIC_RENDERER__SPECIALIZATION);
 		}
 		return childrenFeatures;
@@ -219,8 +244,11 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 
 		switch (notification.getFeatureID(GenericRenderer.class))
 		{
+			case RenderingPackage.GENERIC_RENDERER__ONE_PIPELINE_PER_PART:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case RenderingPackage.GENERIC_RENDERER__DATA_PROVIDER_PKG:
-			case RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER:
+			case RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG:
 			case RenderingPackage.GENERIC_RENDERER__SPECIALIZATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -247,18 +275,8 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RenderingPackage.Literals.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER,
-				 RenderingFactory.eINSTANCE.createStaticResourceProvider()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderingPackage.Literals.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER,
-				 RenderingFactory.eINSTANCE.createCompositeResourceProvider()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderingPackage.Literals.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER,
-				 SpriteFactory.eINSTANCE.createSpriteMonoSamplerProvider()));
+				(RenderingPackage.Literals.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG,
+				 RenderingFactory.eINSTANCE.createResourceDescriptorProviderPkg()));
 
 		newChildDescriptors.add
 			(createChildParameter

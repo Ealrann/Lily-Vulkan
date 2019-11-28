@@ -20,6 +20,7 @@ import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
+import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -38,6 +39,8 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 {
 	private static final ModelExplorer RESOURCE_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 																						VulkanPackage.Literals.RESOURCE_PKG__RESOURCES));
+	private static final ModelExplorer DESCRIPTOR_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+	                                                                                   	VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS));
 	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
 																							ResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));
 
@@ -178,6 +181,8 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	public void collectResources(List<IAllocable<? super IExecutionContext>> collectIn)
 	{
 		RESOURCE_EXPLORER	.streamAdapt(pipeline, IResourceAdapter.class)
+							.collect(Collectors.toCollection(() -> collectIn));
+		DESCRIPTOR_EXPLORER	.streamAdapt(pipeline, IDescriptorAdapter.class)
 							.collect(Collectors.toCollection(() -> collectIn));
 	}
 

@@ -35,6 +35,7 @@ import org.sheepy.lily.core.model.root.LObject;
 
 import org.sheepy.lily.core.model.root.RootPackage.Literals;
 
+import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
@@ -54,6 +55,7 @@ import org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getContentObjects <em>Content Objects</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getResourcePkg <em>Resource Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getDescriptorPkg <em>Descriptor Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getProcesses <em>Processes</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getFeatures <em>Features</em>}</li>
@@ -82,6 +84,16 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	 * @ordered
 	 */
 	protected ResourcePkg resourcePkg;
+
+	/**
+	 * The cached value of the '{@link #getDescriptorPkg() <em>Descriptor Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescriptorPkg()
+	 * @generated
+	 * @ordered
+	 */
+	protected DescriptorPkg descriptorPkg;
 
 	/**
 	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
@@ -217,6 +229,56 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, newResourcePkg, newResourcePkg));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DescriptorPkg getDescriptorPkg()
+	{
+		return descriptorPkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDescriptorPkg(DescriptorPkg newDescriptorPkg, NotificationChain msgs)
+	{
+		DescriptorPkg oldDescriptorPkg = descriptorPkg;
+		descriptorPkg = newDescriptorPkg;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG, oldDescriptorPkg, newDescriptorPkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDescriptorPkg(DescriptorPkg newDescriptorPkg)
+	{
+		if (newDescriptorPkg != descriptorPkg)
+		{
+			NotificationChain msgs = null;
+			if (descriptorPkg != null)
+				msgs = ((InternalEObject)descriptorPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG, null, msgs);
+			if (newDescriptorPkg != null)
+				msgs = ((InternalEObject)newDescriptorPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG, null, msgs);
+			msgs = basicSetDescriptorPkg(newDescriptorPkg, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG, newDescriptorPkg, newDescriptorPkg));
 	}
 
 	/**
@@ -380,6 +442,8 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 		{
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 				return basicSetResourcePkg(null, msgs);
+			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
+				return basicSetDescriptorPkg(null, msgs);
 			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
 				return ((InternalEList<?>)getProcesses()).basicRemove(otherEnd, msgs);
 		}
@@ -400,6 +464,8 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 				return getContentObjects();
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 				return getResourcePkg();
+			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
+				return getDescriptorPkg();
 			case VulkanPackage.VULKAN_ENGINE__ENABLED:
 				return isEnabled();
 			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
@@ -426,6 +492,9 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 				return;
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 				setResourcePkg((ResourcePkg)newValue);
+				return;
+			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
+				setDescriptorPkg((DescriptorPkg)newValue);
 				return;
 			case VulkanPackage.VULKAN_ENGINE__ENABLED:
 				setEnabled((Boolean)newValue);
@@ -458,6 +527,9 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 				setResourcePkg((ResourcePkg)null);
 				return;
+			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
+				setDescriptorPkg((DescriptorPkg)null);
+				return;
 			case VulkanPackage.VULKAN_ENGINE__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
@@ -485,6 +557,8 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 				return contentObjects != null;
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 				return resourcePkg != null;
+			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
+				return descriptorPkg != null;
 			case VulkanPackage.VULKAN_ENGINE__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
 			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
@@ -508,6 +582,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 			switch (derivedFeatureID)
 			{
 				case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG: return VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG;
+				case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG: return VulkanPackage.IRESOURCE_CONTAINER__DESCRIPTOR_PKG;
 				default: return -1;
 			}
 		}
@@ -534,6 +609,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 			switch (baseFeatureID)
 			{
 				case VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG: return VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG;
+				case VulkanPackage.IRESOURCE_CONTAINER__DESCRIPTOR_PKG: return VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG;
 				default: return -1;
 			}
 		}

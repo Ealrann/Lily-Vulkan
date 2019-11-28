@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.sheepy.lily.core.model.cadence.ICadenceTask;
 import org.sheepy.lily.core.model.inference.IInferenceObject;
 
 import org.sheepy.lily.core.model.maintainer.Maintainable;
@@ -239,6 +240,14 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				T1 result = casePrepareCompositeTransfer(prepareCompositeTransfer);
 				if (result == null) result = caseIPipelineTask(prepareCompositeTransfer);
 				if (result == null) result = caseLNamedElement(prepareCompositeTransfer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.SWAP_BINDINGS_TASK:
+			{
+				SwapBindingsTask swapBindingsTask = (SwapBindingsTask)theEObject;
+				T1 result = caseSwapBindingsTask(swapBindingsTask);
+				if (result == null) result = caseICadenceTask(swapBindingsTask);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -535,6 +544,22 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Swap Bindings Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Swap Bindings Task</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseSwapBindingsTask(SwapBindingsTask object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>IResource Container</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -642,6 +667,22 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public <T extends Maintainable<T>> T1 caseMaintainable(Maintainable<T> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ICadence Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ICadence Task</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseICadenceTask(ICadenceTask object)
 	{
 		return null;
 	}

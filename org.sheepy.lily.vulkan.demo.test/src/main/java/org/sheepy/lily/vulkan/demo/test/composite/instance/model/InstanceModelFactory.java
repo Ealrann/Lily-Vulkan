@@ -55,6 +55,11 @@ public class InstanceModelFactory
 		resourceList.add(resourceContainer.compositeBuffer);
 		resourceList.add(resourceContainer.shader);
 
+		final var descriptorPkg = VulkanFactory.eINSTANCE.createDescriptorPkg();
+		process.setDescriptorPkg(descriptorPkg);
+		final var descriptorList = descriptorPkg.getDescriptors();
+		descriptorList.addAll(resourceContainer.ds.getDescriptors());
+
 		process.setResetAllowed(true);
 
 		return process;

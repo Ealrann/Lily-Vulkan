@@ -86,22 +86,40 @@ public interface RenderingFactory extends EFactory
 	<T extends Structure> IndexProvider<T> createIndexProvider();
 
 	/**
-	 * Returns a new object of class '<em>Static Resource Provider</em>'.
+	 * Returns a new object of class '<em>Descriptors Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Static Resource Provider</em>'.
+	 * @return a new object of class '<em>Descriptors Provider</em>'.
 	 * @generated
 	 */
-	StaticResourceProvider createStaticResourceProvider();
+	DescriptorsProvider createDescriptorsProvider();
 
 	/**
-	 * Returns a new object of class '<em>Composite Resource Provider</em>'.
+	 * Returns a new object of class '<em>Data Descriptors Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Composite Resource Provider</em>'.
+	 * @return a new object of class '<em>Data Descriptors Provider</em>'.
 	 * @generated
 	 */
-	CompositeResourceProvider createCompositeResourceProvider();
+	DataDescriptorsProvider createDataDescriptorsProvider();
+
+	/**
+	 * Returns a new object of class '<em>Data Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Data Descriptor</em>'.
+	 * @generated
+	 */
+	DataDescriptor createDataDescriptor();
+
+	/**
+	 * Returns a new object of class '<em>Resource Descriptor Provider Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Resource Descriptor Provider Pkg</em>'.
+	 * @generated
+	 */
+	ResourceDescriptorProviderPkg createResourceDescriptorProviderPkg();
 
 	/**
 	 * Returns a new object of class '<em>Render Proxy Constant Buffer</em>'.

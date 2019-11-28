@@ -184,6 +184,7 @@ public class PipelineItemProvider extends ItemProviderAdapter implements IEditin
 		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
+			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES);
 			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__TASK_PKG);
@@ -253,6 +254,7 @@ public class PipelineItemProvider extends ItemProviderAdapter implements IEditin
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ProcessPackage.PIPELINE__RESOURCE_PKG:
+			case ProcessPackage.PIPELINE__DESCRIPTOR_PKG:
 			case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
 			case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
 			case ProcessPackage.PIPELINE__TASK_PKG:
@@ -278,6 +280,11 @@ public class PipelineItemProvider extends ItemProviderAdapter implements IEditin
 			(createChildParameter
 				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 				 VulkanFactory.eINSTANCE.createResourcePkg()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+				 VulkanFactory.eINSTANCE.createDescriptorPkg()));
 
 		newChildDescriptors.add
 			(createChildParameter

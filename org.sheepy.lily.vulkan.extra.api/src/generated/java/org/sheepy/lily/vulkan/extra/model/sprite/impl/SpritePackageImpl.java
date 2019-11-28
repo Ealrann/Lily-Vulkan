@@ -172,6 +172,10 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
+		PresentationPackage.eINSTANCE.eClass();
+		UiPackage.eINSTANCE.eClass();
+		VariablePackage.eINSTANCE.eClass();
+		CadencePackage.eINSTANCE.eClass();
 		ProcessPackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
@@ -179,12 +183,8 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		BarrierPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 		GraphicpipelinePackage.eINSTANCE.eClass();
-		PipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
-		CadencePackage.eINSTANCE.eClass();
-		PresentationPackage.eINSTANCE.eClass();
-		VariablePackage.eINSTANCE.eClass();
-		UiPackage.eINSTANCE.eClass();
+		PipelinePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MeshPackage.eNS_URI);
@@ -278,17 +278,6 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	public EReference getSpriteMonoSamplerProvider_SamplerInfo()
 	{
 		return (EReference)spriteMonoSamplerProviderEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getSpriteMonoSamplerProvider_TargetResourcePkg()
-	{
-		return (EReference)spriteMonoSamplerProviderEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -407,7 +396,6 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 
 		spriteMonoSamplerProviderEClass = createEClass(SPRITE_MONO_SAMPLER_PROVIDER);
 		createEReference(spriteMonoSamplerProviderEClass, SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO);
-		createEReference(spriteMonoSamplerProviderEClass, SPRITE_MONO_SAMPLER_PROVIDER__TARGET_RESOURCE_PKG);
 
 		spriteStructureEClass = createEClass(SPRITE_STRUCTURE);
 		createEAttribute(spriteStructureEClass, SPRITE_STRUCTURE__WIDTH);
@@ -449,7 +437,6 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		RenderingPackage theRenderingPackage = (RenderingPackage)EPackage.Registry.INSTANCE.getEPackage(RenderingPackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		ImagePackage theImagePackage = (ImagePackage)EPackage.Registry.INSTANCE.getEPackage(ImagePackage.eNS_URI);
-		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -461,7 +448,7 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		g1.getETypeArguments().add(g2);
 		spriteRendererEClass.getEGenericSuperTypes().add(g1);
 		spriteEClass.getESuperTypes().add(theRenderingPackage.getPresentation());
-		spriteMonoSamplerProviderEClass.getESuperTypes().add(theRenderingPackage.getResourceProvider());
+		spriteMonoSamplerProviderEClass.getESuperTypes().add(theRenderingPackage.getResourceDescriptorProvider());
 		spriteStructureEClass.getESuperTypes().add(theRenderingPackage.getStructure());
 		spriteCountSpecializationEClass.getESuperTypes().add(theRenderingPackage.getISpecialization());
 
@@ -474,7 +461,6 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 
 		initEClass(spriteMonoSamplerProviderEClass, SpriteMonoSamplerProvider.class, "SpriteMonoSamplerProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSpriteMonoSamplerProvider_SamplerInfo(), theImagePackage.getSamplerInfo(), null, "samplerInfo", null, 1, 1, SpriteMonoSamplerProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSpriteMonoSamplerProvider_TargetResourcePkg(), theVulkanPackage.getResourcePkg(), null, "targetResourcePkg", null, 1, 1, SpriteMonoSamplerProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(spriteStructureEClass, SpriteStructure.class, "SpriteStructure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSpriteStructure_Width(), ecorePackage.getEInt(), "width", null, 1, 1, SpriteStructure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

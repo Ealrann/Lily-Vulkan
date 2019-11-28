@@ -23,6 +23,7 @@ import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 
+import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -58,6 +59,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getResourcePkg <em>Resource Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getDescriptorPkg <em>Descriptor Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getPushConstantRanges <em>Push Constant Ranges</em>}</li>
@@ -108,6 +110,16 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	 * @ordered
 	 */
 	protected ResourcePkg resourcePkg;
+
+	/**
+	 * The cached value of the '{@link #getDescriptorPkg() <em>Descriptor Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescriptorPkg()
+	 * @generated
+	 * @ordered
+	 */
+	protected DescriptorPkg descriptorPkg;
 
 	/**
 	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
@@ -600,6 +612,56 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public DescriptorPkg getDescriptorPkg()
+	{
+		return descriptorPkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDescriptorPkg(DescriptorPkg newDescriptorPkg, NotificationChain msgs)
+	{
+		DescriptorPkg oldDescriptorPkg = descriptorPkg;
+		descriptorPkg = newDescriptorPkg;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG, oldDescriptorPkg, newDescriptorPkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDescriptorPkg(DescriptorPkg newDescriptorPkg)
+	{
+		if (newDescriptorPkg != descriptorPkg)
+		{
+			NotificationChain msgs = null;
+			if (descriptorPkg != null)
+				msgs = ((InternalEObject)descriptorPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG, null, msgs);
+			if (newDescriptorPkg != null)
+				msgs = ((InternalEObject)newDescriptorPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG, null, msgs);
+			msgs = basicSetDescriptorPkg(newDescriptorPkg, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG, newDescriptorPkg, newDescriptorPkg));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public Maintainer<GraphicsPipeline> getMaintainer()
@@ -1037,6 +1099,8 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 		{
 			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
 				return basicSetResourcePkg(null, msgs);
+			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG:
+				return basicSetDescriptorPkg(null, msgs);
 			case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
 				return ((InternalEList<?>)getPushConstantRanges()).basicRemove(otherEnd, msgs);
 			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
@@ -1075,6 +1139,8 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				return getName();
 			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
 				return getResourcePkg();
+			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG:
+				return getDescriptorPkg();
 			case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
 				return isEnabled();
 			case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
@@ -1127,6 +1193,9 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
 				setResourcePkg((ResourcePkg)newValue);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG:
+				setDescriptorPkg((DescriptorPkg)newValue);
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
 				setEnabled((Boolean)newValue);
@@ -1195,6 +1264,9 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
 				setResourcePkg((ResourcePkg)null);
 				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG:
+				setDescriptorPkg((DescriptorPkg)null);
+				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
@@ -1258,6 +1330,8 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
 				return resourcePkg != null;
+			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG:
+				return descriptorPkg != null;
 			case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
 			case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
@@ -1305,6 +1379,7 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 			switch (derivedFeatureID)
 			{
 				case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG: return VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG;
+				case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG: return VulkanPackage.IRESOURCE_CONTAINER__DESCRIPTOR_PKG;
 				default: return -1;
 			}
 		}
@@ -1339,6 +1414,7 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 			switch (baseFeatureID)
 			{
 				case VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG: return GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG;
+				case VulkanPackage.IRESOURCE_CONTAINER__DESCRIPTOR_PKG: return GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG;
 				default: return -1;
 			}
 		}

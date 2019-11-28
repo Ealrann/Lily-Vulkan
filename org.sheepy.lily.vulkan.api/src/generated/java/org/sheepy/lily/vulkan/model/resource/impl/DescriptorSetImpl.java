@@ -5,18 +5,13 @@ package org.sheepy.lily.vulkan.model.resource.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.vulkan.model.resource.Descriptor;
+import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
@@ -57,14 +52,14 @@ public class DescriptorSetImpl extends LilyEObject implements DescriptorSet
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getDescriptors() <em>Descriptors</em>}' containment reference list.
+	 * The cached value of the '{@link #getDescriptors() <em>Descriptors</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getDescriptors()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Descriptor> descriptors;
+	protected EList<IDescriptor> descriptors;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,29 +113,13 @@ public class DescriptorSetImpl extends LilyEObject implements DescriptorSet
 	 * @generated
 	 */
 	@Override
-	public EList<Descriptor> getDescriptors()
+	public EList<IDescriptor> getDescriptors()
 	{
 		if (descriptors == null)
 		{
-			descriptors = new EObjectContainmentEList<Descriptor>(Descriptor.class, this, ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS);
+			descriptors = new EObjectResolvingEList<IDescriptor>(IDescriptor.class, this, ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS);
 		}
 		return descriptors;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
-				return ((InternalEList<?>)getDescriptors()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -177,7 +156,7 @@ public class DescriptorSetImpl extends LilyEObject implements DescriptorSet
 				return;
 			case ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
 				getDescriptors().clear();
-				getDescriptors().addAll((Collection<? extends Descriptor>)newValue);
+				getDescriptors().addAll((Collection<? extends IDescriptor>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

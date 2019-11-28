@@ -14,12 +14,14 @@ import org.sheepy.lily.core.api.adapter.INotificationListener;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
+import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
 import org.sheepy.lily.vulkan.common.engine.utils.VulkanEngineAllocationRoot;
@@ -36,6 +38,7 @@ import org.sheepy.vulkan.device.PhysicalDevice;
 import org.sheepy.vulkan.device.PhysicalDeviceSelector;
 import org.sheepy.vulkan.device.VulkanContext;
 import org.sheepy.vulkan.execution.ExecutionContext;
+import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.extension.EngineExtensionRequirement;
 import org.sheepy.vulkan.instance.VulkanInstance;
 import org.sheepy.vulkan.queue.EQueueType;
@@ -51,6 +54,8 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private static final EQueueType ENGINE_QUEUE_TYPE = EQueueType.Graphic;
 	private static final ModelExplorer RESOURCE_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 																						VulkanPackage.Literals.RESOURCE_PKG__RESOURCES));
+	private static final ModelExplorer DESCRIPTOR_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+																						VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS));
 
 	private final List<VkFence> fences = new ArrayList<>();
 	private final VulkanInputManager inputManager;
@@ -232,8 +237,13 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void allocate()
 	{
-		final var adapters = RESOURCE_EXPLORER.exploreAdapt(engine, IResourceAdapter.class);
-		allocationRoot = new VulkanEngineAllocationRoot(executionContext, adapters);
+		final List<IAllocable<? super IExecutionContext>> resources = new ArrayList<>();
+		RESOURCE_EXPLORER	.streamAdapt(engine, IResourceAdapter.class)
+							.collect(Collectors.toCollection(() -> resources));
+		DESCRIPTOR_EXPLORER	.streamAdapt(engine, IDescriptorAdapter.class)
+							.collect(Collectors.toCollection(() -> resources));
+
+		allocationRoot = new VulkanEngineAllocationRoot(executionContext, resources);
 		allocator = new TreeAllocator<IVulkanContext>(allocationRoot);
 
 		allocator.allocate(vulkanContext);

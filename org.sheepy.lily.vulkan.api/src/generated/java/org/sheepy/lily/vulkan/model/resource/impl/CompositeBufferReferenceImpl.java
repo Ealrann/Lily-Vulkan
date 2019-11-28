@@ -50,7 +50,6 @@ public class CompositeBufferReferenceImpl extends LilyEObject implements Composi
 	 * @ordered
 	 */
 	protected static final int PART_EDEFAULT = 0;
-
 	/**
 	 * The cached value of the '{@link #getPart() <em>Part</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -60,7 +59,6 @@ public class CompositeBufferReferenceImpl extends LilyEObject implements Composi
 	 * @ordered
 	 */
 	protected int part = PART_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getInstance() <em>Instance</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -70,7 +68,6 @@ public class CompositeBufferReferenceImpl extends LilyEObject implements Composi
 	 * @ordered
 	 */
 	protected static final int INSTANCE_EDEFAULT = 0;
-
 	/**
 	 * The cached value of the '{@link #getInstance() <em>Instance</em>}' attribute.
 	 * <!-- begin-user-doc -->

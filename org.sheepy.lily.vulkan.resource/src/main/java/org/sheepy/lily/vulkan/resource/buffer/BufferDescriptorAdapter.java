@@ -8,6 +8,7 @@ import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferReferenceAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
+import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.buffer.VkBufferDescriptor;
 
 @Statefull
@@ -24,12 +25,12 @@ public class BufferDescriptorAdapter implements IDescriptorAdapter
 		vkDescriptor = new VkBufferDescriptor(	0,
 												0,
 												0,
-												descriptor.getDescriptorType(),
+												descriptor.getType(),
 												descriptor.getShaderStages());
 	}
 
 	@Override
-	public void allocate()
+	public void allocate(IExecutionContext context)
 	{
 		final var reference = descriptor.getBufferReference();
 		final var refAdapter = reference.adaptNotNull(IBufferReferenceAdapter.class);
@@ -45,7 +46,7 @@ public class BufferDescriptorAdapter implements IDescriptorAdapter
 	}
 
 	@Override
-	public void free()
+	public void free(IExecutionContext context)
 	{
 		final var reference = descriptor.getBufferReference();
 		final var refAdapter = reference.adaptNotNull(IBufferReferenceAdapter.class);

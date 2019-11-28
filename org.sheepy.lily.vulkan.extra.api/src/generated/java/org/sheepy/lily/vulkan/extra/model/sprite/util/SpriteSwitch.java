@@ -12,7 +12,7 @@ import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
-import org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.sprite.*;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
@@ -110,7 +110,7 @@ public class SpriteSwitch<T1> extends Switch<T1>
 			{
 				SpriteMonoSamplerProvider spriteMonoSamplerProvider = (SpriteMonoSamplerProvider)theEObject;
 				T1 result = caseSpriteMonoSamplerProvider(spriteMonoSamplerProvider);
-				if (result == null) result = caseResourceProvider(spriteMonoSamplerProvider);
+				if (result == null) result = caseResourceDescriptorProvider(spriteMonoSamplerProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -359,17 +359,17 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Resource Provider</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Resource Descriptor Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Resource Provider</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Resource Descriptor Provider</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseResourceProvider(ResourceProvider object)
+	public T1 caseResourceDescriptorProvider(ResourceDescriptorProvider object)
 	{
 		return null;
 	}

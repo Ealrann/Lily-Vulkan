@@ -88,6 +88,15 @@ public interface SpritePackage extends EPackage
 	int SPRITE_RENDERER__RESOURCE_PKG = RenderingPackage.GENERIC_RENDERER__RESOURCE_PKG;
 
 	/**
+	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_RENDERER__DESCRIPTOR_PKG = RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PKG;
+
+	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -268,13 +277,13 @@ public interface SpritePackage extends EPackage
 	int SPRITE_RENDERER__TRANSFER_BUFFER = RenderingPackage.GENERIC_RENDERER__TRANSFER_BUFFER;
 
 	/**
-	 * The feature id for the '<em><b>Common Resource Provider</b></em>' containment reference.
+	 * The feature id for the '<em><b>Descriptor Provider Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER__COMMON_RESOURCE_PROVIDER = RenderingPackage.GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER;
+	int SPRITE_RENDERER__DESCRIPTOR_PROVIDER_PKG = RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Specialization</b></em>' containment reference.
@@ -293,6 +302,15 @@ public interface SpritePackage extends EPackage
 	 * @ordered
 	 */
 	int SPRITE_RENDERER__FLUSH_TRANSFER_BUFFER_TASK = RenderingPackage.GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK;
+
+	/**
+	 * The feature id for the '<em><b>One Pipeline Per Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_RENDERER__ONE_PIPELINE_PER_PART = RenderingPackage.GENERIC_RENDERER__ONE_PIPELINE_PER_PART;
 
 	/**
 	 * The number of structural features of the '<em>Renderer</em>' class.
@@ -385,16 +403,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO = RenderingPackage.RESOURCE_PROVIDER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Target Resource Pkg</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_MONO_SAMPLER_PROVIDER__TARGET_RESOURCE_PKG = RenderingPackage.RESOURCE_PROVIDER_FEATURE_COUNT + 1;
+	int SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO = RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Mono Sampler Provider</em>' class.
@@ -403,7 +412,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_MONO_SAMPLER_PROVIDER_FEATURE_COUNT = RenderingPackage.RESOURCE_PROVIDER_FEATURE_COUNT + 2;
+	int SPRITE_MONO_SAMPLER_PROVIDER_FEATURE_COUNT = RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Mono Sampler Provider</em>' class.
@@ -412,7 +421,7 @@ public interface SpritePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_MONO_SAMPLER_PROVIDER_OPERATION_COUNT = RenderingPackage.RESOURCE_PROVIDER_OPERATION_COUNT + 0;
+	int SPRITE_MONO_SAMPLER_PROVIDER_OPERATION_COUNT = RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteStructureImpl <em>Structure</em>}' class.
@@ -580,17 +589,6 @@ public interface SpritePackage extends EPackage
 	EReference getSpriteMonoSamplerProvider_SamplerInfo();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getTargetResourcePkg <em>Target Resource Pkg</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target Resource Pkg</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getTargetResourcePkg()
-	 * @see #getSpriteMonoSamplerProvider()
-	 * @generated
-	 */
-	EReference getSpriteMonoSamplerProvider_TargetResourcePkg();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure <em>Structure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -735,13 +733,6 @@ public interface SpritePackage extends EPackage
 		 * @generated
 		 */
 		EReference SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO = eINSTANCE.getSpriteMonoSamplerProvider_SamplerInfo();
-		/**
-		 * The meta object literal for the '<em><b>Target Resource Pkg</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SPRITE_MONO_SAMPLER_PROVIDER__TARGET_RESOURCE_PKG = eINSTANCE.getSpriteMonoSamplerProvider_TargetResourcePkg();
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteStructureImpl <em>Structure</em>}' class.
 		 * <!-- begin-user-doc -->

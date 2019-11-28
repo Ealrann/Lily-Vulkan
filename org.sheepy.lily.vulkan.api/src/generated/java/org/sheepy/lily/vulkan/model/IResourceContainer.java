@@ -14,6 +14,7 @@ import org.sheepy.lily.core.api.adapter.ILilyEObject;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.IResourceContainer#getResourcePkg <em>Resource Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.IResourceContainer#getDescriptorPkg <em>Descriptor Pkg</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.VulkanPackage#getIResourceContainer()
@@ -44,5 +45,27 @@ public interface IResourceContainer extends ILilyEObject
 	 * @generated
 	 */
 	void setResourcePkg(ResourcePkg value);
+
+	/**
+	 * Returns the value of the '<em><b>Descriptor Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Descriptor Pkg</em>' containment reference.
+	 * @see #setDescriptorPkg(DescriptorPkg)
+	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getIResourceContainer_DescriptorPkg()
+	 * @model containment="true"
+	 * @generated
+	 */
+	DescriptorPkg getDescriptorPkg();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.IResourceContainer#getDescriptorPkg <em>Descriptor Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Descriptor Pkg</em>' containment reference.
+	 * @see #getDescriptorPkg()
+	 * @generated
+	 */
+	void setDescriptorPkg(DescriptorPkg value);
 
 } // IResourceContainer

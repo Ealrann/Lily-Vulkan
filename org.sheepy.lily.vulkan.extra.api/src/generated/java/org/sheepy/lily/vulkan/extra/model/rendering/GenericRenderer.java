@@ -24,9 +24,10 @@ import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getRenderedStructures <em>Rendered Structures</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getConstantBuffer <em>Constant Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getTransferBuffer <em>Transfer Buffer</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getCommonResourceProvider <em>Common Resource Provider</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getDescriptorProviderPkg <em>Descriptor Provider Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getSpecialization <em>Specialization</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getFlushTransferBufferTask <em>Flush Transfer Buffer Task</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#isOnePipelinePerPart <em>One Pipeline Per Part</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getGenericRenderer()
@@ -113,26 +114,26 @@ public interface GenericRenderer<T extends Structure> extends GraphicsPipeline, 
 	void setTransferBuffer(TransferBuffer value);
 
 	/**
-	 * Returns the value of the '<em><b>Common Resource Provider</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Descriptor Provider Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Common Resource Provider</em>' containment reference.
-	 * @see #setCommonResourceProvider(ResourceProvider)
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getGenericRenderer_CommonResourceProvider()
+	 * @return the value of the '<em>Descriptor Provider Pkg</em>' containment reference.
+	 * @see #setDescriptorProviderPkg(ResourceDescriptorProviderPkg)
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getGenericRenderer_DescriptorProviderPkg()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ResourceProvider getCommonResourceProvider();
+	ResourceDescriptorProviderPkg getDescriptorProviderPkg();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getCommonResourceProvider <em>Common Resource Provider</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getDescriptorProviderPkg <em>Descriptor Provider Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Common Resource Provider</em>' containment reference.
-	 * @see #getCommonResourceProvider()
+	 * @param value the new value of the '<em>Descriptor Provider Pkg</em>' containment reference.
+	 * @see #getDescriptorProviderPkg()
 	 * @generated
 	 */
-	void setCommonResourceProvider(ResourceProvider value);
+	void setDescriptorProviderPkg(ResourceDescriptorProviderPkg value);
 
 	/**
 	 * Returns the value of the '<em><b>Specialization</b></em>' containment reference.
@@ -177,5 +178,28 @@ public interface GenericRenderer<T extends Structure> extends GraphicsPipeline, 
 	 * @generated
 	 */
 	void setFlushTransferBufferTask(FlushTransferBufferTask value);
+
+	/**
+	 * Returns the value of the '<em><b>One Pipeline Per Part</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>One Pipeline Per Part</em>' attribute.
+	 * @see #setOnePipelinePerPart(boolean)
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getGenericRenderer_OnePipelinePerPart()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isOnePipelinePerPart();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#isOnePipelinePerPart <em>One Pipeline Per Part</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>One Pipeline Per Part</em>' attribute.
+	 * @see #isOnePipelinePerPart()
+	 * @generated
+	 */
+	void setOnePipelinePerPart(boolean value);
 
 } // GenericRenderer

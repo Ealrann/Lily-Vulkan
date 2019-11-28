@@ -71,8 +71,10 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 			case RenderingPackage.RENDERABLE_DATA_SOURCE: return createRenderableDataSource();
 			case RenderingPackage.VERTEX_PROVIDER: return createVertexProvider();
 			case RenderingPackage.INDEX_PROVIDER: return createIndexProvider();
-			case RenderingPackage.STATIC_RESOURCE_PROVIDER: return createStaticResourceProvider();
-			case RenderingPackage.COMPOSITE_RESOURCE_PROVIDER: return createCompositeResourceProvider();
+			case RenderingPackage.DESCRIPTORS_PROVIDER: return createDescriptorsProvider();
+			case RenderingPackage.DATA_DESCRIPTORS_PROVIDER: return createDataDescriptorsProvider();
+			case RenderingPackage.DATA_DESCRIPTOR: return createDataDescriptor();
+			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG: return createResourceDescriptorProviderPkg();
 			case RenderingPackage.RENDER_PROXY_CONSTANT_BUFFER: return createRenderProxyConstantBuffer();
 			case RenderingPackage.ISPECIALIZATION: return createISpecialization();
 			case RenderingPackage.RENDER_DRAW_TASK: return createRenderDrawTask();
@@ -172,10 +174,10 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	@Override
-	public StaticResourceProvider createStaticResourceProvider()
+	public DescriptorsProvider createDescriptorsProvider()
 	{
-		StaticResourceProviderImpl staticResourceProvider = new StaticResourceProviderImpl();
-		return staticResourceProvider;
+		DescriptorsProviderImpl descriptorsProvider = new DescriptorsProviderImpl();
+		return descriptorsProvider;
 	}
 
 	/**
@@ -184,10 +186,34 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	@Override
-	public CompositeResourceProvider createCompositeResourceProvider()
+	public DataDescriptorsProvider createDataDescriptorsProvider()
 	{
-		CompositeResourceProviderImpl compositeResourceProvider = new CompositeResourceProviderImpl();
-		return compositeResourceProvider;
+		DataDescriptorsProviderImpl dataDescriptorsProvider = new DataDescriptorsProviderImpl();
+		return dataDescriptorsProvider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DataDescriptor createDataDescriptor()
+	{
+		DataDescriptorImpl dataDescriptor = new DataDescriptorImpl();
+		return dataDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceDescriptorProviderPkg createResourceDescriptorProviderPkg()
+	{
+		ResourceDescriptorProviderPkgImpl resourceDescriptorProviderPkg = new ResourceDescriptorProviderPkgImpl();
+		return resourceDescriptorProviderPkg;
 	}
 
 	/**

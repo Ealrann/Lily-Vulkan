@@ -45,6 +45,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
+import org.sheepy.lily.vulkan.model.process.SwapBindingsTask;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl;
@@ -192,6 +193,13 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass prepareCompositeTransferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass swapBindingsTaskEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -889,6 +897,39 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getSwapBindingsTask()
+	{
+		return swapBindingsTaskEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSwapBindingsTask_Task()
+	{
+		return (EReference)swapBindingsTaskEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSwapBindingsTask_DescriptorSets()
+	{
+		return (EReference)swapBindingsTaskEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ProcessFactory getProcessFactory()
 	{
 		return (ProcessFactory)getEFactoryInstance();
@@ -985,6 +1026,10 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEReference(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__COMPOSITE_BUFFER);
 		createEAttribute(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__MODE);
 		createEAttribute(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__INSTANCE);
+
+		swapBindingsTaskEClass = createEClass(SWAP_BINDINGS_TASK);
+		createEReference(swapBindingsTaskEClass, SWAP_BINDINGS_TASK__TASK);
+		createEReference(swapBindingsTaskEClass, SWAP_BINDINGS_TASK__DESCRIPTOR_SETS);
 	}
 
 	/**
@@ -1021,6 +1066,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		RootPackage theRootPackage = (RootPackage)EPackage.Registry.INSTANCE.getEPackage(RootPackage.eNS_URI);
 		BarrierPackage theBarrierPackage = (BarrierPackage)EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
 		MaintainerPackage theMaintainerPackage = (MaintainerPackage)EPackage.Registry.INSTANCE.getEPackage(MaintainerPackage.eNS_URI);
+		CadencePackage theCadencePackage = (CadencePackage)EPackage.Registry.INSTANCE.getEPackage(CadencePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1047,6 +1093,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		flushTransferBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());
 		copyBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());
 		prepareCompositeTransferEClass.getESuperTypes().add(this.getIPipelineTask());
+		swapBindingsTaskEClass.getESuperTypes().add(theCadencePackage.getICadenceTask());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1120,6 +1167,10 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEReference(getPrepareCompositeTransfer_CompositeBuffer(), theResourcePackage.getCompositeBuffer(), null, "compositeBuffer", null, 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPrepareCompositeTransfer_Mode(), theResourcePackage.getEFlushMode(), "mode", "PUSH", 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPrepareCompositeTransfer_Instance(), ecorePackage.getEInt(), "instance", "0", 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(swapBindingsTaskEClass, SwapBindingsTask.class, "SwapBindingsTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSwapBindingsTask_Task(), this.getBindDescriptorSets(), null, "task", null, 1, 1, SwapBindingsTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSwapBindingsTask_DescriptorSets(), theResourcePackage.getDescriptorSet(), null, "descriptorSets", null, 1, -1, SwapBindingsTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -126,4 +126,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instance" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SwapBindingsTask" eSuperTypes="../../org.sheepy.lily.core.model/model/cadence.ecore#//ICadenceTask">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="task" lowerBound="1" eType="#//BindDescriptorSets"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorSets" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass resource.ecore#//DescriptorSet"/>
+  </eClassifiers>
 </ecore:EPackage>

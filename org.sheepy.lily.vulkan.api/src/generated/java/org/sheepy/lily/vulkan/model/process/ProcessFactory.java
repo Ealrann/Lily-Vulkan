@@ -122,6 +122,15 @@ public interface ProcessFactory extends EFactory
 	PrepareCompositeTransfer createPrepareCompositeTransfer();
 
 	/**
+	 * Returns a new object of class '<em>Swap Bindings Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Swap Bindings Task</em>'.
+	 * @generated
+	 */
+	SwapBindingsTask createSwapBindingsTask();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

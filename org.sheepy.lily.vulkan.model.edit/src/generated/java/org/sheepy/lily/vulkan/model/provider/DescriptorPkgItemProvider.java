@@ -1,6 +1,7 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.resource.provider;
+package org.sheepy.lily.vulkan.model.provider;
+
 
 import java.util.Collection;
 import java.util.List;
@@ -10,7 +11,8 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -18,23 +20,28 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.lily.vulkan.model.resource.Descriptor;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.DescriptorPkg;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 
-import org.sheepy.vulkan.model.enumeration.EDescriptorType;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.Descriptor} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.DescriptorPkg} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DescriptorItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class DescriptorPkgItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -42,7 +49,7 @@ public class DescriptorItemProvider extends ItemProviderAdapter implements IEdit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DescriptorItemProvider(AdapterFactory adapterFactory)
+	public DescriptorPkgItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -60,60 +67,45 @@ public class DescriptorItemProvider extends ItemProviderAdapter implements IEdit
 		{
 			super.getPropertyDescriptors(object);
 
-			addDescriptorTypePropertyDescriptor(object);
-			addShaderStagesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Descriptor Type feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDescriptorTypePropertyDescriptor(Object object)
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Descriptor_descriptorType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Descriptor_descriptorType_feature", "_UI_Descriptor_type"),
-				 ResourcePackage.Literals.DESCRIPTOR__DESCRIPTOR_TYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		if (childrenFeatures == null)
+		{
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
+		}
+		return childrenFeatures;
 	}
 
 	/**
-	 * This adds a property descriptor for the Shader Stages feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addShaderStagesPropertyDescriptor(Object object)
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Descriptor_shaderStages_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Descriptor_shaderStages_feature", "_UI_Descriptor_type"),
-				 ResourcePackage.Literals.DESCRIPTOR__SHADER_STAGES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
-	 * This returns Descriptor.gif.
+	 * This returns DescriptorPkg.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -121,7 +113,7 @@ public class DescriptorItemProvider extends ItemProviderAdapter implements IEdit
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Descriptor"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DescriptorPkg"));
 	}
 
 	/**
@@ -133,12 +125,9 @@ public class DescriptorItemProvider extends ItemProviderAdapter implements IEdit
 	@Override
 	public String getText(Object object)
 	{
-		EDescriptorType labelValue = ((Descriptor)object).getDescriptorType();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Descriptor_type") :
-			getString("_UI_Descriptor_type") + " " + label;
+		return getString("_UI_DescriptorPkg_type");
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -152,11 +141,10 @@ public class DescriptorItemProvider extends ItemProviderAdapter implements IEdit
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Descriptor.class))
+		switch (notification.getFeatureID(DescriptorPkg.class))
 		{
-			case ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE:
-			case ResourcePackage.DESCRIPTOR__SHADER_STAGES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			case VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -173,6 +161,31 @@ public class DescriptorItemProvider extends ItemProviderAdapter implements IEdit
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
+				 ResourceFactory.eINSTANCE.createBufferDescriptor()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
+				 ResourceFactory.eINSTANCE.createImageDescriptor()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
+				 ResourceFactory.eINSTANCE.createSampledImageDescriptor()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
+				 ResourceFactory.eINSTANCE.createSamplerDescriptor()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
+				 ResourceFactory.eINSTANCE.createTexture2DArrayDescriptor()));
 	}
 
 	/**

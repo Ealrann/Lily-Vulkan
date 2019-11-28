@@ -449,6 +449,15 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__RESOURCE_PKG = GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG;
 
 	/**
+	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_RENDERER__DESCRIPTOR_PKG = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG;
+
+	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -629,13 +638,13 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__TRANSFER_BUFFER = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Common Resource Provider</b></em>' containment reference.
+	 * The feature id for the '<em><b>Descriptor Provider Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 5;
+	int GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Specialization</b></em>' containment reference.
@@ -656,13 +665,22 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>One Pipeline Per Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_RENDERER__ONE_PIPELINE_PER_PART = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Generic Renderer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 8;
+	int GENERIC_RENDERER_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>Generic Renderer</em>' class.
@@ -1121,108 +1139,207 @@ public interface RenderingPackage extends EPackage
 	int INDEX_PROVIDER_OPERATION_COUNT = RENDER_DATA_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider <em>Resource Provider</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider <em>Resource Descriptor Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getResourceProvider()
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getResourceDescriptorProvider()
 	 * @generated
 	 */
-	int RESOURCE_PROVIDER = 13;
+	int RESOURCE_DESCRIPTOR_PROVIDER = 13;
 
 	/**
-	 * The number of structural features of the '<em>Resource Provider</em>' class.
+	 * The number of structural features of the '<em>Resource Descriptor Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_PROVIDER_FEATURE_COUNT = 0;
+	int RESOURCE_DESCRIPTOR_PROVIDER_FEATURE_COUNT = 0;
 
 	/**
-	 * The number of operations of the '<em>Resource Provider</em>' class.
+	 * The number of operations of the '<em>Resource Descriptor Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_PROVIDER_OPERATION_COUNT = 0;
+	int RESOURCE_DESCRIPTOR_PROVIDER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.StaticResourceProviderImpl <em>Static Resource Provider</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DescriptorsProviderImpl <em>Descriptors Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.StaticResourceProviderImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getStaticResourceProvider()
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.DescriptorsProviderImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDescriptorsProvider()
 	 * @generated
 	 */
-	int STATIC_RESOURCE_PROVIDER = 14;
+	int DESCRIPTORS_PROVIDER = 14;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATIC_RESOURCE_PROVIDER__RESOURCES = RESOURCE_PROVIDER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Static Resource Provider</em>' class.
+	 * The feature id for the '<em><b>Descriptors</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATIC_RESOURCE_PROVIDER_FEATURE_COUNT = RESOURCE_PROVIDER_FEATURE_COUNT + 1;
+	int DESCRIPTORS_PROVIDER__DESCRIPTORS = RESOURCE_DESCRIPTOR_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Static Resource Provider</em>' class.
+	 * The number of structural features of the '<em>Descriptors Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATIC_RESOURCE_PROVIDER_OPERATION_COUNT = RESOURCE_PROVIDER_OPERATION_COUNT + 0;
-
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CompositeResourceProviderImpl <em>Composite Resource Provider</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.CompositeResourceProviderImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCompositeResourceProvider()
-	 * @generated
-	 */
-	int COMPOSITE_RESOURCE_PROVIDER = 15;
+	int DESCRIPTORS_PROVIDER_FEATURE_COUNT = RESOURCE_DESCRIPTOR_PROVIDER_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Providers</b></em>' containment reference list.
+	 * The number of operations of the '<em>Descriptors Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_RESOURCE_PROVIDER__PROVIDERS = RESOURCE_PROVIDER_FEATURE_COUNT + 0;
+	int DESCRIPTORS_PROVIDER_OPERATION_COUNT = RESOURCE_DESCRIPTOR_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Composite Resource Provider</em>' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataDescriptorsProviderImpl <em>Data Descriptors Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.DataDescriptorsProviderImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDataDescriptorsProvider()
+	 * @generated
+	 */
+	int DATA_DESCRIPTORS_PROVIDER = 15;
+
+	/**
+	 * The feature id for the '<em><b>Data Descriptors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_RESOURCE_PROVIDER_FEATURE_COUNT = RESOURCE_PROVIDER_FEATURE_COUNT + 1;
+	int DATA_DESCRIPTORS_PROVIDER__DATA_DESCRIPTORS = RESOURCE_DESCRIPTOR_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Composite Resource Provider</em>' class.
+	 * The number of structural features of the '<em>Data Descriptors Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_RESOURCE_PROVIDER_OPERATION_COUNT = RESOURCE_PROVIDER_OPERATION_COUNT + 0;
+	int DATA_DESCRIPTORS_PROVIDER_FEATURE_COUNT = RESOURCE_DESCRIPTOR_PROVIDER_FEATURE_COUNT + 1;
 
+	/**
+	 * The number of operations of the '<em>Data Descriptors Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DESCRIPTORS_PROVIDER_OPERATION_COUNT = RESOURCE_DESCRIPTOR_PROVIDER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataDescriptorImpl <em>Data Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.DataDescriptorImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDataDescriptor()
+	 * @generated
+	 */
+	int DATA_DESCRIPTOR = 16;
+
+	/**
+	 * The feature id for the '<em><b>Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DESCRIPTOR__PART = 0;
+
+	/**
+	 * The feature id for the '<em><b>Instance</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DESCRIPTOR__INSTANCE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DESCRIPTOR__DESCRIPTOR_TYPE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DESCRIPTOR__STAGES = 3;
+
+	/**
+	 * The number of structural features of the '<em>Data Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DESCRIPTOR_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Data Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DESCRIPTOR_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.ResourceDescriptorProviderPkgImpl <em>Resource Descriptor Provider Pkg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.ResourceDescriptorProviderPkgImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getResourceDescriptorProviderPkg()
+	 * @generated
+	 */
+	int RESOURCE_DESCRIPTOR_PROVIDER_PKG = 17;
+
+	/**
+	 * The feature id for the '<em><b>Resource Descriptor Providers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Resource Descriptor Provider Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_DESCRIPTOR_PROVIDER_PKG_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Resource Descriptor Provider Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_DESCRIPTOR_PROVIDER_PKG_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderProxyConstantBufferImpl <em>Render Proxy Constant Buffer</em>}' class.
@@ -1232,7 +1349,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderProxyConstantBuffer()
 	 * @generated
 	 */
-	int RENDER_PROXY_CONSTANT_BUFFER = 16;
+	int RENDER_PROXY_CONSTANT_BUFFER = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1297,7 +1414,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getISpecialization()
 	 * @generated
 	 */
-	int ISPECIALIZATION = 17;
+	int ISPECIALIZATION = 19;
 
 	/**
 	 * The number of structural features of the '<em>ISpecialization</em>' class.
@@ -1326,7 +1443,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEntityPkg()
 	 * @generated
 	 */
-	int ENTITY_PKG = 18;
+	int ENTITY_PKG = 20;
 
 	/**
 	 * The feature id for the '<em><b>Entities</b></em>' containment reference list.
@@ -1364,7 +1481,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderDrawTask()
 	 * @generated
 	 */
-	int RENDER_DRAW_TASK = 19;
+	int RENDER_DRAW_TASK = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1419,7 +1536,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderIndexedDrawTask()
 	 * @generated
 	 */
-	int RENDER_INDEXED_DRAW_TASK = 20;
+	int RENDER_INDEXED_DRAW_TASK = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1722,15 +1839,15 @@ public interface RenderingPackage extends EPackage
 	EReference getGenericRenderer_TransferBuffer();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getCommonResourceProvider <em>Common Resource Provider</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getDescriptorProviderPkg <em>Descriptor Provider Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Common Resource Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getCommonResourceProvider()
+	 * @return the meta object for the containment reference '<em>Descriptor Provider Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getDescriptorProviderPkg()
 	 * @see #getGenericRenderer()
 	 * @generated
 	 */
-	EReference getGenericRenderer_CommonResourceProvider();
+	EReference getGenericRenderer_DescriptorProviderPkg();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#getSpecialization <em>Specialization</em>}'.
@@ -1753,6 +1870,17 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 */
 	EReference getGenericRenderer_FlushTransferBufferTask();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#isOnePipelinePerPart <em>One Pipeline Per Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>One Pipeline Per Part</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#isOnePipelinePerPart()
+	 * @see #getGenericRenderer()
+	 * @generated
+	 */
+	EAttribute getGenericRenderer_OnePipelinePerPart();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider <em>Render Data Provider</em>}'.
@@ -1849,56 +1977,131 @@ public interface RenderingPackage extends EPackage
 	EAttribute getIndexProvider_IndexType();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider <em>Resource Provider</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider <em>Resource Descriptor Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Resource Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider
+	 * @return the meta object for class '<em>Resource Descriptor Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider
 	 * @generated
 	 */
-	EClass getResourceProvider();
+	EClass getResourceDescriptorProvider();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider <em>Static Resource Provider</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider <em>Descriptors Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Static Resource Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider
+	 * @return the meta object for class '<em>Descriptors Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider
 	 * @generated
 	 */
-	EClass getStaticResourceProvider();
+	EClass getDescriptorsProvider();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider#getResources <em>Resources</em>}'.
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider#getDescriptors <em>Descriptors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Resources</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.StaticResourceProvider#getResources()
-	 * @see #getStaticResourceProvider()
+	 * @return the meta object for the reference list '<em>Descriptors</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider#getDescriptors()
+	 * @see #getDescriptorsProvider()
 	 * @generated
 	 */
-	EReference getStaticResourceProvider_Resources();
+	EReference getDescriptorsProvider_Descriptors();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider <em>Composite Resource Provider</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider <em>Data Descriptors Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Composite Resource Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider
+	 * @return the meta object for class '<em>Data Descriptors Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider
 	 * @generated
 	 */
-	EClass getCompositeResourceProvider();
+	EClass getDataDescriptorsProvider();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider#getProviders <em>Providers</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider#getDataDescriptors <em>Data Descriptors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Providers</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CompositeResourceProvider#getProviders()
-	 * @see #getCompositeResourceProvider()
+	 * @return the meta object for the containment reference list '<em>Data Descriptors</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider#getDataDescriptors()
+	 * @see #getDataDescriptorsProvider()
 	 * @generated
 	 */
-	EReference getCompositeResourceProvider_Providers();
+	EReference getDataDescriptorsProvider_DataDescriptors();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor <em>Data Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Data Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor
+	 * @generated
+	 */
+	EClass getDataDescriptor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor#getPart <em>Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Part</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor#getPart()
+	 * @see #getDataDescriptor()
+	 * @generated
+	 */
+	EAttribute getDataDescriptor_Part();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor#getInstance <em>Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Instance</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor#getInstance()
+	 * @see #getDataDescriptor()
+	 * @generated
+	 */
+	EAttribute getDataDescriptor_Instance();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor#getDescriptorType <em>Descriptor Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Descriptor Type</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor#getDescriptorType()
+	 * @see #getDataDescriptor()
+	 * @generated
+	 */
+	EAttribute getDataDescriptor_DescriptorType();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor#getStages <em>Stages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Stages</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor#getStages()
+	 * @see #getDataDescriptor()
+	 * @generated
+	 */
+	EAttribute getDataDescriptor_Stages();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg <em>Resource Descriptor Provider Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Resource Descriptor Provider Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg
+	 * @generated
+	 */
+	EClass getResourceDescriptorProviderPkg();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg#getResourceDescriptorProviders <em>Resource Descriptor Providers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Resource Descriptor Providers</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg#getResourceDescriptorProviders()
+	 * @see #getResourceDescriptorProviderPkg()
+	 * @generated
+	 */
+	EReference getResourceDescriptorProviderPkg_ResourceDescriptorProviders();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer <em>Render Proxy Constant Buffer</em>}'.
@@ -2240,12 +2443,12 @@ public interface RenderingPackage extends EPackage
 		EReference GENERIC_RENDERER__TRANSFER_BUFFER = eINSTANCE.getGenericRenderer_TransferBuffer();
 
 		/**
-		 * The meta object literal for the '<em><b>Common Resource Provider</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Descriptor Provider Pkg</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GENERIC_RENDERER__COMMON_RESOURCE_PROVIDER = eINSTANCE.getGenericRenderer_CommonResourceProvider();
+		EReference GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG = eINSTANCE.getGenericRenderer_DescriptorProviderPkg();
 
 		/**
 		 * The meta object literal for the '<em><b>Specialization</b></em>' containment reference feature.
@@ -2262,6 +2465,14 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EReference GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK = eINSTANCE.getGenericRenderer_FlushTransferBufferTask();
+
+		/**
+		 * The meta object literal for the '<em><b>One Pipeline Per Part</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GENERIC_RENDERER__ONE_PIPELINE_PER_PART = eINSTANCE.getGenericRenderer_OnePipelinePerPart();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider <em>Render Data Provider</em>}' class.
@@ -2346,50 +2557,110 @@ public interface RenderingPackage extends EPackage
 		EAttribute INDEX_PROVIDER__INDEX_TYPE = eINSTANCE.getIndexProvider_IndexType();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider <em>Resource Provider</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider <em>Resource Descriptor Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.rendering.ResourceProvider
-		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getResourceProvider()
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getResourceDescriptorProvider()
 		 * @generated
 		 */
-		EClass RESOURCE_PROVIDER = eINSTANCE.getResourceProvider();
+		EClass RESOURCE_DESCRIPTOR_PROVIDER = eINSTANCE.getResourceDescriptorProvider();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.StaticResourceProviderImpl <em>Static Resource Provider</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DescriptorsProviderImpl <em>Descriptors Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.StaticResourceProviderImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getStaticResourceProvider()
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.DescriptorsProviderImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDescriptorsProvider()
 		 * @generated
 		 */
-		EClass STATIC_RESOURCE_PROVIDER = eINSTANCE.getStaticResourceProvider();
+		EClass DESCRIPTORS_PROVIDER = eINSTANCE.getDescriptorsProvider();
 
 		/**
-		 * The meta object literal for the '<em><b>Resources</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Descriptors</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STATIC_RESOURCE_PROVIDER__RESOURCES = eINSTANCE.getStaticResourceProvider_Resources();
+		EReference DESCRIPTORS_PROVIDER__DESCRIPTORS = eINSTANCE.getDescriptorsProvider_Descriptors();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CompositeResourceProviderImpl <em>Composite Resource Provider</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataDescriptorsProviderImpl <em>Data Descriptors Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.CompositeResourceProviderImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCompositeResourceProvider()
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.DataDescriptorsProviderImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDataDescriptorsProvider()
 		 * @generated
 		 */
-		EClass COMPOSITE_RESOURCE_PROVIDER = eINSTANCE.getCompositeResourceProvider();
+		EClass DATA_DESCRIPTORS_PROVIDER = eINSTANCE.getDataDescriptorsProvider();
 
 		/**
-		 * The meta object literal for the '<em><b>Providers</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Data Descriptors</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPOSITE_RESOURCE_PROVIDER__PROVIDERS = eINSTANCE.getCompositeResourceProvider_Providers();
+		EReference DATA_DESCRIPTORS_PROVIDER__DATA_DESCRIPTORS = eINSTANCE.getDataDescriptorsProvider_DataDescriptors();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataDescriptorImpl <em>Data Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.DataDescriptorImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDataDescriptor()
+		 * @generated
+		 */
+		EClass DATA_DESCRIPTOR = eINSTANCE.getDataDescriptor();
+
+		/**
+		 * The meta object literal for the '<em><b>Part</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_DESCRIPTOR__PART = eINSTANCE.getDataDescriptor_Part();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_DESCRIPTOR__INSTANCE = eINSTANCE.getDataDescriptor_Instance();
+
+		/**
+		 * The meta object literal for the '<em><b>Descriptor Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_DESCRIPTOR__DESCRIPTOR_TYPE = eINSTANCE.getDataDescriptor_DescriptorType();
+
+		/**
+		 * The meta object literal for the '<em><b>Stages</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_DESCRIPTOR__STAGES = eINSTANCE.getDataDescriptor_Stages();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.ResourceDescriptorProviderPkgImpl <em>Resource Descriptor Provider Pkg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.ResourceDescriptorProviderPkgImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getResourceDescriptorProviderPkg()
+		 * @generated
+		 */
+		EClass RESOURCE_DESCRIPTOR_PROVIDER_PKG = eINSTANCE.getResourceDescriptorProviderPkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Resource Descriptor Providers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS = eINSTANCE.getResourceDescriptorProviderPkg_ResourceDescriptorProviders();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderProxyConstantBufferImpl <em>Render Proxy Constant Buffer</em>}' class.

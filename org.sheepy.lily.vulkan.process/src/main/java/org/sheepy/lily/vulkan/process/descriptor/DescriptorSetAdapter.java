@@ -18,7 +18,7 @@ import org.sheepy.vulkan.device.IVulkanContext;
 @Adapter(scope = DescriptorSet.class)
 public final class DescriptorSetAdapter implements IDescriptorSetAdapter
 {
-	private final List<IDescriptorAdapter> descriptors;
+	private final List<IVkDescriptor> descriptors;
 
 	private VkDescriptorSet vkDescriptorSet;
 
@@ -30,24 +30,13 @@ public final class DescriptorSetAdapter implements IDescriptorSetAdapter
 	@Override
 	public void allocate(IVulkanContext context, long poolAddress)
 	{
-		final List<IVkDescriptor> vkDescriptors = new ArrayList<>();
-		for (final var descriptor : descriptors)
-		{
-			descriptor.allocate();
-			vkDescriptors.add(descriptor.getVkDescriptor());
-		}
-
-		vkDescriptorSet = new VkDescriptorSet(vkDescriptors);
+		vkDescriptorSet = new VkDescriptorSet(descriptors);
 		vkDescriptorSet.allocate(context, poolAddress);
 	}
 
 	@Override
 	public void free(IVulkanContext context)
 	{
-		for (final var descriptor : descriptors)
-		{
-			descriptor.free();
-		}
 		vkDescriptorSet.free(context);
 		vkDescriptorSet = null;
 	}
@@ -58,7 +47,7 @@ public final class DescriptorSetAdapter implements IDescriptorSetAdapter
 		for (final var descriptor : descriptors)
 		{
 			final var poolSize = poolSizes.get();
-			descriptor.getVkDescriptor().fillPoolSize(poolSize);
+			descriptor.fillPoolSize(poolSize);
 		}
 	}
 
@@ -86,14 +75,14 @@ public final class DescriptorSetAdapter implements IDescriptorSetAdapter
 		return descriptors.size();
 	}
 
-	private static List<IDescriptorAdapter> gatherDescriptors(DescriptorSet descriptorSet)
+	private static List<IVkDescriptor> gatherDescriptors(DescriptorSet descriptorSet)
 	{
 		final var descriptors = descriptorSet.getDescriptors();
-		final List<IDescriptorAdapter> vkDescriptors = new ArrayList<>(descriptors.size());
+		final List<IVkDescriptor> vkDescriptors = new ArrayList<>(descriptors.size());
 		for (final var descriptor : descriptors)
 		{
 			final var adapter = descriptor.adaptNotNull(IDescriptorAdapter.class);
-			vkDescriptors.add(adapter);
+			vkDescriptors.add(adapter.getVkDescriptor());
 		}
 		return List.copyOf(vkDescriptors);
 	}
