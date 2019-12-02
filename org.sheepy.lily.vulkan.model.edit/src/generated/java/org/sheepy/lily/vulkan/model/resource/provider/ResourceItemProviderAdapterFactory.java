@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.sheepy.lily.vulkan.model.process.compute.provider.LilyVulkanEditPlugin;
+import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.util.ResourceAdapterFactory;
 

@@ -36,8 +36,7 @@ import org.sheepy.lily.core.model.cadence.CadenceTaskPkg;
 import org.sheepy.lily.core.model.cadence.util.CadenceSwitch;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-
-import org.sheepy.lily.vulkan.model.process.compute.provider.LilyVulkanEditPlugin;
+import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.util.VulkanAdapterFactory;
 
 /**

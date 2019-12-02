@@ -16,6 +16,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#getTransferBuffer <em>Transfer Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#isFlushDuringUpdate <em>Flush During Update</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getFlushTransferBufferTask()
@@ -71,5 +72,28 @@ public interface FlushTransferBufferTask extends IPipelineTask
 	 * @generated
 	 */
 	void setStage(ECommandStage value);
+
+	/**
+	 * Returns the value of the '<em><b>Flush During Update</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Flush During Update</em>' attribute.
+	 * @see #setFlushDuringUpdate(boolean)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getFlushTransferBufferTask_FlushDuringUpdate()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isFlushDuringUpdate();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#isFlushDuringUpdate <em>Flush During Update</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Flush During Update</em>' attribute.
+	 * @see #isFlushDuringUpdate()
+	 * @generated
+	 */
+	void setFlushDuringUpdate(boolean value);
 
 } // FlushTransferBufferTask

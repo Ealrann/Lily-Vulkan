@@ -9,6 +9,21 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated LilyVulkan -->
       <package
+            uri="org.sheepy.lily.vulkan.extra.model.binding"
+            class="org.sheepy.lily.vulkan.model.binding.BindingPackage"
+            genModel="model/LilyVulkan.genmodel"/>
+   </extension>
+
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated LilyVulkan -->
+      <parser
+            type="binding"
+            class="org.sheepy.lily.vulkan.model.binding.util.BindingResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated LilyVulkan -->
+      <package
             uri="org.sheepy.lily.vulkan.model.process.compute"
             class="org.sheepy.lily.vulkan.model.process.compute.ComputePackage"
             genModel="model/LilyVulkan.genmodel"/>

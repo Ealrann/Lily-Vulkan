@@ -337,6 +337,11 @@ public class PipelineBarrierItemProvider extends ItemProviderAdapter implements 
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
+				 GraphicFactory.eINSTANCE.createSwapImageBarrier()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
 				 ResourceFactory.eINSTANCE.createBufferBarrier()));
 
 		newChildDescriptors.add
@@ -348,11 +353,6 @@ public class PipelineBarrierItemProvider extends ItemProviderAdapter implements 
 			(createChildParameter
 				(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
 				 ResourceFactory.eINSTANCE.createImageBarrier()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
-				 GraphicFactory.eINSTANCE.createSwapImageBarrier()));
 
 		newChildDescriptors.add
 			(createChildParameter

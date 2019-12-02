@@ -25,6 +25,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.vulkan.model.binding.BindingFactory;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -272,6 +273,11 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 			(createChildParameter
 				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
 				 ProcessFactory.eINSTANCE.createPrepareCompositeTransfer()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				 BindingFactory.eINSTANCE.createRotateConfiguration()));
 
 		newChildDescriptors.add
 			(createChildParameter

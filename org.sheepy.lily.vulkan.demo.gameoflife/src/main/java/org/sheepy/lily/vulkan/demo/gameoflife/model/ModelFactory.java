@@ -1,7 +1,5 @@
 package org.sheepy.lily.vulkan.demo.gameoflife.model;
 
-import java.util.List;
-
 import org.joml.Vector2i;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationFactory;
@@ -13,7 +11,8 @@ import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
-import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
+import org.sheepy.lily.vulkan.model.binding.BindingConfiguration;
+import org.sheepy.lily.vulkan.model.binding.BindingFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
@@ -23,7 +22,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
@@ -58,8 +56,8 @@ public class ModelFactory
 
 	private final Vector2i size;
 	private StaticImage boardImage;
-	private Container lifePipelineContainer;
-	private Container pixelPipelineContainer;
+	private ComputePipeline lifePipeline;
+	private ComputePipeline pixelPipeline;
 
 	public ModelFactory(int width, int height)
 	{
@@ -239,18 +237,29 @@ public class ModelFactory
 		pixelDescriptorSet2.getDescriptors().add(boardBuffer1Descriptor);
 		pixelDescriptorSet2.getDescriptors().add(boardImageDescriptor);
 
-		lifePipelineContainer = createPipeline(	lifeShader,
-												List.of(lifeDescriptorSet1, lifeDescriptorSet2));
+		final var lifeBindingConfiguration = BindingFactory.eINSTANCE.createBindingConfiguration();
+		lifeBindingConfiguration.getDescriptorsSets().add(lifeDescriptorSet1);
+		lifeBindingConfiguration.getDescriptorsSets().add(lifeDescriptorSet2);
+		lifeBindingConfiguration.setDescriptorSetStride(1);
+		final var pixelBindingConfiguration = BindingFactory.eINSTANCE.createBindingConfiguration();
+		pixelBindingConfiguration.getDescriptorsSets().add(pixelDescriptorSet1);
+		pixelBindingConfiguration.getDescriptorsSets().add(pixelDescriptorSet2);
+		lifeBindingConfiguration.setDescriptorSetStride(1);
 
-		pixelPipelineContainer = createPipeline(life2pixelShader,
-												List.of(pixelDescriptorSet1, pixelDescriptorSet2));
+		lifePipeline = createPipeline(lifeShader, lifeBindingConfiguration);
+		pixelPipeline = createPipeline(life2pixelShader, pixelBindingConfiguration);
+
+		final var rotateTask = BindingFactory.eINSTANCE.createRotateConfiguration();
+		rotateTask.getConfigurations().add(lifeBindingConfiguration);
+		rotateTask.getConfigurations().add(pixelBindingConfiguration);
+		lifePipeline.getTaskPkg().getTasks().add(rotateTask);
 
 		final var lifeProcessPkg = ProcessFactory.eINSTANCE.createProcessPartPkg();
-		lifeProcessPkg.getParts().add(lifePipelineContainer.pipeline);
+		lifeProcessPkg.getParts().add(lifePipeline);
 		lifeProcess.setPartPkg(lifeProcessPkg);
 
 		final var pixelProcessPkg = ProcessFactory.eINSTANCE.createProcessPartPkg();
-		pixelProcessPkg.getParts().add(pixelPipelineContainer.pipeline);
+		pixelProcessPkg.getParts().add(pixelPipeline);
 		pixelProcess.setPartPkg(pixelProcessPkg);
 
 		sharedResources.getResources().add(lifeShader);
@@ -263,42 +272,40 @@ public class ModelFactory
 		sharedDescriptors.getDescriptors().add(boardBuffer2Descriptor);
 		sharedDescriptors.getDescriptors().add(boardImageDescriptor);
 
+		lifeProcess.setExtensionPkg(ProcessFactory.eINSTANCE.createProcessExtensionPkg());
+		lifeProcess.getExtensionPkg().getExtensions().add(lifeBindingConfiguration);
+		pixelProcess.setExtensionPkg(ProcessFactory.eINSTANCE.createProcessExtensionPkg());
+		pixelProcess.getExtensionPkg().getExtensions().add(pixelBindingConfiguration);
+
 		lifeProcess.setResetAllowed(true);
 		pixelProcess.setResetAllowed(true);
 	}
 
-	private Container createPipeline(Shader shader, List<DescriptorSet> dSets)
+	private ComputePipeline createPipeline(Shader shader, BindingConfiguration bindingConfiguration)
 	{
-		final var bindDescriptorSet = ProcessFactory.eINSTANCE.createBindDescriptorSets();
-		bindDescriptorSet.setBindPoint(EBindPoint.COMPUTE);
-		bindDescriptorSet.getDescriptorSets().add(dSets.get(0));
+		final var bindTask = ProcessFactory.eINSTANCE.createBindDescriptorSets();
+		bindTask.setBindPoint(EBindPoint.COMPUTE);
+		bindTask.getDescriptorSets().add(bindingConfiguration.getDescriptorsSets().get(0));
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 		final var dispatch = createDispatchTask();
 
+		final var configureBindTask = BindingFactory.eINSTANCE.createConfigureBind();
+		configureBindTask.setBindTask(bindTask);
+		bindingConfiguration.getTasks().add(configureBindTask);
+
 		final var pipeline = ComputeFactory.eINSTANCE.createComputePipeline();
 		pipeline.setTaskPkg(taskPkg);
-		taskPkg.getTasks().add(bindDescriptorSet);
+		taskPkg.getTasks().add(bindTask);
 		taskPkg.getTasks().add(dispatch);
 
 		final var dSetPkg = ResourceFactory.eINSTANCE.createDescriptorSetPkg();
-		dSetPkg.getDescriptorSets().addAll(dSets);
+		dSetPkg.getDescriptorSets().addAll(bindingConfiguration.getDescriptorsSets());
 
 		pipeline.setShader(shader);
 		pipeline.setStage(ECommandStage.COMPUTE);
 		pipeline.setDescriptorSetPkg(dSetPkg);
 
-		final var res = new Container();
-		res.pipeline = pipeline;
-		res.bindDescriptorSet = bindDescriptorSet;
-		res.descriptorSets = dSets;
-		return res;
-	}
-
-	private class Container
-	{
-		public ComputePipeline pipeline;
-		public BindDescriptorSets bindDescriptorSet;
-		public List<DescriptorSet> descriptorSets;
+		return pipeline;
 	}
 
 	private DispatchTask createDispatchTask()
@@ -319,22 +326,14 @@ public class ModelFactory
 		final var cadence = CadenceFactory.eINSTANCE.createCadence();
 		final var haveTime = CadenceFactory.eINSTANCE.createHaveTime();
 		final var loopTasks = executeWhile.getTasks();
-		final var swapLifeBindings = ProcessFactory.eINSTANCE.createSwapBindingsTask();
-		final var swapPixelBindings = ProcessFactory.eINSTANCE.createSwapBindingsTask();
 
 		runComputeLifeTask.setProcess(lifeProcess);
 		runComputePixelTask.setProcess(pixelProcess);
 		runGraphicTask.setProcess(presentProcess);
 		printUPS.setPrintEveryMs(1200);
 		cadence.setFrequency(60);
-		swapLifeBindings.setTask(lifePipelineContainer.bindDescriptorSet);
-		swapLifeBindings.getDescriptorSets().addAll(lifePipelineContainer.descriptorSets);
-		swapPixelBindings.setTask(pixelPipelineContainer.bindDescriptorSet);
-		swapPixelBindings.getDescriptorSets().addAll(pixelPipelineContainer.descriptorSets);
 		executeWhile.getConditions().add(haveTime);
 		loopTasks.add(printUPS);
-		loopTasks.add(swapLifeBindings);
-		loopTasks.add(swapPixelBindings);
 		loopTasks.add(runComputeLifeTask);
 
 		cadence.getTasks().add(runComputePixelTask);

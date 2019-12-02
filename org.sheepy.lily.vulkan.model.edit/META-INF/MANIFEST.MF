@@ -8,7 +8,8 @@ Bundle-ClassPath: .
 Bundle-Activator: org.sheepy.lily.vulkan.model.process.compute.provider.LilyVulkanEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.sheepy.lily.vulkan.model.enumeration.provider,
+Export-Package: org.sheepy.lily.vulkan.model.binding.provider,
+ org.sheepy.lily.vulkan.model.enumeration.provider,
  org.sheepy.lily.vulkan.model.process.compute.provider,
  org.sheepy.lily.vulkan.model.process.graphic.provider,
  org.sheepy.lily.vulkan.model.process.provider,

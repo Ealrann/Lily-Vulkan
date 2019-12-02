@@ -4,6 +4,8 @@ import org.sheepy.lily.vulkan.process.barrier.CompositeBufferBarrierAdapter;
 import org.sheepy.lily.vulkan.process.barrier.ImageBarrierAdapter;
 import org.sheepy.lily.vulkan.process.barrier.ReferenceBufferBarrierAdapter;
 import org.sheepy.lily.vulkan.process.barrier.ReferenceImageBarrierAdapter;
+import org.sheepy.lily.vulkan.process.binding.BindingConfigurationAdapter;
+import org.sheepy.lily.vulkan.process.binding.task.ConfigureBindAdapter;
 import org.sheepy.lily.vulkan.process.cadence.SwapBindingsTaskAdapter;
 import org.sheepy.lily.vulkan.process.descriptor.DescriptorSetAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.PipelineAdapter;
@@ -14,6 +16,7 @@ import org.sheepy.lily.vulkan.process.pipeline.task.FlushTransferBufferTaskAdapt
 import org.sheepy.lily.vulkan.process.pipeline.task.PipelineBarrierAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.PrepareCompositeTransferAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.PushConstantBufferAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.task.RotateConfigurationAdapter;
 
 @Adapters(classifiers = {
 		PipelineBarrierAdapter.class,
@@ -30,7 +33,10 @@ import org.sheepy.lily.vulkan.process.pipeline.task.PushConstantBufferAdapter;
 		CopyBufferTaskAdapter.class,
 		PrepareCompositeTransferAdapter.class,
 		CompositeBufferBarrierAdapter.class,
-		SwapBindingsTaskAdapter.class
+		SwapBindingsTaskAdapter.class,
+		RotateConfigurationAdapter.class,
+		ConfigureBindAdapter.class,
+		BindingConfigurationAdapter.class,
 })
 
 module org.sheepy.lily.vulkan.process
@@ -45,8 +51,10 @@ module org.sheepy.lily.vulkan.process
 	exports org.sheepy.lily.vulkan.process.process;
 
 	opens org.sheepy.lily.vulkan.process.cadence;
-	opens org.sheepy.lily.vulkan.process.descriptor;
 	opens org.sheepy.lily.vulkan.process.barrier;
+	opens org.sheepy.lily.vulkan.process.binding;
+	opens org.sheepy.lily.vulkan.process.binding.task;
+	opens org.sheepy.lily.vulkan.process.descriptor;
 	opens org.sheepy.lily.vulkan.process.pipeline;
 	opens org.sheepy.lily.vulkan.process.pipeline.task;
 	opens org.sheepy.lily.vulkan.process.process;

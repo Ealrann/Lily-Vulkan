@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.sheepy.lily.vulkan.model.binding.BindingFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
@@ -189,6 +190,11 @@ public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditing
 			(createChildParameter
 				(ProcessPackage.Literals.TASK_PKG__TASKS,
 				 ProcessFactory.eINSTANCE.createPrepareCompositeTransfer()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PKG__TASKS,
+				 BindingFactory.eINSTANCE.createRotateConfiguration()));
 
 		newChildDescriptors.add
 			(createChildParameter

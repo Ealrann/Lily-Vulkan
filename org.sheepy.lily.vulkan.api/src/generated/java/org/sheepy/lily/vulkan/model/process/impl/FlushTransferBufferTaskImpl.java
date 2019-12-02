@@ -30,6 +30,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.FlushTransferBufferTaskImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.FlushTransferBufferTaskImpl#getTransferBuffer <em>Transfer Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.FlushTransferBufferTaskImpl#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.FlushTransferBufferTaskImpl#isFlushDuringUpdate <em>Flush During Update</em>}</li>
  * </ul>
  *
  * @generated
@@ -105,6 +106,26 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 	 * @ordered
 	 */
 	protected ECommandStage stage = STAGE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isFlushDuringUpdate() <em>Flush During Update</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isFlushDuringUpdate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean FLUSH_DURING_UPDATE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isFlushDuringUpdate() <em>Flush During Update</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isFlushDuringUpdate()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean flushDuringUpdate = FLUSH_DURING_UPDATE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -253,6 +274,31 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 	 * @generated
 	 */
 	@Override
+	public boolean isFlushDuringUpdate()
+	{
+		return flushDuringUpdate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFlushDuringUpdate(boolean newFlushDuringUpdate)
+	{
+		boolean oldFlushDuringUpdate = flushDuringUpdate;
+		flushDuringUpdate = newFlushDuringUpdate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__FLUSH_DURING_UPDATE, oldFlushDuringUpdate, flushDuringUpdate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -266,6 +312,8 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 				return basicGetTransferBuffer();
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__STAGE:
 				return getStage();
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__FLUSH_DURING_UPDATE:
+				return isFlushDuringUpdate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -291,6 +339,9 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 				return;
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__STAGE:
 				setStage((ECommandStage)newValue);
+				return;
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__FLUSH_DURING_UPDATE:
+				setFlushDuringUpdate((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -318,6 +369,9 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__STAGE:
 				setStage(STAGE_EDEFAULT);
 				return;
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__FLUSH_DURING_UPDATE:
+				setFlushDuringUpdate(FLUSH_DURING_UPDATE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -340,6 +394,8 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 				return transferBuffer != null;
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__STAGE:
 				return stage != STAGE_EDEFAULT;
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__FLUSH_DURING_UPDATE:
+				return flushDuringUpdate != FLUSH_DURING_UPDATE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -361,6 +417,8 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 		result.append(enabled);
 		result.append(", stage: ");
 		result.append(stage);
+		result.append(", flushDuringUpdate: ");
+		result.append(flushDuringUpdate);
 		result.append(')');
 		return result.toString();
 	}

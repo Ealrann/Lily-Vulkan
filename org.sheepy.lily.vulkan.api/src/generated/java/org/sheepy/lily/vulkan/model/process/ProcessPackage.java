@@ -1042,13 +1042,22 @@ public interface ProcessPackage extends EPackage
 	int FLUSH_TRANSFER_BUFFER_TASK__STAGE = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Flush During Update</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLUSH_TRANSFER_BUFFER_TASK__FLUSH_DURING_UPDATE = IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Flush Transfer Buffer Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLUSH_TRANSFER_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 2;
+	int FLUSH_TRANSFER_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Flush Transfer Buffer Task</em>' class.
@@ -1785,6 +1794,17 @@ public interface ProcessPackage extends EPackage
 	EAttribute getFlushTransferBufferTask_Stage();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#isFlushDuringUpdate <em>Flush During Update</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Flush During Update</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#isFlushDuringUpdate()
+	 * @see #getFlushTransferBufferTask()
+	 * @generated
+	 */
+	EAttribute getFlushTransferBufferTask_FlushDuringUpdate();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask <em>Copy Buffer Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2339,6 +2359,14 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute FLUSH_TRANSFER_BUFFER_TASK__STAGE = eINSTANCE.getFlushTransferBufferTask_Stage();
+
+		/**
+		 * The meta object literal for the '<em><b>Flush During Update</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FLUSH_TRANSFER_BUFFER_TASK__FLUSH_DURING_UPDATE = eINSTANCE.getFlushTransferBufferTask_FlushDuringUpdate();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl <em>Copy Buffer Task</em>}' class.

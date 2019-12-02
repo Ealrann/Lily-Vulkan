@@ -25,6 +25,8 @@ import org.sheepy.lily.core.model.root.RootPackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.binding.BindingPackage;
+import org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl;
 import org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
@@ -266,28 +268,32 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		PipelinePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ComputePackage.eNS_URI);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BindingPackage.eNS_URI);
+		BindingPackageImpl theBindingPackage = (BindingPackageImpl)(registeredPackage instanceof BindingPackageImpl ? registeredPackage : BindingPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ComputePackage.eNS_URI);
 		ComputePackageImpl theComputePackage = (ComputePackageImpl)(registeredPackage instanceof ComputePackageImpl ? registeredPackage : ComputePackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
-		VulkanPackageImpl theVulkanPackage = (VulkanPackageImpl)(registeredPackage instanceof VulkanPackageImpl ? registeredPackage : VulkanPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
-		ResourcePackageImpl theResourcePackage = (ResourcePackageImpl)(registeredPackage instanceof ResourcePackageImpl ? registeredPackage : ResourcePackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GraphicPackage.eNS_URI);
 		GraphicPackageImpl theGraphicPackage = (GraphicPackageImpl)(registeredPackage instanceof GraphicPackageImpl ? registeredPackage : GraphicPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		ResourcePackageImpl theResourcePackage = (ResourcePackageImpl)(registeredPackage instanceof ResourcePackageImpl ? registeredPackage : ResourcePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
+		VulkanPackageImpl theVulkanPackage = (VulkanPackageImpl)(registeredPackage instanceof VulkanPackageImpl ? registeredPackage : VulkanPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theProcessPackage.createPackageContents();
+		theBindingPackage.createPackageContents();
 		theComputePackage.createPackageContents();
-		theVulkanPackage.createPackageContents();
-		theResourcePackage.createPackageContents();
 		theGraphicPackage.createPackageContents();
+		theResourcePackage.createPackageContents();
+		theVulkanPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theProcessPackage.initializePackageContents();
+		theBindingPackage.initializePackageContents();
 		theComputePackage.initializePackageContents();
-		theVulkanPackage.initializePackageContents();
-		theResourcePackage.initializePackageContents();
 		theGraphicPackage.initializePackageContents();
+		theResourcePackage.initializePackageContents();
+		theVulkanPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theProcessPackage.freeze();
@@ -776,6 +782,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getFlushTransferBufferTask_FlushDuringUpdate()
+	{
+		return (EAttribute)flushTransferBufferTaskEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getCopyBufferTask()
 	{
 		return copyBufferTaskEClass;
@@ -1022,6 +1039,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		flushTransferBufferTaskEClass = createEClass(FLUSH_TRANSFER_BUFFER_TASK);
 		createEReference(flushTransferBufferTaskEClass, FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER);
 		createEAttribute(flushTransferBufferTaskEClass, FLUSH_TRANSFER_BUFFER_TASK__STAGE);
+		createEAttribute(flushTransferBufferTaskEClass, FLUSH_TRANSFER_BUFFER_TASK__FLUSH_DURING_UPDATE);
 
 		copyBufferTaskEClass = createEClass(COPY_BUFFER_TASK);
 		createEAttribute(copyBufferTaskEClass, COPY_BUFFER_TASK__STAGE);
@@ -1164,6 +1182,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEClass(flushTransferBufferTaskEClass, FlushTransferBufferTask.class, "FlushTransferBufferTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFlushTransferBufferTask_TransferBuffer(), theResourcePackage.getTransferBuffer(), null, "transferBuffer", null, 1, 1, FlushTransferBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFlushTransferBufferTask_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Transfer", 1, 1, FlushTransferBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFlushTransferBufferTask_FlushDuringUpdate(), ecorePackage.getEBoolean(), "flushDuringUpdate", "false", 1, 1, FlushTransferBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(copyBufferTaskEClass, CopyBufferTask.class, "CopyBufferTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCopyBufferTask_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Transfer", 1, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

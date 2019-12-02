@@ -19,11 +19,28 @@
     </genAnnotations>
     <details key="directoryURI" value="."/>
   </genAnnotations>
+  <foreignModel>binding.ecore</foreignModel>
   <foreignModel>compute.ecore</foreignModel>
-  <foreignModel>process.ecore</foreignModel>
-  <foreignModel>vulkan.ecore</foreignModel>
-  <foreignModel>resource.ecore</foreignModel>
   <foreignModel>graphic.ecore</foreignModel>
+  <foreignModel>process.ecore</foreignModel>
+  <foreignModel>resource.ecore</foreignModel>
+  <foreignModel>vulkan.ecore</foreignModel>
+  <genPackages prefix="Binding" basePackage="org.sheepy.lily.vulkan.model" resource="XMI"
+      disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="binding.ecore#/">
+    <genClasses ecoreClass="binding.ecore#//BindingConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference binding.ecore#//BindingConfiguration/descriptorsSets"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute binding.ecore#//BindingConfiguration/descriptorSetStride"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference binding.ecore#//BindingConfiguration/tasks"/>
+    </genClasses>
+    <genClasses ecoreClass="binding.ecore#//ConfigureBind">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference binding.ecore#//ConfigureBind/bindTask"/>
+    </genClasses>
+    <genClasses ecoreClass="binding.ecore#//RotateConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference binding.ecore#//RotateConfiguration/configurations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute binding.ecore#//RotateConfiguration/forceRecord"/>
+    </genClasses>
+    <genClasses ecoreClass="binding.ecore#//IConfigurationTask"/>
+  </genPackages>
   <genPackages prefix="Compute" basePackage="org.sheepy.lily.vulkan.model.process"
       resource="XMI" disposableProviderFactory="true" childCreationExtenders="true"
       ecorePackage="compute.ecore#/">
@@ -35,257 +52,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute compute.ecore#//DispatchTask/workgroupCountX"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute compute.ecore#//DispatchTask/workgroupCountY"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute compute.ecore#//DispatchTask/workgroupCountZ"/>
-    </genClasses>
-  </genPackages>
-  <genPackages prefix="Process" basePackage="org.sheepy.lily.vulkan.model" resource="XMI"
-      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
-      ecorePackage="process.ecore#/">
-    <genClasses image="false" ecoreClass="process.ecore#//AbstractProcess">
-      <genFeatures createChild="false" propertyDescription="If fenceEnabled, will wait during acquire. Useless for a render process that already wait for image acquiring"
-          ecoreFeature="ecore:EAttribute process.ecore#//AbstractProcess/waitingFenceDuringAcquire"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//AbstractProcess/partPkg"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//AbstractProcess/resetAllowed"/>
-      <genFeatures notify="false" createChild="false" propertyCategory="Semaphores"
-          propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//AbstractProcess/signals"/>
-      <genFeatures notify="false" createChild="false" propertyCategory="Semaphores"
-          propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//AbstractProcess/waitFor"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//AbstractProcess/extensionPkg"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="process.ecore#//Configuration"/>
-    <genClasses ecoreClass="process.ecore#//ProcessPartPkg">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//ProcessPartPkg/parts"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="process.ecore#//IPipelineTask">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//IPipelineTask/enabled"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="process.ecore#//IProcessPart"/>
-    <genClasses image="false" ecoreClass="process.ecore#//IPipeline">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//IPipeline/enabled"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//IPipeline/stage"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//IPipeline/pushConstantRanges"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EReference process.ecore#//IPipeline/specializationData"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//IPipeline/descriptorSetPkg"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//IPipeline/taskPkg"/>
-    </genClasses>
-    <genClasses ecoreClass="process.ecore#//TaskPkg">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//TaskPkg/tasks"/>
-    </genClasses>
-    <genClasses ecoreClass="process.ecore#//Pipeline"/>
-    <genClasses ecoreClass="process.ecore#//PipelineBarrier">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//PipelineBarrier/barriers"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PipelineBarrier/srcStage"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PipelineBarrier/dstStage"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//PipelineBarrier/srcQueue"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//PipelineBarrier/dstQueue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PipelineBarrier/recordDuringStage"/>
-    </genClasses>
-    <genClasses ecoreClass="process.ecore#//CompositeTask">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CompositeTask/repeatCount"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//CompositeTask/tasks"/>
-    </genClasses>
-    <genClasses ecoreClass="process.ecore#//BindDescriptorSets">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//BindDescriptorSets/descriptorSets"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//BindDescriptorSets/bindPoint"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="process.ecore#//PushConstant">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PushConstant/stages"/>
-    </genClasses>
-    <genClasses ecoreClass="process.ecore#//PushConstantBuffer">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//PushConstantBuffer/buffer"/>
-    </genClasses>
-    <genClasses ecoreClass="process.ecore#//FlushTransferBufferTask">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//FlushTransferBufferTask/transferBuffer"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//FlushTransferBufferTask/stage"/>
-    </genClasses>
-    <genClasses ecoreClass="process.ecore#//CopyBufferTask">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CopyBufferTask/stage"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CopyBufferTask/size"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//CopyBufferTask/srcBuffer"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//CopyBufferTask/dstBuffer"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="process.ecore#//IProcessExtension"/>
-    <genClasses ecoreClass="process.ecore#//ProcessExtensionPkg">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//ProcessExtensionPkg/extensions"/>
-    </genClasses>
-    <genClasses ecoreClass="process.ecore#//PrepareCompositeTransfer">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//PrepareCompositeTransfer/compositeBuffer"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PrepareCompositeTransfer/mode"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PrepareCompositeTransfer/instance"/>
-    </genClasses>
-    <genClasses ecoreClass="process.ecore#//SwapBindingsTask">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//SwapBindingsTask/task"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//SwapBindingsTask/descriptorSets"/>
-    </genClasses>
-  </genPackages>
-  <genPackages prefix="Vulkan" basePackage="org.sheepy.lily.vulkan" resource="XMI"
-      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
-      ecorePackage="vulkan.ecore#/">
-    <genClasses ecoreClass="vulkan.ecore#//VulkanEngine">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//VulkanEngine/enabled"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//VulkanEngine/processes"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//VulkanEngine/features"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="vulkan.ecore#//IResourceContainer">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//IResourceContainer/resourcePkg"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//IResourceContainer/descriptorPkg"/>
-    </genClasses>
-    <genClasses ecoreClass="vulkan.ecore#//ResourcePkg">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//ResourcePkg/resources"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="vulkan.ecore#//IResource"/>
-    <genClasses image="false" ecoreClass="vulkan.ecore#//IProcess">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IProcess/enabled"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IProcess/queuePriority"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="vulkan.ecore#//IExecutionManager"/>
-    <genClasses ecoreClass="vulkan.ecore#//RunProcess">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference vulkan.ecore#//RunProcess/process"/>
-    </genClasses>
-    <genClasses ecoreClass="vulkan.ecore#//WaitProcessIdle">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference vulkan.ecore#//WaitProcessIdle/process"/>
-    </genClasses>
-    <genClasses ecoreClass="vulkan.ecore#//DescriptorPkg">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//DescriptorPkg/descriptors"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="vulkan.ecore#//IDescriptor">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IDescriptor/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IDescriptor/shaderStages"/>
-    </genClasses>
-  </genPackages>
-  <genPackages prefix="Resource" basePackage="org.sheepy.lily.vulkan.model" resource="XMI"
-      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
-      ecorePackage="resource.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="resource.ecore#//EFlushMode">
-      <genEnumLiterals ecoreEnumLiteral="resource.ecore#//EFlushMode/PUSH"/>
-      <genEnumLiterals ecoreEnumLiteral="resource.ecore#//EFlushMode/FETCH"/>
-    </genEnums>
-    <genDataTypes ecoreDataType="resource.ecore#//ByteBuffer"/>
-    <genDataTypes ecoreDataType="resource.ecore#//JavaModule"/>
-    <genClasses ecoreClass="resource.ecore#//TransferBuffer">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/size"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/instanceCount"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/usedToPush"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/usedToFetch"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//ConstantBuffer">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ConstantBuffer/data"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="resource.ecore#//IBuffer"/>
-    <genClasses ecoreClass="resource.ecore#//Buffer">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/size"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/usages"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/data"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/keptMapped"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/hostVisible"/>
-      <genFeatures createChild="false" propertyDescription="Every push in this buffer will write on the next instance, and update the descriptor acordingly"
-          ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/instanceCount"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/coherent"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//CompositeBuffer">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/dataProviders"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/transferBuffer"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBuffer/minSize"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBuffer/growFactor"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="resource.ecore#//IBufferReference"/>
-    <genClasses ecoreClass="resource.ecore#//BufferReference">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//BufferReference/buffer"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferReference/offset"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//CompositeBufferReference">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBufferReference/buffer"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBufferReference/part"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBufferReference/instance"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//BufferDataProvider">
-      <genTypeParameters ecoreTypeParameter="resource.ecore#//BufferDataProvider/T"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usage"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/instanceCount"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EReference resource.ecore#//BufferDataProvider/dataSource"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usedToPush"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usedToFetch"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/stageBeforePush"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/accessBeforePush"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/stageBeforeFetch"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/accessBeforeFetch"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//Image">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Image/initialLayout"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//StaticImage">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticImage/fillWithZero"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticImage/fillWith"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//FileImage">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//FileImage/file"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//FileImage/mipmapEnabled"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//SampledImage">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//SampledImage/sampler"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//SampledImage/image"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//Sampler">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//Sampler/image"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//Semaphore">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Semaphore/signalizedAtInit"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Semaphore/waitStage"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//FontImage">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//FontImage/file"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//FontImage/height"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//BufferDescriptor">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//BufferDescriptor/bufferReference"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//ImageDescriptor">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//ImageDescriptor/image"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//SampledImageDescriptor">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//SampledImageDescriptor/sampledImage"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//SamplerDescriptor">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//SamplerDescriptor/sampler"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//Texture2DArrayDescriptor">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//Texture2DArrayDescriptor/texture2DArray"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//DescriptorSet">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//DescriptorSet/descriptors"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//DescriptorSetPkg">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//DescriptorSetPkg/descriptorSets"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//BufferBarrier">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//BufferBarrier/buffer"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//CompositeBufferBarrier">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBufferBarrier/instance"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBufferBarrier/dataProvider"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//ImageBarrier">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//ImageBarrier/image"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//Shader">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Shader/file"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Shader/stage"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Shader/constants"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="resource.ecore#//PathResource">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//PathResource/path"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//FileResource"/>
-    <genClasses image="false" ecoreClass="resource.ecore#//AbstractModuleResource"/>
-    <genClasses ecoreClass="resource.ecore#//ModuleResource">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ModuleResource/module"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//StringModuleResource">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StringModuleResource/moduleName"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//Texture2DArray">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Texture2DArray/files"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Texture2DArray/mipmapEnabled"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Texture2DArray/initialLayout"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Graphic" basePackage="org.sheepy.lily.vulkan.model.process"
@@ -429,6 +195,258 @@
     <genClasses ecoreClass="graphic.ecore#//BindIndexBuffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//BindIndexBuffer/indexType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//BindIndexBuffer/bufferRef"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Process" basePackage="org.sheepy.lily.vulkan.model" resource="XMI"
+      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
+      ecorePackage="process.ecore#/">
+    <genClasses image="false" ecoreClass="process.ecore#//AbstractProcess">
+      <genFeatures createChild="false" propertyDescription="If fenceEnabled, will wait during acquire. Useless for a render process that already wait for image acquiring"
+          ecoreFeature="ecore:EAttribute process.ecore#//AbstractProcess/waitingFenceDuringAcquire"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//AbstractProcess/partPkg"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//AbstractProcess/resetAllowed"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="Semaphores"
+          propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//AbstractProcess/signals"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="Semaphores"
+          propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//AbstractProcess/waitFor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//AbstractProcess/extensionPkg"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="process.ecore#//Configuration"/>
+    <genClasses ecoreClass="process.ecore#//ProcessPartPkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//ProcessPartPkg/parts"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="process.ecore#//IPipelineTask">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//IPipelineTask/enabled"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="process.ecore#//IProcessPart"/>
+    <genClasses image="false" ecoreClass="process.ecore#//IPipeline">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//IPipeline/enabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//IPipeline/stage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//IPipeline/pushConstantRanges"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference process.ecore#//IPipeline/specializationData"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//IPipeline/descriptorSetPkg"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//IPipeline/taskPkg"/>
+    </genClasses>
+    <genClasses ecoreClass="process.ecore#//TaskPkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//TaskPkg/tasks"/>
+    </genClasses>
+    <genClasses ecoreClass="process.ecore#//Pipeline"/>
+    <genClasses ecoreClass="process.ecore#//PipelineBarrier">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//PipelineBarrier/barriers"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PipelineBarrier/srcStage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PipelineBarrier/dstStage"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//PipelineBarrier/srcQueue"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//PipelineBarrier/dstQueue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PipelineBarrier/recordDuringStage"/>
+    </genClasses>
+    <genClasses ecoreClass="process.ecore#//CompositeTask">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CompositeTask/repeatCount"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//CompositeTask/tasks"/>
+    </genClasses>
+    <genClasses ecoreClass="process.ecore#//BindDescriptorSets">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//BindDescriptorSets/descriptorSets"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//BindDescriptorSets/bindPoint"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="process.ecore#//PushConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PushConstant/stages"/>
+    </genClasses>
+    <genClasses ecoreClass="process.ecore#//PushConstantBuffer">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//PushConstantBuffer/buffer"/>
+    </genClasses>
+    <genClasses ecoreClass="process.ecore#//FlushTransferBufferTask">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//FlushTransferBufferTask/transferBuffer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//FlushTransferBufferTask/stage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//FlushTransferBufferTask/flushDuringUpdate"/>
+    </genClasses>
+    <genClasses ecoreClass="process.ecore#//CopyBufferTask">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CopyBufferTask/stage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CopyBufferTask/size"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//CopyBufferTask/srcBuffer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//CopyBufferTask/dstBuffer"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="process.ecore#//IProcessExtension"/>
+    <genClasses ecoreClass="process.ecore#//ProcessExtensionPkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//ProcessExtensionPkg/extensions"/>
+    </genClasses>
+    <genClasses ecoreClass="process.ecore#//PrepareCompositeTransfer">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//PrepareCompositeTransfer/compositeBuffer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PrepareCompositeTransfer/mode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PrepareCompositeTransfer/instance"/>
+    </genClasses>
+    <genClasses ecoreClass="process.ecore#//SwapBindingsTask">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//SwapBindingsTask/task"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//SwapBindingsTask/descriptorSets"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Resource" basePackage="org.sheepy.lily.vulkan.model" resource="XMI"
+      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
+      ecorePackage="resource.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="resource.ecore#//EFlushMode">
+      <genEnumLiterals ecoreEnumLiteral="resource.ecore#//EFlushMode/PUSH"/>
+      <genEnumLiterals ecoreEnumLiteral="resource.ecore#//EFlushMode/FETCH"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="resource.ecore#//ByteBuffer"/>
+    <genDataTypes ecoreDataType="resource.ecore#//JavaModule"/>
+    <genClasses ecoreClass="resource.ecore#//TransferBuffer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/size"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/instanceCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/usedToPush"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/usedToFetch"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//ConstantBuffer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ConstantBuffer/data"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="resource.ecore#//IBuffer"/>
+    <genClasses ecoreClass="resource.ecore#//Buffer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/size"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/usages"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/data"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/keptMapped"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/hostVisible"/>
+      <genFeatures createChild="false" propertyDescription="Every push in this buffer will write on the next instance, and update the descriptor acordingly"
+          ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/instanceCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/coherent"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//CompositeBuffer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/dataProviders"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/transferBuffer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBuffer/minSize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBuffer/growFactor"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="resource.ecore#//IBufferReference"/>
+    <genClasses ecoreClass="resource.ecore#//BufferReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//BufferReference/buffer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferReference/offset"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//CompositeBufferReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBufferReference/buffer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBufferReference/part"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBufferReference/instance"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//BufferDataProvider">
+      <genTypeParameters ecoreTypeParameter="resource.ecore#//BufferDataProvider/T"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/instanceCount"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EReference resource.ecore#//BufferDataProvider/dataSource"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usedToPush"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usedToFetch"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/stageBeforePush"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/accessBeforePush"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/stageBeforeFetch"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/accessBeforeFetch"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//Image">
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Image/initialLayout"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//StaticImage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticImage/fillWithZero"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticImage/fillWith"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//FileImage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//FileImage/file"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//FileImage/mipmapEnabled"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//SampledImage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//SampledImage/sampler"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//SampledImage/image"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//Sampler">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//Sampler/image"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//Semaphore">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Semaphore/signalizedAtInit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Semaphore/waitStage"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//FontImage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//FontImage/file"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//FontImage/height"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//BufferDescriptor">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//BufferDescriptor/bufferReference"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//ImageDescriptor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//ImageDescriptor/image"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//SampledImageDescriptor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//SampledImageDescriptor/sampledImage"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//SamplerDescriptor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//SamplerDescriptor/sampler"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//Texture2DArrayDescriptor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//Texture2DArrayDescriptor/texture2DArray"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//DescriptorSet">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//DescriptorSet/descriptors"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//DescriptorSetPkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//DescriptorSetPkg/descriptorSets"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//BufferBarrier">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//BufferBarrier/buffer"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//CompositeBufferBarrier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBufferBarrier/instance"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBufferBarrier/dataProvider"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//ImageBarrier">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//ImageBarrier/image"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//Shader">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Shader/file"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Shader/stage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Shader/constants"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="resource.ecore#//PathResource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//PathResource/path"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//FileResource"/>
+    <genClasses image="false" ecoreClass="resource.ecore#//AbstractModuleResource"/>
+    <genClasses ecoreClass="resource.ecore#//ModuleResource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ModuleResource/module"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//StringModuleResource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StringModuleResource/moduleName"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//Texture2DArray">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Texture2DArray/files"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Texture2DArray/mipmapEnabled"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Texture2DArray/initialLayout"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Vulkan" basePackage="org.sheepy.lily.vulkan" resource="XMI"
+      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
+      ecorePackage="vulkan.ecore#/">
+    <genClasses ecoreClass="vulkan.ecore#//VulkanEngine">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//VulkanEngine/enabled"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//VulkanEngine/processes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//VulkanEngine/features"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="vulkan.ecore#//IResourceContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//IResourceContainer/resourcePkg"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//IResourceContainer/descriptorPkg"/>
+    </genClasses>
+    <genClasses ecoreClass="vulkan.ecore#//ResourcePkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//ResourcePkg/resources"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="vulkan.ecore#//IResource"/>
+    <genClasses image="false" ecoreClass="vulkan.ecore#//IProcess">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IProcess/enabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IProcess/queuePriority"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="vulkan.ecore#//IExecutionManager"/>
+    <genClasses ecoreClass="vulkan.ecore#//RunProcess">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference vulkan.ecore#//RunProcess/process"/>
+    </genClasses>
+    <genClasses ecoreClass="vulkan.ecore#//WaitProcessIdle">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference vulkan.ecore#//WaitProcessIdle/process"/>
+    </genClasses>
+    <genClasses ecoreClass="vulkan.ecore#//DescriptorPkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//DescriptorPkg/descriptors"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="vulkan.ecore#//IDescriptor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IDescriptor/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IDescriptor/shaderStages"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

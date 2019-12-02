@@ -31,10 +31,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.cadence.CadenceTaskPkg;
 import org.sheepy.lily.core.model.cadence.util.CadenceSwitch;
+import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
-import org.sheepy.lily.vulkan.model.process.compute.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.process.util.ProcessAdapterFactory;
 
 /**

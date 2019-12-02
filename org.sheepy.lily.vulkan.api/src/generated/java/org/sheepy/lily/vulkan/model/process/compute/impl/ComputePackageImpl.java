@@ -25,6 +25,8 @@ import org.sheepy.lily.core.model.root.RootPackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.binding.BindingPackage;
+import org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl;
 import org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
@@ -139,28 +141,32 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		PipelinePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
-		ProcessPackageImpl theProcessPackage = (ProcessPackageImpl)(registeredPackage instanceof ProcessPackageImpl ? registeredPackage : ProcessPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
-		VulkanPackageImpl theVulkanPackage = (VulkanPackageImpl)(registeredPackage instanceof VulkanPackageImpl ? registeredPackage : VulkanPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
-		ResourcePackageImpl theResourcePackage = (ResourcePackageImpl)(registeredPackage instanceof ResourcePackageImpl ? registeredPackage : ResourcePackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BindingPackage.eNS_URI);
+		BindingPackageImpl theBindingPackage = (BindingPackageImpl)(registeredPackage instanceof BindingPackageImpl ? registeredPackage : BindingPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GraphicPackage.eNS_URI);
 		GraphicPackageImpl theGraphicPackage = (GraphicPackageImpl)(registeredPackage instanceof GraphicPackageImpl ? registeredPackage : GraphicPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
+		ProcessPackageImpl theProcessPackage = (ProcessPackageImpl)(registeredPackage instanceof ProcessPackageImpl ? registeredPackage : ProcessPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		ResourcePackageImpl theResourcePackage = (ResourcePackageImpl)(registeredPackage instanceof ResourcePackageImpl ? registeredPackage : ResourcePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
+		VulkanPackageImpl theVulkanPackage = (VulkanPackageImpl)(registeredPackage instanceof VulkanPackageImpl ? registeredPackage : VulkanPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theComputePackage.createPackageContents();
-		theProcessPackage.createPackageContents();
-		theVulkanPackage.createPackageContents();
-		theResourcePackage.createPackageContents();
+		theBindingPackage.createPackageContents();
 		theGraphicPackage.createPackageContents();
+		theProcessPackage.createPackageContents();
+		theResourcePackage.createPackageContents();
+		theVulkanPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theComputePackage.initializePackageContents();
-		theProcessPackage.initializePackageContents();
-		theVulkanPackage.initializePackageContents();
-		theResourcePackage.initializePackageContents();
+		theBindingPackage.initializePackageContents();
 		theGraphicPackage.initializePackageContents();
+		theProcessPackage.initializePackageContents();
+		theResourcePackage.initializePackageContents();
+		theVulkanPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theComputePackage.freeze();

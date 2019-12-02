@@ -30,8 +30,30 @@ public final class FlushTransferBufferTaskAdapter
 	@Override
 	public void update(FlushTransferBufferTask task, int index)
 	{
-		final var stagingBuffer = pushBufferAdapter.getTransferBufferBackend();
+		if (task.isFlushDuringUpdate())
+		{
+			flush();
+		}
+	}
 
+	@Override
+	public void record(FlushTransferBufferTask task, RecordContext context)
+	{
+		if (task.isFlushDuringUpdate() == false)
+		{
+			flush();
+		}
+
+		if (record != null)
+		{
+			setFlushHistory(context);
+			record.flush(context);
+		}
+	}
+
+	private void flush()
+	{
+		final var stagingBuffer = pushBufferAdapter.getTransferBufferBackend();
 		if (stagingBuffer.isEmpty() == false)
 		{
 			record = stagingBuffer.recordFlush();
@@ -43,23 +65,15 @@ public final class FlushTransferBufferTaskAdapter
 	}
 
 	@Override
-	public void record(FlushTransferBufferTask task, RecordContext context)
-	{
-		if (record != null)
-		{
-			setFlushHistory(context);
-			record.flush(context);
-		}
-	}
-
-	@Override
 	public boolean needRecord(FlushTransferBufferTask task, int index)
 	{
+		final var stagingBuffer = pushBufferAdapter.getTransferBufferBackend();
 		final boolean previousRecordMadeFlush = getAndClearHistory(index);
 
 		boolean res = false;
 		res |= record != null;
 		res |= previousRecordMadeFlush;
+		res |= stagingBuffer.isEmpty() == false;
 
 		return res;
 	}

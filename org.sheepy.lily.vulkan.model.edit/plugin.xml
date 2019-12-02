@@ -9,6 +9,19 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated LilyVulkan -->
       <factory
+            uri="org.sheepy.lily.vulkan.extra.model.binding"
+            class="org.sheepy.lily.vulkan.model.binding.provider.BindingItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated LilyVulkan -->
+      <factory
             uri="org.sheepy.lily.vulkan.model.process.compute"
             class="org.sheepy.lily.vulkan.model.process.compute.provider.ComputeItemProviderAdapterFactory"
             supportedTypes=

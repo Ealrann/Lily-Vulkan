@@ -105,6 +105,8 @@
         eType="ecore:EClass resource.ecore#//TransferBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" lowerBound="1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
         defaultValueLiteral="Transfer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="flushDuringUpdate" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CopyBufferTask" eSuperTypes="#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" lowerBound="1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
