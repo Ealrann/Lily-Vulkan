@@ -5,6 +5,7 @@ import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.ICompositeBufferAdapter;
 import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @Adapter(scope = PrepareCompositeTransfer.class)
 public class PrepareCompositeTransferAdapter
@@ -13,19 +14,34 @@ public class PrepareCompositeTransferAdapter
 	@Override
 	public void update(PrepareCompositeTransfer task, int index)
 	{
-		final var compositeBuffer = task.getCompositeBuffer();
-		final var adapter = compositeBuffer.adapt(ICompositeBufferAdapter.class);
-
-		adapter.prepareFlush(task.getMode(), task.getInstance());
+		if (task.isPrepareDuringUpdate())
+		{
+			prepare(task);
+		}
 	}
 
 	@Override
 	public void record(PrepareCompositeTransfer task, RecordContext context)
-	{}
+	{
+		if (task.isPrepareDuringUpdate() == false)
+		{
+			prepare(task);
+		}
+	}
+
+	private static void prepare(PrepareCompositeTransfer task)
+	{
+		final var compositeBuffer = task.getCompositeBuffer();
+		final var adapter = compositeBuffer.adapt(ICompositeBufferAdapter.class);
+		final var mode = task.getMode();
+		final int instance = task.getInstance();
+
+		adapter.prepareFlush(mode, instance);
+	}
 
 	@Override
-	public boolean needRecord(PrepareCompositeTransfer task, int index)
+	public ECommandStage getStage(PrepareCompositeTransfer task)
 	{
-		return false;
+		return task.getStage();
 	}
 }

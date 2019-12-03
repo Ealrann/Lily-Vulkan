@@ -1271,13 +1271,31 @@ public interface ProcessPackage extends EPackage
 	int PREPARE_COMPOSITE_TRANSFER__INSTANCE = IPIPELINE_TASK_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Prepare During Update</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREPARE_COMPOSITE_TRANSFER__PREPARE_DURING_UPDATE = IPIPELINE_TASK_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREPARE_COMPOSITE_TRANSFER__STAGE = IPIPELINE_TASK_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Prepare Composite Transfer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREPARE_COMPOSITE_TRANSFER_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 3;
+	int PREPARE_COMPOSITE_TRANSFER_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Prepare Composite Transfer</em>' class.
@@ -1933,6 +1951,28 @@ public interface ProcessPackage extends EPackage
 	EAttribute getPrepareCompositeTransfer_Instance();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#isPrepareDuringUpdate <em>Prepare During Update</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Prepare During Update</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#isPrepareDuringUpdate()
+	 * @see #getPrepareCompositeTransfer()
+	 * @generated
+	 */
+	EAttribute getPrepareCompositeTransfer_PrepareDuringUpdate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getStage <em>Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stage</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getStage()
+	 * @see #getPrepareCompositeTransfer()
+	 * @generated
+	 */
+	EAttribute getPrepareCompositeTransfer_Stage();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.SwapBindingsTask <em>Swap Bindings Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2471,6 +2511,22 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute PREPARE_COMPOSITE_TRANSFER__INSTANCE = eINSTANCE.getPrepareCompositeTransfer_Instance();
+
+		/**
+		 * The meta object literal for the '<em><b>Prepare During Update</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREPARE_COMPOSITE_TRANSFER__PREPARE_DURING_UPDATE = eINSTANCE.getPrepareCompositeTransfer_PrepareDuringUpdate();
+
+		/**
+		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREPARE_COMPOSITE_TRANSFER__STAGE = eINSTANCE.getPrepareCompositeTransfer_Stage();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.SwapBindingsTaskImpl <em>Swap Bindings Task</em>}' class.

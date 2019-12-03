@@ -15,6 +15,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +30,8 @@ import org.sheepy.lily.vulkan.model.resource.EFlushMode;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getCompositeBuffer <em>Composite Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getMode <em>Mode</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getInstance <em>Instance</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#isPrepareDuringUpdate <em>Prepare During Update</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getStage <em>Stage</em>}</li>
  * </ul>
  *
  * @generated
@@ -124,6 +127,46 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * @ordered
 	 */
 	protected int instance = INSTANCE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isPrepareDuringUpdate() <em>Prepare During Update</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPrepareDuringUpdate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean PREPARE_DURING_UPDATE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isPrepareDuringUpdate() <em>Prepare During Update</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPrepareDuringUpdate()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean prepareDuringUpdate = PREPARE_DURING_UPDATE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ECommandStage STAGE_EDEFAULT = ECommandStage.TRANSFER;
+
+	/**
+	 * The cached value of the '{@link #getStage() <em>Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStage()
+	 * @generated
+	 * @ordered
+	 */
+	protected ECommandStage stage = STAGE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -297,6 +340,56 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * @generated
 	 */
 	@Override
+	public boolean isPrepareDuringUpdate()
+	{
+		return prepareDuringUpdate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPrepareDuringUpdate(boolean newPrepareDuringUpdate)
+	{
+		boolean oldPrepareDuringUpdate = prepareDuringUpdate;
+		prepareDuringUpdate = newPrepareDuringUpdate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PREPARE_DURING_UPDATE, oldPrepareDuringUpdate, prepareDuringUpdate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ECommandStage getStage()
+	{
+		return stage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setStage(ECommandStage newStage)
+	{
+		ECommandStage oldStage = stage;
+		stage = newStage == null ? STAGE_EDEFAULT : newStage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE, oldStage, stage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -312,6 +405,10 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 				return getMode();
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE:
 				return getInstance();
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PREPARE_DURING_UPDATE:
+				return isPrepareDuringUpdate();
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
+				return getStage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -340,6 +437,12 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 				return;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE:
 				setInstance((Integer)newValue);
+				return;
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PREPARE_DURING_UPDATE:
+				setPrepareDuringUpdate((Boolean)newValue);
+				return;
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
+				setStage((ECommandStage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -370,6 +473,12 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE:
 				setInstance(INSTANCE_EDEFAULT);
 				return;
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PREPARE_DURING_UPDATE:
+				setPrepareDuringUpdate(PREPARE_DURING_UPDATE_EDEFAULT);
+				return;
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
+				setStage(STAGE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -394,6 +503,10 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 				return mode != MODE_EDEFAULT;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE:
 				return instance != INSTANCE_EDEFAULT;
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PREPARE_DURING_UPDATE:
+				return prepareDuringUpdate != PREPARE_DURING_UPDATE_EDEFAULT;
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
+				return stage != STAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -417,6 +530,10 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 		result.append(mode);
 		result.append(", instance: ");
 		result.append(instance);
+		result.append(", prepareDuringUpdate: ");
+		result.append(prepareDuringUpdate);
+		result.append(", stage: ");
+		result.append(stage);
 		result.append(')');
 		return result.toString();
 	}

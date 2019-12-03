@@ -8,6 +8,7 @@ import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.resource.staging.ITransferBuffer;
 import org.sheepy.vulkan.resource.staging.ITransferBuffer.IFlushRecorder;
 
 @Statefull
@@ -15,7 +16,7 @@ import org.sheepy.vulkan.resource.staging.ITransferBuffer.IFlushRecorder;
 public final class FlushTransferBufferTaskAdapter
 		implements IPipelineTaskAdapter<FlushTransferBufferTask>
 {
-	private final ITransferBufferAdapter pushBufferAdapter;
+	private final ITransferBuffer bufferBackend;
 	private final TransferBuffer transferBuffer;
 
 	private int stagingFlushHistory = 0;
@@ -24,7 +25,8 @@ public final class FlushTransferBufferTaskAdapter
 	public FlushTransferBufferTaskAdapter(FlushTransferBufferTask task)
 	{
 		transferBuffer = task.getTransferBuffer();
-		pushBufferAdapter = transferBuffer.adaptNotNull(ITransferBufferAdapter.class);
+		final var pushBufferAdapter = transferBuffer.adaptNotNull(ITransferBufferAdapter.class);
+		bufferBackend = pushBufferAdapter.getTransferBufferBackend();
 	}
 
 	@Override
@@ -32,7 +34,7 @@ public final class FlushTransferBufferTaskAdapter
 	{
 		if (task.isFlushDuringUpdate())
 		{
-			flush();
+			record();
 		}
 	}
 
@@ -41,7 +43,7 @@ public final class FlushTransferBufferTaskAdapter
 	{
 		if (task.isFlushDuringUpdate() == false)
 		{
-			flush();
+			record();
 		}
 
 		if (record != null)
@@ -51,12 +53,11 @@ public final class FlushTransferBufferTaskAdapter
 		}
 	}
 
-	private void flush()
+	private void record()
 	{
-		final var stagingBuffer = pushBufferAdapter.getTransferBufferBackend();
-		if (stagingBuffer.isEmpty() == false)
+		if (bufferBackend.isEmpty() == false)
 		{
-			record = stagingBuffer.recordFlush();
+			record = bufferBackend.recordFlush();
 		}
 		else
 		{
@@ -67,13 +68,12 @@ public final class FlushTransferBufferTaskAdapter
 	@Override
 	public boolean needRecord(FlushTransferBufferTask task, int index)
 	{
-		final var stagingBuffer = pushBufferAdapter.getTransferBufferBackend();
 		final boolean previousRecordMadeFlush = getAndClearHistory(index);
 
 		boolean res = false;
 		res |= record != null;
 		res |= previousRecordMadeFlush;
-		res |= stagingBuffer.isEmpty() == false;
+		res |= bufferBackend.isEmpty() == false;
 
 		return res;
 	}

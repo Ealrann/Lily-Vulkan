@@ -925,6 +925,28 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getPrepareCompositeTransfer_PrepareDuringUpdate()
+	{
+		return (EAttribute)prepareCompositeTransferEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPrepareCompositeTransfer_Stage()
+	{
+		return (EAttribute)prepareCompositeTransferEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getSwapBindingsTask()
 	{
 		return swapBindingsTaskEClass;
@@ -1056,6 +1078,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEReference(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__COMPOSITE_BUFFER);
 		createEAttribute(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__MODE);
 		createEAttribute(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__INSTANCE);
+		createEAttribute(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__PREPARE_DURING_UPDATE);
+		createEAttribute(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__STAGE);
 
 		swapBindingsTaskEClass = createEClass(SWAP_BINDINGS_TASK);
 		createEReference(swapBindingsTaskEClass, SWAP_BINDINGS_TASK__TASK);
@@ -1199,6 +1223,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEReference(getPrepareCompositeTransfer_CompositeBuffer(), theResourcePackage.getCompositeBuffer(), null, "compositeBuffer", null, 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPrepareCompositeTransfer_Mode(), theResourcePackage.getEFlushMode(), "mode", "PUSH", 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPrepareCompositeTransfer_Instance(), ecorePackage.getEInt(), "instance", "0", 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPrepareCompositeTransfer_PrepareDuringUpdate(), ecorePackage.getEBoolean(), "prepareDuringUpdate", "false", 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPrepareCompositeTransfer_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Transfer", 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(swapBindingsTaskEClass, SwapBindingsTask.class, "SwapBindingsTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSwapBindingsTask_Task(), this.getBindDescriptorSets(), null, "task", null, 1, 1, SwapBindingsTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
