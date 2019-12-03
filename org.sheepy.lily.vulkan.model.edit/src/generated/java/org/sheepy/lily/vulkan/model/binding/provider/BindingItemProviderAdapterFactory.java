@@ -149,6 +149,56 @@ public class BindingItemProviderAdapterFactory extends BindingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConfigurePrepareCompositeItemProvider configurePrepareCompositeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConfigurePrepareCompositeAdapter()
+	{
+		if (configurePrepareCompositeItemProvider == null)
+		{
+			configurePrepareCompositeItemProvider = new ConfigurePrepareCompositeItemProvider(this);
+		}
+
+		return configurePrepareCompositeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConfigureCompositeBufferBarrierItemProvider configureCompositeBufferBarrierItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConfigureCompositeBufferBarrierAdapter()
+	{
+		if (configureCompositeBufferBarrierItemProvider == null)
+		{
+			configureCompositeBufferBarrierItemProvider = new ConfigureCompositeBufferBarrierItemProvider(this);
+		}
+
+		return configureCompositeBufferBarrierItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -268,6 +318,8 @@ public class BindingItemProviderAdapterFactory extends BindingAdapterFactory imp
 		if (bindingConfigurationItemProvider != null) bindingConfigurationItemProvider.dispose();
 		if (configureBindItemProvider != null) configureBindItemProvider.dispose();
 		if (rotateConfigurationItemProvider != null) rotateConfigurationItemProvider.dispose();
+		if (configurePrepareCompositeItemProvider != null) configurePrepareCompositeItemProvider.dispose();
+		if (configureCompositeBufferBarrierItemProvider != null) configureCompositeBufferBarrierItemProvider.dispose();
 	}
 
 }

@@ -11,7 +11,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -25,17 +24,16 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
-import org.sheepy.lily.vulkan.model.binding.BindingConfiguration;
-import org.sheepy.lily.vulkan.model.binding.BindingFactory;
 import org.sheepy.lily.vulkan.model.binding.BindingPackage;
+import org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.binding.BindingConfiguration} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BindingConfigurationItemProvider 
+public class ConfigurePrepareCompositeItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -50,7 +48,7 @@ public class BindingConfigurationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BindingConfigurationItemProvider(AdapterFactory adapterFactory)
+	public ConfigurePrepareCompositeItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -69,8 +67,8 @@ public class BindingConfigurationItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addDescriptorsSetsPropertyDescriptor(object);
-			addDescriptorSetStridePropertyDescriptor(object);
+			addPrepareTaskPropertyDescriptor(object);
+			addTargetInstancePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -99,20 +97,20 @@ public class BindingConfigurationItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Descriptors Sets feature.
+	 * This adds a property descriptor for the Prepare Task feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDescriptorsSetsPropertyDescriptor(Object object)
+	protected void addPrepareTaskPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_BindingConfiguration_descriptorsSets_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BindingConfiguration_descriptorsSets_feature", "_UI_BindingConfiguration_type"),
-				 BindingPackage.Literals.BINDING_CONFIGURATION__DESCRIPTORS_SETS,
+				 getString("_UI_ConfigurePrepareComposite_prepareTask_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurePrepareComposite_prepareTask_feature", "_UI_ConfigurePrepareComposite_type"),
+				 BindingPackage.Literals.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK,
 				 true,
 				 false,
 				 true,
@@ -122,63 +120,30 @@ public class BindingConfigurationItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Descriptor Set Stride feature.
+	 * This adds a property descriptor for the Target Instance feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDescriptorSetStridePropertyDescriptor(Object object)
+	protected void addTargetInstancePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_BindingConfiguration_descriptorSetStride_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BindingConfiguration_descriptorSetStride_feature", "_UI_BindingConfiguration_type"),
-				 BindingPackage.Literals.BINDING_CONFIGURATION__DESCRIPTOR_SET_STRIDE,
+				 getString("_UI_ConfigurePrepareComposite_targetInstance_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurePrepareComposite_targetInstance_feature", "_UI_ConfigurePrepareComposite_type"),
+				 BindingPackage.Literals.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(BindingPackage.Literals.BINDING_CONFIGURATION__TASKS);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns BindingConfiguration.gif.
+	 * This returns ConfigurePrepareComposite.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -186,7 +151,7 @@ public class BindingConfigurationItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/BindingConfiguration"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ConfigurePrepareComposite"));
 	}
 
 	/**
@@ -198,10 +163,10 @@ public class BindingConfigurationItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((BindingConfiguration)object).getName();
+		String label = ((ConfigurePrepareComposite)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_BindingConfiguration_type") :
-			getString("_UI_BindingConfiguration_type") + " " + label;
+			getString("_UI_ConfigurePrepareComposite_type") :
+			getString("_UI_ConfigurePrepareComposite_type") + " " + label;
 	}
 
 
@@ -217,14 +182,11 @@ public class BindingConfigurationItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BindingConfiguration.class))
+		switch (notification.getFeatureID(ConfigurePrepareComposite.class))
 		{
-			case BindingPackage.BINDING_CONFIGURATION__NAME:
-			case BindingPackage.BINDING_CONFIGURATION__DESCRIPTOR_SET_STRIDE:
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__NAME:
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case BindingPackage.BINDING_CONFIGURATION__TASKS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -241,21 +203,6 @@ public class BindingConfigurationItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BindingPackage.Literals.BINDING_CONFIGURATION__TASKS,
-				 BindingFactory.eINSTANCE.createConfigureBind()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BindingPackage.Literals.BINDING_CONFIGURATION__TASKS,
-				 BindingFactory.eINSTANCE.createConfigurePrepareComposite()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BindingPackage.Literals.BINDING_CONFIGURATION__TASKS,
-				 BindingFactory.eINSTANCE.createConfigureCompositeBufferBarrier()));
 	}
 
 	/**

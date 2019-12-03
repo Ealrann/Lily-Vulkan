@@ -27,6 +27,11 @@
   <foreignModel>vulkan.ecore</foreignModel>
   <genPackages prefix="Binding" basePackage="org.sheepy.lily.vulkan.model" resource="XMI"
       disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="binding.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="binding.ecore#//EInstance">
+      <genEnumLiterals ecoreEnumLiteral="binding.ecore#//EInstance/ContextInstance"/>
+      <genEnumLiterals ecoreEnumLiteral="binding.ecore#//EInstance/ContextInstance_PlusOne"/>
+      <genEnumLiterals ecoreEnumLiteral="binding.ecore#//EInstance/ContextInstance_MinusOne"/>
+    </genEnums>
     <genClasses ecoreClass="binding.ecore#//BindingConfiguration">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference binding.ecore#//BindingConfiguration/descriptorsSets"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute binding.ecore#//BindingConfiguration/descriptorSetStride"/>
@@ -40,6 +45,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute binding.ecore#//RotateConfiguration/forceRecord"/>
     </genClasses>
     <genClasses ecoreClass="binding.ecore#//IConfigurationTask"/>
+    <genClasses ecoreClass="binding.ecore#//ConfigurePrepareComposite">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference binding.ecore#//ConfigurePrepareComposite/prepareTask"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute binding.ecore#//ConfigurePrepareComposite/targetInstance"/>
+    </genClasses>
+    <genClasses ecoreClass="binding.ecore#//ConfigureCompositeBufferBarrier">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference binding.ecore#//ConfigureCompositeBufferBarrier/barrier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute binding.ecore#//ConfigureCompositeBufferBarrier/targetInstance"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Compute" basePackage="org.sheepy.lily.vulkan.model.process"
       resource="XMI" disposableProviderFactory="true" childCreationExtenders="true"

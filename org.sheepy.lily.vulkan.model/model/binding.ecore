@@ -22,4 +22,21 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IConfigurationTask" abstract="true"
       interface="true" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigurePrepareComposite" eSuperTypes="#//IConfigurationTask">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prepareTask" lowerBound="1"
+        eType="ecore:EClass process.ecore#//PrepareCompositeTransfer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetInstance" lowerBound="1"
+        eType="#//EInstance"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EInstance">
+    <eLiterals name="ContextInstance"/>
+    <eLiterals name="ContextInstance_PlusOne" value="1"/>
+    <eLiterals name="ContextInstance_MinusOne" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigureCompositeBufferBarrier" eSuperTypes="#//IConfigurationTask">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="barrier" lowerBound="1"
+        eType="ecore:EClass resource.ecore#//CompositeBufferBarrier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetInstance" lowerBound="1"
+        eType="#//EInstance"/>
+  </eClassifiers>
 </ecore:EPackage>

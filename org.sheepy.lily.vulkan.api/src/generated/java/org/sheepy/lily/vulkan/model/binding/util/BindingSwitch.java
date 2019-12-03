@@ -111,6 +111,24 @@ public class BindingSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE:
+			{
+				ConfigurePrepareComposite configurePrepareComposite = (ConfigurePrepareComposite)theEObject;
+				T result = caseConfigurePrepareComposite(configurePrepareComposite);
+				if (result == null) result = caseIConfigurationTask(configurePrepareComposite);
+				if (result == null) result = caseLNamedElement(configurePrepareComposite);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER:
+			{
+				ConfigureCompositeBufferBarrier configureCompositeBufferBarrier = (ConfigureCompositeBufferBarrier)theEObject;
+				T result = caseConfigureCompositeBufferBarrier(configureCompositeBufferBarrier);
+				if (result == null) result = caseIConfigurationTask(configureCompositeBufferBarrier);
+				if (result == null) result = caseLNamedElement(configureCompositeBufferBarrier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -175,6 +193,38 @@ public class BindingSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIConfigurationTask(IConfigurationTask object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Configure Prepare Composite</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Configure Prepare Composite</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConfigurePrepareComposite(ConfigurePrepareComposite object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Configure Composite Buffer Barrier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Configure Composite Buffer Barrier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConfigureCompositeBufferBarrier(ConfigureCompositeBufferBarrier object)
 	{
 		return null;
 	}

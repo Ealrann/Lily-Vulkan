@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.binding.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -67,8 +68,44 @@ public class BindingFactoryImpl extends EFactoryImpl implements BindingFactory
 			case BindingPackage.BINDING_CONFIGURATION: return createBindingConfiguration();
 			case BindingPackage.CONFIGURE_BIND: return createConfigureBind();
 			case BindingPackage.ROTATE_CONFIGURATION: return createRotateConfiguration();
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE: return createConfigurePrepareComposite();
+			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER: return createConfigureCompositeBufferBarrier();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue)
+	{
+		switch (eDataType.getClassifierID())
+		{
+			case BindingPackage.EINSTANCE:
+				return createEInstanceFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue)
+	{
+		switch (eDataType.getClassifierID())
+		{
+			case BindingPackage.EINSTANCE:
+				return convertEInstanceToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -106,6 +143,52 @@ public class BindingFactoryImpl extends EFactoryImpl implements BindingFactory
 	{
 		RotateConfigurationImpl rotateConfiguration = new RotateConfigurationImpl();
 		return rotateConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConfigurePrepareComposite createConfigurePrepareComposite()
+	{
+		ConfigurePrepareCompositeImpl configurePrepareComposite = new ConfigurePrepareCompositeImpl();
+		return configurePrepareComposite;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConfigureCompositeBufferBarrier createConfigureCompositeBufferBarrier()
+	{
+		ConfigureCompositeBufferBarrierImpl configureCompositeBufferBarrier = new ConfigureCompositeBufferBarrierImpl();
+		return configureCompositeBufferBarrier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EInstance createEInstanceFromString(EDataType eDataType, String initialValue)
+	{
+		EInstance result = EInstance.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEInstanceToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

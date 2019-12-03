@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.model.binding.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -29,6 +30,9 @@ import org.sheepy.lily.vulkan.model.binding.BindingConfiguration;
 import org.sheepy.lily.vulkan.model.binding.BindingFactory;
 import org.sheepy.lily.vulkan.model.binding.BindingPackage;
 import org.sheepy.lily.vulkan.model.binding.ConfigureBind;
+import org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier;
+import org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite;
+import org.sheepy.lily.vulkan.model.binding.EInstance;
 import org.sheepy.lily.vulkan.model.binding.IConfigurationTask;
 import org.sheepy.lily.vulkan.model.binding.RotateConfiguration;
 
@@ -95,6 +99,27 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 	 * @generated
 	 */
 	private EClass iConfigurationTaskEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass configurePrepareCompositeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass configureCompositeBufferBarrierEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eInstanceEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -312,6 +337,83 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getConfigurePrepareComposite()
+	{
+		return configurePrepareCompositeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getConfigurePrepareComposite_PrepareTask()
+	{
+		return (EReference)configurePrepareCompositeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getConfigurePrepareComposite_TargetInstance()
+	{
+		return (EAttribute)configurePrepareCompositeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getConfigureCompositeBufferBarrier()
+	{
+		return configureCompositeBufferBarrierEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getConfigureCompositeBufferBarrier_Barrier()
+	{
+		return (EReference)configureCompositeBufferBarrierEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getConfigureCompositeBufferBarrier_TargetInstance()
+	{
+		return (EAttribute)configureCompositeBufferBarrierEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getEInstance()
+	{
+		return eInstanceEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public BindingFactory getBindingFactory()
 	{
 		return (BindingFactory)getEFactoryInstance();
@@ -350,6 +452,17 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		createEAttribute(rotateConfigurationEClass, ROTATE_CONFIGURATION__FORCE_RECORD);
 
 		iConfigurationTaskEClass = createEClass(ICONFIGURATION_TASK);
+
+		configurePrepareCompositeEClass = createEClass(CONFIGURE_PREPARE_COMPOSITE);
+		createEReference(configurePrepareCompositeEClass, CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK);
+		createEAttribute(configurePrepareCompositeEClass, CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE);
+
+		configureCompositeBufferBarrierEClass = createEClass(CONFIGURE_COMPOSITE_BUFFER_BARRIER);
+		createEReference(configureCompositeBufferBarrierEClass, CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER);
+		createEAttribute(configureCompositeBufferBarrierEClass, CONFIGURE_COMPOSITE_BUFFER_BARRIER__TARGET_INSTANCE);
+
+		// Create enums
+		eInstanceEEnum = createEEnum(EINSTANCE);
 	}
 
 	/**
@@ -391,6 +504,8 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		configureBindEClass.getESuperTypes().add(this.getIConfigurationTask());
 		rotateConfigurationEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		iConfigurationTaskEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
+		configurePrepareCompositeEClass.getESuperTypes().add(this.getIConfigurationTask());
+		configureCompositeBufferBarrierEClass.getESuperTypes().add(this.getIConfigurationTask());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(bindingConfigurationEClass, BindingConfiguration.class, "BindingConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -406,6 +521,20 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		initEAttribute(getRotateConfiguration_ForceRecord(), ecorePackage.getEBoolean(), "forceRecord", "false", 1, 1, RotateConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iConfigurationTaskEClass, IConfigurationTask.class, "IConfigurationTask", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(configurePrepareCompositeEClass, ConfigurePrepareComposite.class, "ConfigurePrepareComposite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConfigurePrepareComposite_PrepareTask(), theProcessPackage.getPrepareCompositeTransfer(), null, "prepareTask", null, 1, 1, ConfigurePrepareComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConfigurePrepareComposite_TargetInstance(), this.getEInstance(), "targetInstance", null, 1, 1, ConfigurePrepareComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(configureCompositeBufferBarrierEClass, ConfigureCompositeBufferBarrier.class, "ConfigureCompositeBufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConfigureCompositeBufferBarrier_Barrier(), theResourcePackage.getCompositeBufferBarrier(), null, "barrier", null, 1, 1, ConfigureCompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConfigureCompositeBufferBarrier_TargetInstance(), this.getEInstance(), "targetInstance", null, 1, 1, ConfigureCompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(eInstanceEEnum, EInstance.class, "EInstance");
+		addEEnumLiteral(eInstanceEEnum, EInstance.CONTEXT_INSTANCE);
+		addEEnumLiteral(eInstanceEEnum, EInstance.CONTEXT_INSTANCE_PLUS_ONE);
+		addEEnumLiteral(eInstanceEEnum, EInstance.CONTEXT_INSTANCE_MINUS_ONE);
 
 		// Create resource
 		createResource(eNS_URI);

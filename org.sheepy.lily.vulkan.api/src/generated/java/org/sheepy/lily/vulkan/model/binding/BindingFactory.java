@@ -50,6 +50,24 @@ public interface BindingFactory extends EFactory
 	RotateConfiguration createRotateConfiguration();
 
 	/**
+	 * Returns a new object of class '<em>Configure Prepare Composite</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Configure Prepare Composite</em>'.
+	 * @generated
+	 */
+	ConfigurePrepareComposite createConfigurePrepareComposite();
+
+	/**
+	 * Returns a new object of class '<em>Configure Composite Buffer Barrier</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Configure Composite Buffer Barrier</em>'.
+	 * @generated
+	 */
+	ConfigureCompositeBufferBarrier createConfigureCompositeBufferBarrier();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

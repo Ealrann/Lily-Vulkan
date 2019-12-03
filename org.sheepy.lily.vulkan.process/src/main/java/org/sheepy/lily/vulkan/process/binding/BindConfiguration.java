@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 
-public class BindConfiguration
+public final class BindConfiguration
 {
 	public final int instance;
 	public final List<DescriptorSet> descriptorSets;
