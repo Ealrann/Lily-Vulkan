@@ -58,10 +58,34 @@ public class BarrierItemProvider extends ItemProviderAdapter implements IEditing
 		{
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
 			addSrcAccessMaskPropertyDescriptor(object);
 			addDstAccessMaskPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 org.sheepy.lily.core.model.types.TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -119,7 +143,10 @@ public class BarrierItemProvider extends ItemProviderAdapter implements IEditing
 	@Override
 	public String getText(Object object)
 	{
-		return getString("_UI_Barrier_type");
+		String label = ((Barrier)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Barrier_type") :
+			getString("_UI_Barrier_type") + " " + label;
 	}
 
 	/**
@@ -136,6 +163,7 @@ public class BarrierItemProvider extends ItemProviderAdapter implements IEditing
 
 		switch (notification.getFeatureID(Barrier.class))
 		{
+			case BarrierPackage.BARRIER__NAME:
 			case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
 			case BarrierPackage.BARRIER__DST_ACCESS_MASK:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

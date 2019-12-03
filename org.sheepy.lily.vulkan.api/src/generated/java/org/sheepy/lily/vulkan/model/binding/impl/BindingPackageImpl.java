@@ -348,7 +348,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getConfigurePrepareComposite_PrepareTask()
+	public EReference getConfigurePrepareComposite_PrepareTasks()
 	{
 		return (EReference)configurePrepareCompositeEClass.getEStructuralFeatures().get(0);
 	}
@@ -381,7 +381,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getConfigureCompositeBufferBarrier_Barrier()
+	public EReference getConfigureCompositeBufferBarrier_Barriers()
 	{
 		return (EReference)configureCompositeBufferBarrierEClass.getEStructuralFeatures().get(0);
 	}
@@ -454,11 +454,11 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		iConfigurationTaskEClass = createEClass(ICONFIGURATION_TASK);
 
 		configurePrepareCompositeEClass = createEClass(CONFIGURE_PREPARE_COMPOSITE);
-		createEReference(configurePrepareCompositeEClass, CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK);
+		createEReference(configurePrepareCompositeEClass, CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS);
 		createEAttribute(configurePrepareCompositeEClass, CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE);
 
 		configureCompositeBufferBarrierEClass = createEClass(CONFIGURE_COMPOSITE_BUFFER_BARRIER);
-		createEReference(configureCompositeBufferBarrierEClass, CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER);
+		createEReference(configureCompositeBufferBarrierEClass, CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIERS);
 		createEAttribute(configureCompositeBufferBarrierEClass, CONFIGURE_COMPOSITE_BUFFER_BARRIER__TARGET_INSTANCE);
 
 		// Create enums
@@ -523,11 +523,11 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		initEClass(iConfigurationTaskEClass, IConfigurationTask.class, "IConfigurationTask", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(configurePrepareCompositeEClass, ConfigurePrepareComposite.class, "ConfigurePrepareComposite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConfigurePrepareComposite_PrepareTask(), theProcessPackage.getPrepareCompositeTransfer(), null, "prepareTask", null, 1, 1, ConfigurePrepareComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfigurePrepareComposite_PrepareTasks(), theProcessPackage.getPrepareCompositeTransfer(), null, "prepareTasks", null, 1, -1, ConfigurePrepareComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfigurePrepareComposite_TargetInstance(), this.getEInstance(), "targetInstance", null, 1, 1, ConfigurePrepareComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configureCompositeBufferBarrierEClass, ConfigureCompositeBufferBarrier.class, "ConfigureCompositeBufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConfigureCompositeBufferBarrier_Barrier(), theResourcePackage.getCompositeBufferBarrier(), null, "barrier", null, 1, 1, ConfigureCompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfigureCompositeBufferBarrier_Barriers(), theResourcePackage.getCompositeBufferBarrier(), null, "barriers", null, 1, -1, ConfigureCompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfigureCompositeBufferBarrier_TargetInstance(), this.getEInstance(), "targetInstance", null, 1, 1, ConfigureCompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals

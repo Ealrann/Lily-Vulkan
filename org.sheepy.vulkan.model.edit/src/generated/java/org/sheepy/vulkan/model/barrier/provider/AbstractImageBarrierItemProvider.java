@@ -15,8 +15,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
-
 /**
  * This is the item provider adapter for a {@link org.sheepy.vulkan.model.barrier.AbstractImageBarrier} object.
  * <!-- begin-user-doc -->
@@ -110,8 +108,7 @@ public class AbstractImageBarrierItemProvider extends BarrierItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		EImageLayout labelValue = ((AbstractImageBarrier)object).getSrcLayout();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((AbstractImageBarrier)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_AbstractImageBarrier_type") :
 			getString("_UI_AbstractImageBarrier_type") + " " + label;

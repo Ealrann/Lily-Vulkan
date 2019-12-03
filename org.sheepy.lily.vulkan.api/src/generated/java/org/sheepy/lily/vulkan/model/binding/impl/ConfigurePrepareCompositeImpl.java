@@ -2,14 +2,14 @@
  */
 package org.sheepy.lily.vulkan.model.binding.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 
 import org.sheepy.lily.vulkan.model.binding.BindingPackage;
@@ -27,7 +27,7 @@ import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigurePrepareCompositeImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigurePrepareCompositeImpl#getPrepareTask <em>Prepare Task</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigurePrepareCompositeImpl#getPrepareTasks <em>Prepare Tasks</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigurePrepareCompositeImpl#getTargetInstance <em>Target Instance</em>}</li>
  * </ul>
  *
@@ -56,14 +56,14 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPrepareTask() <em>Prepare Task</em>}' reference.
+	 * The cached value of the '{@link #getPrepareTasks() <em>Prepare Tasks</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPrepareTask()
+	 * @see #getPrepareTasks()
 	 * @generated
 	 * @ordered
 	 */
-	protected PrepareCompositeTransfer prepareTask;
+	protected EList<PrepareCompositeTransfer> prepareTasks;
 
 	/**
 	 * The default value of the '{@link #getTargetInstance() <em>Target Instance</em>}' attribute.
@@ -137,43 +137,13 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 	 * @generated
 	 */
 	@Override
-	public PrepareCompositeTransfer getPrepareTask()
+	public EList<PrepareCompositeTransfer> getPrepareTasks()
 	{
-		if (prepareTask != null && ((EObject)prepareTask).eIsProxy())
+		if (prepareTasks == null)
 		{
-			InternalEObject oldPrepareTask = (InternalEObject)prepareTask;
-			prepareTask = (PrepareCompositeTransfer)eResolveProxy(oldPrepareTask);
-			if (prepareTask != oldPrepareTask)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK, oldPrepareTask, prepareTask));
-			}
+			prepareTasks = new EObjectResolvingEList<PrepareCompositeTransfer>(PrepareCompositeTransfer.class, this, BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS);
 		}
-		return prepareTask;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PrepareCompositeTransfer basicGetPrepareTask()
-	{
-		return prepareTask;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setPrepareTask(PrepareCompositeTransfer newPrepareTask)
-	{
-		PrepareCompositeTransfer oldPrepareTask = prepareTask;
-		prepareTask = newPrepareTask;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK, oldPrepareTask, prepareTask));
+		return prepareTasks;
 	}
 
 	/**
@@ -213,9 +183,8 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 		{
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__NAME:
 				return getName();
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK:
-				if (resolve) return getPrepareTask();
-				return basicGetPrepareTask();
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS:
+				return getPrepareTasks();
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE:
 				return getTargetInstance();
 		}
@@ -227,6 +196,7 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -235,8 +205,9 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__NAME:
 				setName((String)newValue);
 				return;
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK:
-				setPrepareTask((PrepareCompositeTransfer)newValue);
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS:
+				getPrepareTasks().clear();
+				getPrepareTasks().addAll((Collection<? extends PrepareCompositeTransfer>)newValue);
 				return;
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE:
 				setTargetInstance((EInstance)newValue);
@@ -258,8 +229,8 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK:
-				setPrepareTask((PrepareCompositeTransfer)null);
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS:
+				getPrepareTasks().clear();
 				return;
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE:
 				setTargetInstance(TARGET_INSTANCE_EDEFAULT);
@@ -280,8 +251,8 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 		{
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK:
-				return prepareTask != null;
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS:
+				return prepareTasks != null && !prepareTasks.isEmpty();
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE:
 				return targetInstance != TARGET_INSTANCE_EDEFAULT;
 		}

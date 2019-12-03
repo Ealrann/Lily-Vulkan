@@ -124,8 +124,10 @@ public class CompositeBufferBarrierItemProvider extends AbstractBufferBarrierIte
 	@Override
 	public String getText(Object object)
 	{
-		CompositeBufferBarrier compositeBufferBarrier = (CompositeBufferBarrier)object;
-		return getString("_UI_CompositeBufferBarrier_type") + " " + compositeBufferBarrier.getInstance();
+		String label = ((CompositeBufferBarrier)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_CompositeBufferBarrier_type") :
+			getString("_UI_CompositeBufferBarrier_type") + " " + label;
 	}
 
 

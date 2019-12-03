@@ -12,10 +12,13 @@ public final class ConfigurePrepareCompositeAdapter
 	@Override
 	public void configure(BindConfiguration configuration, ConfigurePrepareComposite task)
 	{
-		final var prepareTask = task.getPrepareTask();
+		final var prepareTasks = task.getPrepareTasks();
 		final var instance = computeInstance(configuration, task.getTargetInstance());
 
-		prepareTask.setInstance(instance);
+		for (final var prepareTask : prepareTasks)
+		{
+			prepareTask.setInstance(instance);
+		}
 	}
 
 	private static int computeInstance(BindConfiguration configuration, EInstance type)

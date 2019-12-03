@@ -110,6 +110,7 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
+		org.sheepy.lily.core.model.types.TypesPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);

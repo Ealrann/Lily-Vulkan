@@ -76,6 +76,7 @@ public class BarrierSwitch<T> extends Switch<T>
 			{
 				Barrier barrier = (Barrier)theEObject;
 				T result = caseBarrier(barrier);
+				if (result == null) result = caseLNamedElement(barrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -84,6 +85,7 @@ public class BarrierSwitch<T> extends Switch<T>
 				AbstractBufferBarrier abstractBufferBarrier = (AbstractBufferBarrier)theEObject;
 				T result = caseAbstractBufferBarrier(abstractBufferBarrier);
 				if (result == null) result = caseBarrier(abstractBufferBarrier);
+				if (result == null) result = caseLNamedElement(abstractBufferBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -93,6 +95,7 @@ public class BarrierSwitch<T> extends Switch<T>
 				T result = caseReferenceBufferBarrier(referenceBufferBarrier);
 				if (result == null) result = caseAbstractBufferBarrier(referenceBufferBarrier);
 				if (result == null) result = caseBarrier(referenceBufferBarrier);
+				if (result == null) result = caseLNamedElement(referenceBufferBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -101,6 +104,7 @@ public class BarrierSwitch<T> extends Switch<T>
 				AbstractImageBarrier abstractImageBarrier = (AbstractImageBarrier)theEObject;
 				T result = caseAbstractImageBarrier(abstractImageBarrier);
 				if (result == null) result = caseBarrier(abstractImageBarrier);
+				if (result == null) result = caseLNamedElement(abstractImageBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -110,6 +114,7 @@ public class BarrierSwitch<T> extends Switch<T>
 				T result = caseReferenceImageBarrier(referenceImageBarrier);
 				if (result == null) result = caseAbstractImageBarrier(referenceImageBarrier);
 				if (result == null) result = caseBarrier(referenceImageBarrier);
+				if (result == null) result = caseLNamedElement(referenceImageBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -216,6 +221,22 @@ public class BarrierSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseImageTransition(ImageTransition object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>LNamed Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>LNamed Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLNamedElement(org.sheepy.lily.core.model.types.LNamedElement object)
 	{
 		return null;
 	}

@@ -294,13 +294,13 @@ public interface BindingPackage extends EPackage
 	int CONFIGURE_PREPARE_COMPOSITE__NAME = ICONFIGURATION_TASK__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Prepare Task</b></em>' reference.
+	 * The feature id for the '<em><b>Prepare Tasks</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK = ICONFIGURATION_TASK_FEATURE_COUNT + 0;
+	int CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS = ICONFIGURATION_TASK_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Target Instance</b></em>' attribute.
@@ -349,13 +349,13 @@ public interface BindingPackage extends EPackage
 	int CONFIGURE_COMPOSITE_BUFFER_BARRIER__NAME = ICONFIGURATION_TASK__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Barrier</b></em>' reference.
+	 * The feature id for the '<em><b>Barriers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER = ICONFIGURATION_TASK_FEATURE_COUNT + 0;
+	int CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIERS = ICONFIGURATION_TASK_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Target Instance</b></em>' attribute.
@@ -512,15 +512,15 @@ public interface BindingPackage extends EPackage
 	EClass getConfigurePrepareComposite();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getPrepareTask <em>Prepare Task</em>}'.
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getPrepareTasks <em>Prepare Tasks</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Prepare Task</em>'.
-	 * @see org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getPrepareTask()
+	 * @return the meta object for the reference list '<em>Prepare Tasks</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getPrepareTasks()
 	 * @see #getConfigurePrepareComposite()
 	 * @generated
 	 */
-	EReference getConfigurePrepareComposite_PrepareTask();
+	EReference getConfigurePrepareComposite_PrepareTasks();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getTargetInstance <em>Target Instance</em>}'.
@@ -544,15 +544,15 @@ public interface BindingPackage extends EPackage
 	EClass getConfigureCompositeBufferBarrier();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getBarrier <em>Barrier</em>}'.
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getBarriers <em>Barriers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Barrier</em>'.
-	 * @see org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getBarrier()
+	 * @return the meta object for the reference list '<em>Barriers</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getBarriers()
 	 * @see #getConfigureCompositeBufferBarrier()
 	 * @generated
 	 */
-	EReference getConfigureCompositeBufferBarrier_Barrier();
+	EReference getConfigureCompositeBufferBarrier_Barriers();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getTargetInstance <em>Target Instance</em>}'.
@@ -698,12 +698,12 @@ public interface BindingPackage extends EPackage
 		EClass CONFIGURE_PREPARE_COMPOSITE = eINSTANCE.getConfigurePrepareComposite();
 
 		/**
-		 * The meta object literal for the '<em><b>Prepare Task</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Prepare Tasks</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK = eINSTANCE.getConfigurePrepareComposite_PrepareTask();
+		EReference CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS = eINSTANCE.getConfigurePrepareComposite_PrepareTasks();
 
 		/**
 		 * The meta object literal for the '<em><b>Target Instance</b></em>' attribute feature.
@@ -724,12 +724,12 @@ public interface BindingPackage extends EPackage
 		EClass CONFIGURE_COMPOSITE_BUFFER_BARRIER = eINSTANCE.getConfigureCompositeBufferBarrier();
 
 		/**
-		 * The meta object literal for the '<em><b>Barrier</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Barriers</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER = eINSTANCE.getConfigureCompositeBufferBarrier_Barrier();
+		EReference CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIERS = eINSTANCE.getConfigureCompositeBufferBarrier_Barriers();
 
 		/**
 		 * The meta object literal for the '<em><b>Target Instance</b></em>' attribute feature.

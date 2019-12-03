@@ -2,14 +2,14 @@
  */
 package org.sheepy.lily.vulkan.model.binding.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 
 import org.sheepy.lily.vulkan.model.binding.BindingPackage;
@@ -27,7 +27,7 @@ import org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigureCompositeBufferBarrierImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigureCompositeBufferBarrierImpl#getBarrier <em>Barrier</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigureCompositeBufferBarrierImpl#getBarriers <em>Barriers</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigureCompositeBufferBarrierImpl#getTargetInstance <em>Target Instance</em>}</li>
  * </ul>
  *
@@ -56,14 +56,14 @@ public class ConfigureCompositeBufferBarrierImpl extends LilyEObject implements 
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getBarrier() <em>Barrier</em>}' reference.
+	 * The cached value of the '{@link #getBarriers() <em>Barriers</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBarrier()
+	 * @see #getBarriers()
 	 * @generated
 	 * @ordered
 	 */
-	protected CompositeBufferBarrier barrier;
+	protected EList<CompositeBufferBarrier> barriers;
 
 	/**
 	 * The default value of the '{@link #getTargetInstance() <em>Target Instance</em>}' attribute.
@@ -137,43 +137,13 @@ public class ConfigureCompositeBufferBarrierImpl extends LilyEObject implements 
 	 * @generated
 	 */
 	@Override
-	public CompositeBufferBarrier getBarrier()
+	public EList<CompositeBufferBarrier> getBarriers()
 	{
-		if (barrier != null && ((EObject)barrier).eIsProxy())
+		if (barriers == null)
 		{
-			InternalEObject oldBarrier = (InternalEObject)barrier;
-			barrier = (CompositeBufferBarrier)eResolveProxy(oldBarrier);
-			if (barrier != oldBarrier)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER, oldBarrier, barrier));
-			}
+			barriers = new EObjectResolvingEList<CompositeBufferBarrier>(CompositeBufferBarrier.class, this, BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIERS);
 		}
-		return barrier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositeBufferBarrier basicGetBarrier()
-	{
-		return barrier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setBarrier(CompositeBufferBarrier newBarrier)
-	{
-		CompositeBufferBarrier oldBarrier = barrier;
-		barrier = newBarrier;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER, oldBarrier, barrier));
+		return barriers;
 	}
 
 	/**
@@ -213,9 +183,8 @@ public class ConfigureCompositeBufferBarrierImpl extends LilyEObject implements 
 		{
 			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__NAME:
 				return getName();
-			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER:
-				if (resolve) return getBarrier();
-				return basicGetBarrier();
+			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIERS:
+				return getBarriers();
 			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__TARGET_INSTANCE:
 				return getTargetInstance();
 		}
@@ -227,6 +196,7 @@ public class ConfigureCompositeBufferBarrierImpl extends LilyEObject implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -235,8 +205,9 @@ public class ConfigureCompositeBufferBarrierImpl extends LilyEObject implements 
 			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__NAME:
 				setName((String)newValue);
 				return;
-			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER:
-				setBarrier((CompositeBufferBarrier)newValue);
+			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIERS:
+				getBarriers().clear();
+				getBarriers().addAll((Collection<? extends CompositeBufferBarrier>)newValue);
 				return;
 			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__TARGET_INSTANCE:
 				setTargetInstance((EInstance)newValue);
@@ -258,8 +229,8 @@ public class ConfigureCompositeBufferBarrierImpl extends LilyEObject implements 
 			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER:
-				setBarrier((CompositeBufferBarrier)null);
+			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIERS:
+				getBarriers().clear();
 				return;
 			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__TARGET_INSTANCE:
 				setTargetInstance(TARGET_INSTANCE_EDEFAULT);
@@ -280,8 +251,8 @@ public class ConfigureCompositeBufferBarrierImpl extends LilyEObject implements 
 		{
 			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER:
-				return barrier != null;
+			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIERS:
+				return barriers != null && !barriers.isEmpty();
 			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__TARGET_INSTANCE:
 				return targetInstance != TARGET_INSTANCE_EDEFAULT;
 		}

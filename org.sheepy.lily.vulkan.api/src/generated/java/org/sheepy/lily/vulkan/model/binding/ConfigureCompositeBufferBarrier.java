@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.binding;
 
+import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier;
 
 /**
@@ -13,7 +14,7 @@ import org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getBarrier <em>Barrier</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getBarriers <em>Barriers</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getTargetInstance <em>Target Instance</em>}</li>
  * </ul>
  *
@@ -24,26 +25,16 @@ import org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier;
 public interface ConfigureCompositeBufferBarrier extends IConfigurationTask
 {
 	/**
-	 * Returns the value of the '<em><b>Barrier</b></em>' reference.
+	 * Returns the value of the '<em><b>Barriers</b></em>' reference list.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Barrier</em>' reference.
-	 * @see #setBarrier(CompositeBufferBarrier)
-	 * @see org.sheepy.lily.vulkan.model.binding.BindingPackage#getConfigureCompositeBufferBarrier_Barrier()
+	 * @return the value of the '<em>Barriers</em>' reference list.
+	 * @see org.sheepy.lily.vulkan.model.binding.BindingPackage#getConfigureCompositeBufferBarrier_Barriers()
 	 * @model required="true"
 	 * @generated
 	 */
-	CompositeBufferBarrier getBarrier();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getBarrier <em>Barrier</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Barrier</em>' reference.
-	 * @see #getBarrier()
-	 * @generated
-	 */
-	void setBarrier(CompositeBufferBarrier value);
+	EList<CompositeBufferBarrier> getBarriers();
 
 	/**
 	 * Returns the value of the '<em><b>Target Instance</b></em>' attribute.

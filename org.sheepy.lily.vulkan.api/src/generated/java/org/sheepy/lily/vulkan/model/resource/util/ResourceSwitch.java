@@ -294,6 +294,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				T1 result = caseBufferBarrier(bufferBarrier);
 				if (result == null) result = caseAbstractBufferBarrier(bufferBarrier);
 				if (result == null) result = caseBarrier(bufferBarrier);
+				if (result == null) result = caseLNamedElement(bufferBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -303,6 +304,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				T1 result = caseCompositeBufferBarrier(compositeBufferBarrier);
 				if (result == null) result = caseAbstractBufferBarrier(compositeBufferBarrier);
 				if (result == null) result = caseBarrier(compositeBufferBarrier);
+				if (result == null) result = caseLNamedElement(compositeBufferBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -312,6 +314,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				T1 result = caseImageBarrier(imageBarrier);
 				if (result == null) result = caseAbstractImageBarrier(imageBarrier);
 				if (result == null) result = caseBarrier(imageBarrier);
+				if (result == null) result = caseLNamedElement(imageBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

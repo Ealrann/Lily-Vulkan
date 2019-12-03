@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.barrier.provider.AbstractBufferBarrierItemProvider;
 
@@ -93,7 +94,10 @@ public class BufferBarrierItemProvider extends AbstractBufferBarrierItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		return getString("_UI_BufferBarrier_type");
+		String label = ((BufferBarrier)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_BufferBarrier_type") :
+			getString("_UI_BufferBarrier_type") + " " + label;
 	}
 
 	/**

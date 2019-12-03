@@ -46,11 +46,11 @@
     </genClasses>
     <genClasses ecoreClass="binding.ecore#//IConfigurationTask"/>
     <genClasses ecoreClass="binding.ecore#//ConfigurePrepareComposite">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference binding.ecore#//ConfigurePrepareComposite/prepareTask"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference binding.ecore#//ConfigurePrepareComposite/prepareTasks"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute binding.ecore#//ConfigurePrepareComposite/targetInstance"/>
     </genClasses>
     <genClasses ecoreClass="binding.ecore#//ConfigureCompositeBufferBarrier">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference binding.ecore#//ConfigureCompositeBufferBarrier/barrier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference binding.ecore#//ConfigureCompositeBufferBarrier/barriers"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute binding.ecore#//ConfigureCompositeBufferBarrier/targetInstance"/>
     </genClasses>
   </genPackages>

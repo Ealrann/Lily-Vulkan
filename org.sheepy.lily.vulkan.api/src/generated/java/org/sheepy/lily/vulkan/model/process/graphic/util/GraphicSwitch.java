@@ -226,6 +226,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				T1 result = caseSwapImageBarrier(swapImageBarrier);
 				if (result == null) result = caseAbstractImageBarrier(swapImageBarrier);
 				if (result == null) result = caseBarrier(swapImageBarrier);
+				if (result == null) result = caseLNamedElement(swapImageBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

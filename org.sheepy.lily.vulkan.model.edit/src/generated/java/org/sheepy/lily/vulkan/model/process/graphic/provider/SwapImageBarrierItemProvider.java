@@ -10,7 +10,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier;
 import org.sheepy.vulkan.model.barrier.provider.AbstractImageBarrierItemProvider;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier} object.
@@ -69,8 +68,7 @@ public class SwapImageBarrierItemProvider extends AbstractImageBarrierItemProvid
 	@Override
 	public String getText(Object object)
 	{
-		EImageLayout labelValue = ((SwapImageBarrier)object).getSrcLayout();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((SwapImageBarrier)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_SwapImageBarrier_type") :
 			getString("_UI_SwapImageBarrier_type") + " " + label;

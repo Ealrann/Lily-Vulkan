@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.binding;
 
+import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
 
 /**
@@ -13,7 +14,7 @@ import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getPrepareTask <em>Prepare Task</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getPrepareTasks <em>Prepare Tasks</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getTargetInstance <em>Target Instance</em>}</li>
  * </ul>
  *
@@ -24,26 +25,16 @@ import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
 public interface ConfigurePrepareComposite extends IConfigurationTask
 {
 	/**
-	 * Returns the value of the '<em><b>Prepare Task</b></em>' reference.
+	 * Returns the value of the '<em><b>Prepare Tasks</b></em>' reference list.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Prepare Task</em>' reference.
-	 * @see #setPrepareTask(PrepareCompositeTransfer)
-	 * @see org.sheepy.lily.vulkan.model.binding.BindingPackage#getConfigurePrepareComposite_PrepareTask()
+	 * @return the value of the '<em>Prepare Tasks</em>' reference list.
+	 * @see org.sheepy.lily.vulkan.model.binding.BindingPackage#getConfigurePrepareComposite_PrepareTasks()
 	 * @model required="true"
 	 * @generated
 	 */
-	PrepareCompositeTransfer getPrepareTask();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getPrepareTask <em>Prepare Task</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Prepare Task</em>' reference.
-	 * @see #getPrepareTask()
-	 * @generated
-	 */
-	void setPrepareTask(PrepareCompositeTransfer value);
+	EList<PrepareCompositeTransfer> getPrepareTasks();
 
 	/**
 	 * Returns the value of the '<em><b>Target Instance</b></em>' attribute.

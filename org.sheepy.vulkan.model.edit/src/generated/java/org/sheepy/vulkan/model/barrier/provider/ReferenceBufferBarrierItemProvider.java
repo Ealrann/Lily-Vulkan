@@ -97,8 +97,10 @@ public class ReferenceBufferBarrierItemProvider extends AbstractBufferBarrierIte
 	@Override
 	public String getText(Object object)
 	{
-		ReferenceBufferBarrier referenceBufferBarrier = (ReferenceBufferBarrier)object;
-		return getString("_UI_ReferenceBufferBarrier_type") + " " + referenceBufferBarrier.getBufferPtr();
+		String label = ((ReferenceBufferBarrier)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ReferenceBufferBarrier_type") :
+			getString("_UI_ReferenceBufferBarrier_type") + " " + label;
 	}
 
 	/**

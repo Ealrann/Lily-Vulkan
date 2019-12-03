@@ -3,8 +3,10 @@
 package org.sheepy.vulkan.model.barrier.impl;
 
 import java.util.Collection;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.vulkan.model.barrier.Barrier;
@@ -20,6 +22,7 @@ import org.sheepy.vulkan.model.enumeration.EAccess;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.impl.BarrierImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.barrier.impl.BarrierImpl#getSrcAccessMask <em>Src Access Mask</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.barrier.impl.BarrierImpl#getDstAccessMask <em>Dst Access Mask</em>}</li>
  * </ul>
@@ -28,6 +31,26 @@ import org.sheepy.vulkan.model.enumeration.EAccess;
  */
 public abstract class BarrierImpl extends LilyEObject implements Barrier
 {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getSrcAccessMask() <em>Src Access Mask</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -75,6 +98,31 @@ public abstract class BarrierImpl extends LilyEObject implements Barrier
 	 * @generated
 	 */
 	@Override
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BarrierPackage.BARRIER__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<EAccess> getSrcAccessMask()
 	{
 		if (srcAccessMask == null)
@@ -109,6 +157,8 @@ public abstract class BarrierImpl extends LilyEObject implements Barrier
 	{
 		switch (featureID)
 		{
+			case BarrierPackage.BARRIER__NAME:
+				return getName();
 			case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
 				return getSrcAccessMask();
 			case BarrierPackage.BARRIER__DST_ACCESS_MASK:
@@ -128,6 +178,9 @@ public abstract class BarrierImpl extends LilyEObject implements Barrier
 	{
 		switch (featureID)
 		{
+			case BarrierPackage.BARRIER__NAME:
+				setName((String)newValue);
+				return;
 			case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
 				getSrcAccessMask().clear();
 				getSrcAccessMask().addAll((Collection<? extends EAccess>)newValue);
@@ -150,6 +203,9 @@ public abstract class BarrierImpl extends LilyEObject implements Barrier
 	{
 		switch (featureID)
 		{
+			case BarrierPackage.BARRIER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
 				getSrcAccessMask().clear();
 				return;
@@ -170,6 +226,8 @@ public abstract class BarrierImpl extends LilyEObject implements Barrier
 	{
 		switch (featureID)
 		{
+			case BarrierPackage.BARRIER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
 				return srcAccessMask != null && !srcAccessMask.isEmpty();
 			case BarrierPackage.BARRIER__DST_ACCESS_MASK:
@@ -189,7 +247,9 @@ public abstract class BarrierImpl extends LilyEObject implements Barrier
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (srcAccessMask: ");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", srcAccessMask: ");
 		result.append(srcAccessMask);
 		result.append(", dstAccessMask: ");
 		result.append(dstAccessMask);

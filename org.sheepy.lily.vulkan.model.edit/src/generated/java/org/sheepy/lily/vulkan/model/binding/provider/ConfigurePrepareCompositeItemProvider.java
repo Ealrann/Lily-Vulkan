@@ -67,7 +67,7 @@ public class ConfigurePrepareCompositeItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addPrepareTaskPropertyDescriptor(object);
+			addPrepareTasksPropertyDescriptor(object);
 			addTargetInstancePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -97,20 +97,20 @@ public class ConfigurePrepareCompositeItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Prepare Task feature.
+	 * This adds a property descriptor for the Prepare Tasks feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPrepareTaskPropertyDescriptor(Object object)
+	protected void addPrepareTasksPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ConfigurePrepareComposite_prepareTask_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurePrepareComposite_prepareTask_feature", "_UI_ConfigurePrepareComposite_type"),
-				 BindingPackage.Literals.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK,
+				 getString("_UI_ConfigurePrepareComposite_prepareTasks_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurePrepareComposite_prepareTasks_feature", "_UI_ConfigurePrepareComposite_type"),
+				 BindingPackage.Literals.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS,
 				 true,
 				 false,
 				 true,

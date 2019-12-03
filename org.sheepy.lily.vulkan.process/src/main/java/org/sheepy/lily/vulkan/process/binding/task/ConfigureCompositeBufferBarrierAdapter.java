@@ -12,10 +12,13 @@ public final class ConfigureCompositeBufferBarrierAdapter
 	@Override
 	public void configure(BindConfiguration configuration, ConfigureCompositeBufferBarrier task)
 	{
-		final var barrier = task.getBarrier();
+		final var barriers = task.getBarriers();
 		final var instance = computeInstance(configuration, task.getTargetInstance());
 
-		barrier.setInstance(instance);
+		for (final var barrier : barriers)
+		{
+			barrier.setInstance(instance);
+		}
 	}
 
 	private static int computeInstance(BindConfiguration configuration, EInstance type)

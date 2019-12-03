@@ -128,6 +128,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
+		org.sheepy.lily.core.model.types.TypesPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
@@ -440,6 +441,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		org.sheepy.lily.core.model.types.TypesPackage theTypesPackage = (org.sheepy.lily.core.model.types.TypesPackage)EPackage.Registry.INSTANCE.getEPackage(org.sheepy.lily.core.model.types.TypesPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 
 		// Create type parameters
@@ -447,6 +449,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		barrierEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		abstractBufferBarrierEClass.getESuperTypes().add(this.getBarrier());
 		referenceBufferBarrierEClass.getESuperTypes().add(this.getAbstractBufferBarrier());
 		abstractImageBarrierEClass.getESuperTypes().add(this.getBarrier());
