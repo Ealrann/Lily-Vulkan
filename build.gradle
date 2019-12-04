@@ -63,6 +63,13 @@ subprojects {
 		repositories {
 			jcenter()
 			maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+			maven {
+				url "https://maven.pkg.github.com/ealrann/emf-standalone"
+				credentials {
+					username = findProperty("github.username")
+					password = findProperty("github.token")
+				}
+			}
 		}
 	}
 }
