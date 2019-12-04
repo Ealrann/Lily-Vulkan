@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
+import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -17,9 +18,9 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getCompositeBuffer <em>Composite Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getMode <em>Mode</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getInstance <em>Instance</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#isPrepareDuringUpdate <em>Prepare During Update</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getParts <em>Parts</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPrepareCompositeTransfer()
@@ -77,29 +78,6 @@ public interface PrepareCompositeTransfer extends IPipelineTask
 	void setMode(EFlushMode value);
 
 	/**
-	 * Returns the value of the '<em><b>Instance</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Instance</em>' attribute.
-	 * @see #setInstance(int)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPrepareCompositeTransfer_Instance()
-	 * @model default="0" required="true"
-	 * @generated
-	 */
-	int getInstance();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getInstance <em>Instance</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Instance</em>' attribute.
-	 * @see #getInstance()
-	 * @generated
-	 */
-	void setInstance(int value);
-
-	/**
 	 * Returns the value of the '<em><b>Prepare During Update</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
@@ -147,5 +125,17 @@ public interface PrepareCompositeTransfer extends IPipelineTask
 	 * @generated
 	 */
 	void setStage(ECommandStage value);
+
+	/**
+	 * Returns the value of the '<em><b>Parts</b></em>' containment reference list.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.CompositePartReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parts</em>' containment reference list.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPrepareCompositeTransfer_Parts()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	EList<CompositePartReference> getParts();
 
 } // PrepareCompositeTransfer

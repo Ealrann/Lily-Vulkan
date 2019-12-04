@@ -33,7 +33,7 @@ public class InstanceDataProviderAdapter implements IBufferDataProviderAdapter
 	}
 
 	@Override
-	public long getSize()
+	public long requestedSize()
 	{
 		return SIZE;
 	}

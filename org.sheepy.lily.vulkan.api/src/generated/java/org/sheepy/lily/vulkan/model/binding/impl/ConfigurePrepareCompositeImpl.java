@@ -16,7 +16,7 @@ import org.sheepy.lily.vulkan.model.binding.BindingPackage;
 import org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite;
 import org.sheepy.lily.vulkan.model.binding.EInstance;
 
-import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
+import org.sheepy.lily.vulkan.model.process.CompositePartReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +27,7 @@ import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigurePrepareCompositeImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigurePrepareCompositeImpl#getPrepareTasks <em>Prepare Tasks</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigurePrepareCompositeImpl#getReferences <em>References</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigurePrepareCompositeImpl#getTargetInstance <em>Target Instance</em>}</li>
  * </ul>
  *
@@ -56,14 +56,14 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPrepareTasks() <em>Prepare Tasks</em>}' reference list.
+	 * The cached value of the '{@link #getReferences() <em>References</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPrepareTasks()
+	 * @see #getReferences()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PrepareCompositeTransfer> prepareTasks;
+	protected EList<CompositePartReference> references;
 
 	/**
 	 * The default value of the '{@link #getTargetInstance() <em>Target Instance</em>}' attribute.
@@ -137,13 +137,13 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 	 * @generated
 	 */
 	@Override
-	public EList<PrepareCompositeTransfer> getPrepareTasks()
+	public EList<CompositePartReference> getReferences()
 	{
-		if (prepareTasks == null)
+		if (references == null)
 		{
-			prepareTasks = new EObjectResolvingEList<PrepareCompositeTransfer>(PrepareCompositeTransfer.class, this, BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS);
+			references = new EObjectResolvingEList<CompositePartReference>(CompositePartReference.class, this, BindingPackage.CONFIGURE_PREPARE_COMPOSITE__REFERENCES);
 		}
-		return prepareTasks;
+		return references;
 	}
 
 	/**
@@ -183,8 +183,8 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 		{
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__NAME:
 				return getName();
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS:
-				return getPrepareTasks();
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__REFERENCES:
+				return getReferences();
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE:
 				return getTargetInstance();
 		}
@@ -205,9 +205,9 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__NAME:
 				setName((String)newValue);
 				return;
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS:
-				getPrepareTasks().clear();
-				getPrepareTasks().addAll((Collection<? extends PrepareCompositeTransfer>)newValue);
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__REFERENCES:
+				getReferences().clear();
+				getReferences().addAll((Collection<? extends CompositePartReference>)newValue);
 				return;
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE:
 				setTargetInstance((EInstance)newValue);
@@ -229,8 +229,8 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS:
-				getPrepareTasks().clear();
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__REFERENCES:
+				getReferences().clear();
 				return;
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE:
 				setTargetInstance(TARGET_INSTANCE_EDEFAULT);
@@ -251,8 +251,8 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 		{
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS:
-				return prepareTasks != null && !prepareTasks.isEmpty();
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__REFERENCES:
+				return references != null && !references.isEmpty();
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE:
 				return targetInstance != TARGET_INSTANCE_EDEFAULT;
 		}

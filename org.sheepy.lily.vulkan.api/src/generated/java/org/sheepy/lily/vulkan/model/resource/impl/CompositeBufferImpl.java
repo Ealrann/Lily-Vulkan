@@ -33,7 +33,6 @@ import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getDataProviders <em>Data Providers</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getTransferBuffer <em>Transfer Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getMinSize <em>Min Size</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getGrowFactor <em>Grow Factor</em>}</li>
  * </ul>
  *
  * @generated
@@ -99,26 +98,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 	 * @ordered
 	 */
 	protected long minSize = MIN_SIZE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getGrowFactor() <em>Grow Factor</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGrowFactor()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final float GROW_FACTOR_EDEFAULT = 1.0F;
-
-	/**
-	 * The cached value of the '{@link #getGrowFactor() <em>Grow Factor</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGrowFactor()
-	 * @generated
-	 * @ordered
-	 */
-	protected float growFactor = GROW_FACTOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -257,31 +236,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 	 * @generated
 	 */
 	@Override
-	public float getGrowFactor()
-	{
-		return growFactor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setGrowFactor(float newGrowFactor)
-	{
-		float oldGrowFactor = growFactor;
-		growFactor = newGrowFactor;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_BUFFER__GROW_FACTOR, oldGrowFactor, growFactor));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -311,8 +265,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 				return basicGetTransferBuffer();
 			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
 				return getMinSize();
-			case ResourcePackage.COMPOSITE_BUFFER__GROW_FACTOR:
-				return getGrowFactor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -341,9 +293,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
 				setMinSize((Long)newValue);
 				return;
-			case ResourcePackage.COMPOSITE_BUFFER__GROW_FACTOR:
-				setGrowFactor((Float)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -370,9 +319,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
 				setMinSize(MIN_SIZE_EDEFAULT);
 				return;
-			case ResourcePackage.COMPOSITE_BUFFER__GROW_FACTOR:
-				setGrowFactor(GROW_FACTOR_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -395,8 +341,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 				return transferBuffer != null;
 			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
 				return minSize != MIN_SIZE_EDEFAULT;
-			case ResourcePackage.COMPOSITE_BUFFER__GROW_FACTOR:
-				return growFactor != GROW_FACTOR_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -416,8 +360,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 		result.append(name);
 		result.append(", minSize: ");
 		result.append(minSize);
-		result.append(", growFactor: ");
-		result.append(growFactor);
 		result.append(')');
 		return result.toString();
 	}

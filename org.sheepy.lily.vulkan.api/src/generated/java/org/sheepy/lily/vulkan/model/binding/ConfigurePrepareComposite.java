@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.model.binding;
 
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
+import org.sheepy.lily.vulkan.model.process.CompositePartReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +14,7 @@ import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getPrepareTasks <em>Prepare Tasks</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getReferences <em>References</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getTargetInstance <em>Target Instance</em>}</li>
  * </ul>
  *
@@ -25,16 +25,16 @@ import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
 public interface ConfigurePrepareComposite extends IConfigurationTask
 {
 	/**
-	 * Returns the value of the '<em><b>Prepare Tasks</b></em>' reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer}.
+	 * Returns the value of the '<em><b>References</b></em>' reference list.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.CompositePartReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Prepare Tasks</em>' reference list.
-	 * @see org.sheepy.lily.vulkan.model.binding.BindingPackage#getConfigurePrepareComposite_PrepareTasks()
+	 * @return the value of the '<em>References</em>' reference list.
+	 * @see org.sheepy.lily.vulkan.model.binding.BindingPackage#getConfigurePrepareComposite_References()
 	 * @model required="true"
 	 * @generated
 	 */
-	EList<PrepareCompositeTransfer> getPrepareTasks();
+	EList<CompositePartReference> getReferences();
 
 	/**
 	 * Returns the value of the '<em><b>Target Instance</b></em>' attribute.

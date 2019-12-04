@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.sheepy.lily.vulkan.demo.test.composite.instance.model.InstanceTestResourceFactory.ResourceContainer;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
+import org.sheepy.lily.vulkan.model.process.CompositePartReference;
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
@@ -33,6 +34,8 @@ public class InstanceTaskManager
 	public final DispatchTask dispatch = ComputeFactory.eINSTANCE.createDispatchTask();
 	public final PrepareCompositeTransfer preparePush = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
 	public final PrepareCompositeTransfer prepareFetch = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
+	public final CompositePartReference pushReference = ProcessFactory.eINSTANCE.createCompositePartReference();
+	public final CompositePartReference fetchReference = ProcessFactory.eINSTANCE.createCompositePartReference();
 
 	private final BufferDataProvider<?> dataProvider;
 	private final int instanceCount;
@@ -48,6 +51,7 @@ public class InstanceTaskManager
 
 		preparePush.setCompositeBuffer(resourceContainer.compositeBuffer);
 		preparePush.setMode(EFlushMode.PUSH);
+		preparePush.getParts().add(pushReference);
 		pushTask.setTransferBuffer(resourceContainer.transferBuffer);
 		pushTask.setStage(ECommandStage.TRANSFER);
 
@@ -63,6 +67,7 @@ public class InstanceTaskManager
 
 		prepareFetch.setCompositeBuffer(resourceContainer.compositeBuffer);
 		prepareFetch.setMode(EFlushMode.FETCH);
+		prepareFetch.getParts().add(fetchReference);
 		fetchTask.setTransferBuffer(resourceContainer.transferBuffer);
 		fetchTask.setStage(ECommandStage.COMPUTE);
 	}
@@ -92,8 +97,8 @@ public class InstanceTaskManager
 	{
 		final int nextInstance = (instance + 1) % instanceCount;
 
-		preparePush.setInstance(instance);
-		prepareFetch.setInstance(nextInstance);
+		pushReference.setInstance(instance);
+		fetchReference.setInstance(nextInstance);
 
 		readBarrier.setInstance(instance);
 		writeBarrier.setInstance(nextInstance);

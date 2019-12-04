@@ -37,6 +37,8 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getAccessBeforePush <em>Access Before Push</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getStageBeforeFetch <em>Stage Before Fetch</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getAccessBeforeFetch <em>Access Before Fetch</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getGrowFactor <em>Grow Factor</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getGrowThreshold <em>Grow Threshold</em>}</li>
  * </ul>
  *
  * @generated
@@ -212,6 +214,46 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 	 * @ordered
 	 */
 	protected EList<EAccess> accessBeforeFetch;
+
+	/**
+	 * The default value of the '{@link #getGrowFactor() <em>Grow Factor</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGrowFactor()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final float GROW_FACTOR_EDEFAULT = 1.0F;
+
+	/**
+	 * The cached value of the '{@link #getGrowFactor() <em>Grow Factor</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGrowFactor()
+	 * @generated
+	 * @ordered
+	 */
+	protected float growFactor = GROW_FACTOR_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getGrowThreshold() <em>Grow Threshold</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGrowThreshold()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final float GROW_THRESHOLD_EDEFAULT = 1.0F;
+
+	/**
+	 * The cached value of the '{@link #getGrowThreshold() <em>Grow Threshold</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGrowThreshold()
+	 * @generated
+	 * @ordered
+	 */
+	protected float growThreshold = GROW_THRESHOLD_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -495,6 +537,56 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 	 * @generated
 	 */
 	@Override
+	public float getGrowFactor()
+	{
+		return growFactor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setGrowFactor(float newGrowFactor)
+	{
+		float oldGrowFactor = growFactor;
+		growFactor = newGrowFactor;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR, oldGrowFactor, growFactor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public float getGrowThreshold()
+	{
+		return growThreshold;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setGrowThreshold(float newGrowThreshold)
+	{
+		float oldGrowThreshold = growThreshold;
+		growThreshold = newGrowThreshold;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD, oldGrowThreshold, growThreshold));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -535,6 +627,10 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 				return getStageBeforeFetch();
 			case ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH:
 				return getAccessBeforeFetch();
+			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR:
+				return getGrowFactor();
+			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD:
+				return getGrowThreshold();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -582,6 +678,12 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 				getAccessBeforeFetch().clear();
 				getAccessBeforeFetch().addAll((Collection<? extends EAccess>)newValue);
 				return;
+			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR:
+				setGrowFactor((Float)newValue);
+				return;
+			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD:
+				setGrowThreshold((Float)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -626,6 +728,12 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 			case ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH:
 				getAccessBeforeFetch().clear();
 				return;
+			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR:
+				setGrowFactor(GROW_FACTOR_EDEFAULT);
+				return;
+			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD:
+				setGrowThreshold(GROW_THRESHOLD_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -660,6 +768,10 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 				return stageBeforeFetch != STAGE_BEFORE_FETCH_EDEFAULT;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH:
 				return accessBeforeFetch != null && !accessBeforeFetch.isEmpty();
+			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR:
+				return growFactor != GROW_FACTOR_EDEFAULT;
+			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD:
+				return growThreshold != GROW_THRESHOLD_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -693,6 +805,10 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 		result.append(stageBeforeFetch);
 		result.append(", accessBeforeFetch: ");
 		result.append(accessBeforeFetch);
+		result.append(", growFactor: ");
+		result.append(growFactor);
+		result.append(", growThreshold: ");
+		result.append(growThreshold);
 		result.append(')');
 		return result.toString();
 	}

@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.demo.test.composite.grow.model;
 import java.util.List;
 
 import org.sheepy.lily.vulkan.demo.test.composite.grow.model.TestResourceFactory.ResourceContainer;
+import org.sheepy.lily.vulkan.model.process.CompositePartReference;
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
@@ -16,6 +17,8 @@ public class TaskManager
 	public final FlushTransferBufferTask fetchTask = ProcessFactory.eINSTANCE.createFlushTransferBufferTask();
 	public final PrepareCompositeTransfer preparePush = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
 	public final PrepareCompositeTransfer prepareFetch = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
+	public final CompositePartReference pushReference = ProcessFactory.eINSTANCE.createCompositePartReference();
+	public final CompositePartReference fetchReference = ProcessFactory.eINSTANCE.createCompositePartReference();
 
 	private final int instanceCount;
 
@@ -26,10 +29,12 @@ public class TaskManager
 		this.instanceCount = instanceCount;
 		preparePush.setCompositeBuffer(resourceContainer.compositeBuffer);
 		preparePush.setMode(EFlushMode.PUSH);
+		preparePush.getParts().add(pushReference);
 		pushTask.setTransferBuffer(resourceContainer.transferBuffer);
 		pushTask.setStage(ECommandStage.TRANSFER);
 		prepareFetch.setCompositeBuffer(resourceContainer.compositeBuffer);
 		prepareFetch.setMode(EFlushMode.FETCH);
+		prepareFetch.getParts().add(fetchReference);
 		fetchTask.setTransferBuffer(resourceContainer.transferBuffer);
 		fetchTask.setStage(ECommandStage.TRANSFER);
 	}
@@ -49,7 +54,7 @@ public class TaskManager
 
 	public void configure()
 	{
-		preparePush.setInstance(instance);
-		prepareFetch.setInstance(instance);
+		pushReference.setInstance(instance);
+		fetchReference.setInstance(instance);
 	}
 }

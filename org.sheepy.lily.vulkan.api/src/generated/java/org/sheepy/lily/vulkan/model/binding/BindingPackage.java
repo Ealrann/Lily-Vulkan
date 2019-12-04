@@ -294,13 +294,13 @@ public interface BindingPackage extends EPackage
 	int CONFIGURE_PREPARE_COMPOSITE__NAME = ICONFIGURATION_TASK__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Prepare Tasks</b></em>' reference list.
+	 * The feature id for the '<em><b>References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS = ICONFIGURATION_TASK_FEATURE_COUNT + 0;
+	int CONFIGURE_PREPARE_COMPOSITE__REFERENCES = ICONFIGURATION_TASK_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Target Instance</b></em>' attribute.
@@ -512,15 +512,15 @@ public interface BindingPackage extends EPackage
 	EClass getConfigurePrepareComposite();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getPrepareTasks <em>Prepare Tasks</em>}'.
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getReferences <em>References</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Prepare Tasks</em>'.
-	 * @see org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getPrepareTasks()
+	 * @return the meta object for the reference list '<em>References</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getReferences()
 	 * @see #getConfigurePrepareComposite()
 	 * @generated
 	 */
-	EReference getConfigurePrepareComposite_PrepareTasks();
+	EReference getConfigurePrepareComposite_References();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getTargetInstance <em>Target Instance</em>}'.
@@ -698,12 +698,12 @@ public interface BindingPackage extends EPackage
 		EClass CONFIGURE_PREPARE_COMPOSITE = eINSTANCE.getConfigurePrepareComposite();
 
 		/**
-		 * The meta object literal for the '<em><b>Prepare Tasks</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>References</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS = eINSTANCE.getConfigurePrepareComposite_PrepareTasks();
+		EReference CONFIGURE_PREPARE_COMPOSITE__REFERENCES = eINSTANCE.getConfigurePrepareComposite_References();
 
 		/**
 		 * The meta object literal for the '<em><b>Target Instance</b></em>' attribute feature.

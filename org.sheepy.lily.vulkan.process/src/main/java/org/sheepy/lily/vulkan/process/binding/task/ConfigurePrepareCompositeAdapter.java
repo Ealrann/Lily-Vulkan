@@ -12,11 +12,12 @@ public final class ConfigurePrepareCompositeAdapter
 	@Override
 	public void configure(BindConfiguration configuration, ConfigurePrepareComposite task)
 	{
-		final var prepareTasks = task.getPrepareTasks();
+		final var prepareTasks = task.getReferences();
 		final var instance = computeInstance(configuration, task.getTargetInstance());
 
-		for (final var prepareTask : prepareTasks)
+		for (int i = 0; i < prepareTasks.size(); i++)
 		{
+			final var prepareTask = prepareTasks.get(i);
 			prepareTask.setInstance(instance);
 		}
 	}

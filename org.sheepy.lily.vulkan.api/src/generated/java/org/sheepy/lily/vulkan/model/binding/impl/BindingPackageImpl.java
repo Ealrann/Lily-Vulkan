@@ -348,7 +348,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getConfigurePrepareComposite_PrepareTasks()
+	public EReference getConfigurePrepareComposite_References()
 	{
 		return (EReference)configurePrepareCompositeEClass.getEStructuralFeatures().get(0);
 	}
@@ -454,7 +454,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		iConfigurationTaskEClass = createEClass(ICONFIGURATION_TASK);
 
 		configurePrepareCompositeEClass = createEClass(CONFIGURE_PREPARE_COMPOSITE);
-		createEReference(configurePrepareCompositeEClass, CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASKS);
+		createEReference(configurePrepareCompositeEClass, CONFIGURE_PREPARE_COMPOSITE__REFERENCES);
 		createEAttribute(configurePrepareCompositeEClass, CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE);
 
 		configureCompositeBufferBarrierEClass = createEClass(CONFIGURE_COMPOSITE_BUFFER_BARRIER);
@@ -523,7 +523,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		initEClass(iConfigurationTaskEClass, IConfigurationTask.class, "IConfigurationTask", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(configurePrepareCompositeEClass, ConfigurePrepareComposite.class, "ConfigurePrepareComposite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConfigurePrepareComposite_PrepareTasks(), theProcessPackage.getPrepareCompositeTransfer(), null, "prepareTasks", null, 1, -1, ConfigurePrepareComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfigurePrepareComposite_References(), theProcessPackage.getCompositePartReference(), null, "references", null, 1, -1, ConfigurePrepareComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfigurePrepareComposite_TargetInstance(), this.getEInstance(), "targetInstance", null, 1, 1, ConfigurePrepareComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configureCompositeBufferBarrierEClass, ConfigureCompositeBufferBarrier.class, "ConfigureCompositeBufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

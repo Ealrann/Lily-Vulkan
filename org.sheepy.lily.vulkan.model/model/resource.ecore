@@ -49,8 +49,6 @@
         eType="#//TransferBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minSize" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="growFactor" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EFlushMode">
     <eLiterals name="PUSH"/>
@@ -93,6 +91,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stageBeforeFetch" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EPipelineStage"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessBeforeFetch" upperBound="-1"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EAccess"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="growFactor" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="growThreshold" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="ByteBuffer" instanceClassName="java.nio.ByteBuffer"/>
   <eClassifiers xsi:type="ecore:EClass" name="Image" abstract="true" eSuperTypes="vulkan.ecore#//IResource">

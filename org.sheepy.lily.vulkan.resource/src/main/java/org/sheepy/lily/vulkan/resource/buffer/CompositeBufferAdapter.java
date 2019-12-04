@@ -10,6 +10,7 @@ import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.resource.buffer.ICompositeBufferAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter;
+import org.sheepy.lily.vulkan.model.process.CompositePartReference;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.lily.vulkan.resource.buffer.provider.DataProviderWrapper;
@@ -60,7 +61,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	{
 		for (final var wrapper : providerWrappers)
 		{
-			if (wrapper.hasChanged())
+			if (wrapper.sizeChanged())
 			{
 				return true;
 			}
@@ -81,32 +82,37 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	}
 
 	@Override
-	public void prepareFlush(EFlushMode mode, int instance)
+	public void recordFlush(EFlushMode mode, List<CompositePartReference> refs)
 	{
+		final List<CompositePartReference> refsToFlush = new ArrayList<>();
+		boolean reservationSuccessfull = true;
+
 		if (mode == EFlushMode.PUSH)
 		{
 			refreshConfiguration(false);
 		}
 
-		final List<DataProviderWrapper> providersToFlush = new ArrayList<>();
-		boolean reservationSuccessfull = true;
-
-		for (final var providerWrapper : providerWrappers)
+		for (final var ref : refs)
 		{
+			final var providerWrapper = providerWrappers.get(ref.getPart());
+
 			if (mode == EFlushMode.FETCH || providerWrapper.needPush())
 			{
+				refsToFlush.add(ref);
+
 				if (providerWrapper.reserveMemory(transferBuffer) == false)
 				{
 					reservationSuccessfull = false;
 					break;
 				}
-
-				providersToFlush.add(providerWrapper);
 			}
 		}
 
-		for (final var providerWrapper : providersToFlush)
+		for (final var ref : refsToFlush)
 		{
+			final var providerWrapper = providerWrappers.get(ref.getPart());
+			final int instance = ref.getInstance();
+
 			if (reservationSuccessfull)
 			{
 				if (mode == EFlushMode.PUSH)
@@ -134,7 +140,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		for (int i = 0; i < providerWrappers.size(); i++)
 		{
 			final var providerWrapper = providerWrappers.get(i);
-			if (providerWrapper.hasChanged())
+			if (providerWrapper.sizeChanged())
 			{
 				found |= true;
 				break;
@@ -184,8 +190,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 
 		if (bufferBackend == null)
 		{
-			final long targetSize = (long) (size * compositeBuffer.getGrowFactor());
-			final var info = new BufferInfo(targetSize, usage, false);
+			final var info = new BufferInfo(size, usage, false);
 			bufferBackend = new GPUBufferBackend(info, false);
 			bufferBackend.allocate(context);
 

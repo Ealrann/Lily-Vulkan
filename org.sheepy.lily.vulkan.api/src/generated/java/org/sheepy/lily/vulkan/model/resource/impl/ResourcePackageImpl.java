@@ -666,17 +666,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getCompositeBuffer_GrowFactor()
-	{
-		return (EAttribute)compositeBufferEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getIBufferReference()
 	{
 		return iBufferReferenceEClass;
@@ -867,6 +856,28 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EAttribute getBufferDataProvider_AccessBeforeFetch()
 	{
 		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferDataProvider_GrowFactor()
+	{
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferDataProvider_GrowThreshold()
+	{
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -1573,7 +1584,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__DATA_PROVIDERS);
 		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__TRANSFER_BUFFER);
 		createEAttribute(compositeBufferEClass, COMPOSITE_BUFFER__MIN_SIZE);
-		createEAttribute(compositeBufferEClass, COMPOSITE_BUFFER__GROW_FACTOR);
 
 		iBufferReferenceEClass = createEClass(IBUFFER_REFERENCE);
 
@@ -1596,6 +1606,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH);
+		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__GROW_FACTOR);
+		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__GROW_THRESHOLD);
 
 		imageEClass = createEClass(IMAGE);
 		createEReference(imageEClass, IMAGE__INITIAL_LAYOUT);
@@ -1786,7 +1798,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getCompositeBuffer_DataProviders(), g1, null, "dataProviders", null, 0, -1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCompositeBuffer_TransferBuffer(), this.getTransferBuffer(), null, "transferBuffer", null, 1, 1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCompositeBuffer_MinSize(), ecorePackage.getELong(), "minSize", "0", 1, 1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCompositeBuffer_GrowFactor(), ecorePackage.getEFloat(), "growFactor", "1", 1, 1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iBufferReferenceEClass, IBufferReference.class, "IBufferReference", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1810,6 +1821,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getBufferDataProvider_AccessBeforePush(), theEnumerationPackage.getEAccess(), "accessBeforePush", null, 0, -1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferDataProvider_StageBeforeFetch(), theEnumerationPackage.getEPipelineStage(), "stageBeforeFetch", null, 0, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferDataProvider_AccessBeforeFetch(), theEnumerationPackage.getEAccess(), "accessBeforeFetch", null, 0, -1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferDataProvider_GrowFactor(), ecorePackage.getEFloat(), "growFactor", "1", 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferDataProvider_GrowThreshold(), ecorePackage.getEFloat(), "growThreshold", "1", 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageEClass, Image.class, "Image", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getImage_InitialLayout(), theImagePackage.getImageLayout(), null, "initialLayout", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

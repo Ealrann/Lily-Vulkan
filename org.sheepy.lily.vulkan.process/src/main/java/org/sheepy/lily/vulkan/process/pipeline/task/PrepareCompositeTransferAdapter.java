@@ -34,9 +34,8 @@ public class PrepareCompositeTransferAdapter
 		final var compositeBuffer = task.getCompositeBuffer();
 		final var adapter = compositeBuffer.adapt(ICompositeBufferAdapter.class);
 		final var mode = task.getMode();
-		final int instance = task.getInstance();
 
-		adapter.prepareFlush(mode, instance);
+		adapter.recordFlush(mode, task.getParts());
 	}
 
 	@Override

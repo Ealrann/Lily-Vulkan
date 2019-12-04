@@ -16,7 +16,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getDataProviders <em>Data Providers</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getTransferBuffer <em>Transfer Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getMinSize <em>Min Size</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getGrowFactor <em>Grow Factor</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getCompositeBuffer()
@@ -81,28 +80,5 @@ public interface CompositeBuffer extends IBuffer
 	 * @generated
 	 */
 	void setMinSize(long value);
-
-	/**
-	 * Returns the value of the '<em><b>Grow Factor</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Grow Factor</em>' attribute.
-	 * @see #setGrowFactor(float)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getCompositeBuffer_GrowFactor()
-	 * @model default="1" required="true"
-	 * @generated
-	 */
-	float getGrowFactor();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getGrowFactor <em>Grow Factor</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Grow Factor</em>' attribute.
-	 * @see #getGrowFactor()
-	 * @generated
-	 */
-	void setGrowFactor(float value);
 
 } // CompositeBuffer

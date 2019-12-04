@@ -26,7 +26,7 @@ public class NuklearVertexProviderAdapter implements IBufferDataProviderAdapter
 	}
 
 	@Override
-	public long getSize()
+	public long requestedSize()
 	{
 		return VERTEX_BUFFER_SIZE;
 	}

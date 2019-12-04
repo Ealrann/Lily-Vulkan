@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -26,6 +27,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
+import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 /**
@@ -71,7 +73,6 @@ public class PrepareCompositeTransferItemProvider
 			addEnabledPropertyDescriptor(object);
 			addCompositeBufferPropertyDescriptor(object);
 			addModePropertyDescriptor(object);
-			addInstancePropertyDescriptor(object);
 			addPrepareDuringUpdatePropertyDescriptor(object);
 			addStagePropertyDescriptor(object);
 		}
@@ -171,29 +172,6 @@ public class PrepareCompositeTransferItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Instance feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addInstancePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PrepareCompositeTransfer_instance_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PrepareCompositeTransfer_instance_feature", "_UI_PrepareCompositeTransfer_type"),
-				 ProcessPackage.Literals.PREPARE_COMPOSITE_TRANSFER__INSTANCE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Prepare During Update feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -237,6 +215,39 @@ public class PrepareCompositeTransferItemProvider
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
+	}
+
+	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(ProcessPackage.Literals.PREPARE_COMPOSITE_TRANSFER__PARTS);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -284,10 +295,12 @@ public class PrepareCompositeTransferItemProvider
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__NAME:
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__ENABLED:
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__MODE:
-			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__INSTANCE:
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PREPARE_DURING_UPDATE:
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -304,6 +317,11 @@ public class PrepareCompositeTransferItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.PREPARE_COMPOSITE_TRANSFER__PARTS,
+				 ProcessFactory.eINSTANCE.createCompositePartReference()));
 	}
 
 	/**

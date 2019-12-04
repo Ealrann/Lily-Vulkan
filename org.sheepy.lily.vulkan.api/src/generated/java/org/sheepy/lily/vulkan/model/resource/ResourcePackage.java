@@ -369,22 +369,13 @@ public interface ResourcePackage extends EPackage
 	int COMPOSITE_BUFFER__MIN_SIZE = IBUFFER_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_BUFFER__GROW_FACTOR = IBUFFER_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Composite Buffer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_BUFFER_FEATURE_COUNT = IBUFFER_FEATURE_COUNT + 4;
+	int COMPOSITE_BUFFER_FEATURE_COUNT = IBUFFER_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Composite Buffer</em>' class.
@@ -625,13 +616,31 @@ public interface ResourcePackage extends EPackage
 	int BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
+	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__GROW_FACTOR = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Grow Threshold</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__GROW_THRESHOLD = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 10;
+
+	/**
 	 * The number of structural features of the '<em>Buffer Data Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 9;
+	int BUFFER_DATA_PROVIDER_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of operations of the '<em>Buffer Data Provider</em>' class.
@@ -2451,17 +2460,6 @@ public interface ResourcePackage extends EPackage
 	EAttribute getCompositeBuffer_MinSize();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getGrowFactor <em>Grow Factor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Grow Factor</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getGrowFactor()
-	 * @see #getCompositeBuffer()
-	 * @generated
-	 */
-	EAttribute getCompositeBuffer_GrowFactor();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.IBufferReference <em>IBuffer Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2654,6 +2652,28 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getBufferDataProvider_AccessBeforeFetch();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getGrowFactor <em>Grow Factor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Grow Factor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getGrowFactor()
+	 * @see #getBufferDataProvider()
+	 * @generated
+	 */
+	EAttribute getBufferDataProvider_GrowFactor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getGrowThreshold <em>Grow Threshold</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Grow Threshold</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getGrowThreshold()
+	 * @see #getBufferDataProvider()
+	 * @generated
+	 */
+	EAttribute getBufferDataProvider_GrowThreshold();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Image <em>Image</em>}'.
@@ -3474,14 +3494,6 @@ public interface ResourcePackage extends EPackage
 		EAttribute COMPOSITE_BUFFER__MIN_SIZE = eINSTANCE.getCompositeBuffer_MinSize();
 
 		/**
-		 * The meta object literal for the '<em><b>Grow Factor</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMPOSITE_BUFFER__GROW_FACTOR = eINSTANCE.getCompositeBuffer_GrowFactor();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.IBufferReference <em>IBuffer Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3632,6 +3644,22 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH = eINSTANCE.getBufferDataProvider_AccessBeforeFetch();
+
+		/**
+		 * The meta object literal for the '<em><b>Grow Factor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER_DATA_PROVIDER__GROW_FACTOR = eINSTANCE.getBufferDataProvider_GrowFactor();
+
+		/**
+		 * The meta object literal for the '<em><b>Grow Threshold</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER_DATA_PROVIDER__GROW_THRESHOLD = eINSTANCE.getBufferDataProvider_GrowThreshold();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl <em>Image</em>}' class.

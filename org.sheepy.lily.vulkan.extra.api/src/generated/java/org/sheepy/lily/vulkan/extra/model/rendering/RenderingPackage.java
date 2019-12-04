@@ -792,6 +792,24 @@ public interface RenderingPackage extends EPackage
 	int RENDER_DATA_PROVIDER__ACCESS_BEFORE_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
 
 	/**
+	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_DATA_PROVIDER__GROW_FACTOR = ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR;
+
+	/**
+	 * The feature id for the '<em><b>Grow Threshold</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_DATA_PROVIDER__GROW_THRESHOLD = ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD;
+
+	/**
 	 * The number of structural features of the '<em>Render Data Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -994,6 +1012,24 @@ public interface RenderingPackage extends EPackage
 	int VERTEX_PROVIDER__ACCESS_BEFORE_FETCH = RENDER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
 
 	/**
+	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX_PROVIDER__GROW_FACTOR = RENDER_DATA_PROVIDER__GROW_FACTOR;
+
+	/**
+	 * The feature id for the '<em><b>Grow Threshold</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX_PROVIDER__GROW_THRESHOLD = RENDER_DATA_PROVIDER__GROW_THRESHOLD;
+
+	/**
 	 * The number of structural features of the '<em>Vertex Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1110,6 +1146,24 @@ public interface RenderingPackage extends EPackage
 	 * @ordered
 	 */
 	int INDEX_PROVIDER__ACCESS_BEFORE_FETCH = RENDER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
+
+	/**
+	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_PROVIDER__GROW_FACTOR = RENDER_DATA_PROVIDER__GROW_FACTOR;
+
+	/**
+	 * The feature id for the '<em><b>Grow Threshold</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_PROVIDER__GROW_THRESHOLD = RENDER_DATA_PROVIDER__GROW_THRESHOLD;
 
 	/**
 	 * The feature id for the '<em><b>Index Type</b></em>' attribute.

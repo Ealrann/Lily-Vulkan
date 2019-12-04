@@ -34,7 +34,7 @@ public class TestDataProviderAdapter implements IBufferDataProviderAdapter
 	}
 
 	@Override
-	public long getSize()
+	public long requestedSize()
 	{
 		return currentSize;
 	}

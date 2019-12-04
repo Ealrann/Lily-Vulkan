@@ -67,6 +67,8 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 			addAccessBeforePushPropertyDescriptor(object);
 			addStageBeforeFetchPropertyDescriptor(object);
 			addAccessBeforeFetchPropertyDescriptor(object);
+			addGrowFactorPropertyDescriptor(object);
+			addGrowThresholdPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -302,6 +304,52 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 	}
 
 	/**
+	 * This adds a property descriptor for the Grow Factor feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGrowFactorPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BufferDataProvider_growFactor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_growFactor_feature", "_UI_BufferDataProvider_type"),
+				 ResourcePackage.Literals.BUFFER_DATA_PROVIDER__GROW_FACTOR,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Grow Threshold feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGrowThresholdPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BufferDataProvider_growThreshold_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_growThreshold_feature", "_UI_BufferDataProvider_type"),
+				 ResourcePackage.Literals.BUFFER_DATA_PROVIDER__GROW_THRESHOLD,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns BufferDataProvider.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -352,6 +400,8 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 			case ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH:
+			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR:
+			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

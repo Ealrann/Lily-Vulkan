@@ -30,7 +30,6 @@ public final class DataProviderWrapper extends NotifierAdapter
 	private final int accessBeforeFetch;
 
 	private long alignment;
-
 	private long bufferPtr;
 	private long offset;
 	private long instanceSize;
@@ -38,8 +37,6 @@ public final class DataProviderWrapper extends NotifierAdapter
 	private boolean needPush = true;
 	private MemoryTicket memTicket;
 	private ITransferBuffer transferBuffer;
-
-	private long providedSize = 0;
 
 	public DataProviderWrapper(BufferDataProvider<?> dataProvider)
 	{
@@ -82,8 +79,9 @@ public final class DataProviderWrapper extends NotifierAdapter
 		final long oldOffset = this.offset;
 
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
-		providedSize = adapter.getSize();
-		this.instanceSize = align(providedSize, alignment);
+		final long size = (long) (adapter.requestedSize() * dataProvider.getGrowFactor());
+
+		this.instanceSize = align(size, alignment);
 		this.offset = align(desiredOffset, alignment);
 
 		if (oldSize != this.instanceSize)
@@ -114,7 +112,7 @@ public final class DataProviderWrapper extends NotifierAdapter
 	public boolean needPush()
 	{
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
-		return (needPush || adapter.hasChanged()) && providedSize > 0;
+		return (needPush || adapter.hasChanged()) && instanceSize > 0;
 	}
 
 	public boolean reserveMemory(ITransferBuffer stagingBuffer)
@@ -132,6 +130,7 @@ public final class DataProviderWrapper extends NotifierAdapter
 
 	public void pushProvidedData(int instance)
 	{
+		assert instance < dataProvider.getInstanceCount();
 		assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
 
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
@@ -162,6 +161,7 @@ public final class DataProviderWrapper extends NotifierAdapter
 
 	public void fetchDeviceData(int instance)
 	{
+		assert instance < dataProvider.getInstanceCount();
 		assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
 
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
@@ -180,10 +180,10 @@ public final class DataProviderWrapper extends NotifierAdapter
 		transferBuffer.addTransferCommand(fetchCommand);
 	}
 
-	public boolean hasChanged()
+	public boolean sizeChanged()
 	{
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
-		return providedSize != adapter.getSize();
+		return (instanceSize * dataProvider.getGrowThreshold()) < adapter.requestedSize();
 	}
 
 	@Override

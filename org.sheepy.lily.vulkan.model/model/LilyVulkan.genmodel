@@ -46,7 +46,7 @@
     </genClasses>
     <genClasses ecoreClass="binding.ecore#//IConfigurationTask"/>
     <genClasses ecoreClass="binding.ecore#//ConfigurePrepareComposite">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference binding.ecore#//ConfigurePrepareComposite/prepareTasks"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference binding.ecore#//ConfigurePrepareComposite/references"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute binding.ecore#//ConfigurePrepareComposite/targetInstance"/>
     </genClasses>
     <genClasses ecoreClass="binding.ecore#//ConfigureCompositeBufferBarrier">
@@ -284,9 +284,13 @@
     <genClasses ecoreClass="process.ecore#//PrepareCompositeTransfer">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//PrepareCompositeTransfer/compositeBuffer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PrepareCompositeTransfer/mode"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PrepareCompositeTransfer/instance"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PrepareCompositeTransfer/prepareDuringUpdate"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PrepareCompositeTransfer/stage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//PrepareCompositeTransfer/parts"/>
+    </genClasses>
+    <genClasses ecoreClass="process.ecore#//CompositePartReference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CompositePartReference/part"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CompositePartReference/instance"/>
     </genClasses>
     <genClasses ecoreClass="process.ecore#//SwapBindingsTask">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//SwapBindingsTask/task"/>
@@ -326,7 +330,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/dataProviders"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/transferBuffer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBuffer/minSize"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBuffer/growFactor"/>
     </genClasses>
     <genClasses image="false" ecoreClass="resource.ecore#//IBufferReference"/>
     <genClasses ecoreClass="resource.ecore#//BufferReference">
@@ -349,6 +352,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/accessBeforePush"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/stageBeforeFetch"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/accessBeforeFetch"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/growFactor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/growThreshold"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//Image">
       <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Image/initialLayout"/>

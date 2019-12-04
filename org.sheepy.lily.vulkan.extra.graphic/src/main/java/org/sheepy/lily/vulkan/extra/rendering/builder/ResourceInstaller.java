@@ -23,7 +23,6 @@ import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 public final class ResourceInstaller<T extends Structure>
 {
 	private static final int BUFFER_MIN_SIZE = 1 << 16;
-	private static final float BUFFER_GROW_FACTOR = 1.5f;
 
 	private final GenericRenderer<T> maintainer;
 	private final List<CompositeBuffer> buffers = new ArrayList<>();
@@ -110,13 +109,16 @@ public final class ResourceInstaller<T extends Structure>
 
 	private CompositeBuffer prepareBuffer(GraphicsPipeline pipeline, T structure, int part)
 	{
-		final CompositeBuffer buffer = ResourceFactory.eINSTANCE.createCompositeBuffer();
-		buffer.setGrowFactor(BUFFER_GROW_FACTOR);
-		buffer.setMinSize(BUFFER_MIN_SIZE);
+		final var buffer = ResourceFactory.eINSTANCE.createCompositeBuffer();
 		final var dataProviders = maintainer.getDataProviderPkg().getDataProviders();
+		final var flushTransferTask = maintainer.getFlushTransferBufferTask();
+		final var prepareTranferTask = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
+		prepareTranferTask.setCompositeBuffer(buffer);
+		prepareTranferTask.setMode(EFlushMode.PUSH);
 
 		for (int i = 0; i < dataProviders.size(); i++)
 		{
+			final var transferReference = ProcessFactory.eINSTANCE.createCompositePartReference();
 			final var dataProvider = dataProviders.get(i);
 			final var dataSource = RenderingFactory.eINSTANCE.<T> createRenderableDataSource();
 			dataSource.setPart(part);
@@ -125,14 +127,13 @@ public final class ResourceInstaller<T extends Structure>
 			final var copy = EcoreUtil.copy(dataProvider);
 			copy.setDataSource(dataSource);
 			buffer.getDataProviders().add(copy);
+			
+			transferReference.setPart(i);
+			prepareTranferTask.getParts().add(transferReference);
 		}
 
+		buffer.setMinSize(BUFFER_MIN_SIZE);
 		buffer.setTransferBuffer(maintainer.getTransferBuffer());
-
-		final var flushTransferTask = maintainer.getFlushTransferBufferTask();
-		final var prepareTranferTask = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
-		prepareTranferTask.setCompositeBuffer(buffer);
-		prepareTranferTask.setMode(EFlushMode.PUSH);
 
 		@SuppressWarnings("unchecked")
 		final var containingList = (List<IPipelineTask>) flushTransferTask	.eContainer()

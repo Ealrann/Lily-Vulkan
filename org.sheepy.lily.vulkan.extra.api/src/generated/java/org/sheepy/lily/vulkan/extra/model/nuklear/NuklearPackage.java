@@ -866,6 +866,24 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_VERTEX_PROVIDER__ACCESS_BEFORE_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
 
 	/**
+	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER__GROW_FACTOR = ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR;
+
+	/**
+	 * The feature id for the '<em><b>Grow Threshold</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER__GROW_THRESHOLD = ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD;
+
+	/**
 	 * The feature id for the '<em><b>Context</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -991,6 +1009,24 @@ public interface NuklearPackage extends EPackage
 	 * @ordered
 	 */
 	int NUKLEAR_INDEX_PROVIDER__ACCESS_BEFORE_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
+
+	/**
+	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER__GROW_FACTOR = ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR;
+
+	/**
+	 * The feature id for the '<em><b>Grow Threshold</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER__GROW_THRESHOLD = ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' reference.

@@ -27,6 +27,8 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getAccessBeforePush <em>Access Before Push</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getStageBeforeFetch <em>Stage Before Fetch</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getAccessBeforeFetch <em>Access Before Fetch</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getGrowFactor <em>Grow Factor</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getGrowThreshold <em>Grow Threshold</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider()
@@ -228,5 +230,51 @@ public interface BufferDataProvider<T> extends LNamedElement
 	 * @generated
 	 */
 	EList<EAccess> getAccessBeforeFetch();
+
+	/**
+	 * Returns the value of the '<em><b>Grow Factor</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Grow Factor</em>' attribute.
+	 * @see #setGrowFactor(float)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_GrowFactor()
+	 * @model default="1" required="true"
+	 * @generated
+	 */
+	float getGrowFactor();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getGrowFactor <em>Grow Factor</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Grow Factor</em>' attribute.
+	 * @see #getGrowFactor()
+	 * @generated
+	 */
+	void setGrowFactor(float value);
+
+	/**
+	 * Returns the value of the '<em><b>Grow Threshold</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Grow Threshold</em>' attribute.
+	 * @see #setGrowThreshold(float)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_GrowThreshold()
+	 * @model default="1" required="true"
+	 * @generated
+	 */
+	float getGrowThreshold();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getGrowThreshold <em>Grow Threshold</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Grow Threshold</em>' attribute.
+	 * @see #getGrowThreshold()
+	 * @generated
+	 */
+	void setGrowThreshold(float value);
 
 } // BufferDataProvider

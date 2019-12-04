@@ -371,6 +371,31 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.CompositePartReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CompositePartReferenceItemProvider compositePartReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.CompositePartReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCompositePartReferenceAdapter()
+	{
+		if (compositePartReferenceItemProvider == null)
+		{
+			compositePartReferenceItemProvider = new CompositePartReferenceItemProvider(this);
+		}
+
+		return compositePartReferenceItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.SwapBindingsTask} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -555,6 +580,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 		if (copyBufferTaskItemProvider != null) copyBufferTaskItemProvider.dispose();
 		if (processExtensionPkgItemProvider != null) processExtensionPkgItemProvider.dispose();
 		if (prepareCompositeTransferItemProvider != null) prepareCompositeTransferItemProvider.dispose();
+		if (compositePartReferenceItemProvider != null) compositePartReferenceItemProvider.dispose();
 		if (swapBindingsTaskItemProvider != null) swapBindingsTaskItemProvider.dispose();
 	}
 

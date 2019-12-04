@@ -25,7 +25,7 @@ public class NuklearIndexProviderAdapter implements IBufferDataProviderAdapter
 	}
 
 	@Override
-	public long getSize()
+	public long requestedSize()
 	{
 		return INDEX_BUFFER_SIZE;
 	}

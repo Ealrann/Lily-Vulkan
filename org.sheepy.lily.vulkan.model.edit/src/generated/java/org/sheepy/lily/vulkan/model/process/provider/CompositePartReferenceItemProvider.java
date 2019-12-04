@@ -1,6 +1,7 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.resource.provider;
+package org.sheepy.lily.vulkan.model.process.provider;
+
 
 import java.util.Collection;
 import java.util.List;
@@ -9,8 +10,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
@@ -25,19 +24,23 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
-
-import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.process.CompositePartReference;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.CompositePartReference} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CompositeBufferItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class CompositePartReferenceItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -45,7 +48,7 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeBufferItemProvider(AdapterFactory adapterFactory)
+	public CompositePartReferenceItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -64,8 +67,8 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addTransferBufferPropertyDescriptor(object);
-			addMinSizePropertyDescriptor(object);
+			addPartPropertyDescriptor(object);
+			addInstancePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -94,43 +97,20 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This adds a property descriptor for the Transfer Buffer feature.
+	 * This adds a property descriptor for the Part feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTransferBufferPropertyDescriptor(Object object)
+	protected void addPartPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_CompositeBuffer_transferBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeBuffer_transferBuffer_feature", "_UI_CompositeBuffer_type"),
-				 ResourcePackage.Literals.COMPOSITE_BUFFER__TRANSFER_BUFFER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Min Size feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addMinSizePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CompositeBuffer_minSize_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeBuffer_minSize_feature", "_UI_CompositeBuffer_type"),
-				 ResourcePackage.Literals.COMPOSITE_BUFFER__MIN_SIZE,
+				 getString("_UI_CompositePartReference_part_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositePartReference_part_feature", "_UI_CompositePartReference_type"),
+				 ProcessPackage.Literals.COMPOSITE_PART_REFERENCE__PART,
 				 true,
 				 false,
 				 false,
@@ -140,40 +120,30 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Instance feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
+	protected void addInstancePropertyDescriptor(Object object)
 	{
-		if (childrenFeatures == null)
-		{
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS);
-		}
-		return childrenFeatures;
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositePartReference_instance_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositePartReference_instance_feature", "_UI_CompositePartReference_type"),
+				 ProcessPackage.Literals.COMPOSITE_PART_REFERENCE__INSTANCE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns CompositeBuffer.gif.
+	 * This returns CompositePartReference.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -181,7 +151,7 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/CompositeBuffer"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CompositePartReference"));
 	}
 
 	/**
@@ -193,11 +163,12 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((CompositeBuffer)object).getName();
+		String label = ((CompositePartReference)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_CompositeBuffer_type") :
-			getString("_UI_CompositeBuffer_type") + " " + label;
+			getString("_UI_CompositePartReference_type") :
+			getString("_UI_CompositePartReference_type") + " " + label;
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -211,14 +182,12 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CompositeBuffer.class))
+		switch (notification.getFeatureID(CompositePartReference.class))
 		{
-			case ResourcePackage.COMPOSITE_BUFFER__NAME:
-			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
+			case ProcessPackage.COMPOSITE_PART_REFERENCE__NAME:
+			case ProcessPackage.COMPOSITE_PART_REFERENCE__PART:
+			case ProcessPackage.COMPOSITE_PART_REFERENCE__INSTANCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -235,11 +204,6 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter implements 
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
-				 ResourceFactory.eINSTANCE.createBufferDataProvider()));
 	}
 
 	/**
