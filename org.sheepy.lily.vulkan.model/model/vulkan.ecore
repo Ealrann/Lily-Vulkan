@@ -3,8 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model" nsURI="org.sheepy.lily.vulkan.model" nsPrefix="model">
   <eClassifiers xsi:type="ecore:EClass" name="VulkanEngine" eSuperTypes="../../org.sheepy.lily.core.model/model/application.ecore#//IEngine #//IResourceContainer #//IExecutionManager">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
-        defaultValueLiteral="true"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="processes" upperBound="-1"
         eType="#//IProcess" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="features" upperBound="-1"
@@ -26,8 +25,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="IProcess" abstract="true" interface="true"
       eSuperTypes="#//IResourceContainer ../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement #//IExecutionManager">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
-        defaultValueLiteral="true"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="queuePriority" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="1.0"/>
   </eClassifiers>

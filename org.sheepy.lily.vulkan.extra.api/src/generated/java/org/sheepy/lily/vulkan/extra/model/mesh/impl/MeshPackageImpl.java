@@ -8,8 +8,6 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
-import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.sheepy.lily.core.model.action.ActionPackage;
@@ -22,8 +20,6 @@ import org.sheepy.lily.core.model.inference.InferencePackage;
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 
 import org.sheepy.lily.core.model.presentation.PresentationPackage;
-import org.sheepy.lily.core.model.root.RootPackage;
-
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.core.model.ui.UiPackage;
@@ -187,21 +183,19 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
-		ActionPackage.eINSTANCE.eClass();
+		UiPackage.eINSTANCE.eClass();
+		PresentationPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
-		RootPackage.eINSTANCE.eClass();
+		VariablePackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
-		PresentationPackage.eINSTANCE.eClass();
-		UiPackage.eINSTANCE.eClass();
-		VariablePackage.eINSTANCE.eClass();
 		CadencePackage.eINSTANCE.eClass();
-		ProcessPackage.eINSTANCE.eClass();
-		VulkanPackage.eINSTANCE.eClass();
-		ResourcePackage.eINSTANCE.eClass();
+		ActionPackage.eINSTANCE.eClass();
 		GraphicPackage.eINSTANCE.eClass();
+		ProcessPackage.eINSTANCE.eClass();
+		ResourcePackage.eINSTANCE.eClass();
+		VulkanPackage.eINSTANCE.eClass();
 		BarrierPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 		GraphicpipelinePackage.eINSTANCE.eClass();

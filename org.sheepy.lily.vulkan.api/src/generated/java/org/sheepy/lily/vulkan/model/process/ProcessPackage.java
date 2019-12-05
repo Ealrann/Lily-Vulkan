@@ -8,8 +8,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.sheepy.lily.core.model.cadence.CadencePackage;
-import org.sheepy.lily.core.model.root.RootPackage;
-
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -596,22 +594,13 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE_BARRIER = 8;
 
 	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_BARRIER__CONTENT_OBJECTS = RootPackage.LOBJECT__CONTENT_OBJECTS;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE_BARRIER__NAME = RootPackage.LOBJECT_FEATURE_COUNT + 0;
+	int PIPELINE_BARRIER__NAME = IPIPELINE_TASK__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -620,7 +609,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE_BARRIER__ENABLED = RootPackage.LOBJECT_FEATURE_COUNT + 1;
+	int PIPELINE_BARRIER__ENABLED = IPIPELINE_TASK__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Barriers</b></em>' containment reference list.
@@ -629,7 +618,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE_BARRIER__BARRIERS = RootPackage.LOBJECT_FEATURE_COUNT + 2;
+	int PIPELINE_BARRIER__BARRIERS = IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -638,7 +627,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE_BARRIER__SRC_STAGE = RootPackage.LOBJECT_FEATURE_COUNT + 3;
+	int PIPELINE_BARRIER__SRC_STAGE = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Dst Stage</b></em>' attribute.
@@ -647,7 +636,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE_BARRIER__DST_STAGE = RootPackage.LOBJECT_FEATURE_COUNT + 4;
+	int PIPELINE_BARRIER__DST_STAGE = IPIPELINE_TASK_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Src Queue</b></em>' reference.
@@ -656,7 +645,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE_BARRIER__SRC_QUEUE = RootPackage.LOBJECT_FEATURE_COUNT + 5;
+	int PIPELINE_BARRIER__SRC_QUEUE = IPIPELINE_TASK_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Dst Queue</b></em>' reference.
@@ -665,7 +654,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE_BARRIER__DST_QUEUE = RootPackage.LOBJECT_FEATURE_COUNT + 6;
+	int PIPELINE_BARRIER__DST_QUEUE = IPIPELINE_TASK_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Record During Stage</b></em>' attribute.
@@ -674,7 +663,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE_BARRIER__RECORD_DURING_STAGE = RootPackage.LOBJECT_FEATURE_COUNT + 7;
+	int PIPELINE_BARRIER__RECORD_DURING_STAGE = IPIPELINE_TASK_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Pipeline Barrier</em>' class.
@@ -683,52 +672,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE_BARRIER_FEATURE_COUNT = RootPackage.LOBJECT_FEATURE_COUNT + 8;
-
-	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_BARRIER___LINFERENCE_OBJECT = RootPackage.LOBJECT___LINFERENCE_OBJECT;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_BARRIER___CREATE_CONTAINMENT_ELIST__ECLASS = RootPackage.LOBJECT___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_BARRIER___LCONTENTS = RootPackage.LOBJECT___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_BARRIER___LPARENT = RootPackage.LOBJECT___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_BARRIER___LALL_CONTENTS = RootPackage.LOBJECT___LALL_CONTENTS;
+	int PIPELINE_BARRIER_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Pipeline Barrier</em>' class.
@@ -737,7 +681,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE_BARRIER_OPERATION_COUNT = RootPackage.LOBJECT_OPERATION_COUNT + 0;
+	int PIPELINE_BARRIER_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl <em>Composite Task</em>}' class.

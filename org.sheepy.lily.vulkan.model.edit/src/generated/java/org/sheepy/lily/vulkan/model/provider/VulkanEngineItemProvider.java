@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -22,7 +21,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.core.model.root.LObject;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -170,11 +168,8 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter implements IEd
 	@Override
 	public String getText(Object object)
 	{
-		EList<LObject> labelValue = ((VulkanEngine)object).getContentObjects();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_VulkanEngine_type") :
-			getString("_UI_VulkanEngine_type") + " " + label;
+		VulkanEngine vulkanEngine = (VulkanEngine)object;
+		return getString("_UI_VulkanEngine_type") + " " + vulkanEngine.isEnabled();
 	}
 
 	/**
@@ -191,7 +186,6 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter implements IEd
 
 		switch (notification.getFeatureID(VulkanEngine.class))
 		{
-			case VulkanPackage.VULKAN_ENGINE__CONTENT_OBJECTS:
 			case VulkanPackage.VULKAN_ENGINE__ENABLED:
 			case VulkanPackage.VULKAN_ENGINE__FEATURES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

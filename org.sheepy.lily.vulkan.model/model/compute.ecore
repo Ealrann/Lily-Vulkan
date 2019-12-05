@@ -12,13 +12,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DispatchTask" eSuperTypes="process.ecore#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="workgroupCountX" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
-        defaultValueLiteral="1"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="workgroupCountY" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
-        defaultValueLiteral="1"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="workgroupCountZ" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
-        defaultValueLiteral="1"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
   </eClassifiers>
 </ecore:EPackage>

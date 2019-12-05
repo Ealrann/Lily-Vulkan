@@ -2,43 +2,21 @@
  */
 package org.sheepy.lily.vulkan.model.process.impl;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.core.api.util.LTreeIterator;
-
-import org.sheepy.lily.core.model.inference.IInferenceObject;
-
-import org.sheepy.lily.core.model.root.LObject;
-
-import org.sheepy.lily.core.model.root.RootPackage.Literals;
-
-import org.sheepy.lily.core.model.types.LNamedElement;
-import org.sheepy.lily.core.model.types.TypesPackage;
-
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
@@ -55,7 +33,6 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getContentObjects <em>Content Objects</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getBarriers <em>Barriers</em>}</li>
@@ -70,16 +47,6 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  */
 public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 {
-	/**
-	 * The cached value of the '{@link #getContentObjects() <em>Content Objects</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContentObjects()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<LObject> contentObjects;
-
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -229,31 +196,6 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	protected EClass eStaticClass()
 	{
 		return ProcessPackage.Literals.PIPELINE_BARRIER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<LObject> getContentObjects()
-	{
-		return contentObjects;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setContentObjects(EList<LObject> newContentObjects)
-	{
-		EList<LObject> oldContentObjects = contentObjects;
-		contentObjects = newContentObjects;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS, oldContentObjects, contentObjects));
 	}
 
 	/**
@@ -492,100 +434,6 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	 * @generated
 	 */
 	@Override
-	public <T extends LObject> EList<T> createContainmentEList(final EClass targetEClass)
-	{
-		EList<T> res = null;
-		final List<EStructuralFeature> unitRefs = new ArrayList<EStructuralFeature>();
-		EList<EReference> _eAllContainments = this.eClass().getEAllContainments();
-		for (final EReference ref : _eAllContainments)
-		{
-			EClassifier _eType = ref.getEType();
-			boolean _isSuperTypeOf = targetEClass.isSuperTypeOf(((EClass) _eType));
-			if (_isSuperTypeOf)
-			{
-				unitRefs.add(ref);
-			}
-		}
-		boolean _isEmpty = unitRefs.isEmpty();
-		if (_isEmpty)
-		{
-			res = ECollections.<T>emptyEList();
-		}
-		else
-		{
-			EContentsEList<T> _eContentsEList = new EContentsEList<T>(this, unitRefs);
-			res = _eContentsEList;
-		}
-		return res;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<LObject> lContents()
-	{
-		EList<LObject> _xblockexpression = null;
-		{
-			EList<LObject> _contentObjects = this.getContentObjects();
-			boolean _tripleEquals = (_contentObjects == null);
-			if (_tripleEquals)
-			{
-				this.setContentObjects(this.<LObject>createContainmentEList(Literals.LOBJECT));
-			}
-			_xblockexpression = this.getContentObjects();
-		}
-		return _xblockexpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public LObject lParent()
-	{
-		LObject _xifexpression = null;
-		EObject _eContainer = this.eContainer();
-		if ((_eContainer instanceof LObject))
-		{
-			EObject _eContainer_1 = this.eContainer();
-			_xifexpression = ((LObject) _eContainer_1);
-		}
-		return _xifexpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public LTreeIterator lAllContents()
-	{
-		return new LTreeIterator(this);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public IInferenceObject lInferenceObject()
-	{
-		return this;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -606,8 +454,6 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS:
-				return getContentObjects();
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				return getName();
 			case ProcessPackage.PIPELINE_BARRIER__ENABLED:
@@ -641,9 +487,6 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS:
-				setContentObjects((EList<LObject>)newValue);
-				return;
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				setName((String)newValue);
 				return;
@@ -683,9 +526,6 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS:
-				setContentObjects((EList<LObject>)null);
-				return;
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -724,8 +564,6 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS:
-				return contentObjects != null;
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.PIPELINE_BARRIER__ENABLED:
@@ -752,92 +590,12 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
-	{
-		if (baseClass == LNamedElement.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case ProcessPackage.PIPELINE_BARRIER__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
-				default: return -1;
-			}
-		}
-		if (baseClass == IPipelineTask.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case ProcessPackage.PIPELINE_BARRIER__ENABLED: return ProcessPackage.IPIPELINE_TASK__ENABLED;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
-	{
-		if (baseClass == LNamedElement.class)
-		{
-			switch (baseFeatureID)
-			{
-				case TypesPackage.LNAMED_ELEMENT__NAME: return ProcessPackage.PIPELINE_BARRIER__NAME;
-				default: return -1;
-			}
-		}
-		if (baseClass == IPipelineTask.class)
-		{
-			switch (baseFeatureID)
-			{
-				case ProcessPackage.IPIPELINE_TASK__ENABLED: return ProcessPackage.PIPELINE_BARRIER__ENABLED;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
-		switch (operationID)
-		{
-			case ProcessPackage.PIPELINE_BARRIER___CREATE_CONTAINMENT_ELIST__ECLASS:
-				return createContainmentEList((EClass)arguments.get(0));
-			case ProcessPackage.PIPELINE_BARRIER___LCONTENTS:
-				return lContents();
-			case ProcessPackage.PIPELINE_BARRIER___LPARENT:
-				return lParent();
-			case ProcessPackage.PIPELINE_BARRIER___LALL_CONTENTS:
-				return lAllContents();
-			case ProcessPackage.PIPELINE_BARRIER___LINFERENCE_OBJECT:
-				return lInferenceObject();
-		}
-		return super.eInvoke(operationID, arguments);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public String toString()
 	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (contentObjects: ");
-		result.append(contentObjects);
-		result.append(", name: ");
+		result.append(" (name: ");
 		result.append(name);
 		result.append(", enabled: ");
 		result.append(enabled);

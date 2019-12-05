@@ -10,12 +10,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.sheepy.lily.core.model.cadence.ICadenceTask;
-import org.sheepy.lily.core.model.inference.IInferenceObject;
-
 import org.sheepy.lily.core.model.maintainer.Maintainable;
-
-import org.sheepy.lily.core.model.root.LObject;
-
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.vulkan.model.IExecutionManager;
@@ -205,16 +200,6 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIProcess(IProcess object)
 			{
 				return createIProcessAdapter();
-			}
-			@Override
-			public Adapter caseIInferenceObject(IInferenceObject object)
-			{
-				return createIInferenceObjectAdapter();
-			}
-			@Override
-			public Adapter caseLObject(LObject object)
-			{
-				return createLObjectAdapter();
 			}
 			@Override
 			public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object)
@@ -603,36 +588,6 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIProcessAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.inference.IInferenceObject <em>IInference Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.inference.IInferenceObject
-	 * @generated
-	 */
-	public Adapter createIInferenceObjectAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.root.LObject <em>LObject</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.root.LObject
-	 * @generated
-	 */
-	public Adapter createLObjectAdapter()
 	{
 		return null;
 	}

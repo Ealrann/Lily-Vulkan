@@ -7,8 +7,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.sheepy.lily.core.model.action.ActionPackage;
@@ -21,8 +19,6 @@ import org.sheepy.lily.core.model.inference.InferencePackage;
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 
 import org.sheepy.lily.core.model.presentation.PresentationPackage;
-import org.sheepy.lily.core.model.root.RootPackage;
-
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.core.model.ui.UiPackage;
@@ -180,21 +176,19 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
-		ActionPackage.eINSTANCE.eClass();
+		UiPackage.eINSTANCE.eClass();
+		PresentationPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
-		RootPackage.eINSTANCE.eClass();
+		VariablePackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
-		PresentationPackage.eINSTANCE.eClass();
-		UiPackage.eINSTANCE.eClass();
-		VariablePackage.eINSTANCE.eClass();
 		CadencePackage.eINSTANCE.eClass();
-		ProcessPackage.eINSTANCE.eClass();
-		VulkanPackage.eINSTANCE.eClass();
-		ResourcePackage.eINSTANCE.eClass();
+		ActionPackage.eINSTANCE.eClass();
 		GraphicPackage.eINSTANCE.eClass();
+		ProcessPackage.eINSTANCE.eClass();
+		ResourcePackage.eINSTANCE.eClass();
+		VulkanPackage.eINSTANCE.eClass();
 		BarrierPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 		GraphicpipelinePackage.eINSTANCE.eClass();
@@ -692,7 +686,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 
 		// Obtain other dependent packages
 		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		PresentationPackage thePresentationPackage = (PresentationPackage)EPackage.Registry.INSTANCE.getEPackage(PresentationPackage.eNS_URI);
@@ -721,9 +714,9 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(nuklearPushConstantsEClass, NuklearPushConstants.class, "NuklearPushConstants", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNuklearPushConstants_Width(), theEcorePackage.getEInt(), "width", null, 0, 1, NuklearPushConstants.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNuklearPushConstants_Height(), theEcorePackage.getEInt(), "height", null, 0, 1, NuklearPushConstants.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNuklearPushConstants_CurrentDescriptor(), theEcorePackage.getEInt(), "currentDescriptor", null, 0, 1, NuklearPushConstants.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNuklearPushConstants_Width(), ecorePackage.getEInt(), "width", null, 0, 1, NuklearPushConstants.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNuklearPushConstants_Height(), ecorePackage.getEInt(), "height", null, 0, 1, NuklearPushConstants.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNuklearPushConstants_CurrentDescriptor(), ecorePackage.getEInt(), "currentDescriptor", null, 0, 1, NuklearPushConstants.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nuklearLayoutTaskEClass, NuklearLayoutTask.class, "NuklearLayoutTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNuklearLayoutTask_Context(), this.getNuklearContext(), this.getNuklearContext_LayoutTask(), "context", null, 1, 1, NuklearLayoutTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

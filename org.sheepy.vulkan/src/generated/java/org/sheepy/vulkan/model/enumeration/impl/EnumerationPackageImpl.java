@@ -4,10 +4,9 @@ package org.sheepy.vulkan.model.enumeration.impl;
 
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
-
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.barrier.impl.BarrierPackageImpl;
 import org.sheepy.vulkan.model.enumeration.EAccess;
@@ -325,8 +324,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-		org.sheepy.lily.core.model.types.TypesPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);

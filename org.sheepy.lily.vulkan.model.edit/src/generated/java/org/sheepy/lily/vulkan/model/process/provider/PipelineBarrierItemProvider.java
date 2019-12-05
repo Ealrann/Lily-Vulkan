@@ -307,7 +307,6 @@ public class PipelineBarrierItemProvider extends ItemProviderAdapter implements 
 
 		switch (notification.getFeatureID(PipelineBarrier.class))
 		{
-			case ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS:
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 			case ProcessPackage.PIPELINE_BARRIER__ENABLED:
 			case ProcessPackage.PIPELINE_BARRIER__SRC_STAGE:

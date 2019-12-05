@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.vulkan.model.barrier.*;
 
 /**
@@ -236,7 +237,7 @@ public class BarrierSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLNamedElement(org.sheepy.lily.core.model.types.LNamedElement object)
+	public T caseLNamedElement(LNamedElement object)
 	{
 		return null;
 	}

@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.vulkan.model.barrier.*;
 
 /**
@@ -104,7 +105,7 @@ public class BarrierAdapterFactory extends AdapterFactoryImpl
 				return createImageTransitionAdapter();
 			}
 			@Override
-			public Adapter caseLNamedElement(org.sheepy.lily.core.model.types.LNamedElement object)
+			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
 			}

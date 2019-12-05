@@ -5,10 +5,8 @@ package org.sheepy.lily.vulkan.extra.model.mesh.provider;
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-
-import org.sheepy.lily.core.model.types.provider.LilyEditPlugin;
+import org.sheepy.lily.core.model.ui.provider.LilyEditPlugin;
+import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
 import org.sheepy.vulkan.model.barrier.provider.VulkanEditPlugin;
 
 /**
@@ -46,9 +44,8 @@ public final class ExtraEditPlugin extends EMFPlugin
 		super
 		  (new ResourceLocator [] 
 		   {
-		     EcoreEditPlugin.INSTANCE,
 		     LilyEditPlugin.INSTANCE,
-		     org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin.INSTANCE,
+		     LilyVulkanEditPlugin.INSTANCE,
 		     VulkanEditPlugin.INSTANCE,
 		   });
 	}

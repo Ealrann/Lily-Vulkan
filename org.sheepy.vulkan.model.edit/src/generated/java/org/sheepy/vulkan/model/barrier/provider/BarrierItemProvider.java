@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.vulkan.model.barrier.Barrier;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
@@ -79,7 +80,7 @@ public class BarrierItemProvider extends ItemProviderAdapter implements IEditing
 				 getResourceLocator(),
 				 getString("_UI_LNamedElement_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
-				 org.sheepy.lily.core.model.types.TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
 				 true,
 				 false,
 				 false,

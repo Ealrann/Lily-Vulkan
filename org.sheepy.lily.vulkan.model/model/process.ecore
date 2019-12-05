@@ -3,7 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="process" nsURI="org.sheepy.lily.vulkan.model.process" nsPrefix="process">
   <eClassifiers xsi:type="ecore:EClass" name="AbstractProcess" abstract="true" eSuperTypes="vulkan.ecore#//IProcess">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="waitingFenceDuringAcquire"
-        unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="propertyDescription" value="If fenceEnabled, will wait during acquire. Useless for a render process that already wait for image acquiring"/>
@@ -12,7 +12,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="partPkg" eType="#//ProcessPartPkg"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resetAllowed" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="signals" upperBound="-1"
         eType="ecore:EClass resource.ecore#//Semaphore">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -36,15 +36,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="IPipelineTask" abstract="true" interface="true"
       eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
-        defaultValueLiteral="true"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IProcessPart" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IPipeline" abstract="true" interface="true"
       eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement vulkan.ecore#//IResourceContainer #//IProcessPart">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
-        defaultValueLiteral="true"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" unique="false" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
         defaultValueLiteral="Render"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pushConstantRanges" upperBound="-1"
@@ -61,7 +59,7 @@
         eType="#//IPipelineTask" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Pipeline" eSuperTypes="#//IPipeline"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PipelineBarrier" eSuperTypes="../../org.sheepy.lily.core.model/model/root.ecore#//LObject #//IPipelineTask">
+  <eClassifiers xsi:type="ecore:EClass" name="PipelineBarrier" eSuperTypes="#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="barriers" lowerBound="1"
         upperBound="-1" eType="ecore:EClass ../../org.sheepy.vulkan.model/model/barrier.ecore#//Barrier"
         containment="true" resolveProxies="false"/>
@@ -77,8 +75,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeTask">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="repeatCount" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
-        defaultValueLiteral="1"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
         eType="#//IPipelineTask" containment="true" resolveProxies="false"/>
     <eGenericSuperTypes eClassifier="#//IPipelineTask"/>

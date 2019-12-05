@@ -441,7 +441,6 @@ public class SelectorPanelItemProvider
 		switch (notification.getFeatureID(SelectorPanel.class))
 		{
 			case NuklearPackage.SELECTOR_PANEL__NAME:
-			case NuklearPackage.SELECTOR_PANEL__CONTENT_OBJECTS:
 			case NuklearPackage.SELECTOR_PANEL__POSITION:
 			case NuklearPackage.SELECTOR_PANEL__VERTICAL_RELATIVE:
 			case NuklearPackage.SELECTOR_PANEL__HORIZONTAL_RELATIVE:

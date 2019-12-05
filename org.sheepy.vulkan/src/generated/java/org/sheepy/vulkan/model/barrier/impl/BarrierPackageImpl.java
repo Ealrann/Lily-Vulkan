@@ -5,10 +5,9 @@ package org.sheepy.vulkan.model.barrier.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 import org.sheepy.vulkan.model.barrier.Barrier;
@@ -127,8 +126,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-		org.sheepy.lily.core.model.types.TypesPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
@@ -441,7 +439,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		org.sheepy.lily.core.model.types.TypesPackage theTypesPackage = (org.sheepy.lily.core.model.types.TypesPackage)EPackage.Registry.INSTANCE.getEPackage(org.sheepy.lily.core.model.types.TypesPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 
 		// Create type parameters

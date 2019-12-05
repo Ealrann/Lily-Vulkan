@@ -3,9 +3,6 @@
 package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.sheepy.lily.core.model.root.LObject;
-
 import org.sheepy.vulkan.model.barrier.Barrier;
 
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -32,7 +29,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * @model
  * @generated
  */
-public interface PipelineBarrier extends LObject, IPipelineTask
+public interface PipelineBarrier extends IPipelineTask
 {
 	/**
 	 * Returns the value of the '<em><b>Barriers</b></em>' containment reference list.

@@ -14,7 +14,6 @@ import org.sheepy.lily.core.model.presentation.IPanel;
 import org.sheepy.lily.core.model.presentation.IPositionElement;
 import org.sheepy.lily.core.model.presentation.ISizedElement;
 import org.sheepy.lily.core.model.presentation.IUIElement;
-import org.sheepy.lily.core.model.root.LObject;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.core.model.ui.Panel;
@@ -158,11 +157,6 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIInferenceObject(IInferenceObject object)
 			{
 				return createIInferenceObjectAdapter();
-			}
-			@Override
-			public Adapter caseLObject(LObject object)
-			{
-				return createLObjectAdapter();
 			}
 			@Override
 			public Adapter caseIUIElement(IUIElement object)
@@ -422,21 +416,6 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIInferenceObjectAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.root.LObject <em>LObject</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.root.LObject
-	 * @generated
-	 */
-	public Adapter createLObjectAdapter()
 	{
 		return null;
 	}

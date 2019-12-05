@@ -6,10 +6,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.barrier.impl.BarrierPackageImpl;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
@@ -168,8 +167,7 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-		org.sheepy.lily.core.model.types.TypesPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
@@ -907,7 +905,6 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 
 		// Create type parameters
@@ -921,38 +918,38 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 		// Initialize classes, features, and operations; add parameters
 		initEClass(colorBlendEClass, ColorBlend.class, "ColorBlend", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getColorBlend_Attachments(), this.getColorBlendAttachment(), null, "attachments", null, 0, -1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlend_LogicOpEnable(), theEcorePackage.getEBoolean(), "logicOpEnable", "false", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlend_LogicOpEnable(), ecorePackage.getEBoolean(), "logicOpEnable", "false", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getColorBlend_LogicOp(), theEnumerationPackage.getELogicOp(), "logicOp", "COPY", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlend_BlendConstant0(), theEcorePackage.getEInt(), "blendConstant0", "0", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlend_BlendConstant1(), theEcorePackage.getEInt(), "blendConstant1", "0", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlend_BlendConstant2(), theEcorePackage.getEInt(), "blendConstant2", "0", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlend_BlendConstant3(), theEcorePackage.getEInt(), "blendConstant3", "1", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlend_BlendConstant0(), ecorePackage.getEInt(), "blendConstant0", "0", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlend_BlendConstant1(), ecorePackage.getEInt(), "blendConstant1", "0", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlend_BlendConstant2(), ecorePackage.getEInt(), "blendConstant2", "0", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlend_BlendConstant3(), ecorePackage.getEInt(), "blendConstant3", "1", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(colorBlendAttachmentEClass, ColorBlendAttachment.class, "ColorBlendAttachment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getColorBlendAttachment_BlendEnable(), theEcorePackage.getEBoolean(), "blendEnable", "false", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_BlendEnable(), ecorePackage.getEBoolean(), "blendEnable", "false", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getColorBlendAttachment_SrcColor(), theEnumerationPackage.getEBlendFactor(), "srcColor", "ONE", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getColorBlendAttachment_DstColor(), theEnumerationPackage.getEBlendFactor(), "dstColor", "ZERO", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getColorBlendAttachment_SrcAlpha(), theEnumerationPackage.getEBlendFactor(), "srcAlpha", "ONE", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getColorBlendAttachment_DstAlpha(), theEnumerationPackage.getEBlendFactor(), "dstAlpha", "ZERO", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getColorBlendAttachment_ColorBlendOp(), theEnumerationPackage.getEBlendOp(), "colorBlendOp", "ADD", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getColorBlendAttachment_AlphaBlendOp(), theEnumerationPackage.getEBlendOp(), "alphaBlendOp", "ADD", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_RedComponentEnable(), theEcorePackage.getEBoolean(), "redComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_GreenComponentEnable(), theEcorePackage.getEBoolean(), "greenComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_BlueComponentEnable(), theEcorePackage.getEBoolean(), "blueComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_AlphaComponentEnable(), theEcorePackage.getEBoolean(), "alphaComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_RedComponentEnable(), ecorePackage.getEBoolean(), "redComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_GreenComponentEnable(), ecorePackage.getEBoolean(), "greenComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_BlueComponentEnable(), ecorePackage.getEBoolean(), "blueComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_AlphaComponentEnable(), ecorePackage.getEBoolean(), "alphaComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inputAssemblyEClass, InputAssembly.class, "InputAssembly", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getInputAssembly_PrimitiveRestartEnabled(), theEcorePackage.getEBoolean(), "primitiveRestartEnabled", "false", 0, 1, InputAssembly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getInputAssembly_PrimitiveRestartEnabled(), ecorePackage.getEBoolean(), "primitiveRestartEnabled", "false", 0, 1, InputAssembly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getInputAssembly_PrimitiveTopology(), theEnumerationPackage.getEPrimitiveTopology(), "primitiveTopology", "TRIANGLE_LIST", 0, 1, InputAssembly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rasterizerEClass, Rasterizer.class, "Rasterizer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRasterizer_CullMode(), theEnumerationPackage.getECullMode(), "cullMode", "BACK_BIT", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRasterizer_FrontFace(), theEnumerationPackage.getEFrontFace(), "frontFace", "CLOCKWISE", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRasterizer_PolygonMode(), theEnumerationPackage.getEPolygonMode(), "polygonMode", "FILL", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRasterizer_LineWidth(), theEcorePackage.getEInt(), "lineWidth", "1", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRasterizer_DepthClampEnable(), theEcorePackage.getEBoolean(), "depthClampEnable", "false", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRasterizer_DiscardEnable(), theEcorePackage.getEBoolean(), "discardEnable", "false", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRasterizer_DepthBiasEnable(), theEcorePackage.getEBoolean(), "depthBiasEnable", "false", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRasterizer_LineWidth(), ecorePackage.getEInt(), "lineWidth", "1", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRasterizer_DepthClampEnable(), ecorePackage.getEBoolean(), "depthClampEnable", "false", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRasterizer_DiscardEnable(), ecorePackage.getEBoolean(), "discardEnable", "false", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRasterizer_DepthBiasEnable(), ecorePackage.getEBoolean(), "depthBiasEnable", "false", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dynamicStateEClass, DynamicState.class, "DynamicState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDynamicState_States(), theEnumerationPackage.getEDynamicState(), "states", null, 0, -1, DynamicState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -964,23 +961,23 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 		initEReference(getStaticViewportState_Scissors(), this.getScissor(), null, "scissors", null, 1, -1, StaticViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dynamicViewportStateEClass, DynamicViewportState.class, "DynamicViewportState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDynamicViewportState_ViewportCount(), theEcorePackage.getEInt(), "viewportCount", null, 0, 1, DynamicViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDynamicViewportState_ScissorCount(), theEcorePackage.getEInt(), "scissorCount", null, 0, 1, DynamicViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDynamicViewportState_ViewportCount(), ecorePackage.getEInt(), "viewportCount", null, 0, 1, DynamicViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDynamicViewportState_ScissorCount(), ecorePackage.getEInt(), "scissorCount", null, 0, 1, DynamicViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(vec2IEClass, Vec2I.class, "Vec2I", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getVec2I_X(), theEcorePackage.getEInt(), "x", "0", 0, 1, Vec2I.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getVec2I_Y(), theEcorePackage.getEInt(), "y", "0", 0, 1, Vec2I.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVec2I_X(), ecorePackage.getEInt(), "x", "0", 0, 1, Vec2I.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVec2I_Y(), ecorePackage.getEInt(), "y", "0", 0, 1, Vec2I.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(viewportEClass, Viewport.class, "Viewport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getViewport_OffsetX(), theEcorePackage.getEInt(), "offsetX", "0", 0, 1, Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getViewport_OffsetY(), theEcorePackage.getEInt(), "offsetY", "0", 0, 1, Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getViewport_OffsetX(), ecorePackage.getEInt(), "offsetX", "0", 0, 1, Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getViewport_OffsetY(), ecorePackage.getEInt(), "offsetY", "0", 0, 1, Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getViewport_Extent(), this.getVec2I(), null, "extent", null, 0, 1, Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getViewport_MinDepth(), theEcorePackage.getEInt(), "minDepth", "0", 0, 1, Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getViewport_MaxDepth(), theEcorePackage.getEInt(), "maxDepth", "1", 0, 1, Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getViewport_MinDepth(), ecorePackage.getEInt(), "minDepth", "0", 0, 1, Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getViewport_MaxDepth(), ecorePackage.getEInt(), "maxDepth", "1", 0, 1, Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(scissorEClass, Scissor.class, "Scissor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getScissor_OffsetX(), theEcorePackage.getEInt(), "offsetX", "0", 0, 1, Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getScissor_OffsetY(), theEcorePackage.getEInt(), "offsetY", "0", 0, 1, Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getScissor_OffsetX(), ecorePackage.getEInt(), "offsetX", "0", 0, 1, Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getScissor_OffsetY(), ecorePackage.getEInt(), "offsetY", "0", 0, 1, Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getScissor_Extent(), this.getVec2I(), null, "extent", null, 0, 1, Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource

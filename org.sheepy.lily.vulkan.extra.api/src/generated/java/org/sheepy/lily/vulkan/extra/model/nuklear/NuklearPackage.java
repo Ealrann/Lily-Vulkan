@@ -359,15 +359,6 @@ public interface NuklearPackage extends EPackage
 	int SELECTOR_PANEL__NAME = PresentationPackage.IPANEL__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELECTOR_PANEL__CONTENT_OBJECTS = PresentationPackage.IPANEL__CONTENT_OBJECTS;
-
-	/**
 	 * The feature id for the '<em><b>Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -503,42 +494,6 @@ public interface NuklearPackage extends EPackage
 	int SELECTOR_PANEL___LINFERENCE_OBJECT = PresentationPackage.IPANEL___LINFERENCE_OBJECT;
 
 	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELECTOR_PANEL___CREATE_CONTAINMENT_ELIST__ECLASS = PresentationPackage.IPANEL___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELECTOR_PANEL___LCONTENTS = PresentationPackage.IPANEL___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELECTOR_PANEL___LPARENT = PresentationPackage.IPANEL___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELECTOR_PANEL___LALL_CONTENTS = PresentationPackage.IPANEL___LALL_CONTENTS;
-
-	/**
 	 * The number of operations of the '<em>Selector Panel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -593,15 +548,6 @@ public interface NuklearPackage extends EPackage
 	 * @ordered
 	 */
 	int PANEL_VIEWER__NAME = UiPackage.PANEL__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PANEL_VIEWER__CONTENT_OBJECTS = UiPackage.PANEL__CONTENT_OBJECTS;
 
 	/**
 	 * The feature id for the '<em><b>Position</b></em>' attribute.
@@ -719,42 +665,6 @@ public interface NuklearPackage extends EPackage
 	 * @ordered
 	 */
 	int PANEL_VIEWER___LINFERENCE_OBJECT = UiPackage.PANEL___LINFERENCE_OBJECT;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PANEL_VIEWER___CREATE_CONTAINMENT_ELIST__ECLASS = UiPackage.PANEL___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PANEL_VIEWER___LCONTENTS = UiPackage.PANEL___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PANEL_VIEWER___LPARENT = UiPackage.PANEL___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PANEL_VIEWER___LALL_CONTENTS = UiPackage.PANEL___LALL_CONTENTS;
 
 	/**
 	 * The number of operations of the '<em>Panel Viewer</em>' class.

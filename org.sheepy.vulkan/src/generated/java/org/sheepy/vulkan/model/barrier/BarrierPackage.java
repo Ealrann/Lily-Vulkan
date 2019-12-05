@@ -5,6 +5,7 @@ package org.sheepy.vulkan.model.barrier;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.sheepy.lily.core.model.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,7 +74,7 @@ public interface BarrierPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BARRIER__NAME = org.sheepy.lily.core.model.types.TypesPackage.LNAMED_ELEMENT__NAME;
+	int BARRIER__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Src Access Mask</b></em>' attribute list.
@@ -82,7 +83,7 @@ public interface BarrierPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BARRIER__SRC_ACCESS_MASK = org.sheepy.lily.core.model.types.TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
+	int BARRIER__SRC_ACCESS_MASK = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Dst Access Mask</b></em>' attribute list.
@@ -91,7 +92,7 @@ public interface BarrierPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BARRIER__DST_ACCESS_MASK = org.sheepy.lily.core.model.types.TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
+	int BARRIER__DST_ACCESS_MASK = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Barrier</em>' class.
@@ -100,7 +101,7 @@ public interface BarrierPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BARRIER_FEATURE_COUNT = org.sheepy.lily.core.model.types.TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
+	int BARRIER_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Barrier</em>' class.
@@ -109,7 +110,7 @@ public interface BarrierPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BARRIER_OPERATION_COUNT = org.sheepy.lily.core.model.types.TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
+	int BARRIER_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.barrier.impl.AbstractBufferBarrierImpl <em>Abstract Buffer Barrier</em>}' class.

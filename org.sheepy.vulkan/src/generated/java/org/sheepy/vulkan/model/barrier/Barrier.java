@@ -3,6 +3,7 @@
 package org.sheepy.vulkan.model.barrier;
 
 import org.eclipse.emf.common.util.EList;
+import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 
 /**
@@ -22,7 +23,7 @@ import org.sheepy.vulkan.model.enumeration.EAccess;
  * @model abstract="true"
  * @generated
  */
-public interface Barrier extends org.sheepy.lily.core.model.types.LNamedElement
+public interface Barrier extends LNamedElement
 {
 	/**
 	 * Returns the value of the '<em><b>Src Access Mask</b></em>' attribute list.

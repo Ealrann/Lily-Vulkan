@@ -10,10 +10,6 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.sheepy.lily.core.model.application.IEngine;
 
 import org.sheepy.lily.core.model.cadence.ICadenceTask;
-import org.sheepy.lily.core.model.inference.IInferenceObject;
-
-import org.sheepy.lily.core.model.root.LObject;
-
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.vulkan.model.*;
@@ -88,8 +84,6 @@ public class VulkanSwitch<T> extends Switch<T>
 				if (result == null) result = caseIEngine(vulkanEngine);
 				if (result == null) result = caseIResourceContainer(vulkanEngine);
 				if (result == null) result = caseIExecutionManager(vulkanEngine);
-				if (result == null) result = caseLObject(vulkanEngine);
-				if (result == null) result = caseIInferenceObject(vulkanEngine);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -323,38 +317,6 @@ public class VulkanSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIDescriptor(IDescriptor object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IInference Object</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IInference Object</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIInferenceObject(IInferenceObject object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>LObject</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>LObject</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLObject(LObject object)
 	{
 		return null;
 	}

@@ -5,10 +5,9 @@ package org.sheepy.vulkan.model.pipeline.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.barrier.impl.BarrierPackageImpl;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
@@ -95,8 +94,7 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-		org.sheepy.lily.core.model.types.TypesPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
@@ -286,7 +284,6 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 
 		// Obtain other dependent packages
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -297,13 +294,13 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 		// Initialize classes, features, and operations; add parameters
 		initEClass(pushConstantRangeEClass, PushConstantRange.class, "PushConstantRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPushConstantRange_Stages(), theEnumerationPackage.getEShaderStage(), "stages", null, 1, -1, PushConstantRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPushConstantRange_Offset(), theEcorePackage.getEInt(), "offset", "0", 0, 1, PushConstantRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPushConstantRange_Size(), theEcorePackage.getEInt(), "size", null, 0, 1, PushConstantRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPushConstantRange_Offset(), ecorePackage.getEInt(), "offset", "0", 0, 1, PushConstantRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPushConstantRange_Size(), ecorePackage.getEInt(), "size", null, 0, 1, PushConstantRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(specializationConstantEClass, SpecializationConstant.class, "SpecializationConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSpecializationConstant_Name(), theEcorePackage.getEString(), "name", null, 0, 1, SpecializationConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSpecializationConstant_ConstantId(), theEcorePackage.getEInt(), "constantId", null, 0, 1, SpecializationConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSpecializationConstant_Size(), theEcorePackage.getEInt(), "size", null, 0, 1, SpecializationConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSpecializationConstant_Name(), ecorePackage.getEString(), "name", null, 0, 1, SpecializationConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSpecializationConstant_ConstantId(), ecorePackage.getEInt(), "constantId", null, 0, 1, SpecializationConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSpecializationConstant_Size(), ecorePackage.getEInt(), "size", null, 0, 1, SpecializationConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

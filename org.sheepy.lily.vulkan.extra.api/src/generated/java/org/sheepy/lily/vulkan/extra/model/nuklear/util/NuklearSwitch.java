@@ -12,7 +12,6 @@ import org.sheepy.lily.core.model.presentation.IPanel;
 import org.sheepy.lily.core.model.presentation.IPositionElement;
 import org.sheepy.lily.core.model.presentation.ISizedElement;
 import org.sheepy.lily.core.model.presentation.IUIElement;
-import org.sheepy.lily.core.model.root.LObject;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.core.model.ui.Panel;
@@ -132,7 +131,6 @@ public class NuklearSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseLNamedElement(selectorPanel);
 				if (result == null) result = caseIUIElement(selectorPanel);
 				if (result == null) result = caseIPositionElement(selectorPanel);
-				if (result == null) result = caseLObject(selectorPanel);
 				if (result == null) result = caseIInferenceObject(selectorPanel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -154,7 +152,6 @@ public class NuklearSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseLNamedElement(panelViewer);
 				if (result == null) result = caseIUIElement(panelViewer);
 				if (result == null) result = caseIPositionElement(panelViewer);
-				if (result == null) result = caseLObject(panelViewer);
 				if (result == null) result = caseIInferenceObject(panelViewer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -401,22 +398,6 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIInferenceObject(IInferenceObject object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>LObject</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>LObject</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseLObject(LObject object)
 	{
 		return null;
 	}
