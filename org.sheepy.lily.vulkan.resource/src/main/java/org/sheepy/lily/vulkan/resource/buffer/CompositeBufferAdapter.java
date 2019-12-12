@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.resource.buffer.ICompositeBufferAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter;
@@ -42,7 +42,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfiguration configuration,
+	public void configureAllocation(IAllocationConfigurator configuration,
 									IExecutionContext context)
 	{
 		configuration.addChildren(providerWrappers);

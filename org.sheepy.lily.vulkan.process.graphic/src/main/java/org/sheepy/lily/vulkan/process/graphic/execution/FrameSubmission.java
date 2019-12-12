@@ -12,7 +12,7 @@ import java.util.List;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
 import org.lwjgl.vulkan.VkQueue;
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.process.execution.Submission;
@@ -53,7 +53,7 @@ public class FrameSubmission extends Submission<IGraphicContext>
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
 	{
 		super.configureAllocation(config, context);
 		config.addDependencies(List.of(context.getSwapChainManager()));

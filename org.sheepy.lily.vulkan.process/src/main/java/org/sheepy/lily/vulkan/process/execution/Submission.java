@@ -12,7 +12,7 @@ import java.util.List;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.execution.ISubmission;
 import org.sheepy.lily.vulkan.api.process.IProcessContext.IRecorderContext;
@@ -63,7 +63,7 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfiguration config, T context)
+	public void configureAllocation(IAllocationConfigurator config, T context)
 	{
 		config.addDependencies(List.of(commandBuffer));
 	}

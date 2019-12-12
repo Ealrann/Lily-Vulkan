@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
@@ -33,7 +33,7 @@ public class PipelineBarrierAdapter
 
 	private ImageBarriersBackend imageBarrierInfos;
 	private BufferBarriersBackend bufferBarrierInfos;
-	private IAllocationConfiguration allocationConfiguration;
+	private IAllocationConfigurator allocationConfiguration;
 
 	public PipelineBarrierAdapter(PipelineBarrier pipelineBarrier)
 	{
@@ -44,7 +44,7 @@ public class PipelineBarrierAdapter
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfiguration config, IProcessContext context)
+	public void configureAllocation(IAllocationConfigurator config, IProcessContext context)
 	{
 		this.allocationConfiguration = config;
 	}
@@ -89,7 +89,7 @@ public class PipelineBarrierAdapter
 		allocationConfiguration.addChildren(List.of(imageBarrierInfos, bufferBarrierInfos));
 		allocationConfiguration.addDependencies(List.of(imageBarrierInfos, bufferBarrierInfos));
 	}
-	
+
 	@Override
 	public ECommandStage getStage(PipelineBarrier task)
 	{
@@ -105,7 +105,7 @@ public class PipelineBarrierAdapter
 		imageBarrierInfos = null;
 		bufferBarrierInfos = null;
 	}
-	
+
 	@Override
 	public void record(PipelineBarrier barrier, RecordContext context)
 	{

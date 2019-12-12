@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.lwjgl.system.NativeResource;
 import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.barrier.Barrier;
 
@@ -16,7 +16,7 @@ public abstract class BarriersBackend<T extends Barrier, Y extends NativeResourc
 	private final int dstQueueIndex;
 	private final List<? extends T> barriers;
 
-	protected IAllocationConfiguration allocationConfiguration;
+	protected IAllocationConfigurator allocationConfiguration;
 	private Y[] barrierInfos = null;
 
 	public BarriersBackend(	final int swapCount,
@@ -31,7 +31,7 @@ public abstract class BarriersBackend<T extends Barrier, Y extends NativeResourc
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfiguration config, IExecutionContext context)
+	public void configureAllocation(IAllocationConfigurator config, IExecutionContext context)
 	{
 		this.allocationConfiguration = config;
 	}
@@ -44,8 +44,11 @@ public abstract class BarriersBackend<T extends Barrier, Y extends NativeResourc
 		{
 			for (int swapIndex = 0; swapIndex < swapCount; swapIndex++)
 			{
-				barrierInfos[swapIndex] = allocateAndFillBuffer(context, barriers, swapIndex,
-						srcQueueIndex, dstQueueIndex);
+				barrierInfos[swapIndex] = allocateAndFillBuffer(context,
+																barriers,
+																swapIndex,
+																srcQueueIndex,
+																dstQueueIndex);
 			}
 		}
 	}

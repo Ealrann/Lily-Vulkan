@@ -4,10 +4,10 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.IAdapter;
-import org.sheepy.lily.core.api.adapter.INotificationListener;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;

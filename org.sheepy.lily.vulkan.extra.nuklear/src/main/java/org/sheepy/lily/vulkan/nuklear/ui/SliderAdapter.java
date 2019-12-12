@@ -5,10 +5,10 @@ import static org.lwjgl.nuklear.Nuklear.nk_slider_int;
 import java.nio.IntBuffer;
 
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.INotificationListener;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.Slider;

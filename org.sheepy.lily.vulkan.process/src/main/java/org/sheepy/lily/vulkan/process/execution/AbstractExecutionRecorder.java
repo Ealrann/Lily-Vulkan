@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.api.execution.ISubmission;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
@@ -39,7 +39,7 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 	}
 
 	@Override
-	public final void configureAllocation(IAllocationConfiguration config, T context)
+	public final void configureAllocation(IAllocationConfigurator config, T context)
 	{
 		config.addChildren(allocationList);
 	}

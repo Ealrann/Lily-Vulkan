@@ -4,11 +4,11 @@ import static org.lwjgl.vulkan.VK10.vkCmdCopyBuffer;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.vulkan.VkBufferCopy;
-import org.sheepy.lily.core.api.adapter.INotificationListener;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferReferenceAdapter;
 import org.sheepy.lily.vulkan.model.process.CopyBufferTask;

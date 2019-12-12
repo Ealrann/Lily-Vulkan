@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.process.graphic.execution;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicExecutionRecorders;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
@@ -23,7 +23,7 @@ public final class GraphicExecutionRecorders extends ExecutionRecorders<IGraphic
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
 	{
 		config.addChildren(List.of(imageAvailableSemaphore));
 		config.addDependencies(List.of(context.getSwapChainManager()));

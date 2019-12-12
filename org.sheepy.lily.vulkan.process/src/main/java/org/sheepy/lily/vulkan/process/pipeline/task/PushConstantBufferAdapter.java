@@ -2,10 +2,10 @@ package org.sheepy.lily.vulkan.process.pipeline.task;
 
 import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
 
-import org.sheepy.lily.core.api.adapter.INotificationListener;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;

@@ -12,7 +12,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.AbstractModelSetRegistry;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
@@ -40,7 +40,7 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	private static final ModelExplorer RESOURCE_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 																						VulkanPackage.Literals.RESOURCE_PKG__RESOURCES));
 	private static final ModelExplorer DESCRIPTOR_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
-	                                                                                   	VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS));
+																						VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS));
 	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
 																							ResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));
 
@@ -53,7 +53,7 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	private VkPipelineLayout<? super T> vkPipelineLayout;
 	private boolean recordNeeded = false;
 
-	private IAllocationConfiguration allocationConfig;
+	private IAllocationConfigurator allocationConfig;
 
 	public AbstractPipelineAdapter(IPipeline pipeline)
 	{
@@ -61,7 +61,7 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfiguration config, T context)
+	public void configureAllocation(IAllocationConfigurator config, T context)
 	{
 		this.allocationConfig = config;
 		taskRegister.startRegister(pipeline);
@@ -242,7 +242,7 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 			final int taskIndex = taskIndex(task);
 			taskWrappers.add(taskIndex, new TaskWrapper<>(task, pipeline.getStage()));
 
-			final var adapter = task.<IAllocableAdapter<?>> adaptGeneric(IAllocableAdapter.class);
+			final var adapter = task.<IAllocableAdapter<? super T>> adaptGeneric(IAllocableAdapter.class);
 			if (adapter != null)
 			{
 				allocationConfig.addChildren(List.of(adapter));
@@ -276,7 +276,7 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 			final var task = (IPipelineTask) oldValue;
 			taskWrappers.removeIf(wrapper -> wrapper.task == task);
 
-			final var adapter = task.<IAllocableAdapter<?>> adaptGeneric(IAllocableAdapter.class);
+			final var adapter = task.<IAllocableAdapter<? super T>> adaptGeneric(IAllocableAdapter.class);
 			if (adapter != null)
 			{
 				allocationConfig.removeChildren(List.of(adapter));

@@ -3,12 +3,12 @@ package org.sheepy.lily.vulkan.nuklear.ui;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.sheepy.lily.core.api.adapter.INotificationListener;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;

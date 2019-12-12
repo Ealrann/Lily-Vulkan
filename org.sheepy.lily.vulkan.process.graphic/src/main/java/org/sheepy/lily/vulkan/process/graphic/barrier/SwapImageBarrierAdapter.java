@@ -7,7 +7,7 @@ import java.util.List;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.barrier.IImageBarrierAdapter;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier;
@@ -20,7 +20,7 @@ public class SwapImageBarrierAdapter
 		implements IImageBarrierAdapter<IGraphicContext>, IAllocable<IGraphicContext>
 {
 	@Override
-	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
 	{
 		config.addDependencies(List.of(context.getImageViewManager()));
 	}

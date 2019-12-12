@@ -4,7 +4,7 @@ import static org.lwjgl.vulkan.VK10.vkDestroyRenderPass;
 
 import java.util.List;
 
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.IRenderPass;
 import org.sheepy.lily.vulkan.process.graphic.renderpass.VkRenderPassAllocator;
@@ -14,7 +14,7 @@ public class RenderPass implements IRenderPass
 	private long renderPass;
 
 	@Override
-	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
 	{
 		final var swapChainManager = context.getSwapChainManager();
 

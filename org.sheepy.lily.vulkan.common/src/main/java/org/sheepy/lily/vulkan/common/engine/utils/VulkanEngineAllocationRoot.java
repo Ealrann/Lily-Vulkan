@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.common.engine.utils;
 import java.util.List;
 
 import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 
@@ -28,7 +28,7 @@ public class VulkanEngineAllocationRoot implements IAllocable<IVulkanContext>
 	{}
 
 	@Override
-	public void configureAllocation(IAllocationConfiguration config, IVulkanContext context)
+	public void configureAllocation(IAllocationConfigurator config, IVulkanContext context)
 	{
 		config.setChildrenContext(childrenContext);
 		config.addChildren(allocationObjects);

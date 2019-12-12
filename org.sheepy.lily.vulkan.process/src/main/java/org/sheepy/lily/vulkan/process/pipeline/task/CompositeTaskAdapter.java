@@ -6,7 +6,7 @@ import java.util.List;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
@@ -25,7 +25,7 @@ public class CompositeTaskAdapter
 	private final List<IAllocableAdapter<IProcessContext>> allocationChildren = new ArrayList<>();
 
 	private boolean dirty = true;
-	private IAllocationConfiguration allocationConfiguration;
+	private IAllocationConfigurator allocationConfiguration;
 
 	public CompositeTaskAdapter(CompositeTask task)
 	{
@@ -39,7 +39,7 @@ public class CompositeTaskAdapter
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfiguration config, IProcessContext context)
+	public void configureAllocation(IAllocationConfigurator config, IProcessContext context)
 	{
 		this.allocationConfiguration = config;
 		updateAllocationChildren();

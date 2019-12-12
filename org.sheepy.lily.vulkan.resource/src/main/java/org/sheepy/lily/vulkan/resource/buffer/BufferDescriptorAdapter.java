@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.sheepy.lily.core.api.adapter.INotificationListener;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferReferenceAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;

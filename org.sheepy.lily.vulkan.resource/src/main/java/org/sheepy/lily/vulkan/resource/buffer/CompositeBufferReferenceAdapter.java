@@ -1,13 +1,13 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.sheepy.lily.core.api.adapter.INotificationListener;
 import org.sheepy.lily.core.api.adapter.NotifierAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.adapter.notification.LongNotification;
+import org.sheepy.lily.core.api.notification.INotificationListener;
+import org.sheepy.lily.core.api.notification.impl.LongNotification;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferReferenceAdapter;
 import org.sheepy.lily.vulkan.common.resource.IDataProviderAlignmentAdapter;
 import org.sheepy.lily.vulkan.model.resource.CompositeBufferReference;
@@ -20,20 +20,45 @@ import org.sheepy.lily.vulkan.resource.buffer.provider.DataProviderWrapper;
 public class CompositeBufferReferenceAdapter extends NotifierAdapter
 		implements IBufferReferenceAdapter
 {
-	private final INotificationListener listenerProxy = this::fireNotification;
+	private final INotificationListener listenerProxy = this::wrapNotification;
 	private final INotificationListener instanceListener = this::instanceChange;
 	private final CompositeBufferReference ref;
 
 	private IDataProviderAlignmentAdapter providerAdapter;
 
-	public CompositeBufferReferenceAdapter(CompositeBufferReference ref)
+	private CompositeBufferReferenceAdapter(CompositeBufferReference ref)
 	{
 		super(FEATURES.values().length);
 		this.ref = ref;
 	}
 
+	private void wrapNotification(Notification notification)
+	{
+		switch (((DataProviderWrapper.FEATURES) notification.getFeature()))
+		{
+		case SIZE:
+			fireNotification(new LongNotification(	this,
+													IBufferReferenceAdapter.FEATURES.SIZE,
+													notification.getOldLongValue(),
+													notification.getNewLongValue()));
+			break;
+		case OFFSET:
+			fireNotification(new LongNotification(	this,
+													IBufferReferenceAdapter.FEATURES.OFFSET,
+													notification.getOldLongValue(),
+													notification.getNewLongValue()));
+			break;
+		case BUFFER_PTR:
+			fireNotification(new LongNotification(	this,
+													IBufferReferenceAdapter.FEATURES.BUFFER_PTR,
+													notification.getOldLongValue(),
+													notification.getNewLongValue()));
+			break;
+		}
+	}
+
 	@Load
-	public void load()
+	private void load()
 	{
 		final var provider = ref.getBuffer().getDataProviders().get(ref.getPart());
 		providerAdapter = provider.adapt(IDataProviderAlignmentAdapter.class);
@@ -45,7 +70,7 @@ public class CompositeBufferReferenceAdapter extends NotifierAdapter
 	}
 
 	@Dispose
-	public void dispose()
+	private void dispose()
 	{
 		providerAdapter.removeListener(	listenerProxy,
 										DataProviderWrapper.FEATURES.SIZE.ordinal(),
@@ -54,7 +79,7 @@ public class CompositeBufferReferenceAdapter extends NotifierAdapter
 		ref.removeListener(instanceListener, ResourcePackage.COMPOSITE_BUFFER_REFERENCE__INSTANCE);
 	}
 
-	public void instanceChange(Notification notification)
+	private void instanceChange(Notification notification)
 	{
 		final long oldOffset = providerAdapter.getInstanceOffset(notification.getOldIntValue());
 		final var newNotification = new LongNotification(	ref,

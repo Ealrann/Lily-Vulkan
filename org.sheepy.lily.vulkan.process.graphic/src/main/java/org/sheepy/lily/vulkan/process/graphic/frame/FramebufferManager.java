@@ -9,7 +9,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkFramebufferCreateInfo;
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.graphic.ClearInfo;
 import org.sheepy.lily.vulkan.api.graphic.IFramebufferManager;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
@@ -27,7 +27,7 @@ public class FramebufferManager implements IFramebufferManager
 	private EList<ISwapAttachment> attachments;
 
 	@Override
-	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
 	{
 		final var swapChainManager = context.getSwapChainManager();
 		final var imageViewManager = context.getImageViewManager();

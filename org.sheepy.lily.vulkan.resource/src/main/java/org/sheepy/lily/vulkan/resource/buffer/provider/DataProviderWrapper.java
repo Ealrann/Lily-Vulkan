@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import org.sheepy.lily.core.api.adapter.NotifierAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.adapter.notification.LongNotification;
+import org.sheepy.lily.core.api.notification.impl.LongNotification;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.common.resource.IDataProviderAlignmentAdapter;

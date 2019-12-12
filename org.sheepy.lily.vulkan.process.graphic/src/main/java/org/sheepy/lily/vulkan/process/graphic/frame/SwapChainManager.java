@@ -13,7 +13,7 @@ import java.util.function.Function;
 
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.ISwapChainManager;
@@ -42,7 +42,7 @@ public final class SwapChainManager implements ISwapChainManager
 	private List<ISwapAttachment> attachments;
 
 	@Override
-	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
 	{
 		config.addDependencies(List.of(context.getSurfaceManager()));
 		config.setAllocationCondition(c -> ((IGraphicContext) c).getSurfaceManager()

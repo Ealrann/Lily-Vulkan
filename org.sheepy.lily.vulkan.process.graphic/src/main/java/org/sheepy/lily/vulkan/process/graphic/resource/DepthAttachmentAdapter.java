@@ -7,7 +7,7 @@ import java.util.List;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.resource.attachment.IDepthAttachmentAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
@@ -30,7 +30,7 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 	private int depthFormat;
 
 	@Override
-	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
 	{
 		final var surfaceManager = context.getSurfaceManager();
 

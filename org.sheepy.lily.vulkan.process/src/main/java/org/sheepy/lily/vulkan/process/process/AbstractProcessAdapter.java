@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.cadence.IStatistics;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
@@ -60,7 +60,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfiguration config, IVulkanContext context)
+	public void configureAllocation(IAllocationConfigurator config, IVulkanContext context)
 	{
 		config.setChildrenContext(this.context);
 		config.addChildren(allocationList);

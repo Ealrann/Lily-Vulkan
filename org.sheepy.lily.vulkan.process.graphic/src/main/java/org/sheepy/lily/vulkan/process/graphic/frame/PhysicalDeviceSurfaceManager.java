@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.process.graphic.frame;
 
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.ISurfaceManager;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
@@ -25,7 +25,7 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	private Capabilities capabilities;
 	private ColorDomains colorDomains;
 
-	private IAllocationConfiguration allocationConfiguration;
+	private IAllocationConfigurator allocationConfiguration;
 	private ColorDomain requiredColorDomain;
 	private VulkanQueue presentQueue;
 
@@ -33,7 +33,7 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	private VkSurface surface;
 
 	@Override
-	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
 	{
 		this.allocationConfiguration = config;
 	}

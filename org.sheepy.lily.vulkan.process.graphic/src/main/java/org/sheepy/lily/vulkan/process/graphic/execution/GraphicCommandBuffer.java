@@ -7,7 +7,7 @@ import java.util.List;
 import org.lwjgl.vulkan.VkClearValue;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
-import org.sheepy.lily.core.api.allocation.IAllocationConfiguration;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.log.Logger;
@@ -29,7 +29,7 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfiguration config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
 	{
 		config.addDependencies(List.of(context.getFramebufferManager()));
 	}
