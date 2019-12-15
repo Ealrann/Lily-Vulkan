@@ -2,13 +2,11 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="binding" nsURI="org.sheepy.lily.vulkan.extra.model.binding"
     nsPrefix="binding">
-  <eClassifiers xsi:type="ecore:EClass" name="BindingConfiguration" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement process.ecore#//IProcessExtension">
+  <eClassifiers xsi:type="ecore:EClass" name="BindingConfiguration" eSuperTypes="#//IContextConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorsSets" lowerBound="1"
         upperBound="-1" eType="ecore:EClass resource.ecore#//DescriptorSet"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="descriptorSetStride" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
-        eType="#//IConfigurationTask" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigureBind" eSuperTypes="#//IConfigurationTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bindTask" lowerBound="1"
@@ -16,7 +14,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RotateConfiguration" eSuperTypes="process.ecore#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="configurations" lowerBound="1"
-        upperBound="-1" eType="#//BindingConfiguration"/>
+        upperBound="-1" eType="#//IContextConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="forceRecord" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
   </eClassifiers>
@@ -24,7 +22,7 @@
       interface="true" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigurePrepareComposite" eSuperTypes="#//IConfigurationTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="references" lowerBound="1"
-        upperBound="-1" eType="ecore:EClass process.ecore#//CompositePartReference"/>
+        upperBound="-1" eType="ecore:EClass resource.ecore#//CompositePartReference"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetInstance" lowerBound="1"
         eType="#//EInstance"/>
   </eClassifiers>
@@ -38,5 +36,14 @@
         upperBound="-1" eType="ecore:EClass resource.ecore#//CompositeBufferBarrier"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetInstance" lowerBound="1"
         eType="#//EInstance"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IContextConfiguration" abstract="true"
+      interface="true" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement process.ecore#//IProcessExtension">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
+        eType="#//IConfigurationTask" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndexConfiguration" eSuperTypes="#//IContextConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="indexCount" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="2"/>
   </eClassifiers>
 </ecore:EPackage>

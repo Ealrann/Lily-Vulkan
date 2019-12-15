@@ -29,6 +29,8 @@ import org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier;
 import org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite;
 import org.sheepy.lily.vulkan.model.binding.EInstance;
 import org.sheepy.lily.vulkan.model.binding.IConfigurationTask;
+import org.sheepy.lily.vulkan.model.binding.IContextConfiguration;
+import org.sheepy.lily.vulkan.model.binding.IndexConfiguration;
 import org.sheepy.lily.vulkan.model.binding.RotateConfiguration;
 
 import org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl;
@@ -108,6 +110,20 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 	 * @generated
 	 */
 	private EClass configureCompositeBufferBarrierEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iContextConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass indexConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -253,17 +269,6 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getBindingConfiguration_Tasks()
-	{
-		return (EReference)bindingConfigurationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getConfigureBind()
 	{
 		return configureBindEClass;
@@ -396,6 +401,50 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getIContextConfiguration()
+	{
+		return iContextConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIContextConfiguration_Tasks()
+	{
+		return (EReference)iContextConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIndexConfiguration()
+	{
+		return indexConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getIndexConfiguration_IndexCount()
+	{
+		return (EAttribute)indexConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getEInstance()
 	{
 		return eInstanceEEnum;
@@ -435,7 +484,6 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		bindingConfigurationEClass = createEClass(BINDING_CONFIGURATION);
 		createEReference(bindingConfigurationEClass, BINDING_CONFIGURATION__DESCRIPTORS_SETS);
 		createEAttribute(bindingConfigurationEClass, BINDING_CONFIGURATION__DESCRIPTOR_SET_STRIDE);
-		createEReference(bindingConfigurationEClass, BINDING_CONFIGURATION__TASKS);
 
 		configureBindEClass = createEClass(CONFIGURE_BIND);
 		createEReference(configureBindEClass, CONFIGURE_BIND__BIND_TASK);
@@ -453,6 +501,12 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		configureCompositeBufferBarrierEClass = createEClass(CONFIGURE_COMPOSITE_BUFFER_BARRIER);
 		createEReference(configureCompositeBufferBarrierEClass, CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIERS);
 		createEAttribute(configureCompositeBufferBarrierEClass, CONFIGURE_COMPOSITE_BUFFER_BARRIER__TARGET_INSTANCE);
+
+		iContextConfigurationEClass = createEClass(ICONTEXT_CONFIGURATION);
+		createEReference(iContextConfigurationEClass, ICONTEXT_CONFIGURATION__TASKS);
+
+		indexConfigurationEClass = createEClass(INDEX_CONFIGURATION);
+		createEAttribute(indexConfigurationEClass, INDEX_CONFIGURATION__INDEX_COUNT);
 
 		// Create enums
 		eInstanceEEnum = createEEnum(EINSTANCE);
@@ -483,45 +537,52 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
-		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		bindingConfigurationEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		bindingConfigurationEClass.getESuperTypes().add(theProcessPackage.getIProcessExtension());
+		bindingConfigurationEClass.getESuperTypes().add(this.getIContextConfiguration());
 		configureBindEClass.getESuperTypes().add(this.getIConfigurationTask());
 		rotateConfigurationEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		iConfigurationTaskEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		configurePrepareCompositeEClass.getESuperTypes().add(this.getIConfigurationTask());
 		configureCompositeBufferBarrierEClass.getESuperTypes().add(this.getIConfigurationTask());
+		iContextConfigurationEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
+		iContextConfigurationEClass.getESuperTypes().add(theProcessPackage.getIProcessExtension());
+		indexConfigurationEClass.getESuperTypes().add(this.getIContextConfiguration());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(bindingConfigurationEClass, BindingConfiguration.class, "BindingConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBindingConfiguration_DescriptorsSets(), theResourcePackage.getDescriptorSet(), null, "descriptorsSets", null, 1, -1, BindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBindingConfiguration_DescriptorSetStride(), ecorePackage.getEInt(), "descriptorSetStride", "0", 1, 1, BindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBindingConfiguration_Tasks(), this.getIConfigurationTask(), null, "tasks", null, 0, -1, BindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configureBindEClass, ConfigureBind.class, "ConfigureBind", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConfigureBind_BindTask(), theProcessPackage.getBindDescriptorSets(), null, "bindTask", null, 1, 1, ConfigureBind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rotateConfigurationEClass, RotateConfiguration.class, "RotateConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRotateConfiguration_Configurations(), this.getBindingConfiguration(), null, "configurations", null, 1, -1, RotateConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRotateConfiguration_Configurations(), this.getIContextConfiguration(), null, "configurations", null, 1, -1, RotateConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRotateConfiguration_ForceRecord(), ecorePackage.getEBoolean(), "forceRecord", "false", 1, 1, RotateConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iConfigurationTaskEClass, IConfigurationTask.class, "IConfigurationTask", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(configurePrepareCompositeEClass, ConfigurePrepareComposite.class, "ConfigurePrepareComposite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConfigurePrepareComposite_References(), theProcessPackage.getCompositePartReference(), null, "references", null, 1, -1, ConfigurePrepareComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfigurePrepareComposite_References(), theResourcePackage.getCompositePartReference(), null, "references", null, 1, -1, ConfigurePrepareComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfigurePrepareComposite_TargetInstance(), this.getEInstance(), "targetInstance", null, 1, 1, ConfigurePrepareComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configureCompositeBufferBarrierEClass, ConfigureCompositeBufferBarrier.class, "ConfigureCompositeBufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConfigureCompositeBufferBarrier_Barriers(), theResourcePackage.getCompositeBufferBarrier(), null, "barriers", null, 1, -1, ConfigureCompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfigureCompositeBufferBarrier_TargetInstance(), this.getEInstance(), "targetInstance", null, 1, 1, ConfigureCompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iContextConfigurationEClass, IContextConfiguration.class, "IContextConfiguration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIContextConfiguration_Tasks(), this.getIConfigurationTask(), null, "tasks", null, 0, -1, IContextConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(indexConfigurationEClass, IndexConfiguration.class, "IndexConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIndexConfiguration_IndexCount(), ecorePackage.getEInt(), "indexCount", "2", 1, 1, IndexConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(eInstanceEEnum, EInstance.class, "EInstance");

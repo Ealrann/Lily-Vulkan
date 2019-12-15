@@ -1,8 +1,7 @@
 package org.sheepy.lily.vulkan.demo.gameoflife.model;
 
-import org.joml.Vector2i;
-import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.core.model.application.ApplicationFactory;
+import org.joml.Vector2ic;
+import org.sheepy.lily.core.model.application.IEngine;
 import org.sheepy.lily.core.model.cadence.Cadence;
 import org.sheepy.lily.core.model.cadence.CadenceFactory;
 import org.sheepy.lily.vulkan.demo.gameoflife.compute.Board;
@@ -39,38 +38,36 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.ESampleCount;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
-public class ModelFactory
+public final class EngineBuilder
 {
+	public static int FRAME_COUNT = 0;
 	public static final int WORKGROUP_SIDE = 8;
 
 	private static final String SHADER_LIFE = "life.comp.spv";
 	private static final String SHADER_LIFE2PIXEL = "life2pixel.comp.spv";
 
-	public final Application application = ApplicationFactory.eINSTANCE.createApplication();
-	public final VulkanEngine engine = VulkanFactory.eINSTANCE.createVulkanEngine();
-	public final GraphicProcess presentProcess;
-	public ComputeProcess lifeProcess;
-	public ComputeProcess pixelProcess;
-	public ResourcePkg sharedResources = VulkanFactory.eINSTANCE.createResourcePkg();
-	public DescriptorPkg sharedDescriptors = VulkanFactory.eINSTANCE.createDescriptorPkg();
+	private final Vector2ic size;
 
-	private final Vector2i size;
+	private GraphicProcess presentProcess;
+	private ComputeProcess lifeProcess;
+	private ComputeProcess pixelProcess;
 	private StaticImage boardImage;
 	private ComputePipeline lifePipeline;
 	private ComputePipeline pixelPipeline;
+	private ResourcePkg sharedResources;
+	private DescriptorPkg sharedDescriptors;
 
-	public ModelFactory(int width, int height)
+	public EngineBuilder(Vector2ic size)
 	{
-		this(width, height, -1);
+		this.size = size;
 	}
 
-	public ModelFactory(int width, int height, int frameCount)
+	public IEngine build()
 	{
-		size = new Vector2i(width, height);
+		final VulkanEngine engine = VulkanFactory.eINSTANCE.createVulkanEngine();
 
-		application.setTitle("Vulkan - Game of Life");
-		application.setSize(size);
-		application.getEngines().add(engine);
+		sharedResources = VulkanFactory.eINSTANCE.createResourcePkg();
+		sharedDescriptors = VulkanFactory.eINSTANCE.createDescriptorPkg();
 
 		final var swapchainConfiguration = GraphicFactory.eINSTANCE.createSwapchainConfiguration();
 		swapchainConfiguration.getSwapImageUsages().add(EImageUsage.TRANSFER_DST);
@@ -97,7 +94,9 @@ public class ModelFactory
 		engine.getProcesses().add(presentProcess);
 		engine.setResourcePkg(sharedResources);
 		engine.setDescriptorPkg(sharedDescriptors);
-		engine.setCadence(buildCadence(frameCount));
+		engine.setCadence(buildCadence(FRAME_COUNT));
+
+		return engine;
 	}
 
 	private static RenderPassInfo newInfo()
@@ -310,8 +309,8 @@ public class ModelFactory
 	private DispatchTask createDispatchTask()
 	{
 		final var res = ComputeFactory.eINSTANCE.createDispatchTask();
-		res.setWorkgroupCountX(application.getSize().x() / WORKGROUP_SIDE);
-		res.setWorkgroupCountY(application.getSize().y() / WORKGROUP_SIDE);
+		res.setWorkgroupCountX(size.x() / WORKGROUP_SIDE);
+		res.setWorkgroupCountY(size.y() / WORKGROUP_SIDE);
 		return res;
 	}
 

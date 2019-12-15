@@ -118,7 +118,7 @@ public final class ResourceInstaller<T extends Structure>
 
 		for (int i = 0; i < dataProviders.size(); i++)
 		{
-			final var transferReference = ProcessFactory.eINSTANCE.createCompositePartReference();
+			final var transferReference = ResourceFactory.eINSTANCE.createCompositePartReference();
 			final var dataProvider = dataProviders.get(i);
 			final var dataSource = RenderingFactory.eINSTANCE.<T> createRenderableDataSource();
 			dataSource.setPart(part);

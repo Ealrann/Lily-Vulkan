@@ -27,8 +27,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
-import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer} object.
@@ -321,7 +321,12 @@ public class PrepareCompositeTransferItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.PREPARE_COMPOSITE_TRANSFER__PARTS,
-				 ProcessFactory.eINSTANCE.createCompositePartReference()));
+				 ResourceFactory.eINSTANCE.createCompositePartReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.PREPARE_COMPOSITE_TRANSFER__PARTS,
+				 ResourceFactory.eINSTANCE.createCompositeBufferReference()));
 	}
 
 	/**

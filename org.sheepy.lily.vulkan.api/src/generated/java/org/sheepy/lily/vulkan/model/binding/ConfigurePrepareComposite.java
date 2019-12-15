@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.model.binding;
 
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.lily.vulkan.model.process.CompositePartReference;
+import org.sheepy.lily.vulkan.model.resource.CompositePartReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +26,7 @@ public interface ConfigurePrepareComposite extends IConfigurationTask
 {
 	/**
 	 * Returns the value of the '<em><b>References</b></em>' reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.CompositePartReference}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.CompositePartReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>References</em>' reference list.

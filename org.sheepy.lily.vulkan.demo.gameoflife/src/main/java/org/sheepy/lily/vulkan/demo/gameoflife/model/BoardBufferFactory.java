@@ -1,7 +1,6 @@
 package org.sheepy.lily.vulkan.demo.gameoflife.model;
 
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.vulkan.demo.gameoflife.MainGameOfLife;
 import org.sheepy.lily.vulkan.demo.gameoflife.compute.Board;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
@@ -9,8 +8,8 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 public class BoardBufferFactory
 {
-	private static final int WIDTH_IN_TILE = MainGameOfLife.WIDTH / ModelFactory.WORKGROUP_SIDE;
-	private static final int TILE_SIZE = ModelFactory.WORKGROUP_SIDE * ModelFactory.WORKGROUP_SIDE;
+	private static final int TILE_SIZE = EngineBuilder.WORKGROUP_SIDE
+			* EngineBuilder.WORKGROUP_SIDE;
 
 	public static Buffer createBoardBuffer(Board board)
 	{
@@ -20,6 +19,8 @@ public class BoardBufferFactory
 		final int height = board.getHeight();
 		final int size = width * height;
 		final int byteSize = size * Integer.BYTES;
+
+		final int widthInTiles = width / EngineBuilder.WORKGROUP_SIDE;
 
 		res.setSize(byteSize);
 		res.getUsages().add(EBufferUsage.STORAGE_BUFFER_BIT);
@@ -33,7 +34,7 @@ public class BoardBufferFactory
 		{
 			for (int y = 0; y < height; y++)
 			{
-				final int index = globalIndexFromGlobal(x, y);
+				final int index = globalIndexFromGlobal(widthInTiles, x, y);
 				intBufferView.put(index, values[x][y] ? 1 : 0);
 			}
 		}
@@ -44,16 +45,16 @@ public class BoardBufferFactory
 		return res;
 	}
 
-	private static int globalIndexFromGlobal(int x, int y)
+	private static int globalIndexFromGlobal(int widthInTiles, int x, int y)
 	{
-		final int xWorkgroup = x / ModelFactory.WORKGROUP_SIDE;
-		final int yWorkgroup = y / ModelFactory.WORKGROUP_SIDE;
+		final int xWorkgroup = x / EngineBuilder.WORKGROUP_SIDE;
+		final int yWorkgroup = y / EngineBuilder.WORKGROUP_SIDE;
 
-		final int localIdX = x - xWorkgroup * ModelFactory.WORKGROUP_SIDE;
-		final int localIdY = y - yWorkgroup * ModelFactory.WORKGROUP_SIDE;
+		final int localIdX = x - xWorkgroup * EngineBuilder.WORKGROUP_SIDE;
+		final int localIdY = y - yWorkgroup * EngineBuilder.WORKGROUP_SIDE;
 
-		final int tileIndex = (xWorkgroup + yWorkgroup * WIDTH_IN_TILE) * TILE_SIZE;
-		final int index = tileIndex + localIdX + localIdY * ModelFactory.WORKGROUP_SIDE;
+		final int tileIndex = (xWorkgroup + yWorkgroup * widthInTiles) * TILE_SIZE;
+		final int index = tileIndex + localIdX + localIdY * EngineBuilder.WORKGROUP_SIDE;
 
 		return index;
 	}

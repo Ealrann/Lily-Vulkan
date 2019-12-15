@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.CompositePartReference;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
@@ -128,7 +129,7 @@ public interface PrepareCompositeTransfer extends IPipelineTask
 
 	/**
 	 * Returns the value of the '<em><b>Parts</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.CompositePartReference}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.CompositePartReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parts</em>' containment reference list.

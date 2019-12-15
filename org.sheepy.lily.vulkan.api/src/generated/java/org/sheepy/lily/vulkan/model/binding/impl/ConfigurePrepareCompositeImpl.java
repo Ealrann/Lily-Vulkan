@@ -15,8 +15,7 @@ import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.binding.BindingPackage;
 import org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite;
 import org.sheepy.lily.vulkan.model.binding.EInstance;
-
-import org.sheepy.lily.vulkan.model.process.CompositePartReference;
+import org.sheepy.lily.vulkan.model.resource.CompositePartReference;
 
 /**
  * <!-- begin-user-doc -->

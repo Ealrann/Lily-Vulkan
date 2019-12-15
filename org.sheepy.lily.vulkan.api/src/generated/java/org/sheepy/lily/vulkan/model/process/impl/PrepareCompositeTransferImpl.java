@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.vulkan.model.process.CompositePartReference;
 import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
@@ -162,7 +161,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CompositePartReference> parts;
+	protected EList<org.sheepy.lily.vulkan.model.resource.CompositePartReference> parts;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -361,11 +360,11 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * @generated
 	 */
 	@Override
-	public EList<CompositePartReference> getParts()
+	public EList<org.sheepy.lily.vulkan.model.resource.CompositePartReference> getParts()
 	{
 		if (parts == null)
 		{
-			parts = new EObjectContainmentEList<CompositePartReference>(CompositePartReference.class, this, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS);
+			parts = new EObjectContainmentEList<org.sheepy.lily.vulkan.model.resource.CompositePartReference>(org.sheepy.lily.vulkan.model.resource.CompositePartReference.class, this, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS);
 		}
 		return parts;
 	}
@@ -446,7 +445,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 				return;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS:
 				getParts().clear();
-				getParts().addAll((Collection<? extends CompositePartReference>)newValue);
+				getParts().addAll((Collection<? extends org.sheepy.lily.vulkan.model.resource.CompositePartReference>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

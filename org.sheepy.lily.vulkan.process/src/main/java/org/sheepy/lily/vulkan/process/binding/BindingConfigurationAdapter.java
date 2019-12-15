@@ -3,66 +3,27 @@ package org.sheepy.lily.vulkan.process.binding;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.model.binding.BindingConfiguration;
-import org.sheepy.lily.vulkan.model.binding.IConfigurationTask;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.lily.vulkan.process.binding.task.IConfigureTaskAdapter;
 
 @Statefull
 @Adapter(scope = BindingConfiguration.class, lazy = false)
-public final class BindingConfigurationAdapter implements IAdapter
+public final class BindingConfigurationAdapter extends AbstractContextConfigurationAdapter
 {
-	private final BindingConfiguration config;
-
-	private BindConfiguration currentConfiguration;
-
 	private BindingConfigurationAdapter(BindingConfiguration config)
 	{
-		this.config = config;
+		super(config);
 	}
 
-	@Load
-	private void load()
+	@Override
+	protected BindConfiguration newConfiguration(int instance)
 	{
-		currentConfiguration = newConfiguration(0);
-		executeTasks();
-	}
-
-	public void rotate()
-	{
-		final int stride = config.getDescriptorSetStride();
-		final var ds = config.getDescriptorsSets();
-		int instance = currentConfiguration.instance;
-		instance += stride;
-		if (instance >= ds.size()) instance = 0;
-
-		currentConfiguration = newConfiguration(instance);
-		executeTasks();
-	}
-
-	private void executeTasks()
-	{
-		for (final var task : config.getTasks())
-		{
-			executeTask(task);
-		}
-	}
-
-	private <T extends IConfigurationTask> void executeTask(final T task)
-	{
-		final var adapter = task.<IConfigureTaskAdapter<T>> adaptNotNullGeneric(IConfigureTaskAdapter.class);
-		adapter.configure(currentConfiguration, task);
-	}
-
-	private BindConfiguration newConfiguration(int instance)
-	{
+		final var bindConfig = (BindingConfiguration) config;
 		final List<DescriptorSet> res = new ArrayList<>();
-		final int stride = config.getDescriptorSetStride();
-		final var ds = config.getDescriptorsSets();
+		final int stride = bindConfig.getDescriptorSetStride();
+		final var ds = bindConfig.getDescriptorsSets();
 		final int first = stride * instance;
 		final int count = stride > 0 ? stride : ds.size();
 
@@ -77,5 +38,19 @@ public final class BindingConfigurationAdapter implements IAdapter
 		}
 
 		return new BindConfiguration(instance, List.copyOf(res));
+	}
+
+	@Override
+	protected int getStride()
+	{
+		final var bindConfig = (BindingConfiguration) config;
+		return bindConfig.getDescriptorSetStride();
+	}
+
+	@Override
+	protected int getIndexCount()
+	{
+		final var bindConfig = (BindingConfiguration) config;
+		return bindConfig.getDescriptorsSets().size();
 	}
 }

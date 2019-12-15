@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.demo.gameoflife.compute;
 
-import org.joml.Vector2i;
+import org.joml.Vector2ic;
 
 public class Board
 {
@@ -41,11 +41,10 @@ public class Board
 	{
 		return values;
 	}
-	
-	public static Board createTestBoard(Vector2i size)
-	{
-		final Board board = new Board(size.x, size.y);
 
+	public static Board createTestBoard(Vector2ic size)
+	{
+		final Board board = new Board(size.x(), size.y());
 
 		// Create a glider
 		board.activate(1 + 2, 0);
@@ -53,7 +52,7 @@ public class Board
 		board.activate(0 + 2, 2);
 		board.activate(1 + 2, 2);
 		board.activate(2 + 2, 2);
-		
+
 		// Create little spaceshift
 		board.activate(0, 200);
 		board.activate(0, 202);

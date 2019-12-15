@@ -3,10 +3,6 @@
 package org.sheepy.lily.vulkan.model.binding;
 
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.lily.core.model.types.LNamedElement;
-
-import org.sheepy.lily.vulkan.model.process.IProcessExtension;
-
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 
 /**
@@ -20,14 +16,13 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.binding.BindingConfiguration#getDescriptorsSets <em>Descriptors Sets</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.binding.BindingConfiguration#getDescriptorSetStride <em>Descriptor Set Stride</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.binding.BindingConfiguration#getTasks <em>Tasks</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.binding.BindingPackage#getBindingConfiguration()
  * @model
  * @generated
  */
-public interface BindingConfiguration extends LNamedElement, IProcessExtension
+public interface BindingConfiguration extends IContextConfiguration
 {
 	/**
 	 * Returns the value of the '<em><b>Descriptors Sets</b></em>' reference list.
@@ -64,6 +59,7 @@ public interface BindingConfiguration extends LNamedElement, IProcessExtension
 	 */
 	void setDescriptorSetStride(int value);
 
+	@Override
 	/**
 	 * Returns the value of the '<em><b>Tasks</b></em>' containment reference list.
 	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.binding.IConfigurationTask}.

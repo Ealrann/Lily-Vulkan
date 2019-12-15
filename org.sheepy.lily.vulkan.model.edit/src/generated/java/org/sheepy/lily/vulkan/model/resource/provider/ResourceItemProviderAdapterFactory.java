@@ -11,6 +11,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import org.eclipse.emf.edit.provider.ChangeNotifier;
@@ -27,6 +29,13 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
+import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
+import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
+import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.util.ResourceAdapterFactory;
 
@@ -187,6 +196,31 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		}
 
 		return compositeBufferItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.CompositePartReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CompositePartReferenceItemProvider compositePartReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.CompositePartReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCompositePartReferenceAdapter()
+	{
+		if (compositePartReferenceItemProvider == null)
+		{
+			compositePartReferenceItemProvider = new CompositePartReferenceItemProvider(this);
+		}
+
+		return compositePartReferenceItemProvider;
 	}
 
 	/**
@@ -942,6 +976,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (constantBufferItemProvider != null) constantBufferItemProvider.dispose();
 		if (bufferItemProvider != null) bufferItemProvider.dispose();
 		if (compositeBufferItemProvider != null) compositeBufferItemProvider.dispose();
+		if (compositePartReferenceItemProvider != null) compositePartReferenceItemProvider.dispose();
 		if (bufferReferenceItemProvider != null) bufferReferenceItemProvider.dispose();
 		if (compositeBufferReferenceItemProvider != null) compositeBufferReferenceItemProvider.dispose();
 		if (bufferDataProviderItemProvider != null) bufferDataProviderItemProvider.dispose();
@@ -966,6 +1001,180 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (moduleResourceItemProvider != null) moduleResourceItemProvider.dispose();
 		if (stringModuleResourceItemProvider != null) stringModuleResourceItemProvider.dispose();
 		if (texture2DArrayItemProvider != null) texture2DArrayItemProvider.dispose();
+	}
+
+	/**
+	 * A child creation extender for the {@link ProcessPackage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static class ProcessChildCreationExtender implements IChildCreationExtender
+	{
+		/**
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected static class CreationSwitch extends ProcessSwitch<Object>
+		{
+			/**
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected List<Object> newChildDescriptors;
+
+			/**
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected EditingDomain editingDomain;
+
+			/**
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			{
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseIPipeline(IPipeline object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
+						 ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object casePipelineBarrier(PipelineBarrier object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
+						 ResourceFactory.eINSTANCE.createBufferBarrier()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
+						 ResourceFactory.eINSTANCE.createCompositeBufferBarrier()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
+						 ResourceFactory.eINSTANCE.createImageBarrier()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseCopyBufferTask(CopyBufferTask object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COPY_BUFFER_TASK__SRC_BUFFER,
+						 ResourceFactory.eINSTANCE.createBufferReference()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COPY_BUFFER_TASK__SRC_BUFFER,
+						 ResourceFactory.eINSTANCE.createCompositeBufferReference()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COPY_BUFFER_TASK__DST_BUFFER,
+						 ResourceFactory.eINSTANCE.createBufferReference()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COPY_BUFFER_TASK__DST_BUFFER,
+						 ResourceFactory.eINSTANCE.createCompositeBufferReference()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object casePrepareCompositeTransfer(PrepareCompositeTransfer object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.PREPARE_COMPOSITE_TRANSFER__PARTS,
+						 ResourceFactory.eINSTANCE.createCompositePartReference()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.PREPARE_COMPOSITE_TRANSFER__PARTS,
+						 ResourceFactory.eINSTANCE.createCompositeBufferReference()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected CommandParameter createChildParameter(Object feature, Object child)
+			{
+				return new CommandParameter(null, feature, child);
+			}
+
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
+		{
+			ArrayList<Object> result = new ArrayList<Object>();
+			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			return result;
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public ResourceLocator getResourceLocator()
+		{
+			return LilyVulkanEditPlugin.INSTANCE;
+		}
 	}
 
 }

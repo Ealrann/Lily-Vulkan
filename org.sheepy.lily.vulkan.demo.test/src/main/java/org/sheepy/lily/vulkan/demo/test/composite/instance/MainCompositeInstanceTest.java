@@ -1,51 +1,30 @@
 package org.sheepy.lily.vulkan.demo.test.composite.instance;
 
 import org.sheepy.lily.core.api.LilyLauncher;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.core.api.cadence.ICadenceAdapter;
-import org.sheepy.lily.core.model.cadence.GenericCadence;
-import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
-import org.sheepy.lily.vulkan.demo.test.composite.instance.model.InstanceModelFactory;
+import org.sheepy.lily.core.model.application.Application;
+import org.sheepy.lily.core.model.application.ApplicationFactory;
+import org.sheepy.lily.core.model.presentation.PresentationFactory;
 
 public class MainCompositeInstanceTest
 {
-	public static int MAX_COUNT = 150;
-	public static InstanceModelFactory FACTORY = new InstanceModelFactory();
+	public static final String VIEW_NAME = "Vulkan - CompositeInstanceBuffer test";
 
 	public static void main(String[] args)
 	{
-		LilyLauncher.launch(FACTORY.application);
+		final Application application = buildApplication();
+		LilyLauncher.launch(application);
 	}
 
-	@Adapter(scope = GenericCadence.class, name = InstanceModelFactory.CADENCE_NAME)
-	public static final class CadenceAdapter implements ICadenceAdapter
+	public static Application buildApplication()
 	{
-		private IProcessAdapter processAdapter;
-		private int count = 0;
+		final Application application = ApplicationFactory.eINSTANCE.createApplication();
+		application.setTitle(VIEW_NAME);
+		application.setHeadless(true);
 
-		@Load
-		public void load()
-		{
-			processAdapter = FACTORY.process.adaptNotNull(IProcessAdapter.class);
-		}
+		final var view = PresentationFactory.eINSTANCE.createGenericView();
+		view.setName(VIEW_NAME);
+		application.setView(view);
 
-		@Override
-		public void run()
-		{
-			FACTORY.taskManager.configure();
-
-			processAdapter.run();
-			processAdapter.waitIdle();
-
-			FACTORY.taskManager.nextInstance();
-
-			count++;
-
-			if (count == MAX_COUNT)
-			{
-				FACTORY.application.setRun(false);
-			}
-		}
+		return application;
 	}
 }

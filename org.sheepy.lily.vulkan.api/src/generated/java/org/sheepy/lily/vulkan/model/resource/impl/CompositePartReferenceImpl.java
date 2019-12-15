@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.process.impl;
+package org.sheepy.lily.vulkan.model.resource.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -10,8 +10,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 
-import org.sheepy.lily.vulkan.model.process.CompositePartReference;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.resource.CompositePartReference;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,9 +21,9 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CompositePartReferenceImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CompositePartReferenceImpl#getPart <em>Part</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CompositePartReferenceImpl#getInstance <em>Instance</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositePartReferenceImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositePartReferenceImpl#getPart <em>Part</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositePartReferenceImpl#getInstance <em>Instance</em>}</li>
  * </ul>
  *
  * @generated
@@ -108,7 +108,7 @@ public class CompositePartReferenceImpl extends LilyEObject implements Composite
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ProcessPackage.Literals.COMPOSITE_PART_REFERENCE;
+		return ResourcePackage.Literals.COMPOSITE_PART_REFERENCE;
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class CompositePartReferenceImpl extends LilyEObject implements Composite
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.COMPOSITE_PART_REFERENCE__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_PART_REFERENCE__NAME, oldName, name));
 	}
 
 	/**
@@ -158,7 +158,7 @@ public class CompositePartReferenceImpl extends LilyEObject implements Composite
 		int oldPart = part;
 		part = newPart;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.COMPOSITE_PART_REFERENCE__PART, oldPart, part));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_PART_REFERENCE__PART, oldPart, part));
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class CompositePartReferenceImpl extends LilyEObject implements Composite
 		int oldInstance = instance;
 		instance = newInstance;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.COMPOSITE_PART_REFERENCE__INSTANCE, oldInstance, instance));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_PART_REFERENCE__INSTANCE, oldInstance, instance));
 	}
 
 	/**
@@ -196,11 +196,11 @@ public class CompositePartReferenceImpl extends LilyEObject implements Composite
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.COMPOSITE_PART_REFERENCE__NAME:
+			case ResourcePackage.COMPOSITE_PART_REFERENCE__NAME:
 				return getName();
-			case ProcessPackage.COMPOSITE_PART_REFERENCE__PART:
+			case ResourcePackage.COMPOSITE_PART_REFERENCE__PART:
 				return getPart();
-			case ProcessPackage.COMPOSITE_PART_REFERENCE__INSTANCE:
+			case ResourcePackage.COMPOSITE_PART_REFERENCE__INSTANCE:
 				return getInstance();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -216,13 +216,13 @@ public class CompositePartReferenceImpl extends LilyEObject implements Composite
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.COMPOSITE_PART_REFERENCE__NAME:
+			case ResourcePackage.COMPOSITE_PART_REFERENCE__NAME:
 				setName((String)newValue);
 				return;
-			case ProcessPackage.COMPOSITE_PART_REFERENCE__PART:
+			case ResourcePackage.COMPOSITE_PART_REFERENCE__PART:
 				setPart((Integer)newValue);
 				return;
-			case ProcessPackage.COMPOSITE_PART_REFERENCE__INSTANCE:
+			case ResourcePackage.COMPOSITE_PART_REFERENCE__INSTANCE:
 				setInstance((Integer)newValue);
 				return;
 		}
@@ -239,13 +239,13 @@ public class CompositePartReferenceImpl extends LilyEObject implements Composite
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.COMPOSITE_PART_REFERENCE__NAME:
+			case ResourcePackage.COMPOSITE_PART_REFERENCE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ProcessPackage.COMPOSITE_PART_REFERENCE__PART:
+			case ResourcePackage.COMPOSITE_PART_REFERENCE__PART:
 				setPart(PART_EDEFAULT);
 				return;
-			case ProcessPackage.COMPOSITE_PART_REFERENCE__INSTANCE:
+			case ResourcePackage.COMPOSITE_PART_REFERENCE__INSTANCE:
 				setInstance(INSTANCE_EDEFAULT);
 				return;
 		}
@@ -262,11 +262,11 @@ public class CompositePartReferenceImpl extends LilyEObject implements Composite
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.COMPOSITE_PART_REFERENCE__NAME:
+			case ResourcePackage.COMPOSITE_PART_REFERENCE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ProcessPackage.COMPOSITE_PART_REFERENCE__PART:
+			case ResourcePackage.COMPOSITE_PART_REFERENCE__PART:
 				return part != PART_EDEFAULT;
-			case ProcessPackage.COMPOSITE_PART_REFERENCE__INSTANCE:
+			case ResourcePackage.COMPOSITE_PART_REFERENCE__INSTANCE:
 				return instance != INSTANCE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

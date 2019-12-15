@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.demo.test.composite.instance.model;
 
-import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.core.model.application.ApplicationFactory;
+import org.sheepy.lily.core.model.application.IEngine;
+import org.sheepy.lily.core.model.cadence.Cadence;
 import org.sheepy.lily.core.model.cadence.CadenceFactory;
 import org.sheepy.lily.vulkan.demo.test.composite.instance.model.InstanceTestResourceFactory.ResourceContainer;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
@@ -15,41 +15,65 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
-public class InstanceModelFactory
+public class InstanceEngineFactory
 {
-	public static final String CADENCE_NAME = "TestInstance_Cadence";
+	public static int MAX_COUNT = 150;
+
 	private static final int INSTANCE_COUNT = 10;
-	public final Application application = ApplicationFactory.eINSTANCE.createApplication();
-	public final VulkanEngine engine = VulkanFactory.eINSTANCE.createVulkanEngine();
-	public final ComputeProcess process;
-	public final ResourceContainer resourceContainer;
-	public final InstanceTaskManager taskManager;
 
-	public InstanceModelFactory()
+	public static IEngine build()
 	{
-		application.setTitle("Vulkan - CompositeBuffer test");
-		application.getEngines().add(engine);
-		application.setHeadless(true);
+		final VulkanEngine engine = VulkanFactory.eINSTANCE.createVulkanEngine();
 
-		resourceContainer = InstanceTestResourceFactory.build(INSTANCE_COUNT);
-		process = createComputeProcessPool();
+		final var resourceContainer = InstanceTestResourceFactory.build(INSTANCE_COUNT);
+		final var process = createComputeProcessPool(resourceContainer);
 
 		final var pipeline = createPipeline(resourceContainer);
 		process.getPartPkg().getParts().add(pipeline);
 
-		taskManager = new InstanceTaskManager(resourceContainer, INSTANCE_COUNT);
+		final var taskManager = new InstanceTaskManager(resourceContainer, INSTANCE_COUNT);
 		taskManager.install(pipeline.getTaskPkg().getTasks());
+		process.getExtensionPkg().getExtensions().add(taskManager.indexConfiguration);
 
-		final var cadence = CadenceFactory.eINSTANCE.createGenericCadence();
-		cadence.setName(CADENCE_NAME);
+		final var cadence = buildCadence(process, MAX_COUNT);
 
 		engine.getProcesses().add(process);
 		engine.setCadence(cadence);
+
+		return engine;
 	}
 
-	private ComputeProcess createComputeProcessPool()
+	private static Cadence buildCadence(final ComputeProcess process, int frameCount)
+	{
+		final var runProcess = VulkanFactory.eINSTANCE.createRunProcess();
+		runProcess.setProcess(process);
+
+		final var waitIdle = VulkanFactory.eINSTANCE.createWaitProcessIdle();
+		waitIdle.setProcess(process);
+
+		final var cadence = CadenceFactory.eINSTANCE.createCadence();
+		cadence.getTasks().add(runProcess);
+		cadence.getTasks().add(waitIdle);
+
+		if (frameCount > 0)
+		{
+			final var executeIf = CadenceFactory.eINSTANCE.createExecuteIf();
+			final var countUntil = CadenceFactory.eINSTANCE.createCountUntil();
+			final var closeApp = CadenceFactory.eINSTANCE.createCloseApplication();
+			countUntil.setTotalCount(frameCount);
+			executeIf.getConditions().add(countUntil);
+			executeIf.getTasks().add(closeApp);
+
+			cadence.getTasks().add(executeIf);
+		}
+
+		return cadence;
+	}
+
+	private static ComputeProcess createComputeProcessPool(ResourceContainer resourceContainer)
 	{
 		final ComputeProcess process = ComputeFactory.eINSTANCE.createComputeProcess();
+		process.setExtensionPkg(ProcessFactory.eINSTANCE.createProcessExtensionPkg());;
 
 		final ProcessPartPkg partPkg = ProcessFactory.eINSTANCE.createProcessPartPkg();
 		process.setPartPkg(partPkg);

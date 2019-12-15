@@ -8,7 +8,8 @@ public class MainTriangleTest
 	@Test
 	public void mainTest()
 	{
-		final var modelFactory = MainTriangle.createFactory(500);
-		LilyLauncher.launch(modelFactory.application);
+		TriangleEngineProvider.FRAME_COUNT = 500;
+		final var application = MainTriangle.createApplication();
+		LilyLauncher.launch(application);
 	}
 }

@@ -165,6 +165,11 @@ public class ProcessExtensionPkgItemProvider
 			(createChildParameter
 				(ProcessPackage.Literals.PROCESS_EXTENSION_PKG__EXTENSIONS,
 				 BindingFactory.eINSTANCE.createBindingConfiguration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.PROCESS_EXTENSION_PKG__EXTENSIONS,
+				 BindingFactory.eINSTANCE.createIndexConfiguration()));
 	}
 
 	/**

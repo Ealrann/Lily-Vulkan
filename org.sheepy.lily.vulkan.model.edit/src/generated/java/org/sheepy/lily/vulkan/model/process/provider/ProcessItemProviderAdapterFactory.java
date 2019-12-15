@@ -32,9 +32,15 @@ import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.cadence.CadenceTaskPkg;
 import org.sheepy.lily.core.model.cadence.util.CadenceSwitch;
 import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
+import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.CompositeTask;
+import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
+import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.process.util.ProcessAdapterFactory;
+import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -371,31 +377,6 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.CompositePartReference} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CompositePartReferenceItemProvider compositePartReferenceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.CompositePartReference}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCompositePartReferenceAdapter()
-	{
-		if (compositePartReferenceItemProvider == null)
-		{
-			compositePartReferenceItemProvider = new CompositePartReferenceItemProvider(this);
-		}
-
-		return compositePartReferenceItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.SwapBindingsTask} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -580,7 +561,6 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 		if (copyBufferTaskItemProvider != null) copyBufferTaskItemProvider.dispose();
 		if (processExtensionPkgItemProvider != null) processExtensionPkgItemProvider.dispose();
 		if (prepareCompositeTransferItemProvider != null) prepareCompositeTransferItemProvider.dispose();
-		if (compositePartReferenceItemProvider != null) compositePartReferenceItemProvider.dispose();
 		if (swapBindingsTaskItemProvider != null) swapBindingsTaskItemProvider.dispose();
 	}
 
@@ -639,6 +619,231 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 					(createChildParameter
 						(CadencePackage.Literals.CADENCE_TASK_PKG__TASKS,
 						 ProcessFactory.eINSTANCE.createSwapBindingsTask()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected CommandParameter createChildParameter(Object feature, Object child)
+			{
+				return new CommandParameter(null, feature, child);
+			}
+
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
+		{
+			ArrayList<Object> result = new ArrayList<Object>();
+			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			return result;
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public ResourceLocator getResourceLocator()
+		{
+			return LilyVulkanEditPlugin.INSTANCE;
+		}
+	}
+
+	/**
+	 * A child creation extender for the {@link ProcessPackage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static class ProcessChildCreationExtender implements IChildCreationExtender
+	{
+		/**
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected static class CreationSwitch extends ProcessSwitch<Object>
+		{
+			/**
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected List<Object> newChildDescriptors;
+
+			/**
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected EditingDomain editingDomain;
+
+			/**
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			{
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseAbstractProcess(AbstractProcess object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.ABSTRACT_PROCESS__PART_PKG,
+						 ProcessFactory.eINSTANCE.createProcessPartPkg()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.ABSTRACT_PROCESS__EXTENSION_PKG,
+						 ProcessFactory.eINSTANCE.createProcessExtensionPkg()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseProcessPartPkg(ProcessPartPkg object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
+						 ProcessFactory.eINSTANCE.createPipeline()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseIPipeline(IPipeline object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.IPIPELINE__TASK_PKG,
+						 ProcessFactory.eINSTANCE.createTaskPkg()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseTaskPkg(TaskPkg object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.TASK_PKG__TASKS,
+						 ProcessFactory.eINSTANCE.createPipelineBarrier()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.TASK_PKG__TASKS,
+						 ProcessFactory.eINSTANCE.createCompositeTask()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.TASK_PKG__TASKS,
+						 ProcessFactory.eINSTANCE.createBindDescriptorSets()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.TASK_PKG__TASKS,
+						 ProcessFactory.eINSTANCE.createPushConstantBuffer()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.TASK_PKG__TASKS,
+						 ProcessFactory.eINSTANCE.createFlushTransferBufferTask()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.TASK_PKG__TASKS,
+						 ProcessFactory.eINSTANCE.createCopyBufferTask()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.TASK_PKG__TASKS,
+						 ProcessFactory.eINSTANCE.createPrepareCompositeTransfer()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseCompositeTask(CompositeTask object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+						 ProcessFactory.eINSTANCE.createPipelineBarrier()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+						 ProcessFactory.eINSTANCE.createCompositeTask()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+						 ProcessFactory.eINSTANCE.createBindDescriptorSets()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+						 ProcessFactory.eINSTANCE.createPushConstantBuffer()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+						 ProcessFactory.eINSTANCE.createFlushTransferBufferTask()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+						 ProcessFactory.eINSTANCE.createCopyBufferTask()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+						 ProcessFactory.eINSTANCE.createPrepareCompositeTransfer()));
 
 				return null;
 			}

@@ -11,9 +11,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
-
-import org.sheepy.lily.vulkan.model.binding.BindingConfiguration;
 import org.sheepy.lily.vulkan.model.binding.BindingPackage;
+import org.sheepy.lily.vulkan.model.binding.IContextConfiguration;
 import org.sheepy.lily.vulkan.model.binding.RotateConfiguration;
 
 /**
@@ -82,7 +81,7 @@ public class RotateConfigurationImpl extends LilyEObject implements RotateConfig
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<BindingConfiguration> configurations;
+	protected EList<IContextConfiguration> configurations;
 
 	/**
 	 * The default value of the '{@link #isForceRecord() <em>Force Record</em>}' attribute.
@@ -181,11 +180,11 @@ public class RotateConfigurationImpl extends LilyEObject implements RotateConfig
 	 * @generated
 	 */
 	@Override
-	public EList<BindingConfiguration> getConfigurations()
+	public EList<IContextConfiguration> getConfigurations()
 	{
 		if (configurations == null)
 		{
-			configurations = new EObjectResolvingEList<BindingConfiguration>(BindingConfiguration.class, this, BindingPackage.ROTATE_CONFIGURATION__CONFIGURATIONS);
+			configurations = new EObjectResolvingEList<IContextConfiguration>(IContextConfiguration.class, this, BindingPackage.ROTATE_CONFIGURATION__CONFIGURATIONS);
 		}
 		return configurations;
 	}
@@ -256,7 +255,7 @@ public class RotateConfigurationImpl extends LilyEObject implements RotateConfig
 				return;
 			case BindingPackage.ROTATE_CONFIGURATION__CONFIGURATIONS:
 				getConfigurations().clear();
-				getConfigurations().addAll((Collection<? extends BindingConfiguration>)newValue);
+				getConfigurations().addAll((Collection<? extends IContextConfiguration>)newValue);
 				return;
 			case BindingPackage.ROTATE_CONFIGURATION__FORCE_RECORD:
 				setForceRecord((Boolean)newValue);

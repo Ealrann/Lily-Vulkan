@@ -70,6 +70,7 @@ public class BindingFactoryImpl extends EFactoryImpl implements BindingFactory
 			case BindingPackage.ROTATE_CONFIGURATION: return createRotateConfiguration();
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE: return createConfigurePrepareComposite();
 			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER: return createConfigureCompositeBufferBarrier();
+			case BindingPackage.INDEX_CONFIGURATION: return createIndexConfiguration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -167,6 +168,18 @@ public class BindingFactoryImpl extends EFactoryImpl implements BindingFactory
 	{
 		ConfigureCompositeBufferBarrierImpl configureCompositeBufferBarrier = new ConfigureCompositeBufferBarrierImpl();
 		return configureCompositeBufferBarrier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IndexConfiguration createIndexConfiguration()
+	{
+		IndexConfigurationImpl indexConfiguration = new IndexConfigurationImpl();
+		return indexConfiguration;
 	}
 
 	/**

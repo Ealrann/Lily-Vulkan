@@ -109,6 +109,16 @@ public class BindingAdapterFactory extends AdapterFactoryImpl
 				return createConfigureCompositeBufferBarrierAdapter();
 			}
 			@Override
+			public Adapter caseIContextConfiguration(IContextConfiguration object)
+			{
+				return createIContextConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseIndexConfiguration(IndexConfiguration object)
+			{
+				return createIndexConfigurationAdapter();
+			}
+			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
@@ -231,6 +241,36 @@ public class BindingAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createConfigureCompositeBufferBarrierAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.binding.IContextConfiguration <em>IContext Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.binding.IContextConfiguration
+	 * @generated
+	 */
+	public Adapter createIContextConfigurationAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.binding.IndexConfiguration <em>Index Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.binding.IndexConfiguration
+	 * @generated
+	 */
+	public Adapter createIndexConfigurationAdapter()
 	{
 		return null;
 	}

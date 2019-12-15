@@ -8,7 +8,8 @@ public class MainTextureTest
 	@Test
 	public void mainTest()
 	{
-		final var modelFactory = MainTexture.createFactory(500);
-		LilyLauncher.launch(modelFactory.application);
+		TextureEngineProvider.FRAME_COUNT = 500;
+		final var application = MainTexture.createApplication();
+		LilyLauncher.launch(application);
 	}
 }

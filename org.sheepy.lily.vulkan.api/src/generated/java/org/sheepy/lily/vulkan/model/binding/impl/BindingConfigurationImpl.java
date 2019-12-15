@@ -3,23 +3,27 @@
 package org.sheepy.lily.vulkan.model.binding.impl;
 
 import java.util.Collection;
-import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 
 import org.sheepy.lily.vulkan.model.binding.BindingConfiguration;
 import org.sheepy.lily.vulkan.model.binding.BindingPackage;
-
 import org.sheepy.lily.vulkan.model.binding.IConfigurationTask;
+
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 
 /**
@@ -31,9 +35,9 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.BindingConfigurationImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.BindingConfigurationImpl#getTasks <em>Tasks</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.BindingConfigurationImpl#getDescriptorsSets <em>Descriptors Sets</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.BindingConfigurationImpl#getDescriptorSetStride <em>Descriptor Set Stride</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.BindingConfigurationImpl#getTasks <em>Tasks</em>}</li>
  * </ul>
  *
  * @generated
@@ -59,6 +63,16 @@ public class BindingConfigurationImpl extends LilyEObject implements BindingConf
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getTasks() <em>Tasks</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTasks()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<IConfigurationTask> tasks;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorsSets() <em>Descriptors Sets</em>}' reference list.
@@ -89,16 +103,6 @@ public class BindingConfigurationImpl extends LilyEObject implements BindingConf
 	 * @ordered
 	 */
 	protected int descriptorSetStride = DESCRIPTOR_SET_STRIDE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getTasks() <em>Tasks</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTasks()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<IConfigurationTask> tasks;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -152,6 +156,21 @@ public class BindingConfigurationImpl extends LilyEObject implements BindingConf
 	 * @generated
 	 */
 	@Override
+	public EList<IConfigurationTask> getTasks()
+	{
+		if (tasks == null)
+		{
+			tasks = new EObjectContainmentEList<IConfigurationTask>(IConfigurationTask.class, this, BindingPackage.BINDING_CONFIGURATION__TASKS);
+		}
+		return tasks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<DescriptorSet> getDescriptorsSets()
 	{
 		if (descriptorsSets == null)
@@ -192,21 +211,6 @@ public class BindingConfigurationImpl extends LilyEObject implements BindingConf
 	 * @generated
 	 */
 	@Override
-	public EList<IConfigurationTask> getTasks()
-	{
-		if (tasks == null)
-		{
-			tasks = new EObjectContainmentEList<IConfigurationTask>(IConfigurationTask.class, this, BindingPackage.BINDING_CONFIGURATION__TASKS);
-		}
-		return tasks;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -229,12 +233,12 @@ public class BindingConfigurationImpl extends LilyEObject implements BindingConf
 		{
 			case BindingPackage.BINDING_CONFIGURATION__NAME:
 				return getName();
+			case BindingPackage.BINDING_CONFIGURATION__TASKS:
+				return getTasks();
 			case BindingPackage.BINDING_CONFIGURATION__DESCRIPTORS_SETS:
 				return getDescriptorsSets();
 			case BindingPackage.BINDING_CONFIGURATION__DESCRIPTOR_SET_STRIDE:
 				return getDescriptorSetStride();
-			case BindingPackage.BINDING_CONFIGURATION__TASKS:
-				return getTasks();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -253,16 +257,16 @@ public class BindingConfigurationImpl extends LilyEObject implements BindingConf
 			case BindingPackage.BINDING_CONFIGURATION__NAME:
 				setName((String)newValue);
 				return;
+			case BindingPackage.BINDING_CONFIGURATION__TASKS:
+				getTasks().clear();
+				getTasks().addAll((Collection<? extends IConfigurationTask>)newValue);
+				return;
 			case BindingPackage.BINDING_CONFIGURATION__DESCRIPTORS_SETS:
 				getDescriptorsSets().clear();
 				getDescriptorsSets().addAll((Collection<? extends DescriptorSet>)newValue);
 				return;
 			case BindingPackage.BINDING_CONFIGURATION__DESCRIPTOR_SET_STRIDE:
 				setDescriptorSetStride((Integer)newValue);
-				return;
-			case BindingPackage.BINDING_CONFIGURATION__TASKS:
-				getTasks().clear();
-				getTasks().addAll((Collection<? extends IConfigurationTask>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -281,14 +285,14 @@ public class BindingConfigurationImpl extends LilyEObject implements BindingConf
 			case BindingPackage.BINDING_CONFIGURATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case BindingPackage.BINDING_CONFIGURATION__TASKS:
+				getTasks().clear();
+				return;
 			case BindingPackage.BINDING_CONFIGURATION__DESCRIPTORS_SETS:
 				getDescriptorsSets().clear();
 				return;
 			case BindingPackage.BINDING_CONFIGURATION__DESCRIPTOR_SET_STRIDE:
 				setDescriptorSetStride(DESCRIPTOR_SET_STRIDE_EDEFAULT);
-				return;
-			case BindingPackage.BINDING_CONFIGURATION__TASKS:
-				getTasks().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -306,12 +310,12 @@ public class BindingConfigurationImpl extends LilyEObject implements BindingConf
 		{
 			case BindingPackage.BINDING_CONFIGURATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case BindingPackage.BINDING_CONFIGURATION__TASKS:
+				return tasks != null && !tasks.isEmpty();
 			case BindingPackage.BINDING_CONFIGURATION__DESCRIPTORS_SETS:
 				return descriptorsSets != null && !descriptorsSets.isEmpty();
 			case BindingPackage.BINDING_CONFIGURATION__DESCRIPTOR_SET_STRIDE:
 				return descriptorSetStride != DESCRIPTOR_SET_STRIDE_EDEFAULT;
-			case BindingPackage.BINDING_CONFIGURATION__TASKS:
-				return tasks != null && !tasks.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

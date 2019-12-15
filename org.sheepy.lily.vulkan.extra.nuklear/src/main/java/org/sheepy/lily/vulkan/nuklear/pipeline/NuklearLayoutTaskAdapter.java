@@ -48,7 +48,7 @@ public final class NuklearLayoutTaskAdapter
 	private static final String NK_CONVERT_FAILED = "nk_convert failed: ";
 
 	private final AdapterSetRegistry<IPanelAdapter> PANEL_REGISTRY = new AdapterSetRegistry<>(	IPanelAdapter.class,
-																								List.of(ApplicationPackage.Literals.APPLICATION__CURRENT_VIEW,
+																								List.of(ApplicationPackage.Literals.APPLICATION__VIEW,
 																										PresentationPackage.Literals.IUI_VIEW__CURRENT_UI_PAGE,
 																										PresentationPackage.Literals.UI_PAGE__PANELS));
 

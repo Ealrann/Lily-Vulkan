@@ -80,6 +80,7 @@ public class BindingSwitch<T> extends Switch<T>
 			{
 				BindingConfiguration bindingConfiguration = (BindingConfiguration)theEObject;
 				T result = caseBindingConfiguration(bindingConfiguration);
+				if (result == null) result = caseIContextConfiguration(bindingConfiguration);
 				if (result == null) result = caseLNamedElement(bindingConfiguration);
 				if (result == null) result = caseIProcessExtension(bindingConfiguration);
 				if (result == null) result = defaultCase(theEObject);
@@ -126,6 +127,25 @@ public class BindingSwitch<T> extends Switch<T>
 				T result = caseConfigureCompositeBufferBarrier(configureCompositeBufferBarrier);
 				if (result == null) result = caseIConfigurationTask(configureCompositeBufferBarrier);
 				if (result == null) result = caseLNamedElement(configureCompositeBufferBarrier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BindingPackage.ICONTEXT_CONFIGURATION:
+			{
+				IContextConfiguration iContextConfiguration = (IContextConfiguration)theEObject;
+				T result = caseIContextConfiguration(iContextConfiguration);
+				if (result == null) result = caseLNamedElement(iContextConfiguration);
+				if (result == null) result = caseIProcessExtension(iContextConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BindingPackage.INDEX_CONFIGURATION:
+			{
+				IndexConfiguration indexConfiguration = (IndexConfiguration)theEObject;
+				T result = caseIndexConfiguration(indexConfiguration);
+				if (result == null) result = caseIContextConfiguration(indexConfiguration);
+				if (result == null) result = caseLNamedElement(indexConfiguration);
+				if (result == null) result = caseIProcessExtension(indexConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -225,6 +245,38 @@ public class BindingSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseConfigureCompositeBufferBarrier(ConfigureCompositeBufferBarrier object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IContext Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IContext Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIContextConfiguration(IContextConfiguration object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Index Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Index Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIndexConfiguration(IndexConfiguration object)
 	{
 		return null;
 	}

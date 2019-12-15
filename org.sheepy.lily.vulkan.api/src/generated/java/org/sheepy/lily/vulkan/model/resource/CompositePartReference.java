@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.process;
+package org.sheepy.lily.vulkan.model.resource;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
 
@@ -13,11 +13,11 @@ import org.sheepy.lily.core.model.types.LNamedElement;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.CompositePartReference#getPart <em>Part</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.CompositePartReference#getInstance <em>Instance</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositePartReference#getPart <em>Part</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositePartReference#getInstance <em>Instance</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getCompositePartReference()
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getCompositePartReference()
  * @model
  * @generated
  */
@@ -29,14 +29,14 @@ public interface CompositePartReference extends LNamedElement
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Part</em>' attribute.
 	 * @see #setPart(int)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getCompositePartReference_Part()
-	 * @model required="true"
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getCompositePartReference_Part()
+	 * @model unique="false"
 	 * @generated
 	 */
 	int getPart();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.CompositePartReference#getPart <em>Part</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.CompositePartReference#getPart <em>Part</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Part</em>' attribute.
@@ -52,14 +52,14 @@ public interface CompositePartReference extends LNamedElement
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Instance</em>' attribute.
 	 * @see #setInstance(int)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getCompositePartReference_Instance()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getCompositePartReference_Instance()
 	 * @model default="0" required="true"
 	 * @generated
 	 */
 	int getInstance();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.CompositePartReference#getInstance <em>Instance</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.CompositePartReference#getInstance <em>Instance</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Instance</em>' attribute.

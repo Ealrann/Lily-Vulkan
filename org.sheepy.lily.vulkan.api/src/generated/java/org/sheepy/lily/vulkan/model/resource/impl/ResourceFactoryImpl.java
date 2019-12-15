@@ -67,34 +67,35 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case ResourcePackage.TRANSFER_BUFFER: return (EObject)createTransferBuffer();
-			case ResourcePackage.CONSTANT_BUFFER: return (EObject)createConstantBuffer();
-			case ResourcePackage.BUFFER: return (EObject)createBuffer();
-			case ResourcePackage.COMPOSITE_BUFFER: return (EObject)createCompositeBuffer();
-			case ResourcePackage.BUFFER_REFERENCE: return (EObject)createBufferReference();
-			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE: return (EObject)createCompositeBufferReference();
-			case ResourcePackage.BUFFER_DATA_PROVIDER: return (EObject)createBufferDataProvider();
-			case ResourcePackage.STATIC_IMAGE: return (EObject)createStaticImage();
-			case ResourcePackage.FILE_IMAGE: return (EObject)createFileImage();
-			case ResourcePackage.SAMPLED_IMAGE: return (EObject)createSampledImage();
-			case ResourcePackage.SAMPLER: return (EObject)createSampler();
-			case ResourcePackage.SEMAPHORE: return (EObject)createSemaphore();
-			case ResourcePackage.FONT_IMAGE: return (EObject)createFontImage();
-			case ResourcePackage.BUFFER_DESCRIPTOR: return (EObject)createBufferDescriptor();
-			case ResourcePackage.IMAGE_DESCRIPTOR: return (EObject)createImageDescriptor();
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR: return (EObject)createSampledImageDescriptor();
-			case ResourcePackage.SAMPLER_DESCRIPTOR: return (EObject)createSamplerDescriptor();
-			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR: return (EObject)createTexture2DArrayDescriptor();
-			case ResourcePackage.DESCRIPTOR_SET: return (EObject)createDescriptorSet();
-			case ResourcePackage.DESCRIPTOR_SET_PKG: return (EObject)createDescriptorSetPkg();
-			case ResourcePackage.BUFFER_BARRIER: return (EObject)createBufferBarrier();
-			case ResourcePackage.COMPOSITE_BUFFER_BARRIER: return (EObject)createCompositeBufferBarrier();
-			case ResourcePackage.IMAGE_BARRIER: return (EObject)createImageBarrier();
-			case ResourcePackage.SHADER: return (EObject)createShader();
-			case ResourcePackage.FILE_RESOURCE: return (EObject)createFileResource();
-			case ResourcePackage.MODULE_RESOURCE: return (EObject)createModuleResource();
-			case ResourcePackage.STRING_MODULE_RESOURCE: return (EObject)createStringModuleResource();
-			case ResourcePackage.TEXTURE2_DARRAY: return (EObject)createTexture2DArray();
+			case ResourcePackage.TRANSFER_BUFFER: return createTransferBuffer();
+			case ResourcePackage.CONSTANT_BUFFER: return createConstantBuffer();
+			case ResourcePackage.BUFFER: return createBuffer();
+			case ResourcePackage.COMPOSITE_BUFFER: return createCompositeBuffer();
+			case ResourcePackage.COMPOSITE_PART_REFERENCE: return createCompositePartReference();
+			case ResourcePackage.BUFFER_REFERENCE: return createBufferReference();
+			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE: return createCompositeBufferReference();
+			case ResourcePackage.BUFFER_DATA_PROVIDER: return createBufferDataProvider();
+			case ResourcePackage.STATIC_IMAGE: return createStaticImage();
+			case ResourcePackage.FILE_IMAGE: return createFileImage();
+			case ResourcePackage.SAMPLED_IMAGE: return createSampledImage();
+			case ResourcePackage.SAMPLER: return createSampler();
+			case ResourcePackage.SEMAPHORE: return createSemaphore();
+			case ResourcePackage.FONT_IMAGE: return createFontImage();
+			case ResourcePackage.BUFFER_DESCRIPTOR: return createBufferDescriptor();
+			case ResourcePackage.IMAGE_DESCRIPTOR: return createImageDescriptor();
+			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR: return createSampledImageDescriptor();
+			case ResourcePackage.SAMPLER_DESCRIPTOR: return createSamplerDescriptor();
+			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR: return createTexture2DArrayDescriptor();
+			case ResourcePackage.DESCRIPTOR_SET: return createDescriptorSet();
+			case ResourcePackage.DESCRIPTOR_SET_PKG: return createDescriptorSetPkg();
+			case ResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
+			case ResourcePackage.COMPOSITE_BUFFER_BARRIER: return createCompositeBufferBarrier();
+			case ResourcePackage.IMAGE_BARRIER: return createImageBarrier();
+			case ResourcePackage.SHADER: return createShader();
+			case ResourcePackage.FILE_RESOURCE: return createFileResource();
+			case ResourcePackage.MODULE_RESOURCE: return createModuleResource();
+			case ResourcePackage.STRING_MODULE_RESOURCE: return createStringModuleResource();
+			case ResourcePackage.TEXTURE2_DARRAY: return createTexture2DArray();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -188,6 +189,18 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		CompositeBufferImpl compositeBuffer = new CompositeBufferImpl();
 		return compositeBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CompositePartReference createCompositePartReference()
+	{
+		CompositePartReferenceImpl compositePartReference = new CompositePartReferenceImpl();
+		return compositePartReference;
 	}
 
 	/**

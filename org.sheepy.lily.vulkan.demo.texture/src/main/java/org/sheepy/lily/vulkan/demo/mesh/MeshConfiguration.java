@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.demo.mesh;
 
 import java.nio.ByteBuffer;
 
+import org.joml.Vector2ic;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
 
 public class MeshConfiguration
@@ -27,8 +28,11 @@ public class MeshConfiguration
 	public int indexCount;
 	public ByteBuffer vertexData;
 
-	public MeshConfiguration(AbstractMeshBuilder meshBuilder)
+	public MeshConfiguration(AbstractMeshBuilder meshBuilder, Vector2ic size)
 	{
+		this.width = size.x();
+		this.height = size.y();
+
 		vertexData = meshBuilder.getData();
 		indexCount = meshBuilder.getIndexCount();
 		indexOffset = meshBuilder.getIndexOffset();

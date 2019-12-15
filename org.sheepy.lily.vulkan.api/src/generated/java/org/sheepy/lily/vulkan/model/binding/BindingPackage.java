@@ -63,6 +63,52 @@ public interface BindingPackage extends EPackage
 	BindingPackage eINSTANCE = org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl.init();
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.binding.IContextConfiguration <em>IContext Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.binding.IContextConfiguration
+	 * @see org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl#getIContextConfiguration()
+	 * @generated
+	 */
+	int ICONTEXT_CONFIGURATION = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICONTEXT_CONFIGURATION__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Tasks</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICONTEXT_CONFIGURATION__TASKS = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>IContext Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICONTEXT_CONFIGURATION_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>IContext Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICONTEXT_CONFIGURATION_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.binding.impl.BindingConfigurationImpl <em>Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,25 +125,7 @@ public interface BindingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING_CONFIGURATION__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Descriptors Sets</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINDING_CONFIGURATION__DESCRIPTORS_SETS = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set Stride</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINDING_CONFIGURATION__DESCRIPTOR_SET_STRIDE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
+	int BINDING_CONFIGURATION__NAME = ICONTEXT_CONFIGURATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Tasks</b></em>' containment reference list.
@@ -106,7 +134,25 @@ public interface BindingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING_CONFIGURATION__TASKS = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
+	int BINDING_CONFIGURATION__TASKS = ICONTEXT_CONFIGURATION__TASKS;
+
+	/**
+	 * The feature id for the '<em><b>Descriptors Sets</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINDING_CONFIGURATION__DESCRIPTORS_SETS = ICONTEXT_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set Stride</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINDING_CONFIGURATION__DESCRIPTOR_SET_STRIDE = ICONTEXT_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
@@ -115,7 +161,7 @@ public interface BindingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING_CONFIGURATION_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 3;
+	int BINDING_CONFIGURATION_FEATURE_COUNT = ICONTEXT_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Configuration</em>' class.
@@ -124,7 +170,7 @@ public interface BindingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING_CONFIGURATION_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
+	int BINDING_CONFIGURATION_OPERATION_COUNT = ICONTEXT_CONFIGURATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.binding.IConfigurationTask <em>IConfiguration Task</em>}' class.
@@ -273,7 +319,6 @@ public interface BindingPackage extends EPackage
 	 */
 	int ROTATE_CONFIGURATION_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
 
-
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigurePrepareCompositeImpl <em>Configure Prepare Composite</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -385,6 +430,61 @@ public interface BindingPackage extends EPackage
 	int CONFIGURE_COMPOSITE_BUFFER_BARRIER_OPERATION_COUNT = ICONFIGURATION_TASK_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.binding.impl.IndexConfigurationImpl <em>Index Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.binding.impl.IndexConfigurationImpl
+	 * @see org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl#getIndexConfiguration()
+	 * @generated
+	 */
+	int INDEX_CONFIGURATION = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_CONFIGURATION__NAME = ICONTEXT_CONFIGURATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Tasks</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_CONFIGURATION__TASKS = ICONTEXT_CONFIGURATION__TASKS;
+
+	/**
+	 * The feature id for the '<em><b>Index Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_CONFIGURATION__INDEX_COUNT = ICONTEXT_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Index Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_CONFIGURATION_FEATURE_COUNT = ICONTEXT_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Index Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_CONFIGURATION_OPERATION_COUNT = ICONTEXT_CONFIGURATION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.binding.EInstance <em>EInstance</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -392,7 +492,7 @@ public interface BindingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl#getEInstance()
 	 * @generated
 	 */
-	int EINSTANCE = 6;
+	int EINSTANCE = 8;
 
 
 	/**
@@ -426,17 +526,6 @@ public interface BindingPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getBindingConfiguration_DescriptorSetStride();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.binding.BindingConfiguration#getTasks <em>Tasks</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Tasks</em>'.
-	 * @see org.sheepy.lily.vulkan.model.binding.BindingConfiguration#getTasks()
-	 * @see #getBindingConfiguration()
-	 * @generated
-	 */
-	EReference getBindingConfiguration_Tasks();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.binding.ConfigureBind <em>Configure Bind</em>}'.
@@ -566,6 +655,48 @@ public interface BindingPackage extends EPackage
 	EAttribute getConfigureCompositeBufferBarrier_TargetInstance();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.binding.IContextConfiguration <em>IContext Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IContext Configuration</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.IContextConfiguration
+	 * @generated
+	 */
+	EClass getIContextConfiguration();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.binding.IContextConfiguration#getTasks <em>Tasks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Tasks</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.IContextConfiguration#getTasks()
+	 * @see #getIContextConfiguration()
+	 * @generated
+	 */
+	EReference getIContextConfiguration_Tasks();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.binding.IndexConfiguration <em>Index Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Index Configuration</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.IndexConfiguration
+	 * @generated
+	 */
+	EClass getIndexConfiguration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.binding.IndexConfiguration#getIndexCount <em>Index Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Index Count</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.IndexConfiguration#getIndexCount()
+	 * @see #getIndexConfiguration()
+	 * @generated
+	 */
+	EAttribute getIndexConfiguration_IndexCount();
+
+	/**
 	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.binding.EInstance <em>EInstance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -624,14 +755,6 @@ public interface BindingPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute BINDING_CONFIGURATION__DESCRIPTOR_SET_STRIDE = eINSTANCE.getBindingConfiguration_DescriptorSetStride();
-
-		/**
-		 * The meta object literal for the '<em><b>Tasks</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BINDING_CONFIGURATION__TASKS = eINSTANCE.getBindingConfiguration_Tasks();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigureBindImpl <em>Configure Bind</em>}' class.
@@ -738,6 +861,42 @@ public interface BindingPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute CONFIGURE_COMPOSITE_BUFFER_BARRIER__TARGET_INSTANCE = eINSTANCE.getConfigureCompositeBufferBarrier_TargetInstance();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.binding.IContextConfiguration <em>IContext Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.binding.IContextConfiguration
+		 * @see org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl#getIContextConfiguration()
+		 * @generated
+		 */
+		EClass ICONTEXT_CONFIGURATION = eINSTANCE.getIContextConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Tasks</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ICONTEXT_CONFIGURATION__TASKS = eINSTANCE.getIContextConfiguration_Tasks();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.binding.impl.IndexConfigurationImpl <em>Index Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.binding.impl.IndexConfigurationImpl
+		 * @see org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl#getIndexConfiguration()
+		 * @generated
+		 */
+		EClass INDEX_CONFIGURATION = eINSTANCE.getIndexConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Index Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INDEX_CONFIGURATION__INDEX_COUNT = eINSTANCE.getIndexConfiguration_IndexCount();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.binding.EInstance <em>EInstance</em>}' enum.

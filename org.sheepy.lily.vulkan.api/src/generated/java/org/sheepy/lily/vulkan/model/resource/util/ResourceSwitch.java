@@ -130,6 +130,14 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ResourcePackage.COMPOSITE_PART_REFERENCE:
+			{
+				CompositePartReference compositePartReference = (CompositePartReference)theEObject;
+				T1 result = caseCompositePartReference(compositePartReference);
+				if (result == null) result = caseLNamedElement(compositePartReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ResourcePackage.IBUFFER_REFERENCE:
 			{
 				IBufferReference iBufferReference = (IBufferReference)theEObject;
@@ -149,7 +157,9 @@ public class ResourceSwitch<T1> extends Switch<T1>
 			{
 				CompositeBufferReference compositeBufferReference = (CompositeBufferReference)theEObject;
 				T1 result = caseCompositeBufferReference(compositeBufferReference);
+				if (result == null) result = caseCompositePartReference(compositeBufferReference);
 				if (result == null) result = caseIBufferReference(compositeBufferReference);
+				if (result == null) result = caseLNamedElement(compositeBufferReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -467,6 +477,22 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseCompositeBuffer(CompositeBuffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Composite Part Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Composite Part Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseCompositePartReference(CompositePartReference object)
 	{
 		return null;
 	}

@@ -1,8 +1,6 @@
 package org.sheepy.lily.vulkan.demo.mesh;
 
-import org.joml.Vector2i;
-import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.core.model.application.ApplicationFactory;
+import org.sheepy.lily.core.model.application.IEngine;
 import org.sheepy.lily.core.model.cadence.Cadence;
 import org.sheepy.lily.core.model.cadence.CadenceFactory;
 import org.sheepy.lily.vulkan.demo.adapter.CameraConstantAdapter;
@@ -37,20 +35,16 @@ public class MeshModelFactory
 {
 	private final MeshConfiguration meshConfiguration;
 
-	public final Application application = ApplicationFactory.eINSTANCE.createApplication();
-	public final VulkanEngine engine = VulkanFactory.eINSTANCE.createVulkanEngine();
-	public final GraphicProcess graphicProcess;
-
 	private DepthAttachment depthAttachment;
 
 	public MeshModelFactory(MeshConfiguration meshConfiguration)
 	{
 		this.meshConfiguration = meshConfiguration;
-		final var size = new Vector2i(meshConfiguration.width, meshConfiguration.height);
+	}
 
-		application.setTitle("Vulkan Triangle");
-		application.setSize(size);
-		application.getEngines().add(engine);
+	public IEngine build()
+	{
+		final VulkanEngine engine = VulkanFactory.eINSTANCE.createVulkanEngine();
 
 		final var framebufferConfiguration = GraphicFactory.eINSTANCE.createFramebufferConfiguration();
 		final var graphicConfiguration = GraphicFactory.eINSTANCE.createGraphicConfiguration();
@@ -68,15 +62,17 @@ public class MeshModelFactory
 		graphicConfiguration.setFramebufferConfiguration(framebufferConfiguration);
 		graphicConfiguration.setColorDomain(GraphicFactory.eINSTANCE.createColorDomain());
 
-		graphicProcess = newMeshProcess();
+		final var graphicProcess = newMeshProcess();
 		graphicProcess.setConfiguration(graphicConfiguration);
 		graphicProcess.setRenderPassInfo(newInfo());
 
 		engine.getProcesses().add(graphicProcess);
-		engine.setCadence(buildCadence());
+		engine.setCadence(buildCadence(graphicProcess));
+
+		return engine;
 	}
 
-	private final Cadence buildCadence()
+	private final Cadence buildCadence(GraphicProcess graphicProcess)
 	{
 		final var runGraphicTask = VulkanFactory.eINSTANCE.createRunProcess();
 		final var printUPS = CadenceFactory.eINSTANCE.createPrintUPS();

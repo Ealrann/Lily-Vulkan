@@ -68,6 +68,15 @@ public interface BindingFactory extends EFactory
 	ConfigureCompositeBufferBarrier createConfigureCompositeBufferBarrier();
 
 	/**
+	 * Returns a new object of class '<em>Index Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Index Configuration</em>'.
+	 * @generated
+	 */
+	IndexConfiguration createIndexConfiguration();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

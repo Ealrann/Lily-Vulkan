@@ -158,7 +158,7 @@ public class BindingConfigurationItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BindingPackage.Literals.BINDING_CONFIGURATION__TASKS);
+			childrenFeatures.add(BindingPackage.Literals.ICONTEXT_CONFIGURATION__TASKS);
 		}
 		return childrenFeatures;
 	}
@@ -244,17 +244,17 @@ public class BindingConfigurationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BindingPackage.Literals.BINDING_CONFIGURATION__TASKS,
+				(BindingPackage.Literals.ICONTEXT_CONFIGURATION__TASKS,
 				 BindingFactory.eINSTANCE.createConfigureBind()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BindingPackage.Literals.BINDING_CONFIGURATION__TASKS,
+				(BindingPackage.Literals.ICONTEXT_CONFIGURATION__TASKS,
 				 BindingFactory.eINSTANCE.createConfigurePrepareComposite()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BindingPackage.Literals.BINDING_CONFIGURATION__TASKS,
+				(BindingPackage.Literals.ICONTEXT_CONFIGURATION__TASKS,
 				 BindingFactory.eINSTANCE.createConfigureCompositeBufferBarrier()));
 	}
 

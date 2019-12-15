@@ -172,11 +172,6 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 				return createPrepareCompositeTransferAdapter();
 			}
 			@Override
-			public Adapter caseCompositePartReference(CompositePartReference object)
-			{
-				return createCompositePartReferenceAdapter();
-			}
-			@Override
 			public Adapter caseSwapBindingsTask(SwapBindingsTask object)
 			{
 				return createSwapBindingsTaskAdapter();
@@ -498,21 +493,6 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createPrepareCompositeTransferAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.CompositePartReference <em>Composite Part Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.CompositePartReference
-	 * @generated
-	 */
-	public Adapter createCompositePartReferenceAdapter()
 	{
 		return null;
 	}

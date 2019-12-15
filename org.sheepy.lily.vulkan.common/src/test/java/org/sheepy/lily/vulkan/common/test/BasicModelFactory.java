@@ -3,7 +3,6 @@ package org.sheepy.lily.vulkan.common.test;
 import org.joml.Vector2i;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationFactory;
-import org.sheepy.lily.vulkan.model.VulkanFactory;
 
 public class BasicModelFactory
 {
@@ -33,8 +32,6 @@ public class BasicModelFactory
 
 		application.setTitle(title);
 		application.setSize(new Vector2i(width, height));
-
-		application.getEngines().add(VulkanFactory.eINSTANCE.createVulkanEngine());
 
 		return application;
 	}

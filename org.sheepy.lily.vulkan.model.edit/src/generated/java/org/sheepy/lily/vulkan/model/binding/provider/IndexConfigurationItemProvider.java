@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.process.provider;
+package org.sheepy.lily.vulkan.model.binding.provider;
 
 
 import java.util.Collection;
@@ -11,8 +11,9 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -24,16 +25,18 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
-import org.sheepy.lily.vulkan.model.process.CompositePartReference;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+
+import org.sheepy.lily.vulkan.model.binding.BindingFactory;
+import org.sheepy.lily.vulkan.model.binding.BindingPackage;
+import org.sheepy.lily.vulkan.model.binding.IndexConfiguration;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.CompositePartReference} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.binding.IndexConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CompositePartReferenceItemProvider 
+public class IndexConfigurationItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -48,7 +51,7 @@ public class CompositePartReferenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositePartReferenceItemProvider(AdapterFactory adapterFactory)
+	public IndexConfigurationItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -67,8 +70,7 @@ public class CompositePartReferenceItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addPartPropertyDescriptor(object);
-			addInstancePropertyDescriptor(object);
+			addIndexCountPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -97,20 +99,20 @@ public class CompositePartReferenceItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Part feature.
+	 * This adds a property descriptor for the Index Count feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPartPropertyDescriptor(Object object)
+	protected void addIndexCountPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_CompositePartReference_part_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CompositePartReference_part_feature", "_UI_CompositePartReference_type"),
-				 ProcessPackage.Literals.COMPOSITE_PART_REFERENCE__PART,
+				 getString("_UI_IndexConfiguration_indexCount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IndexConfiguration_indexCount_feature", "_UI_IndexConfiguration_type"),
+				 BindingPackage.Literals.INDEX_CONFIGURATION__INDEX_COUNT,
 				 true,
 				 false,
 				 false,
@@ -120,30 +122,40 @@ public class CompositePartReferenceItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Instance feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInstancePropertyDescriptor(Object object)
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CompositePartReference_instance_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CompositePartReference_instance_feature", "_UI_CompositePartReference_type"),
-				 ProcessPackage.Literals.COMPOSITE_PART_REFERENCE__INSTANCE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		if (childrenFeatures == null)
+		{
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(BindingPackage.Literals.ICONTEXT_CONFIGURATION__TASKS);
+		}
+		return childrenFeatures;
 	}
 
 	/**
-	 * This returns CompositePartReference.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
+	 * This returns IndexConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -151,7 +163,7 @@ public class CompositePartReferenceItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/CompositePartReference"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/IndexConfiguration"));
 	}
 
 	/**
@@ -163,10 +175,10 @@ public class CompositePartReferenceItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((CompositePartReference)object).getName();
+		String label = ((IndexConfiguration)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_CompositePartReference_type") :
-			getString("_UI_CompositePartReference_type") + " " + label;
+			getString("_UI_IndexConfiguration_type") :
+			getString("_UI_IndexConfiguration_type") + " " + label;
 	}
 
 
@@ -182,12 +194,14 @@ public class CompositePartReferenceItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CompositePartReference.class))
+		switch (notification.getFeatureID(IndexConfiguration.class))
 		{
-			case ProcessPackage.COMPOSITE_PART_REFERENCE__NAME:
-			case ProcessPackage.COMPOSITE_PART_REFERENCE__PART:
-			case ProcessPackage.COMPOSITE_PART_REFERENCE__INSTANCE:
+			case BindingPackage.INDEX_CONFIGURATION__NAME:
+			case BindingPackage.INDEX_CONFIGURATION__INDEX_COUNT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case BindingPackage.INDEX_CONFIGURATION__TASKS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -204,6 +218,21 @@ public class CompositePartReferenceItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BindingPackage.Literals.ICONTEXT_CONFIGURATION__TASKS,
+				 BindingFactory.eINSTANCE.createConfigureBind()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BindingPackage.Literals.ICONTEXT_CONFIGURATION__TASKS,
+				 BindingFactory.eINSTANCE.createConfigurePrepareComposite()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BindingPackage.Literals.ICONTEXT_CONFIGURATION__TASKS,
+				 BindingFactory.eINSTANCE.createConfigureCompositeBufferBarrier()));
 	}
 
 	/**
@@ -215,7 +244,7 @@ public class CompositePartReferenceItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return LilyVulkanEditPlugin.INSTANCE;
 	}
 
 }

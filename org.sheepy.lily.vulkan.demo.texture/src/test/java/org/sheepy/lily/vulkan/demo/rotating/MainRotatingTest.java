@@ -8,7 +8,8 @@ public class MainRotatingTest
 	@Test
 	public void mainTest()
 	{
-		final var modelFactory = MainRotating.createFactory(500);
-		LilyLauncher.launch(modelFactory.application);
+		RotatingEngineProvider.FRAME_COUNT = 500;
+		final var application = MainRotating.createApplication();
+		LilyLauncher.launch(application);
 	}
 }

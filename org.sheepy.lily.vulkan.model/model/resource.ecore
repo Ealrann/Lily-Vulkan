@@ -49,6 +49,11 @@
     <eLiterals name="PUSH"/>
     <eLiterals name="FETCH" value="1"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositePartReference" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="part" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instance" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IBufferReference" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="BufferReference" eSuperTypes="#//IBufferReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="buffer" lowerBound="1"
@@ -56,12 +61,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="0"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompositeBufferReference" eSuperTypes="#//IBufferReference">
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeBufferReference" eSuperTypes="#//CompositePartReference #//IBufferReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="buffer" lowerBound="1"
         eType="#//CompositeBuffer"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="part" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instance" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BufferDataProvider" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
     <eTypeParameters name="T"/>

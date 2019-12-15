@@ -26,7 +26,7 @@ public interface RotateConfiguration extends IPipelineTask
 {
 	/**
 	 * Returns the value of the '<em><b>Configurations</b></em>' reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.binding.BindingConfiguration}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.binding.IContextConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Configurations</em>' reference list.
@@ -34,7 +34,7 @@ public interface RotateConfiguration extends IPipelineTask
 	 * @model required="true"
 	 * @generated
 	 */
-	EList<BindingConfiguration> getConfigurations();
+	EList<IContextConfiguration> getConfigurations();
 
 	/**
 	 * Returns the value of the '<em><b>Force Record</b></em>' attribute.

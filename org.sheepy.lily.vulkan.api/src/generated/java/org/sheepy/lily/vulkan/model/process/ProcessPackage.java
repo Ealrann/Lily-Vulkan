@@ -1251,61 +1251,6 @@ public interface ProcessPackage extends EPackage
 	int PREPARE_COMPOSITE_TRANSFER_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.CompositePartReferenceImpl <em>Composite Part Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.impl.CompositePartReferenceImpl
-	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getCompositePartReference()
-	 * @generated
-	 */
-	int COMPOSITE_PART_REFERENCE = 18;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_PART_REFERENCE__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Part</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_PART_REFERENCE__PART = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Instance</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_PART_REFERENCE__INSTANCE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Composite Part Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_PART_REFERENCE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Composite Part Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_PART_REFERENCE_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.SwapBindingsTaskImpl <em>Swap Bindings Task</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1313,7 +1258,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getSwapBindingsTask()
 	 * @generated
 	 */
-	int SWAP_BINDINGS_TASK = 19;
+	int SWAP_BINDINGS_TASK = 18;
 
 	/**
 	 * The feature id for the '<em><b>Task</b></em>' reference.
@@ -1972,38 +1917,6 @@ public interface ProcessPackage extends EPackage
 	EReference getPrepareCompositeTransfer_Parts();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.CompositePartReference <em>Composite Part Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Composite Part Reference</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.CompositePartReference
-	 * @generated
-	 */
-	EClass getCompositePartReference();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.CompositePartReference#getPart <em>Part</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Part</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.CompositePartReference#getPart()
-	 * @see #getCompositePartReference()
-	 * @generated
-	 */
-	EAttribute getCompositePartReference_Part();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.CompositePartReference#getInstance <em>Instance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Instance</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.CompositePartReference#getInstance()
-	 * @see #getCompositePartReference()
-	 * @generated
-	 */
-	EAttribute getCompositePartReference_Instance();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.SwapBindingsTask <em>Swap Bindings Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2558,32 +2471,6 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference PREPARE_COMPOSITE_TRANSFER__PARTS = eINSTANCE.getPrepareCompositeTransfer_Parts();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.CompositePartReferenceImpl <em>Composite Part Reference</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.impl.CompositePartReferenceImpl
-		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getCompositePartReference()
-		 * @generated
-		 */
-		EClass COMPOSITE_PART_REFERENCE = eINSTANCE.getCompositePartReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Part</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMPOSITE_PART_REFERENCE__PART = eINSTANCE.getCompositePartReference_Part();
-
-		/**
-		 * The meta object literal for the '<em><b>Instance</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMPOSITE_PART_REFERENCE__INSTANCE = eINSTANCE.getCompositePartReference_Instance();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.SwapBindingsTaskImpl <em>Swap Bindings Task</em>}' class.

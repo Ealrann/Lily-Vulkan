@@ -1,14 +1,14 @@
 import org.sheepy.lily.core.api.adapter.annotation.Adapters;
-import org.sheepy.lily.vulkan.demo.test.composite.grow.MainCompositeBufferTest;
+import org.sheepy.lily.vulkan.demo.test.composite.grow.adapter.GrowEngineProvider;
 import org.sheepy.lily.vulkan.demo.test.composite.grow.adapter.TestDataProviderAdapter;
-import org.sheepy.lily.vulkan.demo.test.composite.instance.MainCompositeInstanceTest;
 import org.sheepy.lily.vulkan.demo.test.composite.instance.adapter.InstanceDataProviderAdapter;
+import org.sheepy.lily.vulkan.demo.test.composite.instance.adapter.InstanceEngineProvider;
 
 @Adapters(classifiers = {
 		TestDataProviderAdapter.class,
+		GrowEngineProvider.class,
 		InstanceDataProviderAdapter.class,
-		MainCompositeBufferTest.CadenceAdapter.class,
-		MainCompositeInstanceTest.CadenceAdapter.class
+		InstanceEngineProvider.class
 })
 
 module org.sheepy.lily.vulkan.demo.test

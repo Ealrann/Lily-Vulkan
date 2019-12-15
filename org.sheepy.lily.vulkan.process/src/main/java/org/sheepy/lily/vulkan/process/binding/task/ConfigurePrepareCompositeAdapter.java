@@ -24,7 +24,7 @@ public final class ConfigurePrepareCompositeAdapter
 
 	private static int computeInstance(BindConfiguration configuration, EInstance type)
 	{
-		final int size = configuration.descriptorSets.size();
+		final int size = configuration.size;
 
 		switch (type)
 		{
