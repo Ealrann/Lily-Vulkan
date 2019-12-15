@@ -3,7 +3,6 @@ package org.sheepy.lily.vulkan.demo.triangle;
 import org.sheepy.lily.core.api.LilyLauncher;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.demo.mesh.MeshConfiguration;
-import org.sheepy.lily.vulkan.demo.mesh.MeshMainLoop;
 import org.sheepy.lily.vulkan.demo.mesh.MeshModelFactory;
 
 public class MainTriangle
@@ -12,17 +11,16 @@ public class MainTriangle
 	{
 		DebugUtil.DEBUG_ENABLED = true;
 
-		final var modelFactory = createFactory();
+		final var modelFactory = createFactory(0);
 
-		final MeshMainLoop mainLoop = new MeshMainLoop(modelFactory);
-
-		LilyLauncher.launch(modelFactory.application, mainLoop);
+		LilyLauncher.launch(modelFactory.application);
 	}
 
-	static MeshModelFactory createFactory()
+	static MeshModelFactory createFactory(int frameCount)
 	{
 		final var meshBuilder = new TriangleMeshBuilder();
 		final var meshConfiguration = new MeshConfiguration(meshBuilder);
+		meshConfiguration.frameCount = frameCount;
 		return new MeshModelFactory(meshConfiguration);
 	}
 }

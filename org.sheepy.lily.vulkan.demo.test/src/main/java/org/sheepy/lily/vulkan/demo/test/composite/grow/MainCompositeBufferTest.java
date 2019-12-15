@@ -1,62 +1,52 @@
 package org.sheepy.lily.vulkan.demo.test.composite.grow;
 
 import org.sheepy.lily.core.api.LilyLauncher;
-import org.sheepy.lily.core.api.cadence.IMainLoop;
-import org.sheepy.lily.core.model.application.Application;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Load;
+import org.sheepy.lily.core.api.cadence.ICadenceAdapter;
+import org.sheepy.lily.core.model.cadence.GenericCadence;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.demo.test.composite.grow.model.ModelFactory;
 
 public class MainCompositeBufferTest
 {
+	public static int MAX_COUNT = 200;
+	public static ModelFactory FACTORY = new ModelFactory();
+
 	public static void main(String[] args)
 	{
-		final var factory = new ModelFactory();
-		final var mainLoop = new MainLoop(factory, 200);
-
-		LilyLauncher.launch(factory.application, mainLoop);
+		LilyLauncher.launch(FACTORY.application);
 	}
 
-	static final class MainLoop implements IMainLoop
+	@Adapter(scope = GenericCadence.class, name = ModelFactory.CADENCE_NAME)
+	public static final class CadenceAdapter implements ICadenceAdapter
 	{
-		private final ModelFactory factory;
-		private final int maxCount;
-
 		private IProcessAdapter processAdapter;
 		private int count = 0;
 
-		public MainLoop(ModelFactory factory, int maxCount)
+		@Load
+		public void load()
 		{
-			this.factory = factory;
-			this.maxCount = maxCount;
+			processAdapter = FACTORY.process.adaptNotNull(IProcessAdapter.class);
 		}
 
 		@Override
-		public void step(Application application)
+		public void run()
 		{
-			factory.taskManager.configure();
+			FACTORY.taskManager.configure();
 
 			processAdapter.run();
 			processAdapter.waitIdle();
 
-			factory.taskManager.nextInstance();
+			FACTORY.taskManager.nextInstance();
 
 			count++;
 
 			// System.out.println("Step " + count);
-			if (count == maxCount)
+			if (count == MAX_COUNT)
 			{
-				factory.application.setRun(false);
+				FACTORY.application.setRun(false);
 			}
 		}
-
-		@Override
-		public void load(Application application)
-		{
-			processAdapter = factory.process.adaptNotNull(IProcessAdapter.class);
-		}
-
-		@Override
-		public void free(Application application)
-		{}
 	}
 }

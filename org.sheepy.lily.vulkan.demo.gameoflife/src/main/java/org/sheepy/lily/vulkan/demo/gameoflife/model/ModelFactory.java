@@ -97,8 +97,7 @@ public class ModelFactory
 		engine.getProcesses().add(presentProcess);
 		engine.setResourcePkg(sharedResources);
 		engine.setDescriptorPkg(sharedDescriptors);
-
-		application.setCadence(buildCadence(frameCount));
+		engine.setCadence(buildCadence(frameCount));
 	}
 
 	private static RenderPassInfo newInfo()

@@ -12,6 +12,7 @@ public class MeshConfiguration
 	public String fragmentShaderPath = "triangle.frag.spv";
 	public Module module = MeshConfiguration.class.getModule();
 
+	public int frameCount = 0;
 	public boolean useCamera = false;
 	public boolean depth = false;
 

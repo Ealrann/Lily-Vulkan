@@ -73,6 +73,15 @@ public interface VulkanPackage extends EPackage
 	int VULKAN_ENGINE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Cadence</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VULKAN_ENGINE__CADENCE = ApplicationPackage.IENGINE__CADENCE;
+
+	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

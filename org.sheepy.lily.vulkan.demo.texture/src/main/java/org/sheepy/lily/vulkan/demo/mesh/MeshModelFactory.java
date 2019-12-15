@@ -3,6 +3,8 @@ package org.sheepy.lily.vulkan.demo.mesh;
 import org.joml.Vector2i;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationFactory;
+import org.sheepy.lily.core.model.cadence.Cadence;
+import org.sheepy.lily.core.model.cadence.CadenceFactory;
 import org.sheepy.lily.vulkan.demo.adapter.CameraConstantAdapter;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
@@ -71,6 +73,36 @@ public class MeshModelFactory
 		graphicProcess.setRenderPassInfo(newInfo());
 
 		engine.getProcesses().add(graphicProcess);
+		engine.setCadence(buildCadence());
+	}
+
+	private final Cadence buildCadence()
+	{
+		final var runGraphicTask = VulkanFactory.eINSTANCE.createRunProcess();
+		final var printUPS = CadenceFactory.eINSTANCE.createPrintUPS();
+		final var cadence = CadenceFactory.eINSTANCE.createCadence();
+
+		runGraphicTask.setProcess(graphicProcess);
+		printUPS.setPrintEveryMs(1200);
+		cadence.setFrequency(60);
+
+		cadence.getTasks().add(runGraphicTask);
+		cadence.getTasks().add(printUPS);
+
+		final int frameCount = meshConfiguration.frameCount;
+		if (frameCount > 0)
+		{
+			final var executeIf = CadenceFactory.eINSTANCE.createExecuteIf();
+			final var countUntil = CadenceFactory.eINSTANCE.createCountUntil();
+			final var closeApp = CadenceFactory.eINSTANCE.createCloseApplication();
+			countUntil.setTotalCount(frameCount);
+			executeIf.getConditions().add(countUntil);
+			executeIf.getTasks().add(closeApp);
+
+			cadence.getTasks().add(executeIf);
+		}
+
+		return cadence;
 	}
 
 	private RenderPassInfo newInfo()

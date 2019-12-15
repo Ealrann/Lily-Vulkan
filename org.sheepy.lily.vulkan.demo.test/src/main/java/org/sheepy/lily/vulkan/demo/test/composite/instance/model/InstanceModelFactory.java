@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.demo.test.composite.instance.model;
 
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationFactory;
+import org.sheepy.lily.core.model.cadence.CadenceFactory;
 import org.sheepy.lily.vulkan.demo.test.composite.instance.model.InstanceTestResourceFactory.ResourceContainer;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
@@ -16,6 +17,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 public class InstanceModelFactory
 {
+	public static final String CADENCE_NAME = "TestInstance_Cadence";
 	private static final int INSTANCE_COUNT = 10;
 	public final Application application = ApplicationFactory.eINSTANCE.createApplication();
 	public final VulkanEngine engine = VulkanFactory.eINSTANCE.createVulkanEngine();
@@ -38,7 +40,11 @@ public class InstanceModelFactory
 		taskManager = new InstanceTaskManager(resourceContainer, INSTANCE_COUNT);
 		taskManager.install(pipeline.getTaskPkg().getTasks());
 
+		final var cadence = CadenceFactory.eINSTANCE.createGenericCadence();
+		cadence.setName(CADENCE_NAME);
+
 		engine.getProcesses().add(process);
+		engine.setCadence(cadence);
 	}
 
 	private ComputeProcess createComputeProcessPool()

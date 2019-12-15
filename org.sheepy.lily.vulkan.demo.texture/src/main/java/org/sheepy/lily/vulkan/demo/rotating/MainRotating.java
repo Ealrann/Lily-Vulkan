@@ -3,7 +3,6 @@ package org.sheepy.lily.vulkan.demo.rotating;
 import org.sheepy.lily.core.api.LilyLauncher;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.demo.mesh.MeshConfiguration;
-import org.sheepy.lily.vulkan.demo.mesh.MeshMainLoop;
 import org.sheepy.lily.vulkan.demo.mesh.MeshModelFactory;
 import org.sheepy.lily.vulkan.demo.triangle.TriangleMeshBuilder;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
@@ -17,13 +16,12 @@ public class MainRotating
 	{
 		DebugUtil.DEBUG_ENABLED = true;
 
-		final var modelFactory = createFactory();
+		final var modelFactory = createFactory(0);
 
-		final MeshMainLoop mainLoop = new MeshMainLoop(modelFactory);
-		LilyLauncher.launch(modelFactory.application, mainLoop);
+		LilyLauncher.launch(modelFactory.application);
 	}
 
-	static MeshModelFactory createFactory()
+	static MeshModelFactory createFactory(int frameCount)
 	{
 		final var meshBuilder = new TriangleMeshBuilder();
 		final var meshConfiguration = new MeshConfiguration(meshBuilder);
@@ -31,6 +29,7 @@ public class MainRotating
 		meshConfiguration.vertexShaderPath = VERTEX_SHADER_PATH;
 		meshConfiguration.fragmentShaderPath = FRAGMENT_SHADER_PATH;
 		meshConfiguration.rasterizerFrontFace = EFrontFace.COUNTER_CLOCKWISE;
+		meshConfiguration.frameCount = frameCount;
 
 		final var modelFactory = new MeshModelFactory(meshConfiguration);
 		return modelFactory;

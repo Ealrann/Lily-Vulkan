@@ -8,13 +8,22 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.sheepy.lily.core.api.LilyLauncher;
-import org.sheepy.lily.core.api.cadence.IMainLoop;
+import org.sheepy.lily.core.api.adapter.IAdapterRegistry;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.cadence.ICadenceAdapter;
+import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.Application;
+import org.sheepy.lily.core.model.cadence.CadenceFactory;
+import org.sheepy.lily.core.model.cadence.GenericCadence;
 import org.sheepy.lily.vulkan.common.test.BasicModelFactory;
 import org.sheepy.lily.vulkan.common.test.TestUtils;
 
 public class WindowTest
 {
+	private static final String testNewWindowCadenceName = "testNewWindowCadenceName";
+	private static final String testResizeWindowCadenceName = "testResizeWindowCadenceName";
+
 	private Application application;
 
 	@BeforeEach
@@ -32,90 +41,105 @@ public class WindowTest
 	@Test
 	public void testNewWindow()
 	{
-		LilyLauncher.launch(application, new IMainLoop()
+		final var cadence = CadenceFactory.eINSTANCE.createGenericCadence();
+		cadence.setName(testNewWindowCadenceName);
+		application.getEngines().get(0).setCadence(cadence);
+		IAdapterRegistry.INSTANCE.register(TestNewWindowCadenceAdapter.class);
+		LilyLauncher.launch(application);
+	}
+
+	@Statefull
+	@Adapter(scope = GenericCadence.class, name = testNewWindowCadenceName)
+	public static final class TestNewWindowCadenceAdapter implements ICadenceAdapter
+	{
+		private final Application application;
+
+		public TestNewWindowCadenceAdapter(GenericCadence cadence)
 		{
-			@Override
-			public void step(Application application)
-			{
-				final int expectedWidth = BasicModelFactory.WIDTH;
-				final int expectedHeight = BasicModelFactory.HEIGHT;
+			application = ModelUtil.getApplication(cadence);
+		}
 
-				Assertions.assertTrue(
-						WindowTestUtil.checkWindowSize(application, expectedWidth, expectedHeight));
+		@Override
+		public void run()
+		{
+			final int expectedWidth = BasicModelFactory.WIDTH;
+			final int expectedHeight = BasicModelFactory.HEIGHT;
 
-				application.setRun(false);
-			}
+			Assertions.assertTrue(WindowTestUtil.checkWindowSize(	application,
+																	expectedWidth,
+																	expectedHeight));
 
-			@Override
-			public void load(Application application)
-			{}
-
-			@Override
-			public void free(Application application)
-			{}
-		});
+			application.setRun(false);
+		}
 	}
 
 	@Test
 	public void testResizeWindow()
 	{
-		final int timeoutMs = 1000;
-		final long setSizeDate = System.currentTimeMillis();
+		final var cadence = CadenceFactory.eINSTANCE.createGenericCadence();
+		cadence.setName(testResizeWindowCadenceName);
+		application.getEngines().get(0).setCadence(cadence);
+		IAdapterRegistry.INSTANCE.register(TestResizeWindowCadenceAdapter.class);
+		LilyLauncher.launch(application);
+	}
 
-		LilyLauncher.launch(application, new IMainLoop()
+	@Statefull
+	@Adapter(scope = GenericCadence.class, name = testResizeWindowCadenceName)
+	public static final class TestResizeWindowCadenceAdapter implements ICadenceAdapter
+	{
+		private final Application application;
+
+		private final Random random = new Random();
+		private int expectedWidth = BasicModelFactory.WIDTH;
+		private int expectedHeight = BasicModelFactory.HEIGHT;
+		private int index = 0;
+		private final int timeoutMs;
+		private final long setSizeDate;
+
+		public TestResizeWindowCadenceAdapter(GenericCadence cadence)
 		{
-			Random random = new Random();
-			int expectedWidth = BasicModelFactory.WIDTH;
-			int expectedHeight = BasicModelFactory.HEIGHT;
+			application = ModelUtil.getApplication(cadence);
+			timeoutMs = 1000;
+			setSizeDate = System.currentTimeMillis();
+		}
 
-			int index = 0;
-
-			@Override
-			public void step(Application application)
+		@Override
+		public void run()
+		{
+			final boolean expectedSize = WindowTestUtil.checkWindowSize(application,
+																		expectedWidth,
+																		expectedHeight);
+			if (expectedSize == true)
 			{
-				final boolean expectedSize = WindowTestUtil.checkWindowSize(application,
-						expectedWidth, expectedHeight);
-				if (expectedSize == true)
+				expectedWidth = random.nextInt(700) + 201;
+				expectedHeight = random.nextInt(700) + 201;
+
+				application.setSize(new Vector2i(expectedWidth, expectedHeight));
+
+				index++;
+			}
+			else
+			{
+				if (System.currentTimeMillis() > (setSizeDate + timeoutMs))
 				{
-					expectedWidth = random.nextInt(700) + 201;
-					expectedHeight = random.nextInt(700) + 201;
-
-					application.setSize(new Vector2i(expectedWidth, expectedHeight));
-
-					index++;
+					Assertions.fail("Window was not resized");
 				}
 				else
 				{
-					if (System.currentTimeMillis() > (setSizeDate + timeoutMs))
+					try
 					{
-						Assertions.fail("Window was not resized");
-					}
-					else
+						Thread.sleep(5);
+					} catch (final InterruptedException e)
 					{
-						try
-						{
-							Thread.sleep(5);
-						} catch (final InterruptedException e)
-						{
-							e.printStackTrace();
-						}
+						e.printStackTrace();
 					}
-				}
-
-				if (index == 5)
-				{
-					application.setRun(false);
 				}
 			}
 
-			@Override
-			public void load(Application application)
-			{}
-
-			@Override
-			public void free(Application application)
-			{}
-		});
-
+			if (index == 5)
+			{
+				application.setRun(false);
+			}
+		}
 	}
 }
