@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.demo.test.composite.instance.model;
 
+import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.core.model.application.IEngine;
 import org.sheepy.lily.core.model.cadence.Cadence;
 import org.sheepy.lily.core.model.cadence.CadenceFactory;
@@ -38,7 +39,7 @@ public class InstanceEngineFactory
 		final var cadence = buildCadence(process, MAX_COUNT);
 
 		engine.getProcesses().add(process);
-		engine.setCadence(cadence);
+		process.setCadence(cadence);
 
 		return engine;
 	}
@@ -78,7 +79,7 @@ public class InstanceEngineFactory
 		final ProcessPartPkg partPkg = ProcessFactory.eINSTANCE.createProcessPartPkg();
 		process.setPartPkg(partPkg);
 
-		final var resourcePkg = VulkanFactory.eINSTANCE.createResourcePkg();
+		final var resourcePkg = ApplicationFactory.eINSTANCE.createResourcePkg();
 		process.setResourcePkg(resourcePkg);
 		final var resourceList = resourcePkg.getResources();
 		resourceList.add(resourceContainer.transferBuffer);

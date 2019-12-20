@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.sheepy.lily.vulkan.api.process.IComputeContext;
 import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
-import org.sheepy.lily.vulkan.process.execution.SubmissionsBuilder;
+import org.sheepy.lily.vulkan.process.execution.Submission;
 
 public class ComputeExecutionRecorders extends ExecutionRecorders<IComputeContext>
 {
@@ -16,11 +16,12 @@ public class ComputeExecutionRecorders extends ExecutionRecorders<IComputeContex
 
 		final var waitForEmitters = gatherWaitDatas(process);
 		final var signals = gatherSinalSemaphores(process);
-		final var submissionBuilder = new SubmissionsBuilder<IComputeContext>(waitForEmitters,
-				signals, true);
 
 		final var commandBuffer = new ComputeCommandBuffer();
-		final var submission = submissionBuilder.buildSubmission(commandBuffer, 0);
+		final var submission = new Submission<IComputeContext>(	commandBuffer,
+																waitForEmitters,
+																signals,
+																true);
 
 		final var res = new ComputeExecutionRecorder(commandBuffer, submission, 0);
 

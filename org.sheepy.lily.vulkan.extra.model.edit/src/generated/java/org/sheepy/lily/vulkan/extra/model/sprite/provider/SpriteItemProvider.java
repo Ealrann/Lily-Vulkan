@@ -19,10 +19,10 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
 import org.sheepy.lily.vulkan.extra.model.sprite.Sprite;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.provider.ResourceItemProviderAdapterFactory;
 
 /**
@@ -191,17 +191,17 @@ public class SpriteItemProvider extends ItemProviderAdapter implements IEditingD
 		newChildDescriptors.add
 			(createChildParameter
 				(SpritePackage.Literals.SPRITE__FILE,
-				 ResourceFactory.eINSTANCE.createFileResource()));
+				 ApplicationFactory.eINSTANCE.createLocalResource()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SpritePackage.Literals.SPRITE__FILE,
-				 ResourceFactory.eINSTANCE.createModuleResource()));
+				 ApplicationFactory.eINSTANCE.createModuleResource()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SpritePackage.Literals.SPRITE__FILE,
-				 ResourceFactory.eINSTANCE.createStringModuleResource()));
+				 ApplicationFactory.eINSTANCE.createStringModuleResource()));
 	}
 
 	/**

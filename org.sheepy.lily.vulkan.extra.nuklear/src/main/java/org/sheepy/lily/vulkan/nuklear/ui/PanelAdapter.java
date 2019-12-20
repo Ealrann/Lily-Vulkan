@@ -4,7 +4,7 @@ import static org.lwjgl.nuklear.Nuklear.*;
 
 import java.nio.ByteBuffer;
 
-import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.lwjgl.nuklear.NkRect;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
@@ -67,7 +67,7 @@ public class PanelAdapter implements IPanelAdapter
 		window.removeListener(listener);
 	}
 
-	private void updateLocation(Vector2i size)
+	private void updateLocation(Vector2ic size)
 	{
 		final int width = panel.getWidth();
 		final int height = panel.getHeight();

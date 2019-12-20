@@ -5,7 +5,6 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,6 +17,7 @@ import org.sheepy.lily.vulkan.api.execution.ISubmission;
 import org.sheepy.lily.vulkan.api.process.IProcessContext.IRecorderContext;
 import org.sheepy.vulkan.concurrent.IFenceView;
 import org.sheepy.vulkan.concurrent.VkFence;
+import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.execution.ICommandBuffer;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext.IExecutionIdleListener;
 import org.sheepy.vulkan.log.EVulkanErrorStatus;
@@ -29,28 +29,28 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 	private static final int TIMEOUT = (int) 1e9;
 	private static final String FAILED_SUBMIT = "Failed to submit command buffer";
 
-	protected final ICommandBuffer<? super T> commandBuffer;
-	protected final Collection<WaitData> waitSemaphores;
-	protected final Collection<Long> signalSemaphores;
-
-	protected VkSubmitInfo submitInfo;
-	protected LongBuffer bWaitSemaphores;
-	protected IntBuffer waitStages;
-	protected PointerBuffer pCommandBuffers;
-	protected LongBuffer bSignalSemaphores;
-
 	public final VkFence fence;
+
+	private final Collection<WaitData> waitSemaphores;
+	private final ICommandBuffer<? super T> commandBuffer;
+	private final List<VkSemaphore> signalSemaphores;
+
+	private VkSubmitInfo submitInfo;
+	private LongBuffer bWaitSemaphores;
+	private IntBuffer waitStages;
+	private PointerBuffer pCommandBuffers;
+	private LongBuffer bSignalSemaphores;
 	private List<IExecutionIdleListener> listeners;
 	private VkQueue queue;
 
 	public Submission(	ICommandBuffer<? super T> commandBuffer,
 						Collection<WaitData> waitSemaphores,
-						Collection<Long> signalSemaphores,
+						Collection<VkSemaphore> signalSemaphores,
 						boolean useFence)
 	{
 		this.commandBuffer = commandBuffer;
-		this.waitSemaphores = waitSemaphores;
-		this.signalSemaphores = new ArrayList<>(signalSemaphores);
+		this.waitSemaphores = List.copyOf(waitSemaphores);
+		this.signalSemaphores = List.copyOf(signalSemaphores);
 
 		if (useFence)
 		{
@@ -91,12 +91,7 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 		pCommandBuffers.put(commandBuffer.getVkCommandBuffer());
 		pCommandBuffers.flip();
 
-		bSignalSemaphores = memAllocLong(signalSemaphores.size());
-		for (final Long signalSemaphore : signalSemaphores)
-		{
-			bSignalSemaphores.put(signalSemaphore);
-		}
-		bSignalSemaphores.flip();
+		allocSignalSemaphoreBuffer();
 
 		submitInfo = VkSubmitInfo.calloc();
 		submitInfo.sType(VK_STRUCTURE_TYPE_SUBMIT_INFO);
@@ -105,6 +100,17 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 		submitInfo.pWaitDstStageMask(waitStages);
 		submitInfo.pCommandBuffers(pCommandBuffers);
 		submitInfo.pSignalSemaphores(bSignalSemaphores);
+	}
+
+	private void allocSignalSemaphoreBuffer()
+	{
+		bSignalSemaphores = memAllocLong(signalSemaphores.size());
+		for (int i = 0; i < signalSemaphores.size(); i++)
+		{
+			final var signalSemaphore = signalSemaphores.get(i).getPtr();
+			bSignalSemaphores.put(signalSemaphore);
+		}
+		bSignalSemaphores.flip();
 	}
 
 	@Override

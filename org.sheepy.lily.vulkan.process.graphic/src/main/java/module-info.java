@@ -10,6 +10,7 @@ import org.sheepy.lily.vulkan.process.graphic.pipeline.task.SetScissorAdapter;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.task.SetViewportAdapter;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicProcessAdapter;
 import org.sheepy.lily.vulkan.process.graphic.resource.DepthAttachmentAdapter;
+import org.sheepy.lily.vulkan.process.graphic.scene.BackgroundImageSubpassProvider;
 
 @Adapters(classifiers = {
 		GraphicProcessAdapter.class,
@@ -23,6 +24,7 @@ import org.sheepy.lily.vulkan.process.graphic.resource.DepthAttachmentAdapter;
 		BindVertexBuferAdapter.class,
 		SetScissorAdapter.class,
 		SetViewportAdapter.class,
+		BackgroundImageSubpassProvider.class
 })
 
 module org.sheepy.lily.vulkan.process.graphic
@@ -41,4 +43,5 @@ module org.sheepy.lily.vulkan.process.graphic
 	opens org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 	opens org.sheepy.lily.vulkan.process.graphic.process;
 	opens org.sheepy.lily.vulkan.process.graphic.resource;
+	opens org.sheepy.lily.vulkan.process.graphic.scene;
 }

@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.sheepy.lily.core.api.adapter.LilyEObject;
+import org.sheepy.lily.core.model.application.impl.IResourceImpl;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
@@ -29,7 +29,6 @@ import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getDataProviders <em>Data Providers</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getTransferBuffer <em>Transfer Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getMinSize <em>Min Size</em>}</li>
@@ -37,28 +36,8 @@ import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
  *
  * @generated
  */
-public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
+public class CompositeBufferImpl extends IResourceImpl implements CompositeBuffer
 {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getDataProviders() <em>Data Providers</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -118,31 +97,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 	protected EClass eStaticClass()
 	{
 		return ResourcePackage.Literals.COMPOSITE_BUFFER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getName()
-	{
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setName(String newName)
-	{
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_BUFFER__NAME, oldName, name));
 	}
 
 	/**
@@ -256,8 +210,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.COMPOSITE_BUFFER__NAME:
-				return getName();
 			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
 				return getDataProviders();
 			case ResourcePackage.COMPOSITE_BUFFER__TRANSFER_BUFFER:
@@ -280,9 +232,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.COMPOSITE_BUFFER__NAME:
-				setName((String)newValue);
-				return;
 			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
 				getDataProviders().clear();
 				getDataProviders().addAll((Collection<? extends BufferDataProvider<?>>)newValue);
@@ -307,9 +256,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.COMPOSITE_BUFFER__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
 				getDataProviders().clear();
 				return;
@@ -333,8 +279,6 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.COMPOSITE_BUFFER__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
 				return dataProviders != null && !dataProviders.isEmpty();
 			case ResourcePackage.COMPOSITE_BUFFER__TRANSFER_BUFFER:
@@ -356,9 +300,7 @@ public class CompositeBufferImpl extends LilyEObject implements CompositeBuffer
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", minSize: ");
+		result.append(" (minSize: ");
 		result.append(minSize);
 		result.append(')');
 		return result.toString();

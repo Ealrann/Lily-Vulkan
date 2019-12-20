@@ -17,10 +17,11 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 {
 	private static final String FAILED_TO_RECORD_COMMAND_BUFFER = "Failed to record command buffer";
 	private static final String FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER = "Failed to begin recording command buffer";
+
 	public final int index;
+
 	private VkClearValue.Buffer clearValues;
 	private VkRenderPassBeginInfo renderPassInfo;
-
 	private VkCommandBufferBeginInfo beginInfo;
 
 	public GraphicCommandBuffer(int index)
@@ -32,6 +33,7 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
 	{
 		config.addDependencies(List.of(context.getFramebufferManager()));
+		config.addDependencies(List.of(context.getRenderPass()));
 	}
 
 	@Override
@@ -39,8 +41,9 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 	{
 		final var extent = context.getSurfaceManager().getExtent();
 		final var framebufferManager = context.getFramebufferManager();
+		final var renderPass = context.getRenderPass();
 		final var framebufferId = framebufferManager.getFramebufferAddresses().get(index);
-		final var clearInfos = framebufferManager.getClearInfos();
+		final var clearInfos = renderPass.getClearInfos();
 		final int clearCount = clearInfos.size();
 
 		clearValues = VkClearValue.malloc(clearCount);
@@ -64,7 +67,7 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 
 		renderPassInfo = VkRenderPassBeginInfo.calloc();
 		renderPassInfo.sType(VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO);
-		renderPassInfo.renderPass(context.getRenderPass().getAddress());
+		renderPassInfo.renderPass(context.getRenderPass().getPtr());
 		renderPassInfo.framebuffer(framebufferId);
 		renderPassInfo.renderArea().offset().set(0, 0);
 		renderPassInfo.renderArea().extent().set(extent.getWidth(), extent.getHeight());
@@ -102,8 +105,8 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 		switch (stage)
 		{
 		case TRANSFER:
-			Logger.check(vkBeginCommandBuffer(vkCommandBuffer, beginInfo),
-					FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER);
+			Logger.check(	vkBeginCommandBuffer(vkCommandBuffer, beginInfo),
+							FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER);
 			break;
 		case RENDER:
 			vkCmdBeginRenderPass(vkCommandBuffer, renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);

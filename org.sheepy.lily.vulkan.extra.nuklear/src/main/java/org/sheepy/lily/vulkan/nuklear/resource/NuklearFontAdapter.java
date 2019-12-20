@@ -5,7 +5,7 @@ import java.util.Objects;
 import org.lwjgl.nuklear.NkUserFont;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
+import org.sheepy.lily.core.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.model.resource.FontImage;

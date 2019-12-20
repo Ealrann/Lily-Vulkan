@@ -9,8 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.sheepy.lily.core.api.adapter.LilyEObject;
+import org.sheepy.lily.core.model.application.impl.IResourceImpl;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
@@ -24,35 +23,14 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl#getSampler <em>Sampler</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl#getImage <em>Image</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SampledImageImpl extends LilyEObject implements SampledImage
+public class SampledImageImpl extends IResourceImpl implements SampledImage
 {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getSampler() <em>Sampler</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -92,31 +70,6 @@ public class SampledImageImpl extends LilyEObject implements SampledImage
 	protected EClass eStaticClass()
 	{
 		return ResourcePackage.Literals.SAMPLED_IMAGE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getName()
-	{
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setName(String newName)
-	{
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE__NAME, oldName, name));
 	}
 
 	/**
@@ -247,8 +200,6 @@ public class SampledImageImpl extends LilyEObject implements SampledImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE__NAME:
-				return getName();
 			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				return getSampler();
 			case ResourcePackage.SAMPLED_IMAGE__IMAGE:
@@ -267,9 +218,6 @@ public class SampledImageImpl extends LilyEObject implements SampledImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE__NAME:
-				setName((String)newValue);
-				return;
 			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				setSampler((SamplerInfo)newValue);
 				return;
@@ -290,9 +238,6 @@ public class SampledImageImpl extends LilyEObject implements SampledImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				setSampler((SamplerInfo)null);
 				return;
@@ -313,31 +258,12 @@ public class SampledImageImpl extends LilyEObject implements SampledImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				return sampler != null;
 			case ResourcePackage.SAMPLED_IMAGE__IMAGE:
 				return image != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
 	}
 
 } //SampledImageImpl

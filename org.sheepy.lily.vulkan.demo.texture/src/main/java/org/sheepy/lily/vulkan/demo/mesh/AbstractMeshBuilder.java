@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.demo.mesh;
 
 import java.nio.ByteBuffer;
 
-import org.lwjgl.system.MemoryUtil;
+import org.lwjgl.BufferUtils;
 
 public abstract class AbstractMeshBuilder
 {
@@ -19,10 +19,10 @@ public abstract class AbstractMeshBuilder
 		indexCount = indexProvider.getDataCount();
 		indexOffset = vertexProvider.getSize();
 
-		data = MemoryUtil.memAlloc((int) size);
-		final long address = MemoryUtil.memAddress(data);
-		vertexProvider.fill(address);
-		indexProvider.fill(address + indexOffset);
+		data = BufferUtils.createByteBuffer((int) size);
+		vertexProvider.fill(data);
+		indexProvider.fill(data);
+		data.flip();
 	}
 
 	public ByteBuffer getData()
@@ -54,10 +54,12 @@ public abstract class AbstractMeshBuilder
 			return vertices.length * 4;
 		}
 
-		public void fill(long memoryAddress)
+		public void fill(ByteBuffer buffer)
 		{
-			final var buffer = MemoryUtil.memByteBuffer(memoryAddress, (int) getSize());
-			buffer.asFloatBuffer().put(vertices);
+			for (final float vertice : vertices)
+			{
+				buffer.putFloat(vertice);
+			}
 		}
 	}
 
@@ -70,10 +72,12 @@ public abstract class AbstractMeshBuilder
 			this.indices = indices;
 		}
 
-		public void fill(long memoryAddress)
+		public void fill(ByteBuffer buffer)
 		{
-			final var buffer = MemoryUtil.memByteBuffer(memoryAddress, (int) getSize());
-			buffer.asIntBuffer().put(indices);
+			for (final int index : indices)
+			{
+				buffer.putInt(index);
+			}
 		}
 
 		public long getSize()

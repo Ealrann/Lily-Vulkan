@@ -2,8 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
-import org.sheepy.lily.vulkan.model.IResource;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>IBuffer</b></em>'.
@@ -14,5 +12,5 @@ import org.sheepy.lily.vulkan.model.IResource;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface IBuffer extends IResource
+public interface IBuffer extends org.sheepy.lily.core.model.application.IResource
 {} // IBuffer

@@ -10,8 +10,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
-import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
@@ -38,7 +38,7 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	 * @generated
 	 * @ordered
 	 */
-	protected PathResource file;
+	protected FileResource file;
 
 	/**
 	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
@@ -87,7 +87,7 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	 * @generated
 	 */
 	@Override
-	public PathResource getFile()
+	public FileResource getFile()
 	{
 		return file;
 	}
@@ -97,9 +97,9 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFile(PathResource newFile, NotificationChain msgs)
+	public NotificationChain basicSetFile(FileResource newFile, NotificationChain msgs)
 	{
-		PathResource oldFile = file;
+		FileResource oldFile = file;
 		file = newFile;
 		if (eNotificationRequired())
 		{
@@ -115,7 +115,7 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	 * @generated
 	 */
 	@Override
-	public void setFile(PathResource newFile)
+	public void setFile(FileResource newFile)
 	{
 		if (newFile != file)
 		{
@@ -201,7 +201,7 @@ public class FontImageImpl extends ImageImpl implements FontImage
 		switch (featureID)
 		{
 			case ResourcePackage.FONT_IMAGE__FILE:
-				setFile((PathResource)newValue);
+				setFile((FileResource)newValue);
 				return;
 			case ResourcePackage.FONT_IMAGE__HEIGHT:
 				setHeight((Integer)newValue);
@@ -221,7 +221,7 @@ public class FontImageImpl extends ImageImpl implements FontImage
 		switch (featureID)
 		{
 			case ResourcePackage.FONT_IMAGE__FILE:
-				setFile((PathResource)null);
+				setFile((FileResource)null);
 				return;
 			case ResourcePackage.FONT_IMAGE__HEIGHT:
 				setHeight(HEIGHT_EDEFAULT);

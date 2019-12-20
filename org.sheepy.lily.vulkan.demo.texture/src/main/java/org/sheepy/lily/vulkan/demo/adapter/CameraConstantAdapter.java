@@ -13,7 +13,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.adapter.annotation.Tick;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.core.model.application.Application;
+import org.sheepy.lily.core.model.application.Scene;
 import org.sheepy.lily.vulkan.api.util.SizeOf;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 
@@ -36,7 +36,7 @@ public class CameraConstantAdapter implements IAdapter
 	private final Matrix4f proj = new Matrix4f();
 	private final Matrix4f finalMatrix = new Matrix4f();
 
-	private final Application application;
+	private final Scene scene;
 
 	private double rotation = 0;
 	private ByteBuffer stagingBuffer;
@@ -45,7 +45,7 @@ public class CameraConstantAdapter implements IAdapter
 	public CameraConstantAdapter(ConstantBuffer buffer)
 	{
 		this.buffer = buffer;
-		this.application = ModelUtil.getApplication(buffer);
+		this.scene = ModelUtil.getApplication(buffer).getScene();
 	}
 
 	@Load
@@ -58,6 +58,7 @@ public class CameraConstantAdapter implements IAdapter
 	public void free()
 	{
 		MemoryUtil.memFree(stagingBuffer);
+		stagingBuffer = null;
 	}
 
 	@Tick
@@ -65,7 +66,7 @@ public class CameraConstantAdapter implements IAdapter
 	{
 		rotation += RADIANS_STEP;
 
-		final var size = application.getSize();
+		final var size = scene.getSize();
 		final int width = size.x();
 		final int height = size.y();
 

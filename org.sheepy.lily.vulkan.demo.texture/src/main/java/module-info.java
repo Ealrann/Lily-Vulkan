@@ -1,14 +1,14 @@
 import org.sheepy.lily.core.api.adapter.annotation.Adapters;
 import org.sheepy.lily.vulkan.demo.adapter.CameraConstantAdapter;
-import org.sheepy.lily.vulkan.demo.rotating.RotatingEngineProvider;
-import org.sheepy.lily.vulkan.demo.texture.TextureEngineProvider;
-import org.sheepy.lily.vulkan.demo.triangle.TriangleEngineProvider;
+import org.sheepy.lily.vulkan.demo.rotating.RotatingSubpassProvider;
+import org.sheepy.lily.vulkan.demo.texture.TextureSubpassProvider;
+import org.sheepy.lily.vulkan.demo.triangle.TriangleSubpassProvider;
 
 @Adapters(classifiers = {
 		CameraConstantAdapter.class,
-		TriangleEngineProvider.class,
-		RotatingEngineProvider.class,
-		TextureEngineProvider.class
+		TriangleSubpassProvider.class,
+		RotatingSubpassProvider.class,
+		TextureSubpassProvider.class
 })
 
 module org.sheepy.lily.vulkan.demo.texture

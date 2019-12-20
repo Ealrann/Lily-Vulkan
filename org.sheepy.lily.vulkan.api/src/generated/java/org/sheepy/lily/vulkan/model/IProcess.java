@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model;
 
+import org.sheepy.lily.core.model.application.ICadence;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 /**
@@ -15,6 +16,7 @@ import org.sheepy.lily.core.model.types.LNamedElement;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.IProcess#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.IProcess#getQueuePriority <em>Queue Priority</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.IProcess#getCadence <em>Cadence</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.VulkanPackage#getIProcess()
@@ -68,5 +70,27 @@ public interface IProcess extends IResourceContainer, LNamedElement, IExecutionM
 	 * @generated
 	 */
 	void setQueuePriority(float value);
+
+	/**
+	 * Returns the value of the '<em><b>Cadence</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Cadence</em>' containment reference.
+	 * @see #setCadence(ICadence)
+	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getIProcess_Cadence()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	ICadence getCadence();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.IProcess#getCadence <em>Cadence</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Cadence</em>' containment reference.
+	 * @see #getCadence()
+	 * @generated
+	 */
+	void setCadence(ICadence value);
 
 } // IProcess

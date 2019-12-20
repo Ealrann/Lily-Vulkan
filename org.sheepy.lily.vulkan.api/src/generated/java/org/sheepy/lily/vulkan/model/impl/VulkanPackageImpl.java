@@ -21,9 +21,7 @@ import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
-import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.RunProcess;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
@@ -66,20 +64,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	private EClass iResourceContainerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass resourcePkgEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass iResourceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -304,39 +288,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getResourcePkg()
-	{
-		return resourcePkgEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getResourcePkg_Resources()
-	{
-		return (EReference)resourcePkgEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getIResource()
-	{
-		return iResourceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getIProcess()
 	{
 		return iProcessEClass;
@@ -362,6 +313,17 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	public EAttribute getIProcess_QueuePriority()
 	{
 		return (EAttribute)iProcessEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIProcess_Cadence()
+	{
+		return (EReference)iProcessEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -514,14 +476,10 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		createEReference(iResourceContainerEClass, IRESOURCE_CONTAINER__RESOURCE_PKG);
 		createEReference(iResourceContainerEClass, IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
 
-		resourcePkgEClass = createEClass(RESOURCE_PKG);
-		createEReference(resourcePkgEClass, RESOURCE_PKG__RESOURCES);
-
-		iResourceEClass = createEClass(IRESOURCE);
-
 		iProcessEClass = createEClass(IPROCESS);
 		createEAttribute(iProcessEClass, IPROCESS__ENABLED);
 		createEAttribute(iProcessEClass, IPROCESS__QUEUE_PRIORITY);
+		createEReference(iProcessEClass, IPROCESS__CADENCE);
 
 		iExecutionManagerEClass = createEClass(IEXECUTION_MANAGER);
 
@@ -577,7 +535,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		vulkanEngineEClass.getESuperTypes().add(theApplicationPackage.getIEngine());
 		vulkanEngineEClass.getESuperTypes().add(this.getIResourceContainer());
 		vulkanEngineEClass.getESuperTypes().add(this.getIExecutionManager());
-		iResourceEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		iProcessEClass.getESuperTypes().add(this.getIResourceContainer());
 		iProcessEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		iProcessEClass.getESuperTypes().add(this.getIExecutionManager());
@@ -592,17 +549,13 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		initEAttribute(getVulkanEngine_Features(), theEnumerationPackage.getEPhysicalDeviceFeature(), "features", null, 0, -1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iResourceContainerEClass, IResourceContainer.class, "IResourceContainer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIResourceContainer_ResourcePkg(), this.getResourcePkg(), null, "resourcePkg", null, 0, 1, IResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIResourceContainer_ResourcePkg(), theApplicationPackage.getResourcePkg(), null, "resourcePkg", null, 0, 1, IResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIResourceContainer_DescriptorPkg(), this.getDescriptorPkg(), null, "descriptorPkg", null, 0, 1, IResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(resourcePkgEClass, ResourcePkg.class, "ResourcePkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getResourcePkg_Resources(), this.getIResource(), null, "resources", null, 0, -1, ResourcePkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(iResourceEClass, IResource.class, "IResource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iProcessEClass, IProcess.class, "IProcess", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIProcess_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 0, 1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getIProcess_QueuePriority(), ecorePackage.getEFloat(), "queuePriority", "1.0", 1, 1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIProcess_Cadence(), theApplicationPackage.getICadence(), null, "cadence", null, 1, 1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iExecutionManagerEClass, IExecutionManager.class, "IExecutionManager", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

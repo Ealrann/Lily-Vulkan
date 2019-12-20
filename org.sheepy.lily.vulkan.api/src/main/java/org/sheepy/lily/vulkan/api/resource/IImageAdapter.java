@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.api.resource;
 
 import org.sheepy.vulkan.resource.image.VkImage;
 
-public interface IImageAdapter extends IResourceAdapter
+public interface IImageAdapter extends IVulkanResourceAdapter
 {
 	VkImage getVkImage();
 

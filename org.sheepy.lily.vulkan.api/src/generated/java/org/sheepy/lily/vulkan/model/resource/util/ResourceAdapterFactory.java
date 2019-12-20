@@ -12,8 +12,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.vulkan.model.IDescriptor;
-import org.sheepy.lily.vulkan.model.IResource;
-
 import org.sheepy.lily.vulkan.model.resource.*;
 
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
@@ -225,31 +223,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createShaderAdapter();
 			}
 			@Override
-			public Adapter casePathResource(PathResource object)
-			{
-				return createPathResourceAdapter();
-			}
-			@Override
-			public Adapter caseFileResource(FileResource object)
-			{
-				return createFileResourceAdapter();
-			}
-			@Override
-			public Adapter caseAbstractModuleResource(AbstractModuleResource object)
-			{
-				return createAbstractModuleResourceAdapter();
-			}
-			@Override
-			public Adapter caseModuleResource(ModuleResource object)
-			{
-				return createModuleResourceAdapter();
-			}
-			@Override
-			public Adapter caseStringModuleResource(StringModuleResource object)
-			{
-				return createStringModuleResourceAdapter();
-			}
-			@Override
 			public Adapter caseTexture2DArray(Texture2DArray object)
 			{
 				return createTexture2DArrayAdapter();
@@ -260,7 +233,7 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createLNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseIResource(IResource object)
+			public Adapter caseIResource(org.sheepy.lily.core.model.application.IResource object)
 			{
 				return createIResourceAdapter();
 			}
@@ -736,81 +709,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.PathResource <em>Path Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.PathResource
-	 * @generated
-	 */
-	public Adapter createPathResourceAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.FileResource <em>File Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.FileResource
-	 * @generated
-	 */
-	public Adapter createFileResourceAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.AbstractModuleResource <em>Abstract Module Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.AbstractModuleResource
-	 * @generated
-	 */
-	public Adapter createAbstractModuleResourceAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.ModuleResource <em>Module Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.ModuleResource
-	 * @generated
-	 */
-	public Adapter createModuleResourceAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.StringModuleResource <em>String Module Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.StringModuleResource
-	 * @generated
-	 */
-	public Adapter createStringModuleResourceAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray <em>Texture2 DArray</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -841,13 +739,13 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IResource <em>IResource</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.application.IResource <em>IResource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.IResource
+	 * @see org.sheepy.lily.core.model.application.IResource
 	 * @generated
 	 */
 	public Adapter createIResourceAdapter()

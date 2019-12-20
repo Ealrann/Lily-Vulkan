@@ -10,8 +10,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.joml.Vector4fc;
-
-import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
@@ -34,7 +32,7 @@ import org.sheepy.lily.vulkan.model.resource.Image;
  *
  * @generated
  */
-public class ImageAttachmentImpl extends LilyEObject implements ImageAttachment
+public class ImageAttachmentImpl extends ExtraAttachmentImpl implements ImageAttachment
 {
 	/**
 	 * The default value of the '{@link #getClearValue() <em>Clear Value</em>}' attribute.

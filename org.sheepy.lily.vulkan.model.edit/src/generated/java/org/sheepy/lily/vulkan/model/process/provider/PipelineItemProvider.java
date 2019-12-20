@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanFactory;
@@ -279,7 +280,7 @@ public class PipelineItemProvider extends ItemProviderAdapter implements IEditin
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-				 VulkanFactory.eINSTANCE.createResourcePkg()));
+				 ApplicationFactory.eINSTANCE.createResourcePkg()));
 
 		newChildDescriptors.add
 			(createChildParameter

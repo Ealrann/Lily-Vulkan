@@ -16,8 +16,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
@@ -180,17 +180,17 @@ public class FileImageItemProvider extends ImageItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ResourcePackage.Literals.FILE_IMAGE__FILE,
-				 ResourceFactory.eINSTANCE.createFileResource()));
+				 ApplicationFactory.eINSTANCE.createLocalResource()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ResourcePackage.Literals.FILE_IMAGE__FILE,
-				 ResourceFactory.eINSTANCE.createModuleResource()));
+				 ApplicationFactory.eINSTANCE.createModuleResource()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ResourcePackage.Literals.FILE_IMAGE__FILE,
-				 ResourceFactory.eINSTANCE.createStringModuleResource()));
+				 ApplicationFactory.eINSTANCE.createStringModuleResource()));
 	}
 
 }

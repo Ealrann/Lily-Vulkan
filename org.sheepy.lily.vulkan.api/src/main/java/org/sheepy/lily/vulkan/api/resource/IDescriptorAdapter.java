@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.api.resource;
 
-import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
 

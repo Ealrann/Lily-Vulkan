@@ -3,64 +3,20 @@ package org.sheepy.lily.vulkan.common.window;
 import java.util.Random;
 
 import org.joml.Vector2i;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.sheepy.lily.core.api.LilyLauncher;
-import org.sheepy.lily.core.api.adapter.IAdapterRegistry;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.cadence.ICadenceAdapter;
-import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.core.model.cadence.CadenceFactory;
-import org.sheepy.lily.core.model.cadence.GenericCadence;
 import org.sheepy.lily.vulkan.common.test.BasicModelFactory;
 import org.sheepy.lily.vulkan.common.test.TestUtils;
 
 public class WindowTest
 {
-	private static final String testNewWindowCadenceName = "testNewWindowCadenceName";
-	private static final String testResizeWindowCadenceName = "testResizeWindowCadenceName";
-
-	private Application application;
-
-	@BeforeEach
-	public void init()
-	{
-		application = TestUtils.newBasicApplication();
-	}
-
-	@AfterEach
-	public void clean()
-	{
-		application = null;
-	}
-
 	@Test
 	public void testNewWindow()
 	{
-		final var cadence = CadenceFactory.eINSTANCE.createGenericCadence();
-		cadence.setName(testNewWindowCadenceName);
-		application.getEngines().get(0).setCadence(cadence);
-		IAdapterRegistry.INSTANCE.register(TestNewWindowCadenceAdapter.class);
-		LilyLauncher.launch(application);
-	}
-
-	@Statefull
-	@Adapter(scope = GenericCadence.class, name = testNewWindowCadenceName)
-	public static final class TestNewWindowCadenceAdapter implements ICadenceAdapter
-	{
-		private final Application application;
-
-		public TestNewWindowCadenceAdapter(GenericCadence cadence)
-		{
-			application = ModelUtil.getApplication(cadence);
-		}
-
-		@Override
-		public void run()
+		final var application = TestUtils.newBasicApplication();
+		LilyLauncher.launch(application, () ->
 		{
 			final int expectedWidth = BasicModelFactory.WIDTH;
 			final int expectedHeight = BasicModelFactory.HEIGHT;
@@ -70,35 +26,31 @@ public class WindowTest
 																	expectedHeight));
 
 			application.setRun(false);
-		}
+		});
 	}
 
 	@Test
 	public void testResizeWindow()
 	{
-		final var cadence = CadenceFactory.eINSTANCE.createGenericCadence();
-		cadence.setName(testResizeWindowCadenceName);
-		application.getEngines().get(0).setCadence(cadence);
-		IAdapterRegistry.INSTANCE.register(TestResizeWindowCadenceAdapter.class);
-		LilyLauncher.launch(application);
+		final var application = TestUtils.newBasicApplication();
+		final var step = new TestResizeWindowCadenceAdapter(application);
+		LilyLauncher.launch(application, step);
 	}
 
-	@Statefull
-	@Adapter(scope = GenericCadence.class, name = testResizeWindowCadenceName)
-	public static final class TestResizeWindowCadenceAdapter implements ICadenceAdapter
+	public static final class TestResizeWindowCadenceAdapter implements Runnable
 	{
+		private final Random random = new Random();
+		private final int timeoutMs;
+		private final long setSizeDate;
 		private final Application application;
 
-		private final Random random = new Random();
 		private int expectedWidth = BasicModelFactory.WIDTH;
 		private int expectedHeight = BasicModelFactory.HEIGHT;
 		private int index = 0;
-		private final int timeoutMs;
-		private final long setSizeDate;
 
-		public TestResizeWindowCadenceAdapter(GenericCadence cadence)
+		public TestResizeWindowCadenceAdapter(Application application)
 		{
-			application = ModelUtil.getApplication(cadence);
+			this.application = application;
 			timeoutMs = 1000;
 			setSizeDate = System.currentTimeMillis();
 		}
@@ -114,7 +66,7 @@ public class WindowTest
 				expectedWidth = random.nextInt(700) + 201;
 				expectedHeight = random.nextInt(700) + 201;
 
-				application.setSize(new Vector2i(expectedWidth, expectedHeight));
+				application.getScene().setSize(new Vector2i(expectedWidth, expectedHeight));
 
 				index++;
 			}

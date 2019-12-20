@@ -350,53 +350,28 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachmentDescription} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SwapImageAttachmentDescriptionItemProvider swapImageAttachmentDescriptionItemProvider;
+	protected SwapImageAttachmentItemProvider swapImageAttachmentItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachmentDescription}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSwapImageAttachmentDescriptionAdapter()
+	public Adapter createSwapImageAttachmentAdapter()
 	{
-		if (swapImageAttachmentDescriptionItemProvider == null)
+		if (swapImageAttachmentItemProvider == null)
 		{
-			swapImageAttachmentDescriptionItemProvider = new SwapImageAttachmentDescriptionItemProvider(this);
+			swapImageAttachmentItemProvider = new SwapImageAttachmentItemProvider(this);
 		}
 
-		return swapImageAttachmentDescriptionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachmentDescription} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ExtraAttachmentDescriptionItemProvider extraAttachmentDescriptionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachmentDescription}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createExtraAttachmentDescriptionAdapter()
-	{
-		if (extraAttachmentDescriptionItemProvider == null)
-		{
-			extraAttachmentDescriptionItemProvider = new ExtraAttachmentDescriptionItemProvider(this);
-		}
-
-		return extraAttachmentDescriptionItemProvider;
+		return swapImageAttachmentItemProvider;
 	}
 
 	/**
@@ -908,8 +883,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		if (subpassItemProvider != null) subpassItemProvider.dispose();
 		if (attachmentRefItemProvider != null) attachmentRefItemProvider.dispose();
 		if (subpassDependencyItemProvider != null) subpassDependencyItemProvider.dispose();
-		if (swapImageAttachmentDescriptionItemProvider != null) swapImageAttachmentDescriptionItemProvider.dispose();
-		if (extraAttachmentDescriptionItemProvider != null) extraAttachmentDescriptionItemProvider.dispose();
+		if (swapImageAttachmentItemProvider != null) swapImageAttachmentItemProvider.dispose();
 		if (graphicProcessItemProvider != null) graphicProcessItemProvider.dispose();
 		if (graphicsPipelineItemProvider != null) graphicsPipelineItemProvider.dispose();
 		if (swapImageBarrierItemProvider != null) swapImageBarrierItemProvider.dispose();

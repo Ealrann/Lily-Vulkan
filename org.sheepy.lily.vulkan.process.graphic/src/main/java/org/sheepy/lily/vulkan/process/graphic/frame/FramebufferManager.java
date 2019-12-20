@@ -6,33 +6,29 @@ import java.nio.LongBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkFramebufferCreateInfo;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.vulkan.api.graphic.ClearInfo;
 import org.sheepy.lily.vulkan.api.graphic.IFramebufferManager;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.api.resource.attachment.ISwapAttachmentAdapter;
-import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
-import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
+import org.sheepy.lily.vulkan.api.resource.attachment.IExtraAttachmentAdapter;
+import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
 import org.sheepy.vulkan.log.Logger;
-import org.sheepy.vulkan.resource.image.VkImageView;
 
 public class FramebufferManager implements IFramebufferManager
 {
-	private boolean depthAttachment = false;
+	private static final String FAILED_TO_CREATE_FRAMEBUFFER = "Failed to create framebuffer";
+
 	private List<Long> framebuffersIds = null;
-	private List<ClearInfo> clearInfos = null;
-	private EList<ISwapAttachment> attachments;
 
 	@Override
 	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
 	{
 		final var swapChainManager = context.getSwapChainManager();
 		final var imageViewManager = context.getImageViewManager();
+		final var renderPass = context.getRenderPass();
 
-		config.addDependencies(List.of(swapChainManager, imageViewManager));
+		config.addDependencies(List.of(swapChainManager, imageViewManager, renderPass));
 	}
 
 	@Override
@@ -42,56 +38,38 @@ public class FramebufferManager implements IFramebufferManager
 		final var vkDevice = context.getVkDevice();
 		final var imageViews = context.getImageViewManager().getImageViews();
 		final var aFramebufferId = new long[1];
-
-		final var configuration = context.getConfiguration().getFramebufferConfiguration();
-		final var swapChainConfiguration = context.getConfiguration().getSwapchainConfiguration();
-		attachments = swapChainConfiguration.getAtachments();
-
-		final var attachmentsBuffer = allocAttachmentsBuffer(stack);
-		final var createInfo = allocCreateInfo(stack, context, attachmentsBuffer);
+		final var renderPassInfo = context.getGraphicProcess().getRenderPassInfo();
+		final var attachments = renderPassInfo.getExtraAttachments();
 
 		framebuffersIds = new ArrayList<>(imageViews.size());
-		for (final VkImageView imageView : imageViews)
+		for (final var imageView : imageViews)
 		{
-			fillAttachments(attachmentsBuffer, imageView.getPtr(), configuration);
+			final var attachmentsBuffer = allocAttachments(stack, attachments, imageView.getPtr());
+			final var createInfo = allocCreateInfo(stack, context, attachmentsBuffer);
 
-			Logger.check(	"Failed to create framebuffer!",
-							() -> vkCreateFramebuffer(vkDevice, createInfo, null, aFramebufferId));
+			Logger.check(	vkCreateFramebuffer(vkDevice, createInfo, null, aFramebufferId),
+							FAILED_TO_CREATE_FRAMEBUFFER);
 			framebuffersIds.add(aFramebufferId[0]);
 		}
 
 		framebuffersIds = List.copyOf(framebuffersIds);
 	}
 
-	private void fillAttachments(	LongBuffer attachmentsBuffer,
-									long imageViewId,
-									FramebufferConfiguration configuration)
+	private static LongBuffer allocAttachments(	MemoryStack stack,
+												List<ExtraAttachment> attachments,
+												long imageViewId)
 	{
+		final var attachmentsBuffer = stack.mallocLong(attachments.size() + 1);
 		attachmentsBuffer.put(imageViewId);
-
-		clearInfos = new ArrayList<>();
-		clearInfos.add(new ClearInfo(false, configuration.getClearValue()));
 
 		for (final var attachment : attachments)
 		{
-			final var adapter = attachment.adaptNotNull(ISwapAttachmentAdapter.class);
-
-			depthAttachment |= adapter.isDepthAttachment();
-			clearInfos.add(adapter.getClearInfos());
-			attachmentsBuffer.put(adapter.getImageViewId());
+			final var description = attachment.adaptNotNull(IExtraAttachmentAdapter.class);
+			attachmentsBuffer.put(description.getImageViewId());
 		}
 
-		clearInfos = List.copyOf(clearInfos);
-
 		attachmentsBuffer.flip();
-	}
-
-	private LongBuffer allocAttachmentsBuffer(MemoryStack stack)
-	{
-		int attachementCount = 1;
-		attachementCount += attachments.size();
-		final var attachments = stack.mallocLong(attachementCount);
-		return attachments;
+		return attachmentsBuffer;
 	}
 
 	private static VkFramebufferCreateInfo allocCreateInfo(	MemoryStack stack,
@@ -101,7 +79,7 @@ public class FramebufferManager implements IFramebufferManager
 		final var extent = graphicContext.getSurfaceManager().getExtent();
 		final var createInfo = VkFramebufferCreateInfo.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO);
-		createInfo.renderPass(graphicContext.getRenderPass().getAddress());
+		createInfo.renderPass(graphicContext.getRenderPass().getPtr());
 		createInfo.width(extent.getWidth());
 		createInfo.height(extent.getHeight());
 		createInfo.layers(1);
@@ -128,17 +106,5 @@ public class FramebufferManager implements IFramebufferManager
 	public int size()
 	{
 		return framebuffersIds != null ? framebuffersIds.size() : 0;
-	}
-
-	@Override
-	public boolean hasDepthAttachment()
-	{
-		return depthAttachment;
-	}
-
-	@Override
-	public List<ClearInfo> getClearInfos()
-	{
-		return clearInfos;
 	}
 }

@@ -5,21 +5,13 @@ package org.sheepy.lily.vulkan.model.process.graphic.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
@@ -34,7 +26,6 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#getRequiredSwapImageCount <em>Required Swap Image Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#getSwapImageUsages <em>Swap Image Usages</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#getAtachments <em>Atachments</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#isPresentWhenVBlank <em>Present When VBlank</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#isAcquireWaitForVBlank <em>Acquire Wait For VBlank</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#isAllowingAccessFromCompute <em>Allowing Access From Compute</em>}</li>
@@ -73,16 +64,6 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 	 * @ordered
 	 */
 	protected EList<EImageUsage> swapImageUsages;
-
-	/**
-	 * The cached value of the '{@link #getAtachments() <em>Atachments</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAtachments()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ISwapAttachment> atachments;
 
 	/**
 	 * The default value of the '{@link #isPresentWhenVBlank() <em>Present When VBlank</em>}' attribute.
@@ -211,21 +192,6 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 	 * @generated
 	 */
 	@Override
-	public EList<ISwapAttachment> getAtachments()
-	{
-		if (atachments == null)
-		{
-			atachments = new EObjectContainmentEList<ISwapAttachment>(ISwapAttachment.class, this, GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS);
-		}
-		return atachments;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean isPresentWhenVBlank()
 	{
 		return presentWhenVBlank;
@@ -301,22 +267,6 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
-				return ((InternalEList<?>)getAtachments()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -325,8 +275,6 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 				return getRequiredSwapImageCount();
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
 				return getSwapImageUsages();
-			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
-				return getAtachments();
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK:
 				return isPresentWhenVBlank();
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK:
@@ -354,10 +302,6 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
 				getSwapImageUsages().clear();
 				getSwapImageUsages().addAll((Collection<? extends EImageUsage>)newValue);
-				return;
-			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
-				getAtachments().clear();
-				getAtachments().addAll((Collection<? extends ISwapAttachment>)newValue);
 				return;
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK:
 				setPresentWhenVBlank((Boolean)newValue);
@@ -388,9 +332,6 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
 				getSwapImageUsages().clear();
 				return;
-			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
-				getAtachments().clear();
-				return;
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK:
 				setPresentWhenVBlank(PRESENT_WHEN_VBLANK_EDEFAULT);
 				return;
@@ -418,8 +359,6 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 				return requiredSwapImageCount != REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT;
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
 				return swapImageUsages != null && !swapImageUsages.isEmpty();
-			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
-				return atachments != null && !atachments.isEmpty();
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK:
 				return presentWhenVBlank != PRESENT_WHEN_VBLANK_EDEFAULT;
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK:

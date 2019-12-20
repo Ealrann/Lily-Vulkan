@@ -687,7 +687,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		// Obtain other dependent packages
 		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
-		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
+		ApplicationPackage theApplicationPackage = (ApplicationPackage)EPackage.Registry.INSTANCE.getEPackage(ApplicationPackage.eNS_URI);
 		PresentationPackage thePresentationPackage = (PresentationPackage)EPackage.Registry.INSTANCE.getEPackage(PresentationPackage.eNS_URI);
 		VariablePackage theVariablePackage = (VariablePackage)EPackage.Registry.INSTANCE.getEPackage(VariablePackage.eNS_URI);
 		UiPackage theUiPackage = (UiPackage)EPackage.Registry.INSTANCE.getEPackage(UiPackage.eNS_URI);
@@ -699,8 +699,8 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		// Add supertypes to classes
 		nuklearPushConstantsEClass.getESuperTypes().add(theProcessPackage.getPushConstant());
 		nuklearLayoutTaskEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
-		nuklearContextEClass.getESuperTypes().add(theVulkanPackage.getIResource());
-		nuklearFontEClass.getESuperTypes().add(theVulkanPackage.getIResource());
+		nuklearContextEClass.getESuperTypes().add(theApplicationPackage.getIResource());
+		nuklearFontEClass.getESuperTypes().add(theApplicationPackage.getIResource());
 		selectorPanelEClass.getESuperTypes().add(thePresentationPackage.getIPanel());
 		panelViewerEClass.getESuperTypes().add(theUiPackage.getPanel());
 		EGenericType g1 = createEGenericType(theResourcePackage.getBufferDataProvider());

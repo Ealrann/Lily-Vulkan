@@ -21,7 +21,6 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 	protected final ICommandBuffer<? super T> commandBuffer;
 	protected final ISubmission<? super T> submission;
 	private final List<IAllocable<? super T>> allocationList;
-	private final RecordContext[] contexts = new RecordContext[ECommandStage.VALUES.size()];
 
 	protected final int index;
 
@@ -39,7 +38,7 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 	}
 
 	@Override
-	public final void configureAllocation(IAllocationConfigurator config, T context)
+	public void configureAllocation(IAllocationConfigurator config, T context)
 	{
 		config.addChildren(allocationList);
 	}
@@ -58,11 +57,12 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 		waitIdle();
 
 		final List<IExecutionIdleListener> listeners = new ArrayList<>();
+		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 		for (int i = 0; i < stages.size(); i++)
 		{
-			final ECommandStage stage = stages.get(i);
+			final var stage = stages.get(i);
 			commandBuffer.start(stage);
-			final var context = getOrCreateContext(stage);
+			final var context = new RecordContext(vkCommandBuffer, stage, index);
 			context.clearListeners();
 			recordCommand(recordables, context, stage);
 			commandBuffer.end(stage);
@@ -72,19 +72,6 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 		submission.setExecutionIdleListeners(listeners);
 
 		setDirty(false);
-	}
-
-	private final RecordContext getOrCreateContext(ECommandStage stage)
-	{
-		final int stageIndex = stage.ordinal();
-		var context = contexts[stageIndex];
-		if (context == null)
-		{
-			final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
-			context = new RecordContext(vkCommandBuffer, stage, index);
-			contexts[stageIndex] = context;
-		}
-		return context;
 	}
 
 	public boolean isBusy()

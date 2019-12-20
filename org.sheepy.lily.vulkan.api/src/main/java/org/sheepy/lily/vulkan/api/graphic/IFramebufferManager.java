@@ -6,9 +6,5 @@ import org.sheepy.lily.core.api.allocation.IAllocable;
 
 public interface IFramebufferManager extends IAllocable<IGraphicContext>
 {
-	List<ClearInfo> getClearInfos();
-
 	List<Long> getFramebufferAddresses();
-
-	boolean hasDepthAttachment();
 }

@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
@@ -40,7 +40,7 @@ public class AttachmentRefImpl extends LilyEObject implements AttachmentRef
 	 * @generated
 	 * @ordered
 	 */
-	protected AttachmentDescription attachment;
+	protected Attachment attachment;
 
 	/**
 	 * The default value of the '{@link #getLayout() <em>Layout</em>}' attribute.
@@ -89,12 +89,12 @@ public class AttachmentRefImpl extends LilyEObject implements AttachmentRef
 	 * @generated
 	 */
 	@Override
-	public AttachmentDescription getAttachment()
+	public Attachment getAttachment()
 	{
 		if (attachment != null && ((EObject)attachment).eIsProxy())
 		{
 			InternalEObject oldAttachment = (InternalEObject)attachment;
-			attachment = (AttachmentDescription)eResolveProxy(oldAttachment);
+			attachment = (Attachment)eResolveProxy(oldAttachment);
 			if (attachment != oldAttachment)
 			{
 				if (eNotificationRequired())
@@ -109,7 +109,7 @@ public class AttachmentRefImpl extends LilyEObject implements AttachmentRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttachmentDescription basicGetAttachment()
+	public Attachment basicGetAttachment()
 	{
 		return attachment;
 	}
@@ -120,9 +120,9 @@ public class AttachmentRefImpl extends LilyEObject implements AttachmentRef
 	 * @generated
 	 */
 	@Override
-	public void setAttachment(AttachmentDescription newAttachment)
+	public void setAttachment(Attachment newAttachment)
 	{
-		AttachmentDescription oldAttachment = attachment;
+		Attachment oldAttachment = attachment;
 		attachment = newAttachment;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTACHMENT_REF__ATTACHMENT, oldAttachment, attachment));
@@ -183,7 +183,7 @@ public class AttachmentRefImpl extends LilyEObject implements AttachmentRef
 		switch (featureID)
 		{
 			case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
-				setAttachment((AttachmentDescription)newValue);
+				setAttachment((Attachment)newValue);
 				return;
 			case GraphicPackage.ATTACHMENT_REF__LAYOUT:
 				setLayout((EImageLayout)newValue);
@@ -203,7 +203,7 @@ public class AttachmentRefImpl extends LilyEObject implements AttachmentRef
 		switch (featureID)
 		{
 			case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
-				setAttachment((AttachmentDescription)null);
+				setAttachment((Attachment)null);
 				return;
 			case GraphicPackage.ATTACHMENT_REF__LAYOUT:
 				setLayout(LAYOUT_EDEFAULT);

@@ -28,6 +28,9 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.core.model.application.ResourcePkg;
+import org.sheepy.lily.core.model.application.util.ApplicationSwitch;
 import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
@@ -724,81 +727,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FileResource} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FileResourceItemProvider fileResourceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.FileResource}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFileResourceAdapter()
-	{
-		if (fileResourceItemProvider == null)
-		{
-			fileResourceItemProvider = new FileResourceItemProvider(this);
-		}
-
-		return fileResourceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ModuleResource} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ModuleResourceItemProvider moduleResourceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ModuleResource}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createModuleResourceAdapter()
-	{
-		if (moduleResourceItemProvider == null)
-		{
-			moduleResourceItemProvider = new ModuleResourceItemProvider(this);
-		}
-
-		return moduleResourceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.StringModuleResource} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StringModuleResourceItemProvider stringModuleResourceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.StringModuleResource}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createStringModuleResourceAdapter()
-	{
-		if (stringModuleResourceItemProvider == null)
-		{
-			stringModuleResourceItemProvider = new StringModuleResourceItemProvider(this);
-		}
-
-		return stringModuleResourceItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Texture2DArray} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -997,10 +925,158 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (compositeBufferBarrierItemProvider != null) compositeBufferBarrierItemProvider.dispose();
 		if (imageBarrierItemProvider != null) imageBarrierItemProvider.dispose();
 		if (shaderItemProvider != null) shaderItemProvider.dispose();
-		if (fileResourceItemProvider != null) fileResourceItemProvider.dispose();
-		if (moduleResourceItemProvider != null) moduleResourceItemProvider.dispose();
-		if (stringModuleResourceItemProvider != null) stringModuleResourceItemProvider.dispose();
 		if (texture2DArrayItemProvider != null) texture2DArrayItemProvider.dispose();
+	}
+
+	/**
+	 * A child creation extender for the {@link ApplicationPackage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static class ApplicationChildCreationExtender implements IChildCreationExtender
+	{
+		/**
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected static class CreationSwitch extends ApplicationSwitch<Object>
+		{
+			/**
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected List<Object> newChildDescriptors;
+
+			/**
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected EditingDomain editingDomain;
+
+			/**
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			{
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseResourcePkg(ResourcePkg object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
+						 ResourceFactory.eINSTANCE.createTransferBuffer()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
+						 ResourceFactory.eINSTANCE.createConstantBuffer()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
+						 ResourceFactory.eINSTANCE.createBuffer()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
+						 ResourceFactory.eINSTANCE.createCompositeBuffer()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
+						 ResourceFactory.eINSTANCE.createStaticImage()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
+						 ResourceFactory.eINSTANCE.createFileImage()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
+						 ResourceFactory.eINSTANCE.createSampledImage()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
+						 ResourceFactory.eINSTANCE.createSampler()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
+						 ResourceFactory.eINSTANCE.createSemaphore()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
+						 ResourceFactory.eINSTANCE.createFontImage()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
+						 ResourceFactory.eINSTANCE.createShader()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
+						 ResourceFactory.eINSTANCE.createTexture2DArray()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected CommandParameter createChildParameter(Object feature, Object child)
+			{
+				return new CommandParameter(null, feature, child);
+			}
+
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
+		{
+			ArrayList<Object> result = new ArrayList<Object>();
+			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			return result;
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public ResourceLocator getResourceLocator()
+		{
+			return LilyVulkanEditPlugin.INSTANCE;
+		}
 	}
 
 	/**

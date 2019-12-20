@@ -16,13 +16,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
+import org.sheepy.lily.core.model.application.ICadence;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
-import org.sheepy.lily.vulkan.model.ResourcePkg;
-
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -42,6 +41,7 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getQueuePriority <em>Queue Priority</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getCadence <em>Cadence</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getPartPkg <em>Part Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
@@ -62,7 +62,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 * @ordered
 	 */
-	protected ResourcePkg resourcePkg;
+	protected org.sheepy.lily.core.model.application.ResourcePkg resourcePkg;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorPkg() <em>Descriptor Pkg</em>}' containment reference.
@@ -133,6 +133,16 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @ordered
 	 */
 	protected float queuePriority = QUEUE_PRIORITY_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getCadence() <em>Cadence</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCadence()
+	 * @generated
+	 * @ordered
+	 */
+	protected ICadence cadence;
 
 	/**
 	 * The default value of the '{@link #isWaitingFenceDuringAcquire() <em>Waiting Fence During Acquire</em>}' attribute.
@@ -241,7 +251,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 */
 	@Override
-	public ResourcePkg getResourcePkg()
+	public org.sheepy.lily.core.model.application.ResourcePkg getResourcePkg()
 	{
 		return resourcePkg;
 	}
@@ -251,9 +261,9 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResourcePkg(ResourcePkg newResourcePkg, NotificationChain msgs)
+	public NotificationChain basicSetResourcePkg(org.sheepy.lily.core.model.application.ResourcePkg newResourcePkg, NotificationChain msgs)
 	{
-		ResourcePkg oldResourcePkg = resourcePkg;
+		org.sheepy.lily.core.model.application.ResourcePkg oldResourcePkg = resourcePkg;
 		resourcePkg = newResourcePkg;
 		if (eNotificationRequired())
 		{
@@ -269,7 +279,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 */
 	@Override
-	public void setResourcePkg(ResourcePkg newResourcePkg)
+	public void setResourcePkg(org.sheepy.lily.core.model.application.ResourcePkg newResourcePkg)
 	{
 		if (newResourcePkg != resourcePkg)
 		{
@@ -358,6 +368,56 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 		queuePriority = newQueuePriority;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__QUEUE_PRIORITY, oldQueuePriority, queuePriority));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ICadence getCadence()
+	{
+		return cadence;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetCadence(ICadence newCadence, NotificationChain msgs)
+	{
+		ICadence oldCadence = cadence;
+		cadence = newCadence;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__CADENCE, oldCadence, newCadence);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCadence(ICadence newCadence)
+	{
+		if (newCadence != cadence)
+		{
+			NotificationChain msgs = null;
+			if (cadence != null)
+				msgs = ((InternalEObject)cadence).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__CADENCE, null, msgs);
+			if (newCadence != null)
+				msgs = ((InternalEObject)newCadence).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__CADENCE, null, msgs);
+			msgs = basicSetCadence(newCadence, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__CADENCE, newCadence, newCadence));
 	}
 
 	/**
@@ -604,6 +664,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return basicSetResourcePkg(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
 				return basicSetDescriptorPkg(null, msgs);
+			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
+				return basicSetCadence(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
 				return basicSetPartPkg(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
@@ -632,6 +694,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return isEnabled();
 			case ProcessPackage.ABSTRACT_PROCESS__QUEUE_PRIORITY:
 				return getQueuePriority();
+			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
+				return getCadence();
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				return isWaitingFenceDuringAcquire();
 			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
@@ -660,7 +724,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 		switch (featureID)
 		{
 			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
-				setResourcePkg((ResourcePkg)newValue);
+				setResourcePkg((org.sheepy.lily.core.model.application.ResourcePkg)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)newValue);
@@ -673,6 +737,9 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__QUEUE_PRIORITY:
 				setQueuePriority((Float)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
+				setCadence((ICadence)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				setWaitingFenceDuringAcquire((Boolean)newValue);
@@ -709,7 +776,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 		switch (featureID)
 		{
 			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
-				setResourcePkg((ResourcePkg)null);
+				setResourcePkg((org.sheepy.lily.core.model.application.ResourcePkg)null);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)null);
@@ -722,6 +789,9 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__QUEUE_PRIORITY:
 				setQueuePriority(QUEUE_PRIORITY_EDEFAULT);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
+				setCadence((ICadence)null);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				setWaitingFenceDuringAcquire(WAITING_FENCE_DURING_ACQUIRE_EDEFAULT);
@@ -765,6 +835,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return enabled != ENABLED_EDEFAULT;
 			case ProcessPackage.ABSTRACT_PROCESS__QUEUE_PRIORITY:
 				return queuePriority != QUEUE_PRIORITY_EDEFAULT;
+			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
+				return cadence != null;
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				return waitingFenceDuringAcquire != WAITING_FENCE_DURING_ACQUIRE_EDEFAULT;
 			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:

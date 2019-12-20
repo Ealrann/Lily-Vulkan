@@ -13,7 +13,6 @@ import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.*;
-import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
@@ -241,7 +240,7 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createBufferDataProviderAdapter();
 			}
 			@Override
-			public Adapter caseIResource(IResource object)
+			public Adapter caseIResource(org.sheepy.lily.core.model.application.IResource object)
 			{
 				return createIResourceAdapter();
 			}
@@ -743,13 +742,13 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IResource <em>IResource</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.application.IResource <em>IResource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.IResource
+	 * @see org.sheepy.lily.core.model.application.IResource
 	 * @generated
 	 */
 	public Adapter createIResourceAdapter()

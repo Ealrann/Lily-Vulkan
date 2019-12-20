@@ -43,7 +43,7 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	{
 		final var logicalDevice = context.getLogicalDevice();
 
-		var window = context.getWindow();
+		final var window = context.getWindow();
 		surface = window.createSurface();
 		surface.addListener(surfaceListener);
 
@@ -64,7 +64,7 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 		if (currentExtent.width() == -1 || currentExtent.height() == -1)
 		{
 			// -1 is special case, the surface will take the framebuffer size later.
-			var size = window.getFramebufferSize();
+			final var size = window.getFramebufferSize();
 			return new Extent2D(size.x(), size.y());
 		}
 		else
@@ -101,6 +101,7 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 		surface.free();
 		capabilities = null;
 		surface = null;
+		presentQueue = null;
 	}
 
 	@Override

@@ -3,11 +3,11 @@ package org.sheepy.lily.vulkan.demo.test.composite.instance;
 import org.sheepy.lily.core.api.LilyLauncher;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationFactory;
-import org.sheepy.lily.core.model.presentation.PresentationFactory;
+import org.sheepy.lily.vulkan.demo.test.composite.instance.model.InstanceEngineFactory;
 
 public class MainCompositeInstanceTest
 {
-	public static final String VIEW_NAME = "Vulkan - CompositeInstanceBuffer test";
+	public static final String NAME = "Vulkan - CompositeInstanceBuffer test";
 
 	public static void main(String[] args)
 	{
@@ -18,12 +18,8 @@ public class MainCompositeInstanceTest
 	public static Application buildApplication()
 	{
 		final Application application = ApplicationFactory.eINSTANCE.createApplication();
-		application.setTitle(VIEW_NAME);
-		application.setHeadless(true);
-
-		final var view = PresentationFactory.eINSTANCE.createGenericView();
-		view.setName(VIEW_NAME);
-		application.setView(view);
+		application.setTitle(NAME);
+		application.getEngines().add(InstanceEngineFactory.build());
 
 		return application;
 	}

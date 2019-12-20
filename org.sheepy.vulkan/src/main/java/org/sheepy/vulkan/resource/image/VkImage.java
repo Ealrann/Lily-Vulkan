@@ -194,8 +194,8 @@ public final class VkImage
 		vkDestroyImage(logicalDevice.getVkDevice(), imagePtr, null);
 		if (memory != null) memory.free(context);
 
-		imagePtr = -1;
-		memoryPtr = -1;
+		imagePtr = 0;
+		memoryPtr = 0;
 	}
 
 	public long getPtr()

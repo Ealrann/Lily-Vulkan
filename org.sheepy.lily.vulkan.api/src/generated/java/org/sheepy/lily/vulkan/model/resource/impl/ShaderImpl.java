@@ -16,9 +16,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.vulkan.model.resource.PathResource;
+import org.sheepy.lily.core.model.application.FileResource;
+import org.sheepy.lily.core.model.application.impl.IResourceImpl;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 
@@ -34,7 +33,6 @@ import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl#getFile <em>File</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl#getConstants <em>Constants</em>}</li>
@@ -42,28 +40,8 @@ import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
  *
  * @generated
  */
-public class ShaderImpl extends LilyEObject implements Shader
+public class ShaderImpl extends IResourceImpl implements Shader
 {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getFile() <em>File</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -72,7 +50,7 @@ public class ShaderImpl extends LilyEObject implements Shader
 	 * @generated
 	 * @ordered
 	 */
-	protected PathResource file;
+	protected FileResource file;
 
 	/**
 	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
@@ -131,32 +109,7 @@ public class ShaderImpl extends LilyEObject implements Shader
 	 * @generated
 	 */
 	@Override
-	public String getName()
-	{
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setName(String newName)
-	{
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SHADER__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public PathResource getFile()
+	public FileResource getFile()
 	{
 		return file;
 	}
@@ -166,9 +119,9 @@ public class ShaderImpl extends LilyEObject implements Shader
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFile(PathResource newFile, NotificationChain msgs)
+	public NotificationChain basicSetFile(FileResource newFile, NotificationChain msgs)
 	{
-		PathResource oldFile = file;
+		FileResource oldFile = file;
 		file = newFile;
 		if (eNotificationRequired())
 		{
@@ -184,7 +137,7 @@ public class ShaderImpl extends LilyEObject implements Shader
 	 * @generated
 	 */
 	@Override
-	public void setFile(PathResource newFile)
+	public void setFile(FileResource newFile)
 	{
 		if (newFile != file)
 		{
@@ -268,8 +221,6 @@ public class ShaderImpl extends LilyEObject implements Shader
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SHADER__NAME:
-				return getName();
 			case ResourcePackage.SHADER__FILE:
 				return getFile();
 			case ResourcePackage.SHADER__STAGE:
@@ -291,11 +242,8 @@ public class ShaderImpl extends LilyEObject implements Shader
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SHADER__NAME:
-				setName((String)newValue);
-				return;
 			case ResourcePackage.SHADER__FILE:
-				setFile((PathResource)newValue);
+				setFile((FileResource)newValue);
 				return;
 			case ResourcePackage.SHADER__STAGE:
 				setStage((EShaderStage)newValue);
@@ -318,11 +266,8 @@ public class ShaderImpl extends LilyEObject implements Shader
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SHADER__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case ResourcePackage.SHADER__FILE:
-				setFile((PathResource)null);
+				setFile((FileResource)null);
 				return;
 			case ResourcePackage.SHADER__STAGE:
 				setStage(STAGE_EDEFAULT);
@@ -344,8 +289,6 @@ public class ShaderImpl extends LilyEObject implements Shader
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SHADER__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ResourcePackage.SHADER__FILE:
 				return file != null;
 			case ResourcePackage.SHADER__STAGE:
@@ -367,9 +310,7 @@ public class ShaderImpl extends LilyEObject implements Shader
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", stage: ");
+		result.append(" (stage: ");
 		result.append(stage);
 		result.append(')');
 		return result.toString();

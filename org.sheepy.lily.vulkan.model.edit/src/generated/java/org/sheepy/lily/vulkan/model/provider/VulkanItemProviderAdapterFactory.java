@@ -127,31 +127,6 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.ResourcePkg} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ResourcePkgItemProvider resourcePkgItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.ResourcePkg}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createResourcePkgAdapter()
-	{
-		if (resourcePkgItemProvider == null)
-		{
-			resourcePkgItemProvider = new ResourcePkgItemProvider(this);
-		}
-
-		return resourcePkgItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.RunProcess} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -376,7 +351,6 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	public void dispose()
 	{
 		if (vulkanEngineItemProvider != null) vulkanEngineItemProvider.dispose();
-		if (resourcePkgItemProvider != null) resourcePkgItemProvider.dispose();
 		if (runProcessItemProvider != null) runProcessItemProvider.dispose();
 		if (waitProcessIdleItemProvider != null) waitProcessIdleItemProvider.dispose();
 		if (descriptorPkgItemProvider != null) descriptorPkgItemProvider.dispose();
@@ -632,11 +606,6 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 			{
 				newChildDescriptors.add
 					(createChildParameter
-						(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-						 VulkanFactory.eINSTANCE.createResourcePkg()));
-
-				newChildDescriptors.add
-					(createChildParameter
 						(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 						 VulkanFactory.eINSTANCE.createDescriptorPkg()));
 
@@ -731,11 +700,6 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 			@Override
 			public Object caseIResourceContainer(IResourceContainer object)
 			{
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-						 VulkanFactory.eINSTANCE.createResourcePkg()));
-
 				newChildDescriptors.add
 					(createChildParameter
 						(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,

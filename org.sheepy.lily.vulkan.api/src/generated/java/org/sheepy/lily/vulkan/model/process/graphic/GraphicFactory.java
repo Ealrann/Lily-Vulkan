@@ -113,22 +113,13 @@ public interface GraphicFactory extends EFactory
 	SubpassDependency createSubpassDependency();
 
 	/**
-	 * Returns a new object of class '<em>Swap Image Attachment Description</em>'.
+	 * Returns a new object of class '<em>Swap Image Attachment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Swap Image Attachment Description</em>'.
+	 * @return a new object of class '<em>Swap Image Attachment</em>'.
 	 * @generated
 	 */
-	SwapImageAttachmentDescription createSwapImageAttachmentDescription();
-
-	/**
-	 * Returns a new object of class '<em>Extra Attachment Description</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Extra Attachment Description</em>'.
-	 * @generated
-	 */
-	ExtraAttachmentDescription createExtraAttachmentDescription();
+	SwapImageAttachment createSwapImageAttachment();
 
 	/**
 	 * Returns a new object of class '<em>Process</em>'.

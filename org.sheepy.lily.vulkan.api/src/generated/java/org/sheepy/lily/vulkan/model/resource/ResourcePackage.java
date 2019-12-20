@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -83,7 +84,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFER_BUFFER__NAME = VulkanPackage.IRESOURCE__NAME;
+	int TRANSFER_BUFFER__NAME = ApplicationPackage.IRESOURCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -92,7 +93,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFER_BUFFER__SIZE = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
+	int TRANSFER_BUFFER__SIZE = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
@@ -101,7 +102,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFER_BUFFER__INSTANCE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
+	int TRANSFER_BUFFER__INSTANCE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
@@ -110,7 +111,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFER_BUFFER__USED_TO_PUSH = VulkanPackage.IRESOURCE_FEATURE_COUNT + 2;
+	int TRANSFER_BUFFER__USED_TO_PUSH = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Used To Fetch</b></em>' attribute.
@@ -119,7 +120,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFER_BUFFER__USED_TO_FETCH = VulkanPackage.IRESOURCE_FEATURE_COUNT + 3;
+	int TRANSFER_BUFFER__USED_TO_FETCH = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Transfer Buffer</em>' class.
@@ -128,7 +129,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFER_BUFFER_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 4;
+	int TRANSFER_BUFFER_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Transfer Buffer</em>' class.
@@ -137,7 +138,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFER_BUFFER_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
+	int TRANSFER_BUFFER_OPERATION_COUNT = ApplicationPackage.IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantBufferImpl <em>Constant Buffer</em>}' class.
@@ -156,7 +157,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT_BUFFER__NAME = VulkanPackage.IRESOURCE__NAME;
+	int CONSTANT_BUFFER__NAME = ApplicationPackage.IRESOURCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Data</b></em>' attribute.
@@ -165,7 +166,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT_BUFFER__DATA = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
+	int CONSTANT_BUFFER__DATA = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Constant Buffer</em>' class.
@@ -174,7 +175,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT_BUFFER_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
+	int CONSTANT_BUFFER_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Constant Buffer</em>' class.
@@ -183,7 +184,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT_BUFFER_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
+	int CONSTANT_BUFFER_OPERATION_COUNT = ApplicationPackage.IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.IBuffer <em>IBuffer</em>}' class.
@@ -202,7 +203,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IBUFFER__NAME = VulkanPackage.IRESOURCE__NAME;
+	int IBUFFER__NAME = ApplicationPackage.IRESOURCE__NAME;
 
 	/**
 	 * The number of structural features of the '<em>IBuffer</em>' class.
@@ -211,7 +212,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IBUFFER_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
+	int IBUFFER_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>IBuffer</em>' class.
@@ -220,7 +221,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IBUFFER_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
+	int IBUFFER_OPERATION_COUNT = ApplicationPackage.IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl <em>Buffer</em>}' class.
@@ -732,7 +733,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE__NAME = VulkanPackage.IRESOURCE__NAME;
+	int IMAGE__NAME = ApplicationPackage.IRESOURCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
@@ -741,7 +742,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE__INITIAL_LAYOUT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
+	int IMAGE__INITIAL_LAYOUT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Image</em>' class.
@@ -750,7 +751,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
+	int IMAGE_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Image</em>' class.
@@ -759,7 +760,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
+	int IMAGE_OPERATION_COUNT = ApplicationPackage.IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.StaticImageImpl <em>Static Image</em>}' class.
@@ -969,7 +970,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLED_IMAGE__NAME = VulkanPackage.IRESOURCE__NAME;
+	int SAMPLED_IMAGE__NAME = ApplicationPackage.IRESOURCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Sampler</b></em>' containment reference.
@@ -978,7 +979,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLED_IMAGE__SAMPLER = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
+	int SAMPLED_IMAGE__SAMPLER = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Image</b></em>' containment reference.
@@ -987,7 +988,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLED_IMAGE__IMAGE = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
+	int SAMPLED_IMAGE__IMAGE = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Sampled Image</em>' class.
@@ -996,7 +997,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLED_IMAGE_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 2;
+	int SAMPLED_IMAGE_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Sampled Image</em>' class.
@@ -1005,7 +1006,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLED_IMAGE_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
+	int SAMPLED_IMAGE_OPERATION_COUNT = ApplicationPackage.IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl <em>Sampler</em>}' class.
@@ -1178,7 +1179,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SEMAPHORE__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
+	int SEMAPHORE__NAME = ApplicationPackage.IRESOURCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Signalized At Init</b></em>' attribute.
@@ -1187,7 +1188,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SEMAPHORE__SIGNALIZED_AT_INIT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
+	int SEMAPHORE__SIGNALIZED_AT_INIT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Wait Stage</b></em>' attribute.
@@ -1196,7 +1197,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SEMAPHORE__WAIT_STAGE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
+	int SEMAPHORE__WAIT_STAGE = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Semaphore</em>' class.
@@ -1205,7 +1206,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SEMAPHORE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
+	int SEMAPHORE_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Semaphore</em>' class.
@@ -1214,7 +1215,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SEMAPHORE_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
+	int SEMAPHORE_OPERATION_COUNT = ApplicationPackage.IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl <em>Font Image</em>}' class.
@@ -1919,7 +1920,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SHADER__NAME = VulkanPackage.IRESOURCE__NAME;
+	int SHADER__NAME = ApplicationPackage.IRESOURCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>File</b></em>' containment reference.
@@ -1928,7 +1929,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SHADER__FILE = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
+	int SHADER__FILE = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -1937,7 +1938,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SHADER__STAGE = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
+	int SHADER__STAGE = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Constants</b></em>' containment reference list.
@@ -1946,7 +1947,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SHADER__CONSTANTS = VulkanPackage.IRESOURCE_FEATURE_COUNT + 2;
+	int SHADER__CONSTANTS = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Shader</em>' class.
@@ -1955,7 +1956,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SHADER_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 3;
+	int SHADER_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Shader</em>' class.
@@ -1964,255 +1965,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SHADER_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.PathResourceImpl <em>Path Resource</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.PathResourceImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getPathResource()
-	 * @generated
-	 */
-	int PATH_RESOURCE = 28;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATH_RESOURCE__NAME = VulkanPackage.IRESOURCE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATH_RESOURCE__PATH = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Path Resource</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATH_RESOURCE_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Path Resource</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATH_RESOURCE_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FileResourceImpl <em>File Resource</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.FileResourceImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFileResource()
-	 * @generated
-	 */
-	int FILE_RESOURCE = 29;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_RESOURCE__NAME = PATH_RESOURCE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_RESOURCE__PATH = PATH_RESOURCE__PATH;
-
-	/**
-	 * The number of structural features of the '<em>File Resource</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_RESOURCE_FEATURE_COUNT = PATH_RESOURCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>File Resource</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_RESOURCE_OPERATION_COUNT = PATH_RESOURCE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractModuleResourceImpl <em>Abstract Module Resource</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.AbstractModuleResourceImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractModuleResource()
-	 * @generated
-	 */
-	int ABSTRACT_MODULE_RESOURCE = 30;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_MODULE_RESOURCE__NAME = PATH_RESOURCE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_MODULE_RESOURCE__PATH = PATH_RESOURCE__PATH;
-
-	/**
-	 * The number of structural features of the '<em>Abstract Module Resource</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_MODULE_RESOURCE_FEATURE_COUNT = PATH_RESOURCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Abstract Module Resource</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_MODULE_RESOURCE_OPERATION_COUNT = PATH_RESOURCE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl <em>Module Resource</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getModuleResource()
-	 * @generated
-	 */
-	int MODULE_RESOURCE = 31;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODULE_RESOURCE__NAME = ABSTRACT_MODULE_RESOURCE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODULE_RESOURCE__PATH = ABSTRACT_MODULE_RESOURCE__PATH;
-
-	/**
-	 * The feature id for the '<em><b>Module</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODULE_RESOURCE__MODULE = ABSTRACT_MODULE_RESOURCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Module Resource</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODULE_RESOURCE_FEATURE_COUNT = ABSTRACT_MODULE_RESOURCE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Module Resource</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODULE_RESOURCE_OPERATION_COUNT = ABSTRACT_MODULE_RESOURCE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.StringModuleResourceImpl <em>String Module Resource</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.StringModuleResourceImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getStringModuleResource()
-	 * @generated
-	 */
-	int STRING_MODULE_RESOURCE = 32;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_MODULE_RESOURCE__NAME = ABSTRACT_MODULE_RESOURCE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_MODULE_RESOURCE__PATH = ABSTRACT_MODULE_RESOURCE__PATH;
-
-	/**
-	 * The feature id for the '<em><b>Module Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_MODULE_RESOURCE__MODULE_NAME = ABSTRACT_MODULE_RESOURCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>String Module Resource</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_MODULE_RESOURCE_FEATURE_COUNT = ABSTRACT_MODULE_RESOURCE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>String Module Resource</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_MODULE_RESOURCE_OPERATION_COUNT = ABSTRACT_MODULE_RESOURCE_OPERATION_COUNT + 0;
+	int SHADER_OPERATION_COUNT = ApplicationPackage.IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl <em>Texture2 DArray</em>}' class.
@@ -2222,7 +1975,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getTexture2DArray()
 	 * @generated
 	 */
-	int TEXTURE2_DARRAY = 33;
+	int TEXTURE2_DARRAY = 28;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2231,7 +1984,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE2_DARRAY__NAME = VulkanPackage.IRESOURCE__NAME;
+	int TEXTURE2_DARRAY__NAME = ApplicationPackage.IRESOURCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Files</b></em>' containment reference list.
@@ -2240,7 +1993,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE2_DARRAY__FILES = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
+	int TEXTURE2_DARRAY__FILES = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Mipmap Enabled</b></em>' attribute.
@@ -2249,7 +2002,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE2_DARRAY__MIPMAP_ENABLED = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
+	int TEXTURE2_DARRAY__MIPMAP_ENABLED = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
@@ -2258,7 +2011,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE2_DARRAY__INITIAL_LAYOUT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 2;
+	int TEXTURE2_DARRAY__INITIAL_LAYOUT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Texture2 DArray</em>' class.
@@ -2267,7 +2020,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE2_DARRAY_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 3;
+	int TEXTURE2_DARRAY_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Texture2 DArray</em>' class.
@@ -2276,7 +2029,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE2_DARRAY_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
+	int TEXTURE2_DARRAY_OPERATION_COUNT = ApplicationPackage.IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.EFlushMode <em>EFlush Mode</em>}' enum.
@@ -2286,7 +2039,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getEFlushMode()
 	 * @generated
 	 */
-	int EFLUSH_MODE = 34;
+	int EFLUSH_MODE = 29;
 
 	/**
 	 * The meta object id for the '<em>Byte Buffer</em>' data type.
@@ -2296,17 +2049,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 35;
-
-	/**
-	 * The meta object id for the '<em>Java Module</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see java.lang.Module
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
-	 * @generated
-	 */
-	int JAVA_MODULE = 36;
+	int BYTE_BUFFER = 30;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer <em>Transfer Buffer</em>}'.
@@ -3216,89 +2959,6 @@ public interface ResourcePackage extends EPackage
 	EReference getShader_Constants();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.PathResource <em>Path Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Path Resource</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.PathResource
-	 * @generated
-	 */
-	EClass getPathResource();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.PathResource#getPath <em>Path</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Path</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.PathResource#getPath()
-	 * @see #getPathResource()
-	 * @generated
-	 */
-	EAttribute getPathResource_Path();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.FileResource <em>File Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>File Resource</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.FileResource
-	 * @generated
-	 */
-	EClass getFileResource();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.AbstractModuleResource <em>Abstract Module Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Abstract Module Resource</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.AbstractModuleResource
-	 * @generated
-	 */
-	EClass getAbstractModuleResource();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.ModuleResource <em>Module Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Module Resource</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.ModuleResource
-	 * @generated
-	 */
-	EClass getModuleResource();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ModuleResource#getModule <em>Module</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Module</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.ModuleResource#getModule()
-	 * @see #getModuleResource()
-	 * @generated
-	 */
-	EAttribute getModuleResource_Module();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.StringModuleResource <em>String Module Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>String Module Resource</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.StringModuleResource
-	 * @generated
-	 */
-	EClass getStringModuleResource();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.StringModuleResource#getModuleName <em>Module Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Module Name</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.StringModuleResource#getModuleName()
-	 * @see #getStringModuleResource()
-	 * @generated
-	 */
-	EAttribute getStringModuleResource_ModuleName();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray <em>Texture2 DArray</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3361,17 +3021,6 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EDataType getByteBuffer();
-
-	/**
-	 * Returns the meta object for data type '{@link java.lang.Module <em>Java Module</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Java Module</em>'.
-	 * @see java.lang.Module
-	 * @model instanceClass="java.lang.Module"
-	 * @generated
-	 */
-	EDataType getJavaModule();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -4134,80 +3783,6 @@ public interface ResourcePackage extends EPackage
 		EReference SHADER__CONSTANTS = eINSTANCE.getShader_Constants();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.PathResourceImpl <em>Path Resource</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.PathResourceImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getPathResource()
-		 * @generated
-		 */
-		EClass PATH_RESOURCE = eINSTANCE.getPathResource();
-
-		/**
-		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PATH_RESOURCE__PATH = eINSTANCE.getPathResource_Path();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FileResourceImpl <em>File Resource</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.FileResourceImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFileResource()
-		 * @generated
-		 */
-		EClass FILE_RESOURCE = eINSTANCE.getFileResource();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractModuleResourceImpl <em>Abstract Module Resource</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.AbstractModuleResourceImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractModuleResource()
-		 * @generated
-		 */
-		EClass ABSTRACT_MODULE_RESOURCE = eINSTANCE.getAbstractModuleResource();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl <em>Module Resource</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getModuleResource()
-		 * @generated
-		 */
-		EClass MODULE_RESOURCE = eINSTANCE.getModuleResource();
-
-		/**
-		 * The meta object literal for the '<em><b>Module</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODULE_RESOURCE__MODULE = eINSTANCE.getModuleResource_Module();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.StringModuleResourceImpl <em>String Module Resource</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.StringModuleResourceImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getStringModuleResource()
-		 * @generated
-		 */
-		EClass STRING_MODULE_RESOURCE = eINSTANCE.getStringModuleResource();
-
-		/**
-		 * The meta object literal for the '<em><b>Module Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute STRING_MODULE_RESOURCE__MODULE_NAME = eINSTANCE.getStringModuleResource_ModuleName();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl <em>Texture2 DArray</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4260,16 +3835,6 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EDataType BYTE_BUFFER = eINSTANCE.getByteBuffer();
-
-		/**
-		 * The meta object literal for the '<em>Java Module</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see java.lang.Module
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
-		 * @generated
-		 */
-		EDataType JAVA_MODULE = eINSTANCE.getJavaModule();
 
 	}
 

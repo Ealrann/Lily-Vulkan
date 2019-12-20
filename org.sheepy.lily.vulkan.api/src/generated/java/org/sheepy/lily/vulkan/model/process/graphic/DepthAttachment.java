@@ -18,7 +18,7 @@ package org.sheepy.lily.vulkan.model.process.graphic;
  * @model
  * @generated
  */
-public interface DepthAttachment extends ISwapAttachment
+public interface DepthAttachment extends ExtraAttachment
 {
 	/**
 	 * Returns the value of the '<em><b>Clear</b></em>' attribute.

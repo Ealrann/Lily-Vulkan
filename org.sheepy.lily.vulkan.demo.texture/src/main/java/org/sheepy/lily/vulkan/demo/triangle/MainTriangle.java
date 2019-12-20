@@ -5,7 +5,7 @@ import org.sheepy.lily.core.api.LilyLauncher;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationFactory;
-import org.sheepy.lily.core.model.presentation.PresentationFactory;
+import org.sheepy.lily.vulkan.demo.mesh.MeshEngineFactory;
 
 public class MainTriangle
 {
@@ -20,16 +20,18 @@ public class MainTriangle
 
 	static Application createApplication()
 	{
-		final Application application = ApplicationFactory.eINSTANCE.createApplication();
+		final var application = ApplicationFactory.eINSTANCE.createApplication();
+		final var scene = ApplicationFactory.eINSTANCE.createScene();
+		final var part = ApplicationFactory.eINSTANCE.createGenericScenePart();
 
-		final var size = new Vector2i(800, 600);
+		part.setName(NAME);
 
-		application.setTitle("Vulkan Demo");
-		application.setSize(size);
+		scene.setSize(new Vector2i(800, 600));
+		scene.getParts().add(part);
 
-		final var view = PresentationFactory.eINSTANCE.createGenericView();
-		view.setName(NAME);
-		application.setView(view);
+		application.setTitle(NAME);
+		application.getEngines().add(MeshEngineFactory.build());
+		application.setScene(scene);
 
 		return application;
 	}

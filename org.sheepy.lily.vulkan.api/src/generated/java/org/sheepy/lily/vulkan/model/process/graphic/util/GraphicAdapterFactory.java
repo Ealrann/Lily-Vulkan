@@ -111,11 +111,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createFramebufferConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseISwapAttachment(ISwapAttachment object)
-			{
-				return createISwapAttachmentAdapter();
-			}
-			@Override
 			public Adapter caseImageAttachment(ImageAttachment object)
 			{
 				return createImageAttachmentAdapter();
@@ -146,19 +141,19 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createSubpassDependencyAdapter();
 			}
 			@Override
-			public Adapter caseAttachmentDescription(AttachmentDescription object)
+			public Adapter caseAttachment(Attachment object)
 			{
-				return createAttachmentDescriptionAdapter();
+				return createAttachmentAdapter();
 			}
 			@Override
-			public Adapter caseSwapImageAttachmentDescription(SwapImageAttachmentDescription object)
+			public Adapter caseSwapImageAttachment(SwapImageAttachment object)
 			{
-				return createSwapImageAttachmentDescriptionAdapter();
+				return createSwapImageAttachmentAdapter();
 			}
 			@Override
-			public Adapter caseExtraAttachmentDescription(ExtraAttachmentDescription object)
+			public Adapter caseExtraAttachment(ExtraAttachment object)
 			{
-				return createExtraAttachmentDescriptionAdapter();
+				return createExtraAttachmentAdapter();
 			}
 			@Override
 			public Adapter caseGraphicProcess(GraphicProcess object)
@@ -372,21 +367,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment <em>ISwap Attachment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment
-	 * @generated
-	 */
-	public Adapter createISwapAttachmentAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment <em>Image Attachment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -477,46 +457,46 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription <em>Attachment Description</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.Attachment <em>Attachment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Attachment
 	 * @generated
 	 */
-	public Adapter createAttachmentDescriptionAdapter()
+	public Adapter createAttachmentAdapter()
 	{
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachmentDescription <em>Swap Image Attachment Description</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment <em>Swap Image Attachment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachmentDescription
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment
 	 * @generated
 	 */
-	public Adapter createSwapImageAttachmentDescriptionAdapter()
+	public Adapter createSwapImageAttachmentAdapter()
 	{
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachmentDescription <em>Extra Attachment Description</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment <em>Extra Attachment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachmentDescription
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment
 	 * @generated
 	 */
-	public Adapter createExtraAttachmentDescriptionAdapter()
+	public Adapter createExtraAttachmentAdapter()
 	{
 		return null;
 	}

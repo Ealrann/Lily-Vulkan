@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.lily.core.api.adapter.LilyEObject;
+import org.sheepy.lily.core.model.application.impl.IResourceImpl;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
@@ -25,7 +25,6 @@ import org.sheepy.lily.vulkan.model.resource.SampledImage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getFont <em>Font</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getNullTexture <em>Null Texture</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getLayoutTask <em>Layout Task</em>}</li>
@@ -33,28 +32,8 @@ import org.sheepy.lily.vulkan.model.resource.SampledImage;
  *
  * @generated
  */
-public class NuklearContextImpl extends LilyEObject implements NuklearContext
+public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getFont() <em>Font</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -104,31 +83,6 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	protected EClass eStaticClass()
 	{
 		return NuklearPackage.Literals.NUKLEAR_CONTEXT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getName()
-	{
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setName(String newName)
-	{
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__NAME, oldName, name));
 	}
 
 	/**
@@ -335,8 +289,6 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_CONTEXT__NAME:
-				return getName();
 			case NuklearPackage.NUKLEAR_CONTEXT__FONT:
 				if (resolve) return getFont();
 				return basicGetFont();
@@ -360,9 +312,6 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_CONTEXT__NAME:
-				setName((String)newValue);
-				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__FONT:
 				setFont((NuklearFont)newValue);
 				return;
@@ -386,9 +335,6 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_CONTEXT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__FONT:
 				setFont((NuklearFont)null);
 				return;
@@ -412,8 +358,6 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_CONTEXT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case NuklearPackage.NUKLEAR_CONTEXT__FONT:
 				return font != null;
 			case NuklearPackage.NUKLEAR_CONTEXT__NULL_TEXTURE:
@@ -422,23 +366,6 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 				return layoutTask != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
 	}
 
 } //NuklearContextImpl

@@ -94,21 +94,6 @@ public class VulkanSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanPackage.RESOURCE_PKG:
-			{
-				ResourcePkg resourcePkg = (ResourcePkg)theEObject;
-				T result = caseResourcePkg(resourcePkg);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case VulkanPackage.IRESOURCE:
-			{
-				IResource iResource = (IResource)theEObject;
-				T result = caseIResource(iResource);
-				if (result == null) result = caseLNamedElement(iResource);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case VulkanPackage.IPROCESS:
 			{
 				IProcess iProcess = (IProcess)theEObject;
@@ -189,38 +174,6 @@ public class VulkanSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIResourceContainer(IResourceContainer object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Resource Pkg</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Resource Pkg</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseResourcePkg(ResourcePkg object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IResource</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IResource</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIResource(IResource object)
 	{
 		return null;
 	}

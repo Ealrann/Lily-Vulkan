@@ -9,7 +9,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.lily.core.api.adapter.LilyEObject;
+import org.sheepy.lily.core.model.application.impl.IResourceImpl;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
@@ -21,34 +21,13 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantBufferImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantBufferImpl#getData <em>Data</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ConstantBufferImpl extends LilyEObject implements ConstantBuffer
+public class ConstantBufferImpl extends IResourceImpl implements ConstantBuffer
 {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getData() <em>Data</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -96,31 +75,6 @@ public class ConstantBufferImpl extends LilyEObject implements ConstantBuffer
 	 * @generated
 	 */
 	@Override
-	public String getName()
-	{
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setName(String newName)
-	{
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.CONSTANT_BUFFER__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ByteBuffer getData()
 	{
 		return data;
@@ -150,8 +104,6 @@ public class ConstantBufferImpl extends LilyEObject implements ConstantBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.CONSTANT_BUFFER__NAME:
-				return getName();
 			case ResourcePackage.CONSTANT_BUFFER__DATA:
 				return getData();
 		}
@@ -168,9 +120,6 @@ public class ConstantBufferImpl extends LilyEObject implements ConstantBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.CONSTANT_BUFFER__NAME:
-				setName((String)newValue);
-				return;
 			case ResourcePackage.CONSTANT_BUFFER__DATA:
 				setData((ByteBuffer)newValue);
 				return;
@@ -188,9 +137,6 @@ public class ConstantBufferImpl extends LilyEObject implements ConstantBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.CONSTANT_BUFFER__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case ResourcePackage.CONSTANT_BUFFER__DATA:
 				setData(DATA_EDEFAULT);
 				return;
@@ -208,8 +154,6 @@ public class ConstantBufferImpl extends LilyEObject implements ConstantBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.CONSTANT_BUFFER__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ResourcePackage.CONSTANT_BUFFER__DATA:
 				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
 		}
@@ -227,9 +171,7 @@ public class ConstantBufferImpl extends LilyEObject implements ConstantBuffer
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", data: ");
+		result.append(" (data: ");
 		result.append(data);
 		result.append(')');
 		return result.toString();

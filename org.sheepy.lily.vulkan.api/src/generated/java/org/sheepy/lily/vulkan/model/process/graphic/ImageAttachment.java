@@ -23,7 +23,7 @@ import org.sheepy.lily.vulkan.model.resource.Image;
  * @model
  * @generated
  */
-public interface ImageAttachment extends ISwapAttachment
+public interface ImageAttachment extends ExtraAttachment
 {
 	/**
 	 * Returns the value of the '<em><b>Clear Value</b></em>' attribute.

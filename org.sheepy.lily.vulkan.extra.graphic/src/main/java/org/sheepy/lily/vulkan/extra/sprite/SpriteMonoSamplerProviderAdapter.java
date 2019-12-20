@@ -8,14 +8,14 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.util.ModelUtil;
+import org.sheepy.lily.core.model.application.FileResource;
+import org.sheepy.lily.core.model.application.IResource;
 import org.sheepy.lily.vulkan.extra.api.rendering.IDescriptorProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer;
 import org.sheepy.lily.vulkan.model.IDescriptor;
-import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
-import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
@@ -80,7 +80,7 @@ public class SpriteMonoSamplerProviderAdapter implements IDescriptorProviderAdap
 		return new ResourceDescriptor(resources, descriptors);
 	}
 
-	public static List<PathResource> gatherResources(ResourceDescriptorProvider provider)
+	public static List<FileResource> gatherResources(ResourceDescriptorProvider provider)
 	{
 		final var renderer = ModelUtil.findParent(provider, SpriteRenderer.class);
 		final var structures = renderer.getRenderedStructures().stream();

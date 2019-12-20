@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.demo.test.composite.instance.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.vulkan.demo.test.composite.instance.adapter.InstanceDataProviderAdapter;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.CompositeBufferReference;
@@ -23,7 +24,7 @@ class InstanceTestResourceFactory
 		final var transferBuffer = buildTransferBuffer();
 		final var compositeBuffer = buildCompositeBuffer(transferBuffer, instanceCount);
 		final var shader = ResourceFactory.eINSTANCE.createShader();
-		final var moduleResource = ResourceFactory.eINSTANCE.createModuleResource();
+		final var moduleResource = ApplicationFactory.eINSTANCE.createModuleResource();
 		moduleResource.setModule(InstanceTaskManager.class.getModule());
 		moduleResource.setPath("increment.comp.spv");
 		shader.setFile(moduleResource);

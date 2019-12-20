@@ -17,11 +17,12 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
+import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +32,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getAttachments <em>Attachments</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getExtraAttachments <em>Extra Attachments</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getColorAttachment <em>Color Attachment</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getSubpasses <em>Subpasses</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getBindPoint <em>Bind Point</em>}</li>
@@ -42,14 +44,24 @@ import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
 public class RenderPassInfoImpl extends LilyEObject implements RenderPassInfo
 {
 	/**
-	 * The cached value of the '{@link #getAttachments() <em>Attachments</em>}' containment reference list.
+	 * The cached value of the '{@link #getExtraAttachments() <em>Extra Attachments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAttachments()
+	 * @see #getExtraAttachments()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttachmentDescription> attachments;
+	protected EList<ExtraAttachment> extraAttachments;
+
+	/**
+	 * The cached value of the '{@link #getColorAttachment() <em>Color Attachment</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getColorAttachment()
+	 * @generated
+	 * @ordered
+	 */
+	protected SwapImageAttachment colorAttachment;
 
 	/**
 	 * The cached value of the '{@link #getSubpasses() <em>Subpasses</em>}' containment reference list.
@@ -118,13 +130,63 @@ public class RenderPassInfoImpl extends LilyEObject implements RenderPassInfo
 	 * @generated
 	 */
 	@Override
-	public EList<AttachmentDescription> getAttachments()
+	public EList<ExtraAttachment> getExtraAttachments()
 	{
-		if (attachments == null)
+		if (extraAttachments == null)
 		{
-			attachments = new EObjectContainmentEList<AttachmentDescription>(AttachmentDescription.class, this, GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS);
+			extraAttachments = new EObjectContainmentEList<ExtraAttachment>(ExtraAttachment.class, this, GraphicPackage.RENDER_PASS_INFO__EXTRA_ATTACHMENTS);
 		}
-		return attachments;
+		return extraAttachments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SwapImageAttachment getColorAttachment()
+	{
+		return colorAttachment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetColorAttachment(SwapImageAttachment newColorAttachment, NotificationChain msgs)
+	{
+		SwapImageAttachment oldColorAttachment = colorAttachment;
+		colorAttachment = newColorAttachment;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.RENDER_PASS_INFO__COLOR_ATTACHMENT, oldColorAttachment, newColorAttachment);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setColorAttachment(SwapImageAttachment newColorAttachment)
+	{
+		if (newColorAttachment != colorAttachment)
+		{
+			NotificationChain msgs = null;
+			if (colorAttachment != null)
+				msgs = ((InternalEObject)colorAttachment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.RENDER_PASS_INFO__COLOR_ATTACHMENT, null, msgs);
+			if (newColorAttachment != null)
+				msgs = ((InternalEObject)newColorAttachment).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.RENDER_PASS_INFO__COLOR_ATTACHMENT, null, msgs);
+			msgs = basicSetColorAttachment(newColorAttachment, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.RENDER_PASS_INFO__COLOR_ATTACHMENT, newColorAttachment, newColorAttachment));
 	}
 
 	/**
@@ -192,8 +254,10 @@ public class RenderPassInfoImpl extends LilyEObject implements RenderPassInfo
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
-				return ((InternalEList<?>)getAttachments()).basicRemove(otherEnd, msgs);
+			case GraphicPackage.RENDER_PASS_INFO__EXTRA_ATTACHMENTS:
+				return ((InternalEList<?>)getExtraAttachments()).basicRemove(otherEnd, msgs);
+			case GraphicPackage.RENDER_PASS_INFO__COLOR_ATTACHMENT:
+				return basicSetColorAttachment(null, msgs);
 			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
 				return ((InternalEList<?>)getSubpasses()).basicRemove(otherEnd, msgs);
 			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
@@ -212,8 +276,10 @@ public class RenderPassInfoImpl extends LilyEObject implements RenderPassInfo
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
-				return getAttachments();
+			case GraphicPackage.RENDER_PASS_INFO__EXTRA_ATTACHMENTS:
+				return getExtraAttachments();
+			case GraphicPackage.RENDER_PASS_INFO__COLOR_ATTACHMENT:
+				return getColorAttachment();
 			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
 				return getSubpasses();
 			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
@@ -235,9 +301,12 @@ public class RenderPassInfoImpl extends LilyEObject implements RenderPassInfo
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
-				getAttachments().clear();
-				getAttachments().addAll((Collection<? extends AttachmentDescription>)newValue);
+			case GraphicPackage.RENDER_PASS_INFO__EXTRA_ATTACHMENTS:
+				getExtraAttachments().clear();
+				getExtraAttachments().addAll((Collection<? extends ExtraAttachment>)newValue);
+				return;
+			case GraphicPackage.RENDER_PASS_INFO__COLOR_ATTACHMENT:
+				setColorAttachment((SwapImageAttachment)newValue);
 				return;
 			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
 				getSubpasses().clear();
@@ -264,8 +333,11 @@ public class RenderPassInfoImpl extends LilyEObject implements RenderPassInfo
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
-				getAttachments().clear();
+			case GraphicPackage.RENDER_PASS_INFO__EXTRA_ATTACHMENTS:
+				getExtraAttachments().clear();
+				return;
+			case GraphicPackage.RENDER_PASS_INFO__COLOR_ATTACHMENT:
+				setColorAttachment((SwapImageAttachment)null);
 				return;
 			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
 				getSubpasses().clear();
@@ -290,8 +362,10 @@ public class RenderPassInfoImpl extends LilyEObject implements RenderPassInfo
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
-				return attachments != null && !attachments.isEmpty();
+			case GraphicPackage.RENDER_PASS_INFO__EXTRA_ATTACHMENTS:
+				return extraAttachments != null && !extraAttachments.isEmpty();
+			case GraphicPackage.RENDER_PASS_INFO__COLOR_ATTACHMENT:
+				return colorAttachment != null;
 			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
 				return subpasses != null && !subpasses.isEmpty();
 			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:

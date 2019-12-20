@@ -7,14 +7,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.joml.Vector2i;
-import org.joml.Vector2ic;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.notification.INotificationListener;
+import org.sheepy.lily.core.api.cadence.ICadenceAdapter;
+import org.sheepy.lily.core.api.resource.IResourceAdapter;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.core.model.application.Application;
@@ -22,7 +21,6 @@ import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
-import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
 import org.sheepy.lily.vulkan.common.engine.utils.VulkanEngineAllocationRoot;
 import org.sheepy.lily.vulkan.common.engine.utils.VulkanEngineUtils;
@@ -44,7 +42,6 @@ import org.sheepy.vulkan.instance.VulkanInstance;
 import org.sheepy.vulkan.queue.EQueueType;
 import org.sheepy.vulkan.surface.VkSurface;
 import org.sheepy.vulkan.window.IWindowListener.IOpenListener;
-import org.sheepy.vulkan.window.IWindowListener.ISizeListener;
 import org.sheepy.vulkan.window.Window;
 
 @Statefull
@@ -53,7 +50,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 {
 	private static final EQueueType ENGINE_QUEUE_TYPE = EQueueType.Graphic;
 	private static final ModelExplorer RESOURCE_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																						VulkanPackage.Literals.RESOURCE_PKG__RESOURCES));
+																						ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES));
 	private static final ModelExplorer DESCRIPTOR_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 																						VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS));
 
@@ -62,9 +59,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private final VulkanEngine engine;
 	private final Application application;
 	private final EngineExtensionRequirement extensionRequirement;
-	private final INotificationListener sizeListener = this::appResize;
 
-	private final ISizeListener resizeListener = this::windowResize;
 	private final IOpenListener openListener = id -> loadInputManager();
 
 	private VulkanInstance vkInstance;
@@ -77,18 +72,15 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private ExecutionContext executionContext = null;
 
 	private Window window;
-	private boolean listeningResize = true;
 
 	public VulkanEngineAdapter(VulkanEngine engine)
 	{
 		this.engine = engine;
 		application = (Application) engine.eContainer();
-		if (application.isHeadless() == false)
+		final var scene = application.getScene();
+		if (scene != null)
 		{
-			window = new Window(application.getSize(),
-								application.getTitle(),
-								application.isResizeable(),
-								application.isFullscreen());
+			window = new Window(scene, application.getTitle());
 			inputManager = new VulkanInputManager(application, window);
 		}
 		else
@@ -126,9 +118,6 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	@Override
 	public void start()
 	{
-		application.addListener(sizeListener,
-								ApplicationPackage.APPLICATION__SIZE,
-								ApplicationPackage.APPLICATION__FULLSCREEN);
 		if (engine.isEnabled())
 		{
 			load();
@@ -145,10 +134,20 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 				dispose();
 			}
 		}
+	}
 
-		application.removeListener(	sizeListener,
-									ApplicationPackage.APPLICATION__SIZE,
-									ApplicationPackage.APPLICATION__FULLSCREEN);
+	@Override
+	public void step()
+	{
+		for (final var process : engine.getProcesses())
+		{
+			final var cadence = process.getCadence();
+			if (cadence != null)
+			{
+				final var adapter = cadence.adaptNotNull(ICadenceAdapter.class);
+				adapter.run();
+			}
+		}
 	}
 
 	private void load()
@@ -164,10 +163,9 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 			if (dummySurface != null) dummySurface.free();
 
 			vulkanContext = new VulkanContext(logicalDevice, window);
-			if (application.isHeadless() == false)
+			if (window != null)
 			{
 				loadInputManager();
-				window.addListener(resizeListener);
 				window.addListener(openListener);
 			}
 		}
@@ -179,39 +177,6 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 		} catch (final Throwable e)
 		{
 			e.printStackTrace();
-		}
-	}
-
-	private void appResize(Notification notification)
-	{
-		if (listeningResize)
-		{
-			if (notification.getFeature() == ApplicationPackage.Literals.APPLICATION__SIZE)
-			{
-				final Vector2ic newSize = (Vector2ic) notification.getNewValue();
-				window.setSize(newSize.x(), newSize.y());
-			}
-			else if (notification.getFeature() == ApplicationPackage.Literals.APPLICATION__FULLSCREEN)
-			{
-				window.requestFullscreen(notification.getNewBooleanValue());
-			}
-		}
-	}
-
-	private void windowResize(Vector2i size)
-	{
-		listeningResize = false;
-
-		try
-		{
-			final Vector2i newSize = new Vector2i(size);
-			application.setSize(newSize);
-		} catch (final Throwable e)
-		{
-			e.printStackTrace();
-		} finally
-		{
-			listeningResize = true;
 		}
 	}
 
@@ -229,7 +194,6 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 		if (window != null)
 		{
-			window.removeListener(resizeListener);
 			window.removeListener(openListener);
 		}
 		cleanup();

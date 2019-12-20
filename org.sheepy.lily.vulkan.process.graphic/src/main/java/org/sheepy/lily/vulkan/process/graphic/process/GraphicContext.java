@@ -32,7 +32,7 @@ final class GraphicContext extends ProcessContext<IGraphicContext> implements IG
 	public final FramebufferManager framebuffers = new FramebufferManager();
 	public final GraphicExecutionRecorders executionRecorders = new GraphicExecutionRecorders();
 
-	public final RenderPass renderPass = new RenderPass();
+	public final RenderPass renderPass;
 
 	public GraphicContext(	EQueueType queueType,
 							boolean resetAllowed,
@@ -43,6 +43,7 @@ final class GraphicContext extends ProcessContext<IGraphicContext> implements IG
 
 		this.graphicProcess = graphicProcess;
 		this.configuration = graphicProcess.getConfiguration();
+		this.renderPass = new RenderPass(graphicProcess.getRenderPassInfo());
 
 		allocationList.add(surfaceManager);
 		allocationList.add(swapChainManager);

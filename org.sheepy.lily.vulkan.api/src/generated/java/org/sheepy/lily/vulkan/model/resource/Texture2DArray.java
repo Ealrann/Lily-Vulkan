@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.lily.vulkan.model.IResource;
+import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.vulkan.model.image.ImageLayout;
 
 /**
@@ -24,11 +24,11 @@ import org.sheepy.vulkan.model.image.ImageLayout;
  * @model
  * @generated
  */
-public interface Texture2DArray extends IResource
+public interface Texture2DArray extends org.sheepy.lily.core.model.application.IResource
 {
 	/**
 	 * Returns the value of the '<em><b>Files</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.PathResource}.
+	 * The list contents are of type {@link org.sheepy.lily.core.model.application.FileResource}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Files</em>' containment reference list.
@@ -36,7 +36,7 @@ public interface Texture2DArray extends IResource
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<PathResource> getFiles();
+	EList<FileResource> getFiles();
 
 	/**
 	 * Returns the value of the '<em><b>Mipmap Enabled</b></em>' attribute.

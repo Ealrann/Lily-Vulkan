@@ -5,10 +5,10 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.List;
 
 import org.lwjgl.vulkan.VkImageBlit;
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.IImageViewManager;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;

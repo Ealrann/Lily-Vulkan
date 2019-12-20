@@ -15,8 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-
-import org.sheepy.lily.core.api.adapter.LilyEObject;
+import org.sheepy.lily.core.model.application.impl.IResourceImpl;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
@@ -30,7 +29,6 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getUsages <em>Usages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getData <em>Data</em>}</li>
@@ -42,28 +40,8 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  *
  * @generated
  */
-public class BufferImpl extends LilyEObject implements Buffer
+public class BufferImpl extends IResourceImpl implements Buffer
 {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -213,31 +191,6 @@ public class BufferImpl extends LilyEObject implements Buffer
 	protected EClass eStaticClass()
 	{
 		return ResourcePackage.Literals.BUFFER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getName()
-	{
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setName(String newName)
-	{
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__NAME, oldName, name));
 	}
 
 	/**
@@ -415,8 +368,6 @@ public class BufferImpl extends LilyEObject implements Buffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER__NAME:
-				return getName();
 			case ResourcePackage.BUFFER__SIZE:
 				return getSize();
 			case ResourcePackage.BUFFER__USAGES:
@@ -446,9 +397,6 @@ public class BufferImpl extends LilyEObject implements Buffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER__NAME:
-				setName((String)newValue);
-				return;
 			case ResourcePackage.BUFFER__SIZE:
 				setSize((Long)newValue);
 				return;
@@ -485,9 +433,6 @@ public class BufferImpl extends LilyEObject implements Buffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case ResourcePackage.BUFFER__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
@@ -523,8 +468,6 @@ public class BufferImpl extends LilyEObject implements Buffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ResourcePackage.BUFFER__SIZE:
 				return size != SIZE_EDEFAULT;
 			case ResourcePackage.BUFFER__USAGES:
@@ -554,9 +497,7 @@ public class BufferImpl extends LilyEObject implements Buffer
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", size: ");
+		result.append(" (size: ");
 		result.append(size);
 		result.append(", usages: ");
 		result.append(usages);

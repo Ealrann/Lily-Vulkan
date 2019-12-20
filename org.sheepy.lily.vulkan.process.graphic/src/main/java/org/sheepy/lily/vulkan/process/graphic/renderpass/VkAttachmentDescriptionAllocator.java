@@ -1,13 +1,14 @@
 package org.sheepy.lily.vulkan.process.graphic.renderpass;
 
+import java.util.List;
+
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkAttachmentDescription;
-import org.sheepy.lily.vulkan.api.resource.attachment.ISwapAttachmentAdapter;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
-import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachmentDescription;
-import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
+import org.sheepy.lily.vulkan.api.resource.attachment.IExtraAttachmentAdapter;
+import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
+import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
 
-public class VkAttachmentDescriptionAllocator
+public final class VkAttachmentDescriptionAllocator
 {
 	private final int swapchainImageFormat;
 
@@ -17,39 +18,37 @@ public class VkAttachmentDescriptionAllocator
 	}
 
 	public VkAttachmentDescription.Buffer allocate(	final MemoryStack stack,
-													final RenderPassInfo renderPassInfo)
+													final List<Attachment> attachments)
 	{
-		final var attachmentDescriptions = renderPassInfo.getAttachments();
-		final var attachments = VkAttachmentDescription.callocStack(attachmentDescriptions.size(),
-																	stack);
-		for (final AttachmentDescription attachmentDescription : attachmentDescriptions)
+		final var attachmentsBuffer = VkAttachmentDescription.callocStack(	attachments.size(),
+																			stack);
+		for (final var attachmentDescription : attachments)
 		{
-			fillAttachment(attachments.get(), attachmentDescription);
+			fillAttachment(attachmentsBuffer.get(), attachmentDescription);
 		}
-		attachments.flip();
-		return attachments;
+		attachmentsBuffer.flip();
+		return attachmentsBuffer;
 	}
 
-	private void fillAttachment(final VkAttachmentDescription attachment,
-								final AttachmentDescription attachmentDescription)
+	private void fillAttachment(final VkAttachmentDescription vKattachment,
+								final Attachment attachment)
 	{
-		final var format = getAttachmentFormat(attachmentDescription);
-		attachment.format(format);
-		attachment.samples(attachmentDescription.getSamples().getValue());
-		attachment.loadOp(attachmentDescription.getLoadOp().getValue());
-		attachment.storeOp(attachmentDescription.getStoreOp().getValue());
-		attachment.stencilLoadOp(attachmentDescription.getStencilLoadOp().getValue());
-		attachment.stencilStoreOp(attachmentDescription.getStencilStoreOp().getValue());
-		attachment.initialLayout(attachmentDescription.getInitialLayout().getValue());
-		attachment.finalLayout(attachmentDescription.getFinalLayout().getValue());
+		final var format = getAttachmentFormat(attachment);
+		vKattachment.format(format);
+		vKattachment.samples(attachment.getSamples().getValue());
+		vKattachment.loadOp(attachment.getLoadOp().getValue());
+		vKattachment.storeOp(attachment.getStoreOp().getValue());
+		vKattachment.stencilLoadOp(attachment.getStencilLoadOp().getValue());
+		vKattachment.stencilStoreOp(attachment.getStencilStoreOp().getValue());
+		vKattachment.initialLayout(attachment.getInitialLayout().getValue());
+		vKattachment.finalLayout(attachment.getFinalLayout().getValue());
 	}
 
-	private int getAttachmentFormat(final AttachmentDescription attachmentDescription)
+	private int getAttachmentFormat(final Attachment attachment)
 	{
-		if (attachmentDescription instanceof ExtraAttachmentDescription)
+		if (attachment instanceof ExtraAttachment)
 		{
-			final var depthImage = ((ExtraAttachmentDescription) attachmentDescription).getAttachment();
-			final var adapter = depthImage.adaptNotNull(ISwapAttachmentAdapter.class);
+			final var adapter = attachment.adaptNotNull(IExtraAttachmentAdapter.class);
 			return adapter.getImageFormat();
 		}
 		else

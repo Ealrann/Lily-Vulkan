@@ -18,7 +18,7 @@ public class VkComputePipeline extends VkPipeline<IProcessContext>
 	private final VkShaderStage shaderStage;
 	private final ByteBuffer specializationData;
 
-	protected long pipelineId;
+	protected long pipelinePtr = 0;
 
 	public VkComputePipeline(	VkPipelineLayout<? super IProcessContext> pipelineLayout,
 								VkShaderStage shaderStage,
@@ -29,8 +29,6 @@ public class VkComputePipeline extends VkPipeline<IProcessContext>
 		this.pipelineLayout = pipelineLayout;
 		this.shaderStage = shaderStage;
 		this.specializationData = specializationData;
-
-		pipelineId = -1;
 	}
 
 	@Override
@@ -57,20 +55,20 @@ public class VkComputePipeline extends VkPipeline<IProcessContext>
 														null,
 														pPipelineId));
 
-		pipelineId = pPipelineId.get(0);
+		pipelinePtr = pPipelineId.get(0);
 	}
 
 	@Override
 	public void free(IProcessContext context)
 	{
 		final var device = context.getVkDevice();
-		vkDestroyPipeline(device, pipelineId, null);
-		pipelineId = -1;
+		vkDestroyPipeline(device, pipelinePtr, null);
+		pipelinePtr = 0;
 	}
 
 	@Override
-	protected long getPipelineId()
+	protected long getPipelinePtr()
 	{
-		return pipelineId;
+		return pipelinePtr;
 	}
 }

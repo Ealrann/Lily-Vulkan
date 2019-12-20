@@ -29,13 +29,13 @@ public abstract class ExecutionRecorders<T extends IProcessContext>
 	public void allocate(T context)
 	{
 		recorders = List.copyOf(createRecorders(context));
-		allocationConfiguration.addChildren(recorders);
+		allocationConfiguration.addChildren(recorders, true);
 	}
 
 	@Override
 	public void free(T context)
 	{
-		allocationConfiguration.removeChildren(recorders);
+		allocationConfiguration.removeChildren(recorders, true);
 		recorders = null;
 	}
 

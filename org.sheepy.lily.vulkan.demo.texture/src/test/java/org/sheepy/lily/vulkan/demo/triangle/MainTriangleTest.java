@@ -1,5 +1,7 @@
 package org.sheepy.lily.vulkan.demo.triangle;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.junit.jupiter.api.Test;
 import org.sheepy.lily.core.api.LilyLauncher;
 
@@ -8,8 +10,14 @@ public class MainTriangleTest
 	@Test
 	public void mainTest()
 	{
-		TriangleEngineProvider.FRAME_COUNT = 500;
+		final var count = new AtomicInteger(0);
 		final var application = MainTriangle.createApplication();
-		LilyLauncher.launch(application);
+		LilyLauncher.launch(application, () -> 
+		{
+			if(count.addAndGet(1) >= 500)
+			{
+				application.setRun(false);
+			}
+		});
 	}
 }

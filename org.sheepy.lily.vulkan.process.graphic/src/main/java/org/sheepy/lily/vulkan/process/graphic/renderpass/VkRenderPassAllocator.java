@@ -2,14 +2,18 @@ package org.sheepy.lily.vulkan.process.graphic.renderpass;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkRenderPassCreateInfo;
+import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 
-public class VkRenderPassAllocator
+public final class VkRenderPassAllocator
 {
 	private static final String CREATION_ERROR = "Failed to create render pass";
 
@@ -28,9 +32,11 @@ public class VkRenderPassAllocator
 
 		final var format = swapchainImageFormat.getValue();
 		final var attachementAllocator = new VkAttachmentDescriptionAllocator(format);
-		final var attachments = attachementAllocator.allocate(stack, renderPassInfo);
+		final var descriptions = getAttachments(renderPassInfo);
+		final var attachments = attachementAllocator.allocate(stack, descriptions);
 
-		final var subpassAllocator = new VkSubpassDescriptionAllocator(renderPassInfo);
+		final var subpassAllocator = new VkSubpassDescriptionAllocator(	renderPassInfo,
+																		descriptions);
 		final var subpasses = subpassAllocator.allocate(stack);
 
 		final var dependencyAllocator = new VkSubpassDependencyAllocator(renderPassInfo);
@@ -44,9 +50,17 @@ public class VkRenderPassAllocator
 		createInfo.pDependencies(dependencies);
 
 		final long[] aRenderPass = new long[1];
-		Logger.check(CREATION_ERROR,
-				() -> vkCreateRenderPass(device, createInfo, null, aRenderPass));
+		Logger.check(	CREATION_ERROR,
+						() -> vkCreateRenderPass(device, createInfo, null, aRenderPass));
 		renderPass = aRenderPass[0];
 		return renderPass;
+	}
+
+	private static List<Attachment> getAttachments(RenderPassInfo renderPassInfo)
+	{
+		final List<Attachment> res = new ArrayList<>();
+		res.add(renderPassInfo.getColorAttachment());
+		res.addAll(renderPassInfo.getExtraAttachments());
+		return res;
 	}
 }

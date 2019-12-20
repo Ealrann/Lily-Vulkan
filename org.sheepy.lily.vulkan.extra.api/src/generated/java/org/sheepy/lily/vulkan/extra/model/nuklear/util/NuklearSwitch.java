@@ -16,9 +16,6 @@ import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.vulkan.extra.model.nuklear.*;
-
-import org.sheepy.lily.vulkan.model.IResource;
-
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
@@ -381,7 +378,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIResource(IResource object)
+	public T1 caseIResource(org.sheepy.lily.core.model.application.IResource object)
 	{
 		return null;
 	}

@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.process.graphic.frame;
 
-import static org.lwjgl.vulkan.KHRSurface.*;
+import static org.lwjgl.vulkan.KHRSurface.VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;
 import static org.lwjgl.vulkan.KHRSwapchain.*;
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -17,9 +17,7 @@ import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.ISwapChainManager;
-import org.sheepy.lily.vulkan.api.resource.attachment.ISwapAttachmentAdapter;
 import org.sheepy.lily.vulkan.common.util.VulkanBufferUtils;
-import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 import org.sheepy.lily.vulkan.process.graphic.frame.util.PresentationModeSelector;
 import org.sheepy.vulkan.device.LogicalDevice;
@@ -34,12 +32,11 @@ public final class SwapChainManager implements ISwapChainManager
 {
 	private static final String FAILED_TO_CREATE_SWAP_CHAIN = "Failed to create swap chain";
 
-	private long swapChainPtr = -1;
+	private long swapChainPtr = 0;
 	private List<Long> swapChainImages = null;
 	private IntBuffer indices = null;
 	private int swapImageCount;
 	private boolean first = true;
-	private List<ISwapAttachment> attachments;
 
 	@Override
 	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
@@ -66,9 +63,6 @@ public final class SwapChainManager implements ISwapChainManager
 		final var imageCount = pdsManager.bestSupportedImageCount(requiredImageCount);
 		final int swapImageUsage = loadSwapChainUsage(swapchainConfiguration);
 		final int targetPresentMode = selectPresentMode(context, swapchainConfiguration, surface);
-
-		attachments = swapchainConfiguration.getAtachments();
-		allocateAttachments(context);
 
 		final var createInfo = VkSwapchainCreateInfoKHR.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR);
@@ -124,12 +118,10 @@ public final class SwapChainManager implements ISwapChainManager
 	public void free(IGraphicContext context)
 	{
 		vkDestroySwapchainKHR(context.getVkDevice(), swapChainPtr, null);
-		freeAttachments(context);
 		if (indices != null) MemoryUtil.memFree(indices);
-		swapChainPtr = -1;
+		swapChainPtr = 0;
 		swapChainImages = null;
 		indices = null;
-		attachments = null;
 	}
 
 	public static IntBuffer allocQueueIndices(LogicalDevice logicalDevice, boolean computeAcces)
@@ -150,15 +142,6 @@ public final class SwapChainManager implements ISwapChainManager
 		return res;
 	}
 
-	private void allocateAttachments(IGraphicContext context)
-	{
-		for (final ISwapAttachment attachment : attachments)
-		{
-			final var adapter = attachment.adaptNotNull(ISwapAttachmentAdapter.class);
-			adapter.allocate(context);
-		}
-	}
-
 	private static int loadSwapChainUsage(final SwapchainConfiguration configuration)
 	{
 		final var usages = configuration.getSwapImageUsages();
@@ -168,15 +151,6 @@ public final class SwapChainManager implements ISwapChainManager
 			res = EImageUsage.COLOR_ATTACHMENT_VALUE;
 		}
 		return res;
-	}
-
-	private void freeAttachments(IGraphicContext context)
-	{
-		for (final ISwapAttachment attachment : attachments)
-		{
-			final var adapter = attachment.adaptNotNull(ISwapAttachmentAdapter.class);
-			adapter.free(context);
-		}
 	}
 
 	private void printSwapChainInformations(int presentMode)

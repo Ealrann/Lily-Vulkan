@@ -103,7 +103,8 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter implements I
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GraphicPackage.Literals.RENDER_PASS_INFO__ATTACHMENTS);
+			childrenFeatures.add(GraphicPackage.Literals.RENDER_PASS_INFO__EXTRA_ATTACHMENTS);
+			childrenFeatures.add(GraphicPackage.Literals.RENDER_PASS_INFO__COLOR_ATTACHMENT);
 			childrenFeatures.add(GraphicPackage.Literals.RENDER_PASS_INFO__SUBPASSES);
 			childrenFeatures.add(GraphicPackage.Literals.RENDER_PASS_INFO__DEPENDENCIES);
 		}
@@ -166,7 +167,8 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter implements I
 			case GraphicPackage.RENDER_PASS_INFO__BIND_POINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
+			case GraphicPackage.RENDER_PASS_INFO__EXTRA_ATTACHMENTS:
+			case GraphicPackage.RENDER_PASS_INFO__COLOR_ATTACHMENT:
 			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
 			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -189,13 +191,18 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter implements I
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GraphicPackage.Literals.RENDER_PASS_INFO__ATTACHMENTS,
-				 GraphicFactory.eINSTANCE.createSwapImageAttachmentDescription()));
+				(GraphicPackage.Literals.RENDER_PASS_INFO__EXTRA_ATTACHMENTS,
+				 GraphicFactory.eINSTANCE.createImageAttachment()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GraphicPackage.Literals.RENDER_PASS_INFO__ATTACHMENTS,
-				 GraphicFactory.eINSTANCE.createExtraAttachmentDescription()));
+				(GraphicPackage.Literals.RENDER_PASS_INFO__EXTRA_ATTACHMENTS,
+				 GraphicFactory.eINSTANCE.createDepthAttachment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.RENDER_PASS_INFO__COLOR_ATTACHMENT,
+				 GraphicFactory.eINSTANCE.createSwapImageAttachment()));
 
 		newChildDescriptors.add
 			(createChildParameter

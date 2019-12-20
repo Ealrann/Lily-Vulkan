@@ -4,8 +4,6 @@ package org.sheepy.lily.vulkan.model.resource;
 
 import java.nio.ByteBuffer;
 
-import org.sheepy.lily.vulkan.model.IResource;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Constant Buffer</b></em>'.
@@ -22,7 +20,7 @@ import org.sheepy.lily.vulkan.model.IResource;
  * @model
  * @generated
  */
-public interface ConstantBuffer extends IResource
+public interface ConstantBuffer extends org.sheepy.lily.core.model.application.IResource
 {
 	/**
 	 * Returns the value of the '<em><b>Data</b></em>' attribute.

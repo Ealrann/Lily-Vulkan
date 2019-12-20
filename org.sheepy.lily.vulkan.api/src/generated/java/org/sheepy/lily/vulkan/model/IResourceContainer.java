@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model;
 
 import org.sheepy.lily.core.api.adapter.ILilyEObject;
+import org.sheepy.lily.core.model.application.ResourcePkg;
 
 /**
  * <!-- begin-user-doc -->

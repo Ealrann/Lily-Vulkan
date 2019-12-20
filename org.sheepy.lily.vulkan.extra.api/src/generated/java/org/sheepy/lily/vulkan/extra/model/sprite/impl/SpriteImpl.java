@@ -17,13 +17,13 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
+import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
 import org.sheepy.lily.vulkan.extra.model.sprite.Sprite;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteType;
-import org.sheepy.lily.vulkan.model.resource.PathResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,7 +60,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	 * @generated
 	 * @ordered
 	 */
-	protected PathResource file;
+	protected FileResource file;
 
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -124,7 +124,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	 * @generated
 	 */
 	@Override
-	public PathResource getFile()
+	public FileResource getFile()
 	{
 		return file;
 	}
@@ -134,9 +134,9 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFile(PathResource newFile, NotificationChain msgs)
+	public NotificationChain basicSetFile(FileResource newFile, NotificationChain msgs)
 	{
-		PathResource oldFile = file;
+		FileResource oldFile = file;
 		file = newFile;
 		if (eNotificationRequired())
 		{
@@ -152,7 +152,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	 * @generated
 	 */
 	@Override
-	public void setFile(PathResource newFile)
+	public void setFile(FileResource newFile)
 	{
 		if (newFile != file)
 		{
@@ -264,7 +264,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 				getPresentedEntities().addAll((Collection<? extends PresentableEntity>)newValue);
 				return;
 			case SpritePackage.SPRITE__FILE:
-				setFile((PathResource)newValue);
+				setFile((FileResource)newValue);
 				return;
 			case SpritePackage.SPRITE__TYPE:
 				setType((SpriteType)newValue);
@@ -287,7 +287,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 				getPresentedEntities().clear();
 				return;
 			case SpritePackage.SPRITE__FILE:
-				setFile((PathResource)null);
+				setFile((FileResource)null);
 				return;
 			case SpritePackage.SPRITE__TYPE:
 				setType(TYPE_EDEFAULT);

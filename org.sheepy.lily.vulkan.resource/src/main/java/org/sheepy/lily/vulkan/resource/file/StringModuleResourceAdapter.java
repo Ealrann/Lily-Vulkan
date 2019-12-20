@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.resource.file;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.vulkan.model.resource.AbstractModuleResource;
-import org.sheepy.lily.vulkan.model.resource.StringModuleResource;
+import org.sheepy.lily.core.model.application.AbstractModuleResource;
+import org.sheepy.lily.core.model.application.StringModuleResource;
 
 @Adapter(scope = StringModuleResource.class)
 public class StringModuleResourceAdapter extends AbstractModuleResourceAdapter

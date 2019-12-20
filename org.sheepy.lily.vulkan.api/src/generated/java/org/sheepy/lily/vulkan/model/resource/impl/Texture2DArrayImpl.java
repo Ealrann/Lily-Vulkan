@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.vulkan.model.resource.PathResource;
+import org.sheepy.lily.core.model.application.FileResource;
+import org.sheepy.lily.core.model.application.impl.IResourceImpl;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
 import org.sheepy.vulkan.model.image.ImageLayout;
@@ -27,7 +27,6 @@ import org.sheepy.vulkan.model.image.ImageLayout;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl#getFiles <em>Files</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl#isMipmapEnabled <em>Mipmap Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayImpl#getInitialLayout <em>Initial Layout</em>}</li>
@@ -35,28 +34,8 @@ import org.sheepy.vulkan.model.image.ImageLayout;
  *
  * @generated
  */
-public class Texture2DArrayImpl extends LilyEObject implements Texture2DArray
+public class Texture2DArrayImpl extends IResourceImpl implements Texture2DArray
 {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getFiles() <em>Files</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -65,7 +44,7 @@ public class Texture2DArrayImpl extends LilyEObject implements Texture2DArray
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PathResource> files;
+	protected EList<FileResource> files;
 
 	/**
 	 * The default value of the '{@link #isMipmapEnabled() <em>Mipmap Enabled</em>}' attribute.
@@ -124,36 +103,11 @@ public class Texture2DArrayImpl extends LilyEObject implements Texture2DArray
 	 * @generated
 	 */
 	@Override
-	public String getName()
-	{
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setName(String newName)
-	{
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE2_DARRAY__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<PathResource> getFiles()
+	public EList<FileResource> getFiles()
 	{
 		if (files == null)
 		{
-			files = new EObjectContainmentEList<PathResource>(PathResource.class, this, ResourcePackage.TEXTURE2_DARRAY__FILES);
+			files = new EObjectContainmentEList<FileResource>(FileResource.class, this, ResourcePackage.TEXTURE2_DARRAY__FILES);
 		}
 		return files;
 	}
@@ -261,8 +215,6 @@ public class Texture2DArrayImpl extends LilyEObject implements Texture2DArray
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE2_DARRAY__NAME:
-				return getName();
 			case ResourcePackage.TEXTURE2_DARRAY__FILES:
 				return getFiles();
 			case ResourcePackage.TEXTURE2_DARRAY__MIPMAP_ENABLED:
@@ -284,12 +236,9 @@ public class Texture2DArrayImpl extends LilyEObject implements Texture2DArray
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE2_DARRAY__NAME:
-				setName((String)newValue);
-				return;
 			case ResourcePackage.TEXTURE2_DARRAY__FILES:
 				getFiles().clear();
-				getFiles().addAll((Collection<? extends PathResource>)newValue);
+				getFiles().addAll((Collection<? extends FileResource>)newValue);
 				return;
 			case ResourcePackage.TEXTURE2_DARRAY__MIPMAP_ENABLED:
 				setMipmapEnabled((Boolean)newValue);
@@ -311,9 +260,6 @@ public class Texture2DArrayImpl extends LilyEObject implements Texture2DArray
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE2_DARRAY__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case ResourcePackage.TEXTURE2_DARRAY__FILES:
 				getFiles().clear();
 				return;
@@ -337,8 +283,6 @@ public class Texture2DArrayImpl extends LilyEObject implements Texture2DArray
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE2_DARRAY__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ResourcePackage.TEXTURE2_DARRAY__FILES:
 				return files != null && !files.isEmpty();
 			case ResourcePackage.TEXTURE2_DARRAY__MIPMAP_ENABLED:
@@ -360,9 +304,7 @@ public class Texture2DArrayImpl extends LilyEObject implements Texture2DArray
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", mipmapEnabled: ");
+		result.append(" (mipmapEnabled: ");
 		result.append(mipmapEnabled);
 		result.append(')');
 		return result.toString();

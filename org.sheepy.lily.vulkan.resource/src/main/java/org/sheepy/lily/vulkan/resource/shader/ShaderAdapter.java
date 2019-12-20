@@ -30,7 +30,7 @@ public class ShaderAdapter implements IShaderAdapter
 		shaderBackend.allocate(context.stack());
 
 		final var specializationConstants = shader.getConstants();
-		final long id = shaderBackend.getId();
+		final long id = shaderBackend.getPtr();
 		final var stage = shader.getStage();
 
 		shaderStage = new VkShaderStage(stage, id, specializationConstants);
@@ -42,12 +42,6 @@ public class ShaderAdapter implements IShaderAdapter
 	{
 		shaderBackend.free();
 		shaderBackend = null;
-	}
-
-	@Override
-	public long getShaderModule()
-	{
-		return shaderBackend.getId();
 	}
 
 	@Override

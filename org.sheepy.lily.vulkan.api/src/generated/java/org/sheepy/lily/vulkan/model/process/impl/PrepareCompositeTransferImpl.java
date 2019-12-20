@@ -19,6 +19,7 @@ import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.CompositePartReference;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
@@ -161,7 +162,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<org.sheepy.lily.vulkan.model.resource.CompositePartReference> parts;
+	protected EList<CompositePartReference> parts;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -360,11 +361,11 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * @generated
 	 */
 	@Override
-	public EList<org.sheepy.lily.vulkan.model.resource.CompositePartReference> getParts()
+	public EList<CompositePartReference> getParts()
 	{
 		if (parts == null)
 		{
-			parts = new EObjectContainmentEList<org.sheepy.lily.vulkan.model.resource.CompositePartReference>(org.sheepy.lily.vulkan.model.resource.CompositePartReference.class, this, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS);
+			parts = new EObjectContainmentEList<CompositePartReference>(CompositePartReference.class, this, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS);
 		}
 		return parts;
 	}
@@ -445,7 +446,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 				return;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS:
 				getParts().clear();
-				getParts().addAll((Collection<? extends org.sheepy.lily.vulkan.model.resource.CompositePartReference>)newValue);
+				getParts().addAll((Collection<? extends CompositePartReference>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

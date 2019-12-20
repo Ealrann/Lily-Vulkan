@@ -6,12 +6,16 @@ import static org.lwjgl.glfw.GLFWVulkan.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.vulkan.VkInstance;
+import org.sheepy.lily.core.api.notification.INotificationListener;
+import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.core.model.application.Scene;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.surface.VkSurface;
 import org.sheepy.vulkan.window.IWindowListener.ICloseListener;
@@ -27,12 +31,13 @@ public class Window
 	private final List<ICloseListener> closeListeners = new ArrayList<>();
 	private final List<IOpenListener> openListeners = new ArrayList<>();
 	private final List<ISurfaceDeprecatedListener> surfaceListeners = new ArrayList<>();
+	private final Scene scene;
+	private final INotificationListener fullscreenListener = this::requestFullscreen;
+	private final INotificationListener sizeListener = this::resize;
 
 	private long id;
 
 	private final String title;
-	private final boolean resizeable;
-	private boolean fullscreen;
 	private boolean opened = false;
 	private boolean cursorHide = false;
 
@@ -41,18 +46,15 @@ public class Window
 	private GLFWWindowSizeCallback callback;
 
 	private GLFWVidMode mode;
-	private Vector2i size = null;
-	private Vector2i windowSize = null;
+	private Vector2ic windowSize = null;
 	private VkInstance vkInstance;
 
 	private boolean fullscreenChangeRequested = false;
 
-	public Window(Vector2ic initialSize, String title, boolean resizeable, boolean fullscreen)
+	public Window(Scene scene, String title)
 	{
-		this.size = new Vector2i(initialSize);
+		this.scene = scene;
 		this.title = title;
-		this.resizeable = resizeable;
-		this.fullscreen = fullscreen;
 		load();
 	}
 
@@ -62,55 +64,52 @@ public class Window
 		glfwDefaultWindowHints();
 		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 		glfwWindowHint(GLFW_AUTO_ICONIFY, GLFW_FALSE);
-        glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 
-		if (resizeable) glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
+		if (scene.isResizeable()) glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 	}
 
-	public void requestFullscreen(boolean fullscreen)
-	{
-		if (this.fullscreen != fullscreen)
-		{
-			this.fullscreen = fullscreen;
-
-			fullscreenChangeRequested = true;
-
-			fireSurfaceDeprecation();
-		}
-	}
+	private boolean disableResizeListener = false;
 
 	public void open(VkInstance vkInstance)
 	{
+		final long glfwGetPrimaryMonitor = glfwGetPrimaryMonitor();
+		long monitor = 0;
+
 		this.vkInstance = vkInstance;
 		fullscreenChangeRequested = false;
-		long monitor = 0;
-		if (fullscreen)
+		mode = glfwGetVideoMode(glfwGetPrimaryMonitor);
+		if (scene.isFullscreen())
 		{
-			monitor = glfwGetPrimaryMonitor();
-			windowSize = size;
-			size = new Vector2i(mode.width(), mode.height());
+			monitor = glfwGetPrimaryMonitor;
+			windowSize = scene.getSize();
+			scene.setSize(new Vector2i(mode.width(), mode.height()));
 		}
 
-		mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-
-		id = glfwCreateWindow(size.x, size.y, title, monitor, 0);
+		final var size = scene.getSize();
+		id = glfwCreateWindow(size.x(), size.y(), title, monitor, 0);
 		hideCursor(cursorHide);
 		callback = new GLFWWindowSizeCallback()
 		{
 			@Override
 			public void invoke(long window, int width, int height)
 			{
-				size = new Vector2i(width, height);
+				disableResizeListener = true;
+				scene.setSize(new Vector2i(width, height));
 				fireResizeEvent();
+				disableResizeListener = false;
 			}
 		};
 		glfwSetWindowSizeCallback(id, callback);
 
 		opened = true;
 
+		scene.addListener(fullscreenListener, ApplicationPackage.SCENE__FULLSCREEN);
+		scene.addListener(sizeListener, ApplicationPackage.SCENE__SIZE);
+
 		fireOpenWindow();
 		fireResizeEvent();
-		
+
 		glfwShowWindow(id);
 	}
 
@@ -131,6 +130,8 @@ public class Window
 		glfwSetWindowSizeCallback(id, null);
 		callback.free();
 		glfwDestroyWindow(id);
+		scene.removeListener(fullscreenListener, ApplicationPackage.SCENE__FULLSCREEN);
+		scene.removeListener(sizeListener, ApplicationPackage.SCENE__SIZE);
 	}
 
 	public void destroy()
@@ -153,13 +154,38 @@ public class Window
 		return new VkSurface(vkInstance, aSurface[0]);
 	}
 
+	private void requestFullscreen(Notification notification)
+	{
+		if (notification.getNewBooleanValue() != notification.getOldBooleanValue())
+		{
+			fullscreenChangeRequested = true;
+
+			fireSurfaceDeprecation();
+		}
+	}
+
+	private void resize(Notification notification)
+	{
+		if (disableResizeListener == false)
+		{
+			final var oldSize = (Vector2ic) notification.getOldValue();
+			final var newSize = (Vector2ic) notification.getNewValue();
+			if (newSize.x() != oldSize.x() || newSize.y() != oldSize.y())
+			{
+				glfwSetWindowSize(id, newSize.x(), newSize.y());
+			}
+		}
+	}
+
 	private void manageFullscreenChange()
 	{
 		if (fullscreenChangeRequested)
 		{
-			if (fullscreen == false)
+			if (scene.isFullscreen() == false)
 			{
-				size = windowSize;
+				disableResizeListener = true;
+				scene.setSize(windowSize);
+				disableResizeListener = false;
 			}
 			close();
 			open(vkInstance);
@@ -171,18 +197,10 @@ public class Window
 		return glfwGetRequiredInstanceExtensions();
 	}
 
-	public void setSize(int x, int y)
-	{
-		if (x != size.x || y != size.y)
-		{
-			glfwSetWindowSize(id, x, y);
-		}
-	}
-
 	public Vector2ic getFramebufferSize()
 	{
-		int[] width = new int[1];
-		int[] height = new int[1];
+		final int[] width = new int[1];
+		final int[] height = new int[1];
 
 		glfwGetFramebufferSize(id, width, height);
 		return new Vector2i(width[0], height[0]);
@@ -202,9 +220,9 @@ public class Window
 		}
 	}
 
-	public Vector2i getSize()
+	public Vector2ic getSize()
 	{
-		return size;
+		return scene.getSize();
 	}
 
 	public boolean isOpenned()
@@ -233,7 +251,7 @@ public class Window
 	{
 		for (final var listener : sizeListeners)
 		{
-			listener.onResize(size);
+			listener.onResize(scene.getSize());
 		}
 	}
 

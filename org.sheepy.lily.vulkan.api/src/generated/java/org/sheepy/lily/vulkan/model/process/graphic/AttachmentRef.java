@@ -30,12 +30,12 @@ public interface AttachmentRef extends ILilyEObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attachment</em>' reference.
-	 * @see #setAttachment(AttachmentDescription)
+	 * @see #setAttachment(Attachment)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAttachmentRef_Attachment()
 	 * @model
 	 * @generated
 	 */
-	AttachmentDescription getAttachment();
+	Attachment getAttachment();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef#getAttachment <em>Attachment</em>}' reference.
@@ -45,7 +45,7 @@ public interface AttachmentRef extends ILilyEObject
 	 * @see #getAttachment()
 	 * @generated
 	 */
-	void setAttachment(AttachmentDescription value);
+	void setAttachment(Attachment value);
 
 	/**
 	 * Returns the value of the '<em><b>Layout</b></em>' attribute.

@@ -21,8 +21,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.core.model.application.ApplicationPackage;
-import org.sheepy.lily.core.model.cadence.CadenceFactory;
+import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -128,7 +127,6 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter implements IEd
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ApplicationPackage.Literals.IENGINE__CADENCE);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
 			childrenFeatures.add(VulkanPackage.Literals.VULKAN_ENGINE__PROCESSES);
@@ -193,7 +191,6 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter implements IEd
 			case VulkanPackage.VULKAN_ENGINE__FEATURES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case VulkanPackage.VULKAN_ENGINE__CADENCE:
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
 			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
@@ -217,18 +214,8 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter implements IEd
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ApplicationPackage.Literals.IENGINE__CADENCE,
-				 CadenceFactory.eINSTANCE.createCadence()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ApplicationPackage.Literals.IENGINE__CADENCE,
-				 CadenceFactory.eINSTANCE.createGenericCadence()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-				 VulkanFactory.eINSTANCE.createResourcePkg()));
+				 ApplicationFactory.eINSTANCE.createResourcePkg()));
 
 		newChildDescriptors.add
 			(createChildParameter

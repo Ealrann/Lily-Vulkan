@@ -9,8 +9,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
-import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
@@ -37,7 +37,7 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	 * @generated
 	 * @ordered
 	 */
-	protected PathResource file;
+	protected FileResource file;
 
 	/**
 	 * The default value of the '{@link #isMipmapEnabled() <em>Mipmap Enabled</em>}' attribute.
@@ -86,7 +86,7 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	 * @generated
 	 */
 	@Override
-	public PathResource getFile()
+	public FileResource getFile()
 	{
 		return file;
 	}
@@ -96,9 +96,9 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFile(PathResource newFile, NotificationChain msgs)
+	public NotificationChain basicSetFile(FileResource newFile, NotificationChain msgs)
 	{
-		PathResource oldFile = file;
+		FileResource oldFile = file;
 		file = newFile;
 		if (eNotificationRequired())
 		{
@@ -114,7 +114,7 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	 * @generated
 	 */
 	@Override
-	public void setFile(PathResource newFile)
+	public void setFile(FileResource newFile)
 	{
 		if (newFile != file)
 		{
@@ -200,7 +200,7 @@ public class FileImageImpl extends ImageImpl implements FileImage
 		switch (featureID)
 		{
 			case ResourcePackage.FILE_IMAGE__FILE:
-				setFile((PathResource)newValue);
+				setFile((FileResource)newValue);
 				return;
 			case ResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
 				setMipmapEnabled((Boolean)newValue);
@@ -220,7 +220,7 @@ public class FileImageImpl extends ImageImpl implements FileImage
 		switch (featureID)
 		{
 			case ResourcePackage.FILE_IMAGE__FILE:
-				setFile((PathResource)null);
+				setFile((FileResource)null);
 				return;
 			case ResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
 				setMipmapEnabled(MIPMAP_ENABLED_EDEFAULT);

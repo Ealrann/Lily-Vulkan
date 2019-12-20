@@ -14,8 +14,8 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
 import org.sheepy.lily.vulkan.api.resource.IFontImageAdapter;
-import org.sheepy.lily.vulkan.api.resource.IPathResourceAdapter;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
@@ -67,7 +67,7 @@ public class FontImageAdapter implements IFontImageAdapter
 		final var executionContext = (ExecutionContext) context;
 
 		final var file = font.getFile();
-		final var fileAdapter = file.adapt(IPathResourceAdapter.class);
+		final var fileAdapter = file.adapt(IFileResourceAdapter.class);
 		final var targetLayout = font.getInitialLayout();
 
 		bufferedRessource = fileAdapter.allocByteBuffer(file);

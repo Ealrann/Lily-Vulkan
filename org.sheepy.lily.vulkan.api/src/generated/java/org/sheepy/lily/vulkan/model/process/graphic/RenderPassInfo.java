@@ -14,7 +14,8 @@ import org.sheepy.lily.core.api.adapter.ILilyEObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getAttachments <em>Attachments</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getExtraAttachments <em>Extra Attachments</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getColorAttachment <em>Color Attachment</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getSubpasses <em>Subpasses</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getBindPoint <em>Bind Point</em>}</li>
@@ -28,16 +29,38 @@ import org.sheepy.lily.core.api.adapter.ILilyEObject;
 public interface RenderPassInfo extends ILilyEObject
 {
 	/**
-	 * Returns the value of the '<em><b>Attachments</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription}.
+	 * Returns the value of the '<em><b>Extra Attachments</b></em>' containment reference list.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Attachments</em>' containment reference list.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getRenderPassInfo_Attachments()
+	 * @return the value of the '<em>Extra Attachments</em>' containment reference list.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getRenderPassInfo_ExtraAttachments()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<AttachmentDescription> getAttachments();
+	EList<ExtraAttachment> getExtraAttachments();
+
+	/**
+	 * Returns the value of the '<em><b>Color Attachment</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Color Attachment</em>' containment reference.
+	 * @see #setColorAttachment(SwapImageAttachment)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getRenderPassInfo_ColorAttachment()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	SwapImageAttachment getColorAttachment();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getColorAttachment <em>Color Attachment</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Color Attachment</em>' containment reference.
+	 * @see #getColorAttachment()
+	 * @generated
+	 */
+	void setColorAttachment(SwapImageAttachment value);
 
 	/**
 	 * Returns the value of the '<em><b>Subpasses</b></em>' containment reference list.

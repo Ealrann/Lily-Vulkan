@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.demo.test.composite.grow.model;
 
+import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.core.model.application.IEngine;
 import org.sheepy.lily.core.model.cadence.Cadence;
 import org.sheepy.lily.core.model.cadence.CadenceFactory;
@@ -33,9 +34,9 @@ public class GrowEngineFactory
 		process.getExtensionPkg().getExtensions().add(taskManager.indexConfiguration);
 
 		final var cadence = buildCadence(process, MAX_COUNT);
+		process.setCadence(cadence);
 
 		engine.getProcesses().add(process);
-		engine.setCadence(cadence);
 
 		return engine;
 	}
@@ -75,7 +76,7 @@ public class GrowEngineFactory
 		final ProcessPartPkg partPkg = ProcessFactory.eINSTANCE.createProcessPartPkg();
 		process.setPartPkg(partPkg);
 
-		final var resourcePkg = VulkanFactory.eINSTANCE.createResourcePkg();
+		final var resourcePkg = ApplicationFactory.eINSTANCE.createResourcePkg();
 		process.setResourcePkg(resourcePkg);
 		final var resourceList = resourcePkg.getResources();
 		resourceList.add(resourceContainer.transferBuffer);

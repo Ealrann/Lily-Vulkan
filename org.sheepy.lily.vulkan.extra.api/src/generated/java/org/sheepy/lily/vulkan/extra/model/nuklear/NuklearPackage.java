@@ -7,10 +7,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.presentation.PresentationPackage;
 import org.sheepy.lily.core.model.ui.UiPackage;
-import org.sheepy.lily.vulkan.model.VulkanPackage;
-
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
@@ -244,7 +243,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__NAME = VulkanPackage.IRESOURCE__NAME;
+	int NUKLEAR_CONTEXT__NAME = ApplicationPackage.IRESOURCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Font</b></em>' reference.
@@ -253,7 +252,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__FONT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
+	int NUKLEAR_CONTEXT__FONT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Null Texture</b></em>' reference.
@@ -262,7 +261,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__NULL_TEXTURE = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
+	int NUKLEAR_CONTEXT__NULL_TEXTURE = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Layout Task</b></em>' reference.
@@ -271,7 +270,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__LAYOUT_TASK = VulkanPackage.IRESOURCE_FEATURE_COUNT + 2;
+	int NUKLEAR_CONTEXT__LAYOUT_TASK = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Context</em>' class.
@@ -280,7 +279,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 3;
+	int NUKLEAR_CONTEXT_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 3;
 
 
 	/**
@@ -290,7 +289,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
+	int NUKLEAR_CONTEXT_OPERATION_COUNT = ApplicationPackage.IRESOURCE_OPERATION_COUNT + 0;
 
 
 	/**
@@ -310,7 +309,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT__NAME = VulkanPackage.IRESOURCE__NAME;
+	int NUKLEAR_FONT__NAME = ApplicationPackage.IRESOURCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Font Sampled Image</b></em>' containment reference.
@@ -319,7 +318,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT__FONT_SAMPLED_IMAGE = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
+	int NUKLEAR_FONT__FONT_SAMPLED_IMAGE = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Font</em>' class.
@@ -328,7 +327,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
+	int NUKLEAR_FONT_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Font</em>' class.
@@ -337,7 +336,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
+	int NUKLEAR_FONT_OPERATION_COUNT = ApplicationPackage.IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl <em>Selector Panel</em>}' class.

@@ -248,33 +248,6 @@ public interface ResourceFactory extends EFactory
 	Shader createShader();
 
 	/**
-	 * Returns a new object of class '<em>File Resource</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>File Resource</em>'.
-	 * @generated
-	 */
-	FileResource createFileResource();
-
-	/**
-	 * Returns a new object of class '<em>Module Resource</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Module Resource</em>'.
-	 * @generated
-	 */
-	ModuleResource createModuleResource();
-
-	/**
-	 * Returns a new object of class '<em>String Module Resource</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>String Module Resource</em>'.
-	 * @generated
-	 */
-	StringModuleResource createStringModuleResource();
-
-	/**
 	 * Returns a new object of class '<em>Texture2 DArray</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -269,6 +269,15 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__VERTEX_INPUT_STATE = RenderingPackage.GENERIC_RENDERER__VERTEX_INPUT_STATE;
 
 	/**
+	 * The feature id for the '<em><b>Depth Stencil</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_RENDERER__DEPTH_STENCIL = RenderingPackage.GENERIC_RENDERER__DEPTH_STENCIL;
+
+	/**
 	 * The feature id for the '<em><b>Maintained</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

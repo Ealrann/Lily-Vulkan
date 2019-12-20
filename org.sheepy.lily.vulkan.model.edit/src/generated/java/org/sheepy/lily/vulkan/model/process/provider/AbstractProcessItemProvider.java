@@ -21,6 +21,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.sheepy.lily.core.model.application.ApplicationFactory;
+import org.sheepy.lily.core.model.cadence.CadenceFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -249,6 +251,7 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
+			childrenFeatures.add(VulkanPackage.Literals.IPROCESS__CADENCE);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__PART_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__EXTENSION_PKG);
 		}
@@ -307,6 +310,7 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
+			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
 			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
 			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -330,12 +334,22 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-				 VulkanFactory.eINSTANCE.createResourcePkg()));
+				 ApplicationFactory.eINSTANCE.createResourcePkg()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 				 VulkanFactory.eINSTANCE.createDescriptorPkg()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.IPROCESS__CADENCE,
+				 CadenceFactory.eINSTANCE.createCadence()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.IPROCESS__CADENCE,
+				 CadenceFactory.eINSTANCE.createGenericCadence()));
 
 		newChildDescriptors.add
 			(createChildParameter

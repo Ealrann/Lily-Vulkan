@@ -118,18 +118,13 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.ISWAP_ATTACHMENT:
-			{
-				ISwapAttachment iSwapAttachment = (ISwapAttachment)theEObject;
-				T1 result = caseISwapAttachment(iSwapAttachment);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case GraphicPackage.IMAGE_ATTACHMENT:
 			{
 				ImageAttachment imageAttachment = (ImageAttachment)theEObject;
 				T1 result = caseImageAttachment(imageAttachment);
-				if (result == null) result = caseISwapAttachment(imageAttachment);
+				if (result == null) result = caseExtraAttachment(imageAttachment);
+				if (result == null) result = caseAttachment(imageAttachment);
+				if (result == null) result = caseLNamedElement(imageAttachment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -137,7 +132,9 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			{
 				DepthAttachment depthAttachment = (DepthAttachment)theEObject;
 				T1 result = caseDepthAttachment(depthAttachment);
-				if (result == null) result = caseISwapAttachment(depthAttachment);
+				if (result == null) result = caseExtraAttachment(depthAttachment);
+				if (result == null) result = caseAttachment(depthAttachment);
+				if (result == null) result = caseLNamedElement(depthAttachment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -169,29 +166,29 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.ATTACHMENT_DESCRIPTION:
+			case GraphicPackage.ATTACHMENT:
 			{
-				AttachmentDescription attachmentDescription = (AttachmentDescription)theEObject;
-				T1 result = caseAttachmentDescription(attachmentDescription);
-				if (result == null) result = caseLNamedElement(attachmentDescription);
+				Attachment attachment = (Attachment)theEObject;
+				T1 result = caseAttachment(attachment);
+				if (result == null) result = caseLNamedElement(attachment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.SWAP_IMAGE_ATTACHMENT_DESCRIPTION:
+			case GraphicPackage.SWAP_IMAGE_ATTACHMENT:
 			{
-				SwapImageAttachmentDescription swapImageAttachmentDescription = (SwapImageAttachmentDescription)theEObject;
-				T1 result = caseSwapImageAttachmentDescription(swapImageAttachmentDescription);
-				if (result == null) result = caseAttachmentDescription(swapImageAttachmentDescription);
-				if (result == null) result = caseLNamedElement(swapImageAttachmentDescription);
+				SwapImageAttachment swapImageAttachment = (SwapImageAttachment)theEObject;
+				T1 result = caseSwapImageAttachment(swapImageAttachment);
+				if (result == null) result = caseAttachment(swapImageAttachment);
+				if (result == null) result = caseLNamedElement(swapImageAttachment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION:
+			case GraphicPackage.EXTRA_ATTACHMENT:
 			{
-				ExtraAttachmentDescription extraAttachmentDescription = (ExtraAttachmentDescription)theEObject;
-				T1 result = caseExtraAttachmentDescription(extraAttachmentDescription);
-				if (result == null) result = caseAttachmentDescription(extraAttachmentDescription);
-				if (result == null) result = caseLNamedElement(extraAttachmentDescription);
+				ExtraAttachment extraAttachment = (ExtraAttachment)theEObject;
+				T1 result = caseExtraAttachment(extraAttachment);
+				if (result == null) result = caseAttachment(extraAttachment);
+				if (result == null) result = caseLNamedElement(extraAttachment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -391,22 +388,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>ISwap Attachment</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>ISwap Attachment</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseISwapAttachment(ISwapAttachment object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Image Attachment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -503,49 +484,49 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attachment Description</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Attachment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attachment Description</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Attachment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAttachmentDescription(AttachmentDescription object)
+	public T1 caseAttachment(Attachment object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Swap Image Attachment Description</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Swap Image Attachment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Swap Image Attachment Description</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Swap Image Attachment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSwapImageAttachmentDescription(SwapImageAttachmentDescription object)
+	public T1 caseSwapImageAttachment(SwapImageAttachment object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Extra Attachment Description</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Extra Attachment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Extra Attachment Description</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Extra Attachment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseExtraAttachmentDescription(ExtraAttachmentDescription object)
+	public T1 caseExtraAttachment(ExtraAttachment object)
 	{
 		return null;
 	}

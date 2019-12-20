@@ -32,15 +32,6 @@ public interface VulkanFactory extends EFactory
 	VulkanEngine createVulkanEngine();
 
 	/**
-	 * Returns a new object of class '<em>Resource Pkg</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Resource Pkg</em>'.
-	 * @generated
-	 */
-	ResourcePkg createResourcePkg();
-
-	/**
 	 * Returns a new object of class '<em>Run Process</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

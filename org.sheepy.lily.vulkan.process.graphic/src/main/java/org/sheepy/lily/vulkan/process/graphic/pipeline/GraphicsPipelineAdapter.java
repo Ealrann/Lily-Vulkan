@@ -60,6 +60,7 @@ public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicCon
 		final var colorBlend = pipeline.getColorBlend();
 		final var dynamicState = pipeline.getDynamicState();
 		final var specialization = pipeline.getSpecializationData();
+		final var depthStencil = pipeline.isDepthStencil();
 		final var specializationBuffer = specialization != null ? specialization.getData() : null;
 
 		vkGraphicsPipeline = new VkGraphicsPipeline(getVkPipelineLayout(),
@@ -71,7 +72,8 @@ public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicCon
 													inputState,
 													shaderStages,
 													specializationBuffer,
-													subpass);
+													subpass,
+													depthStencil);
 		vkGraphicsPipeline.allocate(context);
 	}
 

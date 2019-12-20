@@ -7,9 +7,9 @@ import java.util.List;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.lily.vulkan.api.resource.ITexture2DArrayAdapter;
 import org.sheepy.lily.vulkan.api.util.ImageBuffer;
-import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
 import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
@@ -112,7 +112,7 @@ public final class Texture2DArrayAdapter implements ITexture2DArrayAdapter
 		private final ImageBuffer imageBuffer;
 		private final boolean mipmapEnabled;
 
-		public FileTextureWrapper(PathResource resource, boolean mipmapEnabled)
+		public FileTextureWrapper(FileResource resource, boolean mipmapEnabled)
 		{
 			this.mipmapEnabled = mipmapEnabled;
 			this.imageBuffer = new ImageBuffer(resource);

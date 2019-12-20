@@ -4,6 +4,7 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.BufferUtils;
 import org.sheepy.lily.core.api.maintainer.MaintainerUtil;
+import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.vulkan.extra.api.rendering.ISpecializationAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
@@ -31,7 +32,7 @@ public final class RenderPipelineBuilder
 
 		pipeline.setDescriptorPkg(VulkanFactory.eINSTANCE.createDescriptorPkg());
 		pipeline.setTaskPkg(ProcessFactory.eINSTANCE.createTaskPkg());
-		pipeline.setResourcePkg(VulkanFactory.eINSTANCE.createResourcePkg());
+		pipeline.setResourcePkg(ApplicationFactory.eINSTANCE.createResourcePkg());
 		pipeline.setDescriptorSetPkg(ResourceFactory.eINSTANCE.createDescriptorSetPkg());
 
 		final var specializationData = prepareSpecializationBuffer(index, specialization);

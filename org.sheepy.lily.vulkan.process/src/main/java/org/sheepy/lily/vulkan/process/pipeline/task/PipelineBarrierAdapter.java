@@ -5,10 +5,10 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.common.process.IExecutionProcessAdapter;
@@ -86,7 +86,7 @@ public class PipelineBarrierAdapter
 														dstQueueIndex,
 														bufferBarriers);
 
-		allocationConfiguration.addChildren(List.of(imageBarrierInfos, bufferBarrierInfos));
+		allocationConfiguration.addChildren(List.of(imageBarrierInfos, bufferBarrierInfos), true);
 		allocationConfiguration.addDependencies(List.of(imageBarrierInfos, bufferBarrierInfos));
 	}
 
@@ -100,7 +100,8 @@ public class PipelineBarrierAdapter
 	public void free(IProcessContext context)
 	{
 		allocationConfiguration.removeDependencies(List.of(imageBarrierInfos, bufferBarrierInfos));
-		allocationConfiguration.removeChildren(List.of(imageBarrierInfos, bufferBarrierInfos));
+		allocationConfiguration.removeChildren(	List.of(imageBarrierInfos, bufferBarrierInfos),
+												true);
 
 		imageBarrierInfos = null;
 		bufferBarrierInfos = null;

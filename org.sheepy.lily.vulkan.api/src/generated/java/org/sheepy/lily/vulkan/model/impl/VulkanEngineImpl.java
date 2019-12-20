@@ -8,7 +8,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -17,12 +16,10 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.core.model.application.ICadence;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
@@ -36,7 +33,6 @@ import org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getCadence <em>Cadence</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getResourcePkg <em>Resource Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getDescriptorPkg <em>Descriptor Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#isEnabled <em>Enabled</em>}</li>
@@ -49,16 +45,6 @@ import org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature;
 public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 {
 	/**
-	 * The cached value of the '{@link #getCadence() <em>Cadence</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCadence()
-	 * @generated
-	 * @ordered
-	 */
-	protected ICadence cadence;
-
-	/**
 	 * The cached value of the '{@link #getResourcePkg() <em>Resource Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,7 +52,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	 * @generated
 	 * @ordered
 	 */
-	protected ResourcePkg resourcePkg;
+	protected org.sheepy.lily.core.model.application.ResourcePkg resourcePkg;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorPkg() <em>Descriptor Pkg</em>}' containment reference.
@@ -145,84 +131,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	 * @generated
 	 */
 	@Override
-	public ICadence getCadence()
-	{
-		if (cadence != null && ((EObject)cadence).eIsProxy())
-		{
-			InternalEObject oldCadence = (InternalEObject)cadence;
-			cadence = (ICadence)eResolveProxy(oldCadence);
-			if (cadence != oldCadence)
-			{
-				InternalEObject newCadence = (InternalEObject)cadence;
-				NotificationChain msgs = oldCadence.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__CADENCE, null, null);
-				if (newCadence.eInternalContainer() == null)
-				{
-					msgs = newCadence.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__CADENCE, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanPackage.VULKAN_ENGINE__CADENCE, oldCadence, cadence));
-			}
-		}
-		return cadence;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ICadence basicGetCadence()
-	{
-		return cadence;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetCadence(ICadence newCadence, NotificationChain msgs)
-	{
-		ICadence oldCadence = cadence;
-		cadence = newCadence;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__CADENCE, oldCadence, newCadence);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setCadence(ICadence newCadence)
-	{
-		if (newCadence != cadence)
-		{
-			NotificationChain msgs = null;
-			if (cadence != null)
-				msgs = ((InternalEObject)cadence).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__CADENCE, null, msgs);
-			if (newCadence != null)
-				msgs = ((InternalEObject)newCadence).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__CADENCE, null, msgs);
-			msgs = basicSetCadence(newCadence, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__CADENCE, newCadence, newCadence));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourcePkg getResourcePkg()
+	public org.sheepy.lily.core.model.application.ResourcePkg getResourcePkg()
 	{
 		return resourcePkg;
 	}
@@ -232,9 +141,9 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResourcePkg(ResourcePkg newResourcePkg, NotificationChain msgs)
+	public NotificationChain basicSetResourcePkg(org.sheepy.lily.core.model.application.ResourcePkg newResourcePkg, NotificationChain msgs)
 	{
-		ResourcePkg oldResourcePkg = resourcePkg;
+		org.sheepy.lily.core.model.application.ResourcePkg oldResourcePkg = resourcePkg;
 		resourcePkg = newResourcePkg;
 		if (eNotificationRequired())
 		{
@@ -250,7 +159,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	 * @generated
 	 */
 	@Override
-	public void setResourcePkg(ResourcePkg newResourcePkg)
+	public void setResourcePkg(org.sheepy.lily.core.model.application.ResourcePkg newResourcePkg)
 	{
 		if (newResourcePkg != resourcePkg)
 		{
@@ -381,8 +290,6 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	{
 		switch (featureID)
 		{
-			case VulkanPackage.VULKAN_ENGINE__CADENCE:
-				return basicSetCadence(null, msgs);
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 				return basicSetResourcePkg(null, msgs);
 			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
@@ -403,9 +310,6 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	{
 		switch (featureID)
 		{
-			case VulkanPackage.VULKAN_ENGINE__CADENCE:
-				if (resolve) return getCadence();
-				return basicGetCadence();
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 				return getResourcePkg();
 			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
@@ -431,11 +335,8 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	{
 		switch (featureID)
 		{
-			case VulkanPackage.VULKAN_ENGINE__CADENCE:
-				setCadence((ICadence)newValue);
-				return;
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
-				setResourcePkg((ResourcePkg)newValue);
+				setResourcePkg((org.sheepy.lily.core.model.application.ResourcePkg)newValue);
 				return;
 			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)newValue);
@@ -465,11 +366,8 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	{
 		switch (featureID)
 		{
-			case VulkanPackage.VULKAN_ENGINE__CADENCE:
-				setCadence((ICadence)null);
-				return;
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
-				setResourcePkg((ResourcePkg)null);
+				setResourcePkg((org.sheepy.lily.core.model.application.ResourcePkg)null);
 				return;
 			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)null);
@@ -497,8 +395,6 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	{
 		switch (featureID)
 		{
-			case VulkanPackage.VULKAN_ENGINE__CADENCE:
-				return cadence != null;
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 				return resourcePkg != null;
 			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:

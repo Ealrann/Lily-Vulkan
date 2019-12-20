@@ -4,7 +4,7 @@ package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.sheepy.lily.vulkan.model.IResource;
+import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
@@ -27,19 +27,19 @@ import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
  * @model
  * @generated
  */
-public interface Shader extends IResource
+public interface Shader extends org.sheepy.lily.core.model.application.IResource
 {
 	/**
 	 * Returns the value of the '<em><b>File</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>File</em>' containment reference.
-	 * @see #setFile(PathResource)
+	 * @see #setFile(FileResource)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getShader_File()
 	 * @model containment="true"
 	 * @generated
 	 */
-	PathResource getFile();
+	FileResource getFile();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Shader#getFile <em>File</em>}' containment reference.
@@ -49,7 +49,7 @@ public interface Shader extends IResource
 	 * @see #getFile()
 	 * @generated
 	 */
-	void setFile(PathResource value);
+	void setFile(FileResource value);
 
 	/**
 	 * Returns the value of the '<em><b>Stage</b></em>' attribute.

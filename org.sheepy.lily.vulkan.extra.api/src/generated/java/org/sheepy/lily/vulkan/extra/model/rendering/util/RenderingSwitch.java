@@ -11,7 +11,6 @@ import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.*;
-import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
@@ -785,7 +784,7 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIResource(IResource object)
+	public T1 caseIResource(org.sheepy.lily.core.model.application.IResource object)
 	{
 		return null;
 	}

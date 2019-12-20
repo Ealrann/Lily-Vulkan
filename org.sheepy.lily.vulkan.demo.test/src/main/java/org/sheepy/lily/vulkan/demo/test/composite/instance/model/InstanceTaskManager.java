@@ -51,15 +51,9 @@ public class InstanceTaskManager
 	public final RotateConfiguration rotateConfig = BindingFactory.eINSTANCE.createRotateConfiguration();
 
 	private final BufferDataProvider<?> dataProvider;
-	private final int instanceCount;
-	private final ResourceContainer resourceContainer;
-
-	private int instance = 0;
 
 	public InstanceTaskManager(ResourceContainer resourceContainer, int instanceCount)
 	{
-		this.resourceContainer = resourceContainer;
-		this.instanceCount = instanceCount;
 		dataProvider = resourceContainer.compositeBuffer.getDataProviders().get(0);
 
 		preparePush.setCompositeBuffer(resourceContainer.compositeBuffer);
@@ -70,6 +64,8 @@ public class InstanceTaskManager
 
 		barrier.setSrcStage(EPipelineStage.TRANSFER_BIT);
 		barrier.setDstStage(EPipelineStage.COMPUTE_SHADER_BIT);
+		barrier.getBarriers().add(readBarrier);
+		barrier.getBarriers().add(writeBarrier);
 		readBarrier.setDataProvider(dataProvider);
 		writeBarrier.setDataProvider(dataProvider);
 
@@ -114,24 +110,5 @@ public class InstanceTaskManager
 		tasks.add(prepareFetch);
 		tasks.add(fetchTask);
 		tasks.add(rotateConfig);
-	}
-
-	public void nextInstance()
-	{
-		instance = (instance + 1) % instanceCount;
-		final int nextInstance = (instance + 1) % instanceCount;
-
-		resourceContainer.setupDescriptor(instance, nextInstance);
-	}
-
-	public void configure()
-	{
-		final int nextInstance = (instance + 1) % instanceCount;
-
-		pushReference.setInstance(instance);
-		fetchReference.setInstance(nextInstance);
-
-		readBarrier.setInstance(instance);
-		writeBarrier.setInstance(nextInstance);
 	}
 }

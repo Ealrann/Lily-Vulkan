@@ -1,31 +1,38 @@
 package org.sheepy.lily.vulkan.resource.file;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
 
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.vulkan.model.resource.FileResource;
-import org.sheepy.lily.vulkan.model.resource.PathResource;
+import org.lwjgl.system.MemoryUtil;
+import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
+import org.sheepy.lily.core.model.application.FileResource;
 
-@Adapter(scope = FileResource.class)
-public class FileResourceAdapter extends PathResourceAdapter
+public abstract class FileResourceAdapter implements IFileResourceAdapter
 {
 	@Override
-	protected InputStream getInputStream(PathResource resource)
+	public ByteBuffer allocByteBuffer(FileResource resource)
 	{
-		final var fileResource = (FileResource) resource;
-		final var file = new File(fileResource.getPath());
+		ByteBuffer buffer = null;
 
-		try
+		try (InputStream inputStream = getInputStream(resource))
 		{
-			return new FileInputStream(file);
-		} catch (final FileNotFoundException e)
+			final byte[] byteArray = inputStream.readAllBytes();
+			buffer = MemoryUtil.memAlloc(byteArray.length);
+			buffer.put(byteArray);
+			buffer.flip();
+		} catch (final Exception e)
 		{
+			logCantAccess(resource);
 			e.printStackTrace();
 		}
 
-		return null;
+		return buffer;
 	}
+
+	private static void logCantAccess(FileResource resource)
+	{
+		System.err.println("Can't access the file : " + resource.getPath());
+	}
+
+	abstract protected InputStream getInputStream(FileResource resource);
 }

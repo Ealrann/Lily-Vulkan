@@ -4,18 +4,18 @@ import java.nio.ByteBuffer;
 
 import org.joml.Vector2ic;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.vulkan.api.resource.IPathResourceAdapter;
-import org.sheepy.lily.vulkan.model.resource.PathResource;
+import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
+import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.vulkan.resource.image.STBImageLoader;
 
 public class ImageBuffer
 {
-	public final PathResource resource;
+	public final FileResource resource;
 
 	private ByteBuffer byteBuffer = null;
 	private Vector2ic size;
 
-	public ImageBuffer(PathResource resource)
+	public ImageBuffer(FileResource resource)
 	{
 		this.resource = resource;
 	}
@@ -24,7 +24,7 @@ public class ImageBuffer
 	{
 		if (byteBuffer == null)
 		{
-			final var fileAdapter = resource.adaptNotNull(IPathResourceAdapter.class);
+			final var fileAdapter = resource.adaptNotNull(IFileResourceAdapter.class);
 			byteBuffer = fileAdapter.allocByteBuffer(resource);
 			size = STBImageLoader.getSize(byteBuffer);
 		}

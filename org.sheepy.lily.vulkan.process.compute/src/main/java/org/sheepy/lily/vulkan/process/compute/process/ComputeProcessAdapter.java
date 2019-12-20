@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.process.IComputeContext;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
@@ -35,6 +36,12 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContex
 	protected Integer prepareNextExecution()
 	{
 		return 0;
+	}
+
+	@Override
+	protected List<IAllocable<? super IComputeContext>> getExtraAllocables()
+	{
+		return List.of();
 	}
 
 	@Override

@@ -92,9 +92,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.COMPOSITE_BUFFER_BARRIER: return createCompositeBufferBarrier();
 			case ResourcePackage.IMAGE_BARRIER: return createImageBarrier();
 			case ResourcePackage.SHADER: return createShader();
-			case ResourcePackage.FILE_RESOURCE: return createFileResource();
-			case ResourcePackage.MODULE_RESOURCE: return createModuleResource();
-			case ResourcePackage.STRING_MODULE_RESOURCE: return createStringModuleResource();
 			case ResourcePackage.TEXTURE2_DARRAY: return createTexture2DArray();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -115,8 +112,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 				return createEFlushModeFromString(eDataType, initialValue);
 			case ResourcePackage.BYTE_BUFFER:
 				return createByteBufferFromString(eDataType, initialValue);
-			case ResourcePackage.JAVA_MODULE:
-				return createJavaModuleFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -136,8 +131,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 				return convertEFlushModeToString(eDataType, instanceValue);
 			case ResourcePackage.BYTE_BUFFER:
 				return convertByteBufferToString(eDataType, instanceValue);
-			case ResourcePackage.JAVA_MODULE:
-				return convertJavaModuleToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -449,42 +442,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
-	public FileResource createFileResource()
-	{
-		FileResourceImpl fileResource = new FileResourceImpl();
-		return fileResource;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ModuleResource createModuleResource()
-	{
-		ModuleResourceImpl moduleResource = new ModuleResourceImpl();
-		return moduleResource;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public StringModuleResource createStringModuleResource()
-	{
-		StringModuleResourceImpl stringModuleResource = new StringModuleResourceImpl();
-		return stringModuleResource;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Texture2DArray createTexture2DArray()
 	{
 		Texture2DArrayImpl texture2DArray = new Texture2DArrayImpl();
@@ -529,26 +486,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	public String convertByteBufferToString(EDataType eDataType, Object instanceValue)
-	{
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Module createJavaModuleFromString(EDataType eDataType, String initialValue)
-	{
-		return (Module)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertJavaModuleToString(EDataType eDataType, Object instanceValue)
 	{
 		return super.convertToString(eDataType, instanceValue);
 	}

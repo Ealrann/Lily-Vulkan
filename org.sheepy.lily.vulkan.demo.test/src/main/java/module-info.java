@@ -1,14 +1,9 @@
 import org.sheepy.lily.core.api.adapter.annotation.Adapters;
-import org.sheepy.lily.vulkan.demo.test.composite.grow.adapter.GrowEngineProvider;
 import org.sheepy.lily.vulkan.demo.test.composite.grow.adapter.TestDataProviderAdapter;
 import org.sheepy.lily.vulkan.demo.test.composite.instance.adapter.InstanceDataProviderAdapter;
-import org.sheepy.lily.vulkan.demo.test.composite.instance.adapter.InstanceEngineProvider;
 
 @Adapters(classifiers = {
-		TestDataProviderAdapter.class,
-		GrowEngineProvider.class,
-		InstanceDataProviderAdapter.class,
-		InstanceEngineProvider.class
+		TestDataProviderAdapter.class, InstanceDataProviderAdapter.class,
 })
 
 module org.sheepy.lily.vulkan.demo.test

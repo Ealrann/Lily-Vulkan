@@ -48,9 +48,10 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 	private final VkInputStateDescriptor vertexDescriptor;
 	private final List<VkShaderStage> shaderStages;
 	private final ByteBuffer specializationData;
-
-	protected long pipelineId = -1;
+	private final boolean depthStencil;
 	private final int subpass;
+
+	protected long pipelinePtr = 0;
 
 	public VkGraphicsPipeline(	VkPipelineLayout<? super IGraphicContext> pipelineLayout,
 								ColorBlend colorBlend,
@@ -61,7 +62,8 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 								VkInputStateDescriptor vertexBufferDescriptor,
 								List<VkShaderStage> shaderStages,
 								ByteBuffer specializationData,
-								int subpass)
+								int subpass,
+								boolean depthStencil)
 	{
 		super(VK_PIPELINE_BIND_POINT_GRAPHICS);
 
@@ -75,6 +77,7 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 		this.shaderStages = shaderStages;
 		this.specializationData = specializationData;
 		this.subpass = subpass;
+		this.depthStencil = depthStencil;
 
 		shaderStageBuilder = new ShaderStageBuilder();
 		inputAssemblyBuilder = new InputAssemblyBuilder();
@@ -91,12 +94,9 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 	{
 		final var device = context.getVkDevice();
 		final var surfaceManager = context.getSurfaceManager();
-		final var framebuffers = context.getFramebufferManager();
 		final var renderPass = context.getRenderPass();
 		final var extent = surfaceManager.getExtent();
 		final var stack = context.stack();
-
-		final boolean useDepthBuffer = framebuffers.hasDepthAttachment();
 
 		// Create Pipeline
 		// -----------------------
@@ -110,14 +110,14 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 		info.pViewportState(viewportStateBuilder.allocCreateInfo(stack, extent, viewportState));
 		info.pRasterizationState(rasterizerBuilder.allocCreateInfo(stack, rasterizer));
 		info.pMultisampleState(multisampleBuilder.allocCreateInfo(stack));
-		if (useDepthBuffer == true)
+		if (depthStencil == true)
 			info.pDepthStencilState(depthStencilBuidler.allocCreateInfo(stack));
 		info.pColorBlendState(colorBlendBuilder.allocCreateInfo(stack, colorBlend));
 		if (dynamicState != null)
 			info.pDynamicState(dynamicStateBuilder.allocCreateInfo(stack, dynamicState));
 
 		info.layout(pipelineLayout.getId());
-		info.renderPass(renderPass.getAddress());
+		info.renderPass(renderPass.getPtr());
 		info.subpass(subpass);
 		info.basePipelineHandle(VK_NULL_HANDLE);
 		info.basePipelineIndex(-1);
@@ -125,21 +125,20 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 		final long[] aId = new long[1];
 		Logger.check(	FAILED_TO_CREATE_GRAPHICS_PIPELINE,
 						() -> vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, info, null, aId));
-		pipelineId = aId[0];
+		pipelinePtr = aId[0];
 	}
 
 	@Override
 	public void free(IGraphicContext context)
 	{
 		final var device = context.getVkDevice();
-
-		vkDestroyPipeline(device, pipelineId, null);
-		pipelineId = -1;
+		vkDestroyPipeline(device, pipelinePtr, null);
+		pipelinePtr = 0;
 	}
 
 	@Override
-	public long getPipelineId()
+	public long getPipelinePtr()
 	{
-		return pipelineId;
+		return pipelinePtr;
 	}
 }

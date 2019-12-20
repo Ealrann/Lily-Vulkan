@@ -1,13 +1,15 @@
 package org.sheepy.lily.vulkan.demo.gameoflife.model;
 
 import org.joml.Vector2ic;
+import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.core.model.application.IEngine;
+import org.sheepy.lily.core.model.application.ModuleResource;
+import org.sheepy.lily.core.model.application.ResourcePkg;
 import org.sheepy.lily.core.model.cadence.Cadence;
 import org.sheepy.lily.core.model.cadence.CadenceFactory;
 import org.sheepy.lily.vulkan.demo.gameoflife.compute.Board;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IDescriptor;
-import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.binding.BindingConfiguration;
@@ -22,11 +24,9 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.Image;
-import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
-import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
 import org.sheepy.vulkan.model.enumeration.EBindPoint;
@@ -40,34 +40,34 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 public final class EngineBuilder
 {
-	public static int FRAME_COUNT = 0;
 	public static final int WORKGROUP_SIDE = 8;
+	public static int FRAME_COUNT = 0;
 
 	private static final String SHADER_LIFE = "life.comp.spv";
 	private static final String SHADER_LIFE2PIXEL = "life2pixel.comp.spv";
 
 	private final Vector2ic size;
 
-	private GraphicProcess presentProcess;
+	public final StaticImage boardImage;
+
+	private GraphicProcess graphicProcess;
 	private ComputeProcess lifeProcess;
 	private ComputeProcess pixelProcess;
-	private StaticImage boardImage;
 	private ComputePipeline lifePipeline;
 	private ComputePipeline pixelPipeline;
-	private ResourcePkg sharedResources;
-	private DescriptorPkg sharedDescriptors;
 
 	public EngineBuilder(Vector2ic size)
 	{
 		this.size = size;
+		boardImage = BoardImageFactory.createBoardImage(size);
 	}
 
 	public IEngine build()
 	{
 		final VulkanEngine engine = VulkanFactory.eINSTANCE.createVulkanEngine();
 
-		sharedResources = VulkanFactory.eINSTANCE.createResourcePkg();
-		sharedDescriptors = VulkanFactory.eINSTANCE.createDescriptorPkg();
+		final var sharedResources = ApplicationFactory.eINSTANCE.createResourcePkg();
+		final var sharedDescriptors = VulkanFactory.eINSTANCE.createDescriptorPkg();
 
 		final var swapchainConfiguration = GraphicFactory.eINSTANCE.createSwapchainConfiguration();
 		swapchainConfiguration.getSwapImageUsages().add(EImageUsage.TRANSFER_DST);
@@ -83,18 +83,19 @@ public final class EngineBuilder
 		configuration.setSwapchainConfiguration(swapchainConfiguration);
 		configuration.setFramebufferConfiguration(framebufferConfiguration);
 
-		createComputeProcessPool();
+		createComputeProcessPool(sharedResources, sharedDescriptors);
 
-		presentProcess = newImageProcess();
-		presentProcess.setConfiguration(configuration);
-		presentProcess.setRenderPassInfo(newInfo());
+		graphicProcess = GraphicFactory.eINSTANCE.createGraphicProcess();
+		graphicProcess.setPartPkg(ProcessFactory.eINSTANCE.createProcessPartPkg());
+		graphicProcess.setConfiguration(configuration);
+		graphicProcess.setRenderPassInfo(newInfo());
+		graphicProcess.setCadence(buildGraphicCadence(FRAME_COUNT));
 
 		engine.getProcesses().add(lifeProcess);
 		engine.getProcesses().add(pixelProcess);
-		engine.getProcesses().add(presentProcess);
+		engine.getProcesses().add(graphicProcess);
 		engine.setResourcePkg(sharedResources);
 		engine.setDescriptorPkg(sharedDescriptors);
-		engine.setCadence(buildCadence(FRAME_COUNT));
 
 		return engine;
 	}
@@ -102,10 +103,8 @@ public final class EngineBuilder
 	private static RenderPassInfo newInfo()
 	{
 		final var renderPass = GraphicFactory.eINSTANCE.createRenderPassInfo();
-		final var subpass = GraphicFactory.eINSTANCE.createSubpass();
-		renderPass.getSubpasses().add(subpass);
 
-		final var colorAttachment = GraphicFactory.eINSTANCE.createSwapImageAttachmentDescription();
+		final var colorAttachment = GraphicFactory.eINSTANCE.createSwapImageAttachment();
 		colorAttachment.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
 		colorAttachment.setLoadOp(EAttachmentLoadOp.LOAD);
 		colorAttachment.setStoreOp(EAttachmentStoreOp.STORE);
@@ -114,91 +113,23 @@ public final class EngineBuilder
 		colorAttachment.setInitialLayout(EImageLayout.TRANSFER_DST_OPTIMAL);
 		colorAttachment.setFinalLayout(EImageLayout.PRESENT_SRC_KHR);
 
-		renderPass.getAttachments().add(colorAttachment);
-
-		final var colorRef = GraphicFactory.eINSTANCE.createAttachmentRef();
-		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
-		colorRef.setAttachment(colorAttachment);
-		subpass.getRefs().add(colorRef);
-
-		final var dependencyExt = GraphicFactory.eINSTANCE.createSubpassDependency();
-		dependencyExt.setSrcSubpass(null);
-		dependencyExt.setDstSubpass(subpass);
-		dependencyExt.getSrcStageMask().add(EPipelineStage.TRANSFER_BIT);
-		dependencyExt.getDstStageMask().add(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
-		dependencyExt.getSrcAccesses().add(EAccess.TRANSFER_WRITE_BIT);
-		dependencyExt.getDstAccesses().add(EAccess.COLOR_ATTACHMENT_READ_BIT);
-		dependencyExt.getDstAccesses().add(EAccess.COLOR_ATTACHMENT_WRITE_BIT);
-
-		renderPass.getDependencies().add(dependencyExt);
+		renderPass.setColorAttachment(colorAttachment);
 
 		return renderPass;
 	}
 
-	private GraphicProcess newImageProcess()
-	{
-		final var imagePipeline = ProcessFactory.eINSTANCE.createPipeline();
-
-		final var imageBarrier1 = ResourceFactory.eINSTANCE.createImageBarrier();
-		imageBarrier1.setImage(boardImage);
-		imageBarrier1.getSrcAccessMask().add(EAccess.SHADER_WRITE_BIT);
-		imageBarrier1.getDstAccessMask().add(EAccess.TRANSFER_READ_BIT);
-		imageBarrier1.setSrcLayout(EImageLayout.UNDEFINED);
-		imageBarrier1.setDstLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
-
-		final var swapImageBarrier = GraphicFactory.eINSTANCE.createSwapImageBarrier();
-		swapImageBarrier.getSrcAccessMask().add(EAccess.SHADER_WRITE_BIT);
-		swapImageBarrier.getDstAccessMask().add(EAccess.TRANSFER_WRITE_BIT);
-		swapImageBarrier.setSrcLayout(EImageLayout.UNDEFINED);
-		swapImageBarrier.setDstLayout(EImageLayout.TRANSFER_DST_OPTIMAL);
-
-		final var pipelineBarrier1 = ProcessFactory.eINSTANCE.createPipelineBarrier();
-		pipelineBarrier1.setSrcStage(EPipelineStage.COMPUTE_SHADER_BIT);
-		pipelineBarrier1.setDstStage(EPipelineStage.TRANSFER_BIT);
-		pipelineBarrier1.getBarriers().add(imageBarrier1);
-		pipelineBarrier1.getBarriers().add(swapImageBarrier);
-
-		final var blit = GraphicFactory.eINSTANCE.createBlitToSwapImage();
-		blit.setImage(boardImage);
-
-		final var imageBarrier2 = ResourceFactory.eINSTANCE.createImageBarrier();
-		imageBarrier2.setImage(boardImage);
-		imageBarrier2.getSrcAccessMask().add(EAccess.TRANSFER_READ_BIT);
-		imageBarrier2.getDstAccessMask().add(EAccess.SHADER_WRITE_BIT);
-		imageBarrier2.setSrcLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
-		imageBarrier2.setDstLayout(EImageLayout.GENERAL);
-
-		final var pipelineBarrier2 = ProcessFactory.eINSTANCE.createPipelineBarrier();
-		pipelineBarrier2.setSrcStage(EPipelineStage.TRANSFER_BIT);
-		pipelineBarrier2.setDstStage(EPipelineStage.COMPUTE_SHADER_BIT);
-		pipelineBarrier2.getBarriers().add(imageBarrier2);
-
-		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
-		taskPkg.getTasks().add(pipelineBarrier1);
-		taskPkg.getTasks().add(blit);
-		taskPkg.getTasks().add(pipelineBarrier2);
-
-		imagePipeline.setStage(ECommandStage.TRANSFER);
-		imagePipeline.setTaskPkg(taskPkg);
-
-		final GraphicProcess graphicProcess = GraphicFactory.eINSTANCE.createGraphicProcess();
-		graphicProcess.setPartPkg(ProcessFactory.eINSTANCE.createProcessPartPkg());
-		graphicProcess.getPartPkg().getParts().add(imagePipeline);
-
-		return graphicProcess;
-	}
-
-	private void createComputeProcessPool()
+	private void createComputeProcessPool(	ResourcePkg sharedResources,
+											DescriptorPkg sharedDescriptors)
 	{
 		lifeProcess = ComputeFactory.eINSTANCE.createComputeProcess();
 		pixelProcess = ComputeFactory.eINSTANCE.createComputeProcess();
 		final Module thisModule = getClass().getModule();
 
-		final ModuleResource lifeShaderFile = ResourceFactory.eINSTANCE.createModuleResource();
+		final ModuleResource lifeShaderFile = ApplicationFactory.eINSTANCE.createModuleResource();
 		lifeShaderFile.setModule(thisModule);
 		lifeShaderFile.setPath(SHADER_LIFE);
 
-		final ModuleResource life2pixelShaderFile = ResourceFactory.eINSTANCE.createModuleResource();
+		final ModuleResource life2pixelShaderFile = ApplicationFactory.eINSTANCE.createModuleResource();
 		life2pixelShaderFile.setModule(thisModule);
 		life2pixelShaderFile.setPath(SHADER_LIFE2PIXEL);
 
@@ -213,7 +144,6 @@ public final class EngineBuilder
 		final Board board = Board.createTestBoard(size);
 		final Buffer boardBuffer1 = BoardBufferFactory.createBoardBuffer(board);
 		final Buffer boardBuffer2 = BoardBufferFactory.createBoardBuffer(board);
-		boardImage = BoardImageFactory.createBoardImage(size);
 
 		final var boardBuffer1Descriptor = newDescriptor(boardBuffer1);
 		final var boardBuffer2Descriptor = newDescriptor(boardBuffer2);
@@ -314,7 +244,7 @@ public final class EngineBuilder
 		return res;
 	}
 
-	private final Cadence buildCadence(int frameCount)
+	private final Cadence buildGraphicCadence(int frameCount)
 	{
 		final var runComputeLifeTask = VulkanFactory.eINSTANCE.createRunProcess();
 		final var runComputePixelTask = VulkanFactory.eINSTANCE.createRunProcess();
@@ -327,7 +257,7 @@ public final class EngineBuilder
 
 		runComputeLifeTask.setProcess(lifeProcess);
 		runComputePixelTask.setProcess(pixelProcess);
-		runGraphicTask.setProcess(presentProcess);
+		runGraphicTask.setProcess(graphicProcess);
 		printUPS.setPrintEveryMs(1200);
 		cadence.setFrequency(60);
 		executeWhile.getConditions().add(haveTime);

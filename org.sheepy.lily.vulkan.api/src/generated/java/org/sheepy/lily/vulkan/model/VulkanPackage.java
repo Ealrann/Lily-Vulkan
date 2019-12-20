@@ -73,15 +73,6 @@ public interface VulkanPackage extends EPackage
 	int VULKAN_ENGINE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Cadence</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_ENGINE__CADENCE = ApplicationPackage.IENGINE__CADENCE;
-
-	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -191,80 +182,6 @@ public interface VulkanPackage extends EPackage
 	int IRESOURCE_CONTAINER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl <em>Resource Pkg</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl
-	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getResourcePkg()
-	 * @generated
-	 */
-	int RESOURCE_PKG = 2;
-
-	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESOURCE_PKG__RESOURCES = 0;
-
-	/**
-	 * The number of structural features of the '<em>Resource Pkg</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESOURCE_PKG_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Resource Pkg</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESOURCE_PKG_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IResource <em>IResource</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.IResource
-	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIResource()
-	 * @generated
-	 */
-	int IRESOURCE = 3;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IRESOURCE__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
-
-	/**
-	 * The number of structural features of the '<em>IResource</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IRESOURCE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>IResource</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IRESOURCE_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IProcess <em>IProcess</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -272,7 +189,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIProcess()
 	 * @generated
 	 */
-	int IPROCESS = 4;
+	int IPROCESS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -320,13 +237,22 @@ public interface VulkanPackage extends EPackage
 	int IPROCESS__QUEUE_PRIORITY = IRESOURCE_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Cadence</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROCESS__CADENCE = IRESOURCE_CONTAINER_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>IProcess</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPROCESS_FEATURE_COUNT = IRESOURCE_CONTAINER_FEATURE_COUNT + 3;
+	int IPROCESS_FEATURE_COUNT = IRESOURCE_CONTAINER_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>IProcess</em>' class.
@@ -345,7 +271,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIExecutionManager()
 	 * @generated
 	 */
-	int IEXECUTION_MANAGER = 5;
+	int IEXECUTION_MANAGER = 3;
 
 	/**
 	 * The number of structural features of the '<em>IExecution Manager</em>' class.
@@ -373,7 +299,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getRunProcess()
 	 * @generated
 	 */
-	int RUN_PROCESS = 6;
+	int RUN_PROCESS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Process</b></em>' reference.
@@ -410,7 +336,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getWaitProcessIdle()
 	 * @generated
 	 */
-	int WAIT_PROCESS_IDLE = 7;
+	int WAIT_PROCESS_IDLE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Process</b></em>' reference.
@@ -447,7 +373,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getDescriptorPkg()
 	 * @generated
 	 */
-	int DESCRIPTOR_PKG = 8;
+	int DESCRIPTOR_PKG = 6;
 
 	/**
 	 * The feature id for the '<em><b>Descriptors</b></em>' containment reference list.
@@ -484,7 +410,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIDescriptor()
 	 * @generated
 	 */
-	int IDESCRIPTOR = 9;
+	int IDESCRIPTOR = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -607,37 +533,6 @@ public interface VulkanPackage extends EPackage
 	EReference getIResourceContainer_DescriptorPkg();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.ResourcePkg <em>Resource Pkg</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Resource Pkg</em>'.
-	 * @see org.sheepy.lily.vulkan.model.ResourcePkg
-	 * @generated
-	 */
-	EClass getResourcePkg();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.ResourcePkg#getResources <em>Resources</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Resources</em>'.
-	 * @see org.sheepy.lily.vulkan.model.ResourcePkg#getResources()
-	 * @see #getResourcePkg()
-	 * @generated
-	 */
-	EReference getResourcePkg_Resources();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IResource <em>IResource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>IResource</em>'.
-	 * @see org.sheepy.lily.vulkan.model.IResource
-	 * @generated
-	 */
-	EClass getIResource();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IProcess <em>IProcess</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -668,6 +563,17 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getIProcess_QueuePriority();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.IProcess#getCadence <em>Cadence</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Cadence</em>'.
+	 * @see org.sheepy.lily.vulkan.model.IProcess#getCadence()
+	 * @see #getIProcess()
+	 * @generated
+	 */
+	EReference getIProcess_Cadence();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IExecutionManager <em>IExecution Manager</em>}'.
@@ -859,34 +765,6 @@ public interface VulkanPackage extends EPackage
 		EReference IRESOURCE_CONTAINER__DESCRIPTOR_PKG = eINSTANCE.getIResourceContainer_DescriptorPkg();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl <em>Resource Pkg</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl
-		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getResourcePkg()
-		 * @generated
-		 */
-		EClass RESOURCE_PKG = eINSTANCE.getResourcePkg();
-
-		/**
-		 * The meta object literal for the '<em><b>Resources</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference RESOURCE_PKG__RESOURCES = eINSTANCE.getResourcePkg_Resources();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IResource <em>IResource</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.IResource
-		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIResource()
-		 * @generated
-		 */
-		EClass IRESOURCE = eINSTANCE.getIResource();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IProcess <em>IProcess</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -911,6 +789,14 @@ public interface VulkanPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute IPROCESS__QUEUE_PRIORITY = eINSTANCE.getIProcess_QueuePriority();
+
+		/**
+		 * The meta object literal for the '<em><b>Cadence</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IPROCESS__CADENCE = eINSTANCE.getIProcess_Cadence();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IExecutionManager <em>IExecution Manager</em>}' class.

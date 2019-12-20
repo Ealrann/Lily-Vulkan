@@ -33,7 +33,6 @@ import org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl;
 import org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl;
-import org.sheepy.lily.vulkan.model.resource.AbstractModuleResource;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
@@ -48,15 +47,12 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
-import org.sheepy.lily.vulkan.model.resource.FileResource;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageDescriptor;
-import org.sheepy.lily.vulkan.model.resource.ModuleResource;
-import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
@@ -66,7 +62,6 @@ import org.sheepy.lily.vulkan.model.resource.SamplerDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
-import org.sheepy.lily.vulkan.model.resource.StringModuleResource;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
@@ -286,41 +281,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass pathResourceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass fileResourceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass abstractModuleResourceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass moduleResourceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass stringModuleResourceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass texture2DArrayEClass = null;
 
 	/**
@@ -336,13 +296,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EDataType byteBufferEDataType = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType javaModuleEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1383,94 +1336,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getPathResource()
-	{
-		return pathResourceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getPathResource_Path()
-	{
-		return (EAttribute)pathResourceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getFileResource()
-	{
-		return fileResourceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getAbstractModuleResource()
-	{
-		return abstractModuleResourceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getModuleResource()
-	{
-		return moduleResourceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getModuleResource_Module()
-	{
-		return (EAttribute)moduleResourceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getStringModuleResource()
-	{
-		return stringModuleResourceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getStringModuleResource_ModuleName()
-	{
-		return (EAttribute)stringModuleResourceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getTexture2DArray()
 	{
 		return texture2DArrayEClass;
@@ -1529,17 +1394,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EDataType getByteBuffer()
 	{
 		return byteBufferEDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EDataType getJavaModule()
-	{
-		return javaModuleEDataType;
 	}
 
 	/**
@@ -1686,19 +1540,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(shaderEClass, SHADER__STAGE);
 		createEReference(shaderEClass, SHADER__CONSTANTS);
 
-		pathResourceEClass = createEClass(PATH_RESOURCE);
-		createEAttribute(pathResourceEClass, PATH_RESOURCE__PATH);
-
-		fileResourceEClass = createEClass(FILE_RESOURCE);
-
-		abstractModuleResourceEClass = createEClass(ABSTRACT_MODULE_RESOURCE);
-
-		moduleResourceEClass = createEClass(MODULE_RESOURCE);
-		createEAttribute(moduleResourceEClass, MODULE_RESOURCE__MODULE);
-
-		stringModuleResourceEClass = createEClass(STRING_MODULE_RESOURCE);
-		createEAttribute(stringModuleResourceEClass, STRING_MODULE_RESOURCE__MODULE_NAME);
-
 		texture2DArrayEClass = createEClass(TEXTURE2_DARRAY);
 		createEReference(texture2DArrayEClass, TEXTURE2_DARRAY__FILES);
 		createEAttribute(texture2DArrayEClass, TEXTURE2_DARRAY__MIPMAP_ENABLED);
@@ -1709,7 +1550,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		// Create data types
 		byteBufferEDataType = createEDataType(BYTE_BUFFER);
-		javaModuleEDataType = createEDataType(JAVA_MODULE);
 	}
 
 	/**
@@ -1737,10 +1577,11 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
+		ApplicationPackage theApplicationPackage = (ApplicationPackage)EPackage.Registry.INSTANCE.getEPackage(ApplicationPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		ImagePackage theImagePackage = (ImagePackage)EPackage.Registry.INSTANCE.getEPackage(ImagePackage.eNS_URI);
+		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		BarrierPackage theBarrierPackage = (BarrierPackage)EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
 		PipelinePackage thePipelinePackage = (PipelinePackage)EPackage.Registry.INSTANCE.getEPackage(PipelinePackage.eNS_URI);
 
@@ -1750,9 +1591,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		transferBufferEClass.getESuperTypes().add(theVulkanPackage.getIResource());
-		constantBufferEClass.getESuperTypes().add(theVulkanPackage.getIResource());
-		iBufferEClass.getESuperTypes().add(theVulkanPackage.getIResource());
+		transferBufferEClass.getESuperTypes().add(theApplicationPackage.getIResource());
+		constantBufferEClass.getESuperTypes().add(theApplicationPackage.getIResource());
+		iBufferEClass.getESuperTypes().add(theApplicationPackage.getIResource());
 		bufferEClass.getESuperTypes().add(this.getIBuffer());
 		compositeBufferEClass.getESuperTypes().add(this.getIBuffer());
 		compositePartReferenceEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
@@ -1760,14 +1601,14 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		compositeBufferReferenceEClass.getESuperTypes().add(this.getCompositePartReference());
 		compositeBufferReferenceEClass.getESuperTypes().add(this.getIBufferReference());
 		bufferDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		imageEClass.getESuperTypes().add(theVulkanPackage.getIResource());
+		imageEClass.getESuperTypes().add(theApplicationPackage.getIResource());
 		staticImageEClass.getESuperTypes().add(this.getImage());
 		staticImageEClass.getESuperTypes().add(theImagePackage.getImageInfo());
 		fileImageEClass.getESuperTypes().add(this.getImage());
-		sampledImageEClass.getESuperTypes().add(theVulkanPackage.getIResource());
+		sampledImageEClass.getESuperTypes().add(theApplicationPackage.getIResource());
 		samplerEClass.getESuperTypes().add(theImagePackage.getSamplerInfo());
-		samplerEClass.getESuperTypes().add(theVulkanPackage.getIResource());
-		semaphoreEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
+		samplerEClass.getESuperTypes().add(theApplicationPackage.getIResource());
+		semaphoreEClass.getESuperTypes().add(theApplicationPackage.getIResource());
 		fontImageEClass.getESuperTypes().add(this.getImage());
 		bufferDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		imageDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
@@ -1778,13 +1619,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		bufferBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractBufferBarrier());
 		compositeBufferBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractBufferBarrier());
 		imageBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractImageBarrier());
-		shaderEClass.getESuperTypes().add(theVulkanPackage.getIResource());
-		pathResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
-		fileResourceEClass.getESuperTypes().add(this.getPathResource());
-		abstractModuleResourceEClass.getESuperTypes().add(this.getPathResource());
-		moduleResourceEClass.getESuperTypes().add(this.getAbstractModuleResource());
-		stringModuleResourceEClass.getESuperTypes().add(this.getAbstractModuleResource());
-		texture2DArrayEClass.getESuperTypes().add(theVulkanPackage.getIResource());
+		shaderEClass.getESuperTypes().add(theApplicationPackage.getIResource());
+		texture2DArrayEClass.getESuperTypes().add(theApplicationPackage.getIResource());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(transferBufferEClass, TransferBuffer.class, "TransferBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1850,7 +1686,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getStaticImage_FillWith(), this.getByteBuffer(), "fillWith", null, 0, 1, StaticImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fileImageEClass, FileImage.class, "FileImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFileImage_File(), this.getPathResource(), null, "file", null, 0, 1, FileImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFileImage_File(), theApplicationPackage.getFileResource(), null, "file", null, 0, 1, FileImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFileImage_MipmapEnabled(), ecorePackage.getEBoolean(), "mipmapEnabled", "false", 0, 1, FileImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sampledImageEClass, SampledImage.class, "SampledImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1865,7 +1701,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getSemaphore_WaitStage(), theEnumerationPackage.getEPipelineStage(), "waitStage", null, 0, 1, Semaphore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fontImageEClass, FontImage.class, "FontImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFontImage_File(), this.getPathResource(), null, "file", null, 0, 1, FontImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFontImage_File(), theApplicationPackage.getFileResource(), null, "file", null, 0, 1, FontImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFontImage_Height(), ecorePackage.getEInt(), "height", "18", 0, 1, FontImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bufferDescriptorEClass, BufferDescriptor.class, "BufferDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1903,25 +1739,12 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getImageBarrier_Image(), this.getImage(), null, "image", null, 1, 1, ImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(shaderEClass, Shader.class, "Shader", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getShader_File(), this.getPathResource(), null, "file", null, 0, 1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getShader_File(), theApplicationPackage.getFileResource(), null, "file", null, 0, 1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getShader_Stage(), theEnumerationPackage.getEShaderStage(), "stage", null, 0, 1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getShader_Constants(), thePipelinePackage.getSpecializationConstant(), null, "constants", null, 0, -1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(pathResourceEClass, PathResource.class, "PathResource", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPathResource_Path(), ecorePackage.getEString(), "path", null, 0, 1, PathResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(fileResourceEClass, FileResource.class, "FileResource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(abstractModuleResourceEClass, AbstractModuleResource.class, "AbstractModuleResource", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(moduleResourceEClass, ModuleResource.class, "ModuleResource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModuleResource_Module(), this.getJavaModule(), "module", null, 0, 1, ModuleResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(stringModuleResourceEClass, StringModuleResource.class, "StringModuleResource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStringModuleResource_ModuleName(), ecorePackage.getEString(), "moduleName", null, 0, 1, StringModuleResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(texture2DArrayEClass, Texture2DArray.class, "Texture2DArray", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTexture2DArray_Files(), this.getPathResource(), null, "files", null, 1, -1, Texture2DArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTexture2DArray_Files(), theApplicationPackage.getFileResource(), null, "files", null, 1, -1, Texture2DArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTexture2DArray_MipmapEnabled(), ecorePackage.getEBoolean(), "mipmapEnabled", "false", 0, 1, Texture2DArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTexture2DArray_InitialLayout(), theImagePackage.getImageLayout(), null, "initialLayout", null, 0, 1, Texture2DArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1932,7 +1755,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		// Initialize data types
 		initEDataType(byteBufferEDataType, ByteBuffer.class, "ByteBuffer", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(javaModuleEDataType, Module.class, "JavaModule", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -17,7 +17,6 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getRequiredSwapImageCount <em>Required Swap Image Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getSwapImageUsages <em>Swap Image Usages</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getAtachments <em>Atachments</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isPresentWhenVBlank <em>Present When VBlank</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isAcquireWaitForVBlank <em>Acquire Wait For VBlank</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isAllowingAccessFromCompute <em>Allowing Access From Compute</em>}</li>
@@ -66,18 +65,6 @@ public interface SwapchainConfiguration extends ILilyEObject
 	 * @generated
 	 */
 	EList<EImageUsage> getSwapImageUsages();
-
-	/**
-	 * Returns the value of the '<em><b>Atachments</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Atachments</em>' containment reference list.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSwapchainConfiguration_Atachments()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ISwapAttachment> getAtachments();
 
 	/**
 	 * Returns the value of the '<em><b>Present When VBlank</b></em>' attribute.

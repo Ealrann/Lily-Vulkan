@@ -6,7 +6,6 @@ module org.sheepy.lily.vulkan.api
 	requires transitive org.sheepy.vulkan;
 	requires transitive org.sheepy.lily.core.api;
 
-	exports org.sheepy.lily.vulkan.api.allocation;
 	exports org.sheepy.lily.vulkan.api.barrier;
 	exports org.sheepy.lily.vulkan.api.engine;
 	exports org.sheepy.lily.vulkan.api.execution;
@@ -18,6 +17,7 @@ module org.sheepy.lily.vulkan.api
 	exports org.sheepy.lily.vulkan.api.resource.attachment;
 	exports org.sheepy.lily.vulkan.api.resource.buffer;
 	exports org.sheepy.lily.vulkan.api.util;
+	exports org.sheepy.lily.vulkan.api.view;
 
 	exports org.sheepy.lily.vulkan.model;
 	exports org.sheepy.lily.vulkan.model.impl;

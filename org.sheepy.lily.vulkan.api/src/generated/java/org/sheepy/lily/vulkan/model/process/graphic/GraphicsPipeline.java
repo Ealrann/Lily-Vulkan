@@ -33,6 +33,7 @@ import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getDynamicState <em>Dynamic State</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getSubpass <em>Subpass</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexInputState <em>Vertex Input State</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#isDepthStencil <em>Depth Stencil</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline()
@@ -207,5 +208,28 @@ public interface GraphicsPipeline extends IPipeline, Maintainable<GraphicsPipeli
 	 * @generated
 	 */
 	void setVertexInputState(VertexInputState value);
+
+	/**
+	 * Returns the value of the '<em><b>Depth Stencil</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Depth Stencil</em>' attribute.
+	 * @see #setDepthStencil(boolean)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline_DepthStencil()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isDepthStencil();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#isDepthStencil <em>Depth Stencil</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Depth Stencil</em>' attribute.
+	 * @see #isDepthStencil()
+	 * @generated
+	 */
+	void setDepthStencil(boolean value);
 
 } // GraphicsPipeline

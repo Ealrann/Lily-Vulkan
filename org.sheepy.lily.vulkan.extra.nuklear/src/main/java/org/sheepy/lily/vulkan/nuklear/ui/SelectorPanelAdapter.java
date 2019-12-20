@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.joml.Vector3fc;
 import org.lwjgl.nuklear.NkColor;
 import org.lwjgl.nuklear.NkImage;
@@ -132,7 +132,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 		backgroundColor = context.nkContext.style().window().fixed_background().data().color();
 	}
 
-	public void updateDataLocations(Vector2i size)
+	public void updateDataLocations(Vector2ic size)
 	{
 		int x = UIUtil.computeXRelative(size, panel, width);
 		int y = UIUtil.computeYRelative(size, panel, height);

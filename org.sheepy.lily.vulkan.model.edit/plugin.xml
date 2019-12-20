@@ -114,6 +114,9 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated LilyVulkan -->
       <extender
+            uri="org.sheepy.lily.core.model.application"
+            class="org.sheepy.lily.vulkan.model.resource.provider.ResourceItemProviderAdapterFactory$ApplicationChildCreationExtender"/>
+      <extender
             uri="org.sheepy.lily.vulkan.model.process"
             class="org.sheepy.lily.vulkan.model.resource.provider.ResourceItemProviderAdapterFactory$ProcessChildCreationExtender"/>
    </extension>

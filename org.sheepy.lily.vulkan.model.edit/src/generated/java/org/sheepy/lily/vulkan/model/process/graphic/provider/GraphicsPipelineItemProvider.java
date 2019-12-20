@@ -20,6 +20,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -71,6 +72,7 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 			addSpecializationDataPropertyDescriptor(object);
 			addShadersPropertyDescriptor(object);
 			addSubpassPropertyDescriptor(object);
+			addDepthStencilPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -214,6 +216,29 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
+	 * This adds a property descriptor for the Depth Stencil feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDepthStencilPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GraphicsPipeline_depthStencil_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicsPipeline_depthStencil_feature", "_UI_GraphicsPipeline_type"),
+				 GraphicPackage.Literals.GRAPHICS_PIPELINE__DEPTH_STENCIL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -302,6 +327,7 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 			case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
 			case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
 			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
+			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
@@ -336,7 +362,7 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-				 VulkanFactory.eINSTANCE.createResourcePkg()));
+				 ApplicationFactory.eINSTANCE.createResourcePkg()));
 
 		newChildDescriptors.add
 			(createChildParameter

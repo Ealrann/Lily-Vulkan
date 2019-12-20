@@ -17,8 +17,8 @@ public abstract class VkPipeline<T extends IExecutionContext> implements IAlloca
 
 	public void bindPipeline(VkCommandBuffer commandBuffer)
 	{
-		vkCmdBindPipeline(commandBuffer, bindPoint, getPipelineId());
+		vkCmdBindPipeline(commandBuffer, bindPoint, getPipelinePtr());
 	}
 
-	protected abstract long getPipelineId();
+	protected abstract long getPipelinePtr();
 }

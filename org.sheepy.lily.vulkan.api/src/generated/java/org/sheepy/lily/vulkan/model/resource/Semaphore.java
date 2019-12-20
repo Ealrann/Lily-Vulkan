@@ -2,8 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
-import org.sheepy.lily.core.model.types.LNamedElement;
-
+import org.sheepy.lily.core.model.application.IResource;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
@@ -23,7 +22,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * @model
  * @generated
  */
-public interface Semaphore extends LNamedElement
+public interface Semaphore extends IResource
 {
 	/**
 	 * Returns the value of the '<em><b>Signalized At Init</b></em>' attribute.

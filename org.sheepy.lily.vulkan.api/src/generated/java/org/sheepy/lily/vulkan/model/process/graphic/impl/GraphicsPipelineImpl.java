@@ -25,7 +25,6 @@ import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.process.IProcessPart;
@@ -75,6 +74,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getDynamicState <em>Dynamic State</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getSubpass <em>Subpass</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getVertexInputState <em>Vertex Input State</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#isDepthStencil <em>Depth Stencil</em>}</li>
  * </ul>
  *
  * @generated
@@ -109,7 +109,7 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	 * @generated
 	 * @ordered
 	 */
-	protected ResourcePkg resourcePkg;
+	protected org.sheepy.lily.core.model.application.ResourcePkg resourcePkg;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorPkg() <em>Descriptor Pkg</em>}' containment reference.
@@ -302,6 +302,26 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	protected VertexInputState vertexInputState;
 
 	/**
+	 * The default value of the '{@link #isDepthStencil() <em>Depth Stencil</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDepthStencil()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DEPTH_STENCIL_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDepthStencil() <em>Depth Stencil</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDepthStencil()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean depthStencil = DEPTH_STENCIL_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -353,7 +373,7 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	 * @generated
 	 */
 	@Override
-	public ResourcePkg getResourcePkg()
+	public org.sheepy.lily.core.model.application.ResourcePkg getResourcePkg()
 	{
 		return resourcePkg;
 	}
@@ -363,9 +383,9 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResourcePkg(ResourcePkg newResourcePkg, NotificationChain msgs)
+	public NotificationChain basicSetResourcePkg(org.sheepy.lily.core.model.application.ResourcePkg newResourcePkg, NotificationChain msgs)
 	{
-		ResourcePkg oldResourcePkg = resourcePkg;
+		org.sheepy.lily.core.model.application.ResourcePkg oldResourcePkg = resourcePkg;
 		resourcePkg = newResourcePkg;
 		if (eNotificationRequired())
 		{
@@ -381,7 +401,7 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	 * @generated
 	 */
 	@Override
-	public void setResourcePkg(ResourcePkg newResourcePkg)
+	public void setResourcePkg(org.sheepy.lily.core.model.application.ResourcePkg newResourcePkg)
 	{
 		if (newResourcePkg != resourcePkg)
 		{
@@ -1073,6 +1093,31 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public boolean isDepthStencil()
+	{
+		return depthStencil;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDepthStencil(boolean newDepthStencil)
+	{
+		boolean oldDepthStencil = depthStencil;
+		depthStencil = newDepthStencil;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL, oldDepthStencil, depthStencil));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
@@ -1173,6 +1218,8 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				return getSubpass();
 			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
 				return getVertexInputState();
+			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
+				return isDepthStencil();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1192,7 +1239,7 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				setName((String)newValue);
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-				setResourcePkg((ResourcePkg)newValue);
+				setResourcePkg((org.sheepy.lily.core.model.application.ResourcePkg)newValue);
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)newValue);
@@ -1244,6 +1291,9 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
 				setVertexInputState((VertexInputState)newValue);
 				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
+				setDepthStencil((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1262,7 +1312,7 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				setName(NAME_EDEFAULT);
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-				setResourcePkg((ResourcePkg)null);
+				setResourcePkg((org.sheepy.lily.core.model.application.ResourcePkg)null);
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)null);
@@ -1311,6 +1361,9 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
 				setVertexInputState((VertexInputState)null);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
+				setDepthStencil(DEPTH_STENCIL_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -1362,6 +1415,8 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				return subpass != SUBPASS_EDEFAULT;
 			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
 				return vertexInputState != null;
+			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
+				return depthStencil != DEPTH_STENCIL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1455,6 +1510,8 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 		result.append(stage);
 		result.append(", subpass: ");
 		result.append(subpass);
+		result.append(", depthStencil: ");
+		result.append(depthStencil);
 		result.append(')');
 		return result.toString();
 	}

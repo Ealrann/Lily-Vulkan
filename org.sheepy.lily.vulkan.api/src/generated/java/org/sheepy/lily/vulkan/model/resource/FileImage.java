@@ -2,6 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
+import org.sheepy.lily.core.model.application.FileResource;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -27,12 +29,12 @@ public interface FileImage extends Image
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>File</em>' containment reference.
-	 * @see #setFile(PathResource)
+	 * @see #setFile(FileResource)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getFileImage_File()
 	 * @model containment="true"
 	 * @generated
 	 */
-	PathResource getFile();
+	FileResource getFile();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.FileImage#getFile <em>File</em>}' containment reference.
@@ -42,7 +44,7 @@ public interface FileImage extends Image
 	 * @see #getFile()
 	 * @generated
 	 */
-	void setFile(PathResource value);
+	void setFile(FileResource value);
 
 	/**
 	 * Returns the value of the '<em><b>Mipmap Enabled</b></em>' attribute.

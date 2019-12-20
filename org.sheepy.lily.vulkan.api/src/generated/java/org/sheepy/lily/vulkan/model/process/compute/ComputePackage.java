@@ -115,6 +115,15 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__QUEUE_PRIORITY = ProcessPackage.ABSTRACT_PROCESS__QUEUE_PRIORITY;
 
 	/**
+	 * The feature id for the '<em><b>Cadence</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PROCESS__CADENCE = ProcessPackage.ABSTRACT_PROCESS__CADENCE;
+
+	/**
 	 * The feature id for the '<em><b>Waiting Fence During Acquire</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

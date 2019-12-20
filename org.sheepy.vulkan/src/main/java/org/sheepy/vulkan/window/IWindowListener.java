@@ -2,14 +2,14 @@ package org.sheepy.vulkan.window;
 
 import java.util.EventListener;
 
-import org.joml.Vector2i;
+import org.joml.Vector2ic;
 
 public interface IWindowListener extends EventListener
 {
 	@FunctionalInterface
 	interface ISizeListener extends IWindowListener
 	{
-		void onResize(Vector2i size);
+		void onResize(Vector2ic size);
 	}
 
 	@FunctionalInterface

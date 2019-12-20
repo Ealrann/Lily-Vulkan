@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.api.resource.attachment;
 
 import org.sheepy.lily.vulkan.api.graphic.ClearInfo;
 
-public interface IDepthAttachmentAdapter extends ISwapAttachmentAdapter
+public interface IDepthAttachmentAdapter extends IExtraAttachmentAdapter
 {
 	@Override
 	default boolean isDepthAttachment()

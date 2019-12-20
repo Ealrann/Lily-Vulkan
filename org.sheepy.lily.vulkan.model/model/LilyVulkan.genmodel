@@ -89,7 +89,6 @@
     <genClasses ecoreClass="graphic.ecore#//SwapchainConfiguration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//SwapchainConfiguration/requiredSwapImageCount"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//SwapchainConfiguration/swapImageUsages"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//SwapchainConfiguration/atachments"/>
       <genFeatures createChild="false" propertyDescription="If true, should prevent tearing. The engine will prefer using FIFO or MAILBOX present mode, otherwise (if false), IMMEDIATE will be prefered."
           ecoreFeature="ecore:EAttribute graphic.ecore#//SwapchainConfiguration/presentWhenVBlank"/>
       <genFeatures createChild="false" propertyDescription="Will limit FPS, based on VBlank. The engine will prefer using FIFO."
@@ -99,7 +98,6 @@
     <genClasses ecoreClass="graphic.ecore#//FramebufferConfiguration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//FramebufferConfiguration/clearValue"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="graphic.ecore#//ISwapAttachment"/>
     <genClasses ecoreClass="graphic.ecore#//ImageAttachment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//ImageAttachment/clearValue"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//ImageAttachment/imageRef"/>
@@ -108,7 +106,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//DepthAttachment/clear"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//RenderPassInfo">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//RenderPassInfo/attachments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//RenderPassInfo/extraAttachments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//RenderPassInfo/colorAttachment"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//RenderPassInfo/subpasses"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//RenderPassInfo/dependencies"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//RenderPassInfo/bindPoint"/>
@@ -129,19 +128,17 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//SubpassDependency/srcAccesses"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//SubpassDependency/dstAccesses"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="graphic.ecore#//AttachmentDescription">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//AttachmentDescription/samples"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//AttachmentDescription/loadOp"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//AttachmentDescription/storeOp"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//AttachmentDescription/stencilLoadOp"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//AttachmentDescription/stencilStoreOp"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//AttachmentDescription/initialLayout"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//AttachmentDescription/finalLayout"/>
+    <genClasses image="false" ecoreClass="graphic.ecore#//Attachment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Attachment/samples"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Attachment/loadOp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Attachment/storeOp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Attachment/stencilLoadOp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Attachment/stencilStoreOp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Attachment/initialLayout"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Attachment/finalLayout"/>
     </genClasses>
-    <genClasses ecoreClass="graphic.ecore#//SwapImageAttachmentDescription"/>
-    <genClasses ecoreClass="graphic.ecore#//ExtraAttachmentDescription">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//ExtraAttachmentDescription/attachment"/>
-    </genClasses>
+    <genClasses ecoreClass="graphic.ecore#//SwapImageAttachment"/>
+    <genClasses image="false" ecoreClass="graphic.ecore#//ExtraAttachment"/>
     <genClasses ecoreClass="graphic.ecore#//GraphicProcess">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/configuration"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/renderPassInfo"/>
@@ -157,6 +154,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicsPipeline/dynamicState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//GraphicsPipeline/subpass"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicsPipeline/vertexInputState"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//GraphicsPipeline/depthStencil"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//SwapImageBarrier"/>
     <genClasses ecoreClass="graphic.ecore#//BlitToSwapImage">
@@ -306,7 +304,6 @@
       <genEnumLiterals ecoreEnumLiteral="resource.ecore#//EFlushMode/FETCH"/>
     </genEnums>
     <genDataTypes ecoreDataType="resource.ecore#//ByteBuffer"/>
-    <genDataTypes ecoreDataType="resource.ecore#//JavaModule"/>
     <genClasses ecoreClass="resource.ecore#//TransferBuffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/size"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/instanceCount"/>
@@ -420,17 +417,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Shader/stage"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Shader/constants"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="resource.ecore#//PathResource">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//PathResource/path"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//FileResource"/>
-    <genClasses image="false" ecoreClass="resource.ecore#//AbstractModuleResource"/>
-    <genClasses ecoreClass="resource.ecore#//ModuleResource">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ModuleResource/module"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//StringModuleResource">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StringModuleResource/moduleName"/>
-    </genClasses>
     <genClasses ecoreClass="resource.ecore#//Texture2DArray">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Texture2DArray/files"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Texture2DArray/mipmapEnabled"/>
@@ -449,13 +435,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//IResourceContainer/resourcePkg"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//IResourceContainer/descriptorPkg"/>
     </genClasses>
-    <genClasses ecoreClass="vulkan.ecore#//ResourcePkg">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//ResourcePkg/resources"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="vulkan.ecore#//IResource"/>
     <genClasses image="false" ecoreClass="vulkan.ecore#//IProcess">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IProcess/enabled"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IProcess/queuePriority"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//IProcess/cadence"/>
     </genClasses>
     <genClasses image="false" ecoreClass="vulkan.ecore#//IExecutionManager"/>
     <genClasses ecoreClass="vulkan.ecore#//RunProcess">

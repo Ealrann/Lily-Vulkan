@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.process.IProcessPart;
@@ -86,7 +85,7 @@ public class PipelineImpl extends LilyEObject implements Pipeline
 	 * @generated
 	 * @ordered
 	 */
-	protected ResourcePkg resourcePkg;
+	protected org.sheepy.lily.core.model.application.ResourcePkg resourcePkg;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorPkg() <em>Descriptor Pkg</em>}' containment reference.
@@ -230,7 +229,7 @@ public class PipelineImpl extends LilyEObject implements Pipeline
 	 * @generated
 	 */
 	@Override
-	public ResourcePkg getResourcePkg()
+	public org.sheepy.lily.core.model.application.ResourcePkg getResourcePkg()
 	{
 		return resourcePkg;
 	}
@@ -240,9 +239,9 @@ public class PipelineImpl extends LilyEObject implements Pipeline
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResourcePkg(ResourcePkg newResourcePkg, NotificationChain msgs)
+	public NotificationChain basicSetResourcePkg(org.sheepy.lily.core.model.application.ResourcePkg newResourcePkg, NotificationChain msgs)
 	{
-		ResourcePkg oldResourcePkg = resourcePkg;
+		org.sheepy.lily.core.model.application.ResourcePkg oldResourcePkg = resourcePkg;
 		resourcePkg = newResourcePkg;
 		if (eNotificationRequired())
 		{
@@ -258,7 +257,7 @@ public class PipelineImpl extends LilyEObject implements Pipeline
 	 * @generated
 	 */
 	@Override
-	public void setResourcePkg(ResourcePkg newResourcePkg)
+	public void setResourcePkg(org.sheepy.lily.core.model.application.ResourcePkg newResourcePkg)
 	{
 		if (newResourcePkg != resourcePkg)
 		{
@@ -606,7 +605,7 @@ public class PipelineImpl extends LilyEObject implements Pipeline
 				setName((String)newValue);
 				return;
 			case ProcessPackage.PIPELINE__RESOURCE_PKG:
-				setResourcePkg((ResourcePkg)newValue);
+				setResourcePkg((org.sheepy.lily.core.model.application.ResourcePkg)newValue);
 				return;
 			case ProcessPackage.PIPELINE__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)newValue);
@@ -648,7 +647,7 @@ public class PipelineImpl extends LilyEObject implements Pipeline
 				setName(NAME_EDEFAULT);
 				return;
 			case ProcessPackage.PIPELINE__RESOURCE_PKG:
-				setResourcePkg((ResourcePkg)null);
+				setResourcePkg((org.sheepy.lily.core.model.application.ResourcePkg)null);
 				return;
 			case ProcessPackage.PIPELINE__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)null);
