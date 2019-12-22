@@ -14,7 +14,6 @@ import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.core.api.resource.IResourceAdapter;
 import org.sheepy.lily.core.api.util.AbstractModelSetRegistry;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
@@ -24,6 +23,7 @@ import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorSetAdapter;
+import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
@@ -181,7 +181,7 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	@Override
 	public void collectResources(List<IAllocable<? super IExecutionContext>> collectIn)
 	{
-		RESOURCE_EXPLORER	.streamAdapt(pipeline, IResourceAdapter.class)
+		RESOURCE_EXPLORER	.streamAdapt(pipeline, IVulkanResourceAdapter.class)
 							.collect(Collectors.toCollection(() -> collectIn));
 		DESCRIPTOR_EXPLORER	.streamAdapt(pipeline, IDescriptorAdapter.class)
 							.collect(Collectors.toCollection(() -> collectIn));

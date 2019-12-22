@@ -10,13 +10,13 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.cadence.IStatistics;
-import org.sheepy.lily.core.api.resource.IResourceAdapter;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.api.process.IProcessPartAdapter;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
+import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
 import org.sheepy.lily.vulkan.common.process.IExecutionProcessAdapter;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -257,7 +257,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	private List<IAllocable<? super IExecutionContext>> gatherResources()
 	{
 		final List<IAllocable<? super IExecutionContext>> resources = new ArrayList<>();
-		RESOURCE_EXPLORER	.streamAdapt(process, IResourceAdapter.class)
+		RESOURCE_EXPLORER	.streamAdapt(process, IVulkanResourceAdapter.class)
 							.collect(Collectors.toCollection(() -> resources));
 		DESCRIPTOR_EXPLORER	.streamAdapt(process, IDescriptorAdapter.class)
 							.collect(Collectors.toCollection(() -> resources));

@@ -13,7 +13,6 @@ import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.cadence.ICadenceAdapter;
-import org.sheepy.lily.core.api.resource.IResourceAdapter;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.core.model.application.Application;
@@ -21,6 +20,7 @@ import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
+import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
 import org.sheepy.lily.vulkan.common.engine.utils.VulkanEngineAllocationRoot;
 import org.sheepy.lily.vulkan.common.engine.utils.VulkanEngineUtils;
@@ -202,7 +202,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private void allocate()
 	{
 		final List<IAllocable<? super IExecutionContext>> resources = new ArrayList<>();
-		RESOURCE_EXPLORER	.streamAdapt(engine, IResourceAdapter.class)
+		RESOURCE_EXPLORER	.streamAdapt(engine, IVulkanResourceAdapter.class)
 							.collect(Collectors.toCollection(() -> resources));
 		DESCRIPTOR_EXPLORER	.streamAdapt(engine, IDescriptorAdapter.class)
 							.collect(Collectors.toCollection(() -> resources));
