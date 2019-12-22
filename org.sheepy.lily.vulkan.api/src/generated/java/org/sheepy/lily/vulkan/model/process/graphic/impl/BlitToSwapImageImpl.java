@@ -9,7 +9,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.joml.Vector3ic;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
+import org.sheepy.lily.core.model.types.TypesFactory;
+import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
@@ -29,6 +32,7 @@ import org.sheepy.vulkan.model.enumeration.EFilter;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl#getImage <em>Image</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl#getFilter <em>Filter</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl#getClearColor <em>Clear Color</em>}</li>
  * </ul>
  *
  * @generated
@@ -104,6 +108,26 @@ public class BlitToSwapImageImpl extends LilyEObject implements BlitToSwapImage
 	 * @ordered
 	 */
 	protected EFilter filter = FILTER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getClearColor() <em>Clear Color</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClearColor()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Vector3ic CLEAR_COLOR_EDEFAULT = (Vector3ic)TypesFactory.eINSTANCE.createFromString(TypesPackage.eINSTANCE.getVector3i(), "0;0;0");
+
+	/**
+	 * The cached value of the '{@link #getClearColor() <em>Clear Color</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClearColor()
+	 * @generated
+	 * @ordered
+	 */
+	protected Vector3ic clearColor = CLEAR_COLOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -252,6 +276,31 @@ public class BlitToSwapImageImpl extends LilyEObject implements BlitToSwapImage
 	 * @generated
 	 */
 	@Override
+	public Vector3ic getClearColor()
+	{
+		return clearColor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setClearColor(Vector3ic newClearColor)
+	{
+		Vector3ic oldClearColor = clearColor;
+		clearColor = newClearColor;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.BLIT_TO_SWAP_IMAGE__CLEAR_COLOR, oldClearColor, clearColor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -265,6 +314,8 @@ public class BlitToSwapImageImpl extends LilyEObject implements BlitToSwapImage
 				return basicGetImage();
 			case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
 				return getFilter();
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__CLEAR_COLOR:
+				return getClearColor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -290,6 +341,9 @@ public class BlitToSwapImageImpl extends LilyEObject implements BlitToSwapImage
 				return;
 			case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
 				setFilter((EFilter)newValue);
+				return;
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__CLEAR_COLOR:
+				setClearColor((Vector3ic)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -317,6 +371,9 @@ public class BlitToSwapImageImpl extends LilyEObject implements BlitToSwapImage
 			case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
 				setFilter(FILTER_EDEFAULT);
 				return;
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__CLEAR_COLOR:
+				setClearColor(CLEAR_COLOR_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -339,6 +396,8 @@ public class BlitToSwapImageImpl extends LilyEObject implements BlitToSwapImage
 				return image != null;
 			case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
 				return filter != FILTER_EDEFAULT;
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__CLEAR_COLOR:
+				return CLEAR_COLOR_EDEFAULT == null ? clearColor != null : !CLEAR_COLOR_EDEFAULT.equals(clearColor);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -360,6 +419,8 @@ public class BlitToSwapImageImpl extends LilyEObject implements BlitToSwapImage
 		result.append(enabled);
 		result.append(", filter: ");
 		result.append(filter);
+		result.append(", clearColor: ");
+		result.append(clearColor);
 		result.append(')');
 		return result.toString();
 	}

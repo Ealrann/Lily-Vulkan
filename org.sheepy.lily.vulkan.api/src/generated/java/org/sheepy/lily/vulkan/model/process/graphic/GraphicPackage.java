@@ -1557,13 +1557,22 @@ public interface GraphicPackage extends EPackage
 	int BLIT_TO_SWAP_IMAGE__FILTER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Clear Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TO_SWAP_IMAGE__CLEAR_COLOR = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Blit To Swap Image</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLIT_TO_SWAP_IMAGE_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
+	int BLIT_TO_SWAP_IMAGE_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Blit To Swap Image</em>' class.
@@ -2984,6 +2993,17 @@ public interface GraphicPackage extends EPackage
 	EAttribute getBlitToSwapImage_Filter();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage#getClearColor <em>Clear Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Clear Color</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage#getClearColor()
+	 * @see #getBlitToSwapImage()
+	 * @generated
+	 */
+	EAttribute getBlitToSwapImage_ClearColor();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed <em>Draw Indexed</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4022,6 +4042,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute BLIT_TO_SWAP_IMAGE__FILTER = eINSTANCE.getBlitToSwapImage_Filter();
+
+		/**
+		 * The meta object literal for the '<em><b>Clear Color</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BLIT_TO_SWAP_IMAGE__CLEAR_COLOR = eINSTANCE.getBlitToSwapImage_ClearColor();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DrawIndexedImpl <em>Draw Indexed</em>}' class.

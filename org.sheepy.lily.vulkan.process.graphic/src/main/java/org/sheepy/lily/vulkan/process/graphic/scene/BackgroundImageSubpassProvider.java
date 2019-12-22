@@ -17,6 +17,7 @@ import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.model.enumeration.EFilter;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.image.ImageFactory;
@@ -27,15 +28,8 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 	@Override
 	public SubpassData build(BackgroundImage part, SwapImageAttachment colorAttachment)
 	{
-		final var resource = part.getResource();
-		return build(colorAttachment, resource);
-	}
-
-	private static SubpassData build(	SwapImageAttachment colorAttachmentDescriptor,
-										IResource resource)
-	{
-		final var pipeline = buildPipeline(resource);
-		final var subpass = buildSubpass(colorAttachmentDescriptor);
+		final var pipeline = buildPipeline(part);
+		final var subpass = buildSubpass(colorAttachment);
 
 		return new SubpassData(	List.of(pipeline),
 								subpass,
@@ -57,10 +51,10 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 		return subpass;
 	}
 
-	private static Pipeline buildPipeline(IResource resource)
+	private static Pipeline buildPipeline(BackgroundImage part)
 	{
 		final var imagePipeline = ProcessFactory.eINSTANCE.createPipeline();
-		final var boardImage = getOrCreateImage(resource, imagePipeline);
+		final var boardImage = getOrCreateImage(part.getResource(), imagePipeline);
 
 		final var imageBarrier1 = ResourceFactory.eINSTANCE.createImageBarrier();
 		imageBarrier1.setImage(boardImage);
@@ -83,6 +77,16 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 
 		final var blit = GraphicFactory.eINSTANCE.createBlitToSwapImage();
 		blit.setImage(boardImage);
+		blit.setClearColor(part.getClearColor());
+		switch (part.getSampling())
+		{
+		case LINEAR:
+			blit.setFilter(EFilter.LINEAR);
+			break;
+		case NEAREST:
+			blit.setFilter(EFilter.NEAREST);
+			break;
+		}
 
 		final var imageBarrier2 = ResourceFactory.eINSTANCE.createImageBarrier();
 		imageBarrier2.setImage(boardImage);

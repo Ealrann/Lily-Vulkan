@@ -165,6 +165,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="filter" unique="false"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EFilter"
         defaultValueLiteral="NEAREST"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clearColor" lowerBound="1"
+        eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector3i"
+        defaultValueLiteral="0;0;0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DrawIndexed" eSuperTypes="process.ecore#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="indexCount" unique="false"

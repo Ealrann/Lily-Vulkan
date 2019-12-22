@@ -65,6 +65,7 @@ public class BlitToSwapImageItemProvider extends ItemProviderAdapter implements 
 			addEnabledPropertyDescriptor(object);
 			addImagePropertyDescriptor(object);
 			addFilterPropertyDescriptor(object);
+			addClearColorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -162,6 +163,29 @@ public class BlitToSwapImageItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
+	 * This adds a property descriptor for the Clear Color feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addClearColorPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BlitToSwapImage_clearColor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BlitToSwapImage_clearColor_feature", "_UI_BlitToSwapImage_type"),
+				 GraphicPackage.Literals.BLIT_TO_SWAP_IMAGE__CLEAR_COLOR,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns BlitToSwapImage.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -205,6 +229,7 @@ public class BlitToSwapImageItemProvider extends ItemProviderAdapter implements 
 			case GraphicPackage.BLIT_TO_SWAP_IMAGE__NAME:
 			case GraphicPackage.BLIT_TO_SWAP_IMAGE__ENABLED:
 			case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE__CLEAR_COLOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

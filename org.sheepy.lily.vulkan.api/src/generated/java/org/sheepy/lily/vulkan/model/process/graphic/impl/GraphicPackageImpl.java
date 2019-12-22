@@ -1127,6 +1127,17 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getBlitToSwapImage_ClearColor()
+	{
+		return (EAttribute)blitToSwapImageEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getDrawIndexed()
 	{
 		return drawIndexedEClass;
@@ -1677,6 +1688,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		blitToSwapImageEClass = createEClass(BLIT_TO_SWAP_IMAGE);
 		createEReference(blitToSwapImageEClass, BLIT_TO_SWAP_IMAGE__IMAGE);
 		createEAttribute(blitToSwapImageEClass, BLIT_TO_SWAP_IMAGE__FILTER);
+		createEAttribute(blitToSwapImageEClass, BLIT_TO_SWAP_IMAGE__CLEAR_COLOR);
 
 		drawIndexedEClass = createEClass(DRAW_INDEXED);
 		createEAttribute(drawIndexedEClass, DRAW_INDEXED__INDEX_COUNT);
@@ -1882,6 +1894,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEClass(blitToSwapImageEClass, BlitToSwapImage.class, "BlitToSwapImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBlitToSwapImage_Image(), theResourcePackage.getImage(), null, "image", null, 1, 1, BlitToSwapImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBlitToSwapImage_Filter(), theEnumerationPackage.getEFilter(), "filter", "NEAREST", 0, 1, BlitToSwapImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBlitToSwapImage_ClearColor(), theTypesPackage.getVector3i(), "clearColor", "0;0;0", 1, 1, BlitToSwapImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(drawIndexedEClass, DrawIndexed.class, "DrawIndexed", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDrawIndexed_IndexCount(), ecorePackage.getEInt(), "indexCount", null, 1, 1, DrawIndexed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

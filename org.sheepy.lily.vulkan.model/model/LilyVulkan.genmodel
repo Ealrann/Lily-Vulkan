@@ -161,6 +161,7 @@
     <genClasses ecoreClass="graphic.ecore#//BlitToSwapImage">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//BlitToSwapImage/image"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//BlitToSwapImage/filter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//BlitToSwapImage/clearColor"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//DrawIndexed">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//DrawIndexed/indexCount"/>
