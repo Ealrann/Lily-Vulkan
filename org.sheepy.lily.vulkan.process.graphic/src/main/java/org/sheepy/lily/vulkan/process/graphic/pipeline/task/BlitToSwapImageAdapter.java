@@ -53,6 +53,17 @@ public class BlitToSwapImageAdapter
 
 		imagePtr = imageAdapter.getImagePtr();
 
+		final float scale = Math.min(	(float) extent.getWidth() / imageInfo.width,
+										(float) extent.getHeight() / imageInfo.height);
+
+		final int dstWidth = (int) Math.ceil(scale * imageInfo.width);
+		final int dstHeight = (int) Math.ceil(scale * imageInfo.height);
+
+		int xOffset = 0;
+		int yOffset = 0;
+		if(dstWidth < extent.getWidth()) xOffset = (extent.getWidth() - dstWidth) / 2;
+		if(dstHeight < extent.getHeight()) yOffset = (extent.getHeight() - dstHeight) / 2;
+			
 		region = VkImageBlit.calloc(1);
 		region.srcSubresource().aspectMask(VK_IMAGE_ASPECT_COLOR_BIT);
 		region.srcSubresource().mipLevel(0);
@@ -68,12 +79,13 @@ public class BlitToSwapImageAdapter
 		region.dstSubresource().mipLevel(0);
 		region.dstSubresource().baseArrayLayer(0);
 		region.dstSubresource().layerCount(1);
-		region.dstOffsets(0).x(0);
-		region.dstOffsets(0).y(0);
+		region.dstOffsets(0).x(xOffset);
+		region.dstOffsets(0).y(yOffset);
 		region.dstOffsets(0).z(0);
-		region.dstOffsets(1).x(extent.getWidth());
-		region.dstOffsets(1).y(extent.getHeight());
+		region.dstOffsets(1).x(dstWidth + xOffset);
+		region.dstOffsets(1).y(dstHeight + yOffset);
 		region.dstOffsets(1).z(1);
+
 	}
 
 	@Override
