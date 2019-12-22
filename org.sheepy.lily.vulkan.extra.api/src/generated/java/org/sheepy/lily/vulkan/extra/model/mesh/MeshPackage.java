@@ -278,6 +278,15 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__DEPTH_STENCIL = RenderingPackage.GENERIC_RENDERER__DEPTH_STENCIL;
 
 	/**
+	 * The feature id for the '<em><b>Scene Part</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_RENDERER__SCENE_PART = RenderingPackage.GENERIC_RENDERER__SCENE_PART;
+
+	/**
 	 * The feature id for the '<em><b>Maintained</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

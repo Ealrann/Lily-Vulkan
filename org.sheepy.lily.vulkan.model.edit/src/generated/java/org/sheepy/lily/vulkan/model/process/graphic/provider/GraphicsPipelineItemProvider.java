@@ -73,6 +73,7 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 			addShadersPropertyDescriptor(object);
 			addSubpassPropertyDescriptor(object);
 			addDepthStencilPropertyDescriptor(object);
+			addScenePartPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -234,6 +235,29 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Scene Part feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addScenePartPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GraphicsPipeline_scenePart_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicsPipeline_scenePart_feature", "_UI_GraphicsPipeline_type"),
+				 GraphicPackage.Literals.GRAPHICS_PIPELINE__SCENE_PART,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -418,30 +442,6 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 			(createChildParameter
 				(GraphicPackage.Literals.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE,
 				 GraphicFactory.eINSTANCE.createVertexInputState()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection)
-	{
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == ProcessPackage.Literals.IPIPELINE__TASK_PKG;
-
-		if (qualify)
-		{
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

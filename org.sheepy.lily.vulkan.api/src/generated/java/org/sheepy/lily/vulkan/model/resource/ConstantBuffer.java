@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import java.nio.ByteBuffer;
+import org.sheepy.lily.core.model.application.IResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ import java.nio.ByteBuffer;
  * @model
  * @generated
  */
-public interface ConstantBuffer extends org.sheepy.lily.core.model.application.IResource
+public interface ConstantBuffer extends IResource
 {
 	/**
 	 * Returns the value of the '<em><b>Data</b></em>' attribute.

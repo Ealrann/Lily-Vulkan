@@ -23,9 +23,17 @@ public class NkVertexDump
 			final int a = (color >> 24) & 255;
 			final int index = i / 5;
 
-			if (x != 0 || y != 0) System.out.print(
-					String.format("%d| p:{%.0f, %.0f}, uv:{%.2f, %.2f}, rgb:{%d, %d, %d, %d}\n",
-							index, x, y, u, v, r, g, b, a));
+			if (x != 0 || y != 0)
+				System.out.print(String.format(	"%d| p:{%.0f, %.0f}, uv:{%.2f, %.2f}, rgb:{%d, %d, %d, %d}\n",
+												index,
+												x,
+												y,
+												u,
+												v,
+												r,
+												g,
+												b,
+												a));
 		}
 	}
 

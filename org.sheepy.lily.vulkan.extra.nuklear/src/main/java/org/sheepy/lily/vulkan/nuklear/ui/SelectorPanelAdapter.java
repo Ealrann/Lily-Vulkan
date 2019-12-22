@@ -18,13 +18,13 @@ import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
+import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.lily.core.model.types.EHorizontalRelative;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
 import org.sheepy.lily.vulkan.extra.api.nuklear.ISelectorInputProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
-import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.nuklear.ui.internal.SelectorButtonDrawer;
 import org.sheepy.vulkan.window.IWindowListener.ISizeListener;
 
@@ -269,7 +269,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 	}
 
 	@Override
-	public void collectImages(List<PathResource> images)
+	public void collectImages(List<FileResource> images)
 	{
 		for (int i = 0; i < datas.size(); i++)
 		{
@@ -291,14 +291,14 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 		public final NkRect rectButton = NkRect.create();
 		public final ByteBuffer panelLabelId;
 		public final ByteBuffer panelButton1Id;
-		public final PathResource image;
+		public final FileResource image;
 		public final NkColor color;
 		public final boolean right;
 
 		public LineData(Object input,
 						String name,
 						String panelName,
-						PathResource image,
+						FileResource image,
 						Vector3fc color,
 						boolean right)
 		{

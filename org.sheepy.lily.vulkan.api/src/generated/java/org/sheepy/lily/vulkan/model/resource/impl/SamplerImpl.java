@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.sheepy.lily.core.model.application.IResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.resource.Image;
@@ -243,7 +244,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 				default: return -1;
 			}
 		}
-		if (baseClass == org.sheepy.lily.core.model.application.IResource.class)
+		if (baseClass == IResource.class)
 		{
 			switch (derivedFeatureID)
 			{
@@ -269,7 +270,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 				default: return -1;
 			}
 		}
-		if (baseClass == org.sheepy.lily.core.model.application.IResource.class)
+		if (baseClass == IResource.class)
 		{
 			switch (baseFeatureID)
 			{

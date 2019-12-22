@@ -6,6 +6,7 @@ import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearPushConstantsAdapter;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearFontAdapter;
 import org.sheepy.lily.vulkan.nuklear.resource.NullTextureAdapter;
+import org.sheepy.lily.vulkan.nuklear.scene.NuklearSubpassProvider;
 import org.sheepy.lily.vulkan.nuklear.ui.ButtonAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.DynamicRowLayoutAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.LabelAdapter;
@@ -30,7 +31,8 @@ import org.sheepy.lily.vulkan.nuklear.ui.VariableLabelAdapter;
 		SelectorPanelAdapter.class,
 		PanelViewerAdapter.class,
 		NuklearVertexProviderAdapter.class,
-		NuklearIndexProviderAdapter.class
+		NuklearIndexProviderAdapter.class,
+		NuklearSubpassProvider.class
 })
 
 module org.sheepy.lily.vulkan.extra.nuklear
@@ -45,5 +47,6 @@ module org.sheepy.lily.vulkan.extra.nuklear
 	opens org.sheepy.lily.vulkan.nuklear.dataprovider;
 	opens org.sheepy.lily.vulkan.nuklear.pipeline;
 	opens org.sheepy.lily.vulkan.nuklear.resource;
+	opens org.sheepy.lily.vulkan.nuklear.scene;
 	opens org.sheepy.lily.vulkan.nuklear.ui;
 }

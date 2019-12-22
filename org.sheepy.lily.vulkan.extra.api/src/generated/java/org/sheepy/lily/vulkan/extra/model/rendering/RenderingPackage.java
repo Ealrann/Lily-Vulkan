@@ -602,6 +602,15 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__DEPTH_STENCIL = GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL;
 
 	/**
+	 * The feature id for the '<em><b>Scene Part</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_RENDERER__SCENE_PART = GraphicPackage.GRAPHICS_PIPELINE__SCENE_PART;
+
+	/**
 	 * The feature id for the '<em><b>Maintained</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.nuklear;
 
+import org.sheepy.lily.core.model.application.IResource;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 
 /**
@@ -22,7 +23,7 @@ import org.sheepy.lily.vulkan.model.resource.SampledImage;
  * @model
  * @generated
  */
-public interface NuklearContext extends org.sheepy.lily.core.model.application.IResource
+public interface NuklearContext extends IResource
 {
 	/**
 	 * Returns the value of the '<em><b>Font</b></em>' reference.

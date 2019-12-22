@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.core.model.application.FileResource;
+import org.sheepy.lily.core.model.application.IResource;
 import org.sheepy.vulkan.model.image.ImageLayout;
 
 /**
@@ -24,7 +25,7 @@ import org.sheepy.vulkan.model.image.ImageLayout;
  * @model
  * @generated
  */
-public interface Texture2DArray extends org.sheepy.lily.core.model.application.IResource
+public interface Texture2DArray extends IResource
 {
 	/**
 	 * Returns the value of the '<em><b>Files</b></em>' containment reference list.

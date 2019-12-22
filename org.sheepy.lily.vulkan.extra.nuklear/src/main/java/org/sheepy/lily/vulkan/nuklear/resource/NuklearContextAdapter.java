@@ -19,9 +19,9 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
+import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.nuklear.input.NuklearInputCatcher;
@@ -30,7 +30,7 @@ import org.sheepy.vulkan.execution.IExecutionContext;
 
 @Statefull
 @Adapter(scope = NuklearContext.class)
-public class NuklearContextAdapter implements IResourceAdapter
+public class NuklearContextAdapter implements IVulkanResourceAdapter
 {
 	private static final int VERTEX_SIZE = 20;
 	public static final long INDEXED_BUFFER_SIZE = (long) Math.pow(2, 19);

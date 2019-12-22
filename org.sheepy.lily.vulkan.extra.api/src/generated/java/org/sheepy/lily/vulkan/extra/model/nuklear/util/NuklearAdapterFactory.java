@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.sheepy.lily.core.model.application.IResource;
 import org.sheepy.lily.core.model.inference.IInferenceObject;
 import org.sheepy.lily.core.model.presentation.IPanel;
 import org.sheepy.lily.core.model.presentation.IPositionElement;
@@ -146,7 +147,7 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 				return createPushConstantAdapter();
 			}
 			@Override
-			public Adapter caseIResource(org.sheepy.lily.core.model.application.IResource object)
+			public Adapter caseIResource(IResource object)
 			{
 				return createIResourceAdapter();
 			}

@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.core.model.application.ICadence;
+import org.sheepy.lily.core.model.application.ResourcePkg;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
@@ -62,7 +63,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 * @ordered
 	 */
-	protected org.sheepy.lily.core.model.application.ResourcePkg resourcePkg;
+	protected ResourcePkg resourcePkg;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorPkg() <em>Descriptor Pkg</em>}' containment reference.
@@ -251,7 +252,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 */
 	@Override
-	public org.sheepy.lily.core.model.application.ResourcePkg getResourcePkg()
+	public ResourcePkg getResourcePkg()
 	{
 		return resourcePkg;
 	}
@@ -261,9 +262,9 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResourcePkg(org.sheepy.lily.core.model.application.ResourcePkg newResourcePkg, NotificationChain msgs)
+	public NotificationChain basicSetResourcePkg(ResourcePkg newResourcePkg, NotificationChain msgs)
 	{
-		org.sheepy.lily.core.model.application.ResourcePkg oldResourcePkg = resourcePkg;
+		ResourcePkg oldResourcePkg = resourcePkg;
 		resourcePkg = newResourcePkg;
 		if (eNotificationRequired())
 		{
@@ -279,7 +280,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 */
 	@Override
-	public void setResourcePkg(org.sheepy.lily.core.model.application.ResourcePkg newResourcePkg)
+	public void setResourcePkg(ResourcePkg newResourcePkg)
 	{
 		if (newResourcePkg != resourcePkg)
 		{
@@ -724,7 +725,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 		switch (featureID)
 		{
 			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
-				setResourcePkg((org.sheepy.lily.core.model.application.ResourcePkg)newValue);
+				setResourcePkg((ResourcePkg)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)newValue);
@@ -776,7 +777,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 		switch (featureID)
 		{
 			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
-				setResourcePkg((org.sheepy.lily.core.model.application.ResourcePkg)null);
+				setResourcePkg((ResourcePkg)null);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)null);

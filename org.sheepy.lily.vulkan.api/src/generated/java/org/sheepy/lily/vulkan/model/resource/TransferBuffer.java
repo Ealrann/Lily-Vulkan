@@ -2,6 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
+import org.sheepy.lily.core.model.application.IResource;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Transfer Buffer</b></em>'.
@@ -21,7 +23,7 @@ package org.sheepy.lily.vulkan.model.resource;
  * @model
  * @generated
  */
-public interface TransferBuffer extends org.sheepy.lily.core.model.application.IResource
+public interface TransferBuffer extends IResource
 {
 	/**
 	 * Returns the value of the '<em><b>Size</b></em>' attribute.

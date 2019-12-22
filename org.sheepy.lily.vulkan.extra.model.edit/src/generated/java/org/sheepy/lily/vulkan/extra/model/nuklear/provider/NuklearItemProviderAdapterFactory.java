@@ -29,6 +29,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.core.model.application.ResourcePkg;
 import org.sheepy.lily.core.model.application.util.ApplicationSwitch;
 import org.sheepy.lily.core.model.presentation.PresentationPackage;
 import org.sheepy.lily.core.model.presentation.UIPage;
@@ -835,7 +836,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 			 * @generated
 			 */
 			@Override
-			public Object caseResourcePkg(org.sheepy.lily.core.model.application.ResourcePkg object)
+			public Object caseResourcePkg(ResourcePkg object)
 			{
 				newChildDescriptors.add
 					(createChildParameter
@@ -849,7 +850,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 
 				return null;
 			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

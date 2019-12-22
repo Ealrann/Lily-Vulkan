@@ -7,22 +7,22 @@ import java.util.Map;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.nuklear.NkImage;
+import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.lily.vulkan.api.resource.ITexture2DArrayAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
 import org.sheepy.vulkan.resource.image.VkTexture;
 
 public final class NuklearImageInstaller
 {
-	private final List<PathResource> imagePaths;
+	private final List<FileResource> imagePaths;
 	private final Texture2DArray imageArray;
 
-	private Map<PathResource, NkImage> imageMap;
+	private Map<FileResource, NkImage> imageMap;
 
 	public NuklearImageInstaller(	GraphicsPipeline pipeline,
-									List<PathResource> imagePaths,
+									List<FileResource> imagePaths,
 									Texture2DArray imageArray)
 	{
 		this.imagePaths = List.copyOf(imagePaths);
@@ -44,7 +44,7 @@ public final class NuklearImageInstaller
 		pipeline.setSpecializationData(constantBuffer);
 	}
 
-	public Map<PathResource, NkImage> imageMap()
+	public Map<FileResource, NkImage> imageMap()
 	{
 		if (imageMap == null)
 		{
@@ -62,9 +62,9 @@ public final class NuklearImageInstaller
 		return imageMap;
 	}
 
-	private Map<PathResource, NkImage> createImageMap()
+	private Map<FileResource, NkImage> createImageMap()
 	{
-		final Map<PathResource, NkImage> imageMap = new HashMap<>();
+		final Map<FileResource, NkImage> imageMap = new HashMap<>();
 		final var adapter = imageArray.adapt(ITexture2DArrayAdapter.class);
 
 		final List<VkTexture> textures = adapter.getTextures();

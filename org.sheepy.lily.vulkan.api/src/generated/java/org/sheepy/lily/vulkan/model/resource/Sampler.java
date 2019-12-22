@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
+import org.sheepy.lily.core.model.application.IResource;
 import org.sheepy.vulkan.model.image.SamplerInfo;
 
 /**
@@ -20,7 +21,7 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  * @model
  * @generated
  */
-public interface Sampler extends SamplerInfo, org.sheepy.lily.core.model.application.IResource
+public interface Sampler extends SamplerInfo, IResource
 {
 	/**
 	 * Returns the value of the '<em><b>Image</b></em>' reference.

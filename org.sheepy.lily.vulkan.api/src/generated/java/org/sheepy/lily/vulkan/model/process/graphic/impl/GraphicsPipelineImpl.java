@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
+import org.sheepy.lily.core.model.application.IScenePart;
+import org.sheepy.lily.core.model.application.ResourcePkg;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
@@ -75,6 +77,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getSubpass <em>Subpass</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getVertexInputState <em>Vertex Input State</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#isDepthStencil <em>Depth Stencil</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getScenePart <em>Scene Part</em>}</li>
  * </ul>
  *
  * @generated
@@ -109,7 +112,7 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	 * @generated
 	 * @ordered
 	 */
-	protected org.sheepy.lily.core.model.application.ResourcePkg resourcePkg;
+	protected ResourcePkg resourcePkg;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorPkg() <em>Descriptor Pkg</em>}' containment reference.
@@ -322,6 +325,16 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	protected boolean depthStencil = DEPTH_STENCIL_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getScenePart() <em>Scene Part</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getScenePart()
+	 * @generated
+	 * @ordered
+	 */
+	protected IScenePart scenePart;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -373,7 +386,7 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	 * @generated
 	 */
 	@Override
-	public org.sheepy.lily.core.model.application.ResourcePkg getResourcePkg()
+	public ResourcePkg getResourcePkg()
 	{
 		return resourcePkg;
 	}
@@ -383,9 +396,9 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResourcePkg(org.sheepy.lily.core.model.application.ResourcePkg newResourcePkg, NotificationChain msgs)
+	public NotificationChain basicSetResourcePkg(ResourcePkg newResourcePkg, NotificationChain msgs)
 	{
-		org.sheepy.lily.core.model.application.ResourcePkg oldResourcePkg = resourcePkg;
+		ResourcePkg oldResourcePkg = resourcePkg;
 		resourcePkg = newResourcePkg;
 		if (eNotificationRequired())
 		{
@@ -401,7 +414,7 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	 * @generated
 	 */
 	@Override
-	public void setResourcePkg(org.sheepy.lily.core.model.application.ResourcePkg newResourcePkg)
+	public void setResourcePkg(ResourcePkg newResourcePkg)
 	{
 		if (newResourcePkg != resourcePkg)
 		{
@@ -1118,6 +1131,51 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public IScenePart getScenePart()
+	{
+		if (scenePart != null && ((EObject)scenePart).eIsProxy())
+		{
+			InternalEObject oldScenePart = (InternalEObject)scenePart;
+			scenePart = (IScenePart)eResolveProxy(oldScenePart);
+			if (scenePart != oldScenePart)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.GRAPHICS_PIPELINE__SCENE_PART, oldScenePart, scenePart));
+			}
+		}
+		return scenePart;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IScenePart basicGetScenePart()
+	{
+		return scenePart;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setScenePart(IScenePart newScenePart)
+	{
+		IScenePart oldScenePart = scenePart;
+		scenePart = newScenePart;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__SCENE_PART, oldScenePart, scenePart));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
@@ -1220,6 +1278,9 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				return getVertexInputState();
 			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
 				return isDepthStencil();
+			case GraphicPackage.GRAPHICS_PIPELINE__SCENE_PART:
+				if (resolve) return getScenePart();
+				return basicGetScenePart();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1239,7 +1300,7 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				setName((String)newValue);
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-				setResourcePkg((org.sheepy.lily.core.model.application.ResourcePkg)newValue);
+				setResourcePkg((ResourcePkg)newValue);
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)newValue);
@@ -1294,6 +1355,9 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
 				setDepthStencil((Boolean)newValue);
 				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__SCENE_PART:
+				setScenePart((IScenePart)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1312,7 +1376,7 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				setName(NAME_EDEFAULT);
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-				setResourcePkg((org.sheepy.lily.core.model.application.ResourcePkg)null);
+				setResourcePkg((ResourcePkg)null);
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)null);
@@ -1364,6 +1428,9 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
 				setDepthStencil(DEPTH_STENCIL_EDEFAULT);
+				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__SCENE_PART:
+				setScenePart((IScenePart)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -1417,6 +1484,8 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				return vertexInputState != null;
 			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
 				return depthStencil != DEPTH_STENCIL_EDEFAULT;
+			case GraphicPackage.GRAPHICS_PIPELINE__SCENE_PART:
+				return scenePart != null;
 		}
 		return super.eIsSet(featureID);
 	}

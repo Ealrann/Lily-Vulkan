@@ -29,6 +29,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.core.model.application.ResourcePkg;
 import org.sheepy.lily.core.model.application.util.ApplicationSwitch;
 import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
@@ -690,7 +691,7 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 			 * @generated
 			 */
 			@Override
-			public Object caseResourcePkg(org.sheepy.lily.core.model.application.ResourcePkg object)
+			public Object caseResourcePkg(ResourcePkg object)
 			{
 				newChildDescriptors.add
 					(createChildParameter
@@ -699,7 +700,6 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 
 				return null;
 			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

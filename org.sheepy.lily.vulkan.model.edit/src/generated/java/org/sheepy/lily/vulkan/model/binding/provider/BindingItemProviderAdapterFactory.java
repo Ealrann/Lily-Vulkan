@@ -4,21 +4,13 @@ package org.sheepy.lily.vulkan.model.binding.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
-import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.CommandParameter;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -26,14 +18,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
-import org.sheepy.lily.vulkan.model.binding.BindingFactory;
 import org.sheepy.lily.vulkan.model.binding.util.BindingAdapterFactory;
-import org.sheepy.lily.vulkan.model.process.CompositeTask;
-import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.TaskPkg;
-import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -358,139 +343,6 @@ public class BindingItemProviderAdapterFactory extends BindingAdapterFactory imp
 		if (configurePrepareCompositeItemProvider != null) configurePrepareCompositeItemProvider.dispose();
 		if (configureCompositeBufferBarrierItemProvider != null) configureCompositeBufferBarrierItemProvider.dispose();
 		if (indexConfigurationItemProvider != null) indexConfigurationItemProvider.dispose();
-	}
-
-	/**
-	 * A child creation extender for the {@link ProcessPackage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static class ProcessChildCreationExtender implements IChildCreationExtender
-	{
-		/**
-		 * The switch for creating child descriptors specific to each extended class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected static class CreationSwitch extends ProcessSwitch<Object>
-		{
-			/**
-			 * The child descriptors being populated.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected List<Object> newChildDescriptors;
-
-			/**
-			 * The domain in which to create the children.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected EditingDomain editingDomain;
-
-			/**
-			 * Creates the a switch for populating child descriptors in the given domain.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
-			{
-				this.newChildDescriptors = newChildDescriptors;
-				this.editingDomain = editingDomain;
-			}
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseTaskPkg(TaskPkg object)
-			{
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.TASK_PKG__TASKS,
-						 BindingFactory.eINSTANCE.createRotateConfiguration()));
-
-				return null;
-			}
- 
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseCompositeTask(CompositeTask object)
-			{
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-						 BindingFactory.eINSTANCE.createRotateConfiguration()));
-
-				return null;
-			}
- 
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseProcessExtensionPkg(ProcessExtensionPkg object)
-			{
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.PROCESS_EXTENSION_PKG__EXTENSIONS,
-						 BindingFactory.eINSTANCE.createBindingConfiguration()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.PROCESS_EXTENSION_PKG__EXTENSIONS,
-						 BindingFactory.eINSTANCE.createIndexConfiguration()));
-
-				return null;
-			}
- 
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected CommandParameter createChildParameter(Object feature, Object child)
-			{
-				return new CommandParameter(null, feature, child);
-			}
-
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
-		{
-			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
-			return result;
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public ResourceLocator getResourceLocator()
-		{
-			return LilyVulkanEditPlugin.INSTANCE;
-		}
 	}
 
 }

@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
+import org.sheepy.lily.core.model.application.ResourcePkg;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
@@ -52,7 +53,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	 * @generated
 	 * @ordered
 	 */
-	protected org.sheepy.lily.core.model.application.ResourcePkg resourcePkg;
+	protected ResourcePkg resourcePkg;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorPkg() <em>Descriptor Pkg</em>}' containment reference.
@@ -131,7 +132,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	 * @generated
 	 */
 	@Override
-	public org.sheepy.lily.core.model.application.ResourcePkg getResourcePkg()
+	public ResourcePkg getResourcePkg()
 	{
 		return resourcePkg;
 	}
@@ -141,9 +142,9 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResourcePkg(org.sheepy.lily.core.model.application.ResourcePkg newResourcePkg, NotificationChain msgs)
+	public NotificationChain basicSetResourcePkg(ResourcePkg newResourcePkg, NotificationChain msgs)
 	{
-		org.sheepy.lily.core.model.application.ResourcePkg oldResourcePkg = resourcePkg;
+		ResourcePkg oldResourcePkg = resourcePkg;
 		resourcePkg = newResourcePkg;
 		if (eNotificationRequired())
 		{
@@ -159,7 +160,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	 * @generated
 	 */
 	@Override
-	public void setResourcePkg(org.sheepy.lily.core.model.application.ResourcePkg newResourcePkg)
+	public void setResourcePkg(ResourcePkg newResourcePkg)
 	{
 		if (newResourcePkg != resourcePkg)
 		{
@@ -336,7 +337,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 		switch (featureID)
 		{
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
-				setResourcePkg((org.sheepy.lily.core.model.application.ResourcePkg)newValue);
+				setResourcePkg((ResourcePkg)newValue);
 				return;
 			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)newValue);
@@ -367,7 +368,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 		switch (featureID)
 		{
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
-				setResourcePkg((org.sheepy.lily.core.model.application.ResourcePkg)null);
+				setResourcePkg((ResourcePkg)null);
 				return;
 			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)null);

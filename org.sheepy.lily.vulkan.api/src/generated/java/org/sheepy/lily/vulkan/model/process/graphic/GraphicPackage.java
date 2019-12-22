@@ -1411,13 +1411,22 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__DEPTH_STENCIL = ProcessPackage.IPIPELINE_FEATURE_COUNT + 9;
 
 	/**
+	 * The feature id for the '<em><b>Scene Part</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__SCENE_PART = ProcessPackage.IPIPELINE_FEATURE_COUNT + 10;
+
+	/**
 	 * The number of structural features of the '<em>Graphics Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 10;
+	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of operations of the '<em>Graphics Pipeline</em>' class.
@@ -2922,6 +2931,17 @@ public interface GraphicPackage extends EPackage
 	EAttribute getGraphicsPipeline_DepthStencil();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getScenePart <em>Scene Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Scene Part</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getScenePart()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_ScenePart();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier <em>Swap Image Barrier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3958,6 +3978,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute GRAPHICS_PIPELINE__DEPTH_STENCIL = eINSTANCE.getGraphicsPipeline_DepthStencil();
+
+		/**
+		 * The meta object literal for the '<em><b>Scene Part</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__SCENE_PART = eINSTANCE.getGraphicsPipeline_ScenePart();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageBarrierImpl <em>Swap Image Barrier</em>}' class.

@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.sheepy.lily.core.model.application.IScenePart;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 
 import org.sheepy.lily.vulkan.model.process.IPipeline;
@@ -34,6 +35,7 @@ import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getSubpass <em>Subpass</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexInputState <em>Vertex Input State</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#isDepthStencil <em>Depth Stencil</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getScenePart <em>Scene Part</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline()
@@ -231,5 +233,27 @@ public interface GraphicsPipeline extends IPipeline, Maintainable<GraphicsPipeli
 	 * @generated
 	 */
 	void setDepthStencil(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Scene Part</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Scene Part</em>' reference.
+	 * @see #setScenePart(IScenePart)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline_ScenePart()
+	 * @model
+	 * @generated
+	 */
+	IScenePart getScenePart();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getScenePart <em>Scene Part</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Scene Part</em>' reference.
+	 * @see #getScenePart()
+	 * @generated
+	 */
+	void setScenePart(IScenePart value);
 
 } // GraphicsPipeline

@@ -8,6 +8,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
+import org.sheepy.lily.core.model.application.IResource;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.types.LNamedElement;
@@ -240,7 +241,7 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createBufferDataProviderAdapter();
 			}
 			@Override
-			public Adapter caseIResource(org.sheepy.lily.core.model.application.IResource object)
+			public Adapter caseIResource(IResource object)
 			{
 				return createIResourceAdapter();
 			}

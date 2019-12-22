@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.sheepy.lily.core.model.application.IResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.vulkan.model.IDescriptor;
@@ -233,7 +234,7 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createLNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseIResource(org.sheepy.lily.core.model.application.IResource object)
+			public Adapter caseIResource(IResource object)
 			{
 				return createIResourceAdapter();
 			}

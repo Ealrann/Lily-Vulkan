@@ -1,7 +1,5 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
@@ -14,7 +12,6 @@ import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.vulkan.extra.api.nuklear.IControlProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer;
-import org.sheepy.lily.vulkan.model.resource.PathResource;
 
 @Statefull
 @Adapter(scope = PanelViewer.class)
@@ -87,8 +84,4 @@ public final class PanelViewerAdapter extends PanelAdapter implements IPanelAdap
 
 		return res;
 	}
-
-	@Override
-	public void collectImages(List<PathResource> images)
-	{}
 }

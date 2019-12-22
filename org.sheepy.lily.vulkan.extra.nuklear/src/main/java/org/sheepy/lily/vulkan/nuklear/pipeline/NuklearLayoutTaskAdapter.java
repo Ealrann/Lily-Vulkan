@@ -16,16 +16,15 @@ import org.sheepy.lily.core.api.input.event.IInputEvent;
 import org.sheepy.lily.core.api.util.AdapterSetRegistry;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.lily.core.model.presentation.PresentationPackage;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawCommandData;
@@ -48,13 +47,14 @@ public final class NuklearLayoutTaskAdapter
 	private static final String NK_CONVERT_FAILED = "nk_convert failed: ";
 
 	private final AdapterSetRegistry<IPanelAdapter> PANEL_REGISTRY = new AdapterSetRegistry<>(	IPanelAdapter.class,
-																								List.of(ApplicationPackage.Literals.APPLICATION__VIEW,
-																										PresentationPackage.Literals.IUI_VIEW__CURRENT_UI_PAGE,
+																								List.of(GraphicPackage.Literals.GRAPHICS_PIPELINE__SCENE_PART,
+																										PresentationPackage.Literals.UI__CURRENT_UI_PAGE,
 																										PresentationPackage.Literals.UI_PAGE__PANELS));
 
 	private final DrawTaskMaintainer drawTaskMaintainer;
 	private final NuklearLayoutTask task;
 	private final List<Long> texturePtrs = new ArrayList<>();
+	private final GraphicsPipeline pipeline;
 
 	private boolean dirty = true;
 	private boolean vertexUpdated = false;
@@ -63,12 +63,12 @@ public final class NuklearLayoutTaskAdapter
 	private Extent2D currentExtent;
 	private NuklearContextAdapter nuklearContextAdapter;
 	private Window window;
-	private Application application;
 	private NuklearImageInstaller imageInstaller = null;
 
 	public NuklearLayoutTaskAdapter(NuklearLayoutTask task)
 	{
 		this.task = task;
+		pipeline = ModelUtil.findParent(task, GraphicsPipeline.class);
 
 		final var drawTask = task.getDrawTask();
 		final var vertexBuffer = task.getVertexBuffer();
@@ -79,24 +79,22 @@ public final class NuklearLayoutTaskAdapter
 	@Load
 	public void load()
 	{
-		application = ModelUtil.getApplication(task);
-		PANEL_REGISTRY.startRegister(application);
+		PANEL_REGISTRY.startRegister(pipeline);
 		setupImageCapability();
 	}
 
 	@Dispose
 	public void dispose()
 	{
-		PANEL_REGISTRY.stopRegister(application);
+		PANEL_REGISTRY.stopRegister(pipeline);
 	}
 
 	private void setupImageCapability()
 	{
-		final List<PathResource> imagePaths = collectImages();
+		final List<FileResource> imagePaths = collectImages();
 		final var imageArray = task.getImageArray();
 		if (imageArray != null && imagePaths.isEmpty() == false)
 		{
-			final var pipeline = ModelUtil.findParent(task, GraphicsPipeline.class);
 			imageInstaller = new NuklearImageInstaller(pipeline, imagePaths, imageArray);
 		}
 	}
@@ -108,7 +106,6 @@ public final class NuklearLayoutTaskAdapter
 		window = context.getWindow();
 		nuklearContextAdapter = task.getContext().adaptNotNull(NuklearContextAdapter.class);
 
-		final var pipeline = ModelUtil.findParent(task, GraphicsPipeline.class);
 		final var descriptorSet = pipeline.getDescriptorSetPkg().getDescriptorSets().get(0);
 		reloadTexturePtrs(descriptorSet);
 
@@ -116,9 +113,9 @@ public final class NuklearLayoutTaskAdapter
 		layout(List.of());
 	}
 
-	private List<PathResource> collectImages()
+	private List<FileResource> collectImages()
 	{
-		final List<PathResource> images = new ArrayList<>();
+		final List<FileResource> images = new ArrayList<>();
 
 		final var panelAdapters = PANEL_REGISTRY.getAdapters();
 		for (int i = 0; i < panelAdapters.size(); i++)
@@ -156,7 +153,7 @@ public final class NuklearLayoutTaskAdapter
 		}
 	}
 
-	private Map<PathResource, NkImage> getImageMap()
+	private Map<FileResource, NkImage> getImageMap()
 	{
 		if (imageInstaller != null)
 		{

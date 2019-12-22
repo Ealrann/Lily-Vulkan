@@ -19,13 +19,6 @@
                org.eclipse.emf.edit.provider.IItemPropertySource"/>
    </extension>
 
-   <extension point="org.eclipse.emf.edit.childCreationExtenders">
-      <!-- @generated LilyVulkan -->
-      <extender
-            uri="org.sheepy.lily.vulkan.model.process"
-            class="org.sheepy.lily.vulkan.model.binding.provider.BindingItemProviderAdapterFactory$ProcessChildCreationExtender"/>
-   </extension>
-
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated LilyVulkan -->
       <factory
@@ -37,13 +30,6 @@
                org.eclipse.emf.edit.provider.ITreeItemContentProvider
                org.eclipse.emf.edit.provider.IItemLabelProvider
                org.eclipse.emf.edit.provider.IItemPropertySource"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.edit.childCreationExtenders">
-      <!-- @generated LilyVulkan -->
-      <extender
-            uri="org.sheepy.lily.vulkan.model.process"
-            class="org.sheepy.lily.vulkan.model.process.compute.provider.ComputeItemProviderAdapterFactory$ProcessChildCreationExtender"/>
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
@@ -64,9 +50,6 @@
       <extender
             uri="org.sheepy.lily.core.model.cadence"
             class="org.sheepy.lily.vulkan.model.process.provider.ProcessItemProviderAdapterFactory$CadenceChildCreationExtender"/>
-      <extender
-            uri="org.sheepy.lily.vulkan.model.process"
-            class="org.sheepy.lily.vulkan.model.process.provider.ProcessItemProviderAdapterFactory$ProcessChildCreationExtender"/>
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
@@ -90,12 +73,6 @@
       <extender
             uri="org.sheepy.lily.core.model.cadence"
             class="org.sheepy.lily.vulkan.model.provider.VulkanItemProviderAdapterFactory$CadenceChildCreationExtender"/>
-      <extender
-            uri="org.sheepy.lily.vulkan.model"
-            class="org.sheepy.lily.vulkan.model.provider.VulkanItemProviderAdapterFactory$VulkanChildCreationExtender"/>
-      <extender
-            uri="org.sheepy.lily.vulkan.model.process"
-            class="org.sheepy.lily.vulkan.model.provider.VulkanItemProviderAdapterFactory$ProcessChildCreationExtender"/>
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
@@ -116,9 +93,6 @@
       <extender
             uri="org.sheepy.lily.core.model.application"
             class="org.sheepy.lily.vulkan.model.resource.provider.ResourceItemProviderAdapterFactory$ApplicationChildCreationExtender"/>
-      <extender
-            uri="org.sheepy.lily.vulkan.model.process"
-            class="org.sheepy.lily.vulkan.model.resource.provider.ResourceItemProviderAdapterFactory$ProcessChildCreationExtender"/>
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
@@ -132,13 +106,6 @@
                org.eclipse.emf.edit.provider.ITreeItemContentProvider
                org.eclipse.emf.edit.provider.IItemLabelProvider
                org.eclipse.emf.edit.provider.IItemPropertySource"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.edit.childCreationExtenders">
-      <!-- @generated LilyVulkan -->
-      <extender
-            uri="org.sheepy.lily.vulkan.model.process"
-            class="org.sheepy.lily.vulkan.model.process.graphic.provider.GraphicItemProviderAdapterFactory$ProcessChildCreationExtender"/>
    </extension>
 
 </plugin>
