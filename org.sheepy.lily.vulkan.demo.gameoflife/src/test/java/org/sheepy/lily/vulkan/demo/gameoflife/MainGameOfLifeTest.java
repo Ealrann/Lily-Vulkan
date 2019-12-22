@@ -11,8 +11,8 @@ public class MainGameOfLifeTest
 	public void main()
 	{
 		DebugUtil.DEBUG_ENABLED = true;
-		final var application = MainGameOfLife.buildApplication();
 		EngineBuilder.FRAME_COUNT = 300;
+		final var application = MainGameOfLife.buildApplication();
 		LilyLauncher.launch(application);
 	}
 }
