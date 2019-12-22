@@ -39,7 +39,6 @@ public class FontImageAdapter implements IFontImageAdapter
 		builder.usage(VK_IMAGE_USAGE_TRANSFER_DST_BIT
 				| VK_IMAGE_USAGE_SAMPLED_BIT
 				| VK_IMAGE_USAGE_SAMPLED_BIT);
-		builder.properties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 		builder.tiling(VK_IMAGE_TILING_OPTIMAL);
 		builder.mipLevels(1);
 		imageBuilder = builder.copyImmutable();

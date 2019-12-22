@@ -16,29 +16,31 @@ import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EFilter;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.model.image.ImageFactory;
 import org.sheepy.vulkan.resource.image.VkImage;
 import org.sheepy.vulkan.resource.image.VkImage.VkImageBuilder;
-import org.sheepy.vulkan.resource.image.VkTexture;
 
 @Statefull
 @Adapter(scope = BlitToSwapImage.class)
 public class BlitToSwapImageAdapter
 		implements IPipelineTaskAdapter<BlitToSwapImage>, IAllocableAdapter<IGraphicContext>
 {
+	private static final int FORMAT = EFormat.R8G8B8A8_UNORM_VALUE;
 	private static final VkImage.Builder clearTextureBuilder = new VkImageBuilder(	1,
 																					1,
-																					EFormat.R8G8B8A8_UNORM_VALUE).copyImmutable();
+																					FORMAT).usage(VK_IMAGE_USAGE_TRANSFER_SRC_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_STORAGE_BIT).tiling(VK_IMAGE_TILING_OPTIMAL).mipLevels(1).copyImmutable();
 
 	private final BlitToSwapImage blitTask;
 
 	private long imagePtr;
 	private VkImageBlit.Buffer region;
 	private IImageViewManager imageViewManager;
-
-	private VkTexture clearTexture;
+	private VkImage clearTexture;
 	private VkImageBlit.Buffer clearRegions;
 
 	public BlitToSwapImageAdapter(BlitToSwapImage blitTask)
@@ -71,8 +73,8 @@ public class BlitToSwapImageAdapter
 		final float scale = Math.min(	(float) viewWidth / imageInfo.width,
 										(float) viewHeight / imageInfo.height);
 
-		final int dstWidth = (int) Math.ceil(scale * imageInfo.width);
-		final int dstHeight = (int) Math.ceil(scale * imageInfo.height);
+		final int dstWidth = (int) (scale * imageInfo.width);
+		final int dstHeight = (int) (scale * imageInfo.height);
 
 		int xOffset = 0;
 		int yOffset = 0;
@@ -80,17 +82,39 @@ public class BlitToSwapImageAdapter
 		{
 			xOffset = (viewWidth - dstWidth) / 2;
 
-			clearRegions = VkImageBlit.calloc(2);
-			fillRegion(clearRegions.get(0), 1, 1, 0, 0, xOffset, viewHeight);
-			fillRegion(clearRegions.get(1), 1, 1, xOffset + dstWidth, 0, viewWidth, viewHeight);
+			if (xOffset >= 2)
+			{
+				clearRegions = VkImageBlit.calloc(2);
+				fillRegion(clearRegions.get(0), 1, 1, 0, 0, xOffset, viewHeight);
+				fillRegion(clearRegions.get(1), 1, 1, xOffset + dstWidth, 0, viewWidth, viewHeight);
+			}
+			else
+			{
+				clearRegions = VkImageBlit.calloc(1);
+				fillRegion(clearRegions.get(0), 1, 1, 0, 0, 1, viewHeight);
+			}
 		}
 		if (dstHeight < viewHeight)
 		{
 			yOffset = (viewHeight - dstHeight) / 2;
 
-			clearRegions = VkImageBlit.calloc(2);
-			fillRegion(clearRegions.get(0), 1, 1, 0, 0, viewWidth, yOffset);
-			fillRegion(clearRegions.get(1), 1, 1, 0, yOffset + dstHeight, viewWidth, viewHeight);
+			if (yOffset >= 2)
+			{
+				clearRegions = VkImageBlit.calloc(2);
+				fillRegion(clearRegions.get(0), 1, 1, 0, 0, viewWidth, yOffset);
+				fillRegion(	clearRegions.get(1),
+							1,
+							1,
+							0,
+							yOffset + dstHeight,
+							viewWidth,
+							viewHeight);
+			}
+			else
+			{
+				clearRegions = VkImageBlit.calloc(1);
+				fillRegion(clearRegions.get(0), 1, 1, 0, 0, viewWidth, 1);
+			}
 		}
 
 		region = VkImageBlit.calloc(1);
@@ -110,8 +134,15 @@ public class BlitToSwapImageAdapter
 			buffer.putInt(intColor);
 			buffer.flip();
 
-			final var clearBuilder = new VkImageBuilder(clearTextureBuilder).fillWith(buffer);
-			clearTexture = new VkTexture(clearBuilder);
+			final var initialLayout = ImageFactory.eINSTANCE.createImageLayout();
+			initialLayout.setLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
+			initialLayout.getAccessMask().add(EAccess.TRANSFER_READ_BIT);
+			initialLayout.setStage(EPipelineStage.TRANSFER_BIT);
+
+			final VkImageBuilder builder = new VkImageBuilder(clearTextureBuilder);
+			builder.fillWith(buffer);
+			builder.initialLayout(initialLayout);
+			clearTexture = builder.build();
 			clearTexture.allocate(context);
 		}
 	}
@@ -148,7 +179,7 @@ public class BlitToSwapImageAdapter
 		if (clearRegions != null)
 		{
 			vkCmdBlitImage(	commandBuffer,
-							clearTexture.getImagePtr(),
+							clearTexture.getPtr(),
 							transfertSrc,
 							swapImage,
 							transfertDst,

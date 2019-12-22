@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -24,6 +25,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.vulkan.model.barrier.provider.VulkanEditPlugin;
 
+import org.sheepy.vulkan.model.enumeration.EFormat;
+import org.sheepy.vulkan.model.image.ImageFactory;
 import org.sheepy.vulkan.model.image.ImageInfo;
 import org.sheepy.vulkan.model.image.ImagePackage;
 
@@ -66,61 +69,12 @@ public class ImageInfoItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addWidthPropertyDescriptor(object);
-			addHeightPropertyDescriptor(object);
 			addFormatPropertyDescriptor(object);
 			addUsagesPropertyDescriptor(object);
-			addPropertiesPropertyDescriptor(object);
 			addTilingPropertyDescriptor(object);
 			addMipLevelsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Width feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addWidthPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImageInfo_width_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageInfo_width_feature", "_UI_ImageInfo_type"),
-				 ImagePackage.Literals.IMAGE_INFO__WIDTH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Height feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addHeightPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImageInfo_height_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageInfo_height_feature", "_UI_ImageInfo_type"),
-				 ImagePackage.Literals.IMAGE_INFO__HEIGHT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -165,29 +119,6 @@ public class ImageInfoItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Properties feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPropertiesPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImageInfo_properties_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageInfo_properties_feature", "_UI_ImageInfo_type"),
-				 ImagePackage.Literals.IMAGE_INFO__PROPERTIES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -239,6 +170,39 @@ public class ImageInfoItemProvider
 	}
 
 	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(ImagePackage.Literals.IMAGE_INFO__INITIAL_LAYOUT);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
 	 * This returns ImageInfo.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -259,8 +223,11 @@ public class ImageInfoItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		ImageInfo imageInfo = (ImageInfo)object;
-		return getString("_UI_ImageInfo_type") + " " + imageInfo.getWidth();
+		EFormat labelValue = ((ImageInfo)object).getFormat();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ImageInfo_type") :
+			getString("_UI_ImageInfo_type") + " " + label;
 	}
 
 
@@ -278,14 +245,14 @@ public class ImageInfoItemProvider
 
 		switch (notification.getFeatureID(ImageInfo.class))
 		{
-			case ImagePackage.IMAGE_INFO__WIDTH:
-			case ImagePackage.IMAGE_INFO__HEIGHT:
 			case ImagePackage.IMAGE_INFO__FORMAT:
 			case ImagePackage.IMAGE_INFO__USAGES:
-			case ImagePackage.IMAGE_INFO__PROPERTIES:
 			case ImagePackage.IMAGE_INFO__TILING:
 			case ImagePackage.IMAGE_INFO__MIP_LEVELS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ImagePackage.IMAGE_INFO__INITIAL_LAYOUT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -302,6 +269,11 @@ public class ImageInfoItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ImagePackage.Literals.IMAGE_INFO__INITIAL_LAYOUT,
+				 ImageFactory.eINSTANCE.createImageLayout()));
 	}
 
 	/**

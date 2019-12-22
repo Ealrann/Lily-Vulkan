@@ -23,6 +23,7 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EIndexType;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.ESampleCount;
@@ -230,6 +231,8 @@ public final class MeshGraphicBuilder
 			final var texture = ResourceFactory.eINSTANCE.createFileImage();
 			texture.setFile(imageFile);
 			texture.setMipmapEnabled(meshConfiguration.mipmap);
+			texture.setFormat(EFormat.R8G8B8A8_UNORM);
+			texture.getUsages().add(EImageUsage.SAMPLED);
 
 			final var sampler = ImageFactory.eINSTANCE.createSamplerInfo();
 

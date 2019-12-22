@@ -2,27 +2,22 @@ package org.sheepy.lily.vulkan.resource.image;
 
 import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
-import org.sheepy.lily.vulkan.model.resource.StaticImage;
+import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.image.VkImage;
 import org.sheepy.vulkan.resource.image.VkImageView;
 
-@Statefull
-@Adapter(scope = StaticImage.class)
-public class StaticImageAdapter implements IImageAdapter
+public abstract class AbstractImageAdapter implements IImageAdapter
 {
-	private final StaticImage image;
+	private final Image image;
 
 	private VkImage imageBackend;
 	private VkImageView imageView;
-
 	private IImageLoader loader = null;
 	private IExecutionContext executionContext;
 
-	public StaticImageAdapter(StaticImage image)
+	public AbstractImageAdapter(Image image)
 	{
 		this.image = image;
 	}
@@ -37,11 +32,8 @@ public class StaticImageAdapter implements IImageAdapter
 	{
 		this.executionContext = context;
 		final var logicalDevice = executionContext.getLogicalDevice();
-		final var size = image.getSize();
-		final var builder = new VkImage.VkImageBuilder(image, size.x(), size.y());
-		builder.fillWith(image.getFillWith());
 
-		imageBackend = builder.build();
+		imageBackend = getBuilder(image).build();
 		imageBackend.allocate(context);
 
 		imageView = new VkImageView(logicalDevice.getVkDevice());
@@ -94,6 +86,8 @@ public class StaticImageAdapter implements IImageAdapter
 	{
 		return imageBackend;
 	}
+
+	protected abstract VkImage.Builder getBuilder(Image image);
 
 	public static interface IImageLoader
 	{

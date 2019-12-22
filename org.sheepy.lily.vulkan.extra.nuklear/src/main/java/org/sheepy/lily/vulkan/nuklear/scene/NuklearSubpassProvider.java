@@ -19,12 +19,13 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 @Adapter(scope = UI.class)
 public class NuklearSubpassProvider implements IScenePart_SubpassProvider<UI>
 {
+	private static final String PIPELINE_NO_IMAGE_PATH = "NuklearPipelineNoImages.nuklear";
 	private static final String PIPELINE_PATH = "NuklearPipeline.nuklear";
 
 	@Override
 	public SubpassData build(UI part, SwapImageAttachment colorAttachmentDescriptor)
 	{
-		final var pipeline = loadPipeline();
+		final var pipeline = loadPipeline(part.isImageSupport());
 		final var subpass = buildSubpass(colorAttachmentDescriptor);
 
 		return new SubpassData(	List.of(pipeline),
@@ -35,14 +36,15 @@ public class NuklearSubpassProvider implements IScenePart_SubpassProvider<UI>
 								List.of());
 	}
 
-	private static GraphicsPipeline loadPipeline()
+	private static GraphicsPipeline loadPipeline(boolean imageSupport)
 	{
 		GraphicsPipeline res = null;
 		final var module = NuklearSubpassProvider.class.getModule();
 		try
 		{
-			var resourceLoader = IResourceLoader.INSTANCE;
-			final var inputStream = module.getResourceAsStream(PIPELINE_PATH);
+			final var path = imageSupport ? PIPELINE_PATH : PIPELINE_NO_IMAGE_PATH;
+			final var resourceLoader = IResourceLoader.INSTANCE;
+			final var inputStream = module.getResourceAsStream(path);
 			final var resource = resourceLoader.loadResource(inputStream);
 			res = (GraphicsPipeline) resource.getContents().get(0);
 		} catch (final IOException e)

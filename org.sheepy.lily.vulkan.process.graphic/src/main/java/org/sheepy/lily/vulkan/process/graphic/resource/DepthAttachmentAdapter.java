@@ -71,7 +71,6 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 		final int usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
 		final var depthImageBuilder = VkImage.newBuilder(width, height, depthFormat);
 		depthImageBuilder.usage(usage);
-		depthImageBuilder.properties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
 		depthImageBackend = depthImageBuilder.build();
 	}

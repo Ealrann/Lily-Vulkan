@@ -54,7 +54,7 @@ public interface FileImage extends Image
 	 * @return the value of the '<em>Mipmap Enabled</em>' attribute.
 	 * @see #setMipmapEnabled(boolean)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getFileImage_MipmapEnabled()
-	 * @model default="false" unique="false"
+	 * @model default="false" required="true"
 	 * @generated
 	 */
 	boolean isMipmapEnabled();

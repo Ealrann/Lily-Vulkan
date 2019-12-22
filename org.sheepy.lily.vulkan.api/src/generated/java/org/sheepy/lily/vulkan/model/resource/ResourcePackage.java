@@ -736,13 +736,49 @@ public interface ResourcePackage extends EPackage
 	int IMAGE__NAME = ApplicationPackage.IRESOURCE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Format</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__FORMAT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__USAGES = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Tiling</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__TILING = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__MIP_LEVELS = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE__INITIAL_LAYOUT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
+	int IMAGE__INITIAL_LAYOUT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Image</em>' class.
@@ -751,7 +787,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
+	int IMAGE_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Image</em>' class.
@@ -782,6 +818,42 @@ public interface ResourcePackage extends EPackage
 	int STATIC_IMAGE__NAME = IMAGE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Format</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__FORMAT = IMAGE__FORMAT;
+
+	/**
+	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__USAGES = IMAGE__USAGES;
+
+	/**
+	 * The feature id for the '<em><b>Tiling</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__TILING = IMAGE__TILING;
+
+	/**
+	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__MIP_LEVELS = IMAGE__MIP_LEVELS;
+
+	/**
 	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -791,76 +863,13 @@ public interface ResourcePackage extends EPackage
 	int STATIC_IMAGE__INITIAL_LAYOUT = IMAGE__INITIAL_LAYOUT;
 
 	/**
-	 * The feature id for the '<em><b>Width</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATIC_IMAGE__WIDTH = IMAGE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATIC_IMAGE__HEIGHT = IMAGE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Format</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATIC_IMAGE__FORMAT = IMAGE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATIC_IMAGE__USAGES = IMAGE_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Properties</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATIC_IMAGE__PROPERTIES = IMAGE_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Tiling</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATIC_IMAGE__TILING = IMAGE_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATIC_IMAGE__MIP_LEVELS = IMAGE_FEATURE_COUNT + 6;
-
-	/**
 	 * The feature id for the '<em><b>Fill With Zero</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATIC_IMAGE__FILL_WITH_ZERO = IMAGE_FEATURE_COUNT + 7;
+	int STATIC_IMAGE__FILL_WITH_ZERO = IMAGE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Fill With</b></em>' attribute.
@@ -869,7 +878,16 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATIC_IMAGE__FILL_WITH = IMAGE_FEATURE_COUNT + 8;
+	int STATIC_IMAGE__FILL_WITH = IMAGE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__SIZE = IMAGE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Static Image</em>' class.
@@ -878,7 +896,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATIC_IMAGE_FEATURE_COUNT = IMAGE_FEATURE_COUNT + 9;
+	int STATIC_IMAGE_FEATURE_COUNT = IMAGE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Static Image</em>' class.
@@ -907,6 +925,42 @@ public interface ResourcePackage extends EPackage
 	 * @ordered
 	 */
 	int FILE_IMAGE__NAME = IMAGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Format</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMAGE__FORMAT = IMAGE__FORMAT;
+
+	/**
+	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMAGE__USAGES = IMAGE__USAGES;
+
+	/**
+	 * The feature id for the '<em><b>Tiling</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMAGE__TILING = IMAGE__TILING;
+
+	/**
+	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMAGE__MIP_LEVELS = IMAGE__MIP_LEVELS;
 
 	/**
 	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
@@ -1235,6 +1289,42 @@ public interface ResourcePackage extends EPackage
 	 * @ordered
 	 */
 	int FONT_IMAGE__NAME = IMAGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Format</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE__FORMAT = IMAGE__FORMAT;
+
+	/**
+	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE__USAGES = IMAGE__USAGES;
+
+	/**
+	 * The feature id for the '<em><b>Tiling</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE__TILING = IMAGE__TILING;
+
+	/**
+	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE__MIP_LEVELS = IMAGE__MIP_LEVELS;
 
 	/**
 	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
@@ -2503,17 +2593,6 @@ public interface ResourcePackage extends EPackage
 	EClass getImage();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.Image#getInitialLayout <em>Initial Layout</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Initial Layout</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Image#getInitialLayout()
-	 * @see #getImage()
-	 * @generated
-	 */
-	EReference getImage_InitialLayout();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.StaticImage <em>Static Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2544,6 +2623,17 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getStaticImage_FillWith();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.StaticImage#getSize <em>Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Size</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.StaticImage#getSize()
+	 * @see #getStaticImage()
+	 * @generated
+	 */
+	EAttribute getStaticImage_Size();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.FileImage <em>File Image</em>}'.
@@ -3405,14 +3495,6 @@ public interface ResourcePackage extends EPackage
 		EClass IMAGE = eINSTANCE.getImage();
 
 		/**
-		 * The meta object literal for the '<em><b>Initial Layout</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference IMAGE__INITIAL_LAYOUT = eINSTANCE.getImage_InitialLayout();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.StaticImageImpl <em>Static Image</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3437,6 +3519,14 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute STATIC_IMAGE__FILL_WITH = eINSTANCE.getStaticImage_FillWith();
+
+		/**
+		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATIC_IMAGE__SIZE = eINSTANCE.getStaticImage_Size();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FileImageImpl <em>File Image</em>}' class.

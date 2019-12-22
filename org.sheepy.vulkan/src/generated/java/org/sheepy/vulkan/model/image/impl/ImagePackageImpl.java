@@ -5,6 +5,7 @@ package org.sheepy.vulkan.model.image.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
@@ -302,7 +303,7 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getImageInfo_Width()
+	public EAttribute getImageInfo_Format()
 	{
 		return (EAttribute)imageInfoEClass.getEStructuralFeatures().get(0);
 	}
@@ -313,7 +314,7 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getImageInfo_Height()
+	public EAttribute getImageInfo_Usages()
 	{
 		return (EAttribute)imageInfoEClass.getEStructuralFeatures().get(1);
 	}
@@ -324,7 +325,7 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getImageInfo_Format()
+	public EAttribute getImageInfo_Tiling()
 	{
 		return (EAttribute)imageInfoEClass.getEStructuralFeatures().get(2);
 	}
@@ -335,7 +336,7 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getImageInfo_Usages()
+	public EAttribute getImageInfo_MipLevels()
 	{
 		return (EAttribute)imageInfoEClass.getEStructuralFeatures().get(3);
 	}
@@ -346,31 +347,9 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getImageInfo_Properties()
+	public EReference getImageInfo_InitialLayout()
 	{
-		return (EAttribute)imageInfoEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getImageInfo_Tiling()
-	{
-		return (EAttribute)imageInfoEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getImageInfo_MipLevels()
-	{
-		return (EAttribute)imageInfoEClass.getEStructuralFeatures().get(6);
+		return (EReference)imageInfoEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -463,13 +442,11 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 		createEAttribute(samplerInfoEClass, SAMPLER_INFO__MAX_ANISOTROPY);
 
 		imageInfoEClass = createEClass(IMAGE_INFO);
-		createEAttribute(imageInfoEClass, IMAGE_INFO__WIDTH);
-		createEAttribute(imageInfoEClass, IMAGE_INFO__HEIGHT);
 		createEAttribute(imageInfoEClass, IMAGE_INFO__FORMAT);
 		createEAttribute(imageInfoEClass, IMAGE_INFO__USAGES);
-		createEAttribute(imageInfoEClass, IMAGE_INFO__PROPERTIES);
 		createEAttribute(imageInfoEClass, IMAGE_INFO__TILING);
 		createEAttribute(imageInfoEClass, IMAGE_INFO__MIP_LEVELS);
+		createEReference(imageInfoEClass, IMAGE_INFO__INITIAL_LAYOUT);
 
 		imageLayoutEClass = createEClass(IMAGE_LAYOUT);
 		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__STAGE);
@@ -526,13 +503,11 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 		initEAttribute(getSamplerInfo_MaxAnisotropy(), ecorePackage.getEFloat(), "maxAnisotropy", "1", 0, 1, SamplerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageInfoEClass, ImageInfo.class, "ImageInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImageInfo_Width(), ecorePackage.getEInt(), "width", null, 1, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageInfo_Height(), ecorePackage.getEInt(), "height", null, 1, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageInfo_Format(), theEnumerationPackage.getEFormat(), "format", null, 1, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageInfo_Format(), theEnumerationPackage.getEFormat(), "format", "R8G8B8A8_UNORM", 1, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageInfo_Usages(), theEnumerationPackage.getEImageUsage(), "usages", null, 1, -1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageInfo_Properties(), ecorePackage.getEInt(), "properties", "0", 0, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageInfo_Tiling(), ecorePackage.getEInt(), "tiling", "0", 1, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageInfo_MipLevels(), ecorePackage.getEInt(), "mipLevels", "1", 1, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImageInfo_InitialLayout(), this.getImageLayout(), null, "initialLayout", null, 0, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageLayoutEClass, ImageLayout.class, "ImageLayout", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getImageLayout_Stage(), theEnumerationPackage.getEPipelineStage(), "stage", null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

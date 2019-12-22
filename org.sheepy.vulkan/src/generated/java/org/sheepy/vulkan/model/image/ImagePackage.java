@@ -5,6 +5,7 @@ package org.sheepy.vulkan.model.image;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -203,31 +204,13 @@ public interface ImagePackage extends EPackage
 	int IMAGE_INFO = 1;
 
 	/**
-	 * The feature id for the '<em><b>Width</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_INFO__WIDTH = 0;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_INFO__HEIGHT = 1;
-
-	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_INFO__FORMAT = 2;
+	int IMAGE_INFO__FORMAT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
@@ -236,16 +219,7 @@ public interface ImagePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_INFO__USAGES = 3;
-
-	/**
-	 * The feature id for the '<em><b>Properties</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_INFO__PROPERTIES = 4;
+	int IMAGE_INFO__USAGES = 1;
 
 	/**
 	 * The feature id for the '<em><b>Tiling</b></em>' attribute.
@@ -254,7 +228,7 @@ public interface ImagePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_INFO__TILING = 5;
+	int IMAGE_INFO__TILING = 2;
 
 	/**
 	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
@@ -263,7 +237,16 @@ public interface ImagePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_INFO__MIP_LEVELS = 6;
+	int IMAGE_INFO__MIP_LEVELS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_INFO__INITIAL_LAYOUT = 4;
 
 	/**
 	 * The number of structural features of the '<em>Info</em>' class.
@@ -272,7 +255,7 @@ public interface ImagePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_INFO_FEATURE_COUNT = 7;
+	int IMAGE_INFO_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Info</em>' class.
@@ -491,28 +474,6 @@ public interface ImagePackage extends EPackage
 	EClass getImageInfo();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.image.ImageInfo#getWidth <em>Width</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Width</em>'.
-	 * @see org.sheepy.vulkan.model.image.ImageInfo#getWidth()
-	 * @see #getImageInfo()
-	 * @generated
-	 */
-	EAttribute getImageInfo_Width();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.image.ImageInfo#getHeight <em>Height</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Height</em>'.
-	 * @see org.sheepy.vulkan.model.image.ImageInfo#getHeight()
-	 * @see #getImageInfo()
-	 * @generated
-	 */
-	EAttribute getImageInfo_Height();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.image.ImageInfo#getFormat <em>Format</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -535,17 +496,6 @@ public interface ImagePackage extends EPackage
 	EAttribute getImageInfo_Usages();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.image.ImageInfo#getProperties <em>Properties</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Properties</em>'.
-	 * @see org.sheepy.vulkan.model.image.ImageInfo#getProperties()
-	 * @see #getImageInfo()
-	 * @generated
-	 */
-	EAttribute getImageInfo_Properties();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.image.ImageInfo#getTiling <em>Tiling</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -566,6 +516,17 @@ public interface ImagePackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getImageInfo_MipLevels();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.image.ImageInfo#getInitialLayout <em>Initial Layout</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Initial Layout</em>'.
+	 * @see org.sheepy.vulkan.model.image.ImageInfo#getInitialLayout()
+	 * @see #getImageInfo()
+	 * @generated
+	 */
+	EReference getImageInfo_InitialLayout();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.image.ImageLayout <em>Layout</em>}'.
@@ -751,22 +712,6 @@ public interface ImagePackage extends EPackage
 		EClass IMAGE_INFO = eINSTANCE.getImageInfo();
 
 		/**
-		 * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE_INFO__WIDTH = eINSTANCE.getImageInfo_Width();
-
-		/**
-		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE_INFO__HEIGHT = eINSTANCE.getImageInfo_Height();
-
-		/**
 		 * The meta object literal for the '<em><b>Format</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -783,14 +728,6 @@ public interface ImagePackage extends EPackage
 		EAttribute IMAGE_INFO__USAGES = eINSTANCE.getImageInfo_Usages();
 
 		/**
-		 * The meta object literal for the '<em><b>Properties</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE_INFO__PROPERTIES = eINSTANCE.getImageInfo_Properties();
-
-		/**
 		 * The meta object literal for the '<em><b>Tiling</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -805,6 +742,14 @@ public interface ImagePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute IMAGE_INFO__MIP_LEVELS = eINSTANCE.getImageInfo_MipLevels();
+
+		/**
+		 * The meta object literal for the '<em><b>Initial Layout</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IMAGE_INFO__INITIAL_LAYOUT = eINSTANCE.getImageInfo_InitialLayout();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.image.impl.ImageLayoutImpl <em>Layout</em>}' class.

@@ -175,6 +175,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				Image image = (Image)theEObject;
 				T1 result = caseImage(image);
 				if (result == null) result = caseIResource(image);
+				if (result == null) result = caseImageInfo(image);
 				if (result == null) result = caseLNamedElement(image);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -184,8 +185,8 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				StaticImage staticImage = (StaticImage)theEObject;
 				T1 result = caseStaticImage(staticImage);
 				if (result == null) result = caseImage(staticImage);
-				if (result == null) result = caseImageInfo(staticImage);
 				if (result == null) result = caseIResource(staticImage);
+				if (result == null) result = caseImageInfo(staticImage);
 				if (result == null) result = caseLNamedElement(staticImage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -196,6 +197,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				T1 result = caseFileImage(fileImage);
 				if (result == null) result = caseImage(fileImage);
 				if (result == null) result = caseIResource(fileImage);
+				if (result == null) result = caseImageInfo(fileImage);
 				if (result == null) result = caseLNamedElement(fileImage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -234,6 +236,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				T1 result = caseFontImage(fontImage);
 				if (result == null) result = caseImage(fontImage);
 				if (result == null) result = caseIResource(fontImage);
+				if (result == null) result = caseImageInfo(fontImage);
 				if (result == null) result = caseLNamedElement(fontImage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

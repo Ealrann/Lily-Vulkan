@@ -3,10 +3,13 @@ package org.sheepy.vulkan.resource.image;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
+import org.lwjgl.vulkan.VK10;
 import org.lwjgl.vulkan.VkBufferImageCopy;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageCreateInfo;
@@ -17,6 +20,7 @@ import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.image.ImageInfo;
+import org.sheepy.vulkan.model.image.ImageLayout;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
 import org.sheepy.vulkan.resource.memory.MemoryChunk;
@@ -39,32 +43,39 @@ public final class VkImage
 	public final int mipLevels;
 	public final boolean fillWithZero;
 	public final ByteBuffer fillWith;
+	public final ImageLayout initialLayout;
 	private MemoryChunk memory;
 
 	VkImage(int width,
 			int height,
 			int format,
 			int usage,
-			int properties,
 			int tiling,
 			int mipLevels,
 			boolean fillWithZero,
-			ByteBuffer fillWith)
+			ByteBuffer fillWith,
+			ImageLayout initialLayout)
 	{
 		this.width = width;
 		this.height = height;
 		this.format = format;
 		this.usage = usage;
-		this.properties = properties;
+		this.properties = VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
 		this.tiling = tiling;
 		this.mipLevels = mipLevels;
 		this.fillWithZero = fillWithZero;
 		this.fillWith = fillWith;
+		this.initialLayout = initialLayout;
 	}
 
 	public static final VkImageBuilder newBuilder(int width, int height, int format)
 	{
 		return new VkImageBuilder(width, height, format);
+	}
+
+	public static final VkImageBuilder newBuilder(ImageInfo info, int width, int height)
+	{
+		return new VkImageBuilder(info, width, height);
 	}
 
 	public void allocate(IExecutionContext context)
@@ -94,6 +105,27 @@ public final class VkImage
 			{
 				fillWithZero(context, memorySize);
 			}
+
+			if (initialLayout != null)
+			{
+				context.execute((context2, commandBuffer) ->
+				{
+					final var stage = initialLayout.getStage();
+					final var trgAccess = new ArrayList<>(initialLayout.getAccessMask());
+					if (trgAccess.isEmpty())
+					{
+						trgAccess.add(EAccess.SHADER_READ_BIT);
+					}
+					transitionImageLayout(	context2.stack(),
+											commandBuffer,
+											EPipelineStage.BOTTOM_OF_PIPE_BIT,
+											stage,
+											EImageLayout.UNDEFINED,
+											initialLayout.getLayout(),
+											Collections.emptyList(),
+											trgAccess);
+				});
+			}
 		});
 	}
 
@@ -121,18 +153,28 @@ public final class VkImage
 			List<EAccess> srcAccessMask = List.of();
 			List<EAccess> dstAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
 
-			transitionImageLayout(stack, commandBuffer, EPipelineStage.TRANSFER_BIT,
-					EPipelineStage.TRANSFER_BIT, EImageLayout.UNDEFINED,
-					EImageLayout.TRANSFER_DST_OPTIMAL, srcAccessMask, dstAccessMask);
+			transitionImageLayout(	stack,
+									commandBuffer,
+									EPipelineStage.TRANSFER_BIT,
+									EPipelineStage.TRANSFER_BIT,
+									EImageLayout.UNDEFINED,
+									EImageLayout.TRANSFER_DST_OPTIMAL,
+									srcAccessMask,
+									dstAccessMask);
 
 			fillWithBuffer(commandBuffer, stagingBuffer.getAddress());
 
 			srcAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
 			dstAccessMask = List.of();
 
-			transitionImageLayout(stack, commandBuffer, EPipelineStage.TRANSFER_BIT,
-					EPipelineStage.TRANSFER_BIT, EImageLayout.TRANSFER_DST_OPTIMAL,
-					EImageLayout.GENERAL, srcAccessMask, dstAccessMask);
+			transitionImageLayout(	stack,
+									commandBuffer,
+									EPipelineStage.TRANSFER_BIT,
+									EPipelineStage.TRANSFER_BIT,
+									EImageLayout.TRANSFER_DST_OPTIMAL,
+									EImageLayout.GENERAL,
+									srcAccessMask,
+									dstAccessMask);
 		});
 
 		stagingBuffer.free(context);
@@ -183,8 +225,13 @@ public final class VkImage
 		barrierInfo.srcAccessMask(VkModelUtil.getEnumeratedFlag(srcAccessMask));
 		barrierInfo.dstAccessMask(VkModelUtil.getEnumeratedFlag(dstAccessMask));
 
-		vkCmdPipelineBarrier(commandBuffer, srcStage.getValue(), dstStage.getValue(), 0, null, null,
-				barrierInfo);
+		vkCmdPipelineBarrier(	commandBuffer,
+								srcStage.getValue(),
+								dstStage.getValue(),
+								0,
+								null,
+								null,
+								barrierInfo);
 	}
 
 	public void free(IExecutionContext context)
@@ -215,7 +262,7 @@ public final class VkImage
 
 		final VkImageCreateInfo imageInfo = allocateInfo(stack);
 		final long[] aImageId = new long[1];
-		Logger.check(CREATE_ERROR, () -> vkCreateImage(device, imageInfo, null, aImageId));
+		Logger.check(vkCreateImage(device, imageInfo, null, aImageId), CREATE_ERROR);
 		return aImageId[0];
 	}
 
@@ -247,11 +294,11 @@ public final class VkImage
 		int height();
 		int format();
 		int usage();
-		int properties();
 		int tiling();
 		int mipLevels();
 		boolean fillWithZero();
 		ByteBuffer fillWith();
+		ImageLayout initialLayout();
 
 		Builder copyImmutable();
 
@@ -264,11 +311,11 @@ public final class VkImage
 		private final int height;
 		private final int format;
 		private int usage = 0;
-		private int properties = 0;
 		private int tiling = 0;
 		private int mipLevels = 1;
 		private boolean fillWithZero = false;
 		private ByteBuffer fillWith = null;
+		private ImageLayout initialLayout = null;
 
 		public VkImageBuilder(int width, int height, int format)
 		{
@@ -277,15 +324,15 @@ public final class VkImage
 			this.format = format;
 		}
 
-		public VkImageBuilder(ImageInfo info)
+		public VkImageBuilder(ImageInfo info, int width, int height)
 		{
-			this.width = info.getWidth();
-			this.height = info.getHeight();
+			this.width = width;
+			this.height = height;
 			this.format = info.getFormat().getValue();
 			this.usage = VkModelUtil.getEnumeratedFlag(info.getUsages());
-			this.properties = info.getProperties();
 			this.tiling = info.getTiling();
 			this.mipLevels = info.getMipLevels();
+			this.initialLayout = info.getInitialLayout();
 		}
 
 		public VkImageBuilder(Builder builder)
@@ -294,10 +341,10 @@ public final class VkImage
 			this.height = builder.height();
 			this.format = builder.format();
 			this.usage = builder.usage();
-			this.properties = builder.properties();
 			this.tiling = builder.tiling();
 			this.mipLevels = builder.mipLevels();
 			this.fillWithZero = builder.fillWithZero();
+			this.initialLayout = builder.initialLayout();
 		}
 
 		@Override
@@ -334,18 +381,6 @@ public final class VkImage
 		public int usage()
 		{
 			return usage;
-		}
-
-		public VkImageBuilder properties(int properties)
-		{
-			this.properties = properties;
-			return this;
-		}
-
-		@Override
-		public int properties()
-		{
-			return properties;
 		}
 
 		public VkImageBuilder tiling(int tiling)
@@ -402,11 +437,30 @@ public final class VkImage
 			return new ImmutableBuilder(this);
 		}
 
+		public Builder initialLayout(ImageLayout initialLayout)
+		{
+			this.initialLayout = initialLayout;
+			return this;
+		}
+
+		@Override
+		public ImageLayout initialLayout()
+		{
+			return initialLayout;
+		}
+
 		@Override
 		public VkImage build()
 		{
-			return new VkImage(width, height, format, usage, properties, tiling, mipLevels,
-					fillWithZero, fillWith);
+			return new VkImage(	width,
+								height,
+								format,
+								usage,
+								tiling,
+								mipLevels,
+								fillWithZero,
+								fillWith,
+								initialLayout);
 		}
 	}
 
@@ -415,12 +469,12 @@ public final class VkImage
 		private final int width;
 		private final int height;
 		private final int format;
-		private int usage = 0;
-		private int properties = 0;
-		private int tiling = 0;
-		private int mipLevels = 1;
-		private boolean fillWithZero = false;
-		private ByteBuffer fillWith = null;
+		private final int usage;
+		private final int tiling;
+		private final int mipLevels;
+		private final boolean fillWithZero;
+		private final ByteBuffer fillWith;
+		private final ImageLayout initialLayout;
 
 		public ImmutableBuilder(Builder builder)
 		{
@@ -428,11 +482,11 @@ public final class VkImage
 			this.height = builder.height();
 			this.format = builder.format();
 			this.usage = builder.usage();
-			this.properties = builder.properties();
 			this.tiling = builder.tiling();
 			this.mipLevels = builder.mipLevels();
 			this.fillWithZero = builder.fillWithZero();
 			this.fillWith = builder.fillWith();
+			this.initialLayout = builder.initialLayout();
 		}
 
 		@Override
@@ -457,12 +511,6 @@ public final class VkImage
 		public int usage()
 		{
 			return usage;
-		}
-
-		@Override
-		public int properties()
-		{
-			return properties;
 		}
 
 		@Override
@@ -496,10 +544,23 @@ public final class VkImage
 		}
 
 		@Override
+		public ImageLayout initialLayout()
+		{
+			return initialLayout;
+		}
+
+		@Override
 		public VkImage build()
 		{
-			return new VkImage(width, height, format, usage, properties, tiling, mipLevels,
-					fillWithZero, fillWith);
+			return new VkImage(	width,
+								height,
+								format,
+								usage,
+								tiling,
+								mipLevels,
+								fillWithZero,
+								fillWith,
+								initialLayout);
 		}
 	}
 }

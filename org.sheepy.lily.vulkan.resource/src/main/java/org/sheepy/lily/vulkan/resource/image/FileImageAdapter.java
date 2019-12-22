@@ -1,7 +1,5 @@
 package org.sheepy.lily.vulkan.resource.image;
 
-import static org.lwjgl.vulkan.VK10.*;
-
 import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
@@ -11,6 +9,7 @@ import org.sheepy.lily.vulkan.api.util.ImageBuffer;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
 import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.resource.image.STBImageLoader;
 import org.sheepy.vulkan.resource.image.VkImage;
 import org.sheepy.vulkan.resource.image.VkImage.Builder;
@@ -30,8 +29,7 @@ public class FileImageAdapter implements IImageAdapter
 		this.image = image;
 		imageBuffer = new ImageBuffer(image.getFile());
 		imageBuffer.allocate();
-		final var imageBuilder = createBuilder(imageBuffer.getImageSize(), image.isMipmapEnabled());
-
+		final var imageBuilder = createBuilder(image, imageBuffer.getImageSize());
 		vkTexture = new VkTexture(imageBuilder);
 	}
 
@@ -43,25 +41,18 @@ public class FileImageAdapter implements IImageAdapter
 		imageBuffer.free();
 	}
 
-	private static Builder createBuilder(Vector2ic size, boolean mipmapEnabled)
+	private static Builder createBuilder(FileImage image, Vector2ic size)
 	{
 		final int width = size.x();
 		final int height = size.y();
 
-		final int mipLevels = mipmapEnabled
+		final int mipLevels = image.isMipmapEnabled()
 				? (int) Math.floor(log2nlz(Math.max(width, height))) + 1
 				: 1;
 
-		final int format = VK_FORMAT_R8G8B8A8_UNORM;
-		final int usage = VK_IMAGE_USAGE_TRANSFER_SRC_BIT
-				| VK_IMAGE_USAGE_TRANSFER_DST_BIT
-				| VK_IMAGE_USAGE_SAMPLED_BIT;
-
-		final var imageBuilder = VkImage.newBuilder(width, height, format);
-		imageBuilder.usage(usage);
-		imageBuilder.properties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
-		imageBuilder.tiling(VK_IMAGE_TILING_OPTIMAL);
+		final var imageBuilder = new VkImage.VkImageBuilder(image, width, height);
 		imageBuilder.mipLevels(mipLevels);
+		imageBuilder.addUsage(EImageUsage.TRANSFER_DST_VALUE);
 
 		return imageBuilder.copyImmutable();
 	}

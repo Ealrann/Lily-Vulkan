@@ -587,13 +587,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//SamplerInfo/maxAnisotropy"/>
     </genClasses>
     <genClasses ecoreClass="Image.ecore#//ImageInfo">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageInfo/width"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageInfo/height"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageInfo/format"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageInfo/usages"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageInfo/properties"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageInfo/tiling"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageInfo/mipLevels"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Image.ecore#//ImageInfo/initialLayout"/>
     </genClasses>
     <genClasses ecoreClass="Image.ecore#//ImageLayout">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageLayout/stage"/>

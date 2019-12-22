@@ -6,10 +6,12 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
@@ -18,6 +20,7 @@ import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
 import org.sheepy.vulkan.model.image.ImageInfo;
+import org.sheepy.vulkan.model.image.ImageLayout;
 import org.sheepy.vulkan.model.image.ImagePackage;
 
 /**
@@ -28,59 +31,17 @@ import org.sheepy.vulkan.model.image.ImagePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.image.impl.ImageInfoImpl#getWidth <em>Width</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.image.impl.ImageInfoImpl#getHeight <em>Height</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.image.impl.ImageInfoImpl#getFormat <em>Format</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.image.impl.ImageInfoImpl#getUsages <em>Usages</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.image.impl.ImageInfoImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.image.impl.ImageInfoImpl#getTiling <em>Tiling</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.image.impl.ImageInfoImpl#getMipLevels <em>Mip Levels</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.image.impl.ImageInfoImpl#getInitialLayout <em>Initial Layout</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ImageInfoImpl extends LilyEObject implements ImageInfo
 {
-	/**
-	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWidth()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int WIDTH_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWidth()
-	 * @generated
-	 * @ordered
-	 */
-	protected int width = WIDTH_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getHeight()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int HEIGHT_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getHeight()
-	 * @generated
-	 * @ordered
-	 */
-	protected int height = HEIGHT_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getFormat() <em>Format</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -89,7 +50,7 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EFormat FORMAT_EDEFAULT = EFormat.UNDEFINED;
+	protected static final EFormat FORMAT_EDEFAULT = EFormat.R8G8B8A8_UNORM;
 
 	/**
 	 * The cached value of the '{@link #getFormat() <em>Format</em>}' attribute.
@@ -110,26 +71,6 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 	 * @ordered
 	 */
 	protected EList<EImageUsage> usages;
-
-	/**
-	 * The default value of the '{@link #getProperties() <em>Properties</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProperties()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int PROPERTIES_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProperties()
-	 * @generated
-	 * @ordered
-	 */
-	protected int properties = PROPERTIES_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getTiling() <em>Tiling</em>}' attribute.
@@ -172,6 +113,16 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 	protected int mipLevels = MIP_LEVELS_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getInitialLayout() <em>Initial Layout</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInitialLayout()
+	 * @generated
+	 * @ordered
+	 */
+	protected ImageLayout initialLayout;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -190,56 +141,6 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 	protected EClass eStaticClass()
 	{
 		return ImagePackage.Literals.IMAGE_INFO;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int getWidth()
-	{
-		return width;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setWidth(int newWidth)
-	{
-		int oldWidth = width;
-		width = newWidth;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ImagePackage.IMAGE_INFO__WIDTH, oldWidth, width));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int getHeight()
-	{
-		return height;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setHeight(int newHeight)
-	{
-		int oldHeight = height;
-		height = newHeight;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ImagePackage.IMAGE_INFO__HEIGHT, oldHeight, height));
 	}
 
 	/**
@@ -280,31 +181,6 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 			usages = new EDataTypeUniqueEList<EImageUsage>(EImageUsage.class, this, ImagePackage.IMAGE_INFO__USAGES);
 		}
 		return usages;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int getProperties()
-	{
-		return properties;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setProperties(int newProperties)
-	{
-		int oldProperties = properties;
-		properties = newProperties;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ImagePackage.IMAGE_INFO__PROPERTIES, oldProperties, properties));
 	}
 
 	/**
@@ -363,24 +239,86 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 	 * @generated
 	 */
 	@Override
+	public ImageLayout getInitialLayout()
+	{
+		return initialLayout;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetInitialLayout(ImageLayout newInitialLayout, NotificationChain msgs)
+	{
+		ImageLayout oldInitialLayout = initialLayout;
+		initialLayout = newInitialLayout;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ImagePackage.IMAGE_INFO__INITIAL_LAYOUT, oldInitialLayout, newInitialLayout);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setInitialLayout(ImageLayout newInitialLayout)
+	{
+		if (newInitialLayout != initialLayout)
+		{
+			NotificationChain msgs = null;
+			if (initialLayout != null)
+				msgs = ((InternalEObject)initialLayout).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ImagePackage.IMAGE_INFO__INITIAL_LAYOUT, null, msgs);
+			if (newInitialLayout != null)
+				msgs = ((InternalEObject)newInitialLayout).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ImagePackage.IMAGE_INFO__INITIAL_LAYOUT, null, msgs);
+			msgs = basicSetInitialLayout(newInitialLayout, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ImagePackage.IMAGE_INFO__INITIAL_LAYOUT, newInitialLayout, newInitialLayout));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case ImagePackage.IMAGE_INFO__INITIAL_LAYOUT:
+				return basicSetInitialLayout(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
 		{
-			case ImagePackage.IMAGE_INFO__WIDTH:
-				return getWidth();
-			case ImagePackage.IMAGE_INFO__HEIGHT:
-				return getHeight();
 			case ImagePackage.IMAGE_INFO__FORMAT:
 				return getFormat();
 			case ImagePackage.IMAGE_INFO__USAGES:
 				return getUsages();
-			case ImagePackage.IMAGE_INFO__PROPERTIES:
-				return getProperties();
 			case ImagePackage.IMAGE_INFO__TILING:
 				return getTiling();
 			case ImagePackage.IMAGE_INFO__MIP_LEVELS:
 				return getMipLevels();
+			case ImagePackage.IMAGE_INFO__INITIAL_LAYOUT:
+				return getInitialLayout();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -396,12 +334,6 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 	{
 		switch (featureID)
 		{
-			case ImagePackage.IMAGE_INFO__WIDTH:
-				setWidth((Integer)newValue);
-				return;
-			case ImagePackage.IMAGE_INFO__HEIGHT:
-				setHeight((Integer)newValue);
-				return;
 			case ImagePackage.IMAGE_INFO__FORMAT:
 				setFormat((EFormat)newValue);
 				return;
@@ -409,14 +341,14 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 				getUsages().clear();
 				getUsages().addAll((Collection<? extends EImageUsage>)newValue);
 				return;
-			case ImagePackage.IMAGE_INFO__PROPERTIES:
-				setProperties((Integer)newValue);
-				return;
 			case ImagePackage.IMAGE_INFO__TILING:
 				setTiling((Integer)newValue);
 				return;
 			case ImagePackage.IMAGE_INFO__MIP_LEVELS:
 				setMipLevels((Integer)newValue);
+				return;
+			case ImagePackage.IMAGE_INFO__INITIAL_LAYOUT:
+				setInitialLayout((ImageLayout)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -432,26 +364,20 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 	{
 		switch (featureID)
 		{
-			case ImagePackage.IMAGE_INFO__WIDTH:
-				setWidth(WIDTH_EDEFAULT);
-				return;
-			case ImagePackage.IMAGE_INFO__HEIGHT:
-				setHeight(HEIGHT_EDEFAULT);
-				return;
 			case ImagePackage.IMAGE_INFO__FORMAT:
 				setFormat(FORMAT_EDEFAULT);
 				return;
 			case ImagePackage.IMAGE_INFO__USAGES:
 				getUsages().clear();
 				return;
-			case ImagePackage.IMAGE_INFO__PROPERTIES:
-				setProperties(PROPERTIES_EDEFAULT);
-				return;
 			case ImagePackage.IMAGE_INFO__TILING:
 				setTiling(TILING_EDEFAULT);
 				return;
 			case ImagePackage.IMAGE_INFO__MIP_LEVELS:
 				setMipLevels(MIP_LEVELS_EDEFAULT);
+				return;
+			case ImagePackage.IMAGE_INFO__INITIAL_LAYOUT:
+				setInitialLayout((ImageLayout)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -467,20 +393,16 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 	{
 		switch (featureID)
 		{
-			case ImagePackage.IMAGE_INFO__WIDTH:
-				return width != WIDTH_EDEFAULT;
-			case ImagePackage.IMAGE_INFO__HEIGHT:
-				return height != HEIGHT_EDEFAULT;
 			case ImagePackage.IMAGE_INFO__FORMAT:
 				return format != FORMAT_EDEFAULT;
 			case ImagePackage.IMAGE_INFO__USAGES:
 				return usages != null && !usages.isEmpty();
-			case ImagePackage.IMAGE_INFO__PROPERTIES:
-				return properties != PROPERTIES_EDEFAULT;
 			case ImagePackage.IMAGE_INFO__TILING:
 				return tiling != TILING_EDEFAULT;
 			case ImagePackage.IMAGE_INFO__MIP_LEVELS:
 				return mipLevels != MIP_LEVELS_EDEFAULT;
+			case ImagePackage.IMAGE_INFO__INITIAL_LAYOUT:
+				return initialLayout != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -496,16 +418,10 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (width: ");
-		result.append(width);
-		result.append(", height: ");
-		result.append(height);
-		result.append(", format: ");
+		result.append(" (format: ");
 		result.append(format);
 		result.append(", usages: ");
 		result.append(usages);
-		result.append(", properties: ");
-		result.append(properties);
 		result.append(", tiling: ");
 		result.append(tiling);
 		result.append(", mipLevels: ");

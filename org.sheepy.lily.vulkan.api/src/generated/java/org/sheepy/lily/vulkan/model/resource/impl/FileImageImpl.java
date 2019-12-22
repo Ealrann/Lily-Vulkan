@@ -48,7 +48,6 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	 * @ordered
 	 */
 	protected static final boolean MIPMAP_ENABLED_EDEFAULT = false;
-
 	/**
 	 * The cached value of the '{@link #isMipmapEnabled() <em>Mipmap Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->

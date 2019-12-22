@@ -94,19 +94,18 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="ByteBuffer" instanceClassName="java.nio.ByteBuffer"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Image" abstract="true" eSuperTypes="../../org.sheepy.lily.core.model/model/application.ecore#//IResource">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="initialLayout" eType="ecore:EClass ../../org.sheepy.vulkan.model/model/Image.ecore#//ImageLayout"
-        containment="true" resolveProxies="false"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StaticImage" eSuperTypes="#//Image ../../org.sheepy.vulkan.model/model/Image.ecore#//ImageInfo">
+  <eClassifiers xsi:type="ecore:EClass" name="Image" abstract="true" eSuperTypes="../../org.sheepy.lily.core.model/model/application.ecore#//IResource ../../org.sheepy.vulkan.model/model/Image.ecore#//ImageInfo"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StaticImage" eSuperTypes="#//Image">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fillWithZero" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fillWith" eType="#//ByteBuffer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" lowerBound="1" eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector2i"
+        defaultValueLiteral="1;1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FileImage" eSuperTypes="#//Image">
     <eStructuralFeatures xsi:type="ecore:EReference" name="file" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/application.ecore#//FileResource"
         containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mipmapEnabled" unique="false"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mipmapEnabled" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SampledImage" eSuperTypes="../../org.sheepy.lily.core.model/model/application.ecore#//IResource">

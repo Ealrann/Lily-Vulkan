@@ -54,11 +54,10 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 	private static Pipeline buildPipeline(BackgroundImage part)
 	{
 		final var imagePipeline = ProcessFactory.eINSTANCE.createPipeline();
-		final var boardImage = getOrCreateImage(part.getResource(), imagePipeline);
+		final var backgroundImage = getOrCreateImage(part.getResource(), imagePipeline);
 
 		final var imageBarrier1 = ResourceFactory.eINSTANCE.createImageBarrier();
-		imageBarrier1.setImage(boardImage);
-		imageBarrier1.getSrcAccessMask().add(EAccess.SHADER_WRITE_BIT);
+		imageBarrier1.setImage(backgroundImage);
 		imageBarrier1.getDstAccessMask().add(EAccess.TRANSFER_READ_BIT);
 		imageBarrier1.setSrcLayout(EImageLayout.UNDEFINED);
 		imageBarrier1.setDstLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
@@ -76,7 +75,7 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 		pipelineBarrier1.getBarriers().add(swapImageBarrier);
 
 		final var blit = GraphicFactory.eINSTANCE.createBlitToSwapImage();
-		blit.setImage(boardImage);
+		blit.setImage(backgroundImage);
 		blit.setClearColor(part.getClearColor());
 		switch (part.getSampling())
 		{
@@ -88,22 +87,9 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 			break;
 		}
 
-		final var imageBarrier2 = ResourceFactory.eINSTANCE.createImageBarrier();
-		imageBarrier2.setImage(boardImage);
-		imageBarrier2.getSrcAccessMask().add(EAccess.TRANSFER_READ_BIT);
-		imageBarrier2.getDstAccessMask().add(EAccess.SHADER_WRITE_BIT);
-		imageBarrier2.setSrcLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
-		imageBarrier2.setDstLayout(EImageLayout.GENERAL);
-
-		final var pipelineBarrier2 = ProcessFactory.eINSTANCE.createPipelineBarrier();
-		pipelineBarrier2.setSrcStage(EPipelineStage.TRANSFER_BIT);
-		pipelineBarrier2.setDstStage(EPipelineStage.COMPUTE_SHADER_BIT);
-		pipelineBarrier2.getBarriers().add(imageBarrier2);
-
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 		taskPkg.getTasks().add(pipelineBarrier1);
 		taskPkg.getTasks().add(blit);
-		taskPkg.getTasks().add(pipelineBarrier2);
 
 		imagePipeline.setStage(ECommandStage.TRANSFER);
 		imagePipeline.setTaskPkg(taskPkg);

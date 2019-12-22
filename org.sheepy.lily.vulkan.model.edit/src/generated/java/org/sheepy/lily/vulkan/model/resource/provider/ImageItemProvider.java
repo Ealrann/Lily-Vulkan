@@ -11,11 +11,13 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.application.provider.IResourceItemProvider;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.image.ImageFactory;
+import org.sheepy.vulkan.model.image.ImagePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.Image} object.
@@ -49,30 +51,102 @@ public class ImageItemProvider extends IResourceItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addInitialLayoutPropertyDescriptor(object);
+			addFormatPropertyDescriptor(object);
+			addUsagesPropertyDescriptor(object);
+			addTilingPropertyDescriptor(object);
+			addMipLevelsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Initial Layout feature.
+	 * This adds a property descriptor for the Format feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInitialLayoutPropertyDescriptor(Object object)
+	protected void addFormatPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Image_initialLayout_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_initialLayout_feature", "_UI_Image_type"),
-				 ResourcePackage.Literals.IMAGE__INITIAL_LAYOUT,
+				 getString("_UI_ImageInfo_format_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageInfo_format_feature", "_UI_ImageInfo_type"),
+				 ImagePackage.Literals.IMAGE_INFO__FORMAT,
 				 true,
 				 false,
 				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Usages feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUsagesPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageInfo_usages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageInfo_usages_feature", "_UI_ImageInfo_type"),
+				 ImagePackage.Literals.IMAGE_INFO__USAGES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Tiling feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTilingPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageInfo_tiling_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageInfo_tiling_feature", "_UI_ImageInfo_type"),
+				 ImagePackage.Literals.IMAGE_INFO__TILING,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Mip Levels feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMipLevelsPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageInfo_mipLevels_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageInfo_mipLevels_feature", "_UI_ImageInfo_type"),
+				 ImagePackage.Literals.IMAGE_INFO__MIP_LEVELS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -91,7 +165,7 @@ public class ImageItemProvider extends IResourceItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ResourcePackage.Literals.IMAGE__INITIAL_LAYOUT);
+			childrenFeatures.add(ImagePackage.Literals.IMAGE_INFO__INITIAL_LAYOUT);
 		}
 		return childrenFeatures;
 	}
@@ -152,6 +226,12 @@ public class ImageItemProvider extends IResourceItemProvider
 
 		switch (notification.getFeatureID(Image.class))
 		{
+			case ResourcePackage.IMAGE__FORMAT:
+			case ResourcePackage.IMAGE__USAGES:
+			case ResourcePackage.IMAGE__TILING:
+			case ResourcePackage.IMAGE__MIP_LEVELS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case ResourcePackage.IMAGE__INITIAL_LAYOUT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -173,7 +253,7 @@ public class ImageItemProvider extends IResourceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.IMAGE__INITIAL_LAYOUT,
+				(ImagePackage.Literals.IMAGE_INFO__INITIAL_LAYOUT,
 				 ImageFactory.eINSTANCE.createImageLayout()));
 	}
 

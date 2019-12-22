@@ -14,7 +14,6 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
-import org.sheepy.vulkan.model.image.ImagePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.StaticImage} object.
@@ -48,178 +47,11 @@ public class StaticImageItemProvider extends ImageItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addWidthPropertyDescriptor(object);
-			addHeightPropertyDescriptor(object);
-			addFormatPropertyDescriptor(object);
-			addUsagesPropertyDescriptor(object);
-			addPropertiesPropertyDescriptor(object);
-			addTilingPropertyDescriptor(object);
-			addMipLevelsPropertyDescriptor(object);
 			addFillWithZeroPropertyDescriptor(object);
 			addFillWithPropertyDescriptor(object);
+			addSizePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Width feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addWidthPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImageInfo_width_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageInfo_width_feature", "_UI_ImageInfo_type"),
-				 ImagePackage.Literals.IMAGE_INFO__WIDTH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Height feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addHeightPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImageInfo_height_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageInfo_height_feature", "_UI_ImageInfo_type"),
-				 ImagePackage.Literals.IMAGE_INFO__HEIGHT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Format feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFormatPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImageInfo_format_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageInfo_format_feature", "_UI_ImageInfo_type"),
-				 ImagePackage.Literals.IMAGE_INFO__FORMAT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Usages feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addUsagesPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImageInfo_usages_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageInfo_usages_feature", "_UI_ImageInfo_type"),
-				 ImagePackage.Literals.IMAGE_INFO__USAGES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Properties feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPropertiesPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImageInfo_properties_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageInfo_properties_feature", "_UI_ImageInfo_type"),
-				 ImagePackage.Literals.IMAGE_INFO__PROPERTIES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Tiling feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTilingPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImageInfo_tiling_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageInfo_tiling_feature", "_UI_ImageInfo_type"),
-				 ImagePackage.Literals.IMAGE_INFO__TILING,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Mip Levels feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addMipLevelsPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImageInfo_mipLevels_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageInfo_mipLevels_feature", "_UI_ImageInfo_type"),
-				 ImagePackage.Literals.IMAGE_INFO__MIP_LEVELS,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -260,6 +92,29 @@ public class StaticImageItemProvider extends ImageItemProvider
 				 getString("_UI_StaticImage_fillWith_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_StaticImage_fillWith_feature", "_UI_StaticImage_type"),
 				 ResourcePackage.Literals.STATIC_IMAGE__FILL_WITH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Size feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSizePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_StaticImage_size_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_StaticImage_size_feature", "_UI_StaticImage_type"),
+				 ResourcePackage.Literals.STATIC_IMAGE__SIZE,
 				 true,
 				 false,
 				 false,
@@ -310,15 +165,9 @@ public class StaticImageItemProvider extends ImageItemProvider
 
 		switch (notification.getFeatureID(StaticImage.class))
 		{
-			case ResourcePackage.STATIC_IMAGE__WIDTH:
-			case ResourcePackage.STATIC_IMAGE__HEIGHT:
-			case ResourcePackage.STATIC_IMAGE__FORMAT:
-			case ResourcePackage.STATIC_IMAGE__USAGES:
-			case ResourcePackage.STATIC_IMAGE__PROPERTIES:
-			case ResourcePackage.STATIC_IMAGE__TILING:
-			case ResourcePackage.STATIC_IMAGE__MIP_LEVELS:
 			case ResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
 			case ResourcePackage.STATIC_IMAGE__FILL_WITH:
+			case ResourcePackage.STATIC_IMAGE__SIZE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

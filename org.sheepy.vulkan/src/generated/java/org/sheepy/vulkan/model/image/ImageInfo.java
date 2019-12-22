@@ -16,13 +16,11 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.image.ImageInfo#getWidth <em>Width</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.image.ImageInfo#getHeight <em>Height</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.image.ImageInfo#getFormat <em>Format</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.image.ImageInfo#getUsages <em>Usages</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.image.ImageInfo#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.image.ImageInfo#getTiling <em>Tiling</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.image.ImageInfo#getMipLevels <em>Mip Levels</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.image.ImageInfo#getInitialLayout <em>Initial Layout</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.image.ImagePackage#getImageInfo()
@@ -33,51 +31,8 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
 public interface ImageInfo extends ILilyEObject
 {
 	/**
-	 * Returns the value of the '<em><b>Width</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Width</em>' attribute.
-	 * @see #setWidth(int)
-	 * @see org.sheepy.vulkan.model.image.ImagePackage#getImageInfo_Width()
-	 * @model required="true"
-	 * @generated
-	 */
-	int getWidth();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.image.ImageInfo#getWidth <em>Width</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Width</em>' attribute.
-	 * @see #getWidth()
-	 * @generated
-	 */
-	void setWidth(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Height</em>' attribute.
-	 * @see #setHeight(int)
-	 * @see org.sheepy.vulkan.model.image.ImagePackage#getImageInfo_Height()
-	 * @model required="true"
-	 * @generated
-	 */
-	int getHeight();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.image.ImageInfo#getHeight <em>Height</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Height</em>' attribute.
-	 * @see #getHeight()
-	 * @generated
-	 */
-	void setHeight(int value);
-
-	/**
 	 * Returns the value of the '<em><b>Format</b></em>' attribute.
+	 * The default value is <code>"R8G8B8A8_UNORM"</code>.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EFormat}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -85,7 +40,7 @@ public interface ImageInfo extends ILilyEObject
 	 * @see org.sheepy.vulkan.model.enumeration.EFormat
 	 * @see #setFormat(EFormat)
 	 * @see org.sheepy.vulkan.model.image.ImagePackage#getImageInfo_Format()
-	 * @model required="true"
+	 * @model default="R8G8B8A8_UNORM" required="true"
 	 * @generated
 	 */
 	EFormat getFormat();
@@ -114,29 +69,6 @@ public interface ImageInfo extends ILilyEObject
 	 * @generated
 	 */
 	EList<EImageUsage> getUsages();
-
-	/**
-	 * Returns the value of the '<em><b>Properties</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Properties</em>' attribute.
-	 * @see #setProperties(int)
-	 * @see org.sheepy.vulkan.model.image.ImagePackage#getImageInfo_Properties()
-	 * @model default="0"
-	 * @generated
-	 */
-	int getProperties();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.image.ImageInfo#getProperties <em>Properties</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Properties</em>' attribute.
-	 * @see #getProperties()
-	 * @generated
-	 */
-	void setProperties(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Tiling</b></em>' attribute.
@@ -183,5 +115,27 @@ public interface ImageInfo extends ILilyEObject
 	 * @generated
 	 */
 	void setMipLevels(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Initial Layout</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Initial Layout</em>' containment reference.
+	 * @see #setInitialLayout(ImageLayout)
+	 * @see org.sheepy.vulkan.model.image.ImagePackage#getImageInfo_InitialLayout()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ImageLayout getInitialLayout();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.image.ImageInfo#getInitialLayout <em>Initial Layout</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Initial Layout</em>' containment reference.
+	 * @see #getInitialLayout()
+	 * @generated
+	 */
+	void setInitialLayout(ImageLayout value);
 
 } // ImageInfo

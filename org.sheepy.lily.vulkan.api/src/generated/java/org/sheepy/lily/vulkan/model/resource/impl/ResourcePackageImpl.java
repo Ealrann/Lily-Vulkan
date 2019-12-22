@@ -863,17 +863,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getImage_InitialLayout()
-	{
-		return (EReference)imageEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getStaticImage()
 	{
 		return staticImageEClass;
@@ -899,6 +888,17 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EAttribute getStaticImage_FillWith()
 	{
 		return (EAttribute)staticImageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getStaticImage_Size()
+	{
+		return (EAttribute)staticImageEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1479,11 +1479,11 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__GROW_THRESHOLD);
 
 		imageEClass = createEClass(IMAGE);
-		createEReference(imageEClass, IMAGE__INITIAL_LAYOUT);
 
 		staticImageEClass = createEClass(STATIC_IMAGE);
 		createEAttribute(staticImageEClass, STATIC_IMAGE__FILL_WITH_ZERO);
 		createEAttribute(staticImageEClass, STATIC_IMAGE__FILL_WITH);
+		createEAttribute(staticImageEClass, STATIC_IMAGE__SIZE);
 
 		fileImageEClass = createEClass(FILE_IMAGE);
 		createEReference(fileImageEClass, FILE_IMAGE__FILE);
@@ -1602,8 +1602,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		compositeBufferReferenceEClass.getESuperTypes().add(this.getIBufferReference());
 		bufferDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		imageEClass.getESuperTypes().add(theApplicationPackage.getIResource());
+		imageEClass.getESuperTypes().add(theImagePackage.getImageInfo());
 		staticImageEClass.getESuperTypes().add(this.getImage());
-		staticImageEClass.getESuperTypes().add(theImagePackage.getImageInfo());
 		fileImageEClass.getESuperTypes().add(this.getImage());
 		sampledImageEClass.getESuperTypes().add(theApplicationPackage.getIResource());
 		samplerEClass.getESuperTypes().add(theImagePackage.getSamplerInfo());
@@ -1679,15 +1679,15 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getBufferDataProvider_GrowThreshold(), ecorePackage.getEFloat(), "growThreshold", "1", 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageEClass, Image.class, "Image", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getImage_InitialLayout(), theImagePackage.getImageLayout(), null, "initialLayout", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(staticImageEClass, StaticImage.class, "StaticImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStaticImage_FillWithZero(), ecorePackage.getEBoolean(), "fillWithZero", "false", 0, 1, StaticImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStaticImage_FillWith(), this.getByteBuffer(), "fillWith", null, 0, 1, StaticImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStaticImage_Size(), theTypesPackage.getVector2i(), "size", "1;1", 1, 1, StaticImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fileImageEClass, FileImage.class, "FileImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFileImage_File(), theApplicationPackage.getFileResource(), null, "file", null, 0, 1, FileImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFileImage_MipmapEnabled(), ecorePackage.getEBoolean(), "mipmapEnabled", "false", 0, 1, FileImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFileImage_MipmapEnabled(), ecorePackage.getEBoolean(), "mipmapEnabled", "false", 1, 1, FileImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sampledImageEClass, SampledImage.class, "SampledImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSampledImage_Sampler(), theImagePackage.getSamplerInfo(), null, "sampler", null, 1, 1, SampledImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

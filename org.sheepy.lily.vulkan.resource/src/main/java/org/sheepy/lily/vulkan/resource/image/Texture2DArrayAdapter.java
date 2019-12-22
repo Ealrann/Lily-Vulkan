@@ -150,7 +150,6 @@ public final class Texture2DArrayAdapter implements ITexture2DArrayAdapter
 
 			final var imageBuilder = VkImage.newBuilder(width, height, format);
 			imageBuilder.usage(usage);
-			imageBuilder.properties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 			imageBuilder.tiling(VK_IMAGE_TILING_OPTIMAL);
 			imageBuilder.mipLevels(mipLevels);
 

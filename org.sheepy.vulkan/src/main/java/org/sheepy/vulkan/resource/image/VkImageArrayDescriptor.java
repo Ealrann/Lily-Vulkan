@@ -76,12 +76,18 @@ public class VkImageArrayDescriptor implements IVkDescriptor
 		changed = false;
 	}
 
+	@Override
+	public boolean isEmpty()
+	{
+		return imageViewPtrs.length == 0;
+	}
+
 	public void updateViewPtrs(long[] viewPtrs)
 	{
 		this.imageViewPtrs = viewPtrs;
 		changed = true;
 	}
-	
+
 	public long[] getViewPtrs()
 	{
 		return imageViewPtrs;

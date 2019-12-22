@@ -137,7 +137,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		for (int i = 0; i < size; i++)
 		{
 			final var descriptor = descriptors.get(i);
-			if (all || descriptor.hasChanged())
+			if ((all || descriptor.hasChanged()) && descriptor.isEmpty() == false)
 			{
 				final var descriptorWrite = descriptorWrites.get();
 
