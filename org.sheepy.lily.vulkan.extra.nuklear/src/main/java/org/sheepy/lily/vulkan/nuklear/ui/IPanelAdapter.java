@@ -15,6 +15,7 @@ import org.sheepy.vulkan.window.Window;
 public interface IPanelAdapter extends IAdapter
 {
 	boolean layout(UIContext context);
+	public boolean isHovered();
 
 	default void collectImages(List<FileResource> imageCollection)
 	{};

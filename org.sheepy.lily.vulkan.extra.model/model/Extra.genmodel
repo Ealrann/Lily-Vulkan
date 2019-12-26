@@ -65,6 +65,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/vertical"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/autoHideLabels"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/fadeOutMs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/unsettable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/detectHoverOnLabels"/>
     </genClasses>
     <genClasses ecoreClass="Nuklear.ecore#//IInputProvider"/>
     <genClasses ecoreClass="Nuklear.ecore#//PanelViewer">

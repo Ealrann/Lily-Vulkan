@@ -29,6 +29,7 @@ import org.sheepy.lily.core.model.presentation.PresentationPackage;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.core.model.variable.VariableFactory;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
@@ -76,6 +77,7 @@ public class SelectorPanelItemProvider
 			addPositionPropertyDescriptor(object);
 			addVerticalRelativePropertyDescriptor(object);
 			addHorizontalRelativePropertyDescriptor(object);
+			addCatchInputsPropertyDescriptor(object);
 			addButtonSizePxPropertyDescriptor(object);
 			addSelectionRPropertyDescriptor(object);
 			addSelectionGPropertyDescriptor(object);
@@ -84,6 +86,8 @@ public class SelectorPanelItemProvider
 			addVerticalPropertyDescriptor(object);
 			addAutoHideLabelsPropertyDescriptor(object);
 			addFadeOutMsPropertyDescriptor(object);
+			addUnsettablePropertyDescriptor(object);
+			addDetectHoverOnLabelsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -176,6 +180,29 @@ public class SelectorPanelItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Catch Inputs feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCatchInputsPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPanel_catchInputs_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPanel_catchInputs_feature", "_UI_IPanel_type"),
+				 UiPackage.Literals.IPANEL__CATCH_INPUTS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -365,6 +392,52 @@ public class SelectorPanelItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Unsettable feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUnsettablePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SelectorPanel_unsettable_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SelectorPanel_unsettable_feature", "_UI_SelectorPanel_type"),
+				 NuklearPackage.Literals.SELECTOR_PANEL__UNSETTABLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Detect Hover On Labels feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDetectHoverOnLabelsPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SelectorPanel_detectHoverOnLabels_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SelectorPanel_detectHoverOnLabels_feature", "_UI_SelectorPanel_type"),
+				 NuklearPackage.Literals.SELECTOR_PANEL__DETECT_HOVER_ON_LABELS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -444,6 +517,7 @@ public class SelectorPanelItemProvider
 			case NuklearPackage.SELECTOR_PANEL__POSITION:
 			case NuklearPackage.SELECTOR_PANEL__VERTICAL_RELATIVE:
 			case NuklearPackage.SELECTOR_PANEL__HORIZONTAL_RELATIVE:
+			case NuklearPackage.SELECTOR_PANEL__CATCH_INPUTS:
 			case NuklearPackage.SELECTOR_PANEL__BUTTON_SIZE_PX:
 			case NuklearPackage.SELECTOR_PANEL__SELECTION_R:
 			case NuklearPackage.SELECTOR_PANEL__SELECTION_G:
@@ -452,6 +526,8 @@ public class SelectorPanelItemProvider
 			case NuklearPackage.SELECTOR_PANEL__VERTICAL:
 			case NuklearPackage.SELECTOR_PANEL__AUTO_HIDE_LABELS:
 			case NuklearPackage.SELECTOR_PANEL__FADE_OUT_MS:
+			case NuklearPackage.SELECTOR_PANEL__UNSETTABLE:
+			case NuklearPackage.SELECTOR_PANEL__DETECT_HOVER_ON_LABELS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case NuklearPackage.SELECTOR_PANEL__VARIABLE_RESOLVER:

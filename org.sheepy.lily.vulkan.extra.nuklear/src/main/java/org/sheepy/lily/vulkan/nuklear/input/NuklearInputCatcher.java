@@ -238,9 +238,13 @@ public final class NuklearInputCatcher implements IInputCatcher
 			res = true;
 		}
 
-		if (nk_window_is_any_hovered(nkContext))
+		if (clicked)
 		{
-			res = clicked;
+			final var panel = layoutAdapter.getHoveredPanel();
+			if (panel != null)
+			{
+				res = panel.isCatchInputs();
+			}
 		}
 
 		clicked = false;

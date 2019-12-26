@@ -53,6 +53,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 	private boolean loaded = false;
 	private boolean dirty = false;
 	private Object selectedElement;
+	private boolean hovered = false;
 
 	private NkColor backgroundColor;
 
@@ -173,6 +174,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 
 		backgroundColor.a((byte) 0);
 
+		hovered = false;
 		for (int i = 0; i < datas.size(); i++)
 		{
 			final LineData data = datas.get(i);
@@ -186,6 +188,11 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 								data.rectLabel,
 								NK_WINDOW_NO_SCROLLBAR | NK_WINDOW_BACKGROUND | NK_WINDOW_NO_INPUT))
 				{
+					if (panel.isDetectHoverOnLabels())
+					{
+						hovered |= nk_window_is_hovered(nkContext);
+					}
+
 					if (showText || panel.isAutoHideLabels() == false)
 					{
 						nk_layout_row_dynamic(context.nkContext, buttonSize, 1);
@@ -204,12 +211,17 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 									data.panelButton1Id,
 									data.rectButton))
 			{
-				final var newSelection = (selectedElement == data.element) ? null : data.element;
+				var newSelection = data.element;
+				if (panel.isUnsettable() && selectedElement == newSelection)
+				{
+					newSelection = null;
+				}
 				resolverAdapter.setValue(resolver, newSelection);
 				dirty = true;
 			}
 
 			buttonPanelHovered |= buttonDrawer.isHovered();
+			hovered |= buttonPanelHovered;
 		}
 
 		if (panel.isAutoHideLabels() && panel.isPrintLabels())
@@ -266,6 +278,12 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 				dirty = true;
 			}
 		}
+	}
+
+	@Override
+	public boolean isHovered()
+	{
+		return hovered;
 	}
 
 	@Override

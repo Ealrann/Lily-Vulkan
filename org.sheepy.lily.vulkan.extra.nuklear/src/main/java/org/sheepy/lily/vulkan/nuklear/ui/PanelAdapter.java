@@ -28,6 +28,7 @@ public class PanelAdapter implements IPanelAdapter
 	private NkRect rect = NkRect.create();
 	private Window window = null;
 	private int style;
+	private boolean hovered = false;
 
 	public PanelAdapter(Panel panel)
 	{
@@ -104,6 +105,8 @@ public class PanelAdapter implements IPanelAdapter
 
 			if (nk_begin(nkContext, panel.getName(), nk_rect(x, y, width, height, rect), style))
 			{
+				hovered = nk_window_is_hovered(nkContext);
+
 				if (nk_window_is_collapsed(nkContext, textBuffer)
 						&& (style & NK_WINDOW_MINIMIZED) != 0)
 				{
@@ -129,5 +132,11 @@ public class PanelAdapter implements IPanelAdapter
 		}
 
 		return res;
+	}
+
+	@Override
+	public boolean isHovered()
+	{
+		return hovered;
 	}
 }

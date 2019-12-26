@@ -43,6 +43,7 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#getPosition <em>Position</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#getVerticalRelative <em>Vertical Relative</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#getHorizontalRelative <em>Horizontal Relative</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#isCatchInputs <em>Catch Inputs</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#getButtonSizePx <em>Button Size Px</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#getSelectionR <em>Selection R</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#getSelectionG <em>Selection G</em>}</li>
@@ -53,6 +54,8 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#isVertical <em>Vertical</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#isAutoHideLabels <em>Auto Hide Labels</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#getFadeOutMs <em>Fade Out Ms</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#isUnsettable <em>Unsettable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#isDetectHoverOnLabels <em>Detect Hover On Labels</em>}</li>
  * </ul>
  *
  * @generated
@@ -138,6 +141,26 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	 * @ordered
 	 */
 	protected EHorizontalRelative horizontalRelative = HORIZONTAL_RELATIVE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isCatchInputs() <em>Catch Inputs</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCatchInputs()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CATCH_INPUTS_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isCatchInputs() <em>Catch Inputs</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCatchInputs()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean catchInputs = CATCH_INPUTS_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getButtonSizePx() <em>Button Size Px</em>}' attribute.
@@ -320,6 +343,46 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	protected int fadeOutMs = FADE_OUT_MS_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #isUnsettable() <em>Unsettable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUnsettable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean UNSETTABLE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isUnsettable() <em>Unsettable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUnsettable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean unsettable = UNSETTABLE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isDetectHoverOnLabels() <em>Detect Hover On Labels</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDetectHoverOnLabels()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DETECT_HOVER_ON_LABELS_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDetectHoverOnLabels() <em>Detect Hover On Labels</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDetectHoverOnLabels()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean detectHoverOnLabels = DETECT_HOVER_ON_LABELS_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -438,6 +501,31 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 		horizontalRelative = newHorizontalRelative == null ? HORIZONTAL_RELATIVE_EDEFAULT : newHorizontalRelative;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.SELECTOR_PANEL__HORIZONTAL_RELATIVE, oldHorizontalRelative, horizontalRelative));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isCatchInputs()
+	{
+		return catchInputs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCatchInputs(boolean newCatchInputs)
+	{
+		boolean oldCatchInputs = catchInputs;
+		catchInputs = newCatchInputs;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.SELECTOR_PANEL__CATCH_INPUTS, oldCatchInputs, catchInputs));
 	}
 
 	/**
@@ -746,6 +834,56 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	 * @generated
 	 */
 	@Override
+	public boolean isUnsettable()
+	{
+		return unsettable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setUnsettable(boolean newUnsettable)
+	{
+		boolean oldUnsettable = unsettable;
+		unsettable = newUnsettable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.SELECTOR_PANEL__UNSETTABLE, oldUnsettable, unsettable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isDetectHoverOnLabels()
+	{
+		return detectHoverOnLabels;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDetectHoverOnLabels(boolean newDetectHoverOnLabels)
+	{
+		boolean oldDetectHoverOnLabels = detectHoverOnLabels;
+		detectHoverOnLabels = newDetectHoverOnLabels;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.SELECTOR_PANEL__DETECT_HOVER_ON_LABELS, oldDetectHoverOnLabels, detectHoverOnLabels));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public IInferenceObject lInferenceObject()
 	{
 		return this;
@@ -787,6 +925,8 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 				return getVerticalRelative();
 			case NuklearPackage.SELECTOR_PANEL__HORIZONTAL_RELATIVE:
 				return getHorizontalRelative();
+			case NuklearPackage.SELECTOR_PANEL__CATCH_INPUTS:
+				return isCatchInputs();
 			case NuklearPackage.SELECTOR_PANEL__BUTTON_SIZE_PX:
 				return getButtonSizePx();
 			case NuklearPackage.SELECTOR_PANEL__SELECTION_R:
@@ -807,6 +947,10 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 				return isAutoHideLabels();
 			case NuklearPackage.SELECTOR_PANEL__FADE_OUT_MS:
 				return getFadeOutMs();
+			case NuklearPackage.SELECTOR_PANEL__UNSETTABLE:
+				return isUnsettable();
+			case NuklearPackage.SELECTOR_PANEL__DETECT_HOVER_ON_LABELS:
+				return isDetectHoverOnLabels();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -832,6 +976,9 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 				return;
 			case NuklearPackage.SELECTOR_PANEL__HORIZONTAL_RELATIVE:
 				setHorizontalRelative((EHorizontalRelative)newValue);
+				return;
+			case NuklearPackage.SELECTOR_PANEL__CATCH_INPUTS:
+				setCatchInputs((Boolean)newValue);
 				return;
 			case NuklearPackage.SELECTOR_PANEL__BUTTON_SIZE_PX:
 				setButtonSizePx((Integer)newValue);
@@ -863,6 +1010,12 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 			case NuklearPackage.SELECTOR_PANEL__FADE_OUT_MS:
 				setFadeOutMs((Integer)newValue);
 				return;
+			case NuklearPackage.SELECTOR_PANEL__UNSETTABLE:
+				setUnsettable((Boolean)newValue);
+				return;
+			case NuklearPackage.SELECTOR_PANEL__DETECT_HOVER_ON_LABELS:
+				setDetectHoverOnLabels((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -888,6 +1041,9 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 				return;
 			case NuklearPackage.SELECTOR_PANEL__HORIZONTAL_RELATIVE:
 				setHorizontalRelative(HORIZONTAL_RELATIVE_EDEFAULT);
+				return;
+			case NuklearPackage.SELECTOR_PANEL__CATCH_INPUTS:
+				setCatchInputs(CATCH_INPUTS_EDEFAULT);
 				return;
 			case NuklearPackage.SELECTOR_PANEL__BUTTON_SIZE_PX:
 				setButtonSizePx(BUTTON_SIZE_PX_EDEFAULT);
@@ -919,6 +1075,12 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 			case NuklearPackage.SELECTOR_PANEL__FADE_OUT_MS:
 				setFadeOutMs(FADE_OUT_MS_EDEFAULT);
 				return;
+			case NuklearPackage.SELECTOR_PANEL__UNSETTABLE:
+				setUnsettable(UNSETTABLE_EDEFAULT);
+				return;
+			case NuklearPackage.SELECTOR_PANEL__DETECT_HOVER_ON_LABELS:
+				setDetectHoverOnLabels(DETECT_HOVER_ON_LABELS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -941,6 +1103,8 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 				return verticalRelative != VERTICAL_RELATIVE_EDEFAULT;
 			case NuklearPackage.SELECTOR_PANEL__HORIZONTAL_RELATIVE:
 				return horizontalRelative != HORIZONTAL_RELATIVE_EDEFAULT;
+			case NuklearPackage.SELECTOR_PANEL__CATCH_INPUTS:
+				return catchInputs != CATCH_INPUTS_EDEFAULT;
 			case NuklearPackage.SELECTOR_PANEL__BUTTON_SIZE_PX:
 				return buttonSizePx != BUTTON_SIZE_PX_EDEFAULT;
 			case NuklearPackage.SELECTOR_PANEL__SELECTION_R:
@@ -961,6 +1125,10 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 				return autoHideLabels != AUTO_HIDE_LABELS_EDEFAULT;
 			case NuklearPackage.SELECTOR_PANEL__FADE_OUT_MS:
 				return fadeOutMs != FADE_OUT_MS_EDEFAULT;
+			case NuklearPackage.SELECTOR_PANEL__UNSETTABLE:
+				return unsettable != UNSETTABLE_EDEFAULT;
+			case NuklearPackage.SELECTOR_PANEL__DETECT_HOVER_ON_LABELS:
+				return detectHoverOnLabels != DETECT_HOVER_ON_LABELS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1103,6 +1271,8 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 		result.append(verticalRelative);
 		result.append(", horizontalRelative: ");
 		result.append(horizontalRelative);
+		result.append(", catchInputs: ");
+		result.append(catchInputs);
 		result.append(", buttonSizePx: ");
 		result.append(buttonSizePx);
 		result.append(", selectionR: ");
@@ -1119,6 +1289,10 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 		result.append(autoHideLabels);
 		result.append(", fadeOutMs: ");
 		result.append(fadeOutMs);
+		result.append(", unsettable: ");
+		result.append(unsettable);
+		result.append(", detectHoverOnLabels: ");
+		result.append(detectHoverOnLabels);
 		result.append(')');
 		return result.toString();
 	}

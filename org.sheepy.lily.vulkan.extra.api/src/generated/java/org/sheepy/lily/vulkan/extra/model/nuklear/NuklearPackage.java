@@ -448,6 +448,15 @@ public interface NuklearPackage extends EPackage
 	int SELECTOR_PANEL__HORIZONTAL_RELATIVE = UiPackage.IPANEL__HORIZONTAL_RELATIVE;
 
 	/**
+	 * The feature id for the '<em><b>Catch Inputs</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__CATCH_INPUTS = UiPackage.IPANEL__CATCH_INPUTS;
+
+	/**
 	 * The feature id for the '<em><b>Button Size Px</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -538,13 +547,31 @@ public interface NuklearPackage extends EPackage
 	int SELECTOR_PANEL__FADE_OUT_MS = UiPackage.IPANEL_FEATURE_COUNT + 9;
 
 	/**
+	 * The feature id for the '<em><b>Unsettable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__UNSETTABLE = UiPackage.IPANEL_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Detect Hover On Labels</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__DETECT_HOVER_ON_LABELS = UiPackage.IPANEL_FEATURE_COUNT + 11;
+
+	/**
 	 * The number of structural features of the '<em>Selector Panel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SELECTOR_PANEL_FEATURE_COUNT = UiPackage.IPANEL_FEATURE_COUNT + 10;
+	int SELECTOR_PANEL_FEATURE_COUNT = UiPackage.IPANEL_FEATURE_COUNT + 12;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -637,6 +664,15 @@ public interface NuklearPackage extends EPackage
 	 * @ordered
 	 */
 	int PANEL_VIEWER__HORIZONTAL_RELATIVE = UiPackage.PANEL__HORIZONTAL_RELATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Catch Inputs</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_VIEWER__CATCH_INPUTS = UiPackage.PANEL__CATCH_INPUTS;
 
 	/**
 	 * The feature id for the '<em><b>Width</b></em>' attribute.
@@ -1341,6 +1377,28 @@ public interface NuklearPackage extends EPackage
 	EAttribute getSelectorPanel_FadeOutMs();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isUnsettable <em>Unsettable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unsettable</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isUnsettable()
+	 * @see #getSelectorPanel()
+	 * @generated
+	 */
+	EAttribute getSelectorPanel_Unsettable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isDetectHoverOnLabels <em>Detect Hover On Labels</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Detect Hover On Labels</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isDetectHoverOnLabels()
+	 * @see #getSelectorPanel()
+	 * @generated
+	 */
+	EAttribute getSelectorPanel_DetectHoverOnLabels();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider <em>IInput Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1679,6 +1737,22 @@ public interface NuklearPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute SELECTOR_PANEL__FADE_OUT_MS = eINSTANCE.getSelectorPanel_FadeOutMs();
+
+		/**
+		 * The meta object literal for the '<em><b>Unsettable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SELECTOR_PANEL__UNSETTABLE = eINSTANCE.getSelectorPanel_Unsettable();
+
+		/**
+		 * The meta object literal for the '<em><b>Detect Hover On Labels</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SELECTOR_PANEL__DETECT_HOVER_ON_LABELS = eINSTANCE.getSelectorPanel_DetectHoverOnLabels();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider <em>IInput Provider</em>}' class.

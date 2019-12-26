@@ -14,6 +14,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.AdapterSetRegistry;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.FileResource;
+import org.sheepy.lily.core.model.ui.IPanel;
 import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
@@ -127,9 +128,9 @@ public final class NuklearLayoutTaskAdapter
 	{
 		this.context = null;
 	}
-	
+
 	boolean layoutRequested = false;
-	
+
 	public void requestLayout()
 	{
 		layoutRequested = true;
@@ -138,13 +139,13 @@ public final class NuklearLayoutTaskAdapter
 	@Override
 	public void update(NuklearLayoutTask task, int index)
 	{
-		if(layoutRequested)
+		if (layoutRequested)
 		{
 			layout();
 			layoutRequested = false;
 		}
 	}
-	
+
 	private void layout()
 	{
 		final var nkContext = nuklearContextAdapter.getNkContext();
@@ -170,6 +171,20 @@ public final class NuklearLayoutTaskAdapter
 			final var panelAdapter = panelAdapters.get(i);
 			dirty |= panelAdapter.layout(uiContext);
 		}
+	}
+
+	public IPanel getHoveredPanel()
+	{
+		final var panelAdapters = PANEL_REGISTRY.getAdapters();
+		for (int i = 0; i < panelAdapters.size(); i++)
+		{
+			final var panelAdapter = panelAdapters.get(i);
+			if (panelAdapter.isHovered())
+			{
+				return (IPanel) PANEL_REGISTRY.getObjects().get(i);
+			}
+		}
+		return null;
 	}
 
 	private Map<FileResource, NkImage> getImageMap()

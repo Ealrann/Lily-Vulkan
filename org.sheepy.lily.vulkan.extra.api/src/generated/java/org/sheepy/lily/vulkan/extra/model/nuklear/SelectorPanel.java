@@ -24,6 +24,8 @@ import org.sheepy.lily.core.model.variable.DirectVariableResolver;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isVertical <em>Vertical</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isAutoHideLabels <em>Auto Hide Labels</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#getFadeOutMs <em>Fade Out Ms</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isUnsettable <em>Unsettable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isDetectHoverOnLabels <em>Detect Hover On Labels</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getSelectorPanel()
@@ -258,5 +260,51 @@ public interface SelectorPanel extends IPanel
 	 * @generated
 	 */
 	void setFadeOutMs(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Unsettable</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Unsettable</em>' attribute.
+	 * @see #setUnsettable(boolean)
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getSelectorPanel_Unsettable()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isUnsettable();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isUnsettable <em>Unsettable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Unsettable</em>' attribute.
+	 * @see #isUnsettable()
+	 * @generated
+	 */
+	void setUnsettable(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Detect Hover On Labels</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Detect Hover On Labels</em>' attribute.
+	 * @see #setDetectHoverOnLabels(boolean)
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getSelectorPanel_DetectHoverOnLabels()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isDetectHoverOnLabels();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel#isDetectHoverOnLabels <em>Detect Hover On Labels</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Detect Hover On Labels</em>' attribute.
+	 * @see #isDetectHoverOnLabels()
+	 * @generated
+	 */
+	void setDetectHoverOnLabels(boolean value);
 
 } // SelectorPanel
