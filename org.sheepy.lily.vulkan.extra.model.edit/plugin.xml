@@ -42,8 +42,8 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated Extra -->
       <extender
-            uri="org.sheepy.lily.core.model.presentation"
-            class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$PresentationChildCreationExtender"/>
+            uri="org.sheepy.lily.core.model.ui"
+            class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$UiChildCreationExtender"/>
       <extender
             uri="org.sheepy.lily.core.model.application"
             class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$ApplicationChildCreationExtender"/>

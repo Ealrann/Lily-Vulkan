@@ -10,7 +10,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
-import org.sheepy.lily.core.model.presentation.IUIElement;
+import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.core.model.ui.VariableLabel;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
@@ -51,7 +51,7 @@ public class VariableLabelAdapter implements IUIElementAdapter
 	public boolean layout(UIContext context, IUIElement control)
 	{
 		final boolean res = dirty;
-		final VariableLabel label = (VariableLabel) control;
+		final var label = (VariableLabel) control;
 
 		int align = 0;
 		switch (label.getHorizontalRelative())
@@ -67,6 +67,7 @@ public class VariableLabelAdapter implements IUIElementAdapter
 			break;
 		}
 
+		context.setFont(label.getFont());
 		nk_label(context.nkContext, textBuffer, align);
 
 		dirty = false;

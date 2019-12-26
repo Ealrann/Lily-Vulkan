@@ -123,8 +123,8 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 		info.basePipelineIndex(-1);
 
 		final long[] aId = new long[1];
-		Logger.check(	FAILED_TO_CREATE_GRAPHICS_PIPELINE,
-						() -> vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, info, null, aId));
+		Logger.check(	vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, info, null, aId),
+						FAILED_TO_CREATE_GRAPHICS_PIPELINE);
 		pipelinePtr = aId[0];
 	}
 

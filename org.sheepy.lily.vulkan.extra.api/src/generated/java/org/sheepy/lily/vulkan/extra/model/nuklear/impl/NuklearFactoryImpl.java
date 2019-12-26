@@ -66,6 +66,7 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 		{
 			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS: return createNuklearPushConstants();
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK: return createNuklearLayoutTask();
+			case NuklearPackage.NUKLEAR_FILL_BUFFER_TASK: return createNuklearFillBufferTask();
 			case NuklearPackage.NUKLEAR_CONTEXT: return createNuklearContext();
 			case NuklearPackage.NUKLEAR_FONT: return createNuklearFont();
 			case NuklearPackage.SELECTOR_PANEL: return createSelectorPanel();
@@ -99,6 +100,18 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 	{
 		NuklearLayoutTaskImpl nuklearLayoutTask = new NuklearLayoutTaskImpl();
 		return nuklearLayoutTask;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NuklearFillBufferTask createNuklearFillBufferTask()
+	{
+		NuklearFillBufferTaskImpl nuklearFillBufferTask = new NuklearFillBufferTaskImpl();
+		return nuklearFillBufferTask;
 	}
 
 	/**

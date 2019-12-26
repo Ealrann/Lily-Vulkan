@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.resource.image;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
-import org.sheepy.lily.vulkan.api.resource.ITexture2DArrayAdapter;
+import org.sheepy.lily.vulkan.api.resource.ITextureArrayAdapter;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
@@ -20,9 +20,9 @@ public class Texture2DArrayDescriptorAdapter implements IDescriptorAdapter
 	{
 		this.descriptor = descriptor;
 
-		final var texture2DArray = descriptor.getTexture2DArray();
+		final var texture2DArray = descriptor.getTextureArray();
 		final var initialLayout = texture2DArray.getInitialLayout().getLayout();
-		vkDescriptor = new VkImageArrayDescriptor(	new long[texture2DArray.getFiles().size()],
+		vkDescriptor = new VkImageArrayDescriptor(	new long[0],
 		                                          	initialLayout,
 													descriptor.getType(),
 													descriptor.getShaderStages());
@@ -31,8 +31,8 @@ public class Texture2DArrayDescriptorAdapter implements IDescriptorAdapter
 	@Override
 	public void allocate(IExecutionContext context)
 	{
-		final var texture2DArray = descriptor.getTexture2DArray();
-		final var adapter = texture2DArray.adaptNotNull(ITexture2DArrayAdapter.class);
+		final var texture2DArray = descriptor.getTextureArray();
+		final var adapter = texture2DArray.adaptNotNull(ITextureArrayAdapter.class);
 
 		vkDescriptor.updateViewPtrs(adapter.getViewPtrs());
 	}

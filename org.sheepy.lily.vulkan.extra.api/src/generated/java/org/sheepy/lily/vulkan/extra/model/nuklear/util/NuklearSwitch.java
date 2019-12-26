@@ -9,12 +9,12 @@ import org.eclipse.emf.ecore.util.Switch;
 
 import org.sheepy.lily.core.model.application.IResource;
 import org.sheepy.lily.core.model.inference.IInferenceObject;
-import org.sheepy.lily.core.model.presentation.IPanel;
 import org.sheepy.lily.core.model.presentation.IPositionElement;
 import org.sheepy.lily.core.model.presentation.ISizedElement;
-import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
+import org.sheepy.lily.core.model.ui.IPanel;
+import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.vulkan.extra.model.nuklear.*;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
@@ -100,6 +100,15 @@ public class NuklearSwitch<T1> extends Switch<T1>
 				T1 result = caseNuklearLayoutTask(nuklearLayoutTask);
 				if (result == null) result = caseIPipelineTask(nuklearLayoutTask);
 				if (result == null) result = caseLNamedElement(nuklearLayoutTask);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case NuklearPackage.NUKLEAR_FILL_BUFFER_TASK:
+			{
+				NuklearFillBufferTask nuklearFillBufferTask = (NuklearFillBufferTask)theEObject;
+				T1 result = caseNuklearFillBufferTask(nuklearFillBufferTask);
+				if (result == null) result = caseIPipelineTask(nuklearFillBufferTask);
+				if (result == null) result = caseLNamedElement(nuklearFillBufferTask);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -204,6 +213,22 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseNuklearLayoutTask(NuklearLayoutTask object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fill Buffer Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fill Buffer Task</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseNuklearFillBufferTask(NuklearFillBufferTask object)
 	{
 		return null;
 	}

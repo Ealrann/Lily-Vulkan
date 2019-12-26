@@ -94,16 +94,17 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 	{
 		final var font = nuklearContext.getFont();
 		final var fontAdapter = font.adaptNotNull(NuklearFontAdapter.class);
+		final var defaultFont = fontAdapter.getDefaultFont();
 		final var nullTexture = nuklearContext.getNullTexture();
 		final var nullTextureAdapter = nullTexture.adaptNotNull(ISampledImageAdapter.class);
-		final var defaultFont = fontAdapter.getNkFont();
 		final var engine = VulkanModelUtil.getEngine(nuklearContext);
 		final var inputManager = engine.adaptNotNull(IVulkanEngineAdapter.class).getInputManager();
 		final var inputCatcher = NuklearInputCatcher.INSTANCE;
+		final var defaultNkFont = fontAdapter.fontMap.get(defaultFont);
 
 		nkContext = NkContext.create();
 		cmds = NkBuffer.create();
-		nk_init(nkContext, ALLOCATOR, defaultFont);
+		nk_init(nkContext, ALLOCATOR, defaultNkFont);
 		nk_buffer_init(cmds, ALLOCATOR, BUFFER_INITIAL_SIZE);
 
 		nkContext.style().window().fixed_background().data().color().a((byte) 150);

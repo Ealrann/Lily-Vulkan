@@ -24,7 +24,9 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
 import org.sheepy.lily.vulkan.process.graphic.present.ImageAcquirer;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.queue.EQueueType;
 
@@ -58,10 +60,16 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		final var application = ModelUtil.getApplication(process);
 		application.getScene().addListener(sceneListener, ApplicationPackage.SCENE__PARTS);
 		final var parts = application.getScene().getParts();
+		boolean containsGraphic = false;
 		for (int i = 0; i < parts.size(); i++)
 		{
 			final var part = parts.get(i);
-			setupScenePart(part, i);
+			containsGraphic |= setupScenePart(part, i).isGraphic;
+		}
+
+		if (containsGraphic == false)
+		{
+			setupEmptyRenderPass();
 		}
 	}
 
@@ -101,7 +109,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 									(GraphicProcess) process);
 	}
 
-	private void setupScenePart(IScenePart part, int index)
+	private SubPassContainer setupScenePart(IScenePart part, int index)
 	{
 		final var subpassData = getSubpassData(part);
 		final var graphicProcess = (GraphicProcess) process;
@@ -116,6 +124,31 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		{
 			config.setDirty();
 		}
+		
+		return container;
+	}
+
+	private void setupEmptyRenderPass()
+	{
+		final var graphicProcess = (GraphicProcess) process;
+		final var renderPass = graphicProcess.getRenderPassInfo();
+		final var colorAttachment = renderPass.getColorAttachment();
+		final var subpass = GraphicFactory.eINSTANCE.createSubpass();
+		final var colorRef = GraphicFactory.eINSTANCE.createAttachmentRef();
+		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
+		colorRef.setAttachment(colorAttachment);
+		subpass.getRefs().add(colorRef);
+
+		final var subpassData = new SubpassData(List.of(),
+												subpass,
+												EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT,
+												List.of(EAccess.COLOR_ATTACHMENT_WRITE_BIT,
+														EAccess.COLOR_ATTACHMENT_READ_BIT),
+												List.of());
+		final var container = new SubPassContainer(null, subpassData);
+		container.setup(graphicProcess, 0);
+
+		subpasses.add(container);
 	}
 
 	private int computeSubpassIndex(int index)
@@ -156,7 +189,8 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		final var graphicProcess = (GraphicProcess) process;
 		final var renderPass = graphicProcess.getRenderPassInfo();
 		final var pipelineProvider = view.<IScenePart_SubpassProvider<T>> adaptGeneric(IScenePart_SubpassProvider.class);
-		final var data = pipelineProvider.build(view, renderPass.getColorAttachment());
+		final var colorAttachment = renderPass.getColorAttachment();
+		final var data = pipelineProvider.build(view, colorAttachment);
 		return data;
 	}
 
@@ -196,65 +230,61 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 			this.scenePart = scenePart;
 			this.data = data;
 
-			isGraphic = isGraphic(data);
-		}
-
-		private static boolean isGraphic(SubpassData data)
-		{
-			for (final var pipeline : data.pipelines)
-			{
-				if (pipeline instanceof GraphicsPipeline)
-				{
-					return true;
-				}
-			}
-			return false;
+			isGraphic = data.subpass != null;
 		}
 
 		private void setup(GraphicProcess process, int subpassIndex)
 		{
 			final var renderPass = process.getRenderPassInfo();
-			final var attachments = renderPass.getExtraAttachments();
 			final var parts = process.getPartPkg().getParts();
-			final var dependencies = renderPass.getDependencies();
-			final var subpasses = renderPass.getSubpasses();
 
-			for (final var pipeline : data.pipelines)
+			if (isGraphic)
 			{
-				if (pipeline instanceof GraphicsPipeline)
+				final var attachments = renderPass.getExtraAttachments();
+				final var dependencies = renderPass.getDependencies();
+				final var subpasses = renderPass.getSubpasses();
+
+				for (final var pipeline : data.pipelines)
 				{
-					((GraphicsPipeline) pipeline).setSubpass(subpassIndex);
-					((GraphicsPipeline) pipeline).setScenePart(scenePart);
+					if (pipeline instanceof GraphicsPipeline)
+					{
+						((GraphicsPipeline) pipeline).setSubpass(subpassIndex);
+						((GraphicsPipeline) pipeline).setScenePart(scenePart);
+					}
 				}
+				dependency = GraphicFactory.eINSTANCE.createSubpassDependency();
+				dependency.setSrcSubpass(null);
+				dependency.setDstSubpass(data.subpass);
+				dependency.getSrcStageMask().add(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
+				dependency.getDstStageMask().add(data.stage);
+				dependency.getDstAccesses().addAll(data.accesses);
+
+				attachments.addAll(data.extraAttachments);
+				subpasses.add(data.subpass);
+				dependencies.add(dependency);
 			}
 
-			dependency = GraphicFactory.eINSTANCE.createSubpassDependency();
-			dependency.setSrcSubpass(null);
-			dependency.setDstSubpass(data.subpass);
-			dependency.getSrcStageMask().add(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
-			dependency.getDstStageMask().add(data.stage);
-			dependency.getDstAccesses().addAll(data.accesses);
-
 			parts.addAll(data.pipelines);
-			attachments.addAll(data.extraAttachments);
-			dependencies.add(dependency);
-			subpasses.add(data.subpass);
 		}
 
 		private void uninstall(GraphicProcess process)
 		{
 			final var renderPass = process.getRenderPassInfo();
-			final var attachments = renderPass.getExtraAttachments();
 			final var parts = process.getPartPkg().getParts();
-			final var dependencies = renderPass.getDependencies();
-			final var subpasses = renderPass.getSubpasses();
+
+			if (isGraphic)
+			{
+				final var attachments = renderPass.getExtraAttachments();
+				final var dependencies = renderPass.getDependencies();
+				final var subpasses = renderPass.getSubpasses();
+
+				attachments.addAll(data.extraAttachments);
+				subpasses.remove(data.subpass);
+				dependencies.remove(dependency);
+				EcoreUtil.delete(dependency);
+			}
 
 			parts.removeAll(data.pipelines);
-			attachments.addAll(data.extraAttachments);
-			dependencies.remove(dependency);
-			subpasses.remove(data.subpass);
-
-			EcoreUtil.delete(dependency);
 		}
 	}
 }

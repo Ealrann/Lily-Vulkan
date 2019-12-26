@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 
+import org.sheepy.lily.vulkan.model.resource.ITextureArray;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor;
 
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
@@ -36,7 +36,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayDescriptorImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayDescriptorImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayDescriptorImpl#getShaderStages <em>Shader Stages</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayDescriptorImpl#getTexture2DArray <em>Texture2 DArray</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.Texture2DArrayDescriptorImpl#getTextureArray <em>Texture Array</em>}</li>
  * </ul>
  *
  * @generated
@@ -94,14 +94,14 @@ public class Texture2DArrayDescriptorImpl extends LilyEObject implements Texture
 	protected EList<EShaderStage> shaderStages;
 
 	/**
-	 * The cached value of the '{@link #getTexture2DArray() <em>Texture2 DArray</em>}' reference.
+	 * The cached value of the '{@link #getTextureArray() <em>Texture Array</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTexture2DArray()
+	 * @see #getTextureArray()
 	 * @generated
 	 * @ordered
 	 */
-	protected Texture2DArray texture2DArray;
+	protected ITextureArray textureArray;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -195,19 +195,19 @@ public class Texture2DArrayDescriptorImpl extends LilyEObject implements Texture
 	 * @generated
 	 */
 	@Override
-	public Texture2DArray getTexture2DArray()
+	public ITextureArray getTextureArray()
 	{
-		if (texture2DArray != null && ((EObject)texture2DArray).eIsProxy())
+		if (textureArray != null && ((EObject)textureArray).eIsProxy())
 		{
-			InternalEObject oldTexture2DArray = (InternalEObject)texture2DArray;
-			texture2DArray = (Texture2DArray)eResolveProxy(oldTexture2DArray);
-			if (texture2DArray != oldTexture2DArray)
+			InternalEObject oldTextureArray = (InternalEObject)textureArray;
+			textureArray = (ITextureArray)eResolveProxy(oldTextureArray);
+			if (textureArray != oldTextureArray)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE2_DARRAY, oldTexture2DArray, texture2DArray));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE_ARRAY, oldTextureArray, textureArray));
 			}
 		}
-		return texture2DArray;
+		return textureArray;
 	}
 
 	/**
@@ -215,9 +215,9 @@ public class Texture2DArrayDescriptorImpl extends LilyEObject implements Texture
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Texture2DArray basicGetTexture2DArray()
+	public ITextureArray basicGetTextureArray()
 	{
-		return texture2DArray;
+		return textureArray;
 	}
 
 	/**
@@ -226,12 +226,12 @@ public class Texture2DArrayDescriptorImpl extends LilyEObject implements Texture
 	 * @generated
 	 */
 	@Override
-	public void setTexture2DArray(Texture2DArray newTexture2DArray)
+	public void setTextureArray(ITextureArray newTextureArray)
 	{
-		Texture2DArray oldTexture2DArray = texture2DArray;
-		texture2DArray = newTexture2DArray;
+		ITextureArray oldTextureArray = textureArray;
+		textureArray = newTextureArray;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE2_DARRAY, oldTexture2DArray, texture2DArray));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE_ARRAY, oldTextureArray, textureArray));
 	}
 
 	/**
@@ -250,9 +250,9 @@ public class Texture2DArrayDescriptorImpl extends LilyEObject implements Texture
 				return getType();
 			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__SHADER_STAGES:
 				return getShaderStages();
-			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE2_DARRAY:
-				if (resolve) return getTexture2DArray();
-				return basicGetTexture2DArray();
+			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE_ARRAY:
+				if (resolve) return getTextureArray();
+				return basicGetTextureArray();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -278,8 +278,8 @@ public class Texture2DArrayDescriptorImpl extends LilyEObject implements Texture
 				getShaderStages().clear();
 				getShaderStages().addAll((Collection<? extends EShaderStage>)newValue);
 				return;
-			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE2_DARRAY:
-				setTexture2DArray((Texture2DArray)newValue);
+			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE_ARRAY:
+				setTextureArray((ITextureArray)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -304,8 +304,8 @@ public class Texture2DArrayDescriptorImpl extends LilyEObject implements Texture
 			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__SHADER_STAGES:
 				getShaderStages().clear();
 				return;
-			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE2_DARRAY:
-				setTexture2DArray((Texture2DArray)null);
+			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE_ARRAY:
+				setTextureArray((ITextureArray)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -327,8 +327,8 @@ public class Texture2DArrayDescriptorImpl extends LilyEObject implements Texture
 				return type != TYPE_EDEFAULT;
 			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__SHADER_STAGES:
 				return shaderStages != null && !shaderStages.isEmpty();
-			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE2_DARRAY:
-				return texture2DArray != null;
+			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE_ARRAY:
+				return textureArray != null;
 		}
 		return super.eIsSet(featureID);
 	}

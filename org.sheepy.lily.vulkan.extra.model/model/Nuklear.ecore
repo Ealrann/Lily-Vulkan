@@ -10,10 +10,16 @@
   <eClassifiers xsi:type="ecore:EClass" name="NuklearLayoutTask" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/process.ecore#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
         eType="#//NuklearContext" eOpposite="#//NuklearContext/layoutTask"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imageArray" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//Texture2DArray"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NuklearFillBufferTask" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/process.ecore#//IPipelineTask">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
+        eType="#//NuklearContext"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="drawTask" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/process.ecore#//CompositeTask"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="vertexBuffer" lowerBound="1"
         eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//CompositeBuffer"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="imageArray" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//Texture2DArray"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="layoutTask" lowerBound="1"
+        eType="#//NuklearLayoutTask"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NuklearContext" eSuperTypes="../../org.sheepy.lily.core.model/model/application.ecore#//IResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="font" lowerBound="1" eType="#//NuklearFont"/>
@@ -22,11 +28,10 @@
         eType="#//NuklearLayoutTask" eOpposite="#//NuklearLayoutTask/context"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NuklearFont" eSuperTypes="../../org.sheepy.lily.core.model/model/application.ecore#//IResource">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fontSampledImage" lowerBound="1"
-        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//SampledImage"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fontTextureArray" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//FontTextureArray"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SelectorPanel" eSuperTypes="../../org.sheepy.lily.core.model/model/presentation.ecore#//IPanel">
+  <eClassifiers xsi:type="ecore:EClass" name="SelectorPanel" eSuperTypes="../../org.sheepy.lily.core.model/model/ui.ecore#//IPanel">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="buttonSizePx" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="32"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="selectionR" lowerBound="1"

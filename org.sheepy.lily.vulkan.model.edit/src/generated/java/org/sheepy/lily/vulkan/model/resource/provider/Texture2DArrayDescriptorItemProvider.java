@@ -71,7 +71,7 @@ public class Texture2DArrayDescriptorItemProvider
 			addNamePropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 			addShaderStagesPropertyDescriptor(object);
-			addTexture2DArrayPropertyDescriptor(object);
+			addTextureArrayPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -146,20 +146,20 @@ public class Texture2DArrayDescriptorItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Texture2 DArray feature.
+	 * This adds a property descriptor for the Texture Array feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTexture2DArrayPropertyDescriptor(Object object)
+	protected void addTextureArrayPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Texture2DArrayDescriptor_texture2DArray_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Texture2DArrayDescriptor_texture2DArray_feature", "_UI_Texture2DArrayDescriptor_type"),
-				 ResourcePackage.Literals.TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE2_DARRAY,
+				 getString("_UI_Texture2DArrayDescriptor_textureArray_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Texture2DArrayDescriptor_textureArray_feature", "_UI_Texture2DArrayDescriptor_type"),
+				 ResourcePackage.Literals.TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE_ARRAY,
 				 true,
 				 false,
 				 true,

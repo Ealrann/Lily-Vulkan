@@ -212,7 +212,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 			buttonPanelHovered |= buttonDrawer.isHovered();
 		}
 
-		if (panel.isAutoHideLabels())
+		if (panel.isAutoHideLabels() && panel.isPrintLabels())
 		{
 			updateHoverStatus(labelPanelHovered || buttonPanelHovered);
 		}

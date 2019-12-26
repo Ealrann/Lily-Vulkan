@@ -80,7 +80,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.SAMPLED_IMAGE: return createSampledImage();
 			case ResourcePackage.SAMPLER: return createSampler();
 			case ResourcePackage.SEMAPHORE: return createSemaphore();
-			case ResourcePackage.FONT_IMAGE: return createFontImage();
 			case ResourcePackage.BUFFER_DESCRIPTOR: return createBufferDescriptor();
 			case ResourcePackage.IMAGE_DESCRIPTOR: return createImageDescriptor();
 			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR: return createSampledImageDescriptor();
@@ -92,7 +91,9 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.COMPOSITE_BUFFER_BARRIER: return createCompositeBufferBarrier();
 			case ResourcePackage.IMAGE_BARRIER: return createImageBarrier();
 			case ResourcePackage.SHADER: return createShader();
+			case ResourcePackage.ITEXTURE_ARRAY: return createITextureArray();
 			case ResourcePackage.TEXTURE2_DARRAY: return createTexture2DArray();
+			case ResourcePackage.FONT_TEXTURE_ARRAY: return createFontTextureArray();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -298,18 +299,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
-	public FontImage createFontImage()
-	{
-		FontImageImpl fontImage = new FontImageImpl();
-		return fontImage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public BufferDescriptor createBufferDescriptor()
 	{
 		BufferDescriptorImpl bufferDescriptor = new BufferDescriptorImpl();
@@ -442,10 +431,34 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
+	public ITextureArray createITextureArray()
+	{
+		ITextureArrayImpl iTextureArray = new ITextureArrayImpl();
+		return iTextureArray;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Texture2DArray createTexture2DArray()
 	{
 		Texture2DArrayImpl texture2DArray = new Texture2DArrayImpl();
 		return texture2DArray;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FontTextureArray createFontTextureArray()
+	{
+		FontTextureArrayImpl fontTextureArray = new FontTextureArrayImpl();
+		return fontTextureArray;
 	}
 
 	/**

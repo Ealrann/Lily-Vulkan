@@ -12,8 +12,8 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.application.IApplicationAdapter;
 import org.sheepy.lily.core.model.action.Action;
 import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.Button;
+import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
 @Statefull
@@ -31,8 +31,9 @@ public class ButtonAdapter implements IUIElementAdapter
 	public boolean layout(UIContext context, IUIElement control)
 	{
 		boolean res = false;
-		final Button button = (Button) control;
+		final var button = (Button) control;
 
+		context.setFont(button.getFont());
 		if (nk_button_label(context.nkContext, textBuffer))
 		{
 			final var executor = button.getExecutor();

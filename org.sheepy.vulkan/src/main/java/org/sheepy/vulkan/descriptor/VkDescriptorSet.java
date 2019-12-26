@@ -99,15 +99,19 @@ public class VkDescriptorSet implements IVkDescriptorSet
 
 	private VkDescriptorSetLayoutBinding.Buffer createLayoutBinding(MemoryStack stack)
 	{
-		final int size = descriptors.size();
+		final int size = descriptorCount();
 		final var layoutBindings = VkDescriptorSetLayoutBinding.callocStack(size, stack);
 
 		int index = 0;
-		for (final IVkDescriptor descriptor : descriptors)
+		for (final var descriptor : descriptors)
 		{
-			final var layoutBinding = descriptor.allocLayoutBinding(stack);
-			layoutBinding.binding(index++);
-			layoutBindings.put(layoutBinding);
+			if (descriptor.isEmpty() == false)
+			{
+				final var layoutBinding = descriptor.allocLayoutBinding(stack);
+				layoutBinding.binding(index);
+				layoutBindings.put(layoutBinding);
+			}
+			index++;
 		}
 		layoutBindings.flip();
 		return layoutBindings;
@@ -118,8 +122,11 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	{
 		for (final var descriptor : descriptors)
 		{
-			final var poolSize = poolSizes.get();
-			descriptor.fillPoolSize(poolSize);
+			if (descriptor.isEmpty() == false)
+			{
+				final var poolSize = poolSizes.get();
+				descriptor.fillPoolSize(poolSize);
+			}
 		}
 	}
 
@@ -131,13 +138,13 @@ public class VkDescriptorSet implements IVkDescriptorSet
 
 	private void updateDescriptorSet(MemoryStack stack, boolean all)
 	{
-		final int size = descriptors.size();
+		final int size = descriptorCount();
 		final var descriptorWrites = VkWriteDescriptorSet.callocStack(size, stack);
 
 		for (int i = 0; i < size; i++)
 		{
 			final var descriptor = descriptors.get(i);
-			if ((all || descriptor.hasChanged()) && descriptor.isEmpty() == false)
+			if (descriptor.isEmpty() == false && (all || descriptor.hasChanged()))
 			{
 				final var descriptorWrite = descriptorWrites.get();
 
@@ -189,7 +196,15 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	@Override
 	public int descriptorCount()
 	{
-		return descriptors.size();
+		int res = 0;
+		for (final var descriptor : descriptors)
+		{
+			if (descriptor.isEmpty() == false)
+			{
+				res++;
+			}
+		}
+		return res;
 	}
 
 	@Override

@@ -10,7 +10,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
-import org.sheepy.lily.core.model.presentation.IUIElement;
+import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.core.model.ui.Slider;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
@@ -61,12 +61,13 @@ public class SliderAdapter implements IUIElementAdapter
 		boolean res = dirty;
 		dirty = false;
 
+		context.setFont(slider.getFont());
 		nk_slider_int(	context.nkContext,
 						slider.getMinValue(),
 						buffer,
 						slider.getMaxValue(),
 						slider.getStep());
-
+		
 		final Integer val = (Integer) resolverAdapter.getValue(variableResolver);
 		if (val != buffer.get(0))
 		{

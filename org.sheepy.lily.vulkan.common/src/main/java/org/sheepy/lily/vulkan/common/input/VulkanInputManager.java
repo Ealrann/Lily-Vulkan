@@ -34,7 +34,6 @@ public class VulkanInputManager implements IVulkanInputManager
 	private final double[] cursorPositionY = new double[1];
 
 	private final List<IInputEvent> events = new ArrayList<>();
-
 	private final List<IInputListener> listeners = new ArrayList<>();
 
 	private IInputCatcher catcher;
@@ -157,44 +156,48 @@ public class VulkanInputManager implements IVulkanInputManager
 	{
 		if (window.isOpenned())
 		{
-			if (catcher != null)
-			{
-				catcher.startCatch();
-			}
-
 			updateMouseLocation();
 
 			glfwPollEvents();
 
-			if (catcher != null)
+			if (events.isEmpty() == false)
 			{
-				for (int i = 0; i < events.size(); i++)
+				if (catcher != null)
 				{
-					final var event = events.get(i);
-					event.fireEvent(catcher);
-				}
+					catcher.startCatch();
 
-				if (catcher.hasCaughtInputs(events))
-				{
-					dropInputEvents();
-				}
-
-				if (catcher.isCursorThere())
-				{
-					if (inputsAreCaught == null || inputsAreCaught == false)
+					for (int i = 0; i < events.size(); i++)
 					{
-						inputsAreCaught = true;
+						final var event = events.get(i);
+						event.fireEvent(catcher);
+					}
+
+					catcher.stopCatch();
+
+					if (catcher.hasCaughtInputs())
+					{
+						dropInputEvents();
+					}
+
+					if (catcher.isCursorThere())
+					{
+						if (inputsAreCaught == null || inputsAreCaught == false)
+						{
+							inputsAreCaught = true;
+							fireInputCaught();
+						}
+					}
+					else if (inputsAreCaught == null || inputsAreCaught == true)
+					{
+						inputsAreCaught = false;
 						fireInputCaught();
 					}
 				}
-				else if (inputsAreCaught == null || inputsAreCaught == true)
-				{
-					inputsAreCaught = false;
-					fireInputCaught();
-				}
-			}
 
-			fireEvents();
+				fireEvents();
+
+				dropInputEvents();
+			}
 
 			fireAfterPollInputs();
 
@@ -239,7 +242,6 @@ public class VulkanInputManager implements IVulkanInputManager
 			final IInputEvent event = events.get(i);
 			fireEvent(event);
 		}
-		events.clear();
 	}
 
 	public void dropInputEvents()
@@ -289,5 +291,11 @@ public class VulkanInputManager implements IVulkanInputManager
 	public void removeListener(IInputListener listener)
 	{
 		listeners.remove(listener);
+	}
+
+	@Override
+	public boolean isMouseOnUI()
+	{
+		return inputsAreCaught != null ? inputsAreCaught : false;
 	}
 }

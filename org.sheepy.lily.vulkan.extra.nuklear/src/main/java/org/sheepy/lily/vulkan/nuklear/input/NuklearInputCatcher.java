@@ -3,13 +3,10 @@ package org.sheepy.lily.vulkan.nuklear.input;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.nuklear.Nuklear.*;
 
-import java.util.List;
-
 import org.lwjgl.nuklear.NkContext;
 import org.lwjgl.nuklear.NkMouse;
 import org.lwjgl.nuklear.NkVec2;
 import org.sheepy.lily.core.api.input.event.CharEvent;
-import org.sheepy.lily.core.api.input.event.IInputEvent;
 import org.sheepy.lily.core.api.input.event.KeyEvent;
 import org.sheepy.lily.core.api.input.event.MouseButtonEvent;
 import org.sheepy.lily.core.api.input.event.MouseLocationEvent;
@@ -28,6 +25,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 	private NkContext nkContext;
 	private Window window;
 	private NuklearLayoutTaskAdapter layoutAdapter;
+	private boolean clicked = false;
 
 	private NuklearInputCatcher()
 	{}
@@ -44,12 +42,14 @@ public final class NuklearInputCatcher implements IInputCatcher
 	@Override
 	public void onCharEvent(CharEvent event)
 	{
+		assert catching == true;
 		nk_input_unicode(nkContext, event.codepoint);
 	}
 
 	@Override
 	public void onKeyEvent(KeyEvent event)
 	{
+		assert catching == true;
 		final long windowId = window.getId();
 		final boolean press = event.state == EKeyState.PRESSED;
 		switch (event.key)
@@ -96,30 +96,40 @@ public final class NuklearInputCatcher implements IInputCatcher
 		case GLFW_KEY_RIGHT_CONTROL:
 			if (press)
 			{
-				nk_input_key(nkContext, NK_KEY_COPY,
-						glfwGetKey(windowId, GLFW_KEY_C) == GLFW_PRESS);
-				nk_input_key(nkContext, NK_KEY_PASTE,
-						glfwGetKey(windowId, GLFW_KEY_P) == GLFW_PRESS);
+				nk_input_key(	nkContext,
+								NK_KEY_COPY,
+								glfwGetKey(windowId, GLFW_KEY_C) == GLFW_PRESS);
+				nk_input_key(	nkContext,
+								NK_KEY_PASTE,
+								glfwGetKey(windowId, GLFW_KEY_P) == GLFW_PRESS);
 				nk_input_key(nkContext, NK_KEY_CUT, glfwGetKey(windowId, GLFW_KEY_X) == GLFW_PRESS);
-				nk_input_key(nkContext, NK_KEY_TEXT_UNDO,
-						glfwGetKey(windowId, GLFW_KEY_Z) == GLFW_PRESS);
-				nk_input_key(nkContext, NK_KEY_TEXT_REDO,
-						glfwGetKey(windowId, GLFW_KEY_R) == GLFW_PRESS);
-				nk_input_key(nkContext, NK_KEY_TEXT_WORD_LEFT,
-						glfwGetKey(windowId, GLFW_KEY_LEFT) == GLFW_PRESS);
-				nk_input_key(nkContext, NK_KEY_TEXT_WORD_RIGHT,
-						glfwGetKey(windowId, GLFW_KEY_RIGHT) == GLFW_PRESS);
-				nk_input_key(nkContext, NK_KEY_TEXT_LINE_START,
-						glfwGetKey(windowId, GLFW_KEY_B) == GLFW_PRESS);
-				nk_input_key(nkContext, NK_KEY_TEXT_LINE_END,
-						glfwGetKey(windowId, GLFW_KEY_E) == GLFW_PRESS);
+				nk_input_key(	nkContext,
+								NK_KEY_TEXT_UNDO,
+								glfwGetKey(windowId, GLFW_KEY_Z) == GLFW_PRESS);
+				nk_input_key(	nkContext,
+								NK_KEY_TEXT_REDO,
+								glfwGetKey(windowId, GLFW_KEY_R) == GLFW_PRESS);
+				nk_input_key(	nkContext,
+								NK_KEY_TEXT_WORD_LEFT,
+								glfwGetKey(windowId, GLFW_KEY_LEFT) == GLFW_PRESS);
+				nk_input_key(	nkContext,
+								NK_KEY_TEXT_WORD_RIGHT,
+								glfwGetKey(windowId, GLFW_KEY_RIGHT) == GLFW_PRESS);
+				nk_input_key(	nkContext,
+								NK_KEY_TEXT_LINE_START,
+								glfwGetKey(windowId, GLFW_KEY_B) == GLFW_PRESS);
+				nk_input_key(	nkContext,
+								NK_KEY_TEXT_LINE_END,
+								glfwGetKey(windowId, GLFW_KEY_E) == GLFW_PRESS);
 			}
 			else
 			{
-				nk_input_key(nkContext, NK_KEY_LEFT,
-						glfwGetKey(windowId, GLFW_KEY_LEFT) == GLFW_PRESS);
-				nk_input_key(nkContext, NK_KEY_RIGHT,
-						glfwGetKey(windowId, GLFW_KEY_RIGHT) == GLFW_PRESS);
+				nk_input_key(	nkContext,
+								NK_KEY_LEFT,
+								glfwGetKey(windowId, GLFW_KEY_LEFT) == GLFW_PRESS);
+				nk_input_key(	nkContext,
+								NK_KEY_RIGHT,
+								glfwGetKey(windowId, GLFW_KEY_RIGHT) == GLFW_PRESS);
 				nk_input_key(nkContext, NK_KEY_COPY, false);
 				nk_input_key(nkContext, NK_KEY_PASTE, false);
 				nk_input_key(nkContext, NK_KEY_CUT, false);
@@ -132,6 +142,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 	@Override
 	public void onMouseClickEvent(MouseButtonEvent event)
 	{
+		assert catching == true;
 		final int x = (int) event.mouseLocation.x();
 		final int y = (int) event.mouseLocation.y();
 
@@ -153,6 +164,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 
 		if (nkButton != -1)
 		{
+			if (event.pressed == true) clicked = true;
 			nk_input_button(nkContext, nkButton, x, y, event.pressed);
 		}
 	}
@@ -160,37 +172,56 @@ public final class NuklearInputCatcher implements IInputCatcher
 	@Override
 	public void onMouseLocationEvent(MouseLocationEvent event)
 	{
+		assert catching == true;
 		nk_input_motion(nkContext, (int) event.x, (int) event.y);
 	}
 
 	@Override
 	public void onScrollEvent(ScrollEvent event)
 	{
+		assert catching == true;
 		scroll.x(event.xOffset);
 		scroll.y(event.yOffset);
 		nk_input_scroll(nkContext, scroll);
 	}
 
+	private boolean catching = false;
+
 	@Override
 	public void startCatch()
 	{
+		assert catching == false;
 		nk_input_begin(nkContext);
+		catching = true;
+	}
+
+	@Override
+	public void stopCatch()
+	{
+		assert catching == true;
+		nk_input_end(nkContext);
+		catching = false;
+
+		layoutAdapter.requestLayout();
 	}
 
 	@Override
 	public boolean isCursorThere()
 	{
-		return nk_item_is_any_active(nkContext);
+		return nk_window_is_any_hovered(nkContext);
 	}
 
 	@Override
-	public boolean hasCaughtInputs(List<IInputEvent> events)
+	public boolean hasCaughtInputs()
 	{
+		boolean res = false;
 		final long windowId = window.getId();
 		final NkMouse mouse = nkContext.input().mouse();
+
 		if (mouse.grab())
 		{
 			glfwSetInputMode(windowId, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+			res = true;
 		}
 		else if (mouse.grabbed())
 		{
@@ -199,29 +230,20 @@ public final class NuklearInputCatcher implements IInputCatcher
 			glfwSetCursorPos(windowId, prevX, prevY);
 			mouse.pos().x(prevX);
 			mouse.pos().y(prevY);
+			res = true;
 		}
 		else if (mouse.ungrab())
 		{
 			glfwSetInputMode(windowId, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+			res = true;
 		}
 
-		nk_input_end(nkContext);
-
-		layoutAdapter.layout(events);
-
-		boolean res = false;
-
-		if (nk_item_is_any_active(nkContext))
+		if (nk_window_is_any_hovered(nkContext))
 		{
-			for (final IInputEvent event : events)
-			{
-				if (event instanceof MouseButtonEvent && ((MouseButtonEvent) event).pressed == true)
-				{
-					res = true;
-				}
-			}
+			res = clicked;
 		}
 
+		clicked = false;
 		return res;
 	}
 }

@@ -21,16 +21,14 @@ public class FileImageAdapter implements IImageAdapter
 {
 	private final STBImageLoader imageLoader = new STBImageLoader();
 	private final VkTexture vkTexture;
-	private final FileImage image;
 	private final ImageBuffer imageBuffer;
 
 	public FileImageAdapter(FileImage image)
 	{
-		this.image = image;
 		imageBuffer = new ImageBuffer(image.getFile());
 		imageBuffer.allocate();
 		final var imageBuilder = createBuilder(image, imageBuffer.getImageSize());
-		vkTexture = new VkTexture(imageBuilder);
+		vkTexture = new VkTexture(imageBuilder, image.isMipmapEnabled());
 	}
 
 	@Dispose
@@ -61,12 +59,11 @@ public class FileImageAdapter implements IImageAdapter
 	public void allocate(IExecutionContext context)
 	{
 		final var executionContext = (ExecutionContext) context;
-		final var layout = image.getInitialLayout();
 
 		imageBuffer.allocate();
 		imageLoader.allocBuffer(imageBuffer.getByteBuffer());
 		vkTexture.allocate(context);
-		vkTexture.loadImage(executionContext, imageLoader.getBuffer(), layout);
+		vkTexture.loadImage(executionContext, imageLoader.getBuffer());
 
 		imageBuffer.free();
 		imageLoader.free();

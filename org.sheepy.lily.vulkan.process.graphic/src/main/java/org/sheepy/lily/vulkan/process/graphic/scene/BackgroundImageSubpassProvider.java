@@ -11,7 +11,6 @@ import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
-import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
@@ -29,26 +28,7 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 	public SubpassData build(BackgroundImage part, SwapImageAttachment colorAttachment)
 	{
 		final var pipeline = buildPipeline(part);
-		final var subpass = buildSubpass(colorAttachment);
-
-		return new SubpassData(	List.of(pipeline),
-								subpass,
-								EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT,
-								List.of(EAccess.COLOR_ATTACHMENT_WRITE_BIT,
-										EAccess.COLOR_ATTACHMENT_READ_BIT),
-								List.of());
-	}
-
-	private static Subpass buildSubpass(SwapImageAttachment colorAttachment)
-	{
-		final var subpass = GraphicFactory.eINSTANCE.createSubpass();
-
-		final var colorRef = GraphicFactory.eINSTANCE.createAttachmentRef();
-		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
-		colorRef.setAttachment(colorAttachment);
-		subpass.getRefs().add(colorRef);
-
-		return subpass;
+		return new SubpassData(List.of(pipeline), null, null, List.of(), List.of());
 	}
 
 	private static Pipeline buildPipeline(BackgroundImage part)

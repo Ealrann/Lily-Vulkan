@@ -2,9 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.nuklear;
 
-import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
-import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
 
 /**
@@ -17,8 +15,6 @@ import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getContext <em>Context</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getDrawTask <em>Draw Task</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getVertexBuffer <em>Vertex Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getImageArray <em>Image Array</em>}</li>
  * </ul>
  *
@@ -51,50 +47,6 @@ public interface NuklearLayoutTask extends IPipelineTask
 	 * @generated
 	 */
 	void setContext(NuklearContext value);
-
-	/**
-	 * Returns the value of the '<em><b>Draw Task</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Draw Task</em>' reference.
-	 * @see #setDrawTask(CompositeTask)
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getNuklearLayoutTask_DrawTask()
-	 * @model
-	 * @generated
-	 */
-	CompositeTask getDrawTask();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getDrawTask <em>Draw Task</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Draw Task</em>' reference.
-	 * @see #getDrawTask()
-	 * @generated
-	 */
-	void setDrawTask(CompositeTask value);
-
-	/**
-	 * Returns the value of the '<em><b>Vertex Buffer</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Vertex Buffer</em>' reference.
-	 * @see #setVertexBuffer(CompositeBuffer)
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getNuklearLayoutTask_VertexBuffer()
-	 * @model required="true"
-	 * @generated
-	 */
-	CompositeBuffer getVertexBuffer();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getVertexBuffer <em>Vertex Buffer</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Vertex Buffer</em>' reference.
-	 * @see #getVertexBuffer()
-	 * @generated
-	 */
-	void setVertexBuffer(CompositeBuffer value);
 
 	/**
 	 * Returns the value of the '<em><b>Image Array</b></em>' reference.

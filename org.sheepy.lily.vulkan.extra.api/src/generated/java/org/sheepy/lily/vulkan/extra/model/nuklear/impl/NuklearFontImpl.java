@@ -3,17 +3,14 @@
 package org.sheepy.lily.vulkan.extra.model.nuklear.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.model.application.impl.IResourceImpl;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
-
-import org.sheepy.lily.vulkan.model.resource.SampledImage;
+import org.sheepy.lily.vulkan.model.resource.FontTextureArray;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +20,7 @@ import org.sheepy.lily.vulkan.model.resource.SampledImage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearFontImpl#getFontSampledImage <em>Font Sampled Image</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearFontImpl#getFontTextureArray <em>Font Texture Array</em>}</li>
  * </ul>
  *
  * @generated
@@ -31,14 +28,14 @@ import org.sheepy.lily.vulkan.model.resource.SampledImage;
 public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 {
 	/**
-	 * The cached value of the '{@link #getFontSampledImage() <em>Font Sampled Image</em>}' containment reference.
+	 * The cached value of the '{@link #getFontTextureArray() <em>Font Texture Array</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFontSampledImage()
+	 * @see #getFontTextureArray()
 	 * @generated
 	 * @ordered
 	 */
-	protected SampledImage fontSampledImage;
+	protected FontTextureArray fontTextureArray;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,9 +64,19 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	 * @generated
 	 */
 	@Override
-	public SampledImage getFontSampledImage()
+	public FontTextureArray getFontTextureArray()
 	{
-		return fontSampledImage;
+		if (fontTextureArray != null && ((EObject)fontTextureArray).eIsProxy())
+		{
+			InternalEObject oldFontTextureArray = (InternalEObject)fontTextureArray;
+			fontTextureArray = (FontTextureArray)eResolveProxy(oldFontTextureArray);
+			if (fontTextureArray != oldFontTextureArray)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_FONT__FONT_TEXTURE_ARRAY, oldFontTextureArray, fontTextureArray));
+			}
+		}
+		return fontTextureArray;
 	}
 
 	/**
@@ -77,54 +84,23 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFontSampledImage(SampledImage newFontSampledImage, NotificationChain msgs)
+	public FontTextureArray basicGetFontTextureArray()
 	{
-		SampledImage oldFontSampledImage = fontSampledImage;
-		fontSampledImage = newFontSampledImage;
+		return fontTextureArray;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFontTextureArray(FontTextureArray newFontTextureArray)
+	{
+		FontTextureArray oldFontTextureArray = fontTextureArray;
+		fontTextureArray = newFontTextureArray;
 		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_FONT__FONT_SAMPLED_IMAGE, oldFontSampledImage, newFontSampledImage);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setFontSampledImage(SampledImage newFontSampledImage)
-	{
-		if (newFontSampledImage != fontSampledImage)
-		{
-			NotificationChain msgs = null;
-			if (fontSampledImage != null)
-				msgs = ((InternalEObject)fontSampledImage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NuklearPackage.NUKLEAR_FONT__FONT_SAMPLED_IMAGE, null, msgs);
-			if (newFontSampledImage != null)
-				msgs = ((InternalEObject)newFontSampledImage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NuklearPackage.NUKLEAR_FONT__FONT_SAMPLED_IMAGE, null, msgs);
-			msgs = basicSetFontSampledImage(newFontSampledImage, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_FONT__FONT_SAMPLED_IMAGE, newFontSampledImage, newFontSampledImage));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case NuklearPackage.NUKLEAR_FONT__FONT_SAMPLED_IMAGE:
-				return basicSetFontSampledImage(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_FONT__FONT_TEXTURE_ARRAY, oldFontTextureArray, fontTextureArray));
 	}
 
 	/**
@@ -137,8 +113,9 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_FONT__FONT_SAMPLED_IMAGE:
-				return getFontSampledImage();
+			case NuklearPackage.NUKLEAR_FONT__FONT_TEXTURE_ARRAY:
+				if (resolve) return getFontTextureArray();
+				return basicGetFontTextureArray();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -153,8 +130,8 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_FONT__FONT_SAMPLED_IMAGE:
-				setFontSampledImage((SampledImage)newValue);
+			case NuklearPackage.NUKLEAR_FONT__FONT_TEXTURE_ARRAY:
+				setFontTextureArray((FontTextureArray)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -170,8 +147,8 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_FONT__FONT_SAMPLED_IMAGE:
-				setFontSampledImage((SampledImage)null);
+			case NuklearPackage.NUKLEAR_FONT__FONT_TEXTURE_ARRAY:
+				setFontTextureArray((FontTextureArray)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -187,8 +164,8 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_FONT__FONT_SAMPLED_IMAGE:
-				return fontSampledImage != null;
+			case NuklearPackage.NUKLEAR_FONT__FONT_TEXTURE_ARRAY:
+				return fontTextureArray != null;
 		}
 		return super.eIsSet(featureID);
 	}

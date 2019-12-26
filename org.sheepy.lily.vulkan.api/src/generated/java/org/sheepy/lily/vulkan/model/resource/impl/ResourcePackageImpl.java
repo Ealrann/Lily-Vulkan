@@ -21,8 +21,11 @@ import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
+import org.sheepy.lily.core.model.presentation.PresentationPackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.core.model.ui.UiPackage;
+import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.binding.BindingPackage;
 import org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl;
@@ -47,9 +50,10 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
-import org.sheepy.lily.vulkan.model.resource.FontImage;
+import org.sheepy.lily.vulkan.model.resource.FontTextureArray;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.IBufferReference;
+import org.sheepy.lily.vulkan.model.resource.ITextureArray;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageDescriptor;
@@ -197,13 +201,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass fontImageEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass bufferDescriptorEClass = null;
 
 	/**
@@ -281,7 +278,21 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass iTextureArrayEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass texture2DArrayEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass fontTextureArrayEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -358,6 +369,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
+		UiPackage.eINSTANCE.eClass();
+		PresentationPackage.eINSTANCE.eClass();
+		VariablePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BindingPackage.eNS_URI);
@@ -1028,39 +1042,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getFontImage()
-	{
-		return fontImageEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getFontImage_File()
-	{
-		return (EReference)fontImageEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFontImage_Height()
-	{
-		return (EAttribute)fontImageEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getBufferDescriptor()
 	{
 		return bufferDescriptorEClass;
@@ -1160,7 +1141,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getTexture2DArrayDescriptor_Texture2DArray()
+	public EReference getTexture2DArrayDescriptor_TextureArray()
 	{
 		return (EReference)texture2DArrayDescriptorEClass.getEStructuralFeatures().get(0);
 	}
@@ -1336,6 +1317,17 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
+	public EClass getITextureArray()
+	{
+		return iTextureArrayEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getTexture2DArray()
 	{
 		return texture2DArrayEClass;
@@ -1369,9 +1361,31 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getTexture2DArray_InitialLayout()
+	public EClass getFontTextureArray()
 	{
-		return (EReference)texture2DArrayEClass.getEStructuralFeatures().get(2);
+		return fontTextureArrayEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFontTextureArray_Height()
+	{
+		return (EAttribute)fontTextureArrayEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getFontTextureArray_Fonts()
+	{
+		return (EReference)fontTextureArrayEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1500,10 +1514,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(semaphoreEClass, SEMAPHORE__SIGNALIZED_AT_INIT);
 		createEAttribute(semaphoreEClass, SEMAPHORE__WAIT_STAGE);
 
-		fontImageEClass = createEClass(FONT_IMAGE);
-		createEReference(fontImageEClass, FONT_IMAGE__FILE);
-		createEAttribute(fontImageEClass, FONT_IMAGE__HEIGHT);
-
 		bufferDescriptorEClass = createEClass(BUFFER_DESCRIPTOR);
 		createEReference(bufferDescriptorEClass, BUFFER_DESCRIPTOR__BUFFER_REFERENCE);
 
@@ -1517,7 +1527,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEReference(samplerDescriptorEClass, SAMPLER_DESCRIPTOR__SAMPLER);
 
 		texture2DArrayDescriptorEClass = createEClass(TEXTURE2_DARRAY_DESCRIPTOR);
-		createEReference(texture2DArrayDescriptorEClass, TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE2_DARRAY);
+		createEReference(texture2DArrayDescriptorEClass, TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE_ARRAY);
 
 		descriptorSetEClass = createEClass(DESCRIPTOR_SET);
 		createEReference(descriptorSetEClass, DESCRIPTOR_SET__DESCRIPTORS);
@@ -1540,10 +1550,15 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(shaderEClass, SHADER__STAGE);
 		createEReference(shaderEClass, SHADER__CONSTANTS);
 
+		iTextureArrayEClass = createEClass(ITEXTURE_ARRAY);
+
 		texture2DArrayEClass = createEClass(TEXTURE2_DARRAY);
 		createEReference(texture2DArrayEClass, TEXTURE2_DARRAY__FILES);
 		createEAttribute(texture2DArrayEClass, TEXTURE2_DARRAY__MIPMAP_ENABLED);
-		createEReference(texture2DArrayEClass, TEXTURE2_DARRAY__INITIAL_LAYOUT);
+
+		fontTextureArrayEClass = createEClass(FONT_TEXTURE_ARRAY);
+		createEAttribute(fontTextureArrayEClass, FONT_TEXTURE_ARRAY__HEIGHT);
+		createEReference(fontTextureArrayEClass, FONT_TEXTURE_ARRAY__FONTS);
 
 		// Create enums
 		eFlushModeEEnum = createEEnum(EFLUSH_MODE);
@@ -1584,6 +1599,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		BarrierPackage theBarrierPackage = (BarrierPackage)EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
 		PipelinePackage thePipelinePackage = (PipelinePackage)EPackage.Registry.INSTANCE.getEPackage(PipelinePackage.eNS_URI);
+		UiPackage theUiPackage = (UiPackage)EPackage.Registry.INSTANCE.getEPackage(UiPackage.eNS_URI);
 
 		// Create type parameters
 		ETypeParameter bufferDataProviderEClass_T = addETypeParameter(bufferDataProviderEClass, "T");
@@ -1609,7 +1625,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		samplerEClass.getESuperTypes().add(theImagePackage.getSamplerInfo());
 		samplerEClass.getESuperTypes().add(theApplicationPackage.getIResource());
 		semaphoreEClass.getESuperTypes().add(theApplicationPackage.getIResource());
-		fontImageEClass.getESuperTypes().add(this.getImage());
 		bufferDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		imageDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		sampledImageDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
@@ -1620,7 +1635,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		compositeBufferBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractBufferBarrier());
 		imageBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractImageBarrier());
 		shaderEClass.getESuperTypes().add(theApplicationPackage.getIResource());
-		texture2DArrayEClass.getESuperTypes().add(theApplicationPackage.getIResource());
+		iTextureArrayEClass.getESuperTypes().add(this.getImage());
+		texture2DArrayEClass.getESuperTypes().add(this.getITextureArray());
+		fontTextureArrayEClass.getESuperTypes().add(this.getITextureArray());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(transferBufferEClass, TransferBuffer.class, "TransferBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1700,10 +1717,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getSemaphore_SignalizedAtInit(), ecorePackage.getEBoolean(), "signalizedAtInit", "false", 0, 1, Semaphore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSemaphore_WaitStage(), theEnumerationPackage.getEPipelineStage(), "waitStage", null, 0, 1, Semaphore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(fontImageEClass, FontImage.class, "FontImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFontImage_File(), theApplicationPackage.getFileResource(), null, "file", null, 0, 1, FontImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFontImage_Height(), ecorePackage.getEInt(), "height", "18", 0, 1, FontImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(bufferDescriptorEClass, BufferDescriptor.class, "BufferDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBufferDescriptor_BufferReference(), this.getIBufferReference(), null, "bufferReference", null, 1, 1, BufferDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1717,7 +1730,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getSamplerDescriptor_Sampler(), this.getSampler(), null, "sampler", null, 1, 1, SamplerDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(texture2DArrayDescriptorEClass, Texture2DArrayDescriptor.class, "Texture2DArrayDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTexture2DArrayDescriptor_Texture2DArray(), this.getTexture2DArray(), null, "texture2DArray", null, 1, 1, Texture2DArrayDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTexture2DArrayDescriptor_TextureArray(), this.getITextureArray(), null, "textureArray", null, 1, 1, Texture2DArrayDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(descriptorSetEClass, DescriptorSet.class, "DescriptorSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDescriptorSet_Descriptors(), theVulkanPackage.getIDescriptor(), null, "descriptors", null, 1, -1, DescriptorSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1743,10 +1756,15 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getShader_Stage(), theEnumerationPackage.getEShaderStage(), "stage", null, 0, 1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getShader_Constants(), thePipelinePackage.getSpecializationConstant(), null, "constants", null, 0, -1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(iTextureArrayEClass, ITextureArray.class, "ITextureArray", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(texture2DArrayEClass, Texture2DArray.class, "Texture2DArray", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTexture2DArray_Files(), theApplicationPackage.getFileResource(), null, "files", null, 1, -1, Texture2DArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTexture2DArray_MipmapEnabled(), ecorePackage.getEBoolean(), "mipmapEnabled", "false", 0, 1, Texture2DArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTexture2DArray_InitialLayout(), theImagePackage.getImageLayout(), null, "initialLayout", null, 0, 1, Texture2DArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(fontTextureArrayEClass, FontTextureArray.class, "FontTextureArray", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFontTextureArray_Height(), ecorePackage.getEInt(), "height", "18", 0, 1, FontTextureArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFontTextureArray_Fonts(), theUiPackage.getFont(), null, "fonts", null, 0, -1, FontTextureArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(eFlushModeEEnum, EFlushMode.class, "EFlushMode");

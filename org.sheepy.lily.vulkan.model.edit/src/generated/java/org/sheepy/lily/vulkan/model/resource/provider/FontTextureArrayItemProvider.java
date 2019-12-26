@@ -10,23 +10,22 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.lily.core.model.application.ApplicationFactory;
-import org.sheepy.lily.vulkan.model.resource.FontImage;
+import org.sheepy.lily.core.model.ui.UiFactory;
+import org.sheepy.lily.vulkan.model.resource.FontTextureArray;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.FontImage} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.FontTextureArray} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class FontImageItemProvider extends ImageItemProvider
+public class FontTextureArrayItemProvider extends ITextureArrayItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -34,7 +33,7 @@ public class FontImageItemProvider extends ImageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FontImageItemProvider(AdapterFactory adapterFactory)
+	public FontTextureArrayItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -69,9 +68,9 @@ public class FontImageItemProvider extends ImageItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_FontImage_height_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FontImage_height_feature", "_UI_FontImage_type"),
-				 ResourcePackage.Literals.FONT_IMAGE__HEIGHT,
+				 getString("_UI_FontTextureArray_height_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FontTextureArray_height_feature", "_UI_FontTextureArray_type"),
+				 ResourcePackage.Literals.FONT_TEXTURE_ARRAY__HEIGHT,
 				 true,
 				 false,
 				 false,
@@ -94,7 +93,7 @@ public class FontImageItemProvider extends ImageItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ResourcePackage.Literals.FONT_IMAGE__FILE);
+			childrenFeatures.add(ResourcePackage.Literals.FONT_TEXTURE_ARRAY__FONTS);
 		}
 		return childrenFeatures;
 	}
@@ -114,7 +113,7 @@ public class FontImageItemProvider extends ImageItemProvider
 	}
 
 	/**
-	 * This returns FontImage.gif.
+	 * This returns FontTextureArray.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -122,7 +121,7 @@ public class FontImageItemProvider extends ImageItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/FontImage"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FontTextureArray"));
 	}
 
 	/**
@@ -134,10 +133,10 @@ public class FontImageItemProvider extends ImageItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((FontImage)object).getName();
+		String label = ((FontTextureArray)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_FontImage_type") :
-			getString("_UI_FontImage_type") + " " + label;
+			getString("_UI_FontTextureArray_type") :
+			getString("_UI_FontTextureArray_type") + " " + label;
 	}
 
 
@@ -153,12 +152,12 @@ public class FontImageItemProvider extends ImageItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(FontImage.class))
+		switch (notification.getFeatureID(FontTextureArray.class))
 		{
-			case ResourcePackage.FONT_IMAGE__HEIGHT:
+			case ResourcePackage.FONT_TEXTURE_ARRAY__HEIGHT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ResourcePackage.FONT_IMAGE__FILE:
+			case ResourcePackage.FONT_TEXTURE_ARRAY__FONTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -179,18 +178,8 @@ public class FontImageItemProvider extends ImageItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.FONT_IMAGE__FILE,
-				 ApplicationFactory.eINSTANCE.createLocalResource()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.FONT_IMAGE__FILE,
-				 ApplicationFactory.eINSTANCE.createModuleResource()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.FONT_IMAGE__FILE,
-				 ApplicationFactory.eINSTANCE.createStringModuleResource()));
+				(ResourcePackage.Literals.FONT_TEXTURE_ARRAY__FONTS,
+				 UiFactory.eINSTANCE.createFont()));
 	}
 
 }

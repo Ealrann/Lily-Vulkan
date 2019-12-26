@@ -70,7 +70,7 @@ public class SpriteMonoSamplerProviderAdapter implements IDescriptorProviderAdap
 		samplerDescriptor.getShaderStages().add(EShaderStage.FRAGMENT_BIT);
 
 		final var textureArrayDescriptor = ResourceFactory.eINSTANCE.createTexture2DArrayDescriptor();
-		textureArrayDescriptor.setTexture2DArray(texture2DArray);
+		textureArrayDescriptor.setTextureArray(texture2DArray);
 		textureArrayDescriptor.setType(EDescriptorType.SAMPLED_IMAGE);
 		textureArrayDescriptor.getShaderStages().add(EShaderStage.FRAGMENT_BIT);
 

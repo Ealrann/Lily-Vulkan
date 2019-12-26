@@ -18,13 +18,13 @@ import org.sheepy.lily.core.model.inference.IInferenceObject;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 
 import org.sheepy.lily.core.model.presentation.IPositionElement;
-import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.presentation.PresentationPackage;
 import org.sheepy.lily.core.model.types.EHorizontalRelative;
 import org.sheepy.lily.core.model.types.EVerticalRelative;
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 
 import org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider;

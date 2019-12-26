@@ -10,7 +10,7 @@
     xmlns:process="org.sheepy.lily.vulkan.model.process"
     xmlns:resource="org.sheepy.lily.vulkan.model.resource"
     name="GUI no images"
-    shaders="//@resourcePkg/@resources.3 //@resourcePkg/@resources.4">
+    shaders="//@resourcePkg/@resources.4 //@resourcePkg/@resources.5">
   <resourcePkg>
     <resources
         xsi:type="resource:SampledImage"
@@ -29,29 +29,24 @@
       </image>
     </resources>
     <resources
-        xsi:type="nuklear:NuklearFont">
-      <fontSampledImage
-          name="Font Sampled Image">
-        <sampler/>
-        <image
-            xsi:type="resource:FontImage"
-            name="Font">
-          <initialLayout
-              stage="FRAGMENT_SHADER_BIT">
-            <accessMask>SHADER_READ_BIT</accessMask>
-          </initialLayout>
-          <file
-              xsi:type="application:StringModuleResource"
-              path="FiraSans-Regular.ttf"
-              moduleName="org.sheepy.lily.vulkan.extra.nuklear"/>
-        </image>
-      </fontSampledImage>
+        xsi:type="resource:FontTextureArray"
+        name="Font"
+        format="R8_UNORM">
+      <usages>Sampled</usages>
+      <usages>TransferDst</usages>
+      <initialLayout
+          stage="FRAGMENT_SHADER_BIT">
+        <accessMask>SHADER_READ_BIT</accessMask>
+      </initialLayout>
     </resources>
     <resources
+        xsi:type="nuklear:NuklearFont"
+        fontTextureArray="//@resourcePkg/@resources.1"/>
+    <resources
         xsi:type="nuklear:NuklearContext"
-        font="//@resourcePkg/@resources.1"
+        font="//@resourcePkg/@resources.2"
         nullTexture="//@resourcePkg/@resources.0"
-        layoutTask="//@taskPkg/@tasks.2"/>
+        layoutTask="//@taskPkg/@tasks.1"/>
     <resources
         xsi:type="resource:Shader"
         name="NkVertex">
@@ -70,6 +65,9 @@
           name="Frag"
           path="ui.frag.spv"
           moduleName="org.sheepy.lily.vulkan.extra.nuklear"/>
+      <constants
+          name="FontTextureCount"
+          size="4"/>
     </resources>
     <resources
         xsi:type="resource:TransferBuffer"
@@ -79,16 +77,19 @@
     <resources
         xsi:type="resource:CompositeBuffer"
         name="NuklearVertexBuffer"
-        transferBuffer="//@resourcePkg/@resources.5">
+        transferBuffer="//@resourcePkg/@resources.6">
       <dataProviders
           xsi:type="nuklear:NuklearVertexProvider"
           usage="VERTEX_BUFFER_BIT"
-          context="//@resourcePkg/@resources.2"/>
+          context="//@resourcePkg/@resources.3"/>
       <dataProviders
           xsi:type="nuklear:NuklearIndexProvider"
           usage="INDEX_BUFFER_BIT"
-          context="//@resourcePkg/@resources.2"/>
+          context="//@resourcePkg/@resources.3"/>
     </resources>
+    <resources
+        xsi:type="resource:Sampler"
+        name="FontSampler"/>
   </resourcePkg>
   <descriptorPkg>
     <descriptors
@@ -99,10 +100,15 @@
       <shaderStages>FRAGMENT_BIT</shaderStages>
     </descriptors>
     <descriptors
-        xsi:type="resource:SampledImageDescriptor"
-        name="NkFont"
-        type="COMBINED_IMAGE_SAMPLER"
-        sampledImage="//@resourcePkg/@resources.1/@fontSampledImage">
+        xsi:type="resource:SamplerDescriptor"
+        name="FontSampler"
+        sampler="//@resourcePkg/@resources.8">
+      <shaderStages>FRAGMENT_BIT</shaderStages>
+    </descriptors>
+    <descriptors
+        xsi:type="resource:Texture2DArrayDescriptor"
+        type="SAMPLED_IMAGE"
+        textureArray="//@resourcePkg/@resources.1">
       <shaderStages>FRAGMENT_BIT</shaderStages>
     </descriptors>
   </descriptorPkg>
@@ -114,25 +120,27 @@
   <descriptorSetPkg>
     <descriptorSets
         name="UI"
-        descriptors="//@descriptorPkg/@descriptors.0 //@descriptorPkg/@descriptors.1"/>
+        descriptors="//@descriptorPkg/@descriptors.0 //@descriptorPkg/@descriptors.1 //@descriptorPkg/@descriptors.2"/>
   </descriptorSetPkg>
   <taskPkg>
     <tasks xsi:type="process:BindDescriptorSets"
         descriptorSets="//@descriptorSetPkg/@descriptorSets.0"/>
+    <tasks xsi:type="nuklear:NuklearLayoutTask"
+        context="//@resourcePkg/@resources.3"/>
     <tasks xsi:type="process:PrepareCompositeTransfer"
-        compositeBuffer="//@resourcePkg/@resources.6"
+        compositeBuffer="//@resourcePkg/@resources.7"
         prepareDuringUpdate="true">
       <parts/>
       <parts
           part="1"/>
     </tasks>
-    <tasks xsi:type="nuklear:NuklearLayoutTask"
-        context="//@resourcePkg/@resources.2"
-        drawTask="//@taskPkg/@tasks.4"
-        vertexBuffer="//@resourcePkg/@resources.6"/>
+    <tasks xsi:type="nuklear:NuklearFillBufferTask"
+        context="//@resourcePkg/@resources.3"
+        layoutTask="//@taskPkg/@tasks.1"
+        vertexBuffer="//@resourcePkg/@resources.7"
+        drawTask="//@taskPkg/@tasks.5"/>
     <tasks xsi:type="process:FlushTransferBufferTask"
-        transferBuffer="//@resourcePkg/@resources.5"
-        flushDuringUpdate="true"/>
+        transferBuffer="//@resourcePkg/@resources.6"/>
     <tasks xsi:type="process:CompositeTask"
         name="Nk draw"/>
   </taskPkg>

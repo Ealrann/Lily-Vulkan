@@ -6,7 +6,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.resource.IResourceLoader;
-import org.sheepy.lily.core.model.presentation.UI;
+import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;

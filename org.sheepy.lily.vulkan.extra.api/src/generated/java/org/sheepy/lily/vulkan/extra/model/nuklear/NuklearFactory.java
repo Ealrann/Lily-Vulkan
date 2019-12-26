@@ -41,6 +41,15 @@ public interface NuklearFactory extends EFactory
 	NuklearLayoutTask createNuklearLayoutTask();
 
 	/**
+	 * Returns a new object of class '<em>Fill Buffer Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fill Buffer Task</em>'.
+	 * @generated
+	 */
+	NuklearFillBufferTask createNuklearFillBufferTask();
+
+	/**
 	 * Returns a new object of class '<em>Context</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

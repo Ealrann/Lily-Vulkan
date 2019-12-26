@@ -27,6 +27,7 @@ import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
 import org.sheepy.vulkan.model.enumeration.EBindPoint;
@@ -51,6 +52,7 @@ public final class EngineBuilder
 	public final StaticImage boardImage;
 
 	private GraphicProcess graphicProcess;
+	private ComputeProcess barrierProcess;
 	private ComputeProcess lifeProcess;
 	private ComputeProcess pixelProcess;
 	private ComputePipeline lifePipeline;
@@ -89,8 +91,9 @@ public final class EngineBuilder
 		graphicProcess.setPartPkg(ProcessFactory.eINSTANCE.createProcessPartPkg());
 		graphicProcess.setConfiguration(configuration);
 		graphicProcess.setRenderPassInfo(newInfo());
-		graphicProcess.setCadence(buildGraphicCadence(FRAME_COUNT));
+		graphicProcess.setCadence(buildCadence(FRAME_COUNT));
 
+		engine.getProcesses().add(barrierProcess);
 		engine.getProcesses().add(lifeProcess);
 		engine.getProcesses().add(pixelProcess);
 		engine.getProcesses().add(graphicProcess);
@@ -123,6 +126,9 @@ public final class EngineBuilder
 	{
 		lifeProcess = ComputeFactory.eINSTANCE.createComputeProcess();
 		pixelProcess = ComputeFactory.eINSTANCE.createComputeProcess();
+
+		createBarrierProcess();
+
 		final Module thisModule = getClass().getModule();
 
 		final ModuleResource lifeShaderFile = ApplicationFactory.eINSTANCE.createModuleResource();
@@ -209,6 +215,36 @@ public final class EngineBuilder
 		pixelProcess.setResetAllowed(true);
 	}
 
+	private void createBarrierProcess()
+	{
+		barrierProcess = ComputeFactory.eINSTANCE.createComputeProcess();
+		barrierProcess.setPartPkg(ProcessFactory.eINSTANCE.createProcessPartPkg());
+
+		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
+		final var pipeline = ProcessFactory.eINSTANCE.createPipeline();
+		pipeline.setTaskPkg(taskPkg);
+		pipeline.setStage(ECommandStage.COMPUTE);
+
+		final var pipelineBarrier = ProcessFactory.eINSTANCE.createPipelineBarrier();
+		final var imageBarrier = ResourceFactory.eINSTANCE.createImageBarrier();
+		imageBarrier.setImage(boardImage);
+		imageBarrier.setDstLayout(EImageLayout.GENERAL);
+		imageBarrier.getDstAccessMask().add(EAccess.SHADER_WRITE_BIT);
+
+		pipelineBarrier.setSrcStage(EPipelineStage.TRANSFER_BIT);
+		pipelineBarrier.setDstStage(EPipelineStage.COMPUTE_SHADER_BIT);
+		pipelineBarrier.getBarriers().add(imageBarrier);
+
+		barrierProcess.getPartPkg().getParts().add(pipeline);
+		pipeline.getTaskPkg().getTasks().add(pipelineBarrier);
+
+		final var cadence = CadenceFactory.eINSTANCE.createCadence();
+		final var runBarrierProcess = VulkanFactory.eINSTANCE.createRunProcess();
+		runBarrierProcess.setProcess(barrierProcess);
+		cadence.getTasks().add(runBarrierProcess);
+		barrierProcess.setCadence(cadence);
+	}
+
 	private ComputePipeline createPipeline(Shader shader, BindingConfiguration bindingConfiguration)
 	{
 		final var bindTask = ProcessFactory.eINSTANCE.createBindDescriptorSets();
@@ -244,7 +280,7 @@ public final class EngineBuilder
 		return res;
 	}
 
-	private final Cadence buildGraphicCadence(int frameCount)
+	private final Cadence buildCadence(int frameCount)
 	{
 		final var runComputeLifeTask = VulkanFactory.eINSTANCE.createRunProcess();
 		final var runComputePixelTask = VulkanFactory.eINSTANCE.createRunProcess();

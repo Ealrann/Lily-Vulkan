@@ -1,9 +1,12 @@
 #version 450
 
+layout (constant_id = 0) const int fontCount = 1;
+
 precision lowp float;
 
-layout (binding = 0) uniform sampler2D texture1;
-layout (binding = 1) uniform sampler2D texture2;
+layout (binding = 0) uniform sampler2D nullTexture;
+layout (binding = 1) uniform sampler fontSampler;
+layout (binding = 2) uniform texture2D fontTextures[fontCount];
 
 layout (push_constant) uniform PushConstants {
 	mat4 ProjMtx;
@@ -19,7 +22,7 @@ void main()
 {
   int index = pushConstants.descriptorId;
   if (index == 0)
-	outColor = Frag_Color * texture(texture1, Frag_UV.st);
-  else if (index == 1)
-	outColor = Frag_Color * texture(texture2, Frag_UV.st);
+	outColor = Frag_Color * texture(nullTexture, Frag_UV.st);
+  else if (index > 0 && index <= fontCount)
+	outColor = Frag_Color * vec4(1., 1., 1., texture(sampler2D(fontTextures[index - 1], fontSampler), Frag_UV.st));
 }

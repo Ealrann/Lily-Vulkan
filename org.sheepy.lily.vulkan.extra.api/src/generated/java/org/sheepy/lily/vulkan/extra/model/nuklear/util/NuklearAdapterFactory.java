@@ -11,12 +11,12 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.sheepy.lily.core.model.application.IResource;
 import org.sheepy.lily.core.model.inference.IInferenceObject;
-import org.sheepy.lily.core.model.presentation.IPanel;
 import org.sheepy.lily.core.model.presentation.IPositionElement;
 import org.sheepy.lily.core.model.presentation.ISizedElement;
-import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
+import org.sheepy.lily.core.model.ui.IPanel;
+import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.vulkan.extra.model.nuklear.*;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
@@ -95,6 +95,11 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseNuklearLayoutTask(NuklearLayoutTask object)
 			{
 				return createNuklearLayoutTaskAdapter();
+			}
+			@Override
+			public Adapter caseNuklearFillBufferTask(NuklearFillBufferTask object)
+			{
+				return createNuklearFillBufferTaskAdapter();
 			}
 			@Override
 			public Adapter caseNuklearContext(NuklearContext object)
@@ -234,6 +239,21 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createNuklearLayoutTaskAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFillBufferTask <em>Fill Buffer Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFillBufferTask
+	 * @generated
+	 */
+	public Adapter createNuklearFillBufferTaskAdapter()
 	{
 		return null;
 	}
@@ -419,13 +439,13 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.presentation.IUIElement <em>IUI Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.ui.IUIElement <em>IUI Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.presentation.IUIElement
+	 * @see org.sheepy.lily.core.model.ui.IUIElement
 	 * @generated
 	 */
 	public Adapter createIUIElementAdapter()
@@ -449,13 +469,13 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.presentation.IPanel <em>IPanel</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.ui.IPanel <em>IPanel</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.presentation.IPanel
+	 * @see org.sheepy.lily.core.model.ui.IPanel
 	 * @generated
 	 */
 	public Adapter createIPanelAdapter()

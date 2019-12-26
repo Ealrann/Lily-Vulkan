@@ -31,9 +31,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.ResourcePkg;
 import org.sheepy.lily.core.model.application.util.ApplicationSwitch;
-import org.sheepy.lily.core.model.presentation.PresentationPackage;
-import org.sheepy.lily.core.model.presentation.UIPage;
-import org.sheepy.lily.core.model.presentation.util.PresentationSwitch;
+import org.sheepy.lily.core.model.ui.UIPage;
+import org.sheepy.lily.core.model.ui.UiPackage;
+import org.sheepy.lily.core.model.ui.util.UiSwitch;
 import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFactory;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
@@ -152,6 +152,31 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 		}
 
 		return nuklearLayoutTaskItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFillBufferTask} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NuklearFillBufferTaskItemProvider nuklearFillBufferTaskItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFillBufferTask}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNuklearFillBufferTaskAdapter()
+	{
+		if (nuklearFillBufferTaskItemProvider == null)
+		{
+			nuklearFillBufferTaskItemProvider = new NuklearFillBufferTaskItemProvider(this);
+		}
+
+		return nuklearFillBufferTaskItemProvider;
 	}
 
 	/**
@@ -455,12 +480,113 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	{
 		if (nuklearPushConstantsItemProvider != null) nuklearPushConstantsItemProvider.dispose();
 		if (nuklearLayoutTaskItemProvider != null) nuklearLayoutTaskItemProvider.dispose();
+		if (nuklearFillBufferTaskItemProvider != null) nuklearFillBufferTaskItemProvider.dispose();
 		if (nuklearContextItemProvider != null) nuklearContextItemProvider.dispose();
 		if (nuklearFontItemProvider != null) nuklearFontItemProvider.dispose();
 		if (selectorPanelItemProvider != null) selectorPanelItemProvider.dispose();
 		if (panelViewerItemProvider != null) panelViewerItemProvider.dispose();
 		if (nuklearVertexProviderItemProvider != null) nuklearVertexProviderItemProvider.dispose();
 		if (nuklearIndexProviderItemProvider != null) nuklearIndexProviderItemProvider.dispose();
+	}
+
+	/**
+	 * A child creation extender for the {@link UiPackage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static class UiChildCreationExtender implements IChildCreationExtender
+	{
+		/**
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected static class CreationSwitch extends UiSwitch<Object>
+		{
+			/**
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected List<Object> newChildDescriptors;
+
+			/**
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected EditingDomain editingDomain;
+
+			/**
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			{
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseUIPage(UIPage object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(UiPackage.Literals.UI_PAGE__PANELS,
+						 NuklearFactory.eINSTANCE.createSelectorPanel()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(UiPackage.Literals.UI_PAGE__PANELS,
+						 NuklearFactory.eINSTANCE.createPanelViewer()));
+
+				return null;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected CommandParameter createChildParameter(Object feature, Object child)
+			{
+				return new CommandParameter(null, feature, child);
+			}
+
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
+		{
+			ArrayList<Object> result = new ArrayList<Object>();
+			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			return result;
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public ResourceLocator getResourceLocator()
+		{
+			return ExtraEditPlugin.INSTANCE;
+		}
 	}
 
 	/**
@@ -524,6 +650,11 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 						(ProcessPackage.Literals.TASK_PKG__TASKS,
 						 NuklearFactory.eINSTANCE.createNuklearLayoutTask()));
 
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.TASK_PKG__TASKS,
+						 NuklearFactory.eINSTANCE.createNuklearFillBufferTask()));
+
 				return null;
 			}
  
@@ -544,6 +675,11 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 					(createChildParameter
 						(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
 						 NuklearFactory.eINSTANCE.createNuklearLayoutTask()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+						 NuklearFactory.eINSTANCE.createNuklearFillBufferTask()));
 
 				return null;
 			}
@@ -645,107 +781,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 					(createChildParameter
 						(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
 						 NuklearFactory.eINSTANCE.createNuklearIndexProvider()));
-
-				return null;
-			}
- 
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected CommandParameter createChildParameter(Object feature, Object child)
-			{
-				return new CommandParameter(null, feature, child);
-			}
-
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
-		{
-			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
-			return result;
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public ResourceLocator getResourceLocator()
-		{
-			return ExtraEditPlugin.INSTANCE;
-		}
-	}
-
-	/**
-	 * A child creation extender for the {@link PresentationPackage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static class PresentationChildCreationExtender implements IChildCreationExtender
-	{
-		/**
-		 * The switch for creating child descriptors specific to each extended class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected static class CreationSwitch extends PresentationSwitch<Object>
-		{
-			/**
-			 * The child descriptors being populated.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected List<Object> newChildDescriptors;
-
-			/**
-			 * The domain in which to create the children.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected EditingDomain editingDomain;
-
-			/**
-			 * Creates the a switch for populating child descriptors in the given domain.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
-			{
-				this.newChildDescriptors = newChildDescriptors;
-				this.editingDomain = editingDomain;
-			}
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseUIPage(UIPage object)
-			{
-				newChildDescriptors.add
-					(createChildParameter
-						(PresentationPackage.Literals.UI_PAGE__PANELS,
-						 NuklearFactory.eINSTANCE.createSelectorPanel()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(PresentationPackage.Literals.UI_PAGE__PANELS,
-						 NuklearFactory.eINSTANCE.createPanelViewer()));
 
 				return null;
 			}

@@ -70,8 +70,6 @@ public class NuklearLayoutTaskItemProvider
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
 			addContextPropertyDescriptor(object);
-			addDrawTaskPropertyDescriptor(object);
-			addVertexBufferPropertyDescriptor(object);
 			addImageArrayPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -138,52 +136,6 @@ public class NuklearLayoutTaskItemProvider
 				 getString("_UI_NuklearLayoutTask_context_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearLayoutTask_context_feature", "_UI_NuklearLayoutTask_type"),
 				 NuklearPackage.Literals.NUKLEAR_LAYOUT_TASK__CONTEXT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Draw Task feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDrawTaskPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NuklearLayoutTask_drawTask_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearLayoutTask_drawTask_feature", "_UI_NuklearLayoutTask_type"),
-				 NuklearPackage.Literals.NUKLEAR_LAYOUT_TASK__DRAW_TASK,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Vertex Buffer feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addVertexBufferPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NuklearLayoutTask_vertexBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearLayoutTask_vertexBuffer_feature", "_UI_NuklearLayoutTask_type"),
-				 NuklearPackage.Literals.NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER,
 				 true,
 				 false,
 				 true,

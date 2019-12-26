@@ -421,31 +421,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FontImage} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FontImageItemProvider fontImageItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.FontImage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFontImageAdapter()
-	{
-		if (fontImageItemProvider == null)
-		{
-			fontImageItemProvider = new FontImageItemProvider(this);
-		}
-
-		return fontImageItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BufferDescriptor} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -721,6 +696,31 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ITextureArray} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ITextureArrayItemProvider iTextureArrayItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ITextureArray}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createITextureArrayAdapter()
+	{
+		if (iTextureArrayItemProvider == null)
+		{
+			iTextureArrayItemProvider = new ITextureArrayItemProvider(this);
+		}
+
+		return iTextureArrayItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Texture2DArray} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -743,6 +743,31 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		}
 
 		return texture2DArrayItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FontTextureArray} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FontTextureArrayItemProvider fontTextureArrayItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.FontTextureArray}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFontTextureArrayAdapter()
+	{
+		if (fontTextureArrayItemProvider == null)
+		{
+			fontTextureArrayItemProvider = new FontTextureArrayItemProvider(this);
+		}
+
+		return fontTextureArrayItemProvider;
 	}
 
 	/**
@@ -907,7 +932,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (sampledImageItemProvider != null) sampledImageItemProvider.dispose();
 		if (samplerItemProvider != null) samplerItemProvider.dispose();
 		if (semaphoreItemProvider != null) semaphoreItemProvider.dispose();
-		if (fontImageItemProvider != null) fontImageItemProvider.dispose();
 		if (bufferDescriptorItemProvider != null) bufferDescriptorItemProvider.dispose();
 		if (imageDescriptorItemProvider != null) imageDescriptorItemProvider.dispose();
 		if (sampledImageDescriptorItemProvider != null) sampledImageDescriptorItemProvider.dispose();
@@ -919,7 +943,9 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (compositeBufferBarrierItemProvider != null) compositeBufferBarrierItemProvider.dispose();
 		if (imageBarrierItemProvider != null) imageBarrierItemProvider.dispose();
 		if (shaderItemProvider != null) shaderItemProvider.dispose();
+		if (iTextureArrayItemProvider != null) iTextureArrayItemProvider.dispose();
 		if (texture2DArrayItemProvider != null) texture2DArrayItemProvider.dispose();
+		if (fontTextureArrayItemProvider != null) fontTextureArrayItemProvider.dispose();
 	}
 
 	/**
@@ -1021,17 +1047,22 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 				newChildDescriptors.add
 					(createChildParameter
 						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 ResourceFactory.eINSTANCE.createFontImage()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
 						 ResourceFactory.eINSTANCE.createShader()));
 
 				newChildDescriptors.add
 					(createChildParameter
 						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
+						 ResourceFactory.eINSTANCE.createITextureArray()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
 						 ResourceFactory.eINSTANCE.createTexture2DArray()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
+						 ResourceFactory.eINSTANCE.createFontTextureArray()));
 
 				return null;
 			}

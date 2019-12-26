@@ -8,7 +8,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.model.presentation.IUIElement;
+import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.core.model.ui.Label;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
@@ -20,7 +20,7 @@ public final class LabelAdapter implements IUIElementAdapter
 
 	public LabelAdapter(Label label)
 	{
-		textBuffer = MemoryUtil.memASCII(label.getText());
+		textBuffer = MemoryUtil.memUTF8(label.getText());
 	}
 
 	@Dispose
@@ -48,7 +48,16 @@ public final class LabelAdapter implements IUIElementAdapter
 			break;
 		}
 
-		nk_label(context.nkContext, textBuffer, align);
+		context.setFont(label.getFont());
+
+		if (label.isWrap())
+		{
+			nk_label_wrap(context.nkContext, textBuffer);
+		}
+		else
+		{
+			nk_label(context.nkContext, textBuffer, align);
+		}
 
 		return false;
 	}

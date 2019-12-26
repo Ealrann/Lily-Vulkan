@@ -15,8 +15,11 @@ import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
+import org.sheepy.lily.core.model.presentation.PresentationPackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.core.model.ui.UiPackage;
+import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
@@ -168,6 +171,9 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
+		UiPackage.eINSTANCE.eClass();
+		PresentationPackage.eINSTANCE.eClass();
+		VariablePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BindingPackage.eNS_URI);

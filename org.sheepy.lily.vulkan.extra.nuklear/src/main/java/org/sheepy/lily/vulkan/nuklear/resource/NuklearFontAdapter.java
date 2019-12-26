@@ -1,61 +1,113 @@
 package org.sheepy.lily.vulkan.nuklear.resource;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.lwjgl.nuklear.NkUserFont;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
+import org.sheepy.lily.core.api.util.ModelUtil;
+import org.sheepy.lily.core.model.ui.Font;
+import org.sheepy.lily.core.model.ui.FontPkg;
+import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
-import org.sheepy.lily.vulkan.model.resource.FontImage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.nuklear.util.NkFontLoader;
 import org.sheepy.vulkan.execution.IExecutionContext;
 
 @Statefull
-@Adapter(scope = NuklearFont.class)
+@Adapter(scope = NuklearFont.class, lazy = false)
 public class NuklearFontAdapter implements IVulkanResourceAdapter
 {
-	private final NuklearFont nuklearFont;
-	private final ISampledImageAdapter samplerAdapter;
+	public final Map<Font, NkUserFont> fontMap;
 
-	private NkFontLoader fontLoader = null;
-	private NkUserFont defaultFont = null;
+	private final List<Font> fonts;
+	private final List<NkFontLoader> fontLoaders;
 
 	public NuklearFontAdapter(NuklearFont nuklearFont)
 	{
-		this.nuklearFont = nuklearFont;
-		final var sampler = nuklearFont.getFontSampledImage();
-		samplerAdapter = sampler.adaptNotNull(ISampledImageAdapter.class);
+		final var pipeline = ModelUtil.findParent(nuklearFont, GraphicsPipeline.class);
+		final var fontTextureArray = nuklearFont.getFontTextureArray();
+		final Builder builder = new Builder(pipeline);
+
+		fonts = List.copyOf(builder.fonts);
+		fontLoaders = List.copyOf(builder.fontLoaders);
+		fontMap = Map.copyOf(builder.fontMap);
+
+		for (final var fontLoader : fontLoaders)
+		{
+			// Add the target fonts to fontTextureArray
+			fontTextureArray.getFonts().add(fontLoader.font);
+		}
 	}
 
 	@Override
 	public void allocate(IExecutionContext context)
 	{
-		final var fontImage = nuklearFont.getFontSampledImage().getImage();
-
-		samplerAdapter.allocate(context);
-
-		final var samplerPtr = samplerAdapter.getVkSampler().getPtr();
-
-		fontLoader = new NkFontLoader((FontImage) fontImage);
-		fontLoader.allocate();
-		defaultFont = fontLoader.createNkFont(samplerPtr);
+		for (final var loader : fontLoaders)
+		{
+			loader.allocate();
+		}
 	}
 
 	@Override
 	public void free(IExecutionContext context)
 	{
-		fontLoader.free();
-
-		Objects.requireNonNull(defaultFont.query()).free();
-		Objects.requireNonNull(defaultFont.width()).free();
-
-		samplerAdapter.free(context);
+		for (final var loader : fontLoaders)
+		{
+			loader.free();
+		}
 	}
 
-	public NkUserFont getNkFont()
+	public Font getDefaultFont()
 	{
-		return defaultFont;
+		return fonts.get(0);
+	}
+
+	public int getfontCount()
+	{
+		return fontLoaders.size();
+	}
+
+	private final static class Builder
+	{
+		public final List<Font> fonts;
+		public final List<NkFontLoader> fontLoaders;
+		public final Map<Font, NkUserFont> fontMap;
+
+		public Builder(GraphicsPipeline pipeline)
+		{
+			final var fontPkg = ((UI) pipeline.getScenePart()).getFontPkg();
+			fonts = List.copyOf(gatherFonts(fontPkg));
+
+			final List<NkFontLoader> fontLoaders = new ArrayList<>();
+			final Map<Font, NkUserFont> fontMap = new HashMap<>();
+			for (final var srcFont : fonts)
+			{
+				final var targetFont = EcoreUtil.copy(srcFont);
+				final var loader = new NkFontLoader(targetFont);
+				fontLoaders.add(loader);
+				fontMap.put(srcFont, loader.getNkFont());
+			}
+
+			this.fontLoaders = fontLoaders;
+			this.fontMap = Map.copyOf(fontMap);
+		}
+
+		private static List<Font> gatherFonts(FontPkg fontPkg)
+		{
+			if (fontPkg != null)
+			{
+				return fontPkg.getFonts();
+			}
+			else
+			{
+				return List.of();
+			}
+		}
 	}
 }

@@ -1,6 +1,7 @@
 import org.sheepy.lily.core.api.adapter.annotation.Adapters;
 import org.sheepy.lily.vulkan.nuklear.dataprovider.NuklearIndexProviderAdapter;
 import org.sheepy.lily.vulkan.nuklear.dataprovider.NuklearVertexProviderAdapter;
+import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearFillBufferTaskAdapter;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearPushConstantsAdapter;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
@@ -25,6 +26,7 @@ import org.sheepy.lily.vulkan.nuklear.ui.VariableLabelAdapter;
 		SliderAdapter.class,
 		NullTextureAdapter.class,
 		NuklearLayoutTaskAdapter.class,
+		NuklearFillBufferTaskAdapter.class,
 		NuklearContextAdapter.class,
 		NuklearFontAdapter.class,
 		NuklearPushConstantsAdapter.class,

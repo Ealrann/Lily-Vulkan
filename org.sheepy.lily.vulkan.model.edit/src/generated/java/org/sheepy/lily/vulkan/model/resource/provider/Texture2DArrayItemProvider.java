@@ -13,10 +13,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.application.ApplicationFactory;
-import org.sheepy.lily.core.model.application.provider.IResourceItemProvider;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
-import org.sheepy.vulkan.model.image.ImageFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.Texture2DArray} object.
@@ -24,7 +22,7 @@ import org.sheepy.vulkan.model.image.ImageFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class Texture2DArrayItemProvider extends IResourceItemProvider
+public class Texture2DArrayItemProvider extends ITextureArrayItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -93,7 +91,6 @@ public class Texture2DArrayItemProvider extends IResourceItemProvider
 		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ResourcePackage.Literals.TEXTURE2_DARRAY__FILES);
-			childrenFeatures.add(ResourcePackage.Literals.TEXTURE2_DARRAY__INITIAL_LAYOUT);
 		}
 		return childrenFeatures;
 	}
@@ -157,7 +154,6 @@ public class Texture2DArrayItemProvider extends IResourceItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ResourcePackage.TEXTURE2_DARRAY__FILES:
-			case ResourcePackage.TEXTURE2_DARRAY__INITIAL_LAYOUT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -190,11 +186,6 @@ public class Texture2DArrayItemProvider extends IResourceItemProvider
 			(createChildParameter
 				(ResourcePackage.Literals.TEXTURE2_DARRAY__FILES,
 				 ApplicationFactory.eINSTANCE.createStringModuleResource()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.TEXTURE2_DARRAY__INITIAL_LAYOUT,
-				 ImageFactory.eINSTANCE.createImageLayout()));
 	}
 
 }

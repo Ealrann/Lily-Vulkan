@@ -46,8 +46,11 @@ public final class DescriptorSetAdapter implements IDescriptorSetAdapter
 	{
 		for (final var descriptor : descriptors)
 		{
-			final var poolSize = poolSizes.get();
-			descriptor.fillPoolSize(poolSize);
+			if (descriptor.isEmpty() == false)
+			{
+				final var poolSize = poolSizes.get();
+				descriptor.fillPoolSize(poolSize);
+			}
 		}
 	}
 
@@ -72,7 +75,15 @@ public final class DescriptorSetAdapter implements IDescriptorSetAdapter
 	@Override
 	public int descriptorCount()
 	{
-		return descriptors.size();
+		int res = 0;
+		for (final var descriptor : descriptors)
+		{
+			if (descriptor.isEmpty() == false)
+			{
+				res++;
+			}
+		}
+		return res;
 	}
 
 	private static List<IVkDescriptor> gatherDescriptors(DescriptorSet descriptorSet)

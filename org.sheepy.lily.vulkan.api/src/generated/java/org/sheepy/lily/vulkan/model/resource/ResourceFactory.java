@@ -140,15 +140,6 @@ public interface ResourceFactory extends EFactory
 	Semaphore createSemaphore();
 
 	/**
-	 * Returns a new object of class '<em>Font Image</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Font Image</em>'.
-	 * @generated
-	 */
-	FontImage createFontImage();
-
-	/**
 	 * Returns a new object of class '<em>Buffer Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -248,6 +239,15 @@ public interface ResourceFactory extends EFactory
 	Shader createShader();
 
 	/**
+	 * Returns a new object of class '<em>ITexture Array</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>ITexture Array</em>'.
+	 * @generated
+	 */
+	ITextureArray createITextureArray();
+
+	/**
 	 * Returns a new object of class '<em>Texture2 DArray</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -255,6 +255,15 @@ public interface ResourceFactory extends EFactory
 	 * @generated
 	 */
 	Texture2DArray createTexture2DArray();
+
+	/**
+	 * Returns a new object of class '<em>Font Texture Array</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Font Texture Array</em>'.
+	 * @generated
+	 */
+	FontTextureArray createFontTextureArray();
 
 	/**
 	 * Returns the package supported by this factory.

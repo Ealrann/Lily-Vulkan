@@ -2,8 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.nuklear;
 
-import org.sheepy.lily.core.model.presentation.IPanel;
-
+import org.sheepy.lily.core.model.ui.IPanel;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 
 /**

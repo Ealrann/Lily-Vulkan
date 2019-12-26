@@ -87,7 +87,7 @@ public final class FlushTransferBufferTaskAdapter
 	private boolean getAndClearHistory(final int index)
 	{
 		final int flushIndexFlag = 1 << index;
-		final boolean previousRecordMadeFlush = (stagingFlushHistory | flushIndexFlag) != 0;
+		final boolean previousRecordMadeFlush = (stagingFlushHistory & flushIndexFlag) != 0;
 		if (previousRecordMadeFlush)
 		{
 			stagingFlushHistory ^= flushIndexFlag;

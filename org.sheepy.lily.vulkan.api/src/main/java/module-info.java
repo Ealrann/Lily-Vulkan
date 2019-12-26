@@ -16,6 +16,7 @@ module org.sheepy.lily.vulkan.api
 	exports org.sheepy.lily.vulkan.api.resource;
 	exports org.sheepy.lily.vulkan.api.resource.attachment;
 	exports org.sheepy.lily.vulkan.api.resource.buffer;
+	exports org.sheepy.lily.vulkan.api.resource.font;
 	exports org.sheepy.lily.vulkan.api.util;
 	exports org.sheepy.lily.vulkan.api.view;
 

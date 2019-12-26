@@ -38,9 +38,13 @@
     </genClasses>
     <genClasses ecoreClass="Nuklear.ecore#//NuklearLayoutTask">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/context"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/drawTask"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/vertexBuffer"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/imageArray"/>
+    </genClasses>
+    <genClasses ecoreClass="Nuklear.ecore#//NuklearFillBufferTask">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearFillBufferTask/context"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearFillBufferTask/drawTask"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearFillBufferTask/vertexBuffer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearFillBufferTask/layoutTask"/>
     </genClasses>
     <genClasses ecoreClass="Nuklear.ecore#//NuklearContext">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/font"/>
@@ -48,7 +52,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/layoutTask"/>
     </genClasses>
     <genClasses ecoreClass="Nuklear.ecore#//NuklearFont">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearFont/fontSampledImage"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearFont/fontTextureArray"/>
     </genClasses>
     <genClasses ecoreClass="Nuklear.ecore#//SelectorPanel">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/buttonSizePx"/>
