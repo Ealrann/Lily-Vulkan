@@ -244,6 +244,7 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 			taskWrappers.add(taskIndex, new TaskWrapper<>(task, pipeline.getStage()));
 
 			final var adapter = task.<IAllocableAdapter<? super T>> adaptGeneric(IAllocableAdapter.class);
+
 			if (adapter != null)
 			{
 				allocationConfig.addChildren(List.of(adapter));

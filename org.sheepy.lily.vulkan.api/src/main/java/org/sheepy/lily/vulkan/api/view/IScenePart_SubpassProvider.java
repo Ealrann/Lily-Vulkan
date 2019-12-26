@@ -24,10 +24,10 @@ public interface IScenePart_SubpassProvider<T extends IScenePart> extends IAdapt
 		public final List<ExtraAttachment> extraAttachments;
 
 		public SubpassData(	List<IPipeline> pipelines,
-								Subpass subpass,
-								EPipelineStage stage,
-								List<EAccess> accesses,
-								List<ExtraAttachment> extraAttachments)
+							Subpass subpass,
+							EPipelineStage stage,
+							List<EAccess> accesses,
+							List<ExtraAttachment> extraAttachments)
 		{
 			this.pipelines = List.copyOf(pipelines);
 			this.subpass = subpass;

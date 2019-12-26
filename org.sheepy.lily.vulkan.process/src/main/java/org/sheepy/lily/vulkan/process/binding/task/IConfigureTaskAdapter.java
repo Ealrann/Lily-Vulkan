@@ -6,6 +6,5 @@ import org.sheepy.lily.vulkan.process.binding.BindConfiguration;
 
 public interface IConfigureTaskAdapter<T extends IConfigurationTask> extends IAdapter
 {
-
 	void configure(BindConfiguration configuration, T task);
 }
