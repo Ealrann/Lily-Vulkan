@@ -35,7 +35,7 @@ subprojects {
 	apply plugin: 'eclipse'
 	apply plugin: "org.javamodularity.moduleplugin"
 
-	version "1.0.5"
+	version "1.0.6"
 
 	sourceCompatibility = 11
 	targetCompatibility = 11
