@@ -23,6 +23,7 @@ public final class LabelAdapter implements IUIElementAdapter
 	private final Label label;
 	private final INotificationListener textListener = this::textChanged;
 
+	private boolean dirty = false;
 	private ByteBuffer textBuffer;
 
 	private LabelAdapter(Label label)
@@ -48,6 +49,8 @@ public final class LabelAdapter implements IUIElementAdapter
 	{
 		freeBuffer();
 		reloadText();
+		
+		dirty = true;
 	}
 
 	private void reloadText()
@@ -66,6 +69,8 @@ public final class LabelAdapter implements IUIElementAdapter
 	@Override
 	public boolean layout(UIContext context, IUIElement control)
 	{
+		final boolean res = dirty;
+		dirty = false;
 		final Label label = (Label) control;
 
 		int align = 0;
@@ -93,6 +98,6 @@ public final class LabelAdapter implements IUIElementAdapter
 			nk_label(context.nkContext, textBuffer, align);
 		}
 
-		return false;
+		return res;
 	}
 }
