@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.joml.Vector2ic;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.nuklear.NkImage;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
@@ -30,6 +31,7 @@ import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.surface.Extent2D;
+import org.sheepy.vulkan.window.IWindowListener.ISizeListener;
 import org.sheepy.vulkan.window.Window;
 
 @Statefull
@@ -44,6 +46,7 @@ public final class NuklearLayoutTaskAdapter
 
 	private final NuklearLayoutTask task;
 	private final GraphicsPipeline pipeline;
+	private final ISizeListener resizeListener = this::onResize;
 
 	private boolean dirty = true;
 	private IGraphicContext context;
@@ -100,13 +103,18 @@ public final class NuklearLayoutTaskAdapter
 		}
 	}
 
+	private void onResize(Vector2ic size)
+	{
+		requestLayout();
+	}
+
 	@Override
 	public void allocate(IGraphicContext context)
 	{
 		this.context = context;
 		window = context.getWindow();
-
-		layout();
+		window.addListener(resizeListener);
+		requestLayout();
 	}
 
 	private List<FileResource> collectImages()
@@ -126,6 +134,7 @@ public final class NuklearLayoutTaskAdapter
 	@Override
 	public void free(IGraphicContext context)
 	{
+		window.removeListener(resizeListener);
 		this.context = null;
 	}
 
@@ -159,7 +168,7 @@ public final class NuklearLayoutTaskAdapter
 
 		startedFrame = true;
 
-		if (extent != getExtent())
+		if (extent != currentExtent)
 		{
 			dirty = true;
 			currentExtent = extent;
