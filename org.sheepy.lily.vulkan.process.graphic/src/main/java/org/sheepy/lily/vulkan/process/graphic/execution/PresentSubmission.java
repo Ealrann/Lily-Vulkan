@@ -17,12 +17,11 @@ import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
-import org.sheepy.vulkan.log.EVulkanErrorStatus;
 import org.sheepy.vulkan.log.Logger;
 
 public class PresentSubmission implements IAllocable<IGraphicContext>
 {
-	private static final String FAILED_SUBMIT_PRESENT = "Failed to submit present command buffer";
+	private static final String FAILED_SUBMIT_PRESENT = "[Present] Failed to submit present command buffer";
 
 	private final int imageIndex;
 	private final VkSemaphore presentWaitSemaphore;
@@ -94,14 +93,11 @@ public class PresentSubmission implements IAllocable<IGraphicContext>
 	{
 		final var res = vkQueuePresentKHR(presentQueue, presentInfo);
 
-		Logger.check(res, FAILED_SUBMIT_PRESENT, true);
-
 		if (res != VK_SUCCESS)
 		{
-			if (DebugUtil.DEBUG_ENABLED)
+			if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 			{
-				final var status = EVulkanErrorStatus.resolveFromCode(res);
-				System.err.println("[Present] " + status.message);
+				Logger.check(res, FAILED_SUBMIT_PRESENT, true);
 			}
 		}
 	}

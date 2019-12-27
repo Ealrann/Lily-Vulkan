@@ -12,12 +12,11 @@ import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.ISurfaceManager;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
-import org.sheepy.vulkan.log.EVulkanErrorStatus;
 import org.sheepy.vulkan.log.Logger;
 
 public class ImageAcquirer implements IAllocable<IGraphicContext>
 {
-	private static final String FAILED_ACQUIRE_IMAGE = "Failed to acquire next image";
+	private static final String FAILED_ACQUIRE_IMAGE = "[Acquire] Failed to acquire next image";
 
 	/**
 	 * This is just -1L, but it is nicer as a symbolic constant.
@@ -81,15 +80,12 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 													0,
 													nextImageArray);
 
-			Logger.check(res, FAILED_ACQUIRE_IMAGE, true);
-
 			if (res == VK_SUCCESS || res == VK_SUBOPTIMAL_KHR) return nextImageArray[0];
 			else
 			{
-				if (DebugUtil.DEBUG_ENABLED)
+				if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 				{
-					final var status = EVulkanErrorStatus.resolveFromCode(res);
-					System.err.println("[Acquire] " + status.message);
+					Logger.check(res, FAILED_ACQUIRE_IMAGE, true);
 				}
 				surfaceManager.setDirty(true);
 				return null;

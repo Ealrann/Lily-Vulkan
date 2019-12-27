@@ -2,45 +2,80 @@ package org.sheepy.lily.vulkan.process.graphic.scene;
 
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.model.application.ApplicationFactory;
+import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.BackgroundImage;
+import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.lily.core.model.application.IResource;
-import org.sheepy.lily.vulkan.api.resource.IVulkanResource_Deployer;
 import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
 import org.sheepy.lily.vulkan.model.resource.Image;
+import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.enumeration.EFilter;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.image.ImageFactory;
 
+@Statefull
 @Adapter(scope = BackgroundImage.class)
 public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvider<BackgroundImage>
 {
+	private final INotificationListener imageListener = this::imageChanged;
+
+	private Pipeline pipeline = null;
+	private Image image = null;
+	private boolean createdImage = false;
+	private ImageBarrier imageBarrier;
+	private BlitToSwapImage blit;
+
+	private void imageChanged(Notification notification)
+	{
+		final var newResource = (IResource) notification.getNewValue();
+		uninstallImage();
+		getOrCreateImage(newResource, pipeline);
+	}
+
+	private void uninstallImage()
+	{
+		if (createdImage)
+		{
+			pipeline.getResourcePkg().getResources().remove(image);
+			image = null;
+			createdImage = false;
+		}
+	}
+
 	@Override
 	public SubpassData build(BackgroundImage part, SwapImageAttachment colorAttachment)
 	{
-		final var pipeline = buildPipeline(part);
+		buildPipeline(part);
+		part.addListener(imageListener, ApplicationPackage.BACKGROUND_IMAGE__RESOURCE);
 		return new SubpassData(List.of(pipeline), null, null, List.of(), List.of());
 	}
 
-	private static Pipeline buildPipeline(BackgroundImage part)
+	private void buildPipeline(BackgroundImage part)
 	{
-		final var imagePipeline = ProcessFactory.eINSTANCE.createPipeline();
-		final var backgroundImage = getOrCreateImage(part.getResource(), imagePipeline);
+		pipeline = ProcessFactory.eINSTANCE.createPipeline();
+		getOrCreateImage(part.getResource(), pipeline);
 
-		final var imageBarrier1 = ResourceFactory.eINSTANCE.createImageBarrier();
-		imageBarrier1.setImage(backgroundImage);
-		imageBarrier1.getDstAccessMask().add(EAccess.TRANSFER_READ_BIT);
-		imageBarrier1.setSrcLayout(EImageLayout.UNDEFINED);
-		imageBarrier1.setDstLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
+		imageBarrier = ResourceFactory.eINSTANCE.createImageBarrier();
+		imageBarrier.setImage(image);
+		imageBarrier.getDstAccessMask().add(EAccess.TRANSFER_READ_BIT);
+		imageBarrier.setSrcLayout(EImageLayout.UNDEFINED);
+		imageBarrier.setDstLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
 
 		final var swapImageBarrier = GraphicFactory.eINSTANCE.createSwapImageBarrier();
 		swapImageBarrier.getSrcAccessMask().add(EAccess.SHADER_WRITE_BIT);
@@ -51,11 +86,11 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 		final var pipelineBarrier1 = ProcessFactory.eINSTANCE.createPipelineBarrier();
 		pipelineBarrier1.setSrcStage(EPipelineStage.COMPUTE_SHADER_BIT);
 		pipelineBarrier1.setDstStage(EPipelineStage.TRANSFER_BIT);
-		pipelineBarrier1.getBarriers().add(imageBarrier1);
+		pipelineBarrier1.getBarriers().add(imageBarrier);
 		pipelineBarrier1.getBarriers().add(swapImageBarrier);
 
-		final var blit = GraphicFactory.eINSTANCE.createBlitToSwapImage();
-		blit.setImage(backgroundImage);
+		blit = GraphicFactory.eINSTANCE.createBlitToSwapImage();
+		blit.setImage(image);
 		blit.setClearColor(part.getClearColor());
 		switch (part.getSampling())
 		{
@@ -71,25 +106,25 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 		taskPkg.getTasks().add(pipelineBarrier1);
 		taskPkg.getTasks().add(blit);
 
-		imagePipeline.setStage(ECommandStage.TRANSFER);
-		imagePipeline.setTaskPkg(taskPkg);
-
-		return imagePipeline;
+		pipeline.setStage(ECommandStage.TRANSFER);
+		pipeline.setTaskPkg(taskPkg);
 	}
 
-	private static Image getOrCreateImage(final IResource resource, Pipeline imagePipeline)
+	private void getOrCreateImage(final IResource resource, Pipeline imagePipeline)
 	{
 		if (resource instanceof Image)
 		{
-			return (Image) resource;
+			createdImage = false;
+			image = (Image) resource;
 		}
-		else
+		else if (resource instanceof FileResource)
 		{
-			return createImage(resource, imagePipeline);
+			createdImage = true;
+			image = createImage((FileResource) resource, imagePipeline);
 		}
 	}
 
-	private static Image createImage(final IResource resource, Pipeline imagePipeline)
+	private static Image createImage(final FileResource resource, Pipeline imagePipeline)
 	{
 		if (imagePipeline.getResourcePkg() == null)
 		{
@@ -101,10 +136,15 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 		initialLayout.setLayout(EImageLayout.GENERAL);
 		initialLayout.getAccessMask().add(EAccess.COLOR_ATTACHMENT_READ_BIT);
 
-		final var resourceDeployer = resource.adapt(IVulkanResource_Deployer.class);
-		final var boardImage = resourceDeployer.deployImageFromFile(imagePipeline.getResourcePkg(),
-																	initialLayout,
-																	false);
-		return boardImage;
+		final var image = ResourceFactory.eINSTANCE.createFileImage();
+		image.setFile(EcoreUtil.copy(resource));
+		image.setInitialLayout(initialLayout);
+		image.getUsages().add(EImageUsage.STORAGE);
+		image.getUsages().add(EImageUsage.TRANSFER_SRC);
+		image.getUsages().add(EImageUsage.TRANSFER_DST);
+
+		imagePipeline.getResourcePkg().getResources().add(image);
+
+		return image;
 	}
 }
