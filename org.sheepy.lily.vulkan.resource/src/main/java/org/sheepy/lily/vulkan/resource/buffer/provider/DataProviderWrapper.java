@@ -125,7 +125,11 @@ public final class DataProviderWrapper extends NotifierAdapter
 
 	public void releaseMemory()
 	{
-		transferBuffer.releaseTicket(memTicket);
+		if (memTicket.getReservationStatus() == EReservationStatus.SUCCESS
+				|| memTicket.getReservationStatus() == EReservationStatus.FLUSHED)
+		{
+			transferBuffer.releaseTicket(memTicket);
+		}
 	}
 
 	public void pushProvidedData(int instance)
