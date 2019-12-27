@@ -108,9 +108,16 @@ public final class FontAdapter implements IFontAdapter
 	@Override
 	public void free(IExecutionContext context)
 	{
+		for (final var adapter : adapters)
+		{
+			adapter.free(context);
+		}
+		adapters.clear();
+
 		texture.free(context);
 		cdata.free();
 
+		charCount = 0;
 		texture = null;
 		cdata = null;
 	}
@@ -142,7 +149,7 @@ public final class FontAdapter implements IFontAdapter
 		}
 		return false;
 	}
-	
+
 	@Override
 	public int indexOf(int codepoint)
 	{

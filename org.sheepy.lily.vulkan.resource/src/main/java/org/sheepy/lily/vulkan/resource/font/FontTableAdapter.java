@@ -77,6 +77,20 @@ public class FontTableAdapter implements IFontTableAdapter
 	}
 
 	@Override
+	public void free(IExecutionContext context)
+	{
+		fontInfo.free();
+		MemoryUtil.memFree(ttfBuffer);
+		tables.clear();
+
+		fontVMetric = 0;
+		charCount = 0;
+		scale = 0;
+		fontInfo = null;
+		ttfBuffer = null;
+	}
+
+	@Override
 	public void pack(STBTTPackContext pc, Buffer buffer)
 	{
 		int offset = 0;
@@ -94,16 +108,6 @@ public class FontTableAdapter implements IFontTableAdapter
 			}
 			offset += table.length;
 		}
-	}
-
-	@Override
-	public void free(IExecutionContext context)
-	{
-		fontInfo.free();
-		MemoryUtil.memFree(ttfBuffer);
-
-		fontInfo = null;
-		ttfBuffer = null;
 	}
 
 	@Override
