@@ -97,7 +97,6 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 			uninstallScenePart((IScenePart) notification.getOldValue());
 			break;
 		}
-		needReload = true;
 	}
 
 	@Override
@@ -124,7 +123,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		{
 			config.setDirty();
 		}
-		
+
 		return container;
 	}
 
@@ -170,6 +169,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		final var graphicProcess = (GraphicProcess) process;
 		final var container = findSubpass(part);
 		container.uninstall(graphicProcess);
+		subpasses.remove(container);
 	}
 
 	private SubPassContainer findSubpass(IScenePart part)
@@ -278,7 +278,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 				final var dependencies = renderPass.getDependencies();
 				final var subpasses = renderPass.getSubpasses();
 
-				attachments.addAll(data.extraAttachments);
+				attachments.removeAll(data.extraAttachments);
 				subpasses.remove(data.subpass);
 				dependencies.remove(dependency);
 				EcoreUtil.delete(dependency);

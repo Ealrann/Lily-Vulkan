@@ -35,8 +35,8 @@ public class ImageBarriersBackend
 	{
 		final var res = VkImageMemoryBarrier.calloc(barriers.size());
 
-		allocationConfiguration.clearDependencies();
-		allocationConfiguration.clearChildren();
+		allocationConfigurator.clearDependencies();
+		allocationConfigurator.clearChildren();
 
 		final List<IAllocable<?>> newDependencies = new ArrayList<>();
 		for (final var imageBarrier : barriers)
@@ -55,8 +55,8 @@ public class ImageBarriersBackend
 		}
 		res.flip();
 
-		allocationConfiguration.addChildren(newDependencies);
-		allocationConfiguration.addDependencies(newDependencies);
+		allocationConfigurator.addChildren(newDependencies);
+		allocationConfigurator.addDependencies(newDependencies);
 
 		return res;
 	}

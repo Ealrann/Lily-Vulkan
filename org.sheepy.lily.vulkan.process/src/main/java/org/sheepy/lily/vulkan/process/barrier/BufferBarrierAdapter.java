@@ -4,16 +4,35 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
+import org.sheepy.lily.core.api.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.barrier.IBufferBarrierAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
 import org.sheepy.vulkan.util.VkModelUtil;
 
 @Adapter(scope = BufferBarrier.class)
-public class BufferBarrierAdapter implements IBufferBarrierAdapter
+public class BufferBarrierAdapter implements IBufferBarrierAdapter, IAllocable<IExecutionContext>
 {
+	private IAllocationConfigurator configurator;
+
+	@Override
+	public void configureAllocation(IAllocationConfigurator configurator, IExecutionContext context)
+	{
+		this.configurator = configurator;
+	}
+
+	@NotifyChanged(featureIds = ResourcePackage.BUFFER_BARRIER__BUFFER)
+	private void notifyChanged()
+	{
+		configurator.setDirty();
+	}
+
 	@Override
 	public void fillInfo(	IAllocationContext context,
 							AbstractBufferBarrier barrier,
@@ -34,4 +53,12 @@ public class BufferBarrierAdapter implements IBufferBarrierAdapter
 		info.offset(0);
 		info.size(VK_WHOLE_SIZE);
 	}
+
+	@Override
+	public void allocate(IExecutionContext context)
+	{}
+
+	@Override
+	public void free(IExecutionContext context)
+	{}
 }

@@ -33,7 +33,7 @@ public class PipelineBarrierAdapter
 
 	private ImageBarriersBackend imageBarrierInfos;
 	private BufferBarriersBackend bufferBarrierInfos;
-	private IAllocationConfigurator allocationConfiguration;
+	private IAllocationConfigurator allocationConfigurator;
 
 	public PipelineBarrierAdapter(PipelineBarrier pipelineBarrier)
 	{
@@ -46,7 +46,7 @@ public class PipelineBarrierAdapter
 	@Override
 	public void configureAllocation(IAllocationConfigurator config, IProcessContext context)
 	{
-		this.allocationConfiguration = config;
+		this.allocationConfigurator = config;
 	}
 
 	@Override
@@ -86,8 +86,8 @@ public class PipelineBarrierAdapter
 														dstQueueIndex,
 														bufferBarriers);
 
-		allocationConfiguration.addChildren(List.of(imageBarrierInfos, bufferBarrierInfos), true);
-		allocationConfiguration.addDependencies(List.of(imageBarrierInfos, bufferBarrierInfos));
+		allocationConfigurator.addChildren(List.of(imageBarrierInfos, bufferBarrierInfos), true);
+		allocationConfigurator.addDependencies(List.of(imageBarrierInfos, bufferBarrierInfos));
 	}
 
 	@Override
@@ -99,9 +99,8 @@ public class PipelineBarrierAdapter
 	@Override
 	public void free(IProcessContext context)
 	{
-		allocationConfiguration.removeDependencies(List.of(imageBarrierInfos, bufferBarrierInfos));
-		allocationConfiguration.removeChildren(	List.of(imageBarrierInfos, bufferBarrierInfos),
-												true);
+		allocationConfigurator.removeDependencies(List.of(imageBarrierInfos, bufferBarrierInfos));
+		allocationConfigurator.removeChildren(List.of(imageBarrierInfos, bufferBarrierInfos), true);
 
 		imageBarrierInfos = null;
 		bufferBarrierInfos = null;

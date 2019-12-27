@@ -4,17 +4,38 @@ import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
 
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.barrier.IImageBarrierAdapter;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 import org.sheepy.vulkan.resource.image.ImageUtil;
 import org.sheepy.vulkan.util.VkModelUtil;
 
+@Statefull
 @Adapter(scope = ImageBarrier.class)
-public class ImageBarrierAdapter implements IImageBarrierAdapter<IExecutionContext>
+public class ImageBarrierAdapter
+		implements IImageBarrierAdapter<IExecutionContext>, IAllocable<IExecutionContext>
 {
+	private IAllocationConfigurator configurator;
+
+	@Override
+	public void configureAllocation(IAllocationConfigurator configurator, IExecutionContext context)
+	{
+		this.configurator = configurator;
+	}
+
+	@NotifyChanged(featureIds = ResourcePackage.IMAGE_BARRIER__IMAGE)
+	private void notifyChanged()
+	{
+		configurator.setDirty();
+	}
+
 	@Override
 	public void fillInfo(	IExecutionContext context,
 							AbstractImageBarrier barrier,
@@ -46,4 +67,12 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter<IExecutionConte
 		info.srcAccessMask(srcAccessMask);
 		info.dstAccessMask(dstAccessMask);
 	}
+
+	@Override
+	public void allocate(IExecutionContext context)
+	{}
+
+	@Override
+	public void free(IExecutionContext context)
+	{}
 }

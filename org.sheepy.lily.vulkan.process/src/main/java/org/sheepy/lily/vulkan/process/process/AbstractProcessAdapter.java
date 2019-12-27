@@ -2,41 +2,36 @@ package org.sheepy.lily.vulkan.process.process;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.cadence.IStatistics;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
-import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.api.process.IProcessPartAdapter;
-import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
-import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
 import org.sheepy.lily.vulkan.common.process.IExecutionProcessAdapter;
-import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.process.process.allocation.PipelineAllocator;
+import org.sheepy.lily.vulkan.process.process.allocation.ProcessResourceAllocator;
 import org.sheepy.vulkan.concurrent.IFenceView;
 import org.sheepy.vulkan.descriptor.DescriptorPool;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.device.IVulkanContext;
-import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @Statefull
 public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorderContext<T>>
 		implements IExecutionProcessAdapter, IAllocable<IVulkanContext>
 {
-	private static final ModelExplorer RESOURCE_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																						ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES));
-	private static final ModelExplorer DESCRIPTOR_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
-																						VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS));
+
 	private final ModelExplorer PARTS_EXPLORER = new ModelExplorer(List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PART_PKG,
 																			ProcessPackage.Literals.PROCESS_PART_PKG__PARTS));
 
@@ -44,19 +39,36 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	protected final DescriptorPool descriptorPool = new DescriptorPool();
 	protected final T context;
 
+	private final ProcessResourceAllocator resourceAllocator;
+	private final PipelineAllocator pipelineAllocator;
 	private final TreeAllocator<IVulkanContext> allocator = new TreeAllocator<IVulkanContext>(this);
-	private final List<IAllocable<? super T>> allocationChildren = new ArrayList<>();
 
 	protected IAllocationConfigurator config;
 	protected List<IProcessPartAdapter> partAdapters;
 
 	private long startPrepareNs = 0;
-	protected boolean needReload = false;
 
 	public AbstractProcessAdapter(AbstractProcess process)
 	{
 		this.process = process;
 		context = createContext();
+
+		resourceAllocator = new ProcessResourceAllocator(process);
+		pipelineAllocator = new PipelineAllocator(process);
+	}
+
+	@Load
+	private void load()
+	{
+		resourceAllocator.start();
+		pipelineAllocator.start();
+	}
+
+	@Dispose
+	private void dispose()
+	{
+		resourceAllocator.stop();
+		pipelineAllocator.stop();
 	}
 
 	@Override
@@ -64,8 +76,16 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	{
 		this.config = config;
 		config.setChildrenContext(this.context);
-		config.addChildren(this.context.getAllocationChildren());
-		refreshAllocation();
+
+		final List<IAllocable<?>> allocationChildren = new ArrayList<>();
+
+		allocationChildren.addAll(this.context.getAllocationChildren());
+		allocationChildren.add(resourceAllocator.getAllocable());
+		allocationChildren.add(descriptorPool);
+		allocationChildren.add(pipelineAllocator.getAllocable());
+		allocationChildren.addAll(getExtraAllocables());
+
+		config.addChildren(allocationChildren);
 	}
 
 	@Override
@@ -90,43 +110,18 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 
 	private void refresh()
 	{
-		if (needReload)
+		if (pipelineAllocator.isDirty() || resourceAllocator.isDirty())
 		{
 			waitIdle();
-			
+
 			refreshStructure();
-			refreshAllocation();
-
-			needReload = false;
 		}
-	}
-
-	private void refreshAllocation()
-	{
-		config.removeChildren(allocationChildren);
-		allocationChildren.clear();
-		allocationChildren.addAll(gatherAllocationList());
-		config.addChildren(allocationChildren);
 	}
 
 	private void refreshStructure()
 	{
 		partAdapters = PARTS_EXPLORER.exploreAdapt(process, IProcessPartAdapter.class);
 		descriptorPool.setDescriptorSets(gatherDescriptorLists());
-	}
-
-	private List<IAllocable<? super T>> gatherAllocationList()
-	{
-		final List<IAllocable<? super T>> res = new ArrayList<>();
-
-		res.addAll(gatherResources());
-		res.add(descriptorPool);
-
-		collectAllocationPipelines(res);
-		res.addAll(getExtraAllocables());
-
-		assert res.contains(null) == false;
-		return res;
 	}
 
 	@Override
@@ -252,21 +247,6 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 				}
 			}
 		}
-	}
-
-	private List<IAllocable<? super IExecutionContext>> gatherResources()
-	{
-		final List<IAllocable<? super IExecutionContext>> resources = new ArrayList<>();
-		RESOURCE_EXPLORER	.streamAdapt(process, IVulkanResourceAdapter.class)
-							.collect(Collectors.toCollection(() -> resources));
-		DESCRIPTOR_EXPLORER	.streamAdapt(process, IDescriptorAdapter.class)
-							.collect(Collectors.toCollection(() -> resources));
-		for (int i = 0; i < partAdapters.size(); i++)
-		{
-			final var pipelineAdapter = partAdapters.get(i);
-			pipelineAdapter.collectResources(resources);
-		}
-		return resources;
 	}
 
 	private List<IVkDescriptorSet> gatherDescriptorLists()

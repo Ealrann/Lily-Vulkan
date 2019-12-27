@@ -8,6 +8,7 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
@@ -15,6 +16,7 @@ import org.sheepy.lily.vulkan.api.graphic.IImageViewManager;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EFilter;
@@ -42,6 +44,7 @@ public class BlitToSwapImageAdapter
 	private IImageViewManager imageViewManager;
 	private VkImage clearTexture;
 	private VkImageBlit.Buffer clearRegions;
+	private IAllocationConfigurator config;
 
 	public BlitToSwapImageAdapter(BlitToSwapImage blitTask)
 	{
@@ -51,9 +54,16 @@ public class BlitToSwapImageAdapter
 	@Override
 	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
 	{
+		this.config = config;
 		final var imageViewManager = context.getImageViewManager();
 
 		config.addDependencies(List.of(imageViewManager));
+	}
+
+	@NotifyChanged(featureIds = GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE)
+	private void imageChanged()
+	{
+		config.setDirty();
 	}
 
 	@Override

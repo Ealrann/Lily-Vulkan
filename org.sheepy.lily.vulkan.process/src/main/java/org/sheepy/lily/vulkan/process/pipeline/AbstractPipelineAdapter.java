@@ -12,25 +12,19 @@ import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.AbstractModelSetRegistry;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
-import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
-import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorSetAdapter;
-import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
-import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
-import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.pipeline.VkPipelineLayout;
 
@@ -38,10 +32,6 @@ import org.sheepy.vulkan.pipeline.VkPipelineLayout;
 public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		implements IAllocableAdapter<T>, IPipelineAdapter<T>
 {
-	private static final ModelExplorer RESOURCE_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																						ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES));
-	private static final ModelExplorer DESCRIPTOR_EXPLORER = new ModelExplorer(List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
-																						VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS));
 	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
 																							ResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));
 
@@ -176,15 +166,6 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		}
 
 		recordNeeded = false;
-	}
-
-	@Override
-	public void collectResources(List<IAllocable<? super IExecutionContext>> collectIn)
-	{
-		RESOURCE_EXPLORER	.streamAdapt(pipeline, IVulkanResourceAdapter.class)
-							.collect(Collectors.toCollection(() -> collectIn));
-		DESCRIPTOR_EXPLORER	.streamAdapt(pipeline, IDescriptorAdapter.class)
-							.collect(Collectors.toCollection(() -> collectIn));
 	}
 
 	@Override

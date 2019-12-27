@@ -16,7 +16,7 @@ public abstract class BarriersBackend<T extends Barrier, Y extends NativeResourc
 	private final int dstQueueIndex;
 	private final List<? extends T> barriers;
 
-	protected IAllocationConfigurator allocationConfiguration;
+	protected IAllocationConfigurator allocationConfigurator;
 	private Y[] barrierInfos = null;
 
 	public BarriersBackend(	final int swapCount,
@@ -33,7 +33,7 @@ public abstract class BarriersBackend<T extends Barrier, Y extends NativeResourc
 	@Override
 	public void configureAllocation(IAllocationConfigurator config, IExecutionContext context)
 	{
-		this.allocationConfiguration = config;
+		this.allocationConfigurator = config;
 	}
 
 	@Override

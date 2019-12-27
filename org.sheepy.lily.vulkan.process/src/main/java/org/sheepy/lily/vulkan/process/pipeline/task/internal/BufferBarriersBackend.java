@@ -37,8 +37,8 @@ public class BufferBarriersBackend
 
 		final List<IAllocable<?>> newDependencies = new ArrayList<>();
 
-		allocationConfiguration.clearDependencies();
-		allocationConfiguration.clearChildren();
+		allocationConfigurator.clearDependencies();
+		allocationConfigurator.clearChildren();
 
 		for (final var bufferBarrier : barriers)
 		{
@@ -56,8 +56,8 @@ public class BufferBarriersBackend
 		}
 		res.flip();
 
-		allocationConfiguration.addChildren(newDependencies);
-		allocationConfiguration.addDependencies(newDependencies);
+		allocationConfigurator.addChildren(newDependencies);
+		allocationConfigurator.addDependencies(newDependencies);
 
 		return res;
 	}
