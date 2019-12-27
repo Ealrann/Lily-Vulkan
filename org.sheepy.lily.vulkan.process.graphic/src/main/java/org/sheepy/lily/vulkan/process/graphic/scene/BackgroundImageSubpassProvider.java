@@ -5,8 +5,8 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.BackgroundImage;
@@ -33,19 +33,19 @@ import org.sheepy.vulkan.model.image.ImageFactory;
 @Adapter(scope = BackgroundImage.class)
 public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvider<BackgroundImage>
 {
-	private final INotificationListener imageListener = this::imageChanged;
-
 	private Pipeline pipeline = null;
 	private Image image = null;
 	private boolean createdImage = false;
 	private ImageBarrier imageBarrier;
 	private BlitToSwapImage blit;
 
+	@NotifyChanged(featureIds = ApplicationPackage.BACKGROUND_IMAGE__RESOURCE)
 	private void imageChanged(Notification notification)
 	{
 		final var newResource = (IResource) notification.getNewValue();
 		uninstallImage();
-		getOrCreateImage(newResource, pipeline);
+		getOrCreateImage(newResource);
+		setupImage();
 	}
 
 	private void uninstallImage()
@@ -62,17 +62,24 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 	public SubpassData build(BackgroundImage part, SwapImageAttachment colorAttachment)
 	{
 		buildPipeline(part);
-		part.addListener(imageListener, ApplicationPackage.BACKGROUND_IMAGE__RESOURCE);
+
+		getOrCreateImage(part.getResource());
+		setupImage();
+
 		return new SubpassData(List.of(pipeline), null, null, List.of(), List.of());
+	}
+
+	private void setupImage()
+	{
+		imageBarrier.setImage(image);
+		blit.setImage(image);
 	}
 
 	private void buildPipeline(BackgroundImage part)
 	{
 		pipeline = ProcessFactory.eINSTANCE.createPipeline();
-		getOrCreateImage(part.getResource(), pipeline);
 
 		imageBarrier = ResourceFactory.eINSTANCE.createImageBarrier();
-		imageBarrier.setImage(image);
 		imageBarrier.getDstAccessMask().add(EAccess.TRANSFER_READ_BIT);
 		imageBarrier.setSrcLayout(EImageLayout.UNDEFINED);
 		imageBarrier.setDstLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
@@ -90,7 +97,6 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 		pipelineBarrier1.getBarriers().add(swapImageBarrier);
 
 		blit = GraphicFactory.eINSTANCE.createBlitToSwapImage();
-		blit.setImage(image);
 		blit.setClearColor(part.getClearColor());
 		switch (part.getSampling())
 		{
@@ -110,7 +116,7 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 		pipeline.setTaskPkg(taskPkg);
 	}
 
-	private void getOrCreateImage(final IResource resource, Pipeline imagePipeline)
+	private void getOrCreateImage(final IResource resource)
 	{
 		if (resource instanceof Image)
 		{
@@ -120,15 +126,15 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 		else if (resource instanceof FileResource)
 		{
 			createdImage = true;
-			image = createImage((FileResource) resource, imagePipeline);
+			image = createImage((FileResource) resource);
 		}
 	}
 
-	private static Image createImage(final FileResource resource, Pipeline imagePipeline)
+	private Image createImage(final FileResource resource)
 	{
-		if (imagePipeline.getResourcePkg() == null)
+		if (pipeline.getResourcePkg() == null)
 		{
-			imagePipeline.setResourcePkg(ApplicationFactory.eINSTANCE.createResourcePkg());
+			pipeline.setResourcePkg(ApplicationFactory.eINSTANCE.createResourcePkg());
 		}
 
 		final var initialLayout = ImageFactory.eINSTANCE.createImageLayout();
@@ -143,7 +149,7 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 		image.getUsages().add(EImageUsage.TRANSFER_SRC);
 		image.getUsages().add(EImageUsage.TRANSFER_DST);
 
-		imagePipeline.getResourcePkg().getResources().add(image);
+		pipeline.getResourcePkg().getResources().add(image);
 
 		return image;
 	}
