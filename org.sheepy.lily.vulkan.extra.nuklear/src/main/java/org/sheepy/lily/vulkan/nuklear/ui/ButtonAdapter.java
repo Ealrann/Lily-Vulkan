@@ -4,21 +4,18 @@ import static org.lwjgl.nuklear.Nuklear.nk_button_label;
 
 import java.nio.ByteBuffer;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.action.context.ActionExecutionContext;
+import org.sheepy.lily.core.api.action.IActionAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.application.IApplicationAdapter;
 import org.sheepy.lily.core.model.action.Action;
-import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.ui.Button;
 import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
 @Statefull
 @Adapter(scope = Button.class)
-public class ButtonAdapter implements IUIElementAdapter
+public final class ButtonAdapter implements IUIElementAdapter
 {
 	private final ByteBuffer textBuffer;
 
@@ -36,18 +33,19 @@ public class ButtonAdapter implements IUIElementAdapter
 		context.setFont(button.getFont());
 		if (nk_button_label(context.nkContext, textBuffer))
 		{
-			final var executor = button.getExecutor();
-			final var application = (Application) EcoreUtil.getRootContainer(executor);
-			final var cadencer = application.adaptNotNull(IApplicationAdapter.class).getCadencer();
-
-			for (final Action action : button.getActions())
+			for (final var action : button.getActions())
 			{
-				final var ec = new ActionExecutionContext(executor, action, null);
-				cadencer.postAction(ec);
+				executeAction(action);
 			}
 			res = true;
 		}
 
 		return res;
+	}
+
+	private static <T extends Action> void executeAction(T action)
+	{
+		final IActionAdapter<T> adapter = action.adaptGeneric(IActionAdapter.class);
+		adapter.execute(action);
 	}
 }
