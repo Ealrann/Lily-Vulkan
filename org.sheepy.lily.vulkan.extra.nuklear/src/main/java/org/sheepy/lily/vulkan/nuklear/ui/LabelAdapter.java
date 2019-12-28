@@ -23,7 +23,7 @@ public final class LabelAdapter implements IUIElementAdapter
 	private final Label label;
 	private final INotificationListener textListener = this::textChanged;
 
-	private boolean dirty = false;
+	private boolean dirty = true;
 	private ByteBuffer textBuffer;
 
 	private LabelAdapter(Label label)

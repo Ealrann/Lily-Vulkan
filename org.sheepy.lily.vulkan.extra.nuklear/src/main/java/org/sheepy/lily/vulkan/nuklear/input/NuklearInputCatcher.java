@@ -243,7 +243,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 			final var panel = layoutAdapter.getHoveredPanel();
 			if (panel != null)
 			{
-				res = panel.isCatchInputs();
+				res |= panel.isCatchInputs();
 			}
 		}
 

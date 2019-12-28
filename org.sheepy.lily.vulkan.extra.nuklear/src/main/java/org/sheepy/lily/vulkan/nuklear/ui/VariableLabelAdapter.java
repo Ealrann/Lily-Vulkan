@@ -26,7 +26,7 @@ public class VariableLabelAdapter implements IUIElementAdapter
 	private String text = "";
 	private ByteBuffer textBuffer = null;
 
-	private boolean dirty = false;
+	private boolean dirty = true;
 
 	@SuppressWarnings("unchecked")
 	public VariableLabelAdapter(VariableLabel label)

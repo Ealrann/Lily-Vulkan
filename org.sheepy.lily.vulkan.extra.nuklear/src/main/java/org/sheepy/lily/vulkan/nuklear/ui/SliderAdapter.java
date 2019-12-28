@@ -24,7 +24,7 @@ public class SliderAdapter implements IUIElementAdapter
 	private final IVariableResolverAdapter<IVariableResolver> resolverAdapter;
 	private final IVariableResolver variableResolver;
 
-	private boolean dirty = false;
+	private boolean dirty = true;
 
 	@SuppressWarnings("unchecked")
 	public SliderAdapter(Slider slider)
