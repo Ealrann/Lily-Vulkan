@@ -3,14 +3,17 @@ package org.sheepy.lily.vulkan.nuklear.ui;
 import static org.lwjgl.nuklear.Nuklear.*;
 
 import java.nio.ByteBuffer;
+import java.util.List;
 
 import org.joml.Vector2ic;
+import org.lwjgl.nuklear.NkColor;
 import org.lwjgl.nuklear.NkRect;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
@@ -114,6 +117,18 @@ public class PanelAdapter implements IPanelAdapter
 					res = true;
 				}
 
+				final var backgroundImage = panel.getBackgroundImage();
+				if (backgroundImage != null)
+				{
+					final var canvas = nk_window_get_canvas(nkContext);
+					final NkColor color = NkColor.callocStack(stack);
+					color.set((byte) 255, (byte) 255, (byte) 255, (byte) 255);
+					final var region = NkRect.mallocStack(stack);
+					nk_window_get_content_region(nkContext, region);
+					final var img = context.imageMap.get(backgroundImage);
+					nk_draw_image(canvas, region, img, color);
+				}
+
 				final var controls = panel.getControls();
 				for (int i = 0; i < controls.size(); i++)
 				{
@@ -132,6 +147,15 @@ public class PanelAdapter implements IPanelAdapter
 		}
 
 		return res;
+	}
+
+	@Override
+	public void collectImages(List<FileResource> imageCollection)
+	{
+		if (panel.getBackgroundImage() != null)
+		{
+			imageCollection.add(panel.getBackgroundImage());
+		}
 	}
 
 	@Override
