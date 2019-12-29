@@ -27,7 +27,7 @@ void main()
   if (index == 0)
 	outColor = Frag_Color * texture(nullTexture, Frag_UV.st);
   else if (index > 0 && index <= fontCount)
-	outColor = Frag_Color * texture(sampler2D(fontTextures[index - 1], fontSampler), Frag_UV.st);
+	outColor = vec4(Frag_Color.rgb, Frag_Color.a * texture(sampler2D(fontTextures[index - 1], fontSampler), Frag_UV.st));
   else
 	outColor = texture(sampler2D(textures[index - fontCount - 1], textureSampler), Frag_UV.st);
 }
