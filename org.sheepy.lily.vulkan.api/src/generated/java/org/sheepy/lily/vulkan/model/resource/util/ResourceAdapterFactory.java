@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.sheepy.lily.core.model.application.IImage;
 import org.sheepy.lily.core.model.application.IResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
@@ -247,6 +248,11 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseImageInfo(ImageInfo object)
 			{
 				return createImageInfoAdapter();
+			}
+			@Override
+			public Adapter caseIImage(IImage object)
+			{
+				return createIImageAdapter();
 			}
 			@Override
 			public Adapter caseSamplerInfo(SamplerInfo object)
@@ -785,6 +791,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createImageInfoAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.application.IImage <em>IImage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.core.model.application.IImage
+	 * @generated
+	 */
+	public Adapter createIImageAdapter()
 	{
 		return null;
 	}

@@ -3,11 +3,7 @@
 package org.sheepy.lily.vulkan.model.resource.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
@@ -30,7 +26,7 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 public class FileImageImpl extends ImageImpl implements FileImage
 {
 	/**
-	 * The cached value of the '{@link #getFile() <em>File</em>}' containment reference.
+	 * The cached value of the '{@link #getFile() <em>File</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFile()
@@ -95,38 +91,13 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFile(FileResource newFile, NotificationChain msgs)
+	@Override
+	public void setFile(FileResource newFile)
 	{
 		FileResource oldFile = file;
 		file = newFile;
 		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.FILE_IMAGE__FILE, oldFile, newFile);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setFile(FileResource newFile)
-	{
-		if (newFile != file)
-		{
-			NotificationChain msgs = null;
-			if (file != null)
-				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.FILE_IMAGE__FILE, null, msgs);
-			if (newFile != null)
-				msgs = ((InternalEObject)newFile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.FILE_IMAGE__FILE, null, msgs);
-			msgs = basicSetFile(newFile, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.FILE_IMAGE__FILE, newFile, newFile));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.FILE_IMAGE__FILE, oldFile, file));
 	}
 
 	/**
@@ -152,22 +123,6 @@ public class FileImageImpl extends ImageImpl implements FileImage
 		mipmapEnabled = newMipmapEnabled;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.FILE_IMAGE__MIPMAP_ENABLED, oldMipmapEnabled, mipmapEnabled));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case ResourcePackage.FILE_IMAGE__FILE:
-				return basicSetFile(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

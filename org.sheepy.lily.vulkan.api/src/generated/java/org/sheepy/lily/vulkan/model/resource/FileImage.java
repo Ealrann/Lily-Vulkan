@@ -25,22 +25,22 @@ import org.sheepy.lily.core.model.application.FileResource;
 public interface FileImage extends Image
 {
 	/**
-	 * Returns the value of the '<em><b>File</b></em>' containment reference.
+	 * Returns the value of the '<em><b>File</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>File</em>' containment reference.
+	 * @return the value of the '<em>File</em>' reference.
 	 * @see #setFile(FileResource)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getFileImage_File()
-	 * @model containment="true"
+	 * @model resolveProxies="false"
 	 * @generated
 	 */
 	FileResource getFile();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.FileImage#getFile <em>File</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.FileImage#getFile <em>File</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>File</em>' containment reference.
+	 * @param value the new value of the '<em>File</em>' reference.
 	 * @see #getFile()
 	 * @generated
 	 */

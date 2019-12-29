@@ -727,22 +727,13 @@ public interface ResourcePackage extends EPackage
 	int IMAGE = 10;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__NAME = ApplicationPackage.IRESOURCE__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE__FORMAT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
+	int IMAGE__FORMAT = ImagePackage.IMAGE_INFO__FORMAT;
 
 	/**
 	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
@@ -751,7 +742,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE__USAGES = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
+	int IMAGE__USAGES = ImagePackage.IMAGE_INFO__USAGES;
 
 	/**
 	 * The feature id for the '<em><b>Tiling</b></em>' attribute.
@@ -760,7 +751,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE__TILING = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 2;
+	int IMAGE__TILING = ImagePackage.IMAGE_INFO__TILING;
 
 	/**
 	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
@@ -769,7 +760,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE__MIP_LEVELS = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 3;
+	int IMAGE__MIP_LEVELS = ImagePackage.IMAGE_INFO__MIP_LEVELS;
 
 	/**
 	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
@@ -778,7 +769,16 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE__INITIAL_LAYOUT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 4;
+	int IMAGE__INITIAL_LAYOUT = ImagePackage.IMAGE_INFO__INITIAL_LAYOUT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__NAME = ImagePackage.IMAGE_INFO_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Image</em>' class.
@@ -787,7 +787,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 5;
+	int IMAGE_FEATURE_COUNT = ImagePackage.IMAGE_INFO_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Image</em>' class.
@@ -796,7 +796,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_OPERATION_COUNT = ApplicationPackage.IRESOURCE_OPERATION_COUNT + 0;
+	int IMAGE_OPERATION_COUNT = ImagePackage.IMAGE_INFO_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.StaticImageImpl <em>Static Image</em>}' class.
@@ -807,15 +807,6 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	int STATIC_IMAGE = 11;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATIC_IMAGE__NAME = IMAGE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -861,6 +852,15 @@ public interface ResourcePackage extends EPackage
 	 * @ordered
 	 */
 	int STATIC_IMAGE__INITIAL_LAYOUT = IMAGE__INITIAL_LAYOUT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_IMAGE__NAME = IMAGE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Fill With Zero</b></em>' attribute.
@@ -918,15 +918,6 @@ public interface ResourcePackage extends EPackage
 	int FILE_IMAGE = 12;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_IMAGE__NAME = IMAGE__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -972,7 +963,16 @@ public interface ResourcePackage extends EPackage
 	int FILE_IMAGE__INITIAL_LAYOUT = IMAGE__INITIAL_LAYOUT;
 
 	/**
-	 * The feature id for the '<em><b>File</b></em>' containment reference.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMAGE__NAME = IMAGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>File</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1968,15 +1968,6 @@ public interface ResourcePackage extends EPackage
 	int ITEXTURE_ARRAY = 27;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEXTURE_ARRAY__NAME = IMAGE__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2022,6 +2013,15 @@ public interface ResourcePackage extends EPackage
 	int ITEXTURE_ARRAY__INITIAL_LAYOUT = IMAGE__INITIAL_LAYOUT;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEXTURE_ARRAY__NAME = IMAGE__NAME;
+
+	/**
 	 * The number of structural features of the '<em>ITexture Array</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2048,15 +2048,6 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	int TEXTURE2_DARRAY = 28;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXTURE2_DARRAY__NAME = ITEXTURE_ARRAY__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -2102,6 +2093,15 @@ public interface ResourcePackage extends EPackage
 	 * @ordered
 	 */
 	int TEXTURE2_DARRAY__INITIAL_LAYOUT = ITEXTURE_ARRAY__INITIAL_LAYOUT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXTURE2_DARRAY__NAME = ITEXTURE_ARRAY__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Files</b></em>' containment reference list.
@@ -2150,15 +2150,6 @@ public interface ResourcePackage extends EPackage
 	int FONT_TEXTURE_ARRAY = 29;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_TEXTURE_ARRAY__NAME = ITEXTURE_ARRAY__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2202,6 +2193,15 @@ public interface ResourcePackage extends EPackage
 	 * @ordered
 	 */
 	int FONT_TEXTURE_ARRAY__INITIAL_LAYOUT = ITEXTURE_ARRAY__INITIAL_LAYOUT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_TEXTURE_ARRAY__NAME = ITEXTURE_ARRAY__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
@@ -2764,10 +2764,10 @@ public interface ResourcePackage extends EPackage
 	EClass getFileImage();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.FileImage#getFile <em>File</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.resource.FileImage#getFile <em>File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>File</em>'.
+	 * @return the meta object for the reference '<em>File</em>'.
 	 * @see org.sheepy.lily.vulkan.model.resource.FileImage#getFile()
 	 * @see #getFileImage()
 	 * @generated
@@ -3656,7 +3656,7 @@ public interface ResourcePackage extends EPackage
 		EClass FILE_IMAGE = eINSTANCE.getFileImage();
 
 		/**
-		 * The meta object literal for the '<em><b>File</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>File</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

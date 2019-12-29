@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
-import org.sheepy.lily.core.model.application.IResource;
+import org.sheepy.lily.core.model.application.IImage;
 import org.sheepy.vulkan.model.image.ImageInfo;
 
 /**
@@ -15,7 +15,7 @@ import org.sheepy.vulkan.model.image.ImageInfo;
  * @model abstract="true"
  * @generated
  */
-public interface Image extends IResource, ImageInfo
+public interface Image extends ImageInfo, IImage
 {
 
 } // Image

@@ -246,6 +246,7 @@ public final class MeshGraphicBuilder
 			sampledImageDescriptor.setSampledImage(sampledImage);
 
 			resourcePkg.getResources().add(sampledImage);
+			resourcePkg.getResources().add(imageFile);
 			descriptorSet.getDescriptors().add(sampledImageDescriptor);
 
 			final var descriptorPkg = VulkanFactory.eINSTANCE.createDescriptorPkg();

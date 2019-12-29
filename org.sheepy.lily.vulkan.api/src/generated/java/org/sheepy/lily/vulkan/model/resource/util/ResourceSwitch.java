@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.sheepy.lily.core.model.application.IImage;
 import org.sheepy.lily.core.model.application.IResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
@@ -174,8 +175,9 @@ public class ResourceSwitch<T1> extends Switch<T1>
 			{
 				Image image = (Image)theEObject;
 				T1 result = caseImage(image);
-				if (result == null) result = caseIResource(image);
 				if (result == null) result = caseImageInfo(image);
+				if (result == null) result = caseIImage(image);
+				if (result == null) result = caseIResource(image);
 				if (result == null) result = caseLNamedElement(image);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -185,8 +187,9 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				StaticImage staticImage = (StaticImage)theEObject;
 				T1 result = caseStaticImage(staticImage);
 				if (result == null) result = caseImage(staticImage);
-				if (result == null) result = caseIResource(staticImage);
 				if (result == null) result = caseImageInfo(staticImage);
+				if (result == null) result = caseIImage(staticImage);
+				if (result == null) result = caseIResource(staticImage);
 				if (result == null) result = caseLNamedElement(staticImage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -196,8 +199,9 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				FileImage fileImage = (FileImage)theEObject;
 				T1 result = caseFileImage(fileImage);
 				if (result == null) result = caseImage(fileImage);
-				if (result == null) result = caseIResource(fileImage);
 				if (result == null) result = caseImageInfo(fileImage);
+				if (result == null) result = caseIImage(fileImage);
+				if (result == null) result = caseIResource(fileImage);
 				if (result == null) result = caseLNamedElement(fileImage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -334,8 +338,9 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				ITextureArray iTextureArray = (ITextureArray)theEObject;
 				T1 result = caseITextureArray(iTextureArray);
 				if (result == null) result = caseImage(iTextureArray);
-				if (result == null) result = caseIResource(iTextureArray);
 				if (result == null) result = caseImageInfo(iTextureArray);
+				if (result == null) result = caseIImage(iTextureArray);
+				if (result == null) result = caseIResource(iTextureArray);
 				if (result == null) result = caseLNamedElement(iTextureArray);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -346,8 +351,9 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				T1 result = caseTexture2DArray(texture2DArray);
 				if (result == null) result = caseITextureArray(texture2DArray);
 				if (result == null) result = caseImage(texture2DArray);
-				if (result == null) result = caseIResource(texture2DArray);
 				if (result == null) result = caseImageInfo(texture2DArray);
+				if (result == null) result = caseIImage(texture2DArray);
+				if (result == null) result = caseIResource(texture2DArray);
 				if (result == null) result = caseLNamedElement(texture2DArray);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -358,8 +364,9 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				T1 result = caseFontTextureArray(fontTextureArray);
 				if (result == null) result = caseITextureArray(fontTextureArray);
 				if (result == null) result = caseImage(fontTextureArray);
-				if (result == null) result = caseIResource(fontTextureArray);
 				if (result == null) result = caseImageInfo(fontTextureArray);
+				if (result == null) result = caseIImage(fontTextureArray);
+				if (result == null) result = caseIResource(fontTextureArray);
 				if (result == null) result = caseLNamedElement(fontTextureArray);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -892,6 +899,22 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseImageInfo(ImageInfo object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IImage</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IImage</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIImage(IImage object)
 	{
 		return null;
 	}
