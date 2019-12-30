@@ -3,7 +3,9 @@ package org.sheepy.lily.vulkan.api.view;
 import java.util.List;
 
 import org.sheepy.lily.core.api.adapter.IAdapter;
+import org.sheepy.lily.core.model.application.IResource;
 import org.sheepy.lily.core.model.application.IScenePart;
+import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
@@ -22,6 +24,8 @@ public interface IScenePart_SubpassProvider<T extends IScenePart> extends IAdapt
 		public final EPipelineStage stage;
 		public final List<EAccess> accesses;
 		public final List<ExtraAttachment> extraAttachments;
+		public final List<IResource> resources;
+		public final List<IDescriptor> descriptors;
 
 		public SubpassData(	List<IPipeline> pipelines,
 							Subpass subpass,
@@ -29,11 +33,24 @@ public interface IScenePart_SubpassProvider<T extends IScenePart> extends IAdapt
 							List<EAccess> accesses,
 							List<ExtraAttachment> extraAttachments)
 		{
+			this(pipelines, subpass, stage, accesses, extraAttachments, List.of(), List.of());
+		}
+
+		public SubpassData(	List<IPipeline> pipelines,
+							Subpass subpass,
+							EPipelineStage stage,
+							List<EAccess> accesses,
+							List<ExtraAttachment> extraAttachments,
+							List<IResource> resources,
+							List<IDescriptor> descriptors)
+		{
 			this.pipelines = List.copyOf(pipelines);
 			this.subpass = subpass;
 			this.stage = stage;
 			this.accesses = List.copyOf(accesses);
 			this.extraAttachments = List.copyOf(extraAttachments);
+			this.resources = List.copyOf(resources);
+			this.descriptors = List.copyOf(descriptors);
 		}
 	}
 }

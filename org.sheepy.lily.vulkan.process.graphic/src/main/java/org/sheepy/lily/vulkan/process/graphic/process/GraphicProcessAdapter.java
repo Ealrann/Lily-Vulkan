@@ -12,11 +12,13 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.util.ModelUtil;
+import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.IScenePart;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
 import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider.SubpassData;
+import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
@@ -51,6 +53,14 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		if (process.getPartPkg() == null)
 		{
 			process.setPartPkg(ProcessFactory.eINSTANCE.createProcessPartPkg());
+		}
+		if (process.getResourcePkg() == null)
+		{
+			process.setResourcePkg(ApplicationFactory.eINSTANCE.createResourcePkg());
+		}
+		if (process.getDescriptorPkg() == null)
+		{
+			process.setDescriptorPkg(VulkanFactory.eINSTANCE.createDescriptorPkg());
 		}
 	}
 
@@ -112,10 +122,11 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	{
 		final var subpassData = getSubpassData(part);
 		final var graphicProcess = (GraphicProcess) process;
-		final var container = new SubPassContainer(part, subpassData);
-		final int subpassIndex = computeSubpassIndex(index);
+		final var previousGraphicSubpass = getGraphicSubpass(index);
+		final int newIndex = previousGraphicSubpass != null ? previousGraphicSubpass.index + 1 : 0;
+		final var container = new SubPassContainer(part, newIndex, subpassData);
 
-		container.setup(graphicProcess, subpassIndex);
+		container.setup(graphicProcess, previousGraphicSubpass);
 
 		subpasses.add(container);
 
@@ -144,21 +155,21 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 												List.of(EAccess.COLOR_ATTACHMENT_WRITE_BIT,
 														EAccess.COLOR_ATTACHMENT_READ_BIT),
 												List.of());
-		final var container = new SubPassContainer(null, subpassData);
-		container.setup(graphicProcess, 0);
+		final var container = new SubPassContainer(null, 0, subpassData);
+		container.setup(graphicProcess, container);
 
 		subpasses.add(container);
 	}
 
-	private int computeSubpassIndex(int index)
+	private SubPassContainer getGraphicSubpass(int index)
 	{
-		int res = 0;
+		SubPassContainer res = null;
 		for (int i = 0; i < index; i++)
 		{
 			final var subpass = subpasses.get(i);
 			if (subpass.isGraphic)
 			{
-				res++;
+				res = subpass;
 			}
 		}
 		return res;
@@ -224,19 +235,23 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		public final SubpassData data;
 		public final boolean isGraphic;
 		private SubpassDependency dependency;
+		private final int index;
 
-		public SubPassContainer(IScenePart scenePart, SubpassData data)
+		public SubPassContainer(IScenePart scenePart, int index, SubpassData data)
 		{
 			this.scenePart = scenePart;
 			this.data = data;
+			this.index = index;
 
 			isGraphic = data.subpass != null;
 		}
 
-		private void setup(GraphicProcess process, int subpassIndex)
+		private void setup(GraphicProcess process, SubPassContainer previousGraphicData)
 		{
 			final var renderPass = process.getRenderPassInfo();
 			final var parts = process.getPartPkg().getParts();
+			final var resourcePkg = process.getResourcePkg();
+			final var descriptorPkg = process.getDescriptorPkg();
 
 			if (isGraphic)
 			{
@@ -248,12 +263,14 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 				{
 					if (pipeline instanceof GraphicsPipeline)
 					{
-						((GraphicsPipeline) pipeline).setSubpass(subpassIndex);
+						((GraphicsPipeline) pipeline).setSubpass(index);
 						((GraphicsPipeline) pipeline).setScenePart(scenePart);
 					}
 				}
 				dependency = GraphicFactory.eINSTANCE.createSubpassDependency();
-				dependency.setSrcSubpass(null);
+				dependency.setSrcSubpass(previousGraphicData != null
+						? previousGraphicData.data.subpass
+						: null);
 				dependency.setDstSubpass(data.subpass);
 				dependency.getSrcStageMask().add(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
 				dependency.getDstStageMask().add(data.stage);
@@ -264,6 +281,9 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 				dependencies.add(dependency);
 			}
 
+			resourcePkg.getResources().addAll(data.resources);
+			descriptorPkg.getDescriptors().addAll(data.descriptors);
+
 			parts.addAll(data.pipelines);
 		}
 
@@ -271,6 +291,8 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		{
 			final var renderPass = process.getRenderPassInfo();
 			final var parts = process.getPartPkg().getParts();
+			final var resourcePkg = process.getResourcePkg();
+			final var descriptorPkg = process.getDescriptorPkg();
 
 			if (isGraphic)
 			{
@@ -283,6 +305,9 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 				dependencies.remove(dependency);
 				EcoreUtil.delete(dependency);
 			}
+
+			resourcePkg.getResources().removeAll(data.resources);
+			descriptorPkg.getDescriptors().removeAll(data.descriptors);
 
 			parts.removeAll(data.pipelines);
 		}
