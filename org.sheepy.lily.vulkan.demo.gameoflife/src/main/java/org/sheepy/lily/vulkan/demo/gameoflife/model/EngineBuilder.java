@@ -88,7 +88,7 @@ public final class EngineBuilder
 		createComputeProcessPool(sharedResources, sharedDescriptors);
 
 		graphicProcess = GraphicFactory.eINSTANCE.createGraphicProcess();
-		graphicProcess.setPartPkg(ProcessFactory.eINSTANCE.createProcessPartPkg());
+		graphicProcess.setPipelinePkg(ProcessFactory.eINSTANCE.createPipelinePkg());
 		graphicProcess.setConfiguration(configuration);
 		graphicProcess.setRenderPassInfo(newInfo());
 		graphicProcess.setCadence(buildCadence(FRAME_COUNT));
@@ -188,13 +188,13 @@ public final class EngineBuilder
 		rotateTask.getConfigurations().add(pixelBindingConfiguration);
 		lifePipeline.getTaskPkg().getTasks().add(rotateTask);
 
-		final var lifeProcessPkg = ProcessFactory.eINSTANCE.createProcessPartPkg();
-		lifeProcessPkg.getParts().add(lifePipeline);
-		lifeProcess.setPartPkg(lifeProcessPkg);
+		final var lifePipelinePkg = ProcessFactory.eINSTANCE.createPipelinePkg();
+		lifePipelinePkg.getPipelines().add(lifePipeline);
+		lifeProcess.setPipelinePkg(lifePipelinePkg);
 
-		final var pixelProcessPkg = ProcessFactory.eINSTANCE.createProcessPartPkg();
-		pixelProcessPkg.getParts().add(pixelPipeline);
-		pixelProcess.setPartPkg(pixelProcessPkg);
+		final var pixelPipelinePkg = ProcessFactory.eINSTANCE.createPipelinePkg();
+		pixelPipelinePkg.getPipelines().add(pixelPipeline);
+		pixelProcess.setPipelinePkg(pixelPipelinePkg);
 
 		sharedResources.getResources().add(lifeShader);
 		sharedResources.getResources().add(life2pixelShader);
@@ -218,7 +218,7 @@ public final class EngineBuilder
 	private void createBarrierProcess()
 	{
 		barrierProcess = ComputeFactory.eINSTANCE.createComputeProcess();
-		barrierProcess.setPartPkg(ProcessFactory.eINSTANCE.createProcessPartPkg());
+		barrierProcess.setPipelinePkg(ProcessFactory.eINSTANCE.createPipelinePkg());
 
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 		final var pipeline = ProcessFactory.eINSTANCE.createPipeline();
@@ -235,7 +235,7 @@ public final class EngineBuilder
 		pipelineBarrier.setDstStage(EPipelineStage.COMPUTE_SHADER_BIT);
 		pipelineBarrier.getBarriers().add(imageBarrier);
 
-		barrierProcess.getPartPkg().getParts().add(pipeline);
+		barrierProcess.getPipelinePkg().getPipelines().add(pipeline);
 		pipeline.getTaskPkg().getTasks().add(pipelineBarrier);
 
 		final var cadence = CadenceFactory.eINSTANCE.createCadence();

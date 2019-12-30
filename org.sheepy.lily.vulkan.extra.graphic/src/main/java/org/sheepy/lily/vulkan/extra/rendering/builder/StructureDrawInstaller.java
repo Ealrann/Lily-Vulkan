@@ -90,10 +90,10 @@ public final class StructureDrawInstaller<T extends Structure>
 
 	private GraphicsPipeline createAndInstallPipeline(RenderPipelineBuilder pipelineBuilder)
 	{
-		final var parts = graphicProcess.getPartPkg().getParts();
-		final int maintainerIndex = parts.indexOf(maintainer);
+		final var pipelines = graphicProcess.getPipelinePkg().getPipelines();
+		final int maintainerIndex = pipelines.indexOf(maintainer);
 		final var pipeline = pipelineBuilder.build(maintainerIndex, maintainer.getSpecialization());
-		parts.add(maintainerIndex + 1, pipeline);
+		pipelines.add(maintainerIndex + 1, pipeline);
 		return pipeline;
 	}
 }

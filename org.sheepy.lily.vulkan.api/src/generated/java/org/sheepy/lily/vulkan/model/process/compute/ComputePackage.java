@@ -133,13 +133,13 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__WAITING_FENCE_DURING_ACQUIRE = ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE;
 
 	/**
-	 * The feature id for the '<em><b>Part Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PROCESS__PART_PKG = ProcessPackage.ABSTRACT_PROCESS__PART_PKG;
+	int COMPUTE_PROCESS__PIPELINE_PKG = ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.

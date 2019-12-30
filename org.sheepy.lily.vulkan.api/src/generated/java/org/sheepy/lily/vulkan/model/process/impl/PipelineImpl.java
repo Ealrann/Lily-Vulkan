@@ -22,8 +22,6 @@ import org.sheepy.lily.core.model.application.ResourcePkg;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-
-import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
@@ -724,13 +722,6 @@ public class PipelineImpl extends LilyEObject implements Pipeline
 				default: return -1;
 			}
 		}
-		if (baseClass == IProcessPart.class)
-		{
-			switch (derivedFeatureID)
-			{
-				default: return -1;
-			}
-		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -748,13 +739,6 @@ public class PipelineImpl extends LilyEObject implements Pipeline
 			{
 				case VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG: return ProcessPackage.PIPELINE__RESOURCE_PKG;
 				case VulkanPackage.IRESOURCE_CONTAINER__DESCRIPTOR_PKG: return ProcessPackage.PIPELINE__DESCRIPTOR_PKG;
-				default: return -1;
-			}
-		}
-		if (baseClass == IProcessPart.class)
-		{
-			switch (baseFeatureID)
-			{
 				default: return -1;
 			}
 		}

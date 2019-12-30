@@ -36,7 +36,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface IPipeline extends LNamedElement, IResourceContainer, IProcessPart
+public interface IPipeline extends LNamedElement, IResourceContainer
 {
 	/**
 	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.

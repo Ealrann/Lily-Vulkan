@@ -19,8 +19,6 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.Configuration;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
-import org.sheepy.lily.vulkan.model.process.IProcessPart;
-
 import org.sheepy.lily.vulkan.model.process.graphic.*;
 
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
@@ -213,7 +211,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseMaintainable(graphicsPipeline);
 				if (result == null) result = caseLNamedElement(graphicsPipeline);
 				if (result == null) result = caseIResourceContainer(graphicsPipeline);
-				if (result == null) result = caseIProcessPart(graphicsPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -863,22 +860,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public <T extends Maintainable<T>> T1 caseMaintainable(Maintainable<T> object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IProcess Part</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IProcess Part</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseIProcessPart(IProcessPart object)
 	{
 		return null;
 	}

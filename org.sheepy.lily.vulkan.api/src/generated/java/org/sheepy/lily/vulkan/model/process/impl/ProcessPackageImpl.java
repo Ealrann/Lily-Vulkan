@@ -35,14 +35,13 @@ import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.IProcessExtension;
-import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
+import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
 import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
 import org.sheepy.lily.vulkan.model.process.SwapBindingsTask;
@@ -87,7 +86,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass processPartPkgEClass = null;
+	private EClass pipelinePkgEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -95,13 +94,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass iPipelineTaskEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass iProcessPartEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -330,7 +322,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractProcess_PartPkg()
+	public EReference getAbstractProcess_PipelinePkg()
 	{
 		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(1);
 	}
@@ -396,9 +388,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getProcessPartPkg()
+	public EClass getPipelinePkg()
 	{
-		return processPartPkgEClass;
+		return pipelinePkgEClass;
 	}
 
 	/**
@@ -407,9 +399,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getProcessPartPkg_Parts()
+	public EReference getPipelinePkg_Pipelines()
 	{
-		return (EReference)processPartPkgEClass.getEStructuralFeatures().get(0);
+		return (EReference)pipelinePkgEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -432,17 +424,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	public EAttribute getIPipelineTask_Enabled()
 	{
 		return (EAttribute)iPipelineTaskEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getIProcessPart()
-	{
-		return iProcessPartEClass;
 	}
 
 	/**
@@ -1006,7 +987,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		// Create classes and their features
 		abstractProcessEClass = createEClass(ABSTRACT_PROCESS);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE);
-		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__PART_PKG);
+		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__PIPELINE_PKG);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__RESET_ALLOWED);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__SIGNALS);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__WAIT_FOR);
@@ -1014,13 +995,11 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		configurationEClass = createEClass(CONFIGURATION);
 
-		processPartPkgEClass = createEClass(PROCESS_PART_PKG);
-		createEReference(processPartPkgEClass, PROCESS_PART_PKG__PARTS);
+		pipelinePkgEClass = createEClass(PIPELINE_PKG);
+		createEReference(pipelinePkgEClass, PIPELINE_PKG__PIPELINES);
 
 		iPipelineTaskEClass = createEClass(IPIPELINE_TASK);
 		createEAttribute(iPipelineTaskEClass, IPIPELINE_TASK__ENABLED);
-
-		iProcessPartEClass = createEClass(IPROCESS_PART);
 
 		iPipelineEClass = createEClass(IPIPELINE);
 		createEAttribute(iPipelineEClass, IPIPELINE__ENABLED);
@@ -1128,7 +1107,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		iPipelineTaskEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		iPipelineEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		iPipelineEClass.getESuperTypes().add(theVulkanPackage.getIResourceContainer());
-		iPipelineEClass.getESuperTypes().add(this.getIProcessPart());
 		pipelineEClass.getESuperTypes().add(this.getIPipeline());
 		pipelineBarrierEClass.getESuperTypes().add(this.getIPipelineTask());
 		EGenericType g1 = createEGenericType(this.getIPipelineTask());
@@ -1148,7 +1126,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractProcess_WaitingFenceDuringAcquire(), ecorePackage.getEBoolean(), "waitingFenceDuringAcquire", "false", 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcess_PartPkg(), this.getProcessPartPkg(), null, "partPkg", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractProcess_PipelinePkg(), this.getPipelinePkg(), null, "pipelinePkg", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractProcess_ResetAllowed(), ecorePackage.getEBoolean(), "resetAllowed", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_Signals(), theResourcePackage.getSemaphore(), null, "signals", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_WaitFor(), theResourcePackage.getSemaphore(), null, "waitFor", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1156,13 +1134,11 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		initEClass(configurationEClass, Configuration.class, "Configuration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(processPartPkgEClass, ProcessPartPkg.class, "ProcessPartPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProcessPartPkg_Parts(), this.getIProcessPart(), null, "parts", null, 0, -1, ProcessPartPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(pipelinePkgEClass, PipelinePkg.class, "PipelinePkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPipelinePkg_Pipelines(), this.getIPipeline(), null, "pipelines", null, 0, -1, PipelinePkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iPipelineTaskEClass, IPipelineTask.class, "IPipelineTask", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIPipelineTask_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 0, 1, IPipelineTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(iProcessPartEClass, IProcessPart.class, "IProcessPart", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iPipelineEClass, IPipeline.class, "IPipeline", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIPipeline_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

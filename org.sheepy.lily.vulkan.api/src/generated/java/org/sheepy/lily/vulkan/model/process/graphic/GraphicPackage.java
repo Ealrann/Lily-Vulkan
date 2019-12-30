@@ -1131,13 +1131,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__WAITING_FENCE_DURING_ACQUIRE = ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE;
 
 	/**
-	 * The feature id for the '<em><b>Part Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__PART_PKG = ProcessPackage.ABSTRACT_PROCESS__PART_PKG;
+	int GRAPHIC_PROCESS__PIPELINE_PKG = ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.

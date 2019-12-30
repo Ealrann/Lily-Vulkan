@@ -9,7 +9,7 @@
         <details key="propertyDescription" value="If fenceEnabled, will wait during acquire. Useless for a render process that already wait for image acquiring"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="partPkg" eType="#//ProcessPartPkg"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pipelinePkg" eType="#//PipelinePkg"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resetAllowed" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -29,18 +29,17 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Configuration" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ProcessPartPkg">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
-        eType="#//IProcessPart" containment="true" resolveProxies="false"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PipelinePkg">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pipelines" upperBound="-1"
+        eType="#//IPipeline" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IPipelineTask" abstract="true" interface="true"
       eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IProcessPart" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IPipeline" abstract="true" interface="true"
-      eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement vulkan.ecore#//IResourceContainer #//IProcessPart">
+      eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement vulkan.ecore#//IResourceContainer">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" unique="false" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"

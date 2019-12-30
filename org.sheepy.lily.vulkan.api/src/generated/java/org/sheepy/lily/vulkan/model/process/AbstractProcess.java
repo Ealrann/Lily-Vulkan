@@ -17,7 +17,7 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPartPkg <em>Part Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isResetAllowed <em>Reset Allowed</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getSignals <em>Signals</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getWaitFor <em>Wait For</em>}</li>
@@ -54,26 +54,26 @@ public interface AbstractProcess extends IProcess
 	void setWaitingFenceDuringAcquire(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Part Pkg</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Pipeline Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Part Pkg</em>' containment reference.
-	 * @see #setPartPkg(ProcessPartPkg)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_PartPkg()
+	 * @return the value of the '<em>Pipeline Pkg</em>' containment reference.
+	 * @see #setPipelinePkg(PipelinePkg)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_PipelinePkg()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ProcessPartPkg getPartPkg();
+	PipelinePkg getPipelinePkg();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPartPkg <em>Part Pkg</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPipelinePkg <em>Pipeline Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Part Pkg</em>' containment reference.
-	 * @see #getPartPkg()
+	 * @param value the new value of the '<em>Pipeline Pkg</em>' containment reference.
+	 * @see #getPipelinePkg()
 	 * @generated
 	 */
-	void setPartPkg(ProcessPartPkg value);
+	void setPipelinePkg(PipelinePkg value);
 
 	/**
 	 * Returns the value of the '<em><b>Reset Allowed</b></em>' attribute.

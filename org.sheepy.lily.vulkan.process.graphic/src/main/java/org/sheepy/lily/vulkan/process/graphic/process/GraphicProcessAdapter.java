@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
@@ -11,6 +12,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.notification.INotificationListener;
+import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
@@ -19,7 +21,9 @@ import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
 import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider.SubpassData;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
@@ -36,6 +40,24 @@ import org.sheepy.vulkan.queue.EQueueType;
 @Adapter(scope = GraphicProcess.class)
 public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphicContext>
 {
+	private static final List<EStructuralFeature> PIPELINE__FEATURES = List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PIPELINE_PKG,
+																				ProcessPackage.Literals.PIPELINE_PKG__PIPELINES);
+	private static final List<EStructuralFeature> RESOURCE_FEATURES = List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+																				ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+	private static final List<EStructuralFeature> PIPELINE_RESOURCE_FEATURES = List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PIPELINE_PKG,
+																						ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+																						VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+																						ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+	private static final List<EStructuralFeature> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+																				VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
+	private static final List<EStructuralFeature> PIPELINE_DESCRIPTOR_FEATURES = List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PIPELINE_PKG,
+																							ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+																							VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+																							VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
+
+	private final ModelExplorer PARTS_EXPLORER = new ModelExplorer(List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PIPELINE_PKG,
+																			ProcessPackage.Literals.PIPELINE_PKG__PIPELINES));
+
 	private static final List<ECommandStage> stages = List.of(	ECommandStage.TRANSFER,
 																ECommandStage.COMPUTE,
 																ECommandStage.PRE_RENDER,
@@ -50,9 +72,9 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	{
 		super(process);
 
-		if (process.getPartPkg() == null)
+		if (process.getPipelinePkg() == null)
 		{
-			process.setPartPkg(ProcessFactory.eINSTANCE.createProcessPartPkg());
+			process.setPipelinePkg(ProcessFactory.eINSTANCE.createPipelinePkg());
 		}
 		if (process.getResourcePkg() == null)
 		{
@@ -229,6 +251,27 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		return true;
 	}
 
+	@Override
+	protected List<List<EStructuralFeature>> getPipelineFeatureLists()
+	{
+		return List.of(PIPELINE__FEATURES);
+	}
+
+	@Override
+	protected List<List<EStructuralFeature>> getResourceFeatureLists()
+	{
+		return List.of(	RESOURCE_FEATURES,
+						PIPELINE_RESOURCE_FEATURES,
+						DESCRIPTOR_FEATURES,
+						PIPELINE_DESCRIPTOR_FEATURES);
+	}
+
+	@Override
+	protected ModelExplorer getPipelineExplorer()
+	{
+		return PARTS_EXPLORER;
+	}
+
 	private static final class SubPassContainer
 	{
 		public final IScenePart scenePart;
@@ -249,7 +292,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		private void setup(GraphicProcess process, SubPassContainer previousGraphicData)
 		{
 			final var renderPass = process.getRenderPassInfo();
-			final var parts = process.getPartPkg().getParts();
+			final var pipelines = process.getPipelinePkg().getPipelines();
 			final var resourcePkg = process.getResourcePkg();
 			final var descriptorPkg = process.getDescriptorPkg();
 
@@ -284,13 +327,13 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 			resourcePkg.getResources().addAll(data.resources);
 			descriptorPkg.getDescriptors().addAll(data.descriptors);
 
-			parts.addAll(data.pipelines);
+			pipelines.addAll(data.pipelines);
 		}
 
 		private void uninstall(GraphicProcess process)
 		{
 			final var renderPass = process.getRenderPassInfo();
-			final var parts = process.getPartPkg().getParts();
+			final var parts = process.getPipelinePkg().getPipelines();
 			final var resourcePkg = process.getResourcePkg();
 			final var descriptorPkg = process.getDescriptorPkg();
 

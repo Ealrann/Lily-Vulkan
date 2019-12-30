@@ -25,8 +25,6 @@ import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-
-import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
@@ -910,13 +908,6 @@ public class ComputePipelineImpl extends LilyEObject implements ComputePipeline
 				default: return -1;
 			}
 		}
-		if (baseClass == IProcessPart.class)
-		{
-			switch (derivedFeatureID)
-			{
-				default: return -1;
-			}
-		}
 		if (baseClass == Maintainable.class)
 		{
 			switch (derivedFeatureID)
@@ -942,13 +933,6 @@ public class ComputePipelineImpl extends LilyEObject implements ComputePipeline
 			{
 				case VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG: return ComputePackage.COMPUTE_PIPELINE__RESOURCE_PKG;
 				case VulkanPackage.IRESOURCE_CONTAINER__DESCRIPTOR_PKG: return ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_PKG;
-				default: return -1;
-			}
-		}
-		if (baseClass == IProcessPart.class)
-		{
-			switch (baseFeatureID)
-			{
 				default: return -1;
 			}
 		}

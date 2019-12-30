@@ -27,8 +27,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
 import org.sheepy.lily.vulkan.extra.model.sprite.util.SpriteAdapterFactory;
+import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
 
 /**
@@ -379,16 +379,15 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 			 * @generated
 			 */
 			@Override
-			public Object caseProcessPartPkg(ProcessPartPkg object)
+			public Object casePipelinePkg(PipelinePkg object)
 			{
 				newChildDescriptors.add
 					(createChildParameter
-						(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
+						(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 						 SpriteFactory.eINSTANCE.createSpriteRenderer()));
 
 				return null;
 			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

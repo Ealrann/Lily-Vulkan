@@ -10,45 +10,47 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.vulkan.model.process.IProcessPart;
+
+import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Part Pkg</b></em>'.
+ * An implementation of the model object '<em><b>Pipeline Pkg</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.ProcessPartPkgImpl#getParts <em>Parts</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl#getPipelines <em>Pipelines</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ProcessPartPkgImpl extends LilyEObject implements ProcessPartPkg
+public class PipelinePkgImpl extends LilyEObject implements PipelinePkg
 {
 	/**
-	 * The cached value of the '{@link #getParts() <em>Parts</em>}' containment reference list.
+	 * The cached value of the '{@link #getPipelines() <em>Pipelines</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParts()
+	 * @see #getPipelines()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IProcessPart> parts;
+	protected EList<IPipeline> pipelines;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProcessPartPkgImpl()
+	protected PipelinePkgImpl()
 	{
 		super();
 	}
@@ -61,7 +63,7 @@ public class ProcessPartPkgImpl extends LilyEObject implements ProcessPartPkg
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ProcessPackage.Literals.PROCESS_PART_PKG;
+		return ProcessPackage.Literals.PIPELINE_PKG;
 	}
 
 	/**
@@ -70,13 +72,13 @@ public class ProcessPartPkgImpl extends LilyEObject implements ProcessPartPkg
 	 * @generated
 	 */
 	@Override
-	public EList<IProcessPart> getParts()
+	public EList<IPipeline> getPipelines()
 	{
-		if (parts == null)
+		if (pipelines == null)
 		{
-			parts = new EObjectContainmentEList<IProcessPart>(IProcessPart.class, this, ProcessPackage.PROCESS_PART_PKG__PARTS);
+			pipelines = new EObjectContainmentEList<IPipeline>(IPipeline.class, this, ProcessPackage.PIPELINE_PKG__PIPELINES);
 		}
-		return parts;
+		return pipelines;
 	}
 
 	/**
@@ -89,8 +91,8 @@ public class ProcessPartPkgImpl extends LilyEObject implements ProcessPartPkg
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PROCESS_PART_PKG__PARTS:
-				return ((InternalEList<?>)getParts()).basicRemove(otherEnd, msgs);
+			case ProcessPackage.PIPELINE_PKG__PIPELINES:
+				return ((InternalEList<?>)getPipelines()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -105,8 +107,8 @@ public class ProcessPartPkgImpl extends LilyEObject implements ProcessPartPkg
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PROCESS_PART_PKG__PARTS:
-				return getParts();
+			case ProcessPackage.PIPELINE_PKG__PIPELINES:
+				return getPipelines();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -122,9 +124,9 @@ public class ProcessPartPkgImpl extends LilyEObject implements ProcessPartPkg
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PROCESS_PART_PKG__PARTS:
-				getParts().clear();
-				getParts().addAll((Collection<? extends IProcessPart>)newValue);
+			case ProcessPackage.PIPELINE_PKG__PIPELINES:
+				getPipelines().clear();
+				getPipelines().addAll((Collection<? extends IPipeline>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,8 +142,8 @@ public class ProcessPartPkgImpl extends LilyEObject implements ProcessPartPkg
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PROCESS_PART_PKG__PARTS:
-				getParts().clear();
+			case ProcessPackage.PIPELINE_PKG__PIPELINES:
+				getPipelines().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -157,10 +159,10 @@ public class ProcessPartPkgImpl extends LilyEObject implements ProcessPartPkg
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PROCESS_PART_PKG__PARTS:
-				return parts != null && !parts.isEmpty();
+			case ProcessPackage.PIPELINE_PKG__PIPELINES:
+				return pipelines != null && !pipelines.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //ProcessPartPkgImpl
+} //PipelinePkgImpl

@@ -98,10 +98,10 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.PROCESS_PART_PKG:
+			case ProcessPackage.PIPELINE_PKG:
 			{
-				ProcessPartPkg processPartPkg = (ProcessPartPkg)theEObject;
-				T1 result = caseProcessPartPkg(processPartPkg);
+				PipelinePkg pipelinePkg = (PipelinePkg)theEObject;
+				T1 result = casePipelinePkg(pipelinePkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -113,20 +113,12 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.IPROCESS_PART:
-			{
-				IProcessPart iProcessPart = (IProcessPart)theEObject;
-				T1 result = caseIProcessPart(iProcessPart);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ProcessPackage.IPIPELINE:
 			{
 				IPipeline iPipeline = (IPipeline)theEObject;
 				T1 result = caseIPipeline(iPipeline);
 				if (result == null) result = caseLNamedElement(iPipeline);
 				if (result == null) result = caseIResourceContainer(iPipeline);
-				if (result == null) result = caseIProcessPart(iPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -144,7 +136,6 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseIPipeline(pipeline);
 				if (result == null) result = caseLNamedElement(pipeline);
 				if (result == null) result = caseIResourceContainer(pipeline);
-				if (result == null) result = caseIProcessPart(pipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -281,17 +272,17 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Part Pkg</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Pipeline Pkg</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Part Pkg</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Pipeline Pkg</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseProcessPartPkg(ProcessPartPkg object)
+	public T1 casePipelinePkg(PipelinePkg object)
 	{
 		return null;
 	}
@@ -308,22 +299,6 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIPipelineTask(IPipelineTask object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IProcess Part</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IProcess Part</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseIProcessPart(IProcessPart object)
 	{
 		return null;
 	}

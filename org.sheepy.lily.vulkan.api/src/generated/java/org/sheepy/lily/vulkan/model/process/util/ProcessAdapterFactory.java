@@ -92,19 +92,14 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 				return createConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseProcessPartPkg(ProcessPartPkg object)
+			public Adapter casePipelinePkg(PipelinePkg object)
 			{
-				return createProcessPartPkgAdapter();
+				return createPipelinePkgAdapter();
 			}
 			@Override
 			public Adapter caseIPipelineTask(IPipelineTask object)
 			{
 				return createIPipelineTaskAdapter();
-			}
-			@Override
-			public Adapter caseIProcessPart(IProcessPart object)
-			{
-				return createIProcessPartAdapter();
 			}
 			@Override
 			public Adapter caseIPipeline(IPipeline object)
@@ -258,16 +253,16 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ProcessPartPkg <em>Part Pkg</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.PipelinePkg <em>Pipeline Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPartPkg
+	 * @see org.sheepy.lily.vulkan.model.process.PipelinePkg
 	 * @generated
 	 */
-	public Adapter createProcessPartPkgAdapter()
+	public Adapter createPipelinePkgAdapter()
 	{
 		return null;
 	}
@@ -283,21 +278,6 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIPipelineTaskAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IProcessPart <em>IProcess Part</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.IProcessPart
-	 * @generated
-	 */
-	public Adapter createIProcessPartAdapter()
 	{
 		return null;
 	}

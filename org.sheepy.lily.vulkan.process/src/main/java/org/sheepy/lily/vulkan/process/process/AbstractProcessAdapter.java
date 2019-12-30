@@ -14,15 +14,12 @@ import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.cadence.IStatistics;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
-import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.api.process.IProcessPartAdapter;
 import org.sheepy.lily.vulkan.common.allocation.GenericAllocator;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
 import org.sheepy.lily.vulkan.common.process.IExecutionProcessAdapter;
-import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.concurrent.IFenceView;
 import org.sheepy.vulkan.descriptor.DescriptorPool;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
@@ -33,24 +30,6 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorderContext<T>>
 		implements IExecutionProcessAdapter, IAllocable<IVulkanContext>
 {
-	private static final List<EStructuralFeature> PIPELINE__FEATURES = List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PART_PKG,
-																				ProcessPackage.Literals.PROCESS_PART_PKG__PARTS);
-	private static final List<EStructuralFeature> RESOURCE_FEATURES = List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																				ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
-	private static final List<EStructuralFeature> PIPELINE_RESOURCE_FEATURES = List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PART_PKG,
-																						ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
-																						VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																						ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
-	private static final List<EStructuralFeature> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
-																				VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
-	private static final List<EStructuralFeature> PIPELINE_DESCRIPTOR_FEATURES = List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PART_PKG,
-																							ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
-																							VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
-																							VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
-
-	private final ModelExplorer PARTS_EXPLORER = new ModelExplorer(List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PART_PKG,
-																			ProcessPackage.Literals.PROCESS_PART_PKG__PARTS));
-
 	protected final AbstractProcess process;
 	protected final DescriptorPool descriptorPool = new DescriptorPool();
 	protected final T context;
@@ -69,11 +48,8 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 		this.process = process;
 		context = createContext();
 
-		resourceAllocator = new GenericAllocator(List.of(	RESOURCE_FEATURES,
-															PIPELINE_RESOURCE_FEATURES,
-															DESCRIPTOR_FEATURES,
-															PIPELINE_DESCRIPTOR_FEATURES));
-		pipelineAllocator = new GenericAllocator(List.of(PIPELINE__FEATURES));
+		resourceAllocator = new GenericAllocator(getResourceFeatureLists());
+		pipelineAllocator = new GenericAllocator(getPipelineFeatureLists());
 	}
 
 	@Load
@@ -139,7 +115,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 
 	private void refreshStructure()
 	{
-		partAdapters = PARTS_EXPLORER.exploreAdapt(process, IProcessPartAdapter.class);
+		partAdapters = getPipelineExplorer().exploreAdapt(process, IProcessPartAdapter.class);
 		descriptorPool.setDescriptorSets(gatherDescriptorLists());
 	}
 
@@ -254,12 +230,12 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 
 	protected void collectAllocationPipelines(List<? super IAllocable<? super T>> collectIn)
 	{
-		final var partPkg = process.getPartPkg();
-		if (partPkg != null)
+		final var pipelinePkg = process.getPipelinePkg();
+		if (pipelinePkg != null)
 		{
-			for (final var part : partPkg.getParts())
+			for (final var pipeline : pipelinePkg.getPipelines())
 			{
-				final var adapter = part.<IAllocableAdapter<? super T>> adaptGeneric(IAllocableAdapter.class);
+				final var adapter = pipeline.<IAllocableAdapter<? super T>> adaptGeneric(IAllocableAdapter.class);
 				if (adapter != null)
 				{
 					collectIn.add(adapter);
@@ -394,6 +370,9 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 		return context.getQueue().isShared() == false;
 	}
 
+	protected abstract List<List<EStructuralFeature>> getPipelineFeatureLists();
+	protected abstract List<List<EStructuralFeature>> getResourceFeatureLists();
+	protected abstract ModelExplorer getPipelineExplorer();
 	protected abstract List<IAllocable<? super T>> getExtraAllocables();
 	protected abstract Integer prepareNextExecution();
 	protected abstract List<ECommandStage> getStages();

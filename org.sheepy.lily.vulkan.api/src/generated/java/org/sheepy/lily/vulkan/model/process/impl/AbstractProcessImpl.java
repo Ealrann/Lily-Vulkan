@@ -24,9 +24,9 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 
 /**
@@ -44,7 +44,7 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getQueuePriority <em>Queue Priority</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getCadence <em>Cadence</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getPartPkg <em>Part Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getSignals <em>Signals</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getWaitFor <em>Wait For</em>}</li>
@@ -166,14 +166,14 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	protected boolean waitingFenceDuringAcquire = WAITING_FENCE_DURING_ACQUIRE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPartPkg() <em>Part Pkg</em>}' containment reference.
+	 * The cached value of the '{@link #getPipelinePkg() <em>Pipeline Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPartPkg()
+	 * @see #getPipelinePkg()
 	 * @generated
 	 * @ordered
 	 */
-	protected ProcessPartPkg partPkg;
+	protected PipelinePkg pipelinePkg;
 
 	/**
 	 * The default value of the '{@link #isResetAllowed() <em>Reset Allowed</em>}' attribute.
@@ -452,9 +452,9 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 */
 	@Override
-	public ProcessPartPkg getPartPkg()
+	public PipelinePkg getPipelinePkg()
 	{
-		return partPkg;
+		return pipelinePkg;
 	}
 
 	/**
@@ -462,13 +462,13 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPartPkg(ProcessPartPkg newPartPkg, NotificationChain msgs)
+	public NotificationChain basicSetPipelinePkg(PipelinePkg newPipelinePkg, NotificationChain msgs)
 	{
-		ProcessPartPkg oldPartPkg = partPkg;
-		partPkg = newPartPkg;
+		PipelinePkg oldPipelinePkg = pipelinePkg;
+		pipelinePkg = newPipelinePkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__PART_PKG, oldPartPkg, newPartPkg);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG, oldPipelinePkg, newPipelinePkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -480,20 +480,20 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 */
 	@Override
-	public void setPartPkg(ProcessPartPkg newPartPkg)
+	public void setPipelinePkg(PipelinePkg newPipelinePkg)
 	{
-		if (newPartPkg != partPkg)
+		if (newPipelinePkg != pipelinePkg)
 		{
 			NotificationChain msgs = null;
-			if (partPkg != null)
-				msgs = ((InternalEObject)partPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__PART_PKG, null, msgs);
-			if (newPartPkg != null)
-				msgs = ((InternalEObject)newPartPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__PART_PKG, null, msgs);
-			msgs = basicSetPartPkg(newPartPkg, msgs);
+			if (pipelinePkg != null)
+				msgs = ((InternalEObject)pipelinePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG, null, msgs);
+			if (newPipelinePkg != null)
+				msgs = ((InternalEObject)newPipelinePkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG, null, msgs);
+			msgs = basicSetPipelinePkg(newPipelinePkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__PART_PKG, newPartPkg, newPartPkg));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG, newPipelinePkg, newPipelinePkg));
 	}
 
 	/**
@@ -667,8 +667,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return basicSetDescriptorPkg(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
 				return basicSetCadence(null, msgs);
-			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
-				return basicSetPartPkg(null, msgs);
+			case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
+				return basicSetPipelinePkg(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
 				return basicSetExtensionPkg(null, msgs);
 		}
@@ -699,8 +699,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return getCadence();
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				return isWaitingFenceDuringAcquire();
-			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
-				return getPartPkg();
+			case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
+				return getPipelinePkg();
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				return isResetAllowed();
 			case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:
@@ -745,8 +745,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				setWaitingFenceDuringAcquire((Boolean)newValue);
 				return;
-			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
-				setPartPkg((ProcessPartPkg)newValue);
+			case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
+				setPipelinePkg((PipelinePkg)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				setResetAllowed((Boolean)newValue);
@@ -797,8 +797,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				setWaitingFenceDuringAcquire(WAITING_FENCE_DURING_ACQUIRE_EDEFAULT);
 				return;
-			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
-				setPartPkg((ProcessPartPkg)null);
+			case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
+				setPipelinePkg((PipelinePkg)null);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				setResetAllowed(RESET_ALLOWED_EDEFAULT);
@@ -840,8 +840,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return cadence != null;
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				return waitingFenceDuringAcquire != WAITING_FENCE_DURING_ACQUIRE_EDEFAULT;
-			case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
-				return partPkg != null;
+			case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
+				return pipelinePkg != null;
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				return resetAllowed != RESET_ALLOWED_EDEFAULT;
 			case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:

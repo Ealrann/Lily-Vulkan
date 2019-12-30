@@ -9,7 +9,6 @@ import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
-import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -27,7 +26,7 @@ public class GrowEngineFactory
 		final var process = createComputeProcessPool(resourceContainer);
 
 		final var pipeline = createPipeline();
-		process.getPartPkg().getParts().add(pipeline);
+		process.getPipelinePkg().getPipelines().add(pipeline);
 
 		final var taskManager = new TaskManager(resourceContainer, INSTANCE_COUNT);
 		taskManager.install(pipeline.getTaskPkg().getTasks());
@@ -73,8 +72,8 @@ public class GrowEngineFactory
 		final ComputeProcess process = ComputeFactory.eINSTANCE.createComputeProcess();
 		process.setExtensionPkg(ProcessFactory.eINSTANCE.createProcessExtensionPkg());;
 
-		final ProcessPartPkg partPkg = ProcessFactory.eINSTANCE.createProcessPartPkg();
-		process.setPartPkg(partPkg);
+		final var pipelinePkg = ProcessFactory.eINSTANCE.createPipelinePkg();
+		process.setPipelinePkg(pipelinePkg);
 
 		final var resourcePkg = ApplicationFactory.eINSTANCE.createResourcePkg();
 		process.setResourcePkg(resourcePkg);

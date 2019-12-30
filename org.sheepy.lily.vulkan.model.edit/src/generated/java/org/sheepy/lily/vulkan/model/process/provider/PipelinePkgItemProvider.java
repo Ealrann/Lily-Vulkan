@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process.provider;
 
+
 import java.util.Collection;
 import java.util.List;
 
@@ -22,20 +23,28 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
+
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
+
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.ProcessPartPkg} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.PipelinePkg} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ProcessPartPkgItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class PipelinePkgItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -43,7 +52,7 @@ public class ProcessPartPkgItemProvider extends ItemProviderAdapter implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProcessPartPkgItemProvider(AdapterFactory adapterFactory)
+	public PipelinePkgItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -79,7 +88,7 @@ public class ProcessPartPkgItemProvider extends ItemProviderAdapter implements I
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS);
+			childrenFeatures.add(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES);
 		}
 		return childrenFeatures;
 	}
@@ -99,7 +108,7 @@ public class ProcessPartPkgItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This returns ProcessPartPkg.gif.
+	 * This returns PipelinePkg.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -107,7 +116,7 @@ public class ProcessPartPkgItemProvider extends ItemProviderAdapter implements I
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ProcessPartPkg"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PipelinePkg"));
 	}
 
 	/**
@@ -119,8 +128,9 @@ public class ProcessPartPkgItemProvider extends ItemProviderAdapter implements I
 	@Override
 	public String getText(Object object)
 	{
-		return getString("_UI_ProcessPartPkg_type");
+		return getString("_UI_PipelinePkg_type");
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -134,9 +144,9 @@ public class ProcessPartPkgItemProvider extends ItemProviderAdapter implements I
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ProcessPartPkg.class))
+		switch (notification.getFeatureID(PipelinePkg.class))
 		{
-			case ProcessPackage.PROCESS_PART_PKG__PARTS:
+			case ProcessPackage.PIPELINE_PKG__PIPELINES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -157,17 +167,17 @@ public class ProcessPartPkgItemProvider extends ItemProviderAdapter implements I
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
+				(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 				 ProcessFactory.eINSTANCE.createPipeline()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
+				(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 				 ComputeFactory.eINSTANCE.createComputePipeline()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
+				(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 				 GraphicFactory.eINSTANCE.createGraphicsPipeline()));
 	}
 

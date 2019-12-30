@@ -96,28 +96,28 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.ProcessPartPkg} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.PipelinePkg} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProcessPartPkgItemProvider processPartPkgItemProvider;
+	protected PipelinePkgItemProvider pipelinePkgItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.ProcessPartPkg}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.PipelinePkg}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createProcessPartPkgAdapter()
+	public Adapter createPipelinePkgAdapter()
 	{
-		if (processPartPkgItemProvider == null)
+		if (pipelinePkgItemProvider == null)
 		{
-			processPartPkgItemProvider = new ProcessPartPkgItemProvider(this);
+			pipelinePkgItemProvider = new PipelinePkgItemProvider(this);
 		}
 
-		return processPartPkgItemProvider;
+		return pipelinePkgItemProvider;
 	}
 
 	/**
@@ -544,7 +544,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	@Override
 	public void dispose()
 	{
-		if (processPartPkgItemProvider != null) processPartPkgItemProvider.dispose();
+		if (pipelinePkgItemProvider != null) pipelinePkgItemProvider.dispose();
 		if (taskPkgItemProvider != null) taskPkgItemProvider.dispose();
 		if (pipelineItemProvider != null) pipelineItemProvider.dispose();
 		if (pipelineBarrierItemProvider != null) pipelineBarrierItemProvider.dispose();

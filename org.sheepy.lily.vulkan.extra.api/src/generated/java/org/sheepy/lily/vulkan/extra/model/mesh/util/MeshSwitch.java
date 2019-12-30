@@ -15,7 +15,6 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 
 /**
@@ -100,7 +99,6 @@ public class MeshSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseMaintainable(meshRenderer);
 				if (result == null) result = caseLNamedElement(meshRenderer);
 				if (result == null) result = caseIResourceContainer(meshRenderer);
-				if (result == null) result = caseIProcessPart(meshRenderer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -365,22 +363,6 @@ public class MeshSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIResourceContainer(IResourceContainer object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IProcess Part</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IProcess Part</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseIProcessPart(IProcessPart object)
 	{
 		return null;
 	}

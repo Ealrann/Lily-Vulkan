@@ -28,8 +28,6 @@ import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-
-import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -1507,13 +1505,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				default: return -1;
 			}
 		}
-		if (baseClass == IProcessPart.class)
-		{
-			switch (derivedFeatureID)
-			{
-				default: return -1;
-			}
-		}
 		if (baseClass == Maintainable.class)
 		{
 			switch (derivedFeatureID)
@@ -1539,13 +1530,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 			{
 				case VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG: return GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG;
 				case VulkanPackage.IRESOURCE_CONTAINER__DESCRIPTOR_PKG: return GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG;
-				default: return -1;
-			}
-		}
-		if (baseClass == IProcessPart.class)
-		{
-			switch (baseFeatureID)
-			{
 				default: return -1;
 			}
 		}

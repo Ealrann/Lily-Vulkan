@@ -64,7 +64,7 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case ProcessPackage.PROCESS_PART_PKG: return createProcessPartPkg();
+			case ProcessPackage.PIPELINE_PKG: return createPipelinePkg();
 			case ProcessPackage.TASK_PKG: return createTaskPkg();
 			case ProcessPackage.PIPELINE: return createPipeline();
 			case ProcessPackage.PIPELINE_BARRIER: return createPipelineBarrier();
@@ -87,10 +87,10 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	 * @generated
 	 */
 	@Override
-	public ProcessPartPkg createProcessPartPkg()
+	public PipelinePkg createPipelinePkg()
 	{
-		ProcessPartPkgImpl processPartPkg = new ProcessPartPkgImpl();
-		return processPartPkg;
+		PipelinePkgImpl pipelinePkg = new PipelinePkgImpl();
+		return pipelinePkg;
 	}
 
 	/**

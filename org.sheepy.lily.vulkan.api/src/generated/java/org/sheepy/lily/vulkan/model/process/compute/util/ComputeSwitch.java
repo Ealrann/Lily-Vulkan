@@ -17,8 +17,6 @@ import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
-import org.sheepy.lily.vulkan.model.process.IProcessPart;
-
 import org.sheepy.lily.vulkan.model.process.compute.*;
 
 /**
@@ -104,7 +102,6 @@ public class ComputeSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseMaintainable(computePipeline);
 				if (result == null) result = caseLNamedElement(computePipeline);
 				if (result == null) result = caseIResourceContainer(computePipeline);
-				if (result == null) result = caseIProcessPart(computePipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -245,22 +242,6 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseAbstractProcess(AbstractProcess object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IProcess Part</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IProcess Part</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseIProcessPart(IProcessPart object)
 	{
 		return null;
 	}
