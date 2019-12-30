@@ -20,6 +20,7 @@ import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.image.ImageFactory;
@@ -59,6 +60,8 @@ public class SpriteMonoSamplerProviderAdapter implements IDescriptorProviderAdap
 		final var texture2DArray = ResourceFactory.eINSTANCE.createTexture2DArray();
 		texture2DArray.getFiles().addAll(srcResources);
 		texture2DArray.setInitialLayout(intialLayout);
+		texture2DArray.getUsages().add(EImageUsage.SAMPLED);
+		texture2DArray.getUsages().add(EImageUsage.TRANSFER_DST);
 
 		resources.add(sampler);
 		resources.add(texture2DArray);
