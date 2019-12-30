@@ -94,6 +94,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.ITEXTURE_ARRAY: return createITextureArray();
 			case ResourcePackage.TEXTURE2_DARRAY: return createTexture2DArray();
 			case ResourcePackage.FONT_TEXTURE_ARRAY: return createFontTextureArray();
+			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR: return createImageArrayDescriptor();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -459,6 +460,18 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		FontTextureArrayImpl fontTextureArray = new FontTextureArrayImpl();
 		return fontTextureArray;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ImageArrayDescriptor createImageArrayDescriptor()
+	{
+		ImageArrayDescriptorImpl imageArrayDescriptor = new ImageArrayDescriptorImpl();
+		return imageArrayDescriptor;
 	}
 
 	/**

@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.process.process;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
@@ -13,14 +14,15 @@ import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.cadence.IStatistics;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
+import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.api.process.IProcessPartAdapter;
+import org.sheepy.lily.vulkan.common.allocation.GenericAllocator;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
 import org.sheepy.lily.vulkan.common.process.IExecutionProcessAdapter;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.process.process.allocation.PipelineAllocator;
-import org.sheepy.lily.vulkan.process.process.allocation.ProcessResourceAllocator;
 import org.sheepy.vulkan.concurrent.IFenceView;
 import org.sheepy.vulkan.descriptor.DescriptorPool;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
@@ -31,6 +33,20 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorderContext<T>>
 		implements IExecutionProcessAdapter, IAllocable<IVulkanContext>
 {
+	private static final List<EStructuralFeature> PIPELINE__FEATURES = List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PART_PKG,
+																				ProcessPackage.Literals.PROCESS_PART_PKG__PARTS);
+	private static final List<EStructuralFeature> RESOURCE_FEATURES = List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+																				ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+	private static final List<EStructuralFeature> PIPELINE_RESOURCE_FEATURES = List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PART_PKG,
+																						ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
+																						VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+																						ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+	private static final List<EStructuralFeature> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+																				VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
+	private static final List<EStructuralFeature> PIPELINE_DESCRIPTOR_FEATURES = List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PART_PKG,
+																							ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
+																							VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+																							VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
 
 	private final ModelExplorer PARTS_EXPLORER = new ModelExplorer(List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PART_PKG,
 																			ProcessPackage.Literals.PROCESS_PART_PKG__PARTS));
@@ -39,8 +55,8 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	protected final DescriptorPool descriptorPool = new DescriptorPool();
 	protected final T context;
 
-	private final ProcessResourceAllocator resourceAllocator;
-	private final PipelineAllocator pipelineAllocator;
+	private final GenericAllocator resourceAllocator;
+	private final GenericAllocator pipelineAllocator;
 	private final TreeAllocator<IVulkanContext> allocator = new TreeAllocator<IVulkanContext>(this);
 
 	protected IAllocationConfigurator config;
@@ -53,22 +69,25 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 		this.process = process;
 		context = createContext();
 
-		resourceAllocator = new ProcessResourceAllocator(process);
-		pipelineAllocator = new PipelineAllocator(process);
+		resourceAllocator = new GenericAllocator(List.of(	RESOURCE_FEATURES,
+															PIPELINE_RESOURCE_FEATURES,
+															DESCRIPTOR_FEATURES,
+															PIPELINE_DESCRIPTOR_FEATURES));
+		pipelineAllocator = new GenericAllocator(List.of(PIPELINE__FEATURES));
 	}
 
 	@Load
 	private void load()
 	{
-		resourceAllocator.start();
-		pipelineAllocator.start();
+		resourceAllocator.start(process);
+		pipelineAllocator.start(process);
 	}
 
 	@Dispose
 	private void dispose()
 	{
-		resourceAllocator.stop();
-		pipelineAllocator.stop();
+		resourceAllocator.stop(process);
+		pipelineAllocator.stop(process);
 	}
 
 	@Override

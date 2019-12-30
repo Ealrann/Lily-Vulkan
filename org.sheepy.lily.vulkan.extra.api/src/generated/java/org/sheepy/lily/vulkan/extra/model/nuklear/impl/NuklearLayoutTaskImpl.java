@@ -14,7 +14,6 @@ import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
-import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +26,6 @@ import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearLayoutTaskImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearLayoutTaskImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearLayoutTaskImpl#getContext <em>Context</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearLayoutTaskImpl#getImageArray <em>Image Array</em>}</li>
  * </ul>
  *
  * @generated
@@ -83,16 +81,6 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 	 * @ordered
 	 */
 	protected NuklearContext context;
-
-	/**
-	 * The cached value of the '{@link #getImageArray() <em>Image Array</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getImageArray()
-	 * @generated
-	 * @ordered
-	 */
-	protected Texture2DArray imageArray;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -241,51 +229,6 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 	 * @generated
 	 */
 	@Override
-	public Texture2DArray getImageArray()
-	{
-		if (imageArray != null && ((EObject)imageArray).eIsProxy())
-		{
-			InternalEObject oldImageArray = (InternalEObject)imageArray;
-			imageArray = (Texture2DArray)eResolveProxy(oldImageArray);
-			if (imageArray != oldImageArray)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY, oldImageArray, imageArray));
-			}
-		}
-		return imageArray;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Texture2DArray basicGetImageArray()
-	{
-		return imageArray;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setImageArray(Texture2DArray newImageArray)
-	{
-		Texture2DArray oldImageArray = imageArray;
-		imageArray = newImageArray;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY, oldImageArray, imageArray));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -331,9 +274,6 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__CONTEXT:
 				if (resolve) return getContext();
 				return basicGetContext();
-			case NuklearPackage.NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY:
-				if (resolve) return getImageArray();
-				return basicGetImageArray();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -356,9 +296,6 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 				return;
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__CONTEXT:
 				setContext((NuklearContext)newValue);
-				return;
-			case NuklearPackage.NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY:
-				setImageArray((Texture2DArray)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -383,9 +320,6 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__CONTEXT:
 				setContext((NuklearContext)null);
 				return;
-			case NuklearPackage.NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY:
-				setImageArray((Texture2DArray)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -406,8 +340,6 @@ public class NuklearLayoutTaskImpl extends LilyEObject implements NuklearLayoutT
 				return enabled != ENABLED_EDEFAULT;
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK__CONTEXT:
 				return context != null;
-			case NuklearPackage.NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY:
-				return imageArray != null;
 		}
 		return super.eIsSet(featureID);
 	}

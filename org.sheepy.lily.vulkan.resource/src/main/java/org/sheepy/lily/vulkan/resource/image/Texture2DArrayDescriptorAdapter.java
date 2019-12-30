@@ -11,8 +11,11 @@ import org.sheepy.vulkan.resource.image.VkImageArrayDescriptor;
 
 @Statefull
 @Adapter(scope = Texture2DArrayDescriptor.class)
+@Deprecated
 public class Texture2DArrayDescriptorAdapter implements IDescriptorAdapter
 {
+	@Deprecated
+	private static final int MAX_SIZE = 2;
 	private final Texture2DArrayDescriptor descriptor;
 	private final VkImageArrayDescriptor vkDescriptor;
 
@@ -22,7 +25,7 @@ public class Texture2DArrayDescriptorAdapter implements IDescriptorAdapter
 
 		final var texture2DArray = descriptor.getTextureArray();
 		final var initialLayout = texture2DArray.getInitialLayout().getLayout();
-		vkDescriptor = new VkImageArrayDescriptor(	new long[0],
+		vkDescriptor = new VkImageArrayDescriptor(	MAX_SIZE,
 		                                          	initialLayout,
 													descriptor.getType(),
 													descriptor.getShaderStages());

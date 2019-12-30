@@ -181,22 +181,13 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_LAYOUT_TASK__CONTEXT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Image Array</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Layout Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_LAYOUT_TASK_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
+	int NUKLEAR_LAYOUT_TASK_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Layout Task</em>' class.
@@ -336,13 +327,22 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_CONTEXT__LAYOUT_TASK = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Image Array Descriptor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 3;
+	int NUKLEAR_CONTEXT_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 4;
 
 
 	/**
@@ -738,6 +738,15 @@ public interface NuklearPackage extends EPackage
 	int PANEL_VIEWER__MINIMIZED = UiPackage.PANEL__MINIMIZED;
 
 	/**
+	 * The feature id for the '<em><b>Background Image</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_VIEWER__BACKGROUND_IMAGE = UiPackage.PANEL__BACKGROUND_IMAGE;
+
+	/**
 	 * The feature id for the '<em><b>Variable Resolver</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1128,17 +1137,6 @@ public interface NuklearPackage extends EPackage
 	EReference getNuklearLayoutTask_Context();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getImageArray <em>Image Array</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Image Array</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask#getImageArray()
-	 * @see #getNuklearLayoutTask()
-	 * @generated
-	 */
-	EReference getNuklearLayoutTask_ImageArray();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFillBufferTask <em>Fill Buffer Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1234,6 +1232,17 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 */
 	EReference getNuklearContext_LayoutTask();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getImageArrayDescriptor <em>Image Array Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Image Array Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getImageArrayDescriptor()
+	 * @see #getNuklearContext()
+	 * @generated
+	 */
+	EReference getNuklearContext_ImageArrayDescriptor();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont <em>Font</em>}'.
@@ -1547,14 +1556,6 @@ public interface NuklearPackage extends EPackage
 		EReference NUKLEAR_LAYOUT_TASK__CONTEXT = eINSTANCE.getNuklearLayoutTask_Context();
 
 		/**
-		 * The meta object literal for the '<em><b>Image Array</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY = eINSTANCE.getNuklearLayoutTask_ImageArray();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearFillBufferTaskImpl <em>Fill Buffer Task</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1629,6 +1630,14 @@ public interface NuklearPackage extends EPackage
 		 * @generated
 		 */
 		EReference NUKLEAR_CONTEXT__LAYOUT_TASK = eINSTANCE.getNuklearContext_LayoutTask();
+
+		/**
+		 * The meta object literal for the '<em><b>Image Array Descriptor</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR = eINSTANCE.getNuklearContext_ImageArrayDescriptor();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearFontImpl <em>Font</em>}' class.

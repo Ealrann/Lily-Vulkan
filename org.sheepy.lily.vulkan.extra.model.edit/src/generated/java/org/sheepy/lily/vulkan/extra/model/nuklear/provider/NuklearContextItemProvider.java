@@ -50,6 +50,7 @@ public class NuklearContextItemProvider
 			addFontPropertyDescriptor(object);
 			addNullTexturePropertyDescriptor(object);
 			addLayoutTaskPropertyDescriptor(object);
+			addImageArrayDescriptorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -115,6 +116,29 @@ public class NuklearContextItemProvider
 				 getString("_UI_NuklearContext_layoutTask_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_layoutTask_feature", "_UI_NuklearContext_type"),
 				 NuklearPackage.Literals.NUKLEAR_CONTEXT__LAYOUT_TASK,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Image Array Descriptor feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addImageArrayDescriptorPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NuklearContext_imageArrayDescriptor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_imageArrayDescriptor_feature", "_UI_NuklearContext_type"),
+				 NuklearPackage.Literals.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR,
 				 true,
 				 false,
 				 true,

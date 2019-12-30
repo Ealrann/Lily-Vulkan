@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.extra.model.nuklear;
 
 import org.sheepy.lily.core.model.application.IResource;
+import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 
 /**
@@ -17,6 +18,7 @@ import org.sheepy.lily.vulkan.model.resource.SampledImage;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getFont <em>Font</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getNullTexture <em>Null Texture</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getLayoutTask <em>Layout Task</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getImageArrayDescriptor <em>Image Array Descriptor</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getNuklearContext()
@@ -92,5 +94,27 @@ public interface NuklearContext extends IResource
 	 * @generated
 	 */
 	void setLayoutTask(NuklearLayoutTask value);
+
+	/**
+	 * Returns the value of the '<em><b>Image Array Descriptor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Image Array Descriptor</em>' reference.
+	 * @see #setImageArrayDescriptor(ImageArrayDescriptor)
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getNuklearContext_ImageArrayDescriptor()
+	 * @model
+	 * @generated
+	 */
+	ImageArrayDescriptor getImageArrayDescriptor();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getImageArrayDescriptor <em>Image Array Descriptor</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Image Array Descriptor</em>' reference.
+	 * @see #getImageArrayDescriptor()
+	 * @generated
+	 */
+	void setImageArrayDescriptor(ImageArrayDescriptor value);
 
 } // NuklearContext

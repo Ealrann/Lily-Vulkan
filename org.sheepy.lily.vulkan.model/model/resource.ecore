@@ -188,4 +188,10 @@
         eType="ecore:EClass ../../org.sheepy.lily.core.model/model/ui.ecore#//Font"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImageArrayDescriptor" eSuperTypes="vulkan.ecore#//IDescriptor">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="images" upperBound="-1"
+        eType="ecore:EClass ../../org.sheepy.lily.core.model/model/application.ecore#//IImage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="initialLayout" lowerBound="1"
+        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EImageLayout"/>
+  </eClassifiers>
 </ecore:EPackage>

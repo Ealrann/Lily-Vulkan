@@ -303,17 +303,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getNuklearLayoutTask_ImageArray()
-	{
-		return (EReference)nuklearLayoutTaskEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getNuklearFillBufferTask()
 	{
 		return nuklearFillBufferTaskEClass;
@@ -405,6 +394,17 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	public EReference getNuklearContext_LayoutTask()
 	{
 		return (EReference)nuklearContextEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getNuklearContext_ImageArrayDescriptor()
+	{
+		return (EReference)nuklearContextEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -687,7 +687,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 
 		nuklearLayoutTaskEClass = createEClass(NUKLEAR_LAYOUT_TASK);
 		createEReference(nuklearLayoutTaskEClass, NUKLEAR_LAYOUT_TASK__CONTEXT);
-		createEReference(nuklearLayoutTaskEClass, NUKLEAR_LAYOUT_TASK__IMAGE_ARRAY);
 
 		nuklearFillBufferTaskEClass = createEClass(NUKLEAR_FILL_BUFFER_TASK);
 		createEReference(nuklearFillBufferTaskEClass, NUKLEAR_FILL_BUFFER_TASK__CONTEXT);
@@ -699,6 +698,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__FONT);
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__NULL_TEXTURE);
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__LAYOUT_TASK);
+		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR);
 
 		nuklearFontEClass = createEClass(NUKLEAR_FONT);
 		createEReference(nuklearFontEClass, NUKLEAR_FONT__FONT_TEXTURE_ARRAY);
@@ -789,7 +789,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 
 		initEClass(nuklearLayoutTaskEClass, NuklearLayoutTask.class, "NuklearLayoutTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNuklearLayoutTask_Context(), this.getNuklearContext(), this.getNuklearContext_LayoutTask(), "context", null, 1, 1, NuklearLayoutTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNuklearLayoutTask_ImageArray(), theResourcePackage.getTexture2DArray(), null, "imageArray", null, 0, 1, NuklearLayoutTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nuklearFillBufferTaskEClass, NuklearFillBufferTask.class, "NuklearFillBufferTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNuklearFillBufferTask_Context(), this.getNuklearContext(), null, "context", null, 1, 1, NuklearFillBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -801,6 +800,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		initEReference(getNuklearContext_Font(), this.getNuklearFont(), null, "font", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearContext_NullTexture(), theResourcePackage.getSampledImage(), null, "nullTexture", null, 0, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearContext_LayoutTask(), this.getNuklearLayoutTask(), this.getNuklearLayoutTask_Context(), "layoutTask", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNuklearContext_ImageArrayDescriptor(), theResourcePackage.getImageArrayDescriptor(), null, "imageArrayDescriptor", null, 0, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nuklearFontEClass, NuklearFont.class, "NuklearFont", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNuklearFont_FontTextureArray(), theResourcePackage.getFontTextureArray(), null, "fontTextureArray", null, 1, 1, NuklearFont.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

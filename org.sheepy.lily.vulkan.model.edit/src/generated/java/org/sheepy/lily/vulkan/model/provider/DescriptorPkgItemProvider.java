@@ -186,6 +186,11 @@ public class DescriptorPkgItemProvider
 			(createChildParameter
 				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
 				 ResourceFactory.eINSTANCE.createTexture2DArrayDescriptor()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
+				 ResourceFactory.eINSTANCE.createImageArrayDescriptor()));
 	}
 
 	/**

@@ -235,6 +235,11 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createFontTextureArrayAdapter();
 			}
 			@Override
+			public Adapter caseImageArrayDescriptor(ImageArrayDescriptor object)
+			{
+				return createImageArrayDescriptorAdapter();
+			}
+			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
@@ -746,6 +751,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createFontTextureArrayAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor <em>Image Array Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor
+	 * @generated
+	 */
+	public Adapter createImageArrayDescriptorAdapter()
 	{
 		return null;
 	}

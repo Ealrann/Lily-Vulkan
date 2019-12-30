@@ -1,14 +1,12 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
-import java.util.List;
 import java.util.Map;
 
 import org.lwjgl.nuklear.NkContext;
-import org.lwjgl.nuklear.NkImage;
 import org.lwjgl.nuklear.NkUserFont;
 import org.lwjgl.nuklear.Nuklear;
+import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapter;
-import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.vulkan.window.Window;
 
@@ -17,14 +15,11 @@ public interface IPanelAdapter extends IAdapter
 	boolean layout(UIContext context);
 	public boolean isHovered();
 
-	default void collectImages(List<FileResource> imageCollection)
-	{};
-
 	static final class UIContext
 	{
 		public final Window window;
 		public final NkContext nkContext;
-		public final Map<FileResource, NkImage> imageMap;
+		public final MemoryStack stack;
 
 		private final Font defaultFont;
 		private final Map<Font, NkUserFont> fontMap;
@@ -33,14 +28,14 @@ public interface IPanelAdapter extends IAdapter
 
 		public UIContext(	Window window,
 							NkContext nkContext,
-							Map<FileResource, NkImage> imageMap,
 							Map<Font, NkUserFont> fontMap,
-							Font defaultFont)
+							Font defaultFont,
+							MemoryStack stack)
 		{
 			this.window = window;
 			this.nkContext = nkContext;
 			this.defaultFont = defaultFont;
-			this.imageMap = Map.copyOf(imageMap);
+			this.stack = stack;
 			this.fontMap = Map.copyOf(fontMap);
 
 			currentFont = defaultFont;

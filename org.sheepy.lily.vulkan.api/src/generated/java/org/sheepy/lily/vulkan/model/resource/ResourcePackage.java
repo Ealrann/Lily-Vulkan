@@ -2240,6 +2240,79 @@ public interface ResourcePackage extends EPackage
 	int FONT_TEXTURE_ARRAY_OPERATION_COUNT = ITEXTURE_ARRAY_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageArrayDescriptorImpl <em>Image Array Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ImageArrayDescriptorImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageArrayDescriptor()
+	 * @generated
+	 */
+	int IMAGE_ARRAY_DESCRIPTOR = 30;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_ARRAY_DESCRIPTOR__NAME = VulkanPackage.IDESCRIPTOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_ARRAY_DESCRIPTOR__TYPE = VulkanPackage.IDESCRIPTOR__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_ARRAY_DESCRIPTOR__SHADER_STAGES = VulkanPackage.IDESCRIPTOR__SHADER_STAGES;
+
+	/**
+	 * The feature id for the '<em><b>Images</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_ARRAY_DESCRIPTOR__IMAGES = VulkanPackage.IDESCRIPTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Initial Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT = VulkanPackage.IDESCRIPTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Image Array Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_ARRAY_DESCRIPTOR_FEATURE_COUNT = VulkanPackage.IDESCRIPTOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Image Array Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_ARRAY_DESCRIPTOR_OPERATION_COUNT = VulkanPackage.IDESCRIPTOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.EFlushMode <em>EFlush Mode</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2247,7 +2320,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getEFlushMode()
 	 * @generated
 	 */
-	int EFLUSH_MODE = 30;
+	int EFLUSH_MODE = 31;
 
 	/**
 	 * The meta object id for the '<em>Byte Buffer</em>' data type.
@@ -2257,7 +2330,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 31;
+	int BYTE_BUFFER = 32;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer <em>Transfer Buffer</em>}'.
@@ -3209,6 +3282,38 @@ public interface ResourcePackage extends EPackage
 	EReference getFontTextureArray_Fonts();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor <em>Image Array Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Image Array Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor
+	 * @generated
+	 */
+	EClass getImageArrayDescriptor();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor#getImages <em>Images</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Images</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor#getImages()
+	 * @see #getImageArrayDescriptor()
+	 * @generated
+	 */
+	EReference getImageArrayDescriptor_Images();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor#getInitialLayout <em>Initial Layout</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Initial Layout</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor#getInitialLayout()
+	 * @see #getImageArrayDescriptor()
+	 * @generated
+	 */
+	EAttribute getImageArrayDescriptor_InitialLayout();
+
+	/**
 	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.resource.EFlushMode <em>EFlush Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4024,6 +4129,32 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EReference FONT_TEXTURE_ARRAY__FONTS = eINSTANCE.getFontTextureArray_Fonts();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageArrayDescriptorImpl <em>Image Array Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ImageArrayDescriptorImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageArrayDescriptor()
+		 * @generated
+		 */
+		EClass IMAGE_ARRAY_DESCRIPTOR = eINSTANCE.getImageArrayDescriptor();
+
+		/**
+		 * The meta object literal for the '<em><b>Images</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IMAGE_ARRAY_DESCRIPTOR__IMAGES = eINSTANCE.getImageArrayDescriptor_Images();
+
+		/**
+		 * The meta object literal for the '<em><b>Initial Layout</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT = eINSTANCE.getImageArrayDescriptor_InitialLayout();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.EFlushMode <em>EFlush Mode</em>}' enum.

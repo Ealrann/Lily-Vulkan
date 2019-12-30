@@ -266,6 +266,15 @@ public interface ResourceFactory extends EFactory
 	FontTextureArray createFontTextureArray();
 
 	/**
+	 * Returns a new object of class '<em>Image Array Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Image Array Descriptor</em>'.
+	 * @generated
+	 */
+	ImageArrayDescriptor createImageArrayDescriptor();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

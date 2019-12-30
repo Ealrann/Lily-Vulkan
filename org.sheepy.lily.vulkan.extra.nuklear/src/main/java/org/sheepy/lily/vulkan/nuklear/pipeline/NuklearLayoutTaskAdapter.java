@@ -1,12 +1,10 @@
 package org.sheepy.lily.vulkan.nuklear.pipeline;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.joml.Vector2ic;
 import org.lwjgl.BufferUtils;
-import org.lwjgl.nuklear.NkImage;
+import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
@@ -14,7 +12,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.AdapterSetRegistry;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.lily.core.model.ui.IPanel;
 import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.core.model.ui.UiPackage;
@@ -24,7 +21,6 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.lily.vulkan.nuklear.pipeline.util.NuklearImageInstaller;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearFontAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter;
@@ -55,7 +51,6 @@ public final class NuklearLayoutTaskAdapter
 	private Extent2D currentExtent;
 	private NuklearContextAdapter nuklearContextAdapter;
 	private Window window;
-	private NuklearImageInstaller imageInstaller = null;
 
 	public NuklearLayoutTaskAdapter(NuklearLayoutTask task)
 	{
@@ -68,11 +63,10 @@ public final class NuklearLayoutTaskAdapter
 	{
 		nuklearContextAdapter = task.getContext().adaptNotNull(NuklearContextAdapter.class);
 		PANEL_REGISTRY.startRegister(pipeline);
-		setupImageCapability();
 
 		final UI ui = (UI) pipeline.getScenePart();
 		final var fontPkg = ui.getFontPkg();
-		final int imageCount = imageInstaller != null ? imageInstaller.size() : 0;
+		final int imageCount = ui.getImages().size();
 		final int fontCount = fontPkg != null ? fontPkg.getFonts().size() : 0;
 
 		final var specializationBuffer = BufferUtils.createByteBuffer(8);
@@ -93,16 +87,6 @@ public final class NuklearLayoutTaskAdapter
 		PANEL_REGISTRY.stopRegister(pipeline);
 	}
 
-	private void setupImageCapability()
-	{
-		final List<FileResource> imagePaths = collectImages();
-		final var imageArray = task.getImageArray();
-		if (imageArray != null && imagePaths.isEmpty() == false)
-		{
-			imageInstaller = new NuklearImageInstaller(pipeline, imagePaths, imageArray);
-		}
-	}
-
 	private void onResize(Vector2ic size)
 	{
 		requestLayout();
@@ -115,20 +99,6 @@ public final class NuklearLayoutTaskAdapter
 		window = context.getWindow();
 		window.addListener(resizeListener);
 		requestLayout();
-	}
-
-	private List<FileResource> collectImages()
-	{
-		final List<FileResource> images = new ArrayList<>();
-
-		final var panelAdapters = PANEL_REGISTRY.getAdapters();
-		for (int i = 0; i < panelAdapters.size(); i++)
-		{
-			final var panelAdapter = panelAdapters.get(i);
-			panelAdapter.collectImages(images);
-		}
-
-		return List.copyOf(images);
 	}
 
 	@Override
@@ -164,21 +134,25 @@ public final class NuklearLayoutTaskAdapter
 		final var defaultFont = fontAdapter.getDefaultFont();
 		final var fontMap = fontAdapter.fontMap;
 		final var extent = context.getSurfaceManager().getExtent();
-		final var uiContext = new UIContext(window, nkContext, getImageMap(), fontMap, defaultFont);
 
-		startedFrame = true;
-
-		if (extent != currentExtent)
+		try (MemoryStack stack = MemoryStack.stackPush())
 		{
-			dirty = true;
-			currentExtent = extent;
-		}
+			final var uiContext = new UIContext(window, nkContext, fontMap, defaultFont, stack);
 
-		final var panelAdapters = PANEL_REGISTRY.getAdapters();
-		for (int i = 0; i < panelAdapters.size(); i++)
-		{
-			final var panelAdapter = panelAdapters.get(i);
-			dirty |= panelAdapter.layout(uiContext);
+			startedFrame = true;
+
+			if (extent != currentExtent)
+			{
+				dirty = true;
+				currentExtent = extent;
+			}
+
+			final var panelAdapters = PANEL_REGISTRY.getAdapters();
+			for (int i = 0; i < panelAdapters.size(); i++)
+			{
+				final var panelAdapter = panelAdapters.get(i);
+				dirty |= panelAdapter.layout(uiContext);
+			}
 		}
 	}
 
@@ -194,18 +168,6 @@ public final class NuklearLayoutTaskAdapter
 			}
 		}
 		return null;
-	}
-
-	private Map<FileResource, NkImage> getImageMap()
-	{
-		if (imageInstaller != null)
-		{
-			return Map.copyOf(imageInstaller.imageMap());
-		}
-		else
-		{
-			return Map.of();
-		}
 	}
 
 	@Override

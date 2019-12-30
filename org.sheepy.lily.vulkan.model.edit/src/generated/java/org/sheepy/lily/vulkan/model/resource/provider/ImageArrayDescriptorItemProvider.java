@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.extra.model.nuklear.provider;
+package org.sheepy.lily.vulkan.model.resource.provider;
 
 
 import java.util.Collection;
@@ -24,17 +24,19 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
-import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
-import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+
+import org.sheepy.lily.vulkan.model.VulkanPackage;
+
+import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class NuklearLayoutTaskItemProvider 
+public class ImageArrayDescriptorItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -49,7 +51,7 @@ public class NuklearLayoutTaskItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NuklearLayoutTaskItemProvider(AdapterFactory adapterFactory)
+	public ImageArrayDescriptorItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -68,8 +70,10 @@ public class NuklearLayoutTaskItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addEnabledPropertyDescriptor(object);
-			addContextPropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
+			addShaderStagesPropertyDescriptor(object);
+			addImagesPropertyDescriptor(object);
+			addInitialLayoutPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -98,43 +102,66 @@ public class NuklearLayoutTaskItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Enabled feature.
+	 * This adds a property descriptor for the Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEnabledPropertyDescriptor(Object object)
+	protected void addTypePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_IPipelineTask_enabled_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature", "_UI_IPipelineTask_type"),
-				 ProcessPackage.Literals.IPIPELINE_TASK__ENABLED,
+				 getString("_UI_IDescriptor_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IDescriptor_type_feature", "_UI_IDescriptor_type"),
+				 VulkanPackage.Literals.IDESCRIPTOR__TYPE,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Context feature.
+	 * This adds a property descriptor for the Shader Stages feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContextPropertyDescriptor(Object object)
+	protected void addShaderStagesPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_NuklearLayoutTask_context_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearLayoutTask_context_feature", "_UI_NuklearLayoutTask_type"),
-				 NuklearPackage.Literals.NUKLEAR_LAYOUT_TASK__CONTEXT,
+				 getString("_UI_IDescriptor_shaderStages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IDescriptor_shaderStages_feature", "_UI_IDescriptor_type"),
+				 VulkanPackage.Literals.IDESCRIPTOR__SHADER_STAGES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Images feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addImagesPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageArrayDescriptor_images_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageArrayDescriptor_images_feature", "_UI_ImageArrayDescriptor_type"),
+				 ResourcePackage.Literals.IMAGE_ARRAY_DESCRIPTOR__IMAGES,
 				 true,
 				 false,
 				 true,
@@ -144,7 +171,30 @@ public class NuklearLayoutTaskItemProvider
 	}
 
 	/**
-	 * This returns NuklearLayoutTask.gif.
+	 * This adds a property descriptor for the Initial Layout feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInitialLayoutPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageArrayDescriptor_initialLayout_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageArrayDescriptor_initialLayout_feature", "_UI_ImageArrayDescriptor_type"),
+				 ResourcePackage.Literals.IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns ImageArrayDescriptor.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -152,7 +202,7 @@ public class NuklearLayoutTaskItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/NuklearLayoutTask"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ImageArrayDescriptor"));
 	}
 
 	/**
@@ -164,10 +214,10 @@ public class NuklearLayoutTaskItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((NuklearLayoutTask)object).getName();
+		String label = ((ImageArrayDescriptor)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_NuklearLayoutTask_type") :
-			getString("_UI_NuklearLayoutTask_type") + " " + label;
+			getString("_UI_ImageArrayDescriptor_type") :
+			getString("_UI_ImageArrayDescriptor_type") + " " + label;
 	}
 
 
@@ -183,10 +233,12 @@ public class NuklearLayoutTaskItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(NuklearLayoutTask.class))
+		switch (notification.getFeatureID(ImageArrayDescriptor.class))
 		{
-			case NuklearPackage.NUKLEAR_LAYOUT_TASK__NAME:
-			case NuklearPackage.NUKLEAR_LAYOUT_TASK__ENABLED:
+			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME:
+			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__TYPE:
+			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__SHADER_STAGES:
+			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

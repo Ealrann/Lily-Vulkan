@@ -15,6 +15,7 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
+import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 
 /**
@@ -28,6 +29,7 @@ import org.sheepy.lily.vulkan.model.resource.SampledImage;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getFont <em>Font</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getNullTexture <em>Null Texture</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getLayoutTask <em>Layout Task</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getImageArrayDescriptor <em>Image Array Descriptor</em>}</li>
  * </ul>
  *
  * @generated
@@ -63,6 +65,16 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	 * @ordered
 	 */
 	protected NuklearLayoutTask layoutTask;
+
+	/**
+	 * The cached value of the '{@link #getImageArrayDescriptor() <em>Image Array Descriptor</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getImageArrayDescriptor()
+	 * @generated
+	 * @ordered
+	 */
+	protected ImageArrayDescriptor imageArrayDescriptor;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -251,6 +263,51 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	 * @generated
 	 */
 	@Override
+	public ImageArrayDescriptor getImageArrayDescriptor()
+	{
+		if (imageArrayDescriptor != null && ((EObject)imageArrayDescriptor).eIsProxy())
+		{
+			InternalEObject oldImageArrayDescriptor = (InternalEObject)imageArrayDescriptor;
+			imageArrayDescriptor = (ImageArrayDescriptor)eResolveProxy(oldImageArrayDescriptor);
+			if (imageArrayDescriptor != oldImageArrayDescriptor)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR, oldImageArrayDescriptor, imageArrayDescriptor));
+			}
+		}
+		return imageArrayDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ImageArrayDescriptor basicGetImageArrayDescriptor()
+	{
+		return imageArrayDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setImageArrayDescriptor(ImageArrayDescriptor newImageArrayDescriptor)
+	{
+		ImageArrayDescriptor oldImageArrayDescriptor = imageArrayDescriptor;
+		imageArrayDescriptor = newImageArrayDescriptor;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR, oldImageArrayDescriptor, imageArrayDescriptor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -298,6 +355,9 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 			case NuklearPackage.NUKLEAR_CONTEXT__LAYOUT_TASK:
 				if (resolve) return getLayoutTask();
 				return basicGetLayoutTask();
+			case NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR:
+				if (resolve) return getImageArrayDescriptor();
+				return basicGetImageArrayDescriptor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -320,6 +380,9 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__LAYOUT_TASK:
 				setLayoutTask((NuklearLayoutTask)newValue);
+				return;
+			case NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR:
+				setImageArrayDescriptor((ImageArrayDescriptor)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -344,6 +407,9 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 			case NuklearPackage.NUKLEAR_CONTEXT__LAYOUT_TASK:
 				setLayoutTask((NuklearLayoutTask)null);
 				return;
+			case NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR:
+				setImageArrayDescriptor((ImageArrayDescriptor)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -364,6 +430,8 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 				return nullTexture != null;
 			case NuklearPackage.NUKLEAR_CONTEXT__LAYOUT_TASK:
 				return layoutTask != null;
+			case NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR:
+				return imageArrayDescriptor != null;
 		}
 		return super.eIsSet(featureID);
 	}

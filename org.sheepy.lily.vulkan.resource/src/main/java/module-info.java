@@ -13,6 +13,7 @@ import org.sheepy.lily.vulkan.resource.font.FontAdapter;
 import org.sheepy.lily.vulkan.resource.font.FontTableAdapter;
 import org.sheepy.lily.vulkan.resource.font.FontTextureArrayAdapter;
 import org.sheepy.lily.vulkan.resource.image.FileImageAdapter;
+import org.sheepy.lily.vulkan.resource.image.ImageArrayDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.image.ImageDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.image.SampledImageAdapter;
 import org.sheepy.lily.vulkan.resource.image.SampledImageDescriptorAdapter;
@@ -45,6 +46,7 @@ import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 		ImageDescriptorAdapter.class,
 		SampledImageDescriptorAdapter.class,
 		Texture2DArrayDescriptorAdapter.class,
+		ImageArrayDescriptorAdapter.class,
 		SamplerDescriptorAdapter.class,
 		LocalResourceAdapter.class,
 		ModuleResourceAdapter.class,

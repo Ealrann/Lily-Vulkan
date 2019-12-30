@@ -5,8 +5,10 @@ import static org.lwjgl.nuklear.Nuklear.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
 import java.nio.ByteBuffer;
+import java.util.List;
 import java.util.Objects;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.nuklear.NkAllocator;
 import org.lwjgl.nuklear.NkBuffer;
 import org.lwjgl.nuklear.NkContext;
@@ -19,17 +21,23 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.INotificationListener;
+import org.sheepy.lily.core.api.util.ModelUtil;
+import org.sheepy.lily.core.model.application.IImage;
+import org.sheepy.lily.core.model.ui.UI;
+import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
 import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.nuklear.input.NuklearInputCatcher;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
 import org.sheepy.vulkan.execution.IExecutionContext;
 
 @Statefull
-@Adapter(scope = NuklearContext.class)
+@Adapter(scope = NuklearContext.class, lazy = false)
 public class NuklearContextAdapter implements IVulkanResourceAdapter
 {
 	private static final int VERTEX_SIZE = 20;
@@ -56,6 +64,8 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 	private final NuklearContext nuklearContext;
 	private final NkDrawNullTexture nkNullTexture = NkDrawNullTexture.create();
 	private final NkConvertConfig config = NkConvertConfig.create();
+	private final GraphicsPipeline pipeline;
+	private final INotificationListener uiImagesListener = this::uiImagesChanged;
 
 	private NkAllocator ALLOCATOR;
 	private NkBuffer cmds;
@@ -64,10 +74,33 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 	private NkBuffer vbuf;
 	private NkBuffer ebuf;
 	private NuklearLayoutTaskAdapter layoutTaskAdapter;
+	private UI ui;
 
 	public NuklearContextAdapter(NuklearContext context)
 	{
 		this.nuklearContext = context;
+		pipeline = ModelUtil.findParent(context, GraphicsPipeline.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	private void uiImagesChanged(Notification notification)
+	{
+		final var imageList = nuklearContext.getImageArrayDescriptor().getImages();
+		switch (notification.getEventType())
+		{
+		case Notification.ADD:
+			imageList.add((IImage) notification.getNewValue());
+			break;
+		case Notification.ADD_MANY:
+			imageList.addAll((List<IImage>) notification.getNewValue());
+			break;
+		case Notification.REMOVE:
+			imageList.remove(notification.getNewValue());
+			break;
+		case Notification.REMOVE_MANY:
+			imageList.removeAll((List<IImage>) notification.getNewValue());
+			break;
+		}
 	}
 
 	@Load
@@ -77,16 +110,32 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 								.alloc((handle, old, size) -> nmemAllocChecked(size))
 								.mfree((handle, ptr) -> nmemFree(ptr));
 
+		ui = (UI) pipeline.getScenePart();
+
+		final var imageDescriptor = nuklearContext.getImageArrayDescriptor();
+		if (imageDescriptor != null)
+		{
+			imageDescriptor.getImages().addAll(ui.getImages());
+		}
+
 		final var layoutTask = nuklearContext.getLayoutTask();
 		layoutTaskAdapter = layoutTask.adaptNotNull(NuklearLayoutTaskAdapter.class);
+		ui.addListener(uiImagesListener, UiPackage.UI__IMAGES);
 	}
 
 	@Dispose
 	public void dispose()
 	{
+		ui.removeListener(uiImagesListener, UiPackage.UI__IMAGES);
 		Objects.requireNonNull(ALLOCATOR.alloc()).free();
 		Objects.requireNonNull(ALLOCATOR.mfree()).free();
 		ALLOCATOR.free();
+
+		final var imageDescriptor = nuklearContext.getImageArrayDescriptor();
+		if (imageDescriptor != null)
+		{
+			imageDescriptor.getImages().clear();
+		}
 	}
 
 	@Override

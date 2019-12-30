@@ -371,6 +371,15 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR:
+			{
+				ImageArrayDescriptor imageArrayDescriptor = (ImageArrayDescriptor)theEObject;
+				T1 result = caseImageArrayDescriptor(imageArrayDescriptor);
+				if (result == null) result = caseIDescriptor(imageArrayDescriptor);
+				if (result == null) result = caseLNamedElement(imageArrayDescriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -851,6 +860,22 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseFontTextureArray(FontTextureArray object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Image Array Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Image Array Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseImageArrayDescriptor(ImageArrayDescriptor object)
 	{
 		return null;
 	}

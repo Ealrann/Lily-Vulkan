@@ -771,6 +771,31 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ImageArrayDescriptorItemProvider imageArrayDescriptorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createImageArrayDescriptorAdapter()
+	{
+		if (imageArrayDescriptorItemProvider == null)
+		{
+			imageArrayDescriptorItemProvider = new ImageArrayDescriptorItemProvider(this);
+		}
+
+		return imageArrayDescriptorItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -946,6 +971,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (iTextureArrayItemProvider != null) iTextureArrayItemProvider.dispose();
 		if (texture2DArrayItemProvider != null) texture2DArrayItemProvider.dispose();
 		if (fontTextureArrayItemProvider != null) fontTextureArrayItemProvider.dispose();
+		if (imageArrayDescriptorItemProvider != null) imageArrayDescriptorItemProvider.dispose();
 	}
 
 	/**

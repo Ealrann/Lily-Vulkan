@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.process.process.allocation;
+package org.sheepy.lily.vulkan.common.allocation;
 
 import java.util.ArrayList;
 import java.util.List;

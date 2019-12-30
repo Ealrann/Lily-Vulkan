@@ -17,6 +17,7 @@ import org.sheepy.vulkan.util.VkModelUtil;
 
 public class VkImageArrayDescriptor implements IVkDescriptor
 {
+	private final int maxSize;
 	private final int descriptorType;
 	private final int shaderStages;
 	private final int imageLayout;
@@ -24,11 +25,21 @@ public class VkImageArrayDescriptor implements IVkDescriptor
 	private long[] imageViewPtrs;
 	private boolean changed = true;
 
-	public VkImageArrayDescriptor(	long[] imageViewPtrs,
+	public VkImageArrayDescriptor(	int maxSize,
 									EImageLayout imageLayout,
 									EDescriptorType descriptorType,
 									List<EShaderStage> shaderStages)
 	{
+		this(maxSize, new long[0], imageLayout, descriptorType, shaderStages);
+	}
+
+	public VkImageArrayDescriptor(	int maxSize,
+									long[] imageViewPtrs,
+									EImageLayout imageLayout,
+									EDescriptorType descriptorType,
+									List<EShaderStage> shaderStages)
+	{
+		this.maxSize = maxSize;
 		this.imageViewPtrs = imageViewPtrs;
 		this.imageLayout = imageLayout != null ? imageLayout.getValue() : 0;
 		this.descriptorType = descriptorType.getValue();
@@ -39,7 +50,7 @@ public class VkImageArrayDescriptor implements IVkDescriptor
 	public void fillPoolSize(VkDescriptorPoolSize poolSize)
 	{
 		poolSize.type(descriptorType);
-		poolSize.descriptorCount(imageViewPtrs.length);
+		poolSize.descriptorCount(maxSize);
 	}
 
 	@Override
@@ -47,7 +58,7 @@ public class VkImageArrayDescriptor implements IVkDescriptor
 	{
 		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
 		res.descriptorType(descriptorType);
-		res.descriptorCount(imageViewPtrs.length);
+		res.descriptorCount(maxSize);
 		res.stageFlags(shaderStages);
 		return res;
 	}
@@ -55,7 +66,7 @@ public class VkImageArrayDescriptor implements IVkDescriptor
 	@Override
 	public void fillWriteDescriptor(MemoryStack stack, VkWriteDescriptorSet writeDescriptor)
 	{
-		final var imageInfos = VkDescriptorImageInfo.callocStack(imageViewPtrs.length, stack);
+		final var imageInfos = VkDescriptorImageInfo.callocStack(maxSize, stack);
 
 		for (int i = 0; i < imageViewPtrs.length; i++)
 		{
@@ -63,6 +74,7 @@ public class VkImageArrayDescriptor implements IVkDescriptor
 			imageInfo.imageLayout(imageLayout);
 			imageInfo.imageView(imageViewPtrs[i]);
 		}
+
 		imageInfos.flip();
 
 		writeDescriptor.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
@@ -84,6 +96,11 @@ public class VkImageArrayDescriptor implements IVkDescriptor
 
 	public void updateViewPtrs(long[] viewPtrs)
 	{
+		if (viewPtrs.length > maxSize)
+		{
+			throw new IllegalArgumentException("Too many views");
+		}
+
 		this.imageViewPtrs = viewPtrs;
 		changed = true;
 	}

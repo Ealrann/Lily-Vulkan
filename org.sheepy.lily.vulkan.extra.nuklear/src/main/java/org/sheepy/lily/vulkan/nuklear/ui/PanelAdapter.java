@@ -3,19 +3,18 @@ package org.sheepy.lily.vulkan.nuklear.ui;
 import static org.lwjgl.nuklear.Nuklear.*;
 
 import java.nio.ByteBuffer;
-import java.util.List;
 
 import org.joml.Vector2ic;
 import org.lwjgl.nuklear.NkColor;
+import org.lwjgl.nuklear.NkImage;
 import org.lwjgl.nuklear.NkRect;
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
+import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
 import org.sheepy.vulkan.window.IWindowListener.ISizeListener;
 import org.sheepy.vulkan.window.Window;
@@ -95,67 +94,57 @@ public class PanelAdapter implements IPanelAdapter
 	public boolean layout(UIContext context)
 	{
 		boolean res = false;
+		final var stack = context.stack;
 		final var nkContext = context.nkContext;
 		updateWindow(context);
 
-		try (MemoryStack stack = MemoryStack.stackPush())
+		rect = NkRect.mallocStack(stack);
+		final int width = panel.getWidth();
+		final int height = panel.getHeight();
+		final int x = UIUtil.computeXRelative(window.getSize(), panel);
+		final int y = UIUtil.computeYRelative(window.getSize(), panel);
+
+		if (nk_begin(nkContext, panel.getName(), nk_rect(x, y, width, height, rect), style))
 		{
-			rect = NkRect.mallocStack(stack);
-			final int width = panel.getWidth();
-			final int height = panel.getHeight();
-			final int x = UIUtil.computeXRelative(window.getSize(), panel);
-			final int y = UIUtil.computeYRelative(window.getSize(), panel);
+			hovered = nk_window_is_hovered(nkContext);
 
-			if (nk_begin(nkContext, panel.getName(), nk_rect(x, y, width, height, rect), style))
+			if (nk_window_is_collapsed(nkContext, textBuffer) && (style & NK_WINDOW_MINIMIZED) != 0)
 			{
-				hovered = nk_window_is_hovered(nkContext);
-
-				if (nk_window_is_collapsed(nkContext, textBuffer)
-						&& (style & NK_WINDOW_MINIMIZED) != 0)
-				{
-					style ^= NK_WINDOW_MINIMIZED;
-					res = true;
-				}
-
-				final var backgroundImage = panel.getBackgroundImage();
-				if (backgroundImage != null)
-				{
-					final var canvas = nk_window_get_canvas(nkContext);
-					final NkColor color = NkColor.callocStack(stack);
-					color.set((byte) 255, (byte) 255, (byte) 255, (byte) 255);
-					final var region = NkRect.mallocStack(stack);
-					nk_window_get_content_region(nkContext, region);
-					final var img = context.imageMap.get(backgroundImage);
-					nk_draw_image(canvas, region, img, color);
-				}
-
-				final var controls = panel.getControls();
-				for (int i = 0; i < controls.size(); i++)
-				{
-					final IControl child = controls.get(i);
-					final var adapter = child.adaptNotNull(IUIElementAdapter.class);
-					res |= adapter.layout(context, child);
-				}
-			}
-			else if ((style & NK_WINDOW_MINIMIZED) == 0)
-			{
-				style |= NK_WINDOW_MINIMIZED;
+				style ^= NK_WINDOW_MINIMIZED;
 				res = true;
 			}
 
-			nk_end(nkContext);
+			final var backgroundImage = panel.getBackgroundImage();
+			if (backgroundImage != null)
+			{
+				final var imageAdapter = backgroundImage.adapt(IImageAdapter.class);
+				final var nkImage = NkImage.callocStack(stack);
+				nk_image_ptr(imageAdapter.getViewPtr(), nkImage);
+				final var canvas = nk_window_get_canvas(nkContext);
+				final NkColor color = NkColor.callocStack(stack);
+				color.set((byte) 255, (byte) 255, (byte) 255, (byte) 255);
+				final var region = NkRect.mallocStack(stack);
+				nk_window_get_content_region(nkContext, region);
+				nk_draw_image(canvas, region, nkImage, color);
+			}
+
+			final var controls = panel.getControls();
+			for (int i = 0; i < controls.size(); i++)
+			{
+				final IControl child = controls.get(i);
+				final var adapter = child.adaptNotNull(IUIElementAdapter.class);
+				res |= adapter.layout(context, child);
+			}
 		}
+		else if ((style & NK_WINDOW_MINIMIZED) == 0)
+		{
+			style |= NK_WINDOW_MINIMIZED;
+			res = true;
+		}
+
+		nk_end(nkContext);
 
 		return res;
-	}
-
-	@Override
-	public void collectImages(List<FileResource> imageCollection)
-	{
-		if (panel.getBackgroundImage() != null)
-		{
-			imageCollection.add(panel.getBackgroundImage());
-		}
 	}
 
 	@Override

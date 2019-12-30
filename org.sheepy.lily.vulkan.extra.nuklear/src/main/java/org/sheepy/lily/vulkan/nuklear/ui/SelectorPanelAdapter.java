@@ -22,6 +22,7 @@ import org.sheepy.lily.core.model.application.FileResource;
 import org.sheepy.lily.core.model.types.EHorizontalRelative;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
+import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
 import org.sheepy.lily.vulkan.extra.api.nuklear.ISelectorInputProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
@@ -178,7 +179,6 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 		for (int i = 0; i < datas.size(); i++)
 		{
 			final LineData data = datas.get(i);
-			final NkImage image = data.image != null ? context.imageMap.get(data.image) : null;
 			final boolean isSelected = data.element == selectedElement;
 
 			if (panel.isPrintLabels())
@@ -206,7 +206,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 
 			if (buttonDrawer.draw(	nkContext,
 									isSelected,
-									image,
+									data.getNkImage(),
 									data.color,
 									data.panelButton1Id,
 									data.rectButton))
@@ -286,19 +286,6 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 		return hovered;
 	}
 
-	@Override
-	public void collectImages(List<FileResource> images)
-	{
-		for (int i = 0; i < datas.size(); i++)
-		{
-			final var data = datas.get(i);
-			if (data.image != null)
-			{
-				images.add(data.image);
-			}
-		}
-	}
-
 	private static final class LineData
 	{
 		public static final int TEXT_WIDTH = 100;
@@ -312,6 +299,8 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 		public final FileResource image;
 		public final NkColor color;
 		public final boolean right;
+
+		private final NkImage nkImage = NkImage.calloc();
 
 		public LineData(Object input,
 						String name,
@@ -337,8 +326,23 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 							.set((byte) color.x(), (byte) color.y(), (byte) color.z(), (byte) 255);
 		}
 
+		public NkImage getNkImage()
+		{
+			if (image != null)
+			{
+				final var imageAdapter = image.adapt(IImageAdapter.class);
+				nk_image_ptr(imageAdapter.getViewPtr(), nkImage);
+				return nkImage;
+			}
+			else
+			{
+				return null;
+			}
+		}
+
 		public void free()
 		{
+			nkImage.free();
 			MemoryUtil.memFree(panelLabelId);
 			MemoryUtil.memFree(panelButton1Id);
 			MemoryUtil.memFree(textBuffer);

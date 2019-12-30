@@ -423,6 +423,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//FontTextureArray/height"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//FontTextureArray/fonts"/>
     </genClasses>
+    <genClasses ecoreClass="resource.ecore#//ImageArrayDescriptor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//ImageArrayDescriptor/images"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ImageArrayDescriptor/initialLayout"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Vulkan" basePackage="org.sheepy.lily.vulkan" resource="XMI"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"

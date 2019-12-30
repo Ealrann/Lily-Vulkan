@@ -18,7 +18,6 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFillBufferTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor;
-import org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawCommandData;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawTaskMaintainer;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
@@ -170,12 +169,12 @@ public final class NuklearFillBufferTaskAdapter
 				final long ptr = ((VkImageDescriptor) vkDescriptor).getSamplerPtr();
 				texturePtrs.add(ptr);
 			}
-			else if (descriptor instanceof Texture2DArrayDescriptor)
+			else if (vkDescriptor instanceof VkImageArrayDescriptor)
 			{
-				final var ptrs = ((VkImageArrayDescriptor) vkDescriptor).getViewPtrs();
-				for (int i = 0; i < ptrs.length; i++)
+				final var viewPtrs = ((VkImageArrayDescriptor) vkDescriptor).getViewPtrs();
+				for (int i = 0; i < viewPtrs.length; i++)
 				{
-					final var ptr = ptrs[i];
+					final var ptr = viewPtrs[i];
 					texturePtrs.add(ptr);
 				}
 			}

@@ -55,6 +55,7 @@ import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 import org.sheepy.lily.vulkan.model.resource.ITextureArray;
 import org.sheepy.lily.vulkan.model.resource.Image;
+import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
@@ -293,6 +294,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass fontTextureArrayEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass imageArrayDescriptorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1394,6 +1402,39 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
+	public EClass getImageArrayDescriptor()
+	{
+		return imageArrayDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getImageArrayDescriptor_Images()
+	{
+		return (EReference)imageArrayDescriptorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImageArrayDescriptor_InitialLayout()
+	{
+		return (EAttribute)imageArrayDescriptorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getEFlushMode()
 	{
 		return eFlushModeEEnum;
@@ -1560,6 +1601,10 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(fontTextureArrayEClass, FONT_TEXTURE_ARRAY__HEIGHT);
 		createEReference(fontTextureArrayEClass, FONT_TEXTURE_ARRAY__FONTS);
 
+		imageArrayDescriptorEClass = createEClass(IMAGE_ARRAY_DESCRIPTOR);
+		createEReference(imageArrayDescriptorEClass, IMAGE_ARRAY_DESCRIPTOR__IMAGES);
+		createEAttribute(imageArrayDescriptorEClass, IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT);
+
 		// Create enums
 		eFlushModeEEnum = createEEnum(EFLUSH_MODE);
 
@@ -1638,6 +1683,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		iTextureArrayEClass.getESuperTypes().add(this.getImage());
 		texture2DArrayEClass.getESuperTypes().add(this.getITextureArray());
 		fontTextureArrayEClass.getESuperTypes().add(this.getITextureArray());
+		imageArrayDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(transferBufferEClass, TransferBuffer.class, "TransferBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1765,6 +1811,10 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEClass(fontTextureArrayEClass, FontTextureArray.class, "FontTextureArray", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFontTextureArray_Height(), ecorePackage.getEInt(), "height", "18", 0, 1, FontTextureArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFontTextureArray_Fonts(), theUiPackage.getFont(), null, "fonts", null, 0, -1, FontTextureArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(imageArrayDescriptorEClass, ImageArrayDescriptor.class, "ImageArrayDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getImageArrayDescriptor_Images(), theApplicationPackage.getIImage(), null, "images", null, 0, -1, ImageArrayDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageArrayDescriptor_InitialLayout(), theEnumerationPackage.getEImageLayout(), "initialLayout", null, 1, 1, ImageArrayDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(eFlushModeEEnum, EFlushMode.class, "EFlushMode");
