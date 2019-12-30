@@ -6,8 +6,10 @@ import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkImageViewCreateInfo;
 import org.sheepy.vulkan.log.Logger;
 
-public class VkImageView
+public final class VkImageView
 {
+	private static final String FAILED_TO_CREATE_IMAGE_VIEW = "Failed to create image view";
+
 	private final VkDevice device;
 
 	private int imageFormat;
@@ -47,7 +49,8 @@ public class VkImageView
 		createInfo.subresourceRange().layerCount(1);
 
 		final long[] aBuffer = new long[1];
-		Logger.check("Failed to create image views!", () -> vkCreateImageView(device, createInfo, null, aBuffer));
+		Logger.check(	vkCreateImageView(device, createInfo, null, aBuffer),
+						FAILED_TO_CREATE_IMAGE_VIEW);
 		imageViewPtr = aBuffer[0];
 
 		createInfo.free();

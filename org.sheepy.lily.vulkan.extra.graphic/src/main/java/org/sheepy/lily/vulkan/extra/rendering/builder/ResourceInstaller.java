@@ -127,7 +127,7 @@ public final class ResourceInstaller<T extends Structure>
 			final var copy = EcoreUtil.copy(dataProvider);
 			copy.setDataSource(dataSource);
 			buffer.getDataProviders().add(copy);
-			
+
 			transferReference.setPart(i);
 			prepareTranferTask.getParts().add(transferReference);
 		}
