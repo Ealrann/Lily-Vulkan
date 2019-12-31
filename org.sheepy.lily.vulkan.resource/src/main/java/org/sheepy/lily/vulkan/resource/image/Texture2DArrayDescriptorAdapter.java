@@ -15,7 +15,7 @@ import org.sheepy.vulkan.resource.image.VkImageArrayDescriptor;
 public class Texture2DArrayDescriptorAdapter implements IDescriptorAdapter
 {
 	@Deprecated
-	private static final int MAX_SIZE = 2;
+	private static final int MAX_SIZE = 6;
 	private final Texture2DArrayDescriptor descriptor;
 	private final VkImageArrayDescriptor vkDescriptor;
 

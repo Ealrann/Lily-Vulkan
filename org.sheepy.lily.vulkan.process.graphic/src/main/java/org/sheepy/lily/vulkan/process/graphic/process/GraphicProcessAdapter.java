@@ -160,18 +160,18 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	{
 		final var subpasses = process.getSubpasses();
 		final int size = subpasses.size();
-		final boolean[] reservedIndices = new boolean[size];
+		final boolean[] reservedIndices = new boolean[size + 1];
 		for (int i = 0; i < size; i++)
 		{
 			final var subpass = subpasses.get(i);
 			if (SubpassUtil.isGraphic(subpass))
 			{
-				reservedIndices[i] = true;
+				reservedIndices[subpass.getSubpassIndex()] = true;
 			}
 		}
 
 		int res = 0;
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < reservedIndices.length; i++)
 		{
 			if (reservedIndices[i] == false)
 			{

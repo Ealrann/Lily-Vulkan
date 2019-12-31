@@ -13,7 +13,7 @@ import org.sheepy.vulkan.window.Window;
 public interface IPanelAdapter extends IAdapter
 {
 	boolean layout(UIContext context);
-	public boolean isHovered();
+	boolean isHovered();
 
 	static final class UIContext
 	{

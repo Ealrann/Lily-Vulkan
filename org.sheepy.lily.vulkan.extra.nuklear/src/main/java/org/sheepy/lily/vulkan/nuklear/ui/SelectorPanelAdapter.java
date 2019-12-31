@@ -18,7 +18,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
-import org.sheepy.lily.core.model.application.FileResource;
+import org.sheepy.lily.core.model.application.IImage;
 import org.sheepy.lily.core.model.types.EHorizontalRelative;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
@@ -296,7 +296,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 		public final NkRect rectButton = NkRect.create();
 		public final ByteBuffer panelLabelId;
 		public final ByteBuffer panelButton1Id;
-		public final FileResource image;
+		public final IImage image;
 		public final NkColor color;
 		public final boolean right;
 
@@ -305,7 +305,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 		public LineData(Object input,
 						String name,
 						String panelName,
-						FileResource image,
+						IImage image,
 						Vector3fc color,
 						boolean right)
 		{
