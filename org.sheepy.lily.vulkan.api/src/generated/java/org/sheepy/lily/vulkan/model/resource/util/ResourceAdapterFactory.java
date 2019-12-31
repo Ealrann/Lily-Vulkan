@@ -190,11 +190,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createSamplerDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseTexture2DArrayDescriptor(Texture2DArrayDescriptor object)
-			{
-				return createTexture2DArrayDescriptorAdapter();
-			}
-			@Override
 			public Adapter caseDescriptorSet(DescriptorSet object)
 			{
 				return createDescriptorSetAdapter();
@@ -223,16 +218,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseShader(Shader object)
 			{
 				return createShaderAdapter();
-			}
-			@Override
-			public Adapter caseITextureArray(ITextureArray object)
-			{
-				return createITextureArrayAdapter();
-			}
-			@Override
-			public Adapter caseTexture2DArray(Texture2DArray object)
-			{
-				return createTexture2DArrayAdapter();
 			}
 			@Override
 			public Adapter caseImageArrayDescriptor(ImageArrayDescriptor object)
@@ -621,21 +606,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor <em>Texture2 DArray Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor
-	 * @generated
-	 */
-	public Adapter createTexture2DArrayDescriptorAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DescriptorSet <em>Descriptor Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -721,36 +691,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createShaderAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.ITextureArray <em>ITexture Array</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.ITextureArray
-	 * @generated
-	 */
-	public Adapter createITextureArrayAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Texture2DArray <em>Texture2 DArray</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.Texture2DArray
-	 * @generated
-	 */
-	public Adapter createTexture2DArrayAdapter()
 	{
 		return null;
 	}

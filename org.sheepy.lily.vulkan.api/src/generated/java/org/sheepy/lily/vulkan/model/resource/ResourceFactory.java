@@ -185,15 +185,6 @@ public interface ResourceFactory extends EFactory
 	SamplerDescriptor createSamplerDescriptor();
 
 	/**
-	 * Returns a new object of class '<em>Texture2 DArray Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Texture2 DArray Descriptor</em>'.
-	 * @generated
-	 */
-	Texture2DArrayDescriptor createTexture2DArrayDescriptor();
-
-	/**
 	 * Returns a new object of class '<em>Descriptor Set</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -246,24 +237,6 @@ public interface ResourceFactory extends EFactory
 	 * @generated
 	 */
 	Shader createShader();
-
-	/**
-	 * Returns a new object of class '<em>ITexture Array</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>ITexture Array</em>'.
-	 * @generated
-	 */
-	ITextureArray createITextureArray();
-
-	/**
-	 * Returns a new object of class '<em>Texture2 DArray</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Texture2 DArray</em>'.
-	 * @generated
-	 */
-	Texture2DArray createTexture2DArray();
 
 	/**
 	 * Returns a new object of class '<em>Image Array Descriptor</em>'.

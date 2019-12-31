@@ -389,9 +389,6 @@
     <genClasses ecoreClass="resource.ecore#//SamplerDescriptor">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//SamplerDescriptor/sampler"/>
     </genClasses>
-    <genClasses ecoreClass="resource.ecore#//Texture2DArrayDescriptor">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//Texture2DArrayDescriptor/textureArray"/>
-    </genClasses>
     <genClasses ecoreClass="resource.ecore#//DescriptorSet">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//DescriptorSet/descriptors"/>
     </genClasses>
@@ -412,11 +409,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Shader/file"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Shader/stage"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Shader/constants"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//ITextureArray"/>
-    <genClasses ecoreClass="resource.ecore#//Texture2DArray">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Texture2DArray/files"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Texture2DArray/mipmapEnabled"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//ImageArrayDescriptor">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//ImageArrayDescriptor/images"/>

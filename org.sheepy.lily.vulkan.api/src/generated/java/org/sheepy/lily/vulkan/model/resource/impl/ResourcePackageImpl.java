@@ -53,7 +53,6 @@ import org.sheepy.lily.vulkan.model.resource.FileImage;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.IBufferReference;
-import org.sheepy.lily.vulkan.model.resource.ITextureArray;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
@@ -67,8 +66,6 @@ import org.sheepy.lily.vulkan.model.resource.SamplerDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
-import org.sheepy.lily.vulkan.model.resource.Texture2DArray;
-import org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
@@ -237,13 +234,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass texture2DArrayDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass descriptorSetEClass = null;
 
 	/**
@@ -280,20 +270,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass shaderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass iTextureArrayEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass texture2DArrayEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1160,28 +1136,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getTexture2DArrayDescriptor()
-	{
-		return texture2DArrayDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getTexture2DArrayDescriptor_TextureArray()
-	{
-		return (EReference)texture2DArrayDescriptorEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getDescriptorSet()
 	{
 		return descriptorSetEClass;
@@ -1339,50 +1293,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EReference getShader_Constants()
 	{
 		return (EReference)shaderEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getITextureArray()
-	{
-		return iTextureArrayEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getTexture2DArray()
-	{
-		return texture2DArrayEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getTexture2DArray_Files()
-	{
-		return (EReference)texture2DArrayEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getTexture2DArray_MipmapEnabled()
-	{
-		return (EAttribute)texture2DArrayEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1559,9 +1469,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		samplerDescriptorEClass = createEClass(SAMPLER_DESCRIPTOR);
 		createEReference(samplerDescriptorEClass, SAMPLER_DESCRIPTOR__SAMPLER);
 
-		texture2DArrayDescriptorEClass = createEClass(TEXTURE2_DARRAY_DESCRIPTOR);
-		createEReference(texture2DArrayDescriptorEClass, TEXTURE2_DARRAY_DESCRIPTOR__TEXTURE_ARRAY);
-
 		descriptorSetEClass = createEClass(DESCRIPTOR_SET);
 		createEReference(descriptorSetEClass, DESCRIPTOR_SET__DESCRIPTORS);
 
@@ -1582,12 +1489,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEReference(shaderEClass, SHADER__FILE);
 		createEAttribute(shaderEClass, SHADER__STAGE);
 		createEReference(shaderEClass, SHADER__CONSTANTS);
-
-		iTextureArrayEClass = createEClass(ITEXTURE_ARRAY);
-
-		texture2DArrayEClass = createEClass(TEXTURE2_DARRAY);
-		createEReference(texture2DArrayEClass, TEXTURE2_DARRAY__FILES);
-		createEAttribute(texture2DArrayEClass, TEXTURE2_DARRAY__MIPMAP_ENABLED);
 
 		imageArrayDescriptorEClass = createEClass(IMAGE_ARRAY_DESCRIPTOR);
 		createEReference(imageArrayDescriptorEClass, IMAGE_ARRAY_DESCRIPTOR__IMAGES);
@@ -1663,14 +1564,11 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		imageDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		sampledImageDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		samplerDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
-		texture2DArrayDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		descriptorSetEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		bufferBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractBufferBarrier());
 		compositeBufferBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractBufferBarrier());
 		imageBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractImageBarrier());
 		shaderEClass.getESuperTypes().add(theApplicationPackage.getIResource());
-		iTextureArrayEClass.getESuperTypes().add(this.getImage());
-		texture2DArrayEClass.getESuperTypes().add(this.getITextureArray());
 		imageArrayDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
@@ -1766,9 +1664,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEClass(samplerDescriptorEClass, SamplerDescriptor.class, "SamplerDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSamplerDescriptor_Sampler(), this.getSampler(), null, "sampler", null, 1, 1, SamplerDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(texture2DArrayDescriptorEClass, Texture2DArrayDescriptor.class, "Texture2DArrayDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTexture2DArrayDescriptor_TextureArray(), this.getITextureArray(), null, "textureArray", null, 1, 1, Texture2DArrayDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(descriptorSetEClass, DescriptorSet.class, "DescriptorSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDescriptorSet_Descriptors(), theVulkanPackage.getIDescriptor(), null, "descriptors", null, 1, -1, DescriptorSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1792,12 +1687,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getShader_File(), theApplicationPackage.getFileResource(), null, "file", null, 0, 1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getShader_Stage(), theEnumerationPackage.getEShaderStage(), "stage", null, 0, 1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getShader_Constants(), thePipelinePackage.getSpecializationConstant(), null, "constants", null, 0, -1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(iTextureArrayEClass, ITextureArray.class, "ITextureArray", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(texture2DArrayEClass, Texture2DArray.class, "Texture2DArray", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTexture2DArray_Files(), theApplicationPackage.getFileResource(), null, "files", null, 1, -1, Texture2DArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTexture2DArray_MipmapEnabled(), ecorePackage.getEBoolean(), "mipmapEnabled", "false", 0, 1, Texture2DArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageArrayDescriptorEClass, ImageArrayDescriptor.class, "ImageArrayDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getImageArrayDescriptor_Images(), theApplicationPackage.getIImage(), null, "images", null, 0, -1, ImageArrayDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

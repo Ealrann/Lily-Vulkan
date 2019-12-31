@@ -546,31 +546,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Texture2DArrayDescriptorItemProvider texture2DArrayDescriptorItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Texture2DArrayDescriptor}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTexture2DArrayDescriptorAdapter()
-	{
-		if (texture2DArrayDescriptorItemProvider == null)
-		{
-			texture2DArrayDescriptorItemProvider = new Texture2DArrayDescriptorItemProvider(this);
-		}
-
-		return texture2DArrayDescriptorItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.DescriptorSet} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -718,56 +693,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		}
 
 		return shaderItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ITextureArray} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ITextureArrayItemProvider iTextureArrayItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ITextureArray}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createITextureArrayAdapter()
-	{
-		if (iTextureArrayItemProvider == null)
-		{
-			iTextureArrayItemProvider = new ITextureArrayItemProvider(this);
-		}
-
-		return iTextureArrayItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Texture2DArray} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Texture2DArrayItemProvider texture2DArrayItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Texture2DArray}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTexture2DArrayAdapter()
-	{
-		if (texture2DArrayItemProvider == null)
-		{
-			texture2DArrayItemProvider = new Texture2DArrayItemProvider(this);
-		}
-
-		return texture2DArrayItemProvider;
 	}
 
 	/**
@@ -962,15 +887,12 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (imageDescriptorItemProvider != null) imageDescriptorItemProvider.dispose();
 		if (sampledImageDescriptorItemProvider != null) sampledImageDescriptorItemProvider.dispose();
 		if (samplerDescriptorItemProvider != null) samplerDescriptorItemProvider.dispose();
-		if (texture2DArrayDescriptorItemProvider != null) texture2DArrayDescriptorItemProvider.dispose();
 		if (descriptorSetItemProvider != null) descriptorSetItemProvider.dispose();
 		if (descriptorSetPkgItemProvider != null) descriptorSetPkgItemProvider.dispose();
 		if (bufferBarrierItemProvider != null) bufferBarrierItemProvider.dispose();
 		if (compositeBufferBarrierItemProvider != null) compositeBufferBarrierItemProvider.dispose();
 		if (imageBarrierItemProvider != null) imageBarrierItemProvider.dispose();
 		if (shaderItemProvider != null) shaderItemProvider.dispose();
-		if (iTextureArrayItemProvider != null) iTextureArrayItemProvider.dispose();
-		if (texture2DArrayItemProvider != null) texture2DArrayItemProvider.dispose();
 		if (imageArrayDescriptorItemProvider != null) imageArrayDescriptorItemProvider.dispose();
 	}
 
@@ -1079,16 +1001,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 					(createChildParameter
 						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
 						 ResourceFactory.eINSTANCE.createShader()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 ResourceFactory.eINSTANCE.createITextureArray()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 ResourceFactory.eINSTANCE.createTexture2DArray()));
 
 				return null;
 			}

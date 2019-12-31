@@ -85,15 +85,12 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.IMAGE_DESCRIPTOR: return createImageDescriptor();
 			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR: return createSampledImageDescriptor();
 			case ResourcePackage.SAMPLER_DESCRIPTOR: return createSamplerDescriptor();
-			case ResourcePackage.TEXTURE2_DARRAY_DESCRIPTOR: return createTexture2DArrayDescriptor();
 			case ResourcePackage.DESCRIPTOR_SET: return createDescriptorSet();
 			case ResourcePackage.DESCRIPTOR_SET_PKG: return createDescriptorSetPkg();
 			case ResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
 			case ResourcePackage.COMPOSITE_BUFFER_BARRIER: return createCompositeBufferBarrier();
 			case ResourcePackage.IMAGE_BARRIER: return createImageBarrier();
 			case ResourcePackage.SHADER: return createShader();
-			case ResourcePackage.ITEXTURE_ARRAY: return createITextureArray();
-			case ResourcePackage.TEXTURE2_DARRAY: return createTexture2DArray();
 			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR: return createImageArrayDescriptor();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -360,18 +357,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
-	public Texture2DArrayDescriptor createTexture2DArrayDescriptor()
-	{
-		Texture2DArrayDescriptorImpl texture2DArrayDescriptor = new Texture2DArrayDescriptorImpl();
-		return texture2DArrayDescriptor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public DescriptorSet createDescriptorSet()
 	{
 		DescriptorSetImpl descriptorSet = new DescriptorSetImpl();
@@ -436,30 +421,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		ShaderImpl shader = new ShaderImpl();
 		return shader;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ITextureArray createITextureArray()
-	{
-		ITextureArrayImpl iTextureArray = new ITextureArrayImpl();
-		return iTextureArray;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Texture2DArray createTexture2DArray()
-	{
-		Texture2DArrayImpl texture2DArray = new Texture2DArrayImpl();
-		return texture2DArray;
 	}
 
 	/**
