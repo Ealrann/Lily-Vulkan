@@ -2,24 +2,28 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
-
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl;
 
 /**
@@ -32,8 +36,9 @@ import org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getMaintainer <em>Maintainer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getConfiguration <em>Configuration</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getRenderPassInfo <em>Render Pass Info</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getAttachmentPkg <em>Attachment Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getFieldOfViewY <em>Field Of View Y</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getSubpasses <em>Subpasses</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,14 +66,14 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	protected GraphicConfiguration configuration;
 
 	/**
-	 * The cached value of the '{@link #getRenderPassInfo() <em>Render Pass Info</em>}' containment reference.
+	 * The cached value of the '{@link #getAttachmentPkg() <em>Attachment Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRenderPassInfo()
+	 * @see #getAttachmentPkg()
 	 * @generated
 	 * @ordered
 	 */
-	protected RenderPassInfo renderPassInfo;
+	protected AttachmentPkg attachmentPkg;
 
 	/**
 	 * The default value of the '{@link #getFieldOfViewY() <em>Field Of View Y</em>}' attribute.
@@ -89,6 +94,16 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * @ordered
 	 */
 	protected float fieldOfViewY = FIELD_OF_VIEW_Y_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSubpasses() <em>Subpasses</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSubpasses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Subpass> subpasses;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -238,9 +253,9 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * @generated
 	 */
 	@Override
-	public RenderPassInfo getRenderPassInfo()
+	public AttachmentPkg getAttachmentPkg()
 	{
-		return renderPassInfo;
+		return attachmentPkg;
 	}
 
 	/**
@@ -248,13 +263,13 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRenderPassInfo(RenderPassInfo newRenderPassInfo, NotificationChain msgs)
+	public NotificationChain basicSetAttachmentPkg(AttachmentPkg newAttachmentPkg, NotificationChain msgs)
 	{
-		RenderPassInfo oldRenderPassInfo = renderPassInfo;
-		renderPassInfo = newRenderPassInfo;
+		AttachmentPkg oldAttachmentPkg = attachmentPkg;
+		attachmentPkg = newAttachmentPkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, oldRenderPassInfo, newRenderPassInfo);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG, oldAttachmentPkg, newAttachmentPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -266,20 +281,20 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * @generated
 	 */
 	@Override
-	public void setRenderPassInfo(RenderPassInfo newRenderPassInfo)
+	public void setAttachmentPkg(AttachmentPkg newAttachmentPkg)
 	{
-		if (newRenderPassInfo != renderPassInfo)
+		if (newAttachmentPkg != attachmentPkg)
 		{
 			NotificationChain msgs = null;
-			if (renderPassInfo != null)
-				msgs = ((InternalEObject)renderPassInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, null, msgs);
-			if (newRenderPassInfo != null)
-				msgs = ((InternalEObject)newRenderPassInfo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, null, msgs);
-			msgs = basicSetRenderPassInfo(newRenderPassInfo, msgs);
+			if (attachmentPkg != null)
+				msgs = ((InternalEObject)attachmentPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG, null, msgs);
+			if (newAttachmentPkg != null)
+				msgs = ((InternalEObject)newAttachmentPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG, null, msgs);
+			msgs = basicSetAttachmentPkg(newAttachmentPkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, newRenderPassInfo, newRenderPassInfo));
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG, newAttachmentPkg, newAttachmentPkg));
 	}
 
 	/**
@@ -305,6 +320,21 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		fieldOfViewY = newFieldOfViewY;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y, oldFieldOfViewY, fieldOfViewY));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Subpass> getSubpasses()
+	{
+		if (subpasses == null)
+		{
+			subpasses = new EObjectContainmentEList<Subpass>(Subpass.class, this, GraphicPackage.GRAPHIC_PROCESS__SUBPASSES);
+		}
+		return subpasses;
 	}
 
 	/**
@@ -340,8 +370,10 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 				return basicSetMaintainer(null, msgs);
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 				return basicSetConfiguration(null, msgs);
-			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-				return basicSetRenderPassInfo(null, msgs);
+			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
+				return basicSetAttachmentPkg(null, msgs);
+			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:
+				return ((InternalEList<?>)getSubpasses()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -361,10 +393,12 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 				return basicGetMaintainer();
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 				return getConfiguration();
-			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-				return getRenderPassInfo();
+			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
+				return getAttachmentPkg();
 			case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
 				return getFieldOfViewY();
+			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:
+				return getSubpasses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -386,11 +420,15 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 				setConfiguration((GraphicConfiguration)newValue);
 				return;
-			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-				setRenderPassInfo((RenderPassInfo)newValue);
+			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
+				setAttachmentPkg((AttachmentPkg)newValue);
 				return;
 			case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
 				setFieldOfViewY((Float)newValue);
+				return;
+			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:
+				getSubpasses().clear();
+				getSubpasses().addAll((Collection<? extends Subpass>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -412,11 +450,14 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 				setConfiguration((GraphicConfiguration)null);
 				return;
-			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-				setRenderPassInfo((RenderPassInfo)null);
+			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
+				setAttachmentPkg((AttachmentPkg)null);
 				return;
 			case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
 				setFieldOfViewY(FIELD_OF_VIEW_Y_EDEFAULT);
+				return;
+			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:
+				getSubpasses().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -436,10 +477,12 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 				return maintainer != null;
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 				return configuration != null;
-			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-				return renderPassInfo != null;
+			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
+				return attachmentPkg != null;
 			case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
 				return fieldOfViewY != FIELD_OF_VIEW_Y_EDEFAULT;
+			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:
+				return subpasses != null && !subpasses.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

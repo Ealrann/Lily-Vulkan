@@ -62,7 +62,9 @@
   <genPackages prefix="Compute" basePackage="org.sheepy.lily.vulkan.model.process"
       resource="XMI" disposableProviderFactory="true" childCreationExtenders="true"
       ecorePackage="compute.ecore#/">
-    <genClasses ecoreClass="compute.ecore#//ComputeProcess"/>
+    <genClasses ecoreClass="compute.ecore#//ComputeProcess">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference compute.ecore#//ComputeProcess/pipelinePkg"/>
+    </genClasses>
     <genClasses ecoreClass="compute.ecore#//ComputePipeline">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compute.ecore#//ComputePipeline/shader"/>
     </genClasses>
@@ -105,28 +107,25 @@
     <genClasses ecoreClass="graphic.ecore#//DepthAttachment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//DepthAttachment/clear"/>
     </genClasses>
-    <genClasses ecoreClass="graphic.ecore#//RenderPassInfo">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//RenderPassInfo/extraAttachments"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//RenderPassInfo/colorAttachment"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//RenderPassInfo/subpasses"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//RenderPassInfo/dependencies"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//RenderPassInfo/bindPoint"/>
+    <genClasses ecoreClass="graphic.ecore#//AttachmentPkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentPkg/extraAttachments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentPkg/colorAttachment"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//Subpass">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/refs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/attachmantRefPkg"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/subpassIndex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/stages"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/accesses"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/pipelinePkg"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/bindPoint"/>
+    </genClasses>
+    <genClasses ecoreClass="graphic.ecore#//AttachmentRefPkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentRefPkg/attachmentRefs"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//AttachmentRef">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentRef/attachment"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//AttachmentRef/layout"/>
-    </genClasses>
-    <genClasses ecoreClass="graphic.ecore#//SubpassDependency">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//SubpassDependency/srcSubpass"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//SubpassDependency/dstSubpass"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//SubpassDependency/srcStageMask"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//SubpassDependency/dstStageMask"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//SubpassDependency/srcAccesses"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//SubpassDependency/dstAccesses"/>
     </genClasses>
     <genClasses image="false" ecoreClass="graphic.ecore#//Attachment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Attachment/samples"/>
@@ -141,9 +140,10 @@
     <genClasses image="false" ecoreClass="graphic.ecore#//ExtraAttachment"/>
     <genClasses ecoreClass="graphic.ecore#//GraphicProcess">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/configuration"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/renderPassInfo"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/attachmentPkg"/>
       <genFeatures createChild="false" propertyDescription="Field of View in degree ]0 ; 360["
           ecoreFeature="ecore:EAttribute graphic.ecore#//GraphicProcess/fieldOfViewY"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/subpasses"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//GraphicsPipeline">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicsPipeline/shaders"/>
@@ -152,7 +152,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicsPipeline/rasterizer"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicsPipeline/colorBlend"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicsPipeline/dynamicState"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//GraphicsPipeline/subpass"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicsPipeline/vertexInputState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//GraphicsPipeline/depthStencil"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicsPipeline/scenePart"/>
@@ -221,7 +220,6 @@
     <genClasses image="false" ecoreClass="process.ecore#//AbstractProcess">
       <genFeatures createChild="false" propertyDescription="If fenceEnabled, will wait during acquire. Useless for a render process that already wait for image acquiring"
           ecoreFeature="ecore:EAttribute process.ecore#//AbstractProcess/waitingFenceDuringAcquire"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//AbstractProcess/pipelinePkg"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//AbstractProcess/resetAllowed"/>
       <genFeatures notify="false" createChild="false" propertyCategory="Semaphores"
           propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//AbstractProcess/signals"/>

@@ -9,7 +9,10 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkRenderPassCreateInfo;
 import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
-import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.SubpassUtil;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 
@@ -26,22 +29,30 @@ public final class VkRenderPassAllocator
 		this.swapchainImageFormat = swapchainImageFormat;
 	}
 
-	public long allocate(MemoryStack stack, RenderPassInfo renderPassInfo)
+	public long allocate(MemoryStack stack, GraphicProcess process)
 	{
 		long renderPass;
 
 		final var format = swapchainImageFormat.getValue();
 		final var attachementAllocator = new VkAttachmentDescriptionAllocator(format);
-		final var descriptions = getAttachments(renderPassInfo);
+		final var descriptions = getAttachments(process.getAttachmentPkg());
 		final var attachments = attachementAllocator.allocate(stack, descriptions);
 
-		final var subpassAllocator = new VkSubpassDescriptionAllocator(	renderPassInfo,
-																		descriptions);
-		final var subpasses = subpassAllocator.allocate(stack);
+		final List<Subpass> renderSubpasses = new ArrayList<>();
+		for (final var subpass : process.getSubpasses())
+		{
+			if (SubpassUtil.isGraphic(subpass))
+			{
+				renderSubpasses.add(subpass);
+			}
+		}
+		renderSubpasses.sort((p1, p2) -> Integer.compare(	p1.getSubpassIndex(),
+															p2.getSubpassIndex()));
 
-		final var dependencyAllocator = new VkSubpassDependencyAllocator(renderPassInfo);
-		final var dependencyInfos = renderPassInfo.getDependencies();
-		final var dependencies = dependencyAllocator.allocate(stack, dependencyInfos);
+		final var subpassAllocator = new VkSubpassDescriptionAllocator(descriptions);
+
+		final var subpasses = subpassAllocator.allocate(stack, renderSubpasses);
+		final var dependencies = VkSubpassDependencyAllocator.allocate(stack, renderSubpasses);
 
 		final var createInfo = VkRenderPassCreateInfo.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO);
@@ -56,11 +67,11 @@ public final class VkRenderPassAllocator
 		return renderPass;
 	}
 
-	private static List<Attachment> getAttachments(RenderPassInfo renderPassInfo)
+	private static List<Attachment> getAttachments(AttachmentPkg attachmentPkg)
 	{
 		final List<Attachment> res = new ArrayList<>();
-		res.add(renderPassInfo.getColorAttachment());
-		res.addAll(renderPassInfo.getExtraAttachments());
+		res.add(attachmentPkg.getColorAttachment());
+		res.addAll(attachmentPkg.getExtraAttachments());
 		return res;
 	}
 }

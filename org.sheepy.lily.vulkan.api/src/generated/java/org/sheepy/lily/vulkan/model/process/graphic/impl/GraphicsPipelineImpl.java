@@ -72,7 +72,6 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getRasterizer <em>Rasterizer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getColorBlend <em>Color Blend</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getDynamicState <em>Dynamic State</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getSubpass <em>Subpass</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getVertexInputState <em>Vertex Input State</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#isDepthStencil <em>Depth Stencil</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getScenePart <em>Scene Part</em>}</li>
@@ -271,26 +270,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	 * @ordered
 	 */
 	protected DynamicState dynamicState;
-
-	/**
-	 * The default value of the '{@link #getSubpass() <em>Subpass</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSubpass()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int SUBPASS_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getSubpass() <em>Subpass</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSubpass()
-	 * @generated
-	 * @ordered
-	 */
-	protected int subpass = SUBPASS_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getVertexInputState() <em>Vertex Input State</em>}' containment reference.
@@ -1030,31 +1009,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	 * @generated
 	 */
 	@Override
-	public int getSubpass()
-	{
-		return subpass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setSubpass(int newSubpass)
-	{
-		int oldSubpass = subpass;
-		subpass = newSubpass;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__SUBPASS, oldSubpass, subpass));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public VertexInputState getVertexInputState()
 	{
 		return vertexInputState;
@@ -1270,8 +1224,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				return getColorBlend();
 			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
 				return getDynamicState();
-			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
-				return getSubpass();
 			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
 				return getVertexInputState();
 			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
@@ -1344,9 +1296,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
 				setDynamicState((DynamicState)newValue);
 				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
-				setSubpass((Integer)newValue);
-				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
 				setVertexInputState((VertexInputState)newValue);
 				return;
@@ -1418,9 +1367,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
 				setDynamicState((DynamicState)null);
 				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
-				setSubpass(SUBPASS_EDEFAULT);
-				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
 				setVertexInputState((VertexInputState)null);
 				return;
@@ -1476,8 +1422,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 				return colorBlend != null;
 			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
 				return dynamicState != null;
-			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
-				return subpass != SUBPASS_EDEFAULT;
 			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
 				return vertexInputState != null;
 			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
@@ -1561,8 +1505,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 		result.append(enabled);
 		result.append(", stage: ");
 		result.append(stage);
-		result.append(", subpass: ");
-		result.append(subpass);
 		result.append(", depthStencil: ");
 		result.append(depthStencil);
 		result.append(')');

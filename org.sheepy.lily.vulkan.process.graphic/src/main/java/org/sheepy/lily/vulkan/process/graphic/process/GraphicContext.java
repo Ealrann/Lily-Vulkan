@@ -43,7 +43,7 @@ final class GraphicContext extends ProcessContext<IGraphicContext> implements IG
 
 		this.graphicProcess = graphicProcess;
 		this.configuration = graphicProcess.getConfiguration();
-		this.renderPass = new RenderPass(graphicProcess.getRenderPassInfo());
+		this.renderPass = new RenderPass(graphicProcess);
 
 		allocationList.add(surfaceManager);
 		allocationList.add(swapChainManager);

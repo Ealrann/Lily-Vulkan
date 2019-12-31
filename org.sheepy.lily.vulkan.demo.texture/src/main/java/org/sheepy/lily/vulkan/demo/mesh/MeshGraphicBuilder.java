@@ -3,16 +3,15 @@ package org.sheepy.lily.vulkan.demo.mesh;
 import java.util.List;
 
 import org.sheepy.lily.core.model.application.ApplicationFactory;
-import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider.SubpassData;
 import org.sheepy.lily.vulkan.demo.adapter.CameraConstantAdapter;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
-import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Shader;
@@ -42,7 +41,7 @@ public final class MeshGraphicBuilder
 		this.meshConfiguration = meshConfiguration;
 	}
 
-	public SubpassData build(SwapImageAttachment colorAttachmentDescriptor)
+	public Subpass build(AttachmentPkg attachmentPkg)
 	{
 		final var pipelines = buildPipelines();
 
@@ -59,14 +58,31 @@ public final class MeshGraphicBuilder
 			extraAttachments = List.of();
 		}
 
-		final var subpass = buildSubpass(colorAttachmentDescriptor, depthAttachment);
+		attachmentPkg.getExtraAttachments().addAll(extraAttachments);
+		final var pipelinePkg = ProcessFactory.eINSTANCE.createPipelinePkg();
+		pipelinePkg.getPipelines().addAll(pipelines);
+		final var attachmentRefPkg = GraphicFactory.eINSTANCE.createAttachmentRefPkg();
 
-		return new SubpassData(	pipelines,
-								subpass,
-								EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT,
-								List.of(EAccess.COLOR_ATTACHMENT_WRITE_BIT,
-										EAccess.COLOR_ATTACHMENT_READ_BIT),
-								extraAttachments);
+		final var colorRef = GraphicFactory.eINSTANCE.createAttachmentRef();
+		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
+		colorRef.setAttachment(attachmentPkg.getColorAttachment());
+		attachmentRefPkg.getAttachmentRefs().add(colorRef);
+
+		if (depthAttachment != null)
+		{
+			final var depthRef = GraphicFactory.eINSTANCE.createAttachmentRef();
+			depthRef.setLayout(EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
+			depthRef.setAttachment(depthAttachment);
+			attachmentRefPkg.getAttachmentRefs().add(depthRef);
+		}
+
+		final var res = GraphicFactory.eINSTANCE.createSubpass();
+		res.getStages().add(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
+		res.getAccesses().add(EAccess.COLOR_ATTACHMENT_WRITE_BIT);
+		res.getAccesses().add(EAccess.COLOR_ATTACHMENT_READ_BIT);
+		res.setAttachmantRefPkg(attachmentRefPkg);
+		res.setPipelinePkg(pipelinePkg);
+		return res;
 	}
 
 	private static ExtraAttachment buildDepthAttachmentDescriptor()
@@ -262,26 +278,5 @@ public final class MeshGraphicBuilder
 		}
 
 		return List.of(graphicPipeline);
-	}
-
-	private static Subpass buildSubpass(SwapImageAttachment colorAttachment,
-										ExtraAttachment depthAttachment)
-	{
-		final var subpass = GraphicFactory.eINSTANCE.createSubpass();
-
-		final var colorRef = GraphicFactory.eINSTANCE.createAttachmentRef();
-		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
-		colorRef.setAttachment(colorAttachment);
-		subpass.getRefs().add(colorRef);
-
-		if (depthAttachment != null)
-		{
-			final var depthRef = GraphicFactory.eINSTANCE.createAttachmentRef();
-			depthRef.setLayout(EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
-			depthRef.setAttachment(depthAttachment);
-			subpass.getRefs().add(depthRef);
-		}
-
-		return subpass;
 	}
 }

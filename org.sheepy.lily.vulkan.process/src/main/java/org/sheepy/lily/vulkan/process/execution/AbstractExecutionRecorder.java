@@ -10,7 +10,6 @@ import org.sheepy.lily.vulkan.api.execution.ISubmission;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.vulkan.concurrent.IFenceView;
 import org.sheepy.vulkan.execution.ICommandBuffer;
-import org.sheepy.vulkan.execution.IRecordable;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext.IExecutionIdleListener;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -25,6 +24,7 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 	protected final int index;
 
 	private boolean dirty = true;
+	private T context;
 
 	public AbstractExecutionRecorder(	ICommandBuffer<? super T> commandBuffer,
 										ISubmission<? super T> submission,
@@ -45,14 +45,18 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 
 	@Override
 	public void allocate(T context)
-	{}
+	{
+		this.context = context;
+	}
 
 	@Override
 	public void free(T context)
-	{}
+	{
+		this.context = null;
+	}
 
 	@Override
-	public final void record(List<? extends IRecordable> recordables, List<ECommandStage> stages)
+	public final void record(List<ECommandStage> stages)
 	{
 		waitIdle();
 
@@ -61,10 +65,10 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 		for (int i = 0; i < stages.size(); i++)
 		{
 			final var stage = stages.get(i);
-			commandBuffer.start(stage);
 			final var context = new RecordContext(vkCommandBuffer, stage, index);
-			context.clearListeners();
-			recordCommand(recordables, context, stage);
+
+			commandBuffer.start(stage);
+			recordCommand(this.context, context);
 			commandBuffer.end(stage);
 			listeners.addAll(context.getExecutionIdleListeners());
 		}
@@ -121,8 +125,6 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 		this.dirty = dirty;
 	}
 
-	protected abstract void recordCommand(	List<? extends IRecordable> adapters,
-											RecordContext context,
-											ECommandStage stage);
+	protected abstract void recordCommand(T processContext, RecordContext recordContext);
 
 }

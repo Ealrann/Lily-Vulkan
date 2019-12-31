@@ -11,6 +11,7 @@ import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.process.IComputeContext;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -20,22 +21,22 @@ import org.sheepy.vulkan.queue.EQueueType;
 @Adapter(scope = ComputeProcess.class)
 public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContext>
 {
-	private static final List<EStructuralFeature> PIPELINE__FEATURES = List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PIPELINE_PKG,
+	private static final List<EStructuralFeature> PIPELINE__FEATURES = List.of(	ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
 																				ProcessPackage.Literals.PIPELINE_PKG__PIPELINES);
 	private static final List<EStructuralFeature> RESOURCE_FEATURES = List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 																				ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
-	private static final List<EStructuralFeature> PIPELINE_RESOURCE_FEATURES = List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PIPELINE_PKG,
+	private static final List<EStructuralFeature> PIPELINE_RESOURCE_FEATURES = List.of(	ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
 																						ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 																						VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 																						ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EStructuralFeature> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 																				VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
-	private static final List<EStructuralFeature> PIPELINE_DESCRIPTOR_FEATURES = List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PIPELINE_PKG,
+	private static final List<EStructuralFeature> PIPELINE_DESCRIPTOR_FEATURES = List.of(	ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
 																							ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 																							VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 																							VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
 
-	private final ModelExplorer PARTS_EXPLORER = new ModelExplorer(List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PIPELINE_PKG,
+	private final ModelExplorer PARTS_EXPLORER = new ModelExplorer(List.of(	ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
 																			ProcessPackage.Literals.PIPELINE_PKG__PIPELINES));
 
 	private static final List<ECommandStage> stages = List.of(	ECommandStage.TRANSFER,

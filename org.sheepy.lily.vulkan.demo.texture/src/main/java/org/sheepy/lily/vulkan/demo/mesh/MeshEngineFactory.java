@@ -42,9 +42,9 @@ public final class MeshEngineFactory
 		colorAttachmentDescriptor.setInitialLayout(EImageLayout.UNDEFINED);
 		colorAttachmentDescriptor.setFinalLayout(EImageLayout.PRESENT_SRC_KHR);
 
-		final var renderPass = GraphicFactory.eINSTANCE.createRenderPassInfo();
-		graphicProcess.setRenderPassInfo(renderPass);
-		renderPass.setColorAttachment(colorAttachmentDescriptor);
+		final var attachmentPkg = GraphicFactory.eINSTANCE.createAttachmentPkg();
+		graphicProcess.setAttachmentPkg(attachmentPkg);
+		attachmentPkg.setColorAttachment(colorAttachmentDescriptor);
 
 		engine.getProcesses().add(graphicProcess);
 

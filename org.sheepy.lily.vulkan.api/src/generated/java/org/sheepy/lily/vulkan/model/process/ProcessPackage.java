@@ -136,22 +136,13 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE = VulkanPackage.IPROCESS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS__PIPELINE_PKG = VulkanPackage.IPROCESS_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__RESET_ALLOWED = VulkanPackage.IPROCESS_FEATURE_COUNT + 2;
+	int ABSTRACT_PROCESS__RESET_ALLOWED = VulkanPackage.IPROCESS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Signals</b></em>' reference list.
@@ -160,7 +151,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__SIGNALS = VulkanPackage.IPROCESS_FEATURE_COUNT + 3;
+	int ABSTRACT_PROCESS__SIGNALS = VulkanPackage.IPROCESS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Wait For</b></em>' reference list.
@@ -169,7 +160,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__WAIT_FOR = VulkanPackage.IPROCESS_FEATURE_COUNT + 4;
+	int ABSTRACT_PROCESS__WAIT_FOR = VulkanPackage.IPROCESS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Extension Pkg</b></em>' containment reference.
@@ -178,7 +169,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__EXTENSION_PKG = VulkanPackage.IPROCESS_FEATURE_COUNT + 5;
+	int ABSTRACT_PROCESS__EXTENSION_PKG = VulkanPackage.IPROCESS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Process</em>' class.
@@ -187,7 +178,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 6;
+	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Abstract Process</em>' class.
@@ -1299,17 +1290,6 @@ public interface ProcessPackage extends EPackage
 	EAttribute getAbstractProcess_WaitingFenceDuringAcquire();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPipelinePkg <em>Pipeline Pkg</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Pipeline Pkg</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getPipelinePkg()
-	 * @see #getAbstractProcess()
-	 * @generated
-	 */
-	EReference getAbstractProcess_PipelinePkg();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isResetAllowed <em>Reset Allowed</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1960,14 +1940,6 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE = eINSTANCE.getAbstractProcess_WaitingFenceDuringAcquire();
-
-		/**
-		 * The meta object literal for the '<em><b>Pipeline Pkg</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_PROCESS__PIPELINE_PKG = eINSTANCE.getAbstractProcess_PipelinePkg();
 
 		/**
 		 * The meta object literal for the '<em><b>Reset Allowed</b></em>' attribute feature.

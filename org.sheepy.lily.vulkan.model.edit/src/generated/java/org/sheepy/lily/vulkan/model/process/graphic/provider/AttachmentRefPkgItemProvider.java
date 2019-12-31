@@ -1,30 +1,46 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.process.compute.provider;
+package org.sheepy.lily.vulkan.model.process.graphic.provider;
+
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
-import org.sheepy.lily.vulkan.model.process.ProcessFactory;
-import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
-import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 
-import org.sheepy.lily.vulkan.model.process.provider.AbstractProcessItemProvider;
+import org.eclipse.emf.common.util.ResourceLocator;
+
+import org.eclipse.emf.ecore.EStructuralFeature;
+
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComputeProcessItemProvider extends AbstractProcessItemProvider
+public class AttachmentRefPkgItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -32,7 +48,7 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComputeProcessItemProvider(AdapterFactory adapterFactory)
+	public AttachmentRefPkgItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -68,7 +84,7 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG);
+			childrenFeatures.add(GraphicPackage.Literals.ATTACHMENT_REF_PKG__ATTACHMENT_REFS);
 		}
 		return childrenFeatures;
 	}
@@ -88,7 +104,7 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	}
 
 	/**
-	 * This returns ComputeProcess.gif.
+	 * This returns AttachmentRefPkg.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -96,7 +112,7 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ComputeProcess"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttachmentRefPkg"));
 	}
 
 	/**
@@ -108,11 +124,9 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((ComputeProcess)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ComputeProcess_type") :
-			getString("_UI_ComputeProcess_type") + " " + label;
+		return getString("_UI_AttachmentRefPkg_type");
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -126,9 +140,9 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ComputeProcess.class))
+		switch (notification.getFeatureID(AttachmentRefPkg.class))
 		{
-			case ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG:
+			case GraphicPackage.ATTACHMENT_REF_PKG__ATTACHMENT_REFS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -149,8 +163,8 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
-				 ProcessFactory.eINSTANCE.createPipelinePkg()));
+				(GraphicPackage.Literals.ATTACHMENT_REF_PKG__ATTACHMENT_REFS,
+				 GraphicFactory.eINSTANCE.createAttachmentRef()));
 	}
 
 	/**
@@ -162,7 +176,7 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return LilyVulkanEditPlugin.INSTANCE;
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

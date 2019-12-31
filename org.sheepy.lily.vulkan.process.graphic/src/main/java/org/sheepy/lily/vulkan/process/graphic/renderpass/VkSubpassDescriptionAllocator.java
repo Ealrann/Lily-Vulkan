@@ -5,35 +5,65 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkAttachmentReference;
 import org.lwjgl.vulkan.VkSubpassDescription;
+import org.lwjgl.vulkan.VkSubpassDescription.Buffer;
 import org.sheepy.lily.vulkan.api.resource.attachment.IExtraAttachmentAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
-import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 public class VkSubpassDescriptionAllocator
 {
-	private final RenderPassInfo renderPass;
 	private final List<Attachment> attachments;
 
-	public VkSubpassDescriptionAllocator(RenderPassInfo renderPass, List<Attachment> attachments)
+	public VkSubpassDescriptionAllocator(List<Attachment> attachments)
 	{
-		this.renderPass = renderPass;
 		this.attachments = List.copyOf(attachments);
 	}
 
-	public VkSubpassDescription.Buffer allocate(MemoryStack stack)
+	public VkSubpassDescription.Buffer allocate(MemoryStack stack, List<Subpass> subpasses)
 	{
 		final int colorAttachmentCount = countColorAttachments();
-		final var subpassDescriptions = renderPass.getSubpasses();
-		final var subpasses = VkSubpassDescription.callocStack(subpassDescriptions.size(), stack);
+		final int size = Math.max(1, subpasses.size());
+		final var vkSubpasses = VkSubpassDescription.callocStack(size, stack);
 
-		for (final var subpassDescription : subpassDescriptions)
+		if (subpasses.isEmpty() == false)
 		{
-			subpasses.pipelineBindPoint(renderPass.getBindPoint());
-			subpasses.colorAttachmentCount(colorAttachmentCount);
+			fill(stack, subpasses, colorAttachmentCount, vkSubpasses);
+		}
+		else
+		{
+			final var colorAttachmentRef = VkAttachmentReference.callocStack(1, stack);
+			colorAttachmentRef.attachment(0);
+			colorAttachmentRef.layout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL_VALUE);
+			colorAttachmentRef.get();
+			colorAttachmentRef.flip();
 
-			final var refs = subpassDescription.getRefs();
+			vkSubpasses.pipelineBindPoint(0);
+			vkSubpasses.colorAttachmentCount(1);
+			vkSubpasses.pColorAttachments(colorAttachmentRef);
+			vkSubpasses.get();
+			vkSubpasses.flip();
+		}
+
+		return vkSubpasses;
+	}
+
+	private void fill(	MemoryStack stack,
+						List<Subpass> subpasses,
+						final int colorAttachmentCount,
+						final Buffer vkSubpasses)
+	{
+		for (final var subpass : subpasses)
+		{
+			vkSubpasses.pipelineBindPoint(subpass.getBindPoint());
+			vkSubpasses.colorAttachmentCount(colorAttachmentCount);
+
+			final var attachmantRefPkg = subpass.getAttachmantRefPkg();
+			final var refs = attachmantRefPkg != null
+					? attachmantRefPkg.getAttachmentRefs()
+					: List.<AttachmentRef> of();
 			final var colorAttachmentRef = VkAttachmentReference.callocStack(	colorAttachmentCount,
 																				stack);
 			for (final AttachmentRef ref : refs)
@@ -52,7 +82,7 @@ public class VkSubpassDescriptionAllocator
 				if (isDepth)
 				{
 					vkAttachmentRef = VkAttachmentReference.callocStack(stack);
-					subpasses.pDepthStencilAttachment(vkAttachmentRef);
+					vkSubpasses.pDepthStencilAttachment(vkAttachmentRef);
 				}
 				else
 				{
@@ -63,13 +93,11 @@ public class VkSubpassDescriptionAllocator
 			}
 			colorAttachmentRef.flip();
 
-			subpasses.pColorAttachments(colorAttachmentRef);
+			vkSubpasses.pColorAttachments(colorAttachmentRef);
 
-			subpasses.get();
+			vkSubpasses.get();
 		}
-		subpasses.flip();
-
-		return subpasses;
+		vkSubpasses.flip();
 	}
 
 	private int countColorAttachments()

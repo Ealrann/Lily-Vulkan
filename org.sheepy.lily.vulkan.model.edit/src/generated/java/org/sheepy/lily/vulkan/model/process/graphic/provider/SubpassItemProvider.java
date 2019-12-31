@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
@@ -61,6 +62,10 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addSubpassIndexPropertyDescriptor(object);
+			addStagesPropertyDescriptor(object);
+			addAccessesPropertyDescriptor(object);
+			addBindPointPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -89,6 +94,98 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 	}
 
 	/**
+	 * This adds a property descriptor for the Subpass Index feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSubpassIndexPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Subpass_subpassIndex_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_subpassIndex_feature", "_UI_Subpass_type"),
+				 GraphicPackage.Literals.SUBPASS__SUBPASS_INDEX,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Stages feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStagesPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Subpass_stages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_stages_feature", "_UI_Subpass_type"),
+				 GraphicPackage.Literals.SUBPASS__STAGES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Accesses feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAccessesPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Subpass_accesses_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_accesses_feature", "_UI_Subpass_type"),
+				 GraphicPackage.Literals.SUBPASS__ACCESSES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Bind Point feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addBindPointPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Subpass_bindPoint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_bindPoint_feature", "_UI_Subpass_type"),
+				 GraphicPackage.Literals.SUBPASS__BIND_POINT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -102,7 +199,8 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__REFS);
+			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__ATTACHMANT_REF_PKG);
+			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__PIPELINE_PKG);
 		}
 		return childrenFeatures;
 	}
@@ -163,9 +261,14 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 		switch (notification.getFeatureID(Subpass.class))
 		{
 			case GraphicPackage.SUBPASS__NAME:
+			case GraphicPackage.SUBPASS__SUBPASS_INDEX:
+			case GraphicPackage.SUBPASS__STAGES:
+			case GraphicPackage.SUBPASS__ACCESSES:
+			case GraphicPackage.SUBPASS__BIND_POINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case GraphicPackage.SUBPASS__REFS:
+			case GraphicPackage.SUBPASS__ATTACHMANT_REF_PKG:
+			case GraphicPackage.SUBPASS__PIPELINE_PKG:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -186,8 +289,13 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GraphicPackage.Literals.SUBPASS__REFS,
-				 GraphicFactory.eINSTANCE.createAttachmentRef()));
+				(GraphicPackage.Literals.SUBPASS__ATTACHMANT_REF_PKG,
+				 GraphicFactory.eINSTANCE.createAttachmentRefPkg()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
+				 ProcessFactory.eINSTANCE.createPipelinePkg()));
 	}
 
 	/**

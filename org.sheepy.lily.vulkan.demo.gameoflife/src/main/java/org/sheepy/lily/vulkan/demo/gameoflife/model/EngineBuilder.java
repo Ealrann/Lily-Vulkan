@@ -19,9 +19,9 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
@@ -88,9 +88,8 @@ public final class EngineBuilder
 		createComputeProcessPool(sharedResources, sharedDescriptors);
 
 		graphicProcess = GraphicFactory.eINSTANCE.createGraphicProcess();
-		graphicProcess.setPipelinePkg(ProcessFactory.eINSTANCE.createPipelinePkg());
 		graphicProcess.setConfiguration(configuration);
-		graphicProcess.setRenderPassInfo(newInfo());
+		graphicProcess.setAttachmentPkg(newAttachmentPkg());
 		graphicProcess.setCadence(buildCadence(FRAME_COUNT));
 
 		engine.getProcesses().add(barrierProcess);
@@ -103,9 +102,9 @@ public final class EngineBuilder
 		return engine;
 	}
 
-	private static RenderPassInfo newInfo()
+	private static AttachmentPkg newAttachmentPkg()
 	{
-		final var renderPass = GraphicFactory.eINSTANCE.createRenderPassInfo();
+		final var attachments = GraphicFactory.eINSTANCE.createAttachmentPkg();
 
 		final var colorAttachment = GraphicFactory.eINSTANCE.createSwapImageAttachment();
 		colorAttachment.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
@@ -116,9 +115,9 @@ public final class EngineBuilder
 		colorAttachment.setInitialLayout(EImageLayout.TRANSFER_DST_OPTIMAL);
 		colorAttachment.setFinalLayout(EImageLayout.PRESENT_SRC_KHR);
 
-		renderPass.setColorAttachment(colorAttachment);
+		attachments.setColorAttachment(colorAttachment);
 
-		return renderPass;
+		return attachments;
 	}
 
 	private void createComputeProcessPool(	ResourcePkg sharedResources,

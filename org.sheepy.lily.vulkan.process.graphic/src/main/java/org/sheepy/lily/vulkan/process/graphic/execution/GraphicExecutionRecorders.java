@@ -43,13 +43,14 @@ public final class GraphicExecutionRecorders extends ExecutionRecorders<IGraphic
 
 		for (int i = 0; i < executionCount; i++)
 		{
-			res.add(createRecorder(waitForEmitters, signals, i));
+			res.add(createRecorder(process, waitForEmitters, signals, i));
 		}
 
 		return res;
 	}
 
-	private static GraphicExecutionRecorder createRecorder(	List<WaitData> waitForEmitters,
+	private static GraphicExecutionRecorder createRecorder(	GraphicProcess process,
+															List<WaitData> waitForEmitters,
 															List<VkSemaphore> signals,
 															int index)
 	{
@@ -66,7 +67,8 @@ public final class GraphicExecutionRecorders extends ExecutionRecorders<IGraphic
 																true);
 		final var presentSubmission = new PresentSubmission(index, presentSemaphore);
 
-		return new GraphicExecutionRecorder(commandBuffer,
+		return new GraphicExecutionRecorder(process,
+											commandBuffer,
 											submission,
 											presentSubmission,
 											presentSemaphore,

@@ -71,7 +71,6 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 			addStagePropertyDescriptor(object);
 			addSpecializationDataPropertyDescriptor(object);
 			addShadersPropertyDescriptor(object);
-			addSubpassPropertyDescriptor(object);
 			addDepthStencilPropertyDescriptor(object);
 			addScenePartPropertyDescriptor(object);
 		}
@@ -189,29 +188,6 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 				 false,
 				 true,
 				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Subpass feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSubpassPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphicsPipeline_subpass_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicsPipeline_subpass_feature", "_UI_GraphicsPipeline_type"),
-				 GraphicPackage.Literals.GRAPHICS_PIPELINE__SUBPASS,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -350,7 +326,6 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 			case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
 			case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
 			case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
-			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
 			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

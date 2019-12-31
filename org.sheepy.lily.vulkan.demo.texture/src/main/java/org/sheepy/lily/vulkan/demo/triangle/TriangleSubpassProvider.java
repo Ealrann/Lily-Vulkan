@@ -6,13 +6,14 @@ import org.sheepy.lily.core.model.application.Scene;
 import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
 import org.sheepy.lily.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.lily.vulkan.demo.mesh.MeshGraphicBuilder;
-import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 
 @Adapter(scope = GenericScenePart.class, name = MainTriangle.NAME)
 public class TriangleSubpassProvider implements IScenePart_SubpassProvider<GenericScenePart>
 {
 	@Override
-	public SubpassData build(GenericScenePart part, SwapImageAttachment colorAttachment)
+	public Subpass build(GenericScenePart part, AttachmentPkg attachmentPkg)
 	{
 		final var scene = (Scene) part.eContainer();
 		final var size = scene.getSize();
@@ -20,6 +21,6 @@ public class TriangleSubpassProvider implements IScenePart_SubpassProvider<Gener
 		final var meshConfiguration = new MeshConfiguration(meshBuilder, size);
 
 		final var builder = new MeshGraphicBuilder(meshConfiguration);
-		return builder.build(colorAttachment);
+		return builder.build(attachmentPkg);
 	}
 }

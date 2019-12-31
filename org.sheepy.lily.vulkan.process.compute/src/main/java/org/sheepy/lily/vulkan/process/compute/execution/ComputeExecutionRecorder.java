@@ -1,13 +1,11 @@
 package org.sheepy.lily.vulkan.process.compute.execution;
 
-import java.util.List;
-
+import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.process.IComputeContext;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.execution.AbstractExecutionRecorder;
 import org.sheepy.lily.vulkan.process.execution.Submission;
-import org.sheepy.vulkan.execution.IRecordable;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 public class ComputeExecutionRecorder extends AbstractExecutionRecorder<IComputeContext>
 {
@@ -19,14 +17,22 @@ public class ComputeExecutionRecorder extends AbstractExecutionRecorder<ICompute
 	}
 
 	@Override
-	protected void recordCommand(	List<? extends IRecordable> recordables,
-									RecordContext context,
-									ECommandStage stage)
+	protected void recordCommand(IComputeContext context, RecordContext recordContext)
 	{
-		for (int i = 0; i < recordables.size(); i++)
+		record((ComputeProcess) context.getProcess(), recordContext);
+	}
+
+	private static void record(ComputeProcess process, RecordContext recordContext)
+	{
+		final var pipelinePkg = process.getPipelinePkg();
+		if (pipelinePkg != null)
 		{
-			final var pipelineAdapter = recordables.get(i);
-			pipelineAdapter.record(context, stage);
+			for (final var pipeline : pipelinePkg.getPipelines())
+			{
+				final var adapter = pipeline.adapt(IPipelineAdapter.class);
+				adapter.record(recordContext);
+			}
 		}
 	}
+
 }

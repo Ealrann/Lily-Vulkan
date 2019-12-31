@@ -94,7 +94,8 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_PROCESS__CONFIGURATION);
-			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_PROCESS__RENDER_PASS_INFO);
+			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_PROCESS__ATTACHMENT_PKG);
+			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES);
 		}
 		return childrenFeatures;
 	}
@@ -158,7 +159,8 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
-			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
+			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
+			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -184,8 +186,13 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GraphicPackage.Literals.GRAPHIC_PROCESS__RENDER_PASS_INFO,
-				 GraphicFactory.eINSTANCE.createRenderPassInfo()));
+				(GraphicPackage.Literals.GRAPHIC_PROCESS__ATTACHMENT_PKG,
+				 GraphicFactory.eINSTANCE.createAttachmentPkg()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+				 GraphicFactory.eINSTANCE.createSubpass()));
 	}
 
 }

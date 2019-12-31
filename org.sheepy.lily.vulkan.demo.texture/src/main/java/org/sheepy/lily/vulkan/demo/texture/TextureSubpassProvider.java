@@ -6,7 +6,8 @@ import org.sheepy.lily.core.model.application.Scene;
 import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
 import org.sheepy.lily.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.lily.vulkan.demo.mesh.MeshGraphicBuilder;
-import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
 
 @Adapter(scope = GenericScenePart.class, name = MainTexture.NAME)
@@ -17,7 +18,7 @@ public class TextureSubpassProvider implements IScenePart_SubpassProvider<Generi
 	private static final String FRAGMENT_SHADER_PATH = "texture.frag.spv";
 
 	@Override
-	public SubpassData build(GenericScenePart part, SwapImageAttachment colorAttachment)
+	public Subpass build(GenericScenePart part, AttachmentPkg attachmentPkg)
 	{
 		final var scene = (Scene) part.eContainer();
 		final var size = scene.getSize();
@@ -32,6 +33,6 @@ public class TextureSubpassProvider implements IScenePart_SubpassProvider<Generi
 		meshConfiguration.texturePath = IMAGE_PATH;
 
 		final var builder = new MeshGraphicBuilder(meshConfiguration);
-		return builder.build(colorAttachment);
+		return builder.build(attachmentPkg);
 	}
 }

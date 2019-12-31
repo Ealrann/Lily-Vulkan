@@ -24,7 +24,6 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
@@ -44,7 +43,6 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getQueuePriority <em>Queue Priority</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getCadence <em>Cadence</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getSignals <em>Signals</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getWaitFor <em>Wait For</em>}</li>
@@ -164,16 +162,6 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @ordered
 	 */
 	protected boolean waitingFenceDuringAcquire = WAITING_FENCE_DURING_ACQUIRE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getPipelinePkg() <em>Pipeline Pkg</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPipelinePkg()
-	 * @generated
-	 * @ordered
-	 */
-	protected PipelinePkg pipelinePkg;
 
 	/**
 	 * The default value of the '{@link #isResetAllowed() <em>Reset Allowed</em>}' attribute.
@@ -452,56 +440,6 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 */
 	@Override
-	public PipelinePkg getPipelinePkg()
-	{
-		return pipelinePkg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetPipelinePkg(PipelinePkg newPipelinePkg, NotificationChain msgs)
-	{
-		PipelinePkg oldPipelinePkg = pipelinePkg;
-		pipelinePkg = newPipelinePkg;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG, oldPipelinePkg, newPipelinePkg);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setPipelinePkg(PipelinePkg newPipelinePkg)
-	{
-		if (newPipelinePkg != pipelinePkg)
-		{
-			NotificationChain msgs = null;
-			if (pipelinePkg != null)
-				msgs = ((InternalEObject)pipelinePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG, null, msgs);
-			if (newPipelinePkg != null)
-				msgs = ((InternalEObject)newPipelinePkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG, null, msgs);
-			msgs = basicSetPipelinePkg(newPipelinePkg, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG, newPipelinePkg, newPipelinePkg));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean isResetAllowed()
 	{
 		return resetAllowed;
@@ -667,8 +605,6 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return basicSetDescriptorPkg(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
 				return basicSetCadence(null, msgs);
-			case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
-				return basicSetPipelinePkg(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
 				return basicSetExtensionPkg(null, msgs);
 		}
@@ -699,8 +635,6 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return getCadence();
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				return isWaitingFenceDuringAcquire();
-			case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
-				return getPipelinePkg();
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				return isResetAllowed();
 			case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:
@@ -744,9 +678,6 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				setWaitingFenceDuringAcquire((Boolean)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
-				setPipelinePkg((PipelinePkg)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				setResetAllowed((Boolean)newValue);
@@ -797,9 +728,6 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				setWaitingFenceDuringAcquire(WAITING_FENCE_DURING_ACQUIRE_EDEFAULT);
 				return;
-			case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
-				setPipelinePkg((PipelinePkg)null);
-				return;
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				setResetAllowed(RESET_ALLOWED_EDEFAULT);
 				return;
@@ -840,8 +768,6 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return cadence != null;
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				return waitingFenceDuringAcquire != WAITING_FENCE_DURING_ACQUIRE_EDEFAULT;
-			case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
-				return pipelinePkg != null;
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				return resetAllowed != RESET_ALLOWED_EDEFAULT;
 			case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:

@@ -10,7 +10,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 public interface IRecordable
 {
-	void record(RecordContext context, ECommandStage stage);
+	void record(RecordContext context);
 
 	boolean shouldRecord(ECommandStage stage);
 	boolean isActive();

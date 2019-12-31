@@ -70,10 +70,10 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			case GraphicPackage.FRAMEBUFFER_CONFIGURATION: return createFramebufferConfiguration();
 			case GraphicPackage.IMAGE_ATTACHMENT: return createImageAttachment();
 			case GraphicPackage.DEPTH_ATTACHMENT: return createDepthAttachment();
-			case GraphicPackage.RENDER_PASS_INFO: return createRenderPassInfo();
+			case GraphicPackage.ATTACHMENT_PKG: return createAttachmentPkg();
 			case GraphicPackage.SUBPASS: return createSubpass();
+			case GraphicPackage.ATTACHMENT_REF_PKG: return createAttachmentRefPkg();
 			case GraphicPackage.ATTACHMENT_REF: return createAttachmentRef();
-			case GraphicPackage.SUBPASS_DEPENDENCY: return createSubpassDependency();
 			case GraphicPackage.SWAP_IMAGE_ATTACHMENT: return createSwapImageAttachment();
 			case GraphicPackage.GRAPHIC_PROCESS: return createGraphicProcess();
 			case GraphicPackage.GRAPHICS_PIPELINE: return createGraphicsPipeline();
@@ -172,10 +172,10 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	 * @generated
 	 */
 	@Override
-	public RenderPassInfo createRenderPassInfo()
+	public AttachmentPkg createAttachmentPkg()
 	{
-		RenderPassInfoImpl renderPassInfo = new RenderPassInfoImpl();
-		return renderPassInfo;
+		AttachmentPkgImpl attachmentPkg = new AttachmentPkgImpl();
+		return attachmentPkg;
 	}
 
 	/**
@@ -196,10 +196,10 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	 * @generated
 	 */
 	@Override
-	public AttachmentRef createAttachmentRef()
+	public AttachmentRefPkg createAttachmentRefPkg()
 	{
-		AttachmentRefImpl attachmentRef = new AttachmentRefImpl();
-		return attachmentRef;
+		AttachmentRefPkgImpl attachmentRefPkg = new AttachmentRefPkgImpl();
+		return attachmentRefPkg;
 	}
 
 	/**
@@ -208,10 +208,10 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	 * @generated
 	 */
 	@Override
-	public SubpassDependency createSubpassDependency()
+	public AttachmentRef createAttachmentRef()
 	{
-		SubpassDependencyImpl subpassDependency = new SubpassDependencyImpl();
-		return subpassDependency;
+		AttachmentRefImpl attachmentRef = new AttachmentRefImpl();
+		return attachmentRef;
 	}
 
 	/**

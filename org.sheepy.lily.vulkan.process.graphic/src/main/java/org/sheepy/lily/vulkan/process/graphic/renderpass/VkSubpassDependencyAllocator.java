@@ -2,57 +2,48 @@ package org.sheepy.lily.vulkan.process.graphic.renderpass;
 
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkSubpassDependency;
-import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
-import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.util.VkModelUtil;
 
-public class VkSubpassDependencyAllocator
+public final class VkSubpassDependencyAllocator
 {
-	private final RenderPassInfo renderPass;
-
-	public VkSubpassDependencyAllocator(RenderPassInfo renderPass)
+	public static VkSubpassDependency.Buffer allocate(	MemoryStack stack,
+														final List<Subpass> subpasses)
 	{
-		this.renderPass = renderPass;
-	}
-
-	public VkSubpassDependency.Buffer allocate(	MemoryStack stack,
-												final List<SubpassDependency> dependencyInfos)
-	{
-		final var dependencies = VkSubpassDependency.callocStack(dependencyInfos.size(), stack);
-		for (final SubpassDependency dependencyInfo : dependencyInfos)
+		final int size = Math.max(1, subpasses.size());
+		final var dependencies = VkSubpassDependency.callocStack(size, stack);
+		if (subpasses.isEmpty() == false)
 		{
-			fillDependency(dependencies.get(), dependencyInfo);
+			Subpass previousSubpass = null;
+			for (int i = 0; i < size; i++)
+			{
+				final var subpass = subpasses.get(i);
+				fillDependency(dependencies.get(), previousSubpass, subpass);
+				previousSubpass = subpass;
+			}
+		}
+		else
+		{
+			fillEmptyDependency(dependencies.get());
 		}
 		dependencies.flip();
 		return dependencies;
 	}
 
-	private void fillDependency(final VkSubpassDependency dependency,
-								final SubpassDependency dependencyInfo)
+	private static void fillDependency(	final VkSubpassDependency dependency,
+										final Subpass src,
+										final Subpass dst)
 	{
-		final int srcAccessMask = buildAccessMask(dependencyInfo.getSrcAccesses());
-		final int dstAccessMask = buildAccessMask(dependencyInfo.getDstAccesses());
-		final int srcStageMask = buildStageMask(dependencyInfo.getSrcStageMask());
-		final int dstStageMask = buildStageMask(dependencyInfo.getDstStageMask());
-
-		final var srcSubpass = dependencyInfo.getSrcSubpass();
-		final var dstSubpass = dependencyInfo.getDstSubpass();
-
-		int srcSubpassIndex = -1;
-		int dstSubpassIndex = -1;
-
-		if (srcSubpass != null)
-		{
-			srcSubpassIndex = renderPass.getSubpasses().indexOf(srcSubpass);
-		}
-		if (dstSubpass != null)
-		{
-			dstSubpassIndex = renderPass.getSubpasses().indexOf(dstSubpass);
-		}
+		final int srcAccessMask = buildAccessMask(src);
+		final int dstAccessMask = buildAccessMask(src);
+		final int srcStageMask = buildStageMask(dst);
+		final int dstStageMask = buildStageMask(dst);
+		final int srcSubpassIndex = getSubpassIndex(src);
+		final int dstSubpassIndex = getSubpassIndex(dst);
 
 		dependency.srcSubpass(srcSubpassIndex);
 		dependency.dstSubpass(dstSubpassIndex);
@@ -62,23 +53,28 @@ public class VkSubpassDependencyAllocator
 		dependency.dstAccessMask(dstAccessMask);
 	}
 
-	private static int buildAccessMask(final EList<EAccess> accesses)
+	private static void fillEmptyDependency(final VkSubpassDependency dependency)
 	{
-		int res = 0;
-		for (final EAccess access : accesses)
-		{
-			res |= access.getValue();
-		}
-		return res;
+		dependency.srcSubpass(-1);
+		dependency.dstSubpass(0);
+		dependency.srcStageMask(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT_VALUE);
+		dependency.dstStageMask(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT_VALUE);
+		dependency.srcAccessMask(0);
+		dependency.dstAccessMask(EAccess.COLOR_ATTACHMENT_WRITE_BIT_VALUE);
 	}
 
-	private static int buildStageMask(final EList<EPipelineStage> stages)
+	private static int getSubpassIndex(final Subpass subpass)
 	{
-		int res = 0;
-		for (final EPipelineStage stage : stages)
-		{
-			res |= stage.getValue();
-		}
-		return res;
+		return subpass != null ? subpass.getSubpassIndex() : -1;
+	}
+
+	private static int buildAccessMask(final Subpass subpass)
+	{
+		return subpass != null ? VkModelUtil.getEnumeratedFlag(subpass.getAccesses()) : 0;
+	}
+
+	private static int buildStageMask(final Subpass subpass)
+	{
+		return subpass != null ? VkModelUtil.getEnumeratedFlag(subpass.getStages()) : 0;
 	}
 }

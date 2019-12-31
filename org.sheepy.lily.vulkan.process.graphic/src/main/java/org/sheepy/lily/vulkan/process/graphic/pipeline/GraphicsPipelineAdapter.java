@@ -6,9 +6,11 @@ import java.util.List;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
@@ -53,7 +55,7 @@ public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicCon
 
 		final var vertexInputState = pipeline.getVertexInputState();
 		final var inputState = createVkInputState(vertexInputState);
-		final var subpass = pipeline.getSubpass();
+		final var subpass = ModelUtil.findParent(pipeline, Subpass.class);
 		final var viewportState = pipeline.getViewportState();
 		final var inputAssembly = pipeline.getInputAssembly();
 		final var rasterizer = pipeline.getRasterizer();
@@ -62,6 +64,7 @@ public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicCon
 		final var specialization = pipeline.getSpecializationData();
 		final var depthStencil = pipeline.isDepthStencil();
 		final var specializationBuffer = specialization != null ? specialization.getData() : null;
+		final int subpassIndex = subpass.getSubpassIndex();
 
 		vkGraphicsPipeline = new VkGraphicsPipeline(getVkPipelineLayout(),
 													colorBlend,
@@ -72,7 +75,7 @@ public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicCon
 													inputState,
 													shaderStages,
 													specializationBuffer,
-													subpass,
+													subpassIndex,
 													depthStencil);
 		vkGraphicsPipeline.allocate(context);
 	}
@@ -111,10 +114,5 @@ public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicCon
 	public VkPipeline<IGraphicContext> getVkPipeline()
 	{
 		return vkGraphicsPipeline;
-	}
-
-	public int getSubpass()
-	{
-		return pipeline.getSubpass();
 	}
 }

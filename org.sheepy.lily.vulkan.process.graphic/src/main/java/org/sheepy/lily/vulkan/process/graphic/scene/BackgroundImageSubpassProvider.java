@@ -1,7 +1,5 @@
 package org.sheepy.lily.vulkan.process.graphic.scene;
 
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
@@ -12,9 +10,10 @@ import org.sheepy.lily.core.model.application.IImage;
 import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
-import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
@@ -28,7 +27,6 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 @Adapter(scope = BackgroundImage.class)
 public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvider<BackgroundImage>
 {
-	private Pipeline pipeline = null;
 	private ImageBarrier imageBarrier;
 	private BlitToSwapImage blit;
 
@@ -40,11 +38,27 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 	}
 
 	@Override
-	public SubpassData build(BackgroundImage part, SwapImageAttachment colorAttachment)
+	public Subpass build(BackgroundImage part, AttachmentPkg attachmentPkg)
 	{
-		buildPipeline(part);
+		final var pipeline = buildPipeline(part);
 		setupImage((Image) part.getImage());
-		return new SubpassData(List.of(pipeline), null, null, List.of(), List.of());
+
+		final var pipelinePkg = ProcessFactory.eINSTANCE.createPipelinePkg();
+		pipelinePkg.getPipelines().add(pipeline);
+		final var attachmentRefPkg = GraphicFactory.eINSTANCE.createAttachmentRefPkg();
+
+		final var colorRef = GraphicFactory.eINSTANCE.createAttachmentRef();
+		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
+		colorRef.setAttachment(attachmentPkg.getColorAttachment());
+		attachmentRefPkg.getAttachmentRefs().add(colorRef);
+
+		final var res = GraphicFactory.eINSTANCE.createSubpass();
+		res.getStages().add(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
+		res.getAccesses().add(EAccess.COLOR_ATTACHMENT_WRITE_BIT);
+		res.getAccesses().add(EAccess.COLOR_ATTACHMENT_READ_BIT);
+		res.setAttachmantRefPkg(attachmentRefPkg);
+		res.setPipelinePkg(pipelinePkg);
+		return res;
 	}
 
 	private void setupImage(Image image)
@@ -53,9 +67,9 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 		blit.setImage(image);
 	}
 
-	private void buildPipeline(BackgroundImage part)
+	private Pipeline buildPipeline(BackgroundImage part)
 	{
-		pipeline = ProcessFactory.eINSTANCE.createPipeline();
+		final Pipeline pipeline = ProcessFactory.eINSTANCE.createPipeline();
 
 		imageBarrier = ResourceFactory.eINSTANCE.createImageBarrier();
 		imageBarrier.getDstAccessMask().add(EAccess.TRANSFER_READ_BIT);
@@ -92,5 +106,6 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 
 		pipeline.setStage(ECommandStage.TRANSFER);
 		pipeline.setTaskPkg(taskPkg);
+		return pipeline;
 	}
 }

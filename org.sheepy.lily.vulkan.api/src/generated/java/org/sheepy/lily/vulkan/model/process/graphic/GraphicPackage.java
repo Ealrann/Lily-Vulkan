@@ -711,14 +711,14 @@ public interface GraphicPackage extends EPackage
 	int DEPTH_ATTACHMENT_OPERATION_COUNT = EXTRA_ATTACHMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl <em>Render Pass Info</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentPkgImpl <em>Attachment Pkg</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRenderPassInfo()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentPkgImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentPkg()
 	 * @generated
 	 */
-	int RENDER_PASS_INFO = 6;
+	int ATTACHMENT_PKG = 6;
 
 	/**
 	 * The feature id for the '<em><b>Extra Attachments</b></em>' containment reference list.
@@ -727,7 +727,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_PASS_INFO__EXTRA_ATTACHMENTS = 0;
+	int ATTACHMENT_PKG__EXTRA_ATTACHMENTS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Color Attachment</b></em>' containment reference.
@@ -736,52 +736,25 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_PASS_INFO__COLOR_ATTACHMENT = 1;
+	int ATTACHMENT_PKG__COLOR_ATTACHMENT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Subpasses</b></em>' containment reference list.
+	 * The number of structural features of the '<em>Attachment Pkg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_PASS_INFO__SUBPASSES = 2;
+	int ATTACHMENT_PKG_FEATURE_COUNT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+	 * The number of operations of the '<em>Attachment Pkg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_PASS_INFO__DEPENDENCIES = 3;
-
-	/**
-	 * The feature id for the '<em><b>Bind Point</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_PASS_INFO__BIND_POINT = 4;
-
-	/**
-	 * The number of structural features of the '<em>Render Pass Info</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_PASS_INFO_FEATURE_COUNT = 5;
-
-	/**
-	 * The number of operations of the '<em>Render Pass Info</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_PASS_INFO_OPERATION_COUNT = 0;
+	int ATTACHMENT_PKG_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl <em>Subpass</em>}' class.
@@ -803,13 +776,58 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Refs</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Attachmant Ref Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__REFS = 1;
+	int SUBPASS__ATTACHMANT_REF_PKG = 1;
+
+	/**
+	 * The feature id for the '<em><b>Subpass Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__SUBPASS_INDEX = 2;
+
+	/**
+	 * The feature id for the '<em><b>Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__STAGES = 3;
+
+	/**
+	 * The feature id for the '<em><b>Accesses</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__ACCESSES = 4;
+
+	/**
+	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__PIPELINE_PKG = 5;
+
+	/**
+	 * The feature id for the '<em><b>Bind Point</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__BIND_POINT = 6;
 
 	/**
 	 * The number of structural features of the '<em>Subpass</em>' class.
@@ -818,7 +836,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS_FEATURE_COUNT = 2;
+	int SUBPASS_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Subpass</em>' class.
@@ -830,6 +848,43 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefPkgImpl <em>Attachment Ref Pkg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefPkgImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentRefPkg()
+	 * @generated
+	 */
+	int ATTACHMENT_REF_PKG = 8;
+
+	/**
+	 * The feature id for the '<em><b>Attachment Refs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT_REF_PKG__ATTACHMENT_REFS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Attachment Ref Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT_REF_PKG_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Attachment Ref Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT_REF_PKG_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefImpl <em>Attachment Ref</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -837,7 +892,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentRef()
 	 * @generated
 	 */
-	int ATTACHMENT_REF = 8;
+	int ATTACHMENT_REF = 9;
 
 	/**
 	 * The feature id for the '<em><b>Attachment</b></em>' reference.
@@ -874,88 +929,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int ATTACHMENT_REF_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl <em>Subpass Dependency</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpassDependency()
-	 * @generated
-	 */
-	int SUBPASS_DEPENDENCY = 9;
-
-	/**
-	 * The feature id for the '<em><b>Src Subpass</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBPASS_DEPENDENCY__SRC_SUBPASS = 0;
-
-	/**
-	 * The feature id for the '<em><b>Dst Subpass</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBPASS_DEPENDENCY__DST_SUBPASS = 1;
-
-	/**
-	 * The feature id for the '<em><b>Src Stage Mask</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBPASS_DEPENDENCY__SRC_STAGE_MASK = 2;
-
-	/**
-	 * The feature id for the '<em><b>Dst Stage Mask</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBPASS_DEPENDENCY__DST_STAGE_MASK = 3;
-
-	/**
-	 * The feature id for the '<em><b>Src Accesses</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBPASS_DEPENDENCY__SRC_ACCESSES = 4;
-
-	/**
-	 * The feature id for the '<em><b>Dst Accesses</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBPASS_DEPENDENCY__DST_ACCESSES = 5;
-
-	/**
-	 * The number of structural features of the '<em>Subpass Dependency</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBPASS_DEPENDENCY_FEATURE_COUNT = 6;
-
-	/**
-	 * The number of operations of the '<em>Subpass Dependency</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBPASS_DEPENDENCY_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageAttachmentImpl <em>Swap Image Attachment</em>}' class.
@@ -1131,15 +1104,6 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__WAITING_FENCE_DURING_ACQUIRE = ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE;
 
 	/**
-	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS__PIPELINE_PKG = ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG;
-
-	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1194,13 +1158,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__CONFIGURATION = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Render Pass Info</b></em>' containment reference.
+	 * The feature id for the '<em><b>Attachment Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__RENDER_PASS_INFO = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
+	int GRAPHIC_PROCESS__ATTACHMENT_PKG = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Field Of View Y</b></em>' attribute.
@@ -1212,13 +1176,22 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__FIELD_OF_VIEW_Y = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Subpasses</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_PROCESS__SUBPASSES = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 4;
+	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Process</em>' class.
@@ -1384,22 +1357,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__DYNAMIC_STATE = ProcessPackage.IPIPELINE_FEATURE_COUNT + 6;
 
 	/**
-	 * The feature id for the '<em><b>Subpass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE__SUBPASS = ProcessPackage.IPIPELINE_FEATURE_COUNT + 7;
-
-	/**
 	 * The feature id for the '<em><b>Vertex Input State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__VERTEX_INPUT_STATE = ProcessPackage.IPIPELINE_FEATURE_COUNT + 8;
+	int GRAPHICS_PIPELINE__VERTEX_INPUT_STATE = ProcessPackage.IPIPELINE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Depth Stencil</b></em>' attribute.
@@ -1408,7 +1372,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__DEPTH_STENCIL = ProcessPackage.IPIPELINE_FEATURE_COUNT + 9;
+	int GRAPHICS_PIPELINE__DEPTH_STENCIL = ProcessPackage.IPIPELINE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Scene Part</b></em>' reference.
@@ -1417,7 +1381,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__SCENE_PART = ProcessPackage.IPIPELINE_FEATURE_COUNT + 10;
+	int GRAPHICS_PIPELINE__SCENE_PART = ProcessPackage.IPIPELINE_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of structural features of the '<em>Graphics Pipeline</em>' class.
@@ -1426,7 +1390,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 11;
+	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>Graphics Pipeline</em>' class.
@@ -2476,69 +2440,36 @@ public interface GraphicPackage extends EPackage
 	EAttribute getDepthAttachment_Clear();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo <em>Render Pass Info</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg <em>Attachment Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Render Pass Info</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo
+	 * @return the meta object for class '<em>Attachment Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg
 	 * @generated
 	 */
-	EClass getRenderPassInfo();
+	EClass getAttachmentPkg();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getExtraAttachments <em>Extra Attachments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg#getExtraAttachments <em>Extra Attachments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Extra Attachments</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getExtraAttachments()
-	 * @see #getRenderPassInfo()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg#getExtraAttachments()
+	 * @see #getAttachmentPkg()
 	 * @generated
 	 */
-	EReference getRenderPassInfo_ExtraAttachments();
+	EReference getAttachmentPkg_ExtraAttachments();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getColorAttachment <em>Color Attachment</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg#getColorAttachment <em>Color Attachment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Color Attachment</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getColorAttachment()
-	 * @see #getRenderPassInfo()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg#getColorAttachment()
+	 * @see #getAttachmentPkg()
 	 * @generated
 	 */
-	EReference getRenderPassInfo_ColorAttachment();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getSubpasses <em>Subpasses</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Subpasses</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getSubpasses()
-	 * @see #getRenderPassInfo()
-	 * @generated
-	 */
-	EReference getRenderPassInfo_Subpasses();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getDependencies <em>Dependencies</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Dependencies</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getDependencies()
-	 * @see #getRenderPassInfo()
-	 * @generated
-	 */
-	EReference getRenderPassInfo_Dependencies();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getBindPoint <em>Bind Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Bind Point</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getBindPoint()
-	 * @see #getRenderPassInfo()
-	 * @generated
-	 */
-	EAttribute getRenderPassInfo_BindPoint();
+	EReference getAttachmentPkg_ColorAttachment();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass <em>Subpass</em>}'.
@@ -2562,15 +2493,91 @@ public interface GraphicPackage extends EPackage
 	EAttribute getSubpass_Name();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getRefs <em>Refs</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmantRefPkg <em>Attachmant Ref Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Refs</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getRefs()
+	 * @return the meta object for the containment reference '<em>Attachmant Ref Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmantRefPkg()
 	 * @see #getSubpass()
 	 * @generated
 	 */
-	EReference getSubpass_Refs();
+	EReference getSubpass_AttachmantRefPkg();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSubpassIndex <em>Subpass Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Subpass Index</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSubpassIndex()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EAttribute getSubpass_SubpassIndex();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getStages <em>Stages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Stages</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getStages()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EAttribute getSubpass_Stages();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAccesses <em>Accesses</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Accesses</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAccesses()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EAttribute getSubpass_Accesses();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getPipelinePkg <em>Pipeline Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Pipeline Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getPipelinePkg()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EReference getSubpass_PipelinePkg();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getBindPoint <em>Bind Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Bind Point</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getBindPoint()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EAttribute getSubpass_BindPoint();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg <em>Attachment Ref Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Attachment Ref Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg
+	 * @generated
+	 */
+	EClass getAttachmentRefPkg();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg#getAttachmentRefs <em>Attachment Refs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Attachment Refs</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg#getAttachmentRefs()
+	 * @see #getAttachmentRefPkg()
+	 * @generated
+	 */
+	EReference getAttachmentRefPkg_AttachmentRefs();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef <em>Attachment Ref</em>}'.
@@ -2603,82 +2610,6 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getAttachmentRef_Layout();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency <em>Subpass Dependency</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Subpass Dependency</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency
-	 * @generated
-	 */
-	EClass getSubpassDependency();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getSrcSubpass <em>Src Subpass</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Src Subpass</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getSrcSubpass()
-	 * @see #getSubpassDependency()
-	 * @generated
-	 */
-	EReference getSubpassDependency_SrcSubpass();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getDstSubpass <em>Dst Subpass</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Dst Subpass</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getDstSubpass()
-	 * @see #getSubpassDependency()
-	 * @generated
-	 */
-	EReference getSubpassDependency_DstSubpass();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getSrcStageMask <em>Src Stage Mask</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Src Stage Mask</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getSrcStageMask()
-	 * @see #getSubpassDependency()
-	 * @generated
-	 */
-	EAttribute getSubpassDependency_SrcStageMask();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getDstStageMask <em>Dst Stage Mask</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Dst Stage Mask</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getDstStageMask()
-	 * @see #getSubpassDependency()
-	 * @generated
-	 */
-	EAttribute getSubpassDependency_DstStageMask();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getSrcAccesses <em>Src Accesses</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Src Accesses</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getSrcAccesses()
-	 * @see #getSubpassDependency()
-	 * @generated
-	 */
-	EAttribute getSubpassDependency_SrcAccesses();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getDstAccesses <em>Dst Accesses</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Dst Accesses</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getDstAccesses()
-	 * @see #getSubpassDependency()
-	 * @generated
-	 */
-	EAttribute getSubpassDependency_DstAccesses();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.Attachment <em>Attachment</em>}'.
@@ -2809,15 +2740,15 @@ public interface GraphicPackage extends EPackage
 	EReference getGraphicProcess_Configuration();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getRenderPassInfo <em>Render Pass Info</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getAttachmentPkg <em>Attachment Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Render Pass Info</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getRenderPassInfo()
+	 * @return the meta object for the containment reference '<em>Attachment Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getAttachmentPkg()
 	 * @see #getGraphicProcess()
 	 * @generated
 	 */
-	EReference getGraphicProcess_RenderPassInfo();
+	EReference getGraphicProcess_AttachmentPkg();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getFieldOfViewY <em>Field Of View Y</em>}'.
@@ -2829,6 +2760,17 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getGraphicProcess_FieldOfViewY();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getSubpasses <em>Subpasses</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Subpasses</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getSubpasses()
+	 * @see #getGraphicProcess()
+	 * @generated
+	 */
+	EReference getGraphicProcess_Subpasses();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline <em>Graphics Pipeline</em>}'.
@@ -2905,17 +2847,6 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EReference getGraphicsPipeline_DynamicState();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getSubpass <em>Subpass</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Subpass</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getSubpass()
-	 * @see #getGraphicsPipeline()
-	 * @generated
-	 */
-	EAttribute getGraphicsPipeline_Subpass();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexInputState <em>Vertex Input State</em>}'.
@@ -3638,14 +3569,14 @@ public interface GraphicPackage extends EPackage
 		EAttribute DEPTH_ATTACHMENT__CLEAR = eINSTANCE.getDepthAttachment_Clear();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl <em>Render Pass Info</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentPkgImpl <em>Attachment Pkg</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl
-		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRenderPassInfo()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentPkgImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentPkg()
 		 * @generated
 		 */
-		EClass RENDER_PASS_INFO = eINSTANCE.getRenderPassInfo();
+		EClass ATTACHMENT_PKG = eINSTANCE.getAttachmentPkg();
 
 		/**
 		 * The meta object literal for the '<em><b>Extra Attachments</b></em>' containment reference list feature.
@@ -3653,7 +3584,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RENDER_PASS_INFO__EXTRA_ATTACHMENTS = eINSTANCE.getRenderPassInfo_ExtraAttachments();
+		EReference ATTACHMENT_PKG__EXTRA_ATTACHMENTS = eINSTANCE.getAttachmentPkg_ExtraAttachments();
 
 		/**
 		 * The meta object literal for the '<em><b>Color Attachment</b></em>' containment reference feature.
@@ -3661,31 +3592,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RENDER_PASS_INFO__COLOR_ATTACHMENT = eINSTANCE.getRenderPassInfo_ColorAttachment();
-
-		/**
-		 * The meta object literal for the '<em><b>Subpasses</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference RENDER_PASS_INFO__SUBPASSES = eINSTANCE.getRenderPassInfo_Subpasses();
-
-		/**
-		 * The meta object literal for the '<em><b>Dependencies</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference RENDER_PASS_INFO__DEPENDENCIES = eINSTANCE.getRenderPassInfo_Dependencies();
-
-		/**
-		 * The meta object literal for the '<em><b>Bind Point</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute RENDER_PASS_INFO__BIND_POINT = eINSTANCE.getRenderPassInfo_BindPoint();
+		EReference ATTACHMENT_PKG__COLOR_ATTACHMENT = eINSTANCE.getAttachmentPkg_ColorAttachment();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl <em>Subpass</em>}' class.
@@ -3706,12 +3613,70 @@ public interface GraphicPackage extends EPackage
 		EAttribute SUBPASS__NAME = eINSTANCE.getSubpass_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Refs</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Attachmant Ref Pkg</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUBPASS__REFS = eINSTANCE.getSubpass_Refs();
+		EReference SUBPASS__ATTACHMANT_REF_PKG = eINSTANCE.getSubpass_AttachmantRefPkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Subpass Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBPASS__SUBPASS_INDEX = eINSTANCE.getSubpass_SubpassIndex();
+
+		/**
+		 * The meta object literal for the '<em><b>Stages</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBPASS__STAGES = eINSTANCE.getSubpass_Stages();
+
+		/**
+		 * The meta object literal for the '<em><b>Accesses</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBPASS__ACCESSES = eINSTANCE.getSubpass_Accesses();
+
+		/**
+		 * The meta object literal for the '<em><b>Pipeline Pkg</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUBPASS__PIPELINE_PKG = eINSTANCE.getSubpass_PipelinePkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Bind Point</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBPASS__BIND_POINT = eINSTANCE.getSubpass_BindPoint();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefPkgImpl <em>Attachment Ref Pkg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefPkgImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentRefPkg()
+		 * @generated
+		 */
+		EClass ATTACHMENT_REF_PKG = eINSTANCE.getAttachmentRefPkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Attachment Refs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTACHMENT_REF_PKG__ATTACHMENT_REFS = eINSTANCE.getAttachmentRefPkg_AttachmentRefs();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefImpl <em>Attachment Ref</em>}' class.
@@ -3738,64 +3703,6 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute ATTACHMENT_REF__LAYOUT = eINSTANCE.getAttachmentRef_Layout();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl <em>Subpass Dependency</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl
-		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpassDependency()
-		 * @generated
-		 */
-		EClass SUBPASS_DEPENDENCY = eINSTANCE.getSubpassDependency();
-
-		/**
-		 * The meta object literal for the '<em><b>Src Subpass</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SUBPASS_DEPENDENCY__SRC_SUBPASS = eINSTANCE.getSubpassDependency_SrcSubpass();
-
-		/**
-		 * The meta object literal for the '<em><b>Dst Subpass</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SUBPASS_DEPENDENCY__DST_SUBPASS = eINSTANCE.getSubpassDependency_DstSubpass();
-
-		/**
-		 * The meta object literal for the '<em><b>Src Stage Mask</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SUBPASS_DEPENDENCY__SRC_STAGE_MASK = eINSTANCE.getSubpassDependency_SrcStageMask();
-
-		/**
-		 * The meta object literal for the '<em><b>Dst Stage Mask</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SUBPASS_DEPENDENCY__DST_STAGE_MASK = eINSTANCE.getSubpassDependency_DstStageMask();
-
-		/**
-		 * The meta object literal for the '<em><b>Src Accesses</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SUBPASS_DEPENDENCY__SRC_ACCESSES = eINSTANCE.getSubpassDependency_SrcAccesses();
-
-		/**
-		 * The meta object literal for the '<em><b>Dst Accesses</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SUBPASS_DEPENDENCY__DST_ACCESSES = eINSTANCE.getSubpassDependency_DstAccesses();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentImpl <em>Attachment</em>}' class.
@@ -3902,12 +3809,12 @@ public interface GraphicPackage extends EPackage
 		EReference GRAPHIC_PROCESS__CONFIGURATION = eINSTANCE.getGraphicProcess_Configuration();
 
 		/**
-		 * The meta object literal for the '<em><b>Render Pass Info</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Attachment Pkg</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GRAPHIC_PROCESS__RENDER_PASS_INFO = eINSTANCE.getGraphicProcess_RenderPassInfo();
+		EReference GRAPHIC_PROCESS__ATTACHMENT_PKG = eINSTANCE.getGraphicProcess_AttachmentPkg();
 
 		/**
 		 * The meta object literal for the '<em><b>Field Of View Y</b></em>' attribute feature.
@@ -3916,6 +3823,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute GRAPHIC_PROCESS__FIELD_OF_VIEW_Y = eINSTANCE.getGraphicProcess_FieldOfViewY();
+
+		/**
+		 * The meta object literal for the '<em><b>Subpasses</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHIC_PROCESS__SUBPASSES = eINSTANCE.getGraphicProcess_Subpasses();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl <em>Graphics Pipeline</em>}' class.
@@ -3974,14 +3889,6 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference GRAPHICS_PIPELINE__DYNAMIC_STATE = eINSTANCE.getGraphicsPipeline_DynamicState();
-
-		/**
-		 * The meta object literal for the '<em><b>Subpass</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute GRAPHICS_PIPELINE__SUBPASS = eINSTANCE.getGraphicsPipeline_Subpass();
 
 		/**
 		 * The meta object literal for the '<em><b>Vertex Input State</b></em>' containment reference feature.

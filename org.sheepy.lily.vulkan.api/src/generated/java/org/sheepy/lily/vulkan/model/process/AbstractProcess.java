@@ -17,7 +17,6 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isResetAllowed <em>Reset Allowed</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getSignals <em>Signals</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getWaitFor <em>Wait For</em>}</li>
@@ -52,28 +51,6 @@ public interface AbstractProcess extends IProcess
 	 * @generated
 	 */
 	void setWaitingFenceDuringAcquire(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Pipeline Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pipeline Pkg</em>' containment reference.
-	 * @see #setPipelinePkg(PipelinePkg)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_PipelinePkg()
-	 * @model containment="true"
-	 * @generated
-	 */
-	PipelinePkg getPipelinePkg();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPipelinePkg <em>Pipeline Pkg</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pipeline Pkg</em>' containment reference.
-	 * @see #getPipelinePkg()
-	 * @generated
-	 */
-	void setPipelinePkg(PipelinePkg value);
 
 	/**
 	 * Returns the value of the '<em><b>Reset Allowed</b></em>' attribute.

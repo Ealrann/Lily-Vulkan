@@ -136,10 +136,10 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.RENDER_PASS_INFO:
+			case GraphicPackage.ATTACHMENT_PKG:
 			{
-				RenderPassInfo renderPassInfo = (RenderPassInfo)theEObject;
-				T1 result = caseRenderPassInfo(renderPassInfo);
+				AttachmentPkg attachmentPkg = (AttachmentPkg)theEObject;
+				T1 result = caseAttachmentPkg(attachmentPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -150,17 +150,17 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GraphicPackage.ATTACHMENT_REF_PKG:
+			{
+				AttachmentRefPkg attachmentRefPkg = (AttachmentRefPkg)theEObject;
+				T1 result = caseAttachmentRefPkg(attachmentRefPkg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case GraphicPackage.ATTACHMENT_REF:
 			{
 				AttachmentRef attachmentRef = (AttachmentRef)theEObject;
 				T1 result = caseAttachmentRef(attachmentRef);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.SUBPASS_DEPENDENCY:
-			{
-				SubpassDependency subpassDependency = (SubpassDependency)theEObject;
-				T1 result = caseSubpassDependency(subpassDependency);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -417,17 +417,17 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Render Pass Info</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Attachment Pkg</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Render Pass Info</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Attachment Pkg</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseRenderPassInfo(RenderPassInfo object)
+	public T1 caseAttachmentPkg(AttachmentPkg object)
 	{
 		return null;
 	}
@@ -449,6 +449,22 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attachment Ref Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attachment Ref Pkg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseAttachmentRefPkg(AttachmentRefPkg object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Attachment Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -460,22 +476,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseAttachmentRef(AttachmentRef object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Subpass Dependency</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Subpass Dependency</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseSubpassDependency(SubpassDependency object)
 	{
 		return null;
 	}

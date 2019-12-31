@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -39,7 +38,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	private final TreeAllocator<IVulkanContext> allocator = new TreeAllocator<IVulkanContext>(this);
 
 	protected IAllocationConfigurator config;
-	protected List<IProcessPartAdapter> partAdapters;
+	protected List<IProcessPartAdapter> pipelineAdapters;
 
 	private long startPrepareNs = 0;
 
@@ -115,7 +114,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 
 	private void refreshStructure()
 	{
-		partAdapters = getPipelineExplorer().exploreAdapt(process, IProcessPartAdapter.class);
+		pipelineAdapters = getPipelineExplorer().exploreAdapt(process, IProcessPartAdapter.class);
 		descriptorPool.setDescriptorSets(gatherDescriptorLists());
 	}
 
@@ -202,12 +201,12 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 
 		if (recorder.isDirty())
 		{
-			recorder.record(partAdapters, getStages());
+			recorder.record(getStages());
 		}
 
-		for (int i = 0; i < partAdapters.size(); i++)
+		for (int i = 0; i < pipelineAdapters.size(); i++)
 		{
-			final var pipelineAdapter = partAdapters.get(i);
+			final var pipelineAdapter = pipelineAdapters.get(i);
 			if (pipelineAdapter.isActive())
 			{
 				pipelineAdapter.prepareExecution(context);
@@ -228,28 +227,12 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 		}
 	}
 
-	protected void collectAllocationPipelines(List<? super IAllocable<? super T>> collectIn)
-	{
-		final var pipelinePkg = process.getPipelinePkg();
-		if (pipelinePkg != null)
-		{
-			for (final var pipeline : pipelinePkg.getPipelines())
-			{
-				final var adapter = pipeline.<IAllocableAdapter<? super T>> adaptGeneric(IAllocableAdapter.class);
-				if (adapter != null)
-				{
-					collectIn.add(adapter);
-				}
-			}
-		}
-	}
-
 	private List<IVkDescriptorSet> gatherDescriptorLists()
 	{
 		final List<IVkDescriptorSet> res = new ArrayList<>();
-		for (int i = 0; i < partAdapters.size(); i++)
+		for (int i = 0; i < pipelineAdapters.size(); i++)
 		{
-			final var pipelineAdapter = partAdapters.get(i);
+			final var pipelineAdapter = pipelineAdapters.get(i);
 			pipelineAdapter.collectDescriptorSets(res);
 		}
 
@@ -326,9 +309,9 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 
 	private void updatePipelines(int index)
 	{
-		for (int i = 0; i < partAdapters.size(); i++)
+		for (int i = 0; i < pipelineAdapters.size(); i++)
 		{
-			final var pipelineAdapter = partAdapters.get(i);
+			final var pipelineAdapter = pipelineAdapters.get(i);
 			if (pipelineAdapter.isActive())
 			{
 				pipelineAdapter.update(index);
@@ -339,9 +322,9 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	private boolean isRecordNeeded(int index)
 	{
 		boolean res = false;
-		for (int i = 0; i < partAdapters.size(); i++)
+		for (int i = 0; i < pipelineAdapters.size(); i++)
 		{
-			final var pipelineAdapter = partAdapters.get(i);
+			final var pipelineAdapter = pipelineAdapters.get(i);
 			if (pipelineAdapter.isActive())
 			{
 				res |= pipelineAdapter.isRecordNeeded(index);

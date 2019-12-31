@@ -77,13 +77,13 @@ public interface GraphicFactory extends EFactory
 	DepthAttachment createDepthAttachment();
 
 	/**
-	 * Returns a new object of class '<em>Render Pass Info</em>'.
+	 * Returns a new object of class '<em>Attachment Pkg</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Render Pass Info</em>'.
+	 * @return a new object of class '<em>Attachment Pkg</em>'.
 	 * @generated
 	 */
-	RenderPassInfo createRenderPassInfo();
+	AttachmentPkg createAttachmentPkg();
 
 	/**
 	 * Returns a new object of class '<em>Subpass</em>'.
@@ -95,6 +95,15 @@ public interface GraphicFactory extends EFactory
 	Subpass createSubpass();
 
 	/**
+	 * Returns a new object of class '<em>Attachment Ref Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attachment Ref Pkg</em>'.
+	 * @generated
+	 */
+	AttachmentRefPkg createAttachmentRefPkg();
+
+	/**
 	 * Returns a new object of class '<em>Attachment Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -102,15 +111,6 @@ public interface GraphicFactory extends EFactory
 	 * @generated
 	 */
 	AttachmentRef createAttachmentRef();
-
-	/**
-	 * Returns a new object of class '<em>Subpass Dependency</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Subpass Dependency</em>'.
-	 * @generated
-	 */
-	SubpassDependency createSubpassDependency();
 
 	/**
 	 * Returns a new object of class '<em>Swap Image Attachment</em>'.

@@ -32,7 +32,6 @@ import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getRasterizer <em>Rasterizer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend <em>Color Blend</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getDynamicState <em>Dynamic State</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getSubpass <em>Subpass</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexInputState <em>Vertex Input State</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#isDepthStencil <em>Depth Stencil</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getScenePart <em>Scene Part</em>}</li>
@@ -165,29 +164,6 @@ public interface GraphicsPipeline extends IPipeline, Maintainable<GraphicsPipeli
 	 * @generated
 	 */
 	void setDynamicState(DynamicState value);
-
-	/**
-	 * Returns the value of the '<em><b>Subpass</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Subpass</em>' attribute.
-	 * @see #setSubpass(int)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline_Subpass()
-	 * @model default="0" unique="false"
-	 * @generated
-	 */
-	int getSubpass();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getSubpass <em>Subpass</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Subpass</em>' attribute.
-	 * @see #getSubpass()
-	 * @generated
-	 */
-	void setSubpass(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Vertex Input State</b></em>' containment reference.

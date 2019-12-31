@@ -9,8 +9,6 @@
         <details key="propertyDescription" value="If fenceEnabled, will wait during acquire. Useless for a render process that already wait for image acquiring"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pipelinePkg" eType="#//PipelinePkg"
-        containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resetAllowed" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="signals" upperBound="-1"

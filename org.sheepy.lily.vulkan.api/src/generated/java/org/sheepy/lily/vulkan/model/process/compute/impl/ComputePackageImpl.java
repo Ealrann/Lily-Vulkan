@@ -192,6 +192,17 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * @generated
 	 */
 	@Override
+	public EReference getComputeProcess_PipelinePkg()
+	{
+		return (EReference)computeProcessEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getComputePipeline()
 	{
 		return computePipelineEClass;
@@ -284,6 +295,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 
 		// Create classes and their features
 		computeProcessEClass = createEClass(COMPUTE_PROCESS);
+		createEReference(computeProcessEClass, COMPUTE_PROCESS__PIPELINE_PKG);
 
 		computePipelineEClass = createEClass(COMPUTE_PIPELINE);
 		createEReference(computePipelineEClass, COMPUTE_PIPELINE__SHADER);
@@ -339,6 +351,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(computeProcessEClass, ComputeProcess.class, "ComputeProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getComputeProcess_PipelinePkg(), theProcessPackage.getPipelinePkg(), null, "pipelinePkg", null, 0, 1, ComputeProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(computePipelineEClass, ComputePipeline.class, "ComputePipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComputePipeline_Shader(), theResourcePackage.getShader(), null, "shader", null, 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

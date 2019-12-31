@@ -38,8 +38,8 @@ public class FramebufferManager implements IFramebufferManager
 		final var vkDevice = context.getVkDevice();
 		final var imageViews = context.getImageViewManager().getImageViews();
 		final var aFramebufferId = new long[1];
-		final var renderPassInfo = context.getGraphicProcess().getRenderPassInfo();
-		final var attachments = renderPassInfo.getExtraAttachments();
+		final var attachmentPkg = context.getGraphicProcess().getAttachmentPkg();
+		final var attachments = attachmentPkg.getExtraAttachments();
 
 		framebuffersIds = new ArrayList<>(imageViews.size());
 		for (final var imageView : imageViews)

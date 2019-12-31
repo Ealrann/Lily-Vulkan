@@ -1,7 +1,8 @@
 package org.sheepy.lily.vulkan.process.graphic.process;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -19,43 +20,42 @@ import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.IScenePart;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
-import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider.SubpassData;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.SubpassUtil;
 import org.sheepy.lily.vulkan.process.graphic.present.ImageAcquirer;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
-import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.queue.EQueueType;
 
 @Statefull
 @Adapter(scope = GraphicProcess.class)
 public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphicContext>
 {
-	private static final List<EStructuralFeature> PIPELINE__FEATURES = List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PIPELINE_PKG,
+	private static final List<EStructuralFeature> PIPELINE__FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																				GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
 																				ProcessPackage.Literals.PIPELINE_PKG__PIPELINES);
 	private static final List<EStructuralFeature> RESOURCE_FEATURES = List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 																				ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
-	private static final List<EStructuralFeature> PIPELINE_RESOURCE_FEATURES = List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PIPELINE_PKG,
+	private static final List<EStructuralFeature> PIPELINE_RESOURCE_FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																						GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
 																						ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 																						VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 																						ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EStructuralFeature> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 																				VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
-	private static final List<EStructuralFeature> PIPELINE_DESCRIPTOR_FEATURES = List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PIPELINE_PKG,
+	private static final List<EStructuralFeature> PIPELINE_DESCRIPTOR_FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																							GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
 																							ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 																							VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 																							VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
 
-	private final ModelExplorer PARTS_EXPLORER = new ModelExplorer(List.of(	ProcessPackage.Literals.ABSTRACT_PROCESS__PIPELINE_PKG,
+	private final ModelExplorer PARTS_EXPLORER = new ModelExplorer(List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																			GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
 																			ProcessPackage.Literals.PIPELINE_PKG__PIPELINES));
 
 	private static final List<ECommandStage> stages = List.of(	ECommandStage.TRANSFER,
@@ -64,7 +64,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 																ECommandStage.RENDER,
 																ECommandStage.POST_RENDER);
 
-	private final List<SubPassContainer> subpasses = new ArrayList<>();
+	private final Map<IScenePart, Subpass> subpassMap = new HashMap<>();
 	private final INotificationListener sceneListener = this::sceneChanged;
 	private final ImageAcquirer acquirer = new ImageAcquirer();
 
@@ -72,10 +72,6 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	{
 		super(process);
 
-		if (process.getPipelinePkg() == null)
-		{
-			process.setPipelinePkg(ProcessFactory.eINSTANCE.createPipelinePkg());
-		}
 		if (process.getResourcePkg() == null)
 		{
 			process.setResourcePkg(ApplicationFactory.eINSTANCE.createResourcePkg());
@@ -92,16 +88,10 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		final var application = ModelUtil.getApplication(process);
 		application.getScene().addListener(sceneListener, ApplicationPackage.SCENE__PARTS);
 		final var parts = application.getScene().getParts();
-		boolean containsGraphic = false;
 		for (int i = 0; i < parts.size(); i++)
 		{
 			final var part = parts.get(i);
-			containsGraphic |= setupScenePart(part, i).isGraphic;
-		}
-
-		if (containsGraphic == false)
-		{
-			setupEmptyRenderPass();
+			setupScenePart(part);
 		}
 	}
 
@@ -123,7 +113,9 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		switch (notification.getEventType())
 		{
 		case Notification.ADD:
-			setupScenePart((IScenePart) notification.getNewValue(), notification.getPosition());
+			final var graphicProcess = (GraphicProcess) process;
+			graphicProcess.getAttachmentPkg().getExtraAttachments().clear();
+			setupScenePart((IScenePart) notification.getNewValue());
 			break;
 		case Notification.REMOVE:
 			uninstallScenePart((IScenePart) notification.getOldValue());
@@ -140,58 +132,44 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 									(GraphicProcess) process);
 	}
 
-	private SubPassContainer setupScenePart(IScenePart part, int index)
+	private void setupScenePart(IScenePart part)
 	{
-		final var subpassData = getSubpassData(part);
+		final var subpass = buildSubpass(part);
 		final var graphicProcess = (GraphicProcess) process;
-		final var previousGraphicSubpass = getGraphicSubpass(index);
-		final int newIndex = previousGraphicSubpass != null ? previousGraphicSubpass.index + 1 : 0;
-		final var container = new SubPassContainer(part, newIndex, subpassData);
+		final int index = findAvailableIndex(graphicProcess);
 
-		container.setup(graphicProcess, previousGraphicSubpass);
-
-		subpasses.add(container);
+		subpass.setSubpassIndex(index);
+		graphicProcess.getSubpasses().add(subpass);
 
 		if (config != null)
 		{
 			config.setDirty();
 		}
 
-		return container;
+		subpassMap.put(part, subpass);
 	}
 
-	private void setupEmptyRenderPass()
+	private static int findAvailableIndex(GraphicProcess process)
 	{
-		final var graphicProcess = (GraphicProcess) process;
-		final var renderPass = graphicProcess.getRenderPassInfo();
-		final var colorAttachment = renderPass.getColorAttachment();
-		final var subpass = GraphicFactory.eINSTANCE.createSubpass();
-		final var colorRef = GraphicFactory.eINSTANCE.createAttachmentRef();
-		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
-		colorRef.setAttachment(colorAttachment);
-		subpass.getRefs().add(colorRef);
-
-		final var subpassData = new SubpassData(List.of(),
-												subpass,
-												EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT,
-												List.of(EAccess.COLOR_ATTACHMENT_WRITE_BIT,
-														EAccess.COLOR_ATTACHMENT_READ_BIT),
-												List.of());
-		final var container = new SubPassContainer(null, 0, subpassData);
-		container.setup(graphicProcess, container);
-
-		subpasses.add(container);
-	}
-
-	private SubPassContainer getGraphicSubpass(int index)
-	{
-		SubPassContainer res = null;
-		for (int i = 0; i < index; i++)
+		final var subpasses = process.getSubpasses();
+		final int size = subpasses.size();
+		final boolean[] reservedIndices = new boolean[size];
+		for (int i = 0; i < size; i++)
 		{
 			final var subpass = subpasses.get(i);
-			if (subpass.isGraphic)
+			if (SubpassUtil.isGraphic(subpass))
 			{
-				res = subpass;
+				reservedIndices[i] = true;
+			}
+		}
+
+		int res = 0;
+		for (int i = 0; i < size; i++)
+		{
+			if (reservedIndices[i] == false)
+			{
+				res = i;
+				break;
 			}
 		}
 		return res;
@@ -199,32 +177,16 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 
 	private void uninstallScenePart(IScenePart part)
 	{
-		final var graphicProcess = (GraphicProcess) process;
-		final var container = findSubpass(part);
-		container.uninstall(graphicProcess);
-		subpasses.remove(container);
+		final var subpass = subpassMap.get(part);
+		EcoreUtil.delete(subpass);
+		subpassMap.remove(part);
 	}
 
-	private SubPassContainer findSubpass(IScenePart part)
-	{
-		for (final var subpass : subpasses)
-		{
-			if (subpass.scenePart == part)
-			{
-				return subpass;
-			}
-		}
-		return null;
-	}
-
-	private <T extends IScenePart> SubpassData getSubpassData(T view)
+	private <T extends IScenePart> Subpass buildSubpass(T scenePart)
 	{
 		final var graphicProcess = (GraphicProcess) process;
-		final var renderPass = graphicProcess.getRenderPassInfo();
-		final var pipelineProvider = view.<IScenePart_SubpassProvider<T>> adaptGeneric(IScenePart_SubpassProvider.class);
-		final var colorAttachment = renderPass.getColorAttachment();
-		final var data = pipelineProvider.build(view, colorAttachment);
-		return data;
+		final var subpassProvider = scenePart.<IScenePart_SubpassProvider<T>> adaptGeneric(IScenePart_SubpassProvider.class);
+		return subpassProvider.build(scenePart, graphicProcess.getAttachmentPkg());
 	}
 
 	@Override
@@ -270,89 +232,5 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	protected ModelExplorer getPipelineExplorer()
 	{
 		return PARTS_EXPLORER;
-	}
-
-	private static final class SubPassContainer
-	{
-		public final IScenePart scenePart;
-		public final SubpassData data;
-		public final boolean isGraphic;
-		private SubpassDependency dependency;
-		private final int index;
-
-		public SubPassContainer(IScenePart scenePart, int index, SubpassData data)
-		{
-			this.scenePart = scenePart;
-			this.data = data;
-			this.index = index;
-
-			isGraphic = data.subpass != null;
-		}
-
-		private void setup(GraphicProcess process, SubPassContainer previousGraphicData)
-		{
-			final var renderPass = process.getRenderPassInfo();
-			final var pipelines = process.getPipelinePkg().getPipelines();
-			final var resourcePkg = process.getResourcePkg();
-			final var descriptorPkg = process.getDescriptorPkg();
-
-			if (isGraphic)
-			{
-				final var attachments = renderPass.getExtraAttachments();
-				final var dependencies = renderPass.getDependencies();
-				final var subpasses = renderPass.getSubpasses();
-
-				for (final var pipeline : data.pipelines)
-				{
-					if (pipeline instanceof GraphicsPipeline)
-					{
-						((GraphicsPipeline) pipeline).setSubpass(index);
-						((GraphicsPipeline) pipeline).setScenePart(scenePart);
-					}
-				}
-				dependency = GraphicFactory.eINSTANCE.createSubpassDependency();
-				dependency.setSrcSubpass(previousGraphicData != null
-						? previousGraphicData.data.subpass
-						: null);
-				dependency.setDstSubpass(data.subpass);
-				dependency.getSrcStageMask().add(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
-				dependency.getDstStageMask().add(data.stage);
-				dependency.getDstAccesses().addAll(data.accesses);
-
-				attachments.addAll(data.extraAttachments);
-				subpasses.add(data.subpass);
-				dependencies.add(dependency);
-			}
-
-			resourcePkg.getResources().addAll(data.resources);
-			descriptorPkg.getDescriptors().addAll(data.descriptors);
-
-			pipelines.addAll(data.pipelines);
-		}
-
-		private void uninstall(GraphicProcess process)
-		{
-			final var renderPass = process.getRenderPassInfo();
-			final var parts = process.getPipelinePkg().getPipelines();
-			final var resourcePkg = process.getResourcePkg();
-			final var descriptorPkg = process.getDescriptorPkg();
-
-			if (isGraphic)
-			{
-				final var attachments = renderPass.getExtraAttachments();
-				final var dependencies = renderPass.getDependencies();
-				final var subpasses = renderPass.getSubpasses();
-
-				attachments.removeAll(data.extraAttachments);
-				subpasses.remove(data.subpass);
-				dependencies.remove(dependency);
-				EcoreUtil.delete(dependency);
-			}
-
-			resourcePkg.getResources().removeAll(data.resources);
-			descriptorPkg.getDescriptors().removeAll(data.descriptors);
-
-			parts.removeAll(data.pipelines);
-		}
 	}
 }

@@ -62,39 +62,37 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clear" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RenderPassInfo">
+  <eClassifiers xsi:type="ecore:EClass" name="AttachmentPkg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="extraAttachments" upperBound="-1"
         eType="#//ExtraAttachment" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="colorAttachment" lowerBound="1"
         eType="#//SwapImageAttachment" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subpasses" upperBound="-1"
-        eType="#//Subpass" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
-        eType="#//SubpassDependency" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindPoint" unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Subpass">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="refs" upperBound="-1" eType="#//AttachmentRef"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attachmantRefPkg" eType="#//AttachmentRefPkg"
         containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="subpassIndex" unique="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stages" upperBound="-1"
+        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EPipelineStage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accesses" upperBound="-1"
+        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EAccess"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pipelinePkg" eType="ecore:EClass process.ecore#//PipelinePkg"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindPoint" unique="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttachmentRefPkg">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentRefs" upperBound="-1"
+        eType="#//AttachmentRef" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttachmentRef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachment" eType="#//Attachment"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="layout" unique="false"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EImageLayout"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SubpassDependency">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="srcSubpass" eType="#//Subpass"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dstSubpass" eType="#//Subpass"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="srcStageMask" upperBound="-1"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EPipelineStage"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dstStageMask" upperBound="-1"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EPipelineStage"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="srcAccesses" upperBound="-1"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EAccess"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dstAccesses" upperBound="-1"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EAccess"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attachment" abstract="true" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="samples" unique="false"
@@ -117,14 +115,16 @@
   <eClassifiers xsi:type="ecore:EClass" name="GraphicProcess">
     <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
         eType="#//GraphicConfiguration" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="renderPassInfo" lowerBound="1"
-        eType="#//RenderPassInfo" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentPkg" lowerBound="1"
+        eType="#//AttachmentPkg" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fieldOfViewY" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="45">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="propertyDescription" value="Field of View in degree ]0 ; 360["/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subpasses" upperBound="-1"
+        eType="#//Subpass" containment="true" resolveProxies="false"/>
     <eGenericSuperTypes eClassifier="ecore:EClass process.ecore#//AbstractProcess"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.core.model/model/maintainer.ecore#//Maintainable">
       <eTypeArguments eClassifier="#//GraphicProcess"/>
@@ -147,8 +147,6 @@
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dynamicState" eType="ecore:EClass ../../org.sheepy.vulkan.model/model/graphicpipeline.ecore#//DynamicState"
         containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="subpass" unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="vertexInputState" lowerBound="1"
         eType="#//VertexInputState" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="depthStencil" lowerBound="1"

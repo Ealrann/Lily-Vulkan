@@ -15,22 +15,23 @@ import org.sheepy.lily.vulkan.api.resource.attachment.IExtraAttachmentAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.renderpass.VkRenderPassAllocator;
 
 public class RenderPass implements IRenderPass
 {
-	private final AllocationChildrenRegistry attachmentsRegistry = new AllocationChildrenRegistry(	List.of(GraphicPackage.Literals.RENDER_PASS_INFO__EXTRA_ATTACHMENTS),
+	private final AllocationChildrenRegistry attachmentsRegistry = new AllocationChildrenRegistry(	List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__ATTACHMENT_PKG,
+																											GraphicPackage.Literals.ATTACHMENT_PKG__EXTRA_ATTACHMENTS),
 																									true);
 
-	private final RenderPassInfo info;
+	private final GraphicProcess process;
 	private long renderPass = 0;
 	private List<ClearInfo> clearInfos = null;
 	private boolean listeningAttachments = false;
 
-	public RenderPass(RenderPassInfo info)
+	public RenderPass(GraphicProcess process)
 	{
-		this.info = info;
+		this.process = process;
 	}
 
 	@Override
@@ -41,9 +42,9 @@ public class RenderPass implements IRenderPass
 
 		if (listeningAttachments == true)
 		{
-			attachmentsRegistry.stopRegister(info);
+			attachmentsRegistry.stopRegister(process);
 		}
-		attachmentsRegistry.startRegister(info, config);
+		attachmentsRegistry.startRegister(process, config);
 		listeningAttachments = true;
 	}
 
@@ -52,7 +53,7 @@ public class RenderPass implements IRenderPass
 	{
 		if (listeningAttachments == true)
 		{
-			attachmentsRegistry.stopRegister(info);
+			attachmentsRegistry.stopRegister(process);
 			listeningAttachments = false;
 		}
 	}
@@ -64,12 +65,12 @@ public class RenderPass implements IRenderPass
 		final var format = context.getSurfaceManager().getColorDomain().getFormat();
 
 		final var configuration = context.getConfiguration().getFramebufferConfiguration();
-		final var renderPassInfo = context.getGraphicProcess().getRenderPassInfo();
-		final var attachments = renderPassInfo.getExtraAttachments();
+		final var attachmentPkg = context.getGraphicProcess().getAttachmentPkg();
+		final var attachments = attachmentPkg.getExtraAttachments();
 		fillClearInfos(attachments, configuration);
 
 		final var renderPassAllocator = new VkRenderPassAllocator(context.getVkDevice(), format);
-		renderPass = renderPassAllocator.allocate(stack, info);
+		renderPass = renderPassAllocator.allocate(stack, process);
 	}
 
 	@Override

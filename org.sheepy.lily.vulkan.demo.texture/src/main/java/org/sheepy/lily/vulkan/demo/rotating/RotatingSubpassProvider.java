@@ -7,7 +7,8 @@ import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
 import org.sheepy.lily.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.lily.vulkan.demo.mesh.MeshGraphicBuilder;
 import org.sheepy.lily.vulkan.demo.triangle.TriangleMeshBuilder;
-import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
 
 @Adapter(scope = GenericScenePart.class, name = MainRotating.NAME)
@@ -17,7 +18,7 @@ public class RotatingSubpassProvider implements IScenePart_SubpassProvider<Gener
 	static final String FRAGMENT_SHADER_PATH = "rotating.frag.spv";
 
 	@Override
-	public SubpassData build(GenericScenePart part, SwapImageAttachment colorAttachment)
+	public Subpass build(GenericScenePart part, AttachmentPkg attachmentPkg)
 	{
 		final var scene = (Scene) part.eContainer();
 		final var size = scene.getSize();
@@ -29,6 +30,6 @@ public class RotatingSubpassProvider implements IScenePart_SubpassProvider<Gener
 		meshConfiguration.rasterizerFrontFace = EFrontFace.COUNTER_CLOCKWISE;
 
 		final var builder = new MeshGraphicBuilder(meshConfiguration);
-		return builder.build(colorAttachment);
+		return builder.build(attachmentPkg);
 	}
 }

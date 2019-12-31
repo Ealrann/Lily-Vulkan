@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.provider;
 
+
 import java.util.Collection;
 import java.util.List;
 
@@ -11,8 +12,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -20,22 +19,27 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class RenderPassInfoItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class AttachmentPkgItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -43,7 +47,7 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RenderPassInfoItemProvider(AdapterFactory adapterFactory)
+	public AttachmentPkgItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -61,32 +65,8 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter implements I
 		{
 			super.getPropertyDescriptors(object);
 
-			addBindPointPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Bind Point feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addBindPointPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RenderPassInfo_bindPoint_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RenderPassInfo_bindPoint_feature", "_UI_RenderPassInfo_type"),
-				 GraphicPackage.Literals.RENDER_PASS_INFO__BIND_POINT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -103,10 +83,8 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter implements I
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GraphicPackage.Literals.RENDER_PASS_INFO__EXTRA_ATTACHMENTS);
-			childrenFeatures.add(GraphicPackage.Literals.RENDER_PASS_INFO__COLOR_ATTACHMENT);
-			childrenFeatures.add(GraphicPackage.Literals.RENDER_PASS_INFO__SUBPASSES);
-			childrenFeatures.add(GraphicPackage.Literals.RENDER_PASS_INFO__DEPENDENCIES);
+			childrenFeatures.add(GraphicPackage.Literals.ATTACHMENT_PKG__EXTRA_ATTACHMENTS);
+			childrenFeatures.add(GraphicPackage.Literals.ATTACHMENT_PKG__COLOR_ATTACHMENT);
 		}
 		return childrenFeatures;
 	}
@@ -126,7 +104,7 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This returns RenderPassInfo.gif.
+	 * This returns AttachmentPkg.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -134,7 +112,7 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter implements I
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/RenderPassInfo"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttachmentPkg"));
 	}
 
 	/**
@@ -146,9 +124,9 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter implements I
 	@Override
 	public String getText(Object object)
 	{
-		RenderPassInfo renderPassInfo = (RenderPassInfo)object;
-		return getString("_UI_RenderPassInfo_type") + " " + renderPassInfo.getBindPoint();
+		return getString("_UI_AttachmentPkg_type");
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -162,15 +140,10 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter implements I
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(RenderPassInfo.class))
+		switch (notification.getFeatureID(AttachmentPkg.class))
 		{
-			case GraphicPackage.RENDER_PASS_INFO__BIND_POINT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case GraphicPackage.RENDER_PASS_INFO__EXTRA_ATTACHMENTS:
-			case GraphicPackage.RENDER_PASS_INFO__COLOR_ATTACHMENT:
-			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
-			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
+			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
+			case GraphicPackage.ATTACHMENT_PKG__COLOR_ATTACHMENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -191,28 +164,18 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter implements I
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GraphicPackage.Literals.RENDER_PASS_INFO__EXTRA_ATTACHMENTS,
+				(GraphicPackage.Literals.ATTACHMENT_PKG__EXTRA_ATTACHMENTS,
 				 GraphicFactory.eINSTANCE.createImageAttachment()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GraphicPackage.Literals.RENDER_PASS_INFO__EXTRA_ATTACHMENTS,
+				(GraphicPackage.Literals.ATTACHMENT_PKG__EXTRA_ATTACHMENTS,
 				 GraphicFactory.eINSTANCE.createDepthAttachment()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GraphicPackage.Literals.RENDER_PASS_INFO__COLOR_ATTACHMENT,
+				(GraphicPackage.Literals.ATTACHMENT_PKG__COLOR_ATTACHMENT,
 				 GraphicFactory.eINSTANCE.createSwapImageAttachment()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.RENDER_PASS_INFO__SUBPASSES,
-				 GraphicFactory.eINSTANCE.createSubpass()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.RENDER_PASS_INFO__DEPENDENCIES,
-				 GraphicFactory.eINSTANCE.createSubpassDependency()));
 	}
 
 	/**

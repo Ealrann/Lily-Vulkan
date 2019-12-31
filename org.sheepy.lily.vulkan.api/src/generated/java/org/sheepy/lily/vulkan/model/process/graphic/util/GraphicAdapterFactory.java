@@ -119,9 +119,9 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createDepthAttachmentAdapter();
 			}
 			@Override
-			public Adapter caseRenderPassInfo(RenderPassInfo object)
+			public Adapter caseAttachmentPkg(AttachmentPkg object)
 			{
-				return createRenderPassInfoAdapter();
+				return createAttachmentPkgAdapter();
 			}
 			@Override
 			public Adapter caseSubpass(Subpass object)
@@ -129,14 +129,14 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createSubpassAdapter();
 			}
 			@Override
+			public Adapter caseAttachmentRefPkg(AttachmentRefPkg object)
+			{
+				return createAttachmentRefPkgAdapter();
+			}
+			@Override
 			public Adapter caseAttachmentRef(AttachmentRef object)
 			{
 				return createAttachmentRefAdapter();
-			}
-			@Override
-			public Adapter caseSubpassDependency(SubpassDependency object)
-			{
-				return createSubpassDependencyAdapter();
 			}
 			@Override
 			public Adapter caseAttachment(Attachment object)
@@ -390,16 +390,16 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo <em>Render Pass Info</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg <em>Attachment Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg
 	 * @generated
 	 */
-	public Adapter createRenderPassInfoAdapter()
+	public Adapter createAttachmentPkgAdapter()
 	{
 		return null;
 	}
@@ -420,6 +420,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg <em>Attachment Ref Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg
+	 * @generated
+	 */
+	public Adapter createAttachmentRefPkgAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef <em>Attachment Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -430,21 +445,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createAttachmentRefAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency <em>Subpass Dependency</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency
-	 * @generated
-	 */
-	public Adapter createSubpassDependencyAdapter()
 	{
 		return null;
 	}

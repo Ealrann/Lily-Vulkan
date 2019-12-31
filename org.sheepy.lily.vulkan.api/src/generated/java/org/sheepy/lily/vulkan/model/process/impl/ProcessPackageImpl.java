@@ -322,20 +322,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractProcess_PipelinePkg()
-	{
-		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getAbstractProcess_ResetAllowed()
 	{
-		return (EAttribute)abstractProcessEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)abstractProcessEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -346,7 +335,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractProcess_Signals()
 	{
-		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(3);
+		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -357,7 +346,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractProcess_WaitFor()
 	{
-		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(4);
+		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -368,7 +357,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractProcess_ExtensionPkg()
 	{
-		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(5);
+		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -987,7 +976,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		// Create classes and their features
 		abstractProcessEClass = createEClass(ABSTRACT_PROCESS);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE);
-		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__PIPELINE_PKG);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__RESET_ALLOWED);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__SIGNALS);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__WAIT_FOR);
@@ -1126,7 +1114,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractProcess_WaitingFenceDuringAcquire(), ecorePackage.getEBoolean(), "waitingFenceDuringAcquire", "false", 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcess_PipelinePkg(), this.getPipelinePkg(), null, "pipelinePkg", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractProcess_ResetAllowed(), ecorePackage.getEBoolean(), "resetAllowed", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_Signals(), theResourcePackage.getSemaphore(), null, "signals", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_WaitFor(), theResourcePackage.getSemaphore(), null, "waitFor", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

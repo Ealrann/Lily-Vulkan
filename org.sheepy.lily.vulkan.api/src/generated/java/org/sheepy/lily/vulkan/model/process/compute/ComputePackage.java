@@ -133,15 +133,6 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__WAITING_FENCE_DURING_ACQUIRE = ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE;
 
 	/**
-	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PROCESS__PIPELINE_PKG = ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG;
-
-	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -178,13 +169,22 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__EXTENSION_PKG = ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG;
 
 	/**
+	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PROCESS__PIPELINE_PKG = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 0;
+	int COMPUTE_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Process</em>' class.
@@ -406,6 +406,17 @@ public interface ComputePackage extends EPackage
 	EClass getComputeProcess();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getPipelinePkg <em>Pipeline Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Pipeline Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getPipelinePkg()
+	 * @see #getComputeProcess()
+	 * @generated
+	 */
+	EReference getComputeProcess_PipelinePkg();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline <em>Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -502,6 +513,14 @@ public interface ComputePackage extends EPackage
 		 * @generated
 		 */
 		EClass COMPUTE_PROCESS = eINSTANCE.getComputeProcess();
+
+		/**
+		 * The meta object literal for the '<em><b>Pipeline Pkg</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPUTE_PROCESS__PIPELINE_PKG = eINSTANCE.getComputeProcess_PipelinePkg();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl <em>Pipeline</em>}' class.
