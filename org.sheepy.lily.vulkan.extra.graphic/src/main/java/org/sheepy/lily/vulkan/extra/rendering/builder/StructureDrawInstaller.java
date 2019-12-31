@@ -9,13 +9,13 @@ import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.rendering.data.IStructurePartDrawSetup;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 
 public final class StructureDrawInstaller<T extends Structure>
 {
 	private final GenericRenderer<T> maintainer;
-	private final GraphicProcess graphicProcess;
+	private final Subpass subpass;
 	private final RenderPipelineBuilder pipelineBuilder;
 
 	public StructureDrawInstaller(GenericRenderer<T> maintainer)
@@ -25,7 +25,7 @@ public final class StructureDrawInstaller<T extends Structure>
 		final var pipelineBuilder = new RenderPipelineBuilder(maintainer);
 
 		this.pipelineBuilder = pipelineBuilder;
-		this.graphicProcess = ModelUtil.findParent(maintainer, GraphicProcess.class);
+		this.subpass = ModelUtil.findParent(maintainer, Subpass.class);
 	}
 
 	public List<IStructurePartDrawSetup> install(T structure)
@@ -90,7 +90,7 @@ public final class StructureDrawInstaller<T extends Structure>
 
 	private GraphicsPipeline createAndInstallPipeline(RenderPipelineBuilder pipelineBuilder)
 	{
-		final var pipelines = graphicProcess.getPipelinePkg().getPipelines();
+		final var pipelines = subpass.getPipelinePkg().getPipelines();
 		final int maintainerIndex = pipelines.indexOf(maintainer);
 		final var pipeline = pipelineBuilder.build(maintainerIndex, maintainer.getSpecialization());
 		pipelines.add(maintainerIndex + 1, pipeline);

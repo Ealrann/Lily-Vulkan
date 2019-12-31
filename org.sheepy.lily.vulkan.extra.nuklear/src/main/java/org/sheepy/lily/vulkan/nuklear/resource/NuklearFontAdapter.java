@@ -15,7 +15,7 @@ import org.sheepy.lily.core.model.ui.FontPkg;
 import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.nuklear.util.NkFontLoader;
 import org.sheepy.vulkan.execution.IExecutionContext;
 
@@ -30,9 +30,9 @@ public class NuklearFontAdapter implements IVulkanResourceAdapter
 
 	public NuklearFontAdapter(NuklearFont nuklearFont)
 	{
-		final var pipeline = ModelUtil.findParent(nuklearFont, GraphicsPipeline.class);
+		final var subpass = ModelUtil.findParent(nuklearFont, Subpass.class);
 		final var fontTextureArray = nuklearFont.getFontTextureArray();
-		final Builder builder = new Builder(pipeline);
+		final var builder = new Builder((UI) subpass.getScenePart());
 
 		fonts = List.copyOf(builder.fonts);
 		fontLoaders = List.copyOf(builder.fontLoaders);
@@ -79,9 +79,9 @@ public class NuklearFontAdapter implements IVulkanResourceAdapter
 		public final List<NkFontLoader> fontLoaders;
 		public final Map<Font, NkUserFont> fontMap;
 
-		public Builder(GraphicsPipeline pipeline)
+		public Builder(UI ui)
 		{
-			final var fontPkg = ((UI) pipeline.getScenePart()).getFontPkg();
+			final var fontPkg = ui.getFontPkg();
 			fonts = List.copyOf(gatherFonts(fontPkg));
 
 			final List<NkFontLoader> fontLoaders = new ArrayList<>();

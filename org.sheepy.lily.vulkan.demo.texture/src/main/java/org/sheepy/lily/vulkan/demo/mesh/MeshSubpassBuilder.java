@@ -32,11 +32,11 @@ import org.sheepy.vulkan.model.image.ImageFactory;
 import org.sheepy.vulkan.model.pipeline.PipelineFactory;
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 
-public final class MeshGraphicBuilder
+public final class MeshSubpassBuilder
 {
 	private final MeshConfiguration meshConfiguration;
 
-	public MeshGraphicBuilder(MeshConfiguration meshConfiguration)
+	public MeshSubpassBuilder(MeshConfiguration meshConfiguration)
 	{
 		this.meshConfiguration = meshConfiguration;
 	}

@@ -68,8 +68,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="colorAttachment" lowerBound="1"
         eType="#//SwapImageAttachment" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Subpass">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Subpass" eSuperTypes="vulkan.ecore#//IResourceContainer ../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachmantRefPkg" eType="#//AttachmentRefPkg"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="subpassIndex" unique="false"
@@ -84,6 +83,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindPoint" unique="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="scenePart" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/application.ecore#//IScenePart"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttachmentRefPkg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentRefs" upperBound="-1"
@@ -151,7 +151,6 @@
         eType="#//VertexInputState" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="depthStencil" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="scenePart" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/application.ecore#//IScenePart"/>
     <eGenericSuperTypes eClassifier="ecore:EClass process.ecore#//IPipeline"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.core.model/model/maintainer.ecore#//Maintainable">
       <eTypeArguments eClassifier="#//GraphicsPipeline"/>

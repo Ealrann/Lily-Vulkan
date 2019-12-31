@@ -147,6 +147,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			{
 				Subpass subpass = (Subpass)theEObject;
 				T1 result = caseSubpass(subpass);
+				if (result == null) result = caseIResourceContainer(subpass);
+				if (result == null) result = caseLNamedElement(subpass);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

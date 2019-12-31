@@ -5,7 +5,7 @@ import org.sheepy.lily.core.model.application.GenericScenePart;
 import org.sheepy.lily.core.model.application.Scene;
 import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
 import org.sheepy.lily.vulkan.demo.mesh.MeshConfiguration;
-import org.sheepy.lily.vulkan.demo.mesh.MeshGraphicBuilder;
+import org.sheepy.lily.vulkan.demo.mesh.MeshSubpassBuilder;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
@@ -32,7 +32,7 @@ public class TextureSubpassProvider implements IScenePart_SubpassProvider<Generi
 		meshConfiguration.rasterizerFrontFace = EFrontFace.COUNTER_CLOCKWISE;
 		meshConfiguration.texturePath = IMAGE_PATH;
 
-		final var builder = new MeshGraphicBuilder(meshConfiguration);
+		final var builder = new MeshSubpassBuilder(meshConfiguration);
 		return builder.build(attachmentPkg);
 	}
 }

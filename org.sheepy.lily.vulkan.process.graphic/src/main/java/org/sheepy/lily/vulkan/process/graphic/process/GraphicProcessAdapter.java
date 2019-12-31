@@ -41,6 +41,9 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 																				ProcessPackage.Literals.PIPELINE_PKG__PIPELINES);
 	private static final List<EStructuralFeature> RESOURCE_FEATURES = List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 																				ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+	private static final List<EStructuralFeature> SUBPASS_RESOURCE_FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																						VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+																						ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EStructuralFeature> PIPELINE_RESOURCE_FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
 																						GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
 																						ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
@@ -48,6 +51,9 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 																						ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EStructuralFeature> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 																				VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
+	private static final List<EStructuralFeature> SUBPASS_DESCRIPTOR_FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																						VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+																						VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
 	private static final List<EStructuralFeature> PIPELINE_DESCRIPTOR_FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
 																							GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
 																							ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
@@ -138,6 +144,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		final var graphicProcess = (GraphicProcess) process;
 		final int index = findAvailableIndex(graphicProcess);
 
+		subpass.setScenePart(part);
 		subpass.setSubpassIndex(index);
 		graphicProcess.getSubpasses().add(subpass);
 
@@ -223,8 +230,10 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	protected List<List<EStructuralFeature>> getResourceFeatureLists()
 	{
 		return List.of(	RESOURCE_FEATURES,
+						SUBPASS_RESOURCE_FEATURES,
 						PIPELINE_RESOURCE_FEATURES,
 						DESCRIPTOR_FEATURES,
+						SUBPASS_DESCRIPTOR_FEATURES,
 						PIPELINE_DESCRIPTOR_FEATURES);
 	}
 

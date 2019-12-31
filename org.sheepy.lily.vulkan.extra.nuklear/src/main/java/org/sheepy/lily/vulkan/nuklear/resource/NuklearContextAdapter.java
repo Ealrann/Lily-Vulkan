@@ -31,7 +31,7 @@ import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
 import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.nuklear.input.NuklearInputCatcher;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
 import org.sheepy.vulkan.execution.IExecutionContext;
@@ -64,7 +64,7 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 	private final NuklearContext nuklearContext;
 	private final NkDrawNullTexture nkNullTexture = NkDrawNullTexture.create();
 	private final NkConvertConfig config = NkConvertConfig.create();
-	private final GraphicsPipeline pipeline;
+	private final UI ui;
 	private final INotificationListener uiImagesListener = this::uiImagesChanged;
 
 	private NkAllocator ALLOCATOR;
@@ -74,12 +74,12 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 	private NkBuffer vbuf;
 	private NkBuffer ebuf;
 	private NuklearLayoutTaskAdapter layoutTaskAdapter;
-	private UI ui;
 
 	public NuklearContextAdapter(NuklearContext context)
 	{
 		this.nuklearContext = context;
-		pipeline = ModelUtil.findParent(context, GraphicsPipeline.class);
+		final var subpass = ModelUtil.findParent(context, Subpass.class);
+		ui = (UI) subpass.getScenePart();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -109,8 +109,6 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 		ALLOCATOR = NkAllocator	.calloc()
 								.alloc((handle, old, size) -> nmemAllocChecked(size))
 								.mfree((handle, ptr) -> nmemFree(ptr));
-
-		ui = (UI) pipeline.getScenePart();
 
 		final var imageDescriptor = nuklearContext.getImageArrayDescriptor();
 		if (imageDescriptor != null)

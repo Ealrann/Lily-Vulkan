@@ -251,15 +251,6 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__DYNAMIC_STATE = RenderingPackage.GENERIC_RENDERER__DYNAMIC_STATE;
 
 	/**
-	 * The feature id for the '<em><b>Subpass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_RENDERER__SUBPASS = RenderingPackage.GENERIC_RENDERER__SUBPASS;
-
-	/**
 	 * The feature id for the '<em><b>Vertex Input State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -276,15 +267,6 @@ public interface MeshPackage extends EPackage
 	 * @ordered
 	 */
 	int MESH_RENDERER__DEPTH_STENCIL = RenderingPackage.GENERIC_RENDERER__DEPTH_STENCIL;
-
-	/**
-	 * The feature id for the '<em><b>Scene Part</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_RENDERER__SCENE_PART = RenderingPackage.GENERIC_RENDERER__SCENE_PART;
 
 	/**
 	 * The feature id for the '<em><b>Maintained</b></em>' reference list.

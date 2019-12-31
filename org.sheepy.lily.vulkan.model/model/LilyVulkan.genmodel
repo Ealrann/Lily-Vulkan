@@ -112,13 +112,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentPkg/colorAttachment"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//Subpass">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/attachmantRefPkg"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/subpassIndex"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/stages"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/accesses"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/pipelinePkg"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/bindPoint"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/scenePart"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//AttachmentRefPkg">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentRefPkg/attachmentRefs"/>
@@ -154,7 +154,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicsPipeline/dynamicState"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicsPipeline/vertexInputState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//GraphicsPipeline/depthStencil"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicsPipeline/scenePart"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//SwapImageBarrier"/>
     <genClasses ecoreClass="graphic.ecore#//BlitToSwapImage">

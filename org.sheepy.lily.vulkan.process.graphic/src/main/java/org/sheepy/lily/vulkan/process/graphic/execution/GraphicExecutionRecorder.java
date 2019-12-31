@@ -116,7 +116,10 @@ public class GraphicExecutionRecorder extends AbstractExecutionRecorder<IGraphic
 			for (final var pipeline : pipelinePkg.getPipelines())
 			{
 				final var adapter = pipeline.adapt(IPipelineAdapter.class);
-				adapter.record(recordContext);
+				if (adapter != null)
+				{
+					adapter.record(recordContext);
+				}
 			}
 		}
 	}

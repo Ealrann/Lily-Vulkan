@@ -18,8 +18,8 @@ import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearFontAdapter;
@@ -36,14 +36,13 @@ public final class NuklearLayoutTaskAdapter
 		implements IPipelineTaskAdapter<NuklearLayoutTask>, IAllocableAdapter<IGraphicContext>
 {
 	private final AdapterSetRegistry<IPanelAdapter> PANEL_REGISTRY = new AdapterSetRegistry<>(	IPanelAdapter.class,
-																								List.of(GraphicPackage.Literals.GRAPHICS_PIPELINE__SCENE_PART,
-																										UiPackage.Literals.UI__CURRENT_UI_PAGE,
+																								List.of(UiPackage.Literals.UI__CURRENT_UI_PAGE,
 																										UiPackage.Literals.UI_PAGE__PANELS));
 
 	private final NuklearLayoutTask task;
 	private final GraphicsPipeline pipeline;
 	private final ISizeListener resizeListener = this::onResize;
-
+	private final UI ui;
 	private boolean dirty = true;
 	private IGraphicContext context;
 
@@ -56,15 +55,16 @@ public final class NuklearLayoutTaskAdapter
 	{
 		this.task = task;
 		pipeline = ModelUtil.findParent(task, GraphicsPipeline.class);
+		final var subpass = ModelUtil.findParent(pipeline, Subpass.class);
+		ui = (UI) subpass.getScenePart();
 	}
 
 	@Load
 	public void load()
 	{
 		nuklearContextAdapter = task.getContext().adaptNotNull(NuklearContextAdapter.class);
-		PANEL_REGISTRY.startRegister(pipeline);
+		PANEL_REGISTRY.startRegister(ui);
 
-		final UI ui = (UI) pipeline.getScenePart();
 		final var fontPkg = ui.getFontPkg();
 		final int imageCount = ui.getImages().size();
 		final int fontCount = fontPkg != null ? fontPkg.getFonts().size() : 0;
@@ -84,7 +84,7 @@ public final class NuklearLayoutTaskAdapter
 	@Dispose
 	public void dispose()
 	{
-		PANEL_REGISTRY.stopRegister(pipeline);
+		PANEL_REGISTRY.stopRegister(ui);
 	}
 
 	private void onResize(Vector2ic size)

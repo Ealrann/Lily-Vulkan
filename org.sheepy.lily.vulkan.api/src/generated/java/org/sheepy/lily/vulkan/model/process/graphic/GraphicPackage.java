@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
@@ -767,13 +768,31 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS = 7;
 
 	/**
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__RESOURCE_PKG = VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__DESCRIPTOR_PKG = VulkanPackage.IRESOURCE_CONTAINER__DESCRIPTOR_PKG;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__NAME = 0;
+	int SUBPASS__NAME = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Attachmant Ref Pkg</b></em>' containment reference.
@@ -782,7 +801,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__ATTACHMANT_REF_PKG = 1;
+	int SUBPASS__ATTACHMANT_REF_PKG = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Subpass Index</b></em>' attribute.
@@ -791,7 +810,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__SUBPASS_INDEX = 2;
+	int SUBPASS__SUBPASS_INDEX = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Stages</b></em>' attribute list.
@@ -800,7 +819,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__STAGES = 3;
+	int SUBPASS__STAGES = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Accesses</b></em>' attribute list.
@@ -809,7 +828,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__ACCESSES = 4;
+	int SUBPASS__ACCESSES = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
@@ -818,7 +837,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__PIPELINE_PKG = 5;
+	int SUBPASS__PIPELINE_PKG = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Bind Point</b></em>' attribute.
@@ -827,7 +846,16 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__BIND_POINT = 6;
+	int SUBPASS__BIND_POINT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Scene Part</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__SCENE_PART = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>Subpass</em>' class.
@@ -836,7 +864,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS_FEATURE_COUNT = 7;
+	int SUBPASS_FEATURE_COUNT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Subpass</em>' class.
@@ -845,7 +873,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS_OPERATION_COUNT = 0;
+	int SUBPASS_OPERATION_COUNT = VulkanPackage.IRESOURCE_CONTAINER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefPkgImpl <em>Attachment Ref Pkg</em>}' class.
@@ -1375,22 +1403,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__DEPTH_STENCIL = ProcessPackage.IPIPELINE_FEATURE_COUNT + 8;
 
 	/**
-	 * The feature id for the '<em><b>Scene Part</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE__SCENE_PART = ProcessPackage.IPIPELINE_FEATURE_COUNT + 9;
-
-	/**
 	 * The number of structural features of the '<em>Graphics Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 10;
+	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>Graphics Pipeline</em>' class.
@@ -2482,17 +2501,6 @@ public interface GraphicPackage extends EPackage
 	EClass getSubpass();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getName()
-	 * @see #getSubpass()
-	 * @generated
-	 */
-	EAttribute getSubpass_Name();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmantRefPkg <em>Attachmant Ref Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2557,6 +2565,17 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getSubpass_BindPoint();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getScenePart <em>Scene Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Scene Part</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getScenePart()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EReference getSubpass_ScenePart();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg <em>Attachment Ref Pkg</em>}'.
@@ -2869,17 +2888,6 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getGraphicsPipeline_DepthStencil();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getScenePart <em>Scene Part</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Scene Part</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getScenePart()
-	 * @see #getGraphicsPipeline()
-	 * @generated
-	 */
-	EReference getGraphicsPipeline_ScenePart();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier <em>Swap Image Barrier</em>}'.
@@ -3605,14 +3613,6 @@ public interface GraphicPackage extends EPackage
 		EClass SUBPASS = eINSTANCE.getSubpass();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SUBPASS__NAME = eINSTANCE.getSubpass_Name();
-
-		/**
 		 * The meta object literal for the '<em><b>Attachmant Ref Pkg</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3659,6 +3659,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute SUBPASS__BIND_POINT = eINSTANCE.getSubpass_BindPoint();
+
+		/**
+		 * The meta object literal for the '<em><b>Scene Part</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUBPASS__SCENE_PART = eINSTANCE.getSubpass_ScenePart();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefPkgImpl <em>Attachment Ref Pkg</em>}' class.
@@ -3905,14 +3913,6 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute GRAPHICS_PIPELINE__DEPTH_STENCIL = eINSTANCE.getGraphicsPipeline_DepthStencil();
-
-		/**
-		 * The meta object literal for the '<em><b>Scene Part</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GRAPHICS_PIPELINE__SCENE_PART = eINSTANCE.getGraphicsPipeline_ScenePart();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageBarrierImpl <em>Swap Image Barrier</em>}' class.

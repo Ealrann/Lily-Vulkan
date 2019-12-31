@@ -3,7 +3,9 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.lily.core.api.adapter.ILilyEObject;
+import org.sheepy.lily.core.model.application.IScenePart;
+import org.sheepy.lily.core.model.types.LNamedElement;
+import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
@@ -17,44 +19,21 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmantRefPkg <em>Attachmant Ref Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSubpassIndex <em>Subpass Index</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getStages <em>Stages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAccesses <em>Accesses</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getBindPoint <em>Bind Point</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getScenePart <em>Scene Part</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass()
  * @model
- * @extends ILilyEObject
  * @generated
  */
-public interface Subpass extends ILilyEObject
+public interface Subpass extends IResourceContainer, LNamedElement
 {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_Name()
-	 * @model unique="false"
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
-
 	/**
 	 * Returns the value of the '<em><b>Attachmant Ref Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -172,5 +151,27 @@ public interface Subpass extends ILilyEObject
 	 * @generated
 	 */
 	void setBindPoint(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Scene Part</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Scene Part</em>' reference.
+	 * @see #setScenePart(IScenePart)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_ScenePart()
+	 * @model
+	 * @generated
+	 */
+	IScenePart getScenePart();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getScenePart <em>Scene Part</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Scene Part</em>' reference.
+	 * @see #getScenePart()
+	 * @generated
+	 */
+	void setScenePart(IScenePart value);
 
 } // Subpass

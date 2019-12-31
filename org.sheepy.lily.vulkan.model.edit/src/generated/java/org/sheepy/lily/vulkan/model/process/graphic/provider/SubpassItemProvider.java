@@ -23,6 +23,10 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.sheepy.lily.core.model.application.ApplicationFactory;
+import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.VulkanFactory;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -66,6 +70,7 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 			addStagesPropertyDescriptor(object);
 			addAccessesPropertyDescriptor(object);
 			addBindPointPropertyDescriptor(object);
+			addScenePartPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -82,9 +87,9 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Subpass_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_name_feature", "_UI_Subpass_type"),
-				 GraphicPackage.Literals.SUBPASS__NAME,
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
 				 true,
 				 false,
 				 false,
@@ -186,6 +191,29 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 	}
 
 	/**
+	 * This adds a property descriptor for the Scene Part feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addScenePartPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Subpass_scenePart_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_scenePart_feature", "_UI_Subpass_type"),
+				 GraphicPackage.Literals.SUBPASS__SCENE_PART,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -199,6 +227,8 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
+			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
 			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__ATTACHMANT_REF_PKG);
 			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__PIPELINE_PKG);
 		}
@@ -267,6 +297,8 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 			case GraphicPackage.SUBPASS__BIND_POINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case GraphicPackage.SUBPASS__RESOURCE_PKG:
+			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
 			case GraphicPackage.SUBPASS__ATTACHMANT_REF_PKG:
 			case GraphicPackage.SUBPASS__PIPELINE_PKG:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -286,6 +318,16 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+				 ApplicationFactory.eINSTANCE.createResourcePkg()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+				 VulkanFactory.eINSTANCE.createDescriptorPkg()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -10,11 +10,17 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
+import org.sheepy.lily.core.model.application.IScenePart;
+import org.sheepy.lily.core.model.application.ResourcePkg;
+import org.sheepy.lily.core.model.types.LNamedElement;
+import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -30,6 +36,8 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getResourcePkg <em>Resource Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getDescriptorPkg <em>Descriptor Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getAttachmantRefPkg <em>Attachmant Ref Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getSubpassIndex <em>Subpass Index</em>}</li>
@@ -37,12 +45,33 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getAccesses <em>Accesses</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getBindPoint <em>Bind Point</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getScenePart <em>Scene Part</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SubpassImpl extends LilyEObject implements Subpass
 {
+	/**
+	 * The cached value of the '{@link #getResourcePkg() <em>Resource Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResourcePkg()
+	 * @generated
+	 * @ordered
+	 */
+	protected ResourcePkg resourcePkg;
+
+	/**
+	 * The cached value of the '{@link #getDescriptorPkg() <em>Descriptor Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescriptorPkg()
+	 * @generated
+	 * @ordered
+	 */
+	protected DescriptorPkg descriptorPkg;
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -144,6 +173,16 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	protected int bindPoint = BIND_POINT_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getScenePart() <em>Scene Part</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getScenePart()
+	 * @generated
+	 * @ordered
+	 */
+	protected IScenePart scenePart;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -162,6 +201,106 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	protected EClass eStaticClass()
 	{
 		return GraphicPackage.Literals.SUBPASS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourcePkg getResourcePkg()
+	{
+		return resourcePkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetResourcePkg(ResourcePkg newResourcePkg, NotificationChain msgs)
+	{
+		ResourcePkg oldResourcePkg = resourcePkg;
+		resourcePkg = newResourcePkg;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setResourcePkg(ResourcePkg newResourcePkg)
+	{
+		if (newResourcePkg != resourcePkg)
+		{
+			NotificationChain msgs = null;
+			if (resourcePkg != null)
+				msgs = ((InternalEObject)resourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__RESOURCE_PKG, null, msgs);
+			if (newResourcePkg != null)
+				msgs = ((InternalEObject)newResourcePkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__RESOURCE_PKG, null, msgs);
+			msgs = basicSetResourcePkg(newResourcePkg, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__RESOURCE_PKG, newResourcePkg, newResourcePkg));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DescriptorPkg getDescriptorPkg()
+	{
+		return descriptorPkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDescriptorPkg(DescriptorPkg newDescriptorPkg, NotificationChain msgs)
+	{
+		DescriptorPkg oldDescriptorPkg = descriptorPkg;
+		descriptorPkg = newDescriptorPkg;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__DESCRIPTOR_PKG, oldDescriptorPkg, newDescriptorPkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDescriptorPkg(DescriptorPkg newDescriptorPkg)
+	{
+		if (newDescriptorPkg != descriptorPkg)
+		{
+			NotificationChain msgs = null;
+			if (descriptorPkg != null)
+				msgs = ((InternalEObject)descriptorPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__DESCRIPTOR_PKG, null, msgs);
+			if (newDescriptorPkg != null)
+				msgs = ((InternalEObject)newDescriptorPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__DESCRIPTOR_PKG, null, msgs);
+			msgs = basicSetDescriptorPkg(newDescriptorPkg, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__DESCRIPTOR_PKG, newDescriptorPkg, newDescriptorPkg));
 	}
 
 	/**
@@ -375,10 +514,59 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * @generated
 	 */
 	@Override
+	public IScenePart getScenePart()
+	{
+		if (scenePart != null && ((EObject)scenePart).eIsProxy())
+		{
+			InternalEObject oldScenePart = (InternalEObject)scenePart;
+			scenePart = (IScenePart)eResolveProxy(oldScenePart);
+			if (scenePart != oldScenePart)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.SUBPASS__SCENE_PART, oldScenePart, scenePart));
+			}
+		}
+		return scenePart;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IScenePart basicGetScenePart()
+	{
+		return scenePart;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setScenePart(IScenePart newScenePart)
+	{
+		IScenePart oldScenePart = scenePart;
+		scenePart = newScenePart;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__SCENE_PART, oldScenePart, scenePart));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
+			case GraphicPackage.SUBPASS__RESOURCE_PKG:
+				return basicSetResourcePkg(null, msgs);
+			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
+				return basicSetDescriptorPkg(null, msgs);
 			case GraphicPackage.SUBPASS__ATTACHMANT_REF_PKG:
 				return basicSetAttachmantRefPkg(null, msgs);
 			case GraphicPackage.SUBPASS__PIPELINE_PKG:
@@ -397,6 +585,10 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		switch (featureID)
 		{
+			case GraphicPackage.SUBPASS__RESOURCE_PKG:
+				return getResourcePkg();
+			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
+				return getDescriptorPkg();
 			case GraphicPackage.SUBPASS__NAME:
 				return getName();
 			case GraphicPackage.SUBPASS__ATTACHMANT_REF_PKG:
@@ -411,6 +603,9 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return getPipelinePkg();
 			case GraphicPackage.SUBPASS__BIND_POINT:
 				return getBindPoint();
+			case GraphicPackage.SUBPASS__SCENE_PART:
+				if (resolve) return getScenePart();
+				return basicGetScenePart();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -426,6 +621,12 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		switch (featureID)
 		{
+			case GraphicPackage.SUBPASS__RESOURCE_PKG:
+				setResourcePkg((ResourcePkg)newValue);
+				return;
+			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
+				setDescriptorPkg((DescriptorPkg)newValue);
+				return;
 			case GraphicPackage.SUBPASS__NAME:
 				setName((String)newValue);
 				return;
@@ -449,6 +650,9 @@ public class SubpassImpl extends LilyEObject implements Subpass
 			case GraphicPackage.SUBPASS__BIND_POINT:
 				setBindPoint((Integer)newValue);
 				return;
+			case GraphicPackage.SUBPASS__SCENE_PART:
+				setScenePart((IScenePart)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -463,6 +667,12 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		switch (featureID)
 		{
+			case GraphicPackage.SUBPASS__RESOURCE_PKG:
+				setResourcePkg((ResourcePkg)null);
+				return;
+			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
+				setDescriptorPkg((DescriptorPkg)null);
+				return;
 			case GraphicPackage.SUBPASS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -484,6 +694,9 @@ public class SubpassImpl extends LilyEObject implements Subpass
 			case GraphicPackage.SUBPASS__BIND_POINT:
 				setBindPoint(BIND_POINT_EDEFAULT);
 				return;
+			case GraphicPackage.SUBPASS__SCENE_PART:
+				setScenePart((IScenePart)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -498,6 +711,10 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		switch (featureID)
 		{
+			case GraphicPackage.SUBPASS__RESOURCE_PKG:
+				return resourcePkg != null;
+			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
+				return descriptorPkg != null;
 			case GraphicPackage.SUBPASS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case GraphicPackage.SUBPASS__ATTACHMANT_REF_PKG:
@@ -512,8 +729,48 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return pipelinePkg != null;
 			case GraphicPackage.SUBPASS__BIND_POINT:
 				return bindPoint != BIND_POINT_EDEFAULT;
+			case GraphicPackage.SUBPASS__SCENE_PART:
+				return scenePart != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == LNamedElement.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case GraphicPackage.SUBPASS__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == LNamedElement.class)
+		{
+			switch (baseFeatureID)
+			{
+				case TypesPackage.LNAMED_ELEMENT__NAME: return GraphicPackage.SUBPASS__NAME;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
