@@ -30,6 +30,7 @@ public class PanelAdapter implements IPanelAdapter
 	private NkRect rect = NkRect.create();
 	private Window window = null;
 	private int style;
+	private boolean dirty = true;
 	private boolean hovered = false;
 
 	public PanelAdapter(Panel panel)
@@ -93,7 +94,8 @@ public class PanelAdapter implements IPanelAdapter
 	@Override
 	public boolean layout(UIContext context)
 	{
-		boolean res = false;
+		boolean res = dirty;
+		dirty = false;
 		final var stack = context.stack;
 		final var nkContext = context.nkContext;
 		updateWindow(context);
@@ -111,6 +113,7 @@ public class PanelAdapter implements IPanelAdapter
 			if (nk_window_is_collapsed(nkContext, textBuffer) && (style & NK_WINDOW_MINIMIZED) != 0)
 			{
 				style ^= NK_WINDOW_MINIMIZED;
+				dirty = true;
 				res = true;
 			}
 
@@ -138,8 +141,10 @@ public class PanelAdapter implements IPanelAdapter
 		}
 		else if ((style & NK_WINDOW_MINIMIZED) == 0)
 		{
+			hovered = false;
 			style |= NK_WINDOW_MINIMIZED;
 			res = true;
+			dirty = true;
 		}
 
 		nk_end(nkContext);
