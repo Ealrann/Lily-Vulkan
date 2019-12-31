@@ -150,6 +150,11 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createFileImageAdapter();
 			}
 			@Override
+			public Adapter caseFontImage(FontImage object)
+			{
+				return createFontImageAdapter();
+			}
+			@Override
 			public Adapter caseSampledImage(SampledImage object)
 			{
 				return createSampledImageAdapter();
@@ -228,11 +233,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseTexture2DArray(Texture2DArray object)
 			{
 				return createTexture2DArrayAdapter();
-			}
-			@Override
-			public Adapter caseFontTextureArray(FontTextureArray object)
-			{
-				return createFontTextureArrayAdapter();
 			}
 			@Override
 			public Adapter caseImageArrayDescriptor(ImageArrayDescriptor object)
@@ -501,6 +501,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.FontImage <em>Font Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.FontImage
+	 * @generated
+	 */
+	public Adapter createFontImageAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.SampledImage <em>Sampled Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -736,21 +751,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createTexture2DArrayAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.FontTextureArray <em>Font Texture Array</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.FontTextureArray
-	 * @generated
-	 */
-	public Adapter createFontTextureArrayAdapter()
 	{
 		return null;
 	}

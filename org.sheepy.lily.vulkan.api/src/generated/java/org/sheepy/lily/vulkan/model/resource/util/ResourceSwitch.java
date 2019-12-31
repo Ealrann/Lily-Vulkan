@@ -206,6 +206,18 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ResourcePackage.FONT_IMAGE:
+			{
+				FontImage fontImage = (FontImage)theEObject;
+				T1 result = caseFontImage(fontImage);
+				if (result == null) result = caseImage(fontImage);
+				if (result == null) result = caseImageInfo(fontImage);
+				if (result == null) result = caseIImage(fontImage);
+				if (result == null) result = caseIResource(fontImage);
+				if (result == null) result = caseLNamedElement(fontImage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ResourcePackage.SAMPLED_IMAGE:
 			{
 				SampledImage sampledImage = (SampledImage)theEObject;
@@ -355,19 +367,6 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseIImage(texture2DArray);
 				if (result == null) result = caseIResource(texture2DArray);
 				if (result == null) result = caseLNamedElement(texture2DArray);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.FONT_TEXTURE_ARRAY:
-			{
-				FontTextureArray fontTextureArray = (FontTextureArray)theEObject;
-				T1 result = caseFontTextureArray(fontTextureArray);
-				if (result == null) result = caseITextureArray(fontTextureArray);
-				if (result == null) result = caseImage(fontTextureArray);
-				if (result == null) result = caseImageInfo(fontTextureArray);
-				if (result == null) result = caseIImage(fontTextureArray);
-				if (result == null) result = caseIResource(fontTextureArray);
-				if (result == null) result = caseLNamedElement(fontTextureArray);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -588,6 +587,22 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseFileImage(FileImage object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Font Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Font Image</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseFontImage(FontImage object)
 	{
 		return null;
 	}
@@ -844,22 +859,6 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseTexture2DArray(Texture2DArray object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Font Texture Array</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Font Texture Array</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseFontTextureArray(FontTextureArray object)
 	{
 		return null;
 	}

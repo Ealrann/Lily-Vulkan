@@ -1008,6 +1008,97 @@ public interface ResourcePackage extends EPackage
 	int FILE_IMAGE_OPERATION_COUNT = IMAGE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl <em>Font Image</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFontImage()
+	 * @generated
+	 */
+	int FONT_IMAGE = 13;
+
+	/**
+	 * The feature id for the '<em><b>Format</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE__FORMAT = IMAGE__FORMAT;
+
+	/**
+	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE__USAGES = IMAGE__USAGES;
+
+	/**
+	 * The feature id for the '<em><b>Tiling</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE__TILING = IMAGE__TILING;
+
+	/**
+	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE__MIP_LEVELS = IMAGE__MIP_LEVELS;
+
+	/**
+	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE__INITIAL_LAYOUT = IMAGE__INITIAL_LAYOUT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE__NAME = IMAGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Font</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE__FONT = IMAGE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Font Image</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE_FEATURE_COUNT = IMAGE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Font Image</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE_OPERATION_COUNT = IMAGE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl <em>Sampled Image</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1015,7 +1106,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampledImage()
 	 * @generated
 	 */
-	int SAMPLED_IMAGE = 13;
+	int SAMPLED_IMAGE = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1070,7 +1161,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampler()
 	 * @generated
 	 */
-	int SAMPLER = 14;
+	int SAMPLER = 15;
 
 	/**
 	 * The feature id for the '<em><b>Min Filter</b></em>' attribute.
@@ -1224,7 +1315,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSemaphore()
 	 * @generated
 	 */
-	int SEMAPHORE = 15;
+	int SEMAPHORE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1279,7 +1370,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBufferDescriptor()
 	 * @generated
 	 */
-	int BUFFER_DESCRIPTOR = 16;
+	int BUFFER_DESCRIPTOR = 17;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1343,7 +1434,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageDescriptor()
 	 * @generated
 	 */
-	int IMAGE_DESCRIPTOR = 17;
+	int IMAGE_DESCRIPTOR = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1407,7 +1498,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampledImageDescriptor()
 	 * @generated
 	 */
-	int SAMPLED_IMAGE_DESCRIPTOR = 18;
+	int SAMPLED_IMAGE_DESCRIPTOR = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1471,7 +1562,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSamplerDescriptor()
 	 * @generated
 	 */
-	int SAMPLER_DESCRIPTOR = 19;
+	int SAMPLER_DESCRIPTOR = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1535,7 +1626,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getTexture2DArrayDescriptor()
 	 * @generated
 	 */
-	int TEXTURE2_DARRAY_DESCRIPTOR = 20;
+	int TEXTURE2_DARRAY_DESCRIPTOR = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1599,7 +1690,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSet()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET = 21;
+	int DESCRIPTOR_SET = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1645,7 +1736,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSetPkg()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET_PKG = 22;
+	int DESCRIPTOR_SET_PKG = 23;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
@@ -1682,7 +1773,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBufferBarrier()
 	 * @generated
 	 */
-	int BUFFER_BARRIER = 23;
+	int BUFFER_BARRIER = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1746,7 +1837,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getCompositeBufferBarrier()
 	 * @generated
 	 */
-	int COMPOSITE_BUFFER_BARRIER = 24;
+	int COMPOSITE_BUFFER_BARRIER = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1819,7 +1910,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageBarrier()
 	 * @generated
 	 */
-	int IMAGE_BARRIER = 25;
+	int IMAGE_BARRIER = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1901,7 +1992,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getShader()
 	 * @generated
 	 */
-	int SHADER = 26;
+	int SHADER = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1965,7 +2056,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getITextureArray()
 	 * @generated
 	 */
-	int ITEXTURE_ARRAY = 27;
+	int ITEXTURE_ARRAY = 28;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -2047,7 +2138,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getTexture2DArray()
 	 * @generated
 	 */
-	int TEXTURE2_DARRAY = 28;
+	int TEXTURE2_DARRAY = 29;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -2138,106 +2229,6 @@ public interface ResourcePackage extends EPackage
 	 * @ordered
 	 */
 	int TEXTURE2_DARRAY_OPERATION_COUNT = ITEXTURE_ARRAY_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FontTextureArrayImpl <em>Font Texture Array</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.FontTextureArrayImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFontTextureArray()
-	 * @generated
-	 */
-	int FONT_TEXTURE_ARRAY = 29;
-
-	/**
-	 * The feature id for the '<em><b>Format</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_TEXTURE_ARRAY__FORMAT = ITEXTURE_ARRAY__FORMAT;
-
-	/**
-	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_TEXTURE_ARRAY__USAGES = ITEXTURE_ARRAY__USAGES;
-
-	/**
-	 * The feature id for the '<em><b>Tiling</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_TEXTURE_ARRAY__TILING = ITEXTURE_ARRAY__TILING;
-
-	/**
-	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_TEXTURE_ARRAY__MIP_LEVELS = ITEXTURE_ARRAY__MIP_LEVELS;
-
-	/**
-	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_TEXTURE_ARRAY__INITIAL_LAYOUT = ITEXTURE_ARRAY__INITIAL_LAYOUT;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_TEXTURE_ARRAY__NAME = ITEXTURE_ARRAY__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_TEXTURE_ARRAY__HEIGHT = ITEXTURE_ARRAY_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Fonts</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_TEXTURE_ARRAY__FONTS = ITEXTURE_ARRAY_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Font Texture Array</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_TEXTURE_ARRAY_FEATURE_COUNT = ITEXTURE_ARRAY_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Font Texture Array</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_TEXTURE_ARRAY_OPERATION_COUNT = ITEXTURE_ARRAY_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageArrayDescriptorImpl <em>Image Array Descriptor</em>}' class.
@@ -2859,6 +2850,27 @@ public interface ResourcePackage extends EPackage
 	EAttribute getFileImage_MipmapEnabled();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.FontImage <em>Font Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Font Image</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.FontImage
+	 * @generated
+	 */
+	EClass getFontImage();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.resource.FontImage#getFont <em>Font</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Font</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.FontImage#getFont()
+	 * @see #getFontImage()
+	 * @generated
+	 */
+	EReference getFontImage_Font();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.SampledImage <em>Sampled Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3248,38 +3260,6 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getTexture2DArray_MipmapEnabled();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.FontTextureArray <em>Font Texture Array</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Font Texture Array</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.FontTextureArray
-	 * @generated
-	 */
-	EClass getFontTextureArray();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.FontTextureArray#getHeight <em>Height</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Height</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.FontTextureArray#getHeight()
-	 * @see #getFontTextureArray()
-	 * @generated
-	 */
-	EAttribute getFontTextureArray_Height();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.resource.FontTextureArray#getFonts <em>Fonts</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Fonts</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.FontTextureArray#getFonts()
-	 * @see #getFontTextureArray()
-	 * @generated
-	 */
-	EReference getFontTextureArray_Fonts();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor <em>Image Array Descriptor</em>}'.
@@ -3777,6 +3757,24 @@ public interface ResourcePackage extends EPackage
 		EAttribute FILE_IMAGE__MIPMAP_ENABLED = eINSTANCE.getFileImage_MipmapEnabled();
 
 		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl <em>Font Image</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFontImage()
+		 * @generated
+		 */
+		EClass FONT_IMAGE = eINSTANCE.getFontImage();
+
+		/**
+		 * The meta object literal for the '<em><b>Font</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FONT_IMAGE__FONT = eINSTANCE.getFontImage_Font();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl <em>Sampled Image</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4103,32 +4101,6 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute TEXTURE2_DARRAY__MIPMAP_ENABLED = eINSTANCE.getTexture2DArray_MipmapEnabled();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FontTextureArrayImpl <em>Font Texture Array</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.FontTextureArrayImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFontTextureArray()
-		 * @generated
-		 */
-		EClass FONT_TEXTURE_ARRAY = eINSTANCE.getFontTextureArray();
-
-		/**
-		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FONT_TEXTURE_ARRAY__HEIGHT = eINSTANCE.getFontTextureArray_Height();
-
-		/**
-		 * The meta object literal for the '<em><b>Fonts</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FONT_TEXTURE_ARRAY__FONTS = eINSTANCE.getFontTextureArray_Fonts();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageArrayDescriptorImpl <em>Image Array Descriptor</em>}' class.

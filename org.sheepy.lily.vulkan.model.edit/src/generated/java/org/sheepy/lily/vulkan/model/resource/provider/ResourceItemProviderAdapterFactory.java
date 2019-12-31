@@ -346,6 +346,31 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FontImage} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FontImageItemProvider fontImageItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.FontImage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFontImageAdapter()
+	{
+		if (fontImageItemProvider == null)
+		{
+			fontImageItemProvider = new FontImageItemProvider(this);
+		}
+
+		return fontImageItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.SampledImage} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -746,31 +771,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FontTextureArray} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FontTextureArrayItemProvider fontTextureArrayItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.FontTextureArray}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFontTextureArrayAdapter()
-	{
-		if (fontTextureArrayItemProvider == null)
-		{
-			fontTextureArrayItemProvider = new FontTextureArrayItemProvider(this);
-		}
-
-		return fontTextureArrayItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -954,6 +954,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (bufferDataProviderItemProvider != null) bufferDataProviderItemProvider.dispose();
 		if (staticImageItemProvider != null) staticImageItemProvider.dispose();
 		if (fileImageItemProvider != null) fileImageItemProvider.dispose();
+		if (fontImageItemProvider != null) fontImageItemProvider.dispose();
 		if (sampledImageItemProvider != null) sampledImageItemProvider.dispose();
 		if (samplerItemProvider != null) samplerItemProvider.dispose();
 		if (semaphoreItemProvider != null) semaphoreItemProvider.dispose();
@@ -970,7 +971,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (shaderItemProvider != null) shaderItemProvider.dispose();
 		if (iTextureArrayItemProvider != null) iTextureArrayItemProvider.dispose();
 		if (texture2DArrayItemProvider != null) texture2DArrayItemProvider.dispose();
-		if (fontTextureArrayItemProvider != null) fontTextureArrayItemProvider.dispose();
 		if (imageArrayDescriptorItemProvider != null) imageArrayDescriptorItemProvider.dispose();
 	}
 
@@ -1058,6 +1058,11 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 				newChildDescriptors.add
 					(createChildParameter
 						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
+						 ResourceFactory.eINSTANCE.createFontImage()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
 						 ResourceFactory.eINSTANCE.createSampledImage()));
 
 				newChildDescriptors.add
@@ -1084,11 +1089,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 					(createChildParameter
 						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
 						 ResourceFactory.eINSTANCE.createTexture2DArray()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 ResourceFactory.eINSTANCE.createFontTextureArray()));
 
 				return null;
 			}

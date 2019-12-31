@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.model.application.impl.IResourceImpl;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
-import org.sheepy.lily.vulkan.model.resource.FontTextureArray;
+import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +20,7 @@ import org.sheepy.lily.vulkan.model.resource.FontTextureArray;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearFontImpl#getFontTextureArray <em>Font Texture Array</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearFontImpl#getFontArrayDescriptor <em>Font Array Descriptor</em>}</li>
  * </ul>
  *
  * @generated
@@ -28,15 +28,14 @@ import org.sheepy.lily.vulkan.model.resource.FontTextureArray;
 public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 {
 	/**
-	 * The cached value of the '{@link #getFontTextureArray() <em>Font Texture Array</em>}' reference.
+	 * The cached value of the '{@link #getFontArrayDescriptor() <em>Font Array Descriptor</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFontTextureArray()
+	 * @see #getFontArrayDescriptor()
 	 * @generated
 	 * @ordered
 	 */
-	protected FontTextureArray fontTextureArray;
-
+	protected ImageArrayDescriptor fontArrayDescriptor;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,19 +63,19 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	 * @generated
 	 */
 	@Override
-	public FontTextureArray getFontTextureArray()
+	public ImageArrayDescriptor getFontArrayDescriptor()
 	{
-		if (fontTextureArray != null && ((EObject)fontTextureArray).eIsProxy())
+		if (fontArrayDescriptor != null && ((EObject)fontArrayDescriptor).eIsProxy())
 		{
-			InternalEObject oldFontTextureArray = (InternalEObject)fontTextureArray;
-			fontTextureArray = (FontTextureArray)eResolveProxy(oldFontTextureArray);
-			if (fontTextureArray != oldFontTextureArray)
+			InternalEObject oldFontArrayDescriptor = (InternalEObject)fontArrayDescriptor;
+			fontArrayDescriptor = (ImageArrayDescriptor)eResolveProxy(oldFontArrayDescriptor);
+			if (fontArrayDescriptor != oldFontArrayDescriptor)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_FONT__FONT_TEXTURE_ARRAY, oldFontTextureArray, fontTextureArray));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR, oldFontArrayDescriptor, fontArrayDescriptor));
 			}
 		}
-		return fontTextureArray;
+		return fontArrayDescriptor;
 	}
 
 	/**
@@ -84,9 +83,9 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FontTextureArray basicGetFontTextureArray()
+	public ImageArrayDescriptor basicGetFontArrayDescriptor()
 	{
-		return fontTextureArray;
+		return fontArrayDescriptor;
 	}
 
 	/**
@@ -95,12 +94,12 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	 * @generated
 	 */
 	@Override
-	public void setFontTextureArray(FontTextureArray newFontTextureArray)
+	public void setFontArrayDescriptor(ImageArrayDescriptor newFontArrayDescriptor)
 	{
-		FontTextureArray oldFontTextureArray = fontTextureArray;
-		fontTextureArray = newFontTextureArray;
+		ImageArrayDescriptor oldFontArrayDescriptor = fontArrayDescriptor;
+		fontArrayDescriptor = newFontArrayDescriptor;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_FONT__FONT_TEXTURE_ARRAY, oldFontTextureArray, fontTextureArray));
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR, oldFontArrayDescriptor, fontArrayDescriptor));
 	}
 
 	/**
@@ -113,9 +112,9 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_FONT__FONT_TEXTURE_ARRAY:
-				if (resolve) return getFontTextureArray();
-				return basicGetFontTextureArray();
+			case NuklearPackage.NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR:
+				if (resolve) return getFontArrayDescriptor();
+				return basicGetFontArrayDescriptor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -130,8 +129,8 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_FONT__FONT_TEXTURE_ARRAY:
-				setFontTextureArray((FontTextureArray)newValue);
+			case NuklearPackage.NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR:
+				setFontArrayDescriptor((ImageArrayDescriptor)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -147,8 +146,8 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_FONT__FONT_TEXTURE_ARRAY:
-				setFontTextureArray((FontTextureArray)null);
+			case NuklearPackage.NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR:
+				setFontArrayDescriptor((ImageArrayDescriptor)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -164,8 +163,8 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_FONT__FONT_TEXTURE_ARRAY:
-				return fontTextureArray != null;
+			case NuklearPackage.NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR:
+				return fontArrayDescriptor != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -375,13 +375,13 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_FONT__NAME = ApplicationPackage.IRESOURCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Font Texture Array</b></em>' reference.
+	 * The feature id for the '<em><b>Font Array Descriptor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT__FONT_TEXTURE_ARRAY = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
+	int NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Font</em>' class.
@@ -1255,15 +1255,15 @@ public interface NuklearPackage extends EPackage
 	EClass getNuklearFont();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontTextureArray <em>Font Texture Array</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontArrayDescriptor <em>Font Array Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Font Texture Array</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontTextureArray()
+	 * @return the meta object for the reference '<em>Font Array Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontArrayDescriptor()
 	 * @see #getNuklearFont()
 	 * @generated
 	 */
-	EReference getNuklearFont_FontTextureArray();
+	EReference getNuklearFont_FontArrayDescriptor();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel <em>Selector Panel</em>}'.
@@ -1650,12 +1650,12 @@ public interface NuklearPackage extends EPackage
 		EClass NUKLEAR_FONT = eINSTANCE.getNuklearFont();
 
 		/**
-		 * The meta object literal for the '<em><b>Font Texture Array</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Font Array Descriptor</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NUKLEAR_FONT__FONT_TEXTURE_ARRAY = eINSTANCE.getNuklearFont_FontTextureArray();
+		EReference NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR = eINSTANCE.getNuklearFont_FontArrayDescriptor();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl <em>Selector Panel</em>}' class.

@@ -9,9 +9,7 @@ import org.sheepy.lily.vulkan.resource.buffer.provider.DataProviderWrapper;
 import org.sheepy.lily.vulkan.resource.file.LocalResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.ModuleResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.StringModuleResourceAdapter;
-import org.sheepy.lily.vulkan.resource.font.FontAdapter;
-import org.sheepy.lily.vulkan.resource.font.FontTableAdapter;
-import org.sheepy.lily.vulkan.resource.font.FontTextureArrayAdapter;
+import org.sheepy.lily.vulkan.resource.font.FontImageAdapter;
 import org.sheepy.lily.vulkan.resource.image.FileImageAdapter;
 import org.sheepy.lily.vulkan.resource.image.ImageArrayDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.image.ImageDescriptorAdapter;
@@ -31,9 +29,7 @@ import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 		CompositeBufferAdapter.class,
 		CompositeBufferReferenceAdapter.class,
 		FileImageAdapter.class,
-		FontAdapter.class,
-		FontTableAdapter.class,
-		FontTextureArrayAdapter.class,
+		FontImageAdapter.class,
 		TransferBufferAdapter.class,
 		SamplerAdapter.class,
 		SampledImageAdapter.class,

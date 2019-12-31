@@ -77,6 +77,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.BUFFER_DATA_PROVIDER: return createBufferDataProvider();
 			case ResourcePackage.STATIC_IMAGE: return createStaticImage();
 			case ResourcePackage.FILE_IMAGE: return createFileImage();
+			case ResourcePackage.FONT_IMAGE: return createFontImage();
 			case ResourcePackage.SAMPLED_IMAGE: return createSampledImage();
 			case ResourcePackage.SAMPLER: return createSampler();
 			case ResourcePackage.SEMAPHORE: return createSemaphore();
@@ -93,7 +94,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.SHADER: return createShader();
 			case ResourcePackage.ITEXTURE_ARRAY: return createITextureArray();
 			case ResourcePackage.TEXTURE2_DARRAY: return createTexture2DArray();
-			case ResourcePackage.FONT_TEXTURE_ARRAY: return createFontTextureArray();
 			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR: return createImageArrayDescriptor();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -256,6 +256,18 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		FileImageImpl fileImage = new FileImageImpl();
 		return fileImage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FontImage createFontImage()
+	{
+		FontImageImpl fontImage = new FontImageImpl();
+		return fontImage;
 	}
 
 	/**
@@ -448,18 +460,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		Texture2DArrayImpl texture2DArray = new Texture2DArrayImpl();
 		return texture2DArray;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public FontTextureArray createFontTextureArray()
-	{
-		FontTextureArrayImpl fontTextureArray = new FontTextureArrayImpl();
-		return fontTextureArray;
 	}
 
 	/**

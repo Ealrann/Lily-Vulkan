@@ -12,12 +12,12 @@ import org.lwjgl.nuklear.NkUserFontGlyph;
 import org.lwjgl.stb.STBTTAlignedQuad;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.core.model.ui.Font;
-import org.sheepy.lily.vulkan.api.resource.font.IFontAdapter;
+import org.sheepy.lily.vulkan.api.resource.font.IFontImageAdapter;
+import org.sheepy.lily.vulkan.model.resource.FontImage;
 
 public final class NkFontLoader
 {
-	public final Font font;
+	public final FontImage fontImage;
 
 	private final NkUserFont nkFont;
 	private final float fontHeight;
@@ -25,20 +25,20 @@ public final class NkFontLoader
 	private IntBuffer unicode;
 	private IntBuffer advanceWidth;
 	private long unicodePtr;
-	private IFontAdapter fontAdapter;
+	private IFontImageAdapter fontAdapter;
 	private STBTTAlignedQuad quad;
 	private QueryData[] queryDatas;
 
-	public NkFontLoader(Font font)
+	public NkFontLoader(FontImage fontImage, float fontHeight)
 	{
-		this.font = font;
-		fontHeight = font.getHeight();
+		this.fontImage = fontImage;
+		this.fontHeight = fontHeight;
 		nkFont = NkUserFont.create();
 	}
 
 	public void allocate()
 	{
-		fontAdapter = font.adapt(IFontAdapter.class);
+		fontAdapter = fontImage.adapt(IFontImageAdapter.class);
 		queryDatas = new QueryData[fontAdapter.charCount()];
 
 		unicode = MemoryUtil.memAllocInt(1);
@@ -54,7 +54,7 @@ public final class NkFontLoader
 			final QueryData queryData = getOrCreateQueryData(codepoint);
 			final NkUserFontGlyph ufg = NkUserFontGlyph.create(glyph);
 
-			final var tableAdapter = fontAdapter.getTableAdapter(codepoint);
+			final var tableAdapter = fontAdapter.getTableInfo(codepoint);
 			final float kern = tableAdapter.getCodepointKernAdvance(codepoint, next_codepoint);
 
 			queryData.fill(ufg);
@@ -108,7 +108,7 @@ public final class NkFontLoader
 	{
 		final int codeToQuery = codepoint;
 
-		final var tableAdapter = fontAdapter.getTableAdapter(codeToQuery);
+		final var tableAdapter = fontAdapter.getTableInfo(codeToQuery);
 		fontAdapter.fillPackedQuad(quad, codeToQuery);
 		final var hMetric = tableAdapter.getCodepointHMetric(codeToQuery);
 		final var vMetric = tableAdapter.getVMetric();

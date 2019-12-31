@@ -113,6 +113,15 @@ public interface ResourceFactory extends EFactory
 	FileImage createFileImage();
 
 	/**
+	 * Returns a new object of class '<em>Font Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Font Image</em>'.
+	 * @generated
+	 */
+	FontImage createFontImage();
+
+	/**
 	 * Returns a new object of class '<em>Sampled Image</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -255,15 +264,6 @@ public interface ResourceFactory extends EFactory
 	 * @generated
 	 */
 	Texture2DArray createTexture2DArray();
-
-	/**
-	 * Returns a new object of class '<em>Font Texture Array</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Font Texture Array</em>'.
-	 * @generated
-	 */
-	FontTextureArray createFontTextureArray();
 
 	/**
 	 * Returns a new object of class '<em>Image Array Descriptor</em>'.

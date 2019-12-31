@@ -11,20 +11,15 @@ import org.lwjgl.stb.STBTTFontinfo;
 import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar.Buffer;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.FontTable;
-import org.sheepy.lily.vulkan.api.resource.font.IFontTableAdapter;
+import org.sheepy.lily.vulkan.api.resource.font.IFontTableInfo;
 import org.sheepy.lily.vulkan.resource.font.util.FontUtil;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.log.Logger;
-import org.sheepy.vulkan.model.image.ImageInfo;
 
-@Statefull
-@Adapter(scope = FontTable.class)
-public class FontTableAdapter implements IFontTableAdapter
+public class FontTableAllocator implements IFontTableInfo
 {
 	public static final int BUFFER_WIDTH = 1024;
 	public static final int BUFFER_HEIGHT = 1024;
@@ -41,14 +36,13 @@ public class FontTableAdapter implements IFontTableAdapter
 	private STBTTFontinfo fontInfo;
 	private ByteBuffer ttfBuffer;
 
-	private FontTableAdapter(FontTable fontTable)
+	public FontTableAllocator(FontTable fontTable)
 	{
 		this.fontTable = fontTable;
 		height = ((Font) fontTable.eContainer()).getHeight();
 	}
 
-	@Override
-	public void allocate(IExecutionContext context, ImageInfo info)
+	public void allocate(IExecutionContext context)
 	{
 		final var stack = context.stack();
 		final var file = fontTable.getFile();
@@ -76,7 +70,6 @@ public class FontTableAdapter implements IFontTableAdapter
 		}
 	}
 
-	@Override
 	public void free(IExecutionContext context)
 	{
 		fontInfo.free();

@@ -52,7 +52,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/imageArrayDescriptor"/>
     </genClasses>
     <genClasses ecoreClass="Nuklear.ecore#//NuklearFont">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearFont/fontTextureArray"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearFont/fontArrayDescriptor"/>
     </genClasses>
     <genClasses ecoreClass="Nuklear.ecore#//SelectorPanel">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/buttonSizePx"/>

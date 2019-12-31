@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.extra.model.nuklear;
 
 import org.sheepy.lily.core.model.application.IResource;
-import org.sheepy.lily.vulkan.model.resource.FontTextureArray;
+import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +14,7 @@ import org.sheepy.lily.vulkan.model.resource.FontTextureArray;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontTextureArray <em>Font Texture Array</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontArrayDescriptor <em>Font Array Descriptor</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getNuklearFont()
@@ -25,25 +25,25 @@ public interface NuklearFont extends IResource
 {
 
 	/**
-	 * Returns the value of the '<em><b>Font Texture Array</b></em>' reference.
+	 * Returns the value of the '<em><b>Font Array Descriptor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Font Texture Array</em>' reference.
-	 * @see #setFontTextureArray(FontTextureArray)
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getNuklearFont_FontTextureArray()
-	 * @model required="true"
+	 * @return the value of the '<em>Font Array Descriptor</em>' reference.
+	 * @see #setFontArrayDescriptor(ImageArrayDescriptor)
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getNuklearFont_FontArrayDescriptor()
+	 * @model
 	 * @generated
 	 */
-	FontTextureArray getFontTextureArray();
+	ImageArrayDescriptor getFontArrayDescriptor();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontTextureArray <em>Font Texture Array</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontArrayDescriptor <em>Font Array Descriptor</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Font Texture Array</em>' reference.
-	 * @see #getFontTextureArray()
+	 * @param value the new value of the '<em>Font Array Descriptor</em>' reference.
+	 * @see #getFontArrayDescriptor()
 	 * @generated
 	 */
-	void setFontTextureArray(FontTextureArray value);
+	void setFontArrayDescriptor(ImageArrayDescriptor value);
 
 } // NuklearFont
