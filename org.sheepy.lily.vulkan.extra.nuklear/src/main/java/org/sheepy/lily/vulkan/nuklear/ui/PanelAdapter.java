@@ -106,6 +106,11 @@ public class PanelAdapter implements IPanelAdapter
 		final int x = UIUtil.computeXRelative(window.getSize(), panel);
 		final int y = UIUtil.computeYRelative(window.getSize(), panel);
 
+		final var backgroundColor = context.nkContext.style().window().fixed_background().data().color();
+		backgroundColor.r((byte) panel.getBackgroundColor().x());
+		backgroundColor.g((byte) panel.getBackgroundColor().y());
+		backgroundColor.b((byte) panel.getBackgroundColor().z());
+		backgroundColor.a((byte) panel.getBackgroundColor().w());
 		if (nk_begin(nkContext, panel.getName(), nk_rect(x, y, width, height, rect), style))
 		{
 			hovered = nk_window_is_hovered(nkContext);
