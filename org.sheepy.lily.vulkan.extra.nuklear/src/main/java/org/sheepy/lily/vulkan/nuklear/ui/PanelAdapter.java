@@ -111,6 +111,12 @@ public class PanelAdapter implements IPanelAdapter
 		backgroundColor.g((byte) panel.getBackgroundColor().y());
 		backgroundColor.b((byte) panel.getBackgroundColor().z());
 		backgroundColor.a((byte) panel.getBackgroundColor().w());
+		final var boderColor = context.nkContext.style().window().border_color();
+		boderColor.r((byte) panel.getBorderColor().x());
+		boderColor.g((byte) panel.getBorderColor().y());
+		boderColor.b((byte) panel.getBorderColor().z());
+		boderColor.a((byte) panel.getBorderColor().w());
+
 		if (nk_begin(nkContext, panel.getName(), nk_rect(x, y, width, height, rect), style))
 		{
 			hovered = nk_window_is_hovered(nkContext);
