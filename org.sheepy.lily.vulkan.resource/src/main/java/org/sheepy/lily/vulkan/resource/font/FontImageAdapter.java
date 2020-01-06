@@ -237,7 +237,7 @@ public final class FontImageAdapter extends Notifier implements IFontImageAdapte
 			list = new ArrayList<>();
 			characterMap.put(font, list);
 		}
-		list.add("?.+-*/13456789");
+		list.add("!?,.+-*/123456789");
 	}
 
 	private void nextInstance()
