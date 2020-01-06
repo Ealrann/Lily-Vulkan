@@ -1072,13 +1072,13 @@ public interface ResourcePackage extends EPackage
 	int FONT_IMAGE__NAME = IMAGE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Font</b></em>' reference.
+	 * The feature id for the '<em><b>Fonts</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FONT_IMAGE__FONT = IMAGE_FEATURE_COUNT + 0;
+	int FONT_IMAGE__FONTS = IMAGE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Font Image</em>' class.
@@ -2614,15 +2614,15 @@ public interface ResourcePackage extends EPackage
 	EClass getFontImage();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.resource.FontImage#getFont <em>Font</em>}'.
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.resource.FontImage#getFonts <em>Fonts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Font</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.FontImage#getFont()
+	 * @return the meta object for the reference list '<em>Fonts</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.FontImage#getFonts()
 	 * @see #getFontImage()
 	 * @generated
 	 */
-	EReference getFontImage_Font();
+	EReference getFontImage_Fonts();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.SampledImage <em>Sampled Image</em>}'.
@@ -3458,12 +3458,12 @@ public interface ResourcePackage extends EPackage
 		EClass FONT_IMAGE = eINSTANCE.getFontImage();
 
 		/**
-		 * The meta object literal for the '<em><b>Font</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Fonts</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FONT_IMAGE__FONT = eINSTANCE.getFontImage_Font();
+		EReference FONT_IMAGE__FONTS = eINSTANCE.getFontImage_Fonts();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl <em>Sampled Image</em>}' class.

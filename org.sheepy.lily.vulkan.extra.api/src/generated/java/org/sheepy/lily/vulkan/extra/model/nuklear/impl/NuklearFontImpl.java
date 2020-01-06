@@ -10,7 +10,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.model.application.impl.IResourceImpl;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
-import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
+import org.sheepy.lily.vulkan.model.resource.FontImage;
+import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,8 @@ import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearFontImpl#getFontArrayDescriptor <em>Font Array Descriptor</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearFontImpl#getTransferBuffer <em>Transfer Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearFontImpl#getFontImage <em>Font Image</em>}</li>
  * </ul>
  *
  * @generated
@@ -28,14 +30,23 @@ import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 {
 	/**
-	 * The cached value of the '{@link #getFontArrayDescriptor() <em>Font Array Descriptor</em>}' reference.
+	 * The cached value of the '{@link #getTransferBuffer() <em>Transfer Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFontArrayDescriptor()
+	 * @see #getTransferBuffer()
 	 * @generated
 	 * @ordered
 	 */
-	protected ImageArrayDescriptor fontArrayDescriptor;
+	protected TransferBuffer transferBuffer;
+	/**
+	 * The cached value of the '{@link #getFontImage() <em>Font Image</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFontImage()
+	 * @generated
+	 * @ordered
+	 */
+	protected FontImage fontImage;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,19 +74,19 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	 * @generated
 	 */
 	@Override
-	public ImageArrayDescriptor getFontArrayDescriptor()
+	public TransferBuffer getTransferBuffer()
 	{
-		if (fontArrayDescriptor != null && ((EObject)fontArrayDescriptor).eIsProxy())
+		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy())
 		{
-			InternalEObject oldFontArrayDescriptor = (InternalEObject)fontArrayDescriptor;
-			fontArrayDescriptor = (ImageArrayDescriptor)eResolveProxy(oldFontArrayDescriptor);
-			if (fontArrayDescriptor != oldFontArrayDescriptor)
+			InternalEObject oldTransferBuffer = (InternalEObject)transferBuffer;
+			transferBuffer = (TransferBuffer)eResolveProxy(oldTransferBuffer);
+			if (transferBuffer != oldTransferBuffer)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR, oldFontArrayDescriptor, fontArrayDescriptor));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_FONT__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
 			}
 		}
-		return fontArrayDescriptor;
+		return transferBuffer;
 	}
 
 	/**
@@ -83,9 +94,9 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImageArrayDescriptor basicGetFontArrayDescriptor()
+	public TransferBuffer basicGetTransferBuffer()
 	{
-		return fontArrayDescriptor;
+		return transferBuffer;
 	}
 
 	/**
@@ -94,12 +105,57 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	 * @generated
 	 */
 	@Override
-	public void setFontArrayDescriptor(ImageArrayDescriptor newFontArrayDescriptor)
+	public void setTransferBuffer(TransferBuffer newTransferBuffer)
 	{
-		ImageArrayDescriptor oldFontArrayDescriptor = fontArrayDescriptor;
-		fontArrayDescriptor = newFontArrayDescriptor;
+		TransferBuffer oldTransferBuffer = transferBuffer;
+		transferBuffer = newTransferBuffer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR, oldFontArrayDescriptor, fontArrayDescriptor));
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_FONT__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FontImage getFontImage()
+	{
+		if (fontImage != null && ((EObject)fontImage).eIsProxy())
+		{
+			InternalEObject oldFontImage = (InternalEObject)fontImage;
+			fontImage = (FontImage)eResolveProxy(oldFontImage);
+			if (fontImage != oldFontImage)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_FONT__FONT_IMAGE, oldFontImage, fontImage));
+			}
+		}
+		return fontImage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FontImage basicGetFontImage()
+	{
+		return fontImage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFontImage(FontImage newFontImage)
+	{
+		FontImage oldFontImage = fontImage;
+		fontImage = newFontImage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_FONT__FONT_IMAGE, oldFontImage, fontImage));
 	}
 
 	/**
@@ -112,9 +168,12 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR:
-				if (resolve) return getFontArrayDescriptor();
-				return basicGetFontArrayDescriptor();
+			case NuklearPackage.NUKLEAR_FONT__TRANSFER_BUFFER:
+				if (resolve) return getTransferBuffer();
+				return basicGetTransferBuffer();
+			case NuklearPackage.NUKLEAR_FONT__FONT_IMAGE:
+				if (resolve) return getFontImage();
+				return basicGetFontImage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -129,8 +188,11 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR:
-				setFontArrayDescriptor((ImageArrayDescriptor)newValue);
+			case NuklearPackage.NUKLEAR_FONT__TRANSFER_BUFFER:
+				setTransferBuffer((TransferBuffer)newValue);
+				return;
+			case NuklearPackage.NUKLEAR_FONT__FONT_IMAGE:
+				setFontImage((FontImage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -146,8 +208,11 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR:
-				setFontArrayDescriptor((ImageArrayDescriptor)null);
+			case NuklearPackage.NUKLEAR_FONT__TRANSFER_BUFFER:
+				setTransferBuffer((TransferBuffer)null);
+				return;
+			case NuklearPackage.NUKLEAR_FONT__FONT_IMAGE:
+				setFontImage((FontImage)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -163,8 +228,10 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR:
-				return fontArrayDescriptor != null;
+			case NuklearPackage.NUKLEAR_FONT__TRANSFER_BUFFER:
+				return transferBuffer != null;
+			case NuklearPackage.NUKLEAR_FONT__FONT_IMAGE:
+				return fontImage != null;
 		}
 		return super.eIsSet(featureID);
 	}

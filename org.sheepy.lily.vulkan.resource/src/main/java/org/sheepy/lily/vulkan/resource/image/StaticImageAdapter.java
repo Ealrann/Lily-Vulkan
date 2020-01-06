@@ -4,6 +4,7 @@ import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
 import org.sheepy.vulkan.execution.IExecutionContext;
@@ -12,7 +13,7 @@ import org.sheepy.vulkan.resource.image.VkImageView;
 
 @Statefull
 @Adapter(scope = StaticImage.class)
-public class StaticImageAdapter implements IImageAdapter
+public class StaticImageAdapter extends Notifier implements IImageAdapter
 {
 	private final StaticImage image;
 
@@ -20,10 +21,11 @@ public class StaticImageAdapter implements IImageAdapter
 	private VkImageView imageView;
 
 	private IImageLoader loader = null;
-	private IExecutionContext executionContext;
 
 	public StaticImageAdapter(StaticImage image)
 	{
+		super(Features.values().length);
+
 		this.image = image;
 	}
 
@@ -35,8 +37,7 @@ public class StaticImageAdapter implements IImageAdapter
 	@Override
 	public void allocate(IExecutionContext context)
 	{
-		this.executionContext = context;
-		final var logicalDevice = executionContext.getLogicalDevice();
+		final var vkDevice = context.getVkDevice();
 		final var size = image.getSize();
 		final var builder = new VkImage.VkImageBuilder(image, size.x(), size.y());
 		builder.fillWith(image.getFillWith());
@@ -44,27 +45,20 @@ public class StaticImageAdapter implements IImageAdapter
 		imageBackend = builder.build();
 		imageBackend.allocate(context);
 
-		imageView = new VkImageView(logicalDevice.getVkDevice());
-		imageView.allocate(	imageBackend.getPtr(),
-							1,
-							imageBackend.format,
-							VK_IMAGE_ASPECT_COLOR_BIT);
+		imageView = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
+		imageView.allocate(vkDevice, imageBackend);
 
-		load();
-	}
-
-	public void load()
-	{
 		if (loader != null)
 		{
-			loader.load(executionContext, imageBackend);
+			loader.load(context, imageBackend);
 		}
 	}
 
 	@Override
 	public void free(IExecutionContext context)
 	{
-		imageView.free();
+		final var vkDevice = context.getVkDevice();
+		imageView.free(vkDevice);
 		imageView = null;
 
 		imageBackend.free(context);

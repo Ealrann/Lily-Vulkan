@@ -2,14 +2,10 @@
  */
 package org.sheepy.lily.vulkan.model.resource.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-
+import java.util.Collection;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.sheepy.lily.core.model.ui.Font;
 
 import org.sheepy.lily.vulkan.model.resource.FontImage;
@@ -23,7 +19,7 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl#getFont <em>Font</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl#getFonts <em>Fonts</em>}</li>
  * </ul>
  *
  * @generated
@@ -31,15 +27,14 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 public class FontImageImpl extends ImageImpl implements FontImage
 {
 	/**
-	 * The cached value of the '{@link #getFont() <em>Font</em>}' reference.
+	 * The cached value of the '{@link #getFonts() <em>Fonts</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFont()
+	 * @see #getFonts()
 	 * @generated
 	 * @ordered
 	 */
-	protected Font font;
-
+	protected EList<Font> fonts;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,43 +62,13 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	 * @generated
 	 */
 	@Override
-	public Font getFont()
+	public EList<Font> getFonts()
 	{
-		if (font != null && ((EObject)font).eIsProxy())
+		if (fonts == null)
 		{
-			InternalEObject oldFont = (InternalEObject)font;
-			font = (Font)eResolveProxy(oldFont);
-			if (font != oldFont)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.FONT_IMAGE__FONT, oldFont, font));
-			}
+			fonts = new EObjectResolvingEList<Font>(Font.class, this, ResourcePackage.FONT_IMAGE__FONTS);
 		}
-		return font;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Font basicGetFont()
-	{
-		return font;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setFont(Font newFont)
-	{
-		Font oldFont = font;
-		font = newFont;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.FONT_IMAGE__FONT, oldFont, font));
+		return fonts;
 	}
 
 	/**
@@ -116,9 +81,8 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FONT_IMAGE__FONT:
-				if (resolve) return getFont();
-				return basicGetFont();
+			case ResourcePackage.FONT_IMAGE__FONTS:
+				return getFonts();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -128,13 +92,15 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FONT_IMAGE__FONT:
-				setFont((Font)newValue);
+			case ResourcePackage.FONT_IMAGE__FONTS:
+				getFonts().clear();
+				getFonts().addAll((Collection<? extends Font>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -150,8 +116,8 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FONT_IMAGE__FONT:
-				setFont((Font)null);
+			case ResourcePackage.FONT_IMAGE__FONTS:
+				getFonts().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -167,8 +133,8 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FONT_IMAGE__FONT:
-				return font != null;
+			case ResourcePackage.FONT_IMAGE__FONTS:
+				return fonts != null && !fonts.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

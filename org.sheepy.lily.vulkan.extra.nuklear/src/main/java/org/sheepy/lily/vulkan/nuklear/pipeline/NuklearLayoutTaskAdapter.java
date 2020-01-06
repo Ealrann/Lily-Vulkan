@@ -10,7 +10,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.util.AdapterSetRegistry;
+import org.sheepy.lily.core.api.adapter.util.AdapterSetRegistry;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.ui.IPanel;
 import org.sheepy.lily.core.model.ui.UI;
@@ -65,12 +65,9 @@ public final class NuklearLayoutTaskAdapter
 		nuklearContextAdapter = task.getContext().adaptNotNull(NuklearContextAdapter.class);
 		PANEL_REGISTRY.startRegister(ui);
 
-		final var fontPkg = ui.getFontPkg();
 		final int imageCount = ui.getImages().size();
-		final int fontCount = fontPkg != null ? fontPkg.getFonts().size() : 0;
 
-		final var specializationBuffer = BufferUtils.createByteBuffer(8);
-		specializationBuffer.putInt(fontCount);
+		final var specializationBuffer = BufferUtils.createByteBuffer(4);
 		specializationBuffer.putInt(imageCount);
 		specializationBuffer.flip();
 
@@ -131,7 +128,7 @@ public final class NuklearLayoutTaskAdapter
 
 		final var font = task.getContext().getFont();
 		final var fontAdapter = font.adaptNotNull(NuklearFontAdapter.class);
-		final var defaultFont = fontAdapter.getDefaultFont();
+		final var defaultFont = fontAdapter.defaultFont;
 		final var fontMap = fontAdapter.fontMap;
 		final var extent = context.getSurfaceManager().getExtent();
 

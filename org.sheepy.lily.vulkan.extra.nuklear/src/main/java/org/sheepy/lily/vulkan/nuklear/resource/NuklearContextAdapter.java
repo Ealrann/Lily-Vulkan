@@ -27,7 +27,6 @@ import org.sheepy.lily.core.model.application.IImage;
 import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
-import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
 import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
@@ -40,11 +39,14 @@ import org.sheepy.vulkan.execution.IExecutionContext;
 @Adapter(scope = NuklearContext.class, lazy = false)
 public class NuklearContextAdapter implements IVulkanResourceAdapter
 {
-	private static final int VERTEX_SIZE = 20;
 	public static final long INDEXED_BUFFER_SIZE = (long) Math.pow(2, 19);
 	public static final long INDEX_BUFFER_SIZE = (long) Math.pow(2, 16);
 	public static final long VERTEX_BUFFER_SIZE = INDEXED_BUFFER_SIZE - INDEX_BUFFER_SIZE;
 	public static final long INDEX_OFFSET = INDEXED_BUFFER_SIZE - INDEX_BUFFER_SIZE;
+	public static final int NULL_TEXTURE_DESCRIPTOR_INDEX = 0;
+	public static final int FONT_TEXTURE_DESCRIPTOR_INDEX = 1;
+
+	private static final int VERTEX_SIZE = 20;
 
 	private static final int BUFFER_INITIAL_SIZE = 4 * 1024;
 	private static final NkDrawVertexLayoutElement.Buffer VERTEX_LAYOUT;
@@ -111,9 +113,10 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 								.mfree((handle, ptr) -> nmemFree(ptr));
 
 		final var imageDescriptor = nuklearContext.getImageArrayDescriptor();
+		final var images = ui.getImages();
 		if (imageDescriptor != null)
 		{
-			imageDescriptor.getImages().addAll(ui.getImages());
+			imageDescriptor.getImages().addAll(images);
 		}
 
 		final var layoutTask = nuklearContext.getLayoutTask();
@@ -141,9 +144,7 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 	{
 		final var font = nuklearContext.getFont();
 		final var fontAdapter = font.adaptNotNull(NuklearFontAdapter.class);
-		final var defaultFont = fontAdapter.getDefaultFont();
-		final var nullTexture = nuklearContext.getNullTexture();
-		final var nullTextureAdapter = nullTexture.adaptNotNull(ISampledImageAdapter.class);
+		final var defaultFont = fontAdapter.defaultFont;
 		final var engine = VulkanModelUtil.getEngine(nuklearContext);
 		final var inputManager = engine.adaptNotNull(IVulkanEngineAdapter.class).getInputManager();
 		final var inputCatcher = NuklearInputCatcher.INSTANCE;
@@ -183,7 +184,7 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 			}
 		});
 
-		nkNullTexture.texture().ptr(nullTextureAdapter.getSamplerPtr());
+		nkNullTexture.texture().ptr(NULL_TEXTURE_DESCRIPTOR_INDEX);
 		nkNullTexture.uv().set(0.5f, 0.5f);
 
 		vbuf = NkBuffer.calloc();

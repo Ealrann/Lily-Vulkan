@@ -13,7 +13,7 @@ public final class FontUtil
 		case EXTENDED:
 			return 161;
 		case CHINESE:
-			return 14989440;
+			return 19968;
 		}
 		return 0;
 	}
@@ -27,7 +27,7 @@ public final class FontUtil
 		case EXTENDED:
 			return 94;
 		case CHINESE:
-			return 15318715;
+			return 20991;
 		}
 		return 0;
 	}

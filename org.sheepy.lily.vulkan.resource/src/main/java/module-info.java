@@ -27,7 +27,6 @@ import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 		CompositeBufferAdapter.class,
 		CompositeBufferReferenceAdapter.class,
 		FileImageAdapter.class,
-		FontImageAdapter.class,
 		TransferBufferAdapter.class,
 		SamplerAdapter.class,
 		SampledImageAdapter.class,
@@ -43,6 +42,7 @@ import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 		LocalResourceAdapter.class,
 		ModuleResourceAdapter.class,
 		StringModuleResourceAdapter.class,
+		FontImageAdapter.class
 })
 
 module org.sheepy.lily.vulkan.resource

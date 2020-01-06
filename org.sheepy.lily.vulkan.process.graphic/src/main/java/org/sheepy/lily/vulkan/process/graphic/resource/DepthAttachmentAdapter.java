@@ -52,9 +52,9 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 
 	private void createAndAllocateImageView(LogicalDevice logicalDevice)
 	{
-		depthImageView = new VkImageView(logicalDevice.getVkDevice());
-		depthImageView.allocate(depthImageBackend.getPtr(), 1, depthFormat,
-				VK_IMAGE_ASPECT_DEPTH_BIT);
+		final var device = logicalDevice.getVkDevice();
+		depthImageView = new VkImageView(VK_IMAGE_ASPECT_DEPTH_BIT);
+		depthImageView.allocate(device, depthImageBackend.getPtr(), 1, depthFormat);
 	}
 
 	private void allocateDepthImage(IGraphicContext context)
@@ -97,8 +97,13 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 		barrierInfo.dstAccessMask(EAccess.DEPTH_STENCIL_ATTACHMENT_READ_BIT_VALUE
 				| EAccess.DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_VALUE);
 
-		context.execute((context2, commandBuffer) -> vkCmdPipelineBarrier(commandBuffer, srcStage,
-				dstStage, 0, null, null, barrierInfo));
+		context.execute((context2, commandBuffer) -> vkCmdPipelineBarrier(	commandBuffer,
+																			srcStage,
+																			dstStage,
+																			0,
+																			null,
+																			null,
+																			barrierInfo));
 	}
 
 	private static int findDepthFormat(PhysicalDevice physicalDevice)
@@ -111,7 +116,8 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 	@Override
 	public void free(IGraphicContext context)
 	{
-		depthImageView.free();
+		final var device = context.getVkDevice();
+		depthImageView.free(device);
 		depthImageBackend.free(context);
 	}
 

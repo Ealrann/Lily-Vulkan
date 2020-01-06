@@ -34,7 +34,7 @@ import org.sheepy.lily.vulkan.nuklear.ui.VariableLabelAdapter;
 		PanelViewerAdapter.class,
 		NuklearVertexProviderAdapter.class,
 		NuklearIndexProviderAdapter.class,
-		NuklearSubpassProvider.class
+		NuklearSubpassProvider.class,
 })
 
 module org.sheepy.lily.vulkan.extra.nuklear

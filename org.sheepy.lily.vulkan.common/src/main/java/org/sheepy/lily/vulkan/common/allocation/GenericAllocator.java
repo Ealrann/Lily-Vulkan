@@ -9,7 +9,8 @@ import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.notification.INotificationListener;
-import org.sheepy.lily.core.api.util.ModelObserver;
+import org.sheepy.lily.core.api.notification.util.ModelObserver;
+import org.sheepy.lily.core.api.notification.util.NotificationUnifier;
 import org.sheepy.vulkan.execution.IExecutionContext;
 
 public final class GenericAllocator
@@ -39,34 +40,12 @@ public final class GenericAllocator
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	private void resourceChanged(Notification notification)
 	{
-		switch (notification.getEventType())
-		{
-		case Notification.ADD:
-			final var newResource = (ILilyEObject) notification.getNewValue();
-			add(List.of(newResource));
-			break;
-		case Notification.ADD_MANY:
-			final var newResources = (List<ILilyEObject>) notification.getNewValue();
-			add(newResources);
-			break;
-		case Notification.REMOVE:
-			final var oldResource = (ILilyEObject) notification.getOldValue();
-			remove(List.of(oldResource));
-			break;
-		case Notification.REMOVE_MANY:
-			final var oldResources = (List<ILilyEObject>) notification.getOldValue();
-			remove(oldResources);
-			break;
-		default:
-			System.err.println(this.getClass().getSimpleName() + " resourceChanged");
-			break;
-		}
+		NotificationUnifier.unifyList(notification, this::add, this::remove);
 	}
 
-	private void add(List<ILilyEObject> newChildren)
+	private void add(List<? extends ILilyEObject> newChildren)
 	{
 		final List<IAllocable<IExecutionContext>> res = new ArrayList<>();
 		for (final var resource : newChildren)
@@ -81,7 +60,7 @@ public final class GenericAllocator
 		container.addChildren(res);
 	}
 
-	private void remove(List<ILilyEObject> oldChildren)
+	private void remove(List<? extends ILilyEObject> oldChildren)
 	{
 		final List<IAllocable<IExecutionContext>> res = new ArrayList<>();
 		for (final var resource : oldChildren)

@@ -1,13 +1,12 @@
 #version 450
 
-layout (constant_id = 0) const int fontCount = 1;
-layout (constant_id = 1) const int textureCount = 1;
+layout (constant_id = 0) const int textureCount = 1;
 
 precision lowp float;
 
 layout (binding = 0) uniform sampler2D nullTexture;
 layout (binding = 1) uniform sampler fontSampler;
-layout (binding = 2) uniform texture2D fontTextures[fontCount];
+layout (binding = 2) uniform texture2D fontTexture;
 layout (binding = 3) uniform sampler textureSampler;
 layout (binding = 4) uniform texture2D textures[textureCount];
 
@@ -26,8 +25,8 @@ void main()
   int index = pushConstants.descriptorId;
   if (index == 0)
 	outColor = Frag_Color * texture(nullTexture, Frag_UV.st);
-  else if (index > 0 && index <= fontCount)
-	outColor = vec4(Frag_Color.rgb, Frag_Color.a * texture(sampler2D(fontTextures[index - 1], fontSampler), Frag_UV.st));
+  else if (index == 1)
+	outColor = vec4(Frag_Color.rgb, Frag_Color.a * texture(sampler2D(fontTexture, fontSampler), Frag_UV.st));
   else
-	outColor = texture(sampler2D(textures[index - fontCount - 1], textureSampler), Frag_UV.st);
+	outColor = texture(sampler2D(textures[index - 2], textureSampler), Frag_UV.st);
 }

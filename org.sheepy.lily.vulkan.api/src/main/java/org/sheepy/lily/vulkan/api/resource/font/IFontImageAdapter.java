@@ -1,16 +1,14 @@
 package org.sheepy.lily.vulkan.api.resource.font;
 
-import org.lwjgl.stb.STBTTAlignedQuad;
+import java.util.List;
+import java.util.Map;
+
+import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
-import org.sheepy.vulkan.resource.image.VkTexture;
+import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 
 public interface IFontImageAdapter extends IImageAdapter
 {
-	void fillPackedQuad(STBTTAlignedQuad quad, int codePoint);
-	VkTexture getTexture();
-
-	int indexOf(int codepoint);
-	int charCount();
-	boolean contains(int codepoint);
-	IFontTableInfo getTableInfo(int codepoint);
+	List<? extends IFontAllocator> getAllocators();
+	boolean push(Map<Font, List<String>> characterMap, TransferBuffer transferBuffer);
 }

@@ -47,26 +47,26 @@ public class FontImageItemProvider extends ImageItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addFontPropertyDescriptor(object);
+			addFontsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Font feature.
+	 * This adds a property descriptor for the Fonts feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFontPropertyDescriptor(Object object)
+	protected void addFontsPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_FontImage_font_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FontImage_font_feature", "_UI_FontImage_type"),
-				 ResourcePackage.Literals.FONT_IMAGE__FONT,
+				 getString("_UI_FontImage_fonts_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FontImage_fonts_feature", "_UI_FontImage_type"),
+				 ResourcePackage.Literals.FONT_IMAGE__FONTS,
 				 true,
 				 false,
 				 true,

@@ -9,7 +9,10 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
+import org.sheepy.lily.core.api.notification.Notifier;
+import org.sheepy.lily.core.api.notification.impl.ObjectNotification;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
+import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.core.model.ui.VariableLabel;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
@@ -17,7 +20,7 @@ import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
 @Statefull
 @Adapter(scope = VariableLabel.class)
-public class VariableLabelAdapter implements IUIElementAdapter
+public class VariableLabelAdapter extends Notifier implements IUIElementAdapter, ITextWidgetAdapter
 {
 	private final INotificationListener listener = n -> updateText(n.getNewValue());
 	private final VariableLabel label;
@@ -31,6 +34,7 @@ public class VariableLabelAdapter implements IUIElementAdapter
 	@SuppressWarnings("unchecked")
 	public VariableLabelAdapter(VariableLabel label)
 	{
+		super(Features.values().length);
 		this.label = label;
 		final var variableResolver = label.getVariableResolver();
 		resolver = variableResolver.adaptNotNull(IVariableResolverAdapter.class);
@@ -76,6 +80,7 @@ public class VariableLabelAdapter implements IUIElementAdapter
 
 	private void updateText(Object val)
 	{
+		final var oldText = text;
 		final var format = label.getFormat();
 		final String value = (format != null && !format.isBlank())
 				? String.format(format, val)
@@ -93,7 +98,19 @@ public class VariableLabelAdapter implements IUIElementAdapter
 			text = resultString;
 			textBuffer = MemoryUtil.memASCII(text);
 		}
-
 		dirty = true;
+		fireNotification(new ObjectNotification(this, Features.Text, oldText, text));
+	}
+
+	@Override
+	public String getText()
+	{
+		return text;
+	}
+
+	@Override
+	public Font getFont()
+	{
+		return label.getFont();
 	}
 }

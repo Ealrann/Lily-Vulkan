@@ -12,6 +12,8 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.Notifier;
+import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
@@ -21,7 +23,7 @@ import org.sheepy.vulkan.window.Window;
 
 @Statefull
 @Adapter(scope = Panel.class)
-public class PanelAdapter implements IPanelAdapter
+public class PanelAdapter extends Notifier implements IPanelAdapter, ITextWidgetAdapter
 {
 	private final ISizeListener listener = this::updateLocation;
 	private final Panel panel;
@@ -35,6 +37,7 @@ public class PanelAdapter implements IPanelAdapter
 
 	public PanelAdapter(Panel panel)
 	{
+		super(Features.values().length);
 		this.panel = panel;
 		String name = panel.getName();
 
@@ -68,7 +71,10 @@ public class PanelAdapter implements IPanelAdapter
 	public void unsetTarget()
 	{
 		MemoryUtil.memFree(textBuffer);
-		window.removeListener(listener);
+		if (window != null)
+		{
+			window.removeListener(listener);
+		}
 	}
 
 	private void updateLocation(Vector2ic size)
@@ -106,7 +112,11 @@ public class PanelAdapter implements IPanelAdapter
 		final int x = UIUtil.computeXRelative(window.getSize(), panel);
 		final int y = UIUtil.computeYRelative(window.getSize(), panel);
 
-		final var backgroundColor = context.nkContext.style().window().fixed_background().data().color();
+		final var backgroundColor = context.nkContext	.style()
+														.window()
+														.fixed_background()
+														.data()
+														.color();
 		backgroundColor.r((byte) panel.getBackgroundColor().x());
 		backgroundColor.g((byte) panel.getBackgroundColor().y());
 		backgroundColor.b((byte) panel.getBackgroundColor().z());
@@ -167,5 +177,24 @@ public class PanelAdapter implements IPanelAdapter
 	public boolean isHovered()
 	{
 		return hovered;
+	}
+
+	@Override
+	public String getText()
+	{
+		if (panel.isShowTitle())
+		{
+			return panel.getName();
+		}
+		else
+		{
+			return "";
+		}
+	}
+
+	@Override
+	public Font getFont()
+	{
+		return null;
 	}
 }

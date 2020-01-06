@@ -57,9 +57,10 @@ public class ImageViewManager implements IImageViewManager
 	@Override
 	public void free(IGraphicContext context)
 	{
+		final var device = context.getVkDevice();
 		for (final VkImageView view : imageViews)
 		{
-			view.free();
+			view.free(device);
 		}
 		imageViews = null;
 	}

@@ -26,6 +26,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 	private Window window;
 	private NuklearLayoutTaskAdapter layoutAdapter;
 	private boolean clicked = false;
+	private boolean catching = false;
 
 	private NuklearInputCatcher()
 	{}
@@ -184,8 +185,6 @@ public final class NuklearInputCatcher implements IInputCatcher
 		scroll.y(event.yOffset);
 		nk_input_scroll(nkContext, scroll);
 	}
-
-	private boolean catching = false;
 
 	@Override
 	public void startCatch()

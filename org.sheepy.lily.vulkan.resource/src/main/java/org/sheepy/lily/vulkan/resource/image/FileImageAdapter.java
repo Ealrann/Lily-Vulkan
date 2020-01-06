@@ -4,6 +4,7 @@ import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.api.util.ImageBuffer;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
@@ -17,18 +18,21 @@ import org.sheepy.vulkan.resource.image.VkTexture;
 
 @Statefull
 @Adapter(scope = FileImage.class)
-public class FileImageAdapter implements IImageAdapter
+public class FileImageAdapter extends Notifier implements IImageAdapter
 {
 	private final STBImageLoader imageLoader = new STBImageLoader();
-	private final VkTexture vkTexture;
 	private final ImageBuffer imageBuffer;
+	private final FileImage image;
+
+	private VkTexture vkTexture;
 
 	public FileImageAdapter(FileImage image)
 	{
+		super(Features.values().length);
+
+		this.image = image;
 		imageBuffer = new ImageBuffer(image.getFile());
 		imageBuffer.allocate();
-		final var imageBuilder = createBuilder(image, imageBuffer.getImageSize());
-		vkTexture = new VkTexture(imageBuilder, image.isMipmapEnabled());
 	}
 
 	@Dispose
@@ -60,6 +64,9 @@ public class FileImageAdapter implements IImageAdapter
 	{
 		final var executionContext = (ExecutionContext) context;
 
+		final var imageBuilder = createBuilder(image, imageBuffer.getImageSize());
+		vkTexture = new VkTexture(imageBuilder, image.isMipmapEnabled());
+
 		imageBuffer.allocate();
 		imageLoader.allocBuffer(imageBuffer.getByteBuffer());
 		vkTexture.allocate(context);
@@ -73,6 +80,7 @@ public class FileImageAdapter implements IImageAdapter
 	public void free(IExecutionContext context)
 	{
 		vkTexture.free(context);
+		vkTexture = null;
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.resource.font;
+package org.sheepy.lily.vulkan.resource.font.util;
 
 import static org.lwjgl.stb.STBTruetype.*;
 
@@ -10,22 +10,18 @@ import java.util.List;
 import org.lwjgl.stb.STBTTFontinfo;
 import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar.Buffer;
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.FontTable;
 import org.sheepy.lily.vulkan.api.resource.font.IFontTableInfo;
-import org.sheepy.lily.vulkan.resource.font.util.FontUtil;
-import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.log.Logger;
 
-public class FontTableAllocator implements IFontTableInfo
+public final class FontTableAllocator implements IFontTableInfo
 {
-	public static final int BUFFER_WIDTH = 1024;
-	public static final int BUFFER_HEIGHT = 1024;
-
 	private final FontTable fontTable;
-	private final List<Table> tables = new ArrayList<>();
+	private final List<CodepointTable> tables;
 	private final int[] hMetric = new int[1];
 	private final float height;
 
@@ -40,11 +36,11 @@ public class FontTableAllocator implements IFontTableInfo
 	{
 		this.fontTable = fontTable;
 		height = ((Font) fontTable.eContainer()).getHeight();
+		this.tables = List.copyOf(buildTables(fontTable));
 	}
 
-	public void allocate(IExecutionContext context)
+	public void allocate(MemoryStack stack)
 	{
-		final var stack = context.stack();
 		final var file = fontTable.getFile();
 		final var fileAdapter = file.adapt(IFileResourceAdapter.class);
 
@@ -58,23 +54,12 @@ public class FontTableAllocator implements IFontTableInfo
 		final IntBuffer l = stack.mallocInt(1);
 		stbtt_GetFontVMetrics(fontInfo, a, d, l);
 		fontVMetric = d.get(0) * scale;
-
-		charCount = 0;
-		for (final var tableType : fontTable.getCharTables())
-		{
-			final int start = FontUtil.getStartCodePoint(tableType);
-			final int tableLength = FontUtil.getTableLength(tableType);
-			final Table table = new Table(start, tableLength);
-			charCount += tableLength;
-			tables.add(table);
-		}
 	}
 
-	public void free(IExecutionContext context)
+	public void free()
 	{
 		fontInfo.free();
 		MemoryUtil.memFree(ttfBuffer);
-		tables.clear();
 
 		fontVMetric = 0;
 		charCount = 0;
@@ -83,24 +68,49 @@ public class FontTableAllocator implements IFontTableInfo
 		ttfBuffer = null;
 	}
 
-	@Override
-	public void pack(STBTTPackContext pc, Buffer buffer)
+	public CodepointDispatch prepare(int[] codepoints)
 	{
-		int offset = 0;
-		for (final var table : tables)
+		return new CodepointDispatch(tables, codepoints);
+	}
+
+	public void pack(STBTTPackContext pc, Buffer buffer, CodepointDispatch dispatch)
+	{
+		charCount = 0;
+		int bufferOffset = 0;
+		for (int j = 0; j < tables.size(); j++)
 		{
-			final var subData = buffer.slice(offset, table.length);
-			if (stbtt_PackFontRange(pc,
-									ttfBuffer,
-									0,
-									height,
-									table.firstCodepoint,
-									subData) == false)
+			final var table = tables.get(j);
+			final var codepoints = dispatch.getCodepoints(table);
+
+			if (codepoints != null)
 			{
-				Logger.log("Fail to pack the font");
+				for (int i = 0; i < codepoints.length; i++)
+				{
+					final int codepoint = codepoints[i];
+					final var subData = buffer.slice(bufferOffset++, 1);
+					if (stbtt_PackFontRange(pc, ttfBuffer, 0, height, codepoint, subData) == false)
+					{
+						logFail();
+					}
+					charCount += 1;
+					table.loadChar(codepoint, getCodepointHMetric(codepoint));
+				}
 			}
-			offset += table.length;
 		}
+	}
+
+	public void clear()
+	{
+		for (int j = 0; j < tables.size(); j++)
+		{
+			final var table = tables.get(j);
+			table.clear();
+		}
+	}
+
+	private static void logFail()
+	{
+		Logger.log("Fail to pack the font");
 	}
 
 	@Override
@@ -108,7 +118,7 @@ public class FontTableAllocator implements IFontTableInfo
 	{
 		for (int i = 0; i < tables.size(); i++)
 		{
-			final Table table = tables.get(i);
+			final CodepointTable table = tables.get(i);
 			if (table.contains(codepoint))
 			{
 				return true;
@@ -118,7 +128,7 @@ public class FontTableAllocator implements IFontTableInfo
 	}
 
 	@Override
-	public int getCharCount()
+	public int getLoadedCharCount()
 	{
 		return charCount;
 	}
@@ -129,15 +139,15 @@ public class FontTableAllocator implements IFontTableInfo
 		int res = 0;
 		for (int i = 0; i < tables.size(); i++)
 		{
-			final Table table = tables.get(i);
+			final CodepointTable table = tables.get(i);
 			if (table.contains(codepoint))
 			{
-				res += codepoint - table.firstCodepoint;
+				res += table.indexOf(codepoint);
 				break;
 			}
 			else
 			{
-				res += table.length;
+				res += table.loadedChars.size();
 			}
 		}
 		return res;
@@ -163,20 +173,30 @@ public class FontTableAllocator implements IFontTableInfo
 		return fontVMetric;
 	}
 
-	private static final class Table
+	@Override
+	public List<TableData> getTableData()
 	{
-		private final int firstCodepoint;
-		private final int length;
-
-		public Table(int firstCodepoint, int length)
+		final List<TableData> res = new ArrayList<>(getLoadedCharCount());
+		for (int i = 0; i < tables.size(); i++)
 		{
-			this.firstCodepoint = firstCodepoint;
-			this.length = length;
+			final CodepointTable table = tables.get(i);
+			res.addAll(table.loadedChars);
 		}
-
-		public boolean contains(int codepoint)
-		{
-			return codepoint >= firstCodepoint && codepoint < firstCodepoint + length;
-		}
+		return res;
 	}
+
+	private static List<CodepointTable> buildTables(FontTable fontTable)
+	{
+		final List<CodepointTable> tables = new ArrayList<>();
+		for (final var tableType : fontTable.getCharTables())
+		{
+			final int start = FontUtil.getStartCodePoint(tableType);
+			final int tableLength = FontUtil.getTableLength(tableType);
+			final CodepointTable table = new CodepointTable(start, tableLength);
+			tables.add(table);
+		}
+		tables.sort((t1, t2) -> Integer.compare(t1.firstCodepoint, t2.firstCodepoint));
+		return tables;
+	}
+
 }

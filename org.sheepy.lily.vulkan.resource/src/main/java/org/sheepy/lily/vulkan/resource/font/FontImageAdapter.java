@@ -1,225 +1,310 @@
 package org.sheepy.lily.vulkan.resource.font;
 
 import static org.lwjgl.stb.STBTruetype.*;
-import static org.lwjgl.system.MemoryUtil.*;
+import static org.lwjgl.system.MemoryUtil.NULL;
+import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import org.lwjgl.stb.STBTTAlignedQuad;
 import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
+import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.Notifier;
+import org.sheepy.lily.core.api.notification.impl.LongNotification;
+import org.sheepy.lily.core.model.ui.Font;
+import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter;
 import org.sheepy.lily.vulkan.api.resource.font.IFontImageAdapter;
-import org.sheepy.lily.vulkan.api.resource.font.IFontTableInfo;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
+import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.lily.vulkan.resource.font.util.CodepointMap;
+import org.sheepy.lily.vulkan.resource.font.util.FontAllocator;
 import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.model.enumeration.EAccess;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.image.VkImage;
-import org.sheepy.vulkan.resource.image.VkTexture;
+import org.sheepy.vulkan.resource.image.VkImageView;
+import org.sheepy.vulkan.resource.memory.MemoryChunk;
+import org.sheepy.vulkan.resource.memory.MemoryChunkBuilder;
+import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
+import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket.EReservationStatus;
 
 @Statefull
 @Adapter(scope = FontImage.class)
-public final class FontImageAdapter implements IFontImageAdapter
+public final class FontImageAdapter extends Notifier implements IFontImageAdapter
 {
-	private static final int BASE_FONTIMAGE_WIDTH = 128;
-	private static final int BASE_FONTIMAGE_HEIGHT = 128;
+	private static final int BASE_FONTIMAGE_WIDTH = 1024;
+	private static final int BASE_FONTIMAGE_HEIGHT = 1024;
 	private static final int H_OVERSAMPLING = 4;
 	private static final int V_OVERSAMPLING = 4;
 
 	private final FontImage fontImage;
-	private final List<FontTableAllocator> tableAllocators = new ArrayList<>();
-	private final float[] X = new float[1];
-	private final float[] Y = new float[1];
-	private final int bufferWidth;
-	private final int bufferHeight;
+	private final List<Font> fonts;
+	private final List<FontAllocator> fontAllocators;
 
-	private int charCount = 0;
+	private boolean first = true;
+	private int instance = 0;
+	private int instanceCount = 0;
 	private STBTTPackedchar.Buffer cdata;
-	private VkTexture texture;
+	private CodepointMap codepointMap;
 
-	private FontImageAdapter(FontImage fontImage)
+	private VkImage[] images;
+	private VkImageView[] views;
+	private MemoryChunk memory;
+
+	public FontImageAdapter(FontImage fontImage)
 	{
+		super(Features.values().length);
+
 		this.fontImage = fontImage;
-		final var font = fontImage.getFont();
-
-		int tableCount = 0;
-		for (final var table : font.getTables())
-		{
-			tableCount += table.getCharTables().size();
-		}
-
-		bufferWidth = BASE_FONTIMAGE_WIDTH * H_OVERSAMPLING * tableCount;
-		bufferHeight = BASE_FONTIMAGE_HEIGHT * V_OVERSAMPLING * tableCount;
+		fonts = List.copyOf(fontImage.getFonts());
+		fontAllocators = List.copyOf(buildAllocators(fonts));
 	}
 
 	@Override
 	public void allocate(IExecutionContext context)
 	{
-		final var font = fontImage.getFont();
-		int size = 0;
-		for (final var fontTable : font.getTables())
+		final var stack = context.stack();
+		final var vkDevice = context.getVkDevice();
+		for (final var allocator : fontAllocators)
 		{
-			final var tableAllocator = new FontTableAllocator(fontTable);
-			tableAllocator.allocate(context);
-			size += tableAllocator.getCharCount();
-			tableAllocators.add(tableAllocator);
+			allocator.allocate(stack);
 		}
 
-		final var builder = new VkImage.VkImageBuilder(fontImage, bufferWidth, bufferHeight);
+		instanceCount = context instanceof IGraphicContext
+				? ((IGraphicContext) context).getSwapChainManager().getImageCount()
+				: 1;
 
-		texture = new VkTexture(builder, false);
-		texture.allocate(context);
-		cdata = STBTTPackedchar.calloc(size);
+		first = true;
+		images = new VkImage[instanceCount];
+		views = new VkImageView[instanceCount];
 
-		ByteBuffer bitmap = null;
-		final ByteBuffer textureData = null;
-		try
+		final var builder = new VkImage.VkImageBuilder(	fontImage,
+														BASE_FONTIMAGE_WIDTH,
+														BASE_FONTIMAGE_HEIGHT);
+
+		int properties = 0;
+		for (int i = 0; i < instanceCount; i++)
 		{
-			bitmap = memAlloc(bufferWidth * bufferHeight);
-
-			final STBTTPackContext pc = STBTTPackContext.mallocStack(context.stack());
-			stbtt_PackBegin(pc, bitmap, bufferWidth, bufferHeight, 0, 1, NULL);
-			stbtt_PackSetOversampling(pc, 4, 4);
-
-			int offset = 0;
-			for (final var tableAllocator : tableAllocators)
-			{
-				final int count = tableAllocator.getCharCount();
-				final var subData = cdata.slice(offset, count);
-				tableAllocator.pack(pc, subData);
-				offset += count;
-			}
-			charCount = offset;
-			stbtt_PackEnd(pc);
-
-			texture.loadImage(context, bitmap);
-
-		} catch (final Exception e)
+			final var image = builder.build();
+			final var view = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
+			images[i] = image;
+			views[i] = view;
+			properties |= image.properties;
+		}
+		final var memoryBuilder = new MemoryChunkBuilder(context, properties);
+		for (int i = 0; i < instanceCount; i++)
 		{
-			e.printStackTrace();
-		} finally
+			images[i].allocate(context, memoryBuilder);
+		}
+		memory = memoryBuilder.build();
+		memory.allocate(context);
+		for (int i = 0; i < instanceCount; i++)
 		{
-			if (bitmap != null) memFree(bitmap);
-			if (textureData != null) memFree(textureData);
+			views[i].allocate(vkDevice, images[i]);
 		}
 	}
 
 	@Override
 	public void free(IExecutionContext context)
 	{
-		for (final var tableAllocator : tableAllocators)
+		final var vkDevice = context.getVkDevice();
+		for (int i = 0; i < instanceCount; i++)
 		{
-			tableAllocator.free(context);
+			images[i].free(context);
+			views[i].free(vkDevice);
 		}
-		tableAllocators.clear();
+		memory.free(context);
 
-		texture.free(context);
-		cdata.free();
+		for (final var allocator : fontAllocators)
+		{
+			allocator.free();
+		}
 
-		charCount = 0;
-		texture = null;
-		cdata = null;
+		if (cdata != null)
+		{
+			cdata.free();
+			cdata = null;
+		}
+
+		images = null;
+		views = null;
+		instanceCount = 0;
+		instance = 0;
 	}
 
 	@Override
-	public IFontTableInfo getTableInfo(int codepoint)
+	public boolean push(Map<Font, List<String>> characterMap, TransferBuffer transferBuffer)
 	{
-		for (int i = 0; i < tableAllocators.size(); i++)
+		boolean res = false;
+		if (cdata != null)
 		{
-			final var allocator = tableAllocators.get(i);
-			if (allocator.contains(codepoint))
+			cdata.free();
+			cdata = null;
+		}
+
+		ByteBuffer bitmap = null;
+		addDefaultChars(characterMap, fonts.get(0));
+
+		final var tmpCodePointMap = CodepointMap.fromCharacterMap(characterMap);
+		if (codepointMap == null || codepointMap.isCompatible(tmpCodePointMap) == false)
+		{
+			codepointMap = tmpCodePointMap;
+			try (MemoryStack stack = MemoryStack.stackPush())
 			{
-				return allocator;
+				cdata = STBTTPackedchar.calloc(codepointMap.codepointCount);
+
+				final var transferBufferAdapter = transferBuffer.adapt(ITransferBufferAdapter.class);
+				final var bb = transferBufferAdapter.getTransferBufferBackend();
+				final long memSize = BASE_FONTIMAGE_WIDTH * BASE_FONTIMAGE_HEIGHT;
+				final var ticket = bb.reserveMemory(memSize);
+
+				if (ticket.getReservationStatus() == EReservationStatus.SUCCESS)
+				{
+					bitmap = ticket.toBuffer();
+
+					final STBTTPackContext pc = STBTTPackContext.mallocStack(stack);
+					stbtt_PackBegin(pc,
+									bitmap,
+									BASE_FONTIMAGE_WIDTH,
+									BASE_FONTIMAGE_HEIGHT,
+									0,
+									1,
+									NULL);
+					stbtt_PackSetOversampling(pc, H_OVERSAMPLING, V_OVERSAMPLING);
+
+					int offset = 0;
+					for (final var allocator : fontAllocators)
+					{
+						final var codepoints = codepointMap.get(allocator.font);
+						allocator.clear();
+						if (codepoints != null)
+						{
+							final var subCData = cdata.slice(offset, codepoints.length);
+							allocator.fill(pc, subCData, codepoints);
+
+							offset += codepoints.length;
+						}
+					}
+
+					stbtt_PackEnd(pc);
+
+					if (first == true)
+					{
+						first = false;
+					}
+					else
+					{
+						nextInstance();
+					}
+					final var image = images[instance];
+					final var command = IDataFlowCommand.newPushImageCommand(	ticket,
+																				image,
+																				EPipelineStage.TOP_OF_PIPE_BIT,
+																				List.of(EAccess.UNDEFINED),
+																				EPipelineStage.FRAGMENT_SHADER_BIT,
+																				List.of(EAccess.SHADER_READ_BIT),
+																				EImageLayout.GENERAL);
+
+					bb.addTransferCommand(command);
+					res = true;
+				}
+
+			} catch (final Exception e)
+			{
+				e.printStackTrace();
 			}
 		}
-		return null;
-	}
-
-	@Override
-	public boolean contains(int codepoint)
-	{
-		for (int i = 0; i < tableAllocators.size(); i++)
+		else
 		{
-			final var allocator = tableAllocators.get(i);
-			if (allocator.contains(codepoint))
-			{
-				return true;
-			}
+			res = true;
 		}
-		return false;
+
+		return res;
 	}
 
-	@Override
-	public int indexOf(int codepoint)
+	private static void addDefaultChars(Map<Font, List<String>> characterMap, Font font)
 	{
-		for (int i = 0; i < tableAllocators.size(); i++)
+		var list = characterMap.get(font);
+		if (list == null)
 		{
-			final var allocator = tableAllocators.get(i);
-			if (allocator.contains(codepoint))
-			{
-				return allocator.indexOf(codepoint);
-			}
+			list = new ArrayList<>();
+			characterMap.put(font, list);
 		}
-		return -1;
+		list.add("?.+-*/13456789");
+	}
+
+	private void nextInstance()
+	{
+		final var oldImage = images[instance];
+		final var oldView = views[instance];
+
+		instance = (instance + 1) % instanceCount;
+
+		final var newImage = images[instance];
+		final var newView = views[instance];
+
+		final var imageNotification = new LongNotification(	this,
+															Features.Image,
+															oldImage.getPtr(),
+															newImage.getPtr());
+		final var viewNotification = new LongNotification(	this,
+															Features.View,
+															oldView.getPtr(),
+															newView.getPtr());
+
+		fireNotification(imageNotification);
+		fireNotification(viewNotification);
 	}
 
 	@Override
-	public int charCount()
+	public List<FontAllocator> getAllocators()
 	{
-		return charCount;
+		return fontAllocators;
 	}
 
-	@Override
-	public VkTexture getTexture()
+	public Font getDefaultFont()
 	{
-		return texture;
+		return fonts.get(0);
 	}
 
-	@Override
-	public void fillPackedQuad(STBTTAlignedQuad quad, int codePoint)
+	private static List<FontAllocator> buildAllocators(List<Font> fonts)
 	{
-		int index = 0;
-		for (int i = 0; i < tableAllocators.size(); i++)
+		final List<FontAllocator> res = new ArrayList<>();
+		for (final var font : fonts)
 		{
-			final var tableAllocator = tableAllocators.get(i);
-			if (tableAllocator.contains(codePoint))
-			{
-				index += tableAllocator.indexOf(codePoint);
-				X[0] = 0f;
-				Y[0] = 0f;
-				stbtt_GetPackedQuad(cdata, bufferWidth, bufferHeight, index, X, Y, quad, false);
-				break;
-			}
-			else
-			{
-				index += tableAllocator.getCharCount();
-			}
+			res.add(new FontAllocator(font));
 		}
+		return res;
 	}
 
 	@Override
 	public VkImage getVkImage()
 	{
-		return texture.getImage();
+		return images[instance];
 	}
 
 	@Override
 	public long getImagePtr()
 	{
-		return texture.getImagePtr();
+		return getVkImage().getPtr();
 	}
 
 	@Override
 	public long getViewPtr()
 	{
-		return texture.getViewPtr();
+		return views[instance].getPtr();
 	}
 
 	@Override
 	public long getMemoryPtr()
 	{
-		return texture.getMemoryPtr();
+		return getVkImage().getMemoryPtr();
 	}
 }

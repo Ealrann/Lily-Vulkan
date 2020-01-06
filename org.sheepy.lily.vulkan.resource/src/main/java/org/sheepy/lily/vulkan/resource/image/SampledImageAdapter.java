@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.resource.image;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
@@ -11,7 +12,7 @@ import org.sheepy.vulkan.resource.image.VkSampler;
 
 @Statefull
 @Adapter(scope = SampledImage.class)
-public class SampledImageAdapter implements ISampledImageAdapter
+public class SampledImageAdapter extends Notifier implements ISampledImageAdapter
 {
 	private final SampledImage sampledImage;
 	private final IImageAdapter imageAdapter;
@@ -20,6 +21,8 @@ public class SampledImageAdapter implements ISampledImageAdapter
 
 	public SampledImageAdapter(SampledImage sampledImage)
 	{
+		super(Features.values().length);
+
 		this.sampledImage = sampledImage;
 		final var image = sampledImage.getImage();
 		imageAdapter = image != null ? image.adaptNotNull(IImageAdapter.class) : null;

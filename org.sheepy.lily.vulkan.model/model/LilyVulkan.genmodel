@@ -364,7 +364,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//FileImage/mipmapEnabled"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//FontImage">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//FontImage/font"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//FontImage/fonts"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//SampledImage">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//SampledImage/sampler"/>

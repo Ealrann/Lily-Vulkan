@@ -10,7 +10,7 @@ public final class VkImageView
 {
 	private static final String FAILED_TO_CREATE_IMAGE_VIEW = "Failed to create image view";
 
-	private final VkDevice device;
+	private final int aspectMask;
 
 	private int imageFormat;
 	private long imagePtr = 0;
@@ -18,17 +18,22 @@ public final class VkImageView
 
 	public static VkImageView alloc(VkDevice device, long imageAddress, int format, int aspectMask)
 	{
-		final VkImageView res = new VkImageView(device);
-		res.allocate(imageAddress, 1, format, aspectMask);
+		final VkImageView res = new VkImageView(aspectMask);
+		res.allocate(device, imageAddress, 1, format);
 		return res;
 	}
 
-	public VkImageView(VkDevice device)
+	public VkImageView(int aspectMask)
 	{
-		this.device = device;
+		this.aspectMask = aspectMask;
 	}
 
-	public void allocate(long imagePtr, int levelCount, int format, int aspectMask)
+	public void allocate(VkDevice device, VkImage image)
+	{
+		allocate(device, image.imagePtr, image.mipLevels, image.format);
+	}
+
+	public void allocate(VkDevice device, long imagePtr, int levelCount, int format)
 	{
 		this.imagePtr = imagePtr;
 		this.imageFormat = format;
@@ -56,7 +61,7 @@ public final class VkImageView
 		createInfo.free();
 	}
 
-	public void free()
+	public void free(VkDevice device)
 	{
 		vkDestroyImageView(device, imageViewPtr, null);
 		imageViewPtr = 0;

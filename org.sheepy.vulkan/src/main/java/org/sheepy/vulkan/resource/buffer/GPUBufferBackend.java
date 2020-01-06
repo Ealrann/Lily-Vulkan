@@ -61,11 +61,11 @@ public final class GPUBufferBackend implements IBufferBackend
 		info.computeAlignment(context.getPhysicalDevice());
 		address = VkBufferAllocator.allocate(context, info);
 
-		memoryBuilder.registerBuffer(address, (memoryPtr, memorySize) ->
+		memoryBuilder.registerBuffer(address, (memoryPtr, offset, memorySize) ->
 		{
 			memoryAddress = memoryPtr;
 
-			vkBindBufferMemory(vkDevice, address, memoryAddress, 0);
+			vkBindBufferMemory(vkDevice, address, memoryAddress, offset);
 			// System.out.println(Long.toHexString(bufferMemoryId));
 		});
 

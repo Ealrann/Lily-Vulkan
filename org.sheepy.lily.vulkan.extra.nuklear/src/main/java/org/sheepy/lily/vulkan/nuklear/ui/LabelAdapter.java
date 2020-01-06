@@ -11,6 +11,9 @@ import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
+import org.sheepy.lily.core.api.notification.Notifier;
+import org.sheepy.lily.core.api.notification.impl.ObjectNotification;
+import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.core.model.ui.Label;
 import org.sheepy.lily.core.model.ui.UiPackage;
@@ -18,7 +21,7 @@ import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
 @Statefull
 @Adapter(scope = Label.class)
-public final class LabelAdapter implements IUIElementAdapter
+public final class LabelAdapter extends Notifier implements IUIElementAdapter, ITextWidgetAdapter
 {
 	private final Label label;
 	private final INotificationListener textListener = this::textChanged;
@@ -28,6 +31,7 @@ public final class LabelAdapter implements IUIElementAdapter
 
 	private LabelAdapter(Label label)
 	{
+		super(Features.values().length);
 		this.label = label;
 	}
 
@@ -49,14 +53,19 @@ public final class LabelAdapter implements IUIElementAdapter
 	{
 		freeBuffer();
 		reloadText();
-		
+
 		dirty = true;
 	}
 
 	private void reloadText()
 	{
 		assert textBuffer == null;
-		textBuffer = MemoryUtil.memUTF8(label.getText());
+
+		final String text = label.getText();
+		textBuffer = MemoryUtil.memUTF8(text);
+
+		final var notification = new ObjectNotification(this, Features.Text, null, text);
+		fireNotification(notification);
 	}
 
 	private void freeBuffer()
@@ -99,5 +108,17 @@ public final class LabelAdapter implements IUIElementAdapter
 		}
 
 		return res;
+	}
+
+	@Override
+	public String getText()
+	{
+		return label.getText();
+	}
+
+	@Override
+	public Font getFont()
+	{
+		return label.getFont();
 	}
 }

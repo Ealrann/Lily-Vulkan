@@ -20,7 +20,7 @@ public interface ITransferBuffer
 	{
 		void flush(RecordContext context);
 	}
-	
+
 	static final class MemoryTicket
 	{
 		final MemorySpace memorySpace;

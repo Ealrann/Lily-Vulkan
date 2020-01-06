@@ -263,15 +263,15 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	protected boolean prepareDescriptors()
 	{
 		boolean res = false;
-
-		try (MemoryStack stack = MemoryStack.stackPush())
-		{
-			descriptorPool.prepare(stack);
-		}
-
+		descriptorPool.prepare();
 		if (descriptorPool.hasChanged())
 		{
-			res = true;
+			try (MemoryStack stack = MemoryStack.stackPush())
+			{
+				waitIdle();
+				descriptorPool.update(stack);
+				res = true;
+			}
 		}
 
 		return res;

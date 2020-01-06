@@ -92,10 +92,10 @@ public final class VkImage
 
 		imagePtr = allocateImage(context);
 
-		memoryChunkBuilder.registerImage(imagePtr, (memoryPtr, memorySize) ->
+		memoryChunkBuilder.registerImage(imagePtr, (memoryPtr, offset, memorySize) ->
 		{
 			this.memoryPtr = memoryPtr;
-			vkBindImageMemory(logicalDevice.getVkDevice(), imagePtr, memoryPtr, 0);
+			vkBindImageMemory(logicalDevice.getVkDevice(), imagePtr, memoryPtr, offset);
 
 			if (fillWith != null)
 			{

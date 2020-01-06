@@ -8,19 +8,24 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.action.IActionAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.model.action.Action;
 import org.sheepy.lily.core.model.ui.Button;
+import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
 @Statefull
 @Adapter(scope = Button.class)
-public final class ButtonAdapter implements IUIElementAdapter
+public final class ButtonAdapter extends Notifier implements IUIElementAdapter, ITextWidgetAdapter
 {
 	private final ByteBuffer textBuffer;
+	private final Button button;
 
 	public ButtonAdapter(Button button)
 	{
+		super(Features.values().length);
+		this.button = button;
 		textBuffer = MemoryUtil.memASCII(button.getText());
 	}
 
@@ -41,6 +46,18 @@ public final class ButtonAdapter implements IUIElementAdapter
 		}
 
 		return res;
+	}
+
+	@Override
+	public String getText()
+	{
+		return button.getText();
+	}
+
+	@Override
+	public Font getFont()
+	{
+		return null;
 	}
 
 	private static <T extends Action> void executeAction(T action)

@@ -4,6 +4,7 @@ import static org.lwjgl.nuklear.Nuklear.nk_slider_int;
 
 import java.nio.IntBuffer;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
@@ -20,7 +21,7 @@ import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 public class SliderAdapter implements IUIElementAdapter
 {
 	private final IntBuffer buffer;
-	private final INotificationListener listener = n -> updateValue();
+	private final INotificationListener listener = this::valueChanged;
 	private final IVariableResolverAdapter<IVariableResolver> resolverAdapter;
 	private final IVariableResolver variableResolver;
 
@@ -33,7 +34,8 @@ public class SliderAdapter implements IUIElementAdapter
 		variableResolver = slider.getVariableResolver();
 		resolverAdapter = variableResolver.adaptNotNull(IVariableResolverAdapter.class);
 
-		updateValue();
+		final var val = (Integer) resolverAdapter.getValue(variableResolver);
+		updateValue(val);
 
 		resolverAdapter.addListener(listener);
 	}
@@ -45,9 +47,13 @@ public class SliderAdapter implements IUIElementAdapter
 		MemoryUtil.memFree(buffer);
 	}
 
-	private void updateValue()
+	private void valueChanged(Notification notification)
 	{
-		final Integer val = (Integer) resolverAdapter.getValue(variableResolver);
+		updateValue(notification.getNewIntValue());
+	}
+
+	private void updateValue(int val)
+	{
 		buffer.put(val);
 		buffer.flip();
 		dirty = true;
@@ -67,7 +73,7 @@ public class SliderAdapter implements IUIElementAdapter
 						buffer,
 						slider.getMaxValue(),
 						slider.getStep());
-		
+
 		final Integer val = (Integer) resolverAdapter.getValue(variableResolver);
 		if (val != buffer.get(0))
 		{

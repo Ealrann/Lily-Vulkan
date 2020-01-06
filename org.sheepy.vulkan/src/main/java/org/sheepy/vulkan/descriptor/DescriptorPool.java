@@ -93,27 +93,15 @@ public final class DescriptorPool implements IAllocable<IExecutionContext>
 		allocated = true;
 	}
 
-	public void prepare(MemoryStack stack)
+	public void prepare()
 	{
-		hasChanged = false;
-
 		for (int i = 0; i < allocatedDescriptorSets.size(); i++)
 		{
-			final IVkDescriptorSet descriptorSet = allocatedDescriptorSets.get(i);
-			descriptorSet.updateDescriptorSet(stack);
+			final var descriptorSet = allocatedDescriptorSets.get(i);
 			if (descriptorSet.hasChanged())
 			{
 				hasChanged = true;
 				break;
-			}
-		}
-
-		if (hasChanged)
-		{
-			for (int i = 0; i < allocatedDescriptorSets.size(); i++)
-			{
-				final IVkDescriptorSet descriptorSet = allocatedDescriptorSets.get(i);
-				descriptorSet.updateDescriptorSet(stack);
 			}
 		}
 	}
@@ -121,6 +109,19 @@ public final class DescriptorPool implements IAllocable<IExecutionContext>
 	public boolean hasChanged()
 	{
 		return hasChanged;
+	}
+
+	public void update(MemoryStack stack)
+	{
+		if (hasChanged)
+		{
+			for (int i = 0; i < allocatedDescriptorSets.size(); i++)
+			{
+				final var descriptorSet = allocatedDescriptorSets.get(i);
+				descriptorSet.updateDescriptorSet(stack);
+			}
+			hasChanged = false;
+		}
 	}
 
 	@Override

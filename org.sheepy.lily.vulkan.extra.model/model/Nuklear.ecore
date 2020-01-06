@@ -28,7 +28,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="imageArrayDescriptor" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//ImageArrayDescriptor"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NuklearFont" eSuperTypes="../../org.sheepy.lily.core.model/model/application.ecore#//IResource">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fontArrayDescriptor" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//ImageArrayDescriptor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transferBuffer" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//TransferBuffer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fontImage" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//FontImage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SelectorPanel" eSuperTypes="../../org.sheepy.lily.core.model/model/ui.ecore#//IPanel">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="buttonSizePx" lowerBound="1"

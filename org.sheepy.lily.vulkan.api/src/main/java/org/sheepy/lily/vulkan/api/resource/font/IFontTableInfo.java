@@ -1,16 +1,29 @@
 package org.sheepy.lily.vulkan.api.resource.font;
 
-import org.lwjgl.stb.STBTTPackContext;
-import org.lwjgl.stb.STBTTPackedchar;
+import java.util.List;
 
 public interface IFontTableInfo
 {
-	int getCharCount();
+
+	int getLoadedCharCount();
 	int indexOf(int codepoint);
 	boolean contains(int codepoint);
 
-	void pack(STBTTPackContext pc, STBTTPackedchar.Buffer subData);
+	List<TableData> getTableData();
+
 	float getCodepointHMetric(int codePoint);
 	float getVMetric();
 	float getCodepointKernAdvance(int codePoint, int nextCodePoint);
+
+	static final class TableData
+	{
+		public final int codepoint;
+		public final float hMetric;
+
+		public TableData(int codepoint, float hMetric)
+		{
+			this.codepoint = codepoint;
+			this.hMetric = hMetric;
+		}
+	}
 }

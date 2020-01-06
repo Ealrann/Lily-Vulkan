@@ -17,9 +17,11 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
+import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
 import org.sheepy.lily.core.model.application.IImage;
 import org.sheepy.lily.core.model.types.EHorizontalRelative;
+import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
@@ -31,7 +33,8 @@ import org.sheepy.vulkan.window.IWindowListener.ISizeListener;
 
 @Statefull
 @Adapter(scope = SelectorPanel.class)
-public final class SelectorPanelAdapter implements IPanelAdapter
+public final class SelectorPanelAdapter extends Notifier
+		implements IPanelAdapter, ITextWidgetAdapter
 {
 	private static final int MARGING_W = 5;
 
@@ -60,6 +63,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 
 	public SelectorPanelAdapter(SelectorPanel panel)
 	{
+		super(Features.values().length);
 		if (panel.isPrintLabels() && panel.isVertical() == false)
 		{
 			throw new AssertionError("Horizontal panel with labels is not supported");
@@ -281,6 +285,30 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 	}
 
 	@Override
+	public String getText()
+	{
+		if (panel.isPrintLabels())
+		{
+			final StringBuilder sb = new StringBuilder();
+			for (final var line : datas)
+			{
+				sb.append(line.name);
+			}
+			return sb.toString();
+		}
+		else
+		{
+			return "";
+		}
+	}
+
+	@Override
+	public Font getFont()
+	{
+		return null;
+	}
+
+	@Override
 	public boolean isHovered()
 	{
 		return hovered;
@@ -299,6 +327,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 		public final IImage image;
 		public final NkColor color;
 		public final boolean right;
+		public final String name;
 
 		private final NkImage nkImage = NkImage.calloc();
 
@@ -310,6 +339,7 @@ public final class SelectorPanelAdapter implements IPanelAdapter
 						boolean right)
 		{
 			this.element = input;
+			this.name = name;
 			this.image = image;
 			this.right = right;
 

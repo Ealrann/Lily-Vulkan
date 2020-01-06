@@ -424,9 +424,20 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getNuklearFont_FontArrayDescriptor()
+	public EReference getNuklearFont_TransferBuffer()
 	{
 		return (EReference)nuklearFontEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getNuklearFont_FontImage()
+	{
+		return (EReference)nuklearFontEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -701,7 +712,8 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR);
 
 		nuklearFontEClass = createEClass(NUKLEAR_FONT);
-		createEReference(nuklearFontEClass, NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR);
+		createEReference(nuklearFontEClass, NUKLEAR_FONT__TRANSFER_BUFFER);
+		createEReference(nuklearFontEClass, NUKLEAR_FONT__FONT_IMAGE);
 
 		selectorPanelEClass = createEClass(SELECTOR_PANEL);
 		createEAttribute(selectorPanelEClass, SELECTOR_PANEL__BUTTON_SIZE_PX);
@@ -803,7 +815,8 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		initEReference(getNuklearContext_ImageArrayDescriptor(), theResourcePackage.getImageArrayDescriptor(), null, "imageArrayDescriptor", null, 0, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nuklearFontEClass, NuklearFont.class, "NuklearFont", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNuklearFont_FontArrayDescriptor(), theResourcePackage.getImageArrayDescriptor(), null, "fontArrayDescriptor", null, 0, 1, NuklearFont.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNuklearFont_TransferBuffer(), theResourcePackage.getTransferBuffer(), null, "transferBuffer", null, 1, 1, NuklearFont.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNuklearFont_FontImage(), theResourcePackage.getFontImage(), null, "fontImage", null, 1, 1, NuklearFont.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(selectorPanelEClass, SelectorPanel.class, "SelectorPanel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSelectorPanel_ButtonSizePx(), ecorePackage.getEInt(), "buttonSizePx", "32", 1, 1, SelectorPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

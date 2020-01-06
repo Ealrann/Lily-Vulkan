@@ -375,13 +375,22 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_FONT__NAME = ApplicationPackage.IRESOURCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Font Array Descriptor</b></em>' reference.
+	 * The feature id for the '<em><b>Transfer Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
+	int NUKLEAR_FONT__TRANSFER_BUFFER = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Font Image</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_FONT__FONT_IMAGE = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Font</em>' class.
@@ -390,7 +399,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
+	int NUKLEAR_FONT_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Font</em>' class.
@@ -745,6 +754,24 @@ public interface NuklearPackage extends EPackage
 	 * @ordered
 	 */
 	int PANEL_VIEWER__BACKGROUND_IMAGE = UiPackage.PANEL__BACKGROUND_IMAGE;
+
+	/**
+	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_VIEWER__BACKGROUND_COLOR = UiPackage.PANEL__BACKGROUND_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Border Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_VIEWER__BORDER_COLOR = UiPackage.PANEL__BORDER_COLOR;
 
 	/**
 	 * The feature id for the '<em><b>Variable Resolver</b></em>' containment reference.
@@ -1255,15 +1282,26 @@ public interface NuklearPackage extends EPackage
 	EClass getNuklearFont();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontArrayDescriptor <em>Font Array Descriptor</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getTransferBuffer <em>Transfer Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Font Array Descriptor</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontArrayDescriptor()
+	 * @return the meta object for the reference '<em>Transfer Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getTransferBuffer()
 	 * @see #getNuklearFont()
 	 * @generated
 	 */
-	EReference getNuklearFont_FontArrayDescriptor();
+	EReference getNuklearFont_TransferBuffer();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontImage <em>Font Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Font Image</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontImage()
+	 * @see #getNuklearFont()
+	 * @generated
+	 */
+	EReference getNuklearFont_FontImage();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel <em>Selector Panel</em>}'.
@@ -1650,12 +1688,20 @@ public interface NuklearPackage extends EPackage
 		EClass NUKLEAR_FONT = eINSTANCE.getNuklearFont();
 
 		/**
-		 * The meta object literal for the '<em><b>Font Array Descriptor</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Transfer Buffer</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NUKLEAR_FONT__FONT_ARRAY_DESCRIPTOR = eINSTANCE.getNuklearFont_FontArrayDescriptor();
+		EReference NUKLEAR_FONT__TRANSFER_BUFFER = eINSTANCE.getNuklearFont_TransferBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Font Image</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NUKLEAR_FONT__FONT_IMAGE = eINSTANCE.getNuklearFont_FontImage();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl <em>Selector Panel</em>}' class.

@@ -17,13 +17,11 @@ import org.sheepy.lily.vulkan.api.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFillBufferTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawCommandData;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawTaskMaintainer;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.resource.image.VkImageArrayDescriptor;
-import org.sheepy.vulkan.resource.image.VkImageDescriptor;
 
 @Statefull
 @Adapter(scope = NuklearFillBufferTask.class)
@@ -135,7 +133,9 @@ public final class NuklearFillBufferTaskAdapter
 			if (elemCount > 0)
 			{
 				final var texturePtr = drawCommand.texture().ptr();
-				final int descriptorIndex = texturePtrs.indexOf(texturePtr);
+				final int descriptorIndex = texturePtr > 1
+						? texturePtrs.indexOf(texturePtr) + 2
+						: (int) texturePtr;
 
 				res.add(new DrawCommandData(drawCommand, descriptorIndex));
 				drawedIndexes += elemCount;
@@ -164,12 +164,7 @@ public final class NuklearFillBufferTaskAdapter
 		{
 			final var adapter = descriptor.adaptNotNull(IDescriptorAdapter.class);
 			final var vkDescriptor = adapter.getVkDescriptor();
-			if (descriptor instanceof SampledImageDescriptor)
-			{
-				final long ptr = ((VkImageDescriptor) vkDescriptor).getSamplerPtr();
-				texturePtrs.add(ptr);
-			}
-			else if (vkDescriptor instanceof VkImageArrayDescriptor)
+			if (vkDescriptor instanceof VkImageArrayDescriptor)
 			{
 				final var viewPtrs = ((VkImageArrayDescriptor) vkDescriptor).getViewPtrs();
 				for (int i = 0; i < viewPtrs.length; i++)

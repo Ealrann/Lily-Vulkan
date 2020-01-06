@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
+import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.core.model.ui.Font;
 
 /**
@@ -13,7 +14,7 @@ import org.sheepy.lily.core.model.ui.Font;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.FontImage#getFont <em>Font</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.FontImage#getFonts <em>Fonts</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getFontImage()
@@ -23,25 +24,15 @@ import org.sheepy.lily.core.model.ui.Font;
 public interface FontImage extends Image
 {
 	/**
-	 * Returns the value of the '<em><b>Font</b></em>' reference.
+	 * Returns the value of the '<em><b>Fonts</b></em>' reference list.
+	 * The list contents are of type {@link org.sheepy.lily.core.model.ui.Font}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Font</em>' reference.
-	 * @see #setFont(Font)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getFontImage_Font()
-	 * @model required="true"
+	 * @return the value of the '<em>Fonts</em>' reference list.
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getFontImage_Fonts()
+	 * @model
 	 * @generated
 	 */
-	Font getFont();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.FontImage#getFont <em>Font</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Font</em>' reference.
-	 * @see #getFont()
-	 * @generated
-	 */
-	void setFont(Font value);
+	EList<Font> getFonts();
 
 } // FontImage

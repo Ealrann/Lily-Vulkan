@@ -41,14 +41,10 @@ public class VkTexture implements IAllocable<IExecutionContext>
 	@Override
 	public void allocate(IExecutionContext context)
 	{
-		final var logicalDevice = context.getLogicalDevice();
+		final var vkDevice = context.getVkDevice();
 		image.allocate(context);
-
-		final var imageAddress = image.getPtr();
-
-		imageView = new VkImageView(logicalDevice.getVkDevice());
-
-		imageView.allocate(imageAddress, image.mipLevels, image.format, VK_IMAGE_ASPECT_COLOR_BIT);
+		imageView = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
+		imageView.allocate(vkDevice, image);
 	}
 
 	public void loadImage(IExecutionContext executionContext, ByteBuffer data)
@@ -56,7 +52,7 @@ public class VkTexture implements IAllocable<IExecutionContext>
 		final int stagingUsage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 		final List<EAccess> srcAccessMask = List.of();
 		final List<EAccess> dstAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
-		
+
 		final var bufferInfo = new BufferInfo(data.remaining(), stagingUsage, false);
 		final var stagingBuffer = new CPUBufferBackend(bufferInfo, true);
 		stagingBuffer.allocate(executionContext);
@@ -216,7 +212,7 @@ public class VkTexture implements IAllocable<IExecutionContext>
 	@Override
 	public void free(IExecutionContext context)
 	{
-		imageView.free();
+		imageView.free(context.getVkDevice());
 		image.free(context);
 
 		imageView = null;

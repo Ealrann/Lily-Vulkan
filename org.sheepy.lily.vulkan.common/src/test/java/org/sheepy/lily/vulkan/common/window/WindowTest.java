@@ -12,6 +12,7 @@ import org.sheepy.lily.vulkan.common.test.TestUtils;
 
 public class WindowTest
 {
+	
 	@Test
 	public void testNewWindow()
 	{

@@ -103,6 +103,6 @@ public final class MemoryChunkBuilder
 	@FunctionalInterface
 	public interface MemoryAllocationCallback
 	{
-		void finalize(long memoryPtr, long size);
+		void finalize(long memoryPtr, long offset, long size);
 	}
 }
