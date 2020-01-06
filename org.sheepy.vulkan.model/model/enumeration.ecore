@@ -450,4 +450,9 @@
     <eLiterals name="GRAPHICS"/>
     <eLiterals name="COMPUTE" value="1"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EInstanceCount">
+    <eLiterals name="One"/>
+    <eLiterals name="Two" value="1"/>
+    <eLiterals name="FitToSwapImageCount" value="2"/>
+  </eClassifiers>
 </ecore:EPackage>

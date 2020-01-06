@@ -29,6 +29,7 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EIndexType;
 import org.sheepy.vulkan.model.enumeration.EInputRate;
+import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 import org.sheepy.vulkan.model.enumeration.ELogicOp;
 import org.sheepy.vulkan.model.enumeration.EMemoryProperty;
 import org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature;
@@ -273,6 +274,13 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	private EEnum eBindPointEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eInstanceCountEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -705,6 +713,17 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	@Override
+	public EEnum getEInstanceCount()
+	{
+		return eInstanceCountEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EnumerationFactory getEnumerationFactory()
 	{
 		return (EnumerationFactory)getEFactoryInstance();
@@ -761,6 +780,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		eMemoryPropertyEEnum = createEEnum(EMEMORY_PROPERTY);
 		eSampleCountEEnum = createEEnum(ESAMPLE_COUNT);
 		eBindPointEEnum = createEEnum(EBIND_POINT);
+		eInstanceCountEEnum = createEEnum(EINSTANCE_COUNT);
 	}
 
 	/**
@@ -1236,6 +1256,11 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		initEEnum(eBindPointEEnum, EBindPoint.class, "EBindPoint");
 		addEEnumLiteral(eBindPointEEnum, EBindPoint.GRAPHICS);
 		addEEnumLiteral(eBindPointEEnum, EBindPoint.COMPUTE);
+
+		initEEnum(eInstanceCountEEnum, EInstanceCount.class, "EInstanceCount");
+		addEEnumLiteral(eInstanceCountEEnum, EInstanceCount.ONE);
+		addEEnumLiteral(eInstanceCountEEnum, EInstanceCount.TWO);
+		addEEnumLiteral(eInstanceCountEEnum, EInstanceCount.FIT_TO_SWAP_IMAGE_COUNT);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -365,6 +365,7 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//FontImage">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//FontImage/fonts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//FontImage/instanceCount"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//SampledImage">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//SampledImage/sampler"/>

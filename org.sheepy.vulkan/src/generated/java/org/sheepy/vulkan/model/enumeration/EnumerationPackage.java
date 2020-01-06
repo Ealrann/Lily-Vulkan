@@ -366,6 +366,16 @@ public interface EnumerationPackage extends EPackage
 	int EBIND_POINT = 30;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EInstanceCount <em>EInstance Count</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.enumeration.EInstanceCount
+	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEInstanceCount()
+	 * @generated
+	 */
+	int EINSTANCE_COUNT = 31;
+
+	/**
 	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EImageLayout <em>EImage Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -674,6 +684,16 @@ public interface EnumerationPackage extends EPackage
 	 * @generated
 	 */
 	EEnum getEBindPoint();
+
+	/**
+	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EInstanceCount <em>EInstance Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>EInstance Count</em>'.
+	 * @see org.sheepy.vulkan.model.enumeration.EInstanceCount
+	 * @generated
+	 */
+	EEnum getEInstanceCount();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1008,6 +1028,16 @@ public interface EnumerationPackage extends EPackage
 		 * @generated
 		 */
 		EEnum EBIND_POINT = eINSTANCE.getEBindPoint();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EInstanceCount <em>EInstance Count</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.enumeration.EInstanceCount
+		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEInstanceCount()
+		 * @generated
+		 */
+		EEnum EINSTANCE_COUNT = eINSTANCE.getEInstanceCount();
 
 	}
 

@@ -77,9 +77,18 @@ public final class FontImageAdapter extends Notifier implements IFontImageAdapte
 			allocator.allocate(stack);
 		}
 
-		instanceCount = context instanceof IGraphicContext
-				? ((IGraphicContext) context).getSwapChainManager().getImageCount()
-				: 1;
+		switch (fontImage.getInstanceCount())
+		{
+		case FIT_TO_SWAP_IMAGE_COUNT:
+			instanceCount = ((IGraphicContext) context).getSwapChainManager().getImageCount();
+			break;
+		case ONE:
+			instanceCount = 1;
+			break;
+		case TWO:
+			instanceCount = 2;
+			break;
+		}
 
 		first = true;
 		images = new VkImage[instanceCount];

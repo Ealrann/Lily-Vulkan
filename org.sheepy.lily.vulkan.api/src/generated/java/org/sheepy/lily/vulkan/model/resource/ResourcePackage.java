@@ -1081,13 +1081,22 @@ public interface ResourcePackage extends EPackage
 	int FONT_IMAGE__FONTS = IMAGE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE__INSTANCE_COUNT = IMAGE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Font Image</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FONT_IMAGE_FEATURE_COUNT = IMAGE_FEATURE_COUNT + 1;
+	int FONT_IMAGE_FEATURE_COUNT = IMAGE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Font Image</em>' class.
@@ -2625,6 +2634,17 @@ public interface ResourcePackage extends EPackage
 	EReference getFontImage_Fonts();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.FontImage#getInstanceCount <em>Instance Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Instance Count</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.FontImage#getInstanceCount()
+	 * @see #getFontImage()
+	 * @generated
+	 */
+	EAttribute getFontImage_InstanceCount();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.SampledImage <em>Sampled Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3464,6 +3484,14 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EReference FONT_IMAGE__FONTS = eINSTANCE.getFontImage_Fonts();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FONT_IMAGE__INSTANCE_COUNT = eINSTANCE.getFontImage_InstanceCount();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl <em>Sampled Image</em>}' class.

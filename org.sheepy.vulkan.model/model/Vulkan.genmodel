@@ -502,6 +502,11 @@
       <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBindPoint/GRAPHICS"/>
       <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBindPoint/COMPUTE"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EInstanceCount">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EInstanceCount/One"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EInstanceCount/Two"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EInstanceCount/FitToSwapImageCount"/>
+    </genEnums>
   </genPackages>
   <genPackages prefix="Graphicpipeline" basePackage="org.sheepy.vulkan.model" resource="XMI"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"

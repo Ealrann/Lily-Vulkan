@@ -142,6 +142,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return createESampleCountFromString(eDataType, initialValue);
 			case EnumerationPackage.EBIND_POINT:
 				return createEBindPointFromString(eDataType, initialValue);
+			case EnumerationPackage.EINSTANCE_COUNT:
+				return createEInstanceCountFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -219,6 +221,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return convertESampleCountToString(eDataType, instanceValue);
 			case EnumerationPackage.EBIND_POINT:
 				return convertEBindPointToString(eDataType, instanceValue);
+			case EnumerationPackage.EINSTANCE_COUNT:
+				return convertEInstanceCountToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -902,6 +906,28 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * @generated
 	 */
 	public String convertEBindPointToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EInstanceCount createEInstanceCountFromString(EDataType eDataType, String initialValue)
+	{
+		EInstanceCount result = EInstanceCount.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEInstanceCountToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}

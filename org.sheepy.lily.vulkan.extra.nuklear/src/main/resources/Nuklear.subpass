@@ -17,7 +17,7 @@
             </initialLayout>
           </image>
         </resources>
-        <resources xsi:type="resource:FontImage" format="R8_UNORM">
+        <resources xsi:type="resource:FontImage" format="R8_UNORM" instanceCount="FitToSwapImageCount">
           <usages>Sampled</usages>
           <usages>TransferDst</usages>
         </resources>
