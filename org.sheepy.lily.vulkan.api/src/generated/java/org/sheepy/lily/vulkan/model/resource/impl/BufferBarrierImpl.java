@@ -9,9 +9,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
+import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 import org.sheepy.vulkan.model.barrier.impl.AbstractBufferBarrierImpl;
@@ -39,7 +38,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	 * @generated
 	 * @ordered
 	 */
-	protected Buffer buffer;
+	protected IBuffer buffer;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -68,12 +67,12 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	 * @generated
 	 */
 	@Override
-	public Buffer getBuffer()
+	public IBuffer getBuffer()
 	{
 		if (buffer != null && ((EObject)buffer).eIsProxy())
 		{
 			InternalEObject oldBuffer = (InternalEObject)buffer;
-			buffer = (Buffer)eResolveProxy(oldBuffer);
+			buffer = (IBuffer)eResolveProxy(oldBuffer);
 			if (buffer != oldBuffer)
 			{
 				if (eNotificationRequired())
@@ -88,7 +87,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Buffer basicGetBuffer()
+	public IBuffer basicGetBuffer()
 	{
 		return buffer;
 	}
@@ -99,9 +98,9 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	 * @generated
 	 */
 	@Override
-	public void setBuffer(Buffer newBuffer)
+	public void setBuffer(IBuffer newBuffer)
 	{
-		Buffer oldBuffer = buffer;
+		IBuffer oldBuffer = buffer;
 		buffer = newBuffer;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
@@ -135,7 +134,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 		switch (featureID)
 		{
 			case ResourcePackage.BUFFER_BARRIER__BUFFER:
-				setBuffer((Buffer)newValue);
+				setBuffer((IBuffer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -152,7 +151,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 		switch (featureID)
 		{
 			case ResourcePackage.BUFFER_BARRIER__BUFFER:
-				setBuffer((Buffer)null);
+				setBuffer((IBuffer)null);
 				return;
 		}
 		super.eUnset(featureID);

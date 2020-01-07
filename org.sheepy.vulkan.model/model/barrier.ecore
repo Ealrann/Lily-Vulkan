@@ -9,24 +9,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractBufferBarrier" abstract="true"
       eSuperTypes="#//Barrier"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ReferenceBufferBarrier" eSuperTypes="#//AbstractBufferBarrier">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bufferPtr" unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractImageBarrier" abstract="true"
       eSuperTypes="#//Barrier">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="srcLayout" unique="false"
         eType="ecore:EEnum enumeration.ecore#//EImageLayout"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dstLayout" unique="false"
         eType="ecore:EEnum enumeration.ecore#//EImageLayout"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ReferenceImageBarrier" eSuperTypes="#//AbstractImageBarrier">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imagePtr" unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mipLevels" unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageFormat" unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImageTransition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="srcLayout" unique="false"

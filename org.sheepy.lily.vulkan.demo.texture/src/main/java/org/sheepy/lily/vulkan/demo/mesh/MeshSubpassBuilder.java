@@ -24,6 +24,7 @@ import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EIndexType;
+import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.ESampleCount;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
@@ -120,15 +121,21 @@ public final class MeshSubpassBuilder
 		fragmentShader.setFile(fragmentShaderFile);
 		fragmentShader.setStage(EShaderStage.FRAGMENT_BIT);
 
-		final var indexedVertexBuffer = ResourceFactory.eINSTANCE.createBuffer();
-		indexedVertexBuffer.setSize((long) Math.pow(2, 10));
-		indexedVertexBuffer.getUsages().add(EBufferUsage.VERTEX_BUFFER_BIT);
-		indexedVertexBuffer.getUsages().add(EBufferUsage.INDEX_BUFFER_BIT);
-		indexedVertexBuffer.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
-		indexedVertexBuffer.setData(meshConfiguration.vertexData);
+		final var vertexBuffer = ResourceFactory.eINSTANCE.createBuffer();
+		vertexBuffer.setSize((long) Math.pow(2, 10));
+		vertexBuffer.getUsages().add(EBufferUsage.VERTEX_BUFFER_BIT);
+		vertexBuffer.getUsages().add(EBufferUsage.INDEX_BUFFER_BIT);
+		vertexBuffer.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
+		vertexBuffer.setData(meshConfiguration.vertexData);
+		final var indexBuffer = ResourceFactory.eINSTANCE.createBuffer();
+		indexBuffer.setSize((long) Math.pow(2, 8));
+		indexBuffer.getUsages().add(EBufferUsage.VERTEX_BUFFER_BIT);
+		indexBuffer.getUsages().add(EBufferUsage.INDEX_BUFFER_BIT);
+		indexBuffer.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
+		indexBuffer.setData(meshConfiguration.indexData);
 
 		final var transferBuffer = ResourceFactory.eINSTANCE.createTransferBuffer();
-		transferBuffer.setInstanceCount(3);
+		transferBuffer.setInstanceCount(EInstanceCount.FIT_TO_SWAP_IMAGE_COUNT);
 		transferBuffer.setSize((long) Math.pow(2, 16));
 
 		PushConstantRange pushConstantRange = null;
@@ -198,21 +205,13 @@ public final class MeshSubpassBuilder
 		if (pushConstantRange != null)
 			graphicPipeline.getPushConstantRanges().add(pushConstantRange);
 
-		final var vertexRef = ResourceFactory.eINSTANCE.createBufferReference();
-		vertexRef.setBuffer(indexedVertexBuffer);
-		vertexRef.setOffset(0);
-
 		final var bindVertexBuffer = GraphicFactory.eINSTANCE.createBindVertexBuffer();
 		final var vertexBinding = GraphicFactory.eINSTANCE.createVertexBinding();
-		vertexBinding.setBufferRef(vertexRef);
+		vertexBinding.setBuffer(vertexBuffer);
 		bindVertexBuffer.getVertexBindings().add(vertexBinding);
 
-		final var indexRef = ResourceFactory.eINSTANCE.createBufferReference();
-		indexRef.setBuffer(indexedVertexBuffer);
-		indexRef.setOffset(meshConfiguration.indexOffset);
-
 		final var bindIndexBuffer = GraphicFactory.eINSTANCE.createBindIndexBuffer();
-		bindIndexBuffer.setBufferRef(indexRef);
+		bindIndexBuffer.setBuffer(indexBuffer);
 		bindIndexBuffer.setIndexType(EIndexType.UINT32);
 
 		final var drawIndexed = GraphicFactory.eINSTANCE.createDrawIndexed();
@@ -235,7 +234,8 @@ public final class MeshSubpassBuilder
 		resourcePkg.getResources().add(vertexShader);
 		resourcePkg.getResources().add(fragmentShader);
 		resourcePkg.getResources().add(transferBuffer);
-		resourcePkg.getResources().add(indexedVertexBuffer);
+		resourcePkg.getResources().add(vertexBuffer);
+		resourcePkg.getResources().add(indexBuffer);
 		if (constantBuffer != null) resourcePkg.getResources().add(constantBuffer);
 
 		if (meshConfiguration.useTexture)

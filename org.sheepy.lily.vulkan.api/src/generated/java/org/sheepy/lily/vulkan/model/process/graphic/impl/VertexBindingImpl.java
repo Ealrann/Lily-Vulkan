@@ -3,17 +3,13 @@
 package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
 
-import org.sheepy.lily.vulkan.model.resource.IBufferReference;
+import org.sheepy.lily.vulkan.model.resource.IBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +19,7 @@ import org.sheepy.lily.vulkan.model.resource.IBufferReference;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.VertexBindingImpl#getBufferRef <em>Buffer Ref</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.VertexBindingImpl#getBuffer <em>Buffer</em>}</li>
  * </ul>
  *
  * @generated
@@ -31,15 +27,14 @@ import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 public class VertexBindingImpl extends LilyEObject implements VertexBinding
 {
 	/**
-	 * The cached value of the '{@link #getBufferRef() <em>Buffer Ref</em>}' containment reference.
+	 * The cached value of the '{@link #getBuffer() <em>Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBufferRef()
+	 * @see #getBuffer()
 	 * @generated
 	 * @ordered
 	 */
-	protected IBufferReference bufferRef;
-
+	protected IBuffer buffer;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,9 +62,9 @@ public class VertexBindingImpl extends LilyEObject implements VertexBinding
 	 * @generated
 	 */
 	@Override
-	public IBufferReference getBufferRef()
+	public IBuffer getBuffer()
 	{
-		return bufferRef;
+		return buffer;
 	}
 
 	/**
@@ -77,54 +72,13 @@ public class VertexBindingImpl extends LilyEObject implements VertexBinding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBufferRef(IBufferReference newBufferRef, NotificationChain msgs)
+	@Override
+	public void setBuffer(IBuffer newBuffer)
 	{
-		IBufferReference oldBufferRef = bufferRef;
-		bufferRef = newBufferRef;
+		IBuffer oldBuffer = buffer;
+		buffer = newBuffer;
 		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.VERTEX_BINDING__BUFFER_REF, oldBufferRef, newBufferRef);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setBufferRef(IBufferReference newBufferRef)
-	{
-		if (newBufferRef != bufferRef)
-		{
-			NotificationChain msgs = null;
-			if (bufferRef != null)
-				msgs = ((InternalEObject)bufferRef).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.VERTEX_BINDING__BUFFER_REF, null, msgs);
-			if (newBufferRef != null)
-				msgs = ((InternalEObject)newBufferRef).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.VERTEX_BINDING__BUFFER_REF, null, msgs);
-			msgs = basicSetBufferRef(newBufferRef, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.VERTEX_BINDING__BUFFER_REF, newBufferRef, newBufferRef));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
-				return basicSetBufferRef(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.VERTEX_BINDING__BUFFER, oldBuffer, buffer));
 	}
 
 	/**
@@ -137,8 +91,8 @@ public class VertexBindingImpl extends LilyEObject implements VertexBinding
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
-				return getBufferRef();
+			case GraphicPackage.VERTEX_BINDING__BUFFER:
+				return getBuffer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -153,8 +107,8 @@ public class VertexBindingImpl extends LilyEObject implements VertexBinding
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
-				setBufferRef((IBufferReference)newValue);
+			case GraphicPackage.VERTEX_BINDING__BUFFER:
+				setBuffer((IBuffer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -170,8 +124,8 @@ public class VertexBindingImpl extends LilyEObject implements VertexBinding
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
-				setBufferRef((IBufferReference)null);
+			case GraphicPackage.VERTEX_BINDING__BUFFER:
+				setBuffer((IBuffer)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -187,8 +141,8 @@ public class VertexBindingImpl extends LilyEObject implements VertexBinding
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
-				return bufferRef != null;
+			case GraphicPackage.VERTEX_BINDING__BUFFER:
+				return buffer != null;
 		}
 		return super.eIsSet(featureID);
 	}

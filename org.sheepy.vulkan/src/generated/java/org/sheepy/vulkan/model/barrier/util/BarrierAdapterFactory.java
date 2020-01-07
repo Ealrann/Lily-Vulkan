@@ -85,19 +85,9 @@ public class BarrierAdapterFactory extends AdapterFactoryImpl
 				return createAbstractBufferBarrierAdapter();
 			}
 			@Override
-			public Adapter caseReferenceBufferBarrier(ReferenceBufferBarrier object)
-			{
-				return createReferenceBufferBarrierAdapter();
-			}
-			@Override
 			public Adapter caseAbstractImageBarrier(AbstractImageBarrier object)
 			{
 				return createAbstractImageBarrierAdapter();
-			}
-			@Override
-			public Adapter caseReferenceImageBarrier(ReferenceImageBarrier object)
-			{
-				return createReferenceImageBarrierAdapter();
 			}
 			@Override
 			public Adapter caseImageTransition(ImageTransition object)
@@ -161,21 +151,6 @@ public class BarrierAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier <em>Reference Buffer Barrier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier
-	 * @generated
-	 */
-	public Adapter createReferenceBufferBarrierAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.barrier.AbstractImageBarrier <em>Abstract Image Barrier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -186,21 +161,6 @@ public class BarrierAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createAbstractImageBarrierAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.barrier.ReferenceImageBarrier <em>Reference Image Barrier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.barrier.ReferenceImageBarrier
-	 * @generated
-	 */
-	public Adapter createReferenceImageBarrierAdapter()
 	{
 		return null;
 	}

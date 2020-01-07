@@ -51,33 +51,9 @@ public class CompositeBufferItemProvider extends IResourceItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addTransferBufferPropertyDescriptor(object);
 			addMinSizePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Transfer Buffer feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTransferBufferPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CompositeBuffer_transferBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeBuffer_transferBuffer_feature", "_UI_CompositeBuffer_type"),
-				 ResourcePackage.Literals.COMPOSITE_BUFFER__TRANSFER_BUFFER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -117,7 +93,7 @@ public class CompositeBufferItemProvider extends IResourceItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS);
+			childrenFeatures.add(ResourcePackage.Literals.COMPOSITE_BUFFER__PARTS);
 		}
 		return childrenFeatures;
 	}
@@ -180,7 +156,7 @@ public class CompositeBufferItemProvider extends IResourceItemProvider
 			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
+			case ResourcePackage.COMPOSITE_BUFFER__PARTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -201,8 +177,8 @@ public class CompositeBufferItemProvider extends IResourceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
-				 ResourceFactory.eINSTANCE.createBufferDataProvider()));
+				(ResourcePackage.Literals.COMPOSITE_BUFFER__PARTS,
+				 ResourceFactory.eINSTANCE.createBufferPart()));
 	}
 
 }

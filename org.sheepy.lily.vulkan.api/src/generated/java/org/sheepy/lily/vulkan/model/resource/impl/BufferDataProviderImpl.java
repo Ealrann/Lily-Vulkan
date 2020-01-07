@@ -17,6 +17,7 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
@@ -28,8 +29,6 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getUsage <em>Usage</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getInstanceCount <em>Instance Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getDataSource <em>Data Source</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#isUsedToPush <em>Used To Push</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#isUsedToFetch <em>Used To Fetch</em>}</li>
@@ -37,6 +36,8 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getAccessBeforePush <em>Access Before Push</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getStageBeforeFetch <em>Stage Before Fetch</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getAccessBeforeFetch <em>Access Before Fetch</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getUsages <em>Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getInstanceCount <em>Instance Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getGrowFactor <em>Grow Factor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getGrowThreshold <em>Grow Threshold</em>}</li>
  * </ul>
@@ -64,46 +65,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getUsage() <em>Usage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUsage()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EBufferUsage USAGE_EDEFAULT = EBufferUsage.TRANSFER_SRC_BIT;
-
-	/**
-	 * The cached value of the '{@link #getUsage() <em>Usage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUsage()
-	 * @generated
-	 * @ordered
-	 */
-	protected EBufferUsage usage = USAGE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInstanceCount()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int INSTANCE_COUNT_EDEFAULT = 1;
-
-	/**
-	 * The cached value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInstanceCount()
-	 * @generated
-	 * @ordered
-	 */
-	protected int instanceCount = INSTANCE_COUNT_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getDataSource() <em>Data Source</em>}' containment reference.
@@ -216,6 +177,36 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 	protected EList<EAccess> accessBeforeFetch;
 
 	/**
+	 * The cached value of the '{@link #getUsages() <em>Usages</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUsages()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EBufferUsage> usages;
+
+	/**
+	 * The default value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstanceCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EInstanceCount INSTANCE_COUNT_EDEFAULT = EInstanceCount.ONE;
+
+	/**
+	 * The cached value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstanceCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected EInstanceCount instanceCount = INSTANCE_COUNT_EDEFAULT;
+
+	/**
 	 * The default value of the '{@link #getGrowFactor() <em>Grow Factor</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -307,32 +298,7 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 	 * @generated
 	 */
 	@Override
-	public EBufferUsage getUsage()
-	{
-		return usage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setUsage(EBufferUsage newUsage)
-	{
-		EBufferUsage oldUsage = usage;
-		usage = newUsage == null ? USAGE_EDEFAULT : newUsage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DATA_PROVIDER__USAGE, oldUsage, usage));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int getInstanceCount()
+	public EInstanceCount getInstanceCount()
 	{
 		return instanceCount;
 	}
@@ -343,10 +309,10 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 	 * @generated
 	 */
 	@Override
-	public void setInstanceCount(int newInstanceCount)
+	public void setInstanceCount(EInstanceCount newInstanceCount)
 	{
-		int oldInstanceCount = instanceCount;
-		instanceCount = newInstanceCount;
+		EInstanceCount oldInstanceCount = instanceCount;
+		instanceCount = newInstanceCount == null ? INSTANCE_COUNT_EDEFAULT : newInstanceCount;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
 	}
@@ -537,6 +503,21 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 	 * @generated
 	 */
 	@Override
+	public EList<EBufferUsage> getUsages()
+	{
+		if (usages == null)
+		{
+			usages = new EDataTypeUniqueEList<EBufferUsage>(EBufferUsage.class, this, ResourcePackage.BUFFER_DATA_PROVIDER__USAGES);
+		}
+		return usages;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public float getGrowFactor()
 	{
 		return growFactor;
@@ -609,10 +590,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 		{
 			case ResourcePackage.BUFFER_DATA_PROVIDER__NAME:
 				return getName();
-			case ResourcePackage.BUFFER_DATA_PROVIDER__USAGE:
-				return getUsage();
-			case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
-				return getInstanceCount();
 			case ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
 				return getDataSource();
 			case ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH:
@@ -627,6 +604,10 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 				return getStageBeforeFetch();
 			case ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH:
 				return getAccessBeforeFetch();
+			case ResourcePackage.BUFFER_DATA_PROVIDER__USAGES:
+				return getUsages();
+			case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
+				return getInstanceCount();
 			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR:
 				return getGrowFactor();
 			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD:
@@ -648,12 +629,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 		{
 			case ResourcePackage.BUFFER_DATA_PROVIDER__NAME:
 				setName((String)newValue);
-				return;
-			case ResourcePackage.BUFFER_DATA_PROVIDER__USAGE:
-				setUsage((EBufferUsage)newValue);
-				return;
-			case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
-				setInstanceCount((Integer)newValue);
 				return;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
 				setDataSource((T)newValue);
@@ -678,6 +653,13 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 				getAccessBeforeFetch().clear();
 				getAccessBeforeFetch().addAll((Collection<? extends EAccess>)newValue);
 				return;
+			case ResourcePackage.BUFFER_DATA_PROVIDER__USAGES:
+				getUsages().clear();
+				getUsages().addAll((Collection<? extends EBufferUsage>)newValue);
+				return;
+			case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
+				setInstanceCount((EInstanceCount)newValue);
+				return;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR:
 				setGrowFactor((Float)newValue);
 				return;
@@ -701,12 +683,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 			case ResourcePackage.BUFFER_DATA_PROVIDER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ResourcePackage.BUFFER_DATA_PROVIDER__USAGE:
-				setUsage(USAGE_EDEFAULT);
-				return;
-			case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
-				setInstanceCount(INSTANCE_COUNT_EDEFAULT);
-				return;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
 				setDataSource((T)null);
 				return;
@@ -727,6 +703,12 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 				return;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH:
 				getAccessBeforeFetch().clear();
+				return;
+			case ResourcePackage.BUFFER_DATA_PROVIDER__USAGES:
+				getUsages().clear();
+				return;
+			case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
+				setInstanceCount(INSTANCE_COUNT_EDEFAULT);
 				return;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR:
 				setGrowFactor(GROW_FACTOR_EDEFAULT);
@@ -750,10 +732,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 		{
 			case ResourcePackage.BUFFER_DATA_PROVIDER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.BUFFER_DATA_PROVIDER__USAGE:
-				return usage != USAGE_EDEFAULT;
-			case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
-				return instanceCount != INSTANCE_COUNT_EDEFAULT;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
 				return dataSource != null;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH:
@@ -768,6 +746,10 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 				return stageBeforeFetch != STAGE_BEFORE_FETCH_EDEFAULT;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH:
 				return accessBeforeFetch != null && !accessBeforeFetch.isEmpty();
+			case ResourcePackage.BUFFER_DATA_PROVIDER__USAGES:
+				return usages != null && !usages.isEmpty();
+			case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
+				return instanceCount != INSTANCE_COUNT_EDEFAULT;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR:
 				return growFactor != GROW_FACTOR_EDEFAULT;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD:
@@ -789,10 +771,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", usage: ");
-		result.append(usage);
-		result.append(", instanceCount: ");
-		result.append(instanceCount);
 		result.append(", usedToPush: ");
 		result.append(usedToPush);
 		result.append(", usedToFetch: ");
@@ -805,6 +783,10 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 		result.append(stageBeforeFetch);
 		result.append(", accessBeforeFetch: ");
 		result.append(accessBeforeFetch);
+		result.append(", usages: ");
+		result.append(usages);
+		result.append(", instanceCount: ");
+		result.append(instanceCount);
 		result.append(", growFactor: ");
 		result.append(growFactor);
 		result.append(", growThreshold: ");

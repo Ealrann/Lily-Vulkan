@@ -92,56 +92,6 @@ public class BarrierItemProviderAdapterFactory extends BarrierAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ReferenceBufferBarrierItemProvider referenceBufferBarrierItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createReferenceBufferBarrierAdapter()
-	{
-		if (referenceBufferBarrierItemProvider == null)
-		{
-			referenceBufferBarrierItemProvider = new ReferenceBufferBarrierItemProvider(this);
-		}
-
-		return referenceBufferBarrierItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.barrier.ReferenceImageBarrier} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ReferenceImageBarrierItemProvider referenceImageBarrierItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.barrier.ReferenceImageBarrier}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createReferenceImageBarrierAdapter()
-	{
-		if (referenceImageBarrierItemProvider == null)
-		{
-			referenceImageBarrierItemProvider = new ReferenceImageBarrierItemProvider(this);
-		}
-
-		return referenceImageBarrierItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.barrier.ImageTransition} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -315,8 +265,6 @@ public class BarrierItemProviderAdapterFactory extends BarrierAdapterFactory
 	@Override
 	public void dispose()
 	{
-		if (referenceBufferBarrierItemProvider != null) referenceBufferBarrierItemProvider.dispose();
-		if (referenceImageBarrierItemProvider != null) referenceImageBarrierItemProvider.dispose();
 		if (imageTransitionItemProvider != null) imageTransitionItemProvider.dispose();
 	}
 

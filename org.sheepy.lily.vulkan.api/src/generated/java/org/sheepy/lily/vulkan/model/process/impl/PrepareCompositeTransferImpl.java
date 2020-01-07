@@ -4,23 +4,21 @@ package org.sheepy.lily.vulkan.model.process.impl;
 
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
+import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
-import org.sheepy.lily.vulkan.model.resource.CompositePartReference;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
+import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
@@ -38,6 +36,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#isPrepareDuringUpdate <em>Prepare During Update</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getParts <em>Parts</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getTransferBuffer <em>Transfer Buffer</em>}</li>
  * </ul>
  *
  * @generated
@@ -155,14 +154,24 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	protected ECommandStage stage = STAGE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getParts() <em>Parts</em>}' containment reference list.
+	 * The cached value of the '{@link #getParts() <em>Parts</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getParts()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CompositePartReference> parts;
+	protected EList<BufferPart> parts;
+
+	/**
+	 * The cached value of the '{@link #getTransferBuffer() <em>Transfer Buffer</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTransferBuffer()
+	 * @generated
+	 * @ordered
+	 */
+	protected TransferBuffer transferBuffer;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -361,11 +370,11 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * @generated
 	 */
 	@Override
-	public EList<CompositePartReference> getParts()
+	public EList<BufferPart> getParts()
 	{
 		if (parts == null)
 		{
-			parts = new EObjectContainmentEList<CompositePartReference>(CompositePartReference.class, this, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS);
+			parts = new EObjectResolvingEList<BufferPart>(BufferPart.class, this, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS);
 		}
 		return parts;
 	}
@@ -376,14 +385,43 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public TransferBuffer getTransferBuffer()
 	{
-		switch (featureID)
+		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy())
 		{
-			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS:
-				return ((InternalEList<?>)getParts()).basicRemove(otherEnd, msgs);
+			InternalEObject oldTransferBuffer = (InternalEObject)transferBuffer;
+			transferBuffer = (TransferBuffer)eResolveProxy(oldTransferBuffer);
+			if (transferBuffer != oldTransferBuffer)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
+			}
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return transferBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TransferBuffer basicGetTransferBuffer()
+	{
+		return transferBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTransferBuffer(TransferBuffer newTransferBuffer)
+	{
+		TransferBuffer oldTransferBuffer = transferBuffer;
+		transferBuffer = newTransferBuffer;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
 	}
 
 	/**
@@ -411,6 +449,9 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 				return getStage();
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS:
 				return getParts();
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER:
+				if (resolve) return getTransferBuffer();
+				return basicGetTransferBuffer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -446,7 +487,10 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 				return;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS:
 				getParts().clear();
-				getParts().addAll((Collection<? extends CompositePartReference>)newValue);
+				getParts().addAll((Collection<? extends BufferPart>)newValue);
+				return;
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER:
+				setTransferBuffer((TransferBuffer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -483,6 +527,9 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS:
 				getParts().clear();
 				return;
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER:
+				setTransferBuffer((TransferBuffer)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -511,6 +558,8 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 				return stage != STAGE_EDEFAULT;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS:
 				return parts != null && !parts.isEmpty();
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER:
+				return transferBuffer != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -124,7 +124,10 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		isInited = true;
 
 		// Initialize simple dependencies
+		UiPackage.eINSTANCE.eClass();
+		PresentationPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
+		VariablePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
@@ -135,9 +138,6 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
-		UiPackage.eINSTANCE.eClass();
-		PresentationPackage.eINSTANCE.eClass();
-		VariablePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BindingPackage.eNS_URI);

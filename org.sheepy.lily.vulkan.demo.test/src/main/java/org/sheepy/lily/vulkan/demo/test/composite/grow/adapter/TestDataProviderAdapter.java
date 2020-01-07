@@ -1,10 +1,8 @@
 package org.sheepy.lily.vulkan.demo.test.composite.grow.adapter;
 
 import java.nio.ByteBuffer;
-import java.util.List;
 import java.util.Random;
 
-import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferDataProviderAdapter;
@@ -25,12 +23,7 @@ public class TestDataProviderAdapter implements IBufferDataProviderAdapter
 
 	public TestDataProviderAdapter(BufferDataProvider<?> provider)
 	{
-		@SuppressWarnings("unchecked")
-		final var parentList = (List<EObject>) provider	.eContainer()
-														.eGet(provider.eContainingFeature());
-		final int index = parentList.indexOf(provider);
-
-		random = new Random(index);
+		random = new Random();
 	}
 
 	@Override

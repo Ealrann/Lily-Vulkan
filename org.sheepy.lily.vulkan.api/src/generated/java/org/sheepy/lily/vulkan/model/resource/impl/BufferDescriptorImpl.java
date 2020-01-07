@@ -5,11 +5,10 @@ package org.sheepy.lily.vulkan.model.resource.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -19,7 +18,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 
 import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
-import org.sheepy.lily.vulkan.model.resource.IBufferReference;
+import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
@@ -36,7 +35,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDescriptorImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDescriptorImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDescriptorImpl#getShaderStages <em>Shader Stages</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDescriptorImpl#getBufferReference <em>Buffer Reference</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDescriptorImpl#getBuffer <em>Buffer</em>}</li>
  * </ul>
  *
  * @generated
@@ -94,14 +93,14 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 	protected EList<EShaderStage> shaderStages;
 
 	/**
-	 * The cached value of the '{@link #getBufferReference() <em>Buffer Reference</em>}' containment reference.
+	 * The cached value of the '{@link #getBuffer() <em>Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBufferReference()
+	 * @see #getBuffer()
 	 * @generated
 	 * @ordered
 	 */
-	protected IBufferReference bufferReference;
+	protected IBuffer buffer;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -195,9 +194,19 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 	 * @generated
 	 */
 	@Override
-	public IBufferReference getBufferReference()
+	public IBuffer getBuffer()
 	{
-		return bufferReference;
+		if (buffer != null && ((EObject)buffer).eIsProxy())
+		{
+			InternalEObject oldBuffer = (InternalEObject)buffer;
+			buffer = (IBuffer)eResolveProxy(oldBuffer);
+			if (buffer != oldBuffer)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.BUFFER_DESCRIPTOR__BUFFER, oldBuffer, buffer));
+			}
+		}
+		return buffer;
 	}
 
 	/**
@@ -205,54 +214,23 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBufferReference(IBufferReference newBufferReference, NotificationChain msgs)
+	public IBuffer basicGetBuffer()
 	{
-		IBufferReference oldBufferReference = bufferReference;
-		bufferReference = newBufferReference;
+		return buffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBuffer(IBuffer newBuffer)
+	{
+		IBuffer oldBuffer = buffer;
+		buffer = newBuffer;
 		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DESCRIPTOR__BUFFER_REFERENCE, oldBufferReference, newBufferReference);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setBufferReference(IBufferReference newBufferReference)
-	{
-		if (newBufferReference != bufferReference)
-		{
-			NotificationChain msgs = null;
-			if (bufferReference != null)
-				msgs = ((InternalEObject)bufferReference).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.BUFFER_DESCRIPTOR__BUFFER_REFERENCE, null, msgs);
-			if (newBufferReference != null)
-				msgs = ((InternalEObject)newBufferReference).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.BUFFER_DESCRIPTOR__BUFFER_REFERENCE, null, msgs);
-			msgs = basicSetBufferReference(newBufferReference, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DESCRIPTOR__BUFFER_REFERENCE, newBufferReference, newBufferReference));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case ResourcePackage.BUFFER_DESCRIPTOR__BUFFER_REFERENCE:
-				return basicSetBufferReference(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DESCRIPTOR__BUFFER, oldBuffer, buffer));
 	}
 
 	/**
@@ -271,8 +249,9 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 				return getType();
 			case ResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES:
 				return getShaderStages();
-			case ResourcePackage.BUFFER_DESCRIPTOR__BUFFER_REFERENCE:
-				return getBufferReference();
+			case ResourcePackage.BUFFER_DESCRIPTOR__BUFFER:
+				if (resolve) return getBuffer();
+				return basicGetBuffer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -298,8 +277,8 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 				getShaderStages().clear();
 				getShaderStages().addAll((Collection<? extends EShaderStage>)newValue);
 				return;
-			case ResourcePackage.BUFFER_DESCRIPTOR__BUFFER_REFERENCE:
-				setBufferReference((IBufferReference)newValue);
+			case ResourcePackage.BUFFER_DESCRIPTOR__BUFFER:
+				setBuffer((IBuffer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -324,8 +303,8 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 			case ResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES:
 				getShaderStages().clear();
 				return;
-			case ResourcePackage.BUFFER_DESCRIPTOR__BUFFER_REFERENCE:
-				setBufferReference((IBufferReference)null);
+			case ResourcePackage.BUFFER_DESCRIPTOR__BUFFER:
+				setBuffer((IBuffer)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -347,8 +326,8 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 				return type != TYPE_EDEFAULT;
 			case ResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES:
 				return shaderStages != null && !shaderStages.isEmpty();
-			case ResourcePackage.BUFFER_DESCRIPTOR__BUFFER_REFERENCE:
-				return bufferReference != null;
+			case ResourcePackage.BUFFER_DESCRIPTOR__BUFFER:
+				return buffer != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -175,71 +175,7 @@ public interface BarrierPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.barrier.impl.BarrierPackageImpl#getAbstractImageBarrier()
 	 * @generated
 	 */
-	int ABSTRACT_IMAGE_BARRIER = 3;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.barrier.impl.ReferenceBufferBarrierImpl <em>Reference Buffer Barrier</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.barrier.impl.ReferenceBufferBarrierImpl
-	 * @see org.sheepy.vulkan.model.barrier.impl.BarrierPackageImpl#getReferenceBufferBarrier()
-	 * @generated
-	 */
-	int REFERENCE_BUFFER_BARRIER = 2;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_BUFFER_BARRIER__NAME = ABSTRACT_BUFFER_BARRIER__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Src Access Mask</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_BUFFER_BARRIER__SRC_ACCESS_MASK = ABSTRACT_BUFFER_BARRIER__SRC_ACCESS_MASK;
-
-	/**
-	 * The feature id for the '<em><b>Dst Access Mask</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_BUFFER_BARRIER__DST_ACCESS_MASK = ABSTRACT_BUFFER_BARRIER__DST_ACCESS_MASK;
-
-	/**
-	 * The feature id for the '<em><b>Buffer Ptr</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_BUFFER_BARRIER__BUFFER_PTR = ABSTRACT_BUFFER_BARRIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Reference Buffer Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_BUFFER_BARRIER_FEATURE_COUNT = ABSTRACT_BUFFER_BARRIER_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Reference Buffer Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_BUFFER_BARRIER_OPERATION_COUNT = ABSTRACT_BUFFER_BARRIER_OPERATION_COUNT + 0;
+	int ABSTRACT_IMAGE_BARRIER = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -305,106 +241,6 @@ public interface BarrierPackage extends EPackage
 	int ABSTRACT_IMAGE_BARRIER_OPERATION_COUNT = BARRIER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.barrier.impl.ReferenceImageBarrierImpl <em>Reference Image Barrier</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.barrier.impl.ReferenceImageBarrierImpl
-	 * @see org.sheepy.vulkan.model.barrier.impl.BarrierPackageImpl#getReferenceImageBarrier()
-	 * @generated
-	 */
-	int REFERENCE_IMAGE_BARRIER = 4;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER__NAME = ABSTRACT_IMAGE_BARRIER__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Src Access Mask</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER__SRC_ACCESS_MASK = ABSTRACT_IMAGE_BARRIER__SRC_ACCESS_MASK;
-
-	/**
-	 * The feature id for the '<em><b>Dst Access Mask</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER__DST_ACCESS_MASK = ABSTRACT_IMAGE_BARRIER__DST_ACCESS_MASK;
-
-	/**
-	 * The feature id for the '<em><b>Src Layout</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER__SRC_LAYOUT = ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT;
-
-	/**
-	 * The feature id for the '<em><b>Dst Layout</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER__DST_LAYOUT = ABSTRACT_IMAGE_BARRIER__DST_LAYOUT;
-
-	/**
-	 * The feature id for the '<em><b>Image Ptr</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER__IMAGE_PTR = ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER__MIP_LEVELS = ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Image Format</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT = ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Reference Image Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER_FEATURE_COUNT = ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>Reference Image Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER_OPERATION_COUNT = ABSTRACT_IMAGE_BARRIER_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.barrier.impl.ImageTransitionImpl <em>Image Transition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -412,7 +248,7 @@ public interface BarrierPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.barrier.impl.BarrierPackageImpl#getImageTransition()
 	 * @generated
 	 */
-	int IMAGE_TRANSITION = 5;
+	int IMAGE_TRANSITION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Src Layout</b></em>' attribute.
@@ -511,27 +347,6 @@ public interface BarrierPackage extends EPackage
 	EClass getAbstractBufferBarrier();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier <em>Reference Buffer Barrier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Reference Buffer Barrier</em>'.
-	 * @see org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier
-	 * @generated
-	 */
-	EClass getReferenceBufferBarrier();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier#getBufferPtr <em>Buffer Ptr</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Buffer Ptr</em>'.
-	 * @see org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier#getBufferPtr()
-	 * @see #getReferenceBufferBarrier()
-	 * @generated
-	 */
-	EAttribute getReferenceBufferBarrier_BufferPtr();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.barrier.AbstractImageBarrier <em>Abstract Image Barrier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -562,49 +377,6 @@ public interface BarrierPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getAbstractImageBarrier_DstLayout();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.barrier.ReferenceImageBarrier <em>Reference Image Barrier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Reference Image Barrier</em>'.
-	 * @see org.sheepy.vulkan.model.barrier.ReferenceImageBarrier
-	 * @generated
-	 */
-	EClass getReferenceImageBarrier();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.barrier.ReferenceImageBarrier#getImagePtr <em>Image Ptr</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Image Ptr</em>'.
-	 * @see org.sheepy.vulkan.model.barrier.ReferenceImageBarrier#getImagePtr()
-	 * @see #getReferenceImageBarrier()
-	 * @generated
-	 */
-	EAttribute getReferenceImageBarrier_ImagePtr();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.barrier.ReferenceImageBarrier#getMipLevels <em>Mip Levels</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Mip Levels</em>'.
-	 * @see org.sheepy.vulkan.model.barrier.ReferenceImageBarrier#getMipLevels()
-	 * @see #getReferenceImageBarrier()
-	 * @generated
-	 */
-	EAttribute getReferenceImageBarrier_MipLevels();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.barrier.ReferenceImageBarrier#getImageFormat <em>Image Format</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Image Format</em>'.
-	 * @see org.sheepy.vulkan.model.barrier.ReferenceImageBarrier#getImageFormat()
-	 * @see #getReferenceImageBarrier()
-	 * @generated
-	 */
-	EAttribute getReferenceImageBarrier_ImageFormat();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.barrier.ImageTransition <em>Image Transition</em>}'.
@@ -721,24 +493,6 @@ public interface BarrierPackage extends EPackage
 		EClass ABSTRACT_BUFFER_BARRIER = eINSTANCE.getAbstractBufferBarrier();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.barrier.impl.ReferenceBufferBarrierImpl <em>Reference Buffer Barrier</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.barrier.impl.ReferenceBufferBarrierImpl
-		 * @see org.sheepy.vulkan.model.barrier.impl.BarrierPackageImpl#getReferenceBufferBarrier()
-		 * @generated
-		 */
-		EClass REFERENCE_BUFFER_BARRIER = eINSTANCE.getReferenceBufferBarrier();
-
-		/**
-		 * The meta object literal for the '<em><b>Buffer Ptr</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REFERENCE_BUFFER_BARRIER__BUFFER_PTR = eINSTANCE.getReferenceBufferBarrier_BufferPtr();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.barrier.impl.AbstractImageBarrierImpl <em>Abstract Image Barrier</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -763,40 +517,6 @@ public interface BarrierPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute ABSTRACT_IMAGE_BARRIER__DST_LAYOUT = eINSTANCE.getAbstractImageBarrier_DstLayout();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.barrier.impl.ReferenceImageBarrierImpl <em>Reference Image Barrier</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.barrier.impl.ReferenceImageBarrierImpl
-		 * @see org.sheepy.vulkan.model.barrier.impl.BarrierPackageImpl#getReferenceImageBarrier()
-		 * @generated
-		 */
-		EClass REFERENCE_IMAGE_BARRIER = eINSTANCE.getReferenceImageBarrier();
-
-		/**
-		 * The meta object literal for the '<em><b>Image Ptr</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REFERENCE_IMAGE_BARRIER__IMAGE_PTR = eINSTANCE.getReferenceImageBarrier_ImagePtr();
-
-		/**
-		 * The meta object literal for the '<em><b>Mip Levels</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REFERENCE_IMAGE_BARRIER__MIP_LEVELS = eINSTANCE.getReferenceImageBarrier_MipLevels();
-
-		/**
-		 * The meta object literal for the '<em><b>Image Format</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT = eINSTANCE.getReferenceImageBarrier_ImageFormat();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.barrier.impl.ImageTransitionImpl <em>Image Transition</em>}' class.

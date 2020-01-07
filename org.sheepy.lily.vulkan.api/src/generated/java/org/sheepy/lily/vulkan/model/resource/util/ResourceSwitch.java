@@ -124,42 +124,18 @@ public class ResourceSwitch<T1> extends Switch<T1>
 			{
 				CompositeBuffer compositeBuffer = (CompositeBuffer)theEObject;
 				T1 result = caseCompositeBuffer(compositeBuffer);
-				if (result == null) result = caseIBuffer(compositeBuffer);
 				if (result == null) result = caseIResource(compositeBuffer);
 				if (result == null) result = caseLNamedElement(compositeBuffer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.COMPOSITE_PART_REFERENCE:
+			case ResourcePackage.BUFFER_PART:
 			{
-				CompositePartReference compositePartReference = (CompositePartReference)theEObject;
-				T1 result = caseCompositePartReference(compositePartReference);
-				if (result == null) result = caseLNamedElement(compositePartReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.IBUFFER_REFERENCE:
-			{
-				IBufferReference iBufferReference = (IBufferReference)theEObject;
-				T1 result = caseIBufferReference(iBufferReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.BUFFER_REFERENCE:
-			{
-				BufferReference bufferReference = (BufferReference)theEObject;
-				T1 result = caseBufferReference(bufferReference);
-				if (result == null) result = caseIBufferReference(bufferReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE:
-			{
-				CompositeBufferReference compositeBufferReference = (CompositeBufferReference)theEObject;
-				T1 result = caseCompositeBufferReference(compositeBufferReference);
-				if (result == null) result = caseCompositePartReference(compositeBufferReference);
-				if (result == null) result = caseIBufferReference(compositeBufferReference);
-				if (result == null) result = caseLNamedElement(compositeBufferReference);
+				BufferPart bufferPart = (BufferPart)theEObject;
+				T1 result = caseBufferPart(bufferPart);
+				if (result == null) result = caseIBuffer(bufferPart);
+				if (result == null) result = caseIResource(bufferPart);
+				if (result == null) result = caseLNamedElement(bufferPart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -307,16 +283,6 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.COMPOSITE_BUFFER_BARRIER:
-			{
-				CompositeBufferBarrier compositeBufferBarrier = (CompositeBufferBarrier)theEObject;
-				T1 result = caseCompositeBufferBarrier(compositeBufferBarrier);
-				if (result == null) result = caseAbstractBufferBarrier(compositeBufferBarrier);
-				if (result == null) result = caseBarrier(compositeBufferBarrier);
-				if (result == null) result = caseLNamedElement(compositeBufferBarrier);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ResourcePackage.IMAGE_BARRIER:
 			{
 				ImageBarrier imageBarrier = (ImageBarrier)theEObject;
@@ -430,65 +396,17 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Composite Part Reference</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Buffer Part</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Composite Part Reference</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Buffer Part</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCompositePartReference(CompositePartReference object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IBuffer Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IBuffer Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseIBufferReference(IBufferReference object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Buffer Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Buffer Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseBufferReference(BufferReference object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Composite Buffer Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Composite Buffer Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseCompositeBufferReference(CompositeBufferReference object)
+	public T1 caseBufferPart(BufferPart object)
 	{
 		return null;
 	}
@@ -729,22 +647,6 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseBufferBarrier(BufferBarrier object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Composite Buffer Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Composite Buffer Barrier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseCompositeBufferBarrier(CompositeBufferBarrier object)
 	{
 		return null;
 	}

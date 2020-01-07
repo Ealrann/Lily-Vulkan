@@ -23,17 +23,17 @@ public class MeshConfiguration
 	public boolean mipmap = false;
 	public boolean useTexture = false;
 
-	public long indexOffset;
 	public int indexCount;
 	public ByteBuffer vertexData;
+	public ByteBuffer indexData;
 
 	public MeshConfiguration(AbstractMeshBuilder meshBuilder, Vector2ic size)
 	{
 		this.width = size.x();
 		this.height = size.y();
 
-		vertexData = meshBuilder.getData();
+		vertexData = meshBuilder.getVertexData();
+		indexData = meshBuilder.getIndexData();
 		indexCount = meshBuilder.getIndexCount();
-		indexOffset = meshBuilder.getIndexOffset();
 	}
 }

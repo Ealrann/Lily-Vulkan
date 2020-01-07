@@ -6,8 +6,8 @@ import org.lwjgl.BufferUtils;
 
 public abstract class AbstractMeshBuilder
 {
-	private final ByteBuffer data;
-	long indexOffset;
+	private final ByteBuffer vertexData;
+	private final ByteBuffer indexData;
 	int indexCount;
 
 	public AbstractMeshBuilder(float[] vertices, int[] indices)
@@ -15,24 +15,24 @@ public abstract class AbstractMeshBuilder
 		final var vertexProvider = new VertexProvider(vertices);
 		final var indexProvider = new IndexProvider(indices);
 
-		final long size = vertexProvider.getSize() + indexProvider.getSize();
 		indexCount = indexProvider.getDataCount();
-		indexOffset = vertexProvider.getSize();
 
-		data = BufferUtils.createByteBuffer((int) size);
-		vertexProvider.fill(data);
-		indexProvider.fill(data);
-		data.flip();
+		vertexData = BufferUtils.createByteBuffer((int) vertexProvider.getSize());
+		indexData = BufferUtils.createByteBuffer((int) indexProvider.getSize());
+		vertexProvider.fill(vertexData);
+		indexProvider.fill(indexData);
+		vertexData.flip();
+		indexData.flip();
 	}
 
-	public ByteBuffer getData()
+	public ByteBuffer getVertexData()
 	{
-		return data;
+		return vertexData;
 	}
 
-	public long getIndexOffset()
+	public ByteBuffer getIndexData()
 	{
-		return indexOffset;
+		return indexData;
 	}
 
 	public int getIndexCount()

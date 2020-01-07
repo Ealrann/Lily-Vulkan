@@ -17,18 +17,18 @@ public class GrowEngineFactory
 {
 	public static int MAX_COUNT = 200;
 
-	private static final int INSTANCE_COUNT = 10;
+	private static final int PART_COUNT = 10;
 
 	public static IEngine build()
 	{
 		final VulkanEngine engine = VulkanFactory.eINSTANCE.createVulkanEngine();
-		final var resourceContainer = TestResourceFactory.build(INSTANCE_COUNT);
+		final var resourceContainer = TestResourceFactory.build(PART_COUNT);
 		final var process = createComputeProcessPool(resourceContainer);
 
 		final var pipeline = createPipeline();
 		process.getPipelinePkg().getPipelines().add(pipeline);
 
-		final var taskManager = new TaskManager(resourceContainer, INSTANCE_COUNT);
+		final var taskManager = new TaskManager(resourceContainer, PART_COUNT);
 		taskManager.install(pipeline.getTaskPkg().getTasks());
 		process.getExtensionPkg().getExtensions().add(taskManager.indexConfiguration);
 

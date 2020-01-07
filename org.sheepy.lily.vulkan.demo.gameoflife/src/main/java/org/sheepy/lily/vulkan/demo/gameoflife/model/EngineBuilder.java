@@ -320,13 +320,10 @@ public final class EngineBuilder
 
 	private static IDescriptor newDescriptor(Buffer buffer)
 	{
-		final var reference = ResourceFactory.eINSTANCE.createBufferReference();
-		reference.setBuffer(buffer);
-
 		final var descriptor = ResourceFactory.eINSTANCE.createBufferDescriptor();
 		descriptor.setType(EDescriptorType.STORAGE_BUFFER);
 		descriptor.getShaderStages().add(EShaderStage.COMPUTE_BIT);
-		descriptor.setBufferReference(reference);
+		descriptor.setBuffer(buffer);
 		return descriptor;
 	}
 

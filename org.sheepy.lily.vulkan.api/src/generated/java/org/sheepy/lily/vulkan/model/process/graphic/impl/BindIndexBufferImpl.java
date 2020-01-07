@@ -3,18 +3,13 @@
 package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
-import org.sheepy.lily.vulkan.model.resource.IBufferReference;
-
+import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.vulkan.model.enumeration.EIndexType;
 
 /**
@@ -28,7 +23,7 @@ import org.sheepy.vulkan.model.enumeration.EIndexType;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl#getIndexType <em>Index Type</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl#getBufferRef <em>Buffer Ref</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl#getBuffer <em>Buffer</em>}</li>
  * </ul>
  *
  * @generated
@@ -96,14 +91,14 @@ public class BindIndexBufferImpl extends LilyEObject implements BindIndexBuffer
 	protected EIndexType indexType = INDEX_TYPE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getBufferRef() <em>Buffer Ref</em>}' containment reference.
+	 * The cached value of the '{@link #getBuffer() <em>Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBufferRef()
+	 * @see #getBuffer()
 	 * @generated
 	 * @ordered
 	 */
-	protected IBufferReference bufferRef;
+	protected IBuffer buffer;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -207,9 +202,9 @@ public class BindIndexBufferImpl extends LilyEObject implements BindIndexBuffer
 	 * @generated
 	 */
 	@Override
-	public IBufferReference getBufferRef()
+	public IBuffer getBuffer()
 	{
-		return bufferRef;
+		return buffer;
 	}
 
 	/**
@@ -217,54 +212,13 @@ public class BindIndexBufferImpl extends LilyEObject implements BindIndexBuffer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBufferRef(IBufferReference newBufferRef, NotificationChain msgs)
+	@Override
+	public void setBuffer(IBuffer newBuffer)
 	{
-		IBufferReference oldBufferRef = bufferRef;
-		bufferRef = newBufferRef;
+		IBuffer oldBuffer = buffer;
+		buffer = newBuffer;
 		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, oldBufferRef, newBufferRef);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setBufferRef(IBufferReference newBufferRef)
-	{
-		if (newBufferRef != bufferRef)
-		{
-			NotificationChain msgs = null;
-			if (bufferRef != null)
-				msgs = ((InternalEObject)bufferRef).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, null, msgs);
-			if (newBufferRef != null)
-				msgs = ((InternalEObject)newBufferRef).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, null, msgs);
-			msgs = basicSetBufferRef(newBufferRef, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, newBufferRef, newBufferRef));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
-				return basicSetBufferRef(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.BIND_INDEX_BUFFER__BUFFER, oldBuffer, buffer));
 	}
 
 	/**
@@ -283,8 +237,8 @@ public class BindIndexBufferImpl extends LilyEObject implements BindIndexBuffer
 				return isEnabled();
 			case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
 				return getIndexType();
-			case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
-				return getBufferRef();
+			case GraphicPackage.BIND_INDEX_BUFFER__BUFFER:
+				return getBuffer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -308,8 +262,8 @@ public class BindIndexBufferImpl extends LilyEObject implements BindIndexBuffer
 			case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
 				setIndexType((EIndexType)newValue);
 				return;
-			case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
-				setBufferRef((IBufferReference)newValue);
+			case GraphicPackage.BIND_INDEX_BUFFER__BUFFER:
+				setBuffer((IBuffer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -334,8 +288,8 @@ public class BindIndexBufferImpl extends LilyEObject implements BindIndexBuffer
 			case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
 				setIndexType(INDEX_TYPE_EDEFAULT);
 				return;
-			case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
-				setBufferRef((IBufferReference)null);
+			case GraphicPackage.BIND_INDEX_BUFFER__BUFFER:
+				setBuffer((IBuffer)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -357,8 +311,8 @@ public class BindIndexBufferImpl extends LilyEObject implements BindIndexBuffer
 				return enabled != ENABLED_EDEFAULT;
 			case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
 				return indexType != INDEX_TYPE_EDEFAULT;
-			case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
-				return bufferRef != null;
+			case GraphicPackage.BIND_INDEX_BUFFER__BUFFER:
+				return buffer != null;
 		}
 		return super.eIsSet(featureID);
 	}

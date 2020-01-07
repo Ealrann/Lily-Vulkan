@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.process.execution;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
@@ -62,15 +63,22 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 
 		final List<IExecutionIdleListener> listeners = new ArrayList<>();
 		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
-		for (int i = 0; i < stages.size(); i++)
-		{
-			final var stage = stages.get(i);
-			final var context = new RecordContext(vkCommandBuffer, stage, index);
 
-			commandBuffer.start(stage);
-			recordCommand(this.context, context);
-			commandBuffer.end(stage);
-			listeners.addAll(context.getExecutionIdleListeners());
+		try (MemoryStack stack = MemoryStack.stackPush())
+		{
+			for (int i = 0; i < stages.size(); i++)
+			{
+				final var stage = stages.get(i);
+				final var context = new RecordContext(vkCommandBuffer, stage, index, stack);
+
+				commandBuffer.start(stage);
+				recordCommand(this.context, context);
+				commandBuffer.end(stage);
+				listeners.addAll(context.getExecutionIdleListeners());
+			}
+		} catch (final Exception e)
+		{
+			e.printStackTrace();
 		}
 
 		submission.setExecutionIdleListeners(listeners);

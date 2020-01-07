@@ -9,17 +9,15 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.lily.core.model.application.impl.IResourceImpl;
-import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
+import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,8 +27,7 @@ import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getDataProviders <em>Data Providers</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getTransferBuffer <em>Transfer Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getParts <em>Parts</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getMinSize <em>Min Size</em>}</li>
  * </ul>
  *
@@ -39,24 +36,14 @@ import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 public class CompositeBufferImpl extends IResourceImpl implements CompositeBuffer
 {
 	/**
-	 * The cached value of the '{@link #getDataProviders() <em>Data Providers</em>}' containment reference list.
+	 * The cached value of the '{@link #getParts() <em>Parts</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDataProviders()
+	 * @see #getParts()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<BufferDataProvider<?>> dataProviders;
-
-	/**
-	 * The cached value of the '{@link #getTransferBuffer() <em>Transfer Buffer</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTransferBuffer()
-	 * @generated
-	 * @ordered
-	 */
-	protected TransferBuffer transferBuffer;
+	protected EList<BufferPart> parts;
 
 	/**
 	 * The default value of the '{@link #getMinSize() <em>Min Size</em>}' attribute.
@@ -105,58 +92,13 @@ public class CompositeBufferImpl extends IResourceImpl implements CompositeBuffe
 	 * @generated
 	 */
 	@Override
-	public EList<BufferDataProvider<?>> getDataProviders()
+	public EList<BufferPart> getParts()
 	{
-		if (dataProviders == null)
+		if (parts == null)
 		{
-			dataProviders = new EObjectContainmentEList<BufferDataProvider<?>>(BufferDataProvider.class, this, ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS);
+			parts = new EObjectContainmentEList<BufferPart>(BufferPart.class, this, ResourcePackage.COMPOSITE_BUFFER__PARTS);
 		}
-		return dataProviders;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public TransferBuffer getTransferBuffer()
-	{
-		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy())
-		{
-			InternalEObject oldTransferBuffer = (InternalEObject)transferBuffer;
-			transferBuffer = (TransferBuffer)eResolveProxy(oldTransferBuffer);
-			if (transferBuffer != oldTransferBuffer)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.COMPOSITE_BUFFER__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
-			}
-		}
-		return transferBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TransferBuffer basicGetTransferBuffer()
-	{
-		return transferBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTransferBuffer(TransferBuffer newTransferBuffer)
-	{
-		TransferBuffer oldTransferBuffer = transferBuffer;
-		transferBuffer = newTransferBuffer;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.COMPOSITE_BUFFER__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
+		return parts;
 	}
 
 	/**
@@ -194,8 +136,8 @@ public class CompositeBufferImpl extends IResourceImpl implements CompositeBuffe
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
-				return ((InternalEList<?>)getDataProviders()).basicRemove(otherEnd, msgs);
+			case ResourcePackage.COMPOSITE_BUFFER__PARTS:
+				return ((InternalEList<?>)getParts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -210,11 +152,8 @@ public class CompositeBufferImpl extends IResourceImpl implements CompositeBuffe
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
-				return getDataProviders();
-			case ResourcePackage.COMPOSITE_BUFFER__TRANSFER_BUFFER:
-				if (resolve) return getTransferBuffer();
-				return basicGetTransferBuffer();
+			case ResourcePackage.COMPOSITE_BUFFER__PARTS:
+				return getParts();
 			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
 				return getMinSize();
 		}
@@ -232,12 +171,9 @@ public class CompositeBufferImpl extends IResourceImpl implements CompositeBuffe
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
-				getDataProviders().clear();
-				getDataProviders().addAll((Collection<? extends BufferDataProvider<?>>)newValue);
-				return;
-			case ResourcePackage.COMPOSITE_BUFFER__TRANSFER_BUFFER:
-				setTransferBuffer((TransferBuffer)newValue);
+			case ResourcePackage.COMPOSITE_BUFFER__PARTS:
+				getParts().clear();
+				getParts().addAll((Collection<? extends BufferPart>)newValue);
 				return;
 			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
 				setMinSize((Long)newValue);
@@ -256,11 +192,8 @@ public class CompositeBufferImpl extends IResourceImpl implements CompositeBuffe
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
-				getDataProviders().clear();
-				return;
-			case ResourcePackage.COMPOSITE_BUFFER__TRANSFER_BUFFER:
-				setTransferBuffer((TransferBuffer)null);
+			case ResourcePackage.COMPOSITE_BUFFER__PARTS:
+				getParts().clear();
 				return;
 			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
 				setMinSize(MIN_SIZE_EDEFAULT);
@@ -279,10 +212,8 @@ public class CompositeBufferImpl extends IResourceImpl implements CompositeBuffe
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
-				return dataProviders != null && !dataProviders.isEmpty();
-			case ResourcePackage.COMPOSITE_BUFFER__TRANSFER_BUFFER:
-				return transferBuffer != null;
+			case ResourcePackage.COMPOSITE_BUFFER__PARTS:
+				return parts != null && !parts.isEmpty();
 			case ResourcePackage.COMPOSITE_BUFFER__MIN_SIZE:
 				return minSize != MIN_SIZE_EDEFAULT;
 		}

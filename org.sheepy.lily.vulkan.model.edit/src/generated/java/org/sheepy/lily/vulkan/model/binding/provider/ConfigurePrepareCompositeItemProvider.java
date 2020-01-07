@@ -67,8 +67,9 @@ public class ConfigurePrepareCompositeItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addReferencesPropertyDescriptor(object);
-			addTargetInstancePropertyDescriptor(object);
+			addPrepareTaskPropertyDescriptor(object);
+			addPartIndicesPropertyDescriptor(object);
+			addCompositeBufferPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -97,20 +98,20 @@ public class ConfigurePrepareCompositeItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the References feature.
+	 * This adds a property descriptor for the Prepare Task feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addReferencesPropertyDescriptor(Object object)
+	protected void addPrepareTaskPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ConfigurePrepareComposite_references_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurePrepareComposite_references_feature", "_UI_ConfigurePrepareComposite_type"),
-				 BindingPackage.Literals.CONFIGURE_PREPARE_COMPOSITE__REFERENCES,
+				 getString("_UI_ConfigurePrepareComposite_prepareTask_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurePrepareComposite_prepareTask_feature", "_UI_ConfigurePrepareComposite_type"),
+				 BindingPackage.Literals.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK,
 				 true,
 				 false,
 				 true,
@@ -120,24 +121,47 @@ public class ConfigurePrepareCompositeItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Target Instance feature.
+	 * This adds a property descriptor for the Part Indices feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTargetInstancePropertyDescriptor(Object object)
+	protected void addPartIndicesPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ConfigurePrepareComposite_targetInstance_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurePrepareComposite_targetInstance_feature", "_UI_ConfigurePrepareComposite_type"),
-				 BindingPackage.Literals.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE,
+				 getString("_UI_ConfigurePrepareComposite_partIndices_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurePrepareComposite_partIndices_feature", "_UI_ConfigurePrepareComposite_type"),
+				 BindingPackage.Literals.CONFIGURE_PREPARE_COMPOSITE__PART_INDICES,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Composite Buffer feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCompositeBufferPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConfigurePrepareComposite_compositeBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurePrepareComposite_compositeBuffer_feature", "_UI_ConfigurePrepareComposite_type"),
+				 BindingPackage.Literals.CONFIGURE_PREPARE_COMPOSITE__COMPOSITE_BUFFER,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -185,7 +209,7 @@ public class ConfigurePrepareCompositeItemProvider
 		switch (notification.getFeatureID(ConfigurePrepareComposite.class))
 		{
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__NAME:
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE:
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PART_INDICES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

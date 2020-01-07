@@ -1,31 +1,33 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.adapter.util.AdapterSetRegistry;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.resource.buffer.ICompositeBufferAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter;
+import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
-import org.sheepy.lily.vulkan.model.resource.CompositePartReference;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
-import org.sheepy.lily.vulkan.resource.buffer.provider.DataProviderWrapper;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
-import org.sheepy.vulkan.resource.staging.ITransferBuffer;
 
 @Statefull
 @Adapter(scope = CompositeBuffer.class, lazy = false)
 public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 {
-	private final List<DataProviderWrapper> providerWrappers;
+	private final AdapterSetRegistry<BufferPartAdapter> partsRegistry = new AdapterSetRegistry<>(	BufferPartAdapter.class,
+																									List.of(ResourcePackage.Literals.COMPOSITE_BUFFER__PARTS));
 	private final CompositeBuffer compositeBuffer;
-	private final ITransferBuffer transferBuffer;
 
 	private GPUBufferBackend oldBufferBackend;
 	private GPUBufferBackend bufferBackend;
@@ -35,17 +37,25 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	public CompositeBufferAdapter(CompositeBuffer compositeBuffer)
 	{
 		this.compositeBuffer = compositeBuffer;
-		final var pushBuffer = compositeBuffer.getTransferBuffer();
-		final var transferBufferAdapter = pushBuffer.adaptNotNull(ITransferBufferAdapter.class);
-		transferBuffer = transferBufferAdapter.getTransferBufferBackend();
-		this.providerWrappers = List.copyOf(buildProviderWrapers(compositeBuffer));
+	}
+
+	@Load
+	private void load()
+	{
+		partsRegistry.startRegister(compositeBuffer);
+	}
+
+	@Dispose
+	private void dispose()
+	{
+		partsRegistry.stopRegister(compositeBuffer);
 	}
 
 	@Override
 	public void configureAllocation(IAllocationConfigurator configuration,
 									IExecutionContext context)
 	{
-		configuration.addChildren(providerWrappers);
+		configuration.addChildren(partsRegistry.getAdapters());
 	}
 
 	@Override
@@ -59,9 +69,9 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	@Override
 	public boolean needRecord()
 	{
-		for (final var wrapper : providerWrappers)
+		for (final var partAdapter : partsRegistry.getAdapters())
 		{
-			if (wrapper.sizeChanged())
+			if (partAdapter.sizeChanged())
 			{
 				return true;
 			}
@@ -82,9 +92,12 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	}
 
 	@Override
-	public void recordFlush(EFlushMode mode, List<CompositePartReference> refs)
+	public void recordFlush(EFlushMode mode, TransferBuffer transferBuffer, List<BufferPart> parts)
 	{
-		final List<CompositePartReference> refsToFlush = new ArrayList<>();
+		final var transferBufferAdapter = transferBuffer.adaptNotNull(ITransferBufferAdapter.class);
+		final var transferBackend = transferBufferAdapter.getTransferBufferBackend();
+
+		final List<BufferPartAdapter> partsToFlush = new ArrayList<>();
 		boolean reservationSuccessfull = true;
 
 		if (mode == EFlushMode.PUSH)
@@ -92,15 +105,15 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			refreshConfiguration(false);
 		}
 
-		for (final var ref : refs)
+		for (final var part : parts)
 		{
-			final var providerWrapper = providerWrappers.get(ref.getPart());
+			final var partAdapter = part.adapt(BufferPartAdapter.class);
 
-			if (mode == EFlushMode.FETCH || providerWrapper.needPush())
+			if (mode == EFlushMode.FETCH || partAdapter.needPush())
 			{
-				refsToFlush.add(ref);
+				partsToFlush.add(partAdapter);
 
-				if (providerWrapper.reserveMemory(transferBuffer) == false)
+				if (partAdapter.reserveMemory(transferBackend) == false)
 				{
 					reservationSuccessfull = false;
 					break;
@@ -108,25 +121,22 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			}
 		}
 
-		for (final var ref : refsToFlush)
+		for (final var partAdapter : partsToFlush)
 		{
-			final var providerWrapper = providerWrappers.get(ref.getPart());
-			final int instance = ref.getInstance();
-
 			if (reservationSuccessfull)
 			{
 				if (mode == EFlushMode.PUSH)
 				{
-					providerWrapper.pushProvidedData(instance);
+					partAdapter.pushProvidedData();
 				}
 				else if (mode == EFlushMode.FETCH)
 				{
-					providerWrapper.fetchDeviceData(instance);
+					partAdapter.fetchDeviceData();
 				}
 			}
 			else
 			{
-				providerWrapper.releaseMemory();
+				partAdapter.releaseMemory();
 			}
 		}
 	}
@@ -137,10 +147,11 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 
 		boolean found = force;
 
-		for (int i = 0; i < providerWrappers.size(); i++)
+		final var adapters = partsRegistry.getAdapters();
+		for (int i = 0; i < adapters.size(); i++)
 		{
-			final var providerWrapper = providerWrappers.get(i);
-			if (providerWrapper.sizeChanged())
+			final var partAdapter = adapters.get(i);
+			if (partAdapter.sizeChanged())
 			{
 				found |= true;
 				break;
@@ -159,16 +170,17 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	private UsageSize alignData()
 	{
 		final var usageSize = new UsageSize();
-		for (int i = 0; i < providerWrappers.size(); i++)
+		final var adapters = partsRegistry.getAdapters();
+		for (int i = 0; i < adapters.size(); i++)
 		{
-			final var providerWrapper = providerWrappers.get(i);
-			providerWrapper.updateAlignement(usageSize.position);
+			final var partAdapter = adapters.get(i);
+			partAdapter.updateAlignement(usageSize.position);
 
-			final long offset = providerWrapper.getInstanceOffset(0);
-			final long size = providerWrapper.getTotalSize();
+			final long offset = partAdapter.getInstanceOffset(0);
+			final long size = partAdapter.getTotalSize();
 
 			usageSize.position = offset + size;
-			usageSize.usage |= providerWrapper.getUsage();
+			usageSize.usage |= partAdapter.getUsage();
 		}
 		return usageSize;
 	}
@@ -194,10 +206,11 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			bufferBackend = new GPUBufferBackend(info, false);
 			bufferBackend.allocate(context);
 
-			for (int i = 0; i < providerWrappers.size(); i++)
+			final var adapters = partsRegistry.getAdapters();
+			for (int i = 0; i < adapters.size(); i++)
 			{
-				final var providerWrapper = providerWrappers.get(i);
-				providerWrapper.updateBuffer(bufferBackend.getAddress());
+				final var partAdapter = adapters.get(i);
+				partAdapter.updateBuffer(bufferBackend.getAddress());
 			}
 		}
 	}
@@ -227,73 +240,6 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		}
 		oldBufferBackend = bufferBackend;
 		freeOldBufferIn = 20;
-	}
-
-	@Override
-	public long getPtr()
-	{
-		return bufferBackend.getAddress();
-	}
-
-	@Override
-	public long getMemoryPtr()
-	{
-		return bufferBackend.getMemoryAddress();
-	}
-
-	// @Override
-	public long getSize(int componentIndex)
-	{
-		return providerWrappers.get(componentIndex).getInstanceSize();
-	}
-
-	@Override
-	public long getOffset(int componentIndex, int instance)
-	{
-		return providerWrappers.get(componentIndex).getInstanceOffset(instance);
-	}
-
-	@Override
-	public void pushData(ByteBuffer data)
-	{}
-
-	@Override
-	public long mapMemory()
-	{
-		throw new AssertionError("Forbidden operation");
-	}
-
-	@Override
-	public void unmapMemory()
-	{
-		throw new AssertionError("Forbidden operation");
-	}
-
-	public long getBufferAddress()
-	{
-		return bufferBackend.getAddress();
-	}
-
-	@Override
-	public void flush()
-	{
-		// Nothing to flush for device local buffer
-	}
-
-	@Override
-	public void invalidate()
-	{
-		// Nothing to invalidate for device local buffer
-	}
-
-	private static List<DataProviderWrapper> buildProviderWrapers(CompositeBuffer compositeBuffer)
-	{
-		final List<DataProviderWrapper> res = new ArrayList<>();
-		for (final var child : compositeBuffer.getDataProviders())
-		{
-			res.add(child.adaptNotNull(DataProviderWrapper.class));
-		}
-		return res;
 	}
 
 	private static final class UsageSize

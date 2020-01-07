@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
-import org.sheepy.lily.vulkan.model.resource.IBufferReference;
+import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
@@ -31,12 +31,12 @@ public interface CopyBufferTask extends IPipelineTask
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Src Buffer</em>' containment reference.
-	 * @see #setSrcBuffer(IBufferReference)
+	 * @see #setSrcBuffer(IBuffer)
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getCopyBufferTask_SrcBuffer()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	IBufferReference getSrcBuffer();
+	IBuffer getSrcBuffer();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getSrcBuffer <em>Src Buffer</em>}' containment reference.
@@ -46,19 +46,19 @@ public interface CopyBufferTask extends IPipelineTask
 	 * @see #getSrcBuffer()
 	 * @generated
 	 */
-	void setSrcBuffer(IBufferReference value);
+	void setSrcBuffer(IBuffer value);
 
 	/**
 	 * Returns the value of the '<em><b>Dst Buffer</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dst Buffer</em>' containment reference.
-	 * @see #setDstBuffer(IBufferReference)
+	 * @see #setDstBuffer(IBuffer)
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getCopyBufferTask_DstBuffer()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	IBufferReference getDstBuffer();
+	IBuffer getDstBuffer();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getDstBuffer <em>Dst Buffer</em>}' containment reference.
@@ -68,7 +68,7 @@ public interface CopyBufferTask extends IPipelineTask
 	 * @see #getDstBuffer()
 	 * @generated
 	 */
-	void setDstBuffer(IBufferReference value);
+	void setDstBuffer(IBuffer value);
 
 	/**
 	 * Returns the value of the '<em><b>Stage</b></em>' attribute.

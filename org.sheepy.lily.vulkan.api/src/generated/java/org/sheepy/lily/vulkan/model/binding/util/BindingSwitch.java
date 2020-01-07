@@ -121,6 +121,15 @@ public class BindingSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BindingPackage.CONFIGURE_BUFFER_DESCRIPTOR:
+			{
+				ConfigureBufferDescriptor configureBufferDescriptor = (ConfigureBufferDescriptor)theEObject;
+				T result = caseConfigureBufferDescriptor(configureBufferDescriptor);
+				if (result == null) result = caseIConfigurationTask(configureBufferDescriptor);
+				if (result == null) result = caseLNamedElement(configureBufferDescriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER:
 			{
 				ConfigureCompositeBufferBarrier configureCompositeBufferBarrier = (ConfigureCompositeBufferBarrier)theEObject;
@@ -229,6 +238,22 @@ public class BindingSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseConfigurePrepareComposite(ConfigurePrepareComposite object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Configure Buffer Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Configure Buffer Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConfigureBufferDescriptor(ConfigureBufferDescriptor object)
 	{
 		return null;
 	}

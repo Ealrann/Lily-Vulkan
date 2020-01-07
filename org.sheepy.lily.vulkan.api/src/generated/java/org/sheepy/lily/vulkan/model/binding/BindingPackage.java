@@ -70,7 +70,7 @@ public interface BindingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl#getIContextConfiguration()
 	 * @generated
 	 */
-	int ICONTEXT_CONFIGURATION = 6;
+	int ICONTEXT_CONFIGURATION = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -339,22 +339,31 @@ public interface BindingPackage extends EPackage
 	int CONFIGURE_PREPARE_COMPOSITE__NAME = ICONFIGURATION_TASK__NAME;
 
 	/**
-	 * The feature id for the '<em><b>References</b></em>' reference list.
+	 * The feature id for the '<em><b>Prepare Task</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURE_PREPARE_COMPOSITE__REFERENCES = ICONFIGURATION_TASK_FEATURE_COUNT + 0;
+	int CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK = ICONFIGURATION_TASK_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Target Instance</b></em>' attribute.
+	 * The feature id for the '<em><b>Part Indices</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE = ICONFIGURATION_TASK_FEATURE_COUNT + 1;
+	int CONFIGURE_PREPARE_COMPOSITE__PART_INDICES = ICONFIGURATION_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Composite Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURE_PREPARE_COMPOSITE__COMPOSITE_BUFFER = ICONFIGURATION_TASK_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Configure Prepare Composite</em>' class.
@@ -363,7 +372,7 @@ public interface BindingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURE_PREPARE_COMPOSITE_FEATURE_COUNT = ICONFIGURATION_TASK_FEATURE_COUNT + 2;
+	int CONFIGURE_PREPARE_COMPOSITE_FEATURE_COUNT = ICONFIGURATION_TASK_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Configure Prepare Composite</em>' class.
@@ -375,6 +384,70 @@ public interface BindingPackage extends EPackage
 	int CONFIGURE_PREPARE_COMPOSITE_OPERATION_COUNT = ICONFIGURATION_TASK_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigureBufferDescriptorImpl <em>Configure Buffer Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.binding.impl.ConfigureBufferDescriptorImpl
+	 * @see org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl#getConfigureBufferDescriptor()
+	 * @generated
+	 */
+	int CONFIGURE_BUFFER_DESCRIPTOR = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURE_BUFFER_DESCRIPTOR__NAME = ICONFIGURATION_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Composite Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURE_BUFFER_DESCRIPTOR__COMPOSITE_BUFFER = ICONFIGURATION_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Part Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURE_BUFFER_DESCRIPTOR__PART_INDEX = ICONFIGURATION_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURE_BUFFER_DESCRIPTOR__DESCRIPTOR = ICONFIGURATION_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Configure Buffer Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURE_BUFFER_DESCRIPTOR_FEATURE_COUNT = ICONFIGURATION_TASK_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Configure Buffer Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURE_BUFFER_DESCRIPTOR_OPERATION_COUNT = ICONFIGURATION_TASK_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigureCompositeBufferBarrierImpl <em>Configure Composite Buffer Barrier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -382,7 +455,7 @@ public interface BindingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl#getConfigureCompositeBufferBarrier()
 	 * @generated
 	 */
-	int CONFIGURE_COMPOSITE_BUFFER_BARRIER = 5;
+	int CONFIGURE_COMPOSITE_BUFFER_BARRIER = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -394,22 +467,31 @@ public interface BindingPackage extends EPackage
 	int CONFIGURE_COMPOSITE_BUFFER_BARRIER__NAME = ICONFIGURATION_TASK__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Barriers</b></em>' reference list.
+	 * The feature id for the '<em><b>Barrier</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIERS = ICONFIGURATION_TASK_FEATURE_COUNT + 0;
+	int CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER = ICONFIGURATION_TASK_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Target Instance</b></em>' attribute.
+	 * The feature id for the '<em><b>Part Index</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURE_COMPOSITE_BUFFER_BARRIER__TARGET_INSTANCE = ICONFIGURATION_TASK_FEATURE_COUNT + 1;
+	int CONFIGURE_COMPOSITE_BUFFER_BARRIER__PART_INDEX = ICONFIGURATION_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Composite Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURE_COMPOSITE_BUFFER_BARRIER__COMPOSITE_BUFFER = ICONFIGURATION_TASK_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Configure Composite Buffer Barrier</em>' class.
@@ -418,7 +500,7 @@ public interface BindingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURE_COMPOSITE_BUFFER_BARRIER_FEATURE_COUNT = ICONFIGURATION_TASK_FEATURE_COUNT + 2;
+	int CONFIGURE_COMPOSITE_BUFFER_BARRIER_FEATURE_COUNT = ICONFIGURATION_TASK_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Configure Composite Buffer Barrier</em>' class.
@@ -437,7 +519,7 @@ public interface BindingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl#getIndexConfiguration()
 	 * @generated
 	 */
-	int INDEX_CONFIGURATION = 7;
+	int INDEX_CONFIGURATION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -485,15 +567,14 @@ public interface BindingPackage extends EPackage
 	int INDEX_CONFIGURATION_OPERATION_COUNT = ICONTEXT_CONFIGURATION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.binding.EInstance <em>EInstance</em>}' enum.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.binding.EContextIndex <em>EContext Index</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.binding.EInstance
-	 * @see org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl#getEInstance()
+	 * @see org.sheepy.lily.vulkan.model.binding.EContextIndex
+	 * @see org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl#getEContextIndex()
 	 * @generated
 	 */
-	int EINSTANCE = 8;
-
+	int ECONTEXT_INDEX = 9;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.binding.BindingConfiguration <em>Configuration</em>}'.
@@ -601,26 +682,80 @@ public interface BindingPackage extends EPackage
 	EClass getConfigurePrepareComposite();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getReferences <em>References</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getPrepareTask <em>Prepare Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>References</em>'.
-	 * @see org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getReferences()
+	 * @return the meta object for the reference '<em>Prepare Task</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getPrepareTask()
 	 * @see #getConfigurePrepareComposite()
 	 * @generated
 	 */
-	EReference getConfigurePrepareComposite_References();
+	EReference getConfigurePrepareComposite_PrepareTask();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getTargetInstance <em>Target Instance</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getPartIndices <em>Part Indices</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Target Instance</em>'.
-	 * @see org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getTargetInstance()
+	 * @return the meta object for the attribute list '<em>Part Indices</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getPartIndices()
 	 * @see #getConfigurePrepareComposite()
 	 * @generated
 	 */
-	EAttribute getConfigurePrepareComposite_TargetInstance();
+	EAttribute getConfigurePrepareComposite_PartIndices();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getCompositeBuffer <em>Composite Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Composite Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite#getCompositeBuffer()
+	 * @see #getConfigurePrepareComposite()
+	 * @generated
+	 */
+	EReference getConfigurePrepareComposite_CompositeBuffer();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.binding.ConfigureBufferDescriptor <em>Configure Buffer Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Configure Buffer Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.ConfigureBufferDescriptor
+	 * @generated
+	 */
+	EClass getConfigureBufferDescriptor();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.binding.ConfigureBufferDescriptor#getCompositeBuffer <em>Composite Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Composite Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.ConfigureBufferDescriptor#getCompositeBuffer()
+	 * @see #getConfigureBufferDescriptor()
+	 * @generated
+	 */
+	EReference getConfigureBufferDescriptor_CompositeBuffer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.binding.ConfigureBufferDescriptor#getPartIndex <em>Part Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Part Index</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.ConfigureBufferDescriptor#getPartIndex()
+	 * @see #getConfigureBufferDescriptor()
+	 * @generated
+	 */
+	EAttribute getConfigureBufferDescriptor_PartIndex();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.binding.ConfigureBufferDescriptor#getDescriptor <em>Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.ConfigureBufferDescriptor#getDescriptor()
+	 * @see #getConfigureBufferDescriptor()
+	 * @generated
+	 */
+	EReference getConfigureBufferDescriptor_Descriptor();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier <em>Configure Composite Buffer Barrier</em>}'.
@@ -633,26 +768,37 @@ public interface BindingPackage extends EPackage
 	EClass getConfigureCompositeBufferBarrier();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getBarriers <em>Barriers</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getBarrier <em>Barrier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Barriers</em>'.
-	 * @see org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getBarriers()
+	 * @return the meta object for the reference '<em>Barrier</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getBarrier()
 	 * @see #getConfigureCompositeBufferBarrier()
 	 * @generated
 	 */
-	EReference getConfigureCompositeBufferBarrier_Barriers();
+	EReference getConfigureCompositeBufferBarrier_Barrier();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getTargetInstance <em>Target Instance</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getPartIndex <em>Part Index</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Target Instance</em>'.
-	 * @see org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getTargetInstance()
+	 * @return the meta object for the attribute '<em>Part Index</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getPartIndex()
 	 * @see #getConfigureCompositeBufferBarrier()
 	 * @generated
 	 */
-	EAttribute getConfigureCompositeBufferBarrier_TargetInstance();
+	EAttribute getConfigureCompositeBufferBarrier_PartIndex();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getCompositeBuffer <em>Composite Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Composite Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getCompositeBuffer()
+	 * @see #getConfigureCompositeBufferBarrier()
+	 * @generated
+	 */
+	EReference getConfigureCompositeBufferBarrier_CompositeBuffer();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.binding.IContextConfiguration <em>IContext Configuration</em>}'.
@@ -697,14 +843,14 @@ public interface BindingPackage extends EPackage
 	EAttribute getIndexConfiguration_IndexCount();
 
 	/**
-	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.binding.EInstance <em>EInstance</em>}'.
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.binding.EContextIndex <em>EContext Index</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>EInstance</em>'.
-	 * @see org.sheepy.lily.vulkan.model.binding.EInstance
+	 * @return the meta object for enum '<em>EContext Index</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.EContextIndex
 	 * @generated
 	 */
-	EEnum getEInstance();
+	EEnum getEContextIndex();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -821,20 +967,62 @@ public interface BindingPackage extends EPackage
 		EClass CONFIGURE_PREPARE_COMPOSITE = eINSTANCE.getConfigurePrepareComposite();
 
 		/**
-		 * The meta object literal for the '<em><b>References</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Prepare Task</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONFIGURE_PREPARE_COMPOSITE__REFERENCES = eINSTANCE.getConfigurePrepareComposite_References();
+		EReference CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK = eINSTANCE.getConfigurePrepareComposite_PrepareTask();
 
 		/**
-		 * The meta object literal for the '<em><b>Target Instance</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Part Indices</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE = eINSTANCE.getConfigurePrepareComposite_TargetInstance();
+		EAttribute CONFIGURE_PREPARE_COMPOSITE__PART_INDICES = eINSTANCE.getConfigurePrepareComposite_PartIndices();
+
+		/**
+		 * The meta object literal for the '<em><b>Composite Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIGURE_PREPARE_COMPOSITE__COMPOSITE_BUFFER = eINSTANCE.getConfigurePrepareComposite_CompositeBuffer();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigureBufferDescriptorImpl <em>Configure Buffer Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.binding.impl.ConfigureBufferDescriptorImpl
+		 * @see org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl#getConfigureBufferDescriptor()
+		 * @generated
+		 */
+		EClass CONFIGURE_BUFFER_DESCRIPTOR = eINSTANCE.getConfigureBufferDescriptor();
+
+		/**
+		 * The meta object literal for the '<em><b>Composite Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIGURE_BUFFER_DESCRIPTOR__COMPOSITE_BUFFER = eINSTANCE.getConfigureBufferDescriptor_CompositeBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Part Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONFIGURE_BUFFER_DESCRIPTOR__PART_INDEX = eINSTANCE.getConfigureBufferDescriptor_PartIndex();
+
+		/**
+		 * The meta object literal for the '<em><b>Descriptor</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIGURE_BUFFER_DESCRIPTOR__DESCRIPTOR = eINSTANCE.getConfigureBufferDescriptor_Descriptor();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigureCompositeBufferBarrierImpl <em>Configure Composite Buffer Barrier</em>}' class.
@@ -847,20 +1035,28 @@ public interface BindingPackage extends EPackage
 		EClass CONFIGURE_COMPOSITE_BUFFER_BARRIER = eINSTANCE.getConfigureCompositeBufferBarrier();
 
 		/**
-		 * The meta object literal for the '<em><b>Barriers</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Barrier</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIERS = eINSTANCE.getConfigureCompositeBufferBarrier_Barriers();
+		EReference CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER = eINSTANCE.getConfigureCompositeBufferBarrier_Barrier();
 
 		/**
-		 * The meta object literal for the '<em><b>Target Instance</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Part Index</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CONFIGURE_COMPOSITE_BUFFER_BARRIER__TARGET_INSTANCE = eINSTANCE.getConfigureCompositeBufferBarrier_TargetInstance();
+		EAttribute CONFIGURE_COMPOSITE_BUFFER_BARRIER__PART_INDEX = eINSTANCE.getConfigureCompositeBufferBarrier_PartIndex();
+
+		/**
+		 * The meta object literal for the '<em><b>Composite Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIGURE_COMPOSITE_BUFFER_BARRIER__COMPOSITE_BUFFER = eINSTANCE.getConfigureCompositeBufferBarrier_CompositeBuffer();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.binding.IContextConfiguration <em>IContext Configuration</em>}' class.
@@ -899,14 +1095,14 @@ public interface BindingPackage extends EPackage
 		EAttribute INDEX_CONFIGURATION__INDEX_COUNT = eINSTANCE.getIndexConfiguration_IndexCount();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.binding.EInstance <em>EInstance</em>}' enum.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.binding.EContextIndex <em>EContext Index</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.binding.EInstance
-		 * @see org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl#getEInstance()
+		 * @see org.sheepy.lily.vulkan.model.binding.EContextIndex
+		 * @see org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl#getEContextIndex()
 		 * @generated
 		 */
-		EEnum EINSTANCE = eINSTANCE.getEInstance();
+		EEnum ECONTEXT_INDEX = eINSTANCE.getEContextIndex();
 
 	}
 

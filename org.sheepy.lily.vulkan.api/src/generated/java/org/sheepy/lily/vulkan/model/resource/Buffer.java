@@ -3,10 +3,9 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import java.nio.ByteBuffer;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,12 +17,12 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#getSize <em>Size</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#getUsages <em>Usages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#getData <em>Data</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#isKeptMapped <em>Kept Mapped</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#isHostVisible <em>Host Visible</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#getInstanceCount <em>Instance Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#isCoherent <em>Coherent</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#getUsages <em>Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#getInstanceCount <em>Instance Count</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer()
@@ -53,20 +52,6 @@ public interface Buffer extends IBuffer
 	 * @generated
 	 */
 	void setSize(long value);
-
-	/**
-	 * Returns the value of the '<em><b>Usages</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Usages</em>' attribute list.
-	 * @see org.sheepy.vulkan.model.enumeration.EBufferUsage
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_Usages()
-	 * @model
-	 * @generated
-	 */
-	EList<EBufferUsage> getUsages();
 
 	/**
 	 * Returns the value of the '<em><b>Data</b></em>' attribute.
@@ -137,29 +122,6 @@ public interface Buffer extends IBuffer
 	void setHostVisible(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Instance Count</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Instance Count</em>' attribute.
-	 * @see #setInstanceCount(int)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_InstanceCount()
-	 * @model default="1" unique="false"
-	 * @generated
-	 */
-	int getInstanceCount();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Buffer#getInstanceCount <em>Instance Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Instance Count</em>' attribute.
-	 * @see #getInstanceCount()
-	 * @generated
-	 */
-	void setInstanceCount(int value);
-
-	/**
 	 * Returns the value of the '<em><b>Coherent</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
@@ -181,5 +143,44 @@ public interface Buffer extends IBuffer
 	 * @generated
 	 */
 	void setCoherent(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Usages</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Usages</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EBufferUsage
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_Usages()
+	 * @model
+	 * @generated
+	 */
+	EList<EBufferUsage> getUsages();
+
+	/**
+	 * Returns the value of the '<em><b>Instance Count</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EInstanceCount}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Instance Count</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EInstanceCount
+	 * @see #setInstanceCount(EInstanceCount)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_InstanceCount()
+	 * @model unique="false" required="true"
+	 * @generated
+	 */
+	EInstanceCount getInstanceCount();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Buffer#getInstanceCount <em>Instance Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Instance Count</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EInstanceCount
+	 * @see #getInstanceCount()
+	 * @generated
+	 */
+	void setInstanceCount(EInstanceCount value);
 
 } // Buffer

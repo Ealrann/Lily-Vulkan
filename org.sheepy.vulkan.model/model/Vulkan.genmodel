@@ -31,17 +31,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//Barrier/dstAccessMask"/>
     </genClasses>
     <genClasses image="false" ecoreClass="barrier.ecore#//AbstractBufferBarrier"/>
-    <genClasses ecoreClass="barrier.ecore#//ReferenceBufferBarrier">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//ReferenceBufferBarrier/bufferPtr"/>
-    </genClasses>
     <genClasses image="false" ecoreClass="barrier.ecore#//AbstractImageBarrier">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//AbstractImageBarrier/srcLayout"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//AbstractImageBarrier/dstLayout"/>
-    </genClasses>
-    <genClasses ecoreClass="barrier.ecore#//ReferenceImageBarrier">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//ReferenceImageBarrier/imagePtr"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//ReferenceImageBarrier/mipLevels"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//ReferenceImageBarrier/imageFormat"/>
     </genClasses>
     <genClasses ecoreClass="barrier.ecore#//ImageTransition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//ImageTransition/srcLayout"/>

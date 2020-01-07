@@ -7,15 +7,18 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 
 import org.sheepy.lily.vulkan.model.binding.BindingPackage;
 import org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite;
-import org.sheepy.lily.vulkan.model.binding.EInstance;
-import org.sheepy.lily.vulkan.model.resource.CompositePartReference;
+import org.sheepy.lily.vulkan.model.binding.EContextIndex;
+import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
+import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,8 +29,9 @@ import org.sheepy.lily.vulkan.model.resource.CompositePartReference;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigurePrepareCompositeImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigurePrepareCompositeImpl#getReferences <em>References</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigurePrepareCompositeImpl#getTargetInstance <em>Target Instance</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigurePrepareCompositeImpl#getPrepareTask <em>Prepare Task</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigurePrepareCompositeImpl#getPartIndices <em>Part Indices</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigurePrepareCompositeImpl#getCompositeBuffer <em>Composite Buffer</em>}</li>
  * </ul>
  *
  * @generated
@@ -55,34 +59,34 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getReferences() <em>References</em>}' reference list.
+	 * The cached value of the '{@link #getPrepareTask() <em>Prepare Task</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getReferences()
+	 * @see #getPrepareTask()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CompositePartReference> references;
+	protected PrepareCompositeTransfer prepareTask;
 
 	/**
-	 * The default value of the '{@link #getTargetInstance() <em>Target Instance</em>}' attribute.
+	 * The cached value of the '{@link #getPartIndices() <em>Part Indices</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTargetInstance()
+	 * @see #getPartIndices()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EInstance TARGET_INSTANCE_EDEFAULT = EInstance.CONTEXT_INSTANCE;
+	protected EList<EContextIndex> partIndices;
 
 	/**
-	 * The cached value of the '{@link #getTargetInstance() <em>Target Instance</em>}' attribute.
+	 * The cached value of the '{@link #getCompositeBuffer() <em>Composite Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTargetInstance()
+	 * @see #getCompositeBuffer()
 	 * @generated
 	 * @ordered
 	 */
-	protected EInstance targetInstance = TARGET_INSTANCE_EDEFAULT;
+	protected CompositeBuffer compositeBuffer;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -136,13 +140,29 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 	 * @generated
 	 */
 	@Override
-	public EList<CompositePartReference> getReferences()
+	public PrepareCompositeTransfer getPrepareTask()
 	{
-		if (references == null)
+		if (prepareTask != null && ((EObject)prepareTask).eIsProxy())
 		{
-			references = new EObjectResolvingEList<CompositePartReference>(CompositePartReference.class, this, BindingPackage.CONFIGURE_PREPARE_COMPOSITE__REFERENCES);
+			InternalEObject oldPrepareTask = (InternalEObject)prepareTask;
+			prepareTask = (PrepareCompositeTransfer)eResolveProxy(oldPrepareTask);
+			if (prepareTask != oldPrepareTask)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK, oldPrepareTask, prepareTask));
+			}
 		}
-		return references;
+		return prepareTask;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PrepareCompositeTransfer basicGetPrepareTask()
+	{
+		return prepareTask;
 	}
 
 	/**
@@ -151,23 +171,72 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 	 * @generated
 	 */
 	@Override
-	public EInstance getTargetInstance()
+	public void setPrepareTask(PrepareCompositeTransfer newPrepareTask)
 	{
-		return targetInstance;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTargetInstance(EInstance newTargetInstance)
-	{
-		EInstance oldTargetInstance = targetInstance;
-		targetInstance = newTargetInstance == null ? TARGET_INSTANCE_EDEFAULT : newTargetInstance;
+		PrepareCompositeTransfer oldPrepareTask = prepareTask;
+		prepareTask = newPrepareTask;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BindingPackage.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE, oldTargetInstance, targetInstance));
+			eNotify(new ENotificationImpl(this, Notification.SET, BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK, oldPrepareTask, prepareTask));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<EContextIndex> getPartIndices()
+	{
+		if (partIndices == null)
+		{
+			partIndices = new EDataTypeUniqueEList<EContextIndex>(EContextIndex.class, this, BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PART_INDICES);
+		}
+		return partIndices;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CompositeBuffer getCompositeBuffer()
+	{
+		if (compositeBuffer != null && ((EObject)compositeBuffer).eIsProxy())
+		{
+			InternalEObject oldCompositeBuffer = (InternalEObject)compositeBuffer;
+			compositeBuffer = (CompositeBuffer)eResolveProxy(oldCompositeBuffer);
+			if (compositeBuffer != oldCompositeBuffer)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BindingPackage.CONFIGURE_PREPARE_COMPOSITE__COMPOSITE_BUFFER, oldCompositeBuffer, compositeBuffer));
+			}
+		}
+		return compositeBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeBuffer basicGetCompositeBuffer()
+	{
+		return compositeBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCompositeBuffer(CompositeBuffer newCompositeBuffer)
+	{
+		CompositeBuffer oldCompositeBuffer = compositeBuffer;
+		compositeBuffer = newCompositeBuffer;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BindingPackage.CONFIGURE_PREPARE_COMPOSITE__COMPOSITE_BUFFER, oldCompositeBuffer, compositeBuffer));
 	}
 
 	/**
@@ -182,10 +251,14 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 		{
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__NAME:
 				return getName();
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__REFERENCES:
-				return getReferences();
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE:
-				return getTargetInstance();
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK:
+				if (resolve) return getPrepareTask();
+				return basicGetPrepareTask();
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PART_INDICES:
+				return getPartIndices();
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__COMPOSITE_BUFFER:
+				if (resolve) return getCompositeBuffer();
+				return basicGetCompositeBuffer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -204,12 +277,15 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__NAME:
 				setName((String)newValue);
 				return;
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__REFERENCES:
-				getReferences().clear();
-				getReferences().addAll((Collection<? extends CompositePartReference>)newValue);
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK:
+				setPrepareTask((PrepareCompositeTransfer)newValue);
 				return;
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE:
-				setTargetInstance((EInstance)newValue);
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PART_INDICES:
+				getPartIndices().clear();
+				getPartIndices().addAll((Collection<? extends EContextIndex>)newValue);
+				return;
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__COMPOSITE_BUFFER:
+				setCompositeBuffer((CompositeBuffer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -228,11 +304,14 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__REFERENCES:
-				getReferences().clear();
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK:
+				setPrepareTask((PrepareCompositeTransfer)null);
 				return;
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE:
-				setTargetInstance(TARGET_INSTANCE_EDEFAULT);
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PART_INDICES:
+				getPartIndices().clear();
+				return;
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__COMPOSITE_BUFFER:
+				setCompositeBuffer((CompositeBuffer)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -250,10 +329,12 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 		{
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__REFERENCES:
-				return references != null && !references.isEmpty();
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__TARGET_INSTANCE:
-				return targetInstance != TARGET_INSTANCE_EDEFAULT;
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PREPARE_TASK:
+				return prepareTask != null;
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__PART_INDICES:
+				return partIndices != null && !partIndices.isEmpty();
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE__COMPOSITE_BUFFER:
+				return compositeBuffer != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -271,8 +352,8 @@ public class ConfigurePrepareCompositeImpl extends LilyEObject implements Config
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", targetInstance: ");
-		result.append(targetInstance);
+		result.append(", partIndices: ");
+		result.append(partIndices);
 		result.append(')');
 		return result.toString();
 	}

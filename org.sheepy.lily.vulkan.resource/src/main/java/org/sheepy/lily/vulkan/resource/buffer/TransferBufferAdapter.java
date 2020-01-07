@@ -4,6 +4,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.staging.ITransferBuffer;
@@ -13,21 +14,25 @@ import org.sheepy.vulkan.resource.staging.TransferBufferBackend;
 @Adapter(scope = TransferBuffer.class)
 public class TransferBufferAdapter implements ITransferBufferAdapter, IVulkanResourceAdapter
 {
-	private final TransferBufferBackend backendBuffer;
+	private final TransferBuffer transferBuffer;
+
+	private TransferBufferBackend backendBuffer;
 
 	public TransferBufferAdapter(TransferBuffer transferBuffer)
 	{
-		final long size = transferBuffer.getSize();
-		final int instanceCount = transferBuffer.getInstanceCount();
-		final boolean usedToPush = transferBuffer.isUsedToPush();
-		final boolean usedToFetch = transferBuffer.isUsedToFetch();
-
-		backendBuffer = new TransferBufferBackend(size, instanceCount, usedToPush, usedToFetch);
+		this.transferBuffer = transferBuffer;
 	}
 
 	@Override
 	public void allocate(IExecutionContext context)
 	{
+		final long size = transferBuffer.getSize();
+		final int instanceCount = VulkanModelUtil.getInstanceCount(	context,
+																	transferBuffer.getInstanceCount());
+		final boolean usedToPush = transferBuffer.isUsedToPush();
+		final boolean usedToFetch = transferBuffer.isUsedToFetch();
+
+		backendBuffer = new TransferBufferBackend(size, instanceCount, usedToPush, usedToFetch);
 		backendBuffer.allocate(context);
 	}
 

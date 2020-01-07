@@ -1,16 +1,12 @@
 package org.sheepy.lily.vulkan.demo.test.composite.instance.adapter;
 
 import java.nio.ByteBuffer;
-import java.util.List;
 import java.util.Random;
 
-import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 
-@Statefull
 @Adapter(scope = BufferDataProvider.class, name = InstanceDataProviderAdapter.NAME)
 public class InstanceDataProviderAdapter implements IBufferDataProviderAdapter
 {
@@ -22,14 +18,9 @@ public class InstanceDataProviderAdapter implements IBufferDataProviderAdapter
 
 	private int[] previous = null;
 
-	public InstanceDataProviderAdapter(BufferDataProvider<?> provider)
+	public InstanceDataProviderAdapter()
 	{
-		@SuppressWarnings("unchecked")
-		final var parentList = (List<EObject>) provider	.eContainer()
-														.eGet(provider.eContainingFeature());
-		final int index = parentList.indexOf(provider);
-
-		random = new Random(index);
+		random = new Random();
 	}
 
 	@Override

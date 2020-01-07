@@ -232,6 +232,11 @@ public class IndexConfigurationItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BindingPackage.Literals.ICONTEXT_CONFIGURATION__TASKS,
+				 BindingFactory.eINSTANCE.createConfigureBufferDescriptor()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BindingPackage.Literals.ICONTEXT_CONFIGURATION__TASKS,
 				 BindingFactory.eINSTANCE.createConfigureCompositeBufferBarrier()));
 	}
 

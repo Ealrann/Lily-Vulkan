@@ -35,7 +35,8 @@ public interface IBufferBackend
 	public void invalidate(MemoryStack stack, LogicalDevice logicalDevice);
 
 	void nextInstance();
-	long getOffset();
+	long getInstanceOffset();
+	long getInstanceSize();
 	int getProperties();
 
 	void pushData(IExecutionContext executionContext, ByteBuffer data);

@@ -40,11 +40,8 @@ import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
-import org.sheepy.lily.vulkan.model.resource.BufferReference;
+import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
-import org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier;
-import org.sheepy.lily.vulkan.model.resource.CompositeBufferReference;
-import org.sheepy.lily.vulkan.model.resource.CompositePartReference;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
@@ -52,7 +49,6 @@ import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
-import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
@@ -122,28 +118,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass compositePartReferenceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass iBufferReferenceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass bufferReferenceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass compositeBufferReferenceEClass = null;
+	private EClass bufferPartEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -255,13 +230,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass compositeBufferBarrierEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass imageBarrierEClass = null;
 
 	/**
@@ -342,7 +310,10 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		isInited = true;
 
 		// Initialize simple dependencies
+		UiPackage.eINSTANCE.eClass();
+		PresentationPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
+		VariablePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
@@ -353,9 +324,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
-		UiPackage.eINSTANCE.eClass();
-		PresentationPackage.eINSTANCE.eClass();
-		VariablePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BindingPackage.eNS_URI);
@@ -509,7 +477,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBuffer_Usages()
+	public EAttribute getBuffer_Data()
 	{
 		return (EAttribute)bufferEClass.getEStructuralFeatures().get(1);
 	}
@@ -520,7 +488,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBuffer_Data()
+	public EAttribute getBuffer_KeptMapped()
 	{
 		return (EAttribute)bufferEClass.getEStructuralFeatures().get(2);
 	}
@@ -531,7 +499,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBuffer_KeptMapped()
+	public EAttribute getBuffer_HostVisible()
 	{
 		return (EAttribute)bufferEClass.getEStructuralFeatures().get(3);
 	}
@@ -542,7 +510,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBuffer_HostVisible()
+	public EAttribute getBuffer_Coherent()
 	{
 		return (EAttribute)bufferEClass.getEStructuralFeatures().get(4);
 	}
@@ -553,7 +521,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBuffer_InstanceCount()
+	public EAttribute getBuffer_Usages()
 	{
 		return (EAttribute)bufferEClass.getEStructuralFeatures().get(5);
 	}
@@ -564,7 +532,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBuffer_Coherent()
+	public EAttribute getBuffer_InstanceCount()
 	{
 		return (EAttribute)bufferEClass.getEStructuralFeatures().get(6);
 	}
@@ -586,7 +554,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getCompositeBuffer_DataProviders()
+	public EReference getCompositeBuffer_Parts()
 	{
 		return (EReference)compositeBufferEClass.getEStructuralFeatures().get(0);
 	}
@@ -597,20 +565,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getCompositeBuffer_TransferBuffer()
-	{
-		return (EReference)compositeBufferEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getCompositeBuffer_MinSize()
 	{
-		return (EAttribute)compositeBufferEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)compositeBufferEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -619,9 +576,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getCompositePartReference()
+	public EClass getBufferPart()
 	{
-		return compositePartReferenceEClass;
+		return bufferPartEClass;
 	}
 
 	/**
@@ -630,86 +587,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getCompositePartReference_Part()
+	public EReference getBufferPart_DataProvider()
 	{
-		return (EAttribute)compositePartReferenceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getCompositePartReference_Instance()
-	{
-		return (EAttribute)compositePartReferenceEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getIBufferReference()
-	{
-		return iBufferReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getBufferReference()
-	{
-		return bufferReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getBufferReference_Buffer()
-	{
-		return (EReference)bufferReferenceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getBufferReference_Offset()
-	{
-		return (EAttribute)bufferReferenceEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getCompositeBufferReference()
-	{
-		return compositeBufferReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getCompositeBufferReference_Buffer()
-	{
-		return (EReference)compositeBufferReferenceEClass.getEStructuralFeatures().get(0);
+		return (EReference)bufferPartEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -729,20 +609,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBufferDataProvider_Usage()
-	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getBufferDataProvider_InstanceCount()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -753,7 +622,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EReference getBufferDataProvider_DataSource()
 	{
-		return (EReference)bufferDataProviderEClass.getEStructuralFeatures().get(2);
+		return (EReference)bufferDataProviderEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -764,7 +633,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getBufferDataProvider_UsedToPush()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -775,7 +644,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getBufferDataProvider_UsedToFetch()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -786,7 +655,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getBufferDataProvider_StageBeforePush()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -797,7 +666,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getBufferDataProvider_AccessBeforePush()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -808,7 +677,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getBufferDataProvider_StageBeforeFetch()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(7);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -819,7 +688,18 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getBufferDataProvider_AccessBeforeFetch()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(8);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferDataProvider_Usages()
+	{
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -1070,7 +950,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getBufferDescriptor_BufferReference()
+	public EReference getBufferDescriptor_Buffer()
 	{
 		return (EReference)bufferDescriptorEClass.getEStructuralFeatures().get(0);
 	}
@@ -1205,39 +1085,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EReference getBufferBarrier_Buffer()
 	{
 		return (EReference)bufferBarrierEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getCompositeBufferBarrier()
-	{
-		return compositeBufferBarrierEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getCompositeBufferBarrier_Instance()
-	{
-		return (EAttribute)compositeBufferBarrierEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getCompositeBufferBarrier_DataProvider()
-	{
-		return (EReference)compositeBufferBarrierEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1405,34 +1252,21 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		bufferEClass = createEClass(BUFFER);
 		createEAttribute(bufferEClass, BUFFER__SIZE);
-		createEAttribute(bufferEClass, BUFFER__USAGES);
 		createEAttribute(bufferEClass, BUFFER__DATA);
 		createEAttribute(bufferEClass, BUFFER__KEPT_MAPPED);
 		createEAttribute(bufferEClass, BUFFER__HOST_VISIBLE);
-		createEAttribute(bufferEClass, BUFFER__INSTANCE_COUNT);
 		createEAttribute(bufferEClass, BUFFER__COHERENT);
+		createEAttribute(bufferEClass, BUFFER__USAGES);
+		createEAttribute(bufferEClass, BUFFER__INSTANCE_COUNT);
 
 		compositeBufferEClass = createEClass(COMPOSITE_BUFFER);
-		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__DATA_PROVIDERS);
-		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__TRANSFER_BUFFER);
+		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__PARTS);
 		createEAttribute(compositeBufferEClass, COMPOSITE_BUFFER__MIN_SIZE);
 
-		compositePartReferenceEClass = createEClass(COMPOSITE_PART_REFERENCE);
-		createEAttribute(compositePartReferenceEClass, COMPOSITE_PART_REFERENCE__PART);
-		createEAttribute(compositePartReferenceEClass, COMPOSITE_PART_REFERENCE__INSTANCE);
-
-		iBufferReferenceEClass = createEClass(IBUFFER_REFERENCE);
-
-		bufferReferenceEClass = createEClass(BUFFER_REFERENCE);
-		createEReference(bufferReferenceEClass, BUFFER_REFERENCE__BUFFER);
-		createEAttribute(bufferReferenceEClass, BUFFER_REFERENCE__OFFSET);
-
-		compositeBufferReferenceEClass = createEClass(COMPOSITE_BUFFER_REFERENCE);
-		createEReference(compositeBufferReferenceEClass, COMPOSITE_BUFFER_REFERENCE__BUFFER);
+		bufferPartEClass = createEClass(BUFFER_PART);
+		createEReference(bufferPartEClass, BUFFER_PART__DATA_PROVIDER);
 
 		bufferDataProviderEClass = createEClass(BUFFER_DATA_PROVIDER);
-		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__USAGE);
-		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__INSTANCE_COUNT);
 		createEReference(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__DATA_SOURCE);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__USED_TO_PUSH);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__USED_TO_FETCH);
@@ -1440,6 +1274,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH);
+		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__USAGES);
+		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__INSTANCE_COUNT);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__GROW_FACTOR);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__GROW_THRESHOLD);
 
@@ -1470,7 +1306,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(semaphoreEClass, SEMAPHORE__WAIT_STAGE);
 
 		bufferDescriptorEClass = createEClass(BUFFER_DESCRIPTOR);
-		createEReference(bufferDescriptorEClass, BUFFER_DESCRIPTOR__BUFFER_REFERENCE);
+		createEReference(bufferDescriptorEClass, BUFFER_DESCRIPTOR__BUFFER);
 
 		imageDescriptorEClass = createEClass(IMAGE_DESCRIPTOR);
 		createEReference(imageDescriptorEClass, IMAGE_DESCRIPTOR__IMAGE);
@@ -1489,10 +1325,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		bufferBarrierEClass = createEClass(BUFFER_BARRIER);
 		createEReference(bufferBarrierEClass, BUFFER_BARRIER__BUFFER);
-
-		compositeBufferBarrierEClass = createEClass(COMPOSITE_BUFFER_BARRIER);
-		createEAttribute(compositeBufferBarrierEClass, COMPOSITE_BUFFER_BARRIER__INSTANCE);
-		createEReference(compositeBufferBarrierEClass, COMPOSITE_BUFFER_BARRIER__DATA_PROVIDER);
 
 		imageBarrierEClass = createEClass(IMAGE_BARRIER);
 		createEReference(imageBarrierEClass, IMAGE_BARRIER__IMAGE);
@@ -1557,11 +1389,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		constantBufferEClass.getESuperTypes().add(theApplicationPackage.getIResource());
 		iBufferEClass.getESuperTypes().add(theApplicationPackage.getIResource());
 		bufferEClass.getESuperTypes().add(this.getIBuffer());
-		compositeBufferEClass.getESuperTypes().add(this.getIBuffer());
-		compositePartReferenceEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		bufferReferenceEClass.getESuperTypes().add(this.getIBufferReference());
-		compositeBufferReferenceEClass.getESuperTypes().add(this.getCompositePartReference());
-		compositeBufferReferenceEClass.getESuperTypes().add(this.getIBufferReference());
+		compositeBufferEClass.getESuperTypes().add(theApplicationPackage.getIResource());
+		bufferPartEClass.getESuperTypes().add(this.getIBuffer());
 		bufferDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		imageEClass.getESuperTypes().add(theImagePackage.getImageInfo());
 		imageEClass.getESuperTypes().add(theApplicationPackage.getIImage());
@@ -1578,7 +1407,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		samplerDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		descriptorSetEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		bufferBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractBufferBarrier());
-		compositeBufferBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractBufferBarrier());
 		imageBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractImageBarrier());
 		shaderEClass.getESuperTypes().add(theApplicationPackage.getIResource());
 		imageArrayDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
@@ -1586,7 +1414,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		// Initialize classes, features, and operations; add parameters
 		initEClass(transferBufferEClass, TransferBuffer.class, "TransferBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTransferBuffer_Size(), ecorePackage.getELong(), "size", null, 0, 1, TransferBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTransferBuffer_InstanceCount(), ecorePackage.getEInt(), "instanceCount", "3", 0, 1, TransferBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTransferBuffer_InstanceCount(), theEnumerationPackage.getEInstanceCount(), "instanceCount", null, 1, 1, TransferBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransferBuffer_UsedToPush(), ecorePackage.getEBoolean(), "usedToPush", "true", 1, 1, TransferBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransferBuffer_UsedToFetch(), ecorePackage.getEBoolean(), "usedToFetch", "false", 1, 1, TransferBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1597,37 +1425,24 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		initEClass(bufferEClass, Buffer.class, "Buffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBuffer_Size(), ecorePackage.getELong(), "size", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 0, -1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBuffer_KeptMapped(), ecorePackage.getEBoolean(), "keptMapped", "false", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBuffer_HostVisible(), ecorePackage.getEBoolean(), "hostVisible", "false", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_InstanceCount(), ecorePackage.getEInt(), "instanceCount", "1", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBuffer_Coherent(), ecorePackage.getEBoolean(), "coherent", "true", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 0, -1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_InstanceCount(), theEnumerationPackage.getEInstanceCount(), "instanceCount", null, 1, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeBufferEClass, CompositeBuffer.class, "CompositeBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompositeBuffer_Parts(), this.getBufferPart(), null, "parts", null, 0, -1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCompositeBuffer_MinSize(), ecorePackage.getELong(), "minSize", "0", 1, 1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(bufferPartEClass, BufferPart.class, "BufferPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		EGenericType g1 = createEGenericType(this.getBufferDataProvider());
 		EGenericType g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
-		initEReference(getCompositeBuffer_DataProviders(), g1, null, "dataProviders", null, 0, -1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCompositeBuffer_TransferBuffer(), this.getTransferBuffer(), null, "transferBuffer", null, 1, 1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCompositeBuffer_MinSize(), ecorePackage.getELong(), "minSize", "0", 1, 1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(compositePartReferenceEClass, CompositePartReference.class, "CompositePartReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCompositePartReference_Part(), ecorePackage.getEInt(), "part", null, 0, 1, CompositePartReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCompositePartReference_Instance(), ecorePackage.getEInt(), "instance", "0", 1, 1, CompositePartReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(iBufferReferenceEClass, IBufferReference.class, "IBufferReference", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(bufferReferenceEClass, BufferReference.class, "BufferReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBufferReference_Buffer(), this.getBuffer(), null, "buffer", null, 1, 1, BufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBufferReference_Offset(), ecorePackage.getELong(), "offset", "0", 1, 1, BufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(compositeBufferReferenceEClass, CompositeBufferReference.class, "CompositeBufferReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositeBufferReference_Buffer(), this.getCompositeBuffer(), null, "buffer", null, 1, 1, CompositeBufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBufferPart_DataProvider(), g1, null, "dataProvider", null, 1, 1, BufferPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bufferDataProviderEClass, BufferDataProvider.class, "BufferDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBufferDataProvider_Usage(), theEnumerationPackage.getEBufferUsage(), "usage", null, 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBufferDataProvider_InstanceCount(), ecorePackage.getEInt(), "instanceCount", "1", 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(bufferDataProviderEClass_T);
 		initEReference(getBufferDataProvider_DataSource(), g1, null, "dataSource", null, 0, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferDataProvider_UsedToPush(), ecorePackage.getEBoolean(), "usedToPush", "true", 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1636,6 +1451,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getBufferDataProvider_AccessBeforePush(), theEnumerationPackage.getEAccess(), "accessBeforePush", null, 0, -1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferDataProvider_StageBeforeFetch(), theEnumerationPackage.getEPipelineStage(), "stageBeforeFetch", null, 0, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferDataProvider_AccessBeforeFetch(), theEnumerationPackage.getEAccess(), "accessBeforeFetch", null, 0, -1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferDataProvider_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 0, -1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferDataProvider_InstanceCount(), theEnumerationPackage.getEInstanceCount(), "instanceCount", null, 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferDataProvider_GrowFactor(), ecorePackage.getEFloat(), "growFactor", "1", 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferDataProvider_GrowThreshold(), ecorePackage.getEFloat(), "growThreshold", "1", 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1666,7 +1483,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getSemaphore_WaitStage(), theEnumerationPackage.getEPipelineStage(), "waitStage", null, 0, 1, Semaphore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bufferDescriptorEClass, BufferDescriptor.class, "BufferDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBufferDescriptor_BufferReference(), this.getIBufferReference(), null, "bufferReference", null, 1, 1, BufferDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBufferDescriptor_Buffer(), this.getIBuffer(), null, "buffer", null, 1, 1, BufferDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageDescriptorEClass, ImageDescriptor.class, "ImageDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getImageDescriptor_Image(), this.getImage(), null, "image", null, 1, 1, ImageDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1684,14 +1501,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getDescriptorSetPkg_DescriptorSets(), this.getDescriptorSet(), null, "descriptorSets", null, 0, -1, DescriptorSetPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bufferBarrierEClass, BufferBarrier.class, "BufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBufferBarrier_Buffer(), this.getBuffer(), null, "buffer", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(compositeBufferBarrierEClass, CompositeBufferBarrier.class, "CompositeBufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCompositeBufferBarrier_Instance(), ecorePackage.getEInt(), "instance", "0", 1, 1, CompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		g1 = createEGenericType(this.getBufferDataProvider());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		initEReference(getCompositeBufferBarrier_DataProvider(), g1, null, "dataProvider", null, 1, 1, CompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBufferBarrier_Buffer(), this.getIBuffer(), null, "buffer", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageBarrierEClass, ImageBarrier.class, "ImageBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getImageBarrier_Image(), this.getImage(), null, "image", null, 1, 1, ImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

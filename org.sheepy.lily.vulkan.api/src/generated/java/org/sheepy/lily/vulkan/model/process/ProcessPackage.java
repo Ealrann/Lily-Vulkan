@@ -1196,7 +1196,7 @@ public interface ProcessPackage extends EPackage
 	int PREPARE_COMPOSITE_TRANSFER__STAGE = IPIPELINE_TASK_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Parts</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1205,13 +1205,22 @@ public interface ProcessPackage extends EPackage
 	int PREPARE_COMPOSITE_TRANSFER__PARTS = IPIPELINE_TASK_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Transfer Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Prepare Composite Transfer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREPARE_COMPOSITE_TRANSFER_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 5;
+	int PREPARE_COMPOSITE_TRANSFER_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Prepare Composite Transfer</em>' class.
@@ -1857,15 +1866,26 @@ public interface ProcessPackage extends EPackage
 	EAttribute getPrepareCompositeTransfer_Stage();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getParts <em>Parts</em>}'.
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getParts <em>Parts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Parts</em>'.
+	 * @return the meta object for the reference list '<em>Parts</em>'.
 	 * @see org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getParts()
 	 * @see #getPrepareCompositeTransfer()
 	 * @generated
 	 */
 	EReference getPrepareCompositeTransfer_Parts();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getTransferBuffer <em>Transfer Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Transfer Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getTransferBuffer()
+	 * @see #getPrepareCompositeTransfer()
+	 * @generated
+	 */
+	EReference getPrepareCompositeTransfer_TransferBuffer();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.SwapBindingsTask <em>Swap Bindings Task</em>}'.
@@ -2398,12 +2418,20 @@ public interface ProcessPackage extends EPackage
 		EAttribute PREPARE_COMPOSITE_TRANSFER__STAGE = eINSTANCE.getPrepareCompositeTransfer_Stage();
 
 		/**
-		 * The meta object literal for the '<em><b>Parts</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Parts</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference PREPARE_COMPOSITE_TRANSFER__PARTS = eINSTANCE.getPrepareCompositeTransfer_Parts();
+
+		/**
+		 * The meta object literal for the '<em><b>Transfer Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER = eINSTANCE.getPrepareCompositeTransfer_TransferBuffer();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.SwapBindingsTaskImpl <em>Swap Bindings Task</em>}' class.

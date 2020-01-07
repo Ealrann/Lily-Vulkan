@@ -21,21 +21,33 @@
   <eClassifiers xsi:type="ecore:EClass" name="IConfigurationTask" abstract="true"
       interface="true" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigurePrepareComposite" eSuperTypes="#//IConfigurationTask">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="references" lowerBound="1"
-        upperBound="-1" eType="ecore:EClass resource.ecore#//CompositePartReference"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetInstance" lowerBound="1"
-        eType="#//EInstance"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prepareTask" lowerBound="1"
+        eType="ecore:EClass process.ecore#//PrepareCompositeTransfer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="partIndices" lowerBound="1"
+        upperBound="-1" eType="#//EContextIndex"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeBuffer" lowerBound="1"
+        eType="ecore:EClass resource.ecore#//CompositeBuffer"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="EInstance">
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigureBufferDescriptor" eSuperTypes="#//IConfigurationTask">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeBuffer" lowerBound="1"
+        eType="ecore:EClass resource.ecore#//CompositeBuffer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="partIndex" lowerBound="1"
+        eType="#//EContextIndex"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptor" lowerBound="1"
+        eType="ecore:EClass resource.ecore#//BufferDescriptor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EContextIndex">
     <eLiterals name="ContextInstance"/>
     <eLiterals name="ContextInstance_PlusOne" value="1"/>
     <eLiterals name="ContextInstance_MinusOne" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigureCompositeBufferBarrier" eSuperTypes="#//IConfigurationTask">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="barriers" lowerBound="1"
-        upperBound="-1" eType="ecore:EClass resource.ecore#//CompositeBufferBarrier"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetInstance" lowerBound="1"
-        eType="#//EInstance"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="barrier" lowerBound="1"
+        eType="ecore:EClass resource.ecore#//BufferBarrier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="partIndex" lowerBound="1"
+        eType="#//EContextIndex"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeBuffer" lowerBound="1"
+        eType="ecore:EClass resource.ecore#//CompositeBuffer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IContextConfiguration" abstract="true"
       interface="true" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement process.ecore#//IProcessExtension">

@@ -29,6 +29,7 @@ module org.sheepy.vulkan
 	exports org.sheepy.vulkan.model.pipeline.impl;
 	exports org.sheepy.vulkan.model.pipeline.util;
 
+	exports org.sheepy.vulkan.barrier;
 	exports org.sheepy.vulkan.concurrent;
 	exports org.sheepy.vulkan.descriptor;
 	exports org.sheepy.vulkan.device;

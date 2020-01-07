@@ -20,6 +20,7 @@ import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,12 +31,12 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getSize <em>Size</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getUsages <em>Usages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getData <em>Data</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#isKeptMapped <em>Kept Mapped</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#isHostVisible <em>Host Visible</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getInstanceCount <em>Instance Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#isCoherent <em>Coherent</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getUsages <em>Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getInstanceCount <em>Instance Count</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,16 +62,6 @@ public class BufferImpl extends IResourceImpl implements Buffer
 	 * @ordered
 	 */
 	protected long size = SIZE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getUsages() <em>Usages</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUsages()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<EBufferUsage> usages;
 
 	/**
 	 * The default value of the '{@link #getData() <em>Data</em>}' attribute.
@@ -133,26 +124,6 @@ public class BufferImpl extends IResourceImpl implements Buffer
 	protected boolean hostVisible = HOST_VISIBLE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInstanceCount()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int INSTANCE_COUNT_EDEFAULT = 1;
-
-	/**
-	 * The cached value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInstanceCount()
-	 * @generated
-	 * @ordered
-	 */
-	protected int instanceCount = INSTANCE_COUNT_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #isCoherent() <em>Coherent</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -171,6 +142,36 @@ public class BufferImpl extends IResourceImpl implements Buffer
 	 * @ordered
 	 */
 	protected boolean coherent = COHERENT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getUsages() <em>Usages</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUsages()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EBufferUsage> usages;
+
+	/**
+	 * The default value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstanceCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EInstanceCount INSTANCE_COUNT_EDEFAULT = EInstanceCount.ONE;
+
+	/**
+	 * The cached value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstanceCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected EInstanceCount instanceCount = INSTANCE_COUNT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -314,7 +315,7 @@ public class BufferImpl extends IResourceImpl implements Buffer
 	 * @generated
 	 */
 	@Override
-	public int getInstanceCount()
+	public EInstanceCount getInstanceCount()
 	{
 		return instanceCount;
 	}
@@ -325,10 +326,10 @@ public class BufferImpl extends IResourceImpl implements Buffer
 	 * @generated
 	 */
 	@Override
-	public void setInstanceCount(int newInstanceCount)
+	public void setInstanceCount(EInstanceCount newInstanceCount)
 	{
-		int oldInstanceCount = instanceCount;
-		instanceCount = newInstanceCount;
+		EInstanceCount oldInstanceCount = instanceCount;
+		instanceCount = newInstanceCount == null ? INSTANCE_COUNT_EDEFAULT : newInstanceCount;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
 	}
@@ -370,18 +371,18 @@ public class BufferImpl extends IResourceImpl implements Buffer
 		{
 			case ResourcePackage.BUFFER__SIZE:
 				return getSize();
-			case ResourcePackage.BUFFER__USAGES:
-				return getUsages();
 			case ResourcePackage.BUFFER__DATA:
 				return getData();
 			case ResourcePackage.BUFFER__KEPT_MAPPED:
 				return isKeptMapped();
 			case ResourcePackage.BUFFER__HOST_VISIBLE:
 				return isHostVisible();
-			case ResourcePackage.BUFFER__INSTANCE_COUNT:
-				return getInstanceCount();
 			case ResourcePackage.BUFFER__COHERENT:
 				return isCoherent();
+			case ResourcePackage.BUFFER__USAGES:
+				return getUsages();
+			case ResourcePackage.BUFFER__INSTANCE_COUNT:
+				return getInstanceCount();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -400,10 +401,6 @@ public class BufferImpl extends IResourceImpl implements Buffer
 			case ResourcePackage.BUFFER__SIZE:
 				setSize((Long)newValue);
 				return;
-			case ResourcePackage.BUFFER__USAGES:
-				getUsages().clear();
-				getUsages().addAll((Collection<? extends EBufferUsage>)newValue);
-				return;
 			case ResourcePackage.BUFFER__DATA:
 				setData((ByteBuffer)newValue);
 				return;
@@ -413,11 +410,15 @@ public class BufferImpl extends IResourceImpl implements Buffer
 			case ResourcePackage.BUFFER__HOST_VISIBLE:
 				setHostVisible((Boolean)newValue);
 				return;
-			case ResourcePackage.BUFFER__INSTANCE_COUNT:
-				setInstanceCount((Integer)newValue);
-				return;
 			case ResourcePackage.BUFFER__COHERENT:
 				setCoherent((Boolean)newValue);
+				return;
+			case ResourcePackage.BUFFER__USAGES:
+				getUsages().clear();
+				getUsages().addAll((Collection<? extends EBufferUsage>)newValue);
+				return;
+			case ResourcePackage.BUFFER__INSTANCE_COUNT:
+				setInstanceCount((EInstanceCount)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -436,9 +437,6 @@ public class BufferImpl extends IResourceImpl implements Buffer
 			case ResourcePackage.BUFFER__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
-			case ResourcePackage.BUFFER__USAGES:
-				getUsages().clear();
-				return;
 			case ResourcePackage.BUFFER__DATA:
 				setData(DATA_EDEFAULT);
 				return;
@@ -448,11 +446,14 @@ public class BufferImpl extends IResourceImpl implements Buffer
 			case ResourcePackage.BUFFER__HOST_VISIBLE:
 				setHostVisible(HOST_VISIBLE_EDEFAULT);
 				return;
-			case ResourcePackage.BUFFER__INSTANCE_COUNT:
-				setInstanceCount(INSTANCE_COUNT_EDEFAULT);
-				return;
 			case ResourcePackage.BUFFER__COHERENT:
 				setCoherent(COHERENT_EDEFAULT);
+				return;
+			case ResourcePackage.BUFFER__USAGES:
+				getUsages().clear();
+				return;
+			case ResourcePackage.BUFFER__INSTANCE_COUNT:
+				setInstanceCount(INSTANCE_COUNT_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -470,18 +471,18 @@ public class BufferImpl extends IResourceImpl implements Buffer
 		{
 			case ResourcePackage.BUFFER__SIZE:
 				return size != SIZE_EDEFAULT;
-			case ResourcePackage.BUFFER__USAGES:
-				return usages != null && !usages.isEmpty();
 			case ResourcePackage.BUFFER__DATA:
 				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
 			case ResourcePackage.BUFFER__KEPT_MAPPED:
 				return keptMapped != KEPT_MAPPED_EDEFAULT;
 			case ResourcePackage.BUFFER__HOST_VISIBLE:
 				return hostVisible != HOST_VISIBLE_EDEFAULT;
-			case ResourcePackage.BUFFER__INSTANCE_COUNT:
-				return instanceCount != INSTANCE_COUNT_EDEFAULT;
 			case ResourcePackage.BUFFER__COHERENT:
 				return coherent != COHERENT_EDEFAULT;
+			case ResourcePackage.BUFFER__USAGES:
+				return usages != null && !usages.isEmpty();
+			case ResourcePackage.BUFFER__INSTANCE_COUNT:
+				return instanceCount != INSTANCE_COUNT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -499,18 +500,18 @@ public class BufferImpl extends IResourceImpl implements Buffer
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (size: ");
 		result.append(size);
-		result.append(", usages: ");
-		result.append(usages);
 		result.append(", data: ");
 		result.append(data);
 		result.append(", keptMapped: ");
 		result.append(keptMapped);
 		result.append(", hostVisible: ");
 		result.append(hostVisible);
-		result.append(", instanceCount: ");
-		result.append(instanceCount);
 		result.append(", coherent: ");
 		result.append(coherent);
+		result.append(", usages: ");
+		result.append(usages);
+		result.append(", instanceCount: ");
+		result.append(instanceCount);
 		result.append(')');
 		return result.toString();
 	}

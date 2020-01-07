@@ -114,6 +114,7 @@ public final class ResourceInstaller<T extends Structure>
 		final var flushTransferTask = maintainer.getFlushTransferBufferTask();
 		final var prepareTranferTask = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
 		prepareTranferTask.setCompositeBuffer(buffer);
+		prepareTranferTask.setTransferBuffer(maintainer.getTransferBuffer());
 		prepareTranferTask.setMode(EFlushMode.PUSH);
 
 		for (int i = 0; i < dataProviders.size(); i++)
@@ -133,7 +134,6 @@ public final class ResourceInstaller<T extends Structure>
 		}
 
 		buffer.setMinSize(BUFFER_MIN_SIZE);
-		buffer.setTransferBuffer(maintainer.getTransferBuffer());
 
 		@SuppressWarnings("unchecked")
 		final var containingList = (List<IPipelineTask>) flushTransferTask	.eContainer()

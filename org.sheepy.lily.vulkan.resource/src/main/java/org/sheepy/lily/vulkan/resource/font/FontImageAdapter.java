@@ -17,9 +17,9 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.impl.LongNotification;
 import org.sheepy.lily.core.model.ui.Font;
-import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter;
 import org.sheepy.lily.vulkan.api.resource.font.IFontImageAdapter;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.lily.vulkan.resource.font.util.CodepointMap;
@@ -77,18 +77,7 @@ public final class FontImageAdapter extends Notifier implements IFontImageAdapte
 			allocator.allocate(stack);
 		}
 
-		switch (fontImage.getInstanceCount())
-		{
-		case FIT_TO_SWAP_IMAGE_COUNT:
-			instanceCount = ((IGraphicContext) context).getSwapChainManager().getImageCount();
-			break;
-		case ONE:
-			instanceCount = 1;
-			break;
-		case TWO:
-			instanceCount = 2;
-			break;
-		}
+		instanceCount = VulkanModelUtil.getInstanceCount(context, fontImage.getInstanceCount());
 
 		first = true;
 		images = new VkImage[instanceCount];

@@ -58,8 +58,6 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addUsagePropertyDescriptor(object);
-			addInstanceCountPropertyDescriptor(object);
 			addDataSourcePropertyDescriptor(object);
 			addUsedToPushPropertyDescriptor(object);
 			addUsedToFetchPropertyDescriptor(object);
@@ -67,6 +65,8 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 			addAccessBeforePushPropertyDescriptor(object);
 			addStageBeforeFetchPropertyDescriptor(object);
 			addAccessBeforeFetchPropertyDescriptor(object);
+			addUsagesPropertyDescriptor(object);
+			addInstanceCountPropertyDescriptor(object);
 			addGrowFactorPropertyDescriptor(object);
 			addGrowThresholdPropertyDescriptor(object);
 		}
@@ -97,29 +97,6 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 	}
 
 	/**
-	 * This adds a property descriptor for the Usage feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addUsagePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BufferDataProvider_usage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_usage_feature", "_UI_BufferDataProvider_type"),
-				 ResourcePackage.Literals.BUFFER_DATA_PROVIDER__USAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Instance Count feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -132,12 +109,12 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_BufferDataProvider_instanceCount_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_instanceCount_feature", "_UI_BufferDataProvider_type"),
+				 getString("_UI_BufferDataProvider_instanceCount_description"),
 				 ResourcePackage.Literals.BUFFER_DATA_PROVIDER__INSTANCE_COUNT,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -304,6 +281,29 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 	}
 
 	/**
+	 * This adds a property descriptor for the Usages feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUsagesPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BufferDataProvider_usages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_usages_feature", "_UI_BufferDataProvider_type"),
+				 ResourcePackage.Literals.BUFFER_DATA_PROVIDER__USAGES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Grow Factor feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -391,8 +391,6 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 		switch (notification.getFeatureID(BufferDataProvider.class))
 		{
 			case ResourcePackage.BUFFER_DATA_PROVIDER__NAME:
-			case ResourcePackage.BUFFER_DATA_PROVIDER__USAGE:
-			case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_FETCH:
@@ -400,6 +398,8 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 			case ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH:
+			case ResourcePackage.BUFFER_DATA_PROVIDER__USAGES:
+			case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

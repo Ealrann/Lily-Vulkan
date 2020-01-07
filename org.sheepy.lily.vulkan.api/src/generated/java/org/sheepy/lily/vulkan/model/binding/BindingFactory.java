@@ -59,6 +59,15 @@ public interface BindingFactory extends EFactory
 	ConfigurePrepareComposite createConfigurePrepareComposite();
 
 	/**
+	 * Returns a new object of class '<em>Configure Buffer Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Configure Buffer Descriptor</em>'.
+	 * @generated
+	 */
+	ConfigureBufferDescriptor createConfigureBufferDescriptor();
+
+	/**
 	 * Returns a new object of class '<em>Configure Composite Buffer Barrier</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

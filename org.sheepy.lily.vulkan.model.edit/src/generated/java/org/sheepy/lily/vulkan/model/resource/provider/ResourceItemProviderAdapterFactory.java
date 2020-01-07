@@ -196,78 +196,28 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.CompositePartReference} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BufferPart} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompositePartReferenceItemProvider compositePartReferenceItemProvider;
+	protected BufferPartItemProvider bufferPartItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.CompositePartReference}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferPart}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createCompositePartReferenceAdapter()
+	public Adapter createBufferPartAdapter()
 	{
-		if (compositePartReferenceItemProvider == null)
+		if (bufferPartItemProvider == null)
 		{
-			compositePartReferenceItemProvider = new CompositePartReferenceItemProvider(this);
+			bufferPartItemProvider = new BufferPartItemProvider(this);
 		}
 
-		return compositePartReferenceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BufferReference} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BufferReferenceItemProvider bufferReferenceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferReference}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createBufferReferenceAdapter()
-	{
-		if (bufferReferenceItemProvider == null)
-		{
-			bufferReferenceItemProvider = new BufferReferenceItemProvider(this);
-		}
-
-		return bufferReferenceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.CompositeBufferReference} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CompositeBufferReferenceItemProvider compositeBufferReferenceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.CompositeBufferReference}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCompositeBufferReferenceAdapter()
-	{
-		if (compositeBufferReferenceItemProvider == null)
-		{
-			compositeBufferReferenceItemProvider = new CompositeBufferReferenceItemProvider(this);
-		}
-
-		return compositeBufferReferenceItemProvider;
+		return bufferPartItemProvider;
 	}
 
 	/**
@@ -621,31 +571,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CompositeBufferBarrierItemProvider compositeBufferBarrierItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCompositeBufferBarrierAdapter()
-	{
-		if (compositeBufferBarrierItemProvider == null)
-		{
-			compositeBufferBarrierItemProvider = new CompositeBufferBarrierItemProvider(this);
-		}
-
-		return compositeBufferBarrierItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ImageBarrier} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -873,9 +798,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (constantBufferItemProvider != null) constantBufferItemProvider.dispose();
 		if (bufferItemProvider != null) bufferItemProvider.dispose();
 		if (compositeBufferItemProvider != null) compositeBufferItemProvider.dispose();
-		if (compositePartReferenceItemProvider != null) compositePartReferenceItemProvider.dispose();
-		if (bufferReferenceItemProvider != null) bufferReferenceItemProvider.dispose();
-		if (compositeBufferReferenceItemProvider != null) compositeBufferReferenceItemProvider.dispose();
+		if (bufferPartItemProvider != null) bufferPartItemProvider.dispose();
 		if (bufferDataProviderItemProvider != null) bufferDataProviderItemProvider.dispose();
 		if (staticImageItemProvider != null) staticImageItemProvider.dispose();
 		if (fileImageItemProvider != null) fileImageItemProvider.dispose();
@@ -890,7 +813,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (descriptorSetItemProvider != null) descriptorSetItemProvider.dispose();
 		if (descriptorSetPkgItemProvider != null) descriptorSetPkgItemProvider.dispose();
 		if (bufferBarrierItemProvider != null) bufferBarrierItemProvider.dispose();
-		if (compositeBufferBarrierItemProvider != null) compositeBufferBarrierItemProvider.dispose();
 		if (imageBarrierItemProvider != null) imageBarrierItemProvider.dispose();
 		if (shaderItemProvider != null) shaderItemProvider.dispose();
 		if (imageArrayDescriptorItemProvider != null) imageArrayDescriptorItemProvider.dispose();
@@ -966,6 +888,11 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 					(createChildParameter
 						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
 						 ResourceFactory.eINSTANCE.createCompositeBuffer()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
+						 ResourceFactory.eINSTANCE.createBufferPart()));
 
 				newChildDescriptors.add
 					(createChildParameter

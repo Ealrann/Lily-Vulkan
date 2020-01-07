@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.demo.test.composite.grow.model;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.vulkan.demo.test.composite.grow.adapter.TestDataProviderAdapter;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
@@ -9,10 +10,10 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 class TestResourceFactory
 {
-	public static ResourceContainer build(int instanceCount)
+	public static ResourceContainer build(int partCount)
 	{
 		final var transferBuffer = buildTransferBuffer();
-		final var compositeBuffer = buildCompositeBuffer(transferBuffer, instanceCount);
+		final var compositeBuffer = buildCompositeBuffer(partCount);
 
 		return new ResourceContainer(transferBuffer, compositeBuffer);
 	}
@@ -33,28 +34,29 @@ class TestResourceFactory
 	{
 		final var res = ResourceFactory.eINSTANCE.createTransferBuffer();
 		res.setSize(TestDataProviderAdapter.MAX_SIZE);
-		res.setInstanceCount(1);
 		res.setUsedToFetch(true);
 		return res;
 	}
 
-	private static CompositeBuffer buildCompositeBuffer(TransferBuffer transferBuffer,
-														int instanceCount)
+	private static CompositeBuffer buildCompositeBuffer(int partCount)
 	{
 		final var res = ResourceFactory.eINSTANCE.createCompositeBuffer();
 
-		res.setTransferBuffer(transferBuffer);
-
-		final var providers = res.getDataProviders();
 		final var provider = ResourceFactory.eINSTANCE.createBufferDataProvider();
 		provider.setName(TestDataProviderAdapter.NAME);
-		provider.setUsage(EBufferUsage.TRANSFER_SRC_BIT);
+		provider.getUsages().add(EBufferUsage.TRANSFER_SRC_BIT);
 		provider.setStageBeforePush(EPipelineStage.TRANSFER_BIT);
 		provider.setStageBeforeFetch(EPipelineStage.TRANSFER_BIT);
 		provider.setUsedToFetch(true);
-		provider.setInstanceCount(instanceCount);
 
-		providers.add(provider);
+		final var parts = res.getParts();
+		for (int i = 0; i < partCount; i++)
+		{
+			final var bufferPart = ResourceFactory.eINSTANCE.createBufferPart();
+			bufferPart.setDataProvider(EcoreUtil.copy(provider));
+
+			parts.add(bufferPart);
+		}
 
 		return res;
 	}

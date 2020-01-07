@@ -4,8 +4,7 @@ package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 
-import org.sheepy.lily.vulkan.model.resource.IBufferReference;
-
+import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.vulkan.model.enumeration.EIndexType;
 
 /**
@@ -18,7 +17,7 @@ import org.sheepy.vulkan.model.enumeration.EIndexType;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getIndexType <em>Index Type</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getBufferRef <em>Buffer Ref</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getBuffer <em>Buffer</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getBindIndexBuffer()
@@ -54,25 +53,25 @@ public interface BindIndexBuffer extends IPipelineTask
 	void setIndexType(EIndexType value);
 
 	/**
-	 * Returns the value of the '<em><b>Buffer Ref</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Buffer Ref</em>' containment reference.
-	 * @see #setBufferRef(IBufferReference)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getBindIndexBuffer_BufferRef()
-	 * @model containment="true"
+	 * @return the value of the '<em>Buffer</em>' reference.
+	 * @see #setBuffer(IBuffer)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getBindIndexBuffer_Buffer()
+	 * @model resolveProxies="false"
 	 * @generated
 	 */
-	IBufferReference getBufferRef();
+	IBuffer getBuffer();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getBufferRef <em>Buffer Ref</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getBuffer <em>Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Buffer Ref</em>' containment reference.
-	 * @see #getBufferRef()
+	 * @param value the new value of the '<em>Buffer</em>' reference.
+	 * @see #getBuffer()
 	 * @generated
 	 */
-	void setBufferRef(IBufferReference value);
+	void setBuffer(IBuffer value);
 
 } // BindIndexBuffer

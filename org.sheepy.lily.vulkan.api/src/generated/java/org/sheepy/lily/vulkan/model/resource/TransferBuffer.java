@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.sheepy.lily.core.model.application.IResource;
+import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,26 +50,28 @@ public interface TransferBuffer extends IResource
 
 	/**
 	 * Returns the value of the '<em><b>Instance Count</b></em>' attribute.
-	 * The default value is <code>"3"</code>.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EInstanceCount}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Instance Count</em>' attribute.
-	 * @see #setInstanceCount(int)
+	 * @see org.sheepy.vulkan.model.enumeration.EInstanceCount
+	 * @see #setInstanceCount(EInstanceCount)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getTransferBuffer_InstanceCount()
-	 * @model default="3" unique="false"
+	 * @model unique="false" required="true"
 	 * @generated
 	 */
-	int getInstanceCount();
+	EInstanceCount getInstanceCount();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#getInstanceCount <em>Instance Count</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Instance Count</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EInstanceCount
 	 * @see #getInstanceCount()
 	 * @generated
 	 */
-	void setInstanceCount(int value);
+	void setInstanceCount(EInstanceCount value);
 
 	/**
 	 * Returns the value of the '<em><b>Used To Push</b></em>' attribute.

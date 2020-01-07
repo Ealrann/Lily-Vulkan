@@ -62,6 +62,8 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 	@Override
 	public MemoryTicket reserveMemory(long size)
 	{
+		assert size > 0;
+
 		MemoryTicket res = null;
 
 		if (size > capacity)
@@ -80,7 +82,7 @@ public class TransferBufferBackend implements IAllocable<IExecutionContext>, ITr
 			{
 				final long position = space.getOffset();
 				final long memoryPtr = bufferBackend.getMemoryMap() + position;
-				final long bufferOffset = bufferBackend.getOffset() + position;
+				final long bufferOffset = bufferBackend.getInstanceOffset() + position;
 
 				res = newSuccessTicket(space, memoryPtr, bufferOffset, size);
 

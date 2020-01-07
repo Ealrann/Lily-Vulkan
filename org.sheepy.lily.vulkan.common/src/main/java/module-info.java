@@ -13,7 +13,6 @@ module org.sheepy.lily.vulkan.common
 
 	exports org.sheepy.lily.vulkan.common.allocation;
 	exports org.sheepy.lily.vulkan.common.process;
-	exports org.sheepy.lily.vulkan.common.resource;
 	exports org.sheepy.lily.vulkan.common.util;
 
 	opens org.sheepy.lily.vulkan.common.cadence;

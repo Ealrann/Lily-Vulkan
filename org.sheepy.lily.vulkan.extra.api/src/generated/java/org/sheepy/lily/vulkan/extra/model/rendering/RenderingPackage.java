@@ -711,24 +711,6 @@ public interface RenderingPackage extends EPackage
 	int RENDER_DATA_PROVIDER__NAME = ResourcePackage.BUFFER_DATA_PROVIDER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Usage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DATA_PROVIDER__USAGE = ResourcePackage.BUFFER_DATA_PROVIDER__USAGE;
-
-	/**
-	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DATA_PROVIDER__INSTANCE_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT;
-
-	/**
 	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -790,6 +772,24 @@ public interface RenderingPackage extends EPackage
 	 * @ordered
 	 */
 	int RENDER_DATA_PROVIDER__ACCESS_BEFORE_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
+
+	/**
+	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_DATA_PROVIDER__USAGES = ResourcePackage.BUFFER_DATA_PROVIDER__USAGES;
+
+	/**
+	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_DATA_PROVIDER__INSTANCE_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT;
 
 	/**
 	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
@@ -931,24 +931,6 @@ public interface RenderingPackage extends EPackage
 	int VERTEX_PROVIDER__NAME = RENDER_DATA_PROVIDER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Usage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERTEX_PROVIDER__USAGE = RENDER_DATA_PROVIDER__USAGE;
-
-	/**
-	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERTEX_PROVIDER__INSTANCE_COUNT = RENDER_DATA_PROVIDER__INSTANCE_COUNT;
-
-	/**
 	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1012,6 +994,24 @@ public interface RenderingPackage extends EPackage
 	int VERTEX_PROVIDER__ACCESS_BEFORE_FETCH = RENDER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
 
 	/**
+	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX_PROVIDER__USAGES = RENDER_DATA_PROVIDER__USAGES;
+
+	/**
+	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX_PROVIDER__INSTANCE_COUNT = RENDER_DATA_PROVIDER__INSTANCE_COUNT;
+
+	/**
 	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1065,24 +1065,6 @@ public interface RenderingPackage extends EPackage
 	 * @ordered
 	 */
 	int INDEX_PROVIDER__NAME = RENDER_DATA_PROVIDER__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Usage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDEX_PROVIDER__USAGE = RENDER_DATA_PROVIDER__USAGE;
-
-	/**
-	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDEX_PROVIDER__INSTANCE_COUNT = RENDER_DATA_PROVIDER__INSTANCE_COUNT;
 
 	/**
 	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
@@ -1146,6 +1128,24 @@ public interface RenderingPackage extends EPackage
 	 * @ordered
 	 */
 	int INDEX_PROVIDER__ACCESS_BEFORE_FETCH = RENDER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
+
+	/**
+	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_PROVIDER__USAGES = RENDER_DATA_PROVIDER__USAGES;
+
+	/**
+	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_PROVIDER__INSTANCE_COUNT = RENDER_DATA_PROVIDER__INSTANCE_COUNT;
 
 	/**
 	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.

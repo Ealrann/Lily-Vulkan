@@ -26,7 +26,6 @@ import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.vulkan.model.barrier.BarrierFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.PipelineBarrier} object.
@@ -346,22 +345,7 @@ public class PipelineBarrierItemProvider extends ItemProviderAdapter implements 
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
-				 ResourceFactory.eINSTANCE.createCompositeBufferBarrier()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
 				 ResourceFactory.eINSTANCE.createImageBarrier()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
-				 BarrierFactory.eINSTANCE.createReferenceBufferBarrier()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
-				 BarrierFactory.eINSTANCE.createReferenceImageBarrier()));
 	}
 
 	/**

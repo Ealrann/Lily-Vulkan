@@ -10,10 +10,10 @@ import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.api.resource.buffer.IBufferReferenceAdapter;
+import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.IBufferReference;
+import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
@@ -22,9 +22,9 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBufferTask>
 {
 	private static final int[] FEATURES = new int[] {
-			IBufferReferenceAdapter.FEATURES.SIZE.ordinal(),
-			IBufferReferenceAdapter.FEATURES.OFFSET.ordinal(),
-			IBufferReferenceAdapter.FEATURES.BUFFER_PTR.ordinal()
+			IBufferAdapter.Features.Size.ordinal(),
+			IBufferAdapter.Features.Offset.ordinal(),
+			IBufferAdapter.Features.Ptr.ordinal()
 	};
 
 	private final INotificationListener bufferChanged = n -> dirty = true;
@@ -34,10 +34,10 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 
 	private boolean dirty = true;
 
-	private IBufferReference srcBuffer;
-	private IBufferReference dstBuffer;
-	private IBufferReferenceAdapter srcAdapter;
-	private IBufferReferenceAdapter dstAdapter;
+	private IBuffer srcBuffer;
+	private IBuffer dstBuffer;
+	private IBufferAdapter srcAdapter;
+	private IBufferAdapter dstAdapter;
 
 	public CopyBufferTaskAdapter(CopyBufferTask task)
 	{
@@ -46,8 +46,8 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 
 		srcBuffer = task.getSrcBuffer();
 		dstBuffer = task.getDstBuffer();
-		srcAdapter = srcBuffer.adapt(IBufferReferenceAdapter.class);
-		dstAdapter = dstBuffer.adapt(IBufferReferenceAdapter.class);
+		srcAdapter = srcBuffer.adapt(IBufferAdapter.class);
+		dstAdapter = dstBuffer.adapt(IBufferAdapter.class);
 		srcAdapter.addListener(bufferChanged, FEATURES);
 		dstAdapter.addListener(bufferChanged, FEATURES);
 	}
@@ -55,23 +55,22 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 	@NotifyChanged(featureIds = ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER)
 	public void srcChanged(Notification notification)
 	{
-		srcBuffer = ((IBufferReference) notification.getNewValue());
+		srcBuffer = ((IBuffer) notification.getNewValue());
 		srcAdapter = reinstallListener(srcBuffer, srcAdapter);
 	}
 
 	@NotifyChanged(featureIds = ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER)
 	public void dstChanged(Notification notification)
 	{
-		dstBuffer = ((IBufferReference) notification.getNewValue());
+		dstBuffer = ((IBuffer) notification.getNewValue());
 		dstAdapter = reinstallListener(dstBuffer, dstAdapter);
 	}
 
-	private IBufferReferenceAdapter reinstallListener(	IBufferReference bufferRef,
-														IBufferReferenceAdapter oldAdapter)
+	private IBufferAdapter reinstallListener(IBuffer bufferRef, IBufferAdapter oldAdapter)
 	{
 		dirty = true;
 		oldAdapter.removeListener(bufferChanged, FEATURES);
-		final var res = bufferRef.adapt(IBufferReferenceAdapter.class);
+		final var res = bufferRef.adapt(IBufferAdapter.class);
 		res.addListener(bufferChanged, FEATURES);
 		return res;
 	}
@@ -86,8 +85,8 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 
 	private void update()
 	{
-		final var scrOffset = srcAdapter.getOffset(srcBuffer);
-		final var dstOffset = dstAdapter.getOffset(dstBuffer);
+		final var scrOffset = srcAdapter.getBindOffset();
+		final var dstOffset = dstAdapter.getBindOffset();
 
 		copyInfo.srcOffset(scrOffset);
 		copyInfo.dstOffset(dstOffset);
@@ -99,8 +98,8 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 		}
 		else
 		{
-			final var srcSize = srcAdapter.getSize(srcBuffer);
-			final var trgSize = dstAdapter.getSize(dstBuffer);
+			final var srcSize = srcAdapter.getBindSize();
+			final var trgSize = dstAdapter.getBindSize();
 
 			final var size = Math.min(srcSize, trgSize);
 			copyInfo.size(size);
@@ -116,13 +115,12 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 		}
 
 		final var srcBuffer = task.getSrcBuffer();
-		final var dstBuffer = task.getDstBuffer();
 		final var commandBuffer = context.commandBuffer;
-		final var scrPtr = srcAdapter.getBufferPtr(srcBuffer);
-		final var dstPtr = dstAdapter.getBufferPtr(dstBuffer);
+		final var scrPtr = srcAdapter.getPtr();
+		final var dstPtr = dstAdapter.getPtr();
 
-		final var srcBufferAdapter = srcBuffer.adapt(IBufferReferenceAdapter.class);
-		srcBufferAdapter.flush(srcBuffer);
+		final var srcBufferAdapter = srcBuffer.adapt(IBufferAdapter.class);
+		srcBufferAdapter.flush();
 
 		vkCmdCopyBuffer(commandBuffer, scrPtr, dstPtr, copyInfo);
 

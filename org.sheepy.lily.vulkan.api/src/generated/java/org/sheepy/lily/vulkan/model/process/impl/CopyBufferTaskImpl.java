@@ -14,7 +14,7 @@ import org.sheepy.lily.core.api.adapter.LilyEObject;
 
 import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.IBufferReference;
+import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
@@ -134,7 +134,7 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	 * @generated
 	 * @ordered
 	 */
-	protected IBufferReference srcBuffer;
+	protected IBuffer srcBuffer;
 
 	/**
 	 * The cached value of the '{@link #getDstBuffer() <em>Dst Buffer</em>}' containment reference.
@@ -144,7 +144,7 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	 * @generated
 	 * @ordered
 	 */
-	protected IBufferReference dstBuffer;
+	protected IBuffer dstBuffer;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -223,7 +223,7 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	 * @generated
 	 */
 	@Override
-	public IBufferReference getSrcBuffer()
+	public IBuffer getSrcBuffer()
 	{
 		return srcBuffer;
 	}
@@ -233,9 +233,9 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSrcBuffer(IBufferReference newSrcBuffer, NotificationChain msgs)
+	public NotificationChain basicSetSrcBuffer(IBuffer newSrcBuffer, NotificationChain msgs)
 	{
-		IBufferReference oldSrcBuffer = srcBuffer;
+		IBuffer oldSrcBuffer = srcBuffer;
 		srcBuffer = newSrcBuffer;
 		if (eNotificationRequired())
 		{
@@ -251,7 +251,7 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	 * @generated
 	 */
 	@Override
-	public void setSrcBuffer(IBufferReference newSrcBuffer)
+	public void setSrcBuffer(IBuffer newSrcBuffer)
 	{
 		if (newSrcBuffer != srcBuffer)
 		{
@@ -273,7 +273,7 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	 * @generated
 	 */
 	@Override
-	public IBufferReference getDstBuffer()
+	public IBuffer getDstBuffer()
 	{
 		return dstBuffer;
 	}
@@ -283,9 +283,9 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDstBuffer(IBufferReference newDstBuffer, NotificationChain msgs)
+	public NotificationChain basicSetDstBuffer(IBuffer newDstBuffer, NotificationChain msgs)
 	{
-		IBufferReference oldDstBuffer = dstBuffer;
+		IBuffer oldDstBuffer = dstBuffer;
 		dstBuffer = newDstBuffer;
 		if (eNotificationRequired())
 		{
@@ -301,7 +301,7 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	 * @generated
 	 */
 	@Override
-	public void setDstBuffer(IBufferReference newDstBuffer)
+	public void setDstBuffer(IBuffer newDstBuffer)
 	{
 		if (newDstBuffer != dstBuffer)
 		{
@@ -463,10 +463,10 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 				setSize((Long)newValue);
 				return;
 			case ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER:
-				setSrcBuffer((IBufferReference)newValue);
+				setSrcBuffer((IBuffer)newValue);
 				return;
 			case ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER:
-				setDstBuffer((IBufferReference)newValue);
+				setDstBuffer((IBuffer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -495,10 +495,10 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 				unsetSize();
 				return;
 			case ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER:
-				setSrcBuffer((IBufferReference)null);
+				setSrcBuffer((IBuffer)null);
 				return;
 			case ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER:
-				setDstBuffer((IBufferReference)null);
+				setDstBuffer((IBuffer)null);
 				return;
 		}
 		super.eUnset(featureID);

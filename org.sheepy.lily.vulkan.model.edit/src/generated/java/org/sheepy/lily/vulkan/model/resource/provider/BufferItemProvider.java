@@ -48,12 +48,12 @@ public class BufferItemProvider extends IResourceItemProvider
 			super.getPropertyDescriptors(object);
 
 			addSizePropertyDescriptor(object);
-			addUsagesPropertyDescriptor(object);
 			addDataPropertyDescriptor(object);
 			addKeptMappedPropertyDescriptor(object);
 			addHostVisiblePropertyDescriptor(object);
-			addInstanceCountPropertyDescriptor(object);
 			addCoherentPropertyDescriptor(object);
+			addUsagesPropertyDescriptor(object);
+			addInstanceCountPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -191,7 +191,7 @@ public class BufferItemProvider extends IResourceItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -261,12 +261,12 @@ public class BufferItemProvider extends IResourceItemProvider
 		switch (notification.getFeatureID(Buffer.class))
 		{
 			case ResourcePackage.BUFFER__SIZE:
-			case ResourcePackage.BUFFER__USAGES:
 			case ResourcePackage.BUFFER__DATA:
 			case ResourcePackage.BUFFER__KEPT_MAPPED:
 			case ResourcePackage.BUFFER__HOST_VISIBLE:
-			case ResourcePackage.BUFFER__INSTANCE_COUNT:
 			case ResourcePackage.BUFFER__COHERENT:
+			case ResourcePackage.BUFFER__USAGES:
+			case ResourcePackage.BUFFER__INSTANCE_COUNT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -66,8 +66,9 @@ public class ConfigureCompositeBufferBarrierItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addBarriersPropertyDescriptor(object);
-			addTargetInstancePropertyDescriptor(object);
+			addBarrierPropertyDescriptor(object);
+			addPartIndexPropertyDescriptor(object);
+			addCompositeBufferPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -96,20 +97,20 @@ public class ConfigureCompositeBufferBarrierItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Barriers feature.
+	 * This adds a property descriptor for the Barrier feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBarriersPropertyDescriptor(Object object)
+	protected void addBarrierPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ConfigureCompositeBufferBarrier_barriers_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigureCompositeBufferBarrier_barriers_feature", "_UI_ConfigureCompositeBufferBarrier_type"),
-				 BindingPackage.Literals.CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIERS,
+				 getString("_UI_ConfigureCompositeBufferBarrier_barrier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigureCompositeBufferBarrier_barrier_feature", "_UI_ConfigureCompositeBufferBarrier_type"),
+				 BindingPackage.Literals.CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER,
 				 true,
 				 false,
 				 true,
@@ -119,24 +120,47 @@ public class ConfigureCompositeBufferBarrierItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Target Instance feature.
+	 * This adds a property descriptor for the Part Index feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTargetInstancePropertyDescriptor(Object object)
+	protected void addPartIndexPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ConfigureCompositeBufferBarrier_targetInstance_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigureCompositeBufferBarrier_targetInstance_feature", "_UI_ConfigureCompositeBufferBarrier_type"),
-				 BindingPackage.Literals.CONFIGURE_COMPOSITE_BUFFER_BARRIER__TARGET_INSTANCE,
+				 getString("_UI_ConfigureCompositeBufferBarrier_partIndex_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigureCompositeBufferBarrier_partIndex_feature", "_UI_ConfigureCompositeBufferBarrier_type"),
+				 BindingPackage.Literals.CONFIGURE_COMPOSITE_BUFFER_BARRIER__PART_INDEX,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Composite Buffer feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCompositeBufferPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConfigureCompositeBufferBarrier_compositeBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigureCompositeBufferBarrier_compositeBuffer_feature", "_UI_ConfigureCompositeBufferBarrier_type"),
+				 BindingPackage.Literals.CONFIGURE_COMPOSITE_BUFFER_BARRIER__COMPOSITE_BUFFER,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -184,7 +208,7 @@ public class ConfigureCompositeBufferBarrierItemProvider
 		switch (notification.getFeatureID(ConfigureCompositeBufferBarrier.class))
 		{
 			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__NAME:
-			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__TARGET_INSTANCE:
+			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER__PART_INDEX:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -171,6 +171,31 @@ public class BindingItemProviderAdapterFactory extends BindingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.binding.ConfigureBufferDescriptor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConfigureBufferDescriptorItemProvider configureBufferDescriptorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.binding.ConfigureBufferDescriptor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConfigureBufferDescriptorAdapter()
+	{
+		if (configureBufferDescriptorItemProvider == null)
+		{
+			configureBufferDescriptorItemProvider = new ConfigureBufferDescriptorItemProvider(this);
+		}
+
+		return configureBufferDescriptorItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -341,6 +366,7 @@ public class BindingItemProviderAdapterFactory extends BindingAdapterFactory imp
 		if (configureBindItemProvider != null) configureBindItemProvider.dispose();
 		if (rotateConfigurationItemProvider != null) rotateConfigurationItemProvider.dispose();
 		if (configurePrepareCompositeItemProvider != null) configurePrepareCompositeItemProvider.dispose();
+		if (configureBufferDescriptorItemProvider != null) configureBufferDescriptorItemProvider.dispose();
 		if (configureCompositeBufferBarrierItemProvider != null) configureCompositeBufferBarrierItemProvider.dispose();
 		if (indexConfigurationItemProvider != null) indexConfigurationItemProvider.dispose();
 	}

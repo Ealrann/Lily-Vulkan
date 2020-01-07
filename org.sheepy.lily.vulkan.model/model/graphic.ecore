@@ -240,14 +240,14 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VertexBinding">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bufferRef" eType="ecore:EClass resource.ecore#//IBufferReference"
-        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="buffer" eType="ecore:EClass resource.ecore#//IBuffer"
+        resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BindIndexBuffer" eSuperTypes="process.ecore#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="indexType" unique="false"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EIndexType"
         defaultValueLiteral="UINT32"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bufferRef" eType="ecore:EClass resource.ecore#//IBufferReference"
-        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="buffer" eType="ecore:EClass resource.ecore#//IBuffer"
+        resolveProxies="false"/>
   </eClassifiers>
 </ecore:EPackage>

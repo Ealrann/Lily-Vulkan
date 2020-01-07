@@ -108,9 +108,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="srcBuffer" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//IBufferReference" containment="true"/>
+        eType="ecore:EClass resource.ecore#//IBuffer" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dstBuffer" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//IBufferReference" containment="true"/>
+        eType="ecore:EClass resource.ecore#//IBuffer" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IProcessExtension" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessExtensionPkg">
@@ -127,7 +127,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" lowerBound="1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
         defaultValueLiteral="Transfer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parts" lowerBound="1" upperBound="-1"
-        eType="ecore:EClass resource.ecore#//CompositePartReference" containment="true"/>
+        eType="ecore:EClass resource.ecore#//BufferPart"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transferBuffer" lowerBound="1"
+        eType="ecore:EClass resource.ecore#//TransferBuffer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SwapBindingsTask" eSuperTypes="../../org.sheepy.lily.core.model/model/cadence.ecore#//ICadenceTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="task" lowerBound="1" eType="#//BindDescriptorSets"/>

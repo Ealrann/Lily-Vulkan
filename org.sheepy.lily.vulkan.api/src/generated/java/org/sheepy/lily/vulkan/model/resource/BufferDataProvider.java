@@ -7,6 +7,7 @@ import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
@@ -18,8 +19,6 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getUsage <em>Usage</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getInstanceCount <em>Instance Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource <em>Data Source</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#isUsedToPush <em>Used To Push</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#isUsedToFetch <em>Used To Fetch</em>}</li>
@@ -27,6 +26,8 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getAccessBeforePush <em>Access Before Push</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getStageBeforeFetch <em>Stage Before Fetch</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getAccessBeforeFetch <em>Access Before Fetch</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getUsages <em>Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getInstanceCount <em>Instance Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getGrowFactor <em>Grow Factor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getGrowThreshold <em>Grow Threshold</em>}</li>
  * </ul>
@@ -38,52 +39,29 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 public interface BufferDataProvider<T> extends LNamedElement
 {
 	/**
-	 * Returns the value of the '<em><b>Usage</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Usage</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EBufferUsage
-	 * @see #setUsage(EBufferUsage)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_Usage()
-	 * @model unique="false" required="true"
-	 * @generated
-	 */
-	EBufferUsage getUsage();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getUsage <em>Usage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Usage</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EBufferUsage
-	 * @see #getUsage()
-	 * @generated
-	 */
-	void setUsage(EBufferUsage value);
-
-	/**
 	 * Returns the value of the '<em><b>Instance Count</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EInstanceCount}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Instance Count</em>' attribute.
-	 * @see #setInstanceCount(int)
+	 * @see org.sheepy.vulkan.model.enumeration.EInstanceCount
+	 * @see #setInstanceCount(EInstanceCount)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_InstanceCount()
-	 * @model default="1" unique="false" required="true"
+	 * @model unique="false" required="true"
 	 * @generated
 	 */
-	int getInstanceCount();
+	EInstanceCount getInstanceCount();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getInstanceCount <em>Instance Count</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Instance Count</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EInstanceCount
 	 * @see #getInstanceCount()
 	 * @generated
 	 */
-	void setInstanceCount(int value);
+	void setInstanceCount(EInstanceCount value);
 
 	/**
 	 * Returns the value of the '<em><b>Data Source</b></em>' containment reference.
@@ -230,6 +208,20 @@ public interface BufferDataProvider<T> extends LNamedElement
 	 * @generated
 	 */
 	EList<EAccess> getAccessBeforeFetch();
+
+	/**
+	 * Returns the value of the '<em><b>Usages</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Usages</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EBufferUsage
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_Usages()
+	 * @model
+	 * @generated
+	 */
+	EList<EBufferUsage> getUsages();
 
 	/**
 	 * Returns the value of the '<em><b>Grow Factor</b></em>' attribute.

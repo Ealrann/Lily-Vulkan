@@ -27,12 +27,12 @@ public interface BufferBarrier extends AbstractBufferBarrier
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Buffer</em>' reference.
-	 * @see #setBuffer(Buffer)
+	 * @see #setBuffer(IBuffer)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferBarrier_Buffer()
 	 * @model
 	 * @generated
 	 */
-	Buffer getBuffer();
+	IBuffer getBuffer();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferBarrier#getBuffer <em>Buffer</em>}' reference.
@@ -42,6 +42,6 @@ public interface BufferBarrier extends AbstractBufferBarrier
 	 * @see #getBuffer()
 	 * @generated
 	 */
-	void setBuffer(Buffer value);
+	void setBuffer(IBuffer value);
 
 } // BufferBarrier

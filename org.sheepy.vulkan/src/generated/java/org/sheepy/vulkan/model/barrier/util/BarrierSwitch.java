@@ -90,32 +90,12 @@ public class BarrierSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BarrierPackage.REFERENCE_BUFFER_BARRIER:
-			{
-				ReferenceBufferBarrier referenceBufferBarrier = (ReferenceBufferBarrier)theEObject;
-				T result = caseReferenceBufferBarrier(referenceBufferBarrier);
-				if (result == null) result = caseAbstractBufferBarrier(referenceBufferBarrier);
-				if (result == null) result = caseBarrier(referenceBufferBarrier);
-				if (result == null) result = caseLNamedElement(referenceBufferBarrier);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BarrierPackage.ABSTRACT_IMAGE_BARRIER:
 			{
 				AbstractImageBarrier abstractImageBarrier = (AbstractImageBarrier)theEObject;
 				T result = caseAbstractImageBarrier(abstractImageBarrier);
 				if (result == null) result = caseBarrier(abstractImageBarrier);
 				if (result == null) result = caseLNamedElement(abstractImageBarrier);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BarrierPackage.REFERENCE_IMAGE_BARRIER:
-			{
-				ReferenceImageBarrier referenceImageBarrier = (ReferenceImageBarrier)theEObject;
-				T result = caseReferenceImageBarrier(referenceImageBarrier);
-				if (result == null) result = caseAbstractImageBarrier(referenceImageBarrier);
-				if (result == null) result = caseBarrier(referenceImageBarrier);
-				if (result == null) result = caseLNamedElement(referenceImageBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -163,22 +143,6 @@ public class BarrierSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Reference Buffer Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Reference Buffer Barrier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseReferenceBufferBarrier(ReferenceBufferBarrier object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Abstract Image Barrier</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -190,22 +154,6 @@ public class BarrierSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseAbstractImageBarrier(AbstractImageBarrier object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Reference Image Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Reference Image Barrier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseReferenceImageBarrier(ReferenceImageBarrier object)
 	{
 		return null;
 	}

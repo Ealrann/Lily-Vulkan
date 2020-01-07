@@ -1,78 +1,82 @@
 package org.sheepy.lily.vulkan.process.barrier;
 
-import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
-
-import org.lwjgl.vulkan.VkImageMemoryBarrier;
+import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.barrier.IImageBarrierAdapter;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
+import org.sheepy.vulkan.barrier.VkImageBarrier;
 import org.sheepy.vulkan.resource.image.ImageUtil;
 import org.sheepy.vulkan.util.VkModelUtil;
 
 @Statefull
 @Adapter(scope = ImageBarrier.class)
-public class ImageBarrierAdapter
-		implements IImageBarrierAdapter<IExecutionContext>, IAllocable<IExecutionContext>
+public class ImageBarrierAdapter implements IImageBarrierAdapter
 {
-	private IAllocationConfigurator configurator;
+	private final VkImageBarrier vkBarrier;
+	private final INotificationListener imageListener = this::imageChanged;
+	private final ImageBarrier imageBarrier;
 
-	@Override
-	public void configureAllocation(IAllocationConfigurator configurator, IExecutionContext context)
-	{
-		this.configurator = configurator;
-	}
+	private boolean loaded = false;
 
-	@NotifyChanged(featureIds = ResourcePackage.IMAGE_BARRIER__IMAGE)
-	private void notifyChanged()
+	public ImageBarrierAdapter(ImageBarrier imageBarrier)
 	{
-		configurator.setDirty();
-	}
-
-	@Override
-	public void fillInfo(	IExecutionContext context,
-							AbstractImageBarrier barrier,
-							VkImageMemoryBarrier info,
-							int swapIndex)
-	{
-		final var imageBarrier = (ImageBarrier) barrier;
+		this.imageBarrier = imageBarrier;
 		final var image = imageBarrier.getImage();
-		final var imageAdapter = image.adaptNotNull(IImageAdapter.class);
-		final var imageInfo = imageAdapter.getVkImage();
 
-		final int mipLevels = imageInfo.mipLevels;
+		final int imageFormat = image.getFormat().getValue();
 		final var srcLayout = imageBarrier.getSrcLayout();
 		final var dstLayout = imageBarrier.getDstLayout();
-		final int imageFormat = imageInfo.format;
 		final var aspectMask = ImageUtil.getAspectMask(dstLayout, imageFormat);
-		final int srcAccessMask = VkModelUtil.getEnumeratedFlag(barrier.getSrcAccessMask());
-		final int dstAccessMask = VkModelUtil.getEnumeratedFlag(barrier.getDstAccessMask());
+		final int srcAccessMask = VkModelUtil.getEnumeratedFlag(imageBarrier.getSrcAccessMask());
+		final int dstAccessMask = VkModelUtil.getEnumeratedFlag(imageBarrier.getDstAccessMask());
 
-		info.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
-		info.oldLayout(srcLayout.getValue());
-		info.newLayout(dstLayout.getValue());
-		info.image(imageAdapter.getImagePtr());
-		info.subresourceRange().baseMipLevel(0);
-		info.subresourceRange().levelCount(mipLevels);
-		info.subresourceRange().baseArrayLayer(0);
-		info.subresourceRange().layerCount(1);
-		info.subresourceRange().aspectMask(aspectMask);
-		info.srcAccessMask(srcAccessMask);
-		info.dstAccessMask(dstAccessMask);
+		vkBarrier = new VkImageBarrier(	image,
+										srcLayout.getValue(),
+										dstLayout.getValue(),
+										srcAccessMask,
+										dstAccessMask,
+										aspectMask);
+	}
+
+	@Load
+	private void load()
+	{
+		final var adapter = imageBarrier.getImage().adapt(IImageAdapter.class);
+		adapter.addListener(imageListener, IImageAdapter.Features.Image.ordinal());
+	}
+
+	@Dispose
+	private void dispose()
+	{
+		final var adapter = imageBarrier.getImage().adapt(IImageAdapter.class);
+		adapter.removeListener(imageListener, IImageAdapter.Features.Image.ordinal());
 	}
 
 	@Override
-	public void allocate(IExecutionContext context)
-	{}
+	public void update(int index)
+	{
+		if (loaded == false)
+		{
+			final var adapter = imageBarrier.getImage().adapt(IImageAdapter.class);
+			vkBarrier.updatePtr(adapter.getImagePtr());
+			loaded = true;
+		}
+	}
+
+	private void imageChanged(Notification notification)
+	{
+		final var adapter = imageBarrier.getImage().adapt(IImageAdapter.class);
+		vkBarrier.updatePtr(adapter.getImagePtr());
+	}
 
 	@Override
-	public void free(IExecutionContext context)
-	{}
+	public VkImageBarrier getBackend()
+	{
+		return vkBarrier;
+	}
 }

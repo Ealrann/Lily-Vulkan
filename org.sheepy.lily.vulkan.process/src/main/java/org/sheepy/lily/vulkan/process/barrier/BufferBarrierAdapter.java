@@ -1,64 +1,72 @@
 package org.sheepy.lily.vulkan.process.barrier;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import org.lwjgl.vulkan.VkBufferMemoryBarrier;
+import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
-import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.core.api.allocation.IAllocationContext;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.annotation.Load;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.barrier.IBufferBarrierAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
+import org.sheepy.vulkan.barrier.VkBufferBarrier;
 import org.sheepy.vulkan.util.VkModelUtil;
 
+@Statefull
 @Adapter(scope = BufferBarrier.class)
-public class BufferBarrierAdapter implements IBufferBarrierAdapter, IAllocable<IExecutionContext>
+public class BufferBarrierAdapter implements IBufferBarrierAdapter
 {
-	private IAllocationConfigurator configurator;
+	private final INotificationListener bufferListener = this::bufferChanged;
+	private final VkBufferBarrier vkBarrier;
+	private final BufferBarrier barrier;
 
-	@Override
-	public void configureAllocation(IAllocationConfigurator configurator, IExecutionContext context)
+	private boolean loaded = false;
+
+	public BufferBarrierAdapter(BufferBarrier barrier)
 	{
-		this.configurator = configurator;
-	}
-
-	@NotifyChanged(featureIds = ResourcePackage.BUFFER_BARRIER__BUFFER)
-	private void notifyChanged()
-	{
-		configurator.setDirty();
-	}
-
-	@Override
-	public void fillInfo(	IAllocationContext context,
-							AbstractBufferBarrier barrier,
-							VkBufferMemoryBarrier info,
-							int swapIndex)
-	{
-		final var bufferBarrier = (BufferBarrier) barrier;
-		final var buffer = bufferBarrier.getBuffer();
-		final var bufferAdapter = buffer.adaptNotNull(IBufferAdapter.class);
-
+		this.barrier = barrier;
 		final int srcAccessMask = VkModelUtil.getEnumeratedFlag(barrier.getSrcAccessMask());
 		final int dstAccessMask = VkModelUtil.getEnumeratedFlag(barrier.getDstAccessMask());
 
-		info.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
-		info.buffer(bufferAdapter.getPtr());
-		info.srcAccessMask(srcAccessMask);
-		info.dstAccessMask(dstAccessMask);
-		info.offset(0);
-		info.size(VK_WHOLE_SIZE);
+		vkBarrier = new VkBufferBarrier(srcAccessMask, dstAccessMask);
+	}
+
+	@Load
+	public void load(BufferBarrier barrier)
+	{
+		final var bufferAdapter = barrier.getBuffer().adaptNotNull(IBufferAdapter.class);
+		bufferAdapter.addListener(bufferListener, IBufferAdapter.Features.Ptr.ordinal());
+
+		vkBarrier.updatePtr(bufferAdapter.getPtr());
+	}
+
+	@Dispose
+	public void dispose(BufferBarrier barrier)
+	{
+		final var bufferAdapter = barrier.getBuffer().adaptNotNull(IBufferAdapter.class);
+		bufferAdapter.removeListener(bufferListener, IBufferAdapter.Features.Ptr.ordinal());
 	}
 
 	@Override
-	public void allocate(IExecutionContext context)
-	{}
+	public void update(int index)
+	{
+		if (loaded == false)
+		{
+			final var adapter = barrier.getBuffer().adapt(IBufferAdapter.class);
+			vkBarrier.updatePtr(adapter.getPtr());
+			loaded = true;
+		}
+	}
+
+	private void bufferChanged(Notification notification)
+	{
+		final var adapter = barrier.getBuffer().adapt(IBufferAdapter.class);
+		vkBarrier.updatePtr(adapter.getPtr());
+	}
 
 	@Override
-	public void free(IExecutionContext context)
-	{}
+	public VkBufferBarrier getBackend()
+	{
+		return vkBarrier;
+	}
 }

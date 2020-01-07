@@ -160,7 +160,10 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		isInited = true;
 
 		// Initialize simple dependencies
+		UiPackage.eINSTANCE.eClass();
+		PresentationPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
+		VariablePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
@@ -171,9 +174,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
-		UiPackage.eINSTANCE.eClass();
-		PresentationPackage.eINSTANCE.eClass();
-		VariablePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BindingPackage.eNS_URI);
@@ -561,7 +561,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		initEClass(iProcessEClass, IProcess.class, "IProcess", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIProcess_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 0, 1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getIProcess_QueuePriority(), ecorePackage.getEFloat(), "queuePriority", "1.0", 1, 1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIProcess_Cadence(), theApplicationPackage.getICadence(), null, "cadence", null, 1, 1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIProcess_Cadence(), theApplicationPackage.getICadence(), null, "cadence", null, 0, 1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iExecutionManagerEClass, IExecutionManager.class, "IExecutionManager", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

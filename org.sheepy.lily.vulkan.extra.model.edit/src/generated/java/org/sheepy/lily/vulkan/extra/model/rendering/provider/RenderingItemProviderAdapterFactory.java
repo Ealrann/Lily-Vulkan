@@ -39,7 +39,7 @@ import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
-import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.util.ResourceSwitch;
 
@@ -908,21 +908,20 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 			 * @generated
 			 */
 			@Override
-			public Object caseCompositeBuffer(CompositeBuffer object)
+			public Object caseBufferPart(BufferPart object)
 			{
 				newChildDescriptors.add
 					(createChildParameter
-						(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
+						(ResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER,
 						 RenderingFactory.eINSTANCE.createVertexProvider()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
+						(ResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER,
 						 RenderingFactory.eINSTANCE.createIndexProvider()));
 
 				return null;
 			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

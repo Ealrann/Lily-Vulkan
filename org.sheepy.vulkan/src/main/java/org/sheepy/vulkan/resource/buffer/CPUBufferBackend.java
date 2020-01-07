@@ -234,9 +234,15 @@ public final class CPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public long getOffset()
+	public long getInstanceOffset()
 	{
 		return currentOffset;
+	}
+
+	@Override
+	public long getInstanceSize()
+	{
+		return info.getInstanceSize();
 	}
 
 	public BufferInfo getInfos()

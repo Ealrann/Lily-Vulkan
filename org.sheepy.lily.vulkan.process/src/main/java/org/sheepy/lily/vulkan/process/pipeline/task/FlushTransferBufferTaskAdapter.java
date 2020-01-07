@@ -8,7 +8,6 @@ import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.vulkan.resource.staging.ITransferBuffer;
 import org.sheepy.vulkan.resource.staging.ITransferBuffer.IFlushRecorder;
 
 @Statefull
@@ -16,7 +15,6 @@ import org.sheepy.vulkan.resource.staging.ITransferBuffer.IFlushRecorder;
 public final class FlushTransferBufferTaskAdapter
 		implements IPipelineTaskAdapter<FlushTransferBufferTask>
 {
-	private final ITransferBuffer bufferBackend;
 	private final TransferBuffer transferBuffer;
 
 	private int stagingFlushHistory = 0;
@@ -25,8 +23,6 @@ public final class FlushTransferBufferTaskAdapter
 	public FlushTransferBufferTaskAdapter(FlushTransferBufferTask task)
 	{
 		transferBuffer = task.getTransferBuffer();
-		final var pushBufferAdapter = transferBuffer.adaptNotNull(ITransferBufferAdapter.class);
-		bufferBackend = pushBufferAdapter.getTransferBufferBackend();
 	}
 
 	@Override
@@ -55,6 +51,8 @@ public final class FlushTransferBufferTaskAdapter
 
 	private void record()
 	{
+		final var pushBufferAdapter = transferBuffer.adaptNotNull(ITransferBufferAdapter.class);
+		final var bufferBackend = pushBufferAdapter.getTransferBufferBackend();
 		if (bufferBackend.isEmpty() == false)
 		{
 			record = bufferBackend.recordFlush();
@@ -68,6 +66,8 @@ public final class FlushTransferBufferTaskAdapter
 	@Override
 	public boolean needRecord(FlushTransferBufferTask task, int index)
 	{
+		final var pushBufferAdapter = transferBuffer.adaptNotNull(ITransferBufferAdapter.class);
+		final var bufferBackend = pushBufferAdapter.getTransferBufferBackend();
 		final boolean previousRecordMadeFlush = getAndClearHistory(index);
 
 		boolean res = false;

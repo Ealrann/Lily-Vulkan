@@ -5,29 +5,30 @@ import java.nio.ByteBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
 import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
 import org.sheepy.vulkan.resource.buffer.IBufferBackend;
-import org.sheepy.vulkan.resource.buffer.VkBufferDescriptor;
 import org.sheepy.vulkan.util.VkModelUtil;
 
 @Statefull
 @Adapter(scope = Buffer.class)
-public final class BufferAdapter implements IBufferAdapter
+public final class BufferAdapter extends Notifier implements IBufferAdapter
 {
 	protected Buffer buffer;
 	protected IBufferBackend bufferBackend;
 
 	private IExecutionContext executionManager;
-	private VkBufferDescriptor vkDescriptor;
 
 	public BufferAdapter(Buffer buffer)
 	{
+		super(Features.values().length);
 		this.buffer = buffer;
 	}
 
@@ -35,7 +36,7 @@ public final class BufferAdapter implements IBufferAdapter
 	public void allocate(IExecutionContext context)
 	{
 		executionManager = context;
-		final var info = createInfo(buffer);
+		final var info = createInfo(context, buffer);
 
 		if (!buffer.isHostVisible())
 		{
@@ -65,11 +66,6 @@ public final class BufferAdapter implements IBufferAdapter
 
 		bufferBackend.nextInstance();
 		bufferBackend.pushData(executionManager, data);
-
-		if (vkDescriptor != null)
-		{
-			vkDescriptor.updateOffset(bufferBackend.getOffset());
-		}
 	}
 
 	@Override
@@ -92,6 +88,18 @@ public final class BufferAdapter implements IBufferAdapter
 	}
 
 	@Override
+	public long getBindOffset()
+	{
+		return bufferBackend.getInstanceOffset();
+	}
+
+	@Override
+	public long getBindSize()
+	{
+		return bufferBackend.getInstanceSize();
+	}
+
+	@Override
 	public long mapMemory()
 	{
 		return bufferBackend.mapMemory();
@@ -103,12 +111,13 @@ public final class BufferAdapter implements IBufferAdapter
 		bufferBackend.unmapMemory();
 	}
 
-	private static BufferInfo createInfo(Buffer buffer)
+	private static BufferInfo createInfo(IExecutionContext context, Buffer buffer)
 	{
 		final var size = buffer.getSize();
 		final int usage = VkModelUtil.getEnumeratedFlag(buffer.getUsages());
 		final var keptMapped = buffer.isKeptMapped();
-		final int instanceCount = buffer.getInstanceCount();
+		final var eInstanceCount = buffer.getInstanceCount();
+		final int instanceCount = VulkanModelUtil.getInstanceCount(context, eInstanceCount);
 
 		return new BufferInfo(size, usage, keptMapped, instanceCount);
 	}

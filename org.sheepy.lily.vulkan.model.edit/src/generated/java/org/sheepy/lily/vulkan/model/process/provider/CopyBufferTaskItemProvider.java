@@ -274,22 +274,22 @@ public class CopyBufferTaskItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.COPY_BUFFER_TASK__SRC_BUFFER,
-				 ResourceFactory.eINSTANCE.createBufferReference()));
+				 ResourceFactory.eINSTANCE.createBuffer()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.COPY_BUFFER_TASK__SRC_BUFFER,
-				 ResourceFactory.eINSTANCE.createCompositeBufferReference()));
+				 ResourceFactory.eINSTANCE.createBufferPart()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.COPY_BUFFER_TASK__DST_BUFFER,
-				 ResourceFactory.eINSTANCE.createBufferReference()));
+				 ResourceFactory.eINSTANCE.createBuffer()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.COPY_BUFFER_TASK__DST_BUFFER,
-				 ResourceFactory.eINSTANCE.createCompositeBufferReference()));
+				 ResourceFactory.eINSTANCE.createBufferPart()));
 	}
 
 	/**

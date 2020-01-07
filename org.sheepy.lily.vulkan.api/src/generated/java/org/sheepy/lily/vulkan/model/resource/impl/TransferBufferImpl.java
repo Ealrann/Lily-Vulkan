@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.model.application.impl.IResourceImpl;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,7 +58,7 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int INSTANCE_COUNT_EDEFAULT = 3;
+	protected static final EInstanceCount INSTANCE_COUNT_EDEFAULT = EInstanceCount.ONE;
 
 	/**
 	 * The cached value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
@@ -67,7 +68,7 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	 * @generated
 	 * @ordered
 	 */
-	protected int instanceCount = INSTANCE_COUNT_EDEFAULT;
+	protected EInstanceCount instanceCount = INSTANCE_COUNT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isUsedToPush() <em>Used To Push</em>}' attribute.
@@ -161,7 +162,7 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	 * @generated
 	 */
 	@Override
-	public int getInstanceCount()
+	public EInstanceCount getInstanceCount()
 	{
 		return instanceCount;
 	}
@@ -172,10 +173,10 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	 * @generated
 	 */
 	@Override
-	public void setInstanceCount(int newInstanceCount)
+	public void setInstanceCount(EInstanceCount newInstanceCount)
 	{
-		int oldInstanceCount = instanceCount;
-		instanceCount = newInstanceCount;
+		EInstanceCount oldInstanceCount = instanceCount;
+		instanceCount = newInstanceCount == null ? INSTANCE_COUNT_EDEFAULT : newInstanceCount;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
 	}
@@ -266,7 +267,7 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 				setSize((Long)newValue);
 				return;
 			case ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
-				setInstanceCount((Integer)newValue);
+				setInstanceCount((EInstanceCount)newValue);
 				return;
 			case ResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
 				setUsedToPush((Boolean)newValue);

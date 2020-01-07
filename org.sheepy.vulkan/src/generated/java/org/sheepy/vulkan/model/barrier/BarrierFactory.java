@@ -23,24 +23,6 @@ public interface BarrierFactory extends EFactory
 	BarrierFactory eINSTANCE = org.sheepy.vulkan.model.barrier.impl.BarrierFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Reference Buffer Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reference Buffer Barrier</em>'.
-	 * @generated
-	 */
-	ReferenceBufferBarrier createReferenceBufferBarrier();
-
-	/**
-	 * Returns a new object of class '<em>Reference Image Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reference Image Barrier</em>'.
-	 * @generated
-	 */
-	ReferenceImageBarrier createReferenceImageBarrier();
-
-	/**
 	 * Returns a new object of class '<em>Image Transition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

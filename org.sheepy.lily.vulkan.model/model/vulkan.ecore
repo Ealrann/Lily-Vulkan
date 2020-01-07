@@ -22,8 +22,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="queuePriority" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="1.0"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="cadence" lowerBound="1"
-        eType="ecore:EClass ../../org.sheepy.lily.core.model/model/application.ecore#//ICadence"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cadence" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/application.ecore#//ICadence"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IExecutionManager" abstract="true" interface="true"/>

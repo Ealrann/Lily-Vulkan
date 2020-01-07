@@ -78,7 +78,7 @@ public interface IProcess extends IResourceContainer, LNamedElement, IExecutionM
 	 * @return the value of the '<em>Cadence</em>' containment reference.
 	 * @see #setCadence(ICadence)
 	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getIProcess_Cadence()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	ICadence getCadence();

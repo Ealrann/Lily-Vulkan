@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.sheepy.lily.vulkan.demo.test.composite.instance.model.InstanceTestResourceFactory.ResourceContainer;
 import org.sheepy.lily.vulkan.model.binding.BindingFactory;
+import org.sheepy.lily.vulkan.model.binding.ConfigureBufferDescriptor;
 import org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier;
 import org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite;
-import org.sheepy.lily.vulkan.model.binding.EInstance;
+import org.sheepy.lily.vulkan.model.binding.EContextIndex;
 import org.sheepy.lily.vulkan.model.binding.IndexConfiguration;
 import org.sheepy.lily.vulkan.model.binding.RotateConfiguration;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
@@ -17,9 +18,8 @@ import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
-import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
-import org.sheepy.lily.vulkan.model.resource.CompositeBufferBarrier;
-import org.sheepy.lily.vulkan.model.resource.CompositePartReference;
+import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
+import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EBindPoint;
@@ -32,16 +32,14 @@ public class InstanceTaskManager
 	public final FlushTransferBufferTask fetchTask = ProcessFactory.eINSTANCE.createFlushTransferBufferTask();
 
 	public final PipelineBarrier barrier = ProcessFactory.eINSTANCE.createPipelineBarrier();
-	public final CompositeBufferBarrier readBarrier = ResourceFactory.eINSTANCE.createCompositeBufferBarrier();
-	public final CompositeBufferBarrier writeBarrier = ResourceFactory.eINSTANCE.createCompositeBufferBarrier();
+	public final BufferBarrier readBarrier = ResourceFactory.eINSTANCE.createBufferBarrier();
+	public final BufferBarrier writeBarrier = ResourceFactory.eINSTANCE.createBufferBarrier();
 
 	public final BindDescriptorSets bindDS = ProcessFactory.eINSTANCE.createBindDescriptorSets();
 
 	public final DispatchTask dispatch = ComputeFactory.eINSTANCE.createDispatchTask();
 	public final PrepareCompositeTransfer preparePush = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
 	public final PrepareCompositeTransfer prepareFetch = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
-	public final CompositePartReference pushReference = ResourceFactory.eINSTANCE.createCompositePartReference();
-	public final CompositePartReference fetchReference = ResourceFactory.eINSTANCE.createCompositePartReference();
 
 	public final IndexConfiguration indexConfiguration = BindingFactory.eINSTANCE.createIndexConfiguration();
 	public final ConfigurePrepareComposite configurePush = BindingFactory.eINSTANCE.createConfigurePrepareComposite();
@@ -49,16 +47,14 @@ public class InstanceTaskManager
 	public final ConfigureCompositeBufferBarrier configureRead = BindingFactory.eINSTANCE.createConfigureCompositeBufferBarrier();
 	public final ConfigureCompositeBufferBarrier configureWrite = BindingFactory.eINSTANCE.createConfigureCompositeBufferBarrier();
 	public final RotateConfiguration rotateConfig = BindingFactory.eINSTANCE.createRotateConfiguration();
+	public final ConfigureBufferDescriptor configureReadDescriptor = BindingFactory.eINSTANCE.createConfigureBufferDescriptor();
+	public final ConfigureBufferDescriptor configureWriteDescriptor = BindingFactory.eINSTANCE.createConfigureBufferDescriptor();
 
-	private final BufferDataProvider<?> dataProvider;
-
-	public InstanceTaskManager(ResourceContainer resourceContainer, int instanceCount)
+	public InstanceTaskManager(ResourceContainer resourceContainer, int partCount)
 	{
-		dataProvider = resourceContainer.compositeBuffer.getDataProviders().get(0);
-
 		preparePush.setCompositeBuffer(resourceContainer.compositeBuffer);
 		preparePush.setMode(EFlushMode.PUSH);
-		preparePush.getParts().add(pushReference);
+		preparePush.setTransferBuffer(resourceContainer.transferBuffer);
 		pushTask.setTransferBuffer(resourceContainer.transferBuffer);
 		pushTask.setStage(ECommandStage.TRANSFER);
 
@@ -66,8 +62,6 @@ public class InstanceTaskManager
 		barrier.setDstStage(EPipelineStage.COMPUTE_SHADER_BIT);
 		barrier.getBarriers().add(readBarrier);
 		barrier.getBarriers().add(writeBarrier);
-		readBarrier.setDataProvider(dataProvider);
-		writeBarrier.setDataProvider(dataProvider);
 
 		bindDS.setBindPoint(EBindPoint.COMPUTE);
 		bindDS.getDescriptorSets().add(resourceContainer.ds);
@@ -76,26 +70,40 @@ public class InstanceTaskManager
 
 		prepareFetch.setCompositeBuffer(resourceContainer.compositeBuffer);
 		prepareFetch.setMode(EFlushMode.FETCH);
-		prepareFetch.getParts().add(fetchReference);
+		prepareFetch.setTransferBuffer(resourceContainer.transferBuffer);
 		fetchTask.setTransferBuffer(resourceContainer.transferBuffer);
 		fetchTask.setStage(ECommandStage.COMPUTE);
 
-		configurePush.getReferences().add(pushReference);
-		configurePush.getReferences().add(resourceContainer.refs.get(0));
-		configurePush.setTargetInstance(EInstance.CONTEXT_INSTANCE);
-		configureFetch.getReferences().add(fetchReference);
-		configureFetch.getReferences().add(resourceContainer.refs.get(1));
-		configureFetch.setTargetInstance(EInstance.CONTEXT_INSTANCE_PLUS_ONE);
-		configureRead.getBarriers().add(readBarrier);
-		configureRead.setTargetInstance(EInstance.CONTEXT_INSTANCE);
-		configureWrite.getBarriers().add(writeBarrier);
-		configureWrite.setTargetInstance(EInstance.CONTEXT_INSTANCE_PLUS_ONE);
+		configurePush.setPrepareTask(preparePush);
+		configurePush.getPartIndices().add(EContextIndex.CONTEXT_INSTANCE);
+		configurePush.setCompositeBuffer(resourceContainer.compositeBuffer);
+		configureFetch.setPrepareTask(prepareFetch);
+		configureFetch.getPartIndices().add(EContextIndex.CONTEXT_INSTANCE_PLUS_ONE);
+		configureFetch.setCompositeBuffer(resourceContainer.compositeBuffer);
+		configureRead.setBarrier(readBarrier);
+		configureRead.setPartIndex(EContextIndex.CONTEXT_INSTANCE);
+		configureRead.setCompositeBuffer(resourceContainer.compositeBuffer);
+		configureWrite.setBarrier(writeBarrier);
+		configureWrite.setPartIndex(EContextIndex.CONTEXT_INSTANCE_PLUS_ONE);
+		configureWrite.setCompositeBuffer(resourceContainer.compositeBuffer);
+
+		configureReadDescriptor.setCompositeBuffer(resourceContainer.compositeBuffer);
+		configureReadDescriptor.setPartIndex(EContextIndex.CONTEXT_INSTANCE);
+		configureReadDescriptor.setDescriptor((BufferDescriptor) resourceContainer.ds	.getDescriptors()
+																						.get(0));
+
+		configureWriteDescriptor.setCompositeBuffer(resourceContainer.compositeBuffer);
+		configureWriteDescriptor.setPartIndex(EContextIndex.CONTEXT_INSTANCE_PLUS_ONE);
+		configureWriteDescriptor.setDescriptor((BufferDescriptor) resourceContainer.ds	.getDescriptors()
+																						.get(1));
 
 		indexConfiguration.getTasks().add(configurePush);
 		indexConfiguration.getTasks().add(configureFetch);
 		indexConfiguration.getTasks().add(configureRead);
 		indexConfiguration.getTasks().add(configureWrite);
-		indexConfiguration.setIndexCount(instanceCount);
+		indexConfiguration.getTasks().add(configureReadDescriptor);
+		indexConfiguration.getTasks().add(configureWriteDescriptor);
+		indexConfiguration.setIndexCount(partCount);
 		rotateConfig.setForceRecord(true);
 		rotateConfig.getConfigurations().add(indexConfiguration);
 	}

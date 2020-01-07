@@ -42,7 +42,7 @@ import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
-import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.util.ResourceSwitch;
 
@@ -770,21 +770,20 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 			 * @generated
 			 */
 			@Override
-			public Object caseCompositeBuffer(CompositeBuffer object)
+			public Object caseBufferPart(BufferPart object)
 			{
 				newChildDescriptors.add
 					(createChildParameter
-						(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
+						(ResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER,
 						 NuklearFactory.eINSTANCE.createNuklearVertexProvider()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(ResourcePackage.Literals.COMPOSITE_BUFFER__DATA_PROVIDERS,
+						(ResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER,
 						 NuklearFactory.eINSTANCE.createNuklearIndexProvider()));
 
 				return null;
 			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

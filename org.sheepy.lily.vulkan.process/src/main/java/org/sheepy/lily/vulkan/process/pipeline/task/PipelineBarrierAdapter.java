@@ -5,17 +5,23 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.vulkan.api.barrier.IBarrierAdapter;
+import org.sheepy.lily.vulkan.api.barrier.IImageBarrierAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.common.process.IExecutionProcessAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
-import org.sheepy.lily.vulkan.process.pipeline.task.internal.BufferBarriersBackend;
-import org.sheepy.lily.vulkan.process.pipeline.task.internal.ImageBarriersBackend;
+import org.sheepy.lily.vulkan.process.barrier.BufferBarrierAdapter;
+import org.sheepy.vulkan.barrier.VkBarrier;
+import org.sheepy.vulkan.barrier.VkBufferBarrier;
+import org.sheepy.vulkan.barrier.VkBufferBarriers;
+import org.sheepy.vulkan.barrier.VkImageBarriers;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
@@ -31,9 +37,8 @@ public class PipelineBarrierAdapter
 	private final int srcStage;
 	private final int dstStage;
 
-	private ImageBarriersBackend imageBarrierInfos;
-	private BufferBarriersBackend bufferBarrierInfos;
-	private IAllocationConfigurator allocationConfigurator;
+	private VkImageBarriers imageBarrierInfos;
+	private VkBufferBarriers bufferBarrierInfos;
 
 	public PipelineBarrierAdapter(PipelineBarrier pipelineBarrier)
 	{
@@ -44,15 +49,25 @@ public class PipelineBarrierAdapter
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, IProcessContext context)
+	public void configureAllocation(IAllocationConfigurator configurator, IProcessContext context)
 	{
-		this.allocationConfigurator = config;
+		final List<IAllocableAdapter<?>> allocables = new ArrayList<>();
+		final var barriers = pipelineBarrier.getBarriers();
+		for (final var barrier : barriers)
+		{
+			final var adapter = barrier.adapt(IAllocableAdapter.class);
+			if (adapter != null)
+			{
+				allocables.add(adapter);
+			}
+		}
+
+		configurator.addChildren(allocables);
 	}
 
 	@Override
 	public void allocate(IProcessContext context)
 	{
-		final int swapCount = context.getSwapCount();
 		final var logicalDevice = context.getLogicalDevice();
 		final var srcQueue = pipelineBarrier.getSrcQueue();
 		final var dstQueue = pipelineBarrier.getDstQueue();
@@ -62,32 +77,25 @@ public class PipelineBarrierAdapter
 
 		final var barriers = pipelineBarrier.getBarriers();
 
-		final List<AbstractImageBarrier> imageBarriers = new ArrayList<>();
-		final List<AbstractBufferBarrier> bufferBarriers = new ArrayList<>();
+		final List<VkBarrier<VkImageMemoryBarrier>> imageBarriers = new ArrayList<>();
+		final List<VkBufferBarrier> bufferBarriers = new ArrayList<>();
 
 		for (final var barrier : barriers)
 		{
 			if (barrier instanceof AbstractImageBarrier)
 			{
-				imageBarriers.add((AbstractImageBarrier) barrier);
+				final var adapter = barrier.adaptNotNull(IImageBarrierAdapter.class);
+				imageBarriers.add(adapter.getBackend());
 			}
 			else if (barrier instanceof AbstractBufferBarrier)
 			{
-				bufferBarriers.add((AbstractBufferBarrier) barrier);
+				final var adapter = barrier.adaptNotNull(BufferBarrierAdapter.class);
+				bufferBarriers.add(adapter.getBackend());
 			}
 		}
 
-		imageBarrierInfos = new ImageBarriersBackend(	swapCount,
-														srcQueueIndex,
-														dstQueueIndex,
-														imageBarriers);
-		bufferBarrierInfos = new BufferBarriersBackend(	swapCount,
-														srcQueueIndex,
-														dstQueueIndex,
-														bufferBarriers);
-
-		allocationConfigurator.addChildren(List.of(imageBarrierInfos, bufferBarrierInfos), true);
-		allocationConfigurator.addDependencies(List.of(imageBarrierInfos, bufferBarrierInfos));
+		imageBarrierInfos = new VkImageBarriers(srcQueueIndex, dstQueueIndex, imageBarriers);
+		bufferBarrierInfos = new VkBufferBarriers(srcQueueIndex, dstQueueIndex, bufferBarriers);
 	}
 
 	@Override
@@ -99,18 +107,25 @@ public class PipelineBarrierAdapter
 	@Override
 	public void free(IProcessContext context)
 	{
-		allocationConfigurator.removeDependencies(List.of(imageBarrierInfos, bufferBarrierInfos));
-		allocationConfigurator.removeChildren(List.of(imageBarrierInfos, bufferBarrierInfos), true);
-
 		imageBarrierInfos = null;
 		bufferBarrierInfos = null;
 	}
 
 	@Override
+	public void update(PipelineBarrier task, int index)
+	{
+		for (final var barrier : task.getBarriers())
+		{
+			final var barrierAdapter = barrier.adaptNotNull(IBarrierAdapter.class);
+			barrierAdapter.update(index);
+		}
+	}
+
+	@Override
 	public void record(PipelineBarrier barrier, RecordContext context)
 	{
-		final var bufferInfo = bufferBarrierInfos.get(context.index);
-		final var imageInfo = imageBarrierInfos.get(context.index);
+		final var bufferInfo = bufferBarrierInfos.allocateInfo(context.stack);
+		final var imageInfo = imageBarrierInfos.allocateInfo(context.stack);
 
 		vkCmdPipelineBarrier(	context.commandBuffer,
 								srcStage,
@@ -119,6 +134,12 @@ public class PipelineBarrierAdapter
 								null,
 								bufferInfo,
 								imageInfo);
+	}
+
+	@Override
+	public boolean needRecord(PipelineBarrier task, int index)
+	{
+		return bufferBarrierInfos.hasChanged() || imageBarrierInfos.hasChanged();
 	}
 
 	private static int getQueueFamillyIndex(LogicalDevice logicalDevice, AbstractProcess process)

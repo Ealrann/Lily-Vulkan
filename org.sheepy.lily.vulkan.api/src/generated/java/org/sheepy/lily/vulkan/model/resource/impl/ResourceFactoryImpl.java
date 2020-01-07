@@ -71,9 +71,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.CONSTANT_BUFFER: return createConstantBuffer();
 			case ResourcePackage.BUFFER: return createBuffer();
 			case ResourcePackage.COMPOSITE_BUFFER: return createCompositeBuffer();
-			case ResourcePackage.COMPOSITE_PART_REFERENCE: return createCompositePartReference();
-			case ResourcePackage.BUFFER_REFERENCE: return createBufferReference();
-			case ResourcePackage.COMPOSITE_BUFFER_REFERENCE: return createCompositeBufferReference();
+			case ResourcePackage.BUFFER_PART: return createBufferPart();
 			case ResourcePackage.BUFFER_DATA_PROVIDER: return createBufferDataProvider();
 			case ResourcePackage.STATIC_IMAGE: return createStaticImage();
 			case ResourcePackage.FILE_IMAGE: return createFileImage();
@@ -88,7 +86,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.DESCRIPTOR_SET: return createDescriptorSet();
 			case ResourcePackage.DESCRIPTOR_SET_PKG: return createDescriptorSetPkg();
 			case ResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
-			case ResourcePackage.COMPOSITE_BUFFER_BARRIER: return createCompositeBufferBarrier();
 			case ResourcePackage.IMAGE_BARRIER: return createImageBarrier();
 			case ResourcePackage.SHADER: return createShader();
 			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR: return createImageArrayDescriptor();
@@ -189,34 +186,10 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
-	public CompositePartReference createCompositePartReference()
+	public BufferPart createBufferPart()
 	{
-		CompositePartReferenceImpl compositePartReference = new CompositePartReferenceImpl();
-		return compositePartReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public BufferReference createBufferReference()
-	{
-		BufferReferenceImpl bufferReference = new BufferReferenceImpl();
-		return bufferReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public CompositeBufferReference createCompositeBufferReference()
-	{
-		CompositeBufferReferenceImpl compositeBufferReference = new CompositeBufferReferenceImpl();
-		return compositeBufferReference;
+		BufferPartImpl bufferPart = new BufferPartImpl();
+		return bufferPart;
 	}
 
 	/**
@@ -385,18 +358,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		BufferBarrierImpl bufferBarrier = new BufferBarrierImpl();
 		return bufferBarrier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public CompositeBufferBarrier createCompositeBufferBarrier()
-	{
-		CompositeBufferBarrierImpl compositeBufferBarrier = new CompositeBufferBarrierImpl();
-		return compositeBufferBarrier;
 	}
 
 	/**

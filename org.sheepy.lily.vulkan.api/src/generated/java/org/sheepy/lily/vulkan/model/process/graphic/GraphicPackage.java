@@ -2143,13 +2143,13 @@ public interface GraphicPackage extends EPackage
 	int VERTEX_BINDING = 25;
 
 	/**
-	 * The feature id for the '<em><b>Buffer Ref</b></em>' containment reference.
+	 * The feature id for the '<em><b>Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_BINDING__BUFFER_REF = 0;
+	int VERTEX_BINDING__BUFFER = 0;
 
 	/**
 	 * The number of structural features of the '<em>Vertex Binding</em>' class.
@@ -2207,13 +2207,13 @@ public interface GraphicPackage extends EPackage
 	int BIND_INDEX_BUFFER__INDEX_TYPE = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Buffer Ref</b></em>' containment reference.
+	 * The feature id for the '<em><b>Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BIND_INDEX_BUFFER__BUFFER_REF = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+	int BIND_INDEX_BUFFER__BUFFER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Bind Index Buffer</em>' class.
@@ -3330,15 +3330,15 @@ public interface GraphicPackage extends EPackage
 	EClass getVertexBinding();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexBinding#getBufferRef <em>Buffer Ref</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexBinding#getBuffer <em>Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Buffer Ref</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexBinding#getBufferRef()
+	 * @return the meta object for the reference '<em>Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexBinding#getBuffer()
 	 * @see #getVertexBinding()
 	 * @generated
 	 */
-	EReference getVertexBinding_BufferRef();
+	EReference getVertexBinding_Buffer();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer <em>Bind Index Buffer</em>}'.
@@ -3362,15 +3362,15 @@ public interface GraphicPackage extends EPackage
 	EAttribute getBindIndexBuffer_IndexType();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getBufferRef <em>Buffer Ref</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getBuffer <em>Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Buffer Ref</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getBufferRef()
+	 * @return the meta object for the reference '<em>Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getBuffer()
 	 * @see #getBindIndexBuffer()
 	 * @generated
 	 */
-	EReference getBindIndexBuffer_BufferRef();
+	EReference getBindIndexBuffer_Buffer();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -4265,12 +4265,12 @@ public interface GraphicPackage extends EPackage
 		EClass VERTEX_BINDING = eINSTANCE.getVertexBinding();
 
 		/**
-		 * The meta object literal for the '<em><b>Buffer Ref</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Buffer</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VERTEX_BINDING__BUFFER_REF = eINSTANCE.getVertexBinding_BufferRef();
+		EReference VERTEX_BINDING__BUFFER = eINSTANCE.getVertexBinding_Buffer();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl <em>Bind Index Buffer</em>}' class.
@@ -4291,12 +4291,12 @@ public interface GraphicPackage extends EPackage
 		EAttribute BIND_INDEX_BUFFER__INDEX_TYPE = eINSTANCE.getBindIndexBuffer_IndexType();
 
 		/**
-		 * The meta object literal for the '<em><b>Buffer Ref</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Buffer</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BIND_INDEX_BUFFER__BUFFER_REF = eINSTANCE.getBindIndexBuffer_BufferRef();
+		EReference BIND_INDEX_BUFFER__BUFFER = eINSTANCE.getBindIndexBuffer_Buffer();
 
 	}
 

@@ -104,6 +104,11 @@ public class BindingAdapterFactory extends AdapterFactoryImpl
 				return createConfigurePrepareCompositeAdapter();
 			}
 			@Override
+			public Adapter caseConfigureBufferDescriptor(ConfigureBufferDescriptor object)
+			{
+				return createConfigureBufferDescriptorAdapter();
+			}
+			@Override
 			public Adapter caseConfigureCompositeBufferBarrier(ConfigureCompositeBufferBarrier object)
 			{
 				return createConfigureCompositeBufferBarrierAdapter();
@@ -226,6 +231,21 @@ public class BindingAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createConfigurePrepareCompositeAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.binding.ConfigureBufferDescriptor <em>Configure Buffer Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.binding.ConfigureBufferDescriptor
+	 * @generated
+	 */
+	public Adapter createConfigureBufferDescriptorAdapter()
 	{
 		return null;
 	}

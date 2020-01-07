@@ -64,36 +64,10 @@ public class BarrierFactoryImpl extends EFactoryImpl implements BarrierFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case BarrierPackage.REFERENCE_BUFFER_BARRIER: return createReferenceBufferBarrier();
-			case BarrierPackage.REFERENCE_IMAGE_BARRIER: return createReferenceImageBarrier();
 			case BarrierPackage.IMAGE_TRANSITION: return createImageTransition();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ReferenceBufferBarrier createReferenceBufferBarrier()
-	{
-		ReferenceBufferBarrierImpl referenceBufferBarrier = new ReferenceBufferBarrierImpl();
-		return referenceBufferBarrier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ReferenceImageBarrier createReferenceImageBarrier()
-	{
-		ReferenceImageBarrierImpl referenceImageBarrier = new ReferenceImageBarrierImpl();
-		return referenceImageBarrier;
 	}
 
 	/**

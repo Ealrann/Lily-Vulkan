@@ -10,9 +10,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -29,7 +26,6 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
@@ -74,6 +70,7 @@ public class BufferDescriptorItemProvider
 			addNamePropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 			addShaderStagesPropertyDescriptor(object);
+			addBufferPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -148,36 +145,26 @@ public class BufferDescriptorItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Buffer feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
+	protected void addBufferPropertyDescriptor(Object object)
 	{
-		if (childrenFeatures == null)
-		{
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(ResourcePackage.Literals.BUFFER_DESCRIPTOR__BUFFER_REFERENCE);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BufferDescriptor_buffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDescriptor_buffer_feature", "_UI_BufferDescriptor_type"),
+				 ResourcePackage.Literals.BUFFER_DESCRIPTOR__BUFFER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -227,9 +214,6 @@ public class BufferDescriptorItemProvider
 			case ResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ResourcePackage.BUFFER_DESCRIPTOR__BUFFER_REFERENCE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -245,16 +229,6 @@ public class BufferDescriptorItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.BUFFER_DESCRIPTOR__BUFFER_REFERENCE,
-				 ResourceFactory.eINSTANCE.createBufferReference()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.BUFFER_DESCRIPTOR__BUFFER_REFERENCE,
-				 ResourceFactory.eINSTANCE.createCompositeBufferReference()));
 	}
 
 	/**

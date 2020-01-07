@@ -14,7 +14,7 @@ import org.sheepy.lily.vulkan.model.IDescriptor;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDescriptor#getBufferReference <em>Buffer Reference</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDescriptor#getBuffer <em>Buffer</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDescriptor()
@@ -24,25 +24,25 @@ import org.sheepy.lily.vulkan.model.IDescriptor;
 public interface BufferDescriptor extends IDescriptor
 {
 	/**
-	 * Returns the value of the '<em><b>Buffer Reference</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Buffer Reference</em>' containment reference.
-	 * @see #setBufferReference(IBufferReference)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDescriptor_BufferReference()
-	 * @model containment="true" required="true"
+	 * @return the value of the '<em>Buffer</em>' reference.
+	 * @see #setBuffer(IBuffer)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDescriptor_Buffer()
+	 * @model required="true"
 	 * @generated
 	 */
-	IBufferReference getBufferReference();
+	IBuffer getBuffer();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDescriptor#getBufferReference <em>Buffer Reference</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDescriptor#getBuffer <em>Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Buffer Reference</em>' containment reference.
-	 * @see #getBufferReference()
+	 * @param value the new value of the '<em>Buffer</em>' reference.
+	 * @see #getBuffer()
 	 * @generated
 	 */
-	void setBufferReference(IBufferReference value);
+	void setBuffer(IBuffer value);
 
 } // BufferDescriptor

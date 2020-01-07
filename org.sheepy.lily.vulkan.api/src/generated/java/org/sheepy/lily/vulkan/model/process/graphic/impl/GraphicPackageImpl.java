@@ -317,7 +317,10 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		isInited = true;
 
 		// Initialize simple dependencies
+		UiPackage.eINSTANCE.eClass();
+		PresentationPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
+		VariablePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
@@ -328,9 +331,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
-		UiPackage.eINSTANCE.eClass();
-		PresentationPackage.eINSTANCE.eClass();
-		VariablePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BindingPackage.eNS_URI);
@@ -1496,7 +1496,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getVertexBinding_BufferRef()
+	public EReference getVertexBinding_Buffer()
 	{
 		return (EReference)vertexBindingEClass.getEStructuralFeatures().get(0);
 	}
@@ -1529,7 +1529,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getBindIndexBuffer_BufferRef()
+	public EReference getBindIndexBuffer_Buffer()
 	{
 		return (EReference)bindIndexBufferEClass.getEStructuralFeatures().get(1);
 	}
@@ -1692,11 +1692,11 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(setViewportEClass, SET_VIEWPORT__MAX_DEPTH);
 
 		vertexBindingEClass = createEClass(VERTEX_BINDING);
-		createEReference(vertexBindingEClass, VERTEX_BINDING__BUFFER_REF);
+		createEReference(vertexBindingEClass, VERTEX_BINDING__BUFFER);
 
 		bindIndexBufferEClass = createEClass(BIND_INDEX_BUFFER);
 		createEAttribute(bindIndexBufferEClass, BIND_INDEX_BUFFER__INDEX_TYPE);
-		createEReference(bindIndexBufferEClass, BIND_INDEX_BUFFER__BUFFER_REF);
+		createEReference(bindIndexBufferEClass, BIND_INDEX_BUFFER__BUFFER);
 	}
 
 	/**
@@ -1897,11 +1897,11 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getSetViewport_MaxDepth(), ecorePackage.getEFloat(), "maxDepth", "1", 0, 1, SetViewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(vertexBindingEClass, VertexBinding.class, "VertexBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVertexBinding_BufferRef(), theResourcePackage.getIBufferReference(), null, "bufferRef", null, 0, 1, VertexBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVertexBinding_Buffer(), theResourcePackage.getIBuffer(), null, "buffer", null, 0, 1, VertexBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bindIndexBufferEClass, BindIndexBuffer.class, "BindIndexBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBindIndexBuffer_IndexType(), theEnumerationPackage.getEIndexType(), "indexType", "UINT32", 0, 1, BindIndexBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBindIndexBuffer_BufferRef(), theResourcePackage.getIBufferReference(), null, "bufferRef", null, 0, 1, BindIndexBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBindIndexBuffer_Buffer(), theResourcePackage.getIBuffer(), null, "buffer", null, 0, 1, BindIndexBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

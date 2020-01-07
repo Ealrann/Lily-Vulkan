@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
 
-public class VkModelUtil
+public final class VkModelUtil
 {
-	public static final int getEnumeratedFlag(List<? extends Enumerator> enumerates)
+	public static int getEnumeratedFlag(List<? extends Enumerator> enumerates)
 	{
 		int res = 0;
 

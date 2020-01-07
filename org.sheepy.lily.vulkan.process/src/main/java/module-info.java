@@ -1,12 +1,10 @@
 import org.sheepy.lily.core.api.adapter.annotation.Adapters;
 import org.sheepy.lily.vulkan.process.barrier.BufferBarrierAdapter;
-import org.sheepy.lily.vulkan.process.barrier.CompositeBufferBarrierAdapter;
 import org.sheepy.lily.vulkan.process.barrier.ImageBarrierAdapter;
-import org.sheepy.lily.vulkan.process.barrier.ReferenceBufferBarrierAdapter;
-import org.sheepy.lily.vulkan.process.barrier.ReferenceImageBarrierAdapter;
 import org.sheepy.lily.vulkan.process.binding.BindingConfigurationAdapter;
 import org.sheepy.lily.vulkan.process.binding.IndexConfigurationAdapter;
 import org.sheepy.lily.vulkan.process.binding.task.ConfigureBindAdapter;
+import org.sheepy.lily.vulkan.process.binding.task.ConfigureBufferDescriptorAdapter;
 import org.sheepy.lily.vulkan.process.binding.task.ConfigureCompositeBufferBarrierAdapter;
 import org.sheepy.lily.vulkan.process.binding.task.ConfigurePrepareCompositeAdapter;
 import org.sheepy.lily.vulkan.process.cadence.SwapBindingsTaskAdapter;
@@ -25,8 +23,6 @@ import org.sheepy.lily.vulkan.process.pipeline.task.RotateConfigurationAdapter;
 		PipelineBarrierAdapter.class,
 		PushConstantBufferAdapter.class,
 		DescriptorSetAdapter.class,
-		ReferenceBufferBarrierAdapter.class,
-		ReferenceImageBarrierAdapter.class,
 		BufferBarrierAdapter.class,
 		ImageBarrierAdapter.class,
 		PipelineAdapter.class,
@@ -35,14 +31,14 @@ import org.sheepy.lily.vulkan.process.pipeline.task.RotateConfigurationAdapter;
 		FlushTransferBufferTaskAdapter.class,
 		CopyBufferTaskAdapter.class,
 		PrepareCompositeTransferAdapter.class,
-		CompositeBufferBarrierAdapter.class,
 		SwapBindingsTaskAdapter.class,
 		RotateConfigurationAdapter.class,
 		ConfigureBindAdapter.class,
 		BindingConfigurationAdapter.class,
 		IndexConfigurationAdapter.class,
 		ConfigureCompositeBufferBarrierAdapter.class,
-		ConfigurePrepareCompositeAdapter.class
+		ConfigurePrepareCompositeAdapter.class,
+		ConfigureBufferDescriptorAdapter.class,
 })
 
 module org.sheepy.lily.vulkan.process

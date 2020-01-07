@@ -59,31 +59,13 @@ public interface ResourceFactory extends EFactory
 	CompositeBuffer createCompositeBuffer();
 
 	/**
-	 * Returns a new object of class '<em>Composite Part Reference</em>'.
+	 * Returns a new object of class '<em>Buffer Part</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Composite Part Reference</em>'.
+	 * @return a new object of class '<em>Buffer Part</em>'.
 	 * @generated
 	 */
-	CompositePartReference createCompositePartReference();
-
-	/**
-	 * Returns a new object of class '<em>Buffer Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Buffer Reference</em>'.
-	 * @generated
-	 */
-	BufferReference createBufferReference();
-
-	/**
-	 * Returns a new object of class '<em>Composite Buffer Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Composite Buffer Reference</em>'.
-	 * @generated
-	 */
-	CompositeBufferReference createCompositeBufferReference();
+	BufferPart createBufferPart();
 
 	/**
 	 * Returns a new object of class '<em>Buffer Data Provider</em>'.
@@ -210,15 +192,6 @@ public interface ResourceFactory extends EFactory
 	 * @generated
 	 */
 	BufferBarrier createBufferBarrier();
-
-	/**
-	 * Returns a new object of class '<em>Composite Buffer Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Composite Buffer Barrier</em>'.
-	 * @generated
-	 */
-	CompositeBufferBarrier createCompositeBufferBarrier();
 
 	/**
 	 * Returns a new object of class '<em>Image Barrier</em>'.

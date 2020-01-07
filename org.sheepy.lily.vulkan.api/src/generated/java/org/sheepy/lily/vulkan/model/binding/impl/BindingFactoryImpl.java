@@ -69,6 +69,7 @@ public class BindingFactoryImpl extends EFactoryImpl implements BindingFactory
 			case BindingPackage.CONFIGURE_BIND: return createConfigureBind();
 			case BindingPackage.ROTATE_CONFIGURATION: return createRotateConfiguration();
 			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE: return createConfigurePrepareComposite();
+			case BindingPackage.CONFIGURE_BUFFER_DESCRIPTOR: return createConfigureBufferDescriptor();
 			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER: return createConfigureCompositeBufferBarrier();
 			case BindingPackage.INDEX_CONFIGURATION: return createIndexConfiguration();
 			default:
@@ -86,8 +87,8 @@ public class BindingFactoryImpl extends EFactoryImpl implements BindingFactory
 	{
 		switch (eDataType.getClassifierID())
 		{
-			case BindingPackage.EINSTANCE:
-				return createEInstanceFromString(eDataType, initialValue);
+			case BindingPackage.ECONTEXT_INDEX:
+				return createEContextIndexFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -103,8 +104,8 @@ public class BindingFactoryImpl extends EFactoryImpl implements BindingFactory
 	{
 		switch (eDataType.getClassifierID())
 		{
-			case BindingPackage.EINSTANCE:
-				return convertEInstanceToString(eDataType, instanceValue);
+			case BindingPackage.ECONTEXT_INDEX:
+				return convertEContextIndexToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -164,6 +165,18 @@ public class BindingFactoryImpl extends EFactoryImpl implements BindingFactory
 	 * @generated
 	 */
 	@Override
+	public ConfigureBufferDescriptor createConfigureBufferDescriptor()
+	{
+		ConfigureBufferDescriptorImpl configureBufferDescriptor = new ConfigureBufferDescriptorImpl();
+		return configureBufferDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ConfigureCompositeBufferBarrier createConfigureCompositeBufferBarrier()
 	{
 		ConfigureCompositeBufferBarrierImpl configureCompositeBufferBarrier = new ConfigureCompositeBufferBarrierImpl();
@@ -187,9 +200,9 @@ public class BindingFactoryImpl extends EFactoryImpl implements BindingFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EInstance createEInstanceFromString(EDataType eDataType, String initialValue)
+	public EContextIndex createEContextIndexFromString(EDataType eDataType, String initialValue)
 	{
-		EInstance result = EInstance.get(initialValue);
+		EContextIndex result = EContextIndex.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -199,7 +212,7 @@ public class BindingFactoryImpl extends EFactoryImpl implements BindingFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertEInstanceToString(EDataType eDataType, Object instanceValue)
+	public String convertEContextIndexToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
