@@ -11,11 +11,14 @@ public final class ConfigureCompositeBufferBarrierAdapter
 	@Override
 	public void configure(BindConfiguration configuration, ConfigureCompositeBufferBarrier task)
 	{
-		final var barrier = task.getBarrier();
+		final var barriers = task.getBarriers();
 		final var index = task.getPartIndex();
 		final var compositeBuffer = task.getCompositeBuffer();
 		final var partIndex = configuration.computeInstance(index);
 
-		barrier.setBuffer(compositeBuffer.getParts().get(partIndex));
+		for (final var barrier : barriers)
+		{
+			barrier.setBuffer(compositeBuffer.getParts().get(partIndex));
+		}
 	}
 }

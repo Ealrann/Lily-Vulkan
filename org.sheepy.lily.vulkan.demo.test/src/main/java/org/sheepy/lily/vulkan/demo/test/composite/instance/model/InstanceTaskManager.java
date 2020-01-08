@@ -80,10 +80,10 @@ public class InstanceTaskManager
 		configureFetch.setPrepareTask(prepareFetch);
 		configureFetch.getPartIndices().add(EContextIndex.CONTEXT_INSTANCE_PLUS_ONE);
 		configureFetch.setCompositeBuffer(resourceContainer.compositeBuffer);
-		configureRead.setBarrier(readBarrier);
+		configureRead.getBarriers().add(readBarrier);
 		configureRead.setPartIndex(EContextIndex.CONTEXT_INSTANCE);
 		configureRead.setCompositeBuffer(resourceContainer.compositeBuffer);
-		configureWrite.setBarrier(writeBarrier);
+		configureWrite.getBarriers().add(writeBarrier);
 		configureWrite.setPartIndex(EContextIndex.CONTEXT_INSTANCE_PLUS_ONE);
 		configureWrite.setCompositeBuffer(resourceContainer.compositeBuffer);
 

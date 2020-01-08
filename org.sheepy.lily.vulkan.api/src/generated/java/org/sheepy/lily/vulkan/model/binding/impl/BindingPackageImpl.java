@@ -447,7 +447,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getConfigureCompositeBufferBarrier_Barrier()
+	public EReference getConfigureCompositeBufferBarrier_Barriers()
 	{
 		return (EReference)configureCompositeBufferBarrierEClass.getEStructuralFeatures().get(0);
 	}
@@ -584,7 +584,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		createEReference(configureBufferDescriptorEClass, CONFIGURE_BUFFER_DESCRIPTOR__DESCRIPTOR);
 
 		configureCompositeBufferBarrierEClass = createEClass(CONFIGURE_COMPOSITE_BUFFER_BARRIER);
-		createEReference(configureCompositeBufferBarrierEClass, CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER);
+		createEReference(configureCompositeBufferBarrierEClass, CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIERS);
 		createEAttribute(configureCompositeBufferBarrierEClass, CONFIGURE_COMPOSITE_BUFFER_BARRIER__PART_INDEX);
 		createEReference(configureCompositeBufferBarrierEClass, CONFIGURE_COMPOSITE_BUFFER_BARRIER__COMPOSITE_BUFFER);
 
@@ -668,7 +668,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		initEReference(getConfigureBufferDescriptor_Descriptor(), theResourcePackage.getBufferDescriptor(), null, "descriptor", null, 1, 1, ConfigureBufferDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configureCompositeBufferBarrierEClass, ConfigureCompositeBufferBarrier.class, "ConfigureCompositeBufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConfigureCompositeBufferBarrier_Barrier(), theResourcePackage.getBufferBarrier(), null, "barrier", null, 1, 1, ConfigureCompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfigureCompositeBufferBarrier_Barriers(), theResourcePackage.getBufferBarrier(), null, "barriers", null, 1, -1, ConfigureCompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfigureCompositeBufferBarrier_PartIndex(), this.getEContextIndex(), "partIndex", null, 1, 1, ConfigureCompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfigureCompositeBufferBarrier_CompositeBuffer(), theResourcePackage.getCompositeBuffer(), null, "compositeBuffer", null, 1, 1, ConfigureCompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

@@ -66,7 +66,7 @@ public class ConfigureCompositeBufferBarrierItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addBarrierPropertyDescriptor(object);
+			addBarriersPropertyDescriptor(object);
 			addPartIndexPropertyDescriptor(object);
 			addCompositeBufferPropertyDescriptor(object);
 		}
@@ -97,20 +97,20 @@ public class ConfigureCompositeBufferBarrierItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Barrier feature.
+	 * This adds a property descriptor for the Barriers feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBarrierPropertyDescriptor(Object object)
+	protected void addBarriersPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ConfigureCompositeBufferBarrier_barrier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigureCompositeBufferBarrier_barrier_feature", "_UI_ConfigureCompositeBufferBarrier_type"),
-				 BindingPackage.Literals.CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER,
+				 getString("_UI_ConfigureCompositeBufferBarrier_barriers_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigureCompositeBufferBarrier_barriers_feature", "_UI_ConfigureCompositeBufferBarrier_type"),
+				 BindingPackage.Literals.CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIERS,
 				 true,
 				 false,
 				 true,

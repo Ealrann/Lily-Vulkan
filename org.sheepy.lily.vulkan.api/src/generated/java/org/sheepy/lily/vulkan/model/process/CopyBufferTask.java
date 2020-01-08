@@ -27,44 +27,44 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 public interface CopyBufferTask extends IPipelineTask
 {
 	/**
-	 * Returns the value of the '<em><b>Src Buffer</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Src Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Src Buffer</em>' containment reference.
+	 * @return the value of the '<em>Src Buffer</em>' reference.
 	 * @see #setSrcBuffer(IBuffer)
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getCopyBufferTask_SrcBuffer()
-	 * @model containment="true" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	IBuffer getSrcBuffer();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getSrcBuffer <em>Src Buffer</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getSrcBuffer <em>Src Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Src Buffer</em>' containment reference.
+	 * @param value the new value of the '<em>Src Buffer</em>' reference.
 	 * @see #getSrcBuffer()
 	 * @generated
 	 */
 	void setSrcBuffer(IBuffer value);
 
 	/**
-	 * Returns the value of the '<em><b>Dst Buffer</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Dst Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dst Buffer</em>' containment reference.
+	 * @return the value of the '<em>Dst Buffer</em>' reference.
 	 * @see #setDstBuffer(IBuffer)
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getCopyBufferTask_DstBuffer()
-	 * @model containment="true" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	IBuffer getDstBuffer();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getDstBuffer <em>Dst Buffer</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getDstBuffer <em>Dst Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Dst Buffer</em>' containment reference.
+	 * @param value the new value of the '<em>Dst Buffer</em>' reference.
 	 * @see #getDstBuffer()
 	 * @generated
 	 */

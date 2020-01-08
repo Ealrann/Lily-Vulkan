@@ -1031,7 +1031,7 @@ public interface ProcessPackage extends EPackage
 	int COPY_BUFFER_TASK__SIZE = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Src Buffer</b></em>' containment reference.
+	 * The feature id for the '<em><b>Src Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1040,7 +1040,7 @@ public interface ProcessPackage extends EPackage
 	int COPY_BUFFER_TASK__SRC_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Dst Buffer</b></em>' containment reference.
+	 * The feature id for the '<em><b>Dst Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1737,10 +1737,10 @@ public interface ProcessPackage extends EPackage
 	EClass getCopyBufferTask();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getSrcBuffer <em>Src Buffer</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getSrcBuffer <em>Src Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Src Buffer</em>'.
+	 * @return the meta object for the reference '<em>Src Buffer</em>'.
 	 * @see org.sheepy.lily.vulkan.model.process.CopyBufferTask#getSrcBuffer()
 	 * @see #getCopyBufferTask()
 	 * @generated
@@ -1748,10 +1748,10 @@ public interface ProcessPackage extends EPackage
 	EReference getCopyBufferTask_SrcBuffer();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getDstBuffer <em>Dst Buffer</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getDstBuffer <em>Dst Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Dst Buffer</em>'.
+	 * @return the meta object for the reference '<em>Dst Buffer</em>'.
 	 * @see org.sheepy.lily.vulkan.model.process.CopyBufferTask#getDstBuffer()
 	 * @see #getCopyBufferTask()
 	 * @generated
@@ -2316,7 +2316,7 @@ public interface ProcessPackage extends EPackage
 		EClass COPY_BUFFER_TASK = eINSTANCE.getCopyBufferTask();
 
 		/**
-		 * The meta object literal for the '<em><b>Src Buffer</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Src Buffer</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2324,7 +2324,7 @@ public interface ProcessPackage extends EPackage
 		EReference COPY_BUFFER_TASK__SRC_BUFFER = eINSTANCE.getCopyBufferTask_SrcBuffer();
 
 		/**
-		 * The meta object literal for the '<em><b>Dst Buffer</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Dst Buffer</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

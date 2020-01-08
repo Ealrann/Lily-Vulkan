@@ -467,13 +467,13 @@ public interface BindingPackage extends EPackage
 	int CONFIGURE_COMPOSITE_BUFFER_BARRIER__NAME = ICONFIGURATION_TASK__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Barrier</b></em>' reference.
+	 * The feature id for the '<em><b>Barriers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER = ICONFIGURATION_TASK_FEATURE_COUNT + 0;
+	int CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIERS = ICONFIGURATION_TASK_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Part Index</b></em>' attribute.
@@ -768,15 +768,15 @@ public interface BindingPackage extends EPackage
 	EClass getConfigureCompositeBufferBarrier();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getBarrier <em>Barrier</em>}'.
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getBarriers <em>Barriers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Barrier</em>'.
-	 * @see org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getBarrier()
+	 * @return the meta object for the reference list '<em>Barriers</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getBarriers()
 	 * @see #getConfigureCompositeBufferBarrier()
 	 * @generated
 	 */
-	EReference getConfigureCompositeBufferBarrier_Barrier();
+	EReference getConfigureCompositeBufferBarrier_Barriers();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier#getPartIndex <em>Part Index</em>}'.
@@ -1035,12 +1035,12 @@ public interface BindingPackage extends EPackage
 		EClass CONFIGURE_COMPOSITE_BUFFER_BARRIER = eINSTANCE.getConfigureCompositeBufferBarrier();
 
 		/**
-		 * The meta object literal for the '<em><b>Barrier</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Barriers</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIER = eINSTANCE.getConfigureCompositeBufferBarrier_Barrier();
+		EReference CONFIGURE_COMPOSITE_BUFFER_BARRIER__BARRIERS = eINSTANCE.getConfigureCompositeBufferBarrier_Barriers();
 
 		/**
 		 * The meta object literal for the '<em><b>Part Index</b></em>' attribute feature.
