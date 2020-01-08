@@ -10,6 +10,8 @@ public class VkBufferBarrier implements VkBarrier<VkBufferMemoryBarrier>
 	private final int dstAccessMask;
 
 	private long bufferPtr = 0;
+	private long offset = 0;
+	private long size = 0;
 	private boolean changed = true;
 
 	public VkBufferBarrier(int srcAccessMask, int dstAccessMask)
@@ -24,6 +26,18 @@ public class VkBufferBarrier implements VkBarrier<VkBufferMemoryBarrier>
 		changed = true;
 	}
 
+	public void updateOffset(long offset)
+	{
+		this.offset = offset;
+		changed = true;
+	}
+
+	public void updateSize(long size)
+	{
+		this.size = size;
+		changed = true;
+	}
+
 	@Override
 	public void fill(VkBufferMemoryBarrier info)
 	{
@@ -31,8 +45,8 @@ public class VkBufferBarrier implements VkBarrier<VkBufferMemoryBarrier>
 		info.buffer(bufferPtr);
 		info.srcAccessMask(srcAccessMask);
 		info.dstAccessMask(dstAccessMask);
-		info.offset(0);
-		info.size(VK_WHOLE_SIZE);
+		info.offset(offset);
+		info.size(size);
 
 		changed = false;
 	}

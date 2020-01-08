@@ -36,8 +36,6 @@ public class BufferBarrierAdapter implements IBufferBarrierAdapter
 	{
 		final var bufferAdapter = barrier.getBuffer().adaptNotNull(IBufferAdapter.class);
 		bufferAdapter.addListener(bufferListener, IBufferAdapter.Features.Ptr.ordinal());
-
-		vkBarrier.updatePtr(bufferAdapter.getPtr());
 	}
 
 	@Dispose
@@ -52,16 +50,28 @@ public class BufferBarrierAdapter implements IBufferBarrierAdapter
 	{
 		if (loaded == false)
 		{
-			final var adapter = barrier.getBuffer().adapt(IBufferAdapter.class);
-			vkBarrier.updatePtr(adapter.getPtr());
+			updateBarrier();
 			loaded = true;
 		}
 	}
 
-	private void bufferChanged(Notification notification)
+	private void updateBarrier()
 	{
 		final var adapter = barrier.getBuffer().adapt(IBufferAdapter.class);
+
 		vkBarrier.updatePtr(adapter.getPtr());
+		vkBarrier.updateOffset(adapter.getBindOffset());
+		vkBarrier.updateSize(adapter.getBindSize());
+
+		System.out.println("Update barrier: buffer="
+				+ adapter.getPtr()
+				+ ", offset="
+				+ adapter.getBindOffset());
+	}
+
+	private void bufferChanged(Notification notification)
+	{
+		updateBarrier();
 	}
 
 	@Override

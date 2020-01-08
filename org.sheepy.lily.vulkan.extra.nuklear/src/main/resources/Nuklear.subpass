@@ -73,8 +73,18 @@
         <tasks xsi:type="process:BindDescriptorSets" descriptorSets="//@pipelinePkg/@pipelines.0/@descriptorSetPkg/@descriptorSets.0"/>
         <tasks xsi:type="nuklear:NuklearLayoutTask" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3"/>
         <tasks xsi:type="process:PrepareCompositeTransfer" compositeBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7" prepareDuringUpdate="true" parts="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7/@parts.0 //@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7/@parts.1" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6"/>
-        <tasks xsi:type="nuklear:NuklearFillBufferTask" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3" drawTask="//@pipelinePkg/@pipelines.0/@taskPkg/@tasks.5" vertexBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7" layoutTask="//@pipelinePkg/@pipelines.0/@taskPkg/@tasks.1"/>
+        <tasks xsi:type="nuklear:NuklearFillBufferTask" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3" drawTask="//@pipelinePkg/@pipelines.0/@taskPkg/@tasks.6" vertexBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7" layoutTask="//@pipelinePkg/@pipelines.0/@taskPkg/@tasks.1"/>
         <tasks xsi:type="process:FlushTransferBufferTask" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6"/>
+        <tasks xsi:type="process:PipelineBarrier">
+          <barriers xsi:type="resource:BufferBarrier" name="Vertex" buffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7/@parts.0">
+            <srcAccessMask>TRANSFER_WRITE_BIT</srcAccessMask>
+            <dstAccessMask>VERTEX_ATTRIBUTE_READ_BIT</dstAccessMask>
+          </barriers>
+          <barriers xsi:type="resource:BufferBarrier" name="Index" buffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7/@parts.1">
+            <srcAccessMask>TRANSFER_WRITE_BIT</srcAccessMask>
+            <dstAccessMask>INDEX_READ_BIT</dstAccessMask>
+          </barriers>
+        </tasks>
         <tasks xsi:type="process:CompositeTask" name="Nk draw"/>
       </taskPkg>
       <viewportState xsi:type="graphicpipeline:DynamicViewportState" viewportCount="1" scissorCount="1"/>

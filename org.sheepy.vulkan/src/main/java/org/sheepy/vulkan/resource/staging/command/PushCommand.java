@@ -46,7 +46,7 @@ public final class PushCommand implements IDataFlowCommand
 	public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
 	{
 		final var srcBuffer = ticket.getBufferPtr();
-		final var srcoffset = ticket.getBufferOffset();
+		final var srcOffset = ticket.getBufferOffset();
 		final var size = ticket.getSize();
 
 		// Submission guarantees the host write being complete, as per
@@ -69,7 +69,7 @@ public final class PushCommand implements IDataFlowCommand
 		final var hostBarrier = barriers.get(1);
 		hostBarrier.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
 		hostBarrier.buffer(srcBuffer);
-		hostBarrier.offset(srcoffset);
+		hostBarrier.offset(srcOffset);
 		hostBarrier.size(size);
 		hostBarrier.srcAccessMask(0);
 		hostBarrier.dstAccessMask(EAccess.TRANSFER_READ_BIT_VALUE);
@@ -79,7 +79,7 @@ public final class PushCommand implements IDataFlowCommand
 		BufferUtils.copyBuffer(	stack,
 								commandBuffer,
 								srcBuffer,
-								srcoffset,
+								srcOffset,
 								trgBuffer,
 								trgOffset,
 								size);
@@ -106,6 +106,6 @@ public final class PushCommand implements IDataFlowCommand
 	@Override
 	public String toString()
 	{
-		return "PipelinePushCommand  [trgBuffer=" + trgBuffer + ", trgOffset=" + trgOffset + "]";
+		return "PipelinePushCommand  [trg: Buffer=" + trgBuffer + ", Offset=" + trgOffset + "]";
 	}
 }
