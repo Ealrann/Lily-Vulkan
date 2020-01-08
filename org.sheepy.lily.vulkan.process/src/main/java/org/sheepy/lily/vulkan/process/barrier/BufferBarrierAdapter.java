@@ -63,10 +63,10 @@ public class BufferBarrierAdapter implements IBufferBarrierAdapter
 		vkBarrier.updateOffset(adapter.getBindOffset());
 		vkBarrier.updateSize(adapter.getBindSize());
 
-		System.out.println("Update barrier: buffer="
-				+ adapter.getPtr()
-				+ ", offset="
-				+ adapter.getBindOffset());
+		// System.out.println("Update barrier: buffer="
+		// + adapter.getPtr()
+		// + ", offset="
+		// + adapter.getBindOffset());
 	}
 
 	private void bufferChanged(Notification notification)
