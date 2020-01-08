@@ -75,7 +75,7 @@
         <tasks xsi:type="process:PrepareCompositeTransfer" compositeBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7" prepareDuringUpdate="true" parts="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7/@parts.0 //@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7/@parts.1" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6"/>
         <tasks xsi:type="nuklear:NuklearFillBufferTask" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3" drawTask="//@pipelinePkg/@pipelines.0/@taskPkg/@tasks.6" vertexBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7" layoutTask="//@pipelinePkg/@pipelines.0/@taskPkg/@tasks.1"/>
         <tasks xsi:type="process:FlushTransferBufferTask" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6"/>
-        <tasks xsi:type="process:PipelineBarrier">
+        <tasks xsi:type="process:PipelineBarrier" srcStage="TRANSFER_BIT" dstStage="VERTEX_INPUT_BIT" recordDuringStage="Transfer">
           <barriers xsi:type="resource:BufferBarrier" name="Vertex" buffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7/@parts.0">
             <srcAccessMask>TRANSFER_WRITE_BIT</srcAccessMask>
             <dstAccessMask>VERTEX_ATTRIBUTE_READ_BIT</dstAccessMask>
