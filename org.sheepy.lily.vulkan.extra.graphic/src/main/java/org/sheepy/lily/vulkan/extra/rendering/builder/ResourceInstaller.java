@@ -119,7 +119,6 @@ public final class ResourceInstaller<T extends Structure>
 
 		for (int i = 0; i < dataProviders.size(); i++)
 		{
-			final var transferReference = ResourceFactory.eINSTANCE.createCompositePartReference();
 			final var dataProvider = dataProviders.get(i);
 			final var dataSource = RenderingFactory.eINSTANCE.<T> createRenderableDataSource();
 			dataSource.setPart(part);
@@ -127,10 +126,12 @@ public final class ResourceInstaller<T extends Structure>
 
 			final var copy = EcoreUtil.copy(dataProvider);
 			copy.setDataSource(dataSource);
-			buffer.getDataProviders().add(copy);
 
-			transferReference.setPart(i);
-			prepareTranferTask.getParts().add(transferReference);
+			final var bufferPart = ResourceFactory.eINSTANCE.createBufferPart();
+			bufferPart.setDataProvider(copy);
+
+			buffer.getParts().add(bufferPart);
+			prepareTranferTask.getParts().add(bufferPart);
 		}
 
 		buffer.setMinSize(BUFFER_MIN_SIZE);

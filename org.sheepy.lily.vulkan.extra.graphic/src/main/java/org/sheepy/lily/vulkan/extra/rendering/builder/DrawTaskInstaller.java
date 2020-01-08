@@ -15,7 +15,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 public final class DrawTaskInstaller
@@ -36,15 +35,18 @@ public final class DrawTaskInstaller
 		final var taskPkg = pipeline.getTaskPkg();
 		final var resourcePkg = pipeline.getResourcePkg();
 		final var buffer = context.buffer;
-		final var dataProviders = buffer.getDataProviders();
+		final var bufferParts = buffer.getParts();
 		final List<VertexProvider<?>> vertexProviders = new ArrayList<>();
+		final List<BufferDataProvider<?>> dataProviders = new ArrayList<>();
 
 		final List<VertexBinding> vertexBufferRef = new ArrayList<>();
 		int indexIndex = -1;
 
-		for (int i = 0; i < dataProviders.size(); i++)
+		for (int i = 0; i < bufferParts.size(); i++)
 		{
-			final var provider = dataProviders.get(i);
+			final var part = bufferParts.get(i);
+			final var provider = part.getDataProvider();
+			dataProviders.add(provider);
 
 			if (provider instanceof IndexProvider)
 			{
@@ -56,15 +58,9 @@ public final class DrawTaskInstaller
 			}
 			else if (provider instanceof VertexProvider)
 			{
-				final var vertexRef = ResourceFactory.eINSTANCE.createCompositeBufferReference();
-				vertexRef.setBuffer(buffer);
-				vertexRef.setPart(i);
-
 				final var vertexBinding = GraphicFactory.eINSTANCE.createVertexBinding();
-				vertexBinding.setBufferRef(vertexRef);
-
+				vertexBinding.setBuffer(part);
 				vertexBufferRef.add(vertexBinding);
-
 				vertexProviders.add((VertexProvider<?>) provider);
 			}
 		}
@@ -86,14 +82,11 @@ public final class DrawTaskInstaller
 
 		if (indexIndex != -1)
 		{
-			final var indexProvider = (IndexProvider<?>) dataProviders.get(indexIndex);
-
-			final var indexRef = ResourceFactory.eINSTANCE.createCompositeBufferReference();
-			indexRef.setBuffer(buffer);
-			indexRef.setPart(1);
+			final var part = bufferParts.get(indexIndex);
+			final var indexProvider = (IndexProvider<?>) part.getDataProvider();
 
 			final var bindIndex = GraphicFactory.eINSTANCE.createBindIndexBuffer();
-			bindIndex.setBufferRef(indexRef);
+			bindIndex.setBuffer(part);
 			bindIndex.setIndexType(indexProvider.getIndexType());
 
 			final var indexedDraw = RenderingFactory.eINSTANCE.createRenderIndexedDrawTask();

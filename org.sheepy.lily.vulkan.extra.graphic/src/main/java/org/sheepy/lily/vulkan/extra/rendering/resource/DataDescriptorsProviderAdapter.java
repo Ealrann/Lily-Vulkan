@@ -32,12 +32,8 @@ public class DataDescriptorsProviderAdapter implements IDescriptorProviderAdapte
 		{
 			final var dataDescriptor = dataDescriptors.get(i);
 
-			final var compositeBufferReference = ResourceFactory.eINSTANCE.createCompositeBufferReference();
-			compositeBufferReference.setBuffer(compositeBuffer);
-			compositeBufferReference.setPart(dataDescriptor.getPart());
-			compositeBufferReference.setInstance(dataDescriptor.getInstance());
 			final var descriptor = ResourceFactory.eINSTANCE.createBufferDescriptor();
-			descriptor.setBufferReference(compositeBufferReference);
+			descriptor.setBuffer(compositeBuffer.getParts().get(i));
 			descriptor.setType(dataDescriptor.getDescriptorType());
 			descriptor.getShaderStages().addAll(dataDescriptor.getStages());
 
