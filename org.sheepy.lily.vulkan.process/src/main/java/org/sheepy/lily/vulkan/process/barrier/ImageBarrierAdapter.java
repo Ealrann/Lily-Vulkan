@@ -4,11 +4,13 @@ import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
+import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.barrier.IImageBarrierAdapter;
 import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.barrier.VkImageBarrier;
 import org.sheepy.vulkan.resource.image.ImageUtil;
 import org.sheepy.vulkan.util.VkModelUtil;
@@ -21,7 +23,7 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter
 	private final INotificationListener imageListener = this::imageChanged;
 	private final ImageBarrier imageBarrier;
 
-	private boolean loaded = false;
+	private boolean changed = true;
 
 	public ImageBarrierAdapter(ImageBarrier imageBarrier)
 	{
@@ -43,6 +45,12 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter
 										aspectMask);
 	}
 
+	@NotifyChanged(featureIds = ResourcePackage.IMAGE_BARRIER__IMAGE)
+	private void imageChanged(Notification notification)
+	{
+		changed = true;
+	}
+
 	@Load
 	private void load()
 	{
@@ -60,18 +68,12 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter
 	@Override
 	public void update(int index)
 	{
-		if (loaded == false)
+		if (changed == true)
 		{
 			final var adapter = imageBarrier.getImage().adapt(IImageAdapter.class);
 			vkBarrier.updatePtr(adapter.getImagePtr());
-			loaded = true;
+			changed = false;
 		}
-	}
-
-	private void imageChanged(Notification notification)
-	{
-		final var adapter = imageBarrier.getImage().adapt(IImageAdapter.class);
-		vkBarrier.updatePtr(adapter.getImagePtr());
 	}
 
 	@Override
