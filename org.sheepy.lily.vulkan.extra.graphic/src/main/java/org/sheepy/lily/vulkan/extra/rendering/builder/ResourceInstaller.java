@@ -22,8 +22,6 @@ import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 
 public final class ResourceInstaller<T extends Structure>
 {
-	private static final int BUFFER_MIN_SIZE = 1 << 16;
-
 	private final GenericRenderer<T> maintainer;
 	private final List<CompositeBuffer> buffers = new ArrayList<>();
 	private final List<DescriptorSet> dynamicBindings = new ArrayList<>();
@@ -133,8 +131,6 @@ public final class ResourceInstaller<T extends Structure>
 			buffer.getParts().add(bufferPart);
 			prepareTranferTask.getParts().add(bufferPart);
 		}
-
-		buffer.setMinSize(BUFFER_MIN_SIZE);
 
 		@SuppressWarnings("unchecked")
 		final var containingList = (List<IPipelineTask>) flushTransferTask	.eContainer()

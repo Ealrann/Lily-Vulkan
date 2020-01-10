@@ -39,12 +39,9 @@ public class PanelAdapter extends Notifier implements IPanelAdapter, ITextWidget
 	{
 		super(Features.values().length);
 		this.panel = panel;
-		String name = panel.getName();
+		final String name = panel.getName();
 
-		if (name == null)
-		{
-			name = "";
-		}
+		assert name != null && name.isEmpty() == false;
 
 		style = NK_WINDOW_BORDER | NK_WINDOW_NO_SCROLLBAR | NK_WINDOW_BACKGROUND;
 		if (panel.isMinimizable())
@@ -71,6 +68,7 @@ public class PanelAdapter extends Notifier implements IPanelAdapter, ITextWidget
 	public void unsetTarget()
 	{
 		MemoryUtil.memFree(textBuffer);
+		
 		if (window != null)
 		{
 			window.removeListener(listener);

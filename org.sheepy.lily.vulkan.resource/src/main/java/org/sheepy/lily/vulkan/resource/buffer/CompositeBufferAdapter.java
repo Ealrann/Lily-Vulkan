@@ -161,8 +161,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		if (found)
 		{
 			final var usageSize = alignData();
-			final long size = Math.max(	Math.max(usageSize.position, compositeBuffer.getMinSize()),
-										1);
+			final long size = Math.max(usageSize.position, 1);
 			updateBuffer(size, usageSize.usage);
 		}
 	}

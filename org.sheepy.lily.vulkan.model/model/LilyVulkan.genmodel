@@ -332,7 +332,6 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//CompositeBuffer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/parts"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CompositeBuffer/minSize"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//BufferPart">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//BufferPart/dataProvider"/>
@@ -351,6 +350,7 @@
           ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/instanceCount"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/growFactor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/growThreshold"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/minSize"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//Image"/>
     <genClasses ecoreClass="resource.ecore#//StaticImage">

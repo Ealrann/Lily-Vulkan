@@ -89,7 +89,7 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 		final long oldOffset = this.offset;
 
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
-		final long size = (long) (adapter.requestedSize() * dataProvider.getGrowFactor());
+		final long size = computeSize(adapter);
 
 		this.instanceSize = align(size, alignment);
 		this.offset = align(desiredOffset, alignment);
@@ -102,6 +102,16 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 		{
 			fireNotification(new LongNotification(this, Features.Offset, oldOffset, this.offset));
 		}
+	}
+
+	private long computeSize(final IBufferDataProviderAdapter adapter)
+	{
+		final long requestedSize = adapter.requestedSize();
+		final float growFactor = dataProvider.getGrowFactor();
+		final long minSize = dataProvider.getMinSize();
+		final long size = (long) Math.ceil(requestedSize * growFactor);
+
+		return Math.max(size, minSize);
 	}
 
 	public void updateBuffer(long bufferPtr)
@@ -216,7 +226,9 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 	public boolean sizeChanged()
 	{
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
-		return (instanceSize * dataProvider.getGrowThreshold()) < adapter.requestedSize();
+		final float growSize = instanceSize * dataProvider.getGrowThreshold();
+
+		return adapter.requestedSize() > growSize;
 	}
 
 	public long getTotalSize()

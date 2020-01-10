@@ -69,6 +69,7 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 			addInstanceCountPropertyDescriptor(object);
 			addGrowFactorPropertyDescriptor(object);
 			addGrowThresholdPropertyDescriptor(object);
+			addMinSizePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -350,6 +351,29 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 	}
 
 	/**
+	 * This adds a property descriptor for the Min Size feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMinSizePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BufferDataProvider_minSize_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDataProvider_minSize_feature", "_UI_BufferDataProvider_type"),
+				 ResourcePackage.Literals.BUFFER_DATA_PROVIDER__MIN_SIZE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns BufferDataProvider.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -402,6 +426,7 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 			case ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR:
 			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD:
+			case ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -40,6 +40,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getInstanceCount <em>Instance Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getGrowFactor <em>Grow Factor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getGrowThreshold <em>Grow Threshold</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getMinSize <em>Min Size</em>}</li>
  * </ul>
  *
  * @generated
@@ -245,6 +246,26 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 	 * @ordered
 	 */
 	protected float growThreshold = GROW_THRESHOLD_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getMinSize() <em>Min Size</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMinSize()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long MIN_SIZE_EDEFAULT = 0L;
+
+	/**
+	 * The cached value of the '{@link #getMinSize() <em>Min Size</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMinSize()
+	 * @generated
+	 * @ordered
+	 */
+	protected long minSize = MIN_SIZE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -568,6 +589,31 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 	 * @generated
 	 */
 	@Override
+	public long getMinSize()
+	{
+		return minSize;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setMinSize(long newMinSize)
+	{
+		long oldMinSize = minSize;
+		minSize = newMinSize;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE, oldMinSize, minSize));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -612,6 +658,8 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 				return getGrowFactor();
 			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD:
 				return getGrowThreshold();
+			case ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE:
+				return getMinSize();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -666,6 +714,9 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD:
 				setGrowThreshold((Float)newValue);
 				return;
+			case ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE:
+				setMinSize((Long)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -716,6 +767,9 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD:
 				setGrowThreshold(GROW_THRESHOLD_EDEFAULT);
 				return;
+			case ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE:
+				setMinSize(MIN_SIZE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -754,6 +808,8 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 				return growFactor != GROW_FACTOR_EDEFAULT;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD:
 				return growThreshold != GROW_THRESHOLD_EDEFAULT;
+			case ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE:
+				return minSize != MIN_SIZE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -791,6 +847,8 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 		result.append(growFactor);
 		result.append(", growThreshold: ");
 		result.append(growThreshold);
+		result.append(", minSize: ");
+		result.append(minSize);
 		result.append(')');
 		return result.toString();
 	}

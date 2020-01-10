@@ -30,6 +30,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getInstanceCount <em>Instance Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getGrowFactor <em>Grow Factor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getGrowThreshold <em>Grow Threshold</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getMinSize <em>Min Size</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider()
@@ -268,5 +269,28 @@ public interface BufferDataProvider<T> extends LNamedElement
 	 * @generated
 	 */
 	void setGrowThreshold(float value);
+
+	/**
+	 * Returns the value of the '<em><b>Min Size</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Min Size</em>' attribute.
+	 * @see #setMinSize(long)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDataProvider_MinSize()
+	 * @model default="0" required="true"
+	 * @generated
+	 */
+	long getMinSize();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getMinSize <em>Min Size</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Min Size</em>' attribute.
+	 * @see #getMinSize()
+	 * @generated
+	 */
+	void setMinSize(long value);
 
 } // BufferDataProvider

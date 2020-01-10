@@ -352,22 +352,13 @@ public interface ResourcePackage extends EPackage
 	int COMPOSITE_BUFFER__PARTS = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Min Size</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_BUFFER__MIN_SIZE = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Composite Buffer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_BUFFER_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 2;
+	int COMPOSITE_BUFFER_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Composite Buffer</em>' class.
@@ -543,13 +534,22 @@ public interface ResourcePackage extends EPackage
 	int BUFFER_DATA_PROVIDER__GROW_THRESHOLD = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
+	 * The feature id for the '<em><b>Min Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__MIN_SIZE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 11;
+
+	/**
 	 * The number of structural features of the '<em>Buffer Data Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 11;
+	int BUFFER_DATA_PROVIDER_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of operations of the '<em>Buffer Data Provider</em>' class.
@@ -2051,17 +2051,6 @@ public interface ResourcePackage extends EPackage
 	EReference getCompositeBuffer_Parts();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getMinSize <em>Min Size</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Min Size</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getMinSize()
-	 * @see #getCompositeBuffer()
-	 * @generated
-	 */
-	EAttribute getCompositeBuffer_MinSize();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BufferPart <em>Buffer Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2212,6 +2201,17 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getBufferDataProvider_GrowThreshold();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getMinSize <em>Min Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Min Size</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getMinSize()
+	 * @see #getBufferDataProvider()
+	 * @generated
+	 */
+	EAttribute getBufferDataProvider_MinSize();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Image <em>Image</em>}'.
@@ -2858,14 +2858,6 @@ public interface ResourcePackage extends EPackage
 		EReference COMPOSITE_BUFFER__PARTS = eINSTANCE.getCompositeBuffer_Parts();
 
 		/**
-		 * The meta object literal for the '<em><b>Min Size</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMPOSITE_BUFFER__MIN_SIZE = eINSTANCE.getCompositeBuffer_MinSize();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferPartImpl <em>Buffer Part</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2980,6 +2972,14 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute BUFFER_DATA_PROVIDER__GROW_THRESHOLD = eINSTANCE.getBufferDataProvider_GrowThreshold();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER_DATA_PROVIDER__MIN_SIZE = eINSTANCE.getBufferDataProvider_MinSize();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl <em>Image</em>}' class.
