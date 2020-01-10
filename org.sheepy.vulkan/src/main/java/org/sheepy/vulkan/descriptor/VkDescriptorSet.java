@@ -3,6 +3,8 @@ package org.sheepy.vulkan.descriptor;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.LongBuffer;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
@@ -25,6 +27,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	private static final int UNINITIALIZED = -1;
 
 	private final List<IVkDescriptor> descriptors;
+	private final Deque<IVkDescriptor> dirtyDescriptors = new ArrayDeque<>();
 
 	private long descriptorSetId;
 	private long layoutId = UNINITIALIZED;
@@ -136,44 +139,54 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		updateDescriptorSet(stack, false);
 	}
 
-	private void updateDescriptorSet(MemoryStack stack, boolean all)
+	@Override
+	public void prepare()
 	{
-		final int size = descriptorCount();
-		final var descriptorWrites = VkWriteDescriptorSet.callocStack(size, stack);
-
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < descriptors.size(); i++)
 		{
 			final var descriptor = descriptors.get(i);
-			if (descriptor.isEmpty() == false && (all || descriptor.hasChanged()))
-			{
-				final var descriptorWrite = descriptorWrites.get();
 
-				descriptor.fillWriteDescriptor(stack, descriptorWrite);
-				descriptorWrite.dstSet(descriptorSetId);
-				descriptorWrite.dstBinding(i);
+			if (descriptor.hasChanged())
+			{
+				dirtyDescriptors.add(descriptor);
 			}
 		}
-		descriptorWrites.flip();
-
-		vkUpdateDescriptorSets(device, descriptorWrites, null);
 	}
 
 	@Override
 	public boolean hasChanged()
 	{
-		boolean hasChanged = false;
+		return dirtyDescriptors.isEmpty() == false;
+	}
 
-		for (int i = 0; i < descriptors.size(); i++)
+	private void updateDescriptorSet(MemoryStack stack, boolean all)
+	{
+		if (all)
 		{
-			final var descriptor = descriptors.get(i);
-			if (descriptor.hasChanged())
-			{
-				hasChanged = true;
-				break;
-			}
+			dirtyDescriptors.clear();
+			dirtyDescriptors.addAll(descriptors);
 		}
 
-		return hasChanged;
+		final int size = dirtyDescriptors.size();
+		final var descriptorWrites = VkWriteDescriptorSet.callocStack(size, stack);
+
+		while (dirtyDescriptors.isEmpty() == false)
+		{
+			final var descriptor = dirtyDescriptors.pop();
+			final var index = descriptors.indexOf(descriptor);
+
+			if (descriptor.isEmpty() == false)
+			{
+				final var descriptorWrite = descriptorWrites.get();
+
+				descriptor.fillWriteDescriptor(stack, descriptorWrite);
+				descriptorWrite.dstSet(descriptorSetId);
+				descriptorWrite.dstBinding(index);
+			}
+		}
+		descriptorWrites.flip();
+
+		vkUpdateDescriptorSets(device, descriptorWrites, null);
 	}
 
 	@Override

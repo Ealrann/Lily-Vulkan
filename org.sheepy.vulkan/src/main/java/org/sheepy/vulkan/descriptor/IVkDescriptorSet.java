@@ -16,6 +16,7 @@ public interface IVkDescriptorSet
 
 	int descriptorCount();
 
+	void prepare();
 	boolean hasChanged();
 	void updateDescriptorSet(MemoryStack stack);
 }

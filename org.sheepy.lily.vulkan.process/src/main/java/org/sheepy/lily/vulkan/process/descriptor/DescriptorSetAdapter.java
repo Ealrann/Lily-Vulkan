@@ -99,6 +99,12 @@ public final class DescriptorSetAdapter implements IDescriptorSetAdapter
 	}
 
 	@Override
+	public void prepare()
+	{
+		vkDescriptorSet.prepare();
+	}
+
+	@Override
 	public boolean hasChanged()
 	{
 		return vkDescriptorSet.hasChanged();

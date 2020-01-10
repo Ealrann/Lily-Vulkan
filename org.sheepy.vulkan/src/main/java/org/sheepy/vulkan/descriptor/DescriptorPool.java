@@ -98,11 +98,8 @@ public final class DescriptorPool implements IAllocable<IExecutionContext>
 		for (int i = 0; i < allocatedDescriptorSets.size(); i++)
 		{
 			final var descriptorSet = allocatedDescriptorSets.get(i);
-			if (descriptorSet.hasChanged())
-			{
-				hasChanged = true;
-				break;
-			}
+			descriptorSet.prepare();
+			hasChanged |= descriptorSet.hasChanged();
 		}
 	}
 
