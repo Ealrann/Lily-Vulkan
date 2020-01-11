@@ -4,14 +4,14 @@ import java.nio.ByteBuffer;
 import java.util.Random;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 
-@Adapter(scope = BufferDataProvider.class, name = InstanceDataProviderAdapter.NAME)
-public class InstanceDataProviderAdapter implements IBufferDataProviderAdapter
+@Adapter(scope = BufferDataProvider.class, name = InstanceDataProviderAdapter.NAME, lazy = false)
+public final class InstanceDataProviderAdapter implements IBufferDataProviderAdapter
 {
 	public static final String NAME = "InstanceDataProvider";
-
 	public static final int SIZE = 4000000;
 
 	private final Random random;
@@ -23,13 +23,11 @@ public class InstanceDataProviderAdapter implements IBufferDataProviderAdapter
 		random = new Random();
 	}
 
-	@Override
-	public long requestedSize()
+	@Load
+	private static void load(BufferDataProvider<?> provider)
 	{
-		return SIZE;
+		provider.setRequestedSize(SIZE);
 	}
-
-	int index = 0;
 
 	@Override
 	public void fill(ByteBuffer buffer)

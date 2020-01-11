@@ -937,6 +937,15 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_VERTEX_PROVIDER__MIN_SIZE = ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE;
 
 	/**
+	 * The feature id for the '<em><b>Requested Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER__REQUESTED_SIZE = ResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE;
+
+	/**
 	 * The feature id for the '<em><b>Context</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1089,6 +1098,15 @@ public interface NuklearPackage extends EPackage
 	 * @ordered
 	 */
 	int NUKLEAR_INDEX_PROVIDER__MIN_SIZE = ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE;
+
+	/**
+	 * The feature id for the '<em><b>Requested Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER__REQUESTED_SIZE = ResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' reference.

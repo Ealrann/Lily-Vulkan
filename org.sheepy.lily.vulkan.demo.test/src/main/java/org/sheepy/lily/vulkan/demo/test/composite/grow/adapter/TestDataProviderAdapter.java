@@ -10,12 +10,12 @@ import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 
 @Statefull
 @Adapter(scope = BufferDataProvider.class, name = TestDataProviderAdapter.NAME)
-public class TestDataProviderAdapter implements IBufferDataProviderAdapter
+public final class TestDataProviderAdapter implements IBufferDataProviderAdapter
 {
 	public static final String NAME = "TestDataProvider";
-
 	public static final int MAX_SIZE = 4000000;
 
+	private final BufferDataProvider<?> provider;
 	private final Random random;
 
 	public int currentSize = 100000;
@@ -23,13 +23,9 @@ public class TestDataProviderAdapter implements IBufferDataProviderAdapter
 
 	public TestDataProviderAdapter(BufferDataProvider<?> provider)
 	{
+		this.provider = provider;
 		random = new Random();
-	}
-
-	@Override
-	public long requestedSize()
-	{
-		return currentSize;
+		provider.setRequestedSize(currentSize);
 	}
 
 	@Override
@@ -61,6 +57,7 @@ public class TestDataProviderAdapter implements IBufferDataProviderAdapter
 
 		currentSize += 40000;
 		currentSize = Math.min(MAX_SIZE, currentSize);
+		provider.setRequestedSize(currentSize);
 		// System.out.println(currentSize);
 	}
 

@@ -41,6 +41,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getGrowFactor <em>Grow Factor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getGrowThreshold <em>Grow Threshold</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getMinSize <em>Min Size</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getRequestedSize <em>Requested Size</em>}</li>
  * </ul>
  *
  * @generated
@@ -268,6 +269,26 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 	protected long minSize = MIN_SIZE_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getRequestedSize() <em>Requested Size</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequestedSize()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long REQUESTED_SIZE_EDEFAULT = 1L;
+
+	/**
+	 * The cached value of the '{@link #getRequestedSize() <em>Requested Size</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequestedSize()
+	 * @generated
+	 * @ordered
+	 */
+	protected long requestedSize = REQUESTED_SIZE_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -336,6 +357,106 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 		instanceCount = newInstanceCount == null ? INSTANCE_COUNT_EDEFAULT : newInstanceCount;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public float getGrowFactor()
+	{
+		return growFactor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setGrowFactor(float newGrowFactor)
+	{
+		float oldGrowFactor = growFactor;
+		growFactor = newGrowFactor;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR, oldGrowFactor, growFactor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public float getGrowThreshold()
+	{
+		return growThreshold;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setGrowThreshold(float newGrowThreshold)
+	{
+		float oldGrowThreshold = growThreshold;
+		growThreshold = newGrowThreshold;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD, oldGrowThreshold, growThreshold));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public long getMinSize()
+	{
+		return minSize;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setMinSize(long newMinSize)
+	{
+		long oldMinSize = minSize;
+		minSize = newMinSize;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE, oldMinSize, minSize));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public long getRequestedSize()
+	{
+		return requestedSize;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setRequestedSize(long newRequestedSize)
+	{
+		long oldRequestedSize = requestedSize;
+		requestedSize = newRequestedSize;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE, oldRequestedSize, requestedSize));
 	}
 
 	/**
@@ -539,81 +660,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 	 * @generated
 	 */
 	@Override
-	public float getGrowFactor()
-	{
-		return growFactor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setGrowFactor(float newGrowFactor)
-	{
-		float oldGrowFactor = growFactor;
-		growFactor = newGrowFactor;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR, oldGrowFactor, growFactor));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public float getGrowThreshold()
-	{
-		return growThreshold;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setGrowThreshold(float newGrowThreshold)
-	{
-		float oldGrowThreshold = growThreshold;
-		growThreshold = newGrowThreshold;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD, oldGrowThreshold, growThreshold));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public long getMinSize()
-	{
-		return minSize;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setMinSize(long newMinSize)
-	{
-		long oldMinSize = minSize;
-		minSize = newMinSize;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE, oldMinSize, minSize));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -660,6 +706,8 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 				return getGrowThreshold();
 			case ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE:
 				return getMinSize();
+			case ResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE:
+				return getRequestedSize();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -717,6 +765,9 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 			case ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE:
 				setMinSize((Long)newValue);
 				return;
+			case ResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE:
+				setRequestedSize((Long)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -770,6 +821,9 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 			case ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE:
 				setMinSize(MIN_SIZE_EDEFAULT);
 				return;
+			case ResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE:
+				setRequestedSize(REQUESTED_SIZE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -810,6 +864,8 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 				return growThreshold != GROW_THRESHOLD_EDEFAULT;
 			case ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE:
 				return minSize != MIN_SIZE_EDEFAULT;
+			case ResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE:
+				return requestedSize != REQUESTED_SIZE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -849,6 +905,8 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 		result.append(growThreshold);
 		result.append(", minSize: ");
 		result.append(minSize);
+		result.append(", requestedSize: ");
+		result.append(requestedSize);
 		result.append(')');
 		return result.toString();
 	}

@@ -3,15 +3,19 @@ package org.sheepy.lily.vulkan.resource.buffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.adapter.util.AdapterSetRegistry;
+import org.sheepy.lily.core.api.adapter.util.NotificationListenerDeployer;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.resource.buffer.ICompositeBufferAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter;
+import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
@@ -27,12 +31,17 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 {
 	private final AdapterSetRegistry<BufferPartAdapter> partsRegistry = new AdapterSetRegistry<>(	BufferPartAdapter.class,
 																									List.of(ResourcePackage.Literals.COMPOSITE_BUFFER__PARTS));
+	private final INotificationListener sizeListener = this::partResized;
+	private final NotificationListenerDeployer sizeListenerDeployer = new NotificationListenerDeployer(	List.of(ResourcePackage.Literals.COMPOSITE_BUFFER__PARTS,
+																												ResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER),
+																										sizeListener,
+																										ResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE);
+
 	private final CompositeBuffer compositeBuffer;
 
-	private GPUBufferBackend oldBufferBackend;
 	private GPUBufferBackend bufferBackend;
 	private IExecutionContext context;
-	private int freeOldBufferIn = 0;
+	private IAllocationConfigurator configurator;
 
 	public CompositeBufferAdapter(CompositeBuffer compositeBuffer)
 	{
@@ -43,19 +52,40 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	private void load()
 	{
 		partsRegistry.startRegister(compositeBuffer);
+		sizeListenerDeployer.startRegister(compositeBuffer);
 	}
 
 	@Dispose
 	private void dispose()
 	{
+		sizeListenerDeployer.stopRegister(compositeBuffer);
 		partsRegistry.stopRegister(compositeBuffer);
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator configuration,
-									IExecutionContext context)
+	public void configureAllocation(IAllocationConfigurator configurator, IExecutionContext context)
 	{
-		configuration.addChildren(partsRegistry.getAdapters());
+		this.configurator = configurator;
+		configurator.addChildren(partsRegistry.getAdapters());
+	}
+
+	private void partResized(Notification notification)
+	{
+		if (configurator != null)
+		{
+			final var provider = (BufferDataProvider<?>) notification.getNotifier();
+			final var part = (BufferPart) provider.eContainer();
+			final var adapter = part.adapt(BufferPartAdapter.class);
+			if (adapter.needResize())
+			{
+				configurator.setDirty();
+				if (DebugUtil.DEBUG_ENABLED)
+				{
+					System.out.println("Need resize of composite buffer "
+							+ compositeBuffer.getName());
+				}
+			}
+		}
 	}
 
 	@Override
@@ -63,32 +93,16 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	{
 		this.context = context;
 
-		refreshConfiguration(true);
-	}
-
-	@Override
-	public boolean needRecord()
-	{
-		for (final var partAdapter : partsRegistry.getAdapters())
-		{
-			if (partAdapter.sizeChanged())
-			{
-				return true;
-			}
-		}
-
-		return false;
+		final var usageSize = alignData();
+		final long size = Math.max(usageSize.position, 1);
+		createBufferBackend(size, usageSize.usage);
 	}
 
 	@Override
 	public void free(IExecutionContext context)
 	{
-		if (oldBufferBackend != null)
-		{
-			oldBufferBackend.free(context);
-			oldBufferBackend = null;
-		}
 		bufferBackend.free(context);
+		bufferBackend = null;
 	}
 
 	@Override
@@ -99,11 +113,6 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 
 		final List<BufferPartAdapter> partsToFlush = new ArrayList<>();
 		boolean reservationSuccessfull = true;
-
-		if (mode == EFlushMode.PUSH)
-		{
-			refreshConfiguration(false);
-		}
 
 		for (final var part : parts)
 		{
@@ -141,28 +150,17 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		}
 	}
 
-	private void refreshConfiguration(boolean force)
+	private void createBufferBackend(long size, int usage)
 	{
-		checkOldBuffer();
-
-		boolean found = force;
+		final var info = new BufferInfo(size, usage, false);
+		bufferBackend = new GPUBufferBackend(info, false);
+		bufferBackend.allocate(context);
 
 		final var adapters = partsRegistry.getAdapters();
 		for (int i = 0; i < adapters.size(); i++)
 		{
 			final var partAdapter = adapters.get(i);
-			if (partAdapter.sizeChanged())
-			{
-				found |= true;
-				break;
-			}
-		}
-
-		if (found)
-		{
-			final var usageSize = alignData();
-			final long size = Math.max(usageSize.position, 1);
-			updateBuffer(size, usageSize.usage);
+			partAdapter.updateBuffer(bufferBackend.getAddress());
 		}
 	}
 
@@ -182,63 +180,6 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			usageSize.usage |= partAdapter.getUsage();
 		}
 		return usageSize;
-	}
-
-	private void updateBuffer(long size, int usage)
-	{
-		if (bufferBackend != null)
-		{
-			if (bufferBackend.getInfos().getInstanceSize() < size)
-			{
-				planFreeBuffer();
-				bufferBackend = null;
-				if (DebugUtil.DEBUG_ENABLED)
-				{
-					System.out.println("Resize composite buffer");
-				}
-			}
-		}
-
-		if (bufferBackend == null)
-		{
-			final var info = new BufferInfo(size, usage, false);
-			bufferBackend = new GPUBufferBackend(info, false);
-			bufferBackend.allocate(context);
-
-			final var adapters = partsRegistry.getAdapters();
-			for (int i = 0; i < adapters.size(); i++)
-			{
-				final var partAdapter = adapters.get(i);
-				partAdapter.updateBuffer(bufferBackend.getAddress());
-			}
-		}
-	}
-
-	private void checkOldBuffer()
-	{
-		if (oldBufferBackend != null)
-		{
-			if (freeOldBufferIn == 0)
-			{
-				oldBufferBackend.free(context);
-				oldBufferBackend = null;
-			}
-			else
-			{
-				freeOldBufferIn--;
-			}
-		}
-	}
-
-	private void planFreeBuffer()
-	{
-		if (oldBufferBackend != null)
-		{
-			oldBufferBackend.free(context);
-			oldBufferBackend = null;
-		}
-		oldBufferBackend = bufferBackend;
-		freeOldBufferIn = 20;
 	}
 
 	private static final class UsageSize

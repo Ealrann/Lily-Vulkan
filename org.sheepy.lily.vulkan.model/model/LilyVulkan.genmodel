@@ -351,6 +351,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/growFactor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/growThreshold"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/minSize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/requestedSize"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//Image"/>
     <genClasses ecoreClass="resource.ecore#//StaticImage">

@@ -10,5 +10,4 @@ import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 public interface ICompositeBufferAdapter extends IVulkanResourceAdapter
 {
 	void recordFlush(EFlushMode mode, TransferBuffer transferBuffer, List<BufferPart> parts);
-	boolean needRecord();
 }

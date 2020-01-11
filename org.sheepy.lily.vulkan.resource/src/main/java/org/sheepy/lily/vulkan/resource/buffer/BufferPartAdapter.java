@@ -77,6 +77,8 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 		instanceCount = VulkanModelUtil.getInstanceCount(context, eInstanceCount);
 		instance = 0;
 		firstPush = true;
+
+		dataProvider.adapt(IBufferDataProviderAdapter.class);
 	}
 
 	@Override
@@ -87,9 +89,7 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 	{
 		final long oldSize = this.instanceSize;
 		final long oldOffset = this.offset;
-
-		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
-		final long size = computeSize(adapter);
+		final long size = computeSize();
 
 		this.instanceSize = align(size, alignment);
 		this.offset = align(desiredOffset, alignment);
@@ -104,9 +104,9 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 		}
 	}
 
-	private long computeSize(final IBufferDataProviderAdapter adapter)
+	private long computeSize()
 	{
-		final long requestedSize = adapter.requestedSize();
+		final long requestedSize = dataProvider.getRequestedSize();
 		final float growFactor = dataProvider.getGrowFactor();
 		final long minSize = dataProvider.getMinSize();
 		final long size = (long) Math.ceil(requestedSize * growFactor);
@@ -223,12 +223,10 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 		transferBuffer.addTransferCommand(fetchCommand);
 	}
 
-	public boolean sizeChanged()
+	public boolean needResize()
 	{
-		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
 		final float growSize = instanceSize * dataProvider.getGrowThreshold();
-
-		return adapter.requestedSize() > growSize;
+		return dataProvider.getRequestedSize() > growSize;
 	}
 
 	public long getTotalSize()

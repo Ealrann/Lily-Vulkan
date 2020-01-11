@@ -609,6 +609,50 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getBufferDataProvider_GrowFactor()
+	{
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferDataProvider_GrowThreshold()
+	{
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferDataProvider_MinSize()
+	{
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferDataProvider_RequestedSize()
+	{
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getBufferDataProvider_DataSource()
 	{
 		return (EReference)bufferDataProviderEClass.getEStructuralFeatures().get(0);
@@ -689,39 +733,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EAttribute getBufferDataProvider_Usages()
 	{
 		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getBufferDataProvider_GrowFactor()
-	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getBufferDataProvider_GrowThreshold()
-	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(10);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getBufferDataProvider_MinSize()
-	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -1278,6 +1289,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__GROW_FACTOR);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__GROW_THRESHOLD);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__MIN_SIZE);
+		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__REQUESTED_SIZE);
 
 		imageEClass = createEClass(IMAGE);
 
@@ -1455,6 +1467,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getBufferDataProvider_GrowFactor(), ecorePackage.getEFloat(), "growFactor", "1", 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferDataProvider_GrowThreshold(), ecorePackage.getEFloat(), "growThreshold", "1", 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferDataProvider_MinSize(), ecorePackage.getELong(), "minSize", "0", 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferDataProvider_RequestedSize(), ecorePackage.getELong(), "requestedSize", "1", 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageEClass, Image.class, "Image", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

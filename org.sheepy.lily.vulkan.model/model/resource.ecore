@@ -81,6 +81,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minSize" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requestedSize" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="ByteBuffer" instanceClassName="java.nio.ByteBuffer"/>
   <eClassifiers xsi:type="ecore:EClass" name="Image" abstract="true" eSuperTypes="../../org.sheepy.vulkan.model/model/Image.ecore#//ImageInfo ../../org.sheepy.lily.core.model/model/application.ecore#//IImage"/>

@@ -819,6 +819,15 @@ public interface RenderingPackage extends EPackage
 	int RENDER_DATA_PROVIDER__MIN_SIZE = ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE;
 
 	/**
+	 * The feature id for the '<em><b>Requested Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_DATA_PROVIDER__REQUESTED_SIZE = ResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE;
+
+	/**
 	 * The number of structural features of the '<em>Render Data Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1048,6 +1057,15 @@ public interface RenderingPackage extends EPackage
 	int VERTEX_PROVIDER__MIN_SIZE = RENDER_DATA_PROVIDER__MIN_SIZE;
 
 	/**
+	 * The feature id for the '<em><b>Requested Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX_PROVIDER__REQUESTED_SIZE = RENDER_DATA_PROVIDER__REQUESTED_SIZE;
+
+	/**
 	 * The number of structural features of the '<em>Vertex Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1191,6 +1209,15 @@ public interface RenderingPackage extends EPackage
 	 * @ordered
 	 */
 	int INDEX_PROVIDER__MIN_SIZE = RENDER_DATA_PROVIDER__MIN_SIZE;
+
+	/**
+	 * The feature id for the '<em><b>Requested Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_PROVIDER__REQUESTED_SIZE = RENDER_DATA_PROVIDER__REQUESTED_SIZE;
 
 	/**
 	 * The feature id for the '<em><b>Index Type</b></em>' attribute.

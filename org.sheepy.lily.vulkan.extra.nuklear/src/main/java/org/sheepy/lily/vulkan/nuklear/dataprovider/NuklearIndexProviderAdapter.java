@@ -6,14 +6,15 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
 
 @Statefull
-@Adapter(scope = NuklearIndexProvider.class)
-public class NuklearIndexProviderAdapter implements IBufferDataProviderAdapter
+@Adapter(scope = NuklearIndexProvider.class, lazy = false)
+public final class NuklearIndexProviderAdapter implements IBufferDataProviderAdapter
 {
 	public static final long INDEX_BUFFER_SIZE = (long) Math.pow(2, 16);
 
@@ -24,10 +25,10 @@ public class NuklearIndexProviderAdapter implements IBufferDataProviderAdapter
 		contextAdapter = provider.getContext().adapt(NuklearContextAdapter.class);
 	}
 
-	@Override
-	public long requestedSize()
+	@Load
+	private static void load(NuklearIndexProvider provider)
 	{
-		return INDEX_BUFFER_SIZE;
+		provider.setRequestedSize(INDEX_BUFFER_SIZE);
 	}
 
 	@Override

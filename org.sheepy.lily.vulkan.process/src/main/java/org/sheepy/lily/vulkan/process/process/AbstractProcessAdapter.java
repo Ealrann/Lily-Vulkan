@@ -260,23 +260,6 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 		}
 	}
 
-	protected boolean prepareDescriptors()
-	{
-		boolean res = false;
-		descriptorPool.prepare();
-		if (descriptorPool.hasChanged())
-		{
-			try (MemoryStack stack = MemoryStack.stackPush())
-			{
-				waitIdle();
-				descriptorPool.update(stack);
-				res = true;
-			}
-		}
-
-		return res;
-	}
-
 	private void invalidateRecords()
 	{
 		final var records = context.getRecorders();
@@ -293,7 +276,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 		refresh();
 		if (allocator.isAllocationDirty())
 		{
-			context.getQueue().waitIdle();
+			waitIdle();
 			try
 			{
 				context.stackPush();
@@ -304,6 +287,23 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 			}
 			dirty = true;
 		}
+		return dirty;
+	}
+
+	protected boolean prepareDescriptors()
+	{
+		boolean dirty = false;
+		descriptorPool.prepare();
+		if (descriptorPool.hasChanged())
+		{
+			waitIdle();
+			try (MemoryStack stack = MemoryStack.stackPush())
+			{
+				descriptorPool.update(stack);
+				dirty = true;
+			}
+		}
+
 		return dirty;
 	}
 
