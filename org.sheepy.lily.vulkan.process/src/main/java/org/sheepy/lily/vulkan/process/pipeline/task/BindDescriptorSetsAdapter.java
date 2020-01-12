@@ -10,6 +10,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.api.pipeline.IVkPipelineAdapter;
 import org.sheepy.lily.vulkan.api.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
@@ -40,11 +41,11 @@ public final class BindDescriptorSetsAdapter implements IPipelineTaskAdapter<Bin
 	public void record(BindDescriptorSets task, RecordContext context)
 	{
 		final var pipeline = ModelUtil.findParent(task, IPipeline.class);
-		final var pipelineAdapter = pipeline.<IPipelineAdapter<?>> adaptNotNullGeneric(IPipelineAdapter.class);
+		final var pipelineAdapter = pipeline.<IVkPipelineAdapter<?>> adaptNotNullGeneric(IPipelineAdapter.class);
 		final var pipelineLayout = pipelineAdapter.getVkPipelineLayout();
 		final int bindPoint = task.getBindPoint().getValue();
 
-		pipelineLayout.bindDescriptors(context.commandBuffer, sets, bindPoint);
+		pipelineLayout.bindDescriptors(context.stack, context.commandBuffer, sets, bindPoint);
 
 		dirty = false;
 	}

@@ -9,8 +9,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigureBind" eSuperTypes="#//IConfigurationTask">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bindTask" lowerBound="1"
-        eType="ecore:EClass process.ecore#//BindDescriptorSets"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bindTasks" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass process.ecore#//BindDescriptorSets"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RotateConfiguration" eSuperTypes="process.ecore#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="configurations" lowerBound="1"

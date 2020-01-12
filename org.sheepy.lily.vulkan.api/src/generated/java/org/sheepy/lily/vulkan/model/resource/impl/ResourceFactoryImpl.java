@@ -67,28 +67,28 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case ResourcePackage.TRANSFER_BUFFER: return createTransferBuffer();
-			case ResourcePackage.CONSTANT_BUFFER: return createConstantBuffer();
-			case ResourcePackage.BUFFER: return createBuffer();
-			case ResourcePackage.COMPOSITE_BUFFER: return createCompositeBuffer();
-			case ResourcePackage.BUFFER_PART: return createBufferPart();
-			case ResourcePackage.BUFFER_DATA_PROVIDER: return createBufferDataProvider();
-			case ResourcePackage.STATIC_IMAGE: return createStaticImage();
-			case ResourcePackage.FILE_IMAGE: return createFileImage();
-			case ResourcePackage.FONT_IMAGE: return createFontImage();
-			case ResourcePackage.SAMPLED_IMAGE: return createSampledImage();
-			case ResourcePackage.SAMPLER: return createSampler();
-			case ResourcePackage.SEMAPHORE: return createSemaphore();
-			case ResourcePackage.BUFFER_DESCRIPTOR: return createBufferDescriptor();
-			case ResourcePackage.IMAGE_DESCRIPTOR: return createImageDescriptor();
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR: return createSampledImageDescriptor();
-			case ResourcePackage.SAMPLER_DESCRIPTOR: return createSamplerDescriptor();
-			case ResourcePackage.DESCRIPTOR_SET: return createDescriptorSet();
-			case ResourcePackage.DESCRIPTOR_SET_PKG: return createDescriptorSetPkg();
-			case ResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
-			case ResourcePackage.IMAGE_BARRIER: return createImageBarrier();
-			case ResourcePackage.SHADER: return createShader();
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR: return createImageArrayDescriptor();
+			case ResourcePackage.TRANSFER_BUFFER: return (EObject)createTransferBuffer();
+			case ResourcePackage.CONSTANT_BUFFER: return (EObject)createConstantBuffer();
+			case ResourcePackage.BUFFER: return (EObject)createBuffer();
+			case ResourcePackage.COMPOSITE_BUFFER: return (EObject)createCompositeBuffer();
+			case ResourcePackage.BUFFER_PART: return (EObject)createBufferPart();
+			case ResourcePackage.BUFFER_DATA_PROVIDER: return (EObject)createBufferDataProvider();
+			case ResourcePackage.STATIC_IMAGE: return (EObject)createStaticImage();
+			case ResourcePackage.FILE_IMAGE: return (EObject)createFileImage();
+			case ResourcePackage.FONT_IMAGE: return (EObject)createFontImage();
+			case ResourcePackage.SAMPLED_IMAGE: return (EObject)createSampledImage();
+			case ResourcePackage.SAMPLER: return (EObject)createSampler();
+			case ResourcePackage.SEMAPHORE: return (EObject)createSemaphore();
+			case ResourcePackage.BUFFER_DESCRIPTOR: return (EObject)createBufferDescriptor();
+			case ResourcePackage.IMAGE_DESCRIPTOR: return (EObject)createImageDescriptor();
+			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR: return (EObject)createSampledImageDescriptor();
+			case ResourcePackage.SAMPLER_DESCRIPTOR: return (EObject)createSamplerDescriptor();
+			case ResourcePackage.DESCRIPTOR_SET: return (EObject)createDescriptorSet();
+			case ResourcePackage.DESCRIPTOR_SET_PKG: return (EObject)createDescriptorSetPkg();
+			case ResourcePackage.BUFFER_BARRIER: return (EObject)createBufferBarrier();
+			case ResourcePackage.IMAGE_BARRIER: return (EObject)createImageBarrier();
+			case ResourcePackage.SHADER: return (EObject)createShader();
+			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR: return (EObject)createImageArrayDescriptor();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

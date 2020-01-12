@@ -1753,7 +1753,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		EGenericType g2 = createEGenericType(this.getGraphicProcess());
 		g1.getETypeArguments().add(g2);
 		graphicProcessEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theProcessPackage.getIPipeline());
+		g1 = createEGenericType(theProcessPackage.getIVkPipeline());
 		graphicsPipelineEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theMaintainerPackage.getMaintainable());
 		g2 = createEGenericType(this.getGraphicsPipeline());

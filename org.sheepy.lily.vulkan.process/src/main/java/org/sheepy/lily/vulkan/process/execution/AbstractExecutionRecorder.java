@@ -8,7 +8,10 @@ import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.api.execution.ISubmission;
+import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
+import org.sheepy.lily.vulkan.model.process.CompositePipeline;
+import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.concurrent.IFenceView;
 import org.sheepy.vulkan.execution.ICommandBuffer;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
@@ -84,6 +87,30 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 		submission.setExecutionIdleListeners(listeners);
 
 		setDirty(false);
+	}
+
+	protected static void record(RecordContext recordContext, final IPipeline pipeline)
+	{
+		if (pipeline instanceof CompositePipeline)
+		{
+			final var compositePipeline = (CompositePipeline) pipeline;
+			final int repeat = compositePipeline.getRepeat();
+			for (int i = 0; i < repeat; i++)
+			{
+				for (final var subPipeline : compositePipeline.getPipelines())
+				{
+					record(recordContext, subPipeline);
+				}
+			}
+		}
+		else
+		{
+			final var adapter = pipeline.adapt(IPipelineAdapter.class);
+			if (adapter != null)
+			{
+				adapter.record(recordContext);
+			}
+		}
 	}
 
 	public boolean isBusy()

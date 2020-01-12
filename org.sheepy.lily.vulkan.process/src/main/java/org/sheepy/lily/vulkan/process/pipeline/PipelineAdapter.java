@@ -5,11 +5,10 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
-import org.sheepy.vulkan.pipeline.VkPipeline;
 
 @Statefull
 @Adapter(scope = Pipeline.class)
-public class PipelineAdapter<T extends IProcessContext> extends AbstractPipelineAdapter<T>
+public class PipelineAdapter<T extends IProcessContext> extends AbstractTaskPipelineAdapter<T>
 {
 	public PipelineAdapter(IPipeline pipeline)
 	{
@@ -17,8 +16,10 @@ public class PipelineAdapter<T extends IProcessContext> extends AbstractPipeline
 	}
 
 	@Override
-	public VkPipeline<? super T> getVkPipeline()
-	{
-		return null;
-	}
+	public void allocate(T context)
+	{}
+
+	@Override
+	public void free(T context)
+	{}
 }

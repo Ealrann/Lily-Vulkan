@@ -58,7 +58,7 @@ public class ConfigureBindItemProvider extends ItemProviderAdapter implements IE
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addBindTaskPropertyDescriptor(object);
+			addBindTasksPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -87,20 +87,20 @@ public class ConfigureBindItemProvider extends ItemProviderAdapter implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Bind Task feature.
+	 * This adds a property descriptor for the Bind Tasks feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBindTaskPropertyDescriptor(Object object)
+	protected void addBindTasksPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ConfigureBind_bindTask_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigureBind_bindTask_feature", "_UI_ConfigureBind_type"),
-				 BindingPackage.Literals.CONFIGURE_BIND__BIND_TASK,
+				 getString("_UI_ConfigureBind_bindTasks_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigureBind_bindTasks_feature", "_UI_ConfigureBind_type"),
+				 BindingPackage.Literals.CONFIGURE_BIND__BIND_TASKS,
 				 true,
 				 false,
 				 true,

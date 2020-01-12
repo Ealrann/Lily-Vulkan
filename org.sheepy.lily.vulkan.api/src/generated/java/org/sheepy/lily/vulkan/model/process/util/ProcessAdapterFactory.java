@@ -107,6 +107,16 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 				return createIPipelineAdapter();
 			}
 			@Override
+			public Adapter caseITaskPipeline(ITaskPipeline object)
+			{
+				return createITaskPipelineAdapter();
+			}
+			@Override
+			public Adapter caseIVkPipeline(IVkPipeline object)
+			{
+				return createIVkPipelineAdapter();
+			}
+			@Override
 			public Adapter caseTaskPkg(TaskPkg object)
 			{
 				return createTaskPkgAdapter();
@@ -115,6 +125,11 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 			public Adapter casePipeline(Pipeline object)
 			{
 				return createPipelineAdapter();
+			}
+			@Override
+			public Adapter caseCompositePipeline(CompositePipeline object)
+			{
+				return createCompositePipelineAdapter();
 			}
 			@Override
 			public Adapter casePipelineBarrier(PipelineBarrier object)
@@ -298,6 +313,36 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ITaskPipeline <em>ITask Pipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.ITaskPipeline
+	 * @generated
+	 */
+	public Adapter createITaskPipelineAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IVkPipeline <em>IVk Pipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.IVkPipeline
+	 * @generated
+	 */
+	public Adapter createIVkPipelineAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.TaskPkg <em>Task Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -323,6 +368,21 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createPipelineAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.CompositePipeline <em>Composite Pipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.CompositePipeline
+	 * @generated
+	 */
+	public Adapter createCompositePipelineAdapter()
 	{
 		return null;
 	}

@@ -64,31 +64,31 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case GraphicPackage.GRAPHIC_CONFIGURATION: return createGraphicConfiguration();
-			case GraphicPackage.COLOR_DOMAIN: return createColorDomain();
-			case GraphicPackage.SWAPCHAIN_CONFIGURATION: return createSwapchainConfiguration();
-			case GraphicPackage.FRAMEBUFFER_CONFIGURATION: return createFramebufferConfiguration();
-			case GraphicPackage.IMAGE_ATTACHMENT: return createImageAttachment();
-			case GraphicPackage.DEPTH_ATTACHMENT: return createDepthAttachment();
-			case GraphicPackage.ATTACHMENT_PKG: return createAttachmentPkg();
-			case GraphicPackage.SUBPASS: return createSubpass();
-			case GraphicPackage.ATTACHMENT_REF_PKG: return createAttachmentRefPkg();
-			case GraphicPackage.ATTACHMENT_REF: return createAttachmentRef();
-			case GraphicPackage.SWAP_IMAGE_ATTACHMENT: return createSwapImageAttachment();
-			case GraphicPackage.GRAPHIC_PROCESS: return createGraphicProcess();
-			case GraphicPackage.GRAPHICS_PIPELINE: return createGraphicsPipeline();
-			case GraphicPackage.SWAP_IMAGE_BARRIER: return createSwapImageBarrier();
-			case GraphicPackage.BLIT_TO_SWAP_IMAGE: return createBlitToSwapImage();
-			case GraphicPackage.DRAW_INDEXED: return createDrawIndexed();
-			case GraphicPackage.DRAW: return createDraw();
-			case GraphicPackage.VERTEX_INPUT_STATE: return createVertexInputState();
-			case GraphicPackage.INPUT_DESCRIPTOR: return createInputDescriptor();
-			case GraphicPackage.ATTRIBUTE_DESCRIPTION: return createAttributeDescription();
-			case GraphicPackage.BIND_VERTEX_BUFFER: return createBindVertexBuffer();
-			case GraphicPackage.SET_SCISSOR: return createSetScissor();
-			case GraphicPackage.SET_VIEWPORT: return createSetViewport();
-			case GraphicPackage.VERTEX_BINDING: return createVertexBinding();
-			case GraphicPackage.BIND_INDEX_BUFFER: return createBindIndexBuffer();
+			case GraphicPackage.GRAPHIC_CONFIGURATION: return (EObject)createGraphicConfiguration();
+			case GraphicPackage.COLOR_DOMAIN: return (EObject)createColorDomain();
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION: return (EObject)createSwapchainConfiguration();
+			case GraphicPackage.FRAMEBUFFER_CONFIGURATION: return (EObject)createFramebufferConfiguration();
+			case GraphicPackage.IMAGE_ATTACHMENT: return (EObject)createImageAttachment();
+			case GraphicPackage.DEPTH_ATTACHMENT: return (EObject)createDepthAttachment();
+			case GraphicPackage.ATTACHMENT_PKG: return (EObject)createAttachmentPkg();
+			case GraphicPackage.SUBPASS: return (EObject)createSubpass();
+			case GraphicPackage.ATTACHMENT_REF_PKG: return (EObject)createAttachmentRefPkg();
+			case GraphicPackage.ATTACHMENT_REF: return (EObject)createAttachmentRef();
+			case GraphicPackage.SWAP_IMAGE_ATTACHMENT: return (EObject)createSwapImageAttachment();
+			case GraphicPackage.GRAPHIC_PROCESS: return (EObject)createGraphicProcess();
+			case GraphicPackage.GRAPHICS_PIPELINE: return (EObject)createGraphicsPipeline();
+			case GraphicPackage.SWAP_IMAGE_BARRIER: return (EObject)createSwapImageBarrier();
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE: return (EObject)createBlitToSwapImage();
+			case GraphicPackage.DRAW_INDEXED: return (EObject)createDrawIndexed();
+			case GraphicPackage.DRAW: return (EObject)createDraw();
+			case GraphicPackage.VERTEX_INPUT_STATE: return (EObject)createVertexInputState();
+			case GraphicPackage.INPUT_DESCRIPTOR: return (EObject)createInputDescriptor();
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION: return (EObject)createAttributeDescription();
+			case GraphicPackage.BIND_VERTEX_BUFFER: return (EObject)createBindVertexBuffer();
+			case GraphicPackage.SET_SCISSOR: return (EObject)createSetScissor();
+			case GraphicPackage.SET_VIEWPORT: return (EObject)createSetViewport();
+			case GraphicPackage.VERTEX_BINDING: return (EObject)createVertexBinding();
+			case GraphicPackage.BIND_INDEX_BUFFER: return (EObject)createBindIndexBuffer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

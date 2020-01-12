@@ -10,10 +10,14 @@ public final class ConfigureBindAdapter implements IConfigureTaskAdapter<Configu
 	@Override
 	public void configure(BindConfiguration configuration, ConfigureBind task)
 	{
-		final var bindTask = task.getBindTask();
+		final var bindTasks = task.getBindTasks();
 		final var dSets = configuration.descriptorSets;
 
-		bindTask.getDescriptorSets().clear();
-		bindTask.getDescriptorSets().addAll(dSets);
+		for (int i = 0; i < bindTasks.size(); i++)
+		{
+			final var bindTask = bindTasks.get(i);
+			bindTask.getDescriptorSets().clear();
+			bindTask.getDescriptorSets().addAll(dSets);
+		}
 	}
 }

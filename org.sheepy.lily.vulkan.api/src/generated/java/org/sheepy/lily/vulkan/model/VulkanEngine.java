@@ -3,9 +3,7 @@
 package org.sheepy.lily.vulkan.model;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.sheepy.lily.core.model.application.IEngine;
-
 import org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature;
 
 /**

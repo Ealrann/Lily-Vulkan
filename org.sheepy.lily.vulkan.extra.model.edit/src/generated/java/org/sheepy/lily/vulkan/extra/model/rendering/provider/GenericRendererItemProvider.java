@@ -15,7 +15,6 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;

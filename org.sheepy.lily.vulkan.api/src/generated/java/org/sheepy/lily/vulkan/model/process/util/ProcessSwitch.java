@@ -118,7 +118,27 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				IPipeline iPipeline = (IPipeline)theEObject;
 				T1 result = caseIPipeline(iPipeline);
 				if (result == null) result = caseLNamedElement(iPipeline);
-				if (result == null) result = caseIResourceContainer(iPipeline);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.ITASK_PIPELINE:
+			{
+				ITaskPipeline iTaskPipeline = (ITaskPipeline)theEObject;
+				T1 result = caseITaskPipeline(iTaskPipeline);
+				if (result == null) result = caseIPipeline(iTaskPipeline);
+				if (result == null) result = caseIResourceContainer(iTaskPipeline);
+				if (result == null) result = caseLNamedElement(iTaskPipeline);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.IVK_PIPELINE:
+			{
+				IVkPipeline iVkPipeline = (IVkPipeline)theEObject;
+				T1 result = caseIVkPipeline(iVkPipeline);
+				if (result == null) result = caseITaskPipeline(iVkPipeline);
+				if (result == null) result = caseIPipeline(iVkPipeline);
+				if (result == null) result = caseIResourceContainer(iVkPipeline);
+				if (result == null) result = caseLNamedElement(iVkPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -133,9 +153,19 @@ public class ProcessSwitch<T1> extends Switch<T1>
 			{
 				Pipeline pipeline = (Pipeline)theEObject;
 				T1 result = casePipeline(pipeline);
+				if (result == null) result = caseITaskPipeline(pipeline);
 				if (result == null) result = caseIPipeline(pipeline);
-				if (result == null) result = caseLNamedElement(pipeline);
 				if (result == null) result = caseIResourceContainer(pipeline);
+				if (result == null) result = caseLNamedElement(pipeline);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.COMPOSITE_PIPELINE:
+			{
+				CompositePipeline compositePipeline = (CompositePipeline)theEObject;
+				T1 result = caseCompositePipeline(compositePipeline);
+				if (result == null) result = caseIPipeline(compositePipeline);
+				if (result == null) result = caseLNamedElement(compositePipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -320,6 +350,38 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ITask Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ITask Pipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseITaskPipeline(ITaskPipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IVk Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IVk Pipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIVkPipeline(IVkPipeline object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Task Pkg</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -347,6 +409,22 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 casePipeline(Pipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Composite Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Composite Pipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseCompositePipeline(CompositePipeline object)
 	{
 		return null;
 	}

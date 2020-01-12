@@ -293,7 +293,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getConfigureBind_BindTask()
+	public EReference getConfigureBind_BindTasks()
 	{
 		return (EReference)configureBindEClass.getEStructuralFeatures().get(0);
 	}
@@ -565,7 +565,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		createEAttribute(bindingConfigurationEClass, BINDING_CONFIGURATION__DESCRIPTOR_SET_STRIDE);
 
 		configureBindEClass = createEClass(CONFIGURE_BIND);
-		createEReference(configureBindEClass, CONFIGURE_BIND__BIND_TASK);
+		createEReference(configureBindEClass, CONFIGURE_BIND__BIND_TASKS);
 
 		rotateConfigurationEClass = createEClass(ROTATE_CONFIGURATION);
 		createEReference(rotateConfigurationEClass, ROTATE_CONFIGURATION__CONFIGURATIONS);
@@ -649,7 +649,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		initEAttribute(getBindingConfiguration_DescriptorSetStride(), ecorePackage.getEInt(), "descriptorSetStride", "0", 1, 1, BindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configureBindEClass, ConfigureBind.class, "ConfigureBind", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConfigureBind_BindTask(), theProcessPackage.getBindDescriptorSets(), null, "bindTask", null, 1, 1, ConfigureBind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfigureBind_BindTasks(), theProcessPackage.getBindDescriptorSets(), null, "bindTasks", null, 1, -1, ConfigureBind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rotateConfigurationEClass, RotateConfiguration.class, "RotateConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRotateConfiguration_Configurations(), this.getIContextConfiguration(), null, "configurations", null, 1, -1, RotateConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

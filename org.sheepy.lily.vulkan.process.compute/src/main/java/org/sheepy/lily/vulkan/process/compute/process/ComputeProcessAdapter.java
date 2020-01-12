@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.process.IComputeContext;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -23,21 +22,32 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContex
 {
 	private static final List<EStructuralFeature> PIPELINE__FEATURES = List.of(	ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
 																				ProcessPackage.Literals.PIPELINE_PKG__PIPELINES);
+	private static final List<EStructuralFeature> COMPOSITE_PIPELINE__FEATURES = List.of(	ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
+																							ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+																							ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES);
+
 	private static final List<EStructuralFeature> RESOURCE_FEATURES = List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 																				ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EStructuralFeature> PIPELINE_RESOURCE_FEATURES = List.of(	ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
 																						ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 																						VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 																						ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+	private static final List<EStructuralFeature> COMPOSITE_PIPELINE_RESOURCE_FEATURES = List.of(	ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
+																									ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+																									ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
+																									VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+																									ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EStructuralFeature> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 																				VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
 	private static final List<EStructuralFeature> PIPELINE_DESCRIPTOR_FEATURES = List.of(	ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
 																							ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 																							VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 																							VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
-
-	private final ModelExplorer PARTS_EXPLORER = new ModelExplorer(List.of(	ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
-																			ProcessPackage.Literals.PIPELINE_PKG__PIPELINES));
+	private static final List<EStructuralFeature> COMPOSITE_PIPELINE_DESCRIPTOR_FEATURES = List.of(	ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
+																									ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+																									ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
+																									VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+																									VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
 
 	private static final List<ECommandStage> stages = List.of(	ECommandStage.TRANSFER,
 																ECommandStage.COMPUTE);
@@ -89,7 +99,8 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContex
 	@Override
 	protected List<List<EStructuralFeature>> getPipelineFeatureLists()
 	{
-		return List.of(PIPELINE__FEATURES);
+		return List.of(PIPELINE__FEATURES,
+		               COMPOSITE_PIPELINE__FEATURES);
 	}
 
 	@Override
@@ -97,13 +108,9 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContex
 	{
 		return List.of(	RESOURCE_FEATURES,
 						PIPELINE_RESOURCE_FEATURES,
+						COMPOSITE_PIPELINE_RESOURCE_FEATURES,
 						DESCRIPTOR_FEATURES,
-						PIPELINE_DESCRIPTOR_FEATURES);
-	}
-
-	@Override
-	protected ModelExplorer getPipelineExplorer()
-	{
-		return PARTS_EXPLORER;
+						PIPELINE_DESCRIPTOR_FEATURES,
+						COMPOSITE_PIPELINE_DESCRIPTOR_FEATURES);
 	}
 }

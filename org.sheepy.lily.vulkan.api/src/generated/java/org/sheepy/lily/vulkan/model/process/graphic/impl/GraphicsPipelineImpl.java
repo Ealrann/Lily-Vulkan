@@ -14,38 +14,21 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.core.model.application.ResourcePkg;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
-
-import org.sheepy.lily.vulkan.model.DescriptorPkg;
-import org.sheepy.lily.vulkan.model.IResourceContainer;
-import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.process.TaskPkg;
-
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
 
-import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
+import org.sheepy.lily.vulkan.model.process.impl.IVkPipelineImpl;
 import org.sheepy.lily.vulkan.model.resource.Shader;
-
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
-
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
 import org.sheepy.vulkan.model.graphicpipeline.InputAssembly;
 import org.sheepy.vulkan.model.graphicpipeline.Rasterizer;
 import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
-
-import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,15 +38,6 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getResourcePkg <em>Resource Pkg</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getDescriptorPkg <em>Descriptor Pkg</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getStage <em>Stage</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getPushConstantRanges <em>Push Constant Ranges</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getSpecializationData <em>Specialization Data</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getTaskPkg <em>Task Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getMaintainer <em>Maintainer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getShaders <em>Shaders</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getViewportState <em>Viewport State</em>}</li>
@@ -77,128 +51,8 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  *
  * @generated
  */
-public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipeline
+public class GraphicsPipelineImpl extends IVkPipelineImpl implements GraphicsPipeline
 {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getResourcePkg() <em>Resource Pkg</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getResourcePkg()
-	 * @generated
-	 * @ordered
-	 */
-	protected ResourcePkg resourcePkg;
-
-	/**
-	 * The cached value of the '{@link #getDescriptorPkg() <em>Descriptor Pkg</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescriptorPkg()
-	 * @generated
-	 * @ordered
-	 */
-	protected DescriptorPkg descriptorPkg;
-
-	/**
-	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isEnabled()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean ENABLED_EDEFAULT = true;
-
-	/**
-	 * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isEnabled()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean enabled = ENABLED_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final ECommandStage STAGE_EDEFAULT = ECommandStage.RENDER;
-
-	/**
-	 * The cached value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected ECommandStage stage = STAGE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getPushConstantRanges() <em>Push Constant Ranges</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPushConstantRanges()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<PushConstantRange> pushConstantRanges;
-
-	/**
-	 * The cached value of the '{@link #getSpecializationData() <em>Specialization Data</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSpecializationData()
-	 * @generated
-	 * @ordered
-	 */
-	protected ConstantBuffer specializationData;
-
-	/**
-	 * The cached value of the '{@link #getDescriptorSetPkg() <em>Descriptor Set Pkg</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescriptorSetPkg()
-	 * @generated
-	 * @ordered
-	 */
-	protected DescriptorSetPkg descriptorSetPkg;
-
-	/**
-	 * The cached value of the '{@link #getTaskPkg() <em>Task Pkg</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTaskPkg()
-	 * @generated
-	 * @ordered
-	 */
-	protected TaskPkg taskPkg;
-
 	/**
 	 * The cached value of the '{@link #getMaintainer() <em>Maintainer</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -318,341 +172,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	protected EClass eStaticClass()
 	{
 		return GraphicPackage.Literals.GRAPHICS_PIPELINE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getName()
-	{
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setName(String newName)
-	{
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourcePkg getResourcePkg()
-	{
-		return resourcePkg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetResourcePkg(ResourcePkg newResourcePkg, NotificationChain msgs)
-	{
-		ResourcePkg oldResourcePkg = resourcePkg;
-		resourcePkg = newResourcePkg;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setResourcePkg(ResourcePkg newResourcePkg)
-	{
-		if (newResourcePkg != resourcePkg)
-		{
-			NotificationChain msgs = null;
-			if (resourcePkg != null)
-				msgs = ((InternalEObject)resourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, null, msgs);
-			if (newResourcePkg != null)
-				msgs = ((InternalEObject)newResourcePkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, null, msgs);
-			msgs = basicSetResourcePkg(newResourcePkg, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, newResourcePkg, newResourcePkg));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isEnabled()
-	{
-		return enabled;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setEnabled(boolean newEnabled)
-	{
-		boolean oldEnabled = enabled;
-		enabled = newEnabled;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__ENABLED, oldEnabled, enabled));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ECommandStage getStage()
-	{
-		return stage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setStage(ECommandStage newStage)
-	{
-		ECommandStage oldStage = stage;
-		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__STAGE, oldStage, stage));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<PushConstantRange> getPushConstantRanges()
-	{
-		if (pushConstantRanges == null)
-		{
-			pushConstantRanges = new EObjectContainmentEList<PushConstantRange>(PushConstantRange.class, this, GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES);
-		}
-		return pushConstantRanges;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ConstantBuffer getSpecializationData()
-	{
-		if (specializationData != null && ((EObject)specializationData).eIsProxy())
-		{
-			InternalEObject oldSpecializationData = (InternalEObject)specializationData;
-			specializationData = (ConstantBuffer)eResolveProxy(oldSpecializationData);
-			if (specializationData != oldSpecializationData)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
-			}
-		}
-		return specializationData;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ConstantBuffer basicGetSpecializationData()
-	{
-		return specializationData;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setSpecializationData(ConstantBuffer newSpecializationData)
-	{
-		ConstantBuffer oldSpecializationData = specializationData;
-		specializationData = newSpecializationData;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public DescriptorSetPkg getDescriptorSetPkg()
-	{
-		return descriptorSetPkg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDescriptorSetPkg(DescriptorSetPkg newDescriptorSetPkg, NotificationChain msgs)
-	{
-		DescriptorSetPkg oldDescriptorSetPkg = descriptorSetPkg;
-		descriptorSetPkg = newDescriptorSetPkg;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, oldDescriptorSetPkg, newDescriptorSetPkg);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDescriptorSetPkg(DescriptorSetPkg newDescriptorSetPkg)
-	{
-		if (newDescriptorSetPkg != descriptorSetPkg)
-		{
-			NotificationChain msgs = null;
-			if (descriptorSetPkg != null)
-				msgs = ((InternalEObject)descriptorSetPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
-			if (newDescriptorSetPkg != null)
-				msgs = ((InternalEObject)newDescriptorSetPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
-			msgs = basicSetDescriptorSetPkg(newDescriptorSetPkg, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG, newDescriptorSetPkg, newDescriptorSetPkg));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public TaskPkg getTaskPkg()
-	{
-		return taskPkg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTaskPkg(TaskPkg newTaskPkg, NotificationChain msgs)
-	{
-		TaskPkg oldTaskPkg = taskPkg;
-		taskPkg = newTaskPkg;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, oldTaskPkg, newTaskPkg);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTaskPkg(TaskPkg newTaskPkg)
-	{
-		if (newTaskPkg != taskPkg)
-		{
-			NotificationChain msgs = null;
-			if (taskPkg != null)
-				msgs = ((InternalEObject)taskPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, null, msgs);
-			if (newTaskPkg != null)
-				msgs = ((InternalEObject)newTaskPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, null, msgs);
-			msgs = basicSetTaskPkg(newTaskPkg, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, newTaskPkg, newTaskPkg));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public DescriptorPkg getDescriptorPkg()
-	{
-		return descriptorPkg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDescriptorPkg(DescriptorPkg newDescriptorPkg, NotificationChain msgs)
-	{
-		DescriptorPkg oldDescriptorPkg = descriptorPkg;
-		descriptorPkg = newDescriptorPkg;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG, oldDescriptorPkg, newDescriptorPkg);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDescriptorPkg(DescriptorPkg newDescriptorPkg)
-	{
-		if (newDescriptorPkg != descriptorPkg)
-		{
-			NotificationChain msgs = null;
-			if (descriptorPkg != null)
-				msgs = ((InternalEObject)descriptorPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG, null, msgs);
-			if (newDescriptorPkg != null)
-				msgs = ((InternalEObject)newDescriptorPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG, null, msgs);
-			msgs = basicSetDescriptorPkg(newDescriptorPkg, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG, newDescriptorPkg, newDescriptorPkg));
 	}
 
 	/**
@@ -1095,16 +614,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-				return basicSetResourcePkg(null, msgs);
-			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG:
-				return basicSetDescriptorPkg(null, msgs);
-			case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
-				return ((InternalEList<?>)getPushConstantRanges()).basicRemove(otherEnd, msgs);
-			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
-				return basicSetDescriptorSetPkg(null, msgs);
-			case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
-				return basicSetTaskPkg(null, msgs);
 			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
 				return basicSetMaintainer(null, msgs);
 			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
@@ -1133,25 +642,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHICS_PIPELINE__NAME:
-				return getName();
-			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-				return getResourcePkg();
-			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG:
-				return getDescriptorPkg();
-			case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
-				return isEnabled();
-			case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
-				return getStage();
-			case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
-				return getPushConstantRanges();
-			case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
-				if (resolve) return getSpecializationData();
-				return basicGetSpecializationData();
-			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
-				return getDescriptorSetPkg();
-			case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
-				return getTaskPkg();
 			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
 				if (resolve) return getMaintainer();
 				return basicGetMaintainer();
@@ -1186,34 +676,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHICS_PIPELINE__NAME:
-				setName((String)newValue);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-				setResourcePkg((ResourcePkg)newValue);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG:
-				setDescriptorPkg((DescriptorPkg)newValue);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
-				setEnabled((Boolean)newValue);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
-				setStage((ECommandStage)newValue);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
-				getPushConstantRanges().clear();
-				getPushConstantRanges().addAll((Collection<? extends PushConstantRange>)newValue);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
-				setSpecializationData((ConstantBuffer)newValue);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
-				setDescriptorSetPkg((DescriptorSetPkg)newValue);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
-				setTaskPkg((TaskPkg)newValue);
-				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
 				setMaintainer((Maintainer<GraphicsPipeline>)newValue);
 				return;
@@ -1256,33 +718,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHICS_PIPELINE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-				setResourcePkg((ResourcePkg)null);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG:
-				setDescriptorPkg((DescriptorPkg)null);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
-				setEnabled(ENABLED_EDEFAULT);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
-				setStage(STAGE_EDEFAULT);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
-				getPushConstantRanges().clear();
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
-				setSpecializationData((ConstantBuffer)null);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
-				setDescriptorSetPkg((DescriptorSetPkg)null);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
-				setTaskPkg((TaskPkg)null);
-				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
 				setMaintainer((Maintainer<GraphicsPipeline>)null);
 				return;
@@ -1324,24 +759,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHICS_PIPELINE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-				return resourcePkg != null;
-			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG:
-				return descriptorPkg != null;
-			case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
-				return enabled != ENABLED_EDEFAULT;
-			case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
-				return stage != STAGE_EDEFAULT;
-			case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
-				return pushConstantRanges != null && !pushConstantRanges.isEmpty();
-			case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
-				return specializationData != null;
-			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
-				return descriptorSetPkg != null;
-			case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
-				return taskPkg != null;
 			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
 				return maintainer != null;
 			case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
@@ -1372,15 +789,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == IResourceContainer.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG: return VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG;
-				case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG: return VulkanPackage.IRESOURCE_CONTAINER__DESCRIPTOR_PKG;
-				default: return -1;
-			}
-		}
 		if (baseClass == Maintainable.class)
 		{
 			switch (derivedFeatureID)
@@ -1400,15 +808,6 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == IResourceContainer.class)
-		{
-			switch (baseFeatureID)
-			{
-				case VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG: return GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG;
-				case VulkanPackage.IRESOURCE_CONTAINER__DESCRIPTOR_PKG: return GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG;
-				default: return -1;
-			}
-		}
 		if (baseClass == Maintainable.class)
 		{
 			switch (baseFeatureID)
@@ -1431,13 +830,7 @@ public class GraphicsPipelineImpl extends LilyEObject implements GraphicsPipelin
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", enabled: ");
-		result.append(enabled);
-		result.append(", stage: ");
-		result.append(stage);
-		result.append(", depthStencil: ");
+		result.append(" (depthStencil: ");
 		result.append(depthStencil);
 		result.append(')');
 		return result.toString();

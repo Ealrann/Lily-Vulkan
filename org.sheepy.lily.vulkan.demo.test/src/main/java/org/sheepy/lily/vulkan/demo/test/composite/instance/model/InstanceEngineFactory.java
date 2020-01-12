@@ -30,6 +30,7 @@ public class InstanceEngineFactory
 
 		final var pipeline = createPipeline(resourceContainer);
 		process.getPipelinePkg().getPipelines().add(pipeline);
+		pipeline.getLayout().add(resourceContainer.ds);
 
 		final var taskManager = new InstanceTaskManager(resourceContainer, PART_COUNT);
 		taskManager.install(pipeline.getTaskPkg().getTasks());

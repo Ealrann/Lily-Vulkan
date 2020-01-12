@@ -38,6 +38,7 @@ import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFactory;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.util.NuklearAdapterFactory;
+import org.sheepy.lily.vulkan.model.process.CompositePipeline;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
@@ -658,6 +659,31 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 				return null;
 			}
  
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseCompositePipeline(CompositePipeline object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
+						 NuklearFactory.eINSTANCE.createNuklearPushConstants()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
+						 NuklearFactory.eINSTANCE.createNuklearLayoutTask()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
+						 NuklearFactory.eINSTANCE.createNuklearFillBufferTask()));
+
+				return null;
+			}
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

@@ -17,6 +17,8 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.ITaskPipeline;
+import org.sheepy.lily.vulkan.model.process.IVkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 
 /**
@@ -138,14 +140,24 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 				return createLNamedElementAdapter();
 			}
 			@Override
+			public Adapter caseIPipeline(IPipeline object)
+			{
+				return createIPipelineAdapter();
+			}
+			@Override
 			public Adapter caseIResourceContainer(IResourceContainer object)
 			{
 				return createIResourceContainerAdapter();
 			}
 			@Override
-			public Adapter caseIPipeline(IPipeline object)
+			public Adapter caseITaskPipeline(ITaskPipeline object)
 			{
-				return createIPipelineAdapter();
+				return createITaskPipelineAdapter();
+			}
+			@Override
+			public Adapter caseIVkPipeline(IVkPipeline object)
+			{
+				return createIVkPipelineAdapter();
 			}
 			@Override
 			public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object)
@@ -360,6 +372,21 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IPipeline <em>IPipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.IPipeline
+	 * @generated
+	 */
+	public Adapter createIPipelineAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IResourceContainer <em>IResource Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -375,16 +402,31 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IPipeline <em>IPipeline</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ITaskPipeline <em>ITask Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.IPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.ITaskPipeline
 	 * @generated
 	 */
-	public Adapter createIPipelineAdapter()
+	public Adapter createITaskPipelineAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IVkPipeline <em>IVk Pipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.IVkPipeline
+	 * @generated
+	 */
+	public Adapter createIVkPipelineAdapter()
 	{
 		return null;
 	}

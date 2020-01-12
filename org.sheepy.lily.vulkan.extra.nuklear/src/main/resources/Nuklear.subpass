@@ -5,7 +5,7 @@
   <accesses>COLOR_ATTACHMENT_READ_BIT</accesses>
   <accesses>COLOR_ATTACHMENT_WRITE_BIT</accesses>
   <pipelinePkg>
-    <pipelines xsi:type="graphic:GraphicsPipeline" name="GUI no images" shaders="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.4 //@pipelinePkg/@pipelines.0/@resourcePkg/@resources.5">
+    <pipelines xsi:type="graphic:GraphicsPipeline" name="GUI no images" layout="//@pipelinePkg/@pipelines.0/@descriptorSetPkg/@descriptorSets.0" shaders="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.4 //@pipelinePkg/@pipelines.0/@resourcePkg/@resources.5">
       <resourcePkg>
         <resources xsi:type="resource:SampledImage" name="NullTexture">
           <sampler/>
@@ -17,7 +17,7 @@
             </initialLayout>
           </image>
         </resources>
-        <resources xsi:type="resource:FontImage" format="R8_UNORM" instanceCount="FitToSwapImageCount">
+        <resources xsi:type="resource:FontImage" format="R8_UNORM">
           <usages>Sampled</usages>
           <usages>TransferDst</usages>
         </resources>
@@ -33,12 +33,12 @@
         <resources xsi:type="resource:TransferBuffer" name="NkPushBuffer" size="2097152" instanceCount="FitToSwapImageCount"/>
         <resources xsi:type="resource:CompositeBuffer" name="NuklearVertexBuffer">
           <parts name="Vertex">
-            <dataProvider xsi:type="nuklear:NuklearVertexProvider" instanceCount="FitToSwapImageCount" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3">
+            <dataProvider xsi:type="nuklear:NuklearVertexProvider" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3">
               <usages>VERTEX_BUFFER_BIT</usages>
             </dataProvider>
           </parts>
           <parts name="Index">
-            <dataProvider xsi:type="nuklear:NuklearIndexProvider" instanceCount="FitToSwapImageCount" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3">
+            <dataProvider xsi:type="nuklear:NuklearIndexProvider" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3">
               <usages>INDEX_BUFFER_BIT</usages>
             </dataProvider>
           </parts>
@@ -62,13 +62,6 @@
           <shaderStages>FRAGMENT_BIT</shaderStages>
         </descriptors>
       </descriptorPkg>
-      <pushConstantRanges size="68">
-        <stages>VERTEX_BIT</stages>
-        <stages>FRAGMENT_BIT</stages>
-      </pushConstantRanges>
-      <descriptorSetPkg>
-        <descriptorSets name="UI" descriptors="//@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.0 //@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.1 //@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.2 //@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.3 //@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.4"/>
-      </descriptorSetPkg>
       <taskPkg>
         <tasks xsi:type="process:BindDescriptorSets" descriptorSets="//@pipelinePkg/@pipelines.0/@descriptorSetPkg/@descriptorSets.0"/>
         <tasks xsi:type="nuklear:NuklearLayoutTask" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3"/>
@@ -87,6 +80,13 @@
         </tasks>
         <tasks xsi:type="process:CompositeTask" name="Nk draw"/>
       </taskPkg>
+      <descriptorSetPkg>
+        <descriptorSets name="UI" descriptors="//@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.0 //@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.1 //@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.2 //@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.3 //@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.4"/>
+      </descriptorSetPkg>
+      <pushConstantRanges size="68">
+        <stages>VERTEX_BIT</stages>
+        <stages>FRAGMENT_BIT</stages>
+      </pushConstantRanges>
       <viewportState xsi:type="graphicpipeline:DynamicViewportState" viewportCount="1" scissorCount="1"/>
       <inputAssembly/>
       <rasterizer cullMode="NONE" frontFace="COUNTER_CLOCKWISE"/>

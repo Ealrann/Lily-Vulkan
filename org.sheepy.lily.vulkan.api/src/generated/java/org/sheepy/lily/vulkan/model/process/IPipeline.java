@@ -2,18 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.sheepy.lily.core.model.types.LNamedElement;
-
-import org.sheepy.lily.vulkan.model.IResourceContainer;
-
-import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
-
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
-
-import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,17 +16,13 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getStage <em>Stage</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getPushConstantRanges <em>Push Constant Ranges</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getSpecializationData <em>Specialization Data</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getTaskPkg <em>Task Pkg</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getIPipeline()
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface IPipeline extends LNamedElement, IResourceContainer
+public interface IPipeline extends LNamedElement
 {
 	/**
 	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.
@@ -86,83 +72,5 @@ public interface IPipeline extends LNamedElement, IResourceContainer
 	 * @generated
 	 */
 	void setStage(ECommandStage value);
-
-	/**
-	 * Returns the value of the '<em><b>Push Constant Ranges</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.pipeline.PushConstantRange}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Push Constant Ranges</em>' containment reference list.
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getIPipeline_PushConstantRanges()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<PushConstantRange> getPushConstantRanges();
-
-	/**
-	 * Returns the value of the '<em><b>Specialization Data</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Specialization Data</em>' reference.
-	 * @see #setSpecializationData(ConstantBuffer)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getIPipeline_SpecializationData()
-	 * @model
-	 * @generated
-	 */
-	ConstantBuffer getSpecializationData();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getSpecializationData <em>Specialization Data</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Specialization Data</em>' reference.
-	 * @see #getSpecializationData()
-	 * @generated
-	 */
-	void setSpecializationData(ConstantBuffer value);
-
-	/**
-	 * Returns the value of the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Descriptor Set Pkg</em>' containment reference.
-	 * @see #setDescriptorSetPkg(DescriptorSetPkg)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getIPipeline_DescriptorSetPkg()
-	 * @model containment="true"
-	 * @generated
-	 */
-	DescriptorSetPkg getDescriptorSetPkg();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Descriptor Set Pkg</em>' containment reference.
-	 * @see #getDescriptorSetPkg()
-	 * @generated
-	 */
-	void setDescriptorSetPkg(DescriptorSetPkg value);
-
-	/**
-	 * Returns the value of the '<em><b>Task Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Task Pkg</em>' containment reference.
-	 * @see #setTaskPkg(TaskPkg)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getIPipeline_TaskPkg()
-	 * @model containment="true"
-	 * @generated
-	 */
-	TaskPkg getTaskPkg();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getTaskPkg <em>Task Pkg</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Task Pkg</em>' containment reference.
-	 * @see #getTaskPkg()
-	 * @generated
-	 */
-	void setTaskPkg(TaskPkg value);
 
 } // IPipeline

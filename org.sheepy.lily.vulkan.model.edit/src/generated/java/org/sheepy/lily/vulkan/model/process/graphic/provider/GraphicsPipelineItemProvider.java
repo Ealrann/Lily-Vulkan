@@ -7,31 +7,16 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.core.model.application.ApplicationFactory;
-import org.sheepy.lily.core.model.types.TypesPackage;
-import org.sheepy.lily.vulkan.model.VulkanFactory;
-import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.process.ProcessFactory;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.process.provider.IVkPipelineItemProvider;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelineFactory;
-import org.sheepy.vulkan.model.pipeline.PipelineFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline} object.
@@ -39,8 +24,7 @@ import org.sheepy.vulkan.model.pipeline.PipelineFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class GraphicsPipelineItemProvider extends IVkPipelineItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -66,106 +50,10 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 		{
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addEnabledPropertyDescriptor(object);
-			addStagePropertyDescriptor(object);
-			addSpecializationDataPropertyDescriptor(object);
 			addShadersPropertyDescriptor(object);
 			addDepthStencilPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LNamedElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
-				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Enabled feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addEnabledPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IPipeline_enabled_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_enabled_feature", "_UI_IPipeline_type"),
-				 ProcessPackage.Literals.IPIPELINE__ENABLED,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Stage feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addStagePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IPipeline_stage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature", "_UI_IPipeline_type"),
-				 ProcessPackage.Literals.IPIPELINE__STAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Specialization Data feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSpecializationDataPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IPipeline_specializationData_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_specializationData_feature", "_UI_IPipeline_type"),
-				 ProcessPackage.Literals.IPIPELINE__SPECIALIZATION_DATA,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -228,11 +116,6 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
-			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
-			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES);
-			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG);
-			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__TASK_PKG);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHICS_PIPELINE__INPUT_ASSEMBLY);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHICS_PIPELINE__RASTERIZER);
@@ -298,18 +181,9 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 
 		switch (notification.getFeatureID(GraphicsPipeline.class))
 		{
-			case GraphicPackage.GRAPHICS_PIPELINE__NAME:
-			case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
-			case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
-			case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
 			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
-			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG:
-			case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
-			case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
-			case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
 			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
 			case GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
 			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
@@ -333,31 +207,6 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-				 ApplicationFactory.eINSTANCE.createResourcePkg()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
-				 VulkanFactory.eINSTANCE.createDescriptorPkg()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES,
-				 PipelineFactory.eINSTANCE.createPushConstantRange()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
-				 ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.IPIPELINE__TASK_PKG,
-				 ProcessFactory.eINSTANCE.createTaskPkg()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -393,18 +242,6 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter implements
 			(createChildParameter
 				(GraphicPackage.Literals.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE,
 				 GraphicFactory.eINSTANCE.createVertexInputState()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator()
-	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

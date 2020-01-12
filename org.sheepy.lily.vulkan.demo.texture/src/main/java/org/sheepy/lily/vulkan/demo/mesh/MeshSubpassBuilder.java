@@ -275,6 +275,7 @@ public final class MeshSubpassBuilder
 			graphicPipeline.setDescriptorSetPkg(ResourceFactory.eINSTANCE.createDescriptorSetPkg());
 			graphicPipeline.getDescriptorSetPkg().getDescriptorSets().add(descriptorSet);
 			bindDescriptorSets.getDescriptorSets().add(descriptorSet);
+			graphicPipeline.getLayout().add(descriptorSet);
 		}
 
 		return List.of(graphicPipeline);

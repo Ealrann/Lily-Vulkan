@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.process;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.lwjgl.system.MemoryStack;
@@ -11,14 +12,19 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.cadence.IStatistics;
+import org.sheepy.lily.core.api.util.CompositeModelExplorer;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
+import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
+import org.sheepy.lily.vulkan.api.pipeline.IVkPipelineAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
-import org.sheepy.lily.vulkan.api.process.IProcessPartAdapter;
+import org.sheepy.lily.vulkan.api.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.common.allocation.GenericAllocator;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
 import org.sheepy.lily.vulkan.common.process.IExecutionProcessAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.concurrent.IFenceView;
 import org.sheepy.vulkan.descriptor.DescriptorPool;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
@@ -29,6 +35,9 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorderContext<T>>
 		implements IExecutionProcessAdapter, IAllocable<IVulkanContext>
 {
+	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG,
+																							ResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));
+
 	protected final AbstractProcess process;
 	protected final DescriptorPool descriptorPool = new DescriptorPool();
 	protected final T context;
@@ -36,9 +45,10 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	private final GenericAllocator resourceAllocator;
 	private final GenericAllocator pipelineAllocator;
 	private final TreeAllocator<IVulkanContext> allocator = new TreeAllocator<IVulkanContext>(this);
+	private final CompositeModelExplorer pipelineExplorer;
 
 	protected IAllocationConfigurator config;
-	protected List<IProcessPartAdapter> pipelineAdapters;
+	protected List<IPipelineAdapter> pipelineAdapters;
 
 	private long startPrepareNs = 0;
 
@@ -49,6 +59,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 
 		resourceAllocator = new GenericAllocator(getResourceFeatureLists());
 		pipelineAllocator = new GenericAllocator(getPipelineFeatureLists());
+		pipelineExplorer = new CompositeModelExplorer(getPipelineFeatureLists());
 	}
 
 	@Load
@@ -61,8 +72,8 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	@Dispose
 	private void dispose()
 	{
-		resourceAllocator.stop(process);
 		pipelineAllocator.stop(process);
+		resourceAllocator.stop(process);
 	}
 
 	@Override
@@ -114,7 +125,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 
 	private void refreshStructure()
 	{
-		pipelineAdapters = getPipelineExplorer().exploreAdapt(process, IProcessPartAdapter.class);
+		pipelineAdapters = pipelineExplorer.exploreAdapt(process, IPipelineAdapter.class);
 		descriptorPool.setDescriptorSets(gatherDescriptorLists());
 	}
 
@@ -230,10 +241,15 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	private List<IVkDescriptorSet> gatherDescriptorLists()
 	{
 		final List<IVkDescriptorSet> res = new ArrayList<>();
+		DERSCRIPTOR_SET_EXPLORER.streamAdaptNotNull(process, IDescriptorSetAdapter.class)
+								.collect(Collectors.toCollection(() -> res));
 		for (int i = 0; i < pipelineAdapters.size(); i++)
 		{
 			final var pipelineAdapter = pipelineAdapters.get(i);
-			pipelineAdapter.collectDescriptorSets(res);
+			if (pipelineAdapter instanceof IVkPipelineAdapter<?>)
+			{
+				((IVkPipelineAdapter<?>) pipelineAdapter).collectDescriptorSets(res);
+			}
 		}
 
 		return res;
@@ -355,7 +371,6 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 
 	protected abstract List<List<EStructuralFeature>> getPipelineFeatureLists();
 	protected abstract List<List<EStructuralFeature>> getResourceFeatureLists();
-	protected abstract ModelExplorer getPipelineExplorer();
 	protected abstract List<IAllocable<? super T>> getExtraAllocables();
 	protected abstract Integer prepareNextExecution();
 	protected abstract List<ECommandStage> getStages();

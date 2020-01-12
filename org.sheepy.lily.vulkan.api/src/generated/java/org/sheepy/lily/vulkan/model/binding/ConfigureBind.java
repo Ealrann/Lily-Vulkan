@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.binding;
 
+import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 
 /**
@@ -13,7 +14,7 @@ import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.binding.ConfigureBind#getBindTask <em>Bind Task</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.binding.ConfigureBind#getBindTasks <em>Bind Tasks</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.binding.BindingPackage#getConfigureBind()
@@ -23,25 +24,15 @@ import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 public interface ConfigureBind extends IConfigurationTask
 {
 	/**
-	 * Returns the value of the '<em><b>Bind Task</b></em>' reference.
+	 * Returns the value of the '<em><b>Bind Tasks</b></em>' reference list.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bind Task</em>' reference.
-	 * @see #setBindTask(BindDescriptorSets)
-	 * @see org.sheepy.lily.vulkan.model.binding.BindingPackage#getConfigureBind_BindTask()
+	 * @return the value of the '<em>Bind Tasks</em>' reference list.
+	 * @see org.sheepy.lily.vulkan.model.binding.BindingPackage#getConfigureBind_BindTasks()
 	 * @model required="true"
 	 * @generated
 	 */
-	BindDescriptorSets getBindTask();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.binding.ConfigureBind#getBindTask <em>Bind Task</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Bind Task</em>' reference.
-	 * @see #getBindTask()
-	 * @generated
-	 */
-	void setBindTask(BindDescriptorSets value);
+	EList<BindDescriptorSets> getBindTasks();
 
 } // ConfigureBind

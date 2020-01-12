@@ -37,7 +37,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute binding.ecore#//BindingConfiguration/descriptorSetStride"/>
     </genClasses>
     <genClasses ecoreClass="binding.ecore#//ConfigureBind">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference binding.ecore#//ConfigureBind/bindTask"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference binding.ecore#//ConfigureBind/bindTasks"/>
     </genClasses>
     <genClasses ecoreClass="binding.ecore#//RotateConfiguration">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference binding.ecore#//RotateConfiguration/configurations"/>
@@ -224,6 +224,7 @@
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
       ecorePackage="process.ecore#/">
     <genClasses image="false" ecoreClass="process.ecore#//AbstractProcess">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//AbstractProcess/descriptorSetPkg"/>
       <genFeatures createChild="false" propertyDescription="If fenceEnabled, will wait during acquire. Useless for a render process that already wait for image acquiring"
           ecoreFeature="ecore:EAttribute process.ecore#//AbstractProcess/waitingFenceDuringAcquire"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//AbstractProcess/resetAllowed"/>
@@ -243,15 +244,24 @@
     <genClasses image="false" ecoreClass="process.ecore#//IPipeline">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//IPipeline/enabled"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//IPipeline/stage"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//IPipeline/pushConstantRanges"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EReference process.ecore#//IPipeline/specializationData"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//IPipeline/descriptorSetPkg"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//IPipeline/taskPkg"/>
+    </genClasses>
+    <genClasses ecoreClass="process.ecore#//ITaskPipeline">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//ITaskPipeline/taskPkg"/>
+    </genClasses>
+    <genClasses ecoreClass="process.ecore#//IVkPipeline">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//IVkPipeline/descriptorSetPkg"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//IVkPipeline/specializationData"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//IVkPipeline/pushConstantRanges"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//IVkPipeline/layout"/>
     </genClasses>
     <genClasses ecoreClass="process.ecore#//TaskPkg">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//TaskPkg/tasks"/>
     </genClasses>
     <genClasses ecoreClass="process.ecore#//Pipeline"/>
+    <genClasses ecoreClass="process.ecore#//CompositePipeline">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//CompositePipeline/pipelines"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CompositePipeline/repeat"/>
+    </genClasses>
     <genClasses ecoreClass="process.ecore#//PipelineBarrier">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//PipelineBarrier/barriers"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PipelineBarrier/srcStage"/>

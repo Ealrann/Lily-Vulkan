@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.process.pipeline;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -14,39 +13,28 @@ import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.notification.util.AbstractModelSetRegistry;
-import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
-import org.sheepy.lily.vulkan.api.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.vulkan.pipeline.VkPipelineLayout;
 
 @Statefull
-public abstract class AbstractPipelineAdapter<T extends IProcessContext>
-		implements IAllocableAdapter<T>, IPipelineAdapter<T>
+public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext>
+		implements IAllocableAdapter<T>, IPipelineAdapter
 {
-	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
-																							ResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));
-
-	private final TaskObserver taskRegister = new TaskObserver(List.of(	ProcessPackage.Literals.IPIPELINE__TASK_PKG,
+	private final TaskObserver taskRegister = new TaskObserver(List.of(	ProcessPackage.Literals.ITASK_PIPELINE__TASK_PKG,
 																		ProcessPackage.Literals.TASK_PKG__TASKS));
 
 	protected final IPipeline pipeline;
 
 	private final List<TaskWrapper<?>> taskWrappers = new ArrayList<>();
-	private VkPipelineLayout<? super T> vkPipelineLayout;
 	private boolean recordNeeded = false;
-
 	private IAllocationConfigurator allocationConfig;
 
-	public AbstractPipelineAdapter(IPipeline pipeline)
+	public AbstractTaskPipelineAdapter(IPipeline pipeline)
 	{
 		this.pipeline = pipeline;
 	}
@@ -73,36 +61,9 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		}
 	}
 
-	@Override
-	public void allocate(T context)
-	{
-		vkPipelineLayout = createVkPipelineLayout();
-		vkPipelineLayout.allocate(context);
-
-		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
-		{
-			System.out.print("Pipeline Layout: ");
-			System.out.println(vkPipelineLayout.toString());
-		}
-	}
-
-	protected VkPipelineLayout<T> createVkPipelineLayout()
-	{
-		final List<IVkDescriptorSet> descriptorSets = new ArrayList<>();
-		collectDescriptorSets(descriptorSets);
-
-		final var pushConstantRanges = pipeline.getPushConstantRanges();
-		return new VkPipelineLayout<>(descriptorSets, pushConstantRanges);
-	}
 
 	@Override
-	public void free(T context)
-	{
-		vkPipelineLayout.free(context);
-	}
-
-	@Override
-	public void update(int index)
+	public final void update(int index)
 	{
 		for (int i = 0; i < taskWrappers.size(); i++)
 		{
@@ -140,15 +101,10 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		}
 	}
 
-	private final void recordInternal(RecordContext context)
+	protected void recordInternal(RecordContext context)
 	{
 		final var pipelineStage = pipeline.getStage();
-		final var vkPipeline = getVkPipeline();
 		final var currentStage = context.stage;
-		if (vkPipeline != null && pipelineStage == currentStage)
-		{
-			vkPipeline.bindPipeline(context.commandBuffer);
-		}
 
 		for (int i = 0; i < taskWrappers.size(); i++)
 		{
@@ -166,19 +122,6 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		}
 
 		recordNeeded = false;
-	}
-
-	@Override
-	public void collectDescriptorSets(List<IVkDescriptorSet> collectIn)
-	{
-		DERSCRIPTOR_SET_EXPLORER.streamAdaptNotNull(pipeline, IDescriptorSetAdapter.class)
-								.collect(Collectors.toCollection(() -> collectIn));
-	}
-
-	@Override
-	public VkPipelineLayout<? super T> getVkPipelineLayout()
-	{
-		return vkPipelineLayout;
 	}
 
 	@Override

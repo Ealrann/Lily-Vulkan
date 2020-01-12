@@ -17,6 +17,8 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.sprite.*;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.ITaskPipeline;
+import org.sheepy.lily.vulkan.model.process.IVkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 
 /**
@@ -89,10 +91,12 @@ public class SpriteSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseGenericRenderer(spriteRenderer);
 				if (result == null) result = caseGraphicsPipeline(spriteRenderer);
 				if (result == null) result = caseMaintainer(spriteRenderer);
-				if (result == null) result = caseIPipeline(spriteRenderer);
+				if (result == null) result = caseIVkPipeline(spriteRenderer);
 				if (result == null) result = caseMaintainable(spriteRenderer);
-				if (result == null) result = caseLNamedElement(spriteRenderer);
+				if (result == null) result = caseITaskPipeline(spriteRenderer);
+				if (result == null) result = caseIPipeline(spriteRenderer);
 				if (result == null) result = caseIResourceContainer(spriteRenderer);
+				if (result == null) result = caseLNamedElement(spriteRenderer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -229,6 +233,22 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIPipeline(IPipeline object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>IResource Container</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -245,17 +265,33 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>ITask Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>ITask Pipeline</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIPipeline(IPipeline object)
+	public T1 caseITaskPipeline(ITaskPipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IVk Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IVk Pipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIVkPipeline(IVkPipeline object)
 	{
 		return null;
 	}

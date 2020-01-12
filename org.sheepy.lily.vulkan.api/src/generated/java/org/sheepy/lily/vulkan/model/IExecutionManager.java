@@ -16,4 +16,5 @@ import org.sheepy.lily.core.api.adapter.ILilyEObject;
  * @generated
  */
 public interface IExecutionManager extends ILilyEObject
-{} // IExecutionManager
+{
+} // IExecutionManager

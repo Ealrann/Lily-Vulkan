@@ -124,6 +124,15 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__CADENCE = ProcessPackage.ABSTRACT_PROCESS__CADENCE;
 
 	/**
+	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PROCESS__DESCRIPTOR_SET_PKG = ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG;
+
+	/**
 	 * The feature id for the '<em><b>Waiting Fence During Acquire</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -212,25 +221,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__NAME = ProcessPackage.IPIPELINE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE__RESOURCE_PKG = ProcessPackage.IPIPELINE__RESOURCE_PKG;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE__DESCRIPTOR_PKG = ProcessPackage.IPIPELINE__DESCRIPTOR_PKG;
+	int COMPUTE_PIPELINE__NAME = ProcessPackage.IVK_PIPELINE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -239,7 +230,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__ENABLED = ProcessPackage.IPIPELINE__ENABLED;
+	int COMPUTE_PIPELINE__ENABLED = ProcessPackage.IVK_PIPELINE__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -248,34 +239,25 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__STAGE = ProcessPackage.IPIPELINE__STAGE;
+	int COMPUTE_PIPELINE__STAGE = ProcessPackage.IVK_PIPELINE__STAGE;
 
 	/**
-	 * The feature id for the '<em><b>Push Constant Ranges</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__PUSH_CONSTANT_RANGES = ProcessPackage.IPIPELINE__PUSH_CONSTANT_RANGES;
+	int COMPUTE_PIPELINE__RESOURCE_PKG = ProcessPackage.IVK_PIPELINE__RESOURCE_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.
+	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__SPECIALIZATION_DATA = ProcessPackage.IPIPELINE__SPECIALIZATION_DATA;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG = ProcessPackage.IPIPELINE__DESCRIPTOR_SET_PKG;
+	int COMPUTE_PIPELINE__DESCRIPTOR_PKG = ProcessPackage.IVK_PIPELINE__DESCRIPTOR_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
@@ -284,7 +266,43 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__TASK_PKG = ProcessPackage.IPIPELINE__TASK_PKG;
+	int COMPUTE_PIPELINE__TASK_PKG = ProcessPackage.IVK_PIPELINE__TASK_PKG;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG = ProcessPackage.IVK_PIPELINE__DESCRIPTOR_SET_PKG;
+
+	/**
+	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PIPELINE__SPECIALIZATION_DATA = ProcessPackage.IVK_PIPELINE__SPECIALIZATION_DATA;
+
+	/**
+	 * The feature id for the '<em><b>Push Constant Ranges</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PIPELINE__PUSH_CONSTANT_RANGES = ProcessPackage.IVK_PIPELINE__PUSH_CONSTANT_RANGES;
+
+	/**
+	 * The feature id for the '<em><b>Layout</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PIPELINE__LAYOUT = ProcessPackage.IVK_PIPELINE__LAYOUT;
 
 	/**
 	 * The feature id for the '<em><b>Maintainer</b></em>' reference.
@@ -293,7 +311,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__MAINTAINER = ProcessPackage.IPIPELINE_FEATURE_COUNT + 0;
+	int COMPUTE_PIPELINE__MAINTAINER = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Shader</b></em>' reference.
@@ -302,7 +320,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__SHADER = ProcessPackage.IPIPELINE_FEATURE_COUNT + 1;
+	int COMPUTE_PIPELINE__SHADER = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Pipeline</em>' class.
@@ -311,7 +329,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 2;
+	int COMPUTE_PIPELINE_FEATURE_COUNT = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Pipeline</em>' class.
@@ -320,7 +338,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE_OPERATION_COUNT = ProcessPackage.IPIPELINE_OPERATION_COUNT + 0;
+	int COMPUTE_PIPELINE_OPERATION_COUNT = ProcessPackage.IVK_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.DispatchTaskImpl <em>Dispatch Task</em>}' class.

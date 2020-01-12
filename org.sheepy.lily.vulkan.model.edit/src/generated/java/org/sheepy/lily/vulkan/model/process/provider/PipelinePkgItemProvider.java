@@ -168,7 +168,22 @@ public class PipelinePkgItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+				 ProcessFactory.eINSTANCE.createITaskPipeline()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+				 ProcessFactory.eINSTANCE.createIVkPipeline()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 				 ProcessFactory.eINSTANCE.createPipeline()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+				 ProcessFactory.eINSTANCE.createCompositePipeline()));
 
 		newChildDescriptors.add
 			(createChildParameter

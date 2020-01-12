@@ -229,13 +229,13 @@ public interface BindingPackage extends EPackage
 	int CONFIGURE_BIND__NAME = ICONFIGURATION_TASK__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Bind Task</b></em>' reference.
+	 * The feature id for the '<em><b>Bind Tasks</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURE_BIND__BIND_TASK = ICONFIGURATION_TASK_FEATURE_COUNT + 0;
+	int CONFIGURE_BIND__BIND_TASKS = ICONFIGURATION_TASK_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Configure Bind</em>' class.
@@ -619,15 +619,15 @@ public interface BindingPackage extends EPackage
 	EClass getConfigureBind();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.binding.ConfigureBind#getBindTask <em>Bind Task</em>}'.
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.binding.ConfigureBind#getBindTasks <em>Bind Tasks</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Bind Task</em>'.
-	 * @see org.sheepy.lily.vulkan.model.binding.ConfigureBind#getBindTask()
+	 * @return the meta object for the reference list '<em>Bind Tasks</em>'.
+	 * @see org.sheepy.lily.vulkan.model.binding.ConfigureBind#getBindTasks()
 	 * @see #getConfigureBind()
 	 * @generated
 	 */
-	EReference getConfigureBind_BindTask();
+	EReference getConfigureBind_BindTasks();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.binding.RotateConfiguration <em>Rotate Configuration</em>}'.
@@ -913,12 +913,12 @@ public interface BindingPackage extends EPackage
 		EClass CONFIGURE_BIND = eINSTANCE.getConfigureBind();
 
 		/**
-		 * The meta object literal for the '<em><b>Bind Task</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Bind Tasks</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONFIGURE_BIND__BIND_TASK = eINSTANCE.getConfigureBind_BindTask();
+		EReference CONFIGURE_BIND__BIND_TASKS = eINSTANCE.getConfigureBind_BindTasks();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.binding.impl.RotateConfigurationImpl <em>Rotate Configuration</em>}' class.

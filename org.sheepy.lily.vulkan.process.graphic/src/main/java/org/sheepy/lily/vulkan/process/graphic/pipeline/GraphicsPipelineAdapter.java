@@ -13,7 +13,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
 import org.sheepy.lily.vulkan.model.resource.Shader;
-import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.AbstractVkPipelineAdapter;
 import org.sheepy.vulkan.pipeline.VkPipeline;
 import org.sheepy.vulkan.pipeline.VkShaderStage;
 import org.sheepy.vulkan.resource.indexed.VkInputStateDescriptor;
@@ -22,7 +22,7 @@ import org.sheepy.vulkan.resource.indexed.VkInputStateDescriptor.VkVertexBinding
 
 @Statefull
 @Adapter(scope = GraphicsPipeline.class)
-public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicContext>
+public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<IGraphicContext>
 {
 	protected final GraphicsPipeline pipeline;
 

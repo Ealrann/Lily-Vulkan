@@ -1,12 +1,14 @@
 package org.sheepy.lily.vulkan.api.pipeline;
 
-import org.sheepy.lily.vulkan.api.process.IProcessContext;
-import org.sheepy.lily.vulkan.api.process.IProcessPartAdapter;
-import org.sheepy.vulkan.pipeline.VkPipeline;
-import org.sheepy.vulkan.pipeline.VkPipelineLayout;
+import org.sheepy.lily.core.api.adapter.IAdapter;
+import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.execution.IRecordable;
 
-public interface IPipelineAdapter<T extends IProcessContext> extends IProcessPartAdapter
+public interface IPipelineAdapter extends IAdapter, IRecordable
 {
-	VkPipelineLayout<? super T> getVkPipelineLayout();
-	VkPipeline<? super T> getVkPipeline();
+	default void update(int index)
+	{}
+
+	default void prepareExecution(IExecutionContext context)
+	{}
 }

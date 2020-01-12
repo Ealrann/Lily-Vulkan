@@ -81,6 +81,7 @@ public final class ResourceInstaller<T extends Structure>
 			final var dSet = ResourceFactory.eINSTANCE.createDescriptorSet();
 			dSet.getDescriptors().addAll(res);
 			pipeline.getDescriptorSetPkg().getDescriptorSets().add(dSet);
+			pipeline.getLayout().add(dSet);
 			return dSet;
 		}
 		else

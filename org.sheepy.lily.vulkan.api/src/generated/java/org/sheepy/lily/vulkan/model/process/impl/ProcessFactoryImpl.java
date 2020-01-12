@@ -64,18 +64,21 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case ProcessPackage.PIPELINE_PKG: return createPipelinePkg();
-			case ProcessPackage.TASK_PKG: return createTaskPkg();
-			case ProcessPackage.PIPELINE: return createPipeline();
-			case ProcessPackage.PIPELINE_BARRIER: return createPipelineBarrier();
-			case ProcessPackage.COMPOSITE_TASK: return createCompositeTask();
-			case ProcessPackage.BIND_DESCRIPTOR_SETS: return createBindDescriptorSets();
-			case ProcessPackage.PUSH_CONSTANT_BUFFER: return createPushConstantBuffer();
-			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK: return createFlushTransferBufferTask();
-			case ProcessPackage.COPY_BUFFER_TASK: return createCopyBufferTask();
-			case ProcessPackage.PROCESS_EXTENSION_PKG: return createProcessExtensionPkg();
-			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER: return createPrepareCompositeTransfer();
-			case ProcessPackage.SWAP_BINDINGS_TASK: return createSwapBindingsTask();
+			case ProcessPackage.PIPELINE_PKG: return (EObject)createPipelinePkg();
+			case ProcessPackage.ITASK_PIPELINE: return (EObject)createITaskPipeline();
+			case ProcessPackage.IVK_PIPELINE: return (EObject)createIVkPipeline();
+			case ProcessPackage.TASK_PKG: return (EObject)createTaskPkg();
+			case ProcessPackage.PIPELINE: return (EObject)createPipeline();
+			case ProcessPackage.COMPOSITE_PIPELINE: return (EObject)createCompositePipeline();
+			case ProcessPackage.PIPELINE_BARRIER: return (EObject)createPipelineBarrier();
+			case ProcessPackage.COMPOSITE_TASK: return (EObject)createCompositeTask();
+			case ProcessPackage.BIND_DESCRIPTOR_SETS: return (EObject)createBindDescriptorSets();
+			case ProcessPackage.PUSH_CONSTANT_BUFFER: return (EObject)createPushConstantBuffer();
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK: return (EObject)createFlushTransferBufferTask();
+			case ProcessPackage.COPY_BUFFER_TASK: return (EObject)createCopyBufferTask();
+			case ProcessPackage.PROCESS_EXTENSION_PKG: return (EObject)createProcessExtensionPkg();
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER: return (EObject)createPrepareCompositeTransfer();
+			case ProcessPackage.SWAP_BINDINGS_TASK: return (EObject)createSwapBindingsTask();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -91,6 +94,30 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		PipelinePkgImpl pipelinePkg = new PipelinePkgImpl();
 		return pipelinePkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ITaskPipeline createITaskPipeline()
+	{
+		ITaskPipelineImpl iTaskPipeline = new ITaskPipelineImpl();
+		return iTaskPipeline;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IVkPipeline createIVkPipeline()
+	{
+		IVkPipelineImpl iVkPipeline = new IVkPipelineImpl();
+		return iVkPipeline;
 	}
 
 	/**
@@ -115,6 +142,18 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		PipelineImpl pipeline = new PipelineImpl();
 		return pipeline;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CompositePipeline createCompositePipeline()
+	{
+		CompositePipelineImpl compositePipeline = new CompositePipelineImpl();
+		return compositePipeline;
 	}
 
 	/**

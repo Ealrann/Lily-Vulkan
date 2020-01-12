@@ -1,7 +1,8 @@
 package org.sheepy.lily.vulkan.process.compute.execution;
 
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
+import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.vulkan.api.process.IComputeContext;
+import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.execution.AbstractExecutionRecorder;
 import org.sheepy.lily.vulkan.process.execution.Submission;
@@ -27,12 +28,12 @@ public class ComputeExecutionRecorder extends AbstractExecutionRecorder<ICompute
 		final var pipelinePkg = process.getPipelinePkg();
 		if (pipelinePkg != null)
 		{
-			for (final var pipeline : pipelinePkg.getPipelines())
+			final EList<IPipeline> pipelines = pipelinePkg.getPipelines();
+			for (int i = 0; i < pipelines.size(); i++)
 			{
-				final var adapter = pipeline.adapt(IPipelineAdapter.class);
-				adapter.record(recordContext);
+				final var pipeline = pipelines.get(i);
+				record(recordContext, pipeline);
 			}
 		}
 	}
-
 }

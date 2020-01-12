@@ -26,6 +26,7 @@ import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 
 /**
@@ -42,6 +43,7 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getQueuePriority <em>Queue Priority</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getCadence <em>Cadence</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getSignals <em>Signals</em>}</li>
@@ -142,6 +144,16 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @ordered
 	 */
 	protected ICadence cadence;
+
+	/**
+	 * The cached value of the '{@link #getDescriptorSetPkg() <em>Descriptor Set Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescriptorSetPkg()
+	 * @generated
+	 * @ordered
+	 */
+	protected DescriptorSetPkg descriptorSetPkg;
 
 	/**
 	 * The default value of the '{@link #isWaitingFenceDuringAcquire() <em>Waiting Fence During Acquire</em>}' attribute.
@@ -545,6 +557,56 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 */
 	@Override
+	public DescriptorSetPkg getDescriptorSetPkg()
+	{
+		return descriptorSetPkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDescriptorSetPkg(DescriptorSetPkg newDescriptorSetPkg, NotificationChain msgs)
+	{
+		DescriptorSetPkg oldDescriptorSetPkg = descriptorSetPkg;
+		descriptorSetPkg = newDescriptorSetPkg;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG, oldDescriptorSetPkg, newDescriptorSetPkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDescriptorSetPkg(DescriptorSetPkg newDescriptorSetPkg)
+	{
+		if (newDescriptorSetPkg != descriptorSetPkg)
+		{
+			NotificationChain msgs = null;
+			if (descriptorSetPkg != null)
+				msgs = ((InternalEObject)descriptorSetPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG, null, msgs);
+			if (newDescriptorSetPkg != null)
+				msgs = ((InternalEObject)newDescriptorSetPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG, null, msgs);
+			msgs = basicSetDescriptorSetPkg(newDescriptorSetPkg, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG, newDescriptorSetPkg, newDescriptorSetPkg));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public DescriptorPkg getDescriptorPkg()
 	{
 		return descriptorPkg;
@@ -605,6 +667,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return basicSetDescriptorPkg(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
 				return basicSetCadence(null, msgs);
+			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
+				return basicSetDescriptorSetPkg(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
 				return basicSetExtensionPkg(null, msgs);
 		}
@@ -633,6 +697,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return getQueuePriority();
 			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
 				return getCadence();
+			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
+				return getDescriptorSetPkg();
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				return isWaitingFenceDuringAcquire();
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
@@ -675,6 +741,9 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
 				setCadence((ICadence)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
+				setDescriptorSetPkg((DescriptorSetPkg)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				setWaitingFenceDuringAcquire((Boolean)newValue);
@@ -725,6 +794,9 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
 				setCadence((ICadence)null);
 				return;
+			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
+				setDescriptorSetPkg((DescriptorSetPkg)null);
+				return;
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				setWaitingFenceDuringAcquire(WAITING_FENCE_DURING_ACQUIRE_EDEFAULT);
 				return;
@@ -766,6 +838,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return queuePriority != QUEUE_PRIORITY_EDEFAULT;
 			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
 				return cadence != null;
+			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
+				return descriptorSetPkg != null;
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				return waitingFenceDuringAcquire != WAITING_FENCE_DURING_ACQUIRE_EDEFAULT;
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:

@@ -24,8 +24,6 @@ public final class VkPipelineLayout<T extends IExecutionContext> implements IAll
 	private final List<IVkDescriptorSet> descriptorSets;
 	private final List<PushConstantRange> constantRanges;
 
-	private LongBuffer descriptorSetAddressBuffer;
-
 	protected long pipelineLayout = -1;
 
 	public VkPipelineLayout(List<IVkDescriptorSet> descriptorSets,
@@ -40,19 +38,8 @@ public final class VkPipelineLayout<T extends IExecutionContext> implements IAll
 	{
 		final var stack = context.stack();
 		final var vkDevice = context.getVkDevice();
-		final int size = descriptorSets.size();
-
 		final var layouts = allocLayouts(stack);
 		final var pPushConstantRanges = allocPushConstant(stack);
-
-		descriptorSetAddressBuffer = MemoryUtil.memAllocLong(size);
-		for (int i = 0; i < size; i++)
-		{
-			final var descriptorSet = descriptorSets.get(i);
-			final var descriptorId = descriptorSet.getId();
-			descriptorSetAddressBuffer.put(descriptorId);
-		}
-		descriptorSetAddressBuffer.flip();
 
 		// Create compute pipeline
 		final long[] aLayout = new long[1];
@@ -89,12 +76,14 @@ public final class VkPipelineLayout<T extends IExecutionContext> implements IAll
 		return layouts;
 	}
 
-	public void bindDescriptors(VkCommandBuffer commandBuffer,
+	public void bindDescriptors(MemoryStack stack,
+								VkCommandBuffer commandBuffer,
 								List<IVkDescriptorSet> sets,
 								int bindPoint)
 	{
 		if (sets.size() > 0)
 		{
+			final var descriptorSetAddressBuffer = MemoryUtil.memAllocLong(sets.size());
 			descriptorSetAddressBuffer.clear();
 
 			for (int i = 0; i < sets.size(); i++)
@@ -144,7 +133,6 @@ public final class VkPipelineLayout<T extends IExecutionContext> implements IAll
 	{
 		final var vkDevice = context.getVkDevice();
 		vkDestroyPipelineLayout(vkDevice, pipelineLayout, null);
-		MemoryUtil.memFree(descriptorSetAddressBuffer);
 
 		pipelineLayout = -1;
 	}

@@ -2,14 +2,14 @@
  */
 package org.sheepy.lily.vulkan.model.binding.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.binding.BindingPackage;
 import org.sheepy.lily.vulkan.model.binding.ConfigureBind;
@@ -25,7 +25,7 @@ import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigureBindImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigureBindImpl#getBindTask <em>Bind Task</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.binding.impl.ConfigureBindImpl#getBindTasks <em>Bind Tasks</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,15 +51,14 @@ public class ConfigureBindImpl extends LilyEObject implements ConfigureBind
 	 */
 	protected String name = NAME_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getBindTask() <em>Bind Task</em>}' reference.
+	 * The cached value of the '{@link #getBindTasks() <em>Bind Tasks</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBindTask()
+	 * @see #getBindTasks()
 	 * @generated
 	 * @ordered
 	 */
-	protected BindDescriptorSets bindTask;
-
+	protected EList<BindDescriptorSets> bindTasks;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -112,43 +111,13 @@ public class ConfigureBindImpl extends LilyEObject implements ConfigureBind
 	 * @generated
 	 */
 	@Override
-	public BindDescriptorSets getBindTask()
+	public EList<BindDescriptorSets> getBindTasks()
 	{
-		if (bindTask != null && ((EObject)bindTask).eIsProxy())
+		if (bindTasks == null)
 		{
-			InternalEObject oldBindTask = (InternalEObject)bindTask;
-			bindTask = (BindDescriptorSets)eResolveProxy(oldBindTask);
-			if (bindTask != oldBindTask)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BindingPackage.CONFIGURE_BIND__BIND_TASK, oldBindTask, bindTask));
-			}
+			bindTasks = new EObjectResolvingEList<BindDescriptorSets>(BindDescriptorSets.class, this, BindingPackage.CONFIGURE_BIND__BIND_TASKS);
 		}
-		return bindTask;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BindDescriptorSets basicGetBindTask()
-	{
-		return bindTask;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setBindTask(BindDescriptorSets newBindTask)
-	{
-		BindDescriptorSets oldBindTask = bindTask;
-		bindTask = newBindTask;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BindingPackage.CONFIGURE_BIND__BIND_TASK, oldBindTask, bindTask));
+		return bindTasks;
 	}
 
 	/**
@@ -163,9 +132,8 @@ public class ConfigureBindImpl extends LilyEObject implements ConfigureBind
 		{
 			case BindingPackage.CONFIGURE_BIND__NAME:
 				return getName();
-			case BindingPackage.CONFIGURE_BIND__BIND_TASK:
-				if (resolve) return getBindTask();
-				return basicGetBindTask();
+			case BindingPackage.CONFIGURE_BIND__BIND_TASKS:
+				return getBindTasks();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -175,6 +143,7 @@ public class ConfigureBindImpl extends LilyEObject implements ConfigureBind
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -183,8 +152,9 @@ public class ConfigureBindImpl extends LilyEObject implements ConfigureBind
 			case BindingPackage.CONFIGURE_BIND__NAME:
 				setName((String)newValue);
 				return;
-			case BindingPackage.CONFIGURE_BIND__BIND_TASK:
-				setBindTask((BindDescriptorSets)newValue);
+			case BindingPackage.CONFIGURE_BIND__BIND_TASKS:
+				getBindTasks().clear();
+				getBindTasks().addAll((Collection<? extends BindDescriptorSets>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -203,8 +173,8 @@ public class ConfigureBindImpl extends LilyEObject implements ConfigureBind
 			case BindingPackage.CONFIGURE_BIND__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case BindingPackage.CONFIGURE_BIND__BIND_TASK:
-				setBindTask((BindDescriptorSets)null);
+			case BindingPackage.CONFIGURE_BIND__BIND_TASKS:
+				getBindTasks().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -222,8 +192,8 @@ public class ConfigureBindImpl extends LilyEObject implements ConfigureBind
 		{
 			case BindingPackage.CONFIGURE_BIND__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case BindingPackage.CONFIGURE_BIND__BIND_TASK:
-				return bindTask != null;
+			case BindingPackage.CONFIGURE_BIND__BIND_TASKS:
+				return bindTasks != null && !bindTasks.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -440,24 +440,6 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__NAME = GraphicPackage.GRAPHICS_PIPELINE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_RENDERER__RESOURCE_PKG = GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_RENDERER__DESCRIPTOR_PKG = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG;
-
-	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -476,22 +458,31 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__STAGE = GraphicPackage.GRAPHICS_PIPELINE__STAGE;
 
 	/**
-	 * The feature id for the '<em><b>Push Constant Ranges</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER__PUSH_CONSTANT_RANGES = GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES;
+	int GENERIC_RENDERER__RESOURCE_PKG = GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.
+	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER__SPECIALIZATION_DATA = GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA;
+	int GENERIC_RENDERER__DESCRIPTOR_PKG = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG;
+
+	/**
+	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_RENDERER__TASK_PKG = GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
@@ -503,13 +494,22 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__DESCRIPTOR_SET_PKG = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER__TASK_PKG = GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG;
+	int GENERIC_RENDERER__SPECIALIZATION_DATA = GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA;
+
+	/**
+	 * The feature id for the '<em><b>Push Constant Ranges</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_RENDERER__PUSH_CONSTANT_RANGES = GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES;
 
 	/**
 	 * The feature id for the '<em><b>Maintainer</b></em>' reference.

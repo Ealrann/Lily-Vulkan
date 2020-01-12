@@ -247,13 +247,14 @@ public final class EngineBuilder
 	private ComputePipeline createPipeline(Shader shader, BindingConfiguration bindingConfiguration)
 	{
 		final var bindTask = ProcessFactory.eINSTANCE.createBindDescriptorSets();
+		final var descriptorSet1 = bindingConfiguration.getDescriptorsSets().get(0);
 		bindTask.setBindPoint(EBindPoint.COMPUTE);
-		bindTask.getDescriptorSets().add(bindingConfiguration.getDescriptorsSets().get(0));
+		bindTask.getDescriptorSets().add(descriptorSet1);
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 		final var dispatch = createDispatchTask();
 
 		final var configureBindTask = BindingFactory.eINSTANCE.createConfigureBind();
-		configureBindTask.setBindTask(bindTask);
+		configureBindTask.getBindTasks().add(bindTask);
 		bindingConfiguration.getTasks().add(configureBindTask);
 
 		final var pipeline = ComputeFactory.eINSTANCE.createComputePipeline();
@@ -264,6 +265,7 @@ public final class EngineBuilder
 		final var dSetPkg = ResourceFactory.eINSTANCE.createDescriptorSetPkg();
 		dSetPkg.getDescriptorSets().addAll(bindingConfiguration.getDescriptorsSets());
 
+		pipeline.getLayout().addAll(bindingConfiguration.getDescriptorsSets());
 		pipeline.setShader(shader);
 		pipeline.setStage(ECommandStage.COMPUTE);
 		pipeline.setDescriptorSetPkg(dSetPkg);

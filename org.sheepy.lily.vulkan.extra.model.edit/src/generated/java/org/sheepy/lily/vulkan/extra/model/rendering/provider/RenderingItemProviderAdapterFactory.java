@@ -35,6 +35,7 @@ import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.util.RenderingAdapterFactory;
+import org.sheepy.lily.vulkan.model.process.CompositePipeline;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
@@ -801,6 +802,26 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 				return null;
 			}
  
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseCompositePipeline(CompositePipeline object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
+						 RenderingFactory.eINSTANCE.createRenderDrawTask()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
+						 RenderingFactory.eINSTANCE.createRenderIndexedDrawTask()));
+
+				return null;
+			}
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

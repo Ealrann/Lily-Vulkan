@@ -116,24 +116,6 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__NAME = RenderingPackage.GENERIC_RENDERER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_RENDERER__RESOURCE_PKG = RenderingPackage.GENERIC_RENDERER__RESOURCE_PKG;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_RENDERER__DESCRIPTOR_PKG = RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PKG;
-
-	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -152,22 +134,31 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__STAGE = RenderingPackage.GENERIC_RENDERER__STAGE;
 
 	/**
-	 * The feature id for the '<em><b>Push Constant Ranges</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_RENDERER__PUSH_CONSTANT_RANGES = RenderingPackage.GENERIC_RENDERER__PUSH_CONSTANT_RANGES;
+	int MESH_RENDERER__RESOURCE_PKG = RenderingPackage.GENERIC_RENDERER__RESOURCE_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.
+	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_RENDERER__SPECIALIZATION_DATA = RenderingPackage.GENERIC_RENDERER__SPECIALIZATION_DATA;
+	int MESH_RENDERER__DESCRIPTOR_PKG = RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PKG;
+
+	/**
+	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_RENDERER__TASK_PKG = RenderingPackage.GENERIC_RENDERER__TASK_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
@@ -179,13 +170,22 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__DESCRIPTOR_SET_PKG = RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_SET_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_RENDERER__TASK_PKG = RenderingPackage.GENERIC_RENDERER__TASK_PKG;
+	int MESH_RENDERER__SPECIALIZATION_DATA = RenderingPackage.GENERIC_RENDERER__SPECIALIZATION_DATA;
+
+	/**
+	 * The feature id for the '<em><b>Push Constant Ranges</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_RENDERER__PUSH_CONSTANT_RANGES = RenderingPackage.GENERIC_RENDERER__PUSH_CONSTANT_RANGES;
 
 	/**
 	 * The feature id for the '<em><b>Maintainer</b></em>' reference.

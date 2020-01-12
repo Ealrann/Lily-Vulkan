@@ -21,6 +21,8 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.Configuration;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
+import org.sheepy.lily.vulkan.model.process.ITaskPipeline;
+import org.sheepy.lily.vulkan.model.process.IVkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
 
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
@@ -262,6 +264,16 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIPipeline(IPipeline object)
 			{
 				return createIPipelineAdapter();
+			}
+			@Override
+			public Adapter caseITaskPipeline(ITaskPipeline object)
+			{
+				return createITaskPipelineAdapter();
+			}
+			@Override
+			public Adapter caseIVkPipeline(IVkPipeline object)
+			{
+				return createIVkPipelineAdapter();
 			}
 			@Override
 			public Adapter caseBarrier(Barrier object)
@@ -820,6 +832,36 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIPipelineAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ITaskPipeline <em>ITask Pipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.ITaskPipeline
+	 * @generated
+	 */
+	public Adapter createITaskPipelineAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IVkPipeline <em>IVk Pipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.IVkPipeline
+	 * @generated
+	 */
+	public Adapter createIVkPipelineAdapter()
 	{
 		return null;
 	}

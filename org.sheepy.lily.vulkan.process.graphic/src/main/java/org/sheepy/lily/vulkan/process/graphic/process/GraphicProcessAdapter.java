@@ -13,7 +13,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.notification.INotificationListener;
-import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
@@ -39,6 +38,10 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	private static final List<EStructuralFeature> PIPELINE__FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
 																				GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
 																				ProcessPackage.Literals.PIPELINE_PKG__PIPELINES);
+	private static final List<EStructuralFeature> COMPOSITE_PIPELINE__FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																							GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
+																							ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+																							ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES);
 	private static final List<EStructuralFeature> RESOURCE_FEATURES = List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 																				ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EStructuralFeature> SUBPASS_RESOURCE_FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
@@ -49,6 +52,12 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 																						ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 																						VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 																						ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+	private static final List<EStructuralFeature> COMPOSITE_PIPELINE_RESOURCE_FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																									GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
+																									ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+																									ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
+																									VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+																									ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EStructuralFeature> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 																				VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
 	private static final List<EStructuralFeature> SUBPASS_DESCRIPTOR_FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
@@ -59,10 +68,12 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 																							ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 																							VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 																							VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
-
-	private final ModelExplorer PARTS_EXPLORER = new ModelExplorer(List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
-																			GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
-																			ProcessPackage.Literals.PIPELINE_PKG__PIPELINES));
+	private static final List<EStructuralFeature> COMPOSITE_PIPELINE_DESCRIPTOR_FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																									GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
+																									ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+																									ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
+																									VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+																									VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
 
 	private static final List<ECommandStage> stages = List.of(	ECommandStage.TRANSFER,
 																ECommandStage.COMPUTE,
@@ -223,7 +234,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	@Override
 	protected List<List<EStructuralFeature>> getPipelineFeatureLists()
 	{
-		return List.of(PIPELINE__FEATURES);
+		return List.of(PIPELINE__FEATURES, COMPOSITE_PIPELINE__FEATURES);
 	}
 
 	@Override
@@ -232,14 +243,10 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		return List.of(	RESOURCE_FEATURES,
 						SUBPASS_RESOURCE_FEATURES,
 						PIPELINE_RESOURCE_FEATURES,
+						COMPOSITE_PIPELINE_RESOURCE_FEATURES,
 						DESCRIPTOR_FEATURES,
 						SUBPASS_DESCRIPTOR_FEATURES,
-						PIPELINE_DESCRIPTOR_FEATURES);
-	}
-
-	@Override
-	protected ModelExplorer getPipelineExplorer()
-	{
-		return PARTS_EXPLORER;
+						PIPELINE_DESCRIPTOR_FEATURES,
+						COMPOSITE_PIPELINE_DESCRIPTOR_FEATURES);
 	}
 }

@@ -65,13 +65,13 @@ public class BindingFactoryImpl extends EFactoryImpl implements BindingFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case BindingPackage.BINDING_CONFIGURATION: return createBindingConfiguration();
-			case BindingPackage.CONFIGURE_BIND: return createConfigureBind();
-			case BindingPackage.ROTATE_CONFIGURATION: return createRotateConfiguration();
-			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE: return createConfigurePrepareComposite();
-			case BindingPackage.CONFIGURE_BUFFER_DESCRIPTOR: return createConfigureBufferDescriptor();
-			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER: return createConfigureCompositeBufferBarrier();
-			case BindingPackage.INDEX_CONFIGURATION: return createIndexConfiguration();
+			case BindingPackage.BINDING_CONFIGURATION: return (EObject)createBindingConfiguration();
+			case BindingPackage.CONFIGURE_BIND: return (EObject)createConfigureBind();
+			case BindingPackage.ROTATE_CONFIGURATION: return (EObject)createRotateConfiguration();
+			case BindingPackage.CONFIGURE_PREPARE_COMPOSITE: return (EObject)createConfigurePrepareComposite();
+			case BindingPackage.CONFIGURE_BUFFER_DESCRIPTOR: return (EObject)createConfigureBufferDescriptor();
+			case BindingPackage.CONFIGURE_COMPOSITE_BUFFER_BARRIER: return (EObject)createConfigureCompositeBufferBarrier();
+			case BindingPackage.INDEX_CONFIGURATION: return (EObject)createIndexConfiguration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

@@ -341,7 +341,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 
 		// Add supertypes to classes
 		computeProcessEClass.getESuperTypes().add(theProcessPackage.getAbstractProcess());
-		EGenericType g1 = createEGenericType(theProcessPackage.getIPipeline());
+		EGenericType g1 = createEGenericType(theProcessPackage.getIVkPipeline());
 		computePipelineEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theMaintainerPackage.getMaintainable());
 		EGenericType g2 = createEGenericType(this.getComputePipeline());

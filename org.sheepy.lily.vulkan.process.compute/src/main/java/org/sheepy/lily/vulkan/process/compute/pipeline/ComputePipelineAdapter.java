@@ -5,11 +5,11 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
-import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.AbstractVkPipelineAdapter;
 
 @Statefull
 @Adapter(scope = ComputePipeline.class)
-public final class ComputePipelineAdapter extends AbstractPipelineAdapter<IProcessContext>
+public final class ComputePipelineAdapter extends AbstractVkPipelineAdapter<IProcessContext>
 {
 	private final ComputePipeline pipeline;
 
@@ -48,11 +48,6 @@ public final class ComputePipelineAdapter extends AbstractPipelineAdapter<IProce
 
 		super.free(context);
 	}
-
-//	public long getPipelineId(int index)
-//	{
-//		return vkPipelines.get(index).getPipelineId();
-//	}
 
 	@Override
 	public VkComputePipeline getVkPipeline()

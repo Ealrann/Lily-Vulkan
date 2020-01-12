@@ -8,7 +8,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
@@ -113,13 +112,11 @@ public class GraphicExecutionRecorder extends AbstractExecutionRecorder<IGraphic
 		final var pipelinePkg = subpass.getPipelinePkg();
 		if (pipelinePkg != null)
 		{
-			for (final var pipeline : pipelinePkg.getPipelines())
+			final var pipelines = pipelinePkg.getPipelines();
+			for (int i = 0; i < pipelines.size(); i++)
 			{
-				final var adapter = pipeline.adapt(IPipelineAdapter.class);
-				if (adapter != null)
-				{
-					adapter.record(recordContext);
-				}
+				final var pipeline = pipelines.get(i);
+				record(recordContext, pipeline);
 			}
 		}
 	}
