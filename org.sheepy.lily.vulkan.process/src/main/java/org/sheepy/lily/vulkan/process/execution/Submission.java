@@ -166,7 +166,6 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 	{
 		if (fence.isUsed())
 		{
-			assert fence.isSignaled();
 			if (listeners != null)
 			{
 				for (final var listener : listeners)
