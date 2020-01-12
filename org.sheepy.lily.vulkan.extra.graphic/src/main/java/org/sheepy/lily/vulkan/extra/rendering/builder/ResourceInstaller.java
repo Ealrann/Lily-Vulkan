@@ -111,6 +111,7 @@ public final class ResourceInstaller<T extends Structure>
 		final var dataProviders = maintainer.getDataProviderPkg().getDataProviders();
 		final var flushTransferTask = maintainer.getFlushTransferBufferTask();
 		final var prepareTranferTask = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
+		buffer.setName(maintainer.getName());
 		prepareTranferTask.setCompositeBuffer(buffer);
 		prepareTranferTask.setTransferBuffer(maintainer.getTransferBuffer());
 		prepareTranferTask.setMode(EFlushMode.PUSH);
