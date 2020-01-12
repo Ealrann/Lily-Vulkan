@@ -79,7 +79,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			if (adapter.needResize())
 			{
 				configurator.setDirty();
-				if (DebugUtil.DEBUG_ENABLED)
+				if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 				{
 					System.out.println("Need resize of composite buffer "
 							+ compositeBuffer.getName());
