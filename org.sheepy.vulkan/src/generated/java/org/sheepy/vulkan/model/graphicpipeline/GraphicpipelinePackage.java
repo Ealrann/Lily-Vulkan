@@ -744,6 +744,97 @@ public interface GraphicpipelinePackage extends EPackage
 	int SCISSOR_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.DepthStencilStateImpl <em>Depth Stencil State</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.graphicpipeline.impl.DepthStencilStateImpl
+	 * @see org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl#getDepthStencilState()
+	 * @generated
+	 */
+	int DEPTH_STENCIL_STATE = 11;
+
+	/**
+	 * The feature id for the '<em><b>Depth Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_STENCIL_STATE__DEPTH_TEST = 0;
+
+	/**
+	 * The feature id for the '<em><b>Depth Write</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_STENCIL_STATE__DEPTH_WRITE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Depth Bound Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_STENCIL_STATE__DEPTH_BOUND_TEST = 2;
+
+	/**
+	 * The feature id for the '<em><b>Stencil Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_STENCIL_STATE__STENCIL_TEST = 3;
+
+	/**
+	 * The feature id for the '<em><b>Depth Compare Op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_STENCIL_STATE__DEPTH_COMPARE_OP = 4;
+
+	/**
+	 * The feature id for the '<em><b>Min Depth Bounds</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_STENCIL_STATE__MIN_DEPTH_BOUNDS = 5;
+
+	/**
+	 * The feature id for the '<em><b>Max Depth Bounds</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_STENCIL_STATE__MAX_DEPTH_BOUNDS = 6;
+
+	/**
+	 * The number of structural features of the '<em>Depth Stencil State</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_STENCIL_STATE_FEATURE_COUNT = 7;
+
+	/**
+	 * The number of operations of the '<em>Depth Stencil State</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_STENCIL_STATE_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.graphicpipeline.ColorBlend <em>Color Blend</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1316,6 +1407,93 @@ public interface GraphicpipelinePackage extends EPackage
 	EReference getScissor_Extent();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.graphicpipeline.DepthStencilState <em>Depth Stencil State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Depth Stencil State</em>'.
+	 * @see org.sheepy.vulkan.model.graphicpipeline.DepthStencilState
+	 * @generated
+	 */
+	EClass getDepthStencilState();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.graphicpipeline.DepthStencilState#isDepthTest <em>Depth Test</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Depth Test</em>'.
+	 * @see org.sheepy.vulkan.model.graphicpipeline.DepthStencilState#isDepthTest()
+	 * @see #getDepthStencilState()
+	 * @generated
+	 */
+	EAttribute getDepthStencilState_DepthTest();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.graphicpipeline.DepthStencilState#isDepthWrite <em>Depth Write</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Depth Write</em>'.
+	 * @see org.sheepy.vulkan.model.graphicpipeline.DepthStencilState#isDepthWrite()
+	 * @see #getDepthStencilState()
+	 * @generated
+	 */
+	EAttribute getDepthStencilState_DepthWrite();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.graphicpipeline.DepthStencilState#isDepthBoundTest <em>Depth Bound Test</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Depth Bound Test</em>'.
+	 * @see org.sheepy.vulkan.model.graphicpipeline.DepthStencilState#isDepthBoundTest()
+	 * @see #getDepthStencilState()
+	 * @generated
+	 */
+	EAttribute getDepthStencilState_DepthBoundTest();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.graphicpipeline.DepthStencilState#isStencilTest <em>Stencil Test</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stencil Test</em>'.
+	 * @see org.sheepy.vulkan.model.graphicpipeline.DepthStencilState#isStencilTest()
+	 * @see #getDepthStencilState()
+	 * @generated
+	 */
+	EAttribute getDepthStencilState_StencilTest();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.graphicpipeline.DepthStencilState#getDepthCompareOp <em>Depth Compare Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Depth Compare Op</em>'.
+	 * @see org.sheepy.vulkan.model.graphicpipeline.DepthStencilState#getDepthCompareOp()
+	 * @see #getDepthStencilState()
+	 * @generated
+	 */
+	EAttribute getDepthStencilState_DepthCompareOp();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.graphicpipeline.DepthStencilState#getMinDepthBounds <em>Min Depth Bounds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Min Depth Bounds</em>'.
+	 * @see org.sheepy.vulkan.model.graphicpipeline.DepthStencilState#getMinDepthBounds()
+	 * @see #getDepthStencilState()
+	 * @generated
+	 */
+	EAttribute getDepthStencilState_MinDepthBounds();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.graphicpipeline.DepthStencilState#getMaxDepthBounds <em>Max Depth Bounds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Max Depth Bounds</em>'.
+	 * @see org.sheepy.vulkan.model.graphicpipeline.DepthStencilState#getMaxDepthBounds()
+	 * @see #getDepthStencilState()
+	 * @generated
+	 */
+	EAttribute getDepthStencilState_MaxDepthBounds();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1784,6 +1962,72 @@ public interface GraphicpipelinePackage extends EPackage
 		 * @generated
 		 */
 		EReference SCISSOR__EXTENT = eINSTANCE.getScissor_Extent();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.DepthStencilStateImpl <em>Depth Stencil State</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.graphicpipeline.impl.DepthStencilStateImpl
+		 * @see org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl#getDepthStencilState()
+		 * @generated
+		 */
+		EClass DEPTH_STENCIL_STATE = eINSTANCE.getDepthStencilState();
+
+		/**
+		 * The meta object literal for the '<em><b>Depth Test</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPTH_STENCIL_STATE__DEPTH_TEST = eINSTANCE.getDepthStencilState_DepthTest();
+
+		/**
+		 * The meta object literal for the '<em><b>Depth Write</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPTH_STENCIL_STATE__DEPTH_WRITE = eINSTANCE.getDepthStencilState_DepthWrite();
+
+		/**
+		 * The meta object literal for the '<em><b>Depth Bound Test</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPTH_STENCIL_STATE__DEPTH_BOUND_TEST = eINSTANCE.getDepthStencilState_DepthBoundTest();
+
+		/**
+		 * The meta object literal for the '<em><b>Stencil Test</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPTH_STENCIL_STATE__STENCIL_TEST = eINSTANCE.getDepthStencilState_StencilTest();
+
+		/**
+		 * The meta object literal for the '<em><b>Depth Compare Op</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPTH_STENCIL_STATE__DEPTH_COMPARE_OP = eINSTANCE.getDepthStencilState_DepthCompareOp();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Depth Bounds</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPTH_STENCIL_STATE__MIN_DEPTH_BOUNDS = eINSTANCE.getDepthStencilState_MinDepthBounds();
+
+		/**
+		 * The meta object literal for the '<em><b>Max Depth Bounds</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPTH_STENCIL_STATE__MAX_DEPTH_BOUNDS = eINSTANCE.getDepthStencilState_MaxDepthBounds();
 
 	}
 

@@ -4,20 +4,22 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineDepthStencilStateCreateInfo;
+import org.sheepy.vulkan.model.graphicpipeline.DepthStencilState;
 
 public class DepthStencilBuilder
 {
-	public VkPipelineDepthStencilStateCreateInfo allocCreateInfo(MemoryStack stack)
+	public VkPipelineDepthStencilStateCreateInfo allocCreateInfo(	MemoryStack stack,
+																	DepthStencilState depthStencilState)
 	{
 		final var depthStencil = VkPipelineDepthStencilStateCreateInfo.callocStack(stack);
 		depthStencil.sType(VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO);
-		depthStencil.depthTestEnable(true);
-		depthStencil.depthWriteEnable(true);
-		depthStencil.depthCompareOp(VK_COMPARE_OP_LESS);
-		depthStencil.depthBoundsTestEnable(false);
-		depthStencil.minDepthBounds(0.0f); // Optional
-		depthStencil.maxDepthBounds(1.0f); // Optional
-		depthStencil.stencilTestEnable(false);
+		depthStencil.depthTestEnable(depthStencilState.isDepthTest());
+		depthStencil.depthWriteEnable(depthStencilState.isDepthWrite());
+		depthStencil.depthCompareOp(depthStencilState.getDepthCompareOp().getValue());
+		depthStencil.depthBoundsTestEnable(depthStencilState.isDepthBoundTest());
+		depthStencil.minDepthBounds(depthStencilState.getMinDepthBounds());
+		depthStencil.maxDepthBounds(depthStencilState.getMaxDepthBounds());
+		depthStencil.stencilTestEnable(depthStencilState.isStencilTest());
 
 		depthStencil.pNext(VK_NULL_HANDLE);
 		depthStencil.flags(0);

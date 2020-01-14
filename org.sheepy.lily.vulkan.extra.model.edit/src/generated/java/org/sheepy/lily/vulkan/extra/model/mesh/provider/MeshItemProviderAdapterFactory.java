@@ -29,6 +29,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshFactory;
 import org.sheepy.lily.vulkan.extra.model.mesh.util.MeshAdapterFactory;
+import org.sheepy.lily.vulkan.model.process.CompositePipeline;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
@@ -412,6 +413,21 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 				newChildDescriptors.add
 					(createChildParameter
 						(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+						 MeshFactory.eINSTANCE.createMeshRenderer()));
+
+				return null;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseCompositePipeline(CompositePipeline object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
 						 MeshFactory.eINSTANCE.createMeshRenderer()));
 
 				return null;

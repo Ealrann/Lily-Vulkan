@@ -188,6 +188,15 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__PUSH_CONSTANT_RANGES = RenderingPackage.GENERIC_RENDERER__PUSH_CONSTANT_RANGES;
 
 	/**
+	 * The feature id for the '<em><b>Layout</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_RENDERER__LAYOUT = RenderingPackage.GENERIC_RENDERER__LAYOUT;
+
+	/**
 	 * The feature id for the '<em><b>Maintainer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -260,13 +269,13 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__VERTEX_INPUT_STATE = RenderingPackage.GENERIC_RENDERER__VERTEX_INPUT_STATE;
 
 	/**
-	 * The feature id for the '<em><b>Depth Stencil</b></em>' attribute.
+	 * The feature id for the '<em><b>Depth Stencil State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_RENDERER__DEPTH_STENCIL = RenderingPackage.GENERIC_RENDERER__DEPTH_STENCIL;
+	int MESH_RENDERER__DEPTH_STENCIL_STATE = RenderingPackage.GENERIC_RENDERER__DEPTH_STENCIL_STATE;
 
 	/**
 	 * The feature id for the '<em><b>Maintained</b></em>' reference list.

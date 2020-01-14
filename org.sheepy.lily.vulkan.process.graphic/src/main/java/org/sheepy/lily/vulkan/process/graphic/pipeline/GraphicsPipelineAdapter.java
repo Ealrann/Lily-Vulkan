@@ -62,7 +62,7 @@ public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<IGraphicC
 		final var colorBlend = pipeline.getColorBlend();
 		final var dynamicState = pipeline.getDynamicState();
 		final var specialization = pipeline.getSpecializationData();
-		final var depthStencil = pipeline.isDepthStencil();
+		final var depthStencilState = pipeline.getDepthStencilState();
 		final var specializationBuffer = specialization != null ? specialization.getData() : null;
 		final int subpassIndex = subpass.getSubpassIndex();
 
@@ -72,11 +72,11 @@ public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<IGraphicC
 													inputAssembly,
 													viewportState,
 													dynamicState,
+													depthStencilState,
 													inputState,
 													shaderStages,
 													specializationBuffer,
-													subpassIndex,
-													depthStencil);
+													subpassIndex);
 		vkGraphicsPipeline.allocate(context);
 	}
 

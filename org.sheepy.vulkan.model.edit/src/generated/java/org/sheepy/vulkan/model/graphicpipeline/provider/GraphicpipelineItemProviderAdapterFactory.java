@@ -343,6 +343,31 @@ public class GraphicpipelineItemProviderAdapterFactory extends GraphicpipelineAd
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.graphicpipeline.DepthStencilState} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DepthStencilStateItemProvider depthStencilStateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.vulkan.model.graphicpipeline.DepthStencilState}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDepthStencilStateAdapter()
+	{
+		if (depthStencilStateItemProvider == null)
+		{
+			depthStencilStateItemProvider = new DepthStencilStateItemProvider(this);
+		}
+
+		return depthStencilStateItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -501,6 +526,7 @@ public class GraphicpipelineItemProviderAdapterFactory extends GraphicpipelineAd
 		if (vec2IItemProvider != null) vec2IItemProvider.dispose();
 		if (viewportItemProvider != null) viewportItemProvider.dispose();
 		if (scissorItemProvider != null) scissorItemProvider.dispose();
+		if (depthStencilStateItemProvider != null) depthStencilStateItemProvider.dispose();
 	}
 
 }

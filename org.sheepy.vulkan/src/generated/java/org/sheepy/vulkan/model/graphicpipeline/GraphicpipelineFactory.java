@@ -113,6 +113,15 @@ public interface GraphicpipelineFactory extends EFactory
 	Scissor createScissor();
 
 	/**
+	 * Returns a new object of class '<em>Depth Stencil State</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Depth Stencil State</em>'.
+	 * @generated
+	 */
+	DepthStencilState createDepthStencilState();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -376,6 +376,16 @@ public interface EnumerationPackage extends EPackage
 	int EINSTANCE_COUNT = 31;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.ECompareOp <em>ECompare Op</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.enumeration.ECompareOp
+	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getECompareOp()
+	 * @generated
+	 */
+	int ECOMPARE_OP = 32;
+
+	/**
 	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EImageLayout <em>EImage Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -694,6 +704,16 @@ public interface EnumerationPackage extends EPackage
 	 * @generated
 	 */
 	EEnum getEInstanceCount();
+
+	/**
+	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.ECompareOp <em>ECompare Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>ECompare Op</em>'.
+	 * @see org.sheepy.vulkan.model.enumeration.ECompareOp
+	 * @generated
+	 */
+	EEnum getECompareOp();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1038,6 +1058,16 @@ public interface EnumerationPackage extends EPackage
 		 * @generated
 		 */
 		EEnum EINSTANCE_COUNT = eINSTANCE.getEInstanceCount();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.ECompareOp <em>ECompare Op</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.enumeration.ECompareOp
+		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getECompareOp()
+		 * @generated
+		 */
+		EEnum ECOMPARE_OP = eINSTANCE.getECompareOp();
 
 	}
 

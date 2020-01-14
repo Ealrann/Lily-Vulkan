@@ -25,6 +25,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
 import org.sheepy.lily.vulkan.model.process.impl.IVkPipelineImpl;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
+import org.sheepy.vulkan.model.graphicpipeline.DepthStencilState;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
 import org.sheepy.vulkan.model.graphicpipeline.InputAssembly;
 import org.sheepy.vulkan.model.graphicpipeline.Rasterizer;
@@ -46,7 +47,7 @@ import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getColorBlend <em>Color Blend</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getDynamicState <em>Dynamic State</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getVertexInputState <em>Vertex Input State</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#isDepthStencil <em>Depth Stencil</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getDepthStencilState <em>Depth Stencil State</em>}</li>
  * </ul>
  *
  * @generated
@@ -134,24 +135,14 @@ public class GraphicsPipelineImpl extends IVkPipelineImpl implements GraphicsPip
 	protected VertexInputState vertexInputState;
 
 	/**
-	 * The default value of the '{@link #isDepthStencil() <em>Depth Stencil</em>}' attribute.
+	 * The cached value of the '{@link #getDepthStencilState() <em>Depth Stencil State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDepthStencil()
+	 * @see #getDepthStencilState()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean DEPTH_STENCIL_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isDepthStencil() <em>Depth Stencil</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isDepthStencil()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean depthStencil = DEPTH_STENCIL_EDEFAULT;
+	protected DepthStencilState depthStencilState;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -566,9 +557,26 @@ public class GraphicsPipelineImpl extends IVkPipelineImpl implements GraphicsPip
 	 * @generated
 	 */
 	@Override
-	public boolean isDepthStencil()
+	public DepthStencilState getDepthStencilState()
 	{
-		return depthStencil;
+		return depthStencilState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDepthStencilState(DepthStencilState newDepthStencilState, NotificationChain msgs)
+	{
+		DepthStencilState oldDepthStencilState = depthStencilState;
+		depthStencilState = newDepthStencilState;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE, oldDepthStencilState, newDepthStencilState);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -577,12 +585,20 @@ public class GraphicsPipelineImpl extends IVkPipelineImpl implements GraphicsPip
 	 * @generated
 	 */
 	@Override
-	public void setDepthStencil(boolean newDepthStencil)
+	public void setDepthStencilState(DepthStencilState newDepthStencilState)
 	{
-		boolean oldDepthStencil = depthStencil;
-		depthStencil = newDepthStencil;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL, oldDepthStencil, depthStencil));
+		if (newDepthStencilState != depthStencilState)
+		{
+			NotificationChain msgs = null;
+			if (depthStencilState != null)
+				msgs = ((InternalEObject)depthStencilState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE, null, msgs);
+			if (newDepthStencilState != null)
+				msgs = ((InternalEObject)newDepthStencilState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE, null, msgs);
+			msgs = basicSetDepthStencilState(newDepthStencilState, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE, newDepthStencilState, newDepthStencilState));
 	}
 
 	/**
@@ -628,6 +644,8 @@ public class GraphicsPipelineImpl extends IVkPipelineImpl implements GraphicsPip
 				return basicSetDynamicState(null, msgs);
 			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
 				return basicSetVertexInputState(null, msgs);
+			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE:
+				return basicSetDepthStencilState(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -659,8 +677,8 @@ public class GraphicsPipelineImpl extends IVkPipelineImpl implements GraphicsPip
 				return getDynamicState();
 			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
 				return getVertexInputState();
-			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
-				return isDepthStencil();
+			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE:
+				return getDepthStencilState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -701,8 +719,8 @@ public class GraphicsPipelineImpl extends IVkPipelineImpl implements GraphicsPip
 			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
 				setVertexInputState((VertexInputState)newValue);
 				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
-				setDepthStencil((Boolean)newValue);
+			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE:
+				setDepthStencilState((DepthStencilState)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -742,8 +760,8 @@ public class GraphicsPipelineImpl extends IVkPipelineImpl implements GraphicsPip
 			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
 				setVertexInputState((VertexInputState)null);
 				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
-				setDepthStencil(DEPTH_STENCIL_EDEFAULT);
+			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE:
+				setDepthStencilState((DepthStencilState)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -775,8 +793,8 @@ public class GraphicsPipelineImpl extends IVkPipelineImpl implements GraphicsPip
 				return dynamicState != null;
 			case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
 				return vertexInputState != null;
-			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL:
-				return depthStencil != DEPTH_STENCIL_EDEFAULT;
+			case GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE:
+				return depthStencilState != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -817,23 +835,6 @@ public class GraphicsPipelineImpl extends IVkPipelineImpl implements GraphicsPip
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (depthStencil: ");
-		result.append(depthStencil);
-		result.append(')');
-		return result.toString();
 	}
 
 } //GraphicsPipelineImpl

@@ -160,7 +160,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicsPipeline/colorBlend"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicsPipeline/dynamicState"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicsPipeline/vertexInputState"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//GraphicsPipeline/depthStencil"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicsPipeline/depthStencilState"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//SwapImageBarrier"/>
     <genClasses ecoreClass="graphic.ecore#//BlitToSwapImage">

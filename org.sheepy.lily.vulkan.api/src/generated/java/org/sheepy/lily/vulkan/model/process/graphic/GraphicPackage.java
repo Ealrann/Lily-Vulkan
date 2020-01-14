@@ -1412,13 +1412,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__VERTEX_INPUT_STATE = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Depth Stencil</b></em>' attribute.
+	 * The feature id for the '<em><b>Depth Stencil State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__DEPTH_STENCIL = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 8;
+	int GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Graphics Pipeline</em>' class.
@@ -2897,15 +2897,15 @@ public interface GraphicPackage extends EPackage
 	EReference getGraphicsPipeline_VertexInputState();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#isDepthStencil <em>Depth Stencil</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getDepthStencilState <em>Depth Stencil State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Depth Stencil</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#isDepthStencil()
+	 * @return the meta object for the containment reference '<em>Depth Stencil State</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getDepthStencilState()
 	 * @see #getGraphicsPipeline()
 	 * @generated
 	 */
-	EAttribute getGraphicsPipeline_DepthStencil();
+	EReference getGraphicsPipeline_DepthStencilState();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier <em>Swap Image Barrier</em>}'.
@@ -3925,12 +3925,12 @@ public interface GraphicPackage extends EPackage
 		EReference GRAPHICS_PIPELINE__VERTEX_INPUT_STATE = eINSTANCE.getGraphicsPipeline_VertexInputState();
 
 		/**
-		 * The meta object literal for the '<em><b>Depth Stencil</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Depth Stencil State</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GRAPHICS_PIPELINE__DEPTH_STENCIL = eINSTANCE.getGraphicsPipeline_DepthStencil();
+		EReference GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE = eINSTANCE.getGraphicsPipeline_DepthStencilState();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageBarrierImpl <em>Swap Image Barrier</em>}' class.

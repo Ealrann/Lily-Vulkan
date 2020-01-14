@@ -16,6 +16,7 @@ import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 import org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlendAttachment;
+import org.sheepy.vulkan.model.graphicpipeline.DepthStencilState;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicViewportState;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelineFactory;
@@ -116,6 +117,13 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 	 * @generated
 	 */
 	private EClass scissorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass depthStencilStateEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -790,6 +798,94 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 	 * @generated
 	 */
 	@Override
+	public EClass getDepthStencilState()
+	{
+		return depthStencilStateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDepthStencilState_DepthTest()
+	{
+		return (EAttribute)depthStencilStateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDepthStencilState_DepthWrite()
+	{
+		return (EAttribute)depthStencilStateEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDepthStencilState_DepthBoundTest()
+	{
+		return (EAttribute)depthStencilStateEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDepthStencilState_StencilTest()
+	{
+		return (EAttribute)depthStencilStateEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDepthStencilState_DepthCompareOp()
+	{
+		return (EAttribute)depthStencilStateEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDepthStencilState_MinDepthBounds()
+	{
+		return (EAttribute)depthStencilStateEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDepthStencilState_MaxDepthBounds()
+	{
+		return (EAttribute)depthStencilStateEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public GraphicpipelineFactory getGraphicpipelineFactory()
 	{
 		return (GraphicpipelineFactory)getEFactoryInstance();
@@ -878,6 +974,15 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 		createEAttribute(scissorEClass, SCISSOR__OFFSET_X);
 		createEAttribute(scissorEClass, SCISSOR__OFFSET_Y);
 		createEReference(scissorEClass, SCISSOR__EXTENT);
+
+		depthStencilStateEClass = createEClass(DEPTH_STENCIL_STATE);
+		createEAttribute(depthStencilStateEClass, DEPTH_STENCIL_STATE__DEPTH_TEST);
+		createEAttribute(depthStencilStateEClass, DEPTH_STENCIL_STATE__DEPTH_WRITE);
+		createEAttribute(depthStencilStateEClass, DEPTH_STENCIL_STATE__DEPTH_BOUND_TEST);
+		createEAttribute(depthStencilStateEClass, DEPTH_STENCIL_STATE__STENCIL_TEST);
+		createEAttribute(depthStencilStateEClass, DEPTH_STENCIL_STATE__DEPTH_COMPARE_OP);
+		createEAttribute(depthStencilStateEClass, DEPTH_STENCIL_STATE__MIN_DEPTH_BOUNDS);
+		createEAttribute(depthStencilStateEClass, DEPTH_STENCIL_STATE__MAX_DEPTH_BOUNDS);
 	}
 
 	/**
@@ -979,6 +1084,15 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 		initEAttribute(getScissor_OffsetX(), ecorePackage.getEInt(), "offsetX", "0", 0, 1, Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getScissor_OffsetY(), ecorePackage.getEInt(), "offsetY", "0", 0, 1, Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getScissor_Extent(), this.getVec2I(), null, "extent", null, 0, 1, Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(depthStencilStateEClass, DepthStencilState.class, "DepthStencilState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDepthStencilState_DepthTest(), ecorePackage.getEBoolean(), "depthTest", "true", 1, 1, DepthStencilState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDepthStencilState_DepthWrite(), ecorePackage.getEBoolean(), "depthWrite", "true", 1, 1, DepthStencilState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDepthStencilState_DepthBoundTest(), ecorePackage.getEBoolean(), "depthBoundTest", "false", 1, 1, DepthStencilState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDepthStencilState_StencilTest(), ecorePackage.getEBoolean(), "stencilTest", "false", 1, 1, DepthStencilState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDepthStencilState_DepthCompareOp(), theEnumerationPackage.getECompareOp(), "depthCompareOp", "LESS", 1, 1, DepthStencilState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDepthStencilState_MinDepthBounds(), ecorePackage.getEFloat(), "minDepthBounds", "0", 1, 1, DepthStencilState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDepthStencilState_MaxDepthBounds(), ecorePackage.getEFloat(), "maxDepthBounds", "0", 1, 1, DepthStencilState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

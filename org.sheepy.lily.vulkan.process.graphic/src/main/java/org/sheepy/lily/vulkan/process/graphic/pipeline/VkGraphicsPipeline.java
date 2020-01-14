@@ -9,6 +9,7 @@ import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
+import org.sheepy.vulkan.model.graphicpipeline.DepthStencilState;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
 import org.sheepy.vulkan.model.graphicpipeline.InputAssembly;
 import org.sheepy.vulkan.model.graphicpipeline.Rasterizer;
@@ -45,10 +46,10 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 	private final InputAssembly inputAssembly;
 	private final ViewportState viewportState;
 	private final DynamicState dynamicState;
+	private final DepthStencilState depthStencilState;
 	private final VkInputStateDescriptor vertexDescriptor;
 	private final List<VkShaderStage> shaderStages;
 	private final ByteBuffer specializationData;
-	private final boolean depthStencil;
 	private final int subpass;
 
 	protected long pipelinePtr = 0;
@@ -59,11 +60,11 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 								InputAssembly inputAssembly,
 								ViewportState viewportState,
 								DynamicState dynamicState,
+								DepthStencilState depthStencilState,
 								VkInputStateDescriptor vertexBufferDescriptor,
 								List<VkShaderStage> shaderStages,
 								ByteBuffer specializationData,
-								int subpass,
-								boolean depthStencil)
+								int subpass)
 	{
 		super(VK_PIPELINE_BIND_POINT_GRAPHICS);
 
@@ -73,11 +74,11 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 		this.inputAssembly = inputAssembly;
 		this.viewportState = viewportState;
 		this.dynamicState = dynamicState;
+		this.depthStencilState = depthStencilState;
 		this.vertexDescriptor = vertexBufferDescriptor;
 		this.shaderStages = shaderStages;
 		this.specializationData = specializationData;
 		this.subpass = subpass;
-		this.depthStencil = depthStencil;
 
 		shaderStageBuilder = new ShaderStageBuilder();
 		inputAssemblyBuilder = new InputAssemblyBuilder();
@@ -110,8 +111,8 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 		info.pViewportState(viewportStateBuilder.allocCreateInfo(stack, extent, viewportState));
 		info.pRasterizationState(rasterizerBuilder.allocCreateInfo(stack, rasterizer));
 		info.pMultisampleState(multisampleBuilder.allocCreateInfo(stack));
-		if (depthStencil == true)
-			info.pDepthStencilState(depthStencilBuidler.allocCreateInfo(stack));
+		if (depthStencilState != null)
+			info.pDepthStencilState(depthStencilBuidler.allocCreateInfo(stack, depthStencilState));
 		info.pColorBlendState(colorBlendBuilder.allocCreateInfo(stack, colorBlend));
 		if (dynamicState != null)
 			info.pDynamicState(dynamicStateBuilder.allocCreateInfo(stack, dynamicState));

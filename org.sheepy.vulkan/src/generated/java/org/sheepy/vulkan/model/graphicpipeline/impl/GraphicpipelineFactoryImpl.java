@@ -74,6 +74,7 @@ public class GraphicpipelineFactoryImpl extends EFactoryImpl implements Graphicp
 			case GraphicpipelinePackage.VEC2_I: return createVec2I();
 			case GraphicpipelinePackage.VIEWPORT: return createViewport();
 			case GraphicpipelinePackage.SCISSOR: return createScissor();
+			case GraphicpipelinePackage.DEPTH_STENCIL_STATE: return createDepthStencilState();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -197,6 +198,18 @@ public class GraphicpipelineFactoryImpl extends EFactoryImpl implements Graphicp
 	{
 		ScissorImpl scissor = new ScissorImpl();
 		return scissor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DepthStencilState createDepthStencilState()
+	{
+		DepthStencilStateImpl depthStencilState = new DepthStencilStateImpl();
+		return depthStencilState;
 	}
 
 	/**

@@ -1034,9 +1034,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getGraphicsPipeline_DepthStencil()
+	public EReference getGraphicsPipeline_DepthStencilState()
 	{
-		return (EAttribute)graphicsPipelineEClass.getEStructuralFeatures().get(7);
+		return (EReference)graphicsPipelineEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -1639,7 +1639,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__COLOR_BLEND);
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__DYNAMIC_STATE);
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__VERTEX_INPUT_STATE);
-		createEAttribute(graphicsPipelineEClass, GRAPHICS_PIPELINE__DEPTH_STENCIL);
+		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE);
 
 		swapImageBarrierEClass = createEClass(SWAP_IMAGE_BARRIER);
 
@@ -1844,7 +1844,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEReference(getGraphicsPipeline_ColorBlend(), theGraphicpipelinePackage.getColorBlend(), null, "colorBlend", null, 1, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphicsPipeline_DynamicState(), theGraphicpipelinePackage.getDynamicState(), null, "dynamicState", null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphicsPipeline_VertexInputState(), this.getVertexInputState(), null, "vertexInputState", null, 1, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getGraphicsPipeline_DepthStencil(), ecorePackage.getEBoolean(), "depthStencil", "false", 1, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicsPipeline_DepthStencilState(), theGraphicpipelinePackage.getDepthStencilState(), null, "depthStencilState", null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(swapImageBarrierEClass, SwapImageBarrier.class, "SwapImageBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

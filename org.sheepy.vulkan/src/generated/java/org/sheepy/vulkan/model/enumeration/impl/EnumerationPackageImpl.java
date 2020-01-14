@@ -19,6 +19,7 @@ import org.sheepy.vulkan.model.enumeration.EBorderColor;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EColorSpace;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.model.enumeration.ECompareOp;
 import org.sheepy.vulkan.model.enumeration.ECullMode;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EDynamicState;
@@ -281,6 +282,13 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	private EEnum eInstanceCountEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eCompareOpEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -724,6 +732,17 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	@Override
+	public EEnum getECompareOp()
+	{
+		return eCompareOpEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EnumerationFactory getEnumerationFactory()
 	{
 		return (EnumerationFactory)getEFactoryInstance();
@@ -781,6 +800,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		eSampleCountEEnum = createEEnum(ESAMPLE_COUNT);
 		eBindPointEEnum = createEEnum(EBIND_POINT);
 		eInstanceCountEEnum = createEEnum(EINSTANCE_COUNT);
+		eCompareOpEEnum = createEEnum(ECOMPARE_OP);
 	}
 
 	/**
@@ -1261,6 +1281,16 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(eInstanceCountEEnum, EInstanceCount.ONE);
 		addEEnumLiteral(eInstanceCountEEnum, EInstanceCount.TWO);
 		addEEnumLiteral(eInstanceCountEEnum, EInstanceCount.FIT_TO_SWAP_IMAGE_COUNT);
+
+		initEEnum(eCompareOpEEnum, ECompareOp.class, "ECompareOp");
+		addEEnumLiteral(eCompareOpEEnum, ECompareOp.NEVER);
+		addEEnumLiteral(eCompareOpEEnum, ECompareOp.LESS);
+		addEEnumLiteral(eCompareOpEEnum, ECompareOp.EQUAL);
+		addEEnumLiteral(eCompareOpEEnum, ECompareOp.LESS_OR_EQUAL);
+		addEEnumLiteral(eCompareOpEEnum, ECompareOp.GREATER);
+		addEEnumLiteral(eCompareOpEEnum, ECompareOp.NOT_EQUAL);
+		addEEnumLiteral(eCompareOpEEnum, ECompareOp.GREATER_OR_EQUAL);
+		addEEnumLiteral(eCompareOpEEnum, ECompareOp.ALWAYS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -129,6 +129,11 @@ public class GraphicpipelineAdapterFactory extends AdapterFactoryImpl
 				return createScissorAdapter();
 			}
 			@Override
+			public Adapter caseDepthStencilState(DepthStencilState object)
+			{
+				return createDepthStencilStateAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object)
 			{
 				return createEObjectAdapter();
@@ -310,6 +315,21 @@ public class GraphicpipelineAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createScissorAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.graphicpipeline.DepthStencilState <em>Depth Stencil State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.graphicpipeline.DepthStencilState
+	 * @generated
+	 */
+	public Adapter createDepthStencilStateAdapter()
 	{
 		return null;
 	}

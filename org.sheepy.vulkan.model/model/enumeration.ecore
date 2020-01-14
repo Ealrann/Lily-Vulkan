@@ -455,4 +455,14 @@
     <eLiterals name="Two" value="1"/>
     <eLiterals name="FitToSwapImageCount" value="2"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ECompareOp">
+    <eLiterals name="NEVER"/>
+    <eLiterals name="LESS" value="1"/>
+    <eLiterals name="EQUAL" value="2"/>
+    <eLiterals name="LESS_OR_EQUAL" value="3"/>
+    <eLiterals name="GREATER" value="4"/>
+    <eLiterals name="NOT_EQUAL" value="5"/>
+    <eLiterals name="GREATER_OR_EQUAL" value="6"/>
+    <eLiterals name="ALWAYS" value="7"/>
+  </eClassifiers>
 </ecore:EPackage>

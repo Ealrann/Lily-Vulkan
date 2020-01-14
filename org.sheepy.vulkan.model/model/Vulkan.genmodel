@@ -499,6 +499,16 @@
       <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EInstanceCount/Two"/>
       <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EInstanceCount/FitToSwapImageCount"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//ECompareOp">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECompareOp/NEVER"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECompareOp/LESS"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECompareOp/EQUAL"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECompareOp/LESS_OR_EQUAL"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECompareOp/GREATER"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECompareOp/NOT_EQUAL"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECompareOp/GREATER_OR_EQUAL"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECompareOp/ALWAYS"/>
+    </genEnums>
   </genPackages>
   <genPackages prefix="Graphicpipeline" basePackage="org.sheepy.vulkan.model" resource="XMI"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
@@ -565,6 +575,15 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Scissor/offsetX"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Scissor/offsetY"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphicpipeline.ecore#//Scissor/extent"/>
+    </genClasses>
+    <genClasses ecoreClass="graphicpipeline.ecore#//DepthStencilState">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//DepthStencilState/depthTest"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//DepthStencilState/depthWrite"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//DepthStencilState/depthBoundTest"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//DepthStencilState/stencilTest"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//DepthStencilState/depthCompareOp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//DepthStencilState/minDepthBounds"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//DepthStencilState/maxDepthBounds"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Image" basePackage="org.sheepy.vulkan.model" disposableProviderFactory="true"

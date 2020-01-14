@@ -13,7 +13,6 @@ public class RasterizerBuilder
 	{
 		final var rasterizerInfo = VkPipelineRasterizationStateCreateInfo.mallocStack(stack);
 		rasterizerInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO);
-		rasterizerInfo.depthClampEnable(rasterizer.isDepthClampEnable());
 		rasterizerInfo.rasterizerDiscardEnable(rasterizer.isDiscardEnable());
 		rasterizerInfo.polygonMode(rasterizer.getPolygonMode().getValue());
 		rasterizerInfo.lineWidth(rasterizer.getLineWidth());
@@ -21,6 +20,7 @@ public class RasterizerBuilder
 		rasterizerInfo.frontFace(rasterizer.getFrontFace().getValue());
 		rasterizerInfo.depthBiasEnable(rasterizer.isDepthBiasEnable());
 		rasterizerInfo.depthBiasConstantFactor(0.0f);
+		rasterizerInfo.depthClampEnable(rasterizer.isDepthClampEnable());
 		rasterizerInfo.depthBiasClamp(0.0f);
 		rasterizerInfo.depthBiasSlopeFactor(0.0f);
 

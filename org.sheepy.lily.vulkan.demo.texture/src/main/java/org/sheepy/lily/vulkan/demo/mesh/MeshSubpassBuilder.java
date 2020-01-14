@@ -201,7 +201,8 @@ public final class MeshSubpassBuilder
 		graphicPipeline.setViewportState(viewportState);
 		graphicPipeline.setColorBlend(colorBlend);
 		graphicPipeline.setVertexInputState(inputState);
-		graphicPipeline.setDepthStencil(meshConfiguration.depth);
+		if (meshConfiguration.depth)
+			graphicPipeline.setDepthStencilState(GraphicpipelineFactory.eINSTANCE.createDepthStencilState());
 		if (pushConstantRange != null)
 			graphicPipeline.getPushConstantRanges().add(pushConstantRange);
 

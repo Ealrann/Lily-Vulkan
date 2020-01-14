@@ -8,6 +8,7 @@ import org.sheepy.lily.vulkan.model.process.IVkPipeline;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
+import org.sheepy.vulkan.model.graphicpipeline.DepthStencilState;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
 import org.sheepy.vulkan.model.graphicpipeline.InputAssembly;
 import org.sheepy.vulkan.model.graphicpipeline.Rasterizer;
@@ -29,7 +30,7 @@ import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend <em>Color Blend</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getDynamicState <em>Dynamic State</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexInputState <em>Vertex Input State</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#isDepthStencil <em>Depth Stencil</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getDepthStencilState <em>Depth Stencil State</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline()
@@ -183,26 +184,25 @@ public interface GraphicsPipeline extends IVkPipeline, Maintainable<GraphicsPipe
 	void setVertexInputState(VertexInputState value);
 
 	/**
-	 * Returns the value of the '<em><b>Depth Stencil</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
+	 * Returns the value of the '<em><b>Depth Stencil State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Depth Stencil</em>' attribute.
-	 * @see #setDepthStencil(boolean)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline_DepthStencil()
-	 * @model default="false" required="true"
+	 * @return the value of the '<em>Depth Stencil State</em>' containment reference.
+	 * @see #setDepthStencilState(DepthStencilState)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline_DepthStencilState()
+	 * @model containment="true"
 	 * @generated
 	 */
-	boolean isDepthStencil();
+	DepthStencilState getDepthStencilState();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#isDepthStencil <em>Depth Stencil</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getDepthStencilState <em>Depth Stencil State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Depth Stencil</em>' attribute.
-	 * @see #isDepthStencil()
+	 * @param value the new value of the '<em>Depth Stencil State</em>' containment reference.
+	 * @see #getDepthStencilState()
 	 * @generated
 	 */
-	void setDepthStencil(boolean value);
+	void setDepthStencilState(DepthStencilState value);
 
 } // GraphicsPipeline

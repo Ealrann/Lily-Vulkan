@@ -512,6 +512,15 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__PUSH_CONSTANT_RANGES = GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES;
 
 	/**
+	 * The feature id for the '<em><b>Layout</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_RENDERER__LAYOUT = GraphicPackage.GRAPHICS_PIPELINE__LAYOUT;
+
+	/**
 	 * The feature id for the '<em><b>Maintainer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -584,13 +593,13 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__VERTEX_INPUT_STATE = GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE;
 
 	/**
-	 * The feature id for the '<em><b>Depth Stencil</b></em>' attribute.
+	 * The feature id for the '<em><b>Depth Stencil State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER__DEPTH_STENCIL = GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL;
+	int GENERIC_RENDERER__DEPTH_STENCIL_STATE = GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE;
 
 	/**
 	 * The feature id for the '<em><b>Maintained</b></em>' reference list.
