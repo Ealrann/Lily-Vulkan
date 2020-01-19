@@ -156,7 +156,7 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 	{
 		assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
 
-		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
+		final var adapter = dataProvider.adaptNotNull(IBufferDataProviderAdapter.class);
 		adapter.fill(memTicket.toBuffer());
 
 		if (firstPush)
