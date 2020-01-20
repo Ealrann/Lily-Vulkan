@@ -1,17 +1,7 @@
 import org.gradle.internal.os.OperatingSystem
 
-buildscript {
-	repositories {
-		mavenCentral()
-		maven { url "https://plugins.gradle.org/m2/" }
-	}
-	dependencies {
-		classpath "org.javamodularity:moduleplugin:1.5.0"
-	}
-}
-
-repositories {
-	mavenCentral()
+plugins {
+	id 'org.javamodularity.moduleplugin' version '1.5.0' apply false
 }
 
 project.ext.targetPlatform = OperatingSystem.current()
@@ -27,13 +17,10 @@ switch (targetPlatform) {
 		break
 }
 
-project.ext.jomlVersion = "1.9.19"
-project.ext.lwjglVersion = "3.2.3"
-
 subprojects {
 
 	apply plugin: 'eclipse'
-	apply plugin: "org.javamodularity.moduleplugin"
+	apply plugin: 'org.javamodularity.moduleplugin'
 
 	version "1.0.7"
 

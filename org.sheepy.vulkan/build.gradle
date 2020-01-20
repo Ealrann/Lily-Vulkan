@@ -8,7 +8,7 @@ dependencies {
 
 	api 'org.sheepy.lily.core:org.sheepy.lily.core.api'
 
-	api "org.joml:joml:${jomlVersion}"
+	api "org.joml:joml:$jomlVersion"
 
 	api "org.lwjgl:lwjgl:$lwjglVersion"
 	api "org.lwjgl:lwjgl-glfw:$lwjglVersion"
