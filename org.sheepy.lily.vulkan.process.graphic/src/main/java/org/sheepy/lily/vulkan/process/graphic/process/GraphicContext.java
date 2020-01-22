@@ -2,14 +2,14 @@ package org.sheepy.lily.vulkan.process.graphic.process;
 
 import java.util.List;
 
-import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
-import org.sheepy.lily.vulkan.api.graphic.IFramebufferManager;
-import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.api.graphic.IGraphicExecutionRecorders;
-import org.sheepy.lily.vulkan.api.graphic.IImageViewManager;
-import org.sheepy.lily.vulkan.api.graphic.IRenderPass;
-import org.sheepy.lily.vulkan.api.graphic.ISurfaceManager;
-import org.sheepy.lily.vulkan.api.graphic.ISwapChainManager;
+import org.sheepy.lily.vulkan.common.execution.IExecutionRecorder;
+import org.sheepy.lily.vulkan.common.graphic.IFramebufferManager;
+import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.common.graphic.IGraphicExecutionRecorders;
+import org.sheepy.lily.vulkan.common.graphic.IImageViewManager;
+import org.sheepy.lily.vulkan.common.graphic.IRenderPass;
+import org.sheepy.lily.vulkan.common.graphic.ISurfaceManager;
+import org.sheepy.lily.vulkan.common.graphic.ISwapChainManager;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicExecutionRecorders;

@@ -8,7 +8,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
-import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
+import org.sheepy.lily.vulkan.common.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
@@ -117,7 +117,7 @@ public final class BufferAdapter extends Notifier implements IBufferAdapter
 		final int usage = VkModelUtil.getEnumeratedFlag(buffer.getUsages());
 		final var keptMapped = buffer.isKeptMapped();
 		final var eInstanceCount = buffer.getInstanceCount();
-		final int instanceCount = VulkanModelUtil.getInstanceCount(context, eInstanceCount);
+		final int instanceCount = InstanceCountUtil.getInstanceCount(context, eInstanceCount);
 
 		return new BufferInfo(size, usage, keptMapped, instanceCount);
 	}

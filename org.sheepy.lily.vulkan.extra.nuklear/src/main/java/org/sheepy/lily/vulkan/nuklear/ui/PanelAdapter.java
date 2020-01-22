@@ -16,8 +16,8 @@ import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
-import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
+import org.sheepy.lily.vulkan.common.resource.IImageAdapter;
 import org.sheepy.vulkan.window.IWindowListener.ISizeListener;
 import org.sheepy.vulkan.window.Window;
 

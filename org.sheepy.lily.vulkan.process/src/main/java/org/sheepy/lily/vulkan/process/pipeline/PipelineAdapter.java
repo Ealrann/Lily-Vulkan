@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.process.pipeline;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.process.IProcessContext;
+import org.sheepy.lily.vulkan.common.process.IProcessContext;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 

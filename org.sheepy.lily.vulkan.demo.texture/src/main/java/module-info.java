@@ -13,9 +13,7 @@ import org.sheepy.lily.vulkan.demo.triangle.TriangleSubpassProvider;
 
 module org.sheepy.lily.vulkan.demo.texture
 {
-	requires transitive org.sheepy.lily.vulkan.base;
-
-	requires org.joml;
+	requires org.sheepy.lily.vulkan.base;
 
 	exports org.sheepy.lily.vulkan.demo.mesh;
 

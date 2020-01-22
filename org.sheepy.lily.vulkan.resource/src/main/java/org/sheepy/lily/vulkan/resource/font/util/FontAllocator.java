@@ -14,8 +14,8 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.impl.ObjectNotification;
 import org.sheepy.lily.core.model.ui.Font;
-import org.sheepy.lily.vulkan.api.resource.font.IFontAllocator;
-import org.sheepy.lily.vulkan.api.resource.font.IFontTableInfo;
+import org.sheepy.lily.vulkan.common.resource.font.IFontAllocator;
+import org.sheepy.lily.vulkan.common.resource.font.IFontTableInfo;
 
 public final class FontAllocator extends Notifier implements IFontAllocator
 {

@@ -2,8 +2,8 @@ package org.sheepy.lily.vulkan.process.compute.process;
 
 import java.util.List;
 
-import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
-import org.sheepy.lily.vulkan.api.process.IComputeContext;
+import org.sheepy.lily.vulkan.common.execution.IExecutionRecorder;
+import org.sheepy.lily.vulkan.common.process.IComputeContext;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeExecutionRecorders;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;

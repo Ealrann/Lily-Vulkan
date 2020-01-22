@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.resource.font.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sheepy.lily.vulkan.api.resource.font.IFontTableInfo.TableData;
+import org.sheepy.lily.vulkan.common.resource.font.IFontTableInfo.TableData;
 
 final class CodepointTable
 {

@@ -6,17 +6,13 @@ module org.sheepy.lily.vulkan.api
 	requires transitive org.sheepy.vulkan;
 	requires transitive org.sheepy.lily.core.api;
 
-	exports org.sheepy.lily.vulkan.api.barrier;
 	exports org.sheepy.lily.vulkan.api.engine;
 	exports org.sheepy.lily.vulkan.api.execution;
-	exports org.sheepy.lily.vulkan.api.graphic;
 	exports org.sheepy.lily.vulkan.api.input;
 	exports org.sheepy.lily.vulkan.api.pipeline;
 	exports org.sheepy.lily.vulkan.api.process;
 	exports org.sheepy.lily.vulkan.api.resource;
-	exports org.sheepy.lily.vulkan.api.resource.attachment;
 	exports org.sheepy.lily.vulkan.api.resource.buffer;
-	exports org.sheepy.lily.vulkan.api.resource.font;
 	exports org.sheepy.lily.vulkan.api.util;
 	exports org.sheepy.lily.vulkan.api.view;
 

@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.resource.semaphore;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.resource.ISemaphoreAdapter;
+import org.sheepy.lily.vulkan.common.resource.ISemaphoreAdapter;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.execution.IExecutionContext;

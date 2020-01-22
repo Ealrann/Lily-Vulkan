@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.process.compute.execution;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
-import org.sheepy.lily.vulkan.api.process.IComputeContext;
+import org.sheepy.lily.vulkan.common.process.IComputeContext;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;

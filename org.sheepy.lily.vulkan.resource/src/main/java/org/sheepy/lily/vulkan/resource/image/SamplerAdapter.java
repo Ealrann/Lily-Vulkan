@@ -2,8 +2,8 @@ package org.sheepy.lily.vulkan.resource.image;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
-import org.sheepy.lily.vulkan.api.resource.ISamplerAdapter;
+import org.sheepy.lily.vulkan.common.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.common.resource.ISamplerAdapter;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.image.VkSampler;

@@ -15,7 +15,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.FontTable;
-import org.sheepy.lily.vulkan.api.resource.font.IFontTableInfo;
+import org.sheepy.lily.vulkan.common.resource.font.IFontTableInfo;
 import org.sheepy.vulkan.log.Logger;
 
 public final class FontTableAllocator implements IFontTableInfo

@@ -40,8 +40,9 @@ import org.sheepy.lily.vulkan.nuklear.ui.VariableLabelAdapter;
 module org.sheepy.lily.vulkan.extra.nuklear
 {
 	requires transitive org.sheepy.lily.vulkan.extra.api;
-
 	requires transitive org.lwjgl.nuklear;
+
+	requires org.sheepy.lily.vulkan.common;
 	requires org.lwjgl.nuklear.natives;
 
 	exports org.sheepy.lily.vulkan.nuklear.ui;

@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.process.graphic.frame;
 
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.api.graphic.ISurfaceManager;
+import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.common.graphic.ISurfaceManager;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
 import org.sheepy.vulkan.device.capabilities.Capabilities;
 import org.sheepy.vulkan.device.capabilities.ColorDomains;

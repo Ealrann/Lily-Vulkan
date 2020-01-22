@@ -22,6 +22,7 @@ import org.sheepy.lily.vulkan.extra.sprite.SpriteMonoSamplerProviderAdapter;
 module org.sheepy.lily.vulkan.extra.graphic
 {
 	requires transitive org.sheepy.lily.vulkan.extra.api;
+	requires org.sheepy.lily.vulkan.common;
 
 	opens org.sheepy.lily.vulkan.extra.rendering;
 	opens org.sheepy.lily.vulkan.extra.rendering.buffer;

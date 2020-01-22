@@ -15,7 +15,7 @@ import org.lwjgl.vulkan.VkQueue;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.log.Logger;
 

@@ -3,12 +3,10 @@ module org.sheepy.vulkan
 	requires transitive org.sheepy.lily.core.api;
 
 	requires transitive org.lwjgl;
-	requires transitive org.lwjgl.vulkan;
-	requires transitive org.lwjgl.glfw;
-	requires transitive org.lwjgl.stb;
 
-	requires transitive org.joml;
-
+	requires org.lwjgl.vulkan;
+	requires org.lwjgl.glfw;
+	requires org.lwjgl.stb;
 	requires org.lwjgl.natives;
 	requires org.lwjgl.glfw.natives;
 	requires org.lwjgl.stb.natives;

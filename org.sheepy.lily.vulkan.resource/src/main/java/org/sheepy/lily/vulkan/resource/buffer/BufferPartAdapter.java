@@ -8,8 +8,8 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.impl.LongNotification;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferDataProviderAdapter;
-import org.sheepy.lily.vulkan.api.resource.buffer.IBufferPartAdapter;
-import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
+import org.sheepy.lily.vulkan.common.resource.buffer.IBufferPartAdapter;
+import org.sheepy.lily.vulkan.common.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.vulkan.execution.IExecutionContext;
@@ -74,7 +74,7 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 		alignment = physicalDevice.getBufferAlignement(usage);
 
 		final var eInstanceCount = dataProvider.getInstanceCount();
-		instanceCount = VulkanModelUtil.getInstanceCount(context, eInstanceCount);
+		instanceCount = InstanceCountUtil.getInstanceCount(context, eInstanceCount);
 		instance = 0;
 		firstPush = true;
 

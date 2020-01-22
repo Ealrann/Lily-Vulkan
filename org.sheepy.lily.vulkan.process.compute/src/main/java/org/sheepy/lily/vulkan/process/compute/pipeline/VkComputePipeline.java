@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
-import org.sheepy.lily.vulkan.api.process.IProcessContext;
+import org.sheepy.lily.vulkan.common.process.IProcessContext;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.pipeline.VkPipeline;
 import org.sheepy.vulkan.pipeline.VkPipelineLayout;

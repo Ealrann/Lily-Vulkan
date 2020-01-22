@@ -1,7 +1,5 @@
 package org.sheepy.lily.vulkan.demo.gameoflife.model;
 
-import static org.lwjgl.vulkan.VK10.VK_IMAGE_TILING_OPTIMAL;
-
 import org.joml.Vector2ic;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
@@ -28,7 +26,7 @@ public class BoardImageFactory
 		res.setSize(size);
 		res.setFormat(IMAGE_FORMAT);
 		res.setMipLevels(1);
-		res.setTiling(VK_IMAGE_TILING_OPTIMAL);
+		res.setTiling(0);
 		res.getUsages().add(EImageUsage.TRANSFER_SRC);
 		res.getUsages().add(EImageUsage.STORAGE);
 		res.setInitialLayout(initialLayout);

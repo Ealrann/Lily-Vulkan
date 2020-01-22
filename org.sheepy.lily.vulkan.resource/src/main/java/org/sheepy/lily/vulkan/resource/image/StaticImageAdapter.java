@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
-import org.sheepy.lily.vulkan.api.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.common.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.image.VkImage;

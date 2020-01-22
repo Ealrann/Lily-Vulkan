@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
 import java.util.List;
 
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
-import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
 import org.sheepy.vulkan.model.graphicpipeline.DepthStencilState;

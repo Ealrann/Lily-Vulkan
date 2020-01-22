@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkAttachmentDescription;
-import org.sheepy.lily.vulkan.api.resource.attachment.IExtraAttachmentAdapter;
+import org.sheepy.lily.vulkan.common.resource.attachment.IExtraAttachmentAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
 

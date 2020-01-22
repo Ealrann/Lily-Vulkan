@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.resource.shader;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
+import org.sheepy.lily.vulkan.common.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.pipeline.VkShaderStage;

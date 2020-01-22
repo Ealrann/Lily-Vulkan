@@ -11,7 +11,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.api.pipeline.IVkPipelineAdapter;
+import org.sheepy.lily.vulkan.common.pipeline.IVkPipelineAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.execution.IRecordable.RecordContext;
