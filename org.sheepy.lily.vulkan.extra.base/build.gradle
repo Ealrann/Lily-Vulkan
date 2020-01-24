@@ -3,10 +3,9 @@ plugins {
 }
 
 dependencies {
-	api project(":org.sheepy.lily.vulkan.extra.api")
+	implementation project(":org.sheepy.lily.vulkan.base")
 
-	api project(":org.sheepy.lily.vulkan.base")
-
-	implementation project(":org.sheepy.lily.vulkan.extra.graphic")
-	implementation project(":org.sheepy.lily.vulkan.extra.nuklear")
+	runtimeOnly project(":org.sheepy.lily.vulkan.extra.graphic")
+	runtimeOnly project(":org.sheepy.lily.vulkan.extra.graphic.shape")
+	runtimeOnly project(":org.sheepy.lily.vulkan.extra.nuklear")
 }
