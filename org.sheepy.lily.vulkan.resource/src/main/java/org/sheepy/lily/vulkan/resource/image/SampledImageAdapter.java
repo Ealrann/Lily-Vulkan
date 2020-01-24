@@ -3,12 +3,12 @@ package org.sheepy.lily.vulkan.resource.image;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
+import org.sheepy.lily.vulkan.common.execution.InternalExecutionContext;
 import org.sheepy.lily.vulkan.common.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.common.resource.ISampledImageAdapter;
+import org.sheepy.lily.vulkan.common.resource.image.VkImage;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
-import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.resource.image.VkImage;
-import org.sheepy.vulkan.resource.image.VkSampler;
+import org.sheepy.lily.vulkan.resource.image.backend.VkSampler;
 
 @Statefull
 @Adapter(scope = SampledImage.class)
@@ -29,7 +29,7 @@ public class SampledImageAdapter extends Notifier implements ISampledImageAdapte
 	}
 
 	@Override
-	public void allocate(IExecutionContext context)
+	public void allocate(InternalExecutionContext context)
 	{
 		imageAdapter.allocate(context);
 		final var samplerInfo = sampledImage.getSampler();
@@ -45,7 +45,7 @@ public class SampledImageAdapter extends Notifier implements ISampledImageAdapte
 	}
 
 	@Override
-	public void free(IExecutionContext context)
+	public void free(InternalExecutionContext context)
 	{
 		vkSampler.free(context);
 		imageAdapter.free(context);
@@ -65,7 +65,6 @@ public class SampledImageAdapter extends Notifier implements ISampledImageAdapte
 		return imageAdapter.getViewPtr();
 	}
 
-	@Override
 	public VkSampler getVkSampler()
 	{
 		return vkSampler;

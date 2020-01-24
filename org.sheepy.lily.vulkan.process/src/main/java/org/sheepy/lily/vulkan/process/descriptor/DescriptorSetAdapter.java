@@ -7,12 +7,12 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorPoolSize.Buffer;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.vulkan.common.descriptor.IVkDescriptor;
+import org.sheepy.lily.vulkan.common.descriptor.VkDescriptorSet;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.common.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.common.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.vulkan.descriptor.IVkDescriptor;
-import org.sheepy.vulkan.descriptor.VkDescriptorSet;
-import org.sheepy.vulkan.device.IVulkanContext;
 
 @Statefull
 @Adapter(scope = DescriptorSet.class)
@@ -28,14 +28,14 @@ public final class DescriptorSetAdapter implements IDescriptorSetAdapter
 	}
 
 	@Override
-	public void allocate(IVulkanContext context, long poolAddress)
+	public void allocate(ExecutionContext context, long poolAddress)
 	{
 		vkDescriptorSet = new VkDescriptorSet(descriptors);
 		vkDescriptorSet.allocate(context, poolAddress);
 	}
 
 	@Override
-	public void free(IVulkanContext context)
+	public void free(ExecutionContext context)
 	{
 		vkDescriptorSet.free(context);
 		vkDescriptorSet = null;

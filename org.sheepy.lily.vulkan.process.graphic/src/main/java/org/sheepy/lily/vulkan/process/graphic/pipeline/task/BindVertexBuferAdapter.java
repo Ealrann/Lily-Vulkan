@@ -9,8 +9,8 @@ import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
+import org.sheepy.lily.vulkan.common.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer;
-import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 
 @Adapter(scope = BindVertexBuffer.class)
 public class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBuffer>
@@ -53,11 +53,12 @@ public class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBu
 	}
 
 	@Override
-	public void record(BindVertexBuffer task, RecordContext context)
+	public void record(BindVertexBuffer task, IRecordContext context)
 	{
 		final int firstBinding = task.getFirstBinding();
 		final var bindings = task.getVertexBindings();
 		final int size = bindings.size();
+		final var commandBuffer = ((RecordContext) context).commandBuffer;
 
 		final long[] vertexBuffers = new long[size];
 		final long[] offsets = new long[size];
@@ -72,7 +73,7 @@ public class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBu
 			offsets[i] = adapter.getBindOffset();
 		}
 
-		vkCmdBindVertexBuffers(context.commandBuffer, firstBinding, vertexBuffers, offsets);
+		vkCmdBindVertexBuffers(commandBuffer, firstBinding, vertexBuffers, offsets);
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.common.graphic.IGraphicExecutionRecorders;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
@@ -11,7 +12,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
 import org.sheepy.lily.vulkan.process.execution.Submission;
 import org.sheepy.lily.vulkan.process.execution.WaitData;
-import org.sheepy.vulkan.concurrent.VkSemaphore;
 
 public final class GraphicExecutionRecorders extends ExecutionRecorders<IGraphicContext>
 		implements IGraphicExecutionRecorders

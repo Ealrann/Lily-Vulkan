@@ -5,6 +5,8 @@ plugins {
 dependencies {
 	api 'org.sheepy.lily.core:org.sheepy.lily.core.api'
 
+	api "org.lwjgl:lwjgl:$lwjglVersion"
+
 	api project(':org.sheepy.vulkan')
 }
 

@@ -16,37 +16,37 @@ import org.sheepy.lily.core.api.cadence.ICadenceAdapter;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.vulkan.api.device.EPhysicalFeature;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
+import org.sheepy.lily.vulkan.api.window.IWindowListener.IOpenListener;
 import org.sheepy.lily.vulkan.common.allocation.GenericAllocator;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
+import org.sheepy.lily.vulkan.common.concurrent.VkFence;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
+import org.sheepy.lily.vulkan.common.device.PhysicalDeviceSelector;
+import org.sheepy.lily.vulkan.common.device.VulkanContext;
+import org.sheepy.lily.vulkan.common.engine.extension.EngineExtensionRequirement;
 import org.sheepy.lily.vulkan.common.engine.utils.VulkanEngineAllocationRoot;
 import org.sheepy.lily.vulkan.common.engine.utils.VulkanEngineUtils;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.common.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.input.VulkanInputManager;
+import org.sheepy.lily.vulkan.common.instance.VulkanInstance;
+import org.sheepy.lily.vulkan.common.process.InternalProcessAdapter;
+import org.sheepy.lily.vulkan.common.window.VkSurface;
+import org.sheepy.lily.vulkan.common.window.Window;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.vulkan.concurrent.VkFence;
-import org.sheepy.vulkan.device.EPhysicalFeature;
-import org.sheepy.vulkan.device.IVulkanContext;
-import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.device.PhysicalDevice;
-import org.sheepy.vulkan.device.PhysicalDeviceSelector;
-import org.sheepy.vulkan.device.VulkanContext;
-import org.sheepy.vulkan.execution.ExecutionContext;
-import org.sheepy.vulkan.extension.EngineExtensionRequirement;
-import org.sheepy.vulkan.instance.VulkanInstance;
-import org.sheepy.vulkan.queue.EQueueType;
-import org.sheepy.vulkan.surface.VkSurface;
-import org.sheepy.vulkan.window.IWindowListener.IOpenListener;
-import org.sheepy.vulkan.window.Window;
 
 @Statefull
 @Adapter(scope = VulkanEngine.class)
 public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 {
 	private static final String WAIT_IDLE_RELOAD_ENGINE_RESOURCES = "[WaitIdle] Reload engine resources";
-	private static final EQueueType ENGINE_QUEUE_TYPE = EQueueType.Graphic;
+	private static final EQueueType ENGINE_QUEUE_TYPE = EQueueType.Compute;
 	private static final List<EStructuralFeature> RESOURCE_FEATURES = List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 																				ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EStructuralFeature> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
@@ -64,18 +64,19 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private VulkanInstance vkInstance;
 	private PhysicalDevice physicalDevice;
 	private LogicalDevice logicalDevice = null;
-	private VulkanContext vulkanContext = null;
-	private TreeAllocator<IVulkanContext> allocator;
+	private TreeAllocator<ExecutionContext> allocator;
 	private VulkanEngineAllocationRoot allocationRoot;
 	private boolean allocated = false;
 	private ExecutionContext executionContext = null;
 
 	private Window window;
+	private VulkanContext vulkanContext;
 
 	public VulkanEngineAdapter(VulkanEngine engine)
 	{
 		this.engine = engine;
 		application = (Application) engine.eContainer();
+		executionContext = new ExecutionContext(ENGINE_QUEUE_TYPE, false);
 		final var scene = application.getScene();
 		if (scene != null)
 		{
@@ -87,7 +88,6 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 			window = null;
 			inputManager = null;
 		}
-		executionContext = new ExecutionContext(ENGINE_QUEUE_TYPE, false);
 
 		try (MemoryStack stack = stackPush())
 		{
@@ -120,6 +120,38 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 		if (engine.isEnabled())
 		{
 			load();
+		}
+	}
+
+	private void load()
+	{
+		try (MemoryStack stack = stackPush())
+		{
+			createInstance(stack);
+			if (window != null) window.open(vkInstance.getVkInstance());
+
+			final var dummySurface = window != null ? window.createSurface() : null;
+			pickPhysicalDevice(stack, dummySurface);
+			createLogicalDevice(stack, dummySurface);
+			if (dummySurface != null) dummySurface.free();
+
+			vulkanContext = new VulkanContext(logicalDevice, window);
+			executionContext.allocate(vulkanContext);
+			if (window != null)
+			{
+				loadInputManager();
+				window.addListener(openListener);
+			}
+		}
+
+		try
+		{
+			resourceAllocator.start(engine);
+			allocate();
+
+		} catch (final Throwable e)
+		{
+			e.printStackTrace();
 		}
 	}
 
@@ -169,46 +201,15 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 			try
 			{
-				vulkanContext.stackPush();
+				executionContext.stackPush();
 				allocator.reloadDirtyElements();
 			} finally
 			{
-				vulkanContext.stackPop();
+				executionContext.stackPop();
 			}
 			dirty = true;
 		}
 		return dirty;
-	}
-
-	private void load()
-	{
-		try (MemoryStack stack = stackPush())
-		{
-			createInstance(stack);
-			if (window != null) window.open(vkInstance.getVkInstance());
-
-			final var dummySurface = window != null ? window.createSurface() : null;
-			pickPhysicalDevice(stack, dummySurface);
-			createLogicalDevice(stack, dummySurface);
-			if (dummySurface != null) dummySurface.free();
-
-			vulkanContext = new VulkanContext(logicalDevice, window);
-			if (window != null)
-			{
-				loadInputManager();
-				window.addListener(openListener);
-			}
-		}
-
-		try
-		{
-			resourceAllocator.start(engine);
-			allocate();
-
-		} catch (final Throwable e)
-		{
-			e.printStackTrace();
-		}
 	}
 
 	private void dispose()
@@ -228,16 +229,19 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 		{
 			window.removeListener(openListener);
 		}
+
+		executionContext.free();
+		vulkanContext = null;
+
 		cleanup();
 	}
 
 	private void allocate()
 	{
-		allocationRoot = new VulkanEngineAllocationRoot(executionContext,
-														List.of(resourceAllocator.getAllocable()));
-		allocator = new TreeAllocator<IVulkanContext>(allocationRoot);
+		allocationRoot = new VulkanEngineAllocationRoot(List.of(resourceAllocator.getAllocable()));
+		allocator = new TreeAllocator<ExecutionContext>(allocationRoot);
 
-		allocator.allocate(vulkanContext);
+		allocator.allocate(executionContext);
 
 		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 		{
@@ -254,7 +258,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	{
 		for (final IProcess process : engine.getProcesses())
 		{
-			final var adapter = process.adaptNotNull(IProcessAdapter.class);
+			final var adapter = process.adaptNotNull(InternalProcessAdapter.class);
 			adapter.start(vulkanContext);
 		}
 	}
@@ -267,7 +271,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 		for (final VkFence fence : fences)
 		{
-			fence.free(vulkanContext);
+			fence.free(executionContext);
 		}
 		allocated = false;
 	}
@@ -276,7 +280,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	{
 		for (final var process : engine.getProcesses())
 		{
-			final var adapter = process.adaptNotNull(IProcessAdapter.class);
+			final var adapter = process.adaptNotNull(InternalProcessAdapter.class);
 			adapter.stop(vulkanContext);
 		}
 	}
@@ -353,7 +357,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	public VkFence newFence(boolean signaled)
 	{
 		final VkFence res = new VkFence(signaled);
-		res.allocate(vulkanContext);
+		res.allocate(executionContext);
 
 		fences.add(res);
 		return res;

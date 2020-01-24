@@ -5,22 +5,22 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
-import org.sheepy.lily.vulkan.common.process.IProcessContext;
-import org.sheepy.vulkan.log.Logger;
-import org.sheepy.vulkan.pipeline.VkPipeline;
-import org.sheepy.vulkan.pipeline.VkPipelineLayout;
-import org.sheepy.vulkan.pipeline.VkShaderStage;
+import org.sheepy.lily.vulkan.common.pipeline.VkPipeline;
+import org.sheepy.lily.vulkan.common.pipeline.VkPipelineLayout;
+import org.sheepy.lily.vulkan.common.pipeline.VkShaderStage;
+import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
-public class VkComputePipeline extends VkPipeline<IProcessContext>
+public class VkComputePipeline extends VkPipeline<ProcessContext<?>>
 {
 	private static final String FAILED_TO_CREATE_COMPUTE_PIPELINE = "Failed to create compute pipeline";
-	private final VkPipelineLayout<? super IProcessContext> pipelineLayout;
+	private final VkPipelineLayout<? super ProcessContext<?>> pipelineLayout;
 	private final VkShaderStage shaderStage;
 	private final ByteBuffer specializationData;
 
 	protected long pipelinePtr = 0;
 
-	public VkComputePipeline(	VkPipelineLayout<? super IProcessContext> pipelineLayout,
+	public VkComputePipeline(	VkPipelineLayout<? super ProcessContext<?>> pipelineLayout,
 								VkShaderStage shaderStage,
 								ByteBuffer specializationData)
 	{
@@ -32,7 +32,7 @@ public class VkComputePipeline extends VkPipeline<IProcessContext>
 	}
 
 	@Override
-	public void allocate(IProcessContext context)
+	public void allocate(ProcessContext<?> context)
 	{
 		final var stack = context.stack();
 		final var device = context.getVkDevice();
@@ -59,7 +59,7 @@ public class VkComputePipeline extends VkPipeline<IProcessContext>
 	}
 
 	@Override
-	public void free(IProcessContext context)
+	public void free(ProcessContext<?> context)
 	{
 		final var device = context.getVkDevice();
 		vkDestroyPipeline(device, pipelinePtr, null);

@@ -4,7 +4,6 @@ import java.util.List;
 
 public interface IFontTableInfo
 {
-
 	int getLoadedCharCount();
 	int indexOf(int codepoint);
 	boolean contains(int codepoint);

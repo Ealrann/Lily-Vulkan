@@ -7,17 +7,6 @@ plugins {
 dependencies {
 
 	api 'org.sheepy.lily.core:org.sheepy.lily.core.api'
-
-	api "org.lwjgl:lwjgl:$lwjglVersion"
-
-	implementation "org.lwjgl:lwjgl-glfw:$lwjglVersion"
-	implementation "org.lwjgl:lwjgl-stb:$lwjglVersion"
-	implementation "org.lwjgl:lwjgl-vulkan:$lwjglVersion"
-
-	implementation "org.lwjgl:lwjgl:$lwjglVersion:$lwjglNatives"
-	implementation "org.lwjgl:lwjgl-glfw:$lwjglVersion:$lwjglNatives"
-	implementation "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
-	if (targetPlatform == OperatingSystem.MAC_OS) implementation "org.lwjgl:lwjgl-vulkan:$lwjglVersion:$lwjglNatives"
 }
 
 sourceSets {

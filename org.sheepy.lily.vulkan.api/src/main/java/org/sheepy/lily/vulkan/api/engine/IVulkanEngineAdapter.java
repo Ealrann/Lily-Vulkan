@@ -1,17 +1,17 @@
 package org.sheepy.lily.vulkan.api.engine;
 
 import org.sheepy.lily.core.api.engine.IEngineAdapter;
+import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.input.IVulkanInputManager;
-import org.sheepy.vulkan.concurrent.VkFence;
-import org.sheepy.vulkan.window.Window;
+import org.sheepy.lily.vulkan.api.window.IWindow;
 
 public interface IVulkanEngineAdapter extends IEngineAdapter
 {
-	Window getWindow();
+	IWindow getWindow();
 
-	VkFence newFence();
+	IFence newFence();
 
-	VkFence newFence(boolean signaled);
+	IFence newFence(boolean signaled);
 
 	@Override
 	IVulkanInputManager getInputManager();

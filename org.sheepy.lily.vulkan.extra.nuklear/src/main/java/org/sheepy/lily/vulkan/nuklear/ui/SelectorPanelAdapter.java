@@ -25,11 +25,11 @@ import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
+import org.sheepy.lily.vulkan.api.window.IWindowListener.ISizeListener;
 import org.sheepy.lily.vulkan.common.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.extra.api.nuklear.ISelectorInputProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
 import org.sheepy.lily.vulkan.nuklear.ui.internal.SelectorButtonDrawer;
-import org.sheepy.vulkan.window.IWindowListener.ISizeListener;
 
 @Statefull
 @Adapter(scope = SelectorPanel.class)

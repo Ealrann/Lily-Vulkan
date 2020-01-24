@@ -13,8 +13,8 @@ import org.sheepy.lily.core.api.input.event.MouseLocationEvent;
 import org.sheepy.lily.core.api.input.event.ScrollEvent;
 import org.sheepy.lily.core.model.types.EKeyState;
 import org.sheepy.lily.vulkan.api.input.IInputCatcher;
+import org.sheepy.lily.vulkan.common.window.Window;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
-import org.sheepy.vulkan.window.Window;
 
 public final class NuklearInputCatcher implements IInputCatcher
 {
@@ -51,7 +51,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 	public void onKeyEvent(KeyEvent event)
 	{
 		assert catching == true;
-		final long windowId = window.getId();
+		final long windowId = window.getPtr();
 		final boolean press = event.state == EKeyState.PRESSED;
 		switch (event.key)
 		{
@@ -214,7 +214,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 	public boolean hasCaughtInputs()
 	{
 		boolean res = false;
-		final long windowId = window.getId();
+		final long windowId = window.getPtr();
 		final NkMouse mouse = nkContext.input().mouse();
 
 		if (mouse.grab())

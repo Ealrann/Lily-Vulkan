@@ -3,13 +3,13 @@ package org.sheepy.lily.vulkan.nuklear.draw;
 import java.util.List;
 
 import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.vulkan.common.window.Extent2D;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFactory;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.vulkan.model.enumeration.EIndexType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
-import org.sheepy.vulkan.surface.Extent2D;
 
 public final class DrawTaskMaintainer
 {

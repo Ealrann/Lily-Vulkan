@@ -8,18 +8,18 @@ import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
+import org.sheepy.lily.vulkan.common.execution.InternalExecutionContext;
 import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.common.resource.attachment.IDepthAttachmentAdapter;
+import org.sheepy.lily.vulkan.common.resource.image.ImageUtil;
+import org.sheepy.lily.vulkan.common.resource.image.VkImage;
+import org.sheepy.lily.vulkan.common.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
-import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.device.PhysicalDevice;
-import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.resource.image.ImageUtil;
-import org.sheepy.vulkan.resource.image.VkImage;
-import org.sheepy.vulkan.resource.image.VkImageView;
 
 @Statefull
 @Adapter(scope = DepthAttachment.class)
@@ -54,7 +54,7 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 	{
 		final var device = logicalDevice.getVkDevice();
 		depthImageView = new VkImageView(VK_IMAGE_ASPECT_DEPTH_BIT);
-		depthImageView.allocate(device, depthImageBackend.getPtr(), 1, depthFormat);
+		depthImageView.allocate(device, depthImageBackend);
 	}
 
 	private void allocateDepthImage(IGraphicContext context)
@@ -75,7 +75,7 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 		depthImageBackend = depthImageBuilder.build();
 	}
 
-	private void layoutTransitionOfDepthImage(IExecutionContext context)
+	private void layoutTransitionOfDepthImage(InternalExecutionContext context)
 	{
 		final var stack = context.stack();
 		final var barrierInfo = VkImageMemoryBarrier.callocStack(1, stack);
@@ -83,8 +83,8 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 		final var dstStage = EPipelineStage.EARLY_FRAGMENT_TESTS_BIT_VALUE;
 		final var srcLayout = EImageLayout.UNDEFINED;
 		final var dstLayout = EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
-
 		final var aspectMask = ImageUtil.getAspectMask(dstLayout, depthFormat);
+
 		barrierInfo.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
 		barrierInfo.oldLayout(srcLayout.getValue());
 		barrierInfo.newLayout(dstLayout.getValue());
@@ -97,13 +97,14 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 		barrierInfo.dstAccessMask(EAccess.DEPTH_STENCIL_ATTACHMENT_READ_BIT_VALUE
 				| EAccess.DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_VALUE);
 
-		context.execute((context2, commandBuffer) -> vkCmdPipelineBarrier(	commandBuffer,
-																			srcStage,
-																			dstStage,
-																			0,
-																			null,
-																			null,
-																			barrierInfo));
+		context.execute((	context2,
+							commandBuffer) -> vkCmdPipelineBarrier(	commandBuffer.getVkCommandBuffer(),
+																	srcStage,
+																	dstStage,
+																	0,
+																	null,
+																	null,
+																	barrierInfo));
 	}
 
 	private static int findDepthFormat(PhysicalDevice physicalDevice)

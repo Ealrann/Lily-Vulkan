@@ -18,14 +18,14 @@ import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.FontPkg;
 import org.sheepy.lily.core.model.ui.UI;
-import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
+import org.sheepy.lily.vulkan.common.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.common.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.common.resource.font.IFontAllocator;
 import org.sheepy.lily.vulkan.common.resource.font.IFontImageAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.nuklear.font.NkFontLoader;
 import org.sheepy.lily.vulkan.nuklear.ui.ITextWidgetAdapter;
-import org.sheepy.vulkan.execution.IExecutionContext;
 
 @Statefull
 @Adapter(scope = NuklearFont.class, lazy = false)
@@ -96,7 +96,7 @@ public class NuklearFontAdapter implements IVulkanResourceAdapter
 	}
 
 	@Override
-	public void allocate(IExecutionContext context)
+	public void allocate(InternalExecutionContext context)
 	{
 		for (final var loader : fontLoaders)
 		{
@@ -105,7 +105,7 @@ public class NuklearFontAdapter implements IVulkanResourceAdapter
 	}
 
 	@Override
-	public void free(IExecutionContext context)
+	public void free(InternalExecutionContext context)
 	{
 		for (final var loader : fontLoaders)
 		{

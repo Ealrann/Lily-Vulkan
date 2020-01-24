@@ -13,17 +13,17 @@ import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
+import org.sheepy.lily.vulkan.common.concurrent.VkFence;
+import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.common.execution.ICommandBuffer;
+import org.sheepy.lily.vulkan.common.execution.IRecordable.RecordContext.IExecutionIdleListener;
 import org.sheepy.lily.vulkan.common.execution.ISubmission;
-import org.sheepy.lily.vulkan.common.process.IProcessContext.IRecorderContext;
-import org.sheepy.vulkan.concurrent.IFenceView;
-import org.sheepy.vulkan.concurrent.VkFence;
-import org.sheepy.vulkan.concurrent.VkSemaphore;
-import org.sheepy.vulkan.execution.ICommandBuffer;
-import org.sheepy.vulkan.execution.IRecordable.RecordContext.IExecutionIdleListener;
-import org.sheepy.vulkan.log.EVulkanErrorStatus;
-import org.sheepy.vulkan.log.Logger;
+import org.sheepy.lily.vulkan.common.process.IProcessContext;
+import org.sheepy.lily.vulkan.common.util.EVulkanErrorStatus;
+import org.sheepy.lily.vulkan.common.util.Logger;
 
-public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
+public class Submission<T extends IProcessContext> implements ISubmission<T>
 {
 	private static final String FENCE_TIMEOUT = "Fence timeout";
 	private static final int TIMEOUT = (int) 60e9;

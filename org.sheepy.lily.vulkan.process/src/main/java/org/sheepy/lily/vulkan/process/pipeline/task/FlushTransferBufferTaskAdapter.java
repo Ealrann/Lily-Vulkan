@@ -3,12 +3,11 @@ package org.sheepy.lily.vulkan.process.pipeline.task;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter;
+import org.sheepy.lily.vulkan.common.resource.buffer.InternalTransferBufferAdapter;
+import org.sheepy.lily.vulkan.common.resource.buffer.InternalTransferBufferAdapter.IFlushRecorder;
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
-import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.vulkan.resource.staging.ITransferBuffer.IFlushRecorder;
 
 @Statefull
 @Adapter(scope = FlushTransferBufferTask.class)
@@ -35,7 +34,7 @@ public final class FlushTransferBufferTaskAdapter
 	}
 
 	@Override
-	public void record(FlushTransferBufferTask task, RecordContext context)
+	public void record(FlushTransferBufferTask task, IRecordContext context)
 	{
 		if (task.isFlushDuringUpdate() == false)
 		{
@@ -51,11 +50,10 @@ public final class FlushTransferBufferTaskAdapter
 
 	private void record()
 	{
-		final var pushBufferAdapter = transferBuffer.adaptNotNull(ITransferBufferAdapter.class);
-		final var bufferBackend = pushBufferAdapter.getTransferBufferBackend();
-		if (bufferBackend.isEmpty() == false)
+		final var pushBufferAdapter = transferBuffer.adaptNotNull(InternalTransferBufferAdapter.class);
+		if (pushBufferAdapter.isEmpty() == false)
 		{
-			record = bufferBackend.recordFlush();
+			record = pushBufferAdapter.recordFlush();
 		}
 		else
 		{
@@ -66,21 +64,20 @@ public final class FlushTransferBufferTaskAdapter
 	@Override
 	public boolean needRecord(FlushTransferBufferTask task, int index)
 	{
-		final var pushBufferAdapter = transferBuffer.adaptNotNull(ITransferBufferAdapter.class);
-		final var bufferBackend = pushBufferAdapter.getTransferBufferBackend();
+		final var pushBufferAdapter = transferBuffer.adaptNotNull(InternalTransferBufferAdapter.class);
 		final boolean previousRecordMadeFlush = getAndClearHistory(index);
 
 		boolean res = false;
 		res |= record != null;
 		res |= previousRecordMadeFlush;
-		res |= bufferBackend.isEmpty() == false;
+		res |= pushBufferAdapter.isEmpty() == false;
 
 		return res;
 	}
 
-	private void setFlushHistory(RecordContext context)
+	private void setFlushHistory(IRecordContext context)
 	{
-		final int flushIndexFlag = 1 << context.index;
+		final int flushIndexFlag = 1 << context.index();
 		stagingFlushHistory |= flushIndexFlag;
 	}
 

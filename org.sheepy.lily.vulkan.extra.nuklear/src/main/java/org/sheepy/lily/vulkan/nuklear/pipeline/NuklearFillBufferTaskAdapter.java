@@ -14,14 +14,13 @@ import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.common.resource.IDescriptorAdapter;
+import org.sheepy.lily.vulkan.common.resource.image.VkImageArrayDescriptor;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFillBufferTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawCommandData;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawTaskMaintainer;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
-import org.sheepy.vulkan.execution.IRecordable.RecordContext;
-import org.sheepy.vulkan.resource.image.VkImageArrayDescriptor;
 
 @Statefull
 @Adapter(scope = NuklearFillBufferTask.class)
@@ -154,7 +153,7 @@ public final class NuklearFillBufferTaskAdapter
 	}
 
 	@Override
-	public void record(NuklearFillBufferTask task, RecordContext context)
+	public void record(NuklearFillBufferTask task, IRecordContext context)
 	{}
 
 	private void reloadTexturePtrs(DescriptorSet descriptorSet)

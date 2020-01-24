@@ -3,11 +3,11 @@ package org.sheepy.lily.vulkan.process.graphic.barrier;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.common.barrier.IImageBarrierAdapter;
+import org.sheepy.lily.vulkan.common.barrier.VkSwapImageBarrier;
 import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier;
-import org.sheepy.vulkan.barrier.VkSwapImageBarrier;
-import org.sheepy.vulkan.util.VkModelUtil;
 
 @Statefull
 @Adapter(scope = SwapImageBarrier.class)
@@ -22,8 +22,8 @@ public class SwapImageBarrierAdapter
 	{
 		final var srcLayout = imageBarrier.getSrcLayout().getValue();
 		final var dstLayout = imageBarrier.getDstLayout().getValue();
-		final int srcAccessMask = VkModelUtil.getEnumeratedFlag(imageBarrier.getSrcAccessMask());
-		final int dstAccessMask = VkModelUtil.getEnumeratedFlag(imageBarrier.getDstAccessMask());
+		final int srcAccessMask = VulkanModelUtil.getEnumeratedFlag(imageBarrier.getSrcAccessMask());
+		final int dstAccessMask = VulkanModelUtil.getEnumeratedFlag(imageBarrier.getDstAccessMask());
 
 		vkBarrier = new VkSwapImageBarrier(srcLayout, dstLayout, srcAccessMask, dstAccessMask);
 	}

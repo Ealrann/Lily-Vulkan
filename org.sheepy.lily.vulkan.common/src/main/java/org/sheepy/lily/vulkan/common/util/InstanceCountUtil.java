@@ -1,12 +1,13 @@
 package org.sheepy.lily.vulkan.common.util;
 
+import org.sheepy.lily.vulkan.common.execution.InternalExecutionContext;
 import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
-import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 
 public final class InstanceCountUtil
 {
-	public static int getInstanceCount(IExecutionContext context, EInstanceCount eInstanceCount)
+	public static int getInstanceCount(	InternalExecutionContext context,
+										EInstanceCount eInstanceCount)
 	{
 		switch (eInstanceCount)
 		{

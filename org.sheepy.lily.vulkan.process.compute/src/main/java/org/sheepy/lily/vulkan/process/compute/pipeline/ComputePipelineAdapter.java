@@ -2,14 +2,14 @@ package org.sheepy.lily.vulkan.process.compute.pipeline;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.common.process.IProcessContext;
 import org.sheepy.lily.vulkan.common.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractVkPipelineAdapter;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 @Statefull
 @Adapter(scope = ComputePipeline.class)
-public final class ComputePipelineAdapter extends AbstractVkPipelineAdapter<IProcessContext>
+public final class ComputePipelineAdapter extends AbstractVkPipelineAdapter<ProcessContext<?>>
 {
 	private final ComputePipeline pipeline;
 
@@ -22,7 +22,7 @@ public final class ComputePipelineAdapter extends AbstractVkPipelineAdapter<IPro
 	}
 
 	@Override
-	public void allocate(IProcessContext context)
+	public void allocate(ProcessContext<?> context)
 	{
 		super.allocate(context);
 
@@ -41,7 +41,7 @@ public final class ComputePipelineAdapter extends AbstractVkPipelineAdapter<IPro
 	}
 
 	@Override
-	public void free(IProcessContext context)
+	public void free(ProcessContext<?> context)
 	{
 		vkPipeline.free(context);
 		vkPipeline = null;

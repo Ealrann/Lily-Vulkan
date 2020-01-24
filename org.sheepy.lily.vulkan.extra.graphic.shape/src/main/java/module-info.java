@@ -1,13 +1,5 @@
-import org.sheepy.lily.core.api.adapter.annotation.Adapters;
-import org.sheepy.lily.vulkan.extra.graphic.shape.IcoSphereAdapter;
-import org.sheepy.lily.vulkan.extra.graphic.shape.IcosahedronAdapter;
-import org.sheepy.lily.vulkan.extra.graphic.shape.SphereAdapter;
-
-@Adapters(classifiers = {
-		IcosahedronAdapter.class,
-		IcoSphereAdapter.class,
-		SphereAdapter.class
-})
+import org.sheepy.lily.core.api.adapter.IAdapterProvider;
+import org.sheepy.lily.vulkan.extra.graphic.shape.Adapters;
 
 module org.sheepy.lily.vulkan.extra.graphic.shape
 {
@@ -17,4 +9,6 @@ module org.sheepy.lily.vulkan.extra.graphic.shape
 	requires org.lwjgl.par.natives;
 
 	opens org.sheepy.lily.vulkan.extra.graphic.shape;
+
+	provides IAdapterProvider with Adapters;
 }

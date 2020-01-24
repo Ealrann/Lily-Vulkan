@@ -13,7 +13,9 @@ import org.sheepy.lily.core.api.adapter.util.NotificationListenerDeployer;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter;
+import org.sheepy.lily.vulkan.common.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.common.resource.buffer.BufferInfo;
+import org.sheepy.lily.vulkan.common.resource.buffer.GPUBufferBackend;
 import org.sheepy.lily.vulkan.common.resource.buffer.ICompositeBufferAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
@@ -21,9 +23,7 @@ import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
-import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.resource.buffer.BufferInfo;
-import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAdapter;
 
 @Statefull
 @Adapter(scope = CompositeBuffer.class, lazy = false)
@@ -40,7 +40,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	private final CompositeBuffer compositeBuffer;
 
 	private GPUBufferBackend bufferBackend;
-	private IExecutionContext context;
+	private InternalExecutionContext context;
 	private IAllocationConfigurator configurator;
 
 	public CompositeBufferAdapter(CompositeBuffer compositeBuffer)
@@ -63,7 +63,8 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator configurator, IExecutionContext context)
+	public void configureAllocation(IAllocationConfigurator configurator,
+									InternalExecutionContext context)
 	{
 		this.configurator = configurator;
 		configurator.addChildren(partsRegistry.getAdapters());
@@ -89,7 +90,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	}
 
 	@Override
-	public void allocate(IExecutionContext context)
+	public void allocate(InternalExecutionContext context)
 	{
 		this.context = context;
 
@@ -99,7 +100,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	}
 
 	@Override
-	public void free(IExecutionContext context)
+	public void free(InternalExecutionContext context)
 	{
 		bufferBackend.free(context);
 		bufferBackend = null;
@@ -108,8 +109,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	@Override
 	public void recordFlush(EFlushMode mode, TransferBuffer transferBuffer, List<BufferPart> parts)
 	{
-		final var transferBufferAdapter = transferBuffer.adaptNotNull(ITransferBufferAdapter.class);
-		final var transferBackend = transferBufferAdapter.getTransferBufferBackend();
+		final var transferBufferAdapter = transferBuffer.adaptNotNull(TransferBufferAdapter.class);
 
 		final List<BufferPartAdapter> partsToFlush = new ArrayList<>();
 		boolean reservationSuccessfull = true;
@@ -122,7 +122,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			{
 				partsToFlush.add(partAdapter);
 
-				if (partAdapter.reserveMemory(transferBackend) == false)
+				if (partAdapter.reserveMemory(transferBufferAdapter) == false)
 				{
 					reservationSuccessfull = false;
 					break;

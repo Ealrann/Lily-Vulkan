@@ -5,10 +5,10 @@ import static org.lwjgl.vulkan.KHRSurface.*;
 import java.util.List;
 
 import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.common.window.VkSurface;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
-import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
-import org.sheepy.vulkan.surface.VkSurface;
 
 public class PresentationModeSelector
 {

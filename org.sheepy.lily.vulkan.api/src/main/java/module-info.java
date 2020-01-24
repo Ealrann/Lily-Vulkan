@@ -5,16 +5,19 @@ module org.sheepy.lily.vulkan.api
 {
 	requires transitive org.sheepy.vulkan;
 	requires transitive org.sheepy.lily.core.api;
+	requires transitive org.lwjgl;
 
+	exports org.sheepy.lily.vulkan.api.concurrent;
+	exports org.sheepy.lily.vulkan.api.device;
 	exports org.sheepy.lily.vulkan.api.engine;
 	exports org.sheepy.lily.vulkan.api.execution;
 	exports org.sheepy.lily.vulkan.api.input;
 	exports org.sheepy.lily.vulkan.api.pipeline;
 	exports org.sheepy.lily.vulkan.api.process;
-	exports org.sheepy.lily.vulkan.api.resource;
 	exports org.sheepy.lily.vulkan.api.resource.buffer;
 	exports org.sheepy.lily.vulkan.api.util;
 	exports org.sheepy.lily.vulkan.api.view;
+	exports org.sheepy.lily.vulkan.api.window;
 
 	exports org.sheepy.lily.vulkan.model;
 	exports org.sheepy.lily.vulkan.model.impl;

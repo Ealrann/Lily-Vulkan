@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.common.graphic;
 
-import org.sheepy.vulkan.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
 
 public interface IGraphicExecutionRecorders
 {

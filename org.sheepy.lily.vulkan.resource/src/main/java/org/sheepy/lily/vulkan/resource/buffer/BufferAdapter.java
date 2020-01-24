@@ -8,23 +8,24 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
+import org.sheepy.lily.vulkan.common.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.common.resource.IVulkanResourceAdapter;
+import org.sheepy.lily.vulkan.common.resource.buffer.BufferInfo;
+import org.sheepy.lily.vulkan.common.resource.buffer.CPUBufferBackend;
+import org.sheepy.lily.vulkan.common.resource.buffer.GPUBufferBackend;
+import org.sheepy.lily.vulkan.common.resource.buffer.IBufferBackend;
 import org.sheepy.lily.vulkan.common.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
-import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.resource.buffer.BufferInfo;
-import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
-import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
-import org.sheepy.vulkan.resource.buffer.IBufferBackend;
-import org.sheepy.vulkan.util.VkModelUtil;
 
 @Statefull
 @Adapter(scope = Buffer.class)
-public final class BufferAdapter extends Notifier implements IBufferAdapter
+public final class BufferAdapter extends Notifier implements IBufferAdapter, IVulkanResourceAdapter
 {
 	protected Buffer buffer;
 	protected IBufferBackend bufferBackend;
 
-	private IExecutionContext executionManager;
+	private InternalExecutionContext executionManager;
 
 	public BufferAdapter(Buffer buffer)
 	{
@@ -33,7 +34,7 @@ public final class BufferAdapter extends Notifier implements IBufferAdapter
 	}
 
 	@Override
-	public void allocate(IExecutionContext context)
+	public void allocate(InternalExecutionContext context)
 	{
 		executionManager = context;
 		final var info = createInfo(context, buffer);
@@ -69,7 +70,7 @@ public final class BufferAdapter extends Notifier implements IBufferAdapter
 	}
 
 	@Override
-	public void free(IExecutionContext context)
+	public void free(InternalExecutionContext context)
 	{
 		bufferBackend.free(context);
 		bufferBackend = null;
@@ -111,10 +112,10 @@ public final class BufferAdapter extends Notifier implements IBufferAdapter
 		bufferBackend.unmapMemory();
 	}
 
-	private static BufferInfo createInfo(IExecutionContext context, Buffer buffer)
+	private static BufferInfo createInfo(InternalExecutionContext context, Buffer buffer)
 	{
 		final var size = buffer.getSize();
-		final int usage = VkModelUtil.getEnumeratedFlag(buffer.getUsages());
+		final int usage = VulkanModelUtil.getEnumeratedFlag(buffer.getUsages());
 		final var keptMapped = buffer.isKeptMapped();
 		final var eInstanceCount = buffer.getInstanceCount();
 		final int instanceCount = InstanceCountUtil.getInstanceCount(context, eInstanceCount);

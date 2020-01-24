@@ -22,7 +22,7 @@ public class WindowTestUtil
 		final int[] width = new int[1];
 		final int[] height = new int[1];
 
-		glfwGetWindowSize(window.getId(), width, height);
+		glfwGetWindowSize(window.getPtr(), width, height);
 
 		return expectedWidth == width[0] && expectedHeight == height[0];
 	}

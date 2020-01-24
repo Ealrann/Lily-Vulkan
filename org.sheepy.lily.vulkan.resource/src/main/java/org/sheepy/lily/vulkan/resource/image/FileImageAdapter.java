@@ -5,16 +5,15 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
-import org.sheepy.lily.vulkan.api.util.ImageBuffer;
+import org.sheepy.lily.vulkan.common.execution.InternalExecutionContext;
 import org.sheepy.lily.vulkan.common.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.common.resource.image.VkImage;
+import org.sheepy.lily.vulkan.common.resource.image.VkImage.Builder;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
-import org.sheepy.vulkan.execution.ExecutionContext;
-import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.resource.image.backend.ImageBuffer;
+import org.sheepy.lily.vulkan.resource.image.backend.STBImageLoader;
+import org.sheepy.lily.vulkan.resource.image.backend.VkTexture;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
-import org.sheepy.vulkan.resource.image.STBImageLoader;
-import org.sheepy.vulkan.resource.image.VkImage;
-import org.sheepy.vulkan.resource.image.VkImage.Builder;
-import org.sheepy.vulkan.resource.image.VkTexture;
 
 @Statefull
 @Adapter(scope = FileImage.class)
@@ -60,9 +59,9 @@ public class FileImageAdapter extends Notifier implements IImageAdapter
 	}
 
 	@Override
-	public void allocate(IExecutionContext context)
+	public void allocate(InternalExecutionContext context)
 	{
-		final var executionContext = (ExecutionContext) context;
+		final var executionContext = context;
 
 		final var imageBuilder = createBuilder(image, imageBuffer.getImageSize());
 		vkTexture = new VkTexture(imageBuilder, image.isMipmapEnabled());
@@ -77,7 +76,7 @@ public class FileImageAdapter extends Notifier implements IImageAdapter
 	}
 
 	@Override
-	public void free(IExecutionContext context)
+	public void free(InternalExecutionContext context)
 	{
 		vkTexture.free(context);
 		vkTexture = null;

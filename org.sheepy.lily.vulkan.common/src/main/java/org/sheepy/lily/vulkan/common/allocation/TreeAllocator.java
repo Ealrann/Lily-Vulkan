@@ -3,9 +3,9 @@ package org.sheepy.lily.vulkan.common.allocation;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationManager;
 import org.sheepy.lily.core.api.allocation.IAllocationService;
-import org.sheepy.vulkan.device.IVulkanContext;
+import org.sheepy.lily.vulkan.common.device.InternalVulkanContext;
 
-public class TreeAllocator<T extends IVulkanContext>
+public class TreeAllocator<T extends InternalVulkanContext>
 {
 	private final IAllocationService allocationService = IAllocationService.INSTANCE;
 	private final IAllocationManager<T> rootWrapper;

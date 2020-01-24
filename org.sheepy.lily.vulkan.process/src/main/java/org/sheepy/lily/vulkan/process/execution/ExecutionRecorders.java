@@ -5,13 +5,13 @@ import java.util.List;
 
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.common.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.common.execution.IExecutionRecorders;
 import org.sheepy.lily.vulkan.common.process.IProcessContext;
 import org.sheepy.lily.vulkan.common.resource.ISemaphoreAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
-import org.sheepy.vulkan.concurrent.VkSemaphore;
 
 public abstract class ExecutionRecorders<T extends IProcessContext>
 		implements IExecutionRecorders<T>, IAllocable<T>

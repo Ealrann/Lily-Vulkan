@@ -27,13 +27,13 @@ import org.sheepy.lily.core.model.application.IImage;
 import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
-import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
+import org.sheepy.lily.vulkan.common.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.common.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.nuklear.input.NuklearInputCatcher;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
-import org.sheepy.vulkan.execution.IExecutionContext;
 
 @Statefull
 @Adapter(scope = NuklearContext.class, lazy = false)
@@ -140,7 +140,7 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 	}
 
 	@Override
-	public void allocate(IExecutionContext context)
+	public void allocate(InternalExecutionContext context)
 	{
 		final var font = nuklearContext.getFont();
 		final var fontAdapter = font.adaptNotNull(NuklearFontAdapter.class);
@@ -173,11 +173,11 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 				MemoryUtil.memCopy(text, MemoryUtil.memAddress(str), len);
 				str.put(len, (byte) 0);
 
-				glfwSetClipboardString(context.getWindow().getId(), str);
+				glfwSetClipboardString(context.getWindow().getPtr(), str);
 			}
 		}).paste((handle, edit) ->
 		{
-			final long text = nglfwGetClipboardString(context.getWindow().getId());
+			final long text = nglfwGetClipboardString(context.getWindow().getPtr());
 			if (text != 0)
 			{
 				nnk_textedit_paste(edit, text, nnk_strlen(text));
@@ -203,7 +203,7 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 	}
 
 	@Override
-	public void free(IExecutionContext context)
+	public void free(InternalExecutionContext context)
 	{
 		Objects.requireNonNull(nkContext.clip().copy()).free();
 		Objects.requireNonNull(nkContext.clip().paste()).free();

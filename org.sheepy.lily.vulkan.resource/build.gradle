@@ -9,6 +9,9 @@ test {
 dependencies {
 	api project(':org.sheepy.lily.vulkan.common')
 
+	api "org.lwjgl:lwjgl-stb:$lwjglVersion"
+	implementation "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
+
 	// Test
 	testRuntimeOnly 'org.sheepy.lily.core:org.sheepy.lily.core.base'
 

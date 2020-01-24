@@ -8,21 +8,24 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.impl.LongNotification;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferDataProviderAdapter;
+import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter.IMemoryTicket;
+import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter.IMemoryTicket.EReservationStatus;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
+import org.sheepy.lily.vulkan.common.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.common.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.common.resource.buffer.IBufferPartAdapter;
 import org.sheepy.lily.vulkan.common.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
-import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.resource.buffer.memory.MemoryTicket;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAdapter;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFactory;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
-import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
-import org.sheepy.vulkan.resource.staging.ITransferBuffer;
-import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket;
-import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket.EReservationStatus;
-import org.sheepy.vulkan.util.VkModelUtil;
 
 @Statefull
 @Adapter(scope = BufferPart.class)
-public final class BufferPartAdapter extends Notifier implements IBufferPartAdapter
+public final class BufferPartAdapter extends Notifier
+		implements IBufferPartAdapter, IVulkanResourceAdapter
 {
 	public final BufferDataProvider<?> dataProvider;
 
@@ -41,7 +44,7 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 
 	private boolean needPush = true;
 	private MemoryTicket memTicket;
-	private ITransferBuffer transferBuffer;
+	private TransferBufferAdapter transferBuffer;
 
 	private BufferPartAdapter(BufferPart bufferPart)
 	{
@@ -52,13 +55,13 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 		this.dataProvider = bufferPart.getDataProvider();
 		usage = computeUsage(dataProvider);
 
-		accessBeforePush = VkModelUtil.getEnumeratedFlag(dataProvider.getAccessBeforePush());
-		accessBeforeFetch = VkModelUtil.getEnumeratedFlag(dataProvider.getAccessBeforeFetch());
+		accessBeforePush = VulkanModelUtil.getEnumeratedFlag(dataProvider.getAccessBeforePush());
+		accessBeforeFetch = VulkanModelUtil.getEnumeratedFlag(dataProvider.getAccessBeforeFetch());
 	}
 
 	private static int computeUsage(BufferDataProvider<?> dataProvider)
 	{
-		final int usage = VkModelUtil.getEnumeratedFlag(dataProvider.getUsages());
+		final int usage = VulkanModelUtil.getEnumeratedFlag(dataProvider.getUsages());
 		final int pushUsage = dataProvider.isUsedToPush() ? EBufferUsage.TRANSFER_DST_BIT_VALUE : 0;
 		final int fetchUsage = dataProvider.isUsedToFetch()
 				? EBufferUsage.TRANSFER_SRC_BIT_VALUE
@@ -68,7 +71,7 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 	}
 
 	@Override
-	public void allocate(IExecutionContext context)
+	public void allocate(InternalExecutionContext context)
 	{
 		final var physicalDevice = context.getPhysicalDevice();
 		alignment = physicalDevice.getBufferAlignement(usage);
@@ -82,7 +85,7 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 	}
 
 	@Override
-	public void free(IExecutionContext context)
+	public void free(InternalExecutionContext context)
 	{}
 
 	public void updateAlignement(long desiredOffset)
@@ -135,10 +138,10 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 		return (needPush || adapter.hasChanged()) && instanceSize > 0;
 	}
 
-	public boolean reserveMemory(ITransferBuffer stagingBuffer)
+	public boolean reserveMemory(TransferBufferAdapter transferBuffer)
 	{
-		this.transferBuffer = stagingBuffer;
-		memTicket = stagingBuffer.reserveMemory(instanceSize);
+		this.transferBuffer = transferBuffer;
+		memTicket = (MemoryTicket) transferBuffer.reserveMemory(instanceSize);
 
 		return memTicket.getReservationStatus() == EReservationStatus.SUCCESS;
 	}
@@ -171,11 +174,11 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 		final long instanceOffset = getInstanceOffset(instance);
 		final var stage = dataProvider.getStageBeforePush();
 
-		final var pushCommand = IDataFlowCommand.newPushCommand(memTicket,
-																bufferPtr,
-																instanceOffset,
-																stage,
-																accessBeforePush);
+		final var pushCommand = DataFlowCommandFactory.newPushCommand(	memTicket,
+																		bufferPtr,
+																		instanceOffset,
+																		stage,
+																		accessBeforePush);
 
 		// System.out.println(String.format( "[%s] push %d bytes",
 		// dataProvider.eClass().getName(),
@@ -208,17 +211,17 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 		assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
 
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
-		final Consumer<MemoryTicket> transferDone = ticket -> adapter.fetch(memTicket.toReadBuffer());
+		final Consumer<IMemoryTicket> transferDone = ticket -> adapter.fetch(memTicket.toReadBuffer());
 
 		final long instanceOffset = getInstanceOffset(instance);
 		final var stage = dataProvider.getStageBeforeFetch();
 
-		final var fetchCommand = IDataFlowCommand.newFetchCommand(	memTicket,
-																	bufferPtr,
-																	instanceOffset,
-																	stage,
-																	accessBeforeFetch,
-																	transferDone);
+		final var fetchCommand = DataFlowCommandFactory.newFetchCommand(memTicket,
+																		bufferPtr,
+																		instanceOffset,
+																		stage,
+																		accessBeforeFetch,
+																		transferDone);
 
 		transferBuffer.addTransferCommand(fetchCommand);
 	}

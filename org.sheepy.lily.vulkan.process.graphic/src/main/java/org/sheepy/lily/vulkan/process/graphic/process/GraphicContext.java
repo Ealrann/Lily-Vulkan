@@ -2,7 +2,9 @@ package org.sheepy.lily.vulkan.process.graphic.process;
 
 import java.util.List;
 
+import org.sheepy.lily.vulkan.common.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.common.execution.IExecutionRecorder;
+import org.sheepy.lily.vulkan.common.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.graphic.IFramebufferManager;
 import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.common.graphic.IGraphicExecutionRecorders;
@@ -18,8 +20,6 @@ import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewManager;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager;
 import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainManager;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
-import org.sheepy.vulkan.descriptor.DescriptorPool;
-import org.sheepy.vulkan.queue.EQueueType;
 
 final class GraphicContext extends ProcessContext<IGraphicContext> implements IGraphicContext
 {

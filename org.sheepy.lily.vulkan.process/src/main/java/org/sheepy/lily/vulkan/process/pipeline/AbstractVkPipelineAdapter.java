@@ -7,14 +7,14 @@ import java.util.stream.Collectors;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
+import org.sheepy.lily.vulkan.common.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.common.pipeline.IVkPipelineAdapter;
+import org.sheepy.lily.vulkan.common.pipeline.VkPipelineLayout;
 import org.sheepy.lily.vulkan.common.process.IProcessContext;
 import org.sheepy.lily.vulkan.common.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.model.process.IVkPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
-import org.sheepy.vulkan.pipeline.VkPipelineLayout;
 
 @Statefull
 public abstract class AbstractVkPipelineAdapter<T extends IProcessContext>

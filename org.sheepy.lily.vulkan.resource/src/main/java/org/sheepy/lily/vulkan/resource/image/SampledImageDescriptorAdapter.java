@@ -2,13 +2,13 @@ package org.sheepy.lily.vulkan.resource.image;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.common.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.common.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.common.resource.ISampledImageAdapter;
 import org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor;
-import org.sheepy.vulkan.descriptor.IVkDescriptor;
-import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.resource.image.backend.VkImageDescriptor;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.vulkan.resource.image.VkImageDescriptor;
 
 @Statefull
 @Adapter(scope = SampledImageDescriptor.class)

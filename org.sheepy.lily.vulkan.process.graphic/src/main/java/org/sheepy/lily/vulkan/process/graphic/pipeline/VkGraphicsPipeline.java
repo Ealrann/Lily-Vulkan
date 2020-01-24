@@ -7,25 +7,24 @@ import java.util.List;
 
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
 import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
-import org.sheepy.vulkan.log.Logger;
+import org.sheepy.lily.vulkan.common.pipeline.VkPipeline;
+import org.sheepy.lily.vulkan.common.pipeline.VkPipelineLayout;
+import org.sheepy.lily.vulkan.common.pipeline.VkShaderStage;
+import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.ColorBlendBuilder;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.DepthStencilBuilder;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.DynamicStateBuilder;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.InputAssemblyBuilder;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.MultisampleBuilder;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.RasterizerBuilder;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.ViewportStateBuilder;
+import org.sheepy.lily.vulkan.process.pipeline.builder.ShaderStageBuilder;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
 import org.sheepy.vulkan.model.graphicpipeline.DepthStencilState;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
 import org.sheepy.vulkan.model.graphicpipeline.InputAssembly;
 import org.sheepy.vulkan.model.graphicpipeline.Rasterizer;
 import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
-import org.sheepy.vulkan.pipeline.VkPipeline;
-import org.sheepy.vulkan.pipeline.VkPipelineLayout;
-import org.sheepy.vulkan.pipeline.VkShaderStage;
-import org.sheepy.vulkan.pipeline.builder.ColorBlendBuilder;
-import org.sheepy.vulkan.pipeline.builder.DepthStencilBuilder;
-import org.sheepy.vulkan.pipeline.builder.DynamicStateBuilder;
-import org.sheepy.vulkan.pipeline.builder.InputAssemblyBuilder;
-import org.sheepy.vulkan.pipeline.builder.MultisampleBuilder;
-import org.sheepy.vulkan.pipeline.builder.RasterizerBuilder;
-import org.sheepy.vulkan.pipeline.builder.ShaderStageBuilder;
-import org.sheepy.vulkan.pipeline.builder.ViewportStateBuilder;
-import org.sheepy.vulkan.resource.indexed.VkInputStateDescriptor;
 
 public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 {

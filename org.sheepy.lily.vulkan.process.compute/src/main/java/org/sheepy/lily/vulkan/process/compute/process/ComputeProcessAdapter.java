@@ -7,6 +7,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.vulkan.common.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.process.IComputeContext;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -14,7 +15,6 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.vulkan.queue.EQueueType;
 
 @Statefull
 @Adapter(scope = ComputeProcess.class)
@@ -58,7 +58,7 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContex
 	}
 
 	@Override
-	protected IComputeContext createContext()
+	protected ComputeContext createContext()
 	{
 		return new ComputeContext(	getExecutionQueueType(),
 									isResetAllowed(),
@@ -99,8 +99,7 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContex
 	@Override
 	protected List<List<EStructuralFeature>> getPipelineFeatureLists()
 	{
-		return List.of(PIPELINE__FEATURES,
-		               COMPOSITE_PIPELINE__FEATURES);
+		return List.of(PIPELINE__FEATURES, COMPOSITE_PIPELINE__FEATURES);
 	}
 
 	@Override

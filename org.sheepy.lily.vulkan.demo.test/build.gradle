@@ -4,7 +4,8 @@ plugins {
 
 dependencies {
 
-	implementation project(':org.sheepy.lily.vulkan.base')
+	implementation project(':org.sheepy.lily.vulkan.api')
+	runtimeOnly project(':org.sheepy.lily.vulkan.base')
 
 	// Test
 	testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"

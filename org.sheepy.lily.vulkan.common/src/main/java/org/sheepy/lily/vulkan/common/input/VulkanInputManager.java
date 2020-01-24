@@ -23,7 +23,7 @@ import org.sheepy.lily.core.model.types.EKeyState;
 import org.sheepy.lily.core.model.types.EMouseButton;
 import org.sheepy.lily.vulkan.api.input.IInputCatcher;
 import org.sheepy.lily.vulkan.api.input.IVulkanInputManager;
-import org.sheepy.vulkan.window.Window;
+import org.sheepy.lily.vulkan.common.window.Window;
 
 public class VulkanInputManager implements IVulkanInputManager
 {
@@ -134,7 +134,7 @@ public class VulkanInputManager implements IVulkanInputManager
 
 	public void load()
 	{
-		final var windowId = window.getId();
+		final var windowId = window.getPtr();
 		glfwSetScrollCallback(windowId, glfwSetScrollCallback);
 		glfwSetCharCallback(windowId, glfwSetCharCallback);
 		glfwSetKeyCallback(windowId, glfwSetKeyCallback);
@@ -211,7 +211,7 @@ public class VulkanInputManager implements IVulkanInputManager
 	private void updateMouseLocation()
 	{
 		// The elegance itself (nonono)
-		glfwGetCursorPos(window.getId(), cursorPositionX, cursorPositionY);
+		glfwGetCursorPos(window.getPtr(), cursorPositionX, cursorPositionY);
 		cursorPosition = new Vector2f((float) cursorPositionX[0], (float) cursorPositionY[0]);
 	}
 
@@ -219,7 +219,7 @@ public class VulkanInputManager implements IVulkanInputManager
 	public void showCursor(boolean show)
 	{
 		final int flag = show ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_HIDDEN;
-		glfwSetInputMode(window.getId(), GLFW_CURSOR, flag);
+		glfwSetInputMode(window.getPtr(), GLFW_CURSOR, flag);
 	}
 
 	@Override
@@ -231,7 +231,7 @@ public class VulkanInputManager implements IVulkanInputManager
 	@Override
 	public void setCursorPosition(Vector2fc position)
 	{
-		glfwSetCursorPos(window.getId(), position.x(), position.y());
+		glfwSetCursorPos(window.getPtr(), position.x(), position.y());
 		cursorPosition = new Vector2f(position);
 	}
 

@@ -11,10 +11,10 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
+import org.sheepy.lily.vulkan.common.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
-import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @Statefull
@@ -107,7 +107,7 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 	}
 
 	@Override
-	public void record(CopyBufferTask task, RecordContext context)
+	public void record(CopyBufferTask task, IRecordContext context)
 	{
 		if (dirty)
 		{
@@ -115,7 +115,7 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 		}
 
 		final var srcBuffer = task.getSrcBuffer();
-		final var commandBuffer = context.commandBuffer;
+		final var commandBuffer = ((RecordContext) context).commandBuffer;
 		final var scrPtr = srcAdapter.getPtr();
 		final var dstPtr = dstAdapter.getPtr();
 

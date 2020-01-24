@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.api.execution;
 
-import org.sheepy.vulkan.concurrent.IFenceView;
+import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 
 public interface IExecutionPlayer
 {

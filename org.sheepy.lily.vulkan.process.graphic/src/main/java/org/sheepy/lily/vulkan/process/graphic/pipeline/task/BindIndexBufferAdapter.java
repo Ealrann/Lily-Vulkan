@@ -10,8 +10,8 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
+import org.sheepy.lily.vulkan.common.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
-import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 
 @Statefull
 @Adapter(scope = BindIndexBuffer.class)
@@ -45,15 +45,16 @@ public final class BindIndexBufferAdapter implements IPipelineTaskAdapter<BindIn
 	}
 
 	@Override
-	public void record(BindIndexBuffer task, RecordContext context)
+	public void record(BindIndexBuffer task, IRecordContext context)
 	{
 		final var bufferRef = task.getBuffer();
 		final var adapter = bufferRef.adaptNotNull(IBufferAdapter.class);
 		final var indexPtr = adapter.getPtr();
 		final var indexOffset = adapter.getBindOffset();
 		final var indexType = task.getIndexType().getValue();
+		final var commandBuffer = ((RecordContext) context).commandBuffer;
 
-		vkCmdBindIndexBuffer(context.commandBuffer, indexPtr, indexOffset, indexType);
+		vkCmdBindIndexBuffer(commandBuffer, indexPtr, indexOffset, indexType);
 
 		changed = false;
 	}

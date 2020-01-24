@@ -17,23 +17,24 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.impl.LongNotification;
 import org.sheepy.lily.core.model.ui.Font;
-import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter;
+import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter.IMemoryTicket.EReservationStatus;
+import org.sheepy.lily.vulkan.common.execution.InternalExecutionContext;
 import org.sheepy.lily.vulkan.common.resource.font.IFontImageAdapter;
+import org.sheepy.lily.vulkan.common.resource.image.VkImage;
+import org.sheepy.lily.vulkan.common.resource.image.VkImageView;
+import org.sheepy.lily.vulkan.common.resource.memory.MemoryChunk;
+import org.sheepy.lily.vulkan.common.resource.memory.MemoryChunkBuilder;
 import org.sheepy.lily.vulkan.common.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.lily.vulkan.resource.buffer.memory.MemoryTicket;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAdapter;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFactory;
 import org.sheepy.lily.vulkan.resource.font.util.CodepointMap;
 import org.sheepy.lily.vulkan.resource.font.util.FontAllocator;
-import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.resource.image.VkImage;
-import org.sheepy.vulkan.resource.image.VkImageView;
-import org.sheepy.vulkan.resource.memory.MemoryChunk;
-import org.sheepy.vulkan.resource.memory.MemoryChunkBuilder;
-import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
-import org.sheepy.vulkan.resource.staging.ITransferBuffer.MemoryTicket.EReservationStatus;
 
 @Statefull
 @Adapter(scope = FontImage.class)
@@ -68,7 +69,7 @@ public final class FontImageAdapter extends Notifier implements IFontImageAdapte
 	}
 
 	@Override
-	public void allocate(IExecutionContext context)
+	public void allocate(InternalExecutionContext context)
 	{
 		final var stack = context.stack();
 		final var vkDevice = context.getVkDevice();
@@ -110,7 +111,7 @@ public final class FontImageAdapter extends Notifier implements IFontImageAdapte
 	}
 
 	@Override
-	public void free(IExecutionContext context)
+	public void free(InternalExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
 		for (int i = 0; i < instanceCount; i++)
@@ -158,10 +159,9 @@ public final class FontImageAdapter extends Notifier implements IFontImageAdapte
 			{
 				cdata = STBTTPackedchar.calloc(codepointMap.codepointCount);
 
-				final var transferBufferAdapter = transferBuffer.adapt(ITransferBufferAdapter.class);
-				final var bb = transferBufferAdapter.getTransferBufferBackend();
+				final var transferBufferAdapter = transferBuffer.adapt(TransferBufferAdapter.class);
 				final long memSize = BASE_FONTIMAGE_WIDTH * BASE_FONTIMAGE_HEIGHT;
-				final var ticket = bb.reserveMemory(memSize);
+				final var ticket = transferBufferAdapter.reserveMemory(memSize);
 
 				if (ticket.getReservationStatus() == EReservationStatus.SUCCESS)
 				{
@@ -202,15 +202,15 @@ public final class FontImageAdapter extends Notifier implements IFontImageAdapte
 						nextInstance();
 					}
 					final var image = images[instance];
-					final var command = IDataFlowCommand.newPushImageCommand(	ticket,
-																				image,
-																				EPipelineStage.TOP_OF_PIPE_BIT,
-																				List.of(EAccess.UNDEFINED),
-																				EPipelineStage.FRAGMENT_SHADER_BIT,
-																				List.of(EAccess.SHADER_READ_BIT),
-																				EImageLayout.GENERAL);
+					final var command = DataFlowCommandFactory.newPushImageCommand(	(MemoryTicket) ticket,
+																					image,
+																					EPipelineStage.TOP_OF_PIPE_BIT,
+																					List.of(EAccess.UNDEFINED),
+																					EPipelineStage.FRAGMENT_SHADER_BIT,
+																					List.of(EAccess.SHADER_READ_BIT),
+																					EImageLayout.GENERAL);
 
-					bb.addTransferCommand(command);
+					transferBufferAdapter.addTransferCommand(command);
 					res = true;
 				}
 

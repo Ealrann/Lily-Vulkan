@@ -8,17 +8,16 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.common.pipeline.VkPipeline;
+import org.sheepy.lily.vulkan.common.pipeline.VkShaderStage;
 import org.sheepy.lily.vulkan.common.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
 import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.VkInputStateDescriptor.VkAttributeDescription;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.VkInputStateDescriptor.VkVertexBinding;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractVkPipelineAdapter;
-import org.sheepy.vulkan.pipeline.VkPipeline;
-import org.sheepy.vulkan.pipeline.VkShaderStage;
-import org.sheepy.vulkan.resource.indexed.VkInputStateDescriptor;
-import org.sheepy.vulkan.resource.indexed.VkInputStateDescriptor.VkAttributeDescription;
-import org.sheepy.vulkan.resource.indexed.VkInputStateDescriptor.VkVertexBinding;
 
 @Statefull
 @Adapter(scope = GraphicsPipeline.class)

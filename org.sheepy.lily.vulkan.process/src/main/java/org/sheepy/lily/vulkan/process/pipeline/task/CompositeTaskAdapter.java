@@ -9,11 +9,11 @@ import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.common.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.common.process.IProcessContext;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @Statefull
@@ -117,14 +117,16 @@ public class CompositeTaskAdapter
 	}
 
 	@Override
-	public void record(CompositeTask task, RecordContext context)
+	public void record(CompositeTask task, IRecordContext context)
 	{
+		final var recordContext = (RecordContext) context;
+
 		for (int repeat = 0; repeat < task.getRepeatCount(); repeat++)
 		{
 			for (int i = 0; i < adaptedChildren.size(); i++)
 			{
 				final var child = adaptedChildren.get(i);
-				child.record(context);
+				child.record(recordContext);
 			}
 		}
 	}

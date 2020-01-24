@@ -3,9 +3,9 @@ package org.sheepy.lily.vulkan.common.engine.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sheepy.lily.vulkan.common.process.IExecutionProcessAdapter;
+import org.sheepy.lily.vulkan.common.execution.queue.EQueueType;
+import org.sheepy.lily.vulkan.common.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
-import org.sheepy.vulkan.queue.EQueueType;
 
 public final class VulkanEngineUtils
 {
@@ -19,7 +19,7 @@ public final class VulkanEngineUtils
 
 		for (final var process : engine.getProcesses())
 		{
-			final var adapter = process.adaptNotNull(IExecutionProcessAdapter.class);
+			final var adapter = process.adaptNotNull(InternalProcessAdapter.class);
 			res.add(adapter.getExecutionQueueType());
 			needPresent |= adapter.needPresentQueue();
 		}

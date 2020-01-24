@@ -8,7 +8,7 @@ import java.util.List;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.common.graphic.IImageViewManager;
-import org.sheepy.vulkan.resource.image.VkImageView;
+import org.sheepy.lily.vulkan.common.resource.image.VkImageView;
 
 public class ImageViewManager implements IImageViewManager
 {
@@ -36,7 +36,8 @@ public class ImageViewManager implements IImageViewManager
 		imageViews = new ArrayList<>(swapImages.size());
 		for (final long imageId : swapImages)
 		{
-			final var imageView = VkImageView.alloc(device, imageId, colorFormat, IMAGE_ASPECT);
+			final var imageView = new VkImageView(IMAGE_ASPECT);
+			imageView.allocate(device, imageId, 1, colorFormat);
 			imageViews.add(imageView);
 		}
 
@@ -58,7 +59,7 @@ public class ImageViewManager implements IImageViewManager
 	public void free(IGraphicContext context)
 	{
 		final var device = context.getVkDevice();
-		for (final VkImageView view : imageViews)
+		for (final var view : imageViews)
 		{
 			view.free(device);
 		}

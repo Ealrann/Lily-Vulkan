@@ -8,15 +8,15 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.common.descriptor.IVkDescriptorSet;
+import org.sheepy.lily.vulkan.common.execution.IRecordable.RecordContext;
+import org.sheepy.lily.vulkan.common.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.common.pipeline.IVkPipelineAdapter;
 import org.sheepy.lily.vulkan.common.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
-import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 
 @Statefull
 @Adapter(scope = BindDescriptorSets.class)
@@ -38,14 +38,15 @@ public final class BindDescriptorSetsAdapter implements IPipelineTaskAdapter<Bin
 	}
 
 	@Override
-	public void record(BindDescriptorSets task, RecordContext context)
+	public void record(BindDescriptorSets task, IRecordContext context)
 	{
 		final var pipeline = ModelUtil.findParent(task, IPipeline.class);
 		final var pipelineAdapter = pipeline.<IVkPipelineAdapter<?>> adaptNotNullGeneric(IPipelineAdapter.class);
 		final var pipelineLayout = pipelineAdapter.getVkPipelineLayout();
 		final int bindPoint = task.getBindPoint().getValue();
+		final var commandBuffer = ((RecordContext) context).commandBuffer;
 
-		pipelineLayout.bindDescriptors(context.stack, context.commandBuffer, sets, bindPoint);
+		pipelineLayout.bindDescriptors(commandBuffer, sets, bindPoint);
 
 		dirty = false;
 	}

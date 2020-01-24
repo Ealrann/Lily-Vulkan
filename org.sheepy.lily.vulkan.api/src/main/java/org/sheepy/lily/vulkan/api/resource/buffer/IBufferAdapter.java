@@ -3,9 +3,8 @@ package org.sheepy.lily.vulkan.api.resource.buffer;
 import java.nio.ByteBuffer;
 
 import org.sheepy.lily.core.api.adapter.INotifierAdapter;
-import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
 
-public interface IBufferAdapter extends INotifierAdapter, IVulkanResourceAdapter
+public interface IBufferAdapter extends INotifierAdapter
 {
 	static enum Features
 	{

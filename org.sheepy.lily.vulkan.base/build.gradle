@@ -3,13 +3,11 @@ plugins {
 }
 
 dependencies {
-	api project(":org.sheepy.lily.vulkan.api")
+	implementation 'org.sheepy.lily.core:org.sheepy.lily.core.base'
 
-	api 'org.sheepy.lily.core:org.sheepy.lily.core.base'
-
-	implementation project(":org.sheepy.lily.vulkan.common")
-	implementation project(":org.sheepy.lily.vulkan.process")
-	implementation project(":org.sheepy.lily.vulkan.process.compute")
-	implementation project(":org.sheepy.lily.vulkan.process.graphic")
-	implementation project(":org.sheepy.lily.vulkan.resource")
+	runtimeOnly project(":org.sheepy.lily.vulkan.common")
+	runtimeOnly project(":org.sheepy.lily.vulkan.process")
+	runtimeOnly project(":org.sheepy.lily.vulkan.process.compute")
+	runtimeOnly project(":org.sheepy.lily.vulkan.process.graphic")
+	runtimeOnly project(":org.sheepy.lily.vulkan.resource")
 }

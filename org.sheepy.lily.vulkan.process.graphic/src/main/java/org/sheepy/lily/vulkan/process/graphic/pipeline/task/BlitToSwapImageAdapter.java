@@ -12,20 +12,20 @@ import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.common.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.common.graphic.IImageViewManager;
 import org.sheepy.lily.vulkan.common.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.common.resource.image.VkImage;
+import org.sheepy.lily.vulkan.common.resource.image.VkImage.VkImageBuilder;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EFilter;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.image.ImageFactory;
-import org.sheepy.vulkan.resource.image.VkImage;
-import org.sheepy.vulkan.resource.image.VkImage.VkImageBuilder;
 
 @Statefull
 @Adapter(scope = BlitToSwapImage.class)
@@ -170,13 +170,13 @@ public class BlitToSwapImageAdapter
 	}
 
 	@Override
-	public void record(BlitToSwapImage task, RecordContext context)
+	public void record(BlitToSwapImage task, IRecordContext context)
 	{
-		final var swapImage = imageViewManager.getImageViews().get(context.index).getImagePtr();
+		final var swapImage = imageViewManager.getImageViews().get(context.index()).getImagePtr();
 		final var transfertSrc = EImageLayout.TRANSFER_SRC_OPTIMAL_VALUE;
 		final var transfertDst = EImageLayout.TRANSFER_DST_OPTIMAL_VALUE;
-		final var commandBuffer = context.commandBuffer;
 		final int filter = task.getFilter().getValue();
+		final var commandBuffer = ((RecordContext) context).commandBuffer;
 
 		vkCmdBlitImage(	commandBuffer,
 						imagePtr,

@@ -1,11 +1,5 @@
-import org.sheepy.lily.core.api.adapter.annotation.Adapters;
-import org.sheepy.lily.vulkan.process.compute.pipeline.ComputePipelineAdapter;
-import org.sheepy.lily.vulkan.process.compute.pipeline.DispatchTaskAdapter;
-import org.sheepy.lily.vulkan.process.compute.process.ComputeProcessAdapter;
-
-@Adapters(classifiers = {
-		ComputeProcessAdapter.class, ComputePipelineAdapter.class, DispatchTaskAdapter.class
-})
+import org.sheepy.lily.core.api.adapter.IAdapterProvider;
+import org.sheepy.lily.vulkan.process.compute.Adapters;
 
 module org.sheepy.lily.vulkan.process.compute
 {
@@ -14,10 +8,9 @@ module org.sheepy.lily.vulkan.process.compute
 	requires org.sheepy.lily.vulkan.common;
 	requires org.sheepy.lily.vulkan.process;
 
-	exports org.sheepy.lily.vulkan.process.compute.execution;
-	exports org.sheepy.lily.vulkan.process.compute.pipeline;
-	exports org.sheepy.lily.vulkan.process.compute.process;
-
+	opens org.sheepy.lily.vulkan.process.compute.execution;
 	opens org.sheepy.lily.vulkan.process.compute.pipeline;
 	opens org.sheepy.lily.vulkan.process.compute.process;
+
+	provides IAdapterProvider with Adapters;
 }

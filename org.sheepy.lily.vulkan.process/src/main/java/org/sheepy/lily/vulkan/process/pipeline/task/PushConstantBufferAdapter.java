@@ -7,16 +7,16 @@ import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IConstantBufferUpdater;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
+import org.sheepy.lily.vulkan.common.execution.IRecordable.RecordContext;
+import org.sheepy.lily.vulkan.common.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.common.pipeline.IVkPipelineAdapter;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.execution.IRecordable.RecordContext;
-import org.sheepy.vulkan.util.VkModelUtil;
 
 @Statefull
 @Adapter(scope = PushConstantBuffer.class)
@@ -42,7 +42,7 @@ public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConst
 	}
 
 	@Override
-	public void record(PushConstantBuffer pushConstant, RecordContext context)
+	public void record(PushConstantBuffer pushConstant, IRecordContext context)
 	{
 		final var pipeline = ModelUtil.findParent(pushConstant, IPipeline.class);
 		final var pipelineAdapter = pipeline.<IVkPipelineAdapter<?>> adaptNotNullGeneric(IPipelineAdapter.class);
@@ -55,10 +55,11 @@ public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConst
 		final var data = buffer.getData();
 		if (data != null)
 		{
+			final var commandBuffer = ((RecordContext) context).commandBuffer;
 			final long layoutId = pipelineAdapter.getVkPipelineLayout().getId();
-			final int stageFlags = VkModelUtil.getEnumeratedFlag(pushConstant.getStages());
+			final int stageFlags = VulkanModelUtil.getEnumeratedFlag(pushConstant.getStages());
 
-			vkCmdPushConstants(context.commandBuffer, layoutId, stageFlags, 0, data);
+			vkCmdPushConstants(commandBuffer, layoutId, stageFlags, 0, data);
 		}
 
 		dirty = false;

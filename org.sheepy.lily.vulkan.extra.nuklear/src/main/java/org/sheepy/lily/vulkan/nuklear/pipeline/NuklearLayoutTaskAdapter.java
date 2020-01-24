@@ -16,7 +16,10 @@ import org.sheepy.lily.core.model.ui.IPanel;
 import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.api.window.IWindowListener.ISizeListener;
 import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.common.window.Extent2D;
+import org.sheepy.lily.vulkan.common.window.Window;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
@@ -25,10 +28,6 @@ import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearFontAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
-import org.sheepy.vulkan.execution.IRecordable.RecordContext;
-import org.sheepy.vulkan.surface.Extent2D;
-import org.sheepy.vulkan.window.IWindowListener.ISizeListener;
-import org.sheepy.vulkan.window.Window;
 
 @Statefull
 @Adapter(scope = NuklearLayoutTask.class, lazy = false)
@@ -168,7 +167,7 @@ public final class NuklearLayoutTaskAdapter
 	}
 
 	@Override
-	public void record(NuklearLayoutTask task, RecordContext context)
+	public void record(NuklearLayoutTask task, IRecordContext context)
 	{
 		dirty = false;
 	}

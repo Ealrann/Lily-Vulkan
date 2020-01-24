@@ -1,20 +1,20 @@
 package org.sheepy.lily.vulkan.process.graphic.frame;
 
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.vulkan.api.window.IWindowListener.ISizeListener;
+import org.sheepy.lily.vulkan.api.window.IWindowListener.ISurfaceDeprecatedListener;
+import org.sheepy.lily.vulkan.common.device.capabilities.Capabilities;
+import org.sheepy.lily.vulkan.common.device.capabilities.ColorDomains;
+import org.sheepy.lily.vulkan.common.device.capabilities.VkColorDomain;
+import org.sheepy.lily.vulkan.common.execution.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.common.graphic.ISurfaceManager;
+import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.common.window.Extent2D;
+import org.sheepy.lily.vulkan.common.window.VkSurface;
+import org.sheepy.lily.vulkan.common.window.VkSurface.ISurfaceListener;
+import org.sheepy.lily.vulkan.common.window.Window;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
-import org.sheepy.vulkan.device.capabilities.Capabilities;
-import org.sheepy.vulkan.device.capabilities.ColorDomains;
-import org.sheepy.vulkan.device.capabilities.VkColorDomain;
-import org.sheepy.vulkan.log.Logger;
-import org.sheepy.vulkan.queue.VulkanQueue;
-import org.sheepy.vulkan.surface.Extent2D;
-import org.sheepy.vulkan.surface.VkSurface;
-import org.sheepy.vulkan.surface.VkSurface.ISurfaceListener;
-import org.sheepy.vulkan.window.IWindowListener.ISizeListener;
-import org.sheepy.vulkan.window.IWindowListener.ISurfaceDeprecatedListener;
-import org.sheepy.vulkan.window.Window;
 
 public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 {

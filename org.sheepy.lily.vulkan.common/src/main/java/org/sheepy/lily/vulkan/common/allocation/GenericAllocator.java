@@ -11,13 +11,13 @@ import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.notification.util.ModelObserver;
 import org.sheepy.lily.core.api.notification.util.NotificationUnifier;
-import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 
 public final class GenericAllocator
 {
 	private final List<ModelObserver> observers;
 
-	private final AllocableContainer<IExecutionContext> container = new AllocableContainer<>();
+	private final AllocableContainer<ExecutionContext> container = new AllocableContainer<>();
 
 	public GenericAllocator(List<List<EStructuralFeature>> featureLists)
 	{
@@ -47,10 +47,10 @@ public final class GenericAllocator
 
 	private void add(List<? extends ILilyEObject> newChildren)
 	{
-		final List<IAllocable<IExecutionContext>> res = new ArrayList<>();
+		final List<IAllocable<ExecutionContext>> res = new ArrayList<>();
 		for (final var resource : newChildren)
 		{
-			final var adapter = resource.<IAllocableAdapter<IExecutionContext>> adaptGeneric(IAllocableAdapter.class);
+			final var adapter = resource.<IAllocableAdapter<ExecutionContext>> adaptGeneric(IAllocableAdapter.class);
 			if (adapter != null)
 			{
 				res.add(adapter);
@@ -62,10 +62,10 @@ public final class GenericAllocator
 
 	private void remove(List<? extends ILilyEObject> oldChildren)
 	{
-		final List<IAllocable<IExecutionContext>> res = new ArrayList<>();
+		final List<IAllocable<ExecutionContext>> res = new ArrayList<>();
 		for (final var resource : oldChildren)
 		{
-			final var adapter = resource.<IAllocableAdapter<IExecutionContext>> adaptGeneric(IAllocableAdapter.class);
+			final var adapter = resource.<IAllocableAdapter<ExecutionContext>> adaptGeneric(IAllocableAdapter.class);
 			if (adapter != null)
 			{
 				res.add(adapter);
@@ -75,7 +75,7 @@ public final class GenericAllocator
 		container.removeChildren(res);
 	}
 
-	public IAllocable<IExecutionContext> getAllocable()
+	public IAllocable<ExecutionContext> getAllocable()
 	{
 		return container;
 	}

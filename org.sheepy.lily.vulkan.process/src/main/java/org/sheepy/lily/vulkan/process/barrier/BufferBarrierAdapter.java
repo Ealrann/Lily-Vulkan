@@ -7,10 +7,10 @@ import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.common.barrier.IBufferBarrierAdapter;
+import org.sheepy.lily.vulkan.common.barrier.VkBufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
-import org.sheepy.vulkan.barrier.VkBufferBarrier;
-import org.sheepy.vulkan.util.VkModelUtil;
 
 @Statefull
 @Adapter(scope = BufferBarrier.class)
@@ -25,8 +25,8 @@ public class BufferBarrierAdapter implements IBufferBarrierAdapter
 	public BufferBarrierAdapter(BufferBarrier barrier)
 	{
 		this.barrier = barrier;
-		final int srcAccessMask = VkModelUtil.getEnumeratedFlag(barrier.getSrcAccessMask());
-		final int dstAccessMask = VkModelUtil.getEnumeratedFlag(barrier.getDstAccessMask());
+		final int srcAccessMask = VulkanModelUtil.getEnumeratedFlag(barrier.getSrcAccessMask());
+		final int dstAccessMask = VulkanModelUtil.getEnumeratedFlag(barrier.getDstAccessMask());
 
 		vkBarrier = new VkBufferBarrier(srcAccessMask, dstAccessMask);
 	}

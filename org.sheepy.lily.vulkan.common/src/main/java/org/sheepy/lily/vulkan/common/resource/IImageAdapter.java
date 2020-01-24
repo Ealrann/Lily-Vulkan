@@ -1,8 +1,7 @@
 package org.sheepy.lily.vulkan.common.resource;
 
 import org.sheepy.lily.core.api.adapter.INotifierAdapter;
-import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
-import org.sheepy.vulkan.resource.image.VkImage;
+import org.sheepy.lily.vulkan.common.resource.image.VkImage;
 
 public interface IImageAdapter extends IVulkanResourceAdapter, INotifierAdapter
 {
@@ -12,9 +11,9 @@ public interface IImageAdapter extends IVulkanResourceAdapter, INotifierAdapter
 		View
 	}
 
-	VkImage getVkImage();
-
 	long getImagePtr();
 	long getViewPtr();
 	long getMemoryPtr();
+
+	VkImage getVkImage();
 }

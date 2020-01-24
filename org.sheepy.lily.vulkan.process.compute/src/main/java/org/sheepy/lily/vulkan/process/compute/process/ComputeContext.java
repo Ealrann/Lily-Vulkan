@@ -2,13 +2,13 @@ package org.sheepy.lily.vulkan.process.compute.process;
 
 import java.util.List;
 
+import org.sheepy.lily.vulkan.common.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.common.execution.IExecutionRecorder;
+import org.sheepy.lily.vulkan.common.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.process.IComputeContext;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeExecutionRecorders;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
-import org.sheepy.vulkan.descriptor.DescriptorPool;
-import org.sheepy.vulkan.queue.EQueueType;
 
 public final class ComputeContext extends ProcessContext<IComputeContext> implements IComputeContext
 {

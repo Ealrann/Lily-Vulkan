@@ -13,17 +13,17 @@ import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.common.barrier.IBarrierAdapter;
 import org.sheepy.lily.vulkan.common.barrier.IImageBarrierAdapter;
-import org.sheepy.lily.vulkan.common.process.IExecutionProcessAdapter;
-import org.sheepy.lily.vulkan.common.process.IProcessContext;
+import org.sheepy.lily.vulkan.common.barrier.VkBarrier;
+import org.sheepy.lily.vulkan.common.barrier.VkBufferBarrier;
+import org.sheepy.lily.vulkan.common.barrier.VkBufferBarriers;
+import org.sheepy.lily.vulkan.common.barrier.VkImageBarriers;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.execution.IRecordable.RecordContext;
+import org.sheepy.lily.vulkan.common.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.process.barrier.BufferBarrierAdapter;
-import org.sheepy.vulkan.barrier.VkBarrier;
-import org.sheepy.vulkan.barrier.VkBufferBarrier;
-import org.sheepy.vulkan.barrier.VkBufferBarriers;
-import org.sheepy.vulkan.barrier.VkImageBarriers;
-import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.execution.IRecordable.RecordContext;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -31,7 +31,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 @Statefull
 @Adapter(scope = PipelineBarrier.class)
 public class PipelineBarrierAdapter
-		implements IPipelineTaskAdapter<PipelineBarrier>, IAllocableAdapter<IProcessContext>
+		implements IPipelineTaskAdapter<PipelineBarrier>, IAllocableAdapter<ProcessContext<?>>
 {
 	private final PipelineBarrier pipelineBarrier;
 	private final int srcStage;
@@ -49,7 +49,7 @@ public class PipelineBarrierAdapter
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator configurator, IProcessContext context)
+	public void configureAllocation(IAllocationConfigurator configurator, ProcessContext<?> context)
 	{
 		final List<IAllocableAdapter<?>> allocables = new ArrayList<>();
 		final var barriers = pipelineBarrier.getBarriers();
@@ -66,7 +66,7 @@ public class PipelineBarrierAdapter
 	}
 
 	@Override
-	public void allocate(IProcessContext context)
+	public void allocate(ProcessContext<?> context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
 		final var srcQueue = pipelineBarrier.getSrcQueue();
@@ -105,7 +105,7 @@ public class PipelineBarrierAdapter
 	}
 
 	@Override
-	public void free(IProcessContext context)
+	public void free(ProcessContext<?> context)
 	{
 		imageBarrierInfos = null;
 		bufferBarrierInfos = null;
@@ -122,12 +122,12 @@ public class PipelineBarrierAdapter
 	}
 
 	@Override
-	public void record(PipelineBarrier barrier, RecordContext context)
+	public void record(PipelineBarrier barrier, IRecordContext context)
 	{
-		final var bufferInfo = bufferBarrierInfos.allocateInfo(context.stack);
-		final var imageInfo = imageBarrierInfos.allocateInfo(context.stack);
+		final var bufferInfo = bufferBarrierInfos.allocateInfo(context.stack());
+		final var imageInfo = imageBarrierInfos.allocateInfo(context.stack());
 
-		vkCmdPipelineBarrier(	context.commandBuffer,
+		vkCmdPipelineBarrier(	((RecordContext) context).commandBuffer,
 								srcStage,
 								dstStage,
 								0,
@@ -147,7 +147,7 @@ public class PipelineBarrierAdapter
 		int res = VK_QUEUE_FAMILY_IGNORED;
 		if (process != null)
 		{
-			final var adapter = process.adaptNotNull(IExecutionProcessAdapter.class);
+			final var adapter = process.adaptNotNull(InternalProcessAdapter.class);
 			final var queueType = adapter.getExecutionQueueType();
 			res = logicalDevice.getQueueFamilyIndex(queueType);
 		}

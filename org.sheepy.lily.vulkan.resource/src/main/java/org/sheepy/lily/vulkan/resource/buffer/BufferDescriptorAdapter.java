@@ -5,13 +5,12 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
+import org.sheepy.lily.vulkan.common.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.common.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.descriptor.IVkDescriptor;
-import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.resource.buffer.VkBufferDescriptor;
 
 @Statefull
 @Adapter(scope = BufferDescriptor.class)

@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkSubpassDependency;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.util.VkModelUtil;
 
 public final class VkSubpassDependencyAllocator
 {
@@ -70,11 +70,11 @@ public final class VkSubpassDependencyAllocator
 
 	private static int buildAccessMask(final Subpass subpass)
 	{
-		return subpass != null ? VkModelUtil.getEnumeratedFlag(subpass.getAccesses()) : 0;
+		return subpass != null ? VulkanModelUtil.getEnumeratedFlag(subpass.getAccesses()) : 0;
 	}
 
 	private static int buildStageMask(final Subpass subpass)
 	{
-		return subpass != null ? VkModelUtil.getEnumeratedFlag(subpass.getStages()) : 0;
+		return subpass != null ? VulkanModelUtil.getEnumeratedFlag(subpass.getStages()) : 0;
 	}
 }

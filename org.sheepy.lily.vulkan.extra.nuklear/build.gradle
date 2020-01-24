@@ -20,7 +20,9 @@ dependencies {
 	api project(':org.sheepy.lily.vulkan.extra.api')
 	implementation project(':org.sheepy.lily.vulkan.common')
 
+	api "org.lwjgl:lwjgl-stb:$lwjglVersion"
 	api "org.lwjgl:lwjgl-nuklear:$lwjglVersion"
+	implementation "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
 	implementation "org.lwjgl:lwjgl-nuklear:$lwjglVersion:$lwjglNatives"
 }
 

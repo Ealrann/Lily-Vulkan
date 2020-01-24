@@ -1,7 +1,6 @@
 package org.sheepy.lily.vulkan.common.resource;
 
-import org.sheepy.lily.vulkan.api.resource.IVulkanResourceAdapter;
-import org.sheepy.vulkan.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
 
 public interface ISemaphoreAdapter extends IVulkanResourceAdapter
 {

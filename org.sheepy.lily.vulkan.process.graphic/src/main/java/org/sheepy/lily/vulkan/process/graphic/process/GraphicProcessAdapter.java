@@ -18,6 +18,7 @@ import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.IScenePart;
 import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
+import org.sheepy.lily.vulkan.common.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -29,7 +30,6 @@ import org.sheepy.lily.vulkan.process.graphic.pipeline.SubpassUtil;
 import org.sheepy.lily.vulkan.process.graphic.present.ImageAcquirer;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.vulkan.queue.EQueueType;
 
 @Statefull
 @Adapter(scope = GraphicProcess.class)
@@ -141,7 +141,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	}
 
 	@Override
-	protected IGraphicContext createContext()
+	protected GraphicContext createContext()
 	{
 		return new GraphicContext(	getExecutionQueueType(),
 									isResetAllowed(),

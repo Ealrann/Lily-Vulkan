@@ -4,7 +4,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.common.resource.buffer.ICompositeBufferAdapter;
 import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
-import org.sheepy.vulkan.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @Adapter(scope = PrepareCompositeTransfer.class)
@@ -21,7 +20,7 @@ public class PrepareCompositeTransferAdapter
 	}
 
 	@Override
-	public void record(PrepareCompositeTransfer task, RecordContext context)
+	public void record(PrepareCompositeTransfer task, IRecordContext context)
 	{
 		if (task.isPrepareDuringUpdate() == false)
 		{

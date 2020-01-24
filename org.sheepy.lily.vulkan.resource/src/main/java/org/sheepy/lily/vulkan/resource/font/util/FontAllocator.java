@@ -11,6 +11,7 @@ import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.stb.STBTTPackedchar.Buffer;
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.Struct;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.impl.ObjectNotification;
 import org.sheepy.lily.core.model.ui.Font;
@@ -153,8 +154,10 @@ public final class FontAllocator extends Notifier implements IFontAllocator
 	}
 
 	@Override
-	public void fillPackedQuad(STBTTAlignedQuad quad, int index)
+	public void fillPackedQuad(Struct stbTTAlignedQuad, int index)
 	{
+		final var quad = (STBTTAlignedQuad) stbTTAlignedQuad;
+
 		X[0] = 0f;
 		Y[0] = 0f;
 		stbtt_GetPackedQuad(cdata, imageWidth, imageHeight, index, X, Y, quad, false);

@@ -15,18 +15,18 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.common.graphic.ISwapChainManager;
+import org.sheepy.lily.vulkan.common.util.Logger;
 import org.sheepy.lily.vulkan.common.util.VulkanBufferUtils;
+import org.sheepy.lily.vulkan.common.window.VkSurface;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 import org.sheepy.lily.vulkan.process.graphic.frame.util.PresentationModeSelector;
-import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
-import org.sheepy.vulkan.queue.EQueueType;
-import org.sheepy.vulkan.surface.VkSurface;
-import org.sheepy.vulkan.util.VkModelUtil;
 
 public final class SwapChainManager implements ISwapChainManager
 {
@@ -145,7 +145,7 @@ public final class SwapChainManager implements ISwapChainManager
 	private static int loadSwapChainUsage(final SwapchainConfiguration configuration)
 	{
 		final var usages = configuration.getSwapImageUsages();
-		int res = VkModelUtil.getEnumeratedFlag(usages);
+		int res = VulkanModelUtil.getEnumeratedFlag(usages);
 		if (res == 0)
 		{
 			res = EImageUsage.COLOR_ATTACHMENT_VALUE;

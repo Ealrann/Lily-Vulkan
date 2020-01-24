@@ -1,19 +1,9 @@
-import org.sheepy.lily.core.api.adapter.annotation.Adapters;
-import org.sheepy.lily.vulkan.demo.adapter.CameraConstantAdapter;
-import org.sheepy.lily.vulkan.demo.rotating.RotatingSubpassProvider;
-import org.sheepy.lily.vulkan.demo.texture.TextureSubpassProvider;
-import org.sheepy.lily.vulkan.demo.triangle.TriangleSubpassProvider;
-
-@Adapters(classifiers = {
-		CameraConstantAdapter.class,
-		TriangleSubpassProvider.class,
-		RotatingSubpassProvider.class,
-		TextureSubpassProvider.class
-})
+import org.sheepy.lily.core.api.adapter.IAdapterProvider;
+import org.sheepy.lily.vulkan.demo.Adapters;
 
 module org.sheepy.lily.vulkan.demo.texture
 {
-	requires org.sheepy.lily.vulkan.base;
+	requires org.sheepy.lily.vulkan.api;
 
 	exports org.sheepy.lily.vulkan.demo.mesh;
 
@@ -21,4 +11,6 @@ module org.sheepy.lily.vulkan.demo.texture
 	opens org.sheepy.lily.vulkan.demo.texture;
 	opens org.sheepy.lily.vulkan.demo.rotating;
 	opens org.sheepy.lily.vulkan.demo.triangle;
+
+	provides IAdapterProvider with Adapters;
 }

@@ -15,25 +15,25 @@ import org.sheepy.lily.core.api.cadence.IStatistics;
 import org.sheepy.lily.core.api.util.CompositeModelExplorer;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
+import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.common.allocation.GenericAllocator;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
+import org.sheepy.lily.vulkan.common.descriptor.DescriptorPool;
+import org.sheepy.lily.vulkan.common.descriptor.IVkDescriptorSet;
+import org.sheepy.lily.vulkan.common.device.VulkanContext;
+import org.sheepy.lily.vulkan.common.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.common.pipeline.IVkPipelineAdapter;
-import org.sheepy.lily.vulkan.common.process.IExecutionProcessAdapter;
-import org.sheepy.lily.vulkan.common.process.IProcessContext;
+import org.sheepy.lily.vulkan.common.process.IProcessContext.IRecorderContext;
+import org.sheepy.lily.vulkan.common.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.common.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.concurrent.IFenceView;
-import org.sheepy.vulkan.descriptor.DescriptorPool;
-import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
-import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @Statefull
-public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorderContext<T>>
-		implements IExecutionProcessAdapter, IAllocable<IVulkanContext>
+public abstract class AbstractProcessAdapter<T extends IRecorderContext<T>>
+		implements InternalProcessAdapter, IAllocable<VulkanContext>
 {
 	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG,
 																							ResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));
@@ -44,7 +44,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 
 	private final GenericAllocator resourceAllocator;
 	private final GenericAllocator pipelineAllocator;
-	private final TreeAllocator<IVulkanContext> allocator = new TreeAllocator<IVulkanContext>(this);
+	private final TreeAllocator<VulkanContext> allocator = new TreeAllocator<>(this);
 	private final CompositeModelExplorer pipelineExplorer;
 
 	protected IAllocationConfigurator config;
@@ -77,7 +77,7 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, IVulkanContext context)
+	public void configureAllocation(IAllocationConfigurator config, VulkanContext context)
 	{
 		this.config = config;
 		config.setChildrenContext(this.context);
@@ -94,18 +94,19 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	}
 
 	@Override
-	public void allocate(IVulkanContext context)
+	public void allocate(VulkanContext context)
 	{}
 
 	@Override
-	public void free(IVulkanContext context)
+	public void free(VulkanContext context)
 	{}
 
 	@Override
-	public void start(IVulkanContext context)
+	public void start(VulkanContext vulkanContext)
 	{
+		context.allocate(vulkanContext);
 		refreshStructure();
-		allocator.allocate(context);
+		allocator.allocate(vulkanContext);
 
 		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 		{
@@ -130,10 +131,11 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	}
 
 	@Override
-	public void stop(IVulkanContext context)
+	public void stop(VulkanContext vulkanContext)
 	{
 		waitIdle();
 		allocator.free();
+		context.free();
 	}
 
 	@Override
