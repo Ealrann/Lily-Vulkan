@@ -13,8 +13,9 @@ import org.sheepy.lily.core.model.application.IImage;
 import org.sheepy.lily.core.model.application.IResource;
 import org.sheepy.lily.vulkan.extra.api.rendering.IDescriptorProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider;
-import org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure;
 import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
@@ -40,14 +41,15 @@ public class SpriteMonoSamplerProviderAdapter implements IDescriptorProviderAdap
 	}
 
 	@Override
-	public ResourceDescriptor buildForPipeline(ResourceDescriptorProvider provider)
+	public ResourceDescriptor buildForPipeline(	ResourceDescriptorProvider provider,
+												Structure structure)
 	{
 		final List<IResource> resources = new ArrayList<>();
 		final List<IDescriptor> descriptors = new ArrayList<>();
 
 		// Resources
 		final var spriteProvider = (SpriteMonoSamplerProvider) provider;
-		final var srcResources = gatherResources(provider);
+		final var srcResources = gatherResources((SpriteStructure) structure);
 		final var samplerInfo = spriteProvider.getSamplerInfo();
 
 		final var sampler = ResourceFactory.eINSTANCE.createSampler();
@@ -96,11 +98,9 @@ public class SpriteMonoSamplerProviderAdapter implements IDescriptorProviderAdap
 		return new ResourceDescriptor(resources, descriptors);
 	}
 
-	public static List<FileResource> gatherResources(ResourceDescriptorProvider provider)
+	public static List<FileResource> gatherResources(SpriteStructure structure)
 	{
-		final var renderer = ModelUtil.findParent(provider, SpriteRenderer.class);
-		final var structures = renderer.getRenderedStructures().stream();
-		final var sprites = structures.flatMap(s -> s.getSprites().stream());
+		final var sprites = structure.getSprites().stream();
 		final var spriteFiles = sprites.map(s -> EcoreUtil.copy(s.getFile()));
 		final var resources = spriteFiles.collect(Collectors.toList());
 		return resources;

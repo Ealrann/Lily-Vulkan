@@ -50,10 +50,14 @@ public final class GenericRendererMaintainerAdapter<T extends Structure>
 		final var structures = maintainer.getRenderedStructures();
 		final var structureDrawInstaller = new StructureDrawInstaller<>(maintainer);
 
-		for (final var structure : structures)
+		int drawCall = 0;
+		for (int i = 0; i < structures.size(); i++)
 		{
-			final var drawSetups = structureDrawInstaller.install(structure);
+			final var structure = structures.get(i);
+			final var drawSetups = structureDrawInstaller.install(structure, drawCall);
 			structurePartDrawSetups.addAll(drawSetups);
+			
+			drawCall += drawSetups.size(); 
 		}
 
 		if (DebugUtil.DEBUG_VERBOSE_ENABLED)

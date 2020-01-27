@@ -34,7 +34,7 @@ public class ShaderAdapter implements IShaderAdapter
 		final var stage = shader.getStage();
 
 		shaderStage = new VkShaderStage(stage, id, specializationConstants);
-		// System.out.println(shaderBackend.getId() + " - " + shader.getName());
+		// System.out.println(shaderBackend.getPtr() + " - " + shader.getName());
 	}
 
 	@Override

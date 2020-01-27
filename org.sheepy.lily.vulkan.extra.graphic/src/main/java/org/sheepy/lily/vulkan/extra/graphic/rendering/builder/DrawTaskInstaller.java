@@ -67,7 +67,7 @@ public final class DrawTaskInstaller
 
 		final var proxyConstantBuffer = RenderingFactory.eINSTANCE.createRenderProxyConstantBuffer();
 		proxyConstantBuffer.setConstantBuffer(constantBuffer);
-		proxyConstantBuffer.setPartIndex(context.part);
+		proxyConstantBuffer.setPartIndex(context.drawCall);
 		resourcePkg.getResources().add(proxyConstantBuffer);
 
 		final var pushConstant = ProcessFactory.eINSTANCE.createPushConstantBuffer();

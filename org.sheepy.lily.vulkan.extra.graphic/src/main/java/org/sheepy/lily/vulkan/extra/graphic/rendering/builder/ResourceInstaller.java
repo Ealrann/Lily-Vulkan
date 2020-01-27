@@ -35,7 +35,9 @@ public final class ResourceInstaller<T extends Structure>
 	public void prepare(GraphicsPipeline pipeline, T structure, int count)
 	{
 		staticBindings = prepareResourceDescriptors(pipeline,
-													IDescriptorProviderAdapter::buildForPipeline);
+													(	adapter,
+														provider) -> adapter.buildForPipeline(	provider,
+																								structure));
 
 		for (int i = 0; i < count; i++)
 		{
@@ -90,7 +92,7 @@ public final class ResourceInstaller<T extends Structure>
 		}
 	}
 
-	public BufferContext setupBindTask(GraphicsPipeline pipeline, int part)
+	public BufferContext setupBindTask(GraphicsPipeline pipeline, int part, int drawCall)
 	{
 		final var buffer = buffers.get(part);
 
@@ -103,7 +105,7 @@ public final class ResourceInstaller<T extends Structure>
 
 		pipeline.getTaskPkg().getTasks().add(bindDS);
 
-		return new BufferContext(pipeline, buffer, part);
+		return new BufferContext(pipeline, buffer, drawCall);
 	}
 
 	private CompositeBuffer prepareBuffer(GraphicsPipeline pipeline, T structure, int part)

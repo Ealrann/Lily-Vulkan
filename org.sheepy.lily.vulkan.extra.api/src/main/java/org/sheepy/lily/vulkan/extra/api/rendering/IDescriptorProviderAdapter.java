@@ -5,12 +5,14 @@ import java.util.List;
 import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.model.application.IResource;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 
 public interface IDescriptorProviderAdapter extends IAdapter
 {
-	ResourceDescriptor buildForPipeline(ResourceDescriptorProvider provider);
+	ResourceDescriptor buildForPipeline(ResourceDescriptorProvider provider,
+										Structure structure);
 	ResourceDescriptor buildForPart(ResourceDescriptorProvider provider,
 									CompositeBuffer compositeBuffer);
 

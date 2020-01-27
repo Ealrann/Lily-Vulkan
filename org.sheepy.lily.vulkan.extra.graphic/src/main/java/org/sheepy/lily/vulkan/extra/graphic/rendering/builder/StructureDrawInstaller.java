@@ -28,7 +28,7 @@ public final class StructureDrawInstaller<T extends Structure>
 		this.subpass = ModelUtil.findParent(maintainer, Subpass.class);
 	}
 
-	public List<IStructurePartDrawSetup> install(T structure)
+	public List<IStructurePartDrawSetup> install(T structure, int drawCallOffset)
 	{
 		final boolean needMultiplePipelines = maintainer.isOnePipelinePerPart()
 				|| isContainingIndexData();
@@ -38,11 +38,11 @@ public final class StructureDrawInstaller<T extends Structure>
 
 		if (needMultiplePipelines)
 		{
-			return prepareMultiplePipelines(structure, drawInstaller, count);
+			return prepareMultiplePipelines(structure, drawInstaller, count, drawCallOffset);
 		}
 		else
 		{
-			return prepareSinglePipeline(structure, drawInstaller, count);
+			return prepareSinglePipeline(structure, drawInstaller, count, drawCallOffset);
 		}
 	}
 
@@ -54,7 +54,8 @@ public final class StructureDrawInstaller<T extends Structure>
 
 	private List<IStructurePartDrawSetup> prepareSinglePipeline(T structure,
 																DrawTaskInstaller drawInstaller,
-																int count)
+																int count,
+																int drawCallOffset)
 	{
 		final List<IStructurePartDrawSetup> res = new ArrayList<>();
 		final var pipeline = createAndInstallPipeline(pipelineBuilder);
@@ -63,7 +64,9 @@ public final class StructureDrawInstaller<T extends Structure>
 
 		for (int index = 0; index < count; index++)
 		{
-			final var bufferContext = resourceInstaller.setupBindTask(pipeline, index);
+			final var bufferContext = resourceInstaller.setupBindTask(	pipeline,
+																		index,
+																		drawCallOffset + index);
 			res.add(drawInstaller.install(bufferContext));
 		}
 
@@ -72,7 +75,8 @@ public final class StructureDrawInstaller<T extends Structure>
 
 	private List<IStructurePartDrawSetup> prepareMultiplePipelines(	T structure,
 																	DrawTaskInstaller drawInstaller,
-																	int count)
+																	int count,
+																	int drawCallOffset)
 	{
 		final List<IStructurePartDrawSetup> res = new ArrayList<>();
 
@@ -81,7 +85,9 @@ public final class StructureDrawInstaller<T extends Structure>
 			final var pipeline = createAndInstallPipeline(pipelineBuilder);
 			final var resourceInstaller = new ResourceInstaller<>(maintainer);
 			resourceInstaller.prepare(pipeline, structure, count);
-			final var bufferContext = resourceInstaller.setupBindTask(pipeline, index);
+			final var bufferContext = resourceInstaller.setupBindTask(	pipeline,
+																		index,
+																		drawCallOffset + index);
 			res.add(drawInstaller.install(bufferContext));
 		}
 

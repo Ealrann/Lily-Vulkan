@@ -8,6 +8,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IDescriptorProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
@@ -16,7 +17,8 @@ import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 public class DataDescriptorsProviderAdapter implements IDescriptorProviderAdapter
 {
 	@Override
-	public ResourceDescriptor buildForPipeline(ResourceDescriptorProvider provider)
+	public ResourceDescriptor buildForPipeline(	ResourceDescriptorProvider provider,
+												Structure structure)
 	{
 		return null;
 	}

@@ -7,12 +7,12 @@ public final class BufferContext
 {
 	public final GraphicsPipeline pipeline;
 	public final CompositeBuffer buffer;
-	public final int part;
+	public final int drawCall;
 
-	public BufferContext(GraphicsPipeline pipeline, CompositeBuffer buffer, int part)
+	public BufferContext(GraphicsPipeline pipeline, CompositeBuffer buffer, int drawCall)
 	{
 		this.pipeline = pipeline;
 		this.buffer = buffer;
-		this.part = part;
+		this.drawCall = drawCall;
 	}
 }
