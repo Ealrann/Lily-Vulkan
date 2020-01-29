@@ -4,3 +4,4 @@
 [submodule "Lily-vulkan"]
 	path = Lily-vulkan
 	url = https://github.com/Ealrann/Lily-vulkan.git
+	branch = master
