@@ -21,4 +21,4 @@ include ':org.sheepy.lily.vulkan.demo.test'
 include ':org.sheepy.lily.vulkan.demo.texture'
 
 // Lily-Core
-includeBuild 'Lily-core'
+includeBuild '../Lily-core'
