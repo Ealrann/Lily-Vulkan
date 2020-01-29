@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
@@ -371,8 +372,8 @@ public abstract class AbstractProcessAdapter<T extends IRecorderContext<T>>
 		return context.getQueue().isShared() == false;
 	}
 
-	protected abstract List<List<EStructuralFeature>> getPipelineFeatureLists();
-	protected abstract List<List<EStructuralFeature>> getResourceFeatureLists();
+	protected abstract List<List<EReference>> getPipelineFeatureLists();
+	protected abstract List<List<EReference>> getResourceFeatureLists();
 	protected abstract List<IAllocable<? super T>> getExtraAllocables();
 	protected abstract Integer prepareNextExecution();
 	protected abstract List<ECommandStage> getStages();

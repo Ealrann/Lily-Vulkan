@@ -55,8 +55,6 @@ public final class EngineBuilder
 	private ComputeProcess barrierProcess;
 	private ComputeProcess lifeProcess;
 	private ComputeProcess pixelProcess;
-	private ComputePipeline lifePipeline;
-	private ComputePipeline pixelPipeline;
 
 	public EngineBuilder(Vector2ic size)
 	{
@@ -179,8 +177,8 @@ public final class EngineBuilder
 		pixelBindingConfiguration.getDescriptorsSets().add(pixelDescriptorSet2);
 		lifeBindingConfiguration.setDescriptorSetStride(1);
 
-		lifePipeline = createPipeline(lifeShader, lifeBindingConfiguration);
-		pixelPipeline = createPipeline(life2pixelShader, pixelBindingConfiguration);
+		ComputePipeline lifePipeline = createPipeline(lifeShader, lifeBindingConfiguration);
+		ComputePipeline pixelPipeline = createPipeline(life2pixelShader, pixelBindingConfiguration);
 
 		final var rotateTask = BindingFactory.eINSTANCE.createRotateConfiguration();
 		rotateTask.getConfigurations().add(lifeBindingConfiguration);
@@ -281,7 +279,7 @@ public final class EngineBuilder
 		return res;
 	}
 
-	private final Cadence buildCadence(int frameCount)
+	private Cadence buildCadence(int frameCount)
 	{
 		final var runComputeLifeTask = VulkanFactory.eINSTANCE.createRunProcess();
 		final var runComputePixelTask = VulkanFactory.eINSTANCE.createRunProcess();

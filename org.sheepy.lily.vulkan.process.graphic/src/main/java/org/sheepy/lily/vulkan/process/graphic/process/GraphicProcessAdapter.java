@@ -1,11 +1,7 @@
 package org.sheepy.lily.vulkan.process.graphic.process;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
@@ -31,55 +27,59 @@ import org.sheepy.lily.vulkan.process.graphic.present.ImageAcquirer;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Statefull
 @Adapter(scope = GraphicProcess.class)
 public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphicContext>
 {
-	private static final List<EStructuralFeature> PIPELINE__FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
-																				GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
-																				ProcessPackage.Literals.PIPELINE_PKG__PIPELINES);
-	private static final List<EStructuralFeature> COMPOSITE_PIPELINE__FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
-																							GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
-																							ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
-																							ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES);
-	private static final List<EStructuralFeature> RESOURCE_FEATURES = List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																				ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
-	private static final List<EStructuralFeature> SUBPASS_RESOURCE_FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
-																						VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																						ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
-	private static final List<EStructuralFeature> PIPELINE_RESOURCE_FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
-																						GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
-																						ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
-																						VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																						ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
-	private static final List<EStructuralFeature> COMPOSITE_PIPELINE_RESOURCE_FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
-																									GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
-																									ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
-																									ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
-																									VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																									ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
-	private static final List<EStructuralFeature> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+	private static final List<EReference> PIPELINE__FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																	   GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
+																	   ProcessPackage.Literals.PIPELINE_PKG__PIPELINES);
+	private static final List<EReference> COMPOSITE_PIPELINE__FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																				 GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
+																				 ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+																				 ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES);
+	private static final List<EReference> RESOURCE_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+																	  ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+	private static final List<EReference> SUBPASS_RESOURCE_FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																			  VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+																			  ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+	private static final List<EReference> PIPELINE_RESOURCE_FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																			   GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
+																			   ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+																			   VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+																			   ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+	private static final List<EReference> COMPOSITE_PIPELINE_RESOURCE_FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																						 GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
+																						 ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+																						 ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
+																						 VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+																						 ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+	private static final List<EReference> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+																		VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
+	private static final List<EReference> SUBPASS_DESCRIPTOR_FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																				VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 																				VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
-	private static final List<EStructuralFeature> SUBPASS_DESCRIPTOR_FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
-																						VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
-																						VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
-	private static final List<EStructuralFeature> PIPELINE_DESCRIPTOR_FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
-																							GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
-																							ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
-																							VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
-																							VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
-	private static final List<EStructuralFeature> COMPOSITE_PIPELINE_DESCRIPTOR_FEATURES = List.of(	GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
-																									GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
-																									ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
-																									ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
-																									VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
-																									VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
+	private static final List<EReference> PIPELINE_DESCRIPTOR_FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																				 GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
+																				 ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+																				 VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+																				 VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
+	private static final List<EReference> COMPOSITE_PIPELINE_DESCRIPTOR_FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																						   GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
+																						   ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+																						   ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
+																						   VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+																						   VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
 
-	private static final List<ECommandStage> stages = List.of(	ECommandStage.TRANSFER,
-																ECommandStage.COMPUTE,
-																ECommandStage.PRE_RENDER,
-																ECommandStage.RENDER,
-																ECommandStage.POST_RENDER);
+	private static final List<ECommandStage> stages = List.of(ECommandStage.TRANSFER,
+															  ECommandStage.COMPUTE,
+															  ECommandStage.PRE_RENDER,
+															  ECommandStage.RENDER,
+															  ECommandStage.POST_RENDER);
 
 	private final Map<IScenePart, Subpass> subpassMap = new HashMap<>();
 	private final INotificationListener sceneListener = this::sceneChanged;
@@ -103,8 +103,10 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	private void load()
 	{
 		final var application = ModelUtil.getApplication(process);
-		application.getScene().addListener(sceneListener, ApplicationPackage.SCENE__PARTS);
-		final var parts = application.getScene().getParts();
+		application.getScene()
+				   .addListener(sceneListener, ApplicationPackage.SCENE__PARTS);
+		final var parts = application.getScene()
+									 .getParts();
 		for (int i = 0; i < parts.size(); i++)
 		{
 			final var part = parts.get(i);
@@ -116,7 +118,8 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	private void dispose()
 	{
 		final var application = ModelUtil.getApplication(process);
-		application.getScene().removeListener(sceneListener, ApplicationPackage.SCENE__PARTS);
+		application.getScene()
+				   .removeListener(sceneListener, ApplicationPackage.SCENE__PARTS);
 	}
 
 	@Override
@@ -129,24 +132,26 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	{
 		switch (notification.getEventType())
 		{
-		case Notification.ADD:
-			final var graphicProcess = (GraphicProcess) process;
-			graphicProcess.getAttachmentPkg().getExtraAttachments().clear();
-			setupScenePart((IScenePart) notification.getNewValue());
-			break;
-		case Notification.REMOVE:
-			uninstallScenePart((IScenePart) notification.getOldValue());
-			break;
+			case Notification.ADD:
+				final var graphicProcess = (GraphicProcess) process;
+				graphicProcess.getAttachmentPkg()
+							  .getExtraAttachments()
+							  .clear();
+				setupScenePart((IScenePart) notification.getNewValue());
+				break;
+			case Notification.REMOVE:
+				uninstallScenePart((IScenePart) notification.getOldValue());
+				break;
 		}
 	}
 
 	@Override
 	protected GraphicContext createContext()
 	{
-		return new GraphicContext(	getExecutionQueueType(),
-									isResetAllowed(),
-									descriptorPool,
-									(GraphicProcess) process);
+		return new GraphicContext(getExecutionQueueType(),
+								  isResetAllowed(),
+								  descriptorPool,
+								  (GraphicProcess) process);
 	}
 
 	private void setupScenePart(IScenePart part)
@@ -157,7 +162,8 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 
 		subpass.setScenePart(part);
 		subpass.setSubpassIndex(index);
-		graphicProcess.getSubpasses().add(subpass);
+		graphicProcess.getSubpasses()
+					  .add(subpass);
 
 		if (config != null)
 		{
@@ -203,7 +209,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	private <T extends IScenePart> Subpass buildSubpass(T scenePart)
 	{
 		final var graphicProcess = (GraphicProcess) process;
-		final var subpassProvider = scenePart.<IScenePart_SubpassProvider<T>> adaptGeneric(IScenePart_SubpassProvider.class);
+		final var subpassProvider = scenePart.<IScenePart_SubpassProvider<T>>adaptGeneric(IScenePart_SubpassProvider.class);
 		return subpassProvider.build(scenePart, graphicProcess.getAttachmentPkg());
 	}
 
@@ -232,21 +238,21 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	}
 
 	@Override
-	protected List<List<EStructuralFeature>> getPipelineFeatureLists()
+	protected List<List<EReference>> getPipelineFeatureLists()
 	{
 		return List.of(PIPELINE__FEATURES, COMPOSITE_PIPELINE__FEATURES);
 	}
 
 	@Override
-	protected List<List<EStructuralFeature>> getResourceFeatureLists()
+	protected List<List<EReference>> getResourceFeatureLists()
 	{
-		return List.of(	RESOURCE_FEATURES,
-						SUBPASS_RESOURCE_FEATURES,
-						PIPELINE_RESOURCE_FEATURES,
-						COMPOSITE_PIPELINE_RESOURCE_FEATURES,
-						DESCRIPTOR_FEATURES,
-						SUBPASS_DESCRIPTOR_FEATURES,
-						PIPELINE_DESCRIPTOR_FEATURES,
-						COMPOSITE_PIPELINE_DESCRIPTOR_FEATURES);
+		return List.of(RESOURCE_FEATURES,
+					   SUBPASS_RESOURCE_FEATURES,
+					   PIPELINE_RESOURCE_FEATURES,
+					   COMPOSITE_PIPELINE_RESOURCE_FEATURES,
+					   DESCRIPTOR_FEATURES,
+					   SUBPASS_DESCRIPTOR_FEATURES,
+					   PIPELINE_DESCRIPTOR_FEATURES,
+					   COMPOSITE_PIPELINE_DESCRIPTOR_FEATURES);
 	}
 }

@@ -1,13 +1,7 @@
 package org.sheepy.lily.vulkan.common.engine;
 
-import static org.lwjgl.system.MemoryStack.stackPush;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EReference;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
@@ -41,16 +35,22 @@ import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.lwjgl.system.MemoryStack.stackPush;
+
 @Statefull
 @Adapter(scope = VulkanEngine.class)
 public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 {
 	private static final String WAIT_IDLE_RELOAD_ENGINE_RESOURCES = "[WaitIdle] Reload engine resources";
 	private static final EQueueType ENGINE_QUEUE_TYPE = EQueueType.Compute;
-	private static final List<EStructuralFeature> RESOURCE_FEATURES = List.of(	VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																				ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
-	private static final List<EStructuralFeature> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
-																				VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
+	private static final List<EReference> RESOURCE_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+																	  ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+	private static final List<EReference> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+																		VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
 
 	private final List<VkFence> fences = new ArrayList<>();
 	private final VulkanInputManager inputManager;
@@ -65,7 +65,6 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private PhysicalDevice physicalDevice;
 	private LogicalDevice logicalDevice = null;
 	private TreeAllocator<ExecutionContext> allocator;
-	private VulkanEngineAllocationRoot allocationRoot;
 	private boolean allocated = false;
 	private ExecutionContext executionContext = null;
 
@@ -91,17 +90,16 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 		try (MemoryStack stack = stackPush())
 		{
-			extensionRequirement = new EngineExtensionRequirement(	stack,
-																	DebugUtil.DEBUG_ENABLED,
-																	DebugUtil.DEBUG_VERBOSE_ENABLED);
+			extensionRequirement = new EngineExtensionRequirement(stack,
+																  DebugUtil.DEBUG_ENABLED,
+																  DebugUtil.DEBUG_VERBOSE_ENABLED);
 		}
 	}
 
 	@NotifyChanged(featureIds = VulkanPackage.VULKAN_ENGINE__ENABLED)
 	public void notifyChanged(Notification notification)
 	{
-		if (engine != null
-				&& notification.getNewBooleanValue() != notification.getOldBooleanValue())
+		if (engine != null && notification.getNewBooleanValue() != notification.getOldBooleanValue())
 		{
 			if (engine.isEnabled())
 			{
@@ -238,7 +236,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void allocate()
 	{
-		allocationRoot = new VulkanEngineAllocationRoot(List.of(resourceAllocator.getAllocable()));
+		var allocationRoot = new VulkanEngineAllocationRoot(List.of(resourceAllocator.getAllocable()));
 		allocator = new TreeAllocator<ExecutionContext>(allocationRoot);
 
 		allocator.allocate(executionContext);
@@ -265,7 +263,8 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void free()
 	{
-		executionContext.getQueue().waitIdle();
+		executionContext.getQueue()
+						.waitIdle();
 		stopProcesses();
 		allocator.free();
 
@@ -296,10 +295,10 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void pickPhysicalDevice(MemoryStack stack, VkSurface dummySurface)
 	{
-		final var deviceSelector = new PhysicalDeviceSelector(	vkInstance,
-																extensionRequirement,
-																dummySurface,
-																DebugUtil.DEBUG_VERBOSE_ENABLED);
+		final var deviceSelector = new PhysicalDeviceSelector(vkInstance,
+															  extensionRequirement,
+															  dummySurface,
+															  DebugUtil.DEBUG_VERBOSE_ENABLED);
 
 		physicalDevice = deviceSelector.findBestPhysicalDevice(stack);
 
@@ -318,9 +317,9 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private void createLogicalDevice(MemoryStack stack, VkSurface dummySurface)
 	{
 		final var features = engine.getFeatures();
-		final var vkFeatures = features	.stream()
-										.map(f -> EPhysicalFeature.valueOf(f.getName()))
-										.collect(Collectors.toList());
+		final var vkFeatures = features.stream()
+									   .map(f -> EPhysicalFeature.valueOf(f.getName()))
+									   .collect(Collectors.toList());
 
 		final var queueList = VulkanEngineUtils.generateQueueList(engine);
 		queueList.add(ENGINE_QUEUE_TYPE);

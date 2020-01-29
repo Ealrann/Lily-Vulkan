@@ -1,21 +1,19 @@
 package org.sheepy.lily.vulkan.extra.graphic.rendering.builder;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.sheepy.lily.vulkan.extra.graphic.rendering.data.IStructurePartDrawSetup;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.rendering.VertexProvider;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
-import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
-import org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class DrawTaskInstaller
 {
@@ -55,8 +53,7 @@ public final class DrawTaskInstaller
 					throw new IllegalStateException(ONLY_ONE_INDEX_PROVIDER_IS_ALLOWED);
 				}
 				indexIndex = i;
-			}
-			else if (provider instanceof VertexProvider)
+			} else if (provider instanceof VertexProvider)
 			{
 				final var vertexBinding = GraphicFactory.eINSTANCE.createVertexBinding();
 				vertexBinding.setBuffer(part);
@@ -96,35 +93,26 @@ public final class DrawTaskInstaller
 			taskPkg.getTasks().add(bindIndex);
 			taskPkg.getTasks().add(indexedDraw);
 
-			return new IndexedDrawSetup(bindVertex, bindIndex, dataProviders, structure);
-		}
-		else
+			return new IndexedDrawSetup(dataProviders, structure);
+		} else
 		{
 			final var draw = RenderingFactory.eINSTANCE.createRenderDrawTask();
 			draw.getVertexProviders().addAll(vertexProviders);
 
 			taskPkg.getTasks().add(draw);
 
-			return new DrawSetup(bindVertex, dataProviders, structure);
+			return new DrawSetup(dataProviders, structure);
 		}
 	}
 
 	private static final class IndexedDrawSetup implements IStructurePartDrawSetup
 	{
-		@SuppressWarnings("unused")
-		private final BindVertexBuffer vertexBindTask;
-		@SuppressWarnings("unused")
-		private final BindIndexBuffer indexBindTask;
 		private final List<BufferDataProvider<?>> dataProviders;
 		private final Structure structure;
 
-		private IndexedDrawSetup(	BindVertexBuffer vertexBindTask,
-									BindIndexBuffer indexBindTask,
-									List<BufferDataProvider<?>> dataProviders,
-									Structure structure)
+		private IndexedDrawSetup(List<BufferDataProvider<?>> dataProviders,
+								 Structure structure)
 		{
-			this.vertexBindTask = vertexBindTask;
-			this.indexBindTask = indexBindTask;
 			this.structure = structure;
 			this.dataProviders = List.copyOf(dataProviders);
 		}
@@ -144,16 +132,12 @@ public final class DrawTaskInstaller
 
 	private static final class DrawSetup implements IStructurePartDrawSetup
 	{
-		@SuppressWarnings("unused")
-		private final BindVertexBuffer bindTask;
 		private final List<BufferDataProvider<?>> dataProviders;
 		private final Structure structure;
 
-		private DrawSetup(	BindVertexBuffer bindTask,
-							List<BufferDataProvider<?>> dataProviders,
-							Structure structure)
+		private DrawSetup(List<BufferDataProvider<?>> dataProviders,
+						  Structure structure)
 		{
-			this.bindTask = bindTask;
 			this.structure = structure;
 			this.dataProviders = List.copyOf(dataProviders);
 		}

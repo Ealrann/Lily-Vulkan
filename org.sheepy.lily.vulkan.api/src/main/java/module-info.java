@@ -4,7 +4,6 @@ import org.sheepy.lily.vulkan.api.model.VulkanModelExtension;
 module org.sheepy.lily.vulkan.api
 {
 	requires transitive org.sheepy.vulkan;
-	requires transitive org.sheepy.lily.core.api;
 	requires transitive org.lwjgl;
 
 	exports org.sheepy.lily.vulkan.api.concurrent;

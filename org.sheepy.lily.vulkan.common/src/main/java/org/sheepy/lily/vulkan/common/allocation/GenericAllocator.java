@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.ILilyEObject;
@@ -19,7 +20,7 @@ public final class GenericAllocator
 
 	private final AllocableContainer<ExecutionContext> container = new AllocableContainer<>();
 
-	public GenericAllocator(List<List<EStructuralFeature>> featureLists)
+	public GenericAllocator(List<List<EReference>> featureLists)
 	{
 		observers = List.copyOf(buildObservers(featureLists, this::resourceChanged));
 	}
@@ -85,7 +86,7 @@ public final class GenericAllocator
 		return container.isDirty();
 	}
 
-	private static List<ModelObserver> buildObservers(	List<List<EStructuralFeature>> featureLists,
+	private static List<ModelObserver> buildObservers(	List<List<EReference>> featureLists,
 														INotificationListener listener)
 	{
 		final List<ModelObserver> res = new ArrayList<>();
