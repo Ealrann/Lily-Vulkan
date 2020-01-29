@@ -12,3 +12,10 @@ Another project using this wrapper: https://github.com/Ealrann/VSand
 Using:
 - Vulkan
 - LWJGL3
+
+--------
+
+Clone command:
+```
+git clone --recursive --single-branch --branch root https://github.com/Ealrann/Lily-Vulkan.git
+```
