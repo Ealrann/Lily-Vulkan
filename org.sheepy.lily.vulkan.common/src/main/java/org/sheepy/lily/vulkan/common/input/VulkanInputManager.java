@@ -1,29 +1,20 @@
 package org.sheepy.lily.vulkan.common.input;
 
-import static org.lwjgl.glfw.GLFW.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.joml.Vector2f;
 import org.joml.Vector2fc;
-import org.lwjgl.glfw.GLFWCharCallback;
-import org.lwjgl.glfw.GLFWCursorPosCallback;
-import org.lwjgl.glfw.GLFWKeyCallback;
-import org.lwjgl.glfw.GLFWMouseButtonCallback;
-import org.lwjgl.glfw.GLFWScrollCallback;
-import org.sheepy.lily.core.api.input.event.CharEvent;
-import org.sheepy.lily.core.api.input.event.IInputEvent;
-import org.sheepy.lily.core.api.input.event.KeyEvent;
-import org.sheepy.lily.core.api.input.event.MouseButtonEvent;
-import org.sheepy.lily.core.api.input.event.MouseLocationEvent;
-import org.sheepy.lily.core.api.input.event.ScrollEvent;
+import org.lwjgl.glfw.*;
+import org.sheepy.lily.core.api.input.event.*;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.types.EKeyState;
 import org.sheepy.lily.core.model.types.EMouseButton;
 import org.sheepy.lily.vulkan.api.input.IInputCatcher;
 import org.sheepy.lily.vulkan.api.input.IVulkanInputManager;
 import org.sheepy.lily.vulkan.common.window.Window;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.lwjgl.glfw.GLFW.*;
 
 public class VulkanInputManager implements IVulkanInputManager
 {
@@ -57,15 +48,15 @@ public class VulkanInputManager implements IVulkanInputManager
 			EKeyState state = EKeyState.RELEASED;
 			switch (action)
 			{
-			case GLFW_RELEASE:
-				state = EKeyState.RELEASED;
-				break;
-			case GLFW_PRESS:
-				state = EKeyState.PRESSED;
-				break;
-			case GLFW_REPEAT:
-				state = EKeyState.REPEATED;
-				break;
+				case GLFW_RELEASE:
+					state = EKeyState.RELEASED;
+					break;
+				case GLFW_PRESS:
+					state = EKeyState.PRESSED;
+					break;
+				case GLFW_REPEAT:
+					state = EKeyState.REPEATED;
+					break;
 			}
 
 			final var event = new KeyEvent(key, state, mods);
@@ -88,30 +79,30 @@ public class VulkanInputManager implements IVulkanInputManager
 			EMouseButton mouseButton = null;
 			switch (button)
 			{
-			case GLFW_MOUSE_BUTTON_RIGHT:
-				mouseButton = EMouseButton.RIGHT;
-				break;
-			case GLFW_MOUSE_BUTTON_MIDDLE:
-				mouseButton = EMouseButton.MIDDLE;
-				break;
-			case GLFW_MOUSE_BUTTON_LEFT:
-				mouseButton = EMouseButton.LEFT;
-				break;
-			case GLFW_MOUSE_BUTTON_4:
-				mouseButton = EMouseButton._4;
-				break;
-			case GLFW_MOUSE_BUTTON_5:
-				mouseButton = EMouseButton._5;
-				break;
-			case GLFW_MOUSE_BUTTON_6:
-				mouseButton = EMouseButton._6;
-				break;
-			case GLFW_MOUSE_BUTTON_7:
-				mouseButton = EMouseButton._7;
-				break;
-			case GLFW_MOUSE_BUTTON_8:
-				mouseButton = EMouseButton._8;
-				break;
+				case GLFW_MOUSE_BUTTON_RIGHT:
+					mouseButton = EMouseButton.RIGHT;
+					break;
+				case GLFW_MOUSE_BUTTON_MIDDLE:
+					mouseButton = EMouseButton.MIDDLE;
+					break;
+				case GLFW_MOUSE_BUTTON_LEFT:
+					mouseButton = EMouseButton.LEFT;
+					break;
+				case GLFW_MOUSE_BUTTON_4:
+					mouseButton = EMouseButton._4;
+					break;
+				case GLFW_MOUSE_BUTTON_5:
+					mouseButton = EMouseButton._5;
+					break;
+				case GLFW_MOUSE_BUTTON_6:
+					mouseButton = EMouseButton._6;
+					break;
+				case GLFW_MOUSE_BUTTON_7:
+					mouseButton = EMouseButton._7;
+					break;
+				case GLFW_MOUSE_BUTTON_8:
+					mouseButton = EMouseButton._8;
+					break;
 			}
 			events.add(new MouseButtonEvent(cursorPosition, mouseButton, action == GLFW_PRESS));
 		}
@@ -173,6 +164,7 @@ public class VulkanInputManager implements IVulkanInputManager
 					}
 
 					catcher.stopCatch();
+					catcher.update();
 
 					if (catcher.hasCaughtInputs())
 					{
@@ -197,6 +189,10 @@ public class VulkanInputManager implements IVulkanInputManager
 				fireEvents();
 
 				dropInputEvents();
+			}
+			else if (catcher != null)
+			{
+				catcher.update();
 			}
 
 			fireAfterPollInputs();

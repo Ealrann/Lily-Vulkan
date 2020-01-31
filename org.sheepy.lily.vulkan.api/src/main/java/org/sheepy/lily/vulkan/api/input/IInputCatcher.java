@@ -6,6 +6,7 @@ public interface IInputCatcher extends IInputListener
 {
 	void startCatch();
 	void stopCatch();
+	void update();
 
 	boolean hasCaughtInputs();
 	boolean isCursorThere();

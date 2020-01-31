@@ -14,6 +14,7 @@ public interface IPanelAdapter extends IAdapter
 {
 	boolean layout(UIContext context);
 	boolean isHovered();
+	boolean needLayout();
 
 	static final class UIContext
 	{

@@ -1,9 +1,5 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
-import static org.lwjgl.nuklear.Nuklear.*;
-
-import java.nio.ByteBuffer;
-
 import org.joml.Vector2ic;
 import org.lwjgl.nuklear.NkColor;
 import org.lwjgl.nuklear.NkImage;
@@ -20,6 +16,10 @@ import org.sheepy.lily.vulkan.api.util.UIUtil;
 import org.sheepy.lily.vulkan.api.window.IWindowListener.ISizeListener;
 import org.sheepy.lily.vulkan.common.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.common.window.Window;
+
+import java.nio.ByteBuffer;
+
+import static org.lwjgl.nuklear.Nuklear.*;
 
 @Statefull
 @Adapter(scope = Panel.class)
@@ -68,7 +68,7 @@ public class PanelAdapter extends Notifier implements IPanelAdapter, ITextWidget
 	public void unsetTarget()
 	{
 		MemoryUtil.memFree(textBuffer);
-		
+
 		if (window != null)
 		{
 			window.removeListener(listener);
@@ -110,11 +110,11 @@ public class PanelAdapter extends Notifier implements IPanelAdapter, ITextWidget
 		final int x = UIUtil.computeXRelative(window.getSize(), panel);
 		final int y = UIUtil.computeYRelative(window.getSize(), panel);
 
-		final var backgroundColor = context.nkContext	.style()
-														.window()
-														.fixed_background()
-														.data()
-														.color();
+		final var backgroundColor = context.nkContext.style()
+													 .window()
+													 .fixed_background()
+													 .data()
+													 .color();
 		backgroundColor.r((byte) panel.getBackgroundColor().x());
 		backgroundColor.g((byte) panel.getBackgroundColor().y());
 		backgroundColor.b((byte) panel.getBackgroundColor().z());
@@ -169,6 +169,25 @@ public class PanelAdapter extends Notifier implements IPanelAdapter, ITextWidget
 		nk_end(nkContext);
 
 		return res;
+	}
+
+	@Override
+	public boolean needLayout()
+	{
+		if ((style & NK_WINDOW_MINIMIZED) == 0)
+		{
+			final var controls = panel.getControls();
+			for (int i = 0; i < controls.size(); i++)
+			{
+				final var child = controls.get(i);
+				final var adapter = child.adaptNotNull(IUIElementAdapter.class);
+				if (adapter.needLayout())
+				{
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	@Override

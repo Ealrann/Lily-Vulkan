@@ -103,7 +103,7 @@ public final class SelectorPanelAdapter extends Notifier
 		dirty = true;
 	}
 
-	private List<LineData> buildLineDatas(List<? extends Object> elements)
+	private List<LineData> buildLineDatas(List<?> elements)
 	{
 		final boolean right = panel.getHorizontalRelative() == EHorizontalRelative.RIGHT;
 		final List<LineData> tmpDatas = new ArrayList<>();
@@ -123,7 +123,7 @@ public final class SelectorPanelAdapter extends Notifier
 	{
 		resolverAdapter.removeListener(selectionListener);
 		labelColor.free();
-		for (final LineData data : datas)
+		for (final var data : datas)
 		{
 			data.free();
 		}
@@ -239,6 +239,12 @@ public final class SelectorPanelAdapter extends Notifier
 		return res;
 	}
 
+	@Override
+	public boolean needLayout()
+	{
+		return dirty || fading;
+	}
+
 	private void updateHoverStatus(boolean hovered)
 	{
 		if (hovered)
@@ -274,13 +280,12 @@ public final class SelectorPanelAdapter extends Notifier
 				fading = false;
 				labelColor.a((byte) 255);
 				showText = false;
-				dirty = true;
 			}
 			else
 			{
 				labelColor.a((byte) (255f * (1f - fadeProgress)));
-				dirty = true;
 			}
+			dirty = true;
 		}
 	}
 

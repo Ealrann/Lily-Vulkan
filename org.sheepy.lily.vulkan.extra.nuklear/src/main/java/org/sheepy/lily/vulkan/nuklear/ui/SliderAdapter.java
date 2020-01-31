@@ -1,9 +1,5 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
-import static org.lwjgl.nuklear.Nuklear.nk_slider_int;
-
-import java.nio.IntBuffer;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
@@ -15,6 +11,10 @@ import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.core.model.ui.Slider;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
+
+import java.nio.IntBuffer;
+
+import static org.lwjgl.nuklear.Nuklear.nk_slider_int;
 
 @Statefull
 @Adapter(scope = Slider.class)
@@ -68,11 +68,11 @@ public class SliderAdapter implements IUIElementAdapter
 		dirty = false;
 
 		context.setFont(slider.getFont());
-		nk_slider_int(	context.nkContext,
-						slider.getMinValue(),
-						buffer,
-						slider.getMaxValue(),
-						slider.getStep());
+		nk_slider_int(context.nkContext,
+					  slider.getMinValue(),
+					  buffer,
+					  slider.getMaxValue(),
+					  slider.getStep());
 
 		final Integer val = (Integer) resolverAdapter.getValue(variableResolver);
 		if (val != buffer.get(0))
@@ -82,5 +82,11 @@ public class SliderAdapter implements IUIElementAdapter
 		}
 
 		return res;
+	}
+
+	@Override
+	public boolean needLayout()
+	{
+		return dirty;
 	}
 }

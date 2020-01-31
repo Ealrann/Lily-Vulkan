@@ -49,6 +49,12 @@ public final class ButtonAdapter extends Notifier implements IUIElementAdapter, 
 	}
 
 	@Override
+	public boolean needLayout()
+	{
+		return false;
+	}
+
+	@Override
 	public String getText()
 	{
 		return button.getText();

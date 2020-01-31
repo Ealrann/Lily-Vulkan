@@ -78,6 +78,12 @@ public class VariableLabelAdapter extends Notifier implements IUIElementAdapter,
 		return res;
 	}
 
+	@Override
+	public boolean needLayout()
+	{
+		return dirty;
+	}
+
 	private void updateText(Object val)
 	{
 		final var oldText = text;

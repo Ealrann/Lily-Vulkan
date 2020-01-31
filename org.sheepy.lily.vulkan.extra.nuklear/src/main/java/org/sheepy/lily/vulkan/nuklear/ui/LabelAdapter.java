@@ -82,7 +82,7 @@ public final class LabelAdapter extends Notifier implements IUIElementAdapter, I
 		dirty = false;
 		final Label label = (Label) control;
 
-		int align = 0;
+		int align;
 		switch (label.getHorizontalRelative())
 		{
 		case MIDDLE:
@@ -108,6 +108,12 @@ public final class LabelAdapter extends Notifier implements IUIElementAdapter, I
 		}
 
 		return res;
+	}
+
+	@Override
+	public boolean needLayout()
+	{
+		return false;
 	}
 
 	@Override

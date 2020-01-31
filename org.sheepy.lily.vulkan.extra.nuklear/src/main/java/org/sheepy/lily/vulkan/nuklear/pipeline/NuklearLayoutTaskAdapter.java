@@ -1,7 +1,5 @@
 package org.sheepy.lily.vulkan.nuklear.pipeline;
 
-import java.util.List;
-
 import org.joml.Vector2ic;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.system.MemoryStack;
@@ -24,31 +22,40 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.nuklear.pipeline.layout.LayoutManager;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearFontAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
+
+import java.util.List;
 
 @Statefull
 @Adapter(scope = NuklearLayoutTask.class, lazy = false)
 public final class NuklearLayoutTaskAdapter
 		implements IPipelineTaskAdapter<NuklearLayoutTask>, IAllocableAdapter<IGraphicContext>
 {
-	private final AdapterSetRegistry<IPanelAdapter> PANEL_REGISTRY = new AdapterSetRegistry<>(	IPanelAdapter.class,
-																								List.of(UiPackage.Literals.UI__CURRENT_UI_PAGE,
-																										UiPackage.Literals.UI_PAGE__PANELS));
+	private final AdapterSetRegistry<IPanelAdapter> panelRegistry = new AdapterSetRegistry<>(IPanelAdapter.class,
+																							 List.of(UiPackage.Literals.UI__CURRENT_UI_PAGE,
+																									 UiPackage.Literals.UI_PAGE__PANELS));
 
 	private final NuklearLayoutTask task;
 	private final GraphicsPipeline pipeline;
 	private final ISizeListener resizeListener = this::onResize;
 	private final UI ui;
-	private boolean dirty = true;
-	private IGraphicContext context;
 
-	private boolean startedFrame = true;
-	private Extent2D currentExtent;
+	private IGraphicContext context;
+	private LayoutManager layoutManager;
+	private ELayoutRequest layoutRequested = ELayoutRequest.None;
 	private NuklearContextAdapter nuklearContextAdapter;
 	private Window window;
+
+	enum ELayoutRequest
+	{
+		None,
+		Force,
+		IfNecessary
+	}
 
 	public NuklearLayoutTaskAdapter(NuklearLayoutTask task)
 	{
@@ -62,7 +69,7 @@ public final class NuklearLayoutTaskAdapter
 	public void load()
 	{
 		nuklearContextAdapter = task.getContext().adaptNotNull(NuklearContextAdapter.class);
-		PANEL_REGISTRY.startRegister(ui);
+		panelRegistry.startRegister(ui);
 
 		final int imageCount = ui.getImages().size();
 
@@ -75,17 +82,20 @@ public final class NuklearLayoutTaskAdapter
 
 		pipeline.getResourcePkg().getResources().add(constantBuffer);
 		pipeline.setSpecializationData(constantBuffer);
+
+		layoutManager = new LayoutManager(panelRegistry);
 	}
 
 	@Dispose
 	public void dispose()
 	{
-		PANEL_REGISTRY.stopRegister(ui);
+		panelRegistry.stopRegister(ui);
+		layoutManager = null;
 	}
 
 	private void onResize(Vector2ic size)
 	{
-		requestLayout();
+		requestLayout(true);
 	}
 
 	@Override
@@ -94,7 +104,7 @@ public final class NuklearLayoutTaskAdapter
 		this.context = context;
 		window = context.getWindow();
 		window.addListener(resizeListener);
-		requestLayout();
+		requestLayout(true);
 	}
 
 	@Override
@@ -104,27 +114,24 @@ public final class NuklearLayoutTaskAdapter
 		this.context = null;
 	}
 
-	boolean layoutRequested = false;
-
-	public void requestLayout()
+	public void requestLayout(boolean full)
 	{
-		layoutRequested = true;
+		layoutRequested = (full ? ELayoutRequest.Force : ELayoutRequest.IfNecessary);
 	}
 
 	@Override
 	public void update(NuklearLayoutTask task, int index)
 	{
-		if (layoutRequested)
+		if (isLayoutNecessary())
 		{
 			layout();
-			layoutRequested = false;
+			layoutRequested = ELayoutRequest.None;
 		}
 	}
 
 	private void layout()
 	{
 		final var nkContext = nuklearContextAdapter.getNkContext();
-
 		final var font = task.getContext().getFont();
 		final var fontAdapter = font.adaptNotNull(NuklearFontAdapter.class);
 		final var defaultFont = fontAdapter.defaultFont;
@@ -134,33 +141,32 @@ public final class NuklearLayoutTaskAdapter
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{
 			final var uiContext = new UIContext(window, nkContext, fontMap, defaultFont, stack);
+			layoutManager.layout(uiContext, extent);
+		}
+	}
 
-			startedFrame = true;
-
-			if (extent != currentExtent)
-			{
-				dirty = true;
-				currentExtent = extent;
-			}
-
-			final var panelAdapters = PANEL_REGISTRY.getAdapters();
-			for (int i = 0; i < panelAdapters.size(); i++)
-			{
-				final var panelAdapter = panelAdapters.get(i);
-				dirty |= panelAdapter.layout(uiContext);
-			}
+	private boolean isLayoutNecessary()
+	{
+		switch (layoutRequested)
+		{
+			case Force:
+				return true;
+			case IfNecessary:
+				return layoutManager.needLayout();
+			default:
+				return false;
 		}
 	}
 
 	public IPanel getHoveredPanel()
 	{
-		final var panelAdapters = PANEL_REGISTRY.getAdapters();
+		final var panelAdapters = panelRegistry.getAdapters();
 		for (int i = 0; i < panelAdapters.size(); i++)
 		{
 			final var panelAdapter = panelAdapters.get(i);
 			if (panelAdapter.isHovered())
 			{
-				return (IPanel) PANEL_REGISTRY.getObjects().get(i);
+				return (IPanel) panelRegistry.getObjects().get(i);
 			}
 		}
 		return null;
@@ -169,34 +175,34 @@ public final class NuklearLayoutTaskAdapter
 	@Override
 	public void record(NuklearLayoutTask task, IRecordContext context)
 	{
-		dirty = false;
+		layoutManager.setDirty(false);
 	}
 
 	@Override
 	public boolean needRecord(NuklearLayoutTask task, int index)
 	{
-		return dirty;
+		return layoutManager.isDirty();
 	}
 
 	public boolean isDirty()
 	{
-		return dirty;
+		return layoutManager.isDirty();
 	}
 
 	public boolean isFrameStarted()
 	{
-		return startedFrame;
+		return layoutManager.hasStartedFrame();
 	}
 
 	public void clearFrame()
 	{
-		assert startedFrame;
+		assert layoutManager.hasStartedFrame();
 		nuklearContextAdapter.clearFrame();
-		startedFrame = false;
+		layoutManager.setStartedFrame(false);
 	}
 
 	public Extent2D getExtent()
 	{
-		return currentExtent;
+		return layoutManager.getCurrentExtent();
 	}
 }

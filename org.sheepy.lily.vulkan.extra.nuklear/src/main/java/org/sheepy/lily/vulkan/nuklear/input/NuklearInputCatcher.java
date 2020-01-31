@@ -27,6 +27,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 	private NuklearLayoutTaskAdapter layoutAdapter;
 	private boolean clicked = false;
 	private boolean catching = false;
+	private boolean catched = false;
 
 	private NuklearInputCatcher()
 	{}
@@ -192,6 +193,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 		assert catching == false;
 		nk_input_begin(nkContext);
 		catching = true;
+		catched = true;
 	}
 
 	@Override
@@ -200,8 +202,13 @@ public final class NuklearInputCatcher implements IInputCatcher
 		assert catching == true;
 		nk_input_end(nkContext);
 		catching = false;
+	}
 
-		layoutAdapter.requestLayout();
+	@Override
+	public void update()
+	{
+		layoutAdapter.requestLayout(catched);
+		catched = false;
 	}
 
 	@Override
