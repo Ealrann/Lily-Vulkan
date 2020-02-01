@@ -1,8 +1,5 @@
 package org.sheepy.lily.vulkan.process.pipeline;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -13,20 +10,25 @@ import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.notification.util.AbstractModelSetRegistry;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.common.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.common.process.IProcessContext;
+import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Statefull
 public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext>
 		implements IAllocableAdapter<T>, IPipelineAdapter
 {
-	private final TaskObserver taskRegister = new TaskObserver(List.of(	ProcessPackage.Literals.ITASK_PIPELINE__TASK_PKG,
-																		ProcessPackage.Literals.TASK_PKG__TASKS));
+	private final TaskObserver taskRegister = new TaskObserver(List.of(ProcessPackage.Literals.ITASK_PIPELINE__TASK_PKG,
+																	   ProcessPackage.Literals.TASK_PKG__TASKS));
 
 	protected final IPipeline pipeline;
 
@@ -167,7 +169,7 @@ public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext>
 			final int taskIndex = taskIndex(task);
 			taskWrappers.add(taskIndex, new TaskWrapper<>(task, pipeline.getStage()));
 
-			final var adapter = task.<IAllocableAdapter<? super T>> adaptGeneric(IAllocableAdapter.class);
+			final var adapter = task.<IAllocableAdapter<? super T>>adaptGeneric(IAllocableAdapter.class);
 
 			if (adapter != null)
 			{
@@ -184,8 +186,7 @@ public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext>
 		private int taskIndex(IPipelineTask task)
 		{
 			final var container = task.eContainer();
-			@SuppressWarnings("unchecked")
-			final var containningList = (List<EObject>) container.eGet(task.eContainingFeature());
+			@SuppressWarnings("unchecked") final var containningList = (List<EObject>) container.eGet(task.eContainingFeature());
 			int index = containningList.indexOf(task);
 
 			if (container instanceof IPipelineTask)
@@ -202,7 +203,7 @@ public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext>
 			final var task = (IPipelineTask) oldValue;
 			taskWrappers.removeIf(wrapper -> wrapper.task == task);
 
-			final var adapter = task.<IAllocableAdapter<? super T>> adaptGeneric(IAllocableAdapter.class);
+			final var adapter = task.<IAllocableAdapter<? super T>>adaptGeneric(IAllocableAdapter.class);
 			if (adapter != null)
 			{
 				allocationConfig.removeChildren(List.of(adapter));
@@ -225,7 +226,7 @@ public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext>
 		public TaskWrapper(T task, ECommandStage pipelineStage)
 		{
 			this.task = task;
-			this.adapter = task.<IPipelineTaskAdapter<T>> adaptNotNullGeneric(IPipelineTaskAdapter.class);
+			this.adapter = task.<IPipelineTaskAdapter<T>>adaptNotNullGeneric(IPipelineTaskAdapter.class);
 			this.stage = computeStage(pipelineStage);
 		}
 
@@ -251,7 +252,14 @@ public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext>
 
 		public boolean needRecord(int index)
 		{
-			return adapter.needRecord(task, index);
+			final boolean needRecord = adapter.needRecord(task, index);
+
+			if (DebugUtil.DEBUG_VERBOSE_ENABLED && needRecord && task instanceof CompositeTask == false)
+			{
+				System.out.println("Record required by " + task);
+			}
+
+			return needRecord;
 		}
 
 		public boolean isEnabled()

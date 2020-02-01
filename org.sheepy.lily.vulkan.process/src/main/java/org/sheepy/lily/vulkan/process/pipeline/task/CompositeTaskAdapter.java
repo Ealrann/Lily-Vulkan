@@ -1,13 +1,11 @@
 package org.sheepy.lily.vulkan.process.pipeline.task;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.common.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.common.process.IProcessContext;
@@ -15,6 +13,9 @@ import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Statefull
 @Adapter(scope = CompositeTask.class)
@@ -47,11 +48,13 @@ public class CompositeTaskAdapter
 
 	@Override
 	public void allocate(IProcessContext context)
-	{}
+	{
+	}
 
 	@Override
 	public void free(IProcessContext context)
-	{}
+	{
+	}
 
 	@Override
 	public void update(CompositeTask task, int index)
@@ -145,7 +148,7 @@ public class CompositeTaskAdapter
 		private AdaptedTaskWrapper(T task)
 		{
 			this.task = task;
-			adapter = task.<IPipelineTaskAdapter<T>> adaptNotNullGeneric(IPipelineTaskAdapter.class);
+			adapter = task.adaptNotNullGeneric(IPipelineTaskAdapter.class);
 		}
 
 		public void update(int index)
@@ -155,7 +158,12 @@ public class CompositeTaskAdapter
 
 		public boolean needRecord(int index)
 		{
-			return adapter.needRecord(task, index);
+			final boolean needRecord = adapter.needRecord(task, index);
+			if (DebugUtil.DEBUG_VERBOSE_ENABLED && needRecord && task instanceof CompositeTask == false)
+			{
+				System.out.println("Record required by " + task);
+			}
+			return needRecord;
 		}
 
 		public void record(RecordContext context)
