@@ -1,9 +1,5 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
-import static org.lwjgl.nuklear.Nuklear.*;
-
-import java.nio.ByteBuffer;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
@@ -18,6 +14,12 @@ import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.core.model.ui.Label;
 import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
+import org.sheepy.lily.vulkan.nuklear.util.ProgressTimer;
+
+import java.nio.ByteBuffer;
+import java.util.concurrent.TimeUnit;
+
+import static org.lwjgl.nuklear.Nuklear.*;
 
 @Statefull
 @Adapter(scope = Label.class)
@@ -28,6 +30,7 @@ public final class LabelAdapter extends Notifier implements IUIElementAdapter, I
 
 	private boolean dirty = true;
 	private ByteBuffer textBuffer;
+	private ProgressTimer narrationTimer = null;
 
 	private LabelAdapter(Label label)
 	{
@@ -66,6 +69,16 @@ public final class LabelAdapter extends Notifier implements IUIElementAdapter, I
 
 		final var notification = new ObjectNotification(this, Features.Text, null, text);
 		fireNotification(notification);
+
+		if (label.isNarrator())
+		{
+			final int length = text.length();
+			final float durationToDisplaySeconds = (float) length / label.getNarrationSpeed();
+			final int durationTiDisplayMs = (int) (durationToDisplaySeconds * 1000f);
+
+			narrationTimer = new ProgressTimer(durationTiDisplayMs, TimeUnit.MILLISECONDS);
+			narrationTimer.start();
+		}
 	}
 
 	private void freeBuffer()
@@ -78,25 +91,27 @@ public final class LabelAdapter extends Notifier implements IUIElementAdapter, I
 	@Override
 	public boolean layout(UIContext context, IUIElement control)
 	{
-		final boolean res = dirty;
+		boolean res = dirty;
 		dirty = false;
 		final Label label = (Label) control;
 
 		int align;
 		switch (label.getHorizontalRelative())
 		{
-		case MIDDLE:
-			align = NK_TEXT_CENTERED;
-			break;
-		case RIGHT:
-			align = NK_TEXT_RIGHT;
-			break;
-		default:
-			align = NK_TEXT_LEFT;
-			break;
+			case MIDDLE:
+				align = NK_TEXT_CENTERED;
+				break;
+			case RIGHT:
+				align = NK_TEXT_RIGHT;
+				break;
+			default:
+				align = NK_TEXT_LEFT;
+				break;
 		}
 
 		context.setFont(label.getFont());
+
+		res |= narrate(label);
 
 		if (label.isWrap())
 		{
@@ -110,10 +125,34 @@ public final class LabelAdapter extends Notifier implements IUIElementAdapter, I
 		return res;
 	}
 
+	private boolean narrate(Label label)
+	{
+		boolean needLayout = false;
+		if (narrationTimer != null && narrationTimer.isRunning() && !label.getText().isEmpty())
+		{
+			if (narrationTimer.isOverTime())
+			{
+				narrationTimer.stop();
+				narrationTimer = null;
+				MemoryUtil.memUTF8(label.getText(), true, textBuffer);
+			}
+			else
+			{
+				double progress = narrationTimer.progress();
+				int charCount = textBuffer.capacity();
+				int charCountToDisplay = (int) (charCount * progress);
+				final String textToDisplay = label.getText().substring(0, charCountToDisplay);
+				MemoryUtil.memUTF8(textToDisplay, true, textBuffer);
+			}
+			needLayout = true;
+		}
+		return needLayout;
+	}
+
 	@Override
 	public boolean needLayout()
 	{
-		return false;
+		return narrationTimer != null && narrationTimer.isRunning();
 	}
 
 	@Override

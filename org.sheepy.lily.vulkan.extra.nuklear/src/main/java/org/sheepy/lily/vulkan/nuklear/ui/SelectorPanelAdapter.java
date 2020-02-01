@@ -1,11 +1,5 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
-import static org.lwjgl.nuklear.Nuklear.*;
-
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.joml.Vector2ic;
 import org.joml.Vector3fc;
@@ -30,6 +24,14 @@ import org.sheepy.lily.vulkan.common.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.extra.api.nuklear.ISelectorInputProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
 import org.sheepy.lily.vulkan.nuklear.ui.internal.SelectorButtonDrawer;
+import org.sheepy.lily.vulkan.nuklear.util.ProgressTimer;
+
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static org.lwjgl.nuklear.Nuklear.*;
 
 @Statefull
 @Adapter(scope = SelectorPanel.class)
@@ -50,10 +52,9 @@ public final class SelectorPanelAdapter extends Notifier
 	private final int width;
 	private final int height;
 	private final NkColor labelColor;
+	private final ProgressTimer fadeTimer;
 
 	private boolean showText = false;
-	private boolean fading = false;
-	private long fadingSince = 0;
 	private boolean loaded = false;
 	private boolean dirty = false;
 	private Object selectedElement;
@@ -70,6 +71,7 @@ public final class SelectorPanelAdapter extends Notifier
 		}
 
 		final var inputProvider = panel.getInputProvider();
+		fadeTimer = new ProgressTimer(panel.getFadeOutMs(), TimeUnit.MILLISECONDS);
 
 		this.panel = panel;
 		buttonSize = panel.getButtonSizePx();
@@ -187,10 +189,10 @@ public final class SelectorPanelAdapter extends Notifier
 
 			if (panel.isPrintLabels())
 			{
-				if (nk_begin(	nkContext,
-								data.panelLabelId,
-								data.rectLabel,
-								NK_WINDOW_NO_SCROLLBAR | NK_WINDOW_BACKGROUND | NK_WINDOW_NO_INPUT))
+				if (nk_begin(nkContext,
+							 data.panelLabelId,
+							 data.rectLabel,
+							 NK_WINDOW_NO_SCROLLBAR | NK_WINDOW_BACKGROUND | NK_WINDOW_NO_INPUT))
 				{
 					if (panel.isDetectHoverOnLabels())
 					{
@@ -208,12 +210,12 @@ public final class SelectorPanelAdapter extends Notifier
 				nk_end(nkContext);
 			}
 
-			if (buttonDrawer.draw(	nkContext,
-									isSelected,
-									data.getNkImage(),
-									data.color,
-									data.panelButton1Id,
-									data.rectButton))
+			if (buttonDrawer.draw(nkContext,
+								  isSelected,
+								  data.getNkImage(),
+								  data.color,
+								  data.panelButton1Id,
+								  data.rectButton))
 			{
 				var newSelection = data.element;
 				if (panel.isUnsettable() && selectedElement == newSelection)
@@ -242,7 +244,7 @@ public final class SelectorPanelAdapter extends Notifier
 	@Override
 	public boolean needLayout()
 	{
-		return dirty || fading;
+		return dirty || fadeTimer.isRunning();
 	}
 
 	private void updateHoverStatus(boolean hovered)
@@ -254,36 +256,35 @@ public final class SelectorPanelAdapter extends Notifier
 				showText = true;
 				dirty = true;
 			}
-			if (fading)
+			if (fadeTimer.isRunning())
 			{
-				fading = false;
+				fadeTimer.stop();
 				labelColor.a((byte) 255);
 				dirty = true;
 			}
 		}
 		else
 		{
-			if (showText == true && fading == false)
+			if (showText == true && !fadeTimer.isRunning())
 			{
-				fading = true;
-				fadingSince = System.currentTimeMillis();
+				fadeTimer.start();
 				dirty = true;
 			}
 		}
 
-		if (fading)
+		if (fadeTimer.isRunning())
 		{
-			final long time = System.currentTimeMillis();
-			final float fadeProgress = ((float) (time - fadingSince)) / panel.getFadeOutMs();
-			if (fadeProgress > 1)
+			if (fadeTimer.isOverTime())
 			{
-				fading = false;
+				fadeTimer.stop();
 				labelColor.a((byte) 255);
 				showText = false;
 			}
 			else
 			{
-				labelColor.a((byte) (255f * (1f - fadeProgress)));
+				final double fadeProgress = 1 - fadeTimer.progress();
+				final byte fadeColor = (byte) Math.round(255 * fadeProgress);
+				labelColor.a(fadeColor);
 			}
 			dirty = true;
 		}
@@ -357,8 +358,8 @@ public final class SelectorPanelAdapter extends Notifier
 
 		private static NkColor allocColor(Vector3fc color)
 		{
-			return NkColor	.calloc()
-							.set((byte) color.x(), (byte) color.y(), (byte) color.z(), (byte) 255);
+			return NkColor.calloc()
+						  .set((byte) color.x(), (byte) color.y(), (byte) color.z(), (byte) 255);
 		}
 
 		public NkImage getNkImage()
