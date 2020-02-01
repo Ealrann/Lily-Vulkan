@@ -74,6 +74,7 @@ public class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBu
 		}
 
 		vkCmdBindVertexBuffers(commandBuffer, firstBinding, vertexBuffers, offsets);
+		changed = false;
 	}
 
 	@Override
