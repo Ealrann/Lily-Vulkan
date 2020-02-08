@@ -29,14 +29,12 @@ public class FontQueryData
 	public void allocate()
 	{
 		load();
-		fontAllocator.addListener(	reloadNotification,
-									IFontAllocator.Features.loadedCodepoints.ordinal());
+		fontAllocator.addListener(reloadNotification, IFontAllocator.Features.loadedCodepoints.ordinal());
 	}
 
 	public void free()
 	{
-		fontAllocator.removeListener(	reloadNotification,
-										IFontAllocator.Features.loadedCodepoints.ordinal());
+		fontAllocator.removeListener(reloadNotification, IFontAllocator.Features.loadedCodepoints.ordinal());
 		dispose();
 	}
 
