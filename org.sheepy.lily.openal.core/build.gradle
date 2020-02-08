@@ -7,6 +7,6 @@ dependencies {
 	implementation project(':org.sheepy.lily.game.core')
 
 	implementation "org.lwjgl:lwjgl-stb:$lwjglVersion"
-	runtimeOnly "org.lwjgl:lwjgl-openal:$lwjglVersion:$lwjglNatives"
-	runtimeOnly "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
+	implementation "org.lwjgl:lwjgl-openal:$lwjglVersion:$lwjglNatives"
+	implementation "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
 }
