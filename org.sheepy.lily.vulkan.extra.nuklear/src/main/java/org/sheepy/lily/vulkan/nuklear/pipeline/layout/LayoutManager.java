@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.nuklear.pipeline.layout;
 
 import org.sheepy.lily.core.api.adapter.util.AdapterSetRegistry;
-import org.sheepy.lily.vulkan.common.window.Extent2D;
+import org.sheepy.lily.vulkan.core.window.Extent2D;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter;
 
 public class LayoutManager

@@ -1,40 +1,40 @@
 package org.sheepy.lily.vulkan.process.process;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.core.api.allocation.IAllocationService;
+import org.sheepy.lily.core.api.allocation.IRootAllocator;
 import org.sheepy.lily.core.api.cadence.IStatistics;
 import org.sheepy.lily.core.api.util.CompositeModelExplorer;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
+import org.sheepy.lily.game.core.allocation.GenericAllocator;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
-import org.sheepy.lily.vulkan.common.allocation.GenericAllocator;
-import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
-import org.sheepy.lily.vulkan.common.descriptor.DescriptorPool;
-import org.sheepy.lily.vulkan.common.descriptor.IVkDescriptorSet;
-import org.sheepy.lily.vulkan.common.device.VulkanContext;
-import org.sheepy.lily.vulkan.common.pipeline.IPipelineAdapter;
-import org.sheepy.lily.vulkan.common.pipeline.IVkPipelineAdapter;
-import org.sheepy.lily.vulkan.common.process.IProcessContext.IRecorderContext;
-import org.sheepy.lily.vulkan.common.process.InternalProcessAdapter;
-import org.sheepy.lily.vulkan.common.resource.IDescriptorSetAdapter;
+import org.sheepy.lily.vulkan.core.descriptor.DescriptorPool;
+import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptorSet;
+import org.sheepy.lily.vulkan.core.device.VulkanContext;
+import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
+import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAdapter;
+import org.sheepy.lily.vulkan.core.process.IProcessContext.IRecorderContext;
+import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
+import org.sheepy.lily.vulkan.core.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Statefull
-public abstract class AbstractProcessAdapter<T extends IRecorderContext<T>>
-		implements InternalProcessAdapter, IAllocable<VulkanContext>
+public abstract class AbstractProcessAdapter<T extends IRecorderContext<T>> implements InternalProcessAdapter,
+																					   IAllocable<VulkanContext>
 {
 	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG,
 																							ResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));
@@ -43,14 +43,13 @@ public abstract class AbstractProcessAdapter<T extends IRecorderContext<T>>
 	protected final DescriptorPool descriptorPool = new DescriptorPool();
 	protected final T context;
 
-	private final GenericAllocator resourceAllocator;
-	private final GenericAllocator pipelineAllocator;
-	private final TreeAllocator<VulkanContext> allocator = new TreeAllocator<>(this);
+	private final GenericAllocator<T> resourceAllocator;
+	private final GenericAllocator<T> pipelineAllocator;
 	private final CompositeModelExplorer pipelineExplorer;
 
 	protected IAllocationConfigurator config;
 	protected List<IPipelineAdapter> pipelineAdapters;
-
+	private IRootAllocator<VulkanContext> allocator;
 	private long startPrepareNs = 0;
 
 	public AbstractProcessAdapter(AbstractProcess process)
@@ -58,8 +57,8 @@ public abstract class AbstractProcessAdapter<T extends IRecorderContext<T>>
 		this.process = process;
 		context = createContext();
 
-		resourceAllocator = new GenericAllocator(getResourceFeatureLists());
-		pipelineAllocator = new GenericAllocator(getPipelineFeatureLists());
+		resourceAllocator = new GenericAllocator<>(getResourceFeatureLists());
+		pipelineAllocator = new GenericAllocator<>(getPipelineFeatureLists());
 		pipelineExplorer = new CompositeModelExplorer(getPipelineFeatureLists());
 	}
 
@@ -96,18 +95,20 @@ public abstract class AbstractProcessAdapter<T extends IRecorderContext<T>>
 
 	@Override
 	public void allocate(VulkanContext context)
-	{}
+	{
+	}
 
 	@Override
 	public void free(VulkanContext context)
-	{}
+	{
+	}
 
 	@Override
 	public void start(VulkanContext vulkanContext)
 	{
-		context.allocate(vulkanContext);
 		refreshStructure();
-		allocator.allocate(vulkanContext);
+		allocator = IAllocationService.INSTANCE.createAllocator(this, vulkanContext);
+		allocator.allocate();
 
 		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 		{
@@ -136,7 +137,7 @@ public abstract class AbstractProcessAdapter<T extends IRecorderContext<T>>
 	{
 		waitIdle();
 		allocator.free();
-		context.free();
+		allocator = null;
 	}
 
 	@Override
@@ -181,8 +182,7 @@ public abstract class AbstractProcessAdapter<T extends IRecorderContext<T>>
 
 		if (DebugUtil.DEBUG_ENABLED)
 		{
-			IStatistics.INSTANCE.addTime(	getClass().getSimpleName(),
-											System.nanoTime() - startPrepareNs);
+			IStatistics.INSTANCE.addTime(getClass().getSimpleName(), System.nanoTime() - startPrepareNs);
 		}
 
 		return nextIndex;
@@ -290,23 +290,17 @@ public abstract class AbstractProcessAdapter<T extends IRecorderContext<T>>
 
 	private boolean prepareAllocation()
 	{
-		boolean dirty = false;
-
 		refresh();
 		if (allocator.isAllocationDirty())
 		{
 			waitIdle();
-			try
-			{
-				context.stackPush();
-				allocator.reloadDirtyElements();
-			} finally
-			{
-				context.stackPop();
-			}
-			dirty = true;
+			allocator.reloadDirtyElements();
+			return true;
 		}
-		return dirty;
+		else
+		{
+			return false;
+		}
 	}
 
 	protected boolean prepareDescriptors()
@@ -316,7 +310,7 @@ public abstract class AbstractProcessAdapter<T extends IRecorderContext<T>>
 		if (descriptorPool.hasChanged())
 		{
 			waitIdle();
-			try (MemoryStack stack = MemoryStack.stackPush())
+			try (final var stack = MemoryStack.stackPush())
 			{
 				descriptorPool.update(stack);
 				dirty = true;
@@ -359,10 +353,7 @@ public abstract class AbstractProcessAdapter<T extends IRecorderContext<T>>
 
 	private void printAllocationTree()
 	{
-		System.out.println(process.eClass().getName()
-				+ " "
-				+ process.getName()
-				+ " Allocation tree:");
+		System.out.println(process.eClass().getName() + " " + process.getName() + " Allocation tree:");
 		System.out.println(allocator.toString());
 	}
 

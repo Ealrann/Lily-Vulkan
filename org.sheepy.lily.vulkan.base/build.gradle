@@ -5,7 +5,7 @@ plugins {
 dependencies {
 	implementation 'org.sheepy.lily.core:org.sheepy.lily.core.base'
 
-	runtimeOnly project(":org.sheepy.lily.vulkan.common")
+	runtimeOnly project(":org.sheepy.lily.vulkan.core")
 	runtimeOnly project(":org.sheepy.lily.vulkan.process")
 	runtimeOnly project(":org.sheepy.lily.vulkan.process.compute")
 	runtimeOnly project(":org.sheepy.lily.vulkan.process.graphic")

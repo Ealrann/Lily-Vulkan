@@ -12,10 +12,10 @@ import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
+import org.sheepy.lily.game.api.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
-import org.sheepy.lily.vulkan.api.window.IWindowListener.ISizeListener;
-import org.sheepy.lily.vulkan.common.resource.IImageAdapter;
-import org.sheepy.lily.vulkan.common.window.Window;
+import org.sheepy.lily.vulkan.core.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.core.window.Window;
 
 import java.nio.ByteBuffer;
 
@@ -25,7 +25,7 @@ import static org.lwjgl.nuklear.Nuklear.*;
 @Adapter(scope = Panel.class)
 public class PanelAdapter extends Notifier implements IPanelAdapter, ITextWidgetAdapter
 {
-	private final ISizeListener listener = this::updateLocation;
+	private final IWindowListener.ISizeListener listener = this::updateLocation;
 	private final Panel panel;
 	private final ByteBuffer textBuffer;
 

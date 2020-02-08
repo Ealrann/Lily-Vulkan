@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
-import org.sheepy.lily.vulkan.common.pipeline.VkShaderStage;
+import org.sheepy.lily.vulkan.core.pipeline.VkShaderStage;
 
 public class ShaderStageBuilder
 {

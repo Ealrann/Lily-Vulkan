@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.nuklear.draw;
 import java.util.List;
 
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.common.window.Extent2D;
+import org.sheepy.lily.vulkan.core.window.Extent2D;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFactory;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;

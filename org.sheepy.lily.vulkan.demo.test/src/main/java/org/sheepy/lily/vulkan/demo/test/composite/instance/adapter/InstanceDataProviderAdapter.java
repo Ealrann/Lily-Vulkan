@@ -5,7 +5,7 @@ import java.util.Random;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.vulkan.api.resource.buffer.IBufferDataProviderAdapter;
+import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 
 @Adapter(scope = BufferDataProvider.class, name = InstanceDataProviderAdapter.NAME, lazy = false)

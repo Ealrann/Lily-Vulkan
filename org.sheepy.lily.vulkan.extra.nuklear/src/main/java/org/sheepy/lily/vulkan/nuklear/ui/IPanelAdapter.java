@@ -8,7 +8,7 @@ import org.lwjgl.nuklear.Nuklear;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.model.ui.Font;
-import org.sheepy.lily.vulkan.common.window.Window;
+import org.sheepy.lily.vulkan.core.window.Window;
 
 public interface IPanelAdapter extends IAdapter
 {

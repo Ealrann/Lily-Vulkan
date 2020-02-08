@@ -1,0 +1,16 @@
+plugins {
+	id 'java-library'
+}
+
+dependencies {
+	api project(':org.sheepy.lily.game.api')
+
+	api "org.lwjgl:lwjgl-openal:$lwjglVersion"
+}
+
+sourceSets {
+	main {
+		java.srcDirs = ['src/generated/java',
+			'src/main/java']
+	}
+}

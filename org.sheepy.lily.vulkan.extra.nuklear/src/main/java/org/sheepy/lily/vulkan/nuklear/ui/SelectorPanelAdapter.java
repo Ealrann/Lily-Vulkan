@@ -18,9 +18,9 @@ import org.sheepy.lily.core.model.types.EHorizontalRelative;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
+import org.sheepy.lily.game.api.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
-import org.sheepy.lily.vulkan.api.window.IWindowListener.ISizeListener;
-import org.sheepy.lily.vulkan.common.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.extra.api.nuklear.ISelectorInputProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
 import org.sheepy.lily.vulkan.nuklear.ui.internal.SelectorButtonDrawer;
@@ -41,7 +41,7 @@ public final class SelectorPanelAdapter extends Notifier
 	private static final int MARGING_W = 5;
 
 	private final INotificationListener selectionListener = this::updateValue;
-	private final ISizeListener listener = this::updateDataLocations;
+	private final IWindowListener.ISizeListener listener = this::updateDataLocations;
 	private final SelectorPanel panel;
 	private final List<LineData> datas;
 	private final int buttonSize;

@@ -3,8 +3,8 @@ package org.sheepy.lily.vulkan.resource.image.backend;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkSamplerCreateInfo;
-import org.sheepy.lily.vulkan.common.device.InternalVulkanContext;
-import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.core.device.InternalVulkanContext;
+import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.vulkan.model.image.ImageFactory;
 import org.sheepy.vulkan.model.image.SamplerInfo;
 

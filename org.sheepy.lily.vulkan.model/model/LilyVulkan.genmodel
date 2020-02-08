@@ -429,6 +429,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//VulkanEngine/enabled"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//VulkanEngine/processes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//VulkanEngine/features"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//VulkanEngine/descriptorPkg"/>
     </genClasses>
     <genClasses image="false" ecoreClass="vulkan.ecore#//IResourceContainer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//IResourceContainer/resourcePkg"/>

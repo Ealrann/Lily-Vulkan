@@ -3,9 +3,9 @@ package org.sheepy.lily.vulkan.process.compute.execution;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
-import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
-import org.sheepy.lily.vulkan.common.process.IComputeContext;
-import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.core.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.core.process.IComputeContext;
+import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 public class ComputeCommandBuffer extends AbstractCommandBuffer<IComputeContext>

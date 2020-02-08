@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.process.compute.execution;
 
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.lily.vulkan.common.execution.IRecordable.RecordContext;
-import org.sheepy.lily.vulkan.common.process.IComputeContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
+import org.sheepy.lily.vulkan.core.process.IComputeContext;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.execution.AbstractExecutionRecorder;

@@ -1,16 +1,16 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 
-import static org.lwjgl.vulkan.VK10.vkCmdBindVertexBuffers;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.notification.INotificationListener;
+import org.sheepy.lily.game.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
-import org.sheepy.lily.vulkan.common.execution.IRecordable.RecordContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer;
+
+import static org.lwjgl.vulkan.VK10.vkCmdBindVertexBuffers;
 
 @Adapter(scope = BindVertexBuffer.class)
 public class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBuffer>
@@ -27,9 +27,9 @@ public class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBu
 		{
 			final var binding = bindings.get(i);
 			final var bufferAdapter = binding.getBuffer().adapt(IBufferAdapter.class);
-			bufferAdapter.addListener(	bufferListener,
-										IBufferAdapter.Features.Ptr.ordinal(),
-										IBufferAdapter.Features.Offset.ordinal());
+			bufferAdapter.addListener(bufferListener,
+									  IBufferAdapter.Features.Ptr.ordinal(),
+									  IBufferAdapter.Features.Offset.ordinal());
 		}
 	}
 
@@ -41,9 +41,9 @@ public class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBu
 		{
 			final var binding = bindings.get(i);
 			final var bufferAdapter = binding.getBuffer().adapt(IBufferAdapter.class);
-			bufferAdapter.removeListener(	bufferListener,
-											IBufferAdapter.Features.Ptr.ordinal(),
-											IBufferAdapter.Features.Offset.ordinal());
+			bufferAdapter.removeListener(bufferListener,
+										 IBufferAdapter.Features.Ptr.ordinal(),
+										 IBufferAdapter.Features.Offset.ordinal());
 		}
 	}
 

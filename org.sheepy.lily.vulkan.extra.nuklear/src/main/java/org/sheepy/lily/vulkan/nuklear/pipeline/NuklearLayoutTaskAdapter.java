@@ -13,11 +13,11 @@ import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.ui.IPanel;
 import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.core.model.ui.UiPackage;
+import org.sheepy.lily.game.api.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.api.window.IWindowListener.ISizeListener;
-import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.common.window.Extent2D;
-import org.sheepy.lily.vulkan.common.window.Window;
+import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.core.window.Extent2D;
+import org.sheepy.lily.vulkan.core.window.Window;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
@@ -41,7 +41,7 @@ public final class NuklearLayoutTaskAdapter
 
 	private final NuklearLayoutTask task;
 	private final GraphicsPipeline pipeline;
-	private final ISizeListener resizeListener = this::onResize;
+	private final IWindowListener.ISizeListener resizeListener = this::onResize;
 	private final UI ui;
 
 	private IGraphicContext context;

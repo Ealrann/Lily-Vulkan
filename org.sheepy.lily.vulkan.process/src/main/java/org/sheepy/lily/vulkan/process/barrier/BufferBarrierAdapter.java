@@ -6,10 +6,10 @@ import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
-import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
+import org.sheepy.lily.game.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
-import org.sheepy.lily.vulkan.common.barrier.IBufferBarrierAdapter;
-import org.sheepy.lily.vulkan.common.barrier.VkBufferBarrier;
+import org.sheepy.lily.vulkan.core.barrier.IBufferBarrierAdapter;
+import org.sheepy.lily.vulkan.core.barrier.VkBufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 
 @Statefull

@@ -1,10 +1,16 @@
 rootProject.name = "org.sheepy.lily.vulkan"
 
 
+include ':org.sheepy.lily.game.api'
+include ':org.sheepy.lily.game.core'
+
+include ':org.sheepy.lily.openal.api'
+include ':org.sheepy.lily.openal.core'
+
 include ':org.sheepy.vulkan'
 include ':org.sheepy.lily.vulkan.api'
 include ':org.sheepy.lily.vulkan.base'
-include ':org.sheepy.lily.vulkan.common'
+include ':org.sheepy.lily.vulkan.core'
 include ':org.sheepy.lily.vulkan.resource'
 include ':org.sheepy.lily.vulkan.process'
 include ':org.sheepy.lily.vulkan.process.compute'

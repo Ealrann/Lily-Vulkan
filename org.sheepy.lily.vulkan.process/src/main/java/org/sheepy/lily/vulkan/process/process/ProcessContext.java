@@ -6,11 +6,11 @@ import java.util.List;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.vulkan.common.descriptor.DescriptorPool;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.execution.queue.EQueueType;
-import org.sheepy.lily.vulkan.common.process.IProcessContext;
-import org.sheepy.lily.vulkan.common.process.IProcessContext.IRecorderContext;
+import org.sheepy.lily.vulkan.core.descriptor.DescriptorPool;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
+import org.sheepy.lily.vulkan.core.process.IProcessContext;
+import org.sheepy.lily.vulkan.core.process.IProcessContext.IRecorderContext;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 
 public abstract class ProcessContext<T extends IRecorderContext<T>> extends ExecutionContext

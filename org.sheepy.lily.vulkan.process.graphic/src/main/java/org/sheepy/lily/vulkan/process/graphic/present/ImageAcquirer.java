@@ -9,10 +9,10 @@ import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.common.graphic.ISurfaceManager;
-import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.core.graphic.ISurfaceManager;
+import org.sheepy.lily.vulkan.core.util.Logger;
 
 public class ImageAcquirer implements IAllocable<IGraphicContext>
 {

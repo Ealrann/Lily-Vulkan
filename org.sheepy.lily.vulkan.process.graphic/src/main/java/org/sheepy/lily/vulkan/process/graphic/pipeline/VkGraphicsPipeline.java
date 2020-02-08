@@ -6,11 +6,11 @@ import java.nio.ByteBuffer;
 import java.util.List;
 
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
-import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.common.pipeline.VkPipeline;
-import org.sheepy.lily.vulkan.common.pipeline.VkPipelineLayout;
-import org.sheepy.lily.vulkan.common.pipeline.VkShaderStage;
-import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.core.pipeline.VkPipeline;
+import org.sheepy.lily.vulkan.core.pipeline.VkPipelineLayout;
+import org.sheepy.lily.vulkan.core.pipeline.VkShaderStage;
+import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.ColorBlendBuilder;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.DepthStencilBuilder;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.DynamicStateBuilder;

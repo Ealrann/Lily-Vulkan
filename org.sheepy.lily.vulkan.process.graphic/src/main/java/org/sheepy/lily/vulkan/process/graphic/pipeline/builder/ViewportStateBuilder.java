@@ -6,7 +6,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineViewportStateCreateInfo;
 import org.lwjgl.vulkan.VkRect2D;
 import org.lwjgl.vulkan.VkViewport;
-import org.sheepy.lily.vulkan.common.window.Extent2D;
+import org.sheepy.lily.vulkan.core.window.Extent2D;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicViewportState;
 import org.sheepy.vulkan.model.graphicpipeline.Scissor;
 import org.sheepy.vulkan.model.graphicpipeline.StaticViewportState;

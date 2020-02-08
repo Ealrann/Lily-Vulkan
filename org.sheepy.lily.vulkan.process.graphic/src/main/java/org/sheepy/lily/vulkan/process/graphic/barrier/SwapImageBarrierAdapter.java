@@ -4,9 +4,9 @@ import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
-import org.sheepy.lily.vulkan.common.barrier.IImageBarrierAdapter;
-import org.sheepy.lily.vulkan.common.barrier.VkSwapImageBarrier;
-import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.core.barrier.IImageBarrierAdapter;
+import org.sheepy.lily.vulkan.core.barrier.VkSwapImageBarrier;
+import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier;
 
 @Statefull

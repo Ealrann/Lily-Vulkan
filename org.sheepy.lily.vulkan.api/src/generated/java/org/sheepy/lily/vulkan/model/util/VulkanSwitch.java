@@ -82,7 +82,6 @@ public class VulkanSwitch<T> extends Switch<T>
 				VulkanEngine vulkanEngine = (VulkanEngine)theEObject;
 				T result = caseVulkanEngine(vulkanEngine);
 				if (result == null) result = caseIEngine(vulkanEngine);
-				if (result == null) result = caseIResourceContainer(vulkanEngine);
 				if (result == null) result = caseIExecutionManager(vulkanEngine);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

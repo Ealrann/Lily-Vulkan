@@ -5,10 +5,10 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
-import org.sheepy.lily.vulkan.common.pipeline.VkPipeline;
-import org.sheepy.lily.vulkan.common.pipeline.VkPipelineLayout;
-import org.sheepy.lily.vulkan.common.pipeline.VkShaderStage;
-import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.core.pipeline.VkPipeline;
+import org.sheepy.lily.vulkan.core.pipeline.VkPipelineLayout;
+import org.sheepy.lily.vulkan.core.pipeline.VkShaderStage;
+import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 public class VkComputePipeline extends VkPipeline<ProcessContext<?>>

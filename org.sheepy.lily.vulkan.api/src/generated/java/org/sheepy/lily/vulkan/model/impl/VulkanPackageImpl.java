@@ -261,6 +261,17 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getVulkanEngine_DescriptorPkg()
+	{
+		return (EReference)vulkanEngineEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getIResourceContainer()
 	{
 		return iResourceContainerEClass;
@@ -477,6 +488,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		createEAttribute(vulkanEngineEClass, VULKAN_ENGINE__ENABLED);
 		createEReference(vulkanEngineEClass, VULKAN_ENGINE__PROCESSES);
 		createEAttribute(vulkanEngineEClass, VULKAN_ENGINE__FEATURES);
+		createEReference(vulkanEngineEClass, VULKAN_ENGINE__DESCRIPTOR_PKG);
 
 		iResourceContainerEClass = createEClass(IRESOURCE_CONTAINER);
 		createEReference(iResourceContainerEClass, IRESOURCE_CONTAINER__RESOURCE_PKG);
@@ -539,7 +551,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		// Add supertypes to classes
 		vulkanEngineEClass.getESuperTypes().add(theApplicationPackage.getIEngine());
-		vulkanEngineEClass.getESuperTypes().add(this.getIResourceContainer());
 		vulkanEngineEClass.getESuperTypes().add(this.getIExecutionManager());
 		iProcessEClass.getESuperTypes().add(this.getIResourceContainer());
 		iProcessEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
@@ -553,6 +564,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		initEAttribute(getVulkanEngine_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 0, 1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVulkanEngine_Processes(), this.getIProcess(), null, "processes", null, 0, -1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getVulkanEngine_Features(), theEnumerationPackage.getEPhysicalDeviceFeature(), "features", null, 0, -1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVulkanEngine_DescriptorPkg(), this.getDescriptorPkg(), null, "descriptorPkg", null, 0, 1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iResourceContainerEClass, IResourceContainer.class, "IResourceContainer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getIResourceContainer_ResourcePkg(), theApplicationPackage.getResourcePkg(), null, "resourcePkg", null, 0, 1, IResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

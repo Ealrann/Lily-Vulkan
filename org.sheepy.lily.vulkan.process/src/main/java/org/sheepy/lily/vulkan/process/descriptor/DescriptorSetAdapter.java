@@ -7,11 +7,11 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorPoolSize.Buffer;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.common.descriptor.IVkDescriptor;
-import org.sheepy.lily.vulkan.common.descriptor.VkDescriptorSet;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.resource.IDescriptorAdapter;
-import org.sheepy.lily.vulkan.common.resource.IDescriptorSetAdapter;
+import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
+import org.sheepy.lily.vulkan.core.descriptor.VkDescriptorSet;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.resource.IDescriptorAdapter;
+import org.sheepy.lily.vulkan.core.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 
 @Statefull

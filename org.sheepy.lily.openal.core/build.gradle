@@ -1,0 +1,12 @@
+plugins {
+	id 'java-library'
+}
+
+dependencies {
+	implementation project(':org.sheepy.lily.openal.api')
+	implementation project(':org.sheepy.lily.game.core')
+
+	implementation "org.lwjgl:lwjgl-stb:$lwjglVersion"
+	runtimeOnly "org.lwjgl:lwjgl-openal:$lwjglVersion:$lwjglNatives"
+	runtimeOnly "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
+}

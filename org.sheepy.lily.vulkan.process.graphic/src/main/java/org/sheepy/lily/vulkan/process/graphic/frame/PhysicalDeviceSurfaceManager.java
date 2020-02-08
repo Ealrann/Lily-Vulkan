@@ -1,25 +1,24 @@
 package org.sheepy.lily.vulkan.process.graphic.frame;
 
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.vulkan.api.window.IWindowListener.ISizeListener;
-import org.sheepy.lily.vulkan.api.window.IWindowListener.ISurfaceDeprecatedListener;
-import org.sheepy.lily.vulkan.common.device.capabilities.Capabilities;
-import org.sheepy.lily.vulkan.common.device.capabilities.ColorDomains;
-import org.sheepy.lily.vulkan.common.device.capabilities.VkColorDomain;
-import org.sheepy.lily.vulkan.common.execution.queue.VulkanQueue;
-import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.common.graphic.ISurfaceManager;
-import org.sheepy.lily.vulkan.common.util.Logger;
-import org.sheepy.lily.vulkan.common.window.Extent2D;
-import org.sheepy.lily.vulkan.common.window.VkSurface;
-import org.sheepy.lily.vulkan.common.window.VkSurface.ISurfaceListener;
-import org.sheepy.lily.vulkan.common.window.Window;
+import org.sheepy.lily.game.api.window.IWindowListener;
+import org.sheepy.lily.vulkan.core.device.capabilities.Capabilities;
+import org.sheepy.lily.vulkan.core.device.capabilities.ColorDomains;
+import org.sheepy.lily.vulkan.core.device.capabilities.VkColorDomain;
+import org.sheepy.lily.vulkan.core.execution.queue.VulkanQueue;
+import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.core.graphic.ISurfaceManager;
+import org.sheepy.lily.vulkan.core.util.Logger;
+import org.sheepy.lily.vulkan.core.window.Extent2D;
+import org.sheepy.lily.vulkan.core.window.VkSurface;
+import org.sheepy.lily.vulkan.core.window.VkSurface.ISurfaceListener;
+import org.sheepy.lily.vulkan.core.window.Window;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
 
 public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 {
-	private final ISizeListener sizeListener = size -> setDirty(true);
-	private final ISurfaceDeprecatedListener surfaceDeprecationListener = () -> setDirty(true);
+	private final IWindowListener.ISizeListener sizeListener = size -> setDirty(true);
+	private final IWindowListener.ISurfaceDeprecatedListener surfaceDeprecationListener = () -> setDirty(true);
 	private final ISurfaceListener surfaceListener = () -> setDirty(true);
 
 	private Capabilities capabilities;

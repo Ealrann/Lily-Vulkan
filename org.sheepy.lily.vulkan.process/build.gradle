@@ -5,5 +5,5 @@ plugins {
 dependencies {
 	api project(':org.sheepy.lily.vulkan.api')
 
-	implementation project(':org.sheepy.lily.vulkan.common')
+	implementation project(':org.sheepy.lily.vulkan.core')
 }

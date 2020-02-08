@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter.IMemoryTicket;
-import org.sheepy.lily.vulkan.common.resource.buffer.InternalTransferBufferAdapter.IDataFlowCommand;
-import org.sheepy.lily.vulkan.common.resource.image.VkImage;
+import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAdapter.IDataFlowCommand;
+import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.resource.buffer.memory.MemoryTicket;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;

@@ -5,7 +5,7 @@ module org.sheepy.lily.vulkan.process.graphic
 {
 	requires transitive org.sheepy.lily.vulkan.api;
 
-	requires org.sheepy.lily.vulkan.common;
+	requires org.sheepy.lily.vulkan.core;
 	requires org.sheepy.lily.vulkan.process;
 
 	exports org.sheepy.lily.vulkan.process.graphic.pipeline;

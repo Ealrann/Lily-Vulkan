@@ -3,10 +3,10 @@ package org.sheepy.lily.vulkan.resource.image;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
-import org.sheepy.lily.vulkan.common.descriptor.IVkDescriptor;
-import org.sheepy.lily.vulkan.common.resource.IDescriptorAdapter;
-import org.sheepy.lily.vulkan.common.resource.IImageAdapter;
-import org.sheepy.lily.vulkan.common.resource.image.VkImageArrayDescriptor;
+import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
+import org.sheepy.lily.vulkan.core.resource.IDescriptorAdapter;
+import org.sheepy.lily.vulkan.core.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.image.VkImageArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 
 @Statefull

@@ -3,6 +3,7 @@ import org.sheepy.lily.vulkan.api.model.VulkanModelExtension;
 
 module org.sheepy.lily.vulkan.api
 {
+	requires transitive org.sheepy.lily.game.api;
 	requires transitive org.sheepy.vulkan;
 	requires transitive org.lwjgl;
 
@@ -16,7 +17,6 @@ module org.sheepy.lily.vulkan.api
 	exports org.sheepy.lily.vulkan.api.resource.buffer;
 	exports org.sheepy.lily.vulkan.api.util;
 	exports org.sheepy.lily.vulkan.api.view;
-	exports org.sheepy.lily.vulkan.api.window;
 
 	exports org.sheepy.lily.vulkan.model;
 	exports org.sheepy.lily.vulkan.model.impl;

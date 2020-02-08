@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated openal -->
+      <factory
+            uri="org.sheepy.lily.openal"
+            class="org.sheepy.lily.openal.model.openal.provider.OpenalItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <!-- @generated openal -->
+      <extender
+            uri="org.sheepy.lily.core.model.application"
+            class="org.sheepy.lily.openal.model.openal.provider.OpenalItemProviderAdapterFactory$ApplicationChildCreationExtender"/>
+   </extension>
+
+</plugin>

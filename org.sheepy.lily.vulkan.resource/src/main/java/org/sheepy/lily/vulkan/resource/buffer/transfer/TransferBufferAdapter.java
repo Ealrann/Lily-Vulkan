@@ -2,10 +2,10 @@ package org.sheepy.lily.vulkan.resource.buffer.transfer;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.common.execution.InternalExecutionContext;
-import org.sheepy.lily.vulkan.common.resource.IVulkanResourceAdapter;
-import org.sheepy.lily.vulkan.common.resource.buffer.InternalTransferBufferAdapter;
-import org.sheepy.lily.vulkan.common.util.InstanceCountUtil;
+import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.resource.IVulkanResourceAdapter;
+import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAdapter;
+import org.sheepy.lily.vulkan.core.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.lily.vulkan.resource.buffer.memory.MemoryTicket;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFactory;

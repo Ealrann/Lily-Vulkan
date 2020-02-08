@@ -14,14 +14,14 @@ import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
-import org.sheepy.lily.vulkan.common.concurrent.VkFence;
-import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.common.execution.ICommandBuffer;
-import org.sheepy.lily.vulkan.common.execution.IRecordable.RecordContext.IExecutionIdleListener;
-import org.sheepy.lily.vulkan.common.execution.ISubmission;
-import org.sheepy.lily.vulkan.common.process.IProcessContext;
-import org.sheepy.lily.vulkan.common.util.EVulkanErrorStatus;
-import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.core.concurrent.VkFence;
+import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.core.execution.ICommandBuffer;
+import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext.IExecutionIdleListener;
+import org.sheepy.lily.vulkan.core.execution.ISubmission;
+import org.sheepy.lily.vulkan.core.process.IProcessContext;
+import org.sheepy.lily.vulkan.core.util.EVulkanErrorStatus;
+import org.sheepy.lily.vulkan.core.util.Logger;
 
 public class Submission<T extends IProcessContext> implements ISubmission<T>
 {

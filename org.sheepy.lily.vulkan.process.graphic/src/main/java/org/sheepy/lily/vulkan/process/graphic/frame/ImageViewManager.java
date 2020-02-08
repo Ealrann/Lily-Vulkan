@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.common.graphic.IImageViewManager;
-import org.sheepy.lily.vulkan.common.resource.image.VkImageView;
+import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.core.graphic.IImageViewManager;
+import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 
 public class ImageViewManager implements IImageViewManager
 {

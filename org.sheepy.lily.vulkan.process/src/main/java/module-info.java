@@ -4,7 +4,7 @@ import org.sheepy.lily.vulkan.process.Adapters;
 module org.sheepy.lily.vulkan.process
 {
 	requires transitive org.sheepy.lily.vulkan.api;
-	requires transitive org.sheepy.lily.vulkan.common;
+	requires transitive org.sheepy.lily.vulkan.core;
 
 	exports org.sheepy.lily.vulkan.process.execution;
 	exports org.sheepy.lily.vulkan.process.pipeline;

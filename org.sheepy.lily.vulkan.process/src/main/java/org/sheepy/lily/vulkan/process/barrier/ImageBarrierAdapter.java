@@ -8,10 +8,10 @@ import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
-import org.sheepy.lily.vulkan.common.barrier.IImageBarrierAdapter;
-import org.sheepy.lily.vulkan.common.barrier.VkImageBarrier;
-import org.sheepy.lily.vulkan.common.resource.IImageAdapter;
-import org.sheepy.lily.vulkan.common.resource.image.ImageUtil;
+import org.sheepy.lily.vulkan.core.barrier.IImageBarrierAdapter;
+import org.sheepy.lily.vulkan.core.barrier.VkImageBarrier;
+import org.sheepy.lily.vulkan.core.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.image.ImageUtil;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 

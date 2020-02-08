@@ -5,7 +5,7 @@ package org.sheepy.lily.vulkan.model.binding.provider;
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.sheepy.lily.core.model.ui.provider.LilyEditPlugin;
+import org.sheepy.lily.core.model.resource.provider.LilyEditPlugin;
 import org.sheepy.vulkan.model.barrier.provider.VulkanEditPlugin;
 
 /**

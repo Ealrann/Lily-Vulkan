@@ -9,10 +9,10 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkFramebufferCreateInfo;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.vulkan.common.graphic.IFramebufferManager;
-import org.sheepy.lily.vulkan.common.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.common.resource.attachment.IExtraAttachmentAdapter;
-import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.core.graphic.IFramebufferManager;
+import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.core.resource.attachment.IExtraAttachmentAdapter;
+import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
 
 public class FramebufferManager implements IFramebufferManager

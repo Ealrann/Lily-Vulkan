@@ -1,22 +1,22 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
-import java.nio.ByteBuffer;
-
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAdapter;
+import org.sheepy.lily.game.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
-import org.sheepy.lily.vulkan.common.execution.InternalExecutionContext;
-import org.sheepy.lily.vulkan.common.resource.IVulkanResourceAdapter;
-import org.sheepy.lily.vulkan.common.resource.buffer.BufferInfo;
-import org.sheepy.lily.vulkan.common.resource.buffer.CPUBufferBackend;
-import org.sheepy.lily.vulkan.common.resource.buffer.GPUBufferBackend;
-import org.sheepy.lily.vulkan.common.resource.buffer.IBufferBackend;
-import org.sheepy.lily.vulkan.common.util.InstanceCountUtil;
+import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.resource.IVulkanResourceAdapter;
+import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
+import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
+import org.sheepy.lily.vulkan.core.resource.buffer.GPUBufferBackend;
+import org.sheepy.lily.vulkan.core.resource.buffer.IBufferBackend;
+import org.sheepy.lily.vulkan.core.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
+
+import java.nio.ByteBuffer;
 
 @Statefull
 @Adapter(scope = Buffer.class)

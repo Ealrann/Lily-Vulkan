@@ -4,7 +4,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.nuklear.NkUserFontGlyph;
 import org.lwjgl.stb.STBTTAlignedQuad;
 import org.sheepy.lily.core.api.notification.INotificationListener;
-import org.sheepy.lily.vulkan.common.resource.font.IFontAllocator;
+import org.sheepy.lily.vulkan.core.resource.font.IFontAllocator;
 
 public class FontQueryData
 {

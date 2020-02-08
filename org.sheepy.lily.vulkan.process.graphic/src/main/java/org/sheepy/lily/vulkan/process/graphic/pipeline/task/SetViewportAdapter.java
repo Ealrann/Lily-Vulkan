@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.vkCmdSetViewport;
 import org.lwjgl.vulkan.VkViewport;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.common.execution.IRecordable.RecordContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.model.process.graphic.SetViewport;
 
 @Adapter(scope = SetViewport.class)

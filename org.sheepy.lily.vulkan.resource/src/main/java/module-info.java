@@ -3,7 +3,7 @@ import org.sheepy.lily.vulkan.resource.Adapters;
 
 module org.sheepy.lily.vulkan.resource
 {
-	requires transitive org.sheepy.lily.vulkan.common;
+	requires transitive org.sheepy.lily.vulkan.core;
 
 	requires transitive org.lwjgl.stb;
 	requires org.lwjgl.stb.natives;

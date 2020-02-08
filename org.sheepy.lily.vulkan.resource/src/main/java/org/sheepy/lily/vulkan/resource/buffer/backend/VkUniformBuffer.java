@@ -7,11 +7,11 @@ import org.lwjgl.vulkan.VkDescriptorBufferInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.lily.vulkan.common.descriptor.IVkDescriptor;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.resource.buffer.BufferInfo;
-import org.sheepy.lily.vulkan.common.resource.buffer.GPUBufferBackend;
-import org.sheepy.lily.vulkan.common.resource.memory.MemoryChunkBuilder;
+import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
+import org.sheepy.lily.vulkan.core.resource.buffer.GPUBufferBackend;
+import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunkBuilder;
 
 public class VkUniformBuffer implements IVkDescriptor
 {

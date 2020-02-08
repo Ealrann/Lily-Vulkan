@@ -7,7 +7,7 @@ test {
 }
 
 dependencies {
-	api project(':org.sheepy.lily.vulkan.common')
+	api project(':org.sheepy.lily.vulkan.core')
 
 	api "org.lwjgl:lwjgl-stb:$lwjglVersion"
 	implementation "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"

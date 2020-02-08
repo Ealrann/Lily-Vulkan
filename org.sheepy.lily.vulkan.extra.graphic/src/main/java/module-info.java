@@ -4,7 +4,7 @@ import org.sheepy.lily.vulkan.extra.graphic.Adapters;
 module org.sheepy.lily.vulkan.extra.graphic
 {
 	requires transitive org.sheepy.lily.vulkan.extra.api;
-	requires org.sheepy.lily.vulkan.common;
+	requires org.sheepy.lily.vulkan.core;
 
 	opens org.sheepy.lily.vulkan.extra.graphic.rendering;
 	opens org.sheepy.lily.vulkan.extra.graphic.rendering.buffer;

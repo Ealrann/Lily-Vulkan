@@ -4,7 +4,7 @@ import org.sheepy.lily.vulkan.nuklear.Adapters;
 module org.sheepy.lily.vulkan.extra.nuklear
 {
 	requires transitive org.sheepy.lily.vulkan.extra.api;
-	requires org.sheepy.lily.vulkan.common;
+	requires org.sheepy.lily.vulkan.core;
 
 	requires transitive org.lwjgl.stb;
 	requires transitive org.lwjgl.nuklear;
