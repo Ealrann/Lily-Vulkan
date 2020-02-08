@@ -95,7 +95,7 @@ public final class LabelAdapter extends Notifier implements IUIElementAdapter, I
 		dirty = false;
 		final Label label = (Label) control;
 
-		int align;
+		final int align;
 		switch (label.getHorizontalRelative())
 		{
 			case MIDDLE:
@@ -127,26 +127,29 @@ public final class LabelAdapter extends Notifier implements IUIElementAdapter, I
 
 	private boolean narrate(Label label)
 	{
-		boolean needLayout = false;
-		if (narrationTimer != null && narrationTimer.isRunning() && !label.getText().isEmpty())
+		final String text = label.getText();
+		if (narrationTimer != null && narrationTimer.isRunning() && !text.isEmpty())
 		{
 			if (narrationTimer.isOverTime())
 			{
 				narrationTimer.stop();
 				narrationTimer = null;
-				MemoryUtil.memUTF8(label.getText(), true, textBuffer);
+				MemoryUtil.memUTF8(text, true, textBuffer);
 			}
 			else
 			{
-				double progress = narrationTimer.progress();
-				int charCount = textBuffer.capacity();
-				int charCountToDisplay = (int) (charCount * progress);
-				final String textToDisplay = label.getText().substring(0, charCountToDisplay);
+				final double progress = narrationTimer.progress();
+				final int charCount = text.length();
+				final int charCountToDisplay = (int) (charCount * progress);
+				final String textToDisplay = text.substring(0, charCountToDisplay);
 				MemoryUtil.memUTF8(textToDisplay, true, textBuffer);
 			}
-			needLayout = true;
+			return true;
 		}
-		return needLayout;
+		else
+		{
+			return false;
+		}
 	}
 
 	@Override
