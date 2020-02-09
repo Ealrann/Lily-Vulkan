@@ -116,7 +116,10 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 
 	public void requestLayout(boolean full)
 	{
-		layoutRequested = (full ? ELayoutRequest.Force : ELayoutRequest.IfNecessary);
+		if (layoutRequested != ELayoutRequest.Force)
+		{
+			layoutRequested = (full ? ELayoutRequest.Force : ELayoutRequest.IfNecessary);
+		}
 	}
 
 	@Override

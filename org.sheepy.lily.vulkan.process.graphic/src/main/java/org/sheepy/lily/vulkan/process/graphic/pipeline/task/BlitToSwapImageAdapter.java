@@ -21,6 +21,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.enumeration.*;
 import org.sheepy.vulkan.model.image.ImageFactory;
 
+import java.util.List;
+
 import static org.lwjgl.vulkan.VK10.*;
 
 @Statefull
@@ -54,6 +56,7 @@ public class BlitToSwapImageAdapter implements IPipelineTaskAdapter<BlitToSwapIm
 	{
 		this.config = config;
 		final var imageViewManager = context.getImageViewManager();
+		config.addDependencies(List.of(imageViewManager));
 	}
 
 	@NotifyChanged(featureIds = GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE)
