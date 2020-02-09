@@ -10,11 +10,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.lily.core.model.application.provider.IResourceItemProvider;
+import org.sheepy.lily.core.model.resource.provider.IResourceItemProvider;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer} object.
@@ -66,7 +65,7 @@ public class CompositeBufferItemProvider extends IResourceItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ResourcePackage.Literals.COMPOSITE_BUFFER__PARTS);
+			childrenFeatures.add(VulkanResourcePackage.Literals.COMPOSITE_BUFFER__PARTS);
 		}
 		return childrenFeatures;
 	}
@@ -126,7 +125,7 @@ public class CompositeBufferItemProvider extends IResourceItemProvider
 
 		switch (notification.getFeatureID(CompositeBuffer.class))
 		{
-			case ResourcePackage.COMPOSITE_BUFFER__PARTS:
+			case VulkanResourcePackage.COMPOSITE_BUFFER__PARTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -147,8 +146,8 @@ public class CompositeBufferItemProvider extends IResourceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.COMPOSITE_BUFFER__PARTS,
-				 ResourceFactory.eINSTANCE.createBufferPart()));
+				(VulkanResourcePackage.Literals.COMPOSITE_BUFFER__PARTS,
+				 VulkanResourceFactory.eINSTANCE.createBufferPart()));
 	}
 
 }

@@ -3,17 +3,22 @@
 package org.sheepy.lily.vulkan.model.resource.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.lily.core.model.application.IResource;
+
+import org.sheepy.lily.core.model.resource.IResource;
+
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
+
 import org.sheepy.lily.vulkan.model.resource.Image;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+
 import org.sheepy.vulkan.model.image.impl.SamplerInfoImpl;
 
 /**
@@ -41,6 +46,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -50,6 +56,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getImage() <em>Image</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -78,7 +85,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.SAMPLER;
+		return VulkanResourcePackage.Literals.SAMPLER;
 	}
 
 	/**
@@ -103,7 +110,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLER__NAME, oldName, name));
 	}
 
 	/**
@@ -121,7 +128,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 			if (image != oldImage)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.SAMPLER__IMAGE, oldImage, image));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.SAMPLER__IMAGE, oldImage, image));
 			}
 		}
 		return image;
@@ -148,7 +155,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 		Image oldImage = image;
 		image = newImage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER__IMAGE, oldImage, image));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLER__IMAGE, oldImage, image));
 	}
 
 	/**
@@ -161,9 +168,9 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLER__NAME:
+			case VulkanResourcePackage.SAMPLER__NAME:
 				return getName();
-			case ResourcePackage.SAMPLER__IMAGE:
+			case VulkanResourcePackage.SAMPLER__IMAGE:
 				if (resolve) return getImage();
 				return basicGetImage();
 		}
@@ -180,10 +187,10 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLER__NAME:
+			case VulkanResourcePackage.SAMPLER__NAME:
 				setName((String)newValue);
 				return;
-			case ResourcePackage.SAMPLER__IMAGE:
+			case VulkanResourcePackage.SAMPLER__IMAGE:
 				setImage((Image)newValue);
 				return;
 		}
@@ -200,10 +207,10 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLER__NAME:
+			case VulkanResourcePackage.SAMPLER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ResourcePackage.SAMPLER__IMAGE:
+			case VulkanResourcePackage.SAMPLER__IMAGE:
 				setImage((Image)null);
 				return;
 		}
@@ -220,9 +227,9 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLER__NAME:
+			case VulkanResourcePackage.SAMPLER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.SAMPLER__IMAGE:
+			case VulkanResourcePackage.SAMPLER__IMAGE:
 				return image != null;
 		}
 		return super.eIsSet(featureID);
@@ -240,7 +247,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 		{
 			switch (derivedFeatureID)
 			{
-				case ResourcePackage.SAMPLER__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
+				case VulkanResourcePackage.SAMPLER__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
 				default: return -1;
 			}
 		}
@@ -266,7 +273,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 		{
 			switch (baseFeatureID)
 			{
-				case TypesPackage.LNAMED_ELEMENT__NAME: return ResourcePackage.SAMPLER__NAME;
+				case TypesPackage.LNAMED_ELEMENT__NAME: return VulkanResourcePackage.SAMPLER__NAME;
 				default: return -1;
 			}
 		}

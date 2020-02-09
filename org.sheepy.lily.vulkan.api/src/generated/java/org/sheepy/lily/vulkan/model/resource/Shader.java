@@ -4,8 +4,9 @@ package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.sheepy.lily.core.model.application.FileResource;
-import org.sheepy.lily.core.model.application.IResource;
+import org.sheepy.lily.core.model.resource.FileResource;
+import org.sheepy.lily.core.model.resource.IResource;
+
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
@@ -24,7 +25,7 @@ import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Shader#getConstants <em>Constants</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getShader()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getShader()
  * @model
  * @generated
  */
@@ -36,7 +37,7 @@ public interface Shader extends IResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>File</em>' containment reference.
 	 * @see #setFile(FileResource)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getShader_File()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getShader_File()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -60,7 +61,7 @@ public interface Shader extends IResource
 	 * @return the value of the '<em>Stage</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EShaderStage
 	 * @see #setStage(EShaderStage)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getShader_Stage()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getShader_Stage()
 	 * @model unique="false"
 	 * @generated
 	 */
@@ -83,7 +84,7 @@ public interface Shader extends IResource
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Constants</em>' containment reference list.
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getShader_Constants()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getShader_Constants()
 	 * @model containment="true"
 	 * @generated
 	 */

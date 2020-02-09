@@ -9,9 +9,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.lily.core.model.application.impl.IResourceImpl;
+
+import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
+
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,7 +68,7 @@ public class ConstantBufferImpl extends IResourceImpl implements ConstantBuffer
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.CONSTANT_BUFFER;
+		return VulkanResourcePackage.Literals.CONSTANT_BUFFER;
 	}
 
 	/**
@@ -91,7 +93,7 @@ public class ConstantBufferImpl extends IResourceImpl implements ConstantBuffer
 		ByteBuffer oldData = data;
 		data = newData;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.CONSTANT_BUFFER__DATA, oldData, data));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.CONSTANT_BUFFER__DATA, oldData, data));
 	}
 
 	/**
@@ -104,7 +106,7 @@ public class ConstantBufferImpl extends IResourceImpl implements ConstantBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.CONSTANT_BUFFER__DATA:
+			case VulkanResourcePackage.CONSTANT_BUFFER__DATA:
 				return getData();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -120,7 +122,7 @@ public class ConstantBufferImpl extends IResourceImpl implements ConstantBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.CONSTANT_BUFFER__DATA:
+			case VulkanResourcePackage.CONSTANT_BUFFER__DATA:
 				setData((ByteBuffer)newValue);
 				return;
 		}
@@ -137,7 +139,7 @@ public class ConstantBufferImpl extends IResourceImpl implements ConstantBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.CONSTANT_BUFFER__DATA:
+			case VulkanResourcePackage.CONSTANT_BUFFER__DATA:
 				setData(DATA_EDEFAULT);
 				return;
 		}
@@ -154,7 +156,7 @@ public class ConstantBufferImpl extends IResourceImpl implements ConstantBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.CONSTANT_BUFFER__DATA:
+			case VulkanResourcePackage.CONSTANT_BUFFER__DATA:
 				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
 		}
 		return super.eIsSet(featureID);

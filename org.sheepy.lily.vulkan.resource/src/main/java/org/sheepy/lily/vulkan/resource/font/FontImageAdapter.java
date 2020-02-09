@@ -1,14 +1,5 @@
 package org.sheepy.lily.vulkan.resource.font;
 
-import static org.lwjgl.stb.STBTruetype.*;
-import static org.lwjgl.system.MemoryUtil.NULL;
-import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
-
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryStack;
@@ -35,6 +26,14 @@ import org.sheepy.lily.vulkan.resource.font.util.FontAllocator;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import static org.lwjgl.stb.STBTruetype.*;
+import static org.lwjgl.system.MemoryUtil.NULL;
+import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
 @Statefull
 @Adapter(scope = FontImage.class)
@@ -84,9 +83,7 @@ public final class FontImageAdapter extends Notifier implements IFontImageAdapte
 		images = new VkImage[instanceCount];
 		views = new VkImageView[instanceCount];
 
-		final var builder = new VkImage.VkImageBuilder(	fontImage,
-														BASE_FONTIMAGE_WIDTH,
-														BASE_FONTIMAGE_HEIGHT);
+		final var builder = new VkImage.VkImageBuilder(fontImage, BASE_FONTIMAGE_WIDTH, BASE_FONTIMAGE_HEIGHT);
 
 		int properties = 0;
 		for (int i = 0; i < instanceCount; i++)
@@ -148,14 +145,13 @@ public final class FontImageAdapter extends Notifier implements IFontImageAdapte
 			cdata = null;
 		}
 
-		ByteBuffer bitmap = null;
 		addDefaultChars(characterMap, fonts.get(0));
 
 		final var tmpCodePointMap = CodepointMap.fromCharacterMap(characterMap);
 		if (codepointMap == null || codepointMap.isCompatible(tmpCodePointMap) == false)
 		{
 			codepointMap = tmpCodePointMap;
-			try (MemoryStack stack = MemoryStack.stackPush())
+			try (final var stack = MemoryStack.stackPush())
 			{
 				cdata = STBTTPackedchar.calloc(codepointMap.codepointCount);
 
@@ -165,16 +161,10 @@ public final class FontImageAdapter extends Notifier implements IFontImageAdapte
 
 				if (ticket.getReservationStatus() == EReservationStatus.SUCCESS)
 				{
-					bitmap = ticket.toBuffer();
+					final var bitmap = ticket.toBuffer();
 
 					final STBTTPackContext pc = STBTTPackContext.mallocStack(stack);
-					stbtt_PackBegin(pc,
-									bitmap,
-									BASE_FONTIMAGE_WIDTH,
-									BASE_FONTIMAGE_HEIGHT,
-									0,
-									1,
-									NULL);
+					stbtt_PackBegin(pc, bitmap, BASE_FONTIMAGE_WIDTH, BASE_FONTIMAGE_HEIGHT, 0, 1, NULL);
 					stbtt_PackSetOversampling(pc, H_OVERSAMPLING, V_OVERSAMPLING);
 
 					int offset = 0;
@@ -202,19 +192,20 @@ public final class FontImageAdapter extends Notifier implements IFontImageAdapte
 						nextInstance();
 					}
 					final var image = images[instance];
-					final var command = DataFlowCommandFactory.newPushImageCommand(	(MemoryTicket) ticket,
-																					image,
-																					EPipelineStage.TOP_OF_PIPE_BIT,
-																					List.of(EAccess.UNDEFINED),
-																					EPipelineStage.FRAGMENT_SHADER_BIT,
-																					List.of(EAccess.SHADER_READ_BIT),
-																					EImageLayout.GENERAL);
+					final var command = DataFlowCommandFactory.newPushImageCommand((MemoryTicket) ticket,
+																				   image,
+																				   EPipelineStage.TOP_OF_PIPE_BIT,
+																				   List.of(EAccess.UNDEFINED),
+																				   EPipelineStage.FRAGMENT_SHADER_BIT,
+																				   List.of(EAccess.SHADER_READ_BIT),
+																				   EImageLayout.GENERAL);
 
 					transferBufferAdapter.addTransferCommand(command);
 					res = true;
 				}
 
-			} catch (final Exception e)
+			}
+			catch (final Exception e)
 			{
 				e.printStackTrace();
 			}
@@ -229,12 +220,7 @@ public final class FontImageAdapter extends Notifier implements IFontImageAdapte
 
 	private static void addDefaultChars(Map<Font, List<String>> characterMap, Font font)
 	{
-		var list = characterMap.get(font);
-		if (list == null)
-		{
-			list = new ArrayList<>();
-			characterMap.put(font, list);
-		}
+		final var list = characterMap.computeIfAbsent(font, k -> new ArrayList<>());
 		list.add("!?,.+-*/123456789");
 	}
 
@@ -248,14 +234,8 @@ public final class FontImageAdapter extends Notifier implements IFontImageAdapte
 		final var newImage = images[instance];
 		final var newView = views[instance];
 
-		final var imageNotification = new LongNotification(	this,
-															Features.Image,
-															oldImage.getPtr(),
-															newImage.getPtr());
-		final var viewNotification = new LongNotification(	this,
-															Features.View,
-															oldView.getPtr(),
-															newView.getPtr());
+		final var imageNotification = new LongNotification(this, Features.Image, oldImage.getPtr(), newImage.getPtr());
+		final var viewNotification = new LongNotification(this, Features.View, oldView.getPtr(), newView.getPtr());
 
 		fireNotification(imageNotification);
 		fireNotification(viewNotification);

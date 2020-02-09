@@ -10,13 +10,15 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
+
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -61,7 +63,7 @@ public class DescriptorSetPkgImpl extends LilyEObject implements DescriptorSetPk
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.DESCRIPTOR_SET_PKG;
+		return VulkanResourcePackage.Literals.DESCRIPTOR_SET_PKG;
 	}
 
 	/**
@@ -74,7 +76,7 @@ public class DescriptorSetPkgImpl extends LilyEObject implements DescriptorSetPk
 	{
 		if (descriptorSets == null)
 		{
-			descriptorSets = new EObjectContainmentEList<DescriptorSet>(DescriptorSet.class, this, ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS);
+			descriptorSets = new EObjectContainmentEList<DescriptorSet>(DescriptorSet.class, this, VulkanResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS);
 		}
 		return descriptorSets;
 	}
@@ -89,7 +91,7 @@ public class DescriptorSetPkgImpl extends LilyEObject implements DescriptorSetPk
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
+			case VulkanResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
 				return ((InternalEList<?>)getDescriptorSets()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -105,7 +107,7 @@ public class DescriptorSetPkgImpl extends LilyEObject implements DescriptorSetPk
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
+			case VulkanResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
 				return getDescriptorSets();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -122,7 +124,7 @@ public class DescriptorSetPkgImpl extends LilyEObject implements DescriptorSetPk
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
+			case VulkanResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
 				getDescriptorSets().clear();
 				getDescriptorSets().addAll((Collection<? extends DescriptorSet>)newValue);
 				return;
@@ -140,7 +142,7 @@ public class DescriptorSetPkgImpl extends LilyEObject implements DescriptorSetPk
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
+			case VulkanResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
 				getDescriptorSets().clear();
 				return;
 		}
@@ -157,7 +159,7 @@ public class DescriptorSetPkgImpl extends LilyEObject implements DescriptorSetPk
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
+			case VulkanResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
 				return descriptorSets != null && !descriptorSets.isEmpty();
 		}
 		return super.eIsSet(featureID);

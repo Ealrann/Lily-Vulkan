@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
-import org.sheepy.lily.core.model.application.IResource;
+import org.sheepy.lily.core.model.resource.IResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -10,9 +10,10 @@ import org.sheepy.lily.core.model.application.IResource;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getIBuffer()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getIBuffer()
  * @model interface="true" abstract="true"
  * @generated
  */
 public interface IBuffer extends IResource
-{} // IBuffer
+{
+} // IBuffer

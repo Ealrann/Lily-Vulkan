@@ -3,14 +3,20 @@
 package org.sheepy.lily.vulkan.model.resource.impl;
 
 import java.nio.ByteBuffer;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.joml.Vector2ic;
+
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -107,7 +113,7 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.STATIC_IMAGE;
+		return VulkanResourcePackage.Literals.STATIC_IMAGE;
 	}
 
 	/**
@@ -132,7 +138,7 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 		boolean oldFillWithZero = fillWithZero;
 		fillWithZero = newFillWithZero;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO, oldFillWithZero, fillWithZero));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO, oldFillWithZero, fillWithZero));
 	}
 
 	/**
@@ -157,7 +163,7 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 		ByteBuffer oldFillWith = fillWith;
 		fillWith = newFillWith;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.STATIC_IMAGE__FILL_WITH, oldFillWith, fillWith));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.STATIC_IMAGE__FILL_WITH, oldFillWith, fillWith));
 	}
 
 	/**
@@ -182,7 +188,7 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 		Vector2ic oldSize = size;
 		size = newSize;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.STATIC_IMAGE__SIZE, oldSize, size));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.STATIC_IMAGE__SIZE, oldSize, size));
 	}
 
 	/**
@@ -195,11 +201,11 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
+			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
 				return isFillWithZero();
-			case ResourcePackage.STATIC_IMAGE__FILL_WITH:
+			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH:
 				return getFillWith();
-			case ResourcePackage.STATIC_IMAGE__SIZE:
+			case VulkanResourcePackage.STATIC_IMAGE__SIZE:
 				return getSize();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -215,13 +221,13 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
+			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
 				setFillWithZero((Boolean)newValue);
 				return;
-			case ResourcePackage.STATIC_IMAGE__FILL_WITH:
+			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH:
 				setFillWith((ByteBuffer)newValue);
 				return;
-			case ResourcePackage.STATIC_IMAGE__SIZE:
+			case VulkanResourcePackage.STATIC_IMAGE__SIZE:
 				setSize((Vector2ic)newValue);
 				return;
 		}
@@ -238,13 +244,13 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
+			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
 				setFillWithZero(FILL_WITH_ZERO_EDEFAULT);
 				return;
-			case ResourcePackage.STATIC_IMAGE__FILL_WITH:
+			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH:
 				setFillWith(FILL_WITH_EDEFAULT);
 				return;
-			case ResourcePackage.STATIC_IMAGE__SIZE:
+			case VulkanResourcePackage.STATIC_IMAGE__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
 		}
@@ -261,11 +267,11 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
+			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
 				return fillWithZero != FILL_WITH_ZERO_EDEFAULT;
-			case ResourcePackage.STATIC_IMAGE__FILL_WITH:
+			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH:
 				return FILL_WITH_EDEFAULT == null ? fillWith != null : !FILL_WITH_EDEFAULT.equals(fillWith);
-			case ResourcePackage.STATIC_IMAGE__SIZE:
+			case VulkanResourcePackage.STATIC_IMAGE__SIZE:
 				return SIZE_EDEFAULT == null ? size != null : !SIZE_EDEFAULT.equals(size);
 		}
 		return super.eIsSet(featureID);

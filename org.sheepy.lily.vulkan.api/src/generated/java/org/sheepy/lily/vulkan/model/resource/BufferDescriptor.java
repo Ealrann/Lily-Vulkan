@@ -4,7 +4,6 @@ package org.sheepy.lily.vulkan.model.resource;
 
 import org.sheepy.lily.vulkan.model.IDescriptor;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Buffer Descriptor</b></em>'.
@@ -17,7 +16,7 @@ import org.sheepy.lily.vulkan.model.IDescriptor;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDescriptor#getBuffer <em>Buffer</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDescriptor()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferDescriptor()
  * @model
  * @generated
  */
@@ -29,7 +28,7 @@ public interface BufferDescriptor extends IDescriptor
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Buffer</em>' reference.
 	 * @see #setBuffer(IBuffer)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferDescriptor_Buffer()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferDescriptor_Buffer()
 	 * @model required="true"
 	 * @generated
 	 */

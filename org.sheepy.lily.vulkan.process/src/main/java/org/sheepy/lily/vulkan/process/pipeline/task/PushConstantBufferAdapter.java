@@ -1,7 +1,5 @@
 package org.sheepy.lily.vulkan.process.pipeline.task;
 
-import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
-
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -16,7 +14,9 @@ import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAdapter;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+
+import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
 
 @Statefull
 @Adapter(scope = PushConstantBuffer.class)
@@ -32,20 +32,20 @@ public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConst
 	{
 		buffer = task.getBuffer();
 		updater = buffer.adapt(IConstantBufferUpdater.class);
-		buffer.addListener(bufferListener, ResourcePackage.CONSTANT_BUFFER__DATA);
+		buffer.addListener(bufferListener, VulkanResourcePackage.CONSTANT_BUFFER__DATA);
 	}
 
 	@Dispose
 	public void dispose()
 	{
-		buffer.removeListener(bufferListener, ResourcePackage.CONSTANT_BUFFER__DATA);
+		buffer.removeListener(bufferListener, VulkanResourcePackage.CONSTANT_BUFFER__DATA);
 	}
 
 	@Override
 	public void record(PushConstantBuffer pushConstant, IRecordContext context)
 	{
 		final var pipeline = ModelUtil.findParent(pushConstant, IPipeline.class);
-		final var pipelineAdapter = pipeline.<IVkPipelineAdapter<?>> adaptNotNullGeneric(IPipelineAdapter.class);
+		final var pipelineAdapter = pipeline.<IVkPipelineAdapter<?>>adaptNotNullGeneric(IPipelineAdapter.class);
 
 		if (updater != null)
 		{

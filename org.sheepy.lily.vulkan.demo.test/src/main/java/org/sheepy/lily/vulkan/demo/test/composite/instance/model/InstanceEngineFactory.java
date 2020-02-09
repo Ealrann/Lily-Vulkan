@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.demo.test.composite.instance.model;
 
-import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.core.model.application.IEngine;
 import org.sheepy.lily.core.model.cadence.Cadence;
 import org.sheepy.lily.core.model.cadence.CadenceFactory;
+import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.demo.test.composite.instance.model.InstanceTestResourceFactory.ResourceContainer;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
@@ -12,7 +12,7 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 public class InstanceEngineFactory
@@ -74,12 +74,12 @@ public class InstanceEngineFactory
 	private static ComputeProcess createComputeProcessPool(ResourceContainer resourceContainer)
 	{
 		final ComputeProcess process = ComputeFactory.eINSTANCE.createComputeProcess();
-		process.setExtensionPkg(ProcessFactory.eINSTANCE.createProcessExtensionPkg());;
+		process.setExtensionPkg(ProcessFactory.eINSTANCE.createProcessExtensionPkg());
 
 		final var partPkg = ProcessFactory.eINSTANCE.createPipelinePkg();
 		process.setPipelinePkg(partPkg);
 
-		final var resourcePkg = ApplicationFactory.eINSTANCE.createResourcePkg();
+		final var resourcePkg = ResourceFactory.eINSTANCE.createResourcePkg();
 		process.setResourcePkg(resourcePkg);
 		final var resourceList = resourcePkg.getResources();
 		resourceList.add(resourceContainer.transferBuffer);
@@ -103,7 +103,7 @@ public class InstanceEngineFactory
 		res.setTaskPkg(taskPkg);
 		res.setShader(resourceContainer.shader);
 		res.setStage(ECommandStage.COMPUTE);
-		final DescriptorSetPkg dsPkg = ResourceFactory.eINSTANCE.createDescriptorSetPkg();
+		final DescriptorSetPkg dsPkg = VulkanResourceFactory.eINSTANCE.createDescriptorSetPkg();
 		res.setDescriptorSetPkg(dsPkg);
 		dsPkg.getDescriptorSets().add(resourceContainer.ds);
 		return res;

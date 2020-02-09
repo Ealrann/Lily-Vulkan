@@ -21,15 +21,15 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.core.model.cadence.CadenceFactory;
+import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.AbstractProcess} object.
@@ -335,7 +335,7 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-				 ApplicationFactory.eINSTANCE.createResourcePkg()));
+				 ResourceFactory.eINSTANCE.createResourcePkg()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -355,7 +355,7 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG,
-				 ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
+				 VulkanResourceFactory.eINSTANCE.createDescriptorSetPkg()));
 
 		newChildDescriptors.add
 			(createChildParameter

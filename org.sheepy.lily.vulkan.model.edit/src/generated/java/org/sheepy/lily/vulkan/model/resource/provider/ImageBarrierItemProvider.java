@@ -10,7 +10,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.vulkan.model.barrier.provider.AbstractImageBarrierItemProvider;
 
 /**
@@ -64,7 +64,7 @@ public class ImageBarrierItemProvider extends AbstractImageBarrierItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ImageBarrier_image_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ImageBarrier_image_feature", "_UI_ImageBarrier_type"),
-				 ResourcePackage.Literals.IMAGE_BARRIER__IMAGE,
+				 VulkanResourcePackage.Literals.IMAGE_BARRIER__IMAGE,
 				 true,
 				 false,
 				 true,

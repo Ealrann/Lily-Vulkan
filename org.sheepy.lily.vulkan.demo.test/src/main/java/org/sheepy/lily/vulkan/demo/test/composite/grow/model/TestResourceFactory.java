@@ -3,8 +3,8 @@ package org.sheepy.lily.vulkan.demo.test.composite.grow.model;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.vulkan.demo.test.composite.grow.adapter.TestDataProviderAdapter;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
@@ -32,7 +32,7 @@ class TestResourceFactory
 
 	private static TransferBuffer buildTransferBuffer()
 	{
-		final var res = ResourceFactory.eINSTANCE.createTransferBuffer();
+		final var res = VulkanResourceFactory.eINSTANCE.createTransferBuffer();
 		res.setSize(TestDataProviderAdapter.MAX_SIZE);
 		res.setUsedToFetch(true);
 		return res;
@@ -40,9 +40,9 @@ class TestResourceFactory
 
 	private static CompositeBuffer buildCompositeBuffer(int partCount)
 	{
-		final var res = ResourceFactory.eINSTANCE.createCompositeBuffer();
+		final var res = VulkanResourceFactory.eINSTANCE.createCompositeBuffer();
 
-		final var provider = ResourceFactory.eINSTANCE.createBufferDataProvider();
+		final var provider = VulkanResourceFactory.eINSTANCE.createBufferDataProvider();
 		provider.setName(TestDataProviderAdapter.NAME);
 		provider.getUsages().add(EBufferUsage.TRANSFER_SRC_BIT);
 		provider.setStageBeforePush(EPipelineStage.TRANSFER_BIT);
@@ -52,7 +52,7 @@ class TestResourceFactory
 		final var parts = res.getParts();
 		for (int i = 0; i < partCount; i++)
 		{
-			final var bufferPart = ResourceFactory.eINSTANCE.createBufferPart();
+			final var bufferPart = VulkanResourceFactory.eINSTANCE.createBufferPart();
 			bufferPart.setDataProvider(EcoreUtil.copy(provider));
 
 			parts.add(bufferPart);

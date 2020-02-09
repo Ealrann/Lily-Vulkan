@@ -13,12 +13,10 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.lily.core.model.application.provider.IResourceItemProvider;
-
+import org.sheepy.lily.core.model.resource.provider.IResourceItemProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferPart} object.
@@ -70,7 +68,7 @@ public class BufferPartItemProvider extends IResourceItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER);
+			childrenFeatures.add(VulkanResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER);
 		}
 		return childrenFeatures;
 	}
@@ -131,7 +129,7 @@ public class BufferPartItemProvider extends IResourceItemProvider
 
 		switch (notification.getFeatureID(BufferPart.class))
 		{
-			case ResourcePackage.BUFFER_PART__DATA_PROVIDER:
+			case VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -152,8 +150,8 @@ public class BufferPartItemProvider extends IResourceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER,
-				 ResourceFactory.eINSTANCE.createBufferDataProvider()));
+				(VulkanResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER,
+				 VulkanResourceFactory.eINSTANCE.createBufferDataProvider()));
 	}
 
 }

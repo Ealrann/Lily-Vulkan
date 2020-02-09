@@ -3,11 +3,15 @@
 package org.sheepy.lily.vulkan.model.resource.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.lily.core.model.application.FileResource;
+
+import org.sheepy.lily.core.model.resource.FileResource;
+
 import org.sheepy.lily.vulkan.model.resource.FileImage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -44,6 +48,7 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	 * @ordered
 	 */
 	protected static final boolean MIPMAP_ENABLED_EDEFAULT = false;
+
 	/**
 	 * The cached value of the '{@link #isMipmapEnabled() <em>Mipmap Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -72,7 +77,7 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.FILE_IMAGE;
+		return VulkanResourcePackage.Literals.FILE_IMAGE;
 	}
 
 	/**
@@ -97,7 +102,7 @@ public class FileImageImpl extends ImageImpl implements FileImage
 		FileResource oldFile = file;
 		file = newFile;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.FILE_IMAGE__FILE, oldFile, file));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.FILE_IMAGE__FILE, oldFile, file));
 	}
 
 	/**
@@ -122,7 +127,7 @@ public class FileImageImpl extends ImageImpl implements FileImage
 		boolean oldMipmapEnabled = mipmapEnabled;
 		mipmapEnabled = newMipmapEnabled;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.FILE_IMAGE__MIPMAP_ENABLED, oldMipmapEnabled, mipmapEnabled));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.FILE_IMAGE__MIPMAP_ENABLED, oldMipmapEnabled, mipmapEnabled));
 	}
 
 	/**
@@ -135,9 +140,9 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FILE_IMAGE__FILE:
+			case VulkanResourcePackage.FILE_IMAGE__FILE:
 				return getFile();
-			case ResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
+			case VulkanResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
 				return isMipmapEnabled();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -153,10 +158,10 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FILE_IMAGE__FILE:
+			case VulkanResourcePackage.FILE_IMAGE__FILE:
 				setFile((FileResource)newValue);
 				return;
-			case ResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
+			case VulkanResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
 				setMipmapEnabled((Boolean)newValue);
 				return;
 		}
@@ -173,10 +178,10 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FILE_IMAGE__FILE:
+			case VulkanResourcePackage.FILE_IMAGE__FILE:
 				setFile((FileResource)null);
 				return;
-			case ResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
+			case VulkanResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
 				setMipmapEnabled(MIPMAP_ENABLED_EDEFAULT);
 				return;
 		}
@@ -193,9 +198,9 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FILE_IMAGE__FILE:
+			case VulkanResourcePackage.FILE_IMAGE__FILE:
 				return file != null;
-			case ResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
+			case VulkanResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
 				return mipmapEnabled != MIPMAP_ENABLED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

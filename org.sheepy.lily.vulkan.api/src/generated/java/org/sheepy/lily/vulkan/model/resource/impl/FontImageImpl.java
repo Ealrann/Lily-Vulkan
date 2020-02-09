@@ -3,15 +3,22 @@
 package org.sheepy.lily.vulkan.model.resource.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.sheepy.lily.core.model.ui.Font;
 
 import org.sheepy.lily.vulkan.model.resource.FontImage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+
 import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 
 /**
@@ -39,6 +46,7 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	 * @ordered
 	 */
 	protected EList<Font> fonts;
+
 	/**
 	 * The default value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -48,6 +56,7 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	 * @ordered
 	 */
 	protected static final EInstanceCount INSTANCE_COUNT_EDEFAULT = EInstanceCount.ONE;
+
 	/**
 	 * The cached value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -57,6 +66,7 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	 * @ordered
 	 */
 	protected EInstanceCount instanceCount = INSTANCE_COUNT_EDEFAULT;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,7 +85,7 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.FONT_IMAGE;
+		return VulkanResourcePackage.Literals.FONT_IMAGE;
 	}
 
 	/**
@@ -88,7 +98,7 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	{
 		if (fonts == null)
 		{
-			fonts = new EObjectResolvingEList<Font>(Font.class, this, ResourcePackage.FONT_IMAGE__FONTS);
+			fonts = new EObjectResolvingEList<Font>(Font.class, this, VulkanResourcePackage.FONT_IMAGE__FONTS);
 		}
 		return fonts;
 	}
@@ -115,7 +125,7 @@ public class FontImageImpl extends ImageImpl implements FontImage
 		EInstanceCount oldInstanceCount = instanceCount;
 		instanceCount = newInstanceCount == null ? INSTANCE_COUNT_EDEFAULT : newInstanceCount;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.FONT_IMAGE__INSTANCE_COUNT, oldInstanceCount, instanceCount));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.FONT_IMAGE__INSTANCE_COUNT, oldInstanceCount, instanceCount));
 	}
 
 	/**
@@ -128,9 +138,9 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FONT_IMAGE__FONTS:
+			case VulkanResourcePackage.FONT_IMAGE__FONTS:
 				return getFonts();
-			case ResourcePackage.FONT_IMAGE__INSTANCE_COUNT:
+			case VulkanResourcePackage.FONT_IMAGE__INSTANCE_COUNT:
 				return getInstanceCount();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -147,11 +157,11 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FONT_IMAGE__FONTS:
+			case VulkanResourcePackage.FONT_IMAGE__FONTS:
 				getFonts().clear();
 				getFonts().addAll((Collection<? extends Font>)newValue);
 				return;
-			case ResourcePackage.FONT_IMAGE__INSTANCE_COUNT:
+			case VulkanResourcePackage.FONT_IMAGE__INSTANCE_COUNT:
 				setInstanceCount((EInstanceCount)newValue);
 				return;
 		}
@@ -168,10 +178,10 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FONT_IMAGE__FONTS:
+			case VulkanResourcePackage.FONT_IMAGE__FONTS:
 				getFonts().clear();
 				return;
-			case ResourcePackage.FONT_IMAGE__INSTANCE_COUNT:
+			case VulkanResourcePackage.FONT_IMAGE__INSTANCE_COUNT:
 				setInstanceCount(INSTANCE_COUNT_EDEFAULT);
 				return;
 		}
@@ -188,9 +198,9 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FONT_IMAGE__FONTS:
+			case VulkanResourcePackage.FONT_IMAGE__FONTS:
 				return fonts != null && !fonts.isEmpty();
-			case ResourcePackage.FONT_IMAGE__INSTANCE_COUNT:
+			case VulkanResourcePackage.FONT_IMAGE__INSTANCE_COUNT:
 				return instanceCount != INSTANCE_COUNT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

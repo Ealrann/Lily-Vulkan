@@ -4,7 +4,6 @@ package org.sheepy.lily.vulkan.model.resource;
 
 import org.sheepy.lily.vulkan.model.IDescriptor;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Image Descriptor</b></em>'.
@@ -17,7 +16,7 @@ import org.sheepy.lily.vulkan.model.IDescriptor;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.ImageDescriptor#getImage <em>Image</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageDescriptor()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getImageDescriptor()
  * @model
  * @generated
  */
@@ -29,7 +28,7 @@ public interface ImageDescriptor extends IDescriptor
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Image</em>' reference.
 	 * @see #setImage(Image)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageDescriptor_Image()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getImageDescriptor_Image()
 	 * @model required="true"
 	 * @generated
 	 */

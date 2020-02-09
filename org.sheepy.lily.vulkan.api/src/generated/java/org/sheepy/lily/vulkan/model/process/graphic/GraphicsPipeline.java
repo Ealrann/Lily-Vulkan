@@ -6,7 +6,6 @@ import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.vulkan.model.process.IVkPipeline;
 import org.sheepy.lily.vulkan.model.resource.Shader;
-
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
 import org.sheepy.vulkan.model.graphicpipeline.DepthStencilState;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicState;

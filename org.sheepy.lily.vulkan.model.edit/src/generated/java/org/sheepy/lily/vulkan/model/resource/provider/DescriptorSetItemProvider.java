@@ -22,7 +22,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.DescriptorSet} object.
@@ -100,7 +100,7 @@ public class DescriptorSetItemProvider extends ItemProviderAdapter implements IE
 				 getResourceLocator(),
 				 getString("_UI_DescriptorSet_descriptors_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_DescriptorSet_descriptors_feature", "_UI_DescriptorSet_type"),
-				 ResourcePackage.Literals.DESCRIPTOR_SET__DESCRIPTORS,
+				 VulkanResourcePackage.Literals.DESCRIPTOR_SET__DESCRIPTORS,
 				 true,
 				 false,
 				 true,
@@ -150,7 +150,7 @@ public class DescriptorSetItemProvider extends ItemProviderAdapter implements IE
 
 		switch (notification.getFeatureID(DescriptorSet.class))
 		{
-			case ResourcePackage.DESCRIPTOR_SET__NAME:
+			case VulkanResourcePackage.DESCRIPTOR_SET__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

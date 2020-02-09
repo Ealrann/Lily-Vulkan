@@ -11,7 +11,7 @@ import org.sheepy.lily.vulkan.model.binding.BindingPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 import org.sheepy.vulkan.model.image.ImagePackage;
@@ -30,7 +30,7 @@ public class VulkanModelExtension implements IModelExtension
 		res.add(GraphicPackage.eINSTANCE);
 		res.add(ImagePackage.eINSTANCE);
 		res.add(ProcessPackage.eINSTANCE);
-		res.add(ResourcePackage.eINSTANCE);
+		res.add(VulkanResourcePackage.eINSTANCE);
 		res.add(VulkanPackage.eINSTANCE);
 
 		return List.copyOf(res);

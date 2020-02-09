@@ -5,6 +5,7 @@ package org.sheepy.lily.vulkan.model.resource.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -19,7 +20,7 @@ import org.sheepy.lily.core.api.adapter.LilyEObject;
 
 import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
@@ -120,7 +121,7 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.BUFFER_DESCRIPTOR;
+		return VulkanResourcePackage.Literals.BUFFER_DESCRIPTOR;
 	}
 
 	/**
@@ -145,7 +146,7 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DESCRIPTOR__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_DESCRIPTOR__NAME, oldName, name));
 	}
 
 	/**
@@ -170,7 +171,7 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 		EDescriptorType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DESCRIPTOR__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_DESCRIPTOR__TYPE, oldType, type));
 	}
 
 	/**
@@ -183,7 +184,7 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 	{
 		if (shaderStages == null)
 		{
-			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, ResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES);
+			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, VulkanResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES);
 		}
 		return shaderStages;
 	}
@@ -203,7 +204,7 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 			if (buffer != oldBuffer)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.BUFFER_DESCRIPTOR__BUFFER, oldBuffer, buffer));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.BUFFER_DESCRIPTOR__BUFFER, oldBuffer, buffer));
 			}
 		}
 		return buffer;
@@ -230,7 +231,7 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 		IBuffer oldBuffer = buffer;
 		buffer = newBuffer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_DESCRIPTOR__BUFFER, oldBuffer, buffer));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_DESCRIPTOR__BUFFER, oldBuffer, buffer));
 	}
 
 	/**
@@ -243,13 +244,13 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__NAME:
 				return getName();
-			case ResourcePackage.BUFFER_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__TYPE:
 				return getType();
-			case ResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES:
 				return getShaderStages();
-			case ResourcePackage.BUFFER_DESCRIPTOR__BUFFER:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__BUFFER:
 				if (resolve) return getBuffer();
 				return basicGetBuffer();
 		}
@@ -267,17 +268,17 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__NAME:
 				setName((String)newValue);
 				return;
-			case ResourcePackage.BUFFER_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__TYPE:
 				setType((EDescriptorType)newValue);
 				return;
-			case ResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES:
 				getShaderStages().clear();
 				getShaderStages().addAll((Collection<? extends EShaderStage>)newValue);
 				return;
-			case ResourcePackage.BUFFER_DESCRIPTOR__BUFFER:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__BUFFER:
 				setBuffer((IBuffer)newValue);
 				return;
 		}
@@ -294,16 +295,16 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ResourcePackage.BUFFER_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
-			case ResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES:
 				getShaderStages().clear();
 				return;
-			case ResourcePackage.BUFFER_DESCRIPTOR__BUFFER:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__BUFFER:
 				setBuffer((IBuffer)null);
 				return;
 		}
@@ -320,13 +321,13 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.BUFFER_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__TYPE:
 				return type != TYPE_EDEFAULT;
-			case ResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES:
 				return shaderStages != null && !shaderStages.isEmpty();
-			case ResourcePackage.BUFFER_DESCRIPTOR__BUFFER:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__BUFFER:
 				return buffer != null;
 		}
 		return super.eIsSet(featureID);

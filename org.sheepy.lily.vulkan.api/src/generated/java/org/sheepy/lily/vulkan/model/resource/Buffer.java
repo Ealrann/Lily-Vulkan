@@ -3,7 +3,9 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import java.nio.ByteBuffer;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 
@@ -25,7 +27,7 @@ import org.sheepy.vulkan.model.enumeration.EInstanceCount;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#getInstanceCount <em>Instance Count</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBuffer()
  * @model
  * @generated
  */
@@ -37,7 +39,7 @@ public interface Buffer extends IBuffer
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Size</em>' attribute.
 	 * @see #setSize(long)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_Size()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBuffer_Size()
 	 * @model unique="false"
 	 * @generated
 	 */
@@ -59,7 +61,7 @@ public interface Buffer extends IBuffer
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data</em>' attribute.
 	 * @see #setData(ByteBuffer)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_Data()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBuffer_Data()
 	 * @model unique="false" dataType="org.sheepy.lily.vulkan.model.resource.ByteBuffer"
 	 * @generated
 	 */
@@ -82,7 +84,7 @@ public interface Buffer extends IBuffer
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Kept Mapped</em>' attribute.
 	 * @see #setKeptMapped(boolean)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_KeptMapped()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBuffer_KeptMapped()
 	 * @model default="false" unique="false"
 	 * @generated
 	 */
@@ -105,7 +107,7 @@ public interface Buffer extends IBuffer
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Host Visible</em>' attribute.
 	 * @see #setHostVisible(boolean)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_HostVisible()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBuffer_HostVisible()
 	 * @model default="false" unique="false"
 	 * @generated
 	 */
@@ -128,7 +130,7 @@ public interface Buffer extends IBuffer
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Coherent</em>' attribute.
 	 * @see #setCoherent(boolean)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_Coherent()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBuffer_Coherent()
 	 * @model default="true" unique="false"
 	 * @generated
 	 */
@@ -152,7 +154,7 @@ public interface Buffer extends IBuffer
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Usages</em>' attribute list.
 	 * @see org.sheepy.vulkan.model.enumeration.EBufferUsage
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_Usages()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBuffer_Usages()
 	 * @model
 	 * @generated
 	 */
@@ -166,7 +168,7 @@ public interface Buffer extends IBuffer
 	 * @return the value of the '<em>Instance Count</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EInstanceCount
 	 * @see #setInstanceCount(EInstanceCount)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_InstanceCount()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBuffer_InstanceCount()
 	 * @model unique="false" required="true"
 	 * @generated
 	 */

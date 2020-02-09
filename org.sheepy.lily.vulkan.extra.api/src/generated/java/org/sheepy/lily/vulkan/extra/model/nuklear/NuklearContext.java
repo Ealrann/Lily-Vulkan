@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.nuklear;
 
-import org.sheepy.lily.core.model.application.IResource;
+import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 

@@ -26,7 +26,7 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferDescriptor} object.
@@ -158,7 +158,7 @@ public class BufferDescriptorItemProvider
 				 getResourceLocator(),
 				 getString("_UI_BufferDescriptor_buffer_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_BufferDescriptor_buffer_feature", "_UI_BufferDescriptor_type"),
-				 ResourcePackage.Literals.BUFFER_DESCRIPTOR__BUFFER,
+				 VulkanResourcePackage.Literals.BUFFER_DESCRIPTOR__BUFFER,
 				 true,
 				 false,
 				 true,
@@ -209,9 +209,9 @@ public class BufferDescriptorItemProvider
 
 		switch (notification.getFeatureID(BufferDescriptor.class))
 		{
-			case ResourcePackage.BUFFER_DESCRIPTOR__NAME:
-			case ResourcePackage.BUFFER_DESCRIPTOR__TYPE:
-			case ResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -50,9 +50,8 @@ public final class NkFontLoader
 		nkFont.query((handle, font_height, glyph, codepoint, next_codepoint) -> {
 			final var ufg = NkUserFontGlyph.create(glyph);
 			final int solvedCodepoint = resolveCodepoint(codepoint);
-			final int solvedNextCodepoint = resolveCodepoint(next_codepoint);
 			final var tableInfo = fontAllocator.getTableInfo(solvedCodepoint);
-			final float kern = tableInfo.getCodepointKernAdvance(solvedCodepoint, solvedNextCodepoint);
+			final float kern = tableInfo.getCodepointKernAdvance(solvedCodepoint, next_codepoint);
 			queryData.fill(ufg, solvedCodepoint);
 			ufg.xadvance(ufg.xadvance() + kern);
 		});

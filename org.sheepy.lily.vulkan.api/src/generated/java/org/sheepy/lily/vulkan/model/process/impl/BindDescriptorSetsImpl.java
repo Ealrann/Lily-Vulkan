@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.enumeration.EBindPoint;
 

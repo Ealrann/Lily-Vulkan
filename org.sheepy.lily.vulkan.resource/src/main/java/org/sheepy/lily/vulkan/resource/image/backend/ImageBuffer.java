@@ -1,11 +1,11 @@
 package org.sheepy.lily.vulkan.resource.image.backend;
 
-import java.nio.ByteBuffer;
-
 import org.joml.Vector2ic;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
-import org.sheepy.lily.core.model.application.FileResource;
+import org.sheepy.lily.core.model.resource.FileResource;
+
+import java.nio.ByteBuffer;
 
 public class ImageBuffer
 {

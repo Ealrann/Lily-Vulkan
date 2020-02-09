@@ -20,14 +20,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="layoutTask" lowerBound="1"
         eType="#//NuklearLayoutTask"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NuklearContext" eSuperTypes="../../org.sheepy.lily.core.model/model/application.ecore#//IResource">
+  <eClassifiers xsi:type="ecore:EClass" name="NuklearContext" eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="font" lowerBound="1" eType="#//NuklearFont"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nullTexture" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//SampledImage"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="layoutTask" lowerBound="1"
         eType="#//NuklearLayoutTask" eOpposite="#//NuklearLayoutTask/context"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="imageArrayDescriptor" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//ImageArrayDescriptor"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NuklearFont" eSuperTypes="../../org.sheepy.lily.core.model/model/application.ecore#//IResource">
+  <eClassifiers xsi:type="ecore:EClass" name="NuklearFont" eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="transferBuffer" lowerBound="1"
         eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//TransferBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fontImage" lowerBound="1"

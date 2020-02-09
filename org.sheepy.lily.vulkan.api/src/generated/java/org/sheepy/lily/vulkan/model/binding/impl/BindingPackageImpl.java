@@ -19,6 +19,7 @@ import org.sheepy.lily.core.model.inference.InferencePackage;
 
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.core.model.presentation.PresentationPackage;
+import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.core.model.ui.UiPackage;
@@ -49,11 +50,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl;
 
 import org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl;
-
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-
-import org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl;
-
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
@@ -206,6 +204,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
+		ResourcePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ComputePackage.eNS_URI);
@@ -214,8 +213,8 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		GraphicPackageImpl theGraphicPackage = (GraphicPackageImpl)(registeredPackage instanceof GraphicPackageImpl ? registeredPackage : GraphicPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
 		ProcessPackageImpl theProcessPackage = (ProcessPackageImpl)(registeredPackage instanceof ProcessPackageImpl ? registeredPackage : ProcessPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
-		ResourcePackageImpl theResourcePackage = (ResourcePackageImpl)(registeredPackage instanceof ResourcePackageImpl ? registeredPackage : ResourcePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanResourcePackage.eNS_URI);
+		VulkanResourcePackageImpl theVulkanResourcePackage = (VulkanResourcePackageImpl)(registeredPackage instanceof VulkanResourcePackageImpl ? registeredPackage : VulkanResourcePackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		VulkanPackageImpl theVulkanPackage = (VulkanPackageImpl)(registeredPackage instanceof VulkanPackageImpl ? registeredPackage : VulkanPackage.eINSTANCE);
 
@@ -224,7 +223,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		theComputePackage.createPackageContents();
 		theGraphicPackage.createPackageContents();
 		theProcessPackage.createPackageContents();
-		theResourcePackage.createPackageContents();
+		theVulkanResourcePackage.createPackageContents();
 		theVulkanPackage.createPackageContents();
 
 		// Initialize created meta-data
@@ -232,7 +231,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		theComputePackage.initializePackageContents();
 		theGraphicPackage.initializePackageContents();
 		theProcessPackage.initializePackageContents();
-		theResourcePackage.initializePackageContents();
+		theVulkanResourcePackage.initializePackageContents();
 		theVulkanPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
@@ -623,7 +622,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		VulkanResourcePackage theVulkanResourcePackage = (VulkanResourcePackage)EPackage.Registry.INSTANCE.getEPackage(VulkanResourcePackage.eNS_URI);
 		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
@@ -645,7 +644,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(bindingConfigurationEClass, BindingConfiguration.class, "BindingConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBindingConfiguration_DescriptorsSets(), theResourcePackage.getDescriptorSet(), null, "descriptorsSets", null, 1, -1, BindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBindingConfiguration_DescriptorsSets(), theVulkanResourcePackage.getDescriptorSet(), null, "descriptorsSets", null, 1, -1, BindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBindingConfiguration_DescriptorSetStride(), ecorePackage.getEInt(), "descriptorSetStride", "0", 1, 1, BindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configureBindEClass, ConfigureBind.class, "ConfigureBind", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -660,17 +659,17 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage
 		initEClass(configurePrepareCompositeEClass, ConfigurePrepareComposite.class, "ConfigurePrepareComposite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConfigurePrepareComposite_PrepareTask(), theProcessPackage.getPrepareCompositeTransfer(), null, "prepareTask", null, 1, 1, ConfigurePrepareComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfigurePrepareComposite_PartIndices(), this.getEContextIndex(), "partIndices", null, 1, -1, ConfigurePrepareComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConfigurePrepareComposite_CompositeBuffer(), theResourcePackage.getCompositeBuffer(), null, "compositeBuffer", null, 1, 1, ConfigurePrepareComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfigurePrepareComposite_CompositeBuffer(), theVulkanResourcePackage.getCompositeBuffer(), null, "compositeBuffer", null, 1, 1, ConfigurePrepareComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configureBufferDescriptorEClass, ConfigureBufferDescriptor.class, "ConfigureBufferDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConfigureBufferDescriptor_CompositeBuffer(), theResourcePackage.getCompositeBuffer(), null, "compositeBuffer", null, 1, 1, ConfigureBufferDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfigureBufferDescriptor_CompositeBuffer(), theVulkanResourcePackage.getCompositeBuffer(), null, "compositeBuffer", null, 1, 1, ConfigureBufferDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfigureBufferDescriptor_PartIndex(), this.getEContextIndex(), "partIndex", null, 1, 1, ConfigureBufferDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConfigureBufferDescriptor_Descriptor(), theResourcePackage.getBufferDescriptor(), null, "descriptor", null, 1, 1, ConfigureBufferDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfigureBufferDescriptor_Descriptor(), theVulkanResourcePackage.getBufferDescriptor(), null, "descriptor", null, 1, 1, ConfigureBufferDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configureCompositeBufferBarrierEClass, ConfigureCompositeBufferBarrier.class, "ConfigureCompositeBufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConfigureCompositeBufferBarrier_Barriers(), theResourcePackage.getBufferBarrier(), null, "barriers", null, 1, -1, ConfigureCompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfigureCompositeBufferBarrier_Barriers(), theVulkanResourcePackage.getBufferBarrier(), null, "barriers", null, 1, -1, ConfigureCompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfigureCompositeBufferBarrier_PartIndex(), this.getEContextIndex(), "partIndex", null, 1, 1, ConfigureCompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConfigureCompositeBufferBarrier_CompositeBuffer(), theResourcePackage.getCompositeBuffer(), null, "compositeBuffer", null, 1, 1, ConfigureCompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfigureCompositeBufferBarrier_CompositeBuffer(), theVulkanResourcePackage.getCompositeBuffer(), null, "compositeBuffer", null, 1, 1, ConfigureCompositeBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iContextConfigurationEClass, IContextConfiguration.class, "IContextConfiguration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getIContextConfiguration_Tasks(), this.getIConfigurationTask(), null, "tasks", null, 0, -1, IContextConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -3,7 +3,8 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.lily.core.model.application.IResource;
+
+import org.sheepy.lily.core.model.resource.IResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,7 +18,7 @@ import org.sheepy.lily.core.model.application.IResource;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getParts <em>Parts</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getCompositeBuffer()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getCompositeBuffer()
  * @model
  * @generated
  */
@@ -29,7 +30,7 @@ public interface CompositeBuffer extends IResource
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parts</em>' containment reference list.
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getCompositeBuffer_Parts()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getCompositeBuffer_Parts()
 	 * @model containment="true"
 	 * @generated
 	 */

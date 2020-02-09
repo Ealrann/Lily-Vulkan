@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.sheepy.lily.core.api.adapter.ILilyEObject;
 
 /**
@@ -17,7 +18,7 @@ import org.sheepy.lily.core.api.adapter.ILilyEObject;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg#getDescriptorSets <em>Descriptor Sets</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getDescriptorSetPkg()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getDescriptorSetPkg()
  * @model
  * @extends ILilyEObject
  * @generated
@@ -30,7 +31,7 @@ public interface DescriptorSetPkg extends ILilyEObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Descriptor Sets</em>' containment reference list.
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getDescriptorSetPkg_DescriptorSets()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getDescriptorSetPkg_DescriptorSets()
 	 * @model containment="true"
 	 * @generated
 	 */

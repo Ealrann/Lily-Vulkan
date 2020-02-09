@@ -2,7 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
-import org.sheepy.lily.core.model.application.IResource;
+import org.sheepy.lily.core.model.resource.IResource;
+
 import org.sheepy.vulkan.model.image.SamplerInfo;
 
 /**
@@ -18,7 +19,7 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.SampledImage#getImage <em>Image</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampledImage()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getSampledImage()
  * @model
  * @generated
  */
@@ -30,7 +31,7 @@ public interface SampledImage extends IResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sampler</em>' containment reference.
 	 * @see #setSampler(SamplerInfo)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampledImage_Sampler()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getSampledImage_Sampler()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -52,7 +53,7 @@ public interface SampledImage extends IResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Image</em>' containment reference.
 	 * @see #setImage(Image)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampledImage_Image()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getSampledImage_Image()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */

@@ -2,7 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
-import org.sheepy.lily.core.model.application.IResource;
+import org.sheepy.lily.core.model.resource.IResource;
+
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
@@ -18,7 +19,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Semaphore#getWaitStage <em>Wait Stage</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSemaphore()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getSemaphore()
  * @model
  * @generated
  */
@@ -31,7 +32,7 @@ public interface Semaphore extends IResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Signalized At Init</em>' attribute.
 	 * @see #setSignalizedAtInit(boolean)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSemaphore_SignalizedAtInit()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getSemaphore_SignalizedAtInit()
 	 * @model default="false" unique="false"
 	 * @generated
 	 */
@@ -55,7 +56,7 @@ public interface Semaphore extends IResource
 	 * @return the value of the '<em>Wait Stage</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
 	 * @see #setWaitStage(EPipelineStage)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSemaphore_WaitStage()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getSemaphore_WaitStage()
 	 * @model unique="false"
 	 * @generated
 	 */

@@ -1,15 +1,15 @@
 package org.sheepy.lily.vulkan.extra.api.nuklear;
 
-import java.util.List;
-
 import org.joml.Vector3fc;
 import org.sheepy.lily.core.api.adapter.IAdapter;
-import org.sheepy.lily.core.model.application.IImage;
+import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider;
+
+import java.util.List;
 
 public interface ISelectorInputProviderAdapter extends IAdapter
 {
-	List<? extends Object> getElements(IInputProvider inputProvider);
+	List<?> getElements(IInputProvider inputProvider);
 
 	String getName(Object element);
 

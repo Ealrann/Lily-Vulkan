@@ -10,7 +10,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.vulkan.model.barrier.provider.AbstractBufferBarrierItemProvider;
 
 /**
@@ -64,7 +64,7 @@ public class BufferBarrierItemProvider extends AbstractBufferBarrierItemProvider
 				 getResourceLocator(),
 				 getString("_UI_BufferBarrier_buffer_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_BufferBarrier_buffer_feature", "_UI_BufferBarrier_type"),
-				 ResourcePackage.Literals.BUFFER_BARRIER__BUFFER,
+				 VulkanResourcePackage.Literals.BUFFER_BARRIER__BUFFER,
 				 true,
 				 false,
 				 true,

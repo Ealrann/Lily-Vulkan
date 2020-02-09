@@ -26,8 +26,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor} object.
@@ -159,7 +159,7 @@ public class SampledImageDescriptorItemProvider
 				 getResourceLocator(),
 				 getString("_UI_SampledImageDescriptor_sampledImage_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_SampledImageDescriptor_sampledImage_feature", "_UI_SampledImageDescriptor_type"),
-				 ResourcePackage.Literals.SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE,
+				 VulkanResourcePackage.Literals.SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE,
 				 true,
 				 false,
 				 true,
@@ -210,9 +210,9 @@ public class SampledImageDescriptorItemProvider
 
 		switch (notification.getFeatureID(SampledImageDescriptor.class))
 		{
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME:
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__TYPE:
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SHADER_STAGES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

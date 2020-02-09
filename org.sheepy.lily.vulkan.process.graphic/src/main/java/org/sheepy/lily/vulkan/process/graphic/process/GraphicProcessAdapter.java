@@ -10,9 +10,10 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.IScenePart;
+import org.sheepy.lily.core.model.resource.ResourceFactory;
+import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
@@ -43,21 +44,21 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 																				 ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 																				 ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES);
 	private static final List<EReference> RESOURCE_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																	  ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+																	  ResourcePackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EReference> SUBPASS_RESOURCE_FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
 																			  VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																			  ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+																			  ResourcePackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EReference> PIPELINE_RESOURCE_FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
 																			   GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
 																			   ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 																			   VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																			   ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+																			   ResourcePackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EReference> COMPOSITE_PIPELINE_RESOURCE_FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
 																						 GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
 																						 ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 																						 ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
 																						 VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																						 ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+																						 ResourcePackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EReference> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 																		VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
 	private static final List<EReference> SUBPASS_DESCRIPTOR_FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
@@ -91,7 +92,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 
 		if (process.getResourcePkg() == null)
 		{
-			process.setResourcePkg(ApplicationFactory.eINSTANCE.createResourcePkg());
+			process.setResourcePkg(ResourceFactory.eINSTANCE.createResourcePkg());
 		}
 		if (process.getDescriptorPkg() == null)
 		{
@@ -103,10 +104,8 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	private void load()
 	{
 		final var application = ModelUtil.getApplication(process);
-		application.getScene()
-				   .addListener(sceneListener, ApplicationPackage.SCENE__PARTS);
-		final var parts = application.getScene()
-									 .getParts();
+		application.getScene().addListener(sceneListener, ApplicationPackage.SCENE__PARTS);
+		final var parts = application.getScene().getParts();
 		for (int i = 0; i < parts.size(); i++)
 		{
 			final var part = parts.get(i);
@@ -118,8 +117,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	private void dispose()
 	{
 		final var application = ModelUtil.getApplication(process);
-		application.getScene()
-				   .removeListener(sceneListener, ApplicationPackage.SCENE__PARTS);
+		application.getScene().removeListener(sceneListener, ApplicationPackage.SCENE__PARTS);
 	}
 
 	@Override
@@ -134,9 +132,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		{
 			case Notification.ADD:
 				final var graphicProcess = (GraphicProcess) process;
-				graphicProcess.getAttachmentPkg()
-							  .getExtraAttachments()
-							  .clear();
+				graphicProcess.getAttachmentPkg().getExtraAttachments().clear();
 				setupScenePart((IScenePart) notification.getNewValue());
 				break;
 			case Notification.REMOVE:
@@ -148,10 +144,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	@Override
 	protected GraphicContext createContext()
 	{
-		return new GraphicContext(getExecutionQueueType(),
-								  isResetAllowed(),
-								  descriptorPool,
-								  (GraphicProcess) process);
+		return new GraphicContext(getExecutionQueueType(), isResetAllowed(), descriptorPool, (GraphicProcess) process);
 	}
 
 	private void setupScenePart(IScenePart part)
@@ -162,8 +155,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 
 		subpass.setScenePart(part);
 		subpass.setSubpassIndex(index);
-		graphicProcess.getSubpasses()
-					  .add(subpass);
+		graphicProcess.getSubpasses().add(subpass);
 
 		if (config != null)
 		{

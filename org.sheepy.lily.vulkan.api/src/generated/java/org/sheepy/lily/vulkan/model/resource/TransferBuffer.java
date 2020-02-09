@@ -2,7 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
-import org.sheepy.lily.core.model.application.IResource;
+import org.sheepy.lily.core.model.resource.IResource;
+
 import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 
 /**
@@ -20,7 +21,7 @@ import org.sheepy.vulkan.model.enumeration.EInstanceCount;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#isUsedToFetch <em>Used To Fetch</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getTransferBuffer()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getTransferBuffer()
  * @model
  * @generated
  */
@@ -32,7 +33,7 @@ public interface TransferBuffer extends IResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Size</em>' attribute.
 	 * @see #setSize(long)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getTransferBuffer_Size()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getTransferBuffer_Size()
 	 * @model unique="false"
 	 * @generated
 	 */
@@ -56,7 +57,7 @@ public interface TransferBuffer extends IResource
 	 * @return the value of the '<em>Instance Count</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EInstanceCount
 	 * @see #setInstanceCount(EInstanceCount)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getTransferBuffer_InstanceCount()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getTransferBuffer_InstanceCount()
 	 * @model unique="false" required="true"
 	 * @generated
 	 */
@@ -80,7 +81,7 @@ public interface TransferBuffer extends IResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Used To Push</em>' attribute.
 	 * @see #setUsedToPush(boolean)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getTransferBuffer_UsedToPush()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getTransferBuffer_UsedToPush()
 	 * @model default="true" required="true"
 	 * @generated
 	 */
@@ -103,7 +104,7 @@ public interface TransferBuffer extends IResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Used To Fetch</em>' attribute.
 	 * @see #setUsedToFetch(boolean)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getTransferBuffer_UsedToFetch()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getTransferBuffer_UsedToFetch()
 	 * @model default="false" required="true"
 	 * @generated
 	 */

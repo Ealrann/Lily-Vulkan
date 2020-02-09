@@ -13,10 +13,10 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.core.model.application.ApplicationFactory;
-import org.sheepy.lily.core.model.application.provider.IResourceItemProvider;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.core.model.resource.ResourceFactory;
+import org.sheepy.lily.core.model.resource.provider.IResourceItemProvider;
 import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.vulkan.model.pipeline.PipelineFactory;
 
 /**
@@ -70,7 +70,7 @@ public class ShaderItemProvider extends IResourceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Shader_stage_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Shader_stage_feature", "_UI_Shader_type"),
-				 ResourcePackage.Literals.SHADER__STAGE,
+				 VulkanResourcePackage.Literals.SHADER__STAGE,
 				 true,
 				 false,
 				 false,
@@ -93,8 +93,8 @@ public class ShaderItemProvider extends IResourceItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ResourcePackage.Literals.SHADER__FILE);
-			childrenFeatures.add(ResourcePackage.Literals.SHADER__CONSTANTS);
+			childrenFeatures.add(VulkanResourcePackage.Literals.SHADER__FILE);
+			childrenFeatures.add(VulkanResourcePackage.Literals.SHADER__CONSTANTS);
 		}
 		return childrenFeatures;
 	}
@@ -154,11 +154,11 @@ public class ShaderItemProvider extends IResourceItemProvider
 
 		switch (notification.getFeatureID(Shader.class))
 		{
-			case ResourcePackage.SHADER__STAGE:
+			case VulkanResourcePackage.SHADER__STAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ResourcePackage.SHADER__FILE:
-			case ResourcePackage.SHADER__CONSTANTS:
+			case VulkanResourcePackage.SHADER__FILE:
+			case VulkanResourcePackage.SHADER__CONSTANTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -179,22 +179,22 @@ public class ShaderItemProvider extends IResourceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.SHADER__FILE,
-				 ApplicationFactory.eINSTANCE.createLocalResource()));
+				(VulkanResourcePackage.Literals.SHADER__FILE,
+				 ResourceFactory.eINSTANCE.createLocalResource()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.SHADER__FILE,
-				 ApplicationFactory.eINSTANCE.createModuleResource()));
+				(VulkanResourcePackage.Literals.SHADER__FILE,
+				 ResourceFactory.eINSTANCE.createModuleResource()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.SHADER__FILE,
-				 ApplicationFactory.eINSTANCE.createStringModuleResource()));
+				(VulkanResourcePackage.Literals.SHADER__FILE,
+				 ResourceFactory.eINSTANCE.createStringModuleResource()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.SHADER__CONSTANTS,
+				(VulkanResourcePackage.Literals.SHADER__CONSTANTS,
 				 PipelineFactory.eINSTANCE.createSpecializationConstant()));
 	}
 

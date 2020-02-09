@@ -1,30 +1,19 @@
 package org.sheepy.lily.vulkan.demo.test.composite.instance.model;
 
-import java.util.List;
-
 import org.sheepy.lily.vulkan.demo.test.composite.instance.model.InstanceTestResourceFactory.ResourceContainer;
-import org.sheepy.lily.vulkan.model.binding.BindingFactory;
-import org.sheepy.lily.vulkan.model.binding.ConfigureBufferDescriptor;
-import org.sheepy.lily.vulkan.model.binding.ConfigureCompositeBufferBarrier;
-import org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite;
-import org.sheepy.lily.vulkan.model.binding.EContextIndex;
-import org.sheepy.lily.vulkan.model.binding.IndexConfiguration;
-import org.sheepy.lily.vulkan.model.binding.RotateConfiguration;
-import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
-import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
-import org.sheepy.lily.vulkan.model.process.IPipelineTask;
-import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
-import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
-import org.sheepy.lily.vulkan.model.process.ProcessFactory;
+import org.sheepy.lily.vulkan.model.binding.*;
+import org.sheepy.lily.vulkan.model.process.*;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EBindPoint;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+
+import java.util.List;
 
 public class InstanceTaskManager
 {
@@ -32,8 +21,8 @@ public class InstanceTaskManager
 	public final FlushTransferBufferTask fetchTask = ProcessFactory.eINSTANCE.createFlushTransferBufferTask();
 
 	public final PipelineBarrier barrier = ProcessFactory.eINSTANCE.createPipelineBarrier();
-	public final BufferBarrier readBarrier = ResourceFactory.eINSTANCE.createBufferBarrier();
-	public final BufferBarrier writeBarrier = ResourceFactory.eINSTANCE.createBufferBarrier();
+	public final BufferBarrier readBarrier = VulkanResourceFactory.eINSTANCE.createBufferBarrier();
+	public final BufferBarrier writeBarrier = VulkanResourceFactory.eINSTANCE.createBufferBarrier();
 
 	public final BindDescriptorSets bindDS = ProcessFactory.eINSTANCE.createBindDescriptorSets();
 
@@ -89,13 +78,11 @@ public class InstanceTaskManager
 
 		configureReadDescriptor.setCompositeBuffer(resourceContainer.compositeBuffer);
 		configureReadDescriptor.setPartIndex(EContextIndex.CONTEXT_INSTANCE);
-		configureReadDescriptor.setDescriptor((BufferDescriptor) resourceContainer.ds	.getDescriptors()
-																						.get(0));
+		configureReadDescriptor.setDescriptor((BufferDescriptor) resourceContainer.ds.getDescriptors().get(0));
 
 		configureWriteDescriptor.setCompositeBuffer(resourceContainer.compositeBuffer);
 		configureWriteDescriptor.setPartIndex(EContextIndex.CONTEXT_INSTANCE_PLUS_ONE);
-		configureWriteDescriptor.setDescriptor((BufferDescriptor) resourceContainer.ds	.getDescriptors()
-																						.get(1));
+		configureWriteDescriptor.setDescriptor((BufferDescriptor) resourceContainer.ds.getDescriptors().get(1));
 
 		indexConfiguration.getTasks().add(configurePush);
 		indexConfiguration.getTasks().add(configureFetch);

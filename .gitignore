@@ -11,4 +11,4 @@ jitdump.*
 javacore.*
 *.dmp
 *.trc
-
+out/

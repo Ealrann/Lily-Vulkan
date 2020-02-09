@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.core.model.application.ICadence;
-import org.sheepy.lily.core.model.application.ResourcePkg;
+import org.sheepy.lily.core.model.resource.ResourcePkg;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
 

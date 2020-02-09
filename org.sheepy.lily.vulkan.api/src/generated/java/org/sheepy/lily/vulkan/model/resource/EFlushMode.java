@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>EFlush Mode</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getEFlushMode()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getEFlushMode()
  * @model
  * @generated
  */

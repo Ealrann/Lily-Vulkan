@@ -3,14 +3,20 @@
 package org.sheepy.lily.vulkan.model.resource.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.lily.core.model.application.IImage;
-import org.sheepy.lily.core.model.application.IResource;
+
+import org.sheepy.lily.core.model.resource.IImage;
+import org.sheepy.lily.core.model.resource.IResource;
+
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
+
 import org.sheepy.lily.vulkan.model.resource.Image;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+
 import org.sheepy.vulkan.model.image.impl.ImageInfoImpl;
 
 /**
@@ -37,6 +43,7 @@ public abstract class ImageImpl extends ImageInfoImpl implements Image
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -46,6 +53,7 @@ public abstract class ImageImpl extends ImageInfoImpl implements Image
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +72,7 @@ public abstract class ImageImpl extends ImageInfoImpl implements Image
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.IMAGE;
+		return VulkanResourcePackage.Literals.IMAGE;
 	}
 
 	/**
@@ -89,7 +97,7 @@ public abstract class ImageImpl extends ImageInfoImpl implements Image
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE__NAME, oldName, name));
 	}
 
 	/**
@@ -102,7 +110,7 @@ public abstract class ImageImpl extends ImageInfoImpl implements Image
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE__NAME:
+			case VulkanResourcePackage.IMAGE__NAME:
 				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -118,7 +126,7 @@ public abstract class ImageImpl extends ImageInfoImpl implements Image
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE__NAME:
+			case VulkanResourcePackage.IMAGE__NAME:
 				setName((String)newValue);
 				return;
 		}
@@ -135,7 +143,7 @@ public abstract class ImageImpl extends ImageInfoImpl implements Image
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE__NAME:
+			case VulkanResourcePackage.IMAGE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 		}
@@ -152,7 +160,7 @@ public abstract class ImageImpl extends ImageInfoImpl implements Image
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE__NAME:
+			case VulkanResourcePackage.IMAGE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
@@ -170,7 +178,7 @@ public abstract class ImageImpl extends ImageInfoImpl implements Image
 		{
 			switch (derivedFeatureID)
 			{
-				case ResourcePackage.IMAGE__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
+				case VulkanResourcePackage.IMAGE__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
 				default: return -1;
 			}
 		}
@@ -203,7 +211,7 @@ public abstract class ImageImpl extends ImageInfoImpl implements Image
 		{
 			switch (baseFeatureID)
 			{
-				case TypesPackage.LNAMED_ELEMENT__NAME: return ResourcePackage.IMAGE__NAME;
+				case TypesPackage.LNAMED_ELEMENT__NAME: return VulkanResourcePackage.IMAGE__NAME;
 				default: return -1;
 			}
 		}

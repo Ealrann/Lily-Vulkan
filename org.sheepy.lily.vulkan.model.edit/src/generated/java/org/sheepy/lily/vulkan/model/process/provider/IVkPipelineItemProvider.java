@@ -15,9 +15,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.model.process.IVkPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.pipeline.PipelineFactory;
 
 /**
@@ -204,7 +202,7 @@ public class IVkPipelineItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.IVK_PIPELINE__DESCRIPTOR_SET_PKG,
-				 ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
+				 VulkanResourceFactory.eINSTANCE.createDescriptorSetPkg()));
 
 		newChildDescriptors.add
 			(createChildParameter

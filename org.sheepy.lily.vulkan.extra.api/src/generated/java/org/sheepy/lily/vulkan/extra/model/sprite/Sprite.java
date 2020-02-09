@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.sprite;
 
-import org.sheepy.lily.core.model.application.FileResource;
+import org.sheepy.lily.core.model.resource.FileResource;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 
 /**

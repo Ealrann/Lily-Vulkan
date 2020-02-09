@@ -7,9 +7,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.lily.core.model.application.impl.IResourceImpl;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+
+import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
+
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
@@ -87,7 +89,7 @@ public class SemaphoreImpl extends IResourceImpl implements Semaphore
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.SEMAPHORE;
+		return VulkanResourcePackage.Literals.SEMAPHORE;
 	}
 
 	/**
@@ -112,7 +114,7 @@ public class SemaphoreImpl extends IResourceImpl implements Semaphore
 		boolean oldSignalizedAtInit = signalizedAtInit;
 		signalizedAtInit = newSignalizedAtInit;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT, oldSignalizedAtInit, signalizedAtInit));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT, oldSignalizedAtInit, signalizedAtInit));
 	}
 
 	/**
@@ -137,7 +139,7 @@ public class SemaphoreImpl extends IResourceImpl implements Semaphore
 		EPipelineStage oldWaitStage = waitStage;
 		waitStage = newWaitStage == null ? WAIT_STAGE_EDEFAULT : newWaitStage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SEMAPHORE__WAIT_STAGE, oldWaitStage, waitStage));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SEMAPHORE__WAIT_STAGE, oldWaitStage, waitStage));
 	}
 
 	/**
@@ -150,9 +152,9 @@ public class SemaphoreImpl extends IResourceImpl implements Semaphore
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
+			case VulkanResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
 				return isSignalizedAtInit();
-			case ResourcePackage.SEMAPHORE__WAIT_STAGE:
+			case VulkanResourcePackage.SEMAPHORE__WAIT_STAGE:
 				return getWaitStage();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -168,10 +170,10 @@ public class SemaphoreImpl extends IResourceImpl implements Semaphore
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
+			case VulkanResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
 				setSignalizedAtInit((Boolean)newValue);
 				return;
-			case ResourcePackage.SEMAPHORE__WAIT_STAGE:
+			case VulkanResourcePackage.SEMAPHORE__WAIT_STAGE:
 				setWaitStage((EPipelineStage)newValue);
 				return;
 		}
@@ -188,10 +190,10 @@ public class SemaphoreImpl extends IResourceImpl implements Semaphore
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
+			case VulkanResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
 				setSignalizedAtInit(SIGNALIZED_AT_INIT_EDEFAULT);
 				return;
-			case ResourcePackage.SEMAPHORE__WAIT_STAGE:
+			case VulkanResourcePackage.SEMAPHORE__WAIT_STAGE:
 				setWaitStage(WAIT_STAGE_EDEFAULT);
 				return;
 		}
@@ -208,9 +210,9 @@ public class SemaphoreImpl extends IResourceImpl implements Semaphore
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
+			case VulkanResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
 				return signalizedAtInit != SIGNALIZED_AT_INIT_EDEFAULT;
-			case ResourcePackage.SEMAPHORE__WAIT_STAGE:
+			case VulkanResourcePackage.SEMAPHORE__WAIT_STAGE:
 				return waitStage != WAIT_STAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

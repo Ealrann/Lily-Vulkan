@@ -25,7 +25,7 @@ import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.core.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public abstract class AbstractProcessAdapter<T extends IRecorderContext<T>> impl
 																					   IAllocable<VulkanContext>
 {
 	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG,
-																							ResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));
+																							VulkanResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));
 
 	protected final AbstractProcess process;
 	protected final DescriptorPool descriptorPool = new DescriptorPool();

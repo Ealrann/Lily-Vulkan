@@ -7,9 +7,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.lily.core.model.application.impl.IResourceImpl;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+
+import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
+
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+
 import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 
 /**
@@ -128,7 +131,7 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.TRANSFER_BUFFER;
+		return VulkanResourcePackage.Literals.TRANSFER_BUFFER;
 	}
 
 	/**
@@ -153,7 +156,7 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 		long oldSize = size;
 		size = newSize;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TRANSFER_BUFFER__SIZE, oldSize, size));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.TRANSFER_BUFFER__SIZE, oldSize, size));
 	}
 
 	/**
@@ -178,7 +181,7 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 		EInstanceCount oldInstanceCount = instanceCount;
 		instanceCount = newInstanceCount == null ? INSTANCE_COUNT_EDEFAULT : newInstanceCount;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
 	}
 
 	/**
@@ -203,7 +206,7 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 		boolean oldUsedToPush = usedToPush;
 		usedToPush = newUsedToPush;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH, oldUsedToPush, usedToPush));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH, oldUsedToPush, usedToPush));
 	}
 
 	/**
@@ -228,7 +231,7 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 		boolean oldUsedToFetch = usedToFetch;
 		usedToFetch = newUsedToFetch;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH, oldUsedToFetch, usedToFetch));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH, oldUsedToFetch, usedToFetch));
 	}
 
 	/**
@@ -241,13 +244,13 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TRANSFER_BUFFER__SIZE:
+			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 				return getSize();
-			case ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
+			case VulkanResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
 				return getInstanceCount();
-			case ResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
+			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
 				return isUsedToPush();
-			case ResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
+			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
 				return isUsedToFetch();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -263,16 +266,16 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TRANSFER_BUFFER__SIZE:
+			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 				setSize((Long)newValue);
 				return;
-			case ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
+			case VulkanResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
 				setInstanceCount((EInstanceCount)newValue);
 				return;
-			case ResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
+			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
 				setUsedToPush((Boolean)newValue);
 				return;
-			case ResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
+			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
 				setUsedToFetch((Boolean)newValue);
 				return;
 		}
@@ -289,16 +292,16 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TRANSFER_BUFFER__SIZE:
+			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
-			case ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
+			case VulkanResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
 				setInstanceCount(INSTANCE_COUNT_EDEFAULT);
 				return;
-			case ResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
+			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
 				setUsedToPush(USED_TO_PUSH_EDEFAULT);
 				return;
-			case ResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
+			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
 				setUsedToFetch(USED_TO_FETCH_EDEFAULT);
 				return;
 		}
@@ -315,13 +318,13 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TRANSFER_BUFFER__SIZE:
+			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 				return size != SIZE_EDEFAULT;
-			case ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
+			case VulkanResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
 				return instanceCount != INSTANCE_COUNT_EDEFAULT;
-			case ResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
+			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
 				return usedToPush != USED_TO_PUSH_EDEFAULT;
-			case ResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
+			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
 				return usedToFetch != USED_TO_FETCH_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

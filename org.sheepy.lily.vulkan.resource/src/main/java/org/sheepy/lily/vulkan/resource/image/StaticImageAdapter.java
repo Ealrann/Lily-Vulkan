@@ -89,7 +89,7 @@ public class StaticImageAdapter extends Notifier implements IImageAdapter
 		return imageBackend;
 	}
 
-	public static interface IImageLoader
+	public interface IImageLoader
 	{
 		void load(InternalExecutionContext executionManager, VkImage backendBuffer);
 	}

@@ -6,11 +6,10 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
-import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -297,7 +296,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__NAME = ApplicationPackage.IRESOURCE__NAME;
+	int NUKLEAR_CONTEXT__NAME = ResourcePackage.IRESOURCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Font</b></em>' reference.
@@ -306,7 +305,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__FONT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
+	int NUKLEAR_CONTEXT__FONT = ResourcePackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Null Texture</b></em>' reference.
@@ -315,7 +314,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__NULL_TEXTURE = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
+	int NUKLEAR_CONTEXT__NULL_TEXTURE = ResourcePackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Layout Task</b></em>' reference.
@@ -324,7 +323,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__LAYOUT_TASK = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 2;
+	int NUKLEAR_CONTEXT__LAYOUT_TASK = ResourcePackage.IRESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Image Array Descriptor</b></em>' reference.
@@ -333,7 +332,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 3;
+	int NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR = ResourcePackage.IRESOURCE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Context</em>' class.
@@ -342,7 +341,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 4;
+	int NUKLEAR_CONTEXT_FEATURE_COUNT = ResourcePackage.IRESOURCE_FEATURE_COUNT + 4;
 
 
 	/**
@@ -352,7 +351,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT_OPERATION_COUNT = ApplicationPackage.IRESOURCE_OPERATION_COUNT + 0;
+	int NUKLEAR_CONTEXT_OPERATION_COUNT = ResourcePackage.IRESOURCE_OPERATION_COUNT + 0;
 
 
 	/**
@@ -372,7 +371,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT__NAME = ApplicationPackage.IRESOURCE__NAME;
+	int NUKLEAR_FONT__NAME = ResourcePackage.IRESOURCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Transfer Buffer</b></em>' reference.
@@ -381,7 +380,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT__TRANSFER_BUFFER = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 0;
+	int NUKLEAR_FONT__TRANSFER_BUFFER = ResourcePackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Font Image</b></em>' reference.
@@ -390,7 +389,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT__FONT_IMAGE = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 1;
+	int NUKLEAR_FONT__FONT_IMAGE = ResourcePackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Font</em>' class.
@@ -399,7 +398,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT_FEATURE_COUNT = ApplicationPackage.IRESOURCE_FEATURE_COUNT + 2;
+	int NUKLEAR_FONT_FEATURE_COUNT = ResourcePackage.IRESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Font</em>' class.
@@ -408,7 +407,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT_OPERATION_COUNT = ApplicationPackage.IRESOURCE_OPERATION_COUNT + 0;
+	int NUKLEAR_FONT_OPERATION_COUNT = ResourcePackage.IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl <em>Selector Panel</em>}' class.
@@ -826,7 +825,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER__NAME = ResourcePackage.BUFFER_DATA_PROVIDER__NAME;
+	int NUKLEAR_VERTEX_PROVIDER__NAME = VulkanResourcePackage.BUFFER_DATA_PROVIDER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
@@ -835,7 +834,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER__DATA_SOURCE = ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE;
+	int NUKLEAR_VERTEX_PROVIDER__DATA_SOURCE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
@@ -844,7 +843,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER__USED_TO_PUSH = ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH;
+	int NUKLEAR_VERTEX_PROVIDER__USED_TO_PUSH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH;
 
 	/**
 	 * The feature id for the '<em><b>Used To Fetch</b></em>' attribute.
@@ -853,7 +852,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER__USED_TO_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_FETCH;
+	int NUKLEAR_VERTEX_PROVIDER__USED_TO_FETCH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_FETCH;
 
 	/**
 	 * The feature id for the '<em><b>Stage Before Push</b></em>' attribute.
@@ -862,7 +861,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER__STAGE_BEFORE_PUSH = ResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH;
+	int NUKLEAR_VERTEX_PROVIDER__STAGE_BEFORE_PUSH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH;
 
 	/**
 	 * The feature id for the '<em><b>Access Before Push</b></em>' attribute list.
@@ -871,7 +870,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER__ACCESS_BEFORE_PUSH = ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH;
+	int NUKLEAR_VERTEX_PROVIDER__ACCESS_BEFORE_PUSH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH;
 
 	/**
 	 * The feature id for the '<em><b>Stage Before Fetch</b></em>' attribute.
@@ -880,7 +879,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER__STAGE_BEFORE_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH;
+	int NUKLEAR_VERTEX_PROVIDER__STAGE_BEFORE_FETCH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH;
 
 	/**
 	 * The feature id for the '<em><b>Access Before Fetch</b></em>' attribute list.
@@ -889,7 +888,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER__ACCESS_BEFORE_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
+	int NUKLEAR_VERTEX_PROVIDER__ACCESS_BEFORE_FETCH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
 
 	/**
 	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
@@ -898,7 +897,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER__USAGES = ResourcePackage.BUFFER_DATA_PROVIDER__USAGES;
+	int NUKLEAR_VERTEX_PROVIDER__USAGES = VulkanResourcePackage.BUFFER_DATA_PROVIDER__USAGES;
 
 	/**
 	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
@@ -907,7 +906,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER__INSTANCE_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT;
+	int NUKLEAR_VERTEX_PROVIDER__INSTANCE_COUNT = VulkanResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT;
 
 	/**
 	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
@@ -916,7 +915,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER__GROW_FACTOR = ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR;
+	int NUKLEAR_VERTEX_PROVIDER__GROW_FACTOR = VulkanResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR;
 
 	/**
 	 * The feature id for the '<em><b>Grow Threshold</b></em>' attribute.
@@ -925,7 +924,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER__GROW_THRESHOLD = ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD;
+	int NUKLEAR_VERTEX_PROVIDER__GROW_THRESHOLD = VulkanResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD;
 
 	/**
 	 * The feature id for the '<em><b>Min Size</b></em>' attribute.
@@ -934,7 +933,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER__MIN_SIZE = ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE;
+	int NUKLEAR_VERTEX_PROVIDER__MIN_SIZE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE;
 
 	/**
 	 * The feature id for the '<em><b>Requested Size</b></em>' attribute.
@@ -943,7 +942,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER__REQUESTED_SIZE = ResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE;
+	int NUKLEAR_VERTEX_PROVIDER__REQUESTED_SIZE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' reference.
@@ -952,7 +951,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER__CONTEXT = ResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
+	int NUKLEAR_VERTEX_PROVIDER__CONTEXT = VulkanResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Vertex Provider</em>' class.
@@ -961,7 +960,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER_FEATURE_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 1;
+	int NUKLEAR_VERTEX_PROVIDER_FEATURE_COUNT = VulkanResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Vertex Provider</em>' class.
@@ -970,7 +969,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_VERTEX_PROVIDER_OPERATION_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER_OPERATION_COUNT + 0;
+	int NUKLEAR_VERTEX_PROVIDER_OPERATION_COUNT = VulkanResourcePackage.BUFFER_DATA_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearIndexProviderImpl <em>Index Provider</em>}' class.
@@ -989,7 +988,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER__NAME = ResourcePackage.BUFFER_DATA_PROVIDER__NAME;
+	int NUKLEAR_INDEX_PROVIDER__NAME = VulkanResourcePackage.BUFFER_DATA_PROVIDER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
@@ -998,7 +997,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER__DATA_SOURCE = ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE;
+	int NUKLEAR_INDEX_PROVIDER__DATA_SOURCE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
@@ -1007,7 +1006,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER__USED_TO_PUSH = ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH;
+	int NUKLEAR_INDEX_PROVIDER__USED_TO_PUSH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH;
 
 	/**
 	 * The feature id for the '<em><b>Used To Fetch</b></em>' attribute.
@@ -1016,7 +1015,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER__USED_TO_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_FETCH;
+	int NUKLEAR_INDEX_PROVIDER__USED_TO_FETCH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_FETCH;
 
 	/**
 	 * The feature id for the '<em><b>Stage Before Push</b></em>' attribute.
@@ -1025,7 +1024,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER__STAGE_BEFORE_PUSH = ResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH;
+	int NUKLEAR_INDEX_PROVIDER__STAGE_BEFORE_PUSH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH;
 
 	/**
 	 * The feature id for the '<em><b>Access Before Push</b></em>' attribute list.
@@ -1034,7 +1033,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER__ACCESS_BEFORE_PUSH = ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH;
+	int NUKLEAR_INDEX_PROVIDER__ACCESS_BEFORE_PUSH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH;
 
 	/**
 	 * The feature id for the '<em><b>Stage Before Fetch</b></em>' attribute.
@@ -1043,7 +1042,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER__STAGE_BEFORE_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH;
+	int NUKLEAR_INDEX_PROVIDER__STAGE_BEFORE_FETCH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH;
 
 	/**
 	 * The feature id for the '<em><b>Access Before Fetch</b></em>' attribute list.
@@ -1052,7 +1051,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER__ACCESS_BEFORE_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
+	int NUKLEAR_INDEX_PROVIDER__ACCESS_BEFORE_FETCH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
 
 	/**
 	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
@@ -1061,7 +1060,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER__USAGES = ResourcePackage.BUFFER_DATA_PROVIDER__USAGES;
+	int NUKLEAR_INDEX_PROVIDER__USAGES = VulkanResourcePackage.BUFFER_DATA_PROVIDER__USAGES;
 
 	/**
 	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
@@ -1070,7 +1069,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER__INSTANCE_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT;
+	int NUKLEAR_INDEX_PROVIDER__INSTANCE_COUNT = VulkanResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT;
 
 	/**
 	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
@@ -1079,7 +1078,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER__GROW_FACTOR = ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR;
+	int NUKLEAR_INDEX_PROVIDER__GROW_FACTOR = VulkanResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR;
 
 	/**
 	 * The feature id for the '<em><b>Grow Threshold</b></em>' attribute.
@@ -1088,7 +1087,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER__GROW_THRESHOLD = ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD;
+	int NUKLEAR_INDEX_PROVIDER__GROW_THRESHOLD = VulkanResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD;
 
 	/**
 	 * The feature id for the '<em><b>Min Size</b></em>' attribute.
@@ -1097,7 +1096,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER__MIN_SIZE = ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE;
+	int NUKLEAR_INDEX_PROVIDER__MIN_SIZE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE;
 
 	/**
 	 * The feature id for the '<em><b>Requested Size</b></em>' attribute.
@@ -1106,7 +1105,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER__REQUESTED_SIZE = ResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE;
+	int NUKLEAR_INDEX_PROVIDER__REQUESTED_SIZE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' reference.
@@ -1115,7 +1114,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER__CONTEXT = ResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
+	int NUKLEAR_INDEX_PROVIDER__CONTEXT = VulkanResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Index Provider</em>' class.
@@ -1124,7 +1123,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER_FEATURE_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 1;
+	int NUKLEAR_INDEX_PROVIDER_FEATURE_COUNT = VulkanResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Index Provider</em>' class.
@@ -1133,7 +1132,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_PROVIDER_OPERATION_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER_OPERATION_COUNT + 0;
+	int NUKLEAR_INDEX_PROVIDER_OPERATION_COUNT = VulkanResourcePackage.BUFFER_DATA_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants <em>Push Constants</em>}'.

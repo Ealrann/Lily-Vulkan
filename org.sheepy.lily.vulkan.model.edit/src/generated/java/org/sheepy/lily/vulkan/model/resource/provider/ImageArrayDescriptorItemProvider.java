@@ -28,7 +28,7 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor} object.
@@ -161,7 +161,7 @@ public class ImageArrayDescriptorItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ImageArrayDescriptor_images_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ImageArrayDescriptor_images_feature", "_UI_ImageArrayDescriptor_type"),
-				 ResourcePackage.Literals.IMAGE_ARRAY_DESCRIPTOR__IMAGES,
+				 VulkanResourcePackage.Literals.IMAGE_ARRAY_DESCRIPTOR__IMAGES,
 				 true,
 				 false,
 				 true,
@@ -184,7 +184,7 @@ public class ImageArrayDescriptorItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ImageArrayDescriptor_initialLayout_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ImageArrayDescriptor_initialLayout_feature", "_UI_ImageArrayDescriptor_type"),
-				 ResourcePackage.Literals.IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT,
+				 VulkanResourcePackage.Literals.IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT,
 				 true,
 				 false,
 				 false,
@@ -235,10 +235,10 @@ public class ImageArrayDescriptorItemProvider
 
 		switch (notification.getFeatureID(ImageArrayDescriptor.class))
 		{
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME:
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__TYPE:
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__SHADER_STAGES:
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

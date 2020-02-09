@@ -10,7 +10,7 @@ import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.core.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 @Statefull
 @Adapter(scope = BufferDescriptor.class)
@@ -23,11 +23,7 @@ public class BufferDescriptorAdapter implements IDescriptorAdapter
 	private BufferDescriptorAdapter(BufferDescriptor descriptor)
 	{
 		this.descriptor = descriptor;
-		vkDescriptor = new VkBufferDescriptor(0,
-											  0,
-											  0,
-											  descriptor.getType(),
-											  descriptor.getShaderStages());
+		vkDescriptor = new VkBufferDescriptor(0, 0, 0, descriptor.getType(), descriptor.getShaderStages());
 	}
 
 	@Override
@@ -56,7 +52,7 @@ public class BufferDescriptorAdapter implements IDescriptorAdapter
 									 IBufferAdapter.Features.Ptr.ordinal());
 	}
 
-	@NotifyChanged(featureIds = ResourcePackage.BUFFER_DESCRIPTOR__BUFFER)
+	@NotifyChanged(featureIds = VulkanResourcePackage.BUFFER_DESCRIPTOR__BUFFER)
 	private void notifyChanged()
 	{
 		updateFromBuffer();

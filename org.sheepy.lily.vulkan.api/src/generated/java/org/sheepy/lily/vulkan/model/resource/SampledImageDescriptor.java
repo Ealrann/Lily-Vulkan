@@ -4,7 +4,6 @@ package org.sheepy.lily.vulkan.model.resource;
 
 import org.sheepy.lily.vulkan.model.IDescriptor;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Sampled Image Descriptor</b></em>'.
@@ -17,7 +16,7 @@ import org.sheepy.lily.vulkan.model.IDescriptor;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor#getSampledImage <em>Sampled Image</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampledImageDescriptor()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getSampledImageDescriptor()
  * @model
  * @generated
  */
@@ -29,7 +28,7 @@ public interface SampledImageDescriptor extends IDescriptor
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sampled Image</em>' reference.
 	 * @see #setSampledImage(SampledImage)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampledImageDescriptor_SampledImage()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getSampledImageDescriptor_SampledImage()
 	 * @model
 	 * @generated
 	 */

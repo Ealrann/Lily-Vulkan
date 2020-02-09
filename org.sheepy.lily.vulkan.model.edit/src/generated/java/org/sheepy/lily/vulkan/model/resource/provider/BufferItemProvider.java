@@ -11,9 +11,9 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.core.model.application.provider.IResourceItemProvider;
+import org.sheepy.lily.core.model.resource.provider.IResourceItemProvider;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.Buffer} object.
@@ -72,7 +72,7 @@ public class BufferItemProvider extends IResourceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Buffer_size_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_size_feature", "_UI_Buffer_type"),
-				 ResourcePackage.Literals.BUFFER__SIZE,
+				 VulkanResourcePackage.Literals.BUFFER__SIZE,
 				 true,
 				 false,
 				 false,
@@ -95,7 +95,7 @@ public class BufferItemProvider extends IResourceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Buffer_usages_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_usages_feature", "_UI_Buffer_type"),
-				 ResourcePackage.Literals.BUFFER__USAGES,
+				 VulkanResourcePackage.Literals.BUFFER__USAGES,
 				 true,
 				 false,
 				 false,
@@ -118,7 +118,7 @@ public class BufferItemProvider extends IResourceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Buffer_data_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_data_feature", "_UI_Buffer_type"),
-				 ResourcePackage.Literals.BUFFER__DATA,
+				 VulkanResourcePackage.Literals.BUFFER__DATA,
 				 true,
 				 false,
 				 false,
@@ -141,7 +141,7 @@ public class BufferItemProvider extends IResourceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Buffer_keptMapped_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_keptMapped_feature", "_UI_Buffer_type"),
-				 ResourcePackage.Literals.BUFFER__KEPT_MAPPED,
+				 VulkanResourcePackage.Literals.BUFFER__KEPT_MAPPED,
 				 true,
 				 false,
 				 false,
@@ -164,7 +164,7 @@ public class BufferItemProvider extends IResourceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Buffer_hostVisible_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_hostVisible_feature", "_UI_Buffer_type"),
-				 ResourcePackage.Literals.BUFFER__HOST_VISIBLE,
+				 VulkanResourcePackage.Literals.BUFFER__HOST_VISIBLE,
 				 true,
 				 false,
 				 false,
@@ -187,7 +187,7 @@ public class BufferItemProvider extends IResourceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Buffer_instanceCount_feature"),
 				 getString("_UI_Buffer_instanceCount_description"),
-				 ResourcePackage.Literals.BUFFER__INSTANCE_COUNT,
+				 VulkanResourcePackage.Literals.BUFFER__INSTANCE_COUNT,
 				 true,
 				 false,
 				 false,
@@ -210,7 +210,7 @@ public class BufferItemProvider extends IResourceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Buffer_coherent_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_coherent_feature", "_UI_Buffer_type"),
-				 ResourcePackage.Literals.BUFFER__COHERENT,
+				 VulkanResourcePackage.Literals.BUFFER__COHERENT,
 				 true,
 				 false,
 				 false,
@@ -260,13 +260,13 @@ public class BufferItemProvider extends IResourceItemProvider
 
 		switch (notification.getFeatureID(Buffer.class))
 		{
-			case ResourcePackage.BUFFER__SIZE:
-			case ResourcePackage.BUFFER__DATA:
-			case ResourcePackage.BUFFER__KEPT_MAPPED:
-			case ResourcePackage.BUFFER__HOST_VISIBLE:
-			case ResourcePackage.BUFFER__COHERENT:
-			case ResourcePackage.BUFFER__USAGES:
-			case ResourcePackage.BUFFER__INSTANCE_COUNT:
+			case VulkanResourcePackage.BUFFER__SIZE:
+			case VulkanResourcePackage.BUFFER__DATA:
+			case VulkanResourcePackage.BUFFER__KEPT_MAPPED:
+			case VulkanResourcePackage.BUFFER__HOST_VISIBLE:
+			case VulkanResourcePackage.BUFFER__COHERENT:
+			case VulkanResourcePackage.BUFFER__USAGES:
+			case VulkanResourcePackage.BUFFER__INSTANCE_COUNT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

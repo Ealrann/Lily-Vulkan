@@ -4,7 +4,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.core.process.IComputeContext;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -27,16 +27,16 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContex
 																				 ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES);
 
 	private static final List<EReference> RESOURCE_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																	  ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+																	  ResourcePackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EReference> PIPELINE_RESOURCE_FEATURES = List.of(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
 																			   ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 																			   VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																			   ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+																			   ResourcePackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EReference> COMPOSITE_PIPELINE_RESOURCE_FEATURES = List.of(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
 																						 ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 																						 ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
 																						 VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																						 ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+																						 ResourcePackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EReference> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 																		VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
 	private static final List<EReference> PIPELINE_DESCRIPTOR_FEATURES = List.of(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
@@ -49,8 +49,7 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContex
 																						   VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 																						   VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
 
-	private static final List<ECommandStage> stages = List.of(ECommandStage.TRANSFER,
-															  ECommandStage.COMPUTE);
+	private static final List<ECommandStage> stages = List.of(ECommandStage.TRANSFER, ECommandStage.COMPUTE);
 
 	public ComputeProcessAdapter(ComputeProcess process)
 	{
@@ -60,10 +59,7 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContex
 	@Override
 	protected ComputeContext createContext()
 	{
-		return new ComputeContext(getExecutionQueueType(),
-								  isResetAllowed(),
-								  descriptorPool,
-								  process);
+		return new ComputeContext(getExecutionQueueType(), isResetAllowed(), descriptorPool, process);
 	}
 
 	@Override

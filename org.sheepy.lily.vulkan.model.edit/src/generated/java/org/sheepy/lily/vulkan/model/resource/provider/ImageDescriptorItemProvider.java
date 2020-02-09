@@ -27,7 +27,7 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.resource.ImageDescriptor;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageDescriptor} object.
@@ -159,7 +159,7 @@ public class ImageDescriptorItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ImageDescriptor_image_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ImageDescriptor_image_feature", "_UI_ImageDescriptor_type"),
-				 ResourcePackage.Literals.IMAGE_DESCRIPTOR__IMAGE,
+				 VulkanResourcePackage.Literals.IMAGE_DESCRIPTOR__IMAGE,
 				 true,
 				 false,
 				 true,
@@ -210,9 +210,9 @@ public class ImageDescriptorItemProvider
 
 		switch (notification.getFeatureID(ImageDescriptor.class))
 		{
-			case ResourcePackage.IMAGE_DESCRIPTOR__NAME:
-			case ResourcePackage.IMAGE_DESCRIPTOR__TYPE:
-			case ResourcePackage.IMAGE_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__SHADER_STAGES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

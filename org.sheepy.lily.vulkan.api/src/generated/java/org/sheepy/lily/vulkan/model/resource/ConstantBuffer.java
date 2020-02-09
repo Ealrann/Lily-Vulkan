@@ -3,7 +3,8 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import java.nio.ByteBuffer;
-import org.sheepy.lily.core.model.application.IResource;
+
+import org.sheepy.lily.core.model.resource.IResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,7 +18,7 @@ import org.sheepy.lily.core.model.application.IResource;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.ConstantBuffer#getData <em>Data</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getConstantBuffer()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getConstantBuffer()
  * @model
  * @generated
  */
@@ -29,7 +30,7 @@ public interface ConstantBuffer extends IResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data</em>' attribute.
 	 * @see #setData(ByteBuffer)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getConstantBuffer_Data()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getConstantBuffer_Data()
 	 * @model unique="false" dataType="org.sheepy.lily.vulkan.model.resource.ByteBuffer"
 	 * @generated
 	 */

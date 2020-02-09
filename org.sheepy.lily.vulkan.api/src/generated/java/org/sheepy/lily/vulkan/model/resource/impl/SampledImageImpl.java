@@ -9,10 +9,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.lily.core.model.application.impl.IResourceImpl;
+
+import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
+
 import org.sheepy.lily.vulkan.model.resource.Image;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+
 import org.sheepy.vulkan.model.image.SamplerInfo;
 
 /**
@@ -69,7 +72,7 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.SAMPLED_IMAGE;
+		return VulkanResourcePackage.Literals.SAMPLED_IMAGE;
 	}
 
 	/**
@@ -94,7 +97,7 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 		sampler = newSampler;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE__SAMPLER, oldSampler, newSampler);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER, oldSampler, newSampler);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -112,14 +115,14 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 		{
 			NotificationChain msgs = null;
 			if (sampler != null)
-				msgs = ((InternalEObject)sampler).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_IMAGE__SAMPLER, null, msgs);
+				msgs = ((InternalEObject)sampler).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER, null, msgs);
 			if (newSampler != null)
-				msgs = ((InternalEObject)newSampler).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_IMAGE__SAMPLER, null, msgs);
+				msgs = ((InternalEObject)newSampler).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER, null, msgs);
 			msgs = basicSetSampler(newSampler, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE__SAMPLER, newSampler, newSampler));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER, newSampler, newSampler));
 	}
 
 	/**
@@ -144,7 +147,7 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 		image = newImage;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE__IMAGE, oldImage, newImage);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLED_IMAGE__IMAGE, oldImage, newImage);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -162,14 +165,14 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 		{
 			NotificationChain msgs = null;
 			if (image != null)
-				msgs = ((InternalEObject)image).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_IMAGE__IMAGE, null, msgs);
+				msgs = ((InternalEObject)image).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.SAMPLED_IMAGE__IMAGE, null, msgs);
 			if (newImage != null)
-				msgs = ((InternalEObject)newImage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_IMAGE__IMAGE, null, msgs);
+				msgs = ((InternalEObject)newImage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.SAMPLED_IMAGE__IMAGE, null, msgs);
 			msgs = basicSetImage(newImage, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE__IMAGE, newImage, newImage));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLED_IMAGE__IMAGE, newImage, newImage));
 	}
 
 	/**
@@ -182,9 +185,9 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+			case VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				return basicSetSampler(null, msgs);
-			case ResourcePackage.SAMPLED_IMAGE__IMAGE:
+			case VulkanResourcePackage.SAMPLED_IMAGE__IMAGE:
 				return basicSetImage(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -200,9 +203,9 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+			case VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				return getSampler();
-			case ResourcePackage.SAMPLED_IMAGE__IMAGE:
+			case VulkanResourcePackage.SAMPLED_IMAGE__IMAGE:
 				return getImage();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -218,10 +221,10 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+			case VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				setSampler((SamplerInfo)newValue);
 				return;
-			case ResourcePackage.SAMPLED_IMAGE__IMAGE:
+			case VulkanResourcePackage.SAMPLED_IMAGE__IMAGE:
 				setImage((Image)newValue);
 				return;
 		}
@@ -238,10 +241,10 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+			case VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				setSampler((SamplerInfo)null);
 				return;
-			case ResourcePackage.SAMPLED_IMAGE__IMAGE:
+			case VulkanResourcePackage.SAMPLED_IMAGE__IMAGE:
 				setImage((Image)null);
 				return;
 		}
@@ -258,9 +261,9 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+			case VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				return sampler != null;
-			case ResourcePackage.SAMPLED_IMAGE__IMAGE:
+			case VulkanResourcePackage.SAMPLED_IMAGE__IMAGE:
 				return image != null;
 		}
 		return super.eIsSet(featureID);

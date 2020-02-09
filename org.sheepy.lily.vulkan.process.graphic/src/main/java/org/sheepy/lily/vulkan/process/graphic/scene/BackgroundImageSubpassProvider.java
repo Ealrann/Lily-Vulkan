@@ -6,7 +6,7 @@ import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.BackgroundImage;
-import org.sheepy.lily.core.model.application.IImage;
+import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
@@ -16,12 +16,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.vulkan.model.enumeration.EAccess;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.vulkan.model.enumeration.EFilter;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+import org.sheepy.vulkan.model.enumeration.*;
 
 @Statefull
 @Adapter(scope = BackgroundImage.class)
@@ -71,7 +67,7 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 	{
 		final Pipeline pipeline = ProcessFactory.eINSTANCE.createPipeline();
 
-		imageBarrier = ResourceFactory.eINSTANCE.createImageBarrier();
+		imageBarrier = VulkanResourceFactory.eINSTANCE.createImageBarrier();
 		imageBarrier.getDstAccessMask().add(EAccess.TRANSFER_READ_BIT);
 		imageBarrier.setSrcLayout(EImageLayout.UNDEFINED);
 		imageBarrier.setDstLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
@@ -92,12 +88,12 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 		blit.setClearColor(part.getClearColor());
 		switch (part.getSampling())
 		{
-		case LINEAR:
-			blit.setFilter(EFilter.LINEAR);
-			break;
-		case NEAREST:
-			blit.setFilter(EFilter.NEAREST);
-			break;
+			case LINEAR:
+				blit.setFilter(EFilter.LINEAR);
+				break;
+			case NEAREST:
+				blit.setFilter(EFilter.NEAREST);
+				break;
 		}
 
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();

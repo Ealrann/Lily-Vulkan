@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.sheepy.lily.core.model.action.ActionPackage;
@@ -19,29 +20,48 @@ import org.sheepy.lily.core.model.action.ActionPackage;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 
 import org.sheepy.lily.core.model.cadence.CadencePackage;
+
 import org.sheepy.lily.core.model.inference.InferencePackage;
+
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
+
 import org.sheepy.lily.core.model.presentation.PresentationPackage;
+
+import org.sheepy.lily.core.model.resource.ResourcePackage;
+
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.core.model.ui.UiPackage;
+
 import org.sheepy.lily.core.model.variable.VariablePackage;
+
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+
 import org.sheepy.lily.vulkan.model.binding.BindingPackage;
+
 import org.sheepy.lily.vulkan.model.binding.impl.BindingPackageImpl;
+
 import org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl;
+
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+
 import org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl;
+
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl;
+
 import org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl;
+
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.CompositeImage;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
@@ -53,8 +73,7 @@ import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageDescriptor;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.ImageInlay;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
@@ -63,11 +82,17 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
+
 import org.sheepy.vulkan.model.image.ImagePackage;
+
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 
 /**
@@ -76,7 +101,7 @@ import org.sheepy.vulkan.model.pipeline.PipelinePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
+public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanResourcePackage
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -154,6 +179,20 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass fontImageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compositeImageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass imageInlayEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -271,13 +310,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#eNS_URI
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private ResourcePackageImpl()
+	private VulkanResourcePackageImpl()
 	{
-		super(eNS_URI, ResourceFactory.eINSTANCE);
+		super(eNS_URI, VulkanResourceFactory.eINSTANCE);
 	}
 
 	/**
@@ -290,7 +329,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
-	 * <p>This method is used to initialize {@link ResourcePackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link VulkanResourcePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -299,13 +338,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static ResourcePackage init()
+	public static VulkanResourcePackage init()
 	{
-		if (isInited) return (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		if (isInited) return (VulkanResourcePackage)EPackage.Registry.INSTANCE.getEPackage(VulkanResourcePackage.eNS_URI);
 
 		// Obtain or create and register package
-		Object registeredResourcePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		ResourcePackageImpl theResourcePackage = registeredResourcePackage instanceof ResourcePackageImpl ? (ResourcePackageImpl)registeredResourcePackage : new ResourcePackageImpl();
+		Object registeredVulkanResourcePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		VulkanResourcePackageImpl theVulkanResourcePackage = registeredVulkanResourcePackage instanceof VulkanResourcePackageImpl ? (VulkanResourcePackageImpl)registeredVulkanResourcePackage : new VulkanResourcePackageImpl();
 
 		isInited = true;
 
@@ -324,6 +363,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
+		ResourcePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BindingPackage.eNS_URI);
@@ -338,7 +378,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		VulkanPackageImpl theVulkanPackage = (VulkanPackageImpl)(registeredPackage instanceof VulkanPackageImpl ? registeredPackage : VulkanPackage.eINSTANCE);
 
 		// Create package meta-data objects
-		theResourcePackage.createPackageContents();
+		theVulkanResourcePackage.createPackageContents();
 		theBindingPackage.createPackageContents();
 		theComputePackage.createPackageContents();
 		theGraphicPackage.createPackageContents();
@@ -346,7 +386,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		theVulkanPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theResourcePackage.initializePackageContents();
+		theVulkanResourcePackage.initializePackageContents();
 		theBindingPackage.initializePackageContents();
 		theComputePackage.initializePackageContents();
 		theGraphicPackage.initializePackageContents();
@@ -354,11 +394,11 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		theVulkanPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theResourcePackage.freeze();
+		theVulkanResourcePackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(ResourcePackage.eNS_URI, theResourcePackage);
-		return theResourcePackage;
+		EPackage.Registry.INSTANCE.put(VulkanResourcePackage.eNS_URI, theVulkanResourcePackage);
+		return theVulkanResourcePackage;
 	}
 
 	/**
@@ -598,61 +638,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBufferDataProvider_InstanceCount()
-	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getBufferDataProvider_GrowFactor()
-	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getBufferDataProvider_GrowThreshold()
-	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(10);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getBufferDataProvider_MinSize()
-	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(11);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getBufferDataProvider_RequestedSize()
-	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(12);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getBufferDataProvider_DataSource()
 	{
 		return (EReference)bufferDataProviderEClass.getEStructuralFeatures().get(0);
@@ -733,6 +718,61 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EAttribute getBufferDataProvider_Usages()
 	{
 		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferDataProvider_InstanceCount()
+	{
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferDataProvider_GrowFactor()
+	{
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferDataProvider_GrowThreshold()
+	{
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferDataProvider_MinSize()
+	{
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferDataProvider_RequestedSize()
+	{
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -854,6 +894,105 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EAttribute getFontImage_InstanceCount()
 	{
 		return (EAttribute)fontImageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCompositeImage()
+	{
+		return compositeImageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompositeImage_Inlays()
+	{
+		return (EReference)compositeImageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompositeImage_Background()
+	{
+		return (EReference)compositeImageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getImageInlay()
+	{
+		return imageInlayEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getImageInlay_Image()
+	{
+		return (EReference)imageInlayEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImageInlay_Position()
+	{
+		return (EAttribute)imageInlayEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImageInlay_Size()
+	{
+		return (EAttribute)imageInlayEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImageInlay_HorizontalRelative()
+	{
+		return (EAttribute)imageInlayEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImageInlay_VerticalRelative()
+	{
+		return (EAttribute)imageInlayEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1225,9 +1364,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public ResourceFactory getResourceFactory()
+	public VulkanResourceFactory getVulkanResourceFactory()
 	{
-		return (ResourceFactory)getEFactoryInstance();
+		return (VulkanResourceFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -1306,6 +1445,17 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEReference(fontImageEClass, FONT_IMAGE__FONTS);
 		createEAttribute(fontImageEClass, FONT_IMAGE__INSTANCE_COUNT);
 
+		compositeImageEClass = createEClass(COMPOSITE_IMAGE);
+		createEReference(compositeImageEClass, COMPOSITE_IMAGE__INLAYS);
+		createEReference(compositeImageEClass, COMPOSITE_IMAGE__BACKGROUND);
+
+		imageInlayEClass = createEClass(IMAGE_INLAY);
+		createEReference(imageInlayEClass, IMAGE_INLAY__IMAGE);
+		createEAttribute(imageInlayEClass, IMAGE_INLAY__POSITION);
+		createEAttribute(imageInlayEClass, IMAGE_INLAY__SIZE);
+		createEAttribute(imageInlayEClass, IMAGE_INLAY__HORIZONTAL_RELATIVE);
+		createEAttribute(imageInlayEClass, IMAGE_INLAY__VERTICAL_RELATIVE);
+
 		sampledImageEClass = createEClass(SAMPLED_IMAGE);
 		createEReference(sampledImageEClass, SAMPLED_IMAGE__SAMPLER);
 		createEReference(sampledImageEClass, SAMPLED_IMAGE__IMAGE);
@@ -1382,7 +1532,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ApplicationPackage theApplicationPackage = (ApplicationPackage)EPackage.Registry.INSTANCE.getEPackage(ApplicationPackage.eNS_URI);
+		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		ImagePackage theImagePackage = (ImagePackage)EPackage.Registry.INSTANCE.getEPackage(ImagePackage.eNS_URI);
@@ -1397,22 +1547,23 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		transferBufferEClass.getESuperTypes().add(theApplicationPackage.getIResource());
-		constantBufferEClass.getESuperTypes().add(theApplicationPackage.getIResource());
-		iBufferEClass.getESuperTypes().add(theApplicationPackage.getIResource());
+		transferBufferEClass.getESuperTypes().add(theResourcePackage.getIResource());
+		constantBufferEClass.getESuperTypes().add(theResourcePackage.getIResource());
+		iBufferEClass.getESuperTypes().add(theResourcePackage.getIResource());
 		bufferEClass.getESuperTypes().add(this.getIBuffer());
-		compositeBufferEClass.getESuperTypes().add(theApplicationPackage.getIResource());
+		compositeBufferEClass.getESuperTypes().add(theResourcePackage.getIResource());
 		bufferPartEClass.getESuperTypes().add(this.getIBuffer());
 		bufferDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		imageEClass.getESuperTypes().add(theImagePackage.getImageInfo());
-		imageEClass.getESuperTypes().add(theApplicationPackage.getIImage());
+		imageEClass.getESuperTypes().add(theResourcePackage.getIImage());
 		staticImageEClass.getESuperTypes().add(this.getImage());
 		fileImageEClass.getESuperTypes().add(this.getImage());
 		fontImageEClass.getESuperTypes().add(this.getImage());
-		sampledImageEClass.getESuperTypes().add(theApplicationPackage.getIResource());
+		compositeImageEClass.getESuperTypes().add(this.getImage());
+		sampledImageEClass.getESuperTypes().add(theResourcePackage.getIResource());
 		samplerEClass.getESuperTypes().add(theImagePackage.getSamplerInfo());
-		samplerEClass.getESuperTypes().add(theApplicationPackage.getIResource());
-		semaphoreEClass.getESuperTypes().add(theApplicationPackage.getIResource());
+		samplerEClass.getESuperTypes().add(theResourcePackage.getIResource());
+		semaphoreEClass.getESuperTypes().add(theResourcePackage.getIResource());
 		bufferDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		imageDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		sampledImageDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
@@ -1420,7 +1571,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		descriptorSetEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		bufferBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractBufferBarrier());
 		imageBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractImageBarrier());
-		shaderEClass.getESuperTypes().add(theApplicationPackage.getIResource());
+		shaderEClass.getESuperTypes().add(theResourcePackage.getIResource());
 		imageArrayDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
@@ -1477,12 +1628,23 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getStaticImage_Size(), theTypesPackage.getVector2i(), "size", "1;1", 1, 1, StaticImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fileImageEClass, FileImage.class, "FileImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFileImage_File(), theApplicationPackage.getFileResource(), null, "file", null, 0, 1, FileImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFileImage_File(), theResourcePackage.getFileResource(), null, "file", null, 0, 1, FileImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFileImage_MipmapEnabled(), ecorePackage.getEBoolean(), "mipmapEnabled", "false", 1, 1, FileImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fontImageEClass, FontImage.class, "FontImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFontImage_Fonts(), theUiPackage.getFont(), null, "fonts", null, 0, -1, FontImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFontImage_InstanceCount(), theEnumerationPackage.getEInstanceCount(), "instanceCount", null, 1, 1, FontImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(compositeImageEClass, CompositeImage.class, "CompositeImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompositeImage_Inlays(), this.getImageInlay(), null, "inlays", null, 0, -1, CompositeImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositeImage_Background(), this.getImage(), null, "background", null, 1, 1, CompositeImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(imageInlayEClass, ImageInlay.class, "ImageInlay", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getImageInlay_Image(), this.getImage(), null, "image", null, 1, 1, ImageInlay.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageInlay_Position(), theTypesPackage.getVector2i(), "position", "0;0", 1, 1, ImageInlay.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageInlay_Size(), ecorePackage.getEFloat(), "size", "1.0", 1, 1, ImageInlay.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageInlay_HorizontalRelative(), theTypesPackage.getEHorizontalRelative(), "horizontalRelative", "LEFT", 1, 1, ImageInlay.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageInlay_VerticalRelative(), theTypesPackage.getEVerticalRelative(), "verticalRelative", "TOP", 1, 1, ImageInlay.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sampledImageEClass, SampledImage.class, "SampledImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSampledImage_Sampler(), theImagePackage.getSamplerInfo(), null, "sampler", null, 1, 1, SampledImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1520,12 +1682,12 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getImageBarrier_Image(), this.getImage(), null, "image", null, 1, 1, ImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(shaderEClass, Shader.class, "Shader", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getShader_File(), theApplicationPackage.getFileResource(), null, "file", null, 0, 1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getShader_File(), theResourcePackage.getFileResource(), null, "file", null, 0, 1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getShader_Stage(), theEnumerationPackage.getEShaderStage(), "stage", null, 0, 1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getShader_Constants(), thePipelinePackage.getSpecializationConstant(), null, "constants", null, 0, -1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageArrayDescriptorEClass, ImageArrayDescriptor.class, "ImageArrayDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getImageArrayDescriptor_Images(), theApplicationPackage.getIImage(), null, "images", null, 0, -1, ImageArrayDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImageArrayDescriptor_Images(), theResourcePackage.getIImage(), null, "images", null, 0, -1, ImageArrayDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageArrayDescriptor_InitialLayout(), theEnumerationPackage.getEImageLayout(), "initialLayout", null, 1, 1, ImageArrayDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
@@ -1540,4 +1702,4 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createResource(eNS_URI);
 	}
 
-} //ResourcePackageImpl
+} //VulkanResourcePackageImpl

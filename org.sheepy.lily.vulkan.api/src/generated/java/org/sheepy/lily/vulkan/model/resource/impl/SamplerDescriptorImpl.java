@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.SamplerDescriptor;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
@@ -121,7 +121,7 @@ public class SamplerDescriptorImpl extends LilyEObject implements SamplerDescrip
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.SAMPLER_DESCRIPTOR;
+		return VulkanResourcePackage.Literals.SAMPLER_DESCRIPTOR;
 	}
 
 	/**
@@ -146,7 +146,7 @@ public class SamplerDescriptorImpl extends LilyEObject implements SamplerDescrip
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER_DESCRIPTOR__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLER_DESCRIPTOR__NAME, oldName, name));
 	}
 
 	/**
@@ -171,7 +171,7 @@ public class SamplerDescriptorImpl extends LilyEObject implements SamplerDescrip
 		EDescriptorType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER_DESCRIPTOR__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLER_DESCRIPTOR__TYPE, oldType, type));
 	}
 
 	/**
@@ -184,7 +184,7 @@ public class SamplerDescriptorImpl extends LilyEObject implements SamplerDescrip
 	{
 		if (shaderStages == null)
 		{
-			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, ResourcePackage.SAMPLER_DESCRIPTOR__SHADER_STAGES);
+			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, VulkanResourcePackage.SAMPLER_DESCRIPTOR__SHADER_STAGES);
 		}
 		return shaderStages;
 	}
@@ -204,7 +204,7 @@ public class SamplerDescriptorImpl extends LilyEObject implements SamplerDescrip
 			if (sampler != oldSampler)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.SAMPLER_DESCRIPTOR__SAMPLER, oldSampler, sampler));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.SAMPLER_DESCRIPTOR__SAMPLER, oldSampler, sampler));
 			}
 		}
 		return sampler;
@@ -231,7 +231,7 @@ public class SamplerDescriptorImpl extends LilyEObject implements SamplerDescrip
 		Sampler oldSampler = sampler;
 		sampler = newSampler;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLER_DESCRIPTOR__SAMPLER, oldSampler, sampler));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLER_DESCRIPTOR__SAMPLER, oldSampler, sampler));
 	}
 
 	/**
@@ -244,13 +244,13 @@ public class SamplerDescriptorImpl extends LilyEObject implements SamplerDescrip
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLER_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__NAME:
 				return getName();
-			case ResourcePackage.SAMPLER_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__TYPE:
 				return getType();
-			case ResourcePackage.SAMPLER_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__SHADER_STAGES:
 				return getShaderStages();
-			case ResourcePackage.SAMPLER_DESCRIPTOR__SAMPLER:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__SAMPLER:
 				if (resolve) return getSampler();
 				return basicGetSampler();
 		}
@@ -268,17 +268,17 @@ public class SamplerDescriptorImpl extends LilyEObject implements SamplerDescrip
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLER_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__NAME:
 				setName((String)newValue);
 				return;
-			case ResourcePackage.SAMPLER_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__TYPE:
 				setType((EDescriptorType)newValue);
 				return;
-			case ResourcePackage.SAMPLER_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__SHADER_STAGES:
 				getShaderStages().clear();
 				getShaderStages().addAll((Collection<? extends EShaderStage>)newValue);
 				return;
-			case ResourcePackage.SAMPLER_DESCRIPTOR__SAMPLER:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__SAMPLER:
 				setSampler((Sampler)newValue);
 				return;
 		}
@@ -295,16 +295,16 @@ public class SamplerDescriptorImpl extends LilyEObject implements SamplerDescrip
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLER_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ResourcePackage.SAMPLER_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
-			case ResourcePackage.SAMPLER_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__SHADER_STAGES:
 				getShaderStages().clear();
 				return;
-			case ResourcePackage.SAMPLER_DESCRIPTOR__SAMPLER:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__SAMPLER:
 				setSampler((Sampler)null);
 				return;
 		}
@@ -321,13 +321,13 @@ public class SamplerDescriptorImpl extends LilyEObject implements SamplerDescrip
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLER_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.SAMPLER_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__TYPE:
 				return type != TYPE_EDEFAULT;
-			case ResourcePackage.SAMPLER_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__SHADER_STAGES:
 				return shaderStages != null && !shaderStages.isEmpty();
-			case ResourcePackage.SAMPLER_DESCRIPTOR__SAMPLER:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__SAMPLER:
 				return sampler != null;
 		}
 		return super.eIsSet(featureID);

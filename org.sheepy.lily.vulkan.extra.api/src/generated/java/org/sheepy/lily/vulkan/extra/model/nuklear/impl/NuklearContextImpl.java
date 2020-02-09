@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.lily.core.model.application.impl.IResourceImpl;
+import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
@@ -107,7 +107,7 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	{
 		if (font != null && ((EObject)font).eIsProxy())
 		{
-			InternalEObject oldFont = (InternalEObject)font;
+			InternalEObject oldFont = font;
 			font = (NuklearFont)eResolveProxy(oldFont);
 			if (font != oldFont)
 			{
@@ -152,7 +152,7 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	{
 		if (nullTexture != null && ((EObject)nullTexture).eIsProxy())
 		{
-			InternalEObject oldNullTexture = (InternalEObject)nullTexture;
+			InternalEObject oldNullTexture = nullTexture;
 			nullTexture = (SampledImage)eResolveProxy(oldNullTexture);
 			if (nullTexture != oldNullTexture)
 			{
@@ -197,7 +197,7 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	{
 		if (layoutTask != null && ((EObject)layoutTask).eIsProxy())
 		{
-			InternalEObject oldLayoutTask = (InternalEObject)layoutTask;
+			InternalEObject oldLayoutTask = layoutTask;
 			layoutTask = (NuklearLayoutTask)eResolveProxy(oldLayoutTask);
 			if (layoutTask != oldLayoutTask)
 			{
@@ -267,7 +267,7 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	{
 		if (imageArrayDescriptor != null && ((EObject)imageArrayDescriptor).eIsProxy())
 		{
-			InternalEObject oldImageArrayDescriptor = (InternalEObject)imageArrayDescriptor;
+			InternalEObject oldImageArrayDescriptor = imageArrayDescriptor;
 			imageArrayDescriptor = (ImageArrayDescriptor)eResolveProxy(oldImageArrayDescriptor);
 			if (imageArrayDescriptor != oldImageArrayDescriptor)
 			{

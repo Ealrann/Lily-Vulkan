@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
-
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 
 /**

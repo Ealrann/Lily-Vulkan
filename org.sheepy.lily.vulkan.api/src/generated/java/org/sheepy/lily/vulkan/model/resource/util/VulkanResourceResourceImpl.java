@@ -10,10 +10,10 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
- * @see org.sheepy.lily.vulkan.model.resource.util.ResourceResourceFactoryImpl
+ * @see org.sheepy.lily.vulkan.model.resource.util.VulkanResourceResourceFactoryImpl
  * @generated
  */
-public class ResourceResourceImpl extends XMIResourceImpl
+public class VulkanResourceResourceImpl extends XMIResourceImpl
 {
 	/**
 	 * Creates an instance of the resource.
@@ -22,9 +22,9 @@ public class ResourceResourceImpl extends XMIResourceImpl
 	 * @param uri the URI of the new resource.
 	 * @generated
 	 */
-	public ResourceResourceImpl(URI uri)
+	public VulkanResourceResourceImpl(URI uri)
 	{
 		super(uri);
 	}
 
-} //ResourceResourceImpl
+} //VulkanResourceResourceImpl

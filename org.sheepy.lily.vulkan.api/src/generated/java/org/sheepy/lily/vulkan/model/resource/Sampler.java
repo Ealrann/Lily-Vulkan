@@ -2,7 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
-import org.sheepy.lily.core.model.application.IResource;
+import org.sheepy.lily.core.model.resource.IResource;
+
 import org.sheepy.vulkan.model.image.SamplerInfo;
 
 /**
@@ -17,7 +18,7 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Sampler#getImage <em>Image</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampler()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getSampler()
  * @model
  * @generated
  */
@@ -29,7 +30,7 @@ public interface Sampler extends SamplerInfo, IResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Image</em>' reference.
 	 * @see #setImage(Image)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampler_Image()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getSampler_Image()
 	 * @model
 	 * @generated
 	 */

@@ -16,7 +16,7 @@ import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferBarrier#getBuffer <em>Buffer</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferBarrier()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferBarrier()
  * @model
  * @generated
  */
@@ -28,7 +28,7 @@ public interface BufferBarrier extends AbstractBufferBarrier
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Buffer</em>' reference.
 	 * @see #setBuffer(IBuffer)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferBarrier_Buffer()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferBarrier_Buffer()
 	 * @model
 	 * @generated
 	 */

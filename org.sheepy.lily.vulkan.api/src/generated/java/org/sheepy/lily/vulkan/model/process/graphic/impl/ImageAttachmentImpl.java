@@ -15,7 +15,6 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment;
-
 import org.sheepy.lily.vulkan.model.resource.Image;
 
 /**

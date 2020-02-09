@@ -12,8 +12,8 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.StaticImage} object.
@@ -68,7 +68,7 @@ public class StaticImageItemProvider extends ImageItemProvider
 				 getResourceLocator(),
 				 getString("_UI_StaticImage_fillWithZero_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_StaticImage_fillWithZero_feature", "_UI_StaticImage_type"),
-				 ResourcePackage.Literals.STATIC_IMAGE__FILL_WITH_ZERO,
+				 VulkanResourcePackage.Literals.STATIC_IMAGE__FILL_WITH_ZERO,
 				 true,
 				 false,
 				 false,
@@ -91,7 +91,7 @@ public class StaticImageItemProvider extends ImageItemProvider
 				 getResourceLocator(),
 				 getString("_UI_StaticImage_fillWith_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_StaticImage_fillWith_feature", "_UI_StaticImage_type"),
-				 ResourcePackage.Literals.STATIC_IMAGE__FILL_WITH,
+				 VulkanResourcePackage.Literals.STATIC_IMAGE__FILL_WITH,
 				 true,
 				 false,
 				 false,
@@ -114,7 +114,7 @@ public class StaticImageItemProvider extends ImageItemProvider
 				 getResourceLocator(),
 				 getString("_UI_StaticImage_size_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_StaticImage_size_feature", "_UI_StaticImage_type"),
-				 ResourcePackage.Literals.STATIC_IMAGE__SIZE,
+				 VulkanResourcePackage.Literals.STATIC_IMAGE__SIZE,
 				 true,
 				 false,
 				 false,
@@ -165,9 +165,9 @@ public class StaticImageItemProvider extends ImageItemProvider
 
 		switch (notification.getFeatureID(StaticImage.class))
 		{
-			case ResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
-			case ResourcePackage.STATIC_IMAGE__FILL_WITH:
-			case ResourcePackage.STATIC_IMAGE__SIZE:
+			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
+			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH:
+			case VulkanResourcePackage.STATIC_IMAGE__SIZE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

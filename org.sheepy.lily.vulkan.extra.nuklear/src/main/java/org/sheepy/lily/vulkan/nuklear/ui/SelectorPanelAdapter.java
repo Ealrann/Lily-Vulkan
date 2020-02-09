@@ -13,7 +13,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
-import org.sheepy.lily.core.model.application.IImage;
+import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.core.model.types.EHorizontalRelative;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
@@ -35,8 +35,7 @@ import static org.lwjgl.nuklear.Nuklear.*;
 
 @Statefull
 @Adapter(scope = SelectorPanel.class)
-public final class SelectorPanelAdapter extends Notifier
-		implements IPanelAdapter, ITextWidgetAdapter
+public final class SelectorPanelAdapter extends Notifier implements IPanelAdapter, ITextWidgetAdapter
 {
 	private static final int MARGING_W = 5;
 
@@ -337,12 +336,7 @@ public final class SelectorPanelAdapter extends Notifier
 
 		private final NkImage nkImage = NkImage.calloc();
 
-		public LineData(Object input,
-						String name,
-						String panelName,
-						IImage image,
-						Vector3fc color,
-						boolean right)
+		public LineData(Object input, String name, String panelName, IImage image, Vector3fc color, boolean right)
 		{
 			this.element = input;
 			this.name = name;
@@ -358,8 +352,7 @@ public final class SelectorPanelAdapter extends Notifier
 
 		private static NkColor allocColor(Vector3fc color)
 		{
-			return NkColor.calloc()
-						  .set((byte) color.x(), (byte) color.y(), (byte) color.z(), (byte) 255);
+			return NkColor.calloc().set((byte) color.x(), (byte) color.y(), (byte) color.z(), (byte) 255);
 		}
 
 		public NkImage getNkImage()

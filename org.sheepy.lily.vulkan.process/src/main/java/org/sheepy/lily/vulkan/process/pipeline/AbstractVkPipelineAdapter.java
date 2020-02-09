@@ -1,9 +1,5 @@
 package org.sheepy.lily.vulkan.process.pipeline;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
@@ -14,14 +10,18 @@ import org.sheepy.lily.vulkan.core.process.IProcessContext;
 import org.sheepy.lily.vulkan.core.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.model.process.IVkPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Statefull
-public abstract class AbstractVkPipelineAdapter<T extends IProcessContext>
-		extends AbstractTaskPipelineAdapter<T> implements IVkPipelineAdapter<T>
+public abstract class AbstractVkPipelineAdapter<T extends IProcessContext> extends AbstractTaskPipelineAdapter<T> implements
+																												  IVkPipelineAdapter<T>
 {
 	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.IVK_PIPELINE__DESCRIPTOR_SET_PKG,
-																							ResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));
+																							VulkanResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));
 
 	protected final IVkPipeline pipeline;
 

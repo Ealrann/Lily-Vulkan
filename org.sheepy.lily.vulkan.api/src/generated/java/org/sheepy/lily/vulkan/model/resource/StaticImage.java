@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import java.nio.ByteBuffer;
+
 import org.joml.Vector2ic;
 
 /**
@@ -19,7 +20,7 @@ import org.joml.Vector2ic;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.StaticImage#getSize <em>Size</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getStaticImage()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getStaticImage()
  * @model
  * @generated
  */
@@ -32,7 +33,7 @@ public interface StaticImage extends Image
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fill With Zero</em>' attribute.
 	 * @see #setFillWithZero(boolean)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getStaticImage_FillWithZero()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getStaticImage_FillWithZero()
 	 * @model default="false" unique="false"
 	 * @generated
 	 */
@@ -54,7 +55,7 @@ public interface StaticImage extends Image
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fill With</em>' attribute.
 	 * @see #setFillWith(ByteBuffer)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getStaticImage_FillWith()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getStaticImage_FillWith()
 	 * @model dataType="org.sheepy.lily.vulkan.model.resource.ByteBuffer"
 	 * @generated
 	 */
@@ -77,7 +78,7 @@ public interface StaticImage extends Image
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Size</em>' attribute.
 	 * @see #setSize(Vector2ic)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getStaticImage_Size()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getStaticImage_Size()
 	 * @model default="1;1" dataType="org.sheepy.lily.core.model.types.Vector2i" required="true"
 	 * @generated
 	 */

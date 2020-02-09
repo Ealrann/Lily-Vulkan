@@ -13,7 +13,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.FileImage} object.
@@ -67,7 +67,7 @@ public class FileImageItemProvider extends ImageItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FileImage_file_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FileImage_file_feature", "_UI_FileImage_type"),
-				 ResourcePackage.Literals.FILE_IMAGE__FILE,
+				 VulkanResourcePackage.Literals.FILE_IMAGE__FILE,
 				 true,
 				 false,
 				 true,
@@ -90,7 +90,7 @@ public class FileImageItemProvider extends ImageItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FileImage_mipmapEnabled_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FileImage_mipmapEnabled_feature", "_UI_FileImage_type"),
-				 ResourcePackage.Literals.FILE_IMAGE__MIPMAP_ENABLED,
+				 VulkanResourcePackage.Literals.FILE_IMAGE__MIPMAP_ENABLED,
 				 true,
 				 false,
 				 false,
@@ -141,7 +141,7 @@ public class FileImageItemProvider extends ImageItemProvider
 
 		switch (notification.getFeatureID(FileImage.class))
 		{
-			case ResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
+			case VulkanResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

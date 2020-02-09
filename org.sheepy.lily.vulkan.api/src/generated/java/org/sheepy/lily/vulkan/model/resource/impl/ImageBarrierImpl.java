@@ -9,9 +9,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+
 import org.sheepy.vulkan.model.barrier.impl.AbstractImageBarrierImpl;
 
 /**
@@ -57,7 +59,7 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.IMAGE_BARRIER;
+		return VulkanResourcePackage.Literals.IMAGE_BARRIER;
 	}
 
 	/**
@@ -75,7 +77,7 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 			if (image != oldImage)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.IMAGE_BARRIER__IMAGE, oldImage, image));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.IMAGE_BARRIER__IMAGE, oldImage, image));
 			}
 		}
 		return image;
@@ -102,7 +104,7 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 		Image oldImage = image;
 		image = newImage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_BARRIER__IMAGE, oldImage, image));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE_BARRIER__IMAGE, oldImage, image));
 	}
 
 	/**
@@ -115,7 +117,7 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_BARRIER__IMAGE:
+			case VulkanResourcePackage.IMAGE_BARRIER__IMAGE:
 				if (resolve) return getImage();
 				return basicGetImage();
 		}
@@ -132,7 +134,7 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_BARRIER__IMAGE:
+			case VulkanResourcePackage.IMAGE_BARRIER__IMAGE:
 				setImage((Image)newValue);
 				return;
 		}
@@ -149,7 +151,7 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_BARRIER__IMAGE:
+			case VulkanResourcePackage.IMAGE_BARRIER__IMAGE:
 				setImage((Image)null);
 				return;
 		}
@@ -166,7 +168,7 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_BARRIER__IMAGE:
+			case VulkanResourcePackage.IMAGE_BARRIER__IMAGE:
 				return image != null;
 		}
 		return super.eIsSet(featureID);

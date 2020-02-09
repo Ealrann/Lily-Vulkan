@@ -20,7 +20,7 @@ import org.sheepy.lily.core.api.adapter.LilyEObject;
 
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageDescriptor;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
@@ -121,7 +121,7 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.IMAGE_DESCRIPTOR;
+		return VulkanResourcePackage.Literals.IMAGE_DESCRIPTOR;
 	}
 
 	/**
@@ -146,7 +146,7 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_DESCRIPTOR__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE_DESCRIPTOR__NAME, oldName, name));
 	}
 
 	/**
@@ -171,7 +171,7 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 		EDescriptorType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_DESCRIPTOR__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE_DESCRIPTOR__TYPE, oldType, type));
 	}
 
 	/**
@@ -184,7 +184,7 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	{
 		if (shaderStages == null)
 		{
-			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, ResourcePackage.IMAGE_DESCRIPTOR__SHADER_STAGES);
+			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, VulkanResourcePackage.IMAGE_DESCRIPTOR__SHADER_STAGES);
 		}
 		return shaderStages;
 	}
@@ -204,7 +204,7 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 			if (image != oldImage)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.IMAGE_DESCRIPTOR__IMAGE, oldImage, image));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.IMAGE_DESCRIPTOR__IMAGE, oldImage, image));
 			}
 		}
 		return image;
@@ -231,7 +231,7 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 		Image oldImage = image;
 		image = newImage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_DESCRIPTOR__IMAGE, oldImage, image));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE_DESCRIPTOR__IMAGE, oldImage, image));
 	}
 
 	/**
@@ -244,13 +244,13 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__NAME:
 				return getName();
-			case ResourcePackage.IMAGE_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__TYPE:
 				return getType();
-			case ResourcePackage.IMAGE_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__SHADER_STAGES:
 				return getShaderStages();
-			case ResourcePackage.IMAGE_DESCRIPTOR__IMAGE:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__IMAGE:
 				if (resolve) return getImage();
 				return basicGetImage();
 		}
@@ -268,17 +268,17 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__NAME:
 				setName((String)newValue);
 				return;
-			case ResourcePackage.IMAGE_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__TYPE:
 				setType((EDescriptorType)newValue);
 				return;
-			case ResourcePackage.IMAGE_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__SHADER_STAGES:
 				getShaderStages().clear();
 				getShaderStages().addAll((Collection<? extends EShaderStage>)newValue);
 				return;
-			case ResourcePackage.IMAGE_DESCRIPTOR__IMAGE:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__IMAGE:
 				setImage((Image)newValue);
 				return;
 		}
@@ -295,16 +295,16 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ResourcePackage.IMAGE_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
-			case ResourcePackage.IMAGE_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__SHADER_STAGES:
 				getShaderStages().clear();
 				return;
-			case ResourcePackage.IMAGE_DESCRIPTOR__IMAGE:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__IMAGE:
 				setImage((Image)null);
 				return;
 		}
@@ -321,13 +321,13 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.IMAGE_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__TYPE:
 				return type != TYPE_EDEFAULT;
-			case ResourcePackage.IMAGE_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__SHADER_STAGES:
 				return shaderStages != null && !shaderStages.isEmpty();
-			case ResourcePackage.IMAGE_DESCRIPTOR__IMAGE:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__IMAGE:
 				return image != null;
 		}
 		return super.eIsSet(featureID);

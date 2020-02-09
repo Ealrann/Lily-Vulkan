@@ -9,16 +9,19 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.sheepy.lily.core.model.application.IImage;
-import org.sheepy.lily.core.model.application.IResource;
+import org.sheepy.lily.core.model.resource.IImage;
+import org.sheepy.lily.core.model.resource.IResource;
+
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.vulkan.model.IDescriptor;
+
 import org.sheepy.lily.vulkan.model.resource.*;
 
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 import org.sheepy.vulkan.model.barrier.Barrier;
+
 import org.sheepy.vulkan.model.image.ImageInfo;
 import org.sheepy.vulkan.model.image.SamplerInfo;
 
@@ -27,10 +30,10 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage
  * @generated
  */
-public class ResourceAdapterFactory extends AdapterFactoryImpl
+public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 {
 	/**
 	 * The cached model package.
@@ -38,7 +41,7 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static ResourcePackage modelPackage;
+	protected static VulkanResourcePackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -46,11 +49,11 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceAdapterFactory()
+	public VulkanResourceAdapterFactory()
 	{
 		if (modelPackage == null)
 		{
-			modelPackage = ResourcePackage.eINSTANCE;
+			modelPackage = VulkanResourcePackage.eINSTANCE;
 		}
 	}
 
@@ -82,7 +85,8 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ResourceSwitch<Adapter> modelSwitch = new ResourceSwitch<Adapter>()
+	protected VulkanResourceSwitch<Adapter> modelSwitch =
+		new VulkanResourceSwitch<Adapter>()
 		{
 			@Override
 			public Adapter caseTransferBuffer(TransferBuffer object)
@@ -138,6 +142,16 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseFontImage(FontImage object)
 			{
 				return createFontImageAdapter();
+			}
+			@Override
+			public Adapter caseCompositeImage(CompositeImage object)
+			{
+				return createCompositeImageAdapter();
+			}
+			@Override
+			public Adapter caseImageInlay(ImageInlay object)
+			{
+				return createImageInlayAdapter();
 			}
 			@Override
 			public Adapter caseSampledImage(SampledImage object)
@@ -269,6 +283,7 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	{
 		return modelSwitch.doSwitch((EObject)target);
 	}
+
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer <em>Transfer Buffer</em>}'.
@@ -431,6 +446,36 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createFontImageAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.CompositeImage <em>Composite Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.CompositeImage
+	 * @generated
+	 */
+	public Adapter createCompositeImageAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.ImageInlay <em>Image Inlay</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageInlay
+	 * @generated
+	 */
+	public Adapter createImageInlayAdapter()
 	{
 		return null;
 	}
@@ -646,13 +691,13 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.application.IResource <em>IResource</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.resource.IResource <em>IResource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.application.IResource
+	 * @see org.sheepy.lily.core.model.resource.IResource
 	 * @generated
 	 */
 	public Adapter createIResourceAdapter()
@@ -676,13 +721,13 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.application.IImage <em>IImage</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.resource.IImage <em>IImage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.application.IImage
+	 * @see org.sheepy.lily.core.model.resource.IImage
 	 * @generated
 	 */
 	public Adapter createIImageAdapter()
@@ -778,4 +823,4 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 		return null;
 	}
 
-} //ResourceAdapterFactory
+} //VulkanResourceAdapterFactory

@@ -15,7 +15,7 @@ package org.sheepy.lily.vulkan.model.resource;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferPart#getDataProvider <em>Data Provider</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferPart()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferPart()
  * @model
  * @generated
  */
@@ -27,7 +27,7 @@ public interface BufferPart extends IBuffer
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data Provider</em>' containment reference.
 	 * @see #setDataProvider(BufferDataProvider)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferPart_DataProvider()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferPart_DataProvider()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */

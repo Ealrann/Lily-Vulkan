@@ -13,7 +13,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IResourceContainer" abstract="true"
       interface="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="resourcePkg" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/application.ecore#//ResourcePkg"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resourcePkg" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/resource.ecore#//ResourcePkg"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorPkg" eType="#//DescriptorPkg"
         containment="true" resolveProxies="false"/>

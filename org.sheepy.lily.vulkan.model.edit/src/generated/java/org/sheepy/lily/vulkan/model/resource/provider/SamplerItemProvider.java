@@ -14,8 +14,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.types.TypesPackage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.vulkan.model.image.provider.SamplerInfoItemProvider;
 
 /**
@@ -93,7 +93,7 @@ public class SamplerItemProvider extends SamplerInfoItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Sampler_image_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Sampler_image_feature", "_UI_Sampler_type"),
-				 ResourcePackage.Literals.SAMPLER__IMAGE,
+				 VulkanResourcePackage.Literals.SAMPLER__IMAGE,
 				 true,
 				 false,
 				 true,
@@ -143,7 +143,7 @@ public class SamplerItemProvider extends SamplerInfoItemProvider
 
 		switch (notification.getFeatureID(Sampler.class))
 		{
-			case ResourcePackage.SAMPLER__NAME:
+			case VulkanResourcePackage.SAMPLER__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

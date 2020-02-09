@@ -3,17 +3,22 @@
 package org.sheepy.lily.vulkan.model.resource.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.sheepy.lily.core.model.application.impl.IResourceImpl;
+
+import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
+
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,7 +63,7 @@ public class CompositeBufferImpl extends IResourceImpl implements CompositeBuffe
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.COMPOSITE_BUFFER;
+		return VulkanResourcePackage.Literals.COMPOSITE_BUFFER;
 	}
 
 	/**
@@ -71,7 +76,7 @@ public class CompositeBufferImpl extends IResourceImpl implements CompositeBuffe
 	{
 		if (parts == null)
 		{
-			parts = new EObjectContainmentEList<BufferPart>(BufferPart.class, this, ResourcePackage.COMPOSITE_BUFFER__PARTS);
+			parts = new EObjectContainmentEList<BufferPart>(BufferPart.class, this, VulkanResourcePackage.COMPOSITE_BUFFER__PARTS);
 		}
 		return parts;
 	}
@@ -86,7 +91,7 @@ public class CompositeBufferImpl extends IResourceImpl implements CompositeBuffe
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.COMPOSITE_BUFFER__PARTS:
+			case VulkanResourcePackage.COMPOSITE_BUFFER__PARTS:
 				return ((InternalEList<?>)getParts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -102,7 +107,7 @@ public class CompositeBufferImpl extends IResourceImpl implements CompositeBuffe
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.COMPOSITE_BUFFER__PARTS:
+			case VulkanResourcePackage.COMPOSITE_BUFFER__PARTS:
 				return getParts();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -119,7 +124,7 @@ public class CompositeBufferImpl extends IResourceImpl implements CompositeBuffe
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.COMPOSITE_BUFFER__PARTS:
+			case VulkanResourcePackage.COMPOSITE_BUFFER__PARTS:
 				getParts().clear();
 				getParts().addAll((Collection<? extends BufferPart>)newValue);
 				return;
@@ -137,7 +142,7 @@ public class CompositeBufferImpl extends IResourceImpl implements CompositeBuffe
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.COMPOSITE_BUFFER__PARTS:
+			case VulkanResourcePackage.COMPOSITE_BUFFER__PARTS:
 				getParts().clear();
 				return;
 		}
@@ -154,7 +159,7 @@ public class CompositeBufferImpl extends IResourceImpl implements CompositeBuffe
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.COMPOSITE_BUFFER__PARTS:
+			case VulkanResourcePackage.COMPOSITE_BUFFER__PARTS:
 				return parts != null && !parts.isEmpty();
 		}
 		return super.eIsSet(featureID);

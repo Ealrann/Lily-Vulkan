@@ -58,7 +58,6 @@ public final class InstanceDataProviderAdapter implements IBufferDataProviderAda
 												currentVal,
 												prevIncr));
 
-				i = previous.length;
 				throw new AssertionError("Data are not the same after fetch");
 			}
 		}

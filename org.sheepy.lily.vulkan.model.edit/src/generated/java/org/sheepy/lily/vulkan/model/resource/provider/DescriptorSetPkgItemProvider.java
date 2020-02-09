@@ -23,8 +23,8 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg} object.
@@ -77,7 +77,7 @@ public class DescriptorSetPkgItemProvider extends ItemProviderAdapter implements
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS);
+			childrenFeatures.add(VulkanResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS);
 		}
 		return childrenFeatures;
 	}
@@ -134,7 +134,7 @@ public class DescriptorSetPkgItemProvider extends ItemProviderAdapter implements
 
 		switch (notification.getFeatureID(DescriptorSetPkg.class))
 		{
-			case ResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
+			case VulkanResourcePackage.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -155,8 +155,8 @@ public class DescriptorSetPkgItemProvider extends ItemProviderAdapter implements
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS,
-				 ResourceFactory.eINSTANCE.createDescriptorSet()));
+				(VulkanResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS,
+				 VulkanResourceFactory.eINSTANCE.createDescriptorSet()));
 	}
 
 	/**

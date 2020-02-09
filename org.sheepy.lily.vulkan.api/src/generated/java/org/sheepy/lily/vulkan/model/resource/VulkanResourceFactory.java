@@ -9,10 +9,10 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage
  * @generated
  */
-public interface ResourceFactory extends EFactory
+public interface VulkanResourceFactory extends EFactory
 {
 	/**
 	 * The singleton instance of the factory.
@@ -20,7 +20,7 @@ public interface ResourceFactory extends EFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ResourceFactory eINSTANCE = org.sheepy.lily.vulkan.model.resource.impl.ResourceFactoryImpl.init();
+	VulkanResourceFactory eINSTANCE = org.sheepy.lily.vulkan.model.resource.impl.VulkanResourceFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Transfer Buffer</em>'.
@@ -102,6 +102,24 @@ public interface ResourceFactory extends EFactory
 	 * @generated
 	 */
 	FontImage createFontImage();
+
+	/**
+	 * Returns a new object of class '<em>Composite Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Composite Image</em>'.
+	 * @generated
+	 */
+	CompositeImage createCompositeImage();
+
+	/**
+	 * Returns a new object of class '<em>Image Inlay</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Image Inlay</em>'.
+	 * @generated
+	 */
+	ImageInlay createImageInlay();
 
 	/**
 	 * Returns a new object of class '<em>Sampled Image</em>'.
@@ -227,6 +245,6 @@ public interface ResourceFactory extends EFactory
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-	ResourcePackage getResourcePackage();
+	VulkanResourcePackage getVulkanResourcePackage();
 
-} //ResourceFactory
+} //VulkanResourceFactory

@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.core.model.application.ResourcePkg;
+import org.sheepy.lily.core.model.resource.ResourcePkg;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
@@ -135,11 +135,11 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	{
 		if (resourcePkg != null && ((EObject)resourcePkg).eIsProxy())
 		{
-			InternalEObject oldResourcePkg = resourcePkg;
+			InternalEObject oldResourcePkg = (InternalEObject)resourcePkg;
 			resourcePkg = (ResourcePkg)eResolveProxy(oldResourcePkg);
 			if (resourcePkg != oldResourcePkg)
 			{
-				InternalEObject newResourcePkg = resourcePkg;
+				InternalEObject newResourcePkg = (InternalEObject)resourcePkg;
 				NotificationChain msgs = oldResourcePkg.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, null, null);
 				if (newResourcePkg.eInternalContainer() == null)
 				{

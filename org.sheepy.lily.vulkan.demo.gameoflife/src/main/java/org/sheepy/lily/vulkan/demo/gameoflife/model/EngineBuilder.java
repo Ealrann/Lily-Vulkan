@@ -1,12 +1,11 @@
 package org.sheepy.lily.vulkan.demo.gameoflife.model;
 
 import org.joml.Vector2ic;
-import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.core.model.application.IEngine;
-import org.sheepy.lily.core.model.application.ModuleResource;
-import org.sheepy.lily.core.model.application.ResourcePkg;
 import org.sheepy.lily.core.model.cadence.Cadence;
 import org.sheepy.lily.core.model.cadence.CadenceFactory;
+import org.sheepy.lily.core.model.resource.ResourceFactory;
+import org.sheepy.lily.core.model.resource.ResourcePkg;
 import org.sheepy.lily.vulkan.demo.gameoflife.compute.Board;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IDescriptor;
@@ -22,22 +21,8 @@ import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.lily.vulkan.model.resource.Buffer;
-import org.sheepy.lily.vulkan.model.resource.Image;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.lily.vulkan.model.resource.Shader;
-import org.sheepy.lily.vulkan.model.resource.StaticImage;
-import org.sheepy.vulkan.model.enumeration.EAccess;
-import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
-import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
-import org.sheepy.vulkan.model.enumeration.EBindPoint;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.vulkan.model.enumeration.EDescriptorType;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.vulkan.model.enumeration.EImageUsage;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.enumeration.ESampleCount;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
+import org.sheepy.lily.vulkan.model.resource.*;
+import org.sheepy.vulkan.model.enumeration.*;
 
 public final class EngineBuilder
 {
@@ -66,7 +51,7 @@ public final class EngineBuilder
 	{
 		final VulkanEngine engine = VulkanFactory.eINSTANCE.createVulkanEngine();
 
-		final var sharedResources = ApplicationFactory.eINSTANCE.createResourcePkg();
+		final var sharedResources = ResourceFactory.eINSTANCE.createResourcePkg();
 		final var sharedDescriptors = VulkanFactory.eINSTANCE.createDescriptorPkg();
 
 		final var swapchainConfiguration = GraphicFactory.eINSTANCE.createSwapchainConfiguration();
@@ -118,8 +103,7 @@ public final class EngineBuilder
 		return attachments;
 	}
 
-	private void createComputeProcessPool(	ResourcePkg sharedResources,
-											DescriptorPkg sharedDescriptors)
+	private void createComputeProcessPool(ResourcePkg sharedResources, DescriptorPkg sharedDescriptors)
 	{
 		lifeProcess = ComputeFactory.eINSTANCE.createComputeProcess();
 		pixelProcess = ComputeFactory.eINSTANCE.createComputeProcess();
@@ -128,19 +112,19 @@ public final class EngineBuilder
 
 		final Module thisModule = getClass().getModule();
 
-		final ModuleResource lifeShaderFile = ApplicationFactory.eINSTANCE.createModuleResource();
+		final var lifeShaderFile = ResourceFactory.eINSTANCE.createModuleResource();
 		lifeShaderFile.setModule(thisModule);
 		lifeShaderFile.setPath(SHADER_LIFE);
 
-		final ModuleResource life2pixelShaderFile = ApplicationFactory.eINSTANCE.createModuleResource();
+		final var life2pixelShaderFile = ResourceFactory.eINSTANCE.createModuleResource();
 		life2pixelShaderFile.setModule(thisModule);
 		life2pixelShaderFile.setPath(SHADER_LIFE2PIXEL);
 
-		final Shader lifeShader = ResourceFactory.eINSTANCE.createShader();
+		final Shader lifeShader = VulkanResourceFactory.eINSTANCE.createShader();
 		lifeShader.setFile(lifeShaderFile);
 		lifeShader.setStage(EShaderStage.COMPUTE_BIT);
 
-		final Shader life2pixelShader = ResourceFactory.eINSTANCE.createShader();
+		final Shader life2pixelShader = VulkanResourceFactory.eINSTANCE.createShader();
 		life2pixelShader.setFile(life2pixelShaderFile);
 		life2pixelShader.setStage(EShaderStage.COMPUTE_BIT);
 
@@ -152,10 +136,10 @@ public final class EngineBuilder
 		final var boardBuffer2Descriptor = newDescriptor(boardBuffer2);
 		final var boardImageDescriptor = newDescriptor(boardImage);
 
-		final var lifeDescriptorSet1 = ResourceFactory.eINSTANCE.createDescriptorSet();
-		final var lifeDescriptorSet2 = ResourceFactory.eINSTANCE.createDescriptorSet();
-		final var pixelDescriptorSet1 = ResourceFactory.eINSTANCE.createDescriptorSet();
-		final var pixelDescriptorSet2 = ResourceFactory.eINSTANCE.createDescriptorSet();
+		final var lifeDescriptorSet1 = VulkanResourceFactory.eINSTANCE.createDescriptorSet();
+		final var lifeDescriptorSet2 = VulkanResourceFactory.eINSTANCE.createDescriptorSet();
+		final var pixelDescriptorSet1 = VulkanResourceFactory.eINSTANCE.createDescriptorSet();
+		final var pixelDescriptorSet2 = VulkanResourceFactory.eINSTANCE.createDescriptorSet();
 
 		lifeDescriptorSet1.getDescriptors().add(boardBuffer1Descriptor);
 		lifeDescriptorSet1.getDescriptors().add(boardBuffer2Descriptor);
@@ -177,8 +161,8 @@ public final class EngineBuilder
 		pixelBindingConfiguration.getDescriptorsSets().add(pixelDescriptorSet2);
 		lifeBindingConfiguration.setDescriptorSetStride(1);
 
-		ComputePipeline lifePipeline = createPipeline(lifeShader, lifeBindingConfiguration);
-		ComputePipeline pixelPipeline = createPipeline(life2pixelShader, pixelBindingConfiguration);
+		final var lifePipeline = createPipeline(lifeShader, lifeBindingConfiguration);
+		final var pixelPipeline = createPipeline(life2pixelShader, pixelBindingConfiguration);
 
 		final var rotateTask = BindingFactory.eINSTANCE.createRotateConfiguration();
 		rotateTask.getConfigurations().add(lifeBindingConfiguration);
@@ -223,7 +207,7 @@ public final class EngineBuilder
 		pipeline.setStage(ECommandStage.COMPUTE);
 
 		final var pipelineBarrier = ProcessFactory.eINSTANCE.createPipelineBarrier();
-		final var imageBarrier = ResourceFactory.eINSTANCE.createImageBarrier();
+		final var imageBarrier = VulkanResourceFactory.eINSTANCE.createImageBarrier();
 		imageBarrier.setImage(boardImage);
 		imageBarrier.setDstLayout(EImageLayout.GENERAL);
 		imageBarrier.getDstAccessMask().add(EAccess.SHADER_WRITE_BIT);
@@ -260,7 +244,7 @@ public final class EngineBuilder
 		taskPkg.getTasks().add(bindTask);
 		taskPkg.getTasks().add(dispatch);
 
-		final var dSetPkg = ResourceFactory.eINSTANCE.createDescriptorSetPkg();
+		final var dSetPkg = VulkanResourceFactory.eINSTANCE.createDescriptorSetPkg();
 		dSetPkg.getDescriptorSets().addAll(bindingConfiguration.getDescriptorsSets());
 
 		pipeline.getLayout().addAll(bindingConfiguration.getDescriptorsSets());
@@ -320,7 +304,7 @@ public final class EngineBuilder
 
 	private static IDescriptor newDescriptor(Buffer buffer)
 	{
-		final var descriptor = ResourceFactory.eINSTANCE.createBufferDescriptor();
+		final var descriptor = VulkanResourceFactory.eINSTANCE.createBufferDescriptor();
 		descriptor.setType(EDescriptorType.STORAGE_BUFFER);
 		descriptor.getShaderStages().add(EShaderStage.COMPUTE_BIT);
 		descriptor.setBuffer(buffer);
@@ -329,7 +313,7 @@ public final class EngineBuilder
 
 	private static IDescriptor newDescriptor(Image image)
 	{
-		final var descriptor = ResourceFactory.eINSTANCE.createImageDescriptor();
+		final var descriptor = VulkanResourceFactory.eINSTANCE.createImageDescriptor();
 		descriptor.setType(EDescriptorType.STORAGE_IMAGE);
 		descriptor.getShaderStages().add(EShaderStage.COMPUTE_BIT);
 		descriptor.setImage(image);

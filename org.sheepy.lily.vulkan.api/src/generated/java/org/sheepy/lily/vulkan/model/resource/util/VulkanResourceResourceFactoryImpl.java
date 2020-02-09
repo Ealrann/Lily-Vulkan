@@ -12,10 +12,10 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
  * <!-- begin-user-doc -->
  * The <b>Resource Factory</b> associated with the package.
  * <!-- end-user-doc -->
- * @see org.sheepy.lily.vulkan.model.resource.util.ResourceResourceImpl
+ * @see org.sheepy.lily.vulkan.model.resource.util.VulkanResourceResourceImpl
  * @generated
  */
-public class ResourceResourceFactoryImpl extends ResourceFactoryImpl
+public class VulkanResourceResourceFactoryImpl extends ResourceFactoryImpl
 {
 	/**
 	 * Creates an instance of the resource factory.
@@ -23,7 +23,7 @@ public class ResourceResourceFactoryImpl extends ResourceFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceResourceFactoryImpl()
+	public VulkanResourceResourceFactoryImpl()
 	{
 		super();
 	}
@@ -37,8 +37,8 @@ public class ResourceResourceFactoryImpl extends ResourceFactoryImpl
 	@Override
 	public Resource createResource(URI uri)
 	{
-		Resource result = new ResourceResourceImpl(uri);
+		Resource result = new VulkanResourceResourceImpl(uri);
 		return result;
 	}
 
-} //ResourceResourceFactoryImpl
+} //VulkanResourceResourceFactoryImpl

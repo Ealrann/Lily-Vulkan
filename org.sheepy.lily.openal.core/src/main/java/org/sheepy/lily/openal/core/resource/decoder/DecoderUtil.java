@@ -3,7 +3,7 @@ package org.sheepy.lily.openal.core.resource.decoder;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
-import org.sheepy.lily.core.model.application.FileResource;
+import org.sheepy.lily.core.model.resource.FileResource;
 import org.sheepy.lily.openal.core.resource.util.RawAudioBuffer;
 
 public final class DecoderUtil

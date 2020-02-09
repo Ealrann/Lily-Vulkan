@@ -7,16 +7,19 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.sheepy.lily.core.model.application.IImage;
-import org.sheepy.lily.core.model.application.IResource;
+import org.sheepy.lily.core.model.resource.IImage;
+import org.sheepy.lily.core.model.resource.IResource;
+
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.vulkan.model.IDescriptor;
+
 import org.sheepy.lily.vulkan.model.resource.*;
 
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 import org.sheepy.vulkan.model.barrier.Barrier;
+
 import org.sheepy.vulkan.model.image.ImageInfo;
 import org.sheepy.vulkan.model.image.SamplerInfo;
 
@@ -30,10 +33,10 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage
  * @generated
  */
-public class ResourceSwitch<T1> extends Switch<T1>
+public class VulkanResourceSwitch<T1> extends Switch<T1>
 {
 	/**
 	 * The cached model package
@@ -41,7 +44,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static ResourcePackage modelPackage;
+	protected static VulkanResourcePackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -49,11 +52,11 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceSwitch()
+	public VulkanResourceSwitch()
 	{
 		if (modelPackage == null)
 		{
-			modelPackage = ResourcePackage.eINSTANCE;
+			modelPackage = VulkanResourcePackage.eINSTANCE;
 		}
 	}
 
@@ -83,7 +86,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	{
 		switch (classifierID)
 		{
-			case ResourcePackage.TRANSFER_BUFFER:
+			case VulkanResourcePackage.TRANSFER_BUFFER:
 			{
 				TransferBuffer transferBuffer = (TransferBuffer)theEObject;
 				T1 result = caseTransferBuffer(transferBuffer);
@@ -92,7 +95,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.CONSTANT_BUFFER:
+			case VulkanResourcePackage.CONSTANT_BUFFER:
 			{
 				ConstantBuffer constantBuffer = (ConstantBuffer)theEObject;
 				T1 result = caseConstantBuffer(constantBuffer);
@@ -101,7 +104,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.IBUFFER:
+			case VulkanResourcePackage.IBUFFER:
 			{
 				IBuffer iBuffer = (IBuffer)theEObject;
 				T1 result = caseIBuffer(iBuffer);
@@ -110,7 +113,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.BUFFER:
+			case VulkanResourcePackage.BUFFER:
 			{
 				Buffer buffer = (Buffer)theEObject;
 				T1 result = caseBuffer(buffer);
@@ -120,7 +123,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.COMPOSITE_BUFFER:
+			case VulkanResourcePackage.COMPOSITE_BUFFER:
 			{
 				CompositeBuffer compositeBuffer = (CompositeBuffer)theEObject;
 				T1 result = caseCompositeBuffer(compositeBuffer);
@@ -129,7 +132,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.BUFFER_PART:
+			case VulkanResourcePackage.BUFFER_PART:
 			{
 				BufferPart bufferPart = (BufferPart)theEObject;
 				T1 result = caseBufferPart(bufferPart);
@@ -139,7 +142,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.BUFFER_DATA_PROVIDER:
+			case VulkanResourcePackage.BUFFER_DATA_PROVIDER:
 			{
 				BufferDataProvider<?> bufferDataProvider = (BufferDataProvider<?>)theEObject;
 				T1 result = caseBufferDataProvider(bufferDataProvider);
@@ -147,7 +150,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.IMAGE:
+			case VulkanResourcePackage.IMAGE:
 			{
 				Image image = (Image)theEObject;
 				T1 result = caseImage(image);
@@ -158,7 +161,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.STATIC_IMAGE:
+			case VulkanResourcePackage.STATIC_IMAGE:
 			{
 				StaticImage staticImage = (StaticImage)theEObject;
 				T1 result = caseStaticImage(staticImage);
@@ -170,7 +173,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.FILE_IMAGE:
+			case VulkanResourcePackage.FILE_IMAGE:
 			{
 				FileImage fileImage = (FileImage)theEObject;
 				T1 result = caseFileImage(fileImage);
@@ -182,7 +185,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.FONT_IMAGE:
+			case VulkanResourcePackage.FONT_IMAGE:
 			{
 				FontImage fontImage = (FontImage)theEObject;
 				T1 result = caseFontImage(fontImage);
@@ -194,7 +197,26 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.SAMPLED_IMAGE:
+			case VulkanResourcePackage.COMPOSITE_IMAGE:
+			{
+				CompositeImage compositeImage = (CompositeImage)theEObject;
+				T1 result = caseCompositeImage(compositeImage);
+				if (result == null) result = caseImage(compositeImage);
+				if (result == null) result = caseImageInfo(compositeImage);
+				if (result == null) result = caseIImage(compositeImage);
+				if (result == null) result = caseIResource(compositeImage);
+				if (result == null) result = caseLNamedElement(compositeImage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanResourcePackage.IMAGE_INLAY:
+			{
+				ImageInlay imageInlay = (ImageInlay)theEObject;
+				T1 result = caseImageInlay(imageInlay);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanResourcePackage.SAMPLED_IMAGE:
 			{
 				SampledImage sampledImage = (SampledImage)theEObject;
 				T1 result = caseSampledImage(sampledImage);
@@ -203,7 +225,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.SAMPLER:
+			case VulkanResourcePackage.SAMPLER:
 			{
 				Sampler sampler = (Sampler)theEObject;
 				T1 result = caseSampler(sampler);
@@ -213,7 +235,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.SEMAPHORE:
+			case VulkanResourcePackage.SEMAPHORE:
 			{
 				Semaphore semaphore = (Semaphore)theEObject;
 				T1 result = caseSemaphore(semaphore);
@@ -222,7 +244,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.BUFFER_DESCRIPTOR:
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR:
 			{
 				BufferDescriptor bufferDescriptor = (BufferDescriptor)theEObject;
 				T1 result = caseBufferDescriptor(bufferDescriptor);
@@ -231,7 +253,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.IMAGE_DESCRIPTOR:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR:
 			{
 				ImageDescriptor imageDescriptor = (ImageDescriptor)theEObject;
 				T1 result = caseImageDescriptor(imageDescriptor);
@@ -240,7 +262,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR:
 			{
 				SampledImageDescriptor sampledImageDescriptor = (SampledImageDescriptor)theEObject;
 				T1 result = caseSampledImageDescriptor(sampledImageDescriptor);
@@ -249,7 +271,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.SAMPLER_DESCRIPTOR:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR:
 			{
 				SamplerDescriptor samplerDescriptor = (SamplerDescriptor)theEObject;
 				T1 result = caseSamplerDescriptor(samplerDescriptor);
@@ -258,7 +280,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.DESCRIPTOR_SET:
+			case VulkanResourcePackage.DESCRIPTOR_SET:
 			{
 				DescriptorSet descriptorSet = (DescriptorSet)theEObject;
 				T1 result = caseDescriptorSet(descriptorSet);
@@ -266,14 +288,14 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.DESCRIPTOR_SET_PKG:
+			case VulkanResourcePackage.DESCRIPTOR_SET_PKG:
 			{
 				DescriptorSetPkg descriptorSetPkg = (DescriptorSetPkg)theEObject;
 				T1 result = caseDescriptorSetPkg(descriptorSetPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.BUFFER_BARRIER:
+			case VulkanResourcePackage.BUFFER_BARRIER:
 			{
 				BufferBarrier bufferBarrier = (BufferBarrier)theEObject;
 				T1 result = caseBufferBarrier(bufferBarrier);
@@ -283,7 +305,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.IMAGE_BARRIER:
+			case VulkanResourcePackage.IMAGE_BARRIER:
 			{
 				ImageBarrier imageBarrier = (ImageBarrier)theEObject;
 				T1 result = caseImageBarrier(imageBarrier);
@@ -293,7 +315,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.SHADER:
+			case VulkanResourcePackage.SHADER:
 			{
 				Shader shader = (Shader)theEObject;
 				T1 result = caseShader(shader);
@@ -302,7 +324,7 @@ public class ResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR:
 			{
 				ImageArrayDescriptor imageArrayDescriptor = (ImageArrayDescriptor)theEObject;
 				T1 result = caseImageArrayDescriptor(imageArrayDescriptor);
@@ -487,6 +509,38 @@ public class ResourceSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseFontImage(FontImage object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Composite Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Composite Image</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseCompositeImage(CompositeImage object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Image Inlay</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Image Inlay</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseImageInlay(ImageInlay object)
 	{
 		return null;
 	}
@@ -860,4 +914,4 @@ public class ResourceSwitch<T1> extends Switch<T1>
 		return null;
 	}
 
-} //ResourceSwitch
+} //VulkanResourceSwitch

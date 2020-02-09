@@ -26,8 +26,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.SamplerDescriptor;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.SamplerDescriptor} object.
@@ -159,7 +159,7 @@ public class SamplerDescriptorItemProvider
 				 getResourceLocator(),
 				 getString("_UI_SamplerDescriptor_sampler_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_SamplerDescriptor_sampler_feature", "_UI_SamplerDescriptor_type"),
-				 ResourcePackage.Literals.SAMPLER_DESCRIPTOR__SAMPLER,
+				 VulkanResourcePackage.Literals.SAMPLER_DESCRIPTOR__SAMPLER,
 				 true,
 				 false,
 				 true,
@@ -210,9 +210,9 @@ public class SamplerDescriptorItemProvider
 
 		switch (notification.getFeatureID(SamplerDescriptor.class))
 		{
-			case ResourcePackage.SAMPLER_DESCRIPTOR__NAME:
-			case ResourcePackage.SAMPLER_DESCRIPTOR__TYPE:
-			case ResourcePackage.SAMPLER_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__SHADER_STAGES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

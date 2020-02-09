@@ -16,10 +16,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.sheepy.lily.core.model.application.FileResource;
-import org.sheepy.lily.core.model.application.impl.IResourceImpl;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+
+import org.sheepy.lily.core.model.resource.FileResource;
+
+import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
+
 import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
@@ -100,7 +103,7 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.SHADER;
+		return VulkanResourcePackage.Literals.SHADER;
 	}
 
 	/**
@@ -125,7 +128,7 @@ public class ShaderImpl extends IResourceImpl implements Shader
 		file = newFile;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.SHADER__FILE, oldFile, newFile);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SHADER__FILE, oldFile, newFile);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -143,14 +146,14 @@ public class ShaderImpl extends IResourceImpl implements Shader
 		{
 			NotificationChain msgs = null;
 			if (file != null)
-				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SHADER__FILE, null, msgs);
+				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.SHADER__FILE, null, msgs);
 			if (newFile != null)
-				msgs = ((InternalEObject)newFile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SHADER__FILE, null, msgs);
+				msgs = ((InternalEObject)newFile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.SHADER__FILE, null, msgs);
 			msgs = basicSetFile(newFile, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SHADER__FILE, newFile, newFile));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SHADER__FILE, newFile, newFile));
 	}
 
 	/**
@@ -175,7 +178,7 @@ public class ShaderImpl extends IResourceImpl implements Shader
 		EShaderStage oldStage = stage;
 		stage = newStage == null ? STAGE_EDEFAULT : newStage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SHADER__STAGE, oldStage, stage));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SHADER__STAGE, oldStage, stage));
 	}
 
 	/**
@@ -188,7 +191,7 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	{
 		if (constants == null)
 		{
-			constants = new EObjectContainmentEList<SpecializationConstant>(SpecializationConstant.class, this, ResourcePackage.SHADER__CONSTANTS);
+			constants = new EObjectContainmentEList<SpecializationConstant>(SpecializationConstant.class, this, VulkanResourcePackage.SHADER__CONSTANTS);
 		}
 		return constants;
 	}
@@ -203,9 +206,9 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SHADER__FILE:
+			case VulkanResourcePackage.SHADER__FILE:
 				return basicSetFile(null, msgs);
-			case ResourcePackage.SHADER__CONSTANTS:
+			case VulkanResourcePackage.SHADER__CONSTANTS:
 				return ((InternalEList<?>)getConstants()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -221,11 +224,11 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SHADER__FILE:
+			case VulkanResourcePackage.SHADER__FILE:
 				return getFile();
-			case ResourcePackage.SHADER__STAGE:
+			case VulkanResourcePackage.SHADER__STAGE:
 				return getStage();
-			case ResourcePackage.SHADER__CONSTANTS:
+			case VulkanResourcePackage.SHADER__CONSTANTS:
 				return getConstants();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -242,13 +245,13 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SHADER__FILE:
+			case VulkanResourcePackage.SHADER__FILE:
 				setFile((FileResource)newValue);
 				return;
-			case ResourcePackage.SHADER__STAGE:
+			case VulkanResourcePackage.SHADER__STAGE:
 				setStage((EShaderStage)newValue);
 				return;
-			case ResourcePackage.SHADER__CONSTANTS:
+			case VulkanResourcePackage.SHADER__CONSTANTS:
 				getConstants().clear();
 				getConstants().addAll((Collection<? extends SpecializationConstant>)newValue);
 				return;
@@ -266,13 +269,13 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SHADER__FILE:
+			case VulkanResourcePackage.SHADER__FILE:
 				setFile((FileResource)null);
 				return;
-			case ResourcePackage.SHADER__STAGE:
+			case VulkanResourcePackage.SHADER__STAGE:
 				setStage(STAGE_EDEFAULT);
 				return;
-			case ResourcePackage.SHADER__CONSTANTS:
+			case VulkanResourcePackage.SHADER__CONSTANTS:
 				getConstants().clear();
 				return;
 		}
@@ -289,11 +292,11 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SHADER__FILE:
+			case VulkanResourcePackage.SHADER__FILE:
 				return file != null;
-			case ResourcePackage.SHADER__STAGE:
+			case VulkanResourcePackage.SHADER__STAGE:
 				return stage != STAGE_EDEFAULT;
-			case ResourcePackage.SHADER__CONSTANTS:
+			case VulkanResourcePackage.SHADER__CONSTANTS:
 				return constants != null && !constants.isEmpty();
 		}
 		return super.eIsSet(featureID);

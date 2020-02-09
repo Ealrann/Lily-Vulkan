@@ -5,15 +5,21 @@ package org.sheepy.lily.vulkan.model.resource.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.sheepy.lily.core.api.adapter.LilyEObject;
+
 import org.sheepy.lily.vulkan.model.IDescriptor;
+
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -79,7 +85,7 @@ public class DescriptorSetImpl extends LilyEObject implements DescriptorSet
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.DESCRIPTOR_SET;
+		return VulkanResourcePackage.Literals.DESCRIPTOR_SET;
 	}
 
 	/**
@@ -104,7 +110,7 @@ public class DescriptorSetImpl extends LilyEObject implements DescriptorSet
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.DESCRIPTOR_SET__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.DESCRIPTOR_SET__NAME, oldName, name));
 	}
 
 	/**
@@ -117,7 +123,7 @@ public class DescriptorSetImpl extends LilyEObject implements DescriptorSet
 	{
 		if (descriptors == null)
 		{
-			descriptors = new EObjectResolvingEList<IDescriptor>(IDescriptor.class, this, ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS);
+			descriptors = new EObjectResolvingEList<IDescriptor>(IDescriptor.class, this, VulkanResourcePackage.DESCRIPTOR_SET__DESCRIPTORS);
 		}
 		return descriptors;
 	}
@@ -132,9 +138,9 @@ public class DescriptorSetImpl extends LilyEObject implements DescriptorSet
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.DESCRIPTOR_SET__NAME:
+			case VulkanResourcePackage.DESCRIPTOR_SET__NAME:
 				return getName();
-			case ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
+			case VulkanResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
 				return getDescriptors();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -151,10 +157,10 @@ public class DescriptorSetImpl extends LilyEObject implements DescriptorSet
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.DESCRIPTOR_SET__NAME:
+			case VulkanResourcePackage.DESCRIPTOR_SET__NAME:
 				setName((String)newValue);
 				return;
-			case ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
+			case VulkanResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
 				getDescriptors().clear();
 				getDescriptors().addAll((Collection<? extends IDescriptor>)newValue);
 				return;
@@ -172,10 +178,10 @@ public class DescriptorSetImpl extends LilyEObject implements DescriptorSet
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.DESCRIPTOR_SET__NAME:
+			case VulkanResourcePackage.DESCRIPTOR_SET__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
+			case VulkanResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
 				getDescriptors().clear();
 				return;
 		}
@@ -192,9 +198,9 @@ public class DescriptorSetImpl extends LilyEObject implements DescriptorSet
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.DESCRIPTOR_SET__NAME:
+			case VulkanResourcePackage.DESCRIPTOR_SET__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
+			case VulkanResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
 				return descriptors != null && !descriptors.isEmpty();
 		}
 		return super.eIsSet(featureID);

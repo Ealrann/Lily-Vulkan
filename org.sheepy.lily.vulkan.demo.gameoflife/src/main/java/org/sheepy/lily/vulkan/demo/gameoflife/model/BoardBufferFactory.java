@@ -3,17 +3,16 @@ package org.sheepy.lily.vulkan.demo.gameoflife.model;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.vulkan.demo.gameoflife.compute.Board;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 public class BoardBufferFactory
 {
-	private static final int TILE_SIZE = EngineBuilder.WORKGROUP_SIDE
-			* EngineBuilder.WORKGROUP_SIDE;
+	private static final int TILE_SIZE = EngineBuilder.WORKGROUP_SIDE * EngineBuilder.WORKGROUP_SIDE;
 
 	public static Buffer createBoardBuffer(Board board)
 	{
-		final Buffer res = ResourceFactory.eINSTANCE.createBuffer();
+		final Buffer res = VulkanResourceFactory.eINSTANCE.createBuffer();
 
 		final int width = board.getWidth();
 		final int height = board.getHeight();

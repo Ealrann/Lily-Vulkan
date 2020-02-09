@@ -16,7 +16,7 @@ import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.ImageBarrier#getImage <em>Image</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageBarrier()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getImageBarrier()
  * @model
  * @generated
  */
@@ -28,7 +28,7 @@ public interface ImageBarrier extends AbstractImageBarrier
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Image</em>' reference.
 	 * @see #setImage(Image)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageBarrier_Image()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getImageBarrier_Image()
 	 * @model required="true"
 	 * @generated
 	 */

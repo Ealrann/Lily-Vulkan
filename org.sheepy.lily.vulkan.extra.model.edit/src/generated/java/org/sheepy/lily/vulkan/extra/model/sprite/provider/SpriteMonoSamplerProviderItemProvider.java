@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.image.ImageFactory;
 
 /**
@@ -157,7 +157,7 @@ public class SpriteMonoSamplerProviderItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(SpritePackage.Literals.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO,
-				 ResourceFactory.eINSTANCE.createSampler()));
+				 VulkanResourceFactory.eINSTANCE.createSampler()));
 
 		newChildDescriptors.add
 			(createChildParameter

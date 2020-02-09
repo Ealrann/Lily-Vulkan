@@ -1,11 +1,7 @@
 package org.sheepy.lily.vulkan.process.barrier;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.adapter.annotation.*;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.barrier.IImageBarrierAdapter;
@@ -13,7 +9,7 @@ import org.sheepy.lily.vulkan.core.barrier.VkImageBarrier;
 import org.sheepy.lily.vulkan.core.resource.IImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.ImageUtil;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 @Statefull
 @Adapter(scope = ImageBarrier.class)
@@ -37,15 +33,15 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter
 		final int srcAccessMask = VulkanModelUtil.getEnumeratedFlag(imageBarrier.getSrcAccessMask());
 		final int dstAccessMask = VulkanModelUtil.getEnumeratedFlag(imageBarrier.getDstAccessMask());
 
-		vkBarrier = new VkImageBarrier(	image,
-										srcLayout.getValue(),
-										dstLayout.getValue(),
-										srcAccessMask,
-										dstAccessMask,
-										aspectMask);
+		vkBarrier = new VkImageBarrier(image,
+									   srcLayout.getValue(),
+									   dstLayout.getValue(),
+									   srcAccessMask,
+									   dstAccessMask,
+									   aspectMask);
 	}
 
-	@NotifyChanged(featureIds = ResourcePackage.IMAGE_BARRIER__IMAGE)
+	@NotifyChanged(featureIds = VulkanResourcePackage.IMAGE_BARRIER__IMAGE)
 	private void imageChanged(Notification notification)
 	{
 		changed = true;

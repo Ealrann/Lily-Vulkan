@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.lily.core.model.application.impl.IResourceImpl;
+import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
@@ -78,7 +78,7 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	{
 		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy())
 		{
-			InternalEObject oldTransferBuffer = (InternalEObject)transferBuffer;
+			InternalEObject oldTransferBuffer = transferBuffer;
 			transferBuffer = (TransferBuffer)eResolveProxy(oldTransferBuffer);
 			if (transferBuffer != oldTransferBuffer)
 			{
@@ -123,7 +123,7 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	{
 		if (fontImage != null && ((EObject)fontImage).eIsProxy())
 		{
-			InternalEObject oldFontImage = (InternalEObject)fontImage;
+			InternalEObject oldFontImage = fontImage;
 			fontImage = (FontImage)eResolveProxy(oldFontImage);
 			if (fontImage != oldFontImage)
 			{

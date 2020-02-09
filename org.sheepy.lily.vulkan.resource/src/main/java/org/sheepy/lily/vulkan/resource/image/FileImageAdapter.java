@@ -47,9 +47,7 @@ public class FileImageAdapter extends Notifier implements IImageAdapter
 		final int width = size.x();
 		final int height = size.y();
 
-		final int mipLevels = image.isMipmapEnabled()
-				? (int) Math.floor(log2nlz(Math.max(width, height))) + 1
-				: 1;
+		final int mipLevels = image.isMipmapEnabled() ? (int) Math.floor(log2nlz(Math.max(width, height))) + 1 : 1;
 
 		final var imageBuilder = new VkImage.VkImageBuilder(image, width, height);
 		imageBuilder.mipLevels(mipLevels);

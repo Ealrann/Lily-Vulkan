@@ -25,8 +25,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.DescriptorPkg} object.
@@ -165,27 +164,27 @@ public class DescriptorPkgItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
-				 ResourceFactory.eINSTANCE.createBufferDescriptor()));
+				 VulkanResourceFactory.eINSTANCE.createBufferDescriptor()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
-				 ResourceFactory.eINSTANCE.createImageDescriptor()));
+				 VulkanResourceFactory.eINSTANCE.createImageDescriptor()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
-				 ResourceFactory.eINSTANCE.createSampledImageDescriptor()));
+				 VulkanResourceFactory.eINSTANCE.createSampledImageDescriptor()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
-				 ResourceFactory.eINSTANCE.createSamplerDescriptor()));
+				 VulkanResourceFactory.eINSTANCE.createSamplerDescriptor()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
-				 ResourceFactory.eINSTANCE.createImageArrayDescriptor()));
+				 VulkanResourceFactory.eINSTANCE.createImageArrayDescriptor()));
 	}
 
 	/**

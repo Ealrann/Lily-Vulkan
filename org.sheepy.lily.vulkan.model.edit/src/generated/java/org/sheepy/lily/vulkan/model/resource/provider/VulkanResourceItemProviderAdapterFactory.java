@@ -11,8 +11,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.edit.command.CommandParameter;
+
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import org.eclipse.emf.edit.provider.ChangeNotifier;
@@ -21,20 +24,24 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
-import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.sheepy.lily.core.model.application.ApplicationPackage;
-import org.sheepy.lily.core.model.application.ResourcePkg;
-import org.sheepy.lily.core.model.application.util.ApplicationSwitch;
+
+import org.sheepy.lily.core.model.resource.ResourcePackage;
+import org.sheepy.lily.core.model.resource.ResourcePkg;
+
+import org.sheepy.lily.core.model.resource.util.ResourceSwitch;
+
 import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.lily.vulkan.model.resource.util.ResourceAdapterFactory;
+
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+
+import org.sheepy.lily.vulkan.model.resource.util.VulkanResourceAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -45,8 +52,7 @@ import org.sheepy.lily.vulkan.model.resource.util.ResourceAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
-		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
+public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IChildCreationExtender
 {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -70,7 +76,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(LilyVulkanEditPlugin.INSTANCE, ResourcePackage.eNS_URI);
+	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(LilyVulkanEditPlugin.INSTANCE, VulkanResourcePackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -86,7 +92,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceItemProviderAdapterFactory()
+	public VulkanResourceItemProviderAdapterFactory()
 	{
 		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
@@ -318,6 +324,56 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		}
 
 		return fontImageItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.CompositeImage} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CompositeImageItemProvider compositeImageItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.CompositeImage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCompositeImageAdapter()
+	{
+		if (compositeImageItemProvider == null)
+		{
+			compositeImageItemProvider = new CompositeImageItemProvider(this);
+		}
+
+		return compositeImageItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ImageInlay} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ImageInlayItemProvider imageInlayItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageInlay}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createImageInlayAdapter()
+	{
+		if (imageInlayItemProvider == null)
+		{
+			imageInlayItemProvider = new ImageInlayItemProvider(this);
+		}
+
+		return imageInlayItemProvider;
 	}
 
 	/**
@@ -727,7 +783,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 	{
 		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
@@ -738,7 +793,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ResourceLocator getResourceLocator()
 	{
 		return childCreationExtenderManager;
@@ -786,45 +840,12 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
+	 * A child creation extender for the {@link ResourcePackage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void dispose()
-	{
-		if (transferBufferItemProvider != null) transferBufferItemProvider.dispose();
-		if (constantBufferItemProvider != null) constantBufferItemProvider.dispose();
-		if (bufferItemProvider != null) bufferItemProvider.dispose();
-		if (compositeBufferItemProvider != null) compositeBufferItemProvider.dispose();
-		if (bufferPartItemProvider != null) bufferPartItemProvider.dispose();
-		if (bufferDataProviderItemProvider != null) bufferDataProviderItemProvider.dispose();
-		if (staticImageItemProvider != null) staticImageItemProvider.dispose();
-		if (fileImageItemProvider != null) fileImageItemProvider.dispose();
-		if (fontImageItemProvider != null) fontImageItemProvider.dispose();
-		if (sampledImageItemProvider != null) sampledImageItemProvider.dispose();
-		if (samplerItemProvider != null) samplerItemProvider.dispose();
-		if (semaphoreItemProvider != null) semaphoreItemProvider.dispose();
-		if (bufferDescriptorItemProvider != null) bufferDescriptorItemProvider.dispose();
-		if (imageDescriptorItemProvider != null) imageDescriptorItemProvider.dispose();
-		if (sampledImageDescriptorItemProvider != null) sampledImageDescriptorItemProvider.dispose();
-		if (samplerDescriptorItemProvider != null) samplerDescriptorItemProvider.dispose();
-		if (descriptorSetItemProvider != null) descriptorSetItemProvider.dispose();
-		if (descriptorSetPkgItemProvider != null) descriptorSetPkgItemProvider.dispose();
-		if (bufferBarrierItemProvider != null) bufferBarrierItemProvider.dispose();
-		if (imageBarrierItemProvider != null) imageBarrierItemProvider.dispose();
-		if (shaderItemProvider != null) shaderItemProvider.dispose();
-		if (imageArrayDescriptorItemProvider != null) imageArrayDescriptorItemProvider.dispose();
-	}
-
-	/**
-	 * A child creation extender for the {@link ApplicationPackage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static class ApplicationChildCreationExtender implements IChildCreationExtender
+	public static class ResourceChildCreationExtender implements IChildCreationExtender
 	{
 		/**
 		 * The switch for creating child descriptors specific to each extended class.
@@ -832,7 +853,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		protected static class CreationSwitch extends ApplicationSwitch<Object>
+		protected static class CreationSwitch extends ResourceSwitch<Object>
 		{
 			/**
 			 * The child descriptors being populated.
@@ -871,63 +892,68 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 			{
 				newChildDescriptors.add
 					(createChildParameter
-						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 ResourceFactory.eINSTANCE.createTransferBuffer()));
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createTransferBuffer()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 ResourceFactory.eINSTANCE.createConstantBuffer()));
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createConstantBuffer()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 ResourceFactory.eINSTANCE.createBuffer()));
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createBuffer()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 ResourceFactory.eINSTANCE.createCompositeBuffer()));
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createCompositeBuffer()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 ResourceFactory.eINSTANCE.createBufferPart()));
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createBufferPart()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 ResourceFactory.eINSTANCE.createStaticImage()));
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createStaticImage()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 ResourceFactory.eINSTANCE.createFileImage()));
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createFileImage()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 ResourceFactory.eINSTANCE.createFontImage()));
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createFontImage()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 ResourceFactory.eINSTANCE.createSampledImage()));
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createCompositeImage()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 ResourceFactory.eINSTANCE.createSampler()));
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createSampledImage()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 ResourceFactory.eINSTANCE.createSemaphore()));
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createSampler()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 ResourceFactory.eINSTANCE.createShader()));
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createSemaphore()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createShader()));
 
 				return null;
 			}
@@ -949,7 +975,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
 			ArrayList<Object> result = new ArrayList<Object>();
@@ -962,7 +987,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		@Override
 		public ResourceLocator getResourceLocator()
 		{
 			return LilyVulkanEditPlugin.INSTANCE;

@@ -1,18 +1,10 @@
 package org.sheepy.lily.vulkan.demo.test.composite.instance.model;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.sheepy.lily.core.model.application.ApplicationFactory;
+import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.demo.test.composite.instance.adapter.InstanceDataProviderAdapter;
-import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.lily.vulkan.model.resource.Shader;
-import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
-import org.sheepy.vulkan.model.enumeration.EAccess;
-import org.sheepy.vulkan.model.enumeration.EBufferUsage;
-import org.sheepy.vulkan.model.enumeration.EDescriptorType;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
+import org.sheepy.lily.vulkan.model.resource.*;
+import org.sheepy.vulkan.model.enumeration.*;
 
 class InstanceTestResourceFactory
 {
@@ -20,18 +12,18 @@ class InstanceTestResourceFactory
 	{
 		final var transferBuffer = buildTransferBuffer();
 		final var compositeBuffer = buildCompositeBuffer(partCount);
-		final var shader = ResourceFactory.eINSTANCE.createShader();
-		final var moduleResource = ApplicationFactory.eINSTANCE.createModuleResource();
+		final var shader = VulkanResourceFactory.eINSTANCE.createShader();
+		final var moduleResource = ResourceFactory.eINSTANCE.createModuleResource();
 		moduleResource.setModule(InstanceTaskManager.class.getModule());
 		moduleResource.setPath("increment.comp.spv");
 		shader.setFile(moduleResource);
 		shader.setStage(EShaderStage.COMPUTE_BIT);
 
-		final var ds = ResourceFactory.eINSTANCE.createDescriptorSet();
+		final var ds = VulkanResourceFactory.eINSTANCE.createDescriptorSet();
 
 		for (int i = 0; i < 2; i++)
 		{
-			final var descriptor = ResourceFactory.eINSTANCE.createBufferDescriptor();
+			final var descriptor = VulkanResourceFactory.eINSTANCE.createBufferDescriptor();
 			descriptor.setType(EDescriptorType.STORAGE_BUFFER);
 			descriptor.getShaderStages().add(EShaderStage.COMPUTE_BIT);
 			descriptor.setBuffer(compositeBuffer.getParts().get(i));
@@ -49,10 +41,10 @@ class InstanceTestResourceFactory
 		public final DescriptorSet ds;
 		public final Shader shader;
 
-		public ResourceContainer(	TransferBuffer transferBuffer,
-									CompositeBuffer compositeBuffer,
-									DescriptorSet ds,
-									Shader shader)
+		public ResourceContainer(TransferBuffer transferBuffer,
+								 CompositeBuffer compositeBuffer,
+								 DescriptorSet ds,
+								 Shader shader)
 		{
 			this.transferBuffer = transferBuffer;
 			this.compositeBuffer = compositeBuffer;
@@ -63,7 +55,7 @@ class InstanceTestResourceFactory
 
 	private static TransferBuffer buildTransferBuffer()
 	{
-		final var res = ResourceFactory.eINSTANCE.createTransferBuffer();
+		final var res = VulkanResourceFactory.eINSTANCE.createTransferBuffer();
 		res.setSize(InstanceDataProviderAdapter.SIZE);
 		res.setUsedToFetch(true);
 		return res;
@@ -71,9 +63,9 @@ class InstanceTestResourceFactory
 
 	private static CompositeBuffer buildCompositeBuffer(int partCount)
 	{
-		final var res = ResourceFactory.eINSTANCE.createCompositeBuffer();
+		final var res = VulkanResourceFactory.eINSTANCE.createCompositeBuffer();
 
-		final var provider = ResourceFactory.eINSTANCE.createBufferDataProvider();
+		final var provider = VulkanResourceFactory.eINSTANCE.createBufferDataProvider();
 		provider.setName(InstanceDataProviderAdapter.NAME);
 		provider.getUsages().add(EBufferUsage.STORAGE_BUFFER_BIT);
 		provider.setStageBeforePush(EPipelineStage.TRANSFER_BIT);
@@ -84,7 +76,7 @@ class InstanceTestResourceFactory
 		final var parts = res.getParts();
 		for (int i = 0; i < partCount; i++)
 		{
-			final var bufferPart = ResourceFactory.eINSTANCE.createBufferPart();
+			final var bufferPart = VulkanResourceFactory.eINSTANCE.createBufferPart();
 			bufferPart.setDataProvider(EcoreUtil.copy(provider));
 
 			parts.add(bufferPart);

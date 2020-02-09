@@ -21,7 +21,6 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
-import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
@@ -46,7 +45,7 @@ import org.sheepy.lily.vulkan.model.process.util.ProcessAdapterFactory;
  * @generated
  */
 public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
-		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
+		implements ComposeableAdapterFactory, IChangeNotifier, IChildCreationExtender
 {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -608,32 +607,6 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
-	}
-
-	/**
-	 * This disposes all of the item providers created by this factory. 
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void dispose()
-	{
-		if (pipelinePkgItemProvider != null) pipelinePkgItemProvider.dispose();
-		if (iTaskPipelineItemProvider != null) iTaskPipelineItemProvider.dispose();
-		if (iVkPipelineItemProvider != null) iVkPipelineItemProvider.dispose();
-		if (taskPkgItemProvider != null) taskPkgItemProvider.dispose();
-		if (pipelineItemProvider != null) pipelineItemProvider.dispose();
-		if (compositePipelineItemProvider != null) compositePipelineItemProvider.dispose();
-		if (pipelineBarrierItemProvider != null) pipelineBarrierItemProvider.dispose();
-		if (compositeTaskItemProvider != null) compositeTaskItemProvider.dispose();
-		if (bindDescriptorSetsItemProvider != null) bindDescriptorSetsItemProvider.dispose();
-		if (pushConstantBufferItemProvider != null) pushConstantBufferItemProvider.dispose();
-		if (flushTransferBufferTaskItemProvider != null) flushTransferBufferTaskItemProvider.dispose();
-		if (copyBufferTaskItemProvider != null) copyBufferTaskItemProvider.dispose();
-		if (processExtensionPkgItemProvider != null) processExtensionPkgItemProvider.dispose();
-		if (prepareCompositeTransferItemProvider != null) prepareCompositeTransferItemProvider.dispose();
-		if (swapBindingsTaskItemProvider != null) swapBindingsTaskItemProvider.dispose();
 	}
 
 	/**

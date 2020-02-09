@@ -1,17 +1,17 @@
 package org.sheepy.lily.vulkan.extra.graphic.rendering.builder;
 
-import java.nio.ByteBuffer;
-
 import org.lwjgl.BufferUtils;
 import org.sheepy.lily.core.api.maintainer.MaintainerUtil;
-import org.sheepy.lily.core.model.application.ApplicationFactory;
+import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.extra.api.rendering.ISpecializationAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+
+import java.nio.ByteBuffer;
 
 public final class RenderPipelineBuilder
 {
@@ -32,11 +32,11 @@ public final class RenderPipelineBuilder
 
 		pipeline.setDescriptorPkg(VulkanFactory.eINSTANCE.createDescriptorPkg());
 		pipeline.setTaskPkg(ProcessFactory.eINSTANCE.createTaskPkg());
-		pipeline.setResourcePkg(ApplicationFactory.eINSTANCE.createResourcePkg());
-		pipeline.setDescriptorSetPkg(ResourceFactory.eINSTANCE.createDescriptorSetPkg());
+		pipeline.setResourcePkg(ResourceFactory.eINSTANCE.createResourcePkg());
+		pipeline.setDescriptorSetPkg(VulkanResourceFactory.eINSTANCE.createDescriptorSetPkg());
 
 		final var specializationData = prepareSpecializationBuffer(index, specialization);
-		final var constantBuffer = ResourceFactory.eINSTANCE.createConstantBuffer();
+		final var constantBuffer = VulkanResourceFactory.eINSTANCE.createConstantBuffer();
 		constantBuffer.setData(specializationData);
 
 		pipeline.getResourcePkg().getResources().add(constantBuffer);
@@ -49,9 +49,7 @@ public final class RenderPipelineBuilder
 	{
 		final var specializationAdapter = resolveSpecializationAdapter(specialization);
 		int speByteCount = 4;
-		speByteCount += specializationAdapter != null
-				? specializationAdapter.byteCount(specialization)
-				: 0;
+		speByteCount += specializationAdapter != null ? specializationAdapter.byteCount(specialization) : 0;
 
 		final var constantsData = BufferUtils.createByteBuffer(speByteCount);
 		constantsData.putInt(index);
@@ -62,6 +60,7 @@ public final class RenderPipelineBuilder
 		constantsData.flip();
 		return constantsData;
 	}
+
 	private static ISpecializationAdapter resolveSpecializationAdapter(ISpecialization specialization)
 	{
 		if (specialization != null)

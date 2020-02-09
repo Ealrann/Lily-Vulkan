@@ -19,7 +19,6 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
-import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
@@ -41,7 +40,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.util.GraphicAdapterFactory;
  * @generated
  */
 public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
-		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
+		implements ComposeableAdapterFactory, IChangeNotifier, IChildCreationExtender
 {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -853,42 +852,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
-	}
-
-	/**
-	 * This disposes all of the item providers created by this factory. 
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void dispose()
-	{
-		if (graphicConfigurationItemProvider != null) graphicConfigurationItemProvider.dispose();
-		if (colorDomainItemProvider != null) colorDomainItemProvider.dispose();
-		if (swapchainConfigurationItemProvider != null) swapchainConfigurationItemProvider.dispose();
-		if (framebufferConfigurationItemProvider != null) framebufferConfigurationItemProvider.dispose();
-		if (imageAttachmentItemProvider != null) imageAttachmentItemProvider.dispose();
-		if (depthAttachmentItemProvider != null) depthAttachmentItemProvider.dispose();
-		if (attachmentPkgItemProvider != null) attachmentPkgItemProvider.dispose();
-		if (subpassItemProvider != null) subpassItemProvider.dispose();
-		if (attachmentRefPkgItemProvider != null) attachmentRefPkgItemProvider.dispose();
-		if (attachmentRefItemProvider != null) attachmentRefItemProvider.dispose();
-		if (swapImageAttachmentItemProvider != null) swapImageAttachmentItemProvider.dispose();
-		if (graphicProcessItemProvider != null) graphicProcessItemProvider.dispose();
-		if (graphicsPipelineItemProvider != null) graphicsPipelineItemProvider.dispose();
-		if (swapImageBarrierItemProvider != null) swapImageBarrierItemProvider.dispose();
-		if (blitToSwapImageItemProvider != null) blitToSwapImageItemProvider.dispose();
-		if (drawIndexedItemProvider != null) drawIndexedItemProvider.dispose();
-		if (drawItemProvider != null) drawItemProvider.dispose();
-		if (vertexInputStateItemProvider != null) vertexInputStateItemProvider.dispose();
-		if (inputDescriptorItemProvider != null) inputDescriptorItemProvider.dispose();
-		if (attributeDescriptionItemProvider != null) attributeDescriptionItemProvider.dispose();
-		if (bindVertexBufferItemProvider != null) bindVertexBufferItemProvider.dispose();
-		if (setScissorItemProvider != null) setScissorItemProvider.dispose();
-		if (setViewportItemProvider != null) setViewportItemProvider.dispose();
-		if (vertexBindingItemProvider != null) vertexBindingItemProvider.dispose();
-		if (bindIndexBufferItemProvider != null) bindIndexBufferItemProvider.dispose();
 	}
 
 }

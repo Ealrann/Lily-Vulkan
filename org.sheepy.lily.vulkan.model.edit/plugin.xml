@@ -55,6 +55,26 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated LilyVulkan -->
       <factory
+            uri="org.sheepy.lily.vulkan.model.resource"
+            class="org.sheepy.lily.vulkan.model.resource.provider.VulkanResourceItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <!-- @generated LilyVulkan -->
+      <extender
+            uri="org.sheepy.lily.core.model.resource"
+            class="org.sheepy.lily.vulkan.model.resource.provider.VulkanResourceItemProviderAdapterFactory$ResourceChildCreationExtender"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated LilyVulkan -->
+      <factory
             uri="org.sheepy.lily.vulkan.model"
             class="org.sheepy.lily.vulkan.model.provider.VulkanItemProviderAdapterFactory"
             supportedTypes=
@@ -73,26 +93,6 @@
       <extender
             uri="org.sheepy.lily.core.model.cadence"
             class="org.sheepy.lily.vulkan.model.provider.VulkanItemProviderAdapterFactory$CadenceChildCreationExtender"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated LilyVulkan -->
-      <factory
-            uri="org.sheepy.lily.vulkan.model.resource"
-            class="org.sheepy.lily.vulkan.model.resource.provider.ResourceItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.edit.childCreationExtenders">
-      <!-- @generated LilyVulkan -->
-      <extender
-            uri="org.sheepy.lily.core.model.application"
-            class="org.sheepy.lily.vulkan.model.resource.provider.ResourceItemProviderAdapterFactory$ApplicationChildCreationExtender"/>
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">

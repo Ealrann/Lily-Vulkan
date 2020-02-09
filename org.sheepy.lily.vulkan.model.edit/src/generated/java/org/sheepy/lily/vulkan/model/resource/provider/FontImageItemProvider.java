@@ -15,7 +15,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.FontImage} object.
@@ -69,7 +69,7 @@ public class FontImageItemProvider extends ImageItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FontImage_fonts_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FontImage_fonts_feature", "_UI_FontImage_type"),
-				 ResourcePackage.Literals.FONT_IMAGE__FONTS,
+				 VulkanResourcePackage.Literals.FONT_IMAGE__FONTS,
 				 true,
 				 false,
 				 true,
@@ -92,7 +92,7 @@ public class FontImageItemProvider extends ImageItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FontImage_instanceCount_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FontImage_instanceCount_feature", "_UI_FontImage_type"),
-				 ResourcePackage.Literals.FONT_IMAGE__INSTANCE_COUNT,
+				 VulkanResourcePackage.Literals.FONT_IMAGE__INSTANCE_COUNT,
 				 true,
 				 false,
 				 false,
@@ -143,7 +143,7 @@ public class FontImageItemProvider extends ImageItemProvider
 
 		switch (notification.getFeatureID(FontImage.class))
 		{
-			case ResourcePackage.FONT_IMAGE__INSTANCE_COUNT:
+			case VulkanResourcePackage.FONT_IMAGE__INSTANCE_COUNT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

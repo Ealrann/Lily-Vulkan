@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -717,7 +717,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER__NAME = ResourcePackage.BUFFER_DATA_PROVIDER__NAME;
+	int RENDER_DATA_PROVIDER__NAME = VulkanResourcePackage.BUFFER_DATA_PROVIDER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
@@ -726,7 +726,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER__DATA_SOURCE = ResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE;
+	int RENDER_DATA_PROVIDER__DATA_SOURCE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
@@ -735,7 +735,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER__USED_TO_PUSH = ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH;
+	int RENDER_DATA_PROVIDER__USED_TO_PUSH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_PUSH;
 
 	/**
 	 * The feature id for the '<em><b>Used To Fetch</b></em>' attribute.
@@ -744,7 +744,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER__USED_TO_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_FETCH;
+	int RENDER_DATA_PROVIDER__USED_TO_FETCH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__USED_TO_FETCH;
 
 	/**
 	 * The feature id for the '<em><b>Stage Before Push</b></em>' attribute.
@@ -753,7 +753,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER__STAGE_BEFORE_PUSH = ResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH;
+	int RENDER_DATA_PROVIDER__STAGE_BEFORE_PUSH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH;
 
 	/**
 	 * The feature id for the '<em><b>Access Before Push</b></em>' attribute list.
@@ -762,7 +762,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER__ACCESS_BEFORE_PUSH = ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH;
+	int RENDER_DATA_PROVIDER__ACCESS_BEFORE_PUSH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH;
 
 	/**
 	 * The feature id for the '<em><b>Stage Before Fetch</b></em>' attribute.
@@ -771,7 +771,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER__STAGE_BEFORE_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH;
+	int RENDER_DATA_PROVIDER__STAGE_BEFORE_FETCH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH;
 
 	/**
 	 * The feature id for the '<em><b>Access Before Fetch</b></em>' attribute list.
@@ -780,7 +780,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER__ACCESS_BEFORE_FETCH = ResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
+	int RENDER_DATA_PROVIDER__ACCESS_BEFORE_FETCH = VulkanResourcePackage.BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH;
 
 	/**
 	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
@@ -789,7 +789,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER__USAGES = ResourcePackage.BUFFER_DATA_PROVIDER__USAGES;
+	int RENDER_DATA_PROVIDER__USAGES = VulkanResourcePackage.BUFFER_DATA_PROVIDER__USAGES;
 
 	/**
 	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
@@ -798,7 +798,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER__INSTANCE_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT;
+	int RENDER_DATA_PROVIDER__INSTANCE_COUNT = VulkanResourcePackage.BUFFER_DATA_PROVIDER__INSTANCE_COUNT;
 
 	/**
 	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
@@ -807,7 +807,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER__GROW_FACTOR = ResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR;
+	int RENDER_DATA_PROVIDER__GROW_FACTOR = VulkanResourcePackage.BUFFER_DATA_PROVIDER__GROW_FACTOR;
 
 	/**
 	 * The feature id for the '<em><b>Grow Threshold</b></em>' attribute.
@@ -816,7 +816,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER__GROW_THRESHOLD = ResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD;
+	int RENDER_DATA_PROVIDER__GROW_THRESHOLD = VulkanResourcePackage.BUFFER_DATA_PROVIDER__GROW_THRESHOLD;
 
 	/**
 	 * The feature id for the '<em><b>Min Size</b></em>' attribute.
@@ -825,7 +825,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER__MIN_SIZE = ResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE;
+	int RENDER_DATA_PROVIDER__MIN_SIZE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__MIN_SIZE;
 
 	/**
 	 * The feature id for the '<em><b>Requested Size</b></em>' attribute.
@@ -834,7 +834,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER__REQUESTED_SIZE = ResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE;
+	int RENDER_DATA_PROVIDER__REQUESTED_SIZE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE;
 
 	/**
 	 * The number of structural features of the '<em>Render Data Provider</em>' class.
@@ -843,7 +843,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER_FEATURE_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
+	int RENDER_DATA_PROVIDER_FEATURE_COUNT = VulkanResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Render Data Provider</em>' class.
@@ -852,7 +852,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER_OPERATION_COUNT = ResourcePackage.BUFFER_DATA_PROVIDER_OPERATION_COUNT + 0;
+	int RENDER_DATA_PROVIDER_OPERATION_COUNT = VulkanResourcePackage.BUFFER_DATA_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderPkgImpl <em>Data Provider Pkg</em>}' class.
@@ -1475,7 +1475,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_PROXY_CONSTANT_BUFFER__NAME = ResourcePackage.CONSTANT_BUFFER__NAME;
+	int RENDER_PROXY_CONSTANT_BUFFER__NAME = VulkanResourcePackage.CONSTANT_BUFFER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Data</b></em>' attribute.
@@ -1484,7 +1484,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_PROXY_CONSTANT_BUFFER__DATA = ResourcePackage.CONSTANT_BUFFER__DATA;
+	int RENDER_PROXY_CONSTANT_BUFFER__DATA = VulkanResourcePackage.CONSTANT_BUFFER__DATA;
 
 	/**
 	 * The feature id for the '<em><b>Constant Buffer</b></em>' reference.
@@ -1493,7 +1493,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_PROXY_CONSTANT_BUFFER__CONSTANT_BUFFER = ResourcePackage.CONSTANT_BUFFER_FEATURE_COUNT + 0;
+	int RENDER_PROXY_CONSTANT_BUFFER__CONSTANT_BUFFER = VulkanResourcePackage.CONSTANT_BUFFER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Part Index</b></em>' attribute.
@@ -1502,7 +1502,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_PROXY_CONSTANT_BUFFER__PART_INDEX = ResourcePackage.CONSTANT_BUFFER_FEATURE_COUNT + 1;
+	int RENDER_PROXY_CONSTANT_BUFFER__PART_INDEX = VulkanResourcePackage.CONSTANT_BUFFER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Render Proxy Constant Buffer</em>' class.
@@ -1511,7 +1511,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_PROXY_CONSTANT_BUFFER_FEATURE_COUNT = ResourcePackage.CONSTANT_BUFFER_FEATURE_COUNT + 2;
+	int RENDER_PROXY_CONSTANT_BUFFER_FEATURE_COUNT = VulkanResourcePackage.CONSTANT_BUFFER_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Render Proxy Constant Buffer</em>' class.
@@ -1520,7 +1520,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_PROXY_CONSTANT_BUFFER_OPERATION_COUNT = ResourcePackage.CONSTANT_BUFFER_OPERATION_COUNT + 0;
+	int RENDER_PROXY_CONSTANT_BUFFER_OPERATION_COUNT = VulkanResourcePackage.CONSTANT_BUFFER_OPERATION_COUNT + 0;
 
 
 	/**

@@ -9,16 +9,18 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 
-import org.sheepy.lily.core.model.application.IImage;
+import org.sheepy.lily.core.model.resource.IImage;
+
 import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -141,7 +143,7 @@ public class ImageArrayDescriptorImpl extends LilyEObject implements ImageArrayD
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.IMAGE_ARRAY_DESCRIPTOR;
+		return VulkanResourcePackage.Literals.IMAGE_ARRAY_DESCRIPTOR;
 	}
 
 	/**
@@ -166,7 +168,7 @@ public class ImageArrayDescriptorImpl extends LilyEObject implements ImageArrayD
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME, oldName, name));
 	}
 
 	/**
@@ -191,7 +193,7 @@ public class ImageArrayDescriptorImpl extends LilyEObject implements ImageArrayD
 		EDescriptorType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__TYPE, oldType, type));
 	}
 
 	/**
@@ -204,7 +206,7 @@ public class ImageArrayDescriptorImpl extends LilyEObject implements ImageArrayD
 	{
 		if (shaderStages == null)
 		{
-			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__SHADER_STAGES);
+			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__SHADER_STAGES);
 		}
 		return shaderStages;
 	}
@@ -219,7 +221,7 @@ public class ImageArrayDescriptorImpl extends LilyEObject implements ImageArrayD
 	{
 		if (images == null)
 		{
-			images = new EObjectResolvingEList<IImage>(IImage.class, this, ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__IMAGES);
+			images = new EObjectResolvingEList<IImage>(IImage.class, this, VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__IMAGES);
 		}
 		return images;
 	}
@@ -246,7 +248,7 @@ public class ImageArrayDescriptorImpl extends LilyEObject implements ImageArrayD
 		EImageLayout oldInitialLayout = initialLayout;
 		initialLayout = newInitialLayout == null ? INITIAL_LAYOUT_EDEFAULT : newInitialLayout;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT, oldInitialLayout, initialLayout));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT, oldInitialLayout, initialLayout));
 	}
 
 	/**
@@ -259,15 +261,15 @@ public class ImageArrayDescriptorImpl extends LilyEObject implements ImageArrayD
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME:
 				return getName();
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__TYPE:
 				return getType();
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__SHADER_STAGES:
 				return getShaderStages();
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__IMAGES:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__IMAGES:
 				return getImages();
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT:
 				return getInitialLayout();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -284,21 +286,21 @@ public class ImageArrayDescriptorImpl extends LilyEObject implements ImageArrayD
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME:
 				setName((String)newValue);
 				return;
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__TYPE:
 				setType((EDescriptorType)newValue);
 				return;
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__SHADER_STAGES:
 				getShaderStages().clear();
 				getShaderStages().addAll((Collection<? extends EShaderStage>)newValue);
 				return;
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__IMAGES:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__IMAGES:
 				getImages().clear();
 				getImages().addAll((Collection<? extends IImage>)newValue);
 				return;
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT:
 				setInitialLayout((EImageLayout)newValue);
 				return;
 		}
@@ -315,19 +317,19 @@ public class ImageArrayDescriptorImpl extends LilyEObject implements ImageArrayD
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__SHADER_STAGES:
 				getShaderStages().clear();
 				return;
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__IMAGES:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__IMAGES:
 				getImages().clear();
 				return;
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT:
 				setInitialLayout(INITIAL_LAYOUT_EDEFAULT);
 				return;
 		}
@@ -344,15 +346,15 @@ public class ImageArrayDescriptorImpl extends LilyEObject implements ImageArrayD
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__TYPE:
 				return type != TYPE_EDEFAULT;
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__SHADER_STAGES:
 				return shaderStages != null && !shaderStages.isEmpty();
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__IMAGES:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__IMAGES:
 				return images != null && !images.isEmpty();
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT:
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT:
 				return initialLayout != INITIAL_LAYOUT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

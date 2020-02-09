@@ -68,12 +68,12 @@ public final class VkImage
 		this.initialLayout = initialLayout;
 	}
 
-	public static final VkImageBuilder newBuilder(int width, int height, int format)
+	public static VkImageBuilder newBuilder(int width, int height, int format)
 	{
 		return new VkImageBuilder(width, height, format);
 	}
 
-	public static final VkImageBuilder newBuilder(ImageInfo info, int width, int height)
+	public static VkImageBuilder newBuilder(ImageInfo info, int width, int height)
 	{
 		return new VkImageBuilder(info, width, height);
 	}

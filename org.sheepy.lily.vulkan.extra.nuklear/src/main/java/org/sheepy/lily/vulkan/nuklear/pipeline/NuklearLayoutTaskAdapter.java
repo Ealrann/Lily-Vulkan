@@ -21,7 +21,7 @@ import org.sheepy.lily.vulkan.core.window.Window;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.lily.vulkan.nuklear.pipeline.layout.LayoutManager;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearFontAdapter;
@@ -32,8 +32,8 @@ import java.util.List;
 
 @Statefull
 @Adapter(scope = NuklearLayoutTask.class, lazy = false)
-public final class NuklearLayoutTaskAdapter
-		implements IPipelineTaskAdapter<NuklearLayoutTask>, IAllocableAdapter<IGraphicContext>
+public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<NuklearLayoutTask>,
+													   IAllocableAdapter<IGraphicContext>
 {
 	private final AdapterSetRegistry<IPanelAdapter> panelRegistry = new AdapterSetRegistry<>(IPanelAdapter.class,
 																							 List.of(UiPackage.Literals.UI__CURRENT_UI_PAGE,
@@ -77,7 +77,7 @@ public final class NuklearLayoutTaskAdapter
 		specializationBuffer.putInt(imageCount);
 		specializationBuffer.flip();
 
-		final var constantBuffer = ResourceFactory.eINSTANCE.createConstantBuffer();
+		final var constantBuffer = VulkanResourceFactory.eINSTANCE.createConstantBuffer();
 		constantBuffer.setData(specializationBuffer);
 
 		pipeline.getResourcePkg().getResources().add(constantBuffer);
@@ -138,7 +138,7 @@ public final class NuklearLayoutTaskAdapter
 		final var fontMap = fontAdapter.fontMap;
 		final var extent = context.getSurfaceManager().getExtent();
 
-		try (MemoryStack stack = MemoryStack.stackPush())
+		try (final var stack = MemoryStack.stackPush())
 		{
 			final var uiContext = new UIContext(window, nkContext, fontMap, defaultFont, stack);
 			layoutManager.layout(uiContext, extent);

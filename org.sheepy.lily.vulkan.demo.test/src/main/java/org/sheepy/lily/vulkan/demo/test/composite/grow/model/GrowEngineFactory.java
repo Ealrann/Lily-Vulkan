@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.demo.test.composite.grow.model;
 
-import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.core.model.application.IEngine;
 import org.sheepy.lily.core.model.cadence.Cadence;
 import org.sheepy.lily.core.model.cadence.CadenceFactory;
+import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.demo.test.composite.grow.model.TestResourceFactory.ResourceContainer;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
@@ -70,12 +70,12 @@ public class GrowEngineFactory
 	private static ComputeProcess createComputeProcessPool(ResourceContainer resourceContainer)
 	{
 		final ComputeProcess process = ComputeFactory.eINSTANCE.createComputeProcess();
-		process.setExtensionPkg(ProcessFactory.eINSTANCE.createProcessExtensionPkg());;
+		process.setExtensionPkg(ProcessFactory.eINSTANCE.createProcessExtensionPkg());
 
 		final var pipelinePkg = ProcessFactory.eINSTANCE.createPipelinePkg();
 		process.setPipelinePkg(pipelinePkg);
 
-		final var resourcePkg = ApplicationFactory.eINSTANCE.createResourcePkg();
+		final var resourcePkg = ResourceFactory.eINSTANCE.createResourcePkg();
 		process.setResourcePkg(resourcePkg);
 		final var resourceList = resourcePkg.getResources();
 		resourceList.add(resourceContainer.transferBuffer);

@@ -10,11 +10,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.sheepy.lily.core.model.application.impl.IResourceImpl;
+import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
 
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,7 +59,7 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.BUFFER_PART;
+		return VulkanResourcePackage.Literals.BUFFER_PART;
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 		dataProvider = newDataProvider;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_PART__DATA_PROVIDER, oldDataProvider, newDataProvider);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER, oldDataProvider, newDataProvider);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -102,14 +102,14 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 		{
 			NotificationChain msgs = null;
 			if (dataProvider != null)
-				msgs = ((InternalEObject)dataProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.BUFFER_PART__DATA_PROVIDER, null, msgs);
+				msgs = ((InternalEObject)dataProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER, null, msgs);
 			if (newDataProvider != null)
-				msgs = ((InternalEObject)newDataProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.BUFFER_PART__DATA_PROVIDER, null, msgs);
+				msgs = ((InternalEObject)newDataProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER, null, msgs);
 			msgs = basicSetDataProvider(newDataProvider, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_PART__DATA_PROVIDER, newDataProvider, newDataProvider));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER, newDataProvider, newDataProvider));
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_PART__DATA_PROVIDER:
+			case VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER:
 				return basicSetDataProvider(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -138,7 +138,7 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_PART__DATA_PROVIDER:
+			case VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER:
 				return getDataProvider();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -154,7 +154,7 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_PART__DATA_PROVIDER:
+			case VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER:
 				setDataProvider((BufferDataProvider<?>)newValue);
 				return;
 		}
@@ -171,7 +171,7 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_PART__DATA_PROVIDER:
+			case VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER:
 				setDataProvider((BufferDataProvider<?>)null);
 				return;
 		}
@@ -188,7 +188,7 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_PART__DATA_PROVIDER:
+			case VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER:
 				return dataProvider != null;
 		}
 		return super.eIsSet(featureID);

@@ -1,17 +1,17 @@
 package org.sheepy.lily.vulkan.resource.shader;
 
-import static org.lwjgl.system.MemoryUtil.NULL;
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.nio.LongBuffer;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkShaderModuleCreateInfo;
 import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
-import org.sheepy.lily.core.model.application.FileResource;
+import org.sheepy.lily.core.model.resource.FileResource;
 import org.sheepy.lily.vulkan.core.util.Logger;
+
+import java.nio.LongBuffer;
+
+import static org.lwjgl.system.MemoryUtil.NULL;
+import static org.lwjgl.vulkan.VK10.*;
 
 public class ShaderBackend
 {
@@ -40,8 +40,7 @@ public class ShaderBackend
 		moduleCreateInfo.pNext(NULL);
 
 		final LongBuffer pShaderModule = stack.mallocLong(1);
-		Logger.check(	vkCreateShaderModule(vkDevice, moduleCreateInfo, null, pShaderModule),
-						FAILED_TO_CREATE_SHADER);
+		Logger.check(vkCreateShaderModule(vkDevice, moduleCreateInfo, null, pShaderModule), FAILED_TO_CREATE_SHADER);
 		shaderPtr = pShaderModule.get();
 		MemoryUtil.memFree(shaderCode);
 	}

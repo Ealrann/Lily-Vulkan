@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
@@ -121,7 +121,7 @@ public class SampledImageDescriptorImpl extends LilyEObject implements SampledIm
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.SAMPLED_IMAGE_DESCRIPTOR;
+		return VulkanResourcePackage.Literals.SAMPLED_IMAGE_DESCRIPTOR;
 	}
 
 	/**
@@ -146,7 +146,7 @@ public class SampledImageDescriptorImpl extends LilyEObject implements SampledIm
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME, oldName, name));
 	}
 
 	/**
@@ -171,7 +171,7 @@ public class SampledImageDescriptorImpl extends LilyEObject implements SampledIm
 		EDescriptorType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__TYPE, oldType, type));
 	}
 
 	/**
@@ -184,7 +184,7 @@ public class SampledImageDescriptorImpl extends LilyEObject implements SampledIm
 	{
 		if (shaderStages == null)
 		{
-			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SHADER_STAGES);
+			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SHADER_STAGES);
 		}
 		return shaderStages;
 	}
@@ -204,7 +204,7 @@ public class SampledImageDescriptorImpl extends LilyEObject implements SampledIm
 			if (sampledImage != oldSampledImage)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE, oldSampledImage, sampledImage));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE, oldSampledImage, sampledImage));
 			}
 		}
 		return sampledImage;
@@ -231,7 +231,7 @@ public class SampledImageDescriptorImpl extends LilyEObject implements SampledIm
 		SampledImage oldSampledImage = sampledImage;
 		sampledImage = newSampledImage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE, oldSampledImage, sampledImage));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE, oldSampledImage, sampledImage));
 	}
 
 	/**
@@ -244,13 +244,13 @@ public class SampledImageDescriptorImpl extends LilyEObject implements SampledIm
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME:
 				return getName();
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__TYPE:
 				return getType();
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SHADER_STAGES:
 				return getShaderStages();
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE:
 				if (resolve) return getSampledImage();
 				return basicGetSampledImage();
 		}
@@ -268,17 +268,17 @@ public class SampledImageDescriptorImpl extends LilyEObject implements SampledIm
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME:
 				setName((String)newValue);
 				return;
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__TYPE:
 				setType((EDescriptorType)newValue);
 				return;
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SHADER_STAGES:
 				getShaderStages().clear();
 				getShaderStages().addAll((Collection<? extends EShaderStage>)newValue);
 				return;
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE:
 				setSampledImage((SampledImage)newValue);
 				return;
 		}
@@ -295,16 +295,16 @@ public class SampledImageDescriptorImpl extends LilyEObject implements SampledIm
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SHADER_STAGES:
 				getShaderStages().clear();
 				return;
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE:
 				setSampledImage((SampledImage)null);
 				return;
 		}
@@ -321,13 +321,13 @@ public class SampledImageDescriptorImpl extends LilyEObject implements SampledIm
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__TYPE:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__TYPE:
 				return type != TYPE_EDEFAULT;
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SHADER_STAGES:
 				return shaderStages != null && !shaderStages.isEmpty();
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE:
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE:
 				return sampledImage != null;
 		}
 		return super.eIsSet(featureID);

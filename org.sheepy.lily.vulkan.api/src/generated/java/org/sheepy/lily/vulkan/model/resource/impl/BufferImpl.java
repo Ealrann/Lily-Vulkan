@@ -15,9 +15,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.sheepy.lily.core.model.application.impl.IResourceImpl;
+
+import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
+
 import org.sheepy.lily.vulkan.model.resource.Buffer;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EInstanceCount;
@@ -191,7 +193,7 @@ public class BufferImpl extends IResourceImpl implements Buffer
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.BUFFER;
+		return VulkanResourcePackage.Literals.BUFFER;
 	}
 
 	/**
@@ -216,22 +218,7 @@ public class BufferImpl extends IResourceImpl implements Buffer
 		long oldSize = size;
 		size = newSize;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__SIZE, oldSize, size));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<EBufferUsage> getUsages()
-	{
-		if (usages == null)
-		{
-			usages = new EDataTypeUniqueEList<EBufferUsage>(EBufferUsage.class, this, ResourcePackage.BUFFER__USAGES);
-		}
-		return usages;
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER__SIZE, oldSize, size));
 	}
 
 	/**
@@ -256,7 +243,7 @@ public class BufferImpl extends IResourceImpl implements Buffer
 		ByteBuffer oldData = data;
 		data = newData;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__DATA, oldData, data));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER__DATA, oldData, data));
 	}
 
 	/**
@@ -281,7 +268,7 @@ public class BufferImpl extends IResourceImpl implements Buffer
 		boolean oldKeptMapped = keptMapped;
 		keptMapped = newKeptMapped;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__KEPT_MAPPED, oldKeptMapped, keptMapped));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER__KEPT_MAPPED, oldKeptMapped, keptMapped));
 	}
 
 	/**
@@ -306,32 +293,7 @@ public class BufferImpl extends IResourceImpl implements Buffer
 		boolean oldHostVisible = hostVisible;
 		hostVisible = newHostVisible;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__HOST_VISIBLE, oldHostVisible, hostVisible));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EInstanceCount getInstanceCount()
-	{
-		return instanceCount;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setInstanceCount(EInstanceCount newInstanceCount)
-	{
-		EInstanceCount oldInstanceCount = instanceCount;
-		instanceCount = newInstanceCount == null ? INSTANCE_COUNT_EDEFAULT : newInstanceCount;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER__HOST_VISIBLE, oldHostVisible, hostVisible));
 	}
 
 	/**
@@ -356,7 +318,47 @@ public class BufferImpl extends IResourceImpl implements Buffer
 		boolean oldCoherent = coherent;
 		coherent = newCoherent;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__COHERENT, oldCoherent, coherent));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER__COHERENT, oldCoherent, coherent));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<EBufferUsage> getUsages()
+	{
+		if (usages == null)
+		{
+			usages = new EDataTypeUniqueEList<EBufferUsage>(EBufferUsage.class, this, VulkanResourcePackage.BUFFER__USAGES);
+		}
+		return usages;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EInstanceCount getInstanceCount()
+	{
+		return instanceCount;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setInstanceCount(EInstanceCount newInstanceCount)
+	{
+		EInstanceCount oldInstanceCount = instanceCount;
+		instanceCount = newInstanceCount == null ? INSTANCE_COUNT_EDEFAULT : newInstanceCount;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
 	}
 
 	/**
@@ -369,19 +371,19 @@ public class BufferImpl extends IResourceImpl implements Buffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER__SIZE:
+			case VulkanResourcePackage.BUFFER__SIZE:
 				return getSize();
-			case ResourcePackage.BUFFER__DATA:
+			case VulkanResourcePackage.BUFFER__DATA:
 				return getData();
-			case ResourcePackage.BUFFER__KEPT_MAPPED:
+			case VulkanResourcePackage.BUFFER__KEPT_MAPPED:
 				return isKeptMapped();
-			case ResourcePackage.BUFFER__HOST_VISIBLE:
+			case VulkanResourcePackage.BUFFER__HOST_VISIBLE:
 				return isHostVisible();
-			case ResourcePackage.BUFFER__COHERENT:
+			case VulkanResourcePackage.BUFFER__COHERENT:
 				return isCoherent();
-			case ResourcePackage.BUFFER__USAGES:
+			case VulkanResourcePackage.BUFFER__USAGES:
 				return getUsages();
-			case ResourcePackage.BUFFER__INSTANCE_COUNT:
+			case VulkanResourcePackage.BUFFER__INSTANCE_COUNT:
 				return getInstanceCount();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -398,26 +400,26 @@ public class BufferImpl extends IResourceImpl implements Buffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER__SIZE:
+			case VulkanResourcePackage.BUFFER__SIZE:
 				setSize((Long)newValue);
 				return;
-			case ResourcePackage.BUFFER__DATA:
+			case VulkanResourcePackage.BUFFER__DATA:
 				setData((ByteBuffer)newValue);
 				return;
-			case ResourcePackage.BUFFER__KEPT_MAPPED:
+			case VulkanResourcePackage.BUFFER__KEPT_MAPPED:
 				setKeptMapped((Boolean)newValue);
 				return;
-			case ResourcePackage.BUFFER__HOST_VISIBLE:
+			case VulkanResourcePackage.BUFFER__HOST_VISIBLE:
 				setHostVisible((Boolean)newValue);
 				return;
-			case ResourcePackage.BUFFER__COHERENT:
+			case VulkanResourcePackage.BUFFER__COHERENT:
 				setCoherent((Boolean)newValue);
 				return;
-			case ResourcePackage.BUFFER__USAGES:
+			case VulkanResourcePackage.BUFFER__USAGES:
 				getUsages().clear();
 				getUsages().addAll((Collection<? extends EBufferUsage>)newValue);
 				return;
-			case ResourcePackage.BUFFER__INSTANCE_COUNT:
+			case VulkanResourcePackage.BUFFER__INSTANCE_COUNT:
 				setInstanceCount((EInstanceCount)newValue);
 				return;
 		}
@@ -434,25 +436,25 @@ public class BufferImpl extends IResourceImpl implements Buffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER__SIZE:
+			case VulkanResourcePackage.BUFFER__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
-			case ResourcePackage.BUFFER__DATA:
+			case VulkanResourcePackage.BUFFER__DATA:
 				setData(DATA_EDEFAULT);
 				return;
-			case ResourcePackage.BUFFER__KEPT_MAPPED:
+			case VulkanResourcePackage.BUFFER__KEPT_MAPPED:
 				setKeptMapped(KEPT_MAPPED_EDEFAULT);
 				return;
-			case ResourcePackage.BUFFER__HOST_VISIBLE:
+			case VulkanResourcePackage.BUFFER__HOST_VISIBLE:
 				setHostVisible(HOST_VISIBLE_EDEFAULT);
 				return;
-			case ResourcePackage.BUFFER__COHERENT:
+			case VulkanResourcePackage.BUFFER__COHERENT:
 				setCoherent(COHERENT_EDEFAULT);
 				return;
-			case ResourcePackage.BUFFER__USAGES:
+			case VulkanResourcePackage.BUFFER__USAGES:
 				getUsages().clear();
 				return;
-			case ResourcePackage.BUFFER__INSTANCE_COUNT:
+			case VulkanResourcePackage.BUFFER__INSTANCE_COUNT:
 				setInstanceCount(INSTANCE_COUNT_EDEFAULT);
 				return;
 		}
@@ -469,19 +471,19 @@ public class BufferImpl extends IResourceImpl implements Buffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER__SIZE:
+			case VulkanResourcePackage.BUFFER__SIZE:
 				return size != SIZE_EDEFAULT;
-			case ResourcePackage.BUFFER__DATA:
+			case VulkanResourcePackage.BUFFER__DATA:
 				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
-			case ResourcePackage.BUFFER__KEPT_MAPPED:
+			case VulkanResourcePackage.BUFFER__KEPT_MAPPED:
 				return keptMapped != KEPT_MAPPED_EDEFAULT;
-			case ResourcePackage.BUFFER__HOST_VISIBLE:
+			case VulkanResourcePackage.BUFFER__HOST_VISIBLE:
 				return hostVisible != HOST_VISIBLE_EDEFAULT;
-			case ResourcePackage.BUFFER__COHERENT:
+			case VulkanResourcePackage.BUFFER__COHERENT:
 				return coherent != COHERENT_EDEFAULT;
-			case ResourcePackage.BUFFER__USAGES:
+			case VulkanResourcePackage.BUFFER__USAGES:
 				return usages != null && !usages.isEmpty();
-			case ResourcePackage.BUFFER__INSTANCE_COUNT:
+			case VulkanResourcePackage.BUFFER__INSTANCE_COUNT:
 				return instanceCount != INSTANCE_COUNT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

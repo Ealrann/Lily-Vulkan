@@ -9,9 +9,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.barrier.impl.AbstractBufferBarrierImpl;
 
@@ -58,7 +59,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.BUFFER_BARRIER;
+		return VulkanResourcePackage.Literals.BUFFER_BARRIER;
 	}
 
 	/**
@@ -76,7 +77,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 			if (buffer != oldBuffer)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
 			}
 		}
 		return buffer;
@@ -103,7 +104,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 		IBuffer oldBuffer = buffer;
 		buffer = newBuffer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
 	}
 
 	/**
@@ -116,7 +117,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_BARRIER__BUFFER:
+			case VulkanResourcePackage.BUFFER_BARRIER__BUFFER:
 				if (resolve) return getBuffer();
 				return basicGetBuffer();
 		}
@@ -133,7 +134,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_BARRIER__BUFFER:
+			case VulkanResourcePackage.BUFFER_BARRIER__BUFFER:
 				setBuffer((IBuffer)newValue);
 				return;
 		}
@@ -150,7 +151,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_BARRIER__BUFFER:
+			case VulkanResourcePackage.BUFFER_BARRIER__BUFFER:
 				setBuffer((IBuffer)null);
 				return;
 		}
@@ -167,7 +168,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_BARRIER__BUFFER:
+			case VulkanResourcePackage.BUFFER_BARRIER__BUFFER:
 				return buffer != null;
 		}
 		return super.eIsSet(featureID);

@@ -2,8 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
-import org.sheepy.lily.core.model.application.FileResource;
-
+import org.sheepy.lily.core.model.resource.FileResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +17,7 @@ import org.sheepy.lily.core.model.application.FileResource;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.FileImage#isMipmapEnabled <em>Mipmap Enabled</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getFileImage()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getFileImage()
  * @model
  * @generated
  */
@@ -30,7 +29,7 @@ public interface FileImage extends Image
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>File</em>' reference.
 	 * @see #setFile(FileResource)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getFileImage_File()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getFileImage_File()
 	 * @model resolveProxies="false"
 	 * @generated
 	 */
@@ -53,7 +52,7 @@ public interface FileImage extends Image
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mipmap Enabled</em>' attribute.
 	 * @see #setMipmapEnabled(boolean)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getFileImage_MipmapEnabled()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getFileImage_MipmapEnabled()
 	 * @model default="false" required="true"
 	 * @generated
 	 */

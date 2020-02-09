@@ -11,10 +11,9 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.lily.core.model.application.provider.IResourceItemProvider;
+import org.sheepy.lily.core.model.resource.provider.IResourceItemProvider;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.ConstantBuffer} object.
@@ -67,7 +66,7 @@ public class ConstantBufferItemProvider extends IResourceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ConstantBuffer_data_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ConstantBuffer_data_feature", "_UI_ConstantBuffer_type"),
-				 ResourcePackage.Literals.CONSTANT_BUFFER__DATA,
+				 VulkanResourcePackage.Literals.CONSTANT_BUFFER__DATA,
 				 true,
 				 false,
 				 false,
@@ -117,7 +116,7 @@ public class ConstantBufferItemProvider extends IResourceItemProvider
 
 		switch (notification.getFeatureID(ConstantBuffer.class))
 		{
-			case ResourcePackage.CONSTANT_BUFFER__DATA:
+			case VulkanResourcePackage.CONSTANT_BUFFER__DATA:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

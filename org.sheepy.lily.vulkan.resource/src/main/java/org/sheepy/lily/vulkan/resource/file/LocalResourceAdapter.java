@@ -1,13 +1,13 @@
 package org.sheepy.lily.vulkan.resource.file;
 
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.model.resource.FileResource;
+import org.sheepy.lily.core.model.resource.LocalResource;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.model.application.FileResource;
-import org.sheepy.lily.core.model.application.LocalResource;
 
 @Adapter(scope = LocalResource.class)
 public class LocalResourceAdapter extends FileResourceAdapter
@@ -21,7 +21,8 @@ public class LocalResourceAdapter extends FileResourceAdapter
 		try
 		{
 			return new FileInputStream(file);
-		} catch (final FileNotFoundException e)
+		}
+		catch (final FileNotFoundException e)
 		{
 			e.printStackTrace();
 		}

@@ -12,10 +12,9 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.lily.core.model.application.provider.IResourceItemProvider;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.core.model.resource.provider.IResourceItemProvider;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.TransferBuffer} object.
@@ -72,7 +71,7 @@ public class TransferBufferItemProvider
 				 getResourceLocator(),
 				 getString("_UI_TransferBuffer_size_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TransferBuffer_size_feature", "_UI_TransferBuffer_type"),
-				 ResourcePackage.Literals.TRANSFER_BUFFER__SIZE,
+				 VulkanResourcePackage.Literals.TRANSFER_BUFFER__SIZE,
 				 true,
 				 false,
 				 false,
@@ -95,7 +94,7 @@ public class TransferBufferItemProvider
 				 getResourceLocator(),
 				 getString("_UI_TransferBuffer_instanceCount_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TransferBuffer_instanceCount_feature", "_UI_TransferBuffer_type"),
-				 ResourcePackage.Literals.TRANSFER_BUFFER__INSTANCE_COUNT,
+				 VulkanResourcePackage.Literals.TRANSFER_BUFFER__INSTANCE_COUNT,
 				 true,
 				 false,
 				 false,
@@ -118,7 +117,7 @@ public class TransferBufferItemProvider
 				 getResourceLocator(),
 				 getString("_UI_TransferBuffer_usedToPush_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TransferBuffer_usedToPush_feature", "_UI_TransferBuffer_type"),
-				 ResourcePackage.Literals.TRANSFER_BUFFER__USED_TO_PUSH,
+				 VulkanResourcePackage.Literals.TRANSFER_BUFFER__USED_TO_PUSH,
 				 true,
 				 false,
 				 false,
@@ -141,7 +140,7 @@ public class TransferBufferItemProvider
 				 getResourceLocator(),
 				 getString("_UI_TransferBuffer_usedToFetch_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TransferBuffer_usedToFetch_feature", "_UI_TransferBuffer_type"),
-				 ResourcePackage.Literals.TRANSFER_BUFFER__USED_TO_FETCH,
+				 VulkanResourcePackage.Literals.TRANSFER_BUFFER__USED_TO_FETCH,
 				 true,
 				 false,
 				 false,
@@ -192,10 +191,10 @@ public class TransferBufferItemProvider
 
 		switch (notification.getFeatureID(TransferBuffer.class))
 		{
-			case ResourcePackage.TRANSFER_BUFFER__SIZE:
-			case ResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
-			case ResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
-			case ResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
+			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
+			case VulkanResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
+			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
+			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

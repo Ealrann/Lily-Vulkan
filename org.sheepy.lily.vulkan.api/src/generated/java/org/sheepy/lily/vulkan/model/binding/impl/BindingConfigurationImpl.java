@@ -23,7 +23,6 @@ import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.vulkan.model.binding.BindingConfiguration;
 import org.sheepy.lily.vulkan.model.binding.BindingPackage;
 import org.sheepy.lily.vulkan.model.binding.IConfigurationTask;
-
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 
 /**

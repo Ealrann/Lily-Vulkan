@@ -1,11 +1,11 @@
 package org.sheepy.lily.vulkan.resource.file;
 
-import java.io.InputStream;
-import java.nio.ByteBuffer;
-
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
-import org.sheepy.lily.core.model.application.FileResource;
+import org.sheepy.lily.core.model.resource.FileResource;
+
+import java.io.InputStream;
+import java.nio.ByteBuffer;
 
 public abstract class FileResourceAdapter implements IFileResourceAdapter
 {
@@ -20,7 +20,8 @@ public abstract class FileResourceAdapter implements IFileResourceAdapter
 			buffer = MemoryUtil.memAlloc(byteArray.length);
 			buffer.put(byteArray);
 			buffer.flip();
-		} catch (final Exception e)
+		}
+		catch (final Exception e)
 		{
 			logCantAccess(resource);
 			e.printStackTrace();

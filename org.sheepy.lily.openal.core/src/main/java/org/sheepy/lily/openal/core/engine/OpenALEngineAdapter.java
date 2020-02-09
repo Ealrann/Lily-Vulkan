@@ -12,6 +12,7 @@ import org.sheepy.lily.core.api.allocation.IRootAllocator;
 import org.sheepy.lily.core.api.cadence.ETickerClock;
 import org.sheepy.lily.core.api.engine.IEngineAdapter;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.game.api.audio.IAudioHandle;
 import org.sheepy.lily.game.core.allocation.GameAllocationContext;
 import org.sheepy.lily.game.core.allocation.GenericAllocator;
@@ -30,7 +31,7 @@ public final class OpenALEngineAdapter implements IEngineAdapter
 	private final OpenALEngine engine;
 	private final GenericAllocator<GameAllocationContext> resourceAllocator = new GenericAllocator<>(List.of(List.of(
 			ApplicationPackage.Literals.IENGINE__RESOURCE_PKG,
-			ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES)));
+			ResourcePackage.Literals.RESOURCE_PKG__RESOURCES)));
 	private final IRootAllocator<GameAllocationContext> allocator;
 	private final List<IOpenALAudioHandle> handles = new ArrayList<>();
 

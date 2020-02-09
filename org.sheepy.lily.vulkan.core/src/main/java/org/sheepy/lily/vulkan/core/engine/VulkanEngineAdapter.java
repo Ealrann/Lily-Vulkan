@@ -12,6 +12,7 @@ import org.sheepy.lily.core.api.cadence.ICadenceAdapter;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.game.api.window.IWindowListener;
 import org.sheepy.lily.game.core.allocation.GenericAllocator;
 import org.sheepy.lily.vulkan.api.device.EPhysicalFeature;
@@ -47,7 +48,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 {
 	private static final String WAIT_IDLE_RELOAD_ENGINE_RESOURCES = "[WaitIdle] Reload engine resources";
 	private static final List<EReference> RESOURCE_FEATURES = List.of(ApplicationPackage.Literals.IENGINE__RESOURCE_PKG,
-																	  ApplicationPackage.Literals.RESOURCE_PKG__RESOURCES);
+																	  ResourcePackage.Literals.RESOURCE_PKG__RESOURCES);
 	private static final List<EReference> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.VULKAN_ENGINE__DESCRIPTOR_PKG,
 																		VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
 

@@ -24,6 +24,9 @@
       <extender
             uri="org.sheepy.lily.vulkan.model.process"
             class="org.sheepy.lily.vulkan.extra.model.mesh.provider.MeshItemProviderAdapterFactory$ProcessChildCreationExtender"/>
+      <extender
+            uri="org.sheepy.lily.vulkan.model.resource"
+            class="org.sheepy.lily.vulkan.extra.model.mesh.provider.MeshItemProviderAdapterFactory$VulkanResourceChildCreationExtender"/>
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
@@ -45,13 +48,13 @@
             uri="org.sheepy.lily.core.model.ui"
             class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$UiChildCreationExtender"/>
       <extender
-            uri="org.sheepy.lily.core.model.application"
-            class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$ApplicationChildCreationExtender"/>
-      <extender
             uri="org.sheepy.lily.vulkan.model.process"
             class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$ProcessChildCreationExtender"/>
       <extender
             uri="org.sheepy.lily.vulkan.model.resource"
+            class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$VulkanResourceChildCreationExtender"/>
+      <extender
+            uri="org.sheepy.lily.core.model.resource"
             class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$ResourceChildCreationExtender"/>
    </extension>
 
@@ -71,13 +74,13 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated Extra -->
       <extender
-            uri="org.sheepy.lily.core.model.application"
-            class="org.sheepy.lily.vulkan.extra.model.rendering.provider.RenderingItemProviderAdapterFactory$ApplicationChildCreationExtender"/>
-      <extender
             uri="org.sheepy.lily.vulkan.model.process"
             class="org.sheepy.lily.vulkan.extra.model.rendering.provider.RenderingItemProviderAdapterFactory$ProcessChildCreationExtender"/>
       <extender
             uri="org.sheepy.lily.vulkan.model.resource"
+            class="org.sheepy.lily.vulkan.extra.model.rendering.provider.RenderingItemProviderAdapterFactory$VulkanResourceChildCreationExtender"/>
+      <extender
+            uri="org.sheepy.lily.core.model.resource"
             class="org.sheepy.lily.vulkan.extra.model.rendering.provider.RenderingItemProviderAdapterFactory$ResourceChildCreationExtender"/>
    </extension>
 
@@ -99,6 +102,9 @@
       <extender
             uri="org.sheepy.lily.vulkan.model.process"
             class="org.sheepy.lily.vulkan.extra.model.sprite.provider.SpriteItemProviderAdapterFactory$ProcessChildCreationExtender"/>
+      <extender
+            uri="org.sheepy.lily.vulkan.model.resource"
+            class="org.sheepy.lily.vulkan.extra.model.sprite.provider.SpriteItemProviderAdapterFactory$VulkanResourceChildCreationExtender"/>
    </extension>
 
 </plugin>

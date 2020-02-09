@@ -21,7 +21,7 @@ import org.sheepy.lily.vulkan.model.resource.*;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
+public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanResourceFactory
 {
 	/**
 	 * Creates the default factory implementation.
@@ -29,21 +29,21 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ResourceFactory init()
+	public static VulkanResourceFactory init()
 	{
 		try
 		{
-			ResourceFactory theResourceFactory = (ResourceFactory)EPackage.Registry.INSTANCE.getEFactory(ResourcePackage.eNS_URI);
-			if (theResourceFactory != null)
+			VulkanResourceFactory theVulkanResourceFactory = (VulkanResourceFactory)EPackage.Registry.INSTANCE.getEFactory(VulkanResourcePackage.eNS_URI);
+			if (theVulkanResourceFactory != null)
 			{
-				return theResourceFactory;
+				return theVulkanResourceFactory;
 			}
 		}
 		catch (Exception exception)
 		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new ResourceFactoryImpl();
+		return new VulkanResourceFactoryImpl();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceFactoryImpl()
+	public VulkanResourceFactoryImpl()
 	{
 		super();
 	}
@@ -67,28 +67,30 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case ResourcePackage.TRANSFER_BUFFER: return (EObject)createTransferBuffer();
-			case ResourcePackage.CONSTANT_BUFFER: return (EObject)createConstantBuffer();
-			case ResourcePackage.BUFFER: return (EObject)createBuffer();
-			case ResourcePackage.COMPOSITE_BUFFER: return (EObject)createCompositeBuffer();
-			case ResourcePackage.BUFFER_PART: return (EObject)createBufferPart();
-			case ResourcePackage.BUFFER_DATA_PROVIDER: return (EObject)createBufferDataProvider();
-			case ResourcePackage.STATIC_IMAGE: return (EObject)createStaticImage();
-			case ResourcePackage.FILE_IMAGE: return (EObject)createFileImage();
-			case ResourcePackage.FONT_IMAGE: return (EObject)createFontImage();
-			case ResourcePackage.SAMPLED_IMAGE: return (EObject)createSampledImage();
-			case ResourcePackage.SAMPLER: return (EObject)createSampler();
-			case ResourcePackage.SEMAPHORE: return (EObject)createSemaphore();
-			case ResourcePackage.BUFFER_DESCRIPTOR: return (EObject)createBufferDescriptor();
-			case ResourcePackage.IMAGE_DESCRIPTOR: return (EObject)createImageDescriptor();
-			case ResourcePackage.SAMPLED_IMAGE_DESCRIPTOR: return (EObject)createSampledImageDescriptor();
-			case ResourcePackage.SAMPLER_DESCRIPTOR: return (EObject)createSamplerDescriptor();
-			case ResourcePackage.DESCRIPTOR_SET: return (EObject)createDescriptorSet();
-			case ResourcePackage.DESCRIPTOR_SET_PKG: return (EObject)createDescriptorSetPkg();
-			case ResourcePackage.BUFFER_BARRIER: return (EObject)createBufferBarrier();
-			case ResourcePackage.IMAGE_BARRIER: return (EObject)createImageBarrier();
-			case ResourcePackage.SHADER: return (EObject)createShader();
-			case ResourcePackage.IMAGE_ARRAY_DESCRIPTOR: return (EObject)createImageArrayDescriptor();
+			case VulkanResourcePackage.TRANSFER_BUFFER: return (EObject)createTransferBuffer();
+			case VulkanResourcePackage.CONSTANT_BUFFER: return (EObject)createConstantBuffer();
+			case VulkanResourcePackage.BUFFER: return (EObject)createBuffer();
+			case VulkanResourcePackage.COMPOSITE_BUFFER: return (EObject)createCompositeBuffer();
+			case VulkanResourcePackage.BUFFER_PART: return (EObject)createBufferPart();
+			case VulkanResourcePackage.BUFFER_DATA_PROVIDER: return (EObject)createBufferDataProvider();
+			case VulkanResourcePackage.STATIC_IMAGE: return (EObject)createStaticImage();
+			case VulkanResourcePackage.FILE_IMAGE: return (EObject)createFileImage();
+			case VulkanResourcePackage.FONT_IMAGE: return (EObject)createFontImage();
+			case VulkanResourcePackage.COMPOSITE_IMAGE: return (EObject)createCompositeImage();
+			case VulkanResourcePackage.IMAGE_INLAY: return (EObject)createImageInlay();
+			case VulkanResourcePackage.SAMPLED_IMAGE: return (EObject)createSampledImage();
+			case VulkanResourcePackage.SAMPLER: return (EObject)createSampler();
+			case VulkanResourcePackage.SEMAPHORE: return (EObject)createSemaphore();
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR: return (EObject)createBufferDescriptor();
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR: return (EObject)createImageDescriptor();
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR: return (EObject)createSampledImageDescriptor();
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR: return (EObject)createSamplerDescriptor();
+			case VulkanResourcePackage.DESCRIPTOR_SET: return (EObject)createDescriptorSet();
+			case VulkanResourcePackage.DESCRIPTOR_SET_PKG: return (EObject)createDescriptorSetPkg();
+			case VulkanResourcePackage.BUFFER_BARRIER: return (EObject)createBufferBarrier();
+			case VulkanResourcePackage.IMAGE_BARRIER: return (EObject)createImageBarrier();
+			case VulkanResourcePackage.SHADER: return (EObject)createShader();
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR: return (EObject)createImageArrayDescriptor();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -104,9 +106,9 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eDataType.getClassifierID())
 		{
-			case ResourcePackage.EFLUSH_MODE:
+			case VulkanResourcePackage.EFLUSH_MODE:
 				return createEFlushModeFromString(eDataType, initialValue);
-			case ResourcePackage.BYTE_BUFFER:
+			case VulkanResourcePackage.BYTE_BUFFER:
 				return createByteBufferFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
@@ -123,9 +125,9 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eDataType.getClassifierID())
 		{
-			case ResourcePackage.EFLUSH_MODE:
+			case VulkanResourcePackage.EFLUSH_MODE:
 				return convertEFlushModeToString(eDataType, instanceValue);
-			case ResourcePackage.BYTE_BUFFER:
+			case VulkanResourcePackage.BYTE_BUFFER:
 				return convertByteBufferToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
@@ -238,6 +240,30 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		FontImageImpl fontImage = new FontImageImpl();
 		return fontImage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CompositeImage createCompositeImage()
+	{
+		CompositeImageImpl compositeImage = new CompositeImageImpl();
+		return compositeImage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ImageInlay createImageInlay()
+	{
+		ImageInlayImpl imageInlay = new ImageInlayImpl();
+		return imageInlay;
 	}
 
 	/**
@@ -444,9 +470,9 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
-	public ResourcePackage getResourcePackage()
+	public VulkanResourcePackage getVulkanResourcePackage()
 	{
-		return (ResourcePackage)getEPackage();
+		return (VulkanResourcePackage)getEPackage();
 	}
 
 	/**
@@ -456,9 +482,9 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Deprecated
-	public static ResourcePackage getPackage()
+	public static VulkanResourcePackage getPackage()
 	{
-		return ResourcePackage.eINSTANCE;
+		return VulkanResourcePackage.eINSTANCE;
 	}
 
-} //ResourceFactoryImpl
+} //VulkanResourceFactoryImpl

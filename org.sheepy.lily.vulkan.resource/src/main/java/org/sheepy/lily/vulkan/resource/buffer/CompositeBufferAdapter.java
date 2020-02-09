@@ -1,8 +1,5 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
@@ -17,25 +14,24 @@ import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.GPUBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.buffer.ICompositeBufferAdapter;
-import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
-import org.sheepy.lily.vulkan.model.resource.BufferPart;
-import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
-import org.sheepy.lily.vulkan.model.resource.EFlushMode;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.lily.vulkan.model.resource.*;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Statefull
 @Adapter(scope = CompositeBuffer.class, lazy = false)
 public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 {
-	private final AdapterSetRegistry<BufferPartAdapter> partsRegistry = new AdapterSetRegistry<>(	BufferPartAdapter.class,
-																									List.of(ResourcePackage.Literals.COMPOSITE_BUFFER__PARTS));
+	private final AdapterSetRegistry<BufferPartAdapter> partsRegistry = new AdapterSetRegistry<>(BufferPartAdapter.class,
+																								 List.of(VulkanResourcePackage.Literals.COMPOSITE_BUFFER__PARTS));
 	private final INotificationListener sizeListener = this::partResized;
-	private final NotificationListenerDeployer sizeListenerDeployer = new NotificationListenerDeployer(	List.of(ResourcePackage.Literals.COMPOSITE_BUFFER__PARTS,
-																												ResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER),
-																										sizeListener,
-																										ResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE);
+	private final NotificationListenerDeployer sizeListenerDeployer = new NotificationListenerDeployer(List.of(
+			VulkanResourcePackage.Literals.COMPOSITE_BUFFER__PARTS,
+			VulkanResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER),
+																									   sizeListener,
+																									   VulkanResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE);
 
 	private final CompositeBuffer compositeBuffer;
 
@@ -63,8 +59,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator configurator,
-									InternalExecutionContext context)
+	public void configureAllocation(IAllocationConfigurator configurator, InternalExecutionContext context)
 	{
 		this.configurator = configurator;
 		configurator.addChildren(partsRegistry.getAdapters());
@@ -82,8 +77,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 				configurator.setDirty();
 				if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 				{
-					System.out.println("Need resize of composite buffer "
-							+ compositeBuffer.getName());
+					System.out.println("Need resize of composite buffer " + compositeBuffer.getName());
 				}
 			}
 		}

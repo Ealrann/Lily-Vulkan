@@ -1,9 +1,5 @@
 package org.sheepy.lily.vulkan.extra.graphic.rendering.builder;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.BiFunction;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.vulkan.extra.api.rendering.IDescriptorProviderAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IDescriptorProviderAdapter.ResourceDescriptor;
@@ -18,7 +14,11 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.BiFunction;
 
 public final class ResourceInstaller<T extends Structure>
 {
@@ -35,19 +35,18 @@ public final class ResourceInstaller<T extends Structure>
 	public void prepare(GraphicsPipeline pipeline, T structure, int count)
 	{
 		staticBindings = prepareResourceDescriptors(pipeline,
-													(	adapter,
-														provider) -> adapter.buildForPipeline(	provider,
-																								structure));
+													(adapter, provider) -> adapter.buildForPipeline(provider,
+																									structure));
 
 		for (int i = 0; i < count; i++)
 		{
 			final var buffer = prepareBuffer(pipeline, structure, i);
 			buffers.add(buffer);
 
-			final var dynamicDescriptors = prepareResourceDescriptors(	pipeline,
-																		(	adapter,
-																			provider) -> adapter.buildForPart(	provider,
-																												buffer));
+			final var dynamicDescriptors = prepareResourceDescriptors(pipeline,
+																	  (adapter, provider) -> adapter.buildForPart(
+																			  provider,
+																			  buffer));
 			if (dynamicDescriptors != null)
 			{
 				dynamicBindings.add(dynamicDescriptors);
@@ -55,8 +54,8 @@ public final class ResourceInstaller<T extends Structure>
 		}
 	}
 
-	private DescriptorSet prepareResourceDescriptors(	GraphicsPipeline pipeline,
-														BiFunction<IDescriptorProviderAdapter, ResourceDescriptorProvider, ResourceDescriptor> builder)
+	private DescriptorSet prepareResourceDescriptors(GraphicsPipeline pipeline,
+													 BiFunction<IDescriptorProviderAdapter, ResourceDescriptorProvider, ResourceDescriptor> builder)
 	{
 		final List<IDescriptor> res = new ArrayList<>();
 		final var descriptorProviderPkg = maintainer.getDescriptorProviderPkg();
@@ -70,9 +69,7 @@ public final class ResourceInstaller<T extends Structure>
 				if (resourceDescriptors != null)
 				{
 					pipeline.getResourcePkg().getResources().addAll(resourceDescriptors.resources);
-					pipeline.getDescriptorPkg()
-							.getDescriptors()
-							.addAll(resourceDescriptors.descriptors);
+					pipeline.getDescriptorPkg().getDescriptors().addAll(resourceDescriptors.descriptors);
 					res.addAll(resourceDescriptors.descriptors);
 				}
 			}
@@ -80,7 +77,7 @@ public final class ResourceInstaller<T extends Structure>
 
 		if (res.isEmpty() == false)
 		{
-			final var dSet = ResourceFactory.eINSTANCE.createDescriptorSet();
+			final var dSet = VulkanResourceFactory.eINSTANCE.createDescriptorSet();
 			dSet.getDescriptors().addAll(res);
 			pipeline.getDescriptorSetPkg().getDescriptorSets().add(dSet);
 			pipeline.getLayout().add(dSet);
@@ -110,7 +107,7 @@ public final class ResourceInstaller<T extends Structure>
 
 	private CompositeBuffer prepareBuffer(GraphicsPipeline pipeline, T structure, int part)
 	{
-		final var buffer = ResourceFactory.eINSTANCE.createCompositeBuffer();
+		final var buffer = VulkanResourceFactory.eINSTANCE.createCompositeBuffer();
 		final var dataProviders = maintainer.getDataProviderPkg().getDataProviders();
 		final var flushTransferTask = maintainer.getFlushTransferBufferTask();
 		final var prepareTranferTask = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
@@ -122,23 +119,23 @@ public final class ResourceInstaller<T extends Structure>
 		for (int i = 0; i < dataProviders.size(); i++)
 		{
 			final var dataProvider = dataProviders.get(i);
-			final var dataSource = RenderingFactory.eINSTANCE.<T> createRenderableDataSource();
+			final var dataSource = RenderingFactory.eINSTANCE.<T>createRenderableDataSource();
 			dataSource.setPart(part);
 			dataSource.setStructure(structure);
 
 			final var copy = EcoreUtil.copy(dataProvider);
 			copy.setDataSource(dataSource);
 
-			final var bufferPart = ResourceFactory.eINSTANCE.createBufferPart();
+			final var bufferPart = VulkanResourceFactory.eINSTANCE.createBufferPart();
 			bufferPart.setDataProvider(copy);
 
 			buffer.getParts().add(bufferPart);
 			prepareTranferTask.getParts().add(bufferPart);
 		}
 
-		@SuppressWarnings("unchecked")
-		final var containingList = (List<IPipelineTask>) flushTransferTask	.eContainer()
-																			.eGet(flushTransferTask.eContainingFeature());
+		@SuppressWarnings("unchecked") final var containingList = (List<IPipelineTask>) flushTransferTask.eContainer()
+																										 .eGet(flushTransferTask
+																													   .eContainingFeature());
 		final int index = containingList.indexOf(flushTransferTask);
 		containingList.add(index, prepareTranferTask);
 

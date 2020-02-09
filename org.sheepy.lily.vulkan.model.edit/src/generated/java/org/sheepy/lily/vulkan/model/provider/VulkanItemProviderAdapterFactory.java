@@ -21,7 +21,6 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
-import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
@@ -49,7 +48,7 @@ import org.sheepy.lily.vulkan.model.util.VulkanAdapterFactory;
  * @generated
  */
 public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
-		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
+		implements ComposeableAdapterFactory, IChangeNotifier, IChildCreationExtender
 {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -336,21 +335,6 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
-	}
-
-	/**
-	 * This disposes all of the item providers created by this factory. 
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void dispose()
-	{
-		if (vulkanEngineItemProvider != null) vulkanEngineItemProvider.dispose();
-		if (runProcessItemProvider != null) runProcessItemProvider.dispose();
-		if (waitProcessIdleItemProvider != null) waitProcessIdleItemProvider.dispose();
-		if (descriptorPkgItemProvider != null) descriptorPkgItemProvider.dispose();
 	}
 
 	/**

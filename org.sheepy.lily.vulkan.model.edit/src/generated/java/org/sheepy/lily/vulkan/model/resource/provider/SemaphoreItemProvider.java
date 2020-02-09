@@ -11,9 +11,9 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.core.model.application.provider.IResourceItemProvider;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.core.model.resource.provider.IResourceItemProvider;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.Semaphore} object.
@@ -67,7 +67,7 @@ public class SemaphoreItemProvider extends IResourceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Semaphore_signalizedAtInit_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Semaphore_signalizedAtInit_feature", "_UI_Semaphore_type"),
-				 ResourcePackage.Literals.SEMAPHORE__SIGNALIZED_AT_INIT,
+				 VulkanResourcePackage.Literals.SEMAPHORE__SIGNALIZED_AT_INIT,
 				 true,
 				 false,
 				 false,
@@ -90,7 +90,7 @@ public class SemaphoreItemProvider extends IResourceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Semaphore_waitStage_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Semaphore_waitStage_feature", "_UI_Semaphore_type"),
-				 ResourcePackage.Literals.SEMAPHORE__WAIT_STAGE,
+				 VulkanResourcePackage.Literals.SEMAPHORE__WAIT_STAGE,
 				 true,
 				 false,
 				 false,
@@ -140,8 +140,8 @@ public class SemaphoreItemProvider extends IResourceItemProvider
 
 		switch (notification.getFeatureID(Semaphore.class))
 		{
-			case ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
-			case ResourcePackage.SEMAPHORE__WAIT_STAGE:
+			case VulkanResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
+			case VulkanResourcePackage.SEMAPHORE__WAIT_STAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

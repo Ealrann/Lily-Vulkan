@@ -1,20 +1,7 @@
 package org.sheepy.lily.vulkan.nuklear.resource;
 
-import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.nuklear.Nuklear.*;
-import static org.lwjgl.system.MemoryUtil.*;
-
-import java.nio.ByteBuffer;
-import java.util.List;
-import java.util.Objects;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.lwjgl.nuklear.NkAllocator;
-import org.lwjgl.nuklear.NkBuffer;
-import org.lwjgl.nuklear.NkContext;
-import org.lwjgl.nuklear.NkConvertConfig;
-import org.lwjgl.nuklear.NkDrawNullTexture;
-import org.lwjgl.nuklear.NkDrawVertexLayoutElement;
+import org.lwjgl.nuklear.*;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
@@ -23,7 +10,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.core.model.application.IImage;
+import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
@@ -34,6 +21,16 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.nuklear.input.NuklearInputCatcher;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
+
+import java.nio.ByteBuffer;
+import java.util.List;
+import java.util.Objects;
+
+import static org.lwjgl.glfw.GLFW.glfwSetClipboardString;
+import static org.lwjgl.glfw.GLFW.nglfwGetClipboardString;
+import static org.lwjgl.nuklear.Nuklear.*;
+import static org.lwjgl.system.MemoryUtil.nmemAllocChecked;
+import static org.lwjgl.system.MemoryUtil.nmemFree;
 
 @Statefull
 @Adapter(scope = NuklearContext.class, lazy = false)
@@ -50,16 +47,14 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 
 	private static final int BUFFER_INITIAL_SIZE = 4 * 1024;
 	private static final NkDrawVertexLayoutElement.Buffer VERTEX_LAYOUT;
+
 	static
 	{
 		VERTEX_LAYOUT = NkDrawVertexLayoutElement.create(4);
 		VERTEX_LAYOUT.position(0).attribute(NK_VERTEX_POSITION).format(NK_FORMAT_FLOAT).offset(0);
 		VERTEX_LAYOUT.position(1).attribute(NK_VERTEX_TEXCOORD).format(NK_FORMAT_FLOAT).offset(8);
 		VERTEX_LAYOUT.position(2).attribute(NK_VERTEX_COLOR).format(NK_FORMAT_R8G8B8A8).offset(16);
-		VERTEX_LAYOUT	.position(3)
-						.attribute(NK_VERTEX_ATTRIBUTE_COUNT)
-						.format(NK_FORMAT_COUNT)
-						.offset(0);
+		VERTEX_LAYOUT.position(3).attribute(NK_VERTEX_ATTRIBUTE_COUNT).format(NK_FORMAT_COUNT).offset(0);
 		VERTEX_LAYOUT.position(4).flip();
 	}
 
@@ -90,27 +85,27 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 		final var imageList = nuklearContext.getImageArrayDescriptor().getImages();
 		switch (notification.getEventType())
 		{
-		case Notification.ADD:
-			imageList.add((IImage) notification.getNewValue());
-			break;
-		case Notification.ADD_MANY:
-			imageList.addAll((List<IImage>) notification.getNewValue());
-			break;
-		case Notification.REMOVE:
-			imageList.remove(notification.getNewValue());
-			break;
-		case Notification.REMOVE_MANY:
-			imageList.removeAll((List<IImage>) notification.getNewValue());
-			break;
+			case Notification.ADD:
+				imageList.add((IImage) notification.getNewValue());
+				break;
+			case Notification.ADD_MANY:
+				imageList.addAll((List<IImage>) notification.getNewValue());
+				break;
+			case Notification.REMOVE:
+				imageList.remove(notification.getNewValue());
+				break;
+			case Notification.REMOVE_MANY:
+				imageList.removeAll((List<IImage>) notification.getNewValue());
+				break;
 		}
 	}
 
 	@Load
 	private void load()
 	{
-		ALLOCATOR = NkAllocator	.calloc()
-								.alloc((handle, old, size) -> nmemAllocChecked(size))
-								.mfree((handle, ptr) -> nmemFree(ptr));
+		ALLOCATOR = NkAllocator.calloc()
+							   .alloc((handle, old, size) -> nmemAllocChecked(size))
+							   .mfree((handle, ptr) -> nmemFree(ptr));
 
 		final var imageDescriptor = nuklearContext.getImageArrayDescriptor();
 		final var images = ui.getImages();
@@ -160,8 +155,7 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 		inputManager.setInputCatcher(inputCatcher);
 		inputCatcher.configure(nkContext, context.getWindow(), layoutTaskAdapter);
 
-		nkContext.clip().copy((handle, text, len) ->
-		{
+		nkContext.clip().copy((handle, text, len) -> {
 			if (len == 0)
 			{
 				return;
@@ -175,8 +169,7 @@ public class NuklearContextAdapter implements IVulkanResourceAdapter
 
 				glfwSetClipboardString(context.getWindow().getPtr(), str);
 			}
-		}).paste((handle, edit) ->
-		{
+		}).paste((handle, edit) -> {
 			final long text = nglfwGetClipboardString(context.getWindow().getPtr());
 			if (text != 0)
 			{
