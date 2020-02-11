@@ -133,9 +133,9 @@ public final class ResourceInstaller<T extends Structure>
 			prepareTranferTask.getParts().add(bufferPart);
 		}
 
-		@SuppressWarnings("unchecked") final var containingList = (List<IPipelineTask>) flushTransferTask.eContainer()
-																										 .eGet(flushTransferTask
-																													   .eContainingFeature());
+		final var container = flushTransferTask.eContainer();
+		final var containingFeature = flushTransferTask.eContainingFeature();
+		@SuppressWarnings("unchecked") final var containingList = (List<IPipelineTask>) container.eGet(containingFeature);
 		final int index = containingList.indexOf(flushTransferTask);
 		containingList.add(index, prepareTranferTask);
 

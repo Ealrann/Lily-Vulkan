@@ -1073,7 +1073,7 @@ public interface VulkanResourcePackage extends EPackage
 	int IMAGE_INLAY = 12;
 
 	/**
-	 * The feature id for the '<em><b>Image</b></em>' containment reference.
+	 * The feature id for the '<em><b>Image</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2569,10 +2569,10 @@ public interface VulkanResourcePackage extends EPackage
 	EClass getImageInlay();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.ImageInlay#getImage <em>Image</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.resource.ImageInlay#getImage <em>Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Image</em>'.
+	 * @return the meta object for the reference '<em>Image</em>'.
 	 * @see org.sheepy.lily.vulkan.model.resource.ImageInlay#getImage()
 	 * @see #getImageInlay()
 	 * @generated
@@ -3415,7 +3415,7 @@ public interface VulkanResourcePackage extends EPackage
 		EClass IMAGE_INLAY = eINSTANCE.getImageInlay();
 
 		/**
-		 * The meta object literal for the '<em><b>Image</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Image</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

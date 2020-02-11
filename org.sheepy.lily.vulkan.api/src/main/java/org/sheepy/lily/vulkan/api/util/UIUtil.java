@@ -3,6 +3,8 @@ package org.sheepy.lily.vulkan.api.util;
 import org.joml.Vector2ic;
 import org.sheepy.lily.core.model.presentation.IPositionElement;
 import org.sheepy.lily.core.model.presentation.ISizedElement;
+import org.sheepy.lily.core.model.types.EHorizontalRelative;
+import org.sheepy.lily.core.model.types.EVerticalRelative;
 
 public class UIUtil
 {
@@ -14,21 +16,20 @@ public class UIUtil
 
 	public final static int computeXRelative(Vector2ic size, IPositionElement panel, int width)
 	{
-		int x = panel.getPosition().x();
-		final int surfaceWidth = size.x();
+		return computeXRelative(panel.getHorizontalRelative(), size.x(), panel.getPosition().x(), width);
+	}
 
-		switch (panel.getHorizontalRelative())
+	public final static int computeXRelative(EHorizontalRelative relative, int areaWidth, int x, int width)
+	{
+		switch (relative)
 		{
-		case RIGHT:
-			x = surfaceWidth - width - x - 1;
-			break;
-		case MIDDLE:
-			x = (surfaceWidth / 2) - (width / 2) + x;
-			break;
-		default:
+			case RIGHT:
+				return areaWidth - width - x - 1;
+			case MIDDLE:
+				return (areaWidth / 2) - (width / 2) + x;
+			default:
+				return x;
 		}
-
-		return x;
 	}
 
 	public final static int computeYRelative(Vector2ic size, ISizedElement panel)
@@ -39,19 +40,19 @@ public class UIUtil
 
 	public final static int computeYRelative(Vector2ic size, IPositionElement panel, int height)
 	{
-		int y = panel.getPosition().y();
-		final int surfaceHeight = size.y();
+		return computeYRelative(panel.getVerticalRelative(), size.y(), panel.getPosition().y(), height);
+	}
 
-		switch (panel.getVerticalRelative())
+	public final static int computeYRelative(EVerticalRelative relative, int areaHeight, int y, int height)
+	{
+		switch (relative)
 		{
-		case BOTTOM:
-			y = surfaceHeight - height - y - 1;
-			break;
-		case MIDDLE:
-			y = (surfaceHeight / 2) - (height / 2) + y;
-			break;
-		default:
+			case BOTTOM:
+				return areaHeight - height - y - 1;
+			case MIDDLE:
+				return (areaHeight / 2) - (height / 2) + y;
+			default:
+				return y;
 		}
-		return y;
 	}
 }

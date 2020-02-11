@@ -33,22 +33,22 @@ import org.sheepy.lily.core.model.types.EVerticalRelative;
 public interface ImageInlay extends ILilyEObject
 {
 	/**
-	 * Returns the value of the '<em><b>Image</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Image</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Image</em>' containment reference.
+	 * @return the value of the '<em>Image</em>' reference.
 	 * @see #setImage(Image)
 	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getImageInlay_Image()
-	 * @model containment="true" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	Image getImage();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.ImageInlay#getImage <em>Image</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.ImageInlay#getImage <em>Image</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Image</em>' containment reference.
+	 * @param value the new value of the '<em>Image</em>' reference.
 	 * @see #getImage()
 	 * @generated
 	 */

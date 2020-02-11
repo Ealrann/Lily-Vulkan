@@ -1,11 +1,11 @@
 package org.sheepy.lily.vulkan.api.util;
 
-import java.util.List;
-
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
+
+import java.util.Collection;
 
 public final class VulkanModelUtil
 {
@@ -20,7 +20,7 @@ public final class VulkanModelUtil
 	}
 
 	@SuppressWarnings("unchecked")
-	private static <T extends Object> T getParent(EObject eo, Class<T> classifier)
+	private static <T> T getParent(EObject eo, Class<T> classifier)
 	{
 		while (eo != null)
 		{
@@ -36,14 +36,13 @@ public final class VulkanModelUtil
 		return null;
 	}
 
-	public static int getEnumeratedFlag(List<? extends Enumerator> enumerates)
+	public static int getEnumeratedFlag(Collection<? extends Enumerator> enumerates)
 	{
 		int res = 0;
 
-		for (int i = 0; i < enumerates.size(); i++)
+		for (var enumeration : enumerates)
 		{
-			final Enumerator enumerate = enumerates.get(i);
-			res |= enumerate.getValue();
+			res |= enumeration.getValue();
 		}
 
 		return res;

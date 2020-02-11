@@ -35,7 +35,6 @@ public final class SwapChainManager implements ISwapChainManager
 	private long swapChainPtr = 0;
 	private List<Long> swapChainImages = null;
 	private IntBuffer indices = null;
-	private int swapImageCount;
 	private boolean first = true;
 
 	@Override
@@ -101,7 +100,7 @@ public final class SwapChainManager implements ISwapChainManager
 
 		final IntBuffer pImageCount = stack.mallocInt(1);
 		vkGetSwapchainImagesKHR(vkDevice, swapChainPtr, pImageCount, null);
-		swapImageCount = pImageCount.get(0);
+		final int swapImageCount = pImageCount.get(0);
 		final LongBuffer pSwapchainImages = stack.mallocLong(swapImageCount);
 		vkGetSwapchainImagesKHR(vkDevice, swapChainPtr, pImageCount, pSwapchainImages);
 

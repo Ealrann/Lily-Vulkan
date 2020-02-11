@@ -380,7 +380,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeImage/background"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//ImageInlay">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//ImageInlay/image"/>
+      <genFeatures notify="false" createChild="false" propertyMultiLine="true" propertySortChoices="true"
+          ecoreFeature="ecore:EReference resource.ecore#//ImageInlay/image"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ImageInlay/position"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ImageInlay/size"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ImageInlay/horizontalRelative"/>

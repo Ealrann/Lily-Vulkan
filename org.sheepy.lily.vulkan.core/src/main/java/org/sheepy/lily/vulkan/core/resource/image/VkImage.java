@@ -1,19 +1,8 @@
 package org.sheepy.lily.vulkan.core.resource.image;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.lwjgl.vulkan.VK10;
-import org.lwjgl.vulkan.VkBufferImageCopy;
-import org.lwjgl.vulkan.VkCommandBuffer;
-import org.lwjgl.vulkan.VkImageCreateInfo;
-import org.lwjgl.vulkan.VkImageMemoryBarrier;
+import org.lwjgl.vulkan.*;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
@@ -26,6 +15,13 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.image.ImageInfo;
 import org.sheepy.vulkan.model.image.ImageLayout;
+
+import java.nio.ByteBuffer;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.*;
 
 public final class VkImage
 {
@@ -92,8 +88,7 @@ public final class VkImage
 
 		imagePtr = allocateImage(context);
 
-		memoryChunkBuilder.registerImage(imagePtr, (memoryPtr, offset, memorySize) ->
-		{
+		memoryChunkBuilder.registerImage(imagePtr, (memoryPtr, offset, memorySize) -> {
 			this.memoryPtr = memoryPtr;
 			vkBindImageMemory(logicalDevice.getVkDevice(), imagePtr, memoryPtr, offset);
 
@@ -108,29 +103,18 @@ public final class VkImage
 
 			if (initialLayout != null)
 			{
-				context.execute((context2, commandBuffer) ->
-				{
-					final var stage = initialLayout.getStage();
-					final var trgAccess = new ArrayList<>(initialLayout.getAccessMask());
-					if (trgAccess.isEmpty())
-					{
-						trgAccess.add(EAccess.SHADER_READ_BIT);
-					}
-					transitionImageLayout(	context2.stack(),
-											commandBuffer.getVkCommandBuffer(),
-											EPipelineStage.BOTTOM_OF_PIPE_BIT,
-											stage,
-											EImageLayout.UNDEFINED,
-											initialLayout.getLayout(),
-											Collections.emptyList(),
-											trgAccess);
+				context.execute((context2, commandBuffer) -> {
+					transitionToInitialLayout(context2.stack(),
+											  commandBuffer.getVkCommandBuffer(),
+											  EPipelineStage.TOP_OF_PIPE_BIT,
+											  EImageLayout.UNDEFINED,
+											  Collections.emptyList());
 				});
 			}
 		});
 	}
 
-	private void fillWithZero(	final InternalExecutionContext executionContext,
-								final long memorySize)
+	private void fillWithZero(final InternalExecutionContext executionContext, final long memorySize)
 	{
 		final ByteBuffer data = MemoryUtil.memCalloc((int) memorySize);
 
@@ -148,35 +132,34 @@ public final class VkImage
 		stagingBuffer.allocate(context);
 		stagingBuffer.pushData(context, data);
 
-		context.execute((_context, commandBuffer) ->
-		{
+		context.execute((_context, commandBuffer) -> {
 			final var stack = _context.stack();
 			final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 			List<EAccess> srcAccessMask = List.of();
 			List<EAccess> dstAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
 
-			transitionImageLayout(	stack,
-									vkCommandBuffer,
-									EPipelineStage.TRANSFER_BIT,
-									EPipelineStage.TRANSFER_BIT,
-									EImageLayout.UNDEFINED,
-									EImageLayout.TRANSFER_DST_OPTIMAL,
-									srcAccessMask,
-									dstAccessMask);
+			transitionImageLayout(stack,
+								  vkCommandBuffer,
+								  EPipelineStage.TRANSFER_BIT,
+								  EPipelineStage.TRANSFER_BIT,
+								  EImageLayout.UNDEFINED,
+								  EImageLayout.TRANSFER_DST_OPTIMAL,
+								  srcAccessMask,
+								  dstAccessMask);
 
 			fillWithBuffer(vkCommandBuffer, stagingBuffer.getAddress());
 
 			srcAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
 			dstAccessMask = List.of();
 
-			transitionImageLayout(	stack,
-									vkCommandBuffer,
-									EPipelineStage.TRANSFER_BIT,
-									EPipelineStage.TRANSFER_BIT,
-									EImageLayout.TRANSFER_DST_OPTIMAL,
-									EImageLayout.GENERAL,
-									srcAccessMask,
-									dstAccessMask);
+			transitionImageLayout(stack,
+								  vkCommandBuffer,
+								  EPipelineStage.TRANSFER_BIT,
+								  EPipelineStage.TRANSFER_BIT,
+								  EImageLayout.TRANSFER_DST_OPTIMAL,
+								  EImageLayout.GENERAL,
+								  srcAccessMask,
+								  dstAccessMask);
 		});
 
 		stagingBuffer.free(context);
@@ -203,14 +186,46 @@ public final class VkImage
 		region.free();
 	}
 
-	public void transitionImageLayout(	MemoryStack stack,
-										VkCommandBuffer commandBuffer,
-										EPipelineStage srcStage,
-										EPipelineStage dstStage,
-										EImageLayout srcLayout,
-										EImageLayout dstLayout,
-										List<EAccess> srcAccessMask,
-										List<EAccess> dstAccessMask)
+	public void transitionToInitialLayout(MemoryStack stack,
+										  VkCommandBuffer commandBuffer,
+										  EPipelineStage srcStage,
+										  EImageLayout srcLayout,
+										  Collection<EAccess> srcAccessMask)
+	{
+		transitionImageLayout(stack,
+							  commandBuffer,
+							  srcStage,
+							  initialLayout.getStage(),
+							  srcLayout,
+							  initialLayout.getLayout(),
+							  srcAccessMask,
+							  initialLayout.getAccessMask());
+	}
+
+	public void transitionFromInitialLayout(MemoryStack stack,
+											VkCommandBuffer commandBuffer,
+											EPipelineStage dstStage,
+											EImageLayout dstLayout,
+											Collection<EAccess> dstAccessMask)
+	{
+		transitionImageLayout(stack,
+							  commandBuffer,
+							  initialLayout.getStage(),
+							  dstStage,
+							  initialLayout.getLayout(),
+							  dstLayout,
+							  initialLayout.getAccessMask(),
+							  dstAccessMask);
+	}
+
+	public void transitionImageLayout(MemoryStack stack,
+									  VkCommandBuffer commandBuffer,
+									  EPipelineStage srcStage,
+									  EPipelineStage dstStage,
+									  EImageLayout srcLayout,
+									  EImageLayout dstLayout,
+									  Collection<EAccess> srcAccessMask,
+									  Collection<EAccess> dstAccessMask)
 	{
 		final VkImageMemoryBarrier.Buffer barrierInfo = VkImageMemoryBarrier.callocStack(1, stack);
 		final var aspectMask = ImageUtil.getAspectMask(dstLayout, format);
@@ -227,13 +242,7 @@ public final class VkImage
 		barrierInfo.srcAccessMask(VulkanModelUtil.getEnumeratedFlag(srcAccessMask));
 		barrierInfo.dstAccessMask(VulkanModelUtil.getEnumeratedFlag(dstAccessMask));
 
-		vkCmdPipelineBarrier(	commandBuffer,
-								srcStage.getValue(),
-								dstStage.getValue(),
-								0,
-								null,
-								null,
-								barrierInfo);
+		vkCmdPipelineBarrier(commandBuffer, srcStage.getValue(), dstStage.getValue(), 0, null, null, barrierInfo);
 	}
 
 	public void free(InternalExecutionContext context)
@@ -290,7 +299,7 @@ public final class VkImage
 		return imageInfo;
 	}
 
-	public static interface Builder
+	public interface Builder
 	{
 		int width();
 		int height();
@@ -454,15 +463,7 @@ public final class VkImage
 		@Override
 		public VkImage build()
 		{
-			return new VkImage(	width,
-								height,
-								format,
-								usage,
-								tiling,
-								mipLevels,
-								fillWithZero,
-								fillWith,
-								initialLayout);
+			return new VkImage(width, height, format, usage, tiling, mipLevels, fillWithZero, fillWith, initialLayout);
 		}
 	}
 
@@ -554,15 +555,7 @@ public final class VkImage
 		@Override
 		public VkImage build()
 		{
-			return new VkImage(	width,
-								height,
-								format,
-								usage,
-								tiling,
-								mipLevels,
-								fillWithZero,
-								fillWith,
-								initialLayout);
+			return new VkImage(width, height, format, usage, tiling, mipLevels, fillWithZero, fillWith, initialLayout);
 		}
 	}
 }
