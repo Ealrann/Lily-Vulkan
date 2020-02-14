@@ -11,6 +11,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import org.eclipse.emf.edit.provider.ChangeNotifier;
@@ -25,7 +27,11 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.sheepy.lily.core.model.resource.ResourcePackage;
+import org.sheepy.lily.core.model.resource.ResourcePkg;
+import org.sheepy.lily.core.model.resource.util.ResourceSwitch;
 import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 import org.sheepy.lily.vulkan.model.process.graphic.util.GraphicAdapterFactory;
@@ -237,6 +243,31 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		}
 
 		return depthAttachmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ColorAttachmentItemProvider colorAttachmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createColorAttachmentAdapter()
+	{
+		if (colorAttachmentItemProvider == null)
+		{
+			colorAttachmentItemProvider = new ColorAttachmentItemProvider(this);
+		}
+
+		return colorAttachmentItemProvider;
 	}
 
 	/**
@@ -462,6 +493,31 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		}
 
 		return blitToSwapImageItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.BlitTask} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BlitTaskItemProvider blitTaskItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.BlitTask}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBlitTaskAdapter()
+	{
+		if (blitTaskItemProvider == null)
+		{
+			blitTaskItemProvider = new BlitTaskItemProvider(this);
+		}
+
+		return blitTaskItemProvider;
 	}
 
 	/**
@@ -715,6 +771,31 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescriptor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttachmentDescriptorItemProvider attachmentDescriptorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescriptor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttachmentDescriptorAdapter()
+	{
+		if (attachmentDescriptorItemProvider == null)
+		{
+			attachmentDescriptorItemProvider = new AttachmentDescriptorItemProvider(this);
+		}
+
+		return attachmentDescriptorItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -851,6 +932,117 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		if (parentAdapterFactory != null)
 		{
 			parentAdapterFactory.fireNotifyChanged(notification);
+		}
+	}
+
+	/**
+	 * A child creation extender for the {@link ResourcePackage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static class ResourceChildCreationExtender implements IChildCreationExtender
+	{
+		/**
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected static class CreationSwitch extends ResourceSwitch<Object>
+		{
+			/**
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected List<Object> newChildDescriptors;
+
+			/**
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected EditingDomain editingDomain;
+
+			/**
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			{
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseResourcePkg(ResourcePkg object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 GraphicFactory.eINSTANCE.createImageAttachment()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 GraphicFactory.eINSTANCE.createDepthAttachment()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 GraphicFactory.eINSTANCE.createColorAttachment()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 GraphicFactory.eINSTANCE.createSwapImageAttachment()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected CommandParameter createChildParameter(Object feature, Object child)
+			{
+				return new CommandParameter(null, feature, child);
+			}
+
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
+		{
+			ArrayList<Object> result = new ArrayList<Object>();
+			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			return result;
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public ResourceLocator getResourceLocator()
+		{
+			return LilyVulkanEditPlugin.INSTANCE;
 		}
 	}
 

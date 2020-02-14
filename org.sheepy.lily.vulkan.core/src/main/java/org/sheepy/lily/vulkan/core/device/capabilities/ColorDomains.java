@@ -1,18 +1,13 @@
 package org.sheepy.lily.vulkan.core.device.capabilities;
 
-import static org.lwjgl.vulkan.KHRSurface.vkGetPhysicalDeviceSurfaceFormatsKHR;
-import static org.lwjgl.vulkan.VK10.VK_FORMAT_UNDEFINED;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkSurfaceFormatKHR;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
+
+import java.util.*;
+
+import static org.lwjgl.vulkan.KHRSurface.vkGetPhysicalDeviceSurfaceFormatsKHR;
+import static org.lwjgl.vulkan.VK10.VK_FORMAT_UNDEFINED;
 
 public class ColorDomains implements Iterable<VkColorDomain>
 {
@@ -79,12 +74,10 @@ public class ColorDomains implements Iterable<VkColorDomain>
 		{
 			return true;
 		}
-		else if (contains(colorDomain))
+		else
 		{
-			return true;
+			return contains(colorDomain);
 		}
-
-		return false;
 	}
 
 	private static class ColorDomainWithHash
@@ -109,8 +102,9 @@ public class ColorDomains implements Iterable<VkColorDomain>
 			if (obj == null) return false;
 			if (getClass() != obj.getClass()) return false;
 			final ColorDomainWithHash other = (ColorDomainWithHash) obj;
-			return Objects.equals(colorDomain.colorSpace, other.colorDomain.colorSpace)
-					&& Objects.equals(colorDomain.format, other.colorDomain.format);
+			return Objects.equals(colorDomain.colorSpace,
+								  other.colorDomain.colorSpace) && Objects.equals(colorDomain.format,
+																				  other.colorDomain.format);
 		}
 
 	}

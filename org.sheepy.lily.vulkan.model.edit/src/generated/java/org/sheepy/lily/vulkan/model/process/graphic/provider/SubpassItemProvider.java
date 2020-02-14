@@ -67,10 +67,14 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 
 			addNamePropertyDescriptor(object);
 			addSubpassIndexPropertyDescriptor(object);
-			addStagesPropertyDescriptor(object);
-			addAccessesPropertyDescriptor(object);
 			addBindPointPropertyDescriptor(object);
 			addScenePartPropertyDescriptor(object);
+			addWaitForStagePropertyDescriptor(object);
+			addSyncStagePropertyDescriptor(object);
+			addFinishStagePropertyDescriptor(object);
+			addWaitForAccessesPropertyDescriptor(object);
+			addSyncAccessesPropertyDescriptor(object);
+			addFinishAccessesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -122,52 +126,6 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 	}
 
 	/**
-	 * This adds a property descriptor for the Stages feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addStagesPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Subpass_stages_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_stages_feature", "_UI_Subpass_type"),
-				 GraphicPackage.Literals.SUBPASS__STAGES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Accesses feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAccessesPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Subpass_accesses_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_accesses_feature", "_UI_Subpass_type"),
-				 GraphicPackage.Literals.SUBPASS__ACCESSES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Bind Point feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -210,6 +168,144 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 				 true,
 				 null,
 				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Wait For Stage feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addWaitForStagePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Subpass_waitForStage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_waitForStage_feature", "_UI_Subpass_type"),
+				 GraphicPackage.Literals.SUBPASS__WAIT_FOR_STAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI__0WaitForprevioussubpassPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Sync Stage feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSyncStagePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Subpass_syncStage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_syncStage_feature", "_UI_Subpass_type"),
+				 GraphicPackage.Literals.SUBPASS__SYNC_STAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI__1SynccurrentsubpassPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Finish Stage feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFinishStagePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Subpass_finishStage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_finishStage_feature", "_UI_Subpass_type"),
+				 GraphicPackage.Literals.SUBPASS__FINISH_STAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI__2FinishfornextsubpassPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Wait For Accesses feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addWaitForAccessesPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Subpass_waitForAccesses_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_waitForAccesses_feature", "_UI_Subpass_type"),
+				 GraphicPackage.Literals.SUBPASS__WAIT_FOR_ACCESSES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI__0WaitForprevioussubpassPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Sync Accesses feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSyncAccessesPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Subpass_syncAccesses_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_syncAccesses_feature", "_UI_Subpass_type"),
+				 GraphicPackage.Literals.SUBPASS__SYNC_ACCESSES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI__1SynccurrentsubpassPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Finish Accesses feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFinishAccessesPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Subpass_finishAccesses_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_finishAccesses_feature", "_UI_Subpass_type"),
+				 GraphicPackage.Literals.SUBPASS__FINISH_ACCESSES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI__2FinishfornextsubpassPropertyCategory"),
 				 null));
 	}
 
@@ -292,9 +388,13 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 		{
 			case GraphicPackage.SUBPASS__NAME:
 			case GraphicPackage.SUBPASS__SUBPASS_INDEX:
-			case GraphicPackage.SUBPASS__STAGES:
-			case GraphicPackage.SUBPASS__ACCESSES:
 			case GraphicPackage.SUBPASS__BIND_POINT:
+			case GraphicPackage.SUBPASS__WAIT_FOR_STAGE:
+			case GraphicPackage.SUBPASS__SYNC_STAGE:
+			case GraphicPackage.SUBPASS__FINISH_STAGE:
+			case GraphicPackage.SUBPASS__WAIT_FOR_ACCESSES:
+			case GraphicPackage.SUBPASS__SYNC_ACCESSES:
+			case GraphicPackage.SUBPASS__FINISH_ACCESSES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GraphicPackage.SUBPASS__RESOURCE_PKG:

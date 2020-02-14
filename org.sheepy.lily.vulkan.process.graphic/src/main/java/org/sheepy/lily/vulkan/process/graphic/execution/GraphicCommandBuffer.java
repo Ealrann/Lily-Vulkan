@@ -1,9 +1,5 @@
 package org.sheepy.lily.vulkan.process.graphic.execution;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.util.List;
-
 import org.lwjgl.vulkan.VkClearValue;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
@@ -12,6 +8,8 @@ import org.sheepy.lily.vulkan.core.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+
+import static org.lwjgl.vulkan.VK10.*;
 
 public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 {
@@ -32,8 +30,8 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 	@Override
 	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
 	{
-		config.addDependencies(List.of(context.getFramebufferManager()));
-		config.addDependencies(List.of(context.getRenderPass()));
+		config.addDependency(context.getFramebufferManager());
+		config.addDependency(context.getRenderPass());
 	}
 
 	@Override
@@ -104,15 +102,15 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 	{
 		switch (stage)
 		{
-		case TRANSFER:
-			Logger.check(	vkBeginCommandBuffer(vkCommandBuffer, beginInfo),
-							FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER);
-			break;
-		case RENDER:
-			vkCmdBeginRenderPass(vkCommandBuffer, renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
-			break;
-		default:
-			break;
+			case TRANSFER:
+				Logger.check(vkBeginCommandBuffer(vkCommandBuffer, beginInfo),
+							 FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER);
+				break;
+			case RENDER:
+				vkCmdBeginRenderPass(vkCommandBuffer, renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -121,14 +119,14 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 	{
 		switch (stage)
 		{
-		case RENDER:
-			vkCmdEndRenderPass(vkCommandBuffer);
-			break;
-		case POST_RENDER:
-			Logger.check(vkEndCommandBuffer(vkCommandBuffer), FAILED_TO_RECORD_COMMAND_BUFFER);
-			break;
-		default:
-			break;
+			case RENDER:
+				vkCmdEndRenderPass(vkCommandBuffer);
+				break;
+			case POST_RENDER:
+				Logger.check(vkEndCommandBuffer(vkCommandBuffer), FAILED_TO_RECORD_COMMAND_BUFFER);
+				break;
+			default:
+				break;
 		}
 	}
 }

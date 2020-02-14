@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.resource.image;
 
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
@@ -10,6 +11,7 @@ import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.lily.vulkan.resource.image.backend.VkSampler;
 
+@SuppressWarnings("unchecked")
 @Statefull
 @Adapter(scope = SampledImage.class)
 public class SampledImageAdapter extends Notifier implements ISampledImageAdapter
@@ -31,11 +33,11 @@ public class SampledImageAdapter extends Notifier implements ISampledImageAdapte
 	@Override
 	public void allocate(InternalExecutionContext context)
 	{
-		imageAdapter.allocate(context);
 		final var samplerInfo = sampledImage.getSampler();
 
 		if (imageAdapter != null)
 		{
+			((IAllocableAdapter<? super InternalExecutionContext>) imageAdapter).allocate(context);
 			final int mipLevels = imageAdapter.getVkImage().mipLevels;
 			samplerInfo.setMaxLod(Math.max(mipLevels, samplerInfo.getMaxLod()));
 		}
@@ -48,7 +50,7 @@ public class SampledImageAdapter extends Notifier implements ISampledImageAdapte
 	public void free(InternalExecutionContext context)
 	{
 		vkSampler.free(context);
-		imageAdapter.free(context);
+		((IAllocableAdapter<? super InternalExecutionContext>) imageAdapter).free(context);
 
 		vkSampler = null;
 	}
@@ -63,11 +65,6 @@ public class SampledImageAdapter extends Notifier implements ISampledImageAdapte
 	public long getViewPtr()
 	{
 		return imageAdapter.getViewPtr();
-	}
-
-	public VkSampler getVkSampler()
-	{
-		return vkSampler;
 	}
 
 	@Override

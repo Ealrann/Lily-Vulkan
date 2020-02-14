@@ -5,6 +5,7 @@ import static org.lwjgl.stb.STBTruetype.*;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.lwjgl.stb.STBTTFontinfo;
@@ -195,8 +196,7 @@ public final class FontTableAllocator implements IFontTableInfo
 			final CodepointTable table = new CodepointTable(start, tableLength);
 			tables.add(table);
 		}
-		tables.sort((t1, t2) -> Integer.compare(t1.firstCodepoint, t2.firstCodepoint));
+		tables.sort(Comparator.comparingInt(t -> t.firstCodepoint));
 		return tables;
 	}
-
 }

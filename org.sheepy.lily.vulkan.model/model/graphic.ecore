@@ -62,11 +62,18 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clear" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ColorAttachment" eSuperTypes="#//ExtraAttachment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clearValue" unique="false"
+        eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Color4f"
+        defaultValueLiteral="0;0;0;0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="usages" upperBound="-1"
+        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EImageUsage"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttachmentPkg">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="extraAttachments" upperBound="-1"
-        eType="#//ExtraAttachment" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="colorAttachment" lowerBound="1"
         eType="#//SwapImageAttachment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extraAttachments" upperBound="-1"
+        eType="#//ExtraAttachment" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Subpass" eSuperTypes="vulkan.ecore#//IResourceContainer ../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachmantRefPkg" eType="#//AttachmentRefPkg"
@@ -74,16 +81,26 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="subpassIndex" unique="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stages" upperBound="-1"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EPipelineStage"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accesses" upperBound="-1"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EAccess"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pipelinePkg" eType="ecore:EClass process.ecore#//PipelinePkg"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindPoint" unique="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="scenePart" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/application.ecore#//IScenePart"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="waitForStage" lowerBound="1"
+        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EPipelineStage"
+        defaultValueLiteral="BOTTOM_OF_PIPE_BIT"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="syncStage" lowerBound="1"
+        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EPipelineStage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="finishStage" lowerBound="1"
+        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EPipelineStage"
+        defaultValueLiteral="BOTTOM_OF_PIPE_BIT"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="waitForAccesses" upperBound="-1"
+        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EAccess"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="syncAccesses" upperBound="-1"
+        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EAccess"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="finishAccesses" upperBound="-1"
+        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EAccess"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttachmentRefPkg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentRefs" upperBound="-1"
@@ -93,8 +110,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachment" eType="#//Attachment"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="layout" unique="false"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EImageLayout"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//EAttachmentType"
+        defaultValueLiteral="Color"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Attachment" abstract="true" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
+  <eClassifiers xsi:type="ecore:EEnum" name="EAttachmentType">
+    <eLiterals name="Color"/>
+    <eLiterals name="Depth" value="1"/>
+    <eLiterals name="Input" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attachment" abstract="true" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement ../../org.sheepy.lily.core.model/model/resource.ecore#//IImage">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="samples" unique="false"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ESampleCount"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="loadOp" unique="false"
@@ -157,14 +181,20 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SwapImageBarrier" eSuperTypes="../../org.sheepy.vulkan.model/model/barrier.ecore#//AbstractImageBarrier"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BlitToSwapImage" eSuperTypes="process.ecore#//IPipelineTask">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="image" lowerBound="1" eType="ecore:EClass resource.ecore#//Image"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractBlitTask" abstract="true" eSuperTypes="process.ecore#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="filter" unique="false"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EFilter"
         defaultValueLiteral="NEAREST"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clearColor" lowerBound="1"
         eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector3i"
         defaultValueLiteral="0;0;0"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="srcImage" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.core.model/model/resource.ecore#//IImage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BlitToSwapImage" eSuperTypes="#//AbstractBlitTask"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BlitTask" eSuperTypes="#//AbstractBlitTask">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dstImage" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.core.model/model/resource.ecore#//IImage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DrawIndexed" eSuperTypes="process.ecore#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="indexCount" unique="false"
@@ -189,8 +219,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VertexInputState">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="inputDescriptor" lowerBound="1"
-        upperBound="-1" eType="#//InputDescriptor" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputDescriptor" upperBound="-1"
+        eType="#//InputDescriptor" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InputDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="inputRate" unique="false"
@@ -249,5 +279,9 @@
         defaultValueLiteral="UINT32"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="buffer" eType="ecore:EClass resource.ecore#//IBuffer"
         resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttachmentDescriptor" eSuperTypes="vulkan.ecore#//IDescriptor">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attachment" lowerBound="1"
+        eType="#//ExtraAttachment"/>
   </eClassifiers>
 </ecore:EPackage>

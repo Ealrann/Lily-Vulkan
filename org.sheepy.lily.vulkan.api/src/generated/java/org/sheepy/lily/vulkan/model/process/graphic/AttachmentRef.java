@@ -16,6 +16,7 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef#getAttachment <em>Attachment</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef#getLayout <em>Layout</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef#getType <em>Type</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAttachmentRef()
@@ -71,5 +72,31 @@ public interface AttachmentRef extends ILilyEObject
 	 * @generated
 	 */
 	void setLayout(EImageLayout value);
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * The default value is <code>"Color"</code>.
+	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType
+	 * @see #setType(EAttachmentType)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAttachmentRef_Type()
+	 * @model default="Color" required="true"
+	 * @generated
+	 */
+	EAttachmentType getType();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(EAttachmentType value);
 
 } // AttachmentRef

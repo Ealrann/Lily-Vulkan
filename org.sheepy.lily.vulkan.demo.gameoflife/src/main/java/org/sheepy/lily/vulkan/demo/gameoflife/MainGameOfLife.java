@@ -31,7 +31,8 @@ public class MainGameOfLife
 		final var background = ApplicationFactory.eINSTANCE.createBackgroundImage();
 		final var engineBuilder = new EngineBuilder(size);
 
-		background.setImage(engineBuilder.boardImage);
+		background.setSrcImage(engineBuilder.boardImage);
+		background.setDstImage(engineBuilder.colorAttachment);
 
 		scene.setSize(size);
 		scene.getParts().add(background);

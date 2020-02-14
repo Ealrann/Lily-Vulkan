@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.sheepy.lily.vulkan.model.resource.Image;
+import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
@@ -39,7 +39,7 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	 * @generated
 	 * @ordered
 	 */
-	protected Image image;
+	protected IImage image;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -68,12 +68,12 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	 * @generated
 	 */
 	@Override
-	public Image getImage()
+	public IImage getImage()
 	{
 		if (image != null && ((EObject)image).eIsProxy())
 		{
-			InternalEObject oldImage = (InternalEObject)image;
-			image = (Image)eResolveProxy(oldImage);
+			InternalEObject oldImage = image;
+			image = (IImage)eResolveProxy(oldImage);
 			if (image != oldImage)
 			{
 				if (eNotificationRequired())
@@ -88,7 +88,7 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Image basicGetImage()
+	public IImage basicGetImage()
 	{
 		return image;
 	}
@@ -99,9 +99,9 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	 * @generated
 	 */
 	@Override
-	public void setImage(Image newImage)
+	public void setImage(IImage newImage)
 	{
-		Image oldImage = image;
+		IImage oldImage = image;
 		image = newImage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE_BARRIER__IMAGE, oldImage, image));
@@ -135,7 +135,7 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 		switch (featureID)
 		{
 			case VulkanResourcePackage.IMAGE_BARRIER__IMAGE:
-				setImage((Image)newValue);
+				setImage((IImage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -152,7 +152,7 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 		switch (featureID)
 		{
 			case VulkanResourcePackage.IMAGE_BARRIER__IMAGE:
-				setImage((Image)null);
+				setImage((IImage)null);
 				return;
 		}
 		super.eUnset(featureID);

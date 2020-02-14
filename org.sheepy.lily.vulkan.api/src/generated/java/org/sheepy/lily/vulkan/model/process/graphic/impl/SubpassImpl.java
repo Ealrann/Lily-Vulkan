@@ -41,11 +41,15 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getAttachmantRefPkg <em>Attachmant Ref Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getSubpassIndex <em>Subpass Index</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getStages <em>Stages</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getAccesses <em>Accesses</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getBindPoint <em>Bind Point</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getScenePart <em>Scene Part</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getWaitForStage <em>Wait For Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getSyncStage <em>Sync Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getFinishStage <em>Finish Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getWaitForAccesses <em>Wait For Accesses</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getSyncAccesses <em>Sync Accesses</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getFinishAccesses <em>Finish Accesses</em>}</li>
  * </ul>
  *
  * @generated
@@ -123,26 +127,6 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	protected int subpassIndex = SUBPASS_INDEX_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getStages() <em>Stages</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStages()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<EPipelineStage> stages;
-
-	/**
-	 * The cached value of the '{@link #getAccesses() <em>Accesses</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAccesses()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<EAccess> accesses;
-
-	/**
 	 * The cached value of the '{@link #getPipelinePkg() <em>Pipeline Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -181,6 +165,96 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * @ordered
 	 */
 	protected IScenePart scenePart;
+
+	/**
+	 * The default value of the '{@link #getWaitForStage() <em>Wait For Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWaitForStage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EPipelineStage WAIT_FOR_STAGE_EDEFAULT = EPipelineStage.BOTTOM_OF_PIPE_BIT;
+
+	/**
+	 * The cached value of the '{@link #getWaitForStage() <em>Wait For Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWaitForStage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EPipelineStage waitForStage = WAIT_FOR_STAGE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSyncStage() <em>Sync Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSyncStage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EPipelineStage SYNC_STAGE_EDEFAULT = EPipelineStage.TOP_OF_PIPE_BIT;
+
+	/**
+	 * The cached value of the '{@link #getSyncStage() <em>Sync Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSyncStage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EPipelineStage syncStage = SYNC_STAGE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFinishStage() <em>Finish Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFinishStage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EPipelineStage FINISH_STAGE_EDEFAULT = EPipelineStage.BOTTOM_OF_PIPE_BIT;
+
+	/**
+	 * The cached value of the '{@link #getFinishStage() <em>Finish Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFinishStage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EPipelineStage finishStage = FINISH_STAGE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getWaitForAccesses() <em>Wait For Accesses</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWaitForAccesses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EAccess> waitForAccesses;
+
+	/**
+	 * The cached value of the '{@link #getSyncAccesses() <em>Sync Accesses</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSyncAccesses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EAccess> syncAccesses;
+
+	/**
+	 * The cached value of the '{@link #getFinishAccesses() <em>Finish Accesses</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFinishAccesses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EAccess> finishAccesses;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -409,36 +483,6 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * @generated
 	 */
 	@Override
-	public EList<EPipelineStage> getStages()
-	{
-		if (stages == null)
-		{
-			stages = new EDataTypeUniqueEList<EPipelineStage>(EPipelineStage.class, this, GraphicPackage.SUBPASS__STAGES);
-		}
-		return stages;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<EAccess> getAccesses()
-	{
-		if (accesses == null)
-		{
-			accesses = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, GraphicPackage.SUBPASS__ACCESSES);
-		}
-		return accesses;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public PipelinePkg getPipelinePkg()
 	{
 		return pipelinePkg;
@@ -518,7 +562,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		if (scenePart != null && ((EObject)scenePart).eIsProxy())
 		{
-			InternalEObject oldScenePart = (InternalEObject)scenePart;
+			InternalEObject oldScenePart = scenePart;
 			scenePart = (IScenePart)eResolveProxy(oldScenePart);
 			if (scenePart != oldScenePart)
 			{
@@ -551,6 +595,126 @@ public class SubpassImpl extends LilyEObject implements Subpass
 		scenePart = newScenePart;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__SCENE_PART, oldScenePart, scenePart));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EPipelineStage getWaitForStage()
+	{
+		return waitForStage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setWaitForStage(EPipelineStage newWaitForStage)
+	{
+		EPipelineStage oldWaitForStage = waitForStage;
+		waitForStage = newWaitForStage == null ? WAIT_FOR_STAGE_EDEFAULT : newWaitForStage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__WAIT_FOR_STAGE, oldWaitForStage, waitForStage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EPipelineStage getSyncStage()
+	{
+		return syncStage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSyncStage(EPipelineStage newSyncStage)
+	{
+		EPipelineStage oldSyncStage = syncStage;
+		syncStage = newSyncStage == null ? SYNC_STAGE_EDEFAULT : newSyncStage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__SYNC_STAGE, oldSyncStage, syncStage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EPipelineStage getFinishStage()
+	{
+		return finishStage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFinishStage(EPipelineStage newFinishStage)
+	{
+		EPipelineStage oldFinishStage = finishStage;
+		finishStage = newFinishStage == null ? FINISH_STAGE_EDEFAULT : newFinishStage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__FINISH_STAGE, oldFinishStage, finishStage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<EAccess> getWaitForAccesses()
+	{
+		if (waitForAccesses == null)
+		{
+			waitForAccesses = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, GraphicPackage.SUBPASS__WAIT_FOR_ACCESSES);
+		}
+		return waitForAccesses;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<EAccess> getSyncAccesses()
+	{
+		if (syncAccesses == null)
+		{
+			syncAccesses = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, GraphicPackage.SUBPASS__SYNC_ACCESSES);
+		}
+		return syncAccesses;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<EAccess> getFinishAccesses()
+	{
+		if (finishAccesses == null)
+		{
+			finishAccesses = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, GraphicPackage.SUBPASS__FINISH_ACCESSES);
+		}
+		return finishAccesses;
 	}
 
 	/**
@@ -595,10 +759,6 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return getAttachmantRefPkg();
 			case GraphicPackage.SUBPASS__SUBPASS_INDEX:
 				return getSubpassIndex();
-			case GraphicPackage.SUBPASS__STAGES:
-				return getStages();
-			case GraphicPackage.SUBPASS__ACCESSES:
-				return getAccesses();
 			case GraphicPackage.SUBPASS__PIPELINE_PKG:
 				return getPipelinePkg();
 			case GraphicPackage.SUBPASS__BIND_POINT:
@@ -606,6 +766,18 @@ public class SubpassImpl extends LilyEObject implements Subpass
 			case GraphicPackage.SUBPASS__SCENE_PART:
 				if (resolve) return getScenePart();
 				return basicGetScenePart();
+			case GraphicPackage.SUBPASS__WAIT_FOR_STAGE:
+				return getWaitForStage();
+			case GraphicPackage.SUBPASS__SYNC_STAGE:
+				return getSyncStage();
+			case GraphicPackage.SUBPASS__FINISH_STAGE:
+				return getFinishStage();
+			case GraphicPackage.SUBPASS__WAIT_FOR_ACCESSES:
+				return getWaitForAccesses();
+			case GraphicPackage.SUBPASS__SYNC_ACCESSES:
+				return getSyncAccesses();
+			case GraphicPackage.SUBPASS__FINISH_ACCESSES:
+				return getFinishAccesses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -636,14 +808,6 @@ public class SubpassImpl extends LilyEObject implements Subpass
 			case GraphicPackage.SUBPASS__SUBPASS_INDEX:
 				setSubpassIndex((Integer)newValue);
 				return;
-			case GraphicPackage.SUBPASS__STAGES:
-				getStages().clear();
-				getStages().addAll((Collection<? extends EPipelineStage>)newValue);
-				return;
-			case GraphicPackage.SUBPASS__ACCESSES:
-				getAccesses().clear();
-				getAccesses().addAll((Collection<? extends EAccess>)newValue);
-				return;
 			case GraphicPackage.SUBPASS__PIPELINE_PKG:
 				setPipelinePkg((PipelinePkg)newValue);
 				return;
@@ -652,6 +816,27 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return;
 			case GraphicPackage.SUBPASS__SCENE_PART:
 				setScenePart((IScenePart)newValue);
+				return;
+			case GraphicPackage.SUBPASS__WAIT_FOR_STAGE:
+				setWaitForStage((EPipelineStage)newValue);
+				return;
+			case GraphicPackage.SUBPASS__SYNC_STAGE:
+				setSyncStage((EPipelineStage)newValue);
+				return;
+			case GraphicPackage.SUBPASS__FINISH_STAGE:
+				setFinishStage((EPipelineStage)newValue);
+				return;
+			case GraphicPackage.SUBPASS__WAIT_FOR_ACCESSES:
+				getWaitForAccesses().clear();
+				getWaitForAccesses().addAll((Collection<? extends EAccess>)newValue);
+				return;
+			case GraphicPackage.SUBPASS__SYNC_ACCESSES:
+				getSyncAccesses().clear();
+				getSyncAccesses().addAll((Collection<? extends EAccess>)newValue);
+				return;
+			case GraphicPackage.SUBPASS__FINISH_ACCESSES:
+				getFinishAccesses().clear();
+				getFinishAccesses().addAll((Collection<? extends EAccess>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -682,12 +867,6 @@ public class SubpassImpl extends LilyEObject implements Subpass
 			case GraphicPackage.SUBPASS__SUBPASS_INDEX:
 				setSubpassIndex(SUBPASS_INDEX_EDEFAULT);
 				return;
-			case GraphicPackage.SUBPASS__STAGES:
-				getStages().clear();
-				return;
-			case GraphicPackage.SUBPASS__ACCESSES:
-				getAccesses().clear();
-				return;
 			case GraphicPackage.SUBPASS__PIPELINE_PKG:
 				setPipelinePkg((PipelinePkg)null);
 				return;
@@ -696,6 +875,24 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return;
 			case GraphicPackage.SUBPASS__SCENE_PART:
 				setScenePart((IScenePart)null);
+				return;
+			case GraphicPackage.SUBPASS__WAIT_FOR_STAGE:
+				setWaitForStage(WAIT_FOR_STAGE_EDEFAULT);
+				return;
+			case GraphicPackage.SUBPASS__SYNC_STAGE:
+				setSyncStage(SYNC_STAGE_EDEFAULT);
+				return;
+			case GraphicPackage.SUBPASS__FINISH_STAGE:
+				setFinishStage(FINISH_STAGE_EDEFAULT);
+				return;
+			case GraphicPackage.SUBPASS__WAIT_FOR_ACCESSES:
+				getWaitForAccesses().clear();
+				return;
+			case GraphicPackage.SUBPASS__SYNC_ACCESSES:
+				getSyncAccesses().clear();
+				return;
+			case GraphicPackage.SUBPASS__FINISH_ACCESSES:
+				getFinishAccesses().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -721,16 +918,24 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return attachmantRefPkg != null;
 			case GraphicPackage.SUBPASS__SUBPASS_INDEX:
 				return subpassIndex != SUBPASS_INDEX_EDEFAULT;
-			case GraphicPackage.SUBPASS__STAGES:
-				return stages != null && !stages.isEmpty();
-			case GraphicPackage.SUBPASS__ACCESSES:
-				return accesses != null && !accesses.isEmpty();
 			case GraphicPackage.SUBPASS__PIPELINE_PKG:
 				return pipelinePkg != null;
 			case GraphicPackage.SUBPASS__BIND_POINT:
 				return bindPoint != BIND_POINT_EDEFAULT;
 			case GraphicPackage.SUBPASS__SCENE_PART:
 				return scenePart != null;
+			case GraphicPackage.SUBPASS__WAIT_FOR_STAGE:
+				return waitForStage != WAIT_FOR_STAGE_EDEFAULT;
+			case GraphicPackage.SUBPASS__SYNC_STAGE:
+				return syncStage != SYNC_STAGE_EDEFAULT;
+			case GraphicPackage.SUBPASS__FINISH_STAGE:
+				return finishStage != FINISH_STAGE_EDEFAULT;
+			case GraphicPackage.SUBPASS__WAIT_FOR_ACCESSES:
+				return waitForAccesses != null && !waitForAccesses.isEmpty();
+			case GraphicPackage.SUBPASS__SYNC_ACCESSES:
+				return syncAccesses != null && !syncAccesses.isEmpty();
+			case GraphicPackage.SUBPASS__FINISH_ACCESSES:
+				return finishAccesses != null && !finishAccesses.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -788,12 +993,20 @@ public class SubpassImpl extends LilyEObject implements Subpass
 		result.append(name);
 		result.append(", subpassIndex: ");
 		result.append(subpassIndex);
-		result.append(", stages: ");
-		result.append(stages);
-		result.append(", accesses: ");
-		result.append(accesses);
 		result.append(", bindPoint: ");
 		result.append(bindPoint);
+		result.append(", waitForStage: ");
+		result.append(waitForStage);
+		result.append(", syncStage: ");
+		result.append(syncStage);
+		result.append(", finishStage: ");
+		result.append(finishStage);
+		result.append(", waitForAccesses: ");
+		result.append(waitForAccesses);
+		result.append(", syncAccesses: ");
+		result.append(syncAccesses);
+		result.append(", finishAccesses: ");
+		result.append(finishAccesses);
 		result.append(')');
 		return result.toString();
 	}

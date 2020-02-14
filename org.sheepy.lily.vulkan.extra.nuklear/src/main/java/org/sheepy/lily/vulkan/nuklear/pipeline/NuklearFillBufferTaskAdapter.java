@@ -1,10 +1,5 @@
 package org.sheepy.lily.vulkan.nuklear.pipeline;
 
-import static org.lwjgl.nuklear.Nuklear.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
@@ -22,10 +17,15 @@ import org.sheepy.lily.vulkan.nuklear.draw.DrawCommandData;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawTaskMaintainer;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.lwjgl.nuklear.Nuklear.*;
+
 @Statefull
 @Adapter(scope = NuklearFillBufferTask.class)
-public final class NuklearFillBufferTaskAdapter
-		implements IPipelineTaskAdapter<NuklearFillBufferTask>, IAllocableAdapter<IGraphicContext>
+public final class NuklearFillBufferTaskAdapter implements IPipelineTaskAdapter<NuklearFillBufferTask>,
+														   IAllocableAdapter<IGraphicContext>
 {
 	private static final String NK_CONVERT_FAILED = "nk_convert failed: ";
 
@@ -35,6 +35,7 @@ public final class NuklearFillBufferTaskAdapter
 
 	private NuklearLayoutTaskAdapter layoutAdapter;
 	private NuklearContextAdapter nuklearContextAdapter;
+	private int previousDrawedIndexes = 0;
 
 	public NuklearFillBufferTaskAdapter(NuklearFillBufferTask task)
 	{
@@ -63,7 +64,8 @@ public final class NuklearFillBufferTaskAdapter
 
 	@Override
 	public void free(IGraphicContext context)
-	{}
+	{
+	}
 
 	@Override
 	public void update(NuklearFillBufferTask task, int index)
@@ -120,7 +122,6 @@ public final class NuklearFillBufferTaskAdapter
 	{
 		final List<DrawCommandData> res = new ArrayList<>();
 		int drawedIndexes = 0;
-		int previousDrawedIndexes = 0;
 
 		final var nkContext = nuklearContextAdapter.getNkContext();
 		final var cmds = nuklearContextAdapter.getCmds();
@@ -132,9 +133,7 @@ public final class NuklearFillBufferTaskAdapter
 			if (elemCount > 0)
 			{
 				final var texturePtr = drawCommand.texture().ptr();
-				final int descriptorIndex = texturePtr > 1
-						? texturePtrs.indexOf(texturePtr) + 2
-						: (int) texturePtr;
+				final int descriptorIndex = texturePtr > 1 ? texturePtrs.indexOf(texturePtr) + 2 : (int) texturePtr;
 
 				res.add(new DrawCommandData(drawCommand, descriptorIndex));
 				drawedIndexes += elemCount;
@@ -154,7 +153,8 @@ public final class NuklearFillBufferTaskAdapter
 
 	@Override
 	public void record(NuklearFillBufferTask task, IRecordContext context)
-	{}
+	{
+	}
 
 	private void reloadTexturePtrs(DescriptorSet descriptorSet)
 	{

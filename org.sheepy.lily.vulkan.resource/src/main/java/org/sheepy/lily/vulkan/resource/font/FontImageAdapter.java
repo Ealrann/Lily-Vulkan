@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.resource.font;
 import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
@@ -37,7 +38,8 @@ import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
 @Statefull
 @Adapter(scope = FontImage.class)
-public final class FontImageAdapter extends Notifier implements IFontImageAdapter
+public final class FontImageAdapter extends Notifier implements IFontImageAdapter,
+																IAllocableAdapter<InternalExecutionContext>
 {
 	private static final int BASE_FONTIMAGE_WIDTH = 1024;
 	private static final int BASE_FONTIMAGE_HEIGHT = 1024;
@@ -245,11 +247,6 @@ public final class FontImageAdapter extends Notifier implements IFontImageAdapte
 	public List<FontAllocator> getAllocators()
 	{
 		return fontAllocators;
-	}
-
-	public Font getDefaultFont()
-	{
-		return fonts.get(0);
 	}
 
 	private static List<FontAllocator> buildAllocators(List<Font> fonts)

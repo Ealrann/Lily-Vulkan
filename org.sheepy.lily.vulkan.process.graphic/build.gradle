@@ -8,3 +8,10 @@ dependencies {
 	implementation project(':org.sheepy.lily.vulkan.core')
 	implementation project(':org.sheepy.lily.vulkan.process')
 }
+
+sourceSets {
+	main {
+		java.srcDirs = ['src/main/java',
+						'src/main/shader']
+	}
+}

@@ -1,7 +1,6 @@
 package org.sheepy.lily.vulkan.nuklear.scene;
 
-import java.io.IOException;
-
+import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.resource.IResourceLoader;
 import org.sheepy.lily.core.model.ui.UI;
@@ -11,8 +10,10 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
+import java.io.IOException;
+
 @Adapter(scope = UI.class)
-public class NuklearSubpassProvider implements IScenePart_SubpassProvider<UI>
+public final class NuklearSubpassProvider implements IScenePart_SubpassProvider<UI>
 {
 	private static final String PIPELINE_NO_IMAGE_PATH = "NuklearNoImages.subpass";
 	private static final String PIPELINE_PATH = "Nuklear.subpass";
@@ -32,7 +33,6 @@ public class NuklearSubpassProvider implements IScenePart_SubpassProvider<UI>
 
 	private static Subpass loadSubpass(boolean imageSupport)
 	{
-		Subpass res = null;
 		final var module = NuklearSubpassProvider.class.getModule();
 		try
 		{
@@ -40,11 +40,13 @@ public class NuklearSubpassProvider implements IScenePart_SubpassProvider<UI>
 			final var resourceLoader = IResourceLoader.INSTANCE;
 			final var inputStream = module.getResourceAsStream(path);
 			final var resource = resourceLoader.loadResource(inputStream);
-			res = (Subpass) resource.getContents().get(0);
-		} catch (final IOException e)
+			final EObject subpass = resource.getContents().get(0);
+			return subpass != null ? (Subpass) subpass : GraphicFactory.eINSTANCE.createSubpass();
+		}
+		catch (final IOException e)
 		{
 			e.printStackTrace();
+			return GraphicFactory.eINSTANCE.createSubpass();
 		}
-		return res;
 	}
 }

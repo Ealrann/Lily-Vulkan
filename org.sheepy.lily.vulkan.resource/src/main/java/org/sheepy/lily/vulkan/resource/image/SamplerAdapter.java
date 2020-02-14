@@ -42,11 +42,6 @@ public class SamplerAdapter implements ISamplerAdapter
 		vkSampler.free(context);
 	}
 
-	public VkSampler getVkSampler()
-	{
-		return vkSampler;
-	}
-
 	@Override
 	public long getSamplerPtr()
 	{

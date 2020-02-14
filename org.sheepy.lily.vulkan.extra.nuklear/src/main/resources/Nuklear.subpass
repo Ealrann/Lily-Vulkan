@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<graphic:Subpass xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:graphic="org.sheepy.lily.vulkan.model.process.graphic" xmlns:graphicpipeline="org.sheepy.vulkan.model.graphicpipeline" xmlns:nuklear="org.sheepy.lily.vulkan.extra.model.nuklear" xmlns:process="org.sheepy.lily.vulkan.model.process" xmlns:resource="org.sheepy.lily.vulkan.model.resource" xmlns:resource_1="org.sheepy.lily.core.model.resource" name="Nuklear">
+<graphic:Subpass xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:graphic="org.sheepy.lily.vulkan.model.process.graphic" xmlns:graphicpipeline="org.sheepy.vulkan.model.graphicpipeline" xmlns:nuklear="org.sheepy.lily.vulkan.extra.model.nuklear" xmlns:process="org.sheepy.lily.vulkan.model.process" xmlns:resource="org.sheepy.lily.vulkan.model.resource" xmlns:resource_1="org.sheepy.lily.core.model.resource" name="Nuklear" waitForStage="COLOR_ATTACHMENT_OUTPUT_BIT" syncStage="COLOR_ATTACHMENT_OUTPUT_BIT" finishStage="COLOR_ATTACHMENT_OUTPUT_BIT">
   <attachmantRefPkg/>
-  <stages>COLOR_ATTACHMENT_OUTPUT_BIT</stages>
-  <accesses>COLOR_ATTACHMENT_READ_BIT</accesses>
-  <accesses>COLOR_ATTACHMENT_WRITE_BIT</accesses>
   <pipelinePkg>
     <pipelines xsi:type="graphic:GraphicsPipeline" name="GUI no images" layout="//@pipelinePkg/@pipelines.0/@descriptorSetPkg/@descriptorSets.0" shaders="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.4 //@pipelinePkg/@pipelines.0/@resourcePkg/@resources.5">
       <resourcePkg>
@@ -106,4 +103,7 @@
       </vertexInputState>
     </pipelines>
   </pipelinePkg>
+  <waitForAccesses>COLOR_ATTACHMENT_WRITE_BIT</waitForAccesses>
+  <syncAccesses>COLOR_ATTACHMENT_WRITE_BIT</syncAccesses>
+  <finishAccesses>COLOR_ATTACHMENT_WRITE_BIT</finishAccesses>
 </graphic:Subpass>

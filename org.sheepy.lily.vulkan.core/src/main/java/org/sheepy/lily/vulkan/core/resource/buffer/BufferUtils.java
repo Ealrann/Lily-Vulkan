@@ -19,7 +19,7 @@ public class BufferUtils
 	/**
 	 * Flush a memory range of the buffer to make it visible to the device
 	 *
-	 * @note Only required for non-coherent memory
+	 * @apiNote Only required for non-coherent memory
 	 *
 	 * @param size
 	 *            (Optional) Size of the memory range to flush. Pass VK_WHOLE_SIZE to flush the
@@ -53,7 +53,7 @@ public class BufferUtils
 	/**
 	 * Invalidate a memory range of the buffer to make it visible to the host
 	 *
-	 * @note Only required for non-coherent memory
+	 * @apiNote Only required for non-coherent memory
 	 *
 	 * @param size
 	 *            (Optional) Size of the memory range to invalidate. Pass VK_WHOLE_SIZE to

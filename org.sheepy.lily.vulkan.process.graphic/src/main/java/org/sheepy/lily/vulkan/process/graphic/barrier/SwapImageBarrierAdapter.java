@@ -11,8 +11,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier;
 
 @Statefull
 @Adapter(scope = SwapImageBarrier.class)
-public class SwapImageBarrierAdapter
-		implements IImageBarrierAdapter, IAllocableAdapter<IGraphicContext>
+public final class SwapImageBarrierAdapter implements IImageBarrierAdapter, IAllocableAdapter<IGraphicContext>
 {
 	private final VkSwapImageBarrier vkBarrier;
 
@@ -44,7 +43,8 @@ public class SwapImageBarrierAdapter
 
 	@Override
 	public void free(IGraphicContext context)
-	{}
+	{
+	}
 
 	@Override
 	public VkSwapImageBarrier getBackend()

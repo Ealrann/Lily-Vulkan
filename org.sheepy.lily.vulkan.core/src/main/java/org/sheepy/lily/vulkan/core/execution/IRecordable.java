@@ -18,7 +18,7 @@ public interface IRecordable
 	boolean isActive();
 	boolean isRecordNeeded(int index);
 
-	public static final class RecordContext implements IRecordContext
+	final class RecordContext implements IRecordContext
 	{
 		public final VkCommandBuffer commandBuffer;
 		public final ECommandStage stage;
@@ -47,7 +47,7 @@ public interface IRecordable
 		}
 
 		@FunctionalInterface
-		public static interface IExecutionIdleListener extends EventListener
+		public interface IExecutionIdleListener extends EventListener
 		{
 			void onExecutionIdle();
 		}

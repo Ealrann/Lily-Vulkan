@@ -4,6 +4,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.nuklear.*;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
@@ -16,7 +17,6 @@ import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.nuklear.input.NuklearInputCatcher;
@@ -34,7 +34,7 @@ import static org.lwjgl.system.MemoryUtil.nmemFree;
 
 @Statefull
 @Adapter(scope = NuklearContext.class, lazy = false)
-public class NuklearContextAdapter implements IVulkanResourceAdapter
+public class NuklearContextAdapter implements IAllocableAdapter<InternalExecutionContext>
 {
 	public static final long INDEXED_BUFFER_SIZE = (long) Math.pow(2, 19);
 	public static final long INDEX_BUFFER_SIZE = (long) Math.pow(2, 16);

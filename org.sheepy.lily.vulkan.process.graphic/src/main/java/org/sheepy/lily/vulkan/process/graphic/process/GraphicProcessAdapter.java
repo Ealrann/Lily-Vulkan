@@ -144,7 +144,8 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	@Override
 	protected GraphicContext createContext()
 	{
-		return new GraphicContext(getExecutionQueueType(), isResetAllowed(), descriptorPool, (GraphicProcess) process);
+		final var graphicProcess = (GraphicProcess) this.process;
+		return new GraphicContext(getExecutionQueueType(), isResetAllowed(), descriptorPool, graphicProcess);
 	}
 
 	private void setupScenePart(IScenePart part)

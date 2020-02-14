@@ -12,22 +12,20 @@ public abstract class FileResourceAdapter implements IFileResourceAdapter
 	@Override
 	public ByteBuffer allocByteBuffer(FileResource resource)
 	{
-		ByteBuffer buffer = null;
-
-		try (InputStream inputStream = getInputStream(resource))
+		try (final var inputStream = getInputStream(resource))
 		{
 			final byte[] byteArray = inputStream.readAllBytes();
-			buffer = MemoryUtil.memAlloc(byteArray.length);
+			final var buffer = MemoryUtil.memAlloc(byteArray.length);
 			buffer.put(byteArray);
 			buffer.flip();
+			return buffer;
 		}
 		catch (final Exception e)
 		{
 			logCantAccess(resource);
 			e.printStackTrace();
+			return null;
 		}
-
-		return buffer;
 	}
 
 	private static void logCantAccess(FileResource resource)

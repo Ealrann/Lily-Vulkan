@@ -1,13 +1,5 @@
 package org.sheepy.lily.vulkan.core.device;
 
-import static org.lwjgl.vulkan.VK10.vkEnumeratePhysicalDevices;
-
-import java.nio.IntBuffer;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPhysicalDevice;
@@ -17,17 +9,15 @@ import org.sheepy.lily.vulkan.core.instance.VulkanInstance;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
 
+import java.nio.IntBuffer;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.vkEnumeratePhysicalDevices;
+
 public class PhysicalDeviceSelector
 {
-	private static final Comparator<PhysicalDeviceWrapper> DEVICE_COMPARATOR = new Comparator<>()
-	{
-		@Override
-		public int compare(PhysicalDeviceWrapper o1, PhysicalDeviceWrapper o2)
-		{
-			return Integer.compare(o1.score, o2.score);
-		}
-	};
-
 	private final VulkanInstance vkInstance;
 	private final List<PhysicalDeviceWrapper> devices = new ArrayList<>();
 	private final EngineExtensionRequirement extensionRequirement;
@@ -38,10 +28,10 @@ public class PhysicalDeviceSelector
 
 	private PointerBuffer pPhysicalDevices;
 
-	public PhysicalDeviceSelector(	VulkanInstance vkInstance,
-									EngineExtensionRequirement extensionRequirement,
-									VkSurface surface,
-									boolean printAvailableExtensions)
+	public PhysicalDeviceSelector(VulkanInstance vkInstance,
+								  EngineExtensionRequirement extensionRequirement,
+								  VkSurface surface,
+								  boolean printAvailableExtensions)
 	{
 		this.vkInstance = vkInstance;
 		this.extensionRequirement = extensionRequirement;
@@ -53,7 +43,7 @@ public class PhysicalDeviceSelector
 	{
 		load(stack);
 		gatherDevices();
-		Collections.sort(devices, DEVICE_COMPARATOR);
+		devices.sort(Comparator.comparingInt(o -> o.score));
 
 		final PhysicalDevice res = devices.get(0).physicalDevice;
 		res.allocate(stack);
@@ -78,22 +68,19 @@ public class PhysicalDeviceSelector
 		final var vulkanInstance = vkInstance.getVkInstance();
 		for (int i = 0; i < pPhysicalDeviceCount.get(0); i++)
 		{
-			final var vkPhysicalDevice = new VkPhysicalDevice(	pPhysicalDevices.get(i),
-																vulkanInstance);
-			final var physicalDevice = new PhysicalDevice(	vkPhysicalDevice,
-															vkInstance,
-															extensionRequirement);
+			final var vkPhysicalDevice = new VkPhysicalDevice(pPhysicalDevices.get(i), vulkanInstance);
+			final var physicalDevice = new PhysicalDevice(vkPhysicalDevice, vkInstance, extensionRequirement);
 
-			final int deviceScore = surface != null
-					? PhysicalDeviceJudge.rateDeviceSuitability(physicalDevice, surface)
-					: PhysicalDeviceJudge.rateDeviceSuitability(physicalDevice);
+			final int deviceScore = surface != null ? PhysicalDeviceJudge.rateDeviceSuitability(physicalDevice,
+																								surface) : PhysicalDeviceJudge
+					.rateDeviceSuitability(physicalDevice);
 
 			if (printAvailableExtensions)
 			{
-				System.out.println(String.format(	"[%s (%d)]: %d points",
-													physicalDevice.name,
-													physicalDevice.driverVersion,
-													deviceScore));
+				System.out.println(String.format("[%s (%d)]: %d points",
+												 physicalDevice.name,
+												 physicalDevice.driverVersion,
+												 deviceScore));
 				physicalDevice.printAvailableExtensions();
 			}
 
@@ -101,7 +88,7 @@ public class PhysicalDeviceSelector
 		}
 	}
 
-	public class PhysicalDeviceWrapper
+	public static final class PhysicalDeviceWrapper
 	{
 		public final PhysicalDevice physicalDevice;
 		public final int score;

@@ -103,13 +103,11 @@ public final class VkImage
 
 			if (initialLayout != null)
 			{
-				context.execute((context2, commandBuffer) -> {
-					transitionToInitialLayout(context2.stack(),
-											  commandBuffer.getVkCommandBuffer(),
-											  EPipelineStage.TOP_OF_PIPE_BIT,
-											  EImageLayout.UNDEFINED,
-											  Collections.emptyList());
-				});
+				context.execute((context2, commandBuffer) -> transitionToInitialLayout(context2.stack(),
+																					   commandBuffer.getVkCommandBuffer(),
+																					   EPipelineStage.TOP_OF_PIPE_BIT,
+																					   EImageLayout.UNDEFINED,
+																					   Collections.emptyList()));
 			}
 		});
 	}

@@ -106,7 +106,7 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	@Override
 	public int bestSupportedImageCount(int required)
 	{
-		int requiredImageCount = 0;
+		final int requiredImageCount;
 		final var capabilities = this.capabilities.vkCapabilities;
 
 		if (required == 0)
@@ -124,10 +124,12 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 
 		if (capabilities.maxImageCount() > 0 && requiredImageCount > capabilities.maxImageCount())
 		{
-			requiredImageCount = capabilities.maxImageCount();
+			return capabilities.maxImageCount();
 		}
-
-		return requiredImageCount;
+		else
+		{
+			return requiredImageCount;
+		}
 	}
 
 	@Override

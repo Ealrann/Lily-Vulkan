@@ -1,8 +1,6 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
-import java.nio.ByteBuffer;
-import java.util.function.Consumer;
-
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
@@ -12,7 +10,6 @@ import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter.IMemory
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter.IMemoryTicket.EReservationStatus;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.core.resource.buffer.IBufferPartAdapter;
 import org.sheepy.lily.vulkan.core.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
@@ -22,10 +19,13 @@ import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAdapter;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFactory;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
+import java.nio.ByteBuffer;
+import java.util.function.Consumer;
+
 @Statefull
 @Adapter(scope = BufferPart.class)
-public final class BufferPartAdapter extends Notifier
-		implements IBufferPartAdapter, IVulkanResourceAdapter
+public final class BufferPartAdapter extends Notifier implements IBufferPartAdapter,
+																 IAllocableAdapter<InternalExecutionContext>
 {
 	public final BufferDataProvider<?> dataProvider;
 
@@ -63,9 +63,7 @@ public final class BufferPartAdapter extends Notifier
 	{
 		final int usage = VulkanModelUtil.getEnumeratedFlag(dataProvider.getUsages());
 		final int pushUsage = dataProvider.isUsedToPush() ? EBufferUsage.TRANSFER_DST_BIT_VALUE : 0;
-		final int fetchUsage = dataProvider.isUsedToFetch()
-				? EBufferUsage.TRANSFER_SRC_BIT_VALUE
-				: 0;
+		final int fetchUsage = dataProvider.isUsedToFetch() ? EBufferUsage.TRANSFER_SRC_BIT_VALUE : 0;
 
 		return usage | pushUsage | fetchUsage;
 	}
@@ -86,7 +84,8 @@ public final class BufferPartAdapter extends Notifier
 
 	@Override
 	public void free(InternalExecutionContext context)
-	{}
+	{
+	}
 
 	public void updateAlignement(long desiredOffset)
 	{
@@ -125,10 +124,7 @@ public final class BufferPartAdapter extends Notifier
 
 		if (oldBufferPtr != bufferPtr)
 		{
-			fireNotification(new LongNotification(	this,
-													Features.Ptr,
-													oldBufferPtr,
-													this.bufferPtr));
+			fireNotification(new LongNotification(this, Features.Ptr, oldBufferPtr, this.bufferPtr));
 		}
 	}
 
@@ -148,8 +144,7 @@ public final class BufferPartAdapter extends Notifier
 
 	public void releaseMemory()
 	{
-		if (memTicket.getReservationStatus() == EReservationStatus.SUCCESS
-				|| memTicket.getReservationStatus() == EReservationStatus.FLUSHED)
+		if (memTicket.getReservationStatus() == EReservationStatus.SUCCESS || memTicket.getReservationStatus() == EReservationStatus.FLUSHED)
 		{
 			transferBuffer.releaseTicket(memTicket);
 		}
@@ -174,11 +169,11 @@ public final class BufferPartAdapter extends Notifier
 		final long instanceOffset = getInstanceOffset(instance);
 		final var stage = dataProvider.getStageBeforePush();
 
-		final var pushCommand = DataFlowCommandFactory.newPushCommand(	memTicket,
-																		bufferPtr,
-																		instanceOffset,
-																		stage,
-																		accessBeforePush);
+		final var pushCommand = DataFlowCommandFactory.newPushCommand(memTicket,
+																	  bufferPtr,
+																	  instanceOffset,
+																	  stage,
+																	  accessBeforePush);
 
 		// System.out.println(String.format( "[%s] push %d bytes",
 		// dataProvider.eClass().getName(),

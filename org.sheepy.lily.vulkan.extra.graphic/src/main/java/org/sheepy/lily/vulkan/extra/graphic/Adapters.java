@@ -1,7 +1,5 @@
 package org.sheepy.lily.vulkan.extra.graphic;
 
-import java.util.List;
-
 import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.adapter.IAdapterProvider;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.GenericRendererMaintainerAdapter;
@@ -13,18 +11,20 @@ import org.sheepy.lily.vulkan.extra.graphic.rendering.task.RenderIndexedDrawTask
 import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteCountSpecializationAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteMonoSamplerProviderAdapter;
 
-public class Adapters implements IAdapterProvider
+import java.util.List;
+
+public final class Adapters implements IAdapterProvider
 {
 	@Override
 	public List<Class<? extends IAdapter>> classifiers()
 	{
-		return List.of(	GenericRendererMaintainerAdapter.class,
-						DescriptorProviderAdapter.class,
-						SpriteMonoSamplerProviderAdapter.class,
-						RenderProxyConstantBufferAdapter.class,
-						SpriteCountSpecializationAdapter.class,
-						RenderDrawTaskAdapter.class,
-						RenderIndexedDrawTaskAdapter.class,
-						DataDescriptorsProviderAdapter.class);
+		return List.of(GenericRendererMaintainerAdapter.class,
+					   DescriptorProviderAdapter.class,
+					   SpriteMonoSamplerProviderAdapter.class,
+					   RenderProxyConstantBufferAdapter.class,
+					   SpriteCountSpecializationAdapter.class,
+					   RenderDrawTaskAdapter.class,
+					   RenderIndexedDrawTaskAdapter.class,
+					   DataDescriptorsProviderAdapter.class);
 	}
 }

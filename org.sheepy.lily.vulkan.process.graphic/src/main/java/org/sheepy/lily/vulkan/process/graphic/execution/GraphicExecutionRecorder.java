@@ -25,7 +25,7 @@ public class GraphicExecutionRecorder extends AbstractExecutionRecorder<IGraphic
 	private final VkSemaphore presentSemaphore;
 	private final INotificationListener subpassListener = this::subpassChanged;
 
-	private int subpassCount = 0;
+	private int subpassCount;
 
 	public GraphicExecutionRecorder(GraphicProcess process,
 									GraphicCommandBuffer commandBuffer,

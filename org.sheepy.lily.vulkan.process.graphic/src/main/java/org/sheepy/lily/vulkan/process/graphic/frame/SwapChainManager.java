@@ -1,16 +1,5 @@
 package org.sheepy.lily.vulkan.process.graphic.frame;
 
-import static org.lwjgl.vulkan.KHRSurface.VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;
-import static org.lwjgl.vulkan.KHRSwapchain.*;
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.nio.IntBuffer;
-import java.nio.LongBuffer;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.function.Function;
-
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
@@ -21,28 +10,46 @@ import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.graphic.ISwapChainManager;
 import org.sheepy.lily.vulkan.core.util.Logger;
-import org.sheepy.lily.vulkan.core.util.VulkanBufferUtils;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
+import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 import org.sheepy.lily.vulkan.process.graphic.frame.util.PresentationModeSelector;
+import org.sheepy.lily.vulkan.process.graphic.resource.SwapImageAttachmentAdapter;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
+
+import java.nio.IntBuffer;
+import java.nio.LongBuffer;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Function;
+
+import static org.lwjgl.vulkan.KHRSurface.VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;
+import static org.lwjgl.vulkan.KHRSwapchain.*;
+import static org.lwjgl.vulkan.VK10.*;
 
 public final class SwapChainManager implements ISwapChainManager
 {
 	private static final String FAILED_TO_CREATE_SWAP_CHAIN = "Failed to create swap chain";
 
+	private final SwapImageAttachment swapImageAttachment;
+
 	private long swapChainPtr = 0;
-	private List<Long> swapChainImages = null;
 	private IntBuffer indices = null;
 	private boolean first = true;
+	private int swapImageCount = 0;
+
+	public SwapChainManager(SwapImageAttachment swapImageAttachment)
+	{
+		this.swapImageAttachment = swapImageAttachment;
+	}
 
 	@Override
 	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
 	{
 		config.addDependencies(List.of(context.getSurfaceManager()));
-		config.setAllocationCondition(c -> ((IGraphicContext) c).getSurfaceManager()
-																.isPresentable());
+		config.setAllocationCondition(c -> ((IGraphicContext) c).getSurfaceManager().isPresentable());
 	}
 
 	@Override
@@ -57,7 +64,7 @@ public final class SwapChainManager implements ISwapChainManager
 		final var vkDevice = context.getVkDevice();
 		final var capabilities = pdsManager.getCapabilities().vkCapabilities;
 		final var surface = pdsManager.getSurface();
-		final var requiredColorDomain = pdsManager.getColorDomain();
+		final var colorDomain = pdsManager.getColorDomain();
 		final var stack = context.stack();
 		final var imageCount = pdsManager.bestSupportedImageCount(requiredImageCount);
 		final int swapImageUsage = loadSwapChainUsage(swapchainConfiguration);
@@ -67,8 +74,8 @@ public final class SwapChainManager implements ISwapChainManager
 		createInfo.sType(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR);
 		createInfo.surface(surface.ptr);
 		createInfo.minImageCount(imageCount);
-		createInfo.imageFormat(requiredColorDomain.getFormat().getValue());
-		createInfo.imageColorSpace(requiredColorDomain.getColorSpace().getValue());
+		createInfo.imageFormat(colorDomain.getFormat().getValue());
+		createInfo.imageColorSpace(colorDomain.getColorSpace().getValue());
 		createInfo.imageExtent().width(extent.width);
 		createInfo.imageExtent().height(extent.height);
 		createInfo.imageArrayLayers(1);
@@ -94,17 +101,12 @@ public final class SwapChainManager implements ISwapChainManager
 		createInfo.oldSwapchain(VK_NULL_HANDLE);
 
 		final LongBuffer pSwapChain = stack.mallocLong(1);
-		Logger.check(	FAILED_TO_CREATE_SWAP_CHAIN,
-						() -> vkCreateSwapchainKHR(vkDevice, createInfo, null, pSwapChain));
+		Logger.check(FAILED_TO_CREATE_SWAP_CHAIN, () -> vkCreateSwapchainKHR(vkDevice, createInfo, null, pSwapChain));
 		swapChainPtr = pSwapChain.get(0);
 
-		final IntBuffer pImageCount = stack.mallocInt(1);
-		vkGetSwapchainImagesKHR(vkDevice, swapChainPtr, pImageCount, null);
-		final int swapImageCount = pImageCount.get(0);
-		final LongBuffer pSwapchainImages = stack.mallocLong(swapImageCount);
-		vkGetSwapchainImagesKHR(vkDevice, swapChainPtr, pImageCount, pSwapchainImages);
-
-		swapChainImages = List.copyOf(VulkanBufferUtils.toList(pSwapchainImages));
+		final var swapImageAdapter = swapImageAttachment.adapt(SwapImageAttachmentAdapter.class);
+		swapImageAdapter.allocate(context, swapChainPtr);
+		swapImageCount = swapImageAdapter.getImageCount();
 
 		if (first && DebugUtil.DEBUG_ENABLED)
 		{
@@ -117,9 +119,9 @@ public final class SwapChainManager implements ISwapChainManager
 	public void free(IGraphicContext context)
 	{
 		vkDestroySwapchainKHR(context.getVkDevice(), swapChainPtr, null);
+		swapImageAttachment.adapt(SwapImageAttachmentAdapter.class).free();
 		if (indices != null) MemoryUtil.memFree(indices);
 		swapChainPtr = 0;
-		swapChainImages = null;
 		indices = null;
 	}
 
@@ -155,16 +157,15 @@ public final class SwapChainManager implements ISwapChainManager
 	private void printSwapChainInformations(int presentMode)
 	{
 		final String presentationName = EPresentMode.get(presentMode).getName();
-		final int imageCount = swapChainImages.size();
-		final String message = String.format(	"Swapchain created:\n\t- PresentationMode: %s\n\t- Number of images: %d",
-												presentationName,
-												imageCount);
+		final String message = String.format("Swapchain created:\n\t- PresentationMode: %s\n\t- Number of images: %d",
+											 presentationName,
+											 swapImageCount);
 		System.out.println(message);
 	}
 
-	private static int selectPresentMode(	IGraphicContext context,
-											SwapchainConfiguration configuration,
-											VkSurface surface)
+	private static int selectPresentMode(IGraphicContext context,
+										 SwapchainConfiguration configuration,
+										 VkSurface surface)
 	{
 		final var selector = new PresentationModeSelector(configuration);
 		return selector.findBestMode(context, surface);
@@ -173,13 +174,14 @@ public final class SwapChainManager implements ISwapChainManager
 	@Override
 	public List<Long> getSwapChainImages()
 	{
-		return swapChainImages;
+		final var swapImageAdapter = swapImageAttachment.adapt(SwapImageAttachmentAdapter.class);
+		return swapImageAdapter.getImagePtrs();
 	}
 
 	@Override
 	public int getImageCount()
 	{
-		return swapChainImages != null ? swapChainImages.size() : 0;
+		return swapImageCount;
 	}
 
 	@Override

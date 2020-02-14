@@ -43,8 +43,6 @@ public class SemaphoreManager
 
 	/**
 	 * If lock, creation of Semaphore will be forbidden
-	 * 
-	 * @param value
 	 */
 	public void lock(boolean value)
 	{

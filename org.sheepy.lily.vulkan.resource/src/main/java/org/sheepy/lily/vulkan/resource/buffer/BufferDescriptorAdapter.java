@@ -14,7 +14,7 @@ import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 @Statefull
 @Adapter(scope = BufferDescriptor.class)
-public class BufferDescriptorAdapter implements IDescriptorAdapter
+public final class BufferDescriptorAdapter implements IDescriptorAdapter
 {
 	private final INotificationListener bufferListener = this::bindChange;
 	private final BufferDescriptor descriptor;

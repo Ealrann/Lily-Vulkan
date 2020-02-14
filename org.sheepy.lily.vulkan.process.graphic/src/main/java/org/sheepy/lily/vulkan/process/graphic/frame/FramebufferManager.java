@@ -65,7 +65,7 @@ public class FramebufferManager implements IFramebufferManager
 		for (final var attachment : attachments)
 		{
 			final var description = attachment.adaptNotNull(IExtraAttachmentAdapter.class);
-			attachmentsBuffer.put(description.getImageViewId());
+			attachmentsBuffer.put(description.getViewPtr());
 		}
 
 		attachmentsBuffer.flip();

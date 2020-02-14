@@ -19,8 +19,7 @@ import java.util.List;
 
 @Statefull
 @Adapter(scope = CompositeTask.class)
-public class CompositeTaskAdapter
-		implements IPipelineTaskAdapter<CompositeTask>, IAllocableAdapter<IProcessContext>
+public class CompositeTaskAdapter implements IPipelineTaskAdapter<CompositeTask>, IAllocableAdapter<IProcessContext>
 {
 	private final List<AdaptedTaskWrapper<?>> adaptedChildren = new ArrayList<>();
 	private final List<IAllocableAdapter<IProcessContext>> allocationChildren = new ArrayList<>();
@@ -104,19 +103,16 @@ public class CompositeTaskAdapter
 	@Override
 	public boolean needRecord(CompositeTask task, int index)
 	{
-		boolean res = false;
-
 		for (int i = 0; i < adaptedChildren.size(); i++)
 		{
 			final var child = adaptedChildren.get(i);
-			res |= child.needRecord(index);
-			if (res)
+			if (child.needRecord(index))
 			{
-				break;
+				return true;
 			}
 		}
 
-		return res;
+		return false;
 	}
 
 	@Override

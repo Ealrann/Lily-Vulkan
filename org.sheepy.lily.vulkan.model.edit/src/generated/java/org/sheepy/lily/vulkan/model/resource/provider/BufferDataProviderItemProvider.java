@@ -726,6 +726,11 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
+				 GraphicFactory.eINSTANCE.createColorAttachment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
 				 GraphicFactory.eINSTANCE.createAttachmentPkg()));
 
 		newChildDescriptors.add
@@ -767,6 +772,11 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 			(createChildParameter
 				(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
 				 GraphicFactory.eINSTANCE.createBlitToSwapImage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
+				 GraphicFactory.eINSTANCE.createBlitTask()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -817,6 +827,11 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 			(createChildParameter
 				(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
 				 GraphicFactory.eINSTANCE.createBindIndexBuffer()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
+				 GraphicFactory.eINSTANCE.createAttachmentDescriptor()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -1021,6 +1036,11 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
+				 ApplicationFactory.eINSTANCE.createScreenEffect()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
 				 VariableFactory.eINSTANCE.createChainVariableResolver()));
 
 		newChildDescriptors.add
@@ -1047,6 +1067,21 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 			(createChildParameter
 				(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
 				 VariableFactory.eINSTANCE.createVarChangeActionPkg()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
+				 VariableFactory.eINSTANCE.createIModelVariable()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
+				 VariableFactory.eINSTANCE.createIntVariable()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
+				 VariableFactory.eINSTANCE.createDurationVariable()));
 
 		newChildDescriptors.add
 			(createChildParameter

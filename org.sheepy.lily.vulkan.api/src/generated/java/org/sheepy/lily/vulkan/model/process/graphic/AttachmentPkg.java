@@ -15,8 +15,8 @@ import org.sheepy.lily.core.api.adapter.ILilyEObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg#getExtraAttachments <em>Extra Attachments</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg#getColorAttachment <em>Color Attachment</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg#getExtraAttachments <em>Extra Attachments</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAttachmentPkg()

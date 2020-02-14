@@ -1,22 +1,12 @@
 package org.sheepy.lily.vulkan.process.pipeline.task;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.core.barrier.IBarrierAdapter;
-import org.sheepy.lily.vulkan.core.barrier.IImageBarrierAdapter;
-import org.sheepy.lily.vulkan.core.barrier.VkBarrier;
-import org.sheepy.lily.vulkan.core.barrier.VkBufferBarrier;
-import org.sheepy.lily.vulkan.core.barrier.VkBufferBarriers;
-import org.sheepy.lily.vulkan.core.barrier.VkImageBarriers;
+import org.sheepy.lily.vulkan.core.barrier.*;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
@@ -28,10 +18,16 @@ import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.VK_QUEUE_FAMILY_IGNORED;
+import static org.lwjgl.vulkan.VK10.vkCmdPipelineBarrier;
+
 @Statefull
 @Adapter(scope = PipelineBarrier.class)
-public class PipelineBarrierAdapter
-		implements IPipelineTaskAdapter<PipelineBarrier>, IAllocableAdapter<ProcessContext<?>>
+public class PipelineBarrierAdapter implements IPipelineTaskAdapter<PipelineBarrier>,
+											   IAllocableAdapter<ProcessContext<?>>
 {
 	private final PipelineBarrier pipelineBarrier;
 	private final int srcStage;
@@ -127,13 +123,13 @@ public class PipelineBarrierAdapter
 		final var bufferInfo = bufferBarrierInfos.allocateInfo(context.stack());
 		final var imageInfo = imageBarrierInfos.allocateInfo(context.stack());
 
-		vkCmdPipelineBarrier(	((RecordContext) context).commandBuffer,
-								srcStage,
-								dstStage,
-								0,
-								null,
-								bufferInfo,
-								imageInfo);
+		vkCmdPipelineBarrier(((RecordContext) context).commandBuffer,
+							 srcStage,
+							 dstStage,
+							 0,
+							 null,
+							 bufferInfo,
+							 imageInfo);
 	}
 
 	@Override

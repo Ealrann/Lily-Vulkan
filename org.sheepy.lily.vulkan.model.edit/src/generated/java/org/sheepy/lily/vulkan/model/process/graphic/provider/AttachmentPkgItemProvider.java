@@ -83,8 +83,8 @@ public class AttachmentPkgItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GraphicPackage.Literals.ATTACHMENT_PKG__EXTRA_ATTACHMENTS);
 			childrenFeatures.add(GraphicPackage.Literals.ATTACHMENT_PKG__COLOR_ATTACHMENT);
+			childrenFeatures.add(GraphicPackage.Literals.ATTACHMENT_PKG__EXTRA_ATTACHMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -142,8 +142,8 @@ public class AttachmentPkgItemProvider
 
 		switch (notification.getFeatureID(AttachmentPkg.class))
 		{
-			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
 			case GraphicPackage.ATTACHMENT_PKG__COLOR_ATTACHMENT:
+			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -164,6 +164,11 @@ public class AttachmentPkgItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(GraphicPackage.Literals.ATTACHMENT_PKG__COLOR_ATTACHMENT,
+				 GraphicFactory.eINSTANCE.createSwapImageAttachment()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(GraphicPackage.Literals.ATTACHMENT_PKG__EXTRA_ATTACHMENTS,
 				 GraphicFactory.eINSTANCE.createImageAttachment()));
 
@@ -174,8 +179,8 @@ public class AttachmentPkgItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GraphicPackage.Literals.ATTACHMENT_PKG__COLOR_ATTACHMENT,
-				 GraphicFactory.eINSTANCE.createSwapImageAttachment()));
+				(GraphicPackage.Literals.ATTACHMENT_PKG__EXTRA_ATTACHMENTS,
+				 GraphicFactory.eINSTANCE.createColorAttachment()));
 	}
 
 	/**

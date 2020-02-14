@@ -9,12 +9,12 @@ public final class Logger
 	private Logger()
 	{}
 
-	public static final void check(int status, String message)
+	public static void check(int status, String message)
 	{
 		check(status, message, false);
 	}
 
-	public static final void check(int statusCode, String message, boolean noException)
+	public static void check(int statusCode, String message, boolean noException)
 	{
 		final var status = EVulkanErrorStatus.resolveFromCode(statusCode);
 
@@ -38,7 +38,7 @@ public final class Logger
 		}
 	}
 
-	public static final void check(String message, VkRunnable runnable)
+	public static void check(String message, VkRunnable runnable)
 	{
 		final int res = runnable.run();
 		check(res, message);
@@ -61,7 +61,7 @@ public final class Logger
 		}
 	}
 
-	public static interface VkRunnable
+	public interface VkRunnable
 	{
 		int run();
 	}

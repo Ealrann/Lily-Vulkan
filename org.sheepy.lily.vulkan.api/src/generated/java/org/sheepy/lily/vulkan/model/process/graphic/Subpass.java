@@ -21,11 +21,15 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmantRefPkg <em>Attachmant Ref Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSubpassIndex <em>Subpass Index</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getStages <em>Stages</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAccesses <em>Accesses</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getBindPoint <em>Bind Point</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getScenePart <em>Scene Part</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getWaitForStage <em>Wait For Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSyncStage <em>Sync Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getFinishStage <em>Finish Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getWaitForAccesses <em>Wait For Accesses</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSyncAccesses <em>Sync Accesses</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getFinishAccesses <em>Finish Accesses</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass()
@@ -78,34 +82,6 @@ public interface Subpass extends IResourceContainer, LNamedElement
 	 * @generated
 	 */
 	void setSubpassIndex(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Stages</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Stages</em>' attribute list.
-	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_Stages()
-	 * @model
-	 * @generated
-	 */
-	EList<EPipelineStage> getStages();
-
-	/**
-	 * Returns the value of the '<em><b>Accesses</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Accesses</em>' attribute list.
-	 * @see org.sheepy.vulkan.model.enumeration.EAccess
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_Accesses()
-	 * @model
-	 * @generated
-	 */
-	EList<EAccess> getAccesses();
 
 	/**
 	 * Returns the value of the '<em><b>Pipeline Pkg</b></em>' containment reference.
@@ -173,5 +149,124 @@ public interface Subpass extends IResourceContainer, LNamedElement
 	 * @generated
 	 */
 	void setScenePart(IScenePart value);
+
+	/**
+	 * Returns the value of the '<em><b>Wait For Stage</b></em>' attribute.
+	 * The default value is <code>"BOTTOM_OF_PIPE_BIT"</code>.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Wait For Stage</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
+	 * @see #setWaitForStage(EPipelineStage)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_WaitForStage()
+	 * @model default="BOTTOM_OF_PIPE_BIT" required="true"
+	 * @generated
+	 */
+	EPipelineStage getWaitForStage();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getWaitForStage <em>Wait For Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Wait For Stage</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
+	 * @see #getWaitForStage()
+	 * @generated
+	 */
+	void setWaitForStage(EPipelineStage value);
+
+	/**
+	 * Returns the value of the '<em><b>Sync Stage</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sync Stage</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
+	 * @see #setSyncStage(EPipelineStage)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_SyncStage()
+	 * @model required="true"
+	 * @generated
+	 */
+	EPipelineStage getSyncStage();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSyncStage <em>Sync Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sync Stage</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
+	 * @see #getSyncStage()
+	 * @generated
+	 */
+	void setSyncStage(EPipelineStage value);
+
+	/**
+	 * Returns the value of the '<em><b>Finish Stage</b></em>' attribute.
+	 * The default value is <code>"BOTTOM_OF_PIPE_BIT"</code>.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Finish Stage</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
+	 * @see #setFinishStage(EPipelineStage)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_FinishStage()
+	 * @model default="BOTTOM_OF_PIPE_BIT" required="true"
+	 * @generated
+	 */
+	EPipelineStage getFinishStage();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getFinishStage <em>Finish Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Finish Stage</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
+	 * @see #getFinishStage()
+	 * @generated
+	 */
+	void setFinishStage(EPipelineStage value);
+
+	/**
+	 * Returns the value of the '<em><b>Wait For Accesses</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Wait For Accesses</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_WaitForAccesses()
+	 * @model
+	 * @generated
+	 */
+	EList<EAccess> getWaitForAccesses();
+
+	/**
+	 * Returns the value of the '<em><b>Sync Accesses</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sync Accesses</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_SyncAccesses()
+	 * @model
+	 * @generated
+	 */
+	EList<EAccess> getSyncAccesses();
+
+	/**
+	 * Returns the value of the '<em><b>Finish Accesses</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Finish Accesses</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_FinishAccesses()
+	 * @model
+	 * @generated
+	 */
+	EList<EAccess> getFinishAccesses();
 
 } // Subpass

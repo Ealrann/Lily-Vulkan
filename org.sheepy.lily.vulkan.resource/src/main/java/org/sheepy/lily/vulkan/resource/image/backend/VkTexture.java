@@ -158,10 +158,9 @@ public class VkTexture implements IAllocable<InternalExecutionContext>
 			blit.free();
 		}
 
-		int trgAccess;
-		int trgStage;
-		int trgLayout;
-
+		final int trgAccess;
+		final int trgStage;
+		final int trgLayout;
 		if (targetLayout != null)
 		{
 			trgAccess = VulkanModelUtil.getEnumeratedFlag(targetLayout.getAccessMask());

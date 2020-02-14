@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.resource.buffer.transfer;
 
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAdapter;
 import org.sheepy.lily.vulkan.core.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
@@ -14,7 +14,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 @Statefull
 @Adapter(scope = TransferBuffer.class)
-public class TransferBufferAdapter implements InternalTransferBufferAdapter, IVulkanResourceAdapter
+public class TransferBufferAdapter implements InternalTransferBufferAdapter, IAllocableAdapter<InternalExecutionContext>
 {
 	private final TransferBuffer transferBuffer;
 
@@ -29,8 +29,7 @@ public class TransferBufferAdapter implements InternalTransferBufferAdapter, IVu
 	public void allocate(InternalExecutionContext context)
 	{
 		final long size = transferBuffer.getSize();
-		final int instanceCount = InstanceCountUtil.getInstanceCount(	context,
-																		transferBuffer.getInstanceCount());
+		final int instanceCount = InstanceCountUtil.getInstanceCount(context, transferBuffer.getInstanceCount());
 		final boolean usedToPush = transferBuffer.isUsedToPush();
 		final boolean usedToFetch = transferBuffer.isUsedToFetch();
 
@@ -57,17 +56,17 @@ public class TransferBufferAdapter implements InternalTransferBufferAdapter, IVu
 	}
 
 	@Override
-	public void newPushCommand(	IMemoryTicket ticket,
-								long trgBuffer,
-								long trgOffset,
-								EPipelineStage srcStage,
-								int srcAccess)
+	public void newPushCommand(IMemoryTicket ticket,
+							   long trgBuffer,
+							   long trgOffset,
+							   EPipelineStage srcStage,
+							   int srcAccess)
 	{
-		final var pushCommand = DataFlowCommandFactory.newPushCommand(	(MemoryTicket) ticket,
-																		trgBuffer,
-																		trgOffset,
-																		srcStage,
-																		srcAccess);
+		final var pushCommand = DataFlowCommandFactory.newPushCommand((MemoryTicket) ticket,
+																	  trgBuffer,
+																	  trgOffset,
+																	  srcStage,
+																	  srcAccess);
 		backendBuffer.addTransferCommand(pushCommand);
 	}
 

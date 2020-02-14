@@ -6,10 +6,7 @@ import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
-import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
-import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
+import org.sheepy.lily.vulkan.model.process.graphic.*;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
@@ -62,13 +59,13 @@ public final class MeshSubpassBuilder
 			final var depthRef = GraphicFactory.eINSTANCE.createAttachmentRef();
 			depthRef.setLayout(EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
 			depthRef.setAttachment(depthAttachment);
+			depthRef.setType(EAttachmentType.DEPTH);
 			attachmentRefPkg.getAttachmentRefs().add(depthRef);
 		}
 
 		final var res = GraphicFactory.eINSTANCE.createSubpass();
-		res.getStages().add(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
-		res.getAccesses().add(EAccess.COLOR_ATTACHMENT_WRITE_BIT);
-		res.getAccesses().add(EAccess.COLOR_ATTACHMENT_READ_BIT);
+		res.setWaitForStage(EPipelineStage.TOP_OF_PIPE_BIT);
+		res.setSyncStage(EPipelineStage.EARLY_FRAGMENT_TESTS_BIT);
 		res.setAttachmantRefPkg(attachmentRefPkg);
 		res.setPipelinePkg(pipelinePkg);
 		return res;

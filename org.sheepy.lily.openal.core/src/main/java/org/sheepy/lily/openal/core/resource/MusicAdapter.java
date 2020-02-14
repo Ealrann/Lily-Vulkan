@@ -2,10 +2,10 @@ package org.sheepy.lily.openal.core.resource;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
-import org.sheepy.lily.core.api.resource.IResourceAdapter;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.resource.Music;
 import org.sheepy.lily.game.api.allocation.IGameAllocationContext;
@@ -28,7 +28,7 @@ import java.util.function.IntFunction;
 
 @Statefull
 @Adapter(scope = Music.class)
-public final class MusicAdapter implements IAudioAdapter, IResourceAdapter<IGameAllocationContext>
+public final class MusicAdapter implements IAudioAdapter, IAllocableAdapter<IGameAllocationContext>
 {
 	private final Music music;
 	private final OpenALEngine engine;

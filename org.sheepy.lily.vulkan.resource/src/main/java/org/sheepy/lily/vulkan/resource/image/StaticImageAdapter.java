@@ -1,7 +1,6 @@
 package org.sheepy.lily.vulkan.resource.image;
 
-import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
-
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
@@ -11,9 +10,11 @@ import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
 
+import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
+
 @Statefull
 @Adapter(scope = StaticImage.class)
-public class StaticImageAdapter extends Notifier implements IImageAdapter
+public class StaticImageAdapter extends Notifier implements IImageAdapter, IAllocableAdapter<InternalExecutionContext>
 {
 	private final StaticImage image;
 

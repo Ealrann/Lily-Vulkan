@@ -1,29 +1,34 @@
 package org.sheepy.lily.vulkan.process.graphic.renderpass;
 
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VK10;
 import org.lwjgl.vulkan.VkSubpassDependency;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
+import java.util.List;
+
 public final class VkSubpassDependencyAllocator
 {
-	public static VkSubpassDependency.Buffer allocate(	MemoryStack stack,
-														final List<Subpass> subpasses)
+	private EPipelineStage previousFinishStage;
+	private List<EAccess> previousFinishAccess;
+
+	public VkSubpassDependency.Buffer allocate(MemoryStack stack, final List<Subpass> subpasses)
 	{
+		previousFinishStage = EPipelineStage.TOP_OF_PIPE_BIT;
+		previousFinishAccess = List.of();
+
 		final int size = Math.max(1, subpasses.size());
 		final var dependencies = VkSubpassDependency.callocStack(size, stack);
 		if (subpasses.isEmpty() == false)
 		{
-			Subpass previousSubpass = null;
+
 			for (int i = 0; i < size; i++)
 			{
 				final var subpass = subpasses.get(i);
-				fillDependency(dependencies.get(), previousSubpass, subpass);
-				previousSubpass = subpass;
+				fillDependency(dependencies.get(), subpass);
 			}
 		}
 		else
@@ -34,16 +39,21 @@ public final class VkSubpassDependencyAllocator
 		return dependencies;
 	}
 
-	private static void fillDependency(	final VkSubpassDependency dependency,
-										final Subpass src,
-										final Subpass dst)
+	private void fillDependency(final VkSubpassDependency dependency, final Subpass subpass)
 	{
-		final int srcAccessMask = buildAccessMask(src);
-		final int dstAccessMask = buildAccessMask(src);
-		final int srcStageMask = buildStageMask(dst);
-		final int dstStageMask = buildStageMask(dst);
-		final int srcSubpassIndex = getSubpassIndex(src);
-		final int dstSubpassIndex = getSubpassIndex(dst);
+		final var worstWaitForStage = subpass.getWaitForStage();
+		final boolean usePrevious = previousFinishStage.getValue() < worstWaitForStage.getValue();
+
+		final var effectiveWaitStage = usePrevious ? previousFinishStage : worstWaitForStage;
+		final var effectiveWaitAccesses = usePrevious ? previousFinishAccess : subpass.getWaitForAccesses();
+
+		final int subpassIndex = subpass.getSubpassIndex();
+		final int srcStageMask = effectiveWaitStage.getValue();
+		final int srcAccessMask = buildAccessMask(effectiveWaitAccesses);
+		final int dstStageMask = subpass.getSyncStage().getValue();
+		final int dstAccessMask = buildAccessMask(subpass.getSyncAccesses());
+		final int srcSubpassIndex = subpassIndex - 1;
+		final int dstSubpassIndex = subpassIndex;
 
 		dependency.srcSubpass(srcSubpassIndex);
 		dependency.dstSubpass(dstSubpassIndex);
@@ -51,30 +61,24 @@ public final class VkSubpassDependencyAllocator
 		dependency.dstStageMask(dstStageMask);
 		dependency.srcAccessMask(srcAccessMask);
 		dependency.dstAccessMask(dstAccessMask);
+		dependency.dependencyFlags(VK10.VK_DEPENDENCY_BY_REGION_BIT);
+
+		previousFinishStage = subpass.getFinishStage();
+		previousFinishAccess = subpass.getFinishAccesses();
 	}
 
 	private static void fillEmptyDependency(final VkSubpassDependency dependency)
 	{
 		dependency.srcSubpass(-1);
 		dependency.dstSubpass(0);
-		dependency.srcStageMask(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT_VALUE);
+		dependency.srcStageMask(EPipelineStage.TOP_OF_PIPE_BIT_VALUE);
 		dependency.dstStageMask(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT_VALUE);
 		dependency.srcAccessMask(0);
 		dependency.dstAccessMask(EAccess.COLOR_ATTACHMENT_WRITE_BIT_VALUE);
 	}
 
-	private static int getSubpassIndex(final Subpass subpass)
+	private static int buildAccessMask(final List<EAccess> accesses)
 	{
-		return subpass != null ? subpass.getSubpassIndex() : -1;
-	}
-
-	private static int buildAccessMask(final Subpass subpass)
-	{
-		return subpass != null ? VulkanModelUtil.getEnumeratedFlag(subpass.getAccesses()) : 0;
-	}
-
-	private static int buildStageMask(final Subpass subpass)
-	{
-		return subpass != null ? VulkanModelUtil.getEnumeratedFlag(subpass.getStages()) : 0;
+		return accesses != null ? VulkanModelUtil.getEnumeratedFlag(accesses) : 0;
 	}
 }

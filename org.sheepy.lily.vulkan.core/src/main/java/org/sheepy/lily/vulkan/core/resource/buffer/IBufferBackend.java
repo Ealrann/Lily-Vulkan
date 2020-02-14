@@ -17,23 +17,23 @@ public interface IBufferBackend
 	long getAddress();
 	long getMemoryAddress();
 
-	public long mapMemory();
-	public void unmapMemory();
+	long mapMemory();
+	void unmapMemory();
 
 	/**
 	 * Flush a memory range of the buffer to make it visible to the device
 	 *
-	 * @note Only required for host visible, non-coherent memory
+	 * @apiNote Only required for host visible, non-coherent memory
 	 *
 	 */
-	public void flush(MemoryStack stack, LogicalDevice logicalDevice);
+	void flush(MemoryStack stack, LogicalDevice logicalDevice);
 
 	/**
 	 * Invalidate a memory range of the buffer to make it visible to the host
 	 *
-	 * @note Only required for host visible, non-coherent memory
+	 * @apiNote Only required for host visible, non-coherent memory
 	 */
-	public void invalidate(MemoryStack stack, LogicalDevice logicalDevice);
+	void invalidate(MemoryStack stack, LogicalDevice logicalDevice);
 
 	void nextInstance();
 	long getInstanceOffset();

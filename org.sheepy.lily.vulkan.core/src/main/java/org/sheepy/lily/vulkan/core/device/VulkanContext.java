@@ -1,6 +1,5 @@
 package org.sheepy.lily.vulkan.core.device;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.sheepy.lily.game.core.allocation.GameAllocationContext;

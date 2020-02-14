@@ -1,20 +1,20 @@
 package org.sheepy.lily.vulkan.core.window;
 
-import static org.lwjgl.vulkan.KHRSurface.vkDestroySurfaceKHR;
+import org.lwjgl.vulkan.VkInstance;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.lwjgl.vulkan.VkInstance;
+import static org.lwjgl.vulkan.KHRSurface.vkDestroySurfaceKHR;
 
 public class VkSurface
 {
+	public final long ptr;
+
 	private final VkInstance vkInstance;
-
-	public long ptr;
-	private boolean destroyed = false;
-
 	private final List<ISurfaceListener> listeners = new ArrayList<>();
+
+	private boolean destroyed = false;
 
 	public VkSurface(VkInstance vkInstance, long surfacePtr)
 	{
@@ -57,7 +57,7 @@ public class VkSurface
 	}
 
 	@FunctionalInterface
-	public static interface ISurfaceListener
+	public interface ISurfaceListener
 	{
 		void onSurfaceDeprecation();
 	}

@@ -25,6 +25,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 
 /**
@@ -160,6 +161,11 @@ public class DescriptorPkgItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
+				 GraphicFactory.eINSTANCE.createAttachmentDescriptor()));
 
 		newChildDescriptors.add
 			(createChildParameter

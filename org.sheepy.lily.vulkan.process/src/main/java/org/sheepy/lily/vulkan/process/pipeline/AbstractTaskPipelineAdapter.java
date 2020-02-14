@@ -24,8 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Statefull
-public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext>
-		implements IAllocableAdapter<T>, IPipelineAdapter
+public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext> implements IAllocableAdapter<T>,
+																						IPipelineAdapter
 {
 	private final TaskObserver taskRegister = new TaskObserver(List.of(ProcessPackage.Literals.ITASK_PIPELINE__TASK_PKG,
 																	   ProcessPackage.Literals.TASK_PKG__TASKS));
@@ -62,7 +62,6 @@ public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext>
 			recordNeeded = true;
 		}
 	}
-
 
 	@Override
 	public final void update(int index)
@@ -115,8 +114,7 @@ public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext>
 			{
 				final var taskStage = wrapper.getStage();
 
-				if ((taskStage == null && currentStage == pipelineStage)
-						|| (taskStage == currentStage))
+				if ((taskStage == null && currentStage == pipelineStage) || (taskStage == currentStage))
 				{
 					wrapper.record(context);
 				}
@@ -226,7 +224,7 @@ public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext>
 		public TaskWrapper(T task, ECommandStage pipelineStage)
 		{
 			this.task = task;
-			this.adapter = task.<IPipelineTaskAdapter<T>>adaptNotNullGeneric(IPipelineTaskAdapter.class);
+			this.adapter = task.adaptNotNullGeneric(IPipelineTaskAdapter.class);
 			this.stage = computeStage(pipelineStage);
 		}
 

@@ -1,8 +1,7 @@
 import org.sheepy.lily.core.api.adapter.IAdapterProvider;
 import org.sheepy.lily.vulkan.process.graphic.Adapters;
 
-module org.sheepy.lily.vulkan.process.graphic
-{
+module org.sheepy.lily.vulkan.process.graphic {
 	requires transitive org.sheepy.lily.vulkan.api;
 
 	requires org.sheepy.lily.vulkan.core;

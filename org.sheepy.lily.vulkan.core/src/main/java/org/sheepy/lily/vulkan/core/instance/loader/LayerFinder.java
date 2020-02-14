@@ -1,21 +1,19 @@
 package org.sheepy.lily.vulkan.core.instance.loader;
 
-import static org.lwjgl.vulkan.VK10.vkEnumerateInstanceLayerProperties;
+import org.lwjgl.PointerBuffer;
+import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkLayerProperties;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.lwjgl.PointerBuffer;
-import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkLayerProperties;
+import static org.lwjgl.vulkan.VK10.vkEnumerateInstanceLayerProperties;
 
 public final class LayerFinder
 {
-	public static PointerBuffer convertToPointerBuffer(	MemoryStack stack,
-														String[] requiredLayers,
-														boolean verbose)
+	public static PointerBuffer convertToPointerBuffer(MemoryStack stack, String[] requiredLayers, boolean verbose)
 	{
 		final Set<String> availableLayers = getAvailableLayers(stack, requiredLayers, verbose);
 		final List<String> selectedLayers = filterRequiredLayers(requiredLayers, availableLayers);
@@ -26,9 +24,8 @@ public final class LayerFinder
 
 	private static PointerBuffer convertToBuffer(MemoryStack stack, List<String> selectedLayers)
 	{
-		PointerBuffer res;
 		final int size = selectedLayers.size();
-		res = stack.mallocPointer(size);
+		final var res = stack.mallocPointer(size);
 		for (int i = 0; i < size; i++)
 		{
 			res.put(stack.UTF8(selectedLayers.get(i)));
@@ -37,8 +34,7 @@ public final class LayerFinder
 		return res;
 	}
 
-	private static List<String> filterRequiredLayers(	String[] requiredLayers,
-														Set<String> availableLayers)
+	private static List<String> filterRequiredLayers(String[] requiredLayers, Set<String> availableLayers)
 	{
 		final List<String> selectedLayers = new ArrayList<>();
 		for (final String layer : requiredLayers)
@@ -55,9 +51,7 @@ public final class LayerFinder
 		return selectedLayers;
 	}
 
-	private static Set<String> getAvailableLayers(	MemoryStack stack,
-													String[] requiredLayers,
-													boolean verbose)
+	private static Set<String> getAvailableLayers(MemoryStack stack, String[] requiredLayers, boolean verbose)
 	{
 		final Set<String> res = new HashSet<>();
 		final int[] ip = new int[1];
@@ -87,7 +81,7 @@ public final class LayerFinder
 
 			if (verbose)
 			{
-				System.out.println("");
+				System.out.println();
 			}
 		}
 

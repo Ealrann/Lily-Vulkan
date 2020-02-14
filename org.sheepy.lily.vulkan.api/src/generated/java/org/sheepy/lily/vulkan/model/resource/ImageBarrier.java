@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
+import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 
 /**
@@ -27,12 +28,12 @@ public interface ImageBarrier extends AbstractImageBarrier
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Image</em>' reference.
-	 * @see #setImage(Image)
+	 * @see #setImage(IImage)
 	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getImageBarrier_Image()
 	 * @model required="true"
 	 * @generated
 	 */
-	Image getImage();
+	IImage getImage();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.ImageBarrier#getImage <em>Image</em>}' reference.
@@ -42,6 +43,6 @@ public interface ImageBarrier extends AbstractImageBarrier
 	 * @see #getImage()
 	 * @generated
 	 */
-	void setImage(Image value);
+	void setImage(IImage value);
 
 } // ImageBarrier

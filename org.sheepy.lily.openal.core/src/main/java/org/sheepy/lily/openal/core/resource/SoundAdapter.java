@@ -1,8 +1,8 @@
 package org.sheepy.lily.openal.core.resource;
 
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.resource.IResourceAdapter;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.resource.Sound;
 import org.sheepy.lily.game.api.allocation.IGameAllocationContext;
@@ -17,7 +17,7 @@ import org.sheepy.lily.openal.model.openal.OpenALEngine;
 
 @Statefull
 @Adapter(scope = Sound.class)
-public final class SoundAdapter implements IAudioAdapter, IResourceAdapter<IGameAllocationContext>
+public final class SoundAdapter implements IAudioAdapter, IAllocableAdapter<IGameAllocationContext>
 {
 	private final Sound sound;
 	private final OpenALEngine engine;

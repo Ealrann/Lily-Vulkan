@@ -209,6 +209,11 @@ public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditing
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.TASK_PKG__TASKS,
+				 GraphicFactory.eINSTANCE.createBlitTask()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PKG__TASKS,
 				 GraphicFactory.eINSTANCE.createDrawIndexed()));
 
 		newChildDescriptors.add

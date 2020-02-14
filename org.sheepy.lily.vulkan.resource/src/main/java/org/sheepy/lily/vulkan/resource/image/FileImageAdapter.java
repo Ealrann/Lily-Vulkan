@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.resource.image;
 
 import org.joml.Vector2ic;
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -17,7 +18,7 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
 @Statefull
 @Adapter(scope = FileImage.class)
-public class FileImageAdapter extends Notifier implements IImageAdapter
+public class FileImageAdapter extends Notifier implements IImageAdapter, IAllocableAdapter<InternalExecutionContext>
 {
 	private final STBImageLoader imageLoader = new STBImageLoader();
 	private final ImageBuffer imageBuffer;

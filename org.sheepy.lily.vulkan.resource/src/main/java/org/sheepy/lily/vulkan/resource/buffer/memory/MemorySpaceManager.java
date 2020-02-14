@@ -73,10 +73,9 @@ public class MemorySpaceManager
 
 	public void releaseMemory(MemorySpace space)
 	{
+		final int index = memoryMap.indexOf(space);
 		MemorySpace prev = null;
 		MemorySpace next = null;
-
-		final int index = memoryMap.indexOf(space);
 
 		if (index > 0)
 		{
@@ -113,8 +112,8 @@ public class MemorySpaceManager
 	{
 		private final boolean used;
 
-		private long size = 0;
-		private long offset = 0;
+		private long size;
+		private long offset;
 
 		private MemorySpace(long size, long offset, boolean used)
 		{

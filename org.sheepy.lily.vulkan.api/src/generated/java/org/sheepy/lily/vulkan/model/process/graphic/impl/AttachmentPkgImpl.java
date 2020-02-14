@@ -32,24 +32,14 @@ import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentPkgImpl#getExtraAttachments <em>Extra Attachments</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentPkgImpl#getColorAttachment <em>Color Attachment</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentPkgImpl#getExtraAttachments <em>Extra Attachments</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class AttachmentPkgImpl extends LilyEObject implements AttachmentPkg
 {
-	/**
-	 * The cached value of the '{@link #getExtraAttachments() <em>Extra Attachments</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExtraAttachments()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ExtraAttachment> extraAttachments;
-
 	/**
 	 * The cached value of the '{@link #getColorAttachment() <em>Color Attachment</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -59,6 +49,16 @@ public class AttachmentPkgImpl extends LilyEObject implements AttachmentPkg
 	 * @ordered
 	 */
 	protected SwapImageAttachment colorAttachment;
+
+	/**
+	 * The cached value of the '{@link #getExtraAttachments() <em>Extra Attachments</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtraAttachments()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ExtraAttachment> extraAttachments;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -156,10 +156,10 @@ public class AttachmentPkgImpl extends LilyEObject implements AttachmentPkg
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
-				return ((InternalEList<?>)getExtraAttachments()).basicRemove(otherEnd, msgs);
 			case GraphicPackage.ATTACHMENT_PKG__COLOR_ATTACHMENT:
 				return basicSetColorAttachment(null, msgs);
+			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
+				return ((InternalEList<?>)getExtraAttachments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -174,10 +174,10 @@ public class AttachmentPkgImpl extends LilyEObject implements AttachmentPkg
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
-				return getExtraAttachments();
 			case GraphicPackage.ATTACHMENT_PKG__COLOR_ATTACHMENT:
 				return getColorAttachment();
+			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
+				return getExtraAttachments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -193,12 +193,12 @@ public class AttachmentPkgImpl extends LilyEObject implements AttachmentPkg
 	{
 		switch (featureID)
 		{
+			case GraphicPackage.ATTACHMENT_PKG__COLOR_ATTACHMENT:
+				setColorAttachment((SwapImageAttachment)newValue);
+				return;
 			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
 				getExtraAttachments().clear();
 				getExtraAttachments().addAll((Collection<? extends ExtraAttachment>)newValue);
-				return;
-			case GraphicPackage.ATTACHMENT_PKG__COLOR_ATTACHMENT:
-				setColorAttachment((SwapImageAttachment)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -214,11 +214,11 @@ public class AttachmentPkgImpl extends LilyEObject implements AttachmentPkg
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
-				getExtraAttachments().clear();
-				return;
 			case GraphicPackage.ATTACHMENT_PKG__COLOR_ATTACHMENT:
 				setColorAttachment((SwapImageAttachment)null);
+				return;
+			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
+				getExtraAttachments().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -234,10 +234,10 @@ public class AttachmentPkgImpl extends LilyEObject implements AttachmentPkg
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
-				return extraAttachments != null && !extraAttachments.isEmpty();
 			case GraphicPackage.ATTACHMENT_PKG__COLOR_ATTACHMENT:
 				return colorAttachment != null;
+			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
+				return extraAttachments != null && !extraAttachments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

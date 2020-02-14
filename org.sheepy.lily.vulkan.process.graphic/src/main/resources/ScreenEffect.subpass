@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphic:Subpass xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:graphic="org.sheepy.lily.vulkan.model.process.graphic" xmlns:graphicpipeline="org.sheepy.vulkan.model.graphicpipeline" xmlns:process="org.sheepy.lily.vulkan.model.process" xmlns:resource="org.sheepy.lily.vulkan.model.resource" xmlns:resource_1="org.sheepy.lily.core.model.resource" name="PostEffect" waitForStage="COLOR_ATTACHMENT_OUTPUT_BIT" syncStage="FRAGMENT_SHADER_BIT" finishStage="COLOR_ATTACHMENT_OUTPUT_BIT">
+  <resourcePkg>
+    <resources xsi:type="resource:Shader" name="ScreenVertex">
+      <file xsi:type="resource_1:StringModuleResource" path="screen_effect.vert.spv" moduleName="org.sheepy.lily.vulkan.process.graphic"/>
+    </resources>
+    <resources xsi:type="resource:Shader" name="ScreenFragment" stage="FRAGMENT_BIT">
+      <file xsi:type="resource_1:StringModuleResource" path="screen_effect.frag.spv" moduleName="org.sheepy.lily.vulkan.process.graphic"/>
+    </resources>
+  </resourcePkg>
+  <descriptorPkg>
+    <descriptors xsi:type="graphic:AttachmentDescriptor" name="Scene" type="INPUT_ATTACHMENT">
+      <shaderStages>FRAGMENT_BIT</shaderStages>
+    </descriptors>
+  </descriptorPkg>
+  <attachmantRefPkg/>
+  <pipelinePkg>
+    <pipelines xsi:type="graphic:GraphicsPipeline" layout="//@pipelinePkg/@pipelines.0/@descriptorSetPkg/@descriptorSets.0" shaders="//@resourcePkg/@resources.1 //@resourcePkg/@resources.0">
+      <taskPkg>
+        <tasks xsi:type="process:BindDescriptorSets" descriptorSets="//@pipelinePkg/@pipelines.0/@descriptorSetPkg/@descriptorSets.0"/>
+        <tasks xsi:type="graphic:Draw" vertexCount="3"/>
+      </taskPkg>
+      <descriptorSetPkg>
+        <descriptorSets name="SwapDS" descriptors="//@descriptorPkg/@descriptors.0"/>
+      </descriptorSetPkg>
+      <viewportState xsi:type="graphicpipeline:StaticViewportState">
+        <viewports/>
+        <scissors/>
+      </viewportState>
+      <inputAssembly/>
+      <rasterizer/>
+      <colorBlend>
+        <attachments/>
+      </colorBlend>
+      <vertexInputState/>
+    </pipelines>
+  </pipelinePkg>
+  <waitForAccesses>COLOR_ATTACHMENT_WRITE_BIT</waitForAccesses>
+  <syncAccesses>INPUT_ATTACHMENT_READ_BIT</syncAccesses>
+  <finishAccesses>COLOR_ATTACHMENT_WRITE_BIT</finishAccesses>
+</graphic:Subpass>

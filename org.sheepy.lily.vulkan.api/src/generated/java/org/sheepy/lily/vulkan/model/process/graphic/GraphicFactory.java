@@ -77,6 +77,15 @@ public interface GraphicFactory extends EFactory
 	DepthAttachment createDepthAttachment();
 
 	/**
+	 * Returns a new object of class '<em>Color Attachment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Color Attachment</em>'.
+	 * @generated
+	 */
+	ColorAttachment createColorAttachment();
+
+	/**
 	 * Returns a new object of class '<em>Attachment Pkg</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -156,6 +165,15 @@ public interface GraphicFactory extends EFactory
 	 * @generated
 	 */
 	BlitToSwapImage createBlitToSwapImage();
+
+	/**
+	 * Returns a new object of class '<em>Blit Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Blit Task</em>'.
+	 * @generated
+	 */
+	BlitTask createBlitTask();
 
 	/**
 	 * Returns a new object of class '<em>Draw Indexed</em>'.
@@ -246,6 +264,15 @@ public interface GraphicFactory extends EFactory
 	 * @generated
 	 */
 	BindIndexBuffer createBindIndexBuffer();
+
+	/**
+	 * Returns a new object of class '<em>Attachment Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attachment Descriptor</em>'.
+	 * @generated
+	 */
+	AttachmentDescriptor createAttachmentDescriptor();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -244,7 +244,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 		for (final IProcess process : engine.getProcesses())
 		{
 			final var adapter = process.adaptNotNull(InternalProcessAdapter.class);
-			adapter.start(vulkanContext);
+			adapter.start(vulkanContext, allocator);
 		}
 	}
 

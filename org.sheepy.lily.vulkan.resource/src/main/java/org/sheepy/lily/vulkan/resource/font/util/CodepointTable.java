@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.resource.font.util;
 
+import org.sheepy.lily.vulkan.core.resource.font.IFontTableInfo.TableData;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.sheepy.lily.vulkan.core.resource.font.IFontTableInfo.TableData;
 
 final class CodepointTable
 {
@@ -28,15 +28,12 @@ final class CodepointTable
 	{
 		assert contains(codepoint);
 
-		if (loadedChars != null)
+		for (int i = 0; i < loadedChars.size(); i++)
 		{
-			for (int i = 0; i < loadedChars.size(); i++)
+			final var currentCodepoint = loadedChars.get(i);
+			if (currentCodepoint.codepoint == codepoint)
 			{
-				final var currentCodepoint = loadedChars.get(i);
-				if (currentCodepoint.codepoint == codepoint)
-				{
-					return i;
-				}
+				return i;
 			}
 		}
 

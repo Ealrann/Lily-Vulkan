@@ -168,7 +168,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	/**
 	 * Flush a memory range of the buffer to make it visible to the device
 	 *
-	 * @note Only required for non-coherent memory
+	 * @apiNote Only required for non-coherent memory
 	 *
 	 */
 	@Override
@@ -183,7 +183,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	/**
 	 * Flush a memory range of the buffer to make it visible to the device
 	 *
-	 * @note Only required for non-coherent memory
+	 * @apiNote Only required for non-coherent memory
 	 *
 	 */
 	public void flush(MemoryStack stack, LogicalDevice logicalDevice, int instance)
@@ -199,7 +199,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	/**
 	 * Invalidate a memory range of the buffer to make it visible to the host
 	 *
-	 * @note Only required for non-coherent memory
+	 * @apiNote Only required for non-coherent memory
 	 */
 	@Override
 	public void invalidate(MemoryStack stack, LogicalDevice logicalDevice)
@@ -217,7 +217,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	/**
 	 * Invalidate a memory range of the buffer to make it visible to the host
 	 *
-	 * @note Only required for non-coherent memory
+	 * @apiNote Only required for non-coherent memory
 	 */
 	public void invalidate(MemoryStack stack, LogicalDevice logicalDevice, int instance)
 	{

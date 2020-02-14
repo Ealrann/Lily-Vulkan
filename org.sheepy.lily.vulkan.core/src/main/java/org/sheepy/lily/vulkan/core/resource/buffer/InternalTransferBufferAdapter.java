@@ -14,12 +14,12 @@ public interface InternalTransferBufferAdapter extends ITransferBufferAdapter
 
 	IFlushRecorder recordFlush();
 
-	static interface IFlushRecorder
+	interface IFlushRecorder
 	{
 		void flush(IRecordContext context);
 	}
 
-	static interface IDataFlowCommand
+	interface IDataFlowCommand
 	{
 		IMemoryTicket getMemoryTicket();
 		EFlowType getFlowType();
@@ -27,7 +27,7 @@ public interface InternalTransferBufferAdapter extends ITransferBufferAdapter
 		Consumer<IMemoryTicket> getPostAction();
 	}
 
-	static enum EFlowType
+	enum EFlowType
 	{
 		PUSH,
 		FETCH

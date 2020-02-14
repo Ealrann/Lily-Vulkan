@@ -167,7 +167,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="buffer" eType="#//IBuffer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImageBarrier" eSuperTypes="../../org.sheepy.vulkan.model/model/barrier.ecore#//AbstractImageBarrier">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="image" lowerBound="1" eType="#//Image"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="image" lowerBound="1" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/resource.ecore#//IImage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Shader" eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="file" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/resource.ecore#//FileResource"

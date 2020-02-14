@@ -108,4 +108,11 @@
                org.eclipse.emf.edit.provider.IItemPropertySource"/>
    </extension>
 
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <!-- @generated LilyVulkan -->
+      <extender
+            uri="org.sheepy.lily.core.model.resource"
+            class="org.sheepy.lily.vulkan.model.process.graphic.provider.GraphicItemProviderAdapterFactory$ResourceChildCreationExtender"/>
+   </extension>
+
 </plugin>

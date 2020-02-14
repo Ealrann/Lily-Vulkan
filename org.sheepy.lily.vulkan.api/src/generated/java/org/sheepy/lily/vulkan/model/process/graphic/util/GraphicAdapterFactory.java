@@ -11,8 +11,11 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 
+import org.sheepy.lily.core.model.resource.IImage;
+import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
+import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
@@ -121,6 +124,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createDepthAttachmentAdapter();
 			}
 			@Override
+			public Adapter caseColorAttachment(ColorAttachment object)
+			{
+				return createColorAttachmentAdapter();
+			}
+			@Override
 			public Adapter caseAttachmentPkg(AttachmentPkg object)
 			{
 				return createAttachmentPkgAdapter();
@@ -171,9 +179,19 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createSwapImageBarrierAdapter();
 			}
 			@Override
+			public Adapter caseAbstractBlitTask(AbstractBlitTask object)
+			{
+				return createAbstractBlitTaskAdapter();
+			}
+			@Override
 			public Adapter caseBlitToSwapImage(BlitToSwapImage object)
 			{
 				return createBlitToSwapImageAdapter();
+			}
+			@Override
+			public Adapter caseBlitTask(BlitTask object)
+			{
+				return createBlitTaskAdapter();
 			}
 			@Override
 			public Adapter caseDrawIndexed(DrawIndexed object)
@@ -226,6 +244,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createBindIndexBufferAdapter();
 			}
 			@Override
+			public Adapter caseAttachmentDescriptor(AttachmentDescriptor object)
+			{
+				return createAttachmentDescriptorAdapter();
+			}
+			@Override
 			public Adapter caseConfiguration(Configuration object)
 			{
 				return createConfigurationAdapter();
@@ -234,6 +257,16 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
+			}
+			@Override
+			public Adapter caseIResource(IResource object)
+			{
+				return createIResourceAdapter();
+			}
+			@Override
+			public Adapter caseIImage(IImage object)
+			{
+				return createIImageAdapter();
 			}
 			@Override
 			public Adapter caseIResourceContainer(IResourceContainer object)
@@ -289,6 +322,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIPipelineTask(IPipelineTask object)
 			{
 				return createIPipelineTaskAdapter();
+			}
+			@Override
+			public Adapter caseIDescriptor(IDescriptor object)
+			{
+				return createIDescriptorAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -397,6 +435,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createDepthAttachmentAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment <em>Color Attachment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment
+	 * @generated
+	 */
+	public Adapter createColorAttachmentAdapter()
 	{
 		return null;
 	}
@@ -552,6 +605,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask <em>Abstract Blit Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask
+	 * @generated
+	 */
+	public Adapter createAbstractBlitTaskAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage <em>Blit To Swap Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -562,6 +630,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createBlitToSwapImageAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.BlitTask <em>Blit Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BlitTask
+	 * @generated
+	 */
+	public Adapter createBlitTaskAdapter()
 	{
 		return null;
 	}
@@ -717,6 +800,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescriptor <em>Attachment Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescriptor
+	 * @generated
+	 */
+	public Adapter createAttachmentDescriptorAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -742,6 +840,36 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createLNamedElementAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.resource.IResource <em>IResource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.core.model.resource.IResource
+	 * @generated
+	 */
+	public Adapter createIResourceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.resource.IImage <em>IImage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.core.model.resource.IImage
+	 * @generated
+	 */
+	public Adapter createIImageAdapter()
 	{
 		return null;
 	}
@@ -907,6 +1035,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIPipelineTaskAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IDescriptor <em>IDescriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.IDescriptor
+	 * @generated
+	 */
+	public Adapter createIDescriptorAdapter()
 	{
 		return null;
 	}

@@ -17,7 +17,7 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer<InternalEx
 {
 	protected final InternalExecutionContext executionContext;
 	private final MemoryStack stack;
-	private List<VkSemaphore> semaphoreToSignal = null;
+	private final List<VkSemaphore> semaphoreToSignal;
 
 	public SingleTimeCommand(InternalExecutionContext executionContext)
 	{

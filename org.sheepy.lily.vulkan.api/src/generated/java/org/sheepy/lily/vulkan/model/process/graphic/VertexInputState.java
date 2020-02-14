@@ -31,7 +31,7 @@ public interface VertexInputState extends ILilyEObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Input Descriptor</em>' containment reference list.
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getVertexInputState_InputDescriptor()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<InputDescriptor> getInputDescriptor();

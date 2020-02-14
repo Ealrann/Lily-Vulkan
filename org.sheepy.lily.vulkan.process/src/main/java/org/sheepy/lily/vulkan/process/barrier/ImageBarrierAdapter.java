@@ -15,30 +15,15 @@ import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 @Adapter(scope = ImageBarrier.class)
 public class ImageBarrierAdapter implements IImageBarrierAdapter
 {
-	private final VkImageBarrier vkBarrier;
 	private final INotificationListener imageListener = this::imageChanged;
 	private final ImageBarrier imageBarrier;
 
+	private VkImageBarrier vkBarrier;
 	private boolean changed = true;
 
 	public ImageBarrierAdapter(ImageBarrier imageBarrier)
 	{
 		this.imageBarrier = imageBarrier;
-		final var image = imageBarrier.getImage();
-
-		final int imageFormat = image.getFormat().getValue();
-		final var srcLayout = imageBarrier.getSrcLayout();
-		final var dstLayout = imageBarrier.getDstLayout();
-		final var aspectMask = ImageUtil.getAspectMask(dstLayout, imageFormat);
-		final int srcAccessMask = VulkanModelUtil.getEnumeratedFlag(imageBarrier.getSrcAccessMask());
-		final int dstAccessMask = VulkanModelUtil.getEnumeratedFlag(imageBarrier.getDstAccessMask());
-
-		vkBarrier = new VkImageBarrier(image,
-									   srcLayout.getValue(),
-									   dstLayout.getValue(),
-									   srcAccessMask,
-									   dstAccessMask,
-									   aspectMask);
 	}
 
 	@NotifyChanged(featureIds = VulkanResourcePackage.IMAGE_BARRIER__IMAGE)
@@ -52,6 +37,24 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter
 	{
 		final var adapter = imageBarrier.getImage().adapt(IImageAdapter.class);
 		adapter.addListener(imageListener, IImageAdapter.Features.Image.ordinal());
+
+		final var image = imageBarrier.getImage();
+		final var imageAdapter = image.adapt(IImageAdapter.class);
+		final var vkImage = imageAdapter.getVkImage();
+
+		final int imageFormat = vkImage.format;
+		final var srcLayout = imageBarrier.getSrcLayout();
+		final var dstLayout = imageBarrier.getDstLayout();
+		final var aspectMask = ImageUtil.getAspectMask(dstLayout, imageFormat);
+		final int srcAccessMask = VulkanModelUtil.getEnumeratedFlag(imageBarrier.getSrcAccessMask());
+		final int dstAccessMask = VulkanModelUtil.getEnumeratedFlag(imageBarrier.getDstAccessMask());
+
+		vkBarrier = new VkImageBarrier(srcLayout.getValue(),
+									   dstLayout.getValue(),
+									   srcAccessMask,
+									   dstAccessMask,
+									   aspectMask,
+									   vkImage.mipLevels);
 	}
 
 	@Dispose

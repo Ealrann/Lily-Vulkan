@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -292,7 +293,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachment()
 	 * @generated
 	 */
-	int ATTACHMENT = 10;
+	int ATTACHMENT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -392,7 +393,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getExtraAttachment()
 	 * @generated
 	 */
-	int EXTRA_ATTACHMENT = 12;
+	int EXTRA_ATTACHMENT = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -712,6 +713,124 @@ public interface GraphicPackage extends EPackage
 	int DEPTH_ATTACHMENT_OPERATION_COUNT = EXTRA_ATTACHMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorAttachmentImpl <em>Color Attachment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.ColorAttachmentImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorAttachment()
+	 * @generated
+	 */
+	int COLOR_ATTACHMENT = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_ATTACHMENT__NAME = EXTRA_ATTACHMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Samples</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_ATTACHMENT__SAMPLES = EXTRA_ATTACHMENT__SAMPLES;
+
+	/**
+	 * The feature id for the '<em><b>Load Op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_ATTACHMENT__LOAD_OP = EXTRA_ATTACHMENT__LOAD_OP;
+
+	/**
+	 * The feature id for the '<em><b>Store Op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_ATTACHMENT__STORE_OP = EXTRA_ATTACHMENT__STORE_OP;
+
+	/**
+	 * The feature id for the '<em><b>Stencil Load Op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_ATTACHMENT__STENCIL_LOAD_OP = EXTRA_ATTACHMENT__STENCIL_LOAD_OP;
+
+	/**
+	 * The feature id for the '<em><b>Stencil Store Op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_ATTACHMENT__STENCIL_STORE_OP = EXTRA_ATTACHMENT__STENCIL_STORE_OP;
+
+	/**
+	 * The feature id for the '<em><b>Initial Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_ATTACHMENT__INITIAL_LAYOUT = EXTRA_ATTACHMENT__INITIAL_LAYOUT;
+
+	/**
+	 * The feature id for the '<em><b>Final Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_ATTACHMENT__FINAL_LAYOUT = EXTRA_ATTACHMENT__FINAL_LAYOUT;
+
+	/**
+	 * The feature id for the '<em><b>Clear Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_ATTACHMENT__CLEAR_VALUE = EXTRA_ATTACHMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_ATTACHMENT__USAGES = EXTRA_ATTACHMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Color Attachment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_ATTACHMENT_FEATURE_COUNT = EXTRA_ATTACHMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Color Attachment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_ATTACHMENT_OPERATION_COUNT = EXTRA_ATTACHMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentPkgImpl <em>Attachment Pkg</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -719,16 +838,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentPkg()
 	 * @generated
 	 */
-	int ATTACHMENT_PKG = 6;
-
-	/**
-	 * The feature id for the '<em><b>Extra Attachments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTACHMENT_PKG__EXTRA_ATTACHMENTS = 0;
+	int ATTACHMENT_PKG = 7;
 
 	/**
 	 * The feature id for the '<em><b>Color Attachment</b></em>' containment reference.
@@ -737,7 +847,16 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_PKG__COLOR_ATTACHMENT = 1;
+	int ATTACHMENT_PKG__COLOR_ATTACHMENT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Extra Attachments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT_PKG__EXTRA_ATTACHMENTS = 1;
 
 	/**
 	 * The number of structural features of the '<em>Attachment Pkg</em>' class.
@@ -765,7 +884,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpass()
 	 * @generated
 	 */
-	int SUBPASS = 7;
+	int SUBPASS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -813,31 +932,13 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS__SUBPASS_INDEX = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Stages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBPASS__STAGES = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Accesses</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBPASS__ACCESSES = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 4;
-
-	/**
 	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__PIPELINE_PKG = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 5;
+	int SUBPASS__PIPELINE_PKG = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Bind Point</b></em>' attribute.
@@ -846,7 +947,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__BIND_POINT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 6;
+	int SUBPASS__BIND_POINT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Scene Part</b></em>' reference.
@@ -855,7 +956,61 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__SCENE_PART = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 7;
+	int SUBPASS__SCENE_PART = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Wait For Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__WAIT_FOR_STAGE = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Sync Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__SYNC_STAGE = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Finish Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__FINISH_STAGE = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Wait For Accesses</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__WAIT_FOR_ACCESSES = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Sync Accesses</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__SYNC_ACCESSES = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Finish Accesses</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__FINISH_ACCESSES = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of structural features of the '<em>Subpass</em>' class.
@@ -864,7 +1019,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS_FEATURE_COUNT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 8;
+	int SUBPASS_FEATURE_COUNT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of operations of the '<em>Subpass</em>' class.
@@ -883,7 +1038,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentRefPkg()
 	 * @generated
 	 */
-	int ATTACHMENT_REF_PKG = 8;
+	int ATTACHMENT_REF_PKG = 9;
 
 	/**
 	 * The feature id for the '<em><b>Attachment Refs</b></em>' containment reference list.
@@ -920,7 +1075,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentRef()
 	 * @generated
 	 */
-	int ATTACHMENT_REF = 9;
+	int ATTACHMENT_REF = 10;
 
 	/**
 	 * The feature id for the '<em><b>Attachment</b></em>' reference.
@@ -941,13 +1096,22 @@ public interface GraphicPackage extends EPackage
 	int ATTACHMENT_REF__LAYOUT = 1;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT_REF__TYPE = 2;
+
+	/**
 	 * The number of structural features of the '<em>Attachment Ref</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_REF_FEATURE_COUNT = 2;
+	int ATTACHMENT_REF_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Attachment Ref</em>' class.
@@ -966,7 +1130,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSwapImageAttachment()
 	 * @generated
 	 */
-	int SWAP_IMAGE_ATTACHMENT = 11;
+	int SWAP_IMAGE_ATTACHMENT = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1066,7 +1230,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicProcess()
 	 * @generated
 	 */
-	int GRAPHIC_PROCESS = 13;
+	int GRAPHIC_PROCESS = 14;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -1247,7 +1411,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicsPipeline()
 	 * @generated
 	 */
-	int GRAPHICS_PIPELINE = 14;
+	int GRAPHICS_PIPELINE = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1446,7 +1610,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSwapImageBarrier()
 	 * @generated
 	 */
-	int SWAP_IMAGE_BARRIER = 15;
+	int SWAP_IMAGE_BARRIER = 16;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1512,14 +1676,14 @@ public interface GraphicPackage extends EPackage
 	int SWAP_IMAGE_BARRIER_OPERATION_COUNT = BarrierPackage.ABSTRACT_IMAGE_BARRIER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl <em>Blit To Swap Image</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AbstractBlitTaskImpl <em>Abstract Blit Task</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getBlitToSwapImage()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AbstractBlitTaskImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAbstractBlitTask()
 	 * @generated
 	 */
-	int BLIT_TO_SWAP_IMAGE = 16;
+	int ABSTRACT_BLIT_TASK = 17;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1528,7 +1692,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BLIT_TO_SWAP_IMAGE__NAME = ProcessPackage.IPIPELINE_TASK__NAME;
+	int ABSTRACT_BLIT_TASK__NAME = ProcessPackage.IPIPELINE_TASK__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -1537,16 +1701,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BLIT_TO_SWAP_IMAGE__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Image</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLIT_TO_SWAP_IMAGE__IMAGE = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
+	int ABSTRACT_BLIT_TASK__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Filter</b></em>' attribute.
@@ -1555,7 +1710,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BLIT_TO_SWAP_IMAGE__FILTER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+	int ABSTRACT_BLIT_TASK__FILTER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Clear Color</b></em>' attribute.
@@ -1564,7 +1719,89 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BLIT_TO_SWAP_IMAGE__CLEAR_COLOR = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
+	int ABSTRACT_BLIT_TASK__CLEAR_COLOR = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Src Image</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_BLIT_TASK__SRC_IMAGE = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Abstract Blit Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_BLIT_TASK_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Abstract Blit Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_BLIT_TASK_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl <em>Blit To Swap Image</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getBlitToSwapImage()
+	 * @generated
+	 */
+	int BLIT_TO_SWAP_IMAGE = 18;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TO_SWAP_IMAGE__NAME = ABSTRACT_BLIT_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TO_SWAP_IMAGE__ENABLED = ABSTRACT_BLIT_TASK__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Filter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TO_SWAP_IMAGE__FILTER = ABSTRACT_BLIT_TASK__FILTER;
+
+	/**
+	 * The feature id for the '<em><b>Clear Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TO_SWAP_IMAGE__CLEAR_COLOR = ABSTRACT_BLIT_TASK__CLEAR_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Src Image</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TO_SWAP_IMAGE__SRC_IMAGE = ABSTRACT_BLIT_TASK__SRC_IMAGE;
 
 	/**
 	 * The number of structural features of the '<em>Blit To Swap Image</em>' class.
@@ -1573,7 +1810,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BLIT_TO_SWAP_IMAGE_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 3;
+	int BLIT_TO_SWAP_IMAGE_FEATURE_COUNT = ABSTRACT_BLIT_TASK_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Blit To Swap Image</em>' class.
@@ -1582,7 +1819,89 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BLIT_TO_SWAP_IMAGE_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
+	int BLIT_TO_SWAP_IMAGE_OPERATION_COUNT = ABSTRACT_BLIT_TASK_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BlitTaskImpl <em>Blit Task</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.BlitTaskImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getBlitTask()
+	 * @generated
+	 */
+	int BLIT_TASK = 19;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TASK__NAME = ABSTRACT_BLIT_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TASK__ENABLED = ABSTRACT_BLIT_TASK__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Filter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TASK__FILTER = ABSTRACT_BLIT_TASK__FILTER;
+
+	/**
+	 * The feature id for the '<em><b>Clear Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TASK__CLEAR_COLOR = ABSTRACT_BLIT_TASK__CLEAR_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Src Image</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TASK__SRC_IMAGE = ABSTRACT_BLIT_TASK__SRC_IMAGE;
+
+	/**
+	 * The feature id for the '<em><b>Dst Image</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TASK__DST_IMAGE = ABSTRACT_BLIT_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Blit Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TASK_FEATURE_COUNT = ABSTRACT_BLIT_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Blit Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TASK_OPERATION_COUNT = ABSTRACT_BLIT_TASK_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DrawIndexedImpl <em>Draw Indexed</em>}' class.
@@ -1592,7 +1911,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDrawIndexed()
 	 * @generated
 	 */
-	int DRAW_INDEXED = 17;
+	int DRAW_INDEXED = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1683,7 +2002,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDraw()
 	 * @generated
 	 */
-	int DRAW = 18;
+	int DRAW = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1765,7 +2084,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getVertexInputState()
 	 * @generated
 	 */
-	int VERTEX_INPUT_STATE = 19;
+	int VERTEX_INPUT_STATE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Input Descriptor</b></em>' containment reference list.
@@ -1802,7 +2121,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getInputDescriptor()
 	 * @generated
 	 */
-	int INPUT_DESCRIPTOR = 20;
+	int INPUT_DESCRIPTOR = 23;
 
 	/**
 	 * The feature id for the '<em><b>Input Rate</b></em>' attribute.
@@ -1857,7 +2176,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttributeDescription()
 	 * @generated
 	 */
-	int ATTRIBUTE_DESCRIPTION = 21;
+	int ATTRIBUTE_DESCRIPTION = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1912,7 +2231,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getBindVertexBuffer()
 	 * @generated
 	 */
-	int BIND_VERTEX_BUFFER = 22;
+	int BIND_VERTEX_BUFFER = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1976,7 +2295,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSetScissor()
 	 * @generated
 	 */
-	int SET_SCISSOR = 23;
+	int SET_SCISSOR = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2058,7 +2377,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSetViewport()
 	 * @generated
 	 */
-	int SET_VIEWPORT = 24;
+	int SET_VIEWPORT = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2158,7 +2477,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getVertexBinding()
 	 * @generated
 	 */
-	int VERTEX_BINDING = 25;
+	int VERTEX_BINDING = 28;
 
 	/**
 	 * The feature id for the '<em><b>Buffer</b></em>' reference.
@@ -2195,7 +2514,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getBindIndexBuffer()
 	 * @generated
 	 */
-	int BIND_INDEX_BUFFER = 26;
+	int BIND_INDEX_BUFFER = 29;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2250,6 +2569,80 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int BIND_INDEX_BUFFER_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptorImpl <em>Attachment Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptorImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentDescriptor()
+	 * @generated
+	 */
+	int ATTACHMENT_DESCRIPTOR = 30;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT_DESCRIPTOR__NAME = VulkanPackage.IDESCRIPTOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT_DESCRIPTOR__TYPE = VulkanPackage.IDESCRIPTOR__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT_DESCRIPTOR__SHADER_STAGES = VulkanPackage.IDESCRIPTOR__SHADER_STAGES;
+
+	/**
+	 * The feature id for the '<em><b>Attachment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT_DESCRIPTOR__ATTACHMENT = VulkanPackage.IDESCRIPTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Attachment Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT_DESCRIPTOR_FEATURE_COUNT = VulkanPackage.IDESCRIPTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Attachment Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT_DESCRIPTOR_OPERATION_COUNT = VulkanPackage.IDESCRIPTOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType <em>EAttachment Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getEAttachmentType()
+	 * @generated
+	 */
+	int EATTACHMENT_TYPE = 31;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration <em>Configuration</em>}'.
@@ -2477,6 +2870,38 @@ public interface GraphicPackage extends EPackage
 	EAttribute getDepthAttachment_Clear();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment <em>Color Attachment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Color Attachment</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment
+	 * @generated
+	 */
+	EClass getColorAttachment();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment#getClearValue <em>Clear Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Clear Value</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment#getClearValue()
+	 * @see #getColorAttachment()
+	 * @generated
+	 */
+	EAttribute getColorAttachment_ClearValue();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment#getUsages <em>Usages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Usages</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment#getUsages()
+	 * @see #getColorAttachment()
+	 * @generated
+	 */
+	EAttribute getColorAttachment_Usages();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg <em>Attachment Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2541,28 +2966,6 @@ public interface GraphicPackage extends EPackage
 	EAttribute getSubpass_SubpassIndex();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getStages <em>Stages</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Stages</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getStages()
-	 * @see #getSubpass()
-	 * @generated
-	 */
-	EAttribute getSubpass_Stages();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAccesses <em>Accesses</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Accesses</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAccesses()
-	 * @see #getSubpass()
-	 * @generated
-	 */
-	EAttribute getSubpass_Accesses();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getPipelinePkg <em>Pipeline Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2594,6 +2997,72 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EReference getSubpass_ScenePart();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getWaitForStage <em>Wait For Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Wait For Stage</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getWaitForStage()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EAttribute getSubpass_WaitForStage();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSyncStage <em>Sync Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Sync Stage</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSyncStage()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EAttribute getSubpass_SyncStage();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getFinishStage <em>Finish Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Finish Stage</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getFinishStage()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EAttribute getSubpass_FinishStage();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getWaitForAccesses <em>Wait For Accesses</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Wait For Accesses</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getWaitForAccesses()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EAttribute getSubpass_WaitForAccesses();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSyncAccesses <em>Sync Accesses</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Sync Accesses</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSyncAccesses()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EAttribute getSubpass_SyncAccesses();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getFinishAccesses <em>Finish Accesses</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Finish Accesses</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getFinishAccesses()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EAttribute getSubpass_FinishAccesses();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg <em>Attachment Ref Pkg</em>}'.
@@ -2647,6 +3116,17 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getAttachmentRef_Layout();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef#getType()
+	 * @see #getAttachmentRef()
+	 * @generated
+	 */
+	EAttribute getAttachmentRef_Type();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.Attachment <em>Attachment</em>}'.
@@ -2918,6 +3398,49 @@ public interface GraphicPackage extends EPackage
 	EClass getSwapImageBarrier();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask <em>Abstract Blit Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Abstract Blit Task</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask
+	 * @generated
+	 */
+	EClass getAbstractBlitTask();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask#getFilter <em>Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Filter</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask#getFilter()
+	 * @see #getAbstractBlitTask()
+	 * @generated
+	 */
+	EAttribute getAbstractBlitTask_Filter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask#getClearColor <em>Clear Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Clear Color</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask#getClearColor()
+	 * @see #getAbstractBlitTask()
+	 * @generated
+	 */
+	EAttribute getAbstractBlitTask_ClearColor();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask#getSrcImage <em>Src Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Src Image</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask#getSrcImage()
+	 * @see #getAbstractBlitTask()
+	 * @generated
+	 */
+	EReference getAbstractBlitTask_SrcImage();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage <em>Blit To Swap Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2928,37 +3451,25 @@ public interface GraphicPackage extends EPackage
 	EClass getBlitToSwapImage();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage#getImage <em>Image</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.BlitTask <em>Blit Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Image</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage#getImage()
-	 * @see #getBlitToSwapImage()
+	 * @return the meta object for class '<em>Blit Task</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BlitTask
 	 * @generated
 	 */
-	EReference getBlitToSwapImage_Image();
+	EClass getBlitTask();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage#getFilter <em>Filter</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.BlitTask#getDstImage <em>Dst Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Filter</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage#getFilter()
-	 * @see #getBlitToSwapImage()
+	 * @return the meta object for the reference '<em>Dst Image</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BlitTask#getDstImage()
+	 * @see #getBlitTask()
 	 * @generated
 	 */
-	EAttribute getBlitToSwapImage_Filter();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage#getClearColor <em>Clear Color</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Clear Color</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage#getClearColor()
-	 * @see #getBlitToSwapImage()
-	 * @generated
-	 */
-	EAttribute getBlitToSwapImage_ClearColor();
+	EReference getBlitTask_DstImage();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed <em>Draw Indexed</em>}'.
@@ -3391,6 +3902,37 @@ public interface GraphicPackage extends EPackage
 	EReference getBindIndexBuffer_Buffer();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescriptor <em>Attachment Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Attachment Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescriptor
+	 * @generated
+	 */
+	EClass getAttachmentDescriptor();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescriptor#getAttachment <em>Attachment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Attachment</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescriptor#getAttachment()
+	 * @see #getAttachmentDescriptor()
+	 * @generated
+	 */
+	EReference getAttachmentDescriptor_Attachment();
+
+	/**
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType <em>EAttachment Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>EAttachment Type</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType
+	 * @generated
+	 */
+	EEnum getEAttachmentType();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3595,6 +4137,32 @@ public interface GraphicPackage extends EPackage
 		EAttribute DEPTH_ATTACHMENT__CLEAR = eINSTANCE.getDepthAttachment_Clear();
 
 		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorAttachmentImpl <em>Color Attachment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.ColorAttachmentImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorAttachment()
+		 * @generated
+		 */
+		EClass COLOR_ATTACHMENT = eINSTANCE.getColorAttachment();
+
+		/**
+		 * The meta object literal for the '<em><b>Clear Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_ATTACHMENT__CLEAR_VALUE = eINSTANCE.getColorAttachment_ClearValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Usages</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_ATTACHMENT__USAGES = eINSTANCE.getColorAttachment_Usages();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentPkgImpl <em>Attachment Pkg</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3647,22 +4215,6 @@ public interface GraphicPackage extends EPackage
 		EAttribute SUBPASS__SUBPASS_INDEX = eINSTANCE.getSubpass_SubpassIndex();
 
 		/**
-		 * The meta object literal for the '<em><b>Stages</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SUBPASS__STAGES = eINSTANCE.getSubpass_Stages();
-
-		/**
-		 * The meta object literal for the '<em><b>Accesses</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SUBPASS__ACCESSES = eINSTANCE.getSubpass_Accesses();
-
-		/**
 		 * The meta object literal for the '<em><b>Pipeline Pkg</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3685,6 +4237,54 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference SUBPASS__SCENE_PART = eINSTANCE.getSubpass_ScenePart();
+
+		/**
+		 * The meta object literal for the '<em><b>Wait For Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBPASS__WAIT_FOR_STAGE = eINSTANCE.getSubpass_WaitForStage();
+
+		/**
+		 * The meta object literal for the '<em><b>Sync Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBPASS__SYNC_STAGE = eINSTANCE.getSubpass_SyncStage();
+
+		/**
+		 * The meta object literal for the '<em><b>Finish Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBPASS__FINISH_STAGE = eINSTANCE.getSubpass_FinishStage();
+
+		/**
+		 * The meta object literal for the '<em><b>Wait For Accesses</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBPASS__WAIT_FOR_ACCESSES = eINSTANCE.getSubpass_WaitForAccesses();
+
+		/**
+		 * The meta object literal for the '<em><b>Sync Accesses</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBPASS__SYNC_ACCESSES = eINSTANCE.getSubpass_SyncAccesses();
+
+		/**
+		 * The meta object literal for the '<em><b>Finish Accesses</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBPASS__FINISH_ACCESSES = eINSTANCE.getSubpass_FinishAccesses();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefPkgImpl <em>Attachment Ref Pkg</em>}' class.
@@ -3729,6 +4329,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute ATTACHMENT_REF__LAYOUT = eINSTANCE.getAttachmentRef_Layout();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTACHMENT_REF__TYPE = eINSTANCE.getAttachmentRef_Type();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentImpl <em>Attachment</em>}' class.
@@ -3943,6 +4551,40 @@ public interface GraphicPackage extends EPackage
 		EClass SWAP_IMAGE_BARRIER = eINSTANCE.getSwapImageBarrier();
 
 		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AbstractBlitTaskImpl <em>Abstract Blit Task</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AbstractBlitTaskImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAbstractBlitTask()
+		 * @generated
+		 */
+		EClass ABSTRACT_BLIT_TASK = eINSTANCE.getAbstractBlitTask();
+
+		/**
+		 * The meta object literal for the '<em><b>Filter</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_BLIT_TASK__FILTER = eINSTANCE.getAbstractBlitTask_Filter();
+
+		/**
+		 * The meta object literal for the '<em><b>Clear Color</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_BLIT_TASK__CLEAR_COLOR = eINSTANCE.getAbstractBlitTask_ClearColor();
+
+		/**
+		 * The meta object literal for the '<em><b>Src Image</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_BLIT_TASK__SRC_IMAGE = eINSTANCE.getAbstractBlitTask_SrcImage();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl <em>Blit To Swap Image</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3953,28 +4595,22 @@ public interface GraphicPackage extends EPackage
 		EClass BLIT_TO_SWAP_IMAGE = eINSTANCE.getBlitToSwapImage();
 
 		/**
-		 * The meta object literal for the '<em><b>Image</b></em>' reference feature.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BlitTaskImpl <em>Blit Task</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.BlitTaskImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getBlitTask()
 		 * @generated
 		 */
-		EReference BLIT_TO_SWAP_IMAGE__IMAGE = eINSTANCE.getBlitToSwapImage_Image();
+		EClass BLIT_TASK = eINSTANCE.getBlitTask();
 
 		/**
-		 * The meta object literal for the '<em><b>Filter</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Dst Image</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BLIT_TO_SWAP_IMAGE__FILTER = eINSTANCE.getBlitToSwapImage_Filter();
-
-		/**
-		 * The meta object literal for the '<em><b>Clear Color</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BLIT_TO_SWAP_IMAGE__CLEAR_COLOR = eINSTANCE.getBlitToSwapImage_ClearColor();
+		EReference BLIT_TASK__DST_IMAGE = eINSTANCE.getBlitTask_DstImage();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DrawIndexedImpl <em>Draw Indexed</em>}' class.
@@ -4315,6 +4951,34 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference BIND_INDEX_BUFFER__BUFFER = eINSTANCE.getBindIndexBuffer_Buffer();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptorImpl <em>Attachment Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptorImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentDescriptor()
+		 * @generated
+		 */
+		EClass ATTACHMENT_DESCRIPTOR = eINSTANCE.getAttachmentDescriptor();
+
+		/**
+		 * The meta object literal for the '<em><b>Attachment</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTACHMENT_DESCRIPTOR__ATTACHMENT = eINSTANCE.getAttachmentDescriptor_Attachment();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType <em>EAttachment Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getEAttachmentType()
+		 * @generated
+		 */
+		EEnum EATTACHMENT_TYPE = eINSTANCE.getEAttachmentType();
 
 	}
 

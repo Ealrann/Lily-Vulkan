@@ -81,21 +81,7 @@ public class ExecutionContext extends GameAllocationContext implements InternalE
 	@Override
 	public void execute(Collection<VkSemaphore> semaphoreToSignal, ISingleTimeCommand command)
 	{
-		final SingleTimeCommand stc = new SingleTimeCommand(this, semaphoreToSignal)
-		{
-			@Override
-			protected void doExecute(InternalExecutionContext context,
-									 ICommandBuffer<?> commandBuffer)
-			{
-				command.execute(context, commandBuffer);
-			}
-
-			@Override
-			protected void postExecute()
-			{
-				command.postExecute();
-			}
-		};
+		final var stc = new SingleTimeCommandImpl(this, semaphoreToSignal, command);
 		stc.execute();
 	}
 
@@ -127,5 +113,30 @@ public class ExecutionContext extends GameAllocationContext implements InternalE
 	public VkPhysicalDevice getVkPhysicalDevice()
 	{
 		return vulkanContext.getVkPhysicalDevice();
+	}
+
+	private static final class SingleTimeCommandImpl extends SingleTimeCommand
+	{
+		private final ISingleTimeCommand command;
+
+		public SingleTimeCommandImpl(final ExecutionContext executionContext,
+									 final Collection<VkSemaphore> semaphoreToSignal,
+									 final ISingleTimeCommand command)
+		{
+			super(executionContext, semaphoreToSignal);
+			this.command = command;
+		}
+
+		@Override
+		protected void doExecute(InternalExecutionContext context, ICommandBuffer<?> commandBuffer)
+		{
+			command.execute(context, commandBuffer);
+		}
+
+		@Override
+		protected void postExecute()
+		{
+			command.postExecute();
+		}
 	}
 }

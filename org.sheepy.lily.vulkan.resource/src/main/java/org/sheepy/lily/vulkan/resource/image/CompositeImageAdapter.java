@@ -1,14 +1,15 @@
 package org.sheepy.lily.vulkan.resource.image;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.joml.Vector2i;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageCopy;
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.adapter.util.ModelDependencyInjector;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.impl.LongNotification;
@@ -33,49 +34,36 @@ import static org.lwjgl.vulkan.VK10.*;
 
 @Statefull
 @Adapter(scope = CompositeImage.class)
-public final class CompositeImageAdapter extends Notifier implements IImageAdapter
+public final class CompositeImageAdapter extends Notifier implements IImageAdapter,
+																	 IAllocableAdapter<InternalExecutionContext>
 {
 	private final CompositeImage image;
+	private final ModelDependencyInjector dependencyInjector;
 
 	private VkImage imageBackend;
 	private VkImageView imageView;
-	private IAllocationConfigurator configurator;
 
 	private CompositeImageAdapter(CompositeImage image)
 	{
 		super(Features.values().length);
-
 		this.image = image;
+
+		dependencyInjector = new ModelDependencyInjector(image,
+														 List.of(List.of(VulkanResourcePackage.Literals.COMPOSITE_IMAGE__BACKGROUND),
+																 List.of(VulkanResourcePackage.Literals.COMPOSITE_IMAGE__INLAYS,
+																		 VulkanResourcePackage.Literals.IMAGE_INLAY__IMAGE)));
 	}
 
 	@Override
 	public void configureAllocation(final IAllocationConfigurator configurator, final InternalExecutionContext context)
 	{
-		this.configurator = configurator;
-
-		final var background = image.getBackground();
-		if (background != null)
-		{
-			final var backgroundAdapter = background.adapt(IImageAdapter.class);
-			configurator.addDependencies(List.of(backgroundAdapter));
-		}
+		dependencyInjector.start(configurator);
 	}
 
-	@NotifyChanged(featureIds = {VulkanResourcePackage.COMPOSITE_IMAGE__BACKGROUND, VulkanResourcePackage.COMPOSITE_IMAGE__INLAYS})
-	private void notifyChanged(Notification notification)
+	@Dispose
+	private void dispose()
 	{
-		if (configurator != null)
-		{
-			configurator.clearDependencies();
-			configurator.setDirty();
-
-			final var background = image.getBackground();
-			if (background != null)
-			{
-				final var backgroundAdapter = background.adapt(IImageAdapter.class);
-				configurator.addDependencies(List.of(backgroundAdapter));
-			}
-		}
+		dependencyInjector.stop();
 	}
 
 	@Override

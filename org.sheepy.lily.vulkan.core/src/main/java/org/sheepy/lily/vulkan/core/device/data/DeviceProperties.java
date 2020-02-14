@@ -32,7 +32,7 @@ public class DeviceProperties
 				try
 				{
 					final Object objectValue = method.invoke(limits, NO_ARGS);
-					String value = "";
+					final String value;
 					if (objectValue instanceof IntBuffer)
 					{
 						final IntBuffer buffer = (IntBuffer) objectValue;
@@ -59,27 +59,23 @@ public class DeviceProperties
 
 	public static final String bufferToString(IntBuffer buffer, String delimiter)
 	{
-		String value;
 		final String[] values = new String[buffer.limit()];
 		for (int i = 0; i < buffer.limit(); i++)
 		{
 			values[i] = String.valueOf(buffer.get(i));
 		}
 
-		value = String.join(delimiter, values);
-		return value;
+		return String.join(delimiter, values);
 	}
 
 	public static final String bufferToString(FloatBuffer buffer, String delimiter)
 	{
-		String value;
 		final String[] values = new String[buffer.limit()];
 		for (int i = 0; i < buffer.limit(); i++)
 		{
 			values[i] = String.valueOf(buffer.get(i));
 		}
 
-		value = String.join(delimiter, values);
-		return value;
+		return String.join(delimiter, values);
 	}
 }

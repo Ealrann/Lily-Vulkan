@@ -67,8 +67,7 @@ public class TransferBufferBackend implements IAllocable<InternalVulkanContext>
 	{
 		assert size > 0;
 
-		MemoryTicket res = null;
-
+		final MemoryTicket res;
 		if (size > capacity)
 		{
 			res = newFailTicket(EReservationStatus.ERROR__REQUEST_TOO_BIG);
@@ -167,7 +166,6 @@ public class TransferBufferBackend implements IAllocable<InternalVulkanContext>
 		private final CPUBufferBackend bufferBackend;
 		private final List<IDataFlowCommand> commands;
 
-		private final boolean containingPushCommand;
 		private final boolean containingFetchCommand;
 		private final int instance;
 
@@ -181,12 +179,12 @@ public class TransferBufferBackend implements IAllocable<InternalVulkanContext>
 			this.instance = instance;
 			this.commands = List.copyOf(commands);
 
-			containingPushCommand = containsType(commands, EFlowType.PUSH);
+			final boolean containingPushCommand = containsType(commands, EFlowType.PUSH);
 			containingFetchCommand = containsType(commands, EFlowType.FETCH);
 
 			if (containingPushCommand)
 			{
-				try (MemoryStack stack = MemoryStack.stackPush())
+				try (final var stack = MemoryStack.stackPush())
 				{
 					bufferBackend.flush(stack, logicalDevice, instance);
 				}

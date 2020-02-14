@@ -1,15 +1,14 @@
 package org.sheepy.lily.vulkan.core.concurrent;
 
-import static org.lwjgl.vulkan.VK10.*;
-
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkFenceCreateInfo;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.device.InternalVulkanContext;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
+
+import static org.lwjgl.vulkan.VK10.*;
 
 public class VkFence implements IAllocable<InternalVulkanContext>, IFenceView, IFence
 {

@@ -69,7 +69,7 @@ public class EngineExtensionRequirement
 
 			if (debug)
 			{
-				System.out.println("");
+				System.out.println();
 			}
 
 			res.flip();

@@ -104,10 +104,10 @@ public abstract class AbstractProcessAdapter<T extends IRecorderContext<T>> impl
 	}
 
 	@Override
-	public void start(VulkanContext vulkanContext)
+	public void start(final VulkanContext vulkanContext, final IRootAllocator<VulkanContext> rootAllocator)
 	{
 		refreshStructure();
-		allocator = IAllocationService.INSTANCE.createAllocator(this, vulkanContext);
+		allocator = IAllocationService.INSTANCE.createAllocator(rootAllocator, this, vulkanContext);
 		allocator.allocate();
 
 		if (DebugUtil.DEBUG_VERBOSE_ENABLED)

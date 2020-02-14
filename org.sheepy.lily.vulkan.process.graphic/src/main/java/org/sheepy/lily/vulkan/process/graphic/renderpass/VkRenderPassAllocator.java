@@ -1,10 +1,5 @@
 package org.sheepy.lily.vulkan.process.graphic.renderpass;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkRenderPassCreateInfo;
@@ -15,6 +10,13 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.SubpassUtil;
 import org.sheepy.vulkan.model.enumeration.EFormat;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
+import static org.lwjgl.vulkan.VK10.vkCreateRenderPass;
 
 public final class VkRenderPassAllocator
 {
@@ -31,8 +33,6 @@ public final class VkRenderPassAllocator
 
 	public long allocate(MemoryStack stack, GraphicProcess process)
 	{
-		long renderPass;
-
 		final var format = swapchainImageFormat.getValue();
 		final var attachementAllocator = new VkAttachmentDescriptionAllocator(format);
 		final var descriptions = getAttachments(process.getAttachmentPkg());
@@ -46,13 +46,12 @@ public final class VkRenderPassAllocator
 				renderSubpasses.add(subpass);
 			}
 		}
-		renderSubpasses.sort((p1, p2) -> Integer.compare(	p1.getSubpassIndex(),
-															p2.getSubpassIndex()));
+		renderSubpasses.sort(Comparator.comparingInt(Subpass::getSubpassIndex));
 
 		final var subpassAllocator = new VkSubpassDescriptionAllocator(descriptions);
-
 		final var subpasses = subpassAllocator.allocate(stack, renderSubpasses);
-		final var dependencies = VkSubpassDependencyAllocator.allocate(stack, renderSubpasses);
+		final var dependencyAllocator = new VkSubpassDependencyAllocator();
+		final var dependencies = dependencyAllocator.allocate(stack, renderSubpasses);
 
 		final var createInfo = VkRenderPassCreateInfo.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO);
@@ -61,10 +60,8 @@ public final class VkRenderPassAllocator
 		createInfo.pDependencies(dependencies);
 
 		final long[] aRenderPass = new long[1];
-		Logger.check(	CREATION_ERROR,
-						() -> vkCreateRenderPass(device, createInfo, null, aRenderPass));
-		renderPass = aRenderPass[0];
-		return renderPass;
+		Logger.check(CREATION_ERROR, () -> vkCreateRenderPass(device, createInfo, null, aRenderPass));
+		return aRenderPass[0];
 	}
 
 	private static List<Attachment> getAttachments(AttachmentPkg attachmentPkg)

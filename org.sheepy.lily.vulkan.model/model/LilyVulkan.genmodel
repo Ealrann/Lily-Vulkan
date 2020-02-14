@@ -83,6 +83,11 @@
   <genPackages prefix="Graphic" basePackage="org.sheepy.lily.vulkan.model.process"
       resource="XMI" extensibleProviderFactory="true" childCreationExtenders="true"
       ecorePackage="graphic.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="graphic.ecore#//EAttachmentType">
+      <genEnumLiterals ecoreEnumLiteral="graphic.ecore#//EAttachmentType/Color"/>
+      <genEnumLiterals ecoreEnumLiteral="graphic.ecore#//EAttachmentType/Depth"/>
+      <genEnumLiterals ecoreEnumLiteral="graphic.ecore#//EAttachmentType/Input"/>
+    </genEnums>
     <genClasses ecoreClass="graphic.ecore#//GraphicConfiguration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicConfiguration/swapchainConfiguration"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicConfiguration/framebufferConfiguration"/>
@@ -113,18 +118,32 @@
     <genClasses ecoreClass="graphic.ecore#//DepthAttachment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//DepthAttachment/clear"/>
     </genClasses>
+    <genClasses ecoreClass="graphic.ecore#//ColorAttachment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//ColorAttachment/clearValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//ColorAttachment/usages"/>
+    </genClasses>
     <genClasses ecoreClass="graphic.ecore#//AttachmentPkg">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentPkg/extraAttachments"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentPkg/colorAttachment"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentPkg/extraAttachments"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//Subpass">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/attachmantRefPkg"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/subpassIndex"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/stages"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/accesses"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/pipelinePkg"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/bindPoint"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/scenePart"/>
+      <genFeatures createChild="false" propertyCategory="0 - WaitFor (previous subpass)"
+          ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/waitForStage"/>
+      <genFeatures createChild="false" propertyCategory="1 - Sync (current subpass)"
+          ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/syncStage"/>
+      <genFeatures createChild="false" propertyCategory="2 - Finish (for next subpass)"
+          ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/finishStage"/>
+      <genFeatures createChild="false" propertyCategory="0 - WaitFor (previous subpass)"
+          ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/waitForAccesses"/>
+      <genFeatures createChild="false" propertyCategory="1 - Sync (current subpass)"
+          ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/syncAccesses"/>
+      <genFeatures createChild="false" propertyCategory="2 - Finish (for next subpass)"
+          ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/finishAccesses"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//AttachmentRefPkg">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentRefPkg/attachmentRefs"/>
@@ -132,6 +151,7 @@
     <genClasses ecoreClass="graphic.ecore#//AttachmentRef">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentRef/attachment"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//AttachmentRef/layout"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//AttachmentRef/type"/>
     </genClasses>
     <genClasses image="false" ecoreClass="graphic.ecore#//Attachment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Attachment/samples"/>
@@ -162,10 +182,14 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicsPipeline/depthStencilState"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//SwapImageBarrier"/>
-    <genClasses ecoreClass="graphic.ecore#//BlitToSwapImage">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//BlitToSwapImage/image"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//BlitToSwapImage/filter"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//BlitToSwapImage/clearColor"/>
+    <genClasses image="false" ecoreClass="graphic.ecore#//AbstractBlitTask">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//AbstractBlitTask/filter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//AbstractBlitTask/clearColor"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//AbstractBlitTask/srcImage"/>
+    </genClasses>
+    <genClasses ecoreClass="graphic.ecore#//BlitToSwapImage"/>
+    <genClasses ecoreClass="graphic.ecore#//BlitTask">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//BlitTask/dstImage"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//DrawIndexed">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//DrawIndexed/indexCount"/>
@@ -217,6 +241,9 @@
     <genClasses ecoreClass="graphic.ecore#//BindIndexBuffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//BindIndexBuffer/indexType"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//BindIndexBuffer/buffer"/>
+    </genClasses>
+    <genClasses ecoreClass="graphic.ecore#//AttachmentDescriptor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentDescriptor/attachment"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Process" basePackage="org.sheepy.lily.vulkan.model" resource="XMI"

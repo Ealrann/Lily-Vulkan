@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
@@ -8,7 +9,6 @@ import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.buffer.GPUBufferBackend;
@@ -20,11 +20,11 @@ import java.nio.ByteBuffer;
 
 @Statefull
 @Adapter(scope = Buffer.class)
-public final class BufferAdapter extends Notifier implements IBufferAdapter, IVulkanResourceAdapter
+public final class BufferAdapter extends Notifier implements IBufferAdapter, IAllocableAdapter<InternalExecutionContext>
 {
-	protected Buffer buffer;
-	protected IBufferBackend bufferBackend;
+	private final Buffer buffer;
 
+	private IBufferBackend bufferBackend;
 	private InternalExecutionContext executionManager;
 
 	public BufferAdapter(Buffer buffer)
@@ -126,7 +126,7 @@ public final class BufferAdapter extends Notifier implements IBufferAdapter, IVu
 	@Override
 	public void flush()
 	{
-		try (MemoryStack stack = MemoryStack.stackPush())
+		try (final var stack = MemoryStack.stackPush())
 		{
 			bufferBackend.flush(stack, executionManager.getLogicalDevice());
 		}
@@ -135,7 +135,7 @@ public final class BufferAdapter extends Notifier implements IBufferAdapter, IVu
 	@Override
 	public void invalidate()
 	{
-		try (MemoryStack stack = MemoryStack.stackPush())
+		try (final var stack = MemoryStack.stackPush())
 		{
 			bufferBackend.invalidate(stack, executionManager.getLogicalDevice());
 		}

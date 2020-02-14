@@ -1,17 +1,9 @@
 package org.sheepy.lily.vulkan.nuklear.resource;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.nuklear.NkUserFont;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.adapter.annotation.Tick;
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
+import org.sheepy.lily.core.api.adapter.annotation.*;
 import org.sheepy.lily.core.api.adapter.util.AdapterDeployer;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.util.ModelUtil;
@@ -19,7 +11,6 @@ import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.FontPkg;
 import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.IVulkanResourceAdapter;
 import org.sheepy.lily.vulkan.core.resource.font.IFontAllocator;
 import org.sheepy.lily.vulkan.core.resource.font.IFontImageAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
@@ -27,9 +18,14 @@ import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.nuklear.font.NkFontLoader;
 import org.sheepy.lily.vulkan.nuklear.ui.ITextWidgetAdapter;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Statefull
 @Adapter(scope = NuklearFont.class, lazy = false)
-public class NuklearFontAdapter implements IVulkanResourceAdapter
+public class NuklearFontAdapter implements IAllocableAdapter<InternalExecutionContext>
 {
 	public final Font defaultFont;
 	public Map<Font, NkUserFont> fontMap;
@@ -37,9 +33,10 @@ public class NuklearFontAdapter implements IVulkanResourceAdapter
 	private final NuklearFont nuklearFont;
 	private final UI ui;
 
-	private final AdapterDeployer<ITextWidgetAdapter> textWidgetAdapterDeployer = new AdapterDeployer<>(ITextWidgetAdapter.class,
-																										this::newTextWidgetAdapter,
-																										this::oldTextWidgetAdapter);
+	private final AdapterDeployer<ITextWidgetAdapter> textWidgetAdapterDeployer = new AdapterDeployer<>(
+			ITextWidgetAdapter.class,
+			this::newTextWidgetAdapter,
+			this::oldTextWidgetAdapter);
 	private final INotificationListener textListener = this::textChanged;
 	private final List<ITextWidgetAdapter> textAdapters = new ArrayList<>();
 
@@ -126,12 +123,7 @@ public class NuklearFontAdapter implements IVulkanResourceAdapter
 			{
 				final var providedFont = textAdapter.getFont();
 				final var font = providedFont != null ? providedFont : defaultFont;
-				List<String> list = characterMap.get(font);
-				if (list == null)
-				{
-					list = new ArrayList<>();
-					characterMap.put(font, list);
-				}
+				final var list = characterMap.computeIfAbsent(font, k -> new ArrayList<>());
 				list.add(textAdapter.getText());
 			}
 

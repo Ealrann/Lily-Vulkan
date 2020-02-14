@@ -1,35 +1,34 @@
 package org.sheepy.lily.vulkan.core.barrier;
 
-import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
-
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
-import org.sheepy.vulkan.model.image.ImageInfo;
+
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
 
 public class VkImageBarrier implements VkBarrier<VkImageMemoryBarrier>
 {
-	private final ImageInfo imageInfo;
 	private final int srcLayout;
 	private final int dstLayout;
 	private final int srcAccessMask;
 	private final int dstAccessMask;
 	private final int aspectMask;
+	private final int mipLevels;
 
 	private long imagePtr = 0;
 	private boolean changed = true;
 
-	public VkImageBarrier(	ImageInfo imageInfo,
-							int srcLayout,
-							int dstLayout,
-							int srcAccessMask,
-							int dstAccessMask,
-							int aspectMask)
+	public VkImageBarrier(int srcLayout,
+						  int dstLayout,
+						  int srcAccessMask,
+						  int dstAccessMask,
+						  int aspectMask,
+						  int mipLevels)
 	{
-		this.imageInfo = imageInfo;
 		this.srcLayout = srcLayout;
 		this.dstLayout = dstLayout;
 		this.srcAccessMask = srcAccessMask;
 		this.dstAccessMask = dstAccessMask;
 		this.aspectMask = aspectMask;
+		this.mipLevels = mipLevels;
 	}
 
 	public void updatePtr(long bufferPtr)
@@ -41,8 +40,6 @@ public class VkImageBarrier implements VkBarrier<VkImageMemoryBarrier>
 	@Override
 	public void fill(VkImageMemoryBarrier info)
 	{
-		final int mipLevels = imageInfo.getMipLevels();
-
 		info.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
 		info.oldLayout(srcLayout);
 		info.newLayout(dstLayout);

@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.resource.image.backend;
+package org.sheepy.lily.vulkan.core.resource.image;
 
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
 

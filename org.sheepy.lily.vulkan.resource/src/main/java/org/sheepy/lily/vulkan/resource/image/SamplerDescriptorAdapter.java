@@ -7,7 +7,7 @@ import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.core.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.core.resource.ISamplerAdapter;
 import org.sheepy.lily.vulkan.model.resource.SamplerDescriptor;
-import org.sheepy.lily.vulkan.resource.image.backend.VkImageDescriptor;
+import org.sheepy.lily.vulkan.core.resource.image.VkImageDescriptor;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 @Statefull

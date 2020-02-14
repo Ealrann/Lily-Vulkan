@@ -100,7 +100,7 @@ public enum EVulkanErrorStatus
 	public final boolean isError;
 	public final String message;
 
-	private EVulkanErrorStatus(int code, boolean isError, String message)
+	EVulkanErrorStatus(int code, boolean isError, String message)
 	{
 		this.code = code;
 		this.isError = isError;

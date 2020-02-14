@@ -14,7 +14,7 @@ public interface IFontTableInfo
 	float getVMetric();
 	float getCodepointKernAdvance(int codePoint, int nextCodePoint);
 
-	static final class TableData
+	final class TableData
 	{
 		public final int codepoint;
 		public final float hMetric;

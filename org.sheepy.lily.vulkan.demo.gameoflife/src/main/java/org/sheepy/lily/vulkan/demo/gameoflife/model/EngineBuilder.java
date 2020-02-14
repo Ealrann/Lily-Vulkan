@@ -21,6 +21,7 @@ import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
+import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
 import org.sheepy.lily.vulkan.model.resource.*;
 import org.sheepy.vulkan.model.enumeration.*;
 
@@ -35,6 +36,7 @@ public final class EngineBuilder
 	private final Vector2ic size;
 
 	public final StaticImage boardImage;
+	public final SwapImageAttachment colorAttachment = GraphicFactory.eINSTANCE.createSwapImageAttachment();
 
 	private GraphicProcess graphicProcess;
 	private ComputeProcess barrierProcess;
@@ -85,11 +87,10 @@ public final class EngineBuilder
 		return engine;
 	}
 
-	private static AttachmentPkg newAttachmentPkg()
+	private AttachmentPkg newAttachmentPkg()
 	{
 		final var attachments = GraphicFactory.eINSTANCE.createAttachmentPkg();
 
-		final var colorAttachment = GraphicFactory.eINSTANCE.createSwapImageAttachment();
 		colorAttachment.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
 		colorAttachment.setLoadOp(EAttachmentLoadOp.LOAD);
 		colorAttachment.setStoreOp(EAttachmentStoreOp.STORE);
