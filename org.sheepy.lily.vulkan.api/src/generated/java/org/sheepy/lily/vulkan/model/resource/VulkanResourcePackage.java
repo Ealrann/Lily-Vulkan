@@ -600,22 +600,13 @@ public interface VulkanResourcePackage extends EPackage
 	int BUFFER_DATA_PROVIDER__REQUESTED_SIZE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
-	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_DATA_PROVIDER__DATA_SOURCE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 12;
-
-	/**
 	 * The number of structural features of the '<em>Buffer Data Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 13;
+	int BUFFER_DATA_PROVIDER_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of operations of the '<em>Buffer Data Provider</em>' class.
@@ -2087,16 +2078,6 @@ public interface VulkanResourcePackage extends EPackage
 	int EFLUSH_MODE = 27;
 
 	/**
-	 * The meta object id for the '<em>IGeneric Object</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see java.lang.Object
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getIGenericObject()
-	 * @generated
-	 */
-	int IGENERIC_OBJECT = 28;
-
-	/**
 	 * The meta object id for the '<em>Byte Buffer</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2104,7 +2085,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 29;
+	int BYTE_BUFFER = 28;
 
 
 	/**
@@ -2351,17 +2332,6 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 */
 	EClass getBufferDataProvider();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource <em>Data Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Data Source</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource()
-	 * @see #getBufferDataProvider()
-	 * @generated
-	 */
-	EAttribute getBufferDataProvider_DataSource();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#isUsedToPush <em>Used To Push</em>}'.
@@ -3048,17 +3018,6 @@ public interface VulkanResourcePackage extends EPackage
 	EEnum getEFlushMode();
 
 	/**
-	 * Returns the meta object for data type '{@link java.lang.Object <em>IGeneric Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>IGeneric Object</em>'.
-	 * @see java.lang.Object
-	 * @model instanceClass="java.lang.Object"
-	 * @generated
-	 */
-	EDataType getIGenericObject();
-
-	/**
 	 * Returns the meta object for data type '{@link java.nio.ByteBuffer <em>Byte Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3292,14 +3251,6 @@ public interface VulkanResourcePackage extends EPackage
 		 * @generated
 		 */
 		EClass BUFFER_DATA_PROVIDER = eINSTANCE.getBufferDataProvider();
-
-		/**
-		 * The meta object literal for the '<em><b>Data Source</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUFFER_DATA_PROVIDER__DATA_SOURCE = eINSTANCE.getBufferDataProvider_DataSource();
 
 		/**
 		 * The meta object literal for the '<em><b>Used To Push</b></em>' attribute feature.
@@ -3852,16 +3803,6 @@ public interface VulkanResourcePackage extends EPackage
 		 * @generated
 		 */
 		EEnum EFLUSH_MODE = eINSTANCE.getEFlushMode();
-
-		/**
-		 * The meta object literal for the '<em>IGeneric Object</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see java.lang.Object
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getIGenericObject()
-		 * @generated
-		 */
-		EDataType IGENERIC_OBJECT = eINSTANCE.getIGenericObject();
 
 		/**
 		 * The meta object literal for the '<em>Byte Buffer</em>' data type.

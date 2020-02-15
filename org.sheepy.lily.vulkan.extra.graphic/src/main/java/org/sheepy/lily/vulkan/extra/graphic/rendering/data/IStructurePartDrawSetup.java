@@ -7,7 +7,7 @@ import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 
 public interface IStructurePartDrawSetup
 {
-	List<BufferDataProvider<?>> getDataProviders();
+	List<BufferDataProvider> getDataProviders();
 
 	Structure getStructure();
 }

@@ -67,15 +67,15 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RenderDataProvider" abstract="true"
-      interface="true">
+      interface="true" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/resource.ecore#//BufferDataProvider">
     <eTypeParameters name="T">
       <eBounds eClassifier="#//Structure"/>
     </eTypeParameters>
-    <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//BufferDataProvider">
-      <eTypeArguments eClassifier="#//RenderableDataSource">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataSource" containment="true">
+      <eGenericType eClassifier="#//RenderableDataSource">
         <eTypeArguments eTypeParameter="#//RenderDataProvider/T"/>
-      </eTypeArguments>
-    </eGenericSuperTypes>
+      </eGenericType>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataProviderPkg">
     <eTypeParameters name="T">

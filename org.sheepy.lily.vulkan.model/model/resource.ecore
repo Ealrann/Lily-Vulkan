@@ -43,19 +43,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BufferPart" eSuperTypes="#//IBuffer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataProvider" lowerBound="1"
-        containment="true" resolveProxies="false">
-      <eGenericType eClassifier="#//BufferDataProvider">
-        <eTypeArguments/>
-      </eGenericType>
-    </eStructuralFeatures>
+        eType="#//BufferDataProvider" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EFlushMode">
     <eLiterals name="PUSH"/>
     <eLiterals name="FETCH" value="1"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="IGenericObject" instanceClassName="java.lang.Object"/>
   <eClassifiers xsi:type="ecore:EClass" name="BufferDataProvider" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
-    <eTypeParameters name="T"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usedToPush" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usedToFetch" lowerBound="1"
@@ -82,7 +76,6 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="requestedSize" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="1"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//IGenericObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="ByteBuffer" instanceClassName="java.nio.ByteBuffer"/>
   <eClassifiers xsi:type="ecore:EClass" name="Image" abstract="true" eSuperTypes="../../org.sheepy.vulkan.model/model/Image.ecore#//ImageInfo ../../org.sheepy.lily.core.model/model/resource.ecore#//IImage"/>

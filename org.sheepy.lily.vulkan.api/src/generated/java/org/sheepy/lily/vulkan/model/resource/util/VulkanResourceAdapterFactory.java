@@ -124,7 +124,7 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createBufferPartAdapter();
 			}
 			@Override
-			public <T> Adapter caseBufferDataProvider(BufferDataProvider<T> object)
+			public Adapter caseBufferDataProvider(BufferDataProvider object)
 			{
 				return createBufferDataProviderAdapter();
 			}

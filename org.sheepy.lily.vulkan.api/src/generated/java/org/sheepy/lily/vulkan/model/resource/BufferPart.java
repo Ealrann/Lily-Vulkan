@@ -31,7 +31,7 @@ public interface BufferPart extends IBuffer
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	BufferDataProvider<?> getDataProvider();
+	BufferDataProvider getDataProvider();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferPart#getDataProvider <em>Data Provider</em>}' containment reference.
@@ -41,6 +41,6 @@ public interface BufferPart extends IBuffer
 	 * @see #getDataProvider()
 	 * @generated
 	 */
-	void setDataProvider(BufferDataProvider<?> value);
+	void setDataProvider(BufferDataProvider value);
 
 } // BufferPart

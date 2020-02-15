@@ -120,6 +120,7 @@
     </genClasses>
     <genClasses image="false" ecoreClass="Rendering.ecore#//RenderDataProvider">
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//RenderDataProvider/T"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//RenderDataProvider/dataSource"/>
     </genClasses>
     <genClasses ecoreClass="Rendering.ecore#//DataProviderPkg">
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//DataProviderPkg/T"/>

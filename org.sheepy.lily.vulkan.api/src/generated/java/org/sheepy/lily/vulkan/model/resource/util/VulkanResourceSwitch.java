@@ -36,7 +36,7 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
  * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage
  * @generated
  */
-public class VulkanResourceSwitch<T1> extends Switch<T1>
+public class VulkanResourceSwitch<T> extends Switch<T>
 {
 	/**
 	 * The cached model package
@@ -82,14 +82,14 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	@Override
-	protected T1 doSwitch(int classifierID, EObject theEObject)
+	protected T doSwitch(int classifierID, EObject theEObject)
 	{
 		switch (classifierID)
 		{
 			case VulkanResourcePackage.TRANSFER_BUFFER:
 			{
 				TransferBuffer transferBuffer = (TransferBuffer)theEObject;
-				T1 result = caseTransferBuffer(transferBuffer);
+				T result = caseTransferBuffer(transferBuffer);
 				if (result == null) result = caseIResource(transferBuffer);
 				if (result == null) result = caseLNamedElement(transferBuffer);
 				if (result == null) result = defaultCase(theEObject);
@@ -98,7 +98,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.CONSTANT_BUFFER:
 			{
 				ConstantBuffer constantBuffer = (ConstantBuffer)theEObject;
-				T1 result = caseConstantBuffer(constantBuffer);
+				T result = caseConstantBuffer(constantBuffer);
 				if (result == null) result = caseIResource(constantBuffer);
 				if (result == null) result = caseLNamedElement(constantBuffer);
 				if (result == null) result = defaultCase(theEObject);
@@ -107,7 +107,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER:
 			{
 				GenericConstantBuffer genericConstantBuffer = (GenericConstantBuffer)theEObject;
-				T1 result = caseGenericConstantBuffer(genericConstantBuffer);
+				T result = caseGenericConstantBuffer(genericConstantBuffer);
 				if (result == null) result = caseConstantBuffer(genericConstantBuffer);
 				if (result == null) result = caseIResource(genericConstantBuffer);
 				if (result == null) result = caseLNamedElement(genericConstantBuffer);
@@ -117,7 +117,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.IBUFFER:
 			{
 				IBuffer iBuffer = (IBuffer)theEObject;
-				T1 result = caseIBuffer(iBuffer);
+				T result = caseIBuffer(iBuffer);
 				if (result == null) result = caseIResource(iBuffer);
 				if (result == null) result = caseLNamedElement(iBuffer);
 				if (result == null) result = defaultCase(theEObject);
@@ -126,7 +126,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.BUFFER:
 			{
 				Buffer buffer = (Buffer)theEObject;
-				T1 result = caseBuffer(buffer);
+				T result = caseBuffer(buffer);
 				if (result == null) result = caseIBuffer(buffer);
 				if (result == null) result = caseIResource(buffer);
 				if (result == null) result = caseLNamedElement(buffer);
@@ -136,7 +136,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.COMPOSITE_BUFFER:
 			{
 				CompositeBuffer compositeBuffer = (CompositeBuffer)theEObject;
-				T1 result = caseCompositeBuffer(compositeBuffer);
+				T result = caseCompositeBuffer(compositeBuffer);
 				if (result == null) result = caseIResource(compositeBuffer);
 				if (result == null) result = caseLNamedElement(compositeBuffer);
 				if (result == null) result = defaultCase(theEObject);
@@ -145,7 +145,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.BUFFER_PART:
 			{
 				BufferPart bufferPart = (BufferPart)theEObject;
-				T1 result = caseBufferPart(bufferPart);
+				T result = caseBufferPart(bufferPart);
 				if (result == null) result = caseIBuffer(bufferPart);
 				if (result == null) result = caseIResource(bufferPart);
 				if (result == null) result = caseLNamedElement(bufferPart);
@@ -154,8 +154,8 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			}
 			case VulkanResourcePackage.BUFFER_DATA_PROVIDER:
 			{
-				BufferDataProvider<?> bufferDataProvider = (BufferDataProvider<?>)theEObject;
-				T1 result = caseBufferDataProvider(bufferDataProvider);
+				BufferDataProvider bufferDataProvider = (BufferDataProvider)theEObject;
+				T result = caseBufferDataProvider(bufferDataProvider);
 				if (result == null) result = caseLNamedElement(bufferDataProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -163,7 +163,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.IMAGE:
 			{
 				Image image = (Image)theEObject;
-				T1 result = caseImage(image);
+				T result = caseImage(image);
 				if (result == null) result = caseImageInfo(image);
 				if (result == null) result = caseIImage(image);
 				if (result == null) result = caseIResource(image);
@@ -174,7 +174,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.STATIC_IMAGE:
 			{
 				StaticImage staticImage = (StaticImage)theEObject;
-				T1 result = caseStaticImage(staticImage);
+				T result = caseStaticImage(staticImage);
 				if (result == null) result = caseImage(staticImage);
 				if (result == null) result = caseImageInfo(staticImage);
 				if (result == null) result = caseIImage(staticImage);
@@ -186,7 +186,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.FILE_IMAGE:
 			{
 				FileImage fileImage = (FileImage)theEObject;
-				T1 result = caseFileImage(fileImage);
+				T result = caseFileImage(fileImage);
 				if (result == null) result = caseImage(fileImage);
 				if (result == null) result = caseImageInfo(fileImage);
 				if (result == null) result = caseIImage(fileImage);
@@ -198,7 +198,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.FONT_IMAGE:
 			{
 				FontImage fontImage = (FontImage)theEObject;
-				T1 result = caseFontImage(fontImage);
+				T result = caseFontImage(fontImage);
 				if (result == null) result = caseImage(fontImage);
 				if (result == null) result = caseImageInfo(fontImage);
 				if (result == null) result = caseIImage(fontImage);
@@ -210,7 +210,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.COMPOSITE_IMAGE:
 			{
 				CompositeImage compositeImage = (CompositeImage)theEObject;
-				T1 result = caseCompositeImage(compositeImage);
+				T result = caseCompositeImage(compositeImage);
 				if (result == null) result = caseImage(compositeImage);
 				if (result == null) result = caseImageInfo(compositeImage);
 				if (result == null) result = caseIImage(compositeImage);
@@ -222,14 +222,14 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.IMAGE_INLAY:
 			{
 				ImageInlay imageInlay = (ImageInlay)theEObject;
-				T1 result = caseImageInlay(imageInlay);
+				T result = caseImageInlay(imageInlay);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case VulkanResourcePackage.SAMPLED_IMAGE:
 			{
 				SampledImage sampledImage = (SampledImage)theEObject;
-				T1 result = caseSampledImage(sampledImage);
+				T result = caseSampledImage(sampledImage);
 				if (result == null) result = caseIResource(sampledImage);
 				if (result == null) result = caseLNamedElement(sampledImage);
 				if (result == null) result = defaultCase(theEObject);
@@ -238,7 +238,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.SAMPLER:
 			{
 				Sampler sampler = (Sampler)theEObject;
-				T1 result = caseSampler(sampler);
+				T result = caseSampler(sampler);
 				if (result == null) result = caseSamplerInfo(sampler);
 				if (result == null) result = caseIResource(sampler);
 				if (result == null) result = caseLNamedElement(sampler);
@@ -248,7 +248,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.SEMAPHORE:
 			{
 				Semaphore semaphore = (Semaphore)theEObject;
-				T1 result = caseSemaphore(semaphore);
+				T result = caseSemaphore(semaphore);
 				if (result == null) result = caseIResource(semaphore);
 				if (result == null) result = caseLNamedElement(semaphore);
 				if (result == null) result = defaultCase(theEObject);
@@ -257,7 +257,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.BUFFER_DESCRIPTOR:
 			{
 				BufferDescriptor bufferDescriptor = (BufferDescriptor)theEObject;
-				T1 result = caseBufferDescriptor(bufferDescriptor);
+				T result = caseBufferDescriptor(bufferDescriptor);
 				if (result == null) result = caseIDescriptor(bufferDescriptor);
 				if (result == null) result = caseLNamedElement(bufferDescriptor);
 				if (result == null) result = defaultCase(theEObject);
@@ -266,7 +266,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR:
 			{
 				ImageDescriptor imageDescriptor = (ImageDescriptor)theEObject;
-				T1 result = caseImageDescriptor(imageDescriptor);
+				T result = caseImageDescriptor(imageDescriptor);
 				if (result == null) result = caseIDescriptor(imageDescriptor);
 				if (result == null) result = caseLNamedElement(imageDescriptor);
 				if (result == null) result = defaultCase(theEObject);
@@ -275,7 +275,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR:
 			{
 				SampledImageDescriptor sampledImageDescriptor = (SampledImageDescriptor)theEObject;
-				T1 result = caseSampledImageDescriptor(sampledImageDescriptor);
+				T result = caseSampledImageDescriptor(sampledImageDescriptor);
 				if (result == null) result = caseIDescriptor(sampledImageDescriptor);
 				if (result == null) result = caseLNamedElement(sampledImageDescriptor);
 				if (result == null) result = defaultCase(theEObject);
@@ -284,7 +284,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.SAMPLER_DESCRIPTOR:
 			{
 				SamplerDescriptor samplerDescriptor = (SamplerDescriptor)theEObject;
-				T1 result = caseSamplerDescriptor(samplerDescriptor);
+				T result = caseSamplerDescriptor(samplerDescriptor);
 				if (result == null) result = caseIDescriptor(samplerDescriptor);
 				if (result == null) result = caseLNamedElement(samplerDescriptor);
 				if (result == null) result = defaultCase(theEObject);
@@ -293,7 +293,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.DESCRIPTOR_SET:
 			{
 				DescriptorSet descriptorSet = (DescriptorSet)theEObject;
-				T1 result = caseDescriptorSet(descriptorSet);
+				T result = caseDescriptorSet(descriptorSet);
 				if (result == null) result = caseLNamedElement(descriptorSet);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -301,14 +301,14 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.DESCRIPTOR_SET_PKG:
 			{
 				DescriptorSetPkg descriptorSetPkg = (DescriptorSetPkg)theEObject;
-				T1 result = caseDescriptorSetPkg(descriptorSetPkg);
+				T result = caseDescriptorSetPkg(descriptorSetPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case VulkanResourcePackage.BUFFER_BARRIER:
 			{
 				BufferBarrier bufferBarrier = (BufferBarrier)theEObject;
-				T1 result = caseBufferBarrier(bufferBarrier);
+				T result = caseBufferBarrier(bufferBarrier);
 				if (result == null) result = caseAbstractBufferBarrier(bufferBarrier);
 				if (result == null) result = caseBarrier(bufferBarrier);
 				if (result == null) result = caseLNamedElement(bufferBarrier);
@@ -318,7 +318,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.IMAGE_BARRIER:
 			{
 				ImageBarrier imageBarrier = (ImageBarrier)theEObject;
-				T1 result = caseImageBarrier(imageBarrier);
+				T result = caseImageBarrier(imageBarrier);
 				if (result == null) result = caseAbstractImageBarrier(imageBarrier);
 				if (result == null) result = caseBarrier(imageBarrier);
 				if (result == null) result = caseLNamedElement(imageBarrier);
@@ -328,7 +328,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.SHADER:
 			{
 				Shader shader = (Shader)theEObject;
-				T1 result = caseShader(shader);
+				T result = caseShader(shader);
 				if (result == null) result = caseIResource(shader);
 				if (result == null) result = caseLNamedElement(shader);
 				if (result == null) result = defaultCase(theEObject);
@@ -337,7 +337,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR:
 			{
 				ImageArrayDescriptor imageArrayDescriptor = (ImageArrayDescriptor)theEObject;
-				T1 result = caseImageArrayDescriptor(imageArrayDescriptor);
+				T result = caseImageArrayDescriptor(imageArrayDescriptor);
 				if (result == null) result = caseIDescriptor(imageArrayDescriptor);
 				if (result == null) result = caseLNamedElement(imageArrayDescriptor);
 				if (result == null) result = defaultCase(theEObject);
@@ -358,7 +358,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseTransferBuffer(TransferBuffer object)
+	public T caseTransferBuffer(TransferBuffer object)
 	{
 		return null;
 	}
@@ -374,7 +374,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseConstantBuffer(ConstantBuffer object)
+	public T caseConstantBuffer(ConstantBuffer object)
 	{
 		return null;
 	}
@@ -390,7 +390,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseGenericConstantBuffer(GenericConstantBuffer object)
+	public T caseGenericConstantBuffer(GenericConstantBuffer object)
 	{
 		return null;
 	}
@@ -406,7 +406,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIBuffer(IBuffer object)
+	public T caseIBuffer(IBuffer object)
 	{
 		return null;
 	}
@@ -422,7 +422,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseBuffer(Buffer object)
+	public T caseBuffer(Buffer object)
 	{
 		return null;
 	}
@@ -438,7 +438,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCompositeBuffer(CompositeBuffer object)
+	public T caseCompositeBuffer(CompositeBuffer object)
 	{
 		return null;
 	}
@@ -454,7 +454,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseBufferPart(BufferPart object)
+	public T caseBufferPart(BufferPart object)
 	{
 		return null;
 	}
@@ -470,7 +470,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T> T1 caseBufferDataProvider(BufferDataProvider<T> object)
+	public T caseBufferDataProvider(BufferDataProvider object)
 	{
 		return null;
 	}
@@ -486,7 +486,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseImage(Image object)
+	public T caseImage(Image object)
 	{
 		return null;
 	}
@@ -502,7 +502,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseStaticImage(StaticImage object)
+	public T caseStaticImage(StaticImage object)
 	{
 		return null;
 	}
@@ -518,7 +518,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseFileImage(FileImage object)
+	public T caseFileImage(FileImage object)
 	{
 		return null;
 	}
@@ -534,7 +534,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseFontImage(FontImage object)
+	public T caseFontImage(FontImage object)
 	{
 		return null;
 	}
@@ -550,7 +550,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCompositeImage(CompositeImage object)
+	public T caseCompositeImage(CompositeImage object)
 	{
 		return null;
 	}
@@ -566,7 +566,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseImageInlay(ImageInlay object)
+	public T caseImageInlay(ImageInlay object)
 	{
 		return null;
 	}
@@ -582,7 +582,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSampledImage(SampledImage object)
+	public T caseSampledImage(SampledImage object)
 	{
 		return null;
 	}
@@ -598,7 +598,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSampler(Sampler object)
+	public T caseSampler(Sampler object)
 	{
 		return null;
 	}
@@ -614,7 +614,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSemaphore(Semaphore object)
+	public T caseSemaphore(Semaphore object)
 	{
 		return null;
 	}
@@ -630,7 +630,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseBufferDescriptor(BufferDescriptor object)
+	public T caseBufferDescriptor(BufferDescriptor object)
 	{
 		return null;
 	}
@@ -646,7 +646,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseImageDescriptor(ImageDescriptor object)
+	public T caseImageDescriptor(ImageDescriptor object)
 	{
 		return null;
 	}
@@ -662,7 +662,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSampledImageDescriptor(SampledImageDescriptor object)
+	public T caseSampledImageDescriptor(SampledImageDescriptor object)
 	{
 		return null;
 	}
@@ -678,7 +678,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSamplerDescriptor(SamplerDescriptor object)
+	public T caseSamplerDescriptor(SamplerDescriptor object)
 	{
 		return null;
 	}
@@ -694,7 +694,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseDescriptorSet(DescriptorSet object)
+	public T caseDescriptorSet(DescriptorSet object)
 	{
 		return null;
 	}
@@ -710,7 +710,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseDescriptorSetPkg(DescriptorSetPkg object)
+	public T caseDescriptorSetPkg(DescriptorSetPkg object)
 	{
 		return null;
 	}
@@ -726,7 +726,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseBufferBarrier(BufferBarrier object)
+	public T caseBufferBarrier(BufferBarrier object)
 	{
 		return null;
 	}
@@ -742,7 +742,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseImageBarrier(ImageBarrier object)
+	public T caseImageBarrier(ImageBarrier object)
 	{
 		return null;
 	}
@@ -758,7 +758,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseShader(Shader object)
+	public T caseShader(Shader object)
 	{
 		return null;
 	}
@@ -774,7 +774,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseImageArrayDescriptor(ImageArrayDescriptor object)
+	public T caseImageArrayDescriptor(ImageArrayDescriptor object)
 	{
 		return null;
 	}
@@ -790,7 +790,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseLNamedElement(LNamedElement object)
+	public T caseLNamedElement(LNamedElement object)
 	{
 		return null;
 	}
@@ -806,7 +806,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIResource(IResource object)
+	public T caseIResource(IResource object)
 	{
 		return null;
 	}
@@ -822,7 +822,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseImageInfo(ImageInfo object)
+	public T caseImageInfo(ImageInfo object)
 	{
 		return null;
 	}
@@ -838,7 +838,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIImage(IImage object)
+	public T caseIImage(IImage object)
 	{
 		return null;
 	}
@@ -854,7 +854,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSamplerInfo(SamplerInfo object)
+	public T caseSamplerInfo(SamplerInfo object)
 	{
 		return null;
 	}
@@ -870,7 +870,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIDescriptor(IDescriptor object)
+	public T caseIDescriptor(IDescriptor object)
 	{
 		return null;
 	}
@@ -886,7 +886,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseBarrier(Barrier object)
+	public T caseBarrier(Barrier object)
 	{
 		return null;
 	}
@@ -902,7 +902,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAbstractBufferBarrier(AbstractBufferBarrier object)
+	public T caseAbstractBufferBarrier(AbstractBufferBarrier object)
 	{
 		return null;
 	}
@@ -918,7 +918,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAbstractImageBarrier(AbstractImageBarrier object)
+	public T caseAbstractImageBarrier(AbstractImageBarrier object)
 	{
 		return null;
 	}
@@ -935,7 +935,7 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	@Override
-	public T1 defaultCase(EObject object)
+	public T defaultCase(EObject object)
 	{
 		return null;
 	}

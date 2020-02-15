@@ -186,7 +186,7 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 				return createPanelAdapter();
 			}
 			@Override
-			public <T> Adapter caseBufferDataProvider(BufferDataProvider<T> object)
+			public Adapter caseBufferDataProvider(BufferDataProvider object)
 			{
 				return createBufferDataProviderAdapter();
 			}

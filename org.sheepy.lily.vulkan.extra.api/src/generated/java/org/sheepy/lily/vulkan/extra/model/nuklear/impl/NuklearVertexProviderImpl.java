@@ -27,7 +27,7 @@ import org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl;
  *
  * @generated
  */
-public class NuklearVertexProviderImpl extends BufferDataProviderImpl<NuklearContext> implements NuklearVertexProvider
+public class NuklearVertexProviderImpl extends BufferDataProviderImpl implements NuklearVertexProvider
 {
 	/**
 	 * The cached value of the '{@link #getContext() <em>Context</em>}' reference.

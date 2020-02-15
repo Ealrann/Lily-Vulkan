@@ -83,7 +83,7 @@ public interface VulkanResourceFactory extends EFactory
 	 * @return a new object of class '<em>Buffer Data Provider</em>'.
 	 * @generated
 	 */
-	<T> BufferDataProvider<T> createBufferDataProvider();
+	BufferDataProvider createBufferDataProvider();
 
 	/**
 	 * Returns a new object of class '<em>Static Image</em>'.

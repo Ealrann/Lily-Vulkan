@@ -4,7 +4,6 @@ package org.sheepy.lily.vulkan.extra.model.nuklear.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -785,14 +784,8 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		nuklearFontEClass.getESuperTypes().add(theResourcePackage.getIResource());
 		selectorPanelEClass.getESuperTypes().add(theUiPackage.getIPanel());
 		panelViewerEClass.getESuperTypes().add(theUiPackage.getPanel());
-		EGenericType g1 = createEGenericType(theVulkanResourcePackage.getBufferDataProvider());
-		EGenericType g2 = createEGenericType(this.getNuklearContext());
-		g1.getETypeArguments().add(g2);
-		nuklearVertexProviderEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theVulkanResourcePackage.getBufferDataProvider());
-		g2 = createEGenericType(this.getNuklearContext());
-		g1.getETypeArguments().add(g2);
-		nuklearIndexProviderEClass.getEGenericSuperTypes().add(g1);
+		nuklearVertexProviderEClass.getESuperTypes().add(theVulkanResourcePackage.getBufferDataProvider());
+		nuklearIndexProviderEClass.getESuperTypes().add(theVulkanResourcePackage.getBufferDataProvider());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(nuklearPushConstantsEClass, NuklearPushConstants.class, "NuklearPushConstants", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

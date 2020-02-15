@@ -3,8 +3,10 @@
 package org.sheepy.lily.vulkan.extra.model.rendering.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
@@ -23,13 +25,24 @@ import org.sheepy.vulkan.model.enumeration.EIndexType;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.IndexProviderImpl#getDataSource <em>Data Source</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.IndexProviderImpl#getIndexType <em>Index Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class IndexProviderImpl<T extends Structure> extends BufferDataProviderImpl<RenderableDataSource<T>> implements IndexProvider<T>
+public class IndexProviderImpl<T extends Structure> extends BufferDataProviderImpl implements IndexProvider<T>
 {
+	/**
+	 * The cached value of the '{@link #getDataSource() <em>Data Source</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected RenderableDataSource<T> dataSource;
+
 	/**
 	 * The default value of the '{@link #getIndexType() <em>Index Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -77,6 +90,56 @@ public class IndexProviderImpl<T extends Structure> extends BufferDataProviderIm
 	 * @generated
 	 */
 	@Override
+	public RenderableDataSource<T> getDataSource()
+	{
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDataSource(RenderableDataSource<T> newDataSource, NotificationChain msgs)
+	{
+		RenderableDataSource<T> oldDataSource = dataSource;
+		dataSource = newDataSource;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderingPackage.INDEX_PROVIDER__DATA_SOURCE, oldDataSource, newDataSource);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDataSource(RenderableDataSource<T> newDataSource)
+	{
+		if (newDataSource != dataSource)
+		{
+			NotificationChain msgs = null;
+			if (dataSource != null)
+				msgs = ((InternalEObject)dataSource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.INDEX_PROVIDER__DATA_SOURCE, null, msgs);
+			if (newDataSource != null)
+				msgs = ((InternalEObject)newDataSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.INDEX_PROVIDER__DATA_SOURCE, null, msgs);
+			msgs = basicSetDataSource(newDataSource, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.INDEX_PROVIDER__DATA_SOURCE, newDataSource, newDataSource));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EIndexType getIndexType()
 	{
 		return indexType;
@@ -102,10 +165,28 @@ public class IndexProviderImpl<T extends Structure> extends BufferDataProviderIm
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case RenderingPackage.INDEX_PROVIDER__DATA_SOURCE:
+				return basicSetDataSource(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
 		{
+			case RenderingPackage.INDEX_PROVIDER__DATA_SOURCE:
+				return getDataSource();
 			case RenderingPackage.INDEX_PROVIDER__INDEX_TYPE:
 				return getIndexType();
 		}
@@ -117,11 +198,15 @@ public class IndexProviderImpl<T extends Structure> extends BufferDataProviderIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)
 		{
+			case RenderingPackage.INDEX_PROVIDER__DATA_SOURCE:
+				setDataSource((RenderableDataSource<T>)newValue);
+				return;
 			case RenderingPackage.INDEX_PROVIDER__INDEX_TYPE:
 				setIndexType((EIndexType)newValue);
 				return;
@@ -139,6 +224,9 @@ public class IndexProviderImpl<T extends Structure> extends BufferDataProviderIm
 	{
 		switch (featureID)
 		{
+			case RenderingPackage.INDEX_PROVIDER__DATA_SOURCE:
+				setDataSource((RenderableDataSource<T>)null);
+				return;
 			case RenderingPackage.INDEX_PROVIDER__INDEX_TYPE:
 				setIndexType(INDEX_TYPE_EDEFAULT);
 				return;
@@ -156,6 +244,8 @@ public class IndexProviderImpl<T extends Structure> extends BufferDataProviderIm
 	{
 		switch (featureID)
 		{
+			case RenderingPackage.INDEX_PROVIDER__DATA_SOURCE:
+				return dataSource != null;
 			case RenderingPackage.INDEX_PROVIDER__INDEX_TYPE:
 				return indexType != INDEX_TYPE_EDEFAULT;
 		}

@@ -656,6 +656,17 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
+	public EReference getRenderDataProvider_DataSource()
+	{
+		return (EReference)renderDataProviderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getDataProviderPkg()
 	{
 		return dataProviderPkgEClass;
@@ -1058,6 +1069,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		createEAttribute(genericRendererEClass, GENERIC_RENDERER__ONE_PIPELINE_PER_PART);
 
 		renderDataProviderEClass = createEClass(RENDER_DATA_PROVIDER);
+		createEReference(renderDataProviderEClass, RENDER_DATA_PROVIDER__DATA_SOURCE);
 
 		dataProviderPkgEClass = createEClass(DATA_PROVIDER_PKG);
 		createEReference(dataProviderPkgEClass, DATA_PROVIDER_PKG__DATA_PROVIDERS);
@@ -1173,12 +1185,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		EGenericType g2 = createEGenericType(theGraphicPackage.getGraphicsPipeline());
 		g1.getETypeArguments().add(g2);
 		genericRendererEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theVulkanResourcePackage.getBufferDataProvider());
-		g2 = createEGenericType(this.getRenderableDataSource());
-		g1.getETypeArguments().add(g2);
-		EGenericType g3 = createEGenericType(renderDataProviderEClass_T);
-		g2.getETypeArguments().add(g3);
-		renderDataProviderEClass.getEGenericSuperTypes().add(g1);
+		renderDataProviderEClass.getESuperTypes().add(theVulkanResourcePackage.getBufferDataProvider());
 		g1 = createEGenericType(this.getRenderDataProvider());
 		g2 = createEGenericType(vertexProviderEClass_T);
 		g1.getETypeArguments().add(g2);
@@ -1234,6 +1241,10 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEAttribute(getGenericRenderer_OnePipelinePerPart(), ecorePackage.getEBoolean(), "onePipelinePerPart", "false", 1, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(renderDataProviderEClass, RenderDataProvider.class, "RenderDataProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(this.getRenderableDataSource());
+		g2 = createEGenericType(renderDataProviderEClass_T);
+		g1.getETypeArguments().add(g2);
+		initEReference(getRenderDataProvider_DataSource(), g1, null, "dataSource", null, 0, 1, RenderDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataProviderPkgEClass, DataProviderPkg.class, "DataProviderPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(this.getRenderDataProvider());

@@ -787,7 +787,7 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T> T1 caseBufferDataProvider(BufferDataProvider<T> object)
+	public T1 caseBufferDataProvider(BufferDataProvider object)
 	{
 		return null;
 	}

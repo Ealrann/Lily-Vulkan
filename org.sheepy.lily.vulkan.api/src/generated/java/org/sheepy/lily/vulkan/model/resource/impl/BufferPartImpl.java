@@ -39,7 +39,7 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 	 * @generated
 	 * @ordered
 	 */
-	protected BufferDataProvider<?> dataProvider;
+	protected BufferDataProvider dataProvider;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -68,7 +68,7 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 	 * @generated
 	 */
 	@Override
-	public BufferDataProvider<?> getDataProvider()
+	public BufferDataProvider getDataProvider()
 	{
 		return dataProvider;
 	}
@@ -78,9 +78,9 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDataProvider(BufferDataProvider<?> newDataProvider, NotificationChain msgs)
+	public NotificationChain basicSetDataProvider(BufferDataProvider newDataProvider, NotificationChain msgs)
 	{
-		BufferDataProvider<?> oldDataProvider = dataProvider;
+		BufferDataProvider oldDataProvider = dataProvider;
 		dataProvider = newDataProvider;
 		if (eNotificationRequired())
 		{
@@ -96,7 +96,7 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 	 * @generated
 	 */
 	@Override
-	public void setDataProvider(BufferDataProvider<?> newDataProvider)
+	public void setDataProvider(BufferDataProvider newDataProvider)
 	{
 		if (newDataProvider != dataProvider)
 		{
@@ -155,7 +155,7 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 		switch (featureID)
 		{
 			case VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER:
-				setDataProvider((BufferDataProvider<?>)newValue);
+				setDataProvider((BufferDataProvider)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -172,7 +172,7 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 		switch (featureID)
 		{
 			case VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER:
-				setDataProvider((BufferDataProvider<?>)null);
+				setDataProvider((BufferDataProvider)null);
 				return;
 		}
 		super.eUnset(featureID);

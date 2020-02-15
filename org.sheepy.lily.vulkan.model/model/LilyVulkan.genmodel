@@ -344,7 +344,6 @@
       <genEnumLiterals ecoreEnumLiteral="resource.ecore#//EFlushMode/PUSH"/>
       <genEnumLiterals ecoreEnumLiteral="resource.ecore#//EFlushMode/FETCH"/>
     </genEnums>
-    <genDataTypes ecoreDataType="resource.ecore#//IGenericObject"/>
     <genDataTypes ecoreDataType="resource.ecore#//ByteBuffer"/>
     <genClasses ecoreClass="resource.ecore#//TransferBuffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/size"/>
@@ -376,7 +375,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//BufferPart/dataProvider"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//BufferDataProvider">
-      <genTypeParameters ecoreTypeParameter="resource.ecore#//BufferDataProvider/T"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usedToPush"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usedToFetch"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/stageBeforePush"/>
@@ -390,7 +388,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/growThreshold"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/minSize"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/requestedSize"/>
-      <genFeatures property="Readonly" children="true" createChild="true" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/dataSource"/>
     </genClasses>
     <genClasses image="false" ecoreClass="resource.ecore#//Image"/>
     <genClasses ecoreClass="resource.ecore#//StaticImage">

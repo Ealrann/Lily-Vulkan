@@ -32,37 +32,14 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getGrowThreshold <em>Grow Threshold</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getMinSize <em>Min Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getRequestedSize <em>Requested Size</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferDataProvider()
  * @model
  * @generated
  */
-public interface BufferDataProvider<T> extends LNamedElement
+public interface BufferDataProvider extends LNamedElement
 {
-	/**
-	 * Returns the value of the '<em><b>Data Source</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data Source</em>' attribute.
-	 * @see #setDataSource(Object)
-	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferDataProvider_DataSource()
-	 * @model dataType="org.sheepy.lily.vulkan.model.resource.IGenericObject"
-	 * @generated
-	 */
-	Object getDataSource();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource <em>Data Source</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data Source</em>' attribute.
-	 * @see #getDataSource()
-	 * @generated
-	 */
-	void setDataSource(Object value);
-
 	/**
 	 * Returns the value of the '<em><b>Used To Push</b></em>' attribute.
 	 * The default value is <code>"true"</code>.

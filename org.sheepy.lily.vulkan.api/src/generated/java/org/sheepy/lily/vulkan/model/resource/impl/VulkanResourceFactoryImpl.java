@@ -109,8 +109,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 		{
 			case VulkanResourcePackage.EFLUSH_MODE:
 				return createEFlushModeFromString(eDataType, initialValue);
-			case VulkanResourcePackage.IGENERIC_OBJECT:
-				return createIGenericObjectFromString(eDataType, initialValue);
 			case VulkanResourcePackage.BYTE_BUFFER:
 				return createByteBufferFromString(eDataType, initialValue);
 			default:
@@ -130,8 +128,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 		{
 			case VulkanResourcePackage.EFLUSH_MODE:
 				return convertEFlushModeToString(eDataType, instanceValue);
-			case VulkanResourcePackage.IGENERIC_OBJECT:
-				return convertIGenericObjectToString(eDataType, instanceValue);
 			case VulkanResourcePackage.BYTE_BUFFER:
 				return convertByteBufferToString(eDataType, instanceValue);
 			default:
@@ -217,9 +213,9 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public <T> BufferDataProvider<T> createBufferDataProvider()
+	public BufferDataProvider createBufferDataProvider()
 	{
-		BufferDataProviderImpl<T> bufferDataProvider = new BufferDataProviderImpl<T>();
+		BufferDataProviderImpl bufferDataProvider = new BufferDataProviderImpl();
 		return bufferDataProvider;
 	}
 
@@ -459,26 +455,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	public String convertEFlushModeToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object createIGenericObjectFromString(EDataType eDataType, String initialValue)
-	{
-		return super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertIGenericObjectToString(EDataType eDataType, Object instanceValue)
-	{
-		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

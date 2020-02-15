@@ -20,7 +20,7 @@ import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
  * @model
  * @generated
  */
-public interface NuklearIndexProvider extends BufferDataProvider<NuklearContext>
+public interface NuklearIndexProvider extends BufferDataProvider
 {
 
 	/**

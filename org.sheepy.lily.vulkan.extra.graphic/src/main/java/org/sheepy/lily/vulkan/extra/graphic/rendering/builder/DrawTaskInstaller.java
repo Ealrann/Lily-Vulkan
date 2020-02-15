@@ -35,7 +35,7 @@ public final class DrawTaskInstaller
 		final var buffer = context.buffer;
 		final var bufferParts = buffer.getParts();
 		final List<VertexProvider<?>> vertexProviders = new ArrayList<>();
-		final List<BufferDataProvider<?>> dataProviders = new ArrayList<>();
+		final List<BufferDataProvider> dataProviders = new ArrayList<>();
 
 		final List<VertexBinding> vertexBufferRef = new ArrayList<>();
 		int indexIndex = -1;
@@ -53,7 +53,8 @@ public final class DrawTaskInstaller
 					throw new IllegalStateException(ONLY_ONE_INDEX_PROVIDER_IS_ALLOWED);
 				}
 				indexIndex = i;
-			} else if (provider instanceof VertexProvider)
+			}
+			else if (provider instanceof VertexProvider)
 			{
 				final var vertexBinding = GraphicFactory.eINSTANCE.createVertexBinding();
 				vertexBinding.setBuffer(part);
@@ -94,7 +95,8 @@ public final class DrawTaskInstaller
 			taskPkg.getTasks().add(indexedDraw);
 
 			return new IndexedDrawSetup(dataProviders, structure);
-		} else
+		}
+		else
 		{
 			final var draw = RenderingFactory.eINSTANCE.createRenderDrawTask();
 			draw.getVertexProviders().addAll(vertexProviders);
@@ -107,11 +109,10 @@ public final class DrawTaskInstaller
 
 	private static final class IndexedDrawSetup implements IStructurePartDrawSetup
 	{
-		private final List<BufferDataProvider<?>> dataProviders;
+		private final List<BufferDataProvider> dataProviders;
 		private final Structure structure;
 
-		private IndexedDrawSetup(List<BufferDataProvider<?>> dataProviders,
-								 Structure structure)
+		private IndexedDrawSetup(List<BufferDataProvider> dataProviders, Structure structure)
 		{
 			this.structure = structure;
 			this.dataProviders = List.copyOf(dataProviders);
@@ -124,7 +125,7 @@ public final class DrawTaskInstaller
 		}
 
 		@Override
-		public List<BufferDataProvider<?>> getDataProviders()
+		public List<BufferDataProvider> getDataProviders()
 		{
 			return dataProviders;
 		}
@@ -132,11 +133,10 @@ public final class DrawTaskInstaller
 
 	private static final class DrawSetup implements IStructurePartDrawSetup
 	{
-		private final List<BufferDataProvider<?>> dataProviders;
+		private final List<BufferDataProvider> dataProviders;
 		private final Structure structure;
 
-		private DrawSetup(List<BufferDataProvider<?>> dataProviders,
-						  Structure structure)
+		private DrawSetup(List<BufferDataProvider> dataProviders, Structure structure)
 		{
 			this.structure = structure;
 			this.dataProviders = List.copyOf(dataProviders);
@@ -149,7 +149,7 @@ public final class DrawTaskInstaller
 		}
 
 		@Override
-		public List<BufferDataProvider<?>> getDataProviders()
+		public List<BufferDataProvider> getDataProviders()
 		{
 			return dataProviders;
 		}

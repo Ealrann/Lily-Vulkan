@@ -242,7 +242,7 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createMaintainerAdapter();
 			}
 			@Override
-			public <T> Adapter caseBufferDataProvider(BufferDataProvider<T> object)
+			public Adapter caseBufferDataProvider(BufferDataProvider object)
 			{
 				return createBufferDataProviderAdapter();
 			}

@@ -69,7 +69,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	{
 		if (configurator != null)
 		{
-			final var provider = (BufferDataProvider<?>) notification.getNotifier();
+			final var provider = (BufferDataProvider) notification.getNotifier();
 			final var part = (BufferPart) provider.eContainer();
 			final var adapter = part.adapt(BufferPartAdapter.class);
 			if (adapter.needResize())

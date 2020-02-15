@@ -828,13 +828,13 @@ public interface RenderingPackage extends EPackage
 	int RENDER_DATA_PROVIDER__REQUESTED_SIZE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE;
 
 	/**
-	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER__DATA_SOURCE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE;
+	int RENDER_DATA_PROVIDER__DATA_SOURCE = VulkanResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Render Data Provider</em>' class.
@@ -843,7 +843,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_DATA_PROVIDER_FEATURE_COUNT = VulkanResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
+	int RENDER_DATA_PROVIDER_FEATURE_COUNT = VulkanResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Render Data Provider</em>' class.
@@ -1066,7 +1066,7 @@ public interface RenderingPackage extends EPackage
 	int VERTEX_PROVIDER__REQUESTED_SIZE = RENDER_DATA_PROVIDER__REQUESTED_SIZE;
 
 	/**
-	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1220,7 +1220,7 @@ public interface RenderingPackage extends EPackage
 	int INDEX_PROVIDER__REQUESTED_SIZE = RENDER_DATA_PROVIDER__REQUESTED_SIZE;
 
 	/**
-	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2010,6 +2010,17 @@ public interface RenderingPackage extends EPackage
 	EClass getRenderDataProvider();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider#getDataSource <em>Data Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Data Source</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider#getDataSource()
+	 * @see #getRenderDataProvider()
+	 * @generated
+	 */
+	EReference getRenderDataProvider_DataSource();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg <em>Data Provider Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2600,6 +2611,14 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EClass RENDER_DATA_PROVIDER = eINSTANCE.getRenderDataProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Source</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RENDER_DATA_PROVIDER__DATA_SOURCE = eINSTANCE.getRenderDataProvider_DataSource();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderPkgImpl <em>Data Provider Pkg</em>}' class.

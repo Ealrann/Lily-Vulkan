@@ -33,7 +33,7 @@ import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
  * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage
  * @generated
  */
-public class NuklearSwitch<T1> extends Switch<T1>
+public class NuklearSwitch<T> extends Switch<T>
 {
 	/**
 	 * The cached model package
@@ -79,14 +79,14 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	@Override
-	protected T1 doSwitch(int classifierID, EObject theEObject)
+	protected T doSwitch(int classifierID, EObject theEObject)
 	{
 		switch (classifierID)
 		{
 			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS:
 			{
 				NuklearPushConstants nuklearPushConstants = (NuklearPushConstants)theEObject;
-				T1 result = caseNuklearPushConstants(nuklearPushConstants);
+				T result = caseNuklearPushConstants(nuklearPushConstants);
 				if (result == null) result = casePushConstant(nuklearPushConstants);
 				if (result == null) result = caseIPipelineTask(nuklearPushConstants);
 				if (result == null) result = caseLNamedElement(nuklearPushConstants);
@@ -96,7 +96,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK:
 			{
 				NuklearLayoutTask nuklearLayoutTask = (NuklearLayoutTask)theEObject;
-				T1 result = caseNuklearLayoutTask(nuklearLayoutTask);
+				T result = caseNuklearLayoutTask(nuklearLayoutTask);
 				if (result == null) result = caseIPipelineTask(nuklearLayoutTask);
 				if (result == null) result = caseLNamedElement(nuklearLayoutTask);
 				if (result == null) result = defaultCase(theEObject);
@@ -105,7 +105,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 			case NuklearPackage.NUKLEAR_FILL_BUFFER_TASK:
 			{
 				NuklearFillBufferTask nuklearFillBufferTask = (NuklearFillBufferTask)theEObject;
-				T1 result = caseNuklearFillBufferTask(nuklearFillBufferTask);
+				T result = caseNuklearFillBufferTask(nuklearFillBufferTask);
 				if (result == null) result = caseIPipelineTask(nuklearFillBufferTask);
 				if (result == null) result = caseLNamedElement(nuklearFillBufferTask);
 				if (result == null) result = defaultCase(theEObject);
@@ -114,7 +114,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 			case NuklearPackage.NUKLEAR_CONTEXT:
 			{
 				NuklearContext nuklearContext = (NuklearContext)theEObject;
-				T1 result = caseNuklearContext(nuklearContext);
+				T result = caseNuklearContext(nuklearContext);
 				if (result == null) result = caseIResource(nuklearContext);
 				if (result == null) result = caseLNamedElement(nuklearContext);
 				if (result == null) result = defaultCase(theEObject);
@@ -123,7 +123,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 			case NuklearPackage.NUKLEAR_FONT:
 			{
 				NuklearFont nuklearFont = (NuklearFont)theEObject;
-				T1 result = caseNuklearFont(nuklearFont);
+				T result = caseNuklearFont(nuklearFont);
 				if (result == null) result = caseIResource(nuklearFont);
 				if (result == null) result = caseLNamedElement(nuklearFont);
 				if (result == null) result = defaultCase(theEObject);
@@ -132,7 +132,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 			case NuklearPackage.SELECTOR_PANEL:
 			{
 				SelectorPanel selectorPanel = (SelectorPanel)theEObject;
-				T1 result = caseSelectorPanel(selectorPanel);
+				T result = caseSelectorPanel(selectorPanel);
 				if (result == null) result = caseIPanel(selectorPanel);
 				if (result == null) result = caseLNamedElement(selectorPanel);
 				if (result == null) result = caseIUIElement(selectorPanel);
@@ -144,14 +144,14 @@ public class NuklearSwitch<T1> extends Switch<T1>
 			case NuklearPackage.IINPUT_PROVIDER:
 			{
 				IInputProvider iInputProvider = (IInputProvider)theEObject;
-				T1 result = caseIInputProvider(iInputProvider);
+				T result = caseIInputProvider(iInputProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case NuklearPackage.PANEL_VIEWER:
 			{
 				PanelViewer panelViewer = (PanelViewer)theEObject;
-				T1 result = casePanelViewer(panelViewer);
+				T result = casePanelViewer(panelViewer);
 				if (result == null) result = casePanel(panelViewer);
 				if (result == null) result = caseIPanel(panelViewer);
 				if (result == null) result = caseISizedElement(panelViewer);
@@ -165,7 +165,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 			case NuklearPackage.NUKLEAR_VERTEX_PROVIDER:
 			{
 				NuklearVertexProvider nuklearVertexProvider = (NuklearVertexProvider)theEObject;
-				T1 result = caseNuklearVertexProvider(nuklearVertexProvider);
+				T result = caseNuklearVertexProvider(nuklearVertexProvider);
 				if (result == null) result = caseBufferDataProvider(nuklearVertexProvider);
 				if (result == null) result = caseLNamedElement(nuklearVertexProvider);
 				if (result == null) result = defaultCase(theEObject);
@@ -174,7 +174,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 			case NuklearPackage.NUKLEAR_INDEX_PROVIDER:
 			{
 				NuklearIndexProvider nuklearIndexProvider = (NuklearIndexProvider)theEObject;
-				T1 result = caseNuklearIndexProvider(nuklearIndexProvider);
+				T result = caseNuklearIndexProvider(nuklearIndexProvider);
 				if (result == null) result = caseBufferDataProvider(nuklearIndexProvider);
 				if (result == null) result = caseLNamedElement(nuklearIndexProvider);
 				if (result == null) result = defaultCase(theEObject);
@@ -195,7 +195,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseNuklearPushConstants(NuklearPushConstants object)
+	public T caseNuklearPushConstants(NuklearPushConstants object)
 	{
 		return null;
 	}
@@ -211,7 +211,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseNuklearLayoutTask(NuklearLayoutTask object)
+	public T caseNuklearLayoutTask(NuklearLayoutTask object)
 	{
 		return null;
 	}
@@ -227,7 +227,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseNuklearFillBufferTask(NuklearFillBufferTask object)
+	public T caseNuklearFillBufferTask(NuklearFillBufferTask object)
 	{
 		return null;
 	}
@@ -243,7 +243,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseNuklearContext(NuklearContext object)
+	public T caseNuklearContext(NuklearContext object)
 	{
 		return null;
 	}
@@ -259,7 +259,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseNuklearFont(NuklearFont object)
+	public T caseNuklearFont(NuklearFont object)
 	{
 		return null;
 	}
@@ -275,7 +275,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSelectorPanel(SelectorPanel object)
+	public T caseSelectorPanel(SelectorPanel object)
 	{
 		return null;
 	}
@@ -291,7 +291,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIInputProvider(IInputProvider object)
+	public T caseIInputProvider(IInputProvider object)
 	{
 		return null;
 	}
@@ -307,7 +307,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePanelViewer(PanelViewer object)
+	public T casePanelViewer(PanelViewer object)
 	{
 		return null;
 	}
@@ -323,7 +323,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseNuklearVertexProvider(NuklearVertexProvider object)
+	public T caseNuklearVertexProvider(NuklearVertexProvider object)
 	{
 		return null;
 	}
@@ -339,7 +339,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseNuklearIndexProvider(NuklearIndexProvider object)
+	public T caseNuklearIndexProvider(NuklearIndexProvider object)
 	{
 		return null;
 	}
@@ -355,7 +355,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseLNamedElement(LNamedElement object)
+	public T caseLNamedElement(LNamedElement object)
 	{
 		return null;
 	}
@@ -371,7 +371,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIPipelineTask(IPipelineTask object)
+	public T caseIPipelineTask(IPipelineTask object)
 	{
 		return null;
 	}
@@ -387,7 +387,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePushConstant(PushConstant object)
+	public T casePushConstant(PushConstant object)
 	{
 		return null;
 	}
@@ -403,7 +403,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIResource(IResource object)
+	public T caseIResource(IResource object)
 	{
 		return null;
 	}
@@ -419,7 +419,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIInferenceObject(IInferenceObject object)
+	public T caseIInferenceObject(IInferenceObject object)
 	{
 		return null;
 	}
@@ -435,7 +435,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIUIElement(IUIElement object)
+	public T caseIUIElement(IUIElement object)
 	{
 		return null;
 	}
@@ -451,7 +451,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIPositionElement(IPositionElement object)
+	public T caseIPositionElement(IPositionElement object)
 	{
 		return null;
 	}
@@ -467,7 +467,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIPanel(IPanel object)
+	public T caseIPanel(IPanel object)
 	{
 		return null;
 	}
@@ -483,7 +483,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseISizedElement(ISizedElement object)
+	public T caseISizedElement(ISizedElement object)
 	{
 		return null;
 	}
@@ -499,7 +499,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePanel(Panel object)
+	public T casePanel(Panel object)
 	{
 		return null;
 	}
@@ -515,7 +515,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T> T1 caseBufferDataProvider(BufferDataProvider<T> object)
+	public T caseBufferDataProvider(BufferDataProvider object)
 	{
 		return null;
 	}
@@ -532,7 +532,7 @@ public class NuklearSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	@Override
-	public T1 defaultCase(EObject object)
+	public T defaultCase(EObject object)
 	{
 		return null;
 	}

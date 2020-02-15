@@ -43,12 +43,11 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getGrowThreshold <em>Grow Threshold</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getMinSize <em>Min Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getRequestedSize <em>Requested Size</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class BufferDataProviderImpl<T> extends LilyEObject implements BufferDataProvider<T>
+public class BufferDataProviderImpl extends LilyEObject implements BufferDataProvider
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -281,26 +280,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 	protected long requestedSize = REQUESTED_SIZE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDataSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Object DATA_SOURCE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDataSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected Object dataSource = DATA_SOURCE_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -344,31 +323,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_DATA_PROVIDER__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getDataSource()
-	{
-		return dataSource;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDataSource(Object newDataSource)
-	{
-		Object oldDataSource = dataSource;
-		dataSource = newDataSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE, oldDataSource, dataSource));
 	}
 
 	/**
@@ -677,8 +631,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 				return getMinSize();
 			case VulkanResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE:
 				return getRequestedSize();
-			case VulkanResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
-				return getDataSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -736,9 +688,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 			case VulkanResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE:
 				setRequestedSize((Long)newValue);
 				return;
-			case VulkanResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
-				setDataSource(newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -792,9 +741,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 			case VulkanResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE:
 				setRequestedSize(REQUESTED_SIZE_EDEFAULT);
 				return;
-			case VulkanResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
-				setDataSource(DATA_SOURCE_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -835,8 +781,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 				return minSize != MIN_SIZE_EDEFAULT;
 			case VulkanResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE:
 				return requestedSize != REQUESTED_SIZE_EDEFAULT;
-			case VulkanResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE:
-				return DATA_SOURCE_EDEFAULT == null ? dataSource != null : !DATA_SOURCE_EDEFAULT.equals(dataSource);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -878,8 +822,6 @@ public class BufferDataProviderImpl<T> extends LilyEObject implements BufferData
 		result.append(minSize);
 		result.append(", requestedSize: ");
 		result.append(requestedSize);
-		result.append(", dataSource: ");
-		result.append(dataSource);
 		result.append(')');
 		return result.toString();
 	}

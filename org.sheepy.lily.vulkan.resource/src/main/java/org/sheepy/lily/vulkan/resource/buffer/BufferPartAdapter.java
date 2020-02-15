@@ -27,7 +27,7 @@ import java.util.function.Consumer;
 public final class BufferPartAdapter extends Notifier implements IBufferPartAdapter,
 																 IAllocableAdapter<InternalExecutionContext>
 {
-	public final BufferDataProvider<?> dataProvider;
+	public final BufferDataProvider dataProvider;
 
 	private final int usage;
 	private final int accessBeforePush;
@@ -59,7 +59,7 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 		accessBeforeFetch = VulkanModelUtil.getEnumeratedFlag(dataProvider.getAccessBeforeFetch());
 	}
 
-	private static int computeUsage(BufferDataProvider<?> dataProvider)
+	private static int computeUsage(BufferDataProvider dataProvider)
 	{
 		final int usage = VulkanModelUtil.getEnumeratedFlag(dataProvider.getUsages());
 		final int pushUsage = dataProvider.isUsedToPush() ? EBufferUsage.TRANSFER_DST_BIT_VALUE : 0;
