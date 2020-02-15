@@ -54,8 +54,6 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
-
-import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
@@ -796,62 +794,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 				newChildDescriptors.add
 					(createChildParameter
 						(VulkanResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER,
-						 NuklearFactory.eINSTANCE.createNuklearIndexProvider()));
-
-				return null;
-			}
- 
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public <T> Object caseBufferDataProvider(BufferDataProvider<T> object)
-			{
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 NuklearFactory.eINSTANCE.createNuklearPushConstants()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 NuklearFactory.eINSTANCE.createNuklearLayoutTask()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 NuklearFactory.eINSTANCE.createNuklearFillBufferTask()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 NuklearFactory.eINSTANCE.createNuklearContext()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 NuklearFactory.eINSTANCE.createNuklearFont()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 NuklearFactory.eINSTANCE.createSelectorPanel()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 NuklearFactory.eINSTANCE.createPanelViewer()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 NuklearFactory.eINSTANCE.createNuklearVertexProvider()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
 						 NuklearFactory.eINSTANCE.createNuklearIndexProvider()));
 
 				return null;

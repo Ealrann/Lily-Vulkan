@@ -152,6 +152,31 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GenericConstantBufferItemProvider genericConstantBufferItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGenericConstantBufferAdapter()
+	{
+		if (genericConstantBufferItemProvider == null)
+		{
+			genericConstantBufferItemProvider = new GenericConstantBufferItemProvider(this);
+		}
+
+		return genericConstantBufferItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Buffer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -783,6 +808,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 	{
 		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
@@ -793,6 +819,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ResourceLocator getResourceLocator()
 	{
 		return childCreationExtenderManager;
@@ -903,6 +930,11 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 				newChildDescriptors.add
 					(createChildParameter
 						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createGenericConstantBuffer()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
 						 VulkanResourceFactory.eINSTANCE.createBuffer()));
 
 				newChildDescriptors.add
@@ -975,6 +1007,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
 			ArrayList<Object> result = new ArrayList<Object>();
@@ -987,6 +1020,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public ResourceLocator getResourceLocator()
 		{
 			return LilyVulkanEditPlugin.INSTANCE;

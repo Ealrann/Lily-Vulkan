@@ -24,9 +24,6 @@
       <extender
             uri="org.sheepy.lily.vulkan.model.process"
             class="org.sheepy.lily.vulkan.extra.model.mesh.provider.MeshItemProviderAdapterFactory$ProcessChildCreationExtender"/>
-      <extender
-            uri="org.sheepy.lily.vulkan.model.resource"
-            class="org.sheepy.lily.vulkan.extra.model.mesh.provider.MeshItemProviderAdapterFactory$VulkanResourceChildCreationExtender"/>
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
@@ -102,9 +99,6 @@
       <extender
             uri="org.sheepy.lily.vulkan.model.process"
             class="org.sheepy.lily.vulkan.extra.model.sprite.provider.SpriteItemProviderAdapterFactory$ProcessChildCreationExtender"/>
-      <extender
-            uri="org.sheepy.lily.vulkan.model.resource"
-            class="org.sheepy.lily.vulkan.extra.model.sprite.provider.SpriteItemProviderAdapterFactory$VulkanResourceChildCreationExtender"/>
    </extension>
 
 </plugin>

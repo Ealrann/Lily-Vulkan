@@ -49,8 +49,6 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
-
-import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
@@ -837,92 +835,6 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 					(createChildParameter
 						(VulkanResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER,
 						 RenderingFactory.eINSTANCE.createIndexProvider()));
-
-				return null;
-			}
- 
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public <T> Object caseBufferDataProvider(BufferDataProvider<T> object)
-			{
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 RenderingFactory.eINSTANCE.createAxis()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 RenderingFactory.eINSTANCE.createPresentationPkg()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 RenderingFactory.eINSTANCE.createPresentableEntity()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 RenderingFactory.eINSTANCE.createDataProviderPkg()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 RenderingFactory.eINSTANCE.createRenderableDataSource()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 RenderingFactory.eINSTANCE.createVertexProvider()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 RenderingFactory.eINSTANCE.createIndexProvider()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 RenderingFactory.eINSTANCE.createDescriptorsProvider()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 RenderingFactory.eINSTANCE.createDataDescriptorsProvider()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 RenderingFactory.eINSTANCE.createDataDescriptor()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 RenderingFactory.eINSTANCE.createResourceDescriptorProviderPkg()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 RenderingFactory.eINSTANCE.createRenderProxyConstantBuffer()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 RenderingFactory.eINSTANCE.createISpecialization()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 RenderingFactory.eINSTANCE.createRenderDrawTask()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER__DATA_SOURCE,
-						 RenderingFactory.eINSTANCE.createRenderIndexedDrawTask()));
 
 				return null;
 			}

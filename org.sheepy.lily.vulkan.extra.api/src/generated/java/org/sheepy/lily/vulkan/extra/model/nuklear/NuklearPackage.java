@@ -828,15 +828,6 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_VERTEX_PROVIDER__NAME = VulkanResourcePackage.BUFFER_DATA_PROVIDER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_VERTEX_PROVIDER__DATA_SOURCE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE;
-
-	/**
 	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -945,6 +936,15 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_VERTEX_PROVIDER__REQUESTED_SIZE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE;
 
 	/**
+	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_VERTEX_PROVIDER__DATA_SOURCE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE;
+
+	/**
 	 * The feature id for the '<em><b>Context</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -989,15 +989,6 @@ public interface NuklearPackage extends EPackage
 	 * @ordered
 	 */
 	int NUKLEAR_INDEX_PROVIDER__NAME = VulkanResourcePackage.BUFFER_DATA_PROVIDER__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_INDEX_PROVIDER__DATA_SOURCE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
@@ -1106,6 +1097,15 @@ public interface NuklearPackage extends EPackage
 	 * @ordered
 	 */
 	int NUKLEAR_INDEX_PROVIDER__REQUESTED_SIZE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE;
+
+	/**
+	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_INDEX_PROVIDER__DATA_SOURCE = VulkanResourcePackage.BUFFER_DATA_PROVIDER__DATA_SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' reference.

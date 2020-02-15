@@ -3,8 +3,6 @@
 package org.sheepy.lily.vulkan.extra.model.rendering.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -71,18 +69,6 @@ public class IndexProviderImpl<T extends Structure> extends BufferDataProviderIm
 	protected EClass eStaticClass()
 	{
 		return RenderingPackage.Literals.INDEX_PROVIDER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
-	 * @generated
-	 */
-	@Override
-	public NotificationChain basicSetDataSource(RenderableDataSource<T> newDataSource, NotificationChain msgs)
-	{
-		return super.basicSetDataSource(newDataSource, msgs);
 	}
 
 	/**

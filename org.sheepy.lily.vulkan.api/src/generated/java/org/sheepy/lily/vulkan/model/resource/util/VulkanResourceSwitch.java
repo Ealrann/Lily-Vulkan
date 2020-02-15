@@ -104,6 +104,16 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER:
+			{
+				GenericConstantBuffer genericConstantBuffer = (GenericConstantBuffer)theEObject;
+				T1 result = caseGenericConstantBuffer(genericConstantBuffer);
+				if (result == null) result = caseConstantBuffer(genericConstantBuffer);
+				if (result == null) result = caseIResource(genericConstantBuffer);
+				if (result == null) result = caseLNamedElement(genericConstantBuffer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case VulkanResourcePackage.IBUFFER:
 			{
 				IBuffer iBuffer = (IBuffer)theEObject;
@@ -365,6 +375,22 @@ public class VulkanResourceSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseConstantBuffer(ConstantBuffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Constant Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Constant Buffer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseGenericConstantBuffer(GenericConstantBuffer object)
 	{
 		return null;
 	}

@@ -1,9 +1,7 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.ModelUtil;
@@ -11,6 +9,7 @@ import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipeline;
 import org.sheepy.lily.vulkan.core.pipeline.VkShaderStage;
 import org.sheepy.lily.vulkan.core.resource.IShaderAdapter;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
@@ -19,6 +18,9 @@ import org.sheepy.lily.vulkan.process.graphic.pipeline.VkInputStateDescriptor.Vk
 import org.sheepy.lily.vulkan.process.graphic.pipeline.VkInputStateDescriptor.VkVertexBinding;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractVkPipelineAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Statefull
 @Adapter(scope = GraphicsPipeline.class)
 public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<IGraphicContext>
@@ -26,6 +28,7 @@ public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<IGraphicC
 	protected final GraphicsPipeline pipeline;
 
 	private VkGraphicsPipeline vkGraphicsPipeline;
+	private IAllocationConfigurator config;
 
 	public GraphicsPipelineAdapter(GraphicsPipeline pipeline)
 	{
@@ -36,8 +39,15 @@ public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<IGraphicC
 	@Override
 	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
 	{
-		config.addDependencies(List.of(context.getRenderPass()));
+		this.config = config;
+		this.config.addDependencies(List.of(context.getRenderPass()));
 		super.configureAllocation(config, context);
+	}
+
+	@NotifyChanged(featureIds = GraphicPackage.GRAPHICS_PIPELINE__SHADERS)
+	private void shaderChanged()
+	{
+		if (config != null) config.setDirty();
 	}
 
 	@Override

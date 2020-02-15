@@ -7,6 +7,7 @@
     <resources xsi:type="resource:Shader" name="ScreenFragment" stage="FRAGMENT_BIT">
       <file xsi:type="resource_1:StringModuleResource" path="screen_effect.frag.spv" moduleName="org.sheepy.lily.vulkan.process.graphic"/>
     </resources>
+    <resources xsi:type="resource:GenericConstantBuffer" name="Fragment Constants"/>
   </resourcePkg>
   <descriptorPkg>
     <descriptors xsi:type="graphic:AttachmentDescriptor" name="Scene" type="INPUT_ATTACHMENT">
@@ -15,14 +16,20 @@
   </descriptorPkg>
   <attachmantRefPkg/>
   <pipelinePkg>
-    <pipelines xsi:type="graphic:GraphicsPipeline" layout="//@pipelinePkg/@pipelines.0/@descriptorSetPkg/@descriptorSets.0" shaders="//@resourcePkg/@resources.1 //@resourcePkg/@resources.0">
+    <pipelines xsi:type="graphic:GraphicsPipeline" layout="//@pipelinePkg/@pipelines.0/@descriptorSetPkg/@descriptorSets.0" shaders="//@resourcePkg/@resources.0 //@resourcePkg/@resources.1">
       <taskPkg>
         <tasks xsi:type="process:BindDescriptorSets" descriptorSets="//@pipelinePkg/@pipelines.0/@descriptorSetPkg/@descriptorSets.0"/>
+        <tasks xsi:type="process:PushConstantBuffer" buffer="//@resourcePkg/@resources.2">
+          <stages>FRAGMENT_BIT</stages>
+        </tasks>
         <tasks xsi:type="graphic:Draw" vertexCount="3"/>
       </taskPkg>
       <descriptorSetPkg>
         <descriptorSets name="SwapDS" descriptors="//@descriptorPkg/@descriptors.0"/>
       </descriptorSetPkg>
+      <pushConstantRanges size="128">
+        <stages>FRAGMENT_BIT</stages>
+      </pushConstantRanges>
       <viewportState xsi:type="graphicpipeline:StaticViewportState">
         <viewports/>
         <scissors/>

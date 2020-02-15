@@ -67,30 +67,31 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		switch (eClass.getClassifierID())
 		{
-			case VulkanResourcePackage.TRANSFER_BUFFER: return (EObject)createTransferBuffer();
-			case VulkanResourcePackage.CONSTANT_BUFFER: return (EObject)createConstantBuffer();
-			case VulkanResourcePackage.BUFFER: return (EObject)createBuffer();
-			case VulkanResourcePackage.COMPOSITE_BUFFER: return (EObject)createCompositeBuffer();
-			case VulkanResourcePackage.BUFFER_PART: return (EObject)createBufferPart();
-			case VulkanResourcePackage.BUFFER_DATA_PROVIDER: return (EObject)createBufferDataProvider();
-			case VulkanResourcePackage.STATIC_IMAGE: return (EObject)createStaticImage();
-			case VulkanResourcePackage.FILE_IMAGE: return (EObject)createFileImage();
-			case VulkanResourcePackage.FONT_IMAGE: return (EObject)createFontImage();
-			case VulkanResourcePackage.COMPOSITE_IMAGE: return (EObject)createCompositeImage();
-			case VulkanResourcePackage.IMAGE_INLAY: return (EObject)createImageInlay();
-			case VulkanResourcePackage.SAMPLED_IMAGE: return (EObject)createSampledImage();
-			case VulkanResourcePackage.SAMPLER: return (EObject)createSampler();
-			case VulkanResourcePackage.SEMAPHORE: return (EObject)createSemaphore();
-			case VulkanResourcePackage.BUFFER_DESCRIPTOR: return (EObject)createBufferDescriptor();
-			case VulkanResourcePackage.IMAGE_DESCRIPTOR: return (EObject)createImageDescriptor();
-			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR: return (EObject)createSampledImageDescriptor();
-			case VulkanResourcePackage.SAMPLER_DESCRIPTOR: return (EObject)createSamplerDescriptor();
-			case VulkanResourcePackage.DESCRIPTOR_SET: return (EObject)createDescriptorSet();
-			case VulkanResourcePackage.DESCRIPTOR_SET_PKG: return (EObject)createDescriptorSetPkg();
-			case VulkanResourcePackage.BUFFER_BARRIER: return (EObject)createBufferBarrier();
-			case VulkanResourcePackage.IMAGE_BARRIER: return (EObject)createImageBarrier();
-			case VulkanResourcePackage.SHADER: return (EObject)createShader();
-			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR: return (EObject)createImageArrayDescriptor();
+			case VulkanResourcePackage.TRANSFER_BUFFER: return createTransferBuffer();
+			case VulkanResourcePackage.CONSTANT_BUFFER: return createConstantBuffer();
+			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER: return createGenericConstantBuffer();
+			case VulkanResourcePackage.BUFFER: return createBuffer();
+			case VulkanResourcePackage.COMPOSITE_BUFFER: return createCompositeBuffer();
+			case VulkanResourcePackage.BUFFER_PART: return createBufferPart();
+			case VulkanResourcePackage.BUFFER_DATA_PROVIDER: return createBufferDataProvider();
+			case VulkanResourcePackage.STATIC_IMAGE: return createStaticImage();
+			case VulkanResourcePackage.FILE_IMAGE: return createFileImage();
+			case VulkanResourcePackage.FONT_IMAGE: return createFontImage();
+			case VulkanResourcePackage.COMPOSITE_IMAGE: return createCompositeImage();
+			case VulkanResourcePackage.IMAGE_INLAY: return createImageInlay();
+			case VulkanResourcePackage.SAMPLED_IMAGE: return createSampledImage();
+			case VulkanResourcePackage.SAMPLER: return createSampler();
+			case VulkanResourcePackage.SEMAPHORE: return createSemaphore();
+			case VulkanResourcePackage.BUFFER_DESCRIPTOR: return createBufferDescriptor();
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR: return createImageDescriptor();
+			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR: return createSampledImageDescriptor();
+			case VulkanResourcePackage.SAMPLER_DESCRIPTOR: return createSamplerDescriptor();
+			case VulkanResourcePackage.DESCRIPTOR_SET: return createDescriptorSet();
+			case VulkanResourcePackage.DESCRIPTOR_SET_PKG: return createDescriptorSetPkg();
+			case VulkanResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
+			case VulkanResourcePackage.IMAGE_BARRIER: return createImageBarrier();
+			case VulkanResourcePackage.SHADER: return createShader();
+			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR: return createImageArrayDescriptor();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -108,6 +109,8 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 		{
 			case VulkanResourcePackage.EFLUSH_MODE:
 				return createEFlushModeFromString(eDataType, initialValue);
+			case VulkanResourcePackage.IGENERIC_OBJECT:
+				return createIGenericObjectFromString(eDataType, initialValue);
 			case VulkanResourcePackage.BYTE_BUFFER:
 				return createByteBufferFromString(eDataType, initialValue);
 			default:
@@ -127,6 +130,8 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 		{
 			case VulkanResourcePackage.EFLUSH_MODE:
 				return convertEFlushModeToString(eDataType, instanceValue);
+			case VulkanResourcePackage.IGENERIC_OBJECT:
+				return convertIGenericObjectToString(eDataType, instanceValue);
 			case VulkanResourcePackage.BYTE_BUFFER:
 				return convertByteBufferToString(eDataType, instanceValue);
 			default:
@@ -156,6 +161,18 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		ConstantBufferImpl constantBuffer = new ConstantBufferImpl();
 		return constantBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public GenericConstantBuffer createGenericConstantBuffer()
+	{
+		GenericConstantBufferImpl genericConstantBuffer = new GenericConstantBufferImpl();
+		return genericConstantBuffer;
 	}
 
 	/**
@@ -442,6 +459,26 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	public String convertEFlushModeToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Object createIGenericObjectFromString(EDataType eDataType, String initialValue)
+	{
+		return super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertIGenericObjectToString(EDataType eDataType, Object instanceValue)
+	{
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

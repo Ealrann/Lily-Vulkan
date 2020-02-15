@@ -41,6 +41,15 @@ public interface VulkanResourceFactory extends EFactory
 	ConstantBuffer createConstantBuffer();
 
 	/**
+	 * Returns a new object of class '<em>Generic Constant Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Generic Constant Buffer</em>'.
+	 * @generated
+	 */
+	GenericConstantBuffer createGenericConstantBuffer();
+
+	/**
 	 * Returns a new object of class '<em>Buffer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

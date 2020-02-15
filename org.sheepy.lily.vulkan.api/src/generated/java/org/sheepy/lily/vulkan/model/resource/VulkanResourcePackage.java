@@ -189,6 +189,61 @@ public interface VulkanResourcePackage extends EPackage
 	int CONSTANT_BUFFER_OPERATION_COUNT = ResourcePackage.IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.GenericConstantBufferImpl <em>Generic Constant Buffer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.GenericConstantBufferImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getGenericConstantBuffer()
+	 * @generated
+	 */
+	int GENERIC_CONSTANT_BUFFER = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_CONSTANT_BUFFER__NAME = CONSTANT_BUFFER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_CONSTANT_BUFFER__DATA = CONSTANT_BUFFER__DATA;
+
+	/**
+	 * The feature id for the '<em><b>Variables</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_CONSTANT_BUFFER__VARIABLES = CONSTANT_BUFFER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Generic Constant Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_CONSTANT_BUFFER_FEATURE_COUNT = CONSTANT_BUFFER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Generic Constant Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_CONSTANT_BUFFER_OPERATION_COUNT = CONSTANT_BUFFER_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.IBuffer <em>IBuffer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -196,7 +251,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getIBuffer()
 	 * @generated
 	 */
-	int IBUFFER = 2;
+	int IBUFFER = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -233,7 +288,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBuffer()
 	 * @generated
 	 */
-	int BUFFER = 3;
+	int BUFFER = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -333,7 +388,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getCompositeBuffer()
 	 * @generated
 	 */
-	int COMPOSITE_BUFFER = 4;
+	int COMPOSITE_BUFFER = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -379,7 +434,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferPart()
 	 * @generated
 	 */
-	int BUFFER_PART = 5;
+	int BUFFER_PART = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -425,7 +480,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferDataProvider()
 	 * @generated
 	 */
-	int BUFFER_DATA_PROVIDER = 6;
+	int BUFFER_DATA_PROVIDER = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -437,22 +492,13 @@ public interface VulkanResourcePackage extends EPackage
 	int BUFFER_DATA_PROVIDER__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Data Source</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_DATA_PROVIDER__DATA_SOURCE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__USED_TO_PUSH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
+	int BUFFER_DATA_PROVIDER__USED_TO_PUSH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Used To Fetch</b></em>' attribute.
@@ -461,7 +507,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__USED_TO_FETCH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
+	int BUFFER_DATA_PROVIDER__USED_TO_FETCH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Stage Before Push</b></em>' attribute.
@@ -470,7 +516,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 3;
+	int BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Access Before Push</b></em>' attribute list.
@@ -479,7 +525,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 4;
+	int BUFFER_DATA_PROVIDER__ACCESS_BEFORE_PUSH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Stage Before Fetch</b></em>' attribute.
@@ -488,7 +534,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 5;
+	int BUFFER_DATA_PROVIDER__STAGE_BEFORE_FETCH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Access Before Fetch</b></em>' attribute list.
@@ -497,7 +543,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 6;
+	int BUFFER_DATA_PROVIDER__ACCESS_BEFORE_FETCH = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
@@ -506,7 +552,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__USAGES = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 7;
+	int BUFFER_DATA_PROVIDER__USAGES = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
@@ -515,7 +561,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__INSTANCE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 8;
+	int BUFFER_DATA_PROVIDER__INSTANCE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
@@ -524,7 +570,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__GROW_FACTOR = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 9;
+	int BUFFER_DATA_PROVIDER__GROW_FACTOR = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Grow Threshold</b></em>' attribute.
@@ -533,7 +579,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__GROW_THRESHOLD = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 10;
+	int BUFFER_DATA_PROVIDER__GROW_THRESHOLD = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Min Size</b></em>' attribute.
@@ -542,7 +588,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__MIN_SIZE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 11;
+	int BUFFER_DATA_PROVIDER__MIN_SIZE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Requested Size</b></em>' attribute.
@@ -551,7 +597,16 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__REQUESTED_SIZE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 12;
+	int BUFFER_DATA_PROVIDER__REQUESTED_SIZE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 11;
+
+	/**
+	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__DATA_SOURCE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of structural features of the '<em>Buffer Data Provider</em>' class.
@@ -579,7 +634,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getImage()
 	 * @generated
 	 */
-	int IMAGE = 7;
+	int IMAGE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -661,7 +716,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getStaticImage()
 	 * @generated
 	 */
-	int STATIC_IMAGE = 8;
+	int STATIC_IMAGE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -770,7 +825,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getFileImage()
 	 * @generated
 	 */
-	int FILE_IMAGE = 9;
+	int FILE_IMAGE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -870,7 +925,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getFontImage()
 	 * @generated
 	 */
-	int FONT_IMAGE = 10;
+	int FONT_IMAGE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -970,7 +1025,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getCompositeImage()
 	 * @generated
 	 */
-	int COMPOSITE_IMAGE = 11;
+	int COMPOSITE_IMAGE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -1070,7 +1125,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getImageInlay()
 	 * @generated
 	 */
-	int IMAGE_INLAY = 12;
+	int IMAGE_INLAY = 13;
 
 	/**
 	 * The feature id for the '<em><b>Image</b></em>' reference.
@@ -1143,7 +1198,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getSampledImage()
 	 * @generated
 	 */
-	int SAMPLED_IMAGE = 13;
+	int SAMPLED_IMAGE = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1198,7 +1253,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getSampler()
 	 * @generated
 	 */
-	int SAMPLER = 14;
+	int SAMPLER = 15;
 
 	/**
 	 * The feature id for the '<em><b>Min Filter</b></em>' attribute.
@@ -1352,7 +1407,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getSemaphore()
 	 * @generated
 	 */
-	int SEMAPHORE = 15;
+	int SEMAPHORE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1407,7 +1462,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferDescriptor()
 	 * @generated
 	 */
-	int BUFFER_DESCRIPTOR = 16;
+	int BUFFER_DESCRIPTOR = 17;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1471,7 +1526,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getImageDescriptor()
 	 * @generated
 	 */
-	int IMAGE_DESCRIPTOR = 17;
+	int IMAGE_DESCRIPTOR = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1535,7 +1590,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getSampledImageDescriptor()
 	 * @generated
 	 */
-	int SAMPLED_IMAGE_DESCRIPTOR = 18;
+	int SAMPLED_IMAGE_DESCRIPTOR = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1599,7 +1654,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getSamplerDescriptor()
 	 * @generated
 	 */
-	int SAMPLER_DESCRIPTOR = 19;
+	int SAMPLER_DESCRIPTOR = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1663,7 +1718,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getDescriptorSet()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET = 20;
+	int DESCRIPTOR_SET = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1709,7 +1764,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getDescriptorSetPkg()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET_PKG = 21;
+	int DESCRIPTOR_SET_PKG = 22;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
@@ -1746,7 +1801,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferBarrier()
 	 * @generated
 	 */
-	int BUFFER_BARRIER = 22;
+	int BUFFER_BARRIER = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1810,7 +1865,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getImageBarrier()
 	 * @generated
 	 */
-	int IMAGE_BARRIER = 23;
+	int IMAGE_BARRIER = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1892,7 +1947,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getShader()
 	 * @generated
 	 */
-	int SHADER = 24;
+	int SHADER = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1956,7 +2011,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getImageArrayDescriptor()
 	 * @generated
 	 */
-	int IMAGE_ARRAY_DESCRIPTOR = 25;
+	int IMAGE_ARRAY_DESCRIPTOR = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2029,7 +2084,17 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getEFlushMode()
 	 * @generated
 	 */
-	int EFLUSH_MODE = 26;
+	int EFLUSH_MODE = 27;
+
+	/**
+	 * The meta object id for the '<em>IGeneric Object</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.Object
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getIGenericObject()
+	 * @generated
+	 */
+	int IGENERIC_OBJECT = 28;
 
 	/**
 	 * The meta object id for the '<em>Byte Buffer</em>' data type.
@@ -2039,7 +2104,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 27;
+	int BYTE_BUFFER = 29;
 
 
 	/**
@@ -2116,6 +2181,27 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getConstantBuffer_Data();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer <em>Generic Constant Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Generic Constant Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer
+	 * @generated
+	 */
+	EClass getGenericConstantBuffer();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer#getVariables <em>Variables</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Variables</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer#getVariables()
+	 * @see #getGenericConstantBuffer()
+	 * @generated
+	 */
+	EReference getGenericConstantBuffer_Variables();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.IBuffer <em>IBuffer</em>}'.
@@ -2267,15 +2353,15 @@ public interface VulkanResourcePackage extends EPackage
 	EClass getBufferDataProvider();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource <em>Data Source</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource <em>Data Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Data Source</em>'.
+	 * @return the meta object for the attribute '<em>Data Source</em>'.
 	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource()
 	 * @see #getBufferDataProvider()
 	 * @generated
 	 */
-	EReference getBufferDataProvider_DataSource();
+	EAttribute getBufferDataProvider_DataSource();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#isUsedToPush <em>Used To Push</em>}'.
@@ -2962,6 +3048,17 @@ public interface VulkanResourcePackage extends EPackage
 	EEnum getEFlushMode();
 
 	/**
+	 * Returns the meta object for data type '{@link java.lang.Object <em>IGeneric Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>IGeneric Object</em>'.
+	 * @see java.lang.Object
+	 * @model instanceClass="java.lang.Object"
+	 * @generated
+	 */
+	EDataType getIGenericObject();
+
+	/**
 	 * Returns the meta object for data type '{@link java.nio.ByteBuffer <em>Byte Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3055,6 +3152,24 @@ public interface VulkanResourcePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute CONSTANT_BUFFER__DATA = eINSTANCE.getConstantBuffer_Data();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.GenericConstantBufferImpl <em>Generic Constant Buffer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.GenericConstantBufferImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getGenericConstantBuffer()
+		 * @generated
+		 */
+		EClass GENERIC_CONSTANT_BUFFER = eINSTANCE.getGenericConstantBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Variables</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GENERIC_CONSTANT_BUFFER__VARIABLES = eINSTANCE.getGenericConstantBuffer_Variables();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.IBuffer <em>IBuffer</em>}' class.
@@ -3179,12 +3294,12 @@ public interface VulkanResourcePackage extends EPackage
 		EClass BUFFER_DATA_PROVIDER = eINSTANCE.getBufferDataProvider();
 
 		/**
-		 * The meta object literal for the '<em><b>Data Source</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Data Source</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BUFFER_DATA_PROVIDER__DATA_SOURCE = eINSTANCE.getBufferDataProvider_DataSource();
+		EAttribute BUFFER_DATA_PROVIDER__DATA_SOURCE = eINSTANCE.getBufferDataProvider_DataSource();
 
 		/**
 		 * The meta object literal for the '<em><b>Used To Push</b></em>' attribute feature.
@@ -3737,6 +3852,16 @@ public interface VulkanResourcePackage extends EPackage
 		 * @generated
 		 */
 		EEnum EFLUSH_MODE = eINSTANCE.getEFlushMode();
+
+		/**
+		 * The meta object literal for the '<em>IGeneric Object</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.Object
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getIGenericObject()
+		 * @generated
+		 */
+		EDataType IGENERIC_OBJECT = eINSTANCE.getIGenericObject();
 
 		/**
 		 * The meta object literal for the '<em>Byte Buffer</em>' data type.

@@ -344,6 +344,7 @@
       <genEnumLiterals ecoreEnumLiteral="resource.ecore#//EFlushMode/PUSH"/>
       <genEnumLiterals ecoreEnumLiteral="resource.ecore#//EFlushMode/FETCH"/>
     </genEnums>
+    <genDataTypes ecoreDataType="resource.ecore#//IGenericObject"/>
     <genDataTypes ecoreDataType="resource.ecore#//ByteBuffer"/>
     <genClasses ecoreClass="resource.ecore#//TransferBuffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/size"/>
@@ -353,6 +354,9 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//ConstantBuffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ConstantBuffer/data"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//GenericConstantBuffer">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//GenericConstantBuffer/variables"/>
     </genClasses>
     <genClasses image="false" ecoreClass="resource.ecore#//IBuffer"/>
     <genClasses ecoreClass="resource.ecore#//Buffer">
@@ -373,7 +377,6 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//BufferDataProvider">
       <genTypeParameters ecoreTypeParameter="resource.ecore#//BufferDataProvider/T"/>
-      <genFeatures property="Readonly" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//BufferDataProvider/dataSource"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usedToPush"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/usedToFetch"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/stageBeforePush"/>
@@ -387,6 +390,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/growThreshold"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/minSize"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/requestedSize"/>
+      <genFeatures property="Readonly" children="true" createChild="true" ecoreFeature="ecore:EAttribute resource.ecore#//BufferDataProvider/dataSource"/>
     </genClasses>
     <genClasses image="false" ecoreClass="resource.ecore#//Image"/>
     <genClasses ecoreClass="resource.ecore#//StaticImage">

@@ -20,6 +20,7 @@ import org.sheepy.lily.core.model.inference.InferencePackage;
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 
 import org.sheepy.lily.core.model.presentation.PresentationPackage;
+import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.core.model.ui.UiPackage;
@@ -177,7 +178,7 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
-		org.sheepy.lily.core.model.resource.ResourcePackage.eINSTANCE.eClass();
+		ResourcePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MeshPackage.eNS_URI);
@@ -428,7 +429,7 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 
 		// Obtain other dependent packages
 		RenderingPackage theRenderingPackage = (RenderingPackage)EPackage.Registry.INSTANCE.getEPackage(RenderingPackage.eNS_URI);
-		org.sheepy.lily.core.model.resource.ResourcePackage theResourcePackage = (org.sheepy.lily.core.model.resource.ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(org.sheepy.lily.core.model.resource.ResourcePackage.eNS_URI);
+		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		ImagePackage theImagePackage = (ImagePackage)EPackage.Registry.INSTANCE.getEPackage(ImagePackage.eNS_URI);
 
 		// Create type parameters

@@ -20,7 +20,6 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource <em>Data Source</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#isUsedToPush <em>Used To Push</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#isUsedToFetch <em>Used To Fetch</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getStageBeforePush <em>Stage Before Push</em>}</li>
@@ -33,6 +32,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getGrowThreshold <em>Grow Threshold</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getMinSize <em>Min Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getRequestedSize <em>Requested Size</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferDataProvider()
@@ -42,26 +42,26 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 public interface BufferDataProvider<T> extends LNamedElement
 {
 	/**
-	 * Returns the value of the '<em><b>Data Source</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Data Source</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data Source</em>' containment reference.
+	 * @return the value of the '<em>Data Source</em>' attribute.
 	 * @see #setDataSource(Object)
 	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferDataProvider_DataSource()
-	 * @model kind="reference" containment="true"
+	 * @model dataType="org.sheepy.lily.vulkan.model.resource.IGenericObject"
 	 * @generated
 	 */
-	T getDataSource();
+	Object getDataSource();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource <em>Data Source</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getDataSource <em>Data Source</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data Source</em>' containment reference.
+	 * @param value the new value of the '<em>Data Source</em>' attribute.
 	 * @see #getDataSource()
 	 * @generated
 	 */
-	void setDataSource(T value);
+	void setDataSource(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Used To Push</b></em>' attribute.

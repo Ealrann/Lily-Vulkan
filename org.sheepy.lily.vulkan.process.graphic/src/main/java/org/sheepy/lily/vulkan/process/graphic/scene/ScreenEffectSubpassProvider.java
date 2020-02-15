@@ -9,9 +9,10 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.resource.IResourceLoader;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.ScreenEffect;
-import org.sheepy.lily.core.model.resource.FileResource;
+import org.sheepy.lily.core.model.application.SpecialEffect;
 import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
+import org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -27,8 +28,9 @@ public final class ScreenEffectSubpassProvider implements IScenePart_SubpassProv
 
 	private final Subpass subpass;
 	private final GraphicsPipeline graphicPipeline;
+	private final GenericConstantBuffer constantBuffer;
 
-	private Shader customShader = null;
+	private Shader shader = null;
 
 	private ScreenEffectSubpassProvider(final ScreenEffect part)
 	{
@@ -53,25 +55,26 @@ public final class ScreenEffectSubpassProvider implements IScenePart_SubpassProv
 		descriptor.setAttachment(srcAttachment);
 
 		graphicPipeline = (GraphicsPipeline) subpass.getPipelinePkg().getPipelines().get(0);
+		constantBuffer = (GenericConstantBuffer) subpass.getResourcePkg().getResources().get(2);
 
-		final var shaderFile = part.getShader();
-		if (shaderFile != null)
+		final var effect = part.getEffect();
+		if (effect != null)
 		{
-			setupCustomShader(shaderFile);
+			setupEffect(effect);
 		}
 	}
 
-	@NotifyChanged(featureIds = ApplicationPackage.SCREEN_EFFECT__SHADER)
-	private void shaderChange(Notification notification)
+	@NotifyChanged(featureIds = ApplicationPackage.SCREEN_EFFECT__EFFECT)
+	private void effectChange(Notification notification)
 	{
-		final var newShader = (FileResource) notification.getNewValue();
-		if (customShader != null)
+		final var newEffect = (SpecialEffect) notification.getNewValue();
+		if (shader != null)
 		{
-			uninstallCustomShader();
+			uninstallEffect();
 		}
-		if (newShader != null)
+		if (newEffect != null)
 		{
-			setupCustomShader(newShader);
+			setupEffect(newEffect);
 		}
 	}
 
@@ -81,21 +84,24 @@ public final class ScreenEffectSubpassProvider implements IScenePart_SubpassProv
 		return subpass;
 	}
 
-	private void setupCustomShader(FileResource shaderFile)
+	private void setupEffect(SpecialEffect effect)
 	{
-		customShader = VulkanResourceFactory.eINSTANCE.createShader();
-		customShader.setFile(EcoreUtil.copy(shaderFile));
-		customShader.setStage(EShaderStage.FRAGMENT_BIT);
+		shader = VulkanResourceFactory.eINSTANCE.createShader();
+		shader.setFile(EcoreUtil.copy(effect.getShader()));
+		shader.setStage(EShaderStage.FRAGMENT_BIT);
 
-		subpass.getResourcePkg().getResources().add(customShader);
+		subpass.getResourcePkg().getResources().add(shader);
 		graphicPipeline.getShaders().remove(1);
-		graphicPipeline.getShaders().add(customShader);
+		graphicPipeline.getShaders().add(shader);
+
+		constantBuffer.getVariables().clear();
+		constantBuffer.getVariables().addAll(effect.getInputs());
 	}
 
-	private void uninstallCustomShader()
+	private void uninstallEffect()
 	{
 		final var defaultShader = (Shader) subpass.getResourcePkg().getResources().get(1);
-		subpass.getResourcePkg().getResources().remove(customShader);
+		subpass.getResourcePkg().getResources().remove(shader);
 		graphicPipeline.getShaders().remove(1);
 		graphicPipeline.getShaders().add(defaultShader);
 	}

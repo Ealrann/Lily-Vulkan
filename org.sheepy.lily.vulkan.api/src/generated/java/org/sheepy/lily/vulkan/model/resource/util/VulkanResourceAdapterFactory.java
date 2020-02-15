@@ -99,6 +99,11 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createConstantBufferAdapter();
 			}
 			@Override
+			public Adapter caseGenericConstantBuffer(GenericConstantBuffer object)
+			{
+				return createGenericConstantBufferAdapter();
+			}
+			@Override
 			public Adapter caseIBuffer(IBuffer object)
 			{
 				return createIBufferAdapter();
@@ -311,6 +316,21 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createConstantBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer <em>Generic Constant Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer
+	 * @generated
+	 */
+	public Adapter createGenericConstantBufferAdapter()
 	{
 		return null;
 	}

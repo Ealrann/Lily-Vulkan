@@ -13,6 +13,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="ConstantBuffer" eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" unique="false" eType="#//ByteBuffer"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericConstantBuffer" eSuperTypes="#//ConstantBuffer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
+        eType="ecore:EClass ../../org.sheepy.lily.core.model/model/variable.ecore#//IModelVariable"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IBuffer" abstract="true" interface="true"
       eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IResource"/>
   <eClassifiers xsi:type="ecore:EClass" name="Buffer" eSuperTypes="#//IBuffer">
@@ -49,14 +53,9 @@
     <eLiterals name="PUSH"/>
     <eLiterals name="FETCH" value="1"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="IGenericObject" instanceClassName="java.lang.Object"/>
   <eClassifiers xsi:type="ecore:EClass" name="BufferDataProvider" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
     <eTypeParameters name="T"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dataSource" containment="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="property" value="Readonly"/>
-      </eAnnotations>
-      <eGenericType eTypeParameter="#//BufferDataProvider/T"/>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usedToPush" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usedToFetch" lowerBound="1"
@@ -83,6 +82,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="requestedSize" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//IGenericObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="ByteBuffer" instanceClassName="java.nio.ByteBuffer"/>
   <eClassifiers xsi:type="ecore:EClass" name="Image" abstract="true" eSuperTypes="../../org.sheepy.vulkan.model/model/Image.ecore#//ImageInfo ../../org.sheepy.lily.core.model/model/resource.ecore#//IImage"/>

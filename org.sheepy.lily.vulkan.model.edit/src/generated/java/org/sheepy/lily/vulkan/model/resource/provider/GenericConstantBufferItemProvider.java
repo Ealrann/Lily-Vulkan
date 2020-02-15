@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.extra.model.nuklear.provider;
+package org.sheepy.lily.vulkan.model.resource.provider;
 
 
 import java.util.Collection;
@@ -11,17 +11,17 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
-import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider;
-import org.sheepy.lily.vulkan.model.resource.provider.BufferDataProviderItemProvider;
+
+import org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class NuklearVertexProviderItemProvider extends BufferDataProviderItemProvider
+public class GenericConstantBufferItemProvider extends ConstantBufferItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -29,7 +29,7 @@ public class NuklearVertexProviderItemProvider extends BufferDataProviderItemPro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NuklearVertexProviderItemProvider(AdapterFactory adapterFactory)
+	public GenericConstantBufferItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -47,26 +47,26 @@ public class NuklearVertexProviderItemProvider extends BufferDataProviderItemPro
 		{
 			super.getPropertyDescriptors(object);
 
-			addContextPropertyDescriptor(object);
+			addVariablesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Context feature.
+	 * This adds a property descriptor for the Variables feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContextPropertyDescriptor(Object object)
+	protected void addVariablesPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_NuklearVertexProvider_context_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearVertexProvider_context_feature", "_UI_NuklearVertexProvider_type"),
-				 NuklearPackage.Literals.NUKLEAR_VERTEX_PROVIDER__CONTEXT,
+				 getString("_UI_GenericConstantBuffer_variables_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenericConstantBuffer_variables_feature", "_UI_GenericConstantBuffer_type"),
+				 VulkanResourcePackage.Literals.GENERIC_CONSTANT_BUFFER__VARIABLES,
 				 true,
 				 false,
 				 true,
@@ -76,7 +76,7 @@ public class NuklearVertexProviderItemProvider extends BufferDataProviderItemPro
 	}
 
 	/**
-	 * This returns NuklearVertexProvider.gif.
+	 * This returns GenericConstantBuffer.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -84,7 +84,7 @@ public class NuklearVertexProviderItemProvider extends BufferDataProviderItemPro
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/NuklearVertexProvider"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/GenericConstantBuffer"));
 	}
 
 	/**
@@ -96,10 +96,10 @@ public class NuklearVertexProviderItemProvider extends BufferDataProviderItemPro
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((NuklearVertexProvider)object).getName();
+		String label = ((GenericConstantBuffer)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_NuklearVertexProvider_type") :
-			getString("_UI_NuklearVertexProvider_type") + " " + label;
+			getString("_UI_GenericConstantBuffer_type") :
+			getString("_UI_GenericConstantBuffer_type") + " " + label;
 	}
 
 

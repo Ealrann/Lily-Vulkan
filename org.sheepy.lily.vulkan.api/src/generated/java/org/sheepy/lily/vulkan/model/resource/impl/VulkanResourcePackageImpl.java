@@ -11,8 +11,6 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.ETypeParameter;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.sheepy.lily.core.model.action.ActionPackage;
@@ -68,6 +66,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
+import org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
@@ -116,6 +115,13 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	private EClass constantBufferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass genericConstantBufferEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -291,6 +297,13 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	private EEnum eFlushModeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType iGenericObjectEDataType = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -484,6 +497,28 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
+	public EClass getGenericConstantBuffer()
+	{
+		return genericConstantBufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getGenericConstantBuffer_Variables()
+	{
+		return (EReference)genericConstantBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getIBuffer()
 	{
 		return iBufferEClass;
@@ -638,9 +673,9 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EReference getBufferDataProvider_DataSource()
+	public EAttribute getBufferDataProvider_DataSource()
 	{
-		return (EReference)bufferDataProviderEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -651,7 +686,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	@Override
 	public EAttribute getBufferDataProvider_UsedToPush()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -662,7 +697,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	@Override
 	public EAttribute getBufferDataProvider_UsedToFetch()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -673,7 +708,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	@Override
 	public EAttribute getBufferDataProvider_StageBeforePush()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -684,7 +719,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	@Override
 	public EAttribute getBufferDataProvider_AccessBeforePush()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -695,7 +730,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	@Override
 	public EAttribute getBufferDataProvider_StageBeforeFetch()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -706,7 +741,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	@Override
 	public EAttribute getBufferDataProvider_AccessBeforeFetch()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -717,7 +752,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	@Override
 	public EAttribute getBufferDataProvider_Usages()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(7);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -728,7 +763,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	@Override
 	public EAttribute getBufferDataProvider_InstanceCount()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(8);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -739,7 +774,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	@Override
 	public EAttribute getBufferDataProvider_GrowFactor()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(9);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -750,7 +785,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	@Override
 	public EAttribute getBufferDataProvider_GrowThreshold()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(10);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -761,7 +796,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	@Override
 	public EAttribute getBufferDataProvider_MinSize()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(11);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -772,7 +807,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	@Override
 	public EAttribute getBufferDataProvider_RequestedSize()
 	{
-		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(12);
+		return (EAttribute)bufferDataProviderEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -1353,6 +1388,17 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
+	public EDataType getIGenericObject()
+	{
+		return iGenericObjectEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EDataType getByteBuffer()
 	{
 		return byteBufferEDataType;
@@ -1398,6 +1444,9 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		constantBufferEClass = createEClass(CONSTANT_BUFFER);
 		createEAttribute(constantBufferEClass, CONSTANT_BUFFER__DATA);
 
+		genericConstantBufferEClass = createEClass(GENERIC_CONSTANT_BUFFER);
+		createEReference(genericConstantBufferEClass, GENERIC_CONSTANT_BUFFER__VARIABLES);
+
 		iBufferEClass = createEClass(IBUFFER);
 
 		bufferEClass = createEClass(BUFFER);
@@ -1416,7 +1465,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		createEReference(bufferPartEClass, BUFFER_PART__DATA_PROVIDER);
 
 		bufferDataProviderEClass = createEClass(BUFFER_DATA_PROVIDER);
-		createEReference(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__DATA_SOURCE);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__USED_TO_PUSH);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__USED_TO_FETCH);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__STAGE_BEFORE_PUSH);
@@ -1429,6 +1477,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__GROW_THRESHOLD);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__MIN_SIZE);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__REQUESTED_SIZE);
+		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__DATA_SOURCE);
 
 		imageEClass = createEClass(IMAGE);
 
@@ -1504,6 +1553,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		eFlushModeEEnum = createEEnum(EFLUSH_MODE);
 
 		// Create data types
+		iGenericObjectEDataType = createEDataType(IGENERIC_OBJECT);
 		byteBufferEDataType = createEDataType(BYTE_BUFFER);
 	}
 
@@ -1534,6 +1584,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		// Obtain other dependent packages
 		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
+		VariablePackage theVariablePackage = (VariablePackage)EPackage.Registry.INSTANCE.getEPackage(VariablePackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		ImagePackage theImagePackage = (ImagePackage)EPackage.Registry.INSTANCE.getEPackage(ImagePackage.eNS_URI);
 		UiPackage theUiPackage = (UiPackage)EPackage.Registry.INSTANCE.getEPackage(UiPackage.eNS_URI);
@@ -1542,13 +1593,14 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		PipelinePackage thePipelinePackage = (PipelinePackage)EPackage.Registry.INSTANCE.getEPackage(PipelinePackage.eNS_URI);
 
 		// Create type parameters
-		ETypeParameter bufferDataProviderEClass_T = addETypeParameter(bufferDataProviderEClass, "T");
+		addETypeParameter(bufferDataProviderEClass, "T");
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
 		transferBufferEClass.getESuperTypes().add(theResourcePackage.getIResource());
 		constantBufferEClass.getESuperTypes().add(theResourcePackage.getIResource());
+		genericConstantBufferEClass.getESuperTypes().add(this.getConstantBuffer());
 		iBufferEClass.getESuperTypes().add(theResourcePackage.getIResource());
 		bufferEClass.getESuperTypes().add(this.getIBuffer());
 		compositeBufferEClass.getESuperTypes().add(theResourcePackage.getIResource());
@@ -1584,6 +1636,9 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEClass(constantBufferEClass, ConstantBuffer.class, "ConstantBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConstantBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1, ConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(genericConstantBufferEClass, GenericConstantBuffer.class, "GenericConstantBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGenericConstantBuffer_Variables(), theVariablePackage.getIModelVariable(), null, "variables", null, 0, -1, GenericConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(iBufferEClass, IBuffer.class, "IBuffer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(bufferEClass, Buffer.class, "Buffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1605,8 +1660,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEReference(getBufferPart_DataProvider(), g1, null, "dataProvider", null, 1, 1, BufferPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bufferDataProviderEClass, BufferDataProvider.class, "BufferDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(bufferDataProviderEClass_T);
-		initEReference(getBufferDataProvider_DataSource(), g1, null, "dataSource", null, 0, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferDataProvider_UsedToPush(), ecorePackage.getEBoolean(), "usedToPush", "true", 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferDataProvider_UsedToFetch(), ecorePackage.getEBoolean(), "usedToFetch", "false", 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferDataProvider_StageBeforePush(), theEnumerationPackage.getEPipelineStage(), "stageBeforePush", null, 0, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1619,6 +1672,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEAttribute(getBufferDataProvider_GrowThreshold(), ecorePackage.getEFloat(), "growThreshold", "1", 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferDataProvider_MinSize(), ecorePackage.getELong(), "minSize", "0", 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferDataProvider_RequestedSize(), ecorePackage.getELong(), "requestedSize", "1", 1, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferDataProvider_DataSource(), this.getIGenericObject(), "dataSource", null, 0, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageEClass, Image.class, "Image", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1696,6 +1750,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		addEEnumLiteral(eFlushModeEEnum, EFlushMode.FETCH);
 
 		// Initialize data types
+		initEDataType(iGenericObjectEDataType, Object.class, "IGenericObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(byteBufferEDataType, ByteBuffer.class, "ByteBuffer", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource

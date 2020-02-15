@@ -3,8 +3,6 @@
 package org.sheepy.lily.vulkan.extra.model.nuklear.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.EObject;
@@ -65,18 +63,6 @@ public class NuklearIndexProviderImpl extends BufferDataProviderImpl<NuklearCont
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
-	 * @generated
-	 */
-	@Override
-	public NotificationChain basicSetDataSource(NuklearContext newDataSource, NotificationChain msgs)
-	{
-		return super.basicSetDataSource(newDataSource, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -84,7 +70,7 @@ public class NuklearIndexProviderImpl extends BufferDataProviderImpl<NuklearCont
 	{
 		if (context != null && ((EObject)context).eIsProxy())
 		{
-			InternalEObject oldContext = (InternalEObject)context;
+			InternalEObject oldContext = context;
 			context = (NuklearContext)eResolveProxy(oldContext);
 			if (context != oldContext)
 			{

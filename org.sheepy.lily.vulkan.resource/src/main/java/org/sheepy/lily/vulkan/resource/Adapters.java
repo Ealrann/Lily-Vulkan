@@ -2,10 +2,7 @@ package org.sheepy.lily.vulkan.resource;
 
 import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.adapter.IAdapterProvider;
-import org.sheepy.lily.vulkan.resource.buffer.BufferAdapter;
-import org.sheepy.lily.vulkan.resource.buffer.BufferDescriptorAdapter;
-import org.sheepy.lily.vulkan.resource.buffer.BufferPartAdapter;
-import org.sheepy.lily.vulkan.resource.buffer.CompositeBufferAdapter;
+import org.sheepy.lily.vulkan.resource.buffer.*;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAdapter;
 import org.sheepy.lily.vulkan.resource.file.LocalResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.ModuleResourceAdapter;
@@ -41,6 +38,7 @@ public class Adapters implements IAdapterProvider
 					   LocalResourceAdapter.class,
 					   ModuleResourceAdapter.class,
 					   StringModuleResourceAdapter.class,
-					   FontImageAdapter.class);
+					   FontImageAdapter.class,
+					   GenericConstantBufferAdapter.class);
 	}
 }
