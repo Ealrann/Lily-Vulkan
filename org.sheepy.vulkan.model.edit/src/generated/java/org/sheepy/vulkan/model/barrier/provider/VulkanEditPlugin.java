@@ -5,6 +5,7 @@ package org.sheepy.vulkan.model.barrier.provider;
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.sheepy.lily.core.model.resource.provider.LilyEditPlugin;
 
 /**
  * This is the central singleton for the Vulkan edit plugin.
@@ -41,7 +42,7 @@ public final class VulkanEditPlugin extends EMFPlugin
 		super
 		  (new ResourceLocator [] 
 		   {
-		     org.sheepy.lily.core.model.resource.provider.LilyEditPlugin.INSTANCE,
+		     LilyEditPlugin.INSTANCE,
 		   });
 	}
 
