@@ -24,7 +24,7 @@ public final class InstanceDataProviderAdapter implements IBufferDataProviderAda
 	}
 
 	@Load
-	private static void load(BufferDataProvider<?> provider)
+	private static void load(BufferDataProvider provider)
 	{
 		provider.setRequestedSize(SIZE);
 	}

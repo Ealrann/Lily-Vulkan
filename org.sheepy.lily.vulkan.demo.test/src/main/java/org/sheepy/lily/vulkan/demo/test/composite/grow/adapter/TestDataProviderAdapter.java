@@ -15,13 +15,13 @@ public final class TestDataProviderAdapter implements IBufferDataProviderAdapter
 	public static final String NAME = "TestDataProvider";
 	public static final int MAX_SIZE = 4000000;
 
-	private final BufferDataProvider<?> provider;
+	private final BufferDataProvider provider;
 	private final Random random;
 
 	public int currentSize = 100000;
 	private int[] previous = null;
 
-	public TestDataProviderAdapter(BufferDataProvider<?> provider)
+	public TestDataProviderAdapter(BufferDataProvider provider)
 	{
 		this.provider = provider;
 		random = new Random();
