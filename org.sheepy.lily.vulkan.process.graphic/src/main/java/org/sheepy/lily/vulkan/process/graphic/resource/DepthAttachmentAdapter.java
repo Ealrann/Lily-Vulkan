@@ -1,5 +1,7 @@
 package org.sheepy.lily.vulkan.process.graphic.resource;
 
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -152,5 +154,11 @@ public class DepthAttachmentAdapter extends Notifier implements IDepthAttachment
 	public int getImageFormat()
 	{
 		return depthFormat;
+	}
+
+	@Override
+	public Vector2ic getSize()
+	{
+		return new Vector2i(depthImageBackend.width, depthImageBackend.height);
 	}
 }

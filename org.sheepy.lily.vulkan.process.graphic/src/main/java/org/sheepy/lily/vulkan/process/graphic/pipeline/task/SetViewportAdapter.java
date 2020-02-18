@@ -11,7 +11,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.SetViewport;
 @Adapter(scope = SetViewport.class)
 public class SetViewportAdapter implements IPipelineTaskAdapter<SetViewport>
 {
-	private final VkViewport.Buffer scissorRect = VkViewport.create(1);
+	private final VkViewport.Buffer viewportRect = VkViewport.create(1);
 
 	@Override
 	public void record(SetViewport task, IRecordContext context)
@@ -24,8 +24,8 @@ public class SetViewportAdapter implements IPipelineTaskAdapter<SetViewport>
 		final float maxDepth = task.getMaxDepth();
 		final var commandBuffer = ((RecordContext) context).commandBuffer;
 
-		scissorRect.get(0).set(x, y, w, h, minDepth, maxDepth);
+		viewportRect.get(0).set(x, y, w, h, minDepth, maxDepth);
 
-		vkCmdSetViewport(commandBuffer, 0, scissorRect);
+		vkCmdSetViewport(commandBuffer, 0, viewportRect);
 	}
 }

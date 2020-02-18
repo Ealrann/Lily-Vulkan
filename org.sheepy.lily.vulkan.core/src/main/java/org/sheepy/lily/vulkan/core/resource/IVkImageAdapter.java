@@ -1,9 +1,10 @@
 package org.sheepy.lily.vulkan.core.resource;
 
 import org.sheepy.lily.core.api.adapter.INotifierAdapter;
+import org.sheepy.lily.game.api.resource.image.IImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 
-public interface IImageAdapter extends INotifierAdapter
+public interface IVkImageAdapter extends INotifierAdapter, IImageAdapter
 {
 	enum Features
 	{

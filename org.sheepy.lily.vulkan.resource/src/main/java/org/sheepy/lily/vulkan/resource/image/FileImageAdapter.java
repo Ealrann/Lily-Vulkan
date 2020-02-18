@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.resource.image;
 
+import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
@@ -7,7 +8,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage.Builder;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
@@ -18,7 +19,7 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
 @Statefull
 @Adapter(scope = FileImage.class)
-public class FileImageAdapter extends Notifier implements IImageAdapter, IAllocableAdapter<InternalExecutionContext>
+public class FileImageAdapter extends Notifier implements IVkImageAdapter, IAllocableAdapter<InternalExecutionContext>
 {
 	private final STBImageLoader imageLoader = new STBImageLoader();
 	private final ImageBuffer imageBuffer;
@@ -103,6 +104,13 @@ public class FileImageAdapter extends Notifier implements IImageAdapter, IAlloca
 	public long getViewPtr()
 	{
 		return vkTexture.getViewPtr();
+	}
+
+	@Override
+	public Vector2ic getSize()
+	{
+		final var vkImage = getVkImage();
+		return new Vector2i(vkImage.width, vkImage.height);
 	}
 
 	public static int log2nlz(int bits)

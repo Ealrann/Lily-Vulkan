@@ -1,5 +1,7 @@
 package org.sheepy.lily.vulkan.process.graphic.resource;
 
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
@@ -145,5 +147,11 @@ public class ColorAttachmentAdapter extends Notifier implements IExtraAttachment
 	public int getImageFormat()
 	{
 		return colorFormat;
+	}
+
+	@Override
+	public Vector2ic getSize()
+	{
+		return new Vector2i(colorImageBackend.width, colorImageBackend.height);
 	}
 }

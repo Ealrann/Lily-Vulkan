@@ -6,7 +6,7 @@ import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.barrier.IImageBarrierAdapter;
 import org.sheepy.lily.vulkan.core.barrier.VkImageBarrier;
-import org.sheepy.lily.vulkan.core.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.ImageUtil;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
@@ -35,11 +35,11 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter
 	@Load
 	private void load()
 	{
-		final var adapter = imageBarrier.getImage().adapt(IImageAdapter.class);
-		adapter.addListener(imageListener, IImageAdapter.Features.Image.ordinal());
+		final var adapter = imageBarrier.getImage().adapt(IVkImageAdapter.class);
+		adapter.addListener(imageListener, IVkImageAdapter.Features.Image.ordinal());
 
 		final var image = imageBarrier.getImage();
-		final var imageAdapter = image.adapt(IImageAdapter.class);
+		final var imageAdapter = image.adapt(IVkImageAdapter.class);
 		final var vkImage = imageAdapter.getVkImage();
 
 		final int imageFormat = vkImage.format;
@@ -60,8 +60,8 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter
 	@Dispose
 	private void dispose()
 	{
-		final var adapter = imageBarrier.getImage().adapt(IImageAdapter.class);
-		adapter.removeListener(imageListener, IImageAdapter.Features.Image.ordinal());
+		final var adapter = imageBarrier.getImage().adapt(IVkImageAdapter.class);
+		adapter.removeListener(imageListener, IVkImageAdapter.Features.Image.ordinal());
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter
 	{
 		if (changed == true)
 		{
-			final var adapter = imageBarrier.getImage().adapt(IImageAdapter.class);
+			final var adapter = imageBarrier.getImage().adapt(IVkImageAdapter.class);
 			vkBarrier.updatePtr(adapter.getImagePtr());
 			changed = false;
 		}

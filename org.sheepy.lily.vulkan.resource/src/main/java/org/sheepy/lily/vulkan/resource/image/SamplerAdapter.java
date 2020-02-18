@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.resource.image;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.ISamplerAdapter;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.resource.image.backend.VkSampler;
@@ -13,12 +13,12 @@ import org.sheepy.lily.vulkan.resource.image.backend.VkSampler;
 public class SamplerAdapter implements ISamplerAdapter
 {
 	private final VkSampler vkSampler;
-	private final IImageAdapter imageAdapter;
+	private final IVkImageAdapter imageAdapter;
 
 	public SamplerAdapter(Sampler sampler)
 	{
 		final var image = sampler.getImage();
-		imageAdapter = image != null ? image.adaptNotNull(IImageAdapter.class) : null;
+		imageAdapter = image != null ? image.adaptNotNull(IVkImageAdapter.class) : null;
 
 		if (imageAdapter != null)
 		{

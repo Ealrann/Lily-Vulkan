@@ -1,11 +1,13 @@
 package org.sheepy.lily.vulkan.resource.image;
 
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
@@ -14,7 +16,7 @@ import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
 @Statefull
 @Adapter(scope = StaticImage.class)
-public class StaticImageAdapter extends Notifier implements IImageAdapter, IAllocableAdapter<InternalExecutionContext>
+public class StaticImageAdapter extends Notifier implements IVkImageAdapter, IAllocableAdapter<InternalExecutionContext>
 {
 	private final StaticImage image;
 
@@ -88,6 +90,13 @@ public class StaticImageAdapter extends Notifier implements IImageAdapter, IAllo
 	public VkImage getVkImage()
 	{
 		return imageBackend;
+	}
+
+	@Override
+	public Vector2ic getSize()
+	{
+		final var vkImage = getVkImage();
+		return new Vector2i(vkImage.width, vkImage.height);
 	}
 
 	public interface IImageLoader

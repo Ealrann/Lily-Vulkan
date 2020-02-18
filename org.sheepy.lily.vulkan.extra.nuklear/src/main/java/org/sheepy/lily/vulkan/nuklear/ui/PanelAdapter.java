@@ -14,7 +14,7 @@ import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.game.api.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
-import org.sheepy.lily.vulkan.core.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.window.Window;
 
 import java.nio.ByteBuffer;
@@ -139,7 +139,7 @@ public class PanelAdapter extends Notifier implements IPanelAdapter, ITextWidget
 			final var backgroundImage = panel.getBackgroundImage();
 			if (backgroundImage != null)
 			{
-				final var imageAdapter = backgroundImage.adapt(IImageAdapter.class);
+				final var imageAdapter = backgroundImage.adapt(IVkImageAdapter.class);
 				final var nkImage = NkImage.callocStack(stack);
 				nk_image_ptr(imageAdapter.getViewPtr(), nkImage);
 				final var canvas = nk_window_get_canvas(nkContext);

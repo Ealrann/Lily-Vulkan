@@ -8,7 +8,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.adapter.util.ModelDependencyInjector;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.core.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -46,7 +46,7 @@ public class BlitTaskAdapter extends AbstractBlitTaskAdapter
 	public void allocate(final IGraphicContext context)
 	{
 		final var dstImage = blitTask.getDstImage();
-		final var imageAdapter = dstImage.adaptNotNull(IImageAdapter.class);
+		final var imageAdapter = dstImage.adaptNotNull(IVkImageAdapter.class);
 		dstVkImage = imageAdapter.getVkImage();
 
 		super.allocate(context);

@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.resource.image;
 
 import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageBlit;
@@ -16,7 +17,7 @@ import org.sheepy.lily.core.api.notification.impl.LongNotification;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
 import org.sheepy.lily.vulkan.core.execution.ICommandBuffer;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.model.resource.CompositeImage;
@@ -34,7 +35,7 @@ import static org.lwjgl.vulkan.VK10.*;
 
 @Statefull
 @Adapter(scope = CompositeImage.class)
-public final class CompositeImageAdapter extends Notifier implements IImageAdapter,
+public final class CompositeImageAdapter extends Notifier implements IVkImageAdapter,
 																	 IAllocableAdapter<InternalExecutionContext>
 {
 	private final CompositeImage image;
@@ -70,7 +71,7 @@ public final class CompositeImageAdapter extends Notifier implements IImageAdapt
 	public void allocate(InternalExecutionContext context)
 	{
 		final var background = image.getBackground();
-		final var backgroundAdapter = background.adapt(IImageAdapter.class);
+		final var backgroundAdapter = background.adapt(IVkImageAdapter.class);
 		final var vkDevice = context.getVkDevice();
 		final var vkBackground = backgroundAdapter.getVkImage();
 		final var builder = new VkImage.VkImageBuilder(image, vkBackground.width, vkBackground.height).initialLayout(
@@ -91,7 +92,7 @@ public final class CompositeImageAdapter extends Notifier implements IImageAdapt
 	private void assembleImage(InternalExecutionContext context, ICommandBuffer<?> commandBuffer)
 	{
 		final var background = image.getBackground();
-		final var backgroundAdapter = background.adapt(IImageAdapter.class);
+		final var backgroundAdapter = background.adapt(IVkImageAdapter.class);
 		final var vkBackground = backgroundAdapter.getVkImage();
 		final var initialLayout = image.getInitialLayout();
 
@@ -141,7 +142,7 @@ public final class CompositeImageAdapter extends Notifier implements IImageAdapt
 								  final VkImageBlit.Buffer blitRegion,
 								  final ImageInlay inlay)
 	{
-		final var imageInlayAdapter = inlay.getImage().adapt(IImageAdapter.class);
+		final var imageInlayAdapter = inlay.getImage().adapt(IVkImageAdapter.class);
 		final var vkImageInlay = imageInlayAdapter.getVkImage();
 		final var imageInlayPtr = imageInlayAdapter.getImagePtr();
 		final var size = inlay.getSize();
@@ -220,6 +221,13 @@ public final class CompositeImageAdapter extends Notifier implements IImageAdapt
 	public VkImage getVkImage()
 	{
 		return imageBackend;
+	}
+
+	@Override
+	public Vector2ic getSize()
+	{
+		final var vkImage = getVkImage();
+		return new Vector2i(vkImage.width, vkImage.height);
 	}
 
 	private static void fillRegion(VkImageCopy region, final int width, final int height)

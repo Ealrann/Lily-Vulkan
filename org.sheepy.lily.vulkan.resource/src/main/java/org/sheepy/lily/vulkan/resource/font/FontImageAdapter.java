@@ -1,5 +1,7 @@
 package org.sheepy.lily.vulkan.resource.font;
 
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryStack;
@@ -281,5 +283,12 @@ public final class FontImageAdapter extends Notifier implements IFontImageAdapte
 	public long getMemoryPtr()
 	{
 		return getVkImage().getMemoryPtr();
+	}
+
+	@Override
+	public Vector2ic getSize()
+	{
+		final var vkImage = getVkImage();
+		return new Vector2i(vkImage.width, vkImage.height);
 	}
 }

@@ -5,7 +5,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.core.resource.IDescriptorAdapter;
-import org.sheepy.lily.vulkan.core.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 
@@ -37,7 +37,7 @@ public class ImageArrayDescriptorAdapter implements IDescriptorAdapter
 		for (int i = 0; i < images.size(); i++)
 		{
 			final var image = images.get(i);
-			final var adapter = image.adaptNotNull(IImageAdapter.class);
+			final var adapter = image.adaptNotNull(IVkImageAdapter.class);
 			viewPtrs[i] = adapter.getViewPtr();
 		}
 

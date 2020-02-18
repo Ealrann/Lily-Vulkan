@@ -20,7 +20,7 @@ import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.game.api.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
-import org.sheepy.lily.vulkan.core.resource.IImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.extra.api.nuklear.ISelectorInputProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
 import org.sheepy.lily.vulkan.nuklear.ui.internal.SelectorButtonDrawer;
@@ -359,7 +359,7 @@ public final class SelectorPanelAdapter extends Notifier implements IPanelAdapte
 		{
 			if (image != null)
 			{
-				final var imageAdapter = image.adapt(IImageAdapter.class);
+				final var imageAdapter = image.adapt(IVkImageAdapter.class);
 				nk_image_ptr(imageAdapter.getViewPtr(), nkImage);
 				return nkImage;
 			}
