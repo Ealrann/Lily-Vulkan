@@ -1,8 +1,5 @@
 package org.sheepy.lily.vulkan.extra.graphic.rendering;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.emf.ecore.EClass;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
@@ -21,10 +18,12 @@ import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Statefull
 @Adapter(scope = GenericRenderer.class, scopeInheritance = true, lazy = false)
-public final class GenericRendererMaintainerAdapter<T extends Structure>
-		implements IGenericRendererAdapter
+public final class GenericRendererMaintainerAdapter<T extends Structure> implements IGenericRendererAdapter
 {
 	private static final EClass RENDERER_ECLASS = RenderingPackage.Literals.GENERIC_RENDERER;
 
@@ -56,8 +55,8 @@ public final class GenericRendererMaintainerAdapter<T extends Structure>
 			final var structure = structures.get(i);
 			final var drawSetups = structureDrawInstaller.install(structure, drawCall);
 			structurePartDrawSetups.addAll(drawSetups);
-			
-			drawCall += drawSetups.size(); 
+
+			drawCall += drawSetups.size();
 		}
 
 		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
@@ -78,9 +77,8 @@ public final class GenericRendererMaintainerAdapter<T extends Structure>
 		return resolver.resolveEntity(renderPointer);
 	}
 
-	private IEntityResolver findEntityResolver(	final IStructurePartDrawSetup drawSetup,
-												IStructureAdapter structureAdapter)
-			throws AssertionError
+	private IEntityResolver findEntityResolver(final IStructurePartDrawSetup drawSetup,
+											   IStructureAdapter structureAdapter) throws AssertionError
 	{
 		IEntityResolver resolver = null;
 		if (structureAdapter instanceof IEntityResolver)
@@ -115,17 +113,13 @@ public final class GenericRendererMaintainerAdapter<T extends Structure>
 		final var name = maintainer.getName();
 		final var className = classifier.getSimpleName();
 		final int count = structurePartDrawSetups.size();
-		System.out.println(String.format(	"Create %d pipelines for %s [%s].",
-											count,
-											name,
-											className));
+		System.out.println(String.format("Create %d pipelines for %s [%s].", count, name, className));
 	}
 
 	private void throwResolverNotFoundError() throws AssertionError
 	{
-		throw new AssertionError("The StructureAdapter or one DataProviderAdapter of "
-				+ maintainer.eClass().getName()
-				+ " must implements "
-				+ IEntityResolver.class.getSimpleName());
+		throw new AssertionError("The StructureAdapter or one DataProviderAdapter of " + maintainer.eClass()
+																								   .getName() + " must implements " + IEntityResolver.class
+				.getSimpleName());
 	}
 }

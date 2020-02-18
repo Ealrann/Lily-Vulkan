@@ -48,10 +48,9 @@ public final class RenderPipelineBuilder
 	private static ByteBuffer prepareSpecializationBuffer(int index, ISpecialization specialization)
 	{
 		final var specializationAdapter = resolveSpecializationAdapter(specialization);
-		int speByteCount = 4;
-		speByteCount += specializationAdapter != null ? specializationAdapter.byteCount(specialization) : 0;
+		final int speByteCount = specializationAdapter != null ? specializationAdapter.byteCount(specialization) : 0;
+		final var constantsData = BufferUtils.createByteBuffer(speByteCount + 4);
 
-		final var constantsData = BufferUtils.createByteBuffer(speByteCount);
 		constantsData.putInt(index);
 		if (specializationAdapter != null)
 		{
@@ -67,6 +66,9 @@ public final class RenderPipelineBuilder
 		{
 			return specialization.adapt(ISpecializationAdapter.class);
 		}
-		return null;
+		else
+		{
+			return null;
+		}
 	}
 }

@@ -3,11 +3,13 @@ package org.sheepy.lily.vulkan.extra.graphic.rendering.task;
 import static org.lwjgl.vulkan.VK10.vkCmdDraw;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IVertexProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderDrawTask;
 
+@Statefull
 @Adapter(scope = RenderDrawTask.class)
 public class RenderDrawTaskAdapter implements IPipelineTaskAdapter<RenderDrawTask>
 {

@@ -1,16 +1,18 @@
 package org.sheepy.lily.vulkan.extra.graphic.sprite;
 
-import java.nio.ByteBuffer;
-
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.extra.api.rendering.ISpecializationAdapter;
+import org.sheepy.lily.vulkan.extra.api.rendering.IStructureResourceAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure;
+
+import java.nio.ByteBuffer;
 
 @Adapter(scope = SpriteCountSpecialization.class)
-public class SpriteCountSpecializationAdapter implements ISpecializationAdapter
+public final class SpriteCountSpecializationAdapter implements ISpecializationAdapter
 {
 	@Override
 	public int byteCount(ISpecialization specialization)
@@ -23,17 +25,12 @@ public class SpriteCountSpecializationAdapter implements ISpecializationAdapter
 	{
 		final var renderer = ModelUtil.findParent(specialization, SpriteRenderer.class);
 		final var structures = renderer.getRenderedStructures();
-
-		int maxSize = 0;
-		for (final var structure : structures)
-		{
-			final int size = SpriteMonoSamplerProviderAdapter.gatherResources(structure).size();
-			if (size > maxSize)
-			{
-				maxSize = size;
-			}
-		}
-
+		final int maxSize = structures.stream().mapToInt(SpriteCountSpecializationAdapter::structureResourceSize).sum();
 		buffer.putInt(maxSize);
+	}
+
+	private static int structureResourceSize(final SpriteStructure s)
+	{
+		return s.adapt(IStructureResourceAdapter.class).getResources().size();
 	}
 }

@@ -1,17 +1,13 @@
 package org.sheepy.lily.vulkan.extra.graphic.sprite;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.core.model.resource.FileResource;
-import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.lily.vulkan.extra.api.rendering.IDescriptorProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider;
-import org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure;
 import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
@@ -21,7 +17,6 @@ import org.sheepy.vulkan.model.image.ImagePackage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Adapter(scope = SpriteMonoSamplerProvider.class)
 public class SpriteMonoSamplerProviderAdapter implements IDescriptorProviderAdapter
@@ -39,10 +34,11 @@ public class SpriteMonoSamplerProviderAdapter implements IDescriptorProviderAdap
 	{
 		final List<IResource> resources = new ArrayList<>();
 		final List<IDescriptor> descriptors = new ArrayList<>();
+		final var structureResourceAdapter = structure.adapt(SpriteStructureAdapter.class);
+		final var images = structureResourceAdapter.getResources();
 
 		// Resources
 		final var spriteProvider = (SpriteMonoSamplerProvider) provider;
-		final var srcResources = gatherResources((SpriteStructure) structure);
 		final var samplerInfo = spriteProvider.getSamplerInfo();
 
 		final var sampler = VulkanResourceFactory.eINSTANCE.createSampler();
@@ -52,23 +48,6 @@ public class SpriteMonoSamplerProviderAdapter implements IDescriptorProviderAdap
 		intialLayout.setLayout(EImageLayout.SHADER_READ_ONLY_OPTIMAL);
 		intialLayout.getAccessMask().add(EAccess.SHADER_READ_BIT);
 		intialLayout.setStage(EPipelineStage.FRAGMENT_SHADER_BIT);
-
-		final List<IImage> images = new ArrayList<>();
-		for (final var resource : srcResources)
-		{
-			final var initialLayout = ImageFactory.eINSTANCE.createImageLayout();
-			initialLayout.setStage(EPipelineStage.FRAGMENT_SHADER_BIT);
-			initialLayout.setLayout(EImageLayout.SHADER_READ_ONLY_OPTIMAL);
-			initialLayout.getAccessMask().add(EAccess.SHADER_READ_BIT);
-
-			final var image = VulkanResourceFactory.eINSTANCE.createFileImage();
-			image.setInitialLayout(initialLayout);
-			image.setFile(resource);
-			image.getUsages().add(EImageUsage.SAMPLED);
-			image.getUsages().add(EImageUsage.TRANSFER_DST);
-
-			images.add(image);
-		}
 
 		resources.add(sampler);
 		resources.addAll(images);
@@ -89,13 +68,5 @@ public class SpriteMonoSamplerProviderAdapter implements IDescriptorProviderAdap
 		descriptors.add(imageArrayDescriptor);
 
 		return new ResourceDescriptor(resources, descriptors);
-	}
-
-	public static List<FileResource> gatherResources(SpriteStructure structure)
-	{
-		final var sprites = structure.getSprites().stream();
-		final var spriteFiles = sprites.map(s -> EcoreUtil.copy(s.getFile()));
-		final var resources = spriteFiles.collect(Collectors.toList());
-		return resources;
 	}
 }

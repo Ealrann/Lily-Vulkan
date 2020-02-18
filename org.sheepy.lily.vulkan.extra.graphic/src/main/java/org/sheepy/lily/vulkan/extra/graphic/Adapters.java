@@ -10,6 +10,7 @@ import org.sheepy.lily.vulkan.extra.graphic.rendering.task.RenderDrawTaskAdapter
 import org.sheepy.lily.vulkan.extra.graphic.rendering.task.RenderIndexedDrawTaskAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteCountSpecializationAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteMonoSamplerProviderAdapter;
+import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteStructureAdapter;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ public final class Adapters implements IAdapterProvider
 					   SpriteCountSpecializationAdapter.class,
 					   RenderDrawTaskAdapter.class,
 					   RenderIndexedDrawTaskAdapter.class,
-					   DataDescriptorsProviderAdapter.class);
+					   DataDescriptorsProviderAdapter.class,
+					   SpriteStructureAdapter.class);
 	}
 }
