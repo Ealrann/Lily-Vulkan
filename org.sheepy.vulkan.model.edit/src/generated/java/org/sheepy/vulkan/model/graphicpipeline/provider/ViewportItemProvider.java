@@ -24,7 +24,8 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelineFactory;
+import org.sheepy.lily.core.model.types.TypesFactory;
+import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 import org.sheepy.vulkan.model.graphicpipeline.Viewport;
 
@@ -261,7 +262,7 @@ public class ViewportItemProvider extends ItemProviderAdapter implements IEditin
 		newChildDescriptors.add
 			(createChildParameter
 				(GraphicpipelinePackage.Literals.VIEWPORT__EXTENT,
-				 GraphicpipelineFactory.eINSTANCE.createVec2I()));
+				 TypesFactory.eINSTANCE.createFromString(TypesPackage.Literals.VECTOR2I, null))); // TODO: ensure this is a valid literal value
 	}
 
 	/**

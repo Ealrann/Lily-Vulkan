@@ -24,7 +24,8 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelineFactory;
+import org.sheepy.lily.core.model.types.TypesFactory;
+import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 import org.sheepy.vulkan.model.graphicpipeline.Scissor;
 
@@ -211,7 +212,7 @@ public class ScissorItemProvider extends ItemProviderAdapter implements IEditing
 		newChildDescriptors.add
 			(createChildParameter
 				(GraphicpipelinePackage.Literals.SCISSOR__EXTENT,
-				 GraphicpipelineFactory.eINSTANCE.createVec2I()));
+				 TypesFactory.eINSTANCE.createFromString(TypesPackage.Literals.VECTOR2I, null))); // TODO: ensure this is a valid literal value
 	}
 
 	/**

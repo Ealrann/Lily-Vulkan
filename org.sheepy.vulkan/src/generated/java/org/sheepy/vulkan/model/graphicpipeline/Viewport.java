@@ -2,7 +2,7 @@
  */
 package org.sheepy.vulkan.model.graphicpipeline;
 
-import org.sheepy.lily.core.api.adapter.ILilyEObject;
+import org.joml.Vector2ic;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,17 +15,16 @@ import org.sheepy.lily.core.api.adapter.ILilyEObject;
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.graphicpipeline.Viewport#getOffsetX <em>Offset X</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.graphicpipeline.Viewport#getOffsetY <em>Offset Y</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.graphicpipeline.Viewport#getExtent <em>Extent</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.graphicpipeline.Viewport#getMinDepth <em>Min Depth</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.graphicpipeline.Viewport#getMaxDepth <em>Max Depth</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.graphicpipeline.Viewport#getExtent <em>Extent</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getViewport()
  * @model
- * @extends ILilyEObject
  * @generated
  */
-public interface Viewport extends ILilyEObject
+public interface Viewport extends IViewport
 {
 	/**
 	 * Returns the value of the '<em><b>Offset X</b></em>' attribute.
@@ -74,26 +73,26 @@ public interface Viewport extends ILilyEObject
 	void setOffsetY(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Extent</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Extent</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extent</em>' containment reference.
-	 * @see #setExtent(Vec2I)
+	 * @return the value of the '<em>Extent</em>' attribute.
+	 * @see #setExtent(Vector2ic)
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getViewport_Extent()
-	 * @model containment="true"
+	 * @model dataType="org.sheepy.lily.core.model.types.Vector2i"
 	 * @generated
 	 */
-	Vec2I getExtent();
+	Vector2ic getExtent();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.graphicpipeline.Viewport#getExtent <em>Extent</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.graphicpipeline.Viewport#getExtent <em>Extent</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Extent</em>' containment reference.
+	 * @param value the new value of the '<em>Extent</em>' attribute.
 	 * @see #getExtent()
 	 * @generated
 	 */
-	void setExtent(Vec2I value);
+	void setExtent(Vector2ic value);
 
 	/**
 	 * Returns the value of the '<em><b>Min Depth</b></em>' attribute.

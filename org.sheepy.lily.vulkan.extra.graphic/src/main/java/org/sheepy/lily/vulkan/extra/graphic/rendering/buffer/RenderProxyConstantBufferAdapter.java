@@ -1,11 +1,12 @@
 package org.sheepy.lily.vulkan.extra.graphic.rendering.buffer;
 
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
+import org.sheepy.lily.vulkan.api.resource.buffer.IConstantBufferUpdater;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
@@ -14,25 +15,30 @@ import java.nio.ByteBuffer;
 
 @Statefull
 @Adapter(scope = RenderProxyConstantBuffer.class, lazy = false)
-public class RenderProxyConstantBufferAdapter implements IAdapter
+public class RenderProxyConstantBufferAdapter implements IConstantBufferUpdater
 {
 	private final RenderProxyConstantBuffer proxyConstantBuffer;
 	private final ConstantBuffer nestedConstantBuffer;
 	private final INotificationListener nestedBufferListener = notification -> updateBuffer();
 
+	private IConstantBufferUpdater updater;
 	private ByteBuffer buffer = null;
 
 	public RenderProxyConstantBufferAdapter(RenderProxyConstantBuffer constantBuffer)
 	{
 		this.proxyConstantBuffer = constantBuffer;
-
 		nestedConstantBuffer = constantBuffer.getConstantBuffer();
+		updateBuffer();
+	}
+
+	@Load
+	private void load()
+	{
 		if (nestedConstantBuffer != null)
 		{
 			nestedConstantBuffer.addListener(nestedBufferListener, VulkanResourcePackage.CONSTANT_BUFFER__DATA);
+			updater = nestedConstantBuffer.adapt(IConstantBufferUpdater.class);
 		}
-
-		updateBuffer();
 	}
 
 	@Dispose
@@ -44,6 +50,12 @@ public class RenderProxyConstantBufferAdapter implements IAdapter
 		}
 
 		disposeBuffer();
+	}
+
+	@Override
+	public void beforePush(final ConstantBuffer buffer)
+	{
+		if (updater != null) updater.beforePush(nestedConstantBuffer);
 	}
 
 	private void disposeBuffer()

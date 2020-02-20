@@ -570,50 +570,32 @@ public interface GraphicpipelinePackage extends EPackage
 	int DYNAMIC_VIEWPORT_STATE_OPERATION_COUNT = VIEWPORT_STATE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.Vec2IImpl <em>Vec2 I</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.IViewport <em>IViewport</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.graphicpipeline.impl.Vec2IImpl
-	 * @see org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl#getVec2I()
+	 * @see org.sheepy.vulkan.model.graphicpipeline.IViewport
+	 * @see org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl#getIViewport()
 	 * @generated
 	 */
-	int VEC2_I = 8;
+	int IVIEWPORT = 8;
 
 	/**
-	 * The feature id for the '<em><b>X</b></em>' attribute.
+	 * The number of structural features of the '<em>IViewport</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VEC2_I__X = 0;
+	int IVIEWPORT_FEATURE_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Y</b></em>' attribute.
+	 * The number of operations of the '<em>IViewport</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VEC2_I__Y = 1;
-
-	/**
-	 * The number of structural features of the '<em>Vec2 I</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VEC2_I_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Vec2 I</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VEC2_I_OPERATION_COUNT = 0;
+	int IVIEWPORT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.ViewportImpl <em>Viewport</em>}' class.
@@ -632,7 +614,7 @@ public interface GraphicpipelinePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VIEWPORT__OFFSET_X = 0;
+	int VIEWPORT__OFFSET_X = IVIEWPORT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Offset Y</b></em>' attribute.
@@ -641,16 +623,7 @@ public interface GraphicpipelinePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VIEWPORT__OFFSET_Y = 1;
-
-	/**
-	 * The feature id for the '<em><b>Extent</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEWPORT__EXTENT = 2;
+	int VIEWPORT__OFFSET_Y = IVIEWPORT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Min Depth</b></em>' attribute.
@@ -659,7 +632,7 @@ public interface GraphicpipelinePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VIEWPORT__MIN_DEPTH = 3;
+	int VIEWPORT__MIN_DEPTH = IVIEWPORT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Max Depth</b></em>' attribute.
@@ -668,7 +641,16 @@ public interface GraphicpipelinePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VIEWPORT__MAX_DEPTH = 4;
+	int VIEWPORT__MAX_DEPTH = IVIEWPORT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Extent</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEWPORT__EXTENT = IVIEWPORT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Viewport</em>' class.
@@ -677,7 +659,7 @@ public interface GraphicpipelinePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VIEWPORT_FEATURE_COUNT = 5;
+	int VIEWPORT_FEATURE_COUNT = IVIEWPORT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Viewport</em>' class.
@@ -686,7 +668,62 @@ public interface GraphicpipelinePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VIEWPORT_OPERATION_COUNT = 0;
+	int VIEWPORT_OPERATION_COUNT = IVIEWPORT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.CinemaViewportImpl <em>Cinema Viewport</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.graphicpipeline.impl.CinemaViewportImpl
+	 * @see org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl#getCinemaViewport()
+	 * @generated
+	 */
+	int CINEMA_VIEWPORT = 10;
+
+	/**
+	 * The feature id for the '<em><b>Aspect Ratio</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CINEMA_VIEWPORT__ASPECT_RATIO = IVIEWPORT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Min Depth</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CINEMA_VIEWPORT__MIN_DEPTH = IVIEWPORT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Max Depth</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CINEMA_VIEWPORT__MAX_DEPTH = IVIEWPORT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Cinema Viewport</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CINEMA_VIEWPORT_FEATURE_COUNT = IVIEWPORT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Cinema Viewport</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CINEMA_VIEWPORT_OPERATION_COUNT = IVIEWPORT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.ScissorImpl <em>Scissor</em>}' class.
@@ -696,7 +733,7 @@ public interface GraphicpipelinePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl#getScissor()
 	 * @generated
 	 */
-	int SCISSOR = 10;
+	int SCISSOR = 11;
 
 	/**
 	 * The feature id for the '<em><b>Offset X</b></em>' attribute.
@@ -717,7 +754,7 @@ public interface GraphicpipelinePackage extends EPackage
 	int SCISSOR__OFFSET_Y = 1;
 
 	/**
-	 * The feature id for the '<em><b>Extent</b></em>' containment reference.
+	 * The feature id for the '<em><b>Extent</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -751,7 +788,7 @@ public interface GraphicpipelinePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl#getDepthStencilState()
 	 * @generated
 	 */
-	int DEPTH_STENCIL_STATE = 11;
+	int DEPTH_STENCIL_STATE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Depth Test</b></em>' attribute.
@@ -1267,36 +1304,14 @@ public interface GraphicpipelinePackage extends EPackage
 	EAttribute getDynamicViewportState_ScissorCount();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.graphicpipeline.Vec2I <em>Vec2 I</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.graphicpipeline.IViewport <em>IViewport</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Vec2 I</em>'.
-	 * @see org.sheepy.vulkan.model.graphicpipeline.Vec2I
+	 * @return the meta object for class '<em>IViewport</em>'.
+	 * @see org.sheepy.vulkan.model.graphicpipeline.IViewport
 	 * @generated
 	 */
-	EClass getVec2I();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.graphicpipeline.Vec2I#getX <em>X</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>X</em>'.
-	 * @see org.sheepy.vulkan.model.graphicpipeline.Vec2I#getX()
-	 * @see #getVec2I()
-	 * @generated
-	 */
-	EAttribute getVec2I_X();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.graphicpipeline.Vec2I#getY <em>Y</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Y</em>'.
-	 * @see org.sheepy.vulkan.model.graphicpipeline.Vec2I#getY()
-	 * @see #getVec2I()
-	 * @generated
-	 */
-	EAttribute getVec2I_Y();
+	EClass getIViewport();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.graphicpipeline.Viewport <em>Viewport</em>}'.
@@ -1331,15 +1346,58 @@ public interface GraphicpipelinePackage extends EPackage
 	EAttribute getViewport_OffsetY();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.graphicpipeline.Viewport#getExtent <em>Extent</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.graphicpipeline.Viewport#getExtent <em>Extent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Extent</em>'.
+	 * @return the meta object for the attribute '<em>Extent</em>'.
 	 * @see org.sheepy.vulkan.model.graphicpipeline.Viewport#getExtent()
 	 * @see #getViewport()
 	 * @generated
 	 */
-	EReference getViewport_Extent();
+	EAttribute getViewport_Extent();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.graphicpipeline.CinemaViewport <em>Cinema Viewport</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Cinema Viewport</em>'.
+	 * @see org.sheepy.vulkan.model.graphicpipeline.CinemaViewport
+	 * @generated
+	 */
+	EClass getCinemaViewport();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.graphicpipeline.CinemaViewport#getAspectRatio <em>Aspect Ratio</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Aspect Ratio</em>'.
+	 * @see org.sheepy.vulkan.model.graphicpipeline.CinemaViewport#getAspectRatio()
+	 * @see #getCinemaViewport()
+	 * @generated
+	 */
+	EAttribute getCinemaViewport_AspectRatio();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.graphicpipeline.CinemaViewport#getMinDepth <em>Min Depth</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Min Depth</em>'.
+	 * @see org.sheepy.vulkan.model.graphicpipeline.CinemaViewport#getMinDepth()
+	 * @see #getCinemaViewport()
+	 * @generated
+	 */
+	EAttribute getCinemaViewport_MinDepth();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.graphicpipeline.CinemaViewport#getMaxDepth <em>Max Depth</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Max Depth</em>'.
+	 * @see org.sheepy.vulkan.model.graphicpipeline.CinemaViewport#getMaxDepth()
+	 * @see #getCinemaViewport()
+	 * @generated
+	 */
+	EAttribute getCinemaViewport_MaxDepth();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.graphicpipeline.Viewport#getMinDepth <em>Min Depth</em>}'.
@@ -1396,15 +1454,15 @@ public interface GraphicpipelinePackage extends EPackage
 	EAttribute getScissor_OffsetY();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.graphicpipeline.Scissor#getExtent <em>Extent</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.graphicpipeline.Scissor#getExtent <em>Extent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Extent</em>'.
+	 * @return the meta object for the attribute '<em>Extent</em>'.
 	 * @see org.sheepy.vulkan.model.graphicpipeline.Scissor#getExtent()
 	 * @see #getScissor()
 	 * @generated
 	 */
-	EReference getScissor_Extent();
+	EAttribute getScissor_Extent();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.graphicpipeline.DepthStencilState <em>Depth Stencil State</em>}'.
@@ -1854,30 +1912,14 @@ public interface GraphicpipelinePackage extends EPackage
 		EAttribute DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT = eINSTANCE.getDynamicViewportState_ScissorCount();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.Vec2IImpl <em>Vec2 I</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.graphicpipeline.IViewport <em>IViewport</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.graphicpipeline.impl.Vec2IImpl
-		 * @see org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl#getVec2I()
+		 * @see org.sheepy.vulkan.model.graphicpipeline.IViewport
+		 * @see org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl#getIViewport()
 		 * @generated
 		 */
-		EClass VEC2_I = eINSTANCE.getVec2I();
-
-		/**
-		 * The meta object literal for the '<em><b>X</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VEC2_I__X = eINSTANCE.getVec2I_X();
-
-		/**
-		 * The meta object literal for the '<em><b>Y</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VEC2_I__Y = eINSTANCE.getVec2I_Y();
+		EClass IVIEWPORT = eINSTANCE.getIViewport();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.ViewportImpl <em>Viewport</em>}' class.
@@ -1906,12 +1948,46 @@ public interface GraphicpipelinePackage extends EPackage
 		EAttribute VIEWPORT__OFFSET_Y = eINSTANCE.getViewport_OffsetY();
 
 		/**
-		 * The meta object literal for the '<em><b>Extent</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Extent</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VIEWPORT__EXTENT = eINSTANCE.getViewport_Extent();
+		EAttribute VIEWPORT__EXTENT = eINSTANCE.getViewport_Extent();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.CinemaViewportImpl <em>Cinema Viewport</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.graphicpipeline.impl.CinemaViewportImpl
+		 * @see org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl#getCinemaViewport()
+		 * @generated
+		 */
+		EClass CINEMA_VIEWPORT = eINSTANCE.getCinemaViewport();
+
+		/**
+		 * The meta object literal for the '<em><b>Aspect Ratio</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CINEMA_VIEWPORT__ASPECT_RATIO = eINSTANCE.getCinemaViewport_AspectRatio();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Depth</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CINEMA_VIEWPORT__MIN_DEPTH = eINSTANCE.getCinemaViewport_MinDepth();
+
+		/**
+		 * The meta object literal for the '<em><b>Max Depth</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CINEMA_VIEWPORT__MAX_DEPTH = eINSTANCE.getCinemaViewport_MaxDepth();
 
 		/**
 		 * The meta object literal for the '<em><b>Min Depth</b></em>' attribute feature.
@@ -1956,12 +2032,12 @@ public interface GraphicpipelinePackage extends EPackage
 		EAttribute SCISSOR__OFFSET_Y = eINSTANCE.getScissor_OffsetY();
 
 		/**
-		 * The meta object literal for the '<em><b>Extent</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Extent</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SCISSOR__EXTENT = eINSTANCE.getScissor_Extent();
+		EAttribute SCISSOR__EXTENT = eINSTANCE.getScissor_Extent();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.graphicpipeline.impl.DepthStencilStateImpl <em>Depth Stencil State</em>}' class.

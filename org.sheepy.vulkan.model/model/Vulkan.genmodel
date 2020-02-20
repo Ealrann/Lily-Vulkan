@@ -560,21 +560,23 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//DynamicViewportState/viewportCount"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//DynamicViewportState/scissorCount"/>
     </genClasses>
-    <genClasses ecoreClass="graphicpipeline.ecore#//Vec2I">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Vec2I/x"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Vec2I/y"/>
-    </genClasses>
+    <genClasses image="false" ecoreClass="graphicpipeline.ecore#//IViewport"/>
     <genClasses ecoreClass="graphicpipeline.ecore#//Viewport">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Viewport/offsetX"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Viewport/offsetY"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphicpipeline.ecore#//Viewport/extent"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Viewport/minDepth"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Viewport/maxDepth"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Viewport/extent"/>
+    </genClasses>
+    <genClasses ecoreClass="graphicpipeline.ecore#//CinemaViewport">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//CinemaViewport/aspectRatio"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//CinemaViewport/minDepth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//CinemaViewport/maxDepth"/>
     </genClasses>
     <genClasses ecoreClass="graphicpipeline.ecore#//Scissor">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Scissor/offsetX"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Scissor/offsetY"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphicpipeline.ecore#//Scissor/extent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Scissor/extent"/>
     </genClasses>
     <genClasses ecoreClass="graphicpipeline.ecore#//DepthStencilState">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//DepthStencilState/depthTest"/>

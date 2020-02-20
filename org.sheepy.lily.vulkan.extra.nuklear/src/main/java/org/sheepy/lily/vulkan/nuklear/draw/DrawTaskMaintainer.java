@@ -1,15 +1,15 @@
 package org.sheepy.lily.vulkan.nuklear.draw;
 
-import java.util.List;
-
+import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.core.window.Extent2D;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFactory;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.vulkan.model.enumeration.EIndexType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
+
+import java.util.List;
 
 public final class DrawTaskMaintainer
 {
@@ -22,7 +22,7 @@ public final class DrawTaskMaintainer
 		this.vertexBuffer = vertexBuffer;
 	}
 
-	public void reloadTasks(final List<DrawCommandData> commands, Extent2D extent)
+	public void reloadTasks(final List<DrawCommandData> commands, Vector2ic extent)
 	{
 		drawCompositeTask.getTasks().clear();
 
@@ -40,7 +40,7 @@ public final class DrawTaskMaintainer
 		}
 	}
 
-	private void createBindTasks(Extent2D extent)
+	private void createBindTasks(Vector2ic extent)
 	{
 		final var vertexBinding = GraphicFactory.eINSTANCE.createVertexBinding();
 		vertexBinding.setBuffer(vertexBuffer.getParts().get(0));
@@ -53,8 +53,8 @@ public final class DrawTaskMaintainer
 		bindIndexBuffer.setIndexType(EIndexType.UINT16);
 
 		final var setViewport = GraphicFactory.eINSTANCE.createSetViewport();
-		setViewport.setWidth(extent.getWidth());
-		setViewport.setHeight(extent.getHeight());
+		setViewport.setWidth(extent.x());
+		setViewport.setHeight(extent.y());
 
 		drawCompositeTask.getTasks().add(bindVertexBuffer);
 		drawCompositeTask.getTasks().add(bindIndexBuffer);
@@ -75,8 +75,8 @@ public final class DrawTaskMaintainer
 		{
 			final var pushConstant = NuklearFactory.eINSTANCE.createNuklearPushConstants();
 			pushConstant.setCurrentDescriptor(currentIndex);
-			pushConstant.setWidth(context.extent.getWidth());
-			pushConstant.setHeight(context.extent.getHeight());
+			pushConstant.setWidth(context.extent.x());
+			pushConstant.setHeight(context.extent.y());
 			pushConstant.getStages().add(EShaderStage.VERTEX_BIT);
 			pushConstant.getStages().add(EShaderStage.FRAGMENT_BIT);
 
@@ -90,13 +90,10 @@ public final class DrawTaskMaintainer
 	{
 		final int x = Math.max(commandData.xOffset, 0);
 		final int y = Math.max(commandData.yOffset, 0);
-		final int w = Math.min(commandData.xExtent, context.extent.getWidth());
-		final int h = Math.min(commandData.yExtent, context.extent.getHeight());
+		final int w = Math.min(commandData.xExtent, context.extent.x());
+		final int h = Math.min(commandData.yExtent, context.extent.y());
 
-		if (x != context.lastScissorX
-				|| y != context.lastScissorY
-				|| w != context.lastScissorW
-				|| h != context.lastScissorH)
+		if (x != context.lastScissorX || y != context.lastScissorY || w != context.lastScissorW || h != context.lastScissorH)
 		{
 			final var setScissor = GraphicFactory.eINSTANCE.createSetScissor();
 			setScissor.setOffsetX(x);
@@ -135,7 +132,7 @@ public final class DrawTaskMaintainer
 
 	private static final class Context
 	{
-		public final Extent2D extent;
+		public final Vector2ic extent;
 
 		public int previousDescriptorSet = -1;
 		public int indexOffset = 0;
@@ -144,7 +141,7 @@ public final class DrawTaskMaintainer
 		public float lastScissorW = -1;
 		public float lastScissorH = -1;
 
-		public Context(Extent2D extent)
+		public Context(Vector2ic extent)
 		{
 			this.extent = extent;
 		}

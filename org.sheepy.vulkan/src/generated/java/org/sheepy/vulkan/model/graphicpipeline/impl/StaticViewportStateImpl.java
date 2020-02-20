@@ -15,9 +15,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
+import org.sheepy.vulkan.model.graphicpipeline.IViewport;
 import org.sheepy.vulkan.model.graphicpipeline.Scissor;
 import org.sheepy.vulkan.model.graphicpipeline.StaticViewportState;
-import org.sheepy.vulkan.model.graphicpipeline.Viewport;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +43,7 @@ public class StaticViewportStateImpl extends LilyEObject implements StaticViewpo
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Viewport> viewports;
+	protected EList<IViewport> viewports;
 
 	/**
 	 * The cached value of the '{@link #getScissors() <em>Scissors</em>}' containment reference list.
@@ -82,11 +82,11 @@ public class StaticViewportStateImpl extends LilyEObject implements StaticViewpo
 	 * @generated
 	 */
 	@Override
-	public EList<Viewport> getViewports()
+	public EList<IViewport> getViewports()
 	{
 		if (viewports == null)
 		{
-			viewports = new EObjectContainmentEList<Viewport>(Viewport.class, this, GraphicpipelinePackage.STATIC_VIEWPORT_STATE__VIEWPORTS);
+			viewports = new EObjectContainmentEList<IViewport>(IViewport.class, this, GraphicpipelinePackage.STATIC_VIEWPORT_STATE__VIEWPORTS);
 		}
 		return viewports;
 	}
@@ -155,7 +155,7 @@ public class StaticViewportStateImpl extends LilyEObject implements StaticViewpo
 		{
 			case GraphicpipelinePackage.STATIC_VIEWPORT_STATE__VIEWPORTS:
 				getViewports().clear();
-				getViewports().addAll((Collection<? extends Viewport>)newValue);
+				getViewports().addAll((Collection<? extends IViewport>)newValue);
 				return;
 			case GraphicpipelinePackage.STATIC_VIEWPORT_STATE__SCISSORS:
 				getScissors().clear();

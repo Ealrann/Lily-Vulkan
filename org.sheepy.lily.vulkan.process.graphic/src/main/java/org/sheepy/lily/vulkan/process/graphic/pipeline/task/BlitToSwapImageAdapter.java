@@ -48,7 +48,7 @@ public class BlitToSwapImageAdapter extends AbstractBlitTaskAdapter
 	protected Vector2ic getDtImageSize(final IGraphicContext context)
 	{
 		final var extent = context.getSurfaceManager().getExtent();
-		return new Vector2i(extent.width, extent.height);
+		return new Vector2i(extent.x(), extent.y());
 	}
 
 	@Override

@@ -114,14 +114,19 @@ public class GraphicpipelineAdapterFactory extends AdapterFactoryImpl
 				return createDynamicViewportStateAdapter();
 			}
 			@Override
-			public Adapter caseVec2I(Vec2I object)
+			public Adapter caseIViewport(IViewport object)
 			{
-				return createVec2IAdapter();
+				return createIViewportAdapter();
 			}
 			@Override
 			public Adapter caseViewport(Viewport object)
 			{
 				return createViewportAdapter();
+			}
+			@Override
+			public Adapter caseCinemaViewport(CinemaViewport object)
+			{
+				return createCinemaViewportAdapter();
 			}
 			@Override
 			public Adapter caseScissor(Scissor object)
@@ -275,16 +280,16 @@ public class GraphicpipelineAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.graphicpipeline.Vec2I <em>Vec2 I</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.graphicpipeline.IViewport <em>IViewport</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.graphicpipeline.Vec2I
+	 * @see org.sheepy.vulkan.model.graphicpipeline.IViewport
 	 * @generated
 	 */
-	public Adapter createVec2IAdapter()
+	public Adapter createIViewportAdapter()
 	{
 		return null;
 	}
@@ -300,6 +305,21 @@ public class GraphicpipelineAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createViewportAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.graphicpipeline.CinemaViewport <em>Cinema Viewport</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.graphicpipeline.CinemaViewport
+	 * @generated
+	 */
+	public Adapter createCinemaViewportAdapter()
 	{
 		return null;
 	}

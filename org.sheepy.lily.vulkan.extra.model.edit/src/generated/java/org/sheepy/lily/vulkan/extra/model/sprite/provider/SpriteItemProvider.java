@@ -19,8 +19,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.core.model.application.provider.ApplicationItemProviderAdapterFactory;
 import org.sheepy.lily.core.model.resource.ResourceFactory;
+import org.sheepy.lily.core.model.resource.provider.ResourceItemProviderAdapterFactory;
 import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
 import org.sheepy.lily.vulkan.extra.model.sprite.Sprite;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
@@ -33,7 +33,7 @@ import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
 public class SpriteItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
-	private static ApplicationItemProviderAdapterFactory resourceAF = new ApplicationItemProviderAdapterFactory();
+	private static ResourceItemProviderAdapterFactory resourceAF = new ResourceItemProviderAdapterFactory();
 
 	/**
 	 * This constructs an instance from a factory and a notifier.

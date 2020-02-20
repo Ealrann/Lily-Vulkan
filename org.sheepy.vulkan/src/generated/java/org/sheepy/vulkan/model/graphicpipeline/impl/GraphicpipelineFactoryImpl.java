@@ -71,8 +71,8 @@ public class GraphicpipelineFactoryImpl extends EFactoryImpl implements Graphicp
 			case GraphicpipelinePackage.DYNAMIC_STATE: return createDynamicState();
 			case GraphicpipelinePackage.STATIC_VIEWPORT_STATE: return createStaticViewportState();
 			case GraphicpipelinePackage.DYNAMIC_VIEWPORT_STATE: return createDynamicViewportState();
-			case GraphicpipelinePackage.VEC2_I: return createVec2I();
 			case GraphicpipelinePackage.VIEWPORT: return createViewport();
+			case GraphicpipelinePackage.CINEMA_VIEWPORT: return createCinemaViewport();
 			case GraphicpipelinePackage.SCISSOR: return createScissor();
 			case GraphicpipelinePackage.DEPTH_STENCIL_STATE: return createDepthStencilState();
 			default:
@@ -170,10 +170,10 @@ public class GraphicpipelineFactoryImpl extends EFactoryImpl implements Graphicp
 	 * @generated
 	 */
 	@Override
-	public Vec2I createVec2I()
+	public Viewport createViewport()
 	{
-		Vec2IImpl vec2I = new Vec2IImpl();
-		return vec2I;
+		ViewportImpl viewport = new ViewportImpl();
+		return viewport;
 	}
 
 	/**
@@ -182,10 +182,10 @@ public class GraphicpipelineFactoryImpl extends EFactoryImpl implements Graphicp
 	 * @generated
 	 */
 	@Override
-	public Viewport createViewport()
+	public CinemaViewport createCinemaViewport()
 	{
-		ViewportImpl viewport = new ViewportImpl();
-		return viewport;
+		CinemaViewportImpl cinemaViewport = new CinemaViewportImpl();
+		return cinemaViewport;
 	}
 
 	/**

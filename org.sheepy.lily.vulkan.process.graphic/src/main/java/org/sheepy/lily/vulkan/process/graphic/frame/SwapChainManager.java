@@ -76,8 +76,8 @@ public final class SwapChainManager implements ISwapChainManager
 		createInfo.minImageCount(imageCount);
 		createInfo.imageFormat(colorDomain.getFormat().getValue());
 		createInfo.imageColorSpace(colorDomain.getColorSpace().getValue());
-		createInfo.imageExtent().width(extent.width);
-		createInfo.imageExtent().height(extent.height);
+		createInfo.imageExtent().width(extent.x());
+		createInfo.imageExtent().height(extent.y());
 		createInfo.imageArrayLayers(1);
 		createInfo.imageUsage(swapImageUsage);
 

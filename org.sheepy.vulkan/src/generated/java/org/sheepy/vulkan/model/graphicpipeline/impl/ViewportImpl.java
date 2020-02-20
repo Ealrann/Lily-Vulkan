@@ -3,15 +3,11 @@
 package org.sheepy.vulkan.model.graphicpipeline.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
-import org.sheepy.vulkan.model.graphicpipeline.Vec2I;
 import org.sheepy.vulkan.model.graphicpipeline.Viewport;
 
 /**
@@ -24,9 +20,9 @@ import org.sheepy.vulkan.model.graphicpipeline.Viewport;
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.graphicpipeline.impl.ViewportImpl#getOffsetX <em>Offset X</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.graphicpipeline.impl.ViewportImpl#getOffsetY <em>Offset Y</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.graphicpipeline.impl.ViewportImpl#getExtent <em>Extent</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.graphicpipeline.impl.ViewportImpl#getMinDepth <em>Min Depth</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.graphicpipeline.impl.ViewportImpl#getMaxDepth <em>Max Depth</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.graphicpipeline.impl.ViewportImpl#getExtent <em>Extent</em>}</li>
  * </ul>
  *
  * @generated
@@ -74,16 +70,6 @@ public class ViewportImpl extends LilyEObject implements Viewport
 	protected int offsetY = OFFSET_Y_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getExtent() <em>Extent</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExtent()
-	 * @generated
-	 * @ordered
-	 */
-	protected Vec2I extent;
-
-	/**
 	 * The default value of the '{@link #getMinDepth() <em>Min Depth</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -122,6 +108,26 @@ public class ViewportImpl extends LilyEObject implements Viewport
 	 * @ordered
 	 */
 	protected int maxDepth = MAX_DEPTH_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getExtent() <em>Extent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtent()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Vector2ic EXTENT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getExtent() <em>Extent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtent()
+	 * @generated
+	 * @ordered
+	 */
+	protected Vector2ic extent = EXTENT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -200,7 +206,7 @@ public class ViewportImpl extends LilyEObject implements Viewport
 	 * @generated
 	 */
 	@Override
-	public Vec2I getExtent()
+	public Vector2ic getExtent()
 	{
 		return extent;
 	}
@@ -210,38 +216,13 @@ public class ViewportImpl extends LilyEObject implements Viewport
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetExtent(Vec2I newExtent, NotificationChain msgs)
+	@Override
+	public void setExtent(Vector2ic newExtent)
 	{
-		Vec2I oldExtent = extent;
+		Vector2ic oldExtent = extent;
 		extent = newExtent;
 		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.VIEWPORT__EXTENT, oldExtent, newExtent);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setExtent(Vec2I newExtent)
-	{
-		if (newExtent != extent)
-		{
-			NotificationChain msgs = null;
-			if (extent != null)
-				msgs = ((InternalEObject)extent).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicpipelinePackage.VIEWPORT__EXTENT, null, msgs);
-			if (newExtent != null)
-				msgs = ((InternalEObject)newExtent).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicpipelinePackage.VIEWPORT__EXTENT, null, msgs);
-			msgs = basicSetExtent(newExtent, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.VIEWPORT__EXTENT, newExtent, newExtent));
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicpipelinePackage.VIEWPORT__EXTENT, oldExtent, extent));
 	}
 
 	/**
@@ -300,22 +281,6 @@ public class ViewportImpl extends LilyEObject implements Viewport
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case GraphicpipelinePackage.VIEWPORT__EXTENT:
-				return basicSetExtent(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -324,12 +289,12 @@ public class ViewportImpl extends LilyEObject implements Viewport
 				return getOffsetX();
 			case GraphicpipelinePackage.VIEWPORT__OFFSET_Y:
 				return getOffsetY();
-			case GraphicpipelinePackage.VIEWPORT__EXTENT:
-				return getExtent();
 			case GraphicpipelinePackage.VIEWPORT__MIN_DEPTH:
 				return getMinDepth();
 			case GraphicpipelinePackage.VIEWPORT__MAX_DEPTH:
 				return getMaxDepth();
+			case GraphicpipelinePackage.VIEWPORT__EXTENT:
+				return getExtent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -350,14 +315,14 @@ public class ViewportImpl extends LilyEObject implements Viewport
 			case GraphicpipelinePackage.VIEWPORT__OFFSET_Y:
 				setOffsetY((Integer)newValue);
 				return;
-			case GraphicpipelinePackage.VIEWPORT__EXTENT:
-				setExtent((Vec2I)newValue);
-				return;
 			case GraphicpipelinePackage.VIEWPORT__MIN_DEPTH:
 				setMinDepth((Integer)newValue);
 				return;
 			case GraphicpipelinePackage.VIEWPORT__MAX_DEPTH:
 				setMaxDepth((Integer)newValue);
+				return;
+			case GraphicpipelinePackage.VIEWPORT__EXTENT:
+				setExtent((Vector2ic)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -379,14 +344,14 @@ public class ViewportImpl extends LilyEObject implements Viewport
 			case GraphicpipelinePackage.VIEWPORT__OFFSET_Y:
 				setOffsetY(OFFSET_Y_EDEFAULT);
 				return;
-			case GraphicpipelinePackage.VIEWPORT__EXTENT:
-				setExtent((Vec2I)null);
-				return;
 			case GraphicpipelinePackage.VIEWPORT__MIN_DEPTH:
 				setMinDepth(MIN_DEPTH_EDEFAULT);
 				return;
 			case GraphicpipelinePackage.VIEWPORT__MAX_DEPTH:
 				setMaxDepth(MAX_DEPTH_EDEFAULT);
+				return;
+			case GraphicpipelinePackage.VIEWPORT__EXTENT:
+				setExtent(EXTENT_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -406,12 +371,12 @@ public class ViewportImpl extends LilyEObject implements Viewport
 				return offsetX != OFFSET_X_EDEFAULT;
 			case GraphicpipelinePackage.VIEWPORT__OFFSET_Y:
 				return offsetY != OFFSET_Y_EDEFAULT;
-			case GraphicpipelinePackage.VIEWPORT__EXTENT:
-				return extent != null;
 			case GraphicpipelinePackage.VIEWPORT__MIN_DEPTH:
 				return minDepth != MIN_DEPTH_EDEFAULT;
 			case GraphicpipelinePackage.VIEWPORT__MAX_DEPTH:
 				return maxDepth != MAX_DEPTH_EDEFAULT;
+			case GraphicpipelinePackage.VIEWPORT__EXTENT:
+				return EXTENT_EDEFAULT == null ? extent != null : !EXTENT_EDEFAULT.equals(extent);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -435,6 +400,8 @@ public class ViewportImpl extends LilyEObject implements Viewport
 		result.append(minDepth);
 		result.append(", maxDepth: ");
 		result.append(maxDepth);
+		result.append(", extent: ");
+		result.append(extent);
 		result.append(')');
 		return result.toString();
 	}

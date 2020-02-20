@@ -68,7 +68,7 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 		renderPassInfo.renderPass(context.getRenderPass().getPtr());
 		renderPassInfo.framebuffer(framebufferId);
 		renderPassInfo.renderArea().offset().set(0, 0);
-		renderPassInfo.renderArea().extent().set(extent.getWidth(), extent.getHeight());
+		renderPassInfo.renderArea().extent().set(extent.x(), extent.y());
 		renderPassInfo.pClearValues(clearValues);
 
 		beginInfo = VkCommandBufferBeginInfo.calloc();

@@ -1,15 +1,15 @@
 package org.sheepy.lily.vulkan.core.graphic;
 
+import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.core.device.capabilities.Capabilities;
 import org.sheepy.lily.vulkan.core.execution.queue.VulkanQueue;
-import org.sheepy.lily.vulkan.core.window.Extent2D;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
 
 public interface ISurfaceManager extends IAllocable<IGraphicContext>
 {
-	Extent2D getExtent();
+	Vector2ic getExtent();
 
 	VkSurface getSurface();
 

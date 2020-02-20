@@ -60,8 +60,8 @@ public class DepthAttachmentAdapter extends Notifier implements IDepthAttachment
 	{
 		final var surfaceManager = context.getSurfaceManager();
 		final var extent = surfaceManager.getExtent();
-		final int width = extent.width;
-		final int height = extent.height;
+		final int width = extent.x();
+		final int height = extent.y();
 		final int usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
 		final var depthImageBuilder = VkImage.newBuilder(width, height, depthFormat);
 		depthImageBuilder.usage(usage);

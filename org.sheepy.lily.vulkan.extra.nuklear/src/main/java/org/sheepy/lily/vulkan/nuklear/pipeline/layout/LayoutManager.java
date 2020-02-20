@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.nuklear.pipeline.layout;
 
+import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.adapter.util.AdapterSetRegistry;
-import org.sheepy.lily.vulkan.core.window.Extent2D;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter;
 
 public class LayoutManager
@@ -10,7 +10,7 @@ public class LayoutManager
 
 	private boolean dirty = true;
 	private boolean startedFrame = true;
-	private Extent2D currentExtent;
+	private Vector2ic currentExtent;
 
 	public LayoutManager(AdapterSetRegistry<IPanelAdapter> panelRegistry)
 	{
@@ -31,7 +31,7 @@ public class LayoutManager
 		return false;
 	}
 
-	public void layout(IPanelAdapter.UIContext uiContext, Extent2D extent)
+	public void layout(IPanelAdapter.UIContext uiContext, Vector2ic extent)
 	{
 		startedFrame = true;
 
@@ -69,7 +69,7 @@ public class LayoutManager
 		this.startedFrame = startedFrame;
 	}
 
-	public Extent2D getCurrentExtent()
+	public Vector2ic getCurrentExtent()
 	{
 		return currentExtent;
 	}

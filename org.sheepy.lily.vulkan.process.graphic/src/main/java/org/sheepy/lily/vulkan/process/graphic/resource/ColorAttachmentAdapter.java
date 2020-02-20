@@ -65,8 +65,8 @@ public class ColorAttachmentAdapter extends Notifier implements IExtraAttachment
 	{
 		final var surfaceManager = context.getSurfaceManager();
 		final var extent = surfaceManager.getExtent();
-		final int width = extent.width;
-		final int height = extent.height;
+		final int width = extent.x();
+		final int height = extent.y();
 		final int usage = VulkanModelUtil.getEnumeratedFlag(colorAttachment.getUsages());
 		final var initialLayout = ImageFactory.eINSTANCE.createImageLayout();
 		initialLayout.setLayout(colorAttachment.getInitialLayout());

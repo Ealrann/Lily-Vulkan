@@ -16,7 +16,6 @@ import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.game.api.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.core.window.Extent2D;
 import org.sheepy.lily.vulkan.core.window.Window;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
@@ -204,7 +203,7 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 		layoutManager.setStartedFrame(false);
 	}
 
-	public Extent2D getExtent()
+	public Vector2ic getExtent()
 	{
 		return layoutManager.getCurrentExtent();
 	}

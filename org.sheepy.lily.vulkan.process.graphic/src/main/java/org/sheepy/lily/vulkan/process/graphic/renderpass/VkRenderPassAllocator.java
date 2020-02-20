@@ -8,7 +8,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.SubpassUtil;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.util.SubpassUtil;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 
 import java.util.ArrayList;

@@ -268,31 +268,6 @@ public class GraphicpipelineItemProviderAdapterFactory extends GraphicpipelineAd
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.graphicpipeline.Vec2I} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Vec2IItemProvider vec2IItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.graphicpipeline.Vec2I}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createVec2IAdapter()
-	{
-		if (vec2IItemProvider == null)
-		{
-			vec2IItemProvider = new Vec2IItemProvider(this);
-		}
-
-		return vec2IItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.graphicpipeline.Viewport} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -315,6 +290,31 @@ public class GraphicpipelineItemProviderAdapterFactory extends GraphicpipelineAd
 		}
 
 		return viewportItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.graphicpipeline.CinemaViewport} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CinemaViewportItemProvider cinemaViewportItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.vulkan.model.graphicpipeline.CinemaViewport}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCinemaViewportAdapter()
+	{
+		if (cinemaViewportItemProvider == null)
+		{
+			cinemaViewportItemProvider = new CinemaViewportItemProvider(this);
+		}
+
+		return cinemaViewportItemProvider;
 	}
 
 	/**
@@ -523,8 +523,8 @@ public class GraphicpipelineItemProviderAdapterFactory extends GraphicpipelineAd
 		if (dynamicStateItemProvider != null) dynamicStateItemProvider.dispose();
 		if (staticViewportStateItemProvider != null) staticViewportStateItemProvider.dispose();
 		if (dynamicViewportStateItemProvider != null) dynamicViewportStateItemProvider.dispose();
-		if (vec2IItemProvider != null) vec2IItemProvider.dispose();
 		if (viewportItemProvider != null) viewportItemProvider.dispose();
+		if (cinemaViewportItemProvider != null) cinemaViewportItemProvider.dispose();
 		if (scissorItemProvider != null) scissorItemProvider.dispose();
 		if (depthStencilStateItemProvider != null) depthStencilStateItemProvider.dispose();
 	}

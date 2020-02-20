@@ -1,5 +1,7 @@
 package org.sheepy.lily.vulkan.process.graphic.frame;
 
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.game.api.window.IWindowListener;
 import org.sheepy.lily.vulkan.core.device.capabilities.Capabilities;
@@ -9,7 +11,6 @@ import org.sheepy.lily.vulkan.core.execution.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.graphic.ISurfaceManager;
 import org.sheepy.lily.vulkan.core.util.Logger;
-import org.sheepy.lily.vulkan.core.window.Extent2D;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
 import org.sheepy.lily.vulkan.core.window.VkSurface.ISurfaceListener;
 import org.sheepy.lily.vulkan.core.window.Window;
@@ -28,7 +29,7 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	private ColorDomain requiredColorDomain;
 	private VulkanQueue presentQueue;
 
-	private Extent2D extent;
+	private Vector2ic extent;
 	private VkSurface surface;
 
 	@Override
@@ -57,18 +58,18 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 		requiredColorDomain = loadColorDomain(context);
 	}
 
-	private Extent2D updateExtent(Window window)
+	private Vector2ic updateExtent(Window window)
 	{
 		final var currentExtent = capabilities.vkCapabilities.currentExtent();
 		if (currentExtent.width() == -1 || currentExtent.height() == -1)
 		{
 			// -1 is special case, the surface will take the framebuffer size later.
 			final var size = window.getFramebufferSize();
-			return new Extent2D(size.x(), size.y());
+			return new Vector2i(size.x(), size.y());
 		}
 		else
 		{
-			return new Extent2D(currentExtent.width(), currentExtent.height());
+			return new Vector2i(currentExtent.width(), currentExtent.height());
 		}
 	}
 
@@ -139,7 +140,7 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	}
 
 	@Override
-	public Extent2D getExtent()
+	public Vector2ic getExtent()
 	{
 		return extent;
 	}
@@ -174,6 +175,6 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	@Override
 	public boolean isPresentable()
 	{
-		return extent.width != 0 && extent.height != 0;
+		return extent.x() != 0 && extent.y() != 0;
 	}
 }

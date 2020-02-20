@@ -130,10 +130,10 @@ public class GraphicpipelineSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicpipelinePackage.VEC2_I:
+			case GraphicpipelinePackage.IVIEWPORT:
 			{
-				Vec2I vec2I = (Vec2I)theEObject;
-				T result = caseVec2I(vec2I);
+				IViewport iViewport = (IViewport)theEObject;
+				T result = caseIViewport(iViewport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -141,6 +141,15 @@ public class GraphicpipelineSwitch<T> extends Switch<T>
 			{
 				Viewport viewport = (Viewport)theEObject;
 				T result = caseViewport(viewport);
+				if (result == null) result = caseIViewport(viewport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicpipelinePackage.CINEMA_VIEWPORT:
+			{
+				CinemaViewport cinemaViewport = (CinemaViewport)theEObject;
+				T result = caseCinemaViewport(cinemaViewport);
+				if (result == null) result = caseIViewport(cinemaViewport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -291,17 +300,17 @@ public class GraphicpipelineSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Vec2 I</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IViewport</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Vec2 I</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IViewport</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVec2I(Vec2I object)
+	public T caseIViewport(IViewport object)
 	{
 		return null;
 	}
@@ -318,6 +327,22 @@ public class GraphicpipelineSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseViewport(Viewport object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cinema Viewport</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cinema Viewport</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCinemaViewport(CinemaViewport object)
 	{
 		return null;
 	}

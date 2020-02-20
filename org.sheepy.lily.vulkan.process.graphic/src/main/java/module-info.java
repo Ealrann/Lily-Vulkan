@@ -14,6 +14,7 @@ module org.sheepy.lily.vulkan.process.graphic {
 	opens org.sheepy.lily.vulkan.process.graphic.execution;
 	opens org.sheepy.lily.vulkan.process.graphic.pipeline;
 	opens org.sheepy.lily.vulkan.process.graphic.pipeline.task;
+	opens org.sheepy.lily.vulkan.process.graphic.pipeline.viewport;
 	opens org.sheepy.lily.vulkan.process.graphic.process;
 	opens org.sheepy.lily.vulkan.process.graphic.resource;
 	opens org.sheepy.lily.vulkan.process.graphic.scene;

@@ -31,7 +31,7 @@
         <stages>FRAGMENT_BIT</stages>
       </pushConstantRanges>
       <viewportState xsi:type="graphicpipeline:StaticViewportState">
-        <viewports/>
+        <viewports xsi:type="graphicpipeline:Viewport"/>
         <scissors/>
       </viewportState>
       <inputAssembly/>

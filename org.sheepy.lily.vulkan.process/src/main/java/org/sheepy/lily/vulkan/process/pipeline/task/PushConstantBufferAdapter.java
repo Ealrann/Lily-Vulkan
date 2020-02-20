@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.pipeline.task;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.util.ModelUtil;
@@ -24,15 +25,20 @@ public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConst
 {
 	private final INotificationListener bufferListener = n -> dirty = true;
 	private final ConstantBuffer buffer;
-	private final IConstantBufferUpdater updater;
 
+	private IConstantBufferUpdater updater;
 	private boolean dirty = true;
 
 	public PushConstantBufferAdapter(PushConstantBuffer task)
 	{
 		buffer = task.getBuffer();
-		updater = buffer.adapt(IConstantBufferUpdater.class);
+	}
+
+	@Load
+	private void load()
+	{
 		buffer.addListener(bufferListener, VulkanResourcePackage.CONSTANT_BUFFER__DATA);
+		updater = buffer.adapt(IConstantBufferUpdater.class);
 	}
 
 	@Dispose

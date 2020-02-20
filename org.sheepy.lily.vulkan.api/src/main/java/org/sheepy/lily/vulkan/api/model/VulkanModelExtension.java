@@ -14,6 +14,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 import org.sheepy.vulkan.model.image.ImagePackage;
 
 public class VulkanModelExtension implements IModelExtension
@@ -28,6 +29,7 @@ public class VulkanModelExtension implements IModelExtension
 		res.add(ComputePackage.eINSTANCE);
 		res.add(EnumerationPackage.eINSTANCE);
 		res.add(GraphicPackage.eINSTANCE);
+		res.add(GraphicpipelinePackage.eINSTANCE);
 		res.add(ImagePackage.eINSTANCE);
 		res.add(ProcessPackage.eINSTANCE);
 		res.add(VulkanResourcePackage.eINSTANCE);

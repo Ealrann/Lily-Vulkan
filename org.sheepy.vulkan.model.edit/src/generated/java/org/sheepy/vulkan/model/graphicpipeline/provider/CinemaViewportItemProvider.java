@@ -2,6 +2,7 @@
  */
 package org.sheepy.vulkan.model.graphicpipeline.provider;
 
+
 import java.util.Collection;
 import java.util.List;
 
@@ -22,17 +23,23 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.sheepy.vulkan.model.graphicpipeline.CinemaViewport;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
-import org.sheepy.vulkan.model.graphicpipeline.Vec2I;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.vulkan.model.graphicpipeline.Vec2I} object.
+ * This is the item provider adapter for a {@link org.sheepy.vulkan.model.graphicpipeline.CinemaViewport} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class Vec2IItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class CinemaViewportItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -40,7 +47,7 @@ public class Vec2IItemProvider extends ItemProviderAdapter implements IEditingDo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Vec2IItemProvider(AdapterFactory adapterFactory)
+	public CinemaViewportItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -58,27 +65,51 @@ public class Vec2IItemProvider extends ItemProviderAdapter implements IEditingDo
 		{
 			super.getPropertyDescriptors(object);
 
-			addXPropertyDescriptor(object);
-			addYPropertyDescriptor(object);
+			addAspectRatioPropertyDescriptor(object);
+			addMinDepthPropertyDescriptor(object);
+			addMaxDepthPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the X feature.
+	 * This adds a property descriptor for the Aspect Ratio feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addXPropertyDescriptor(Object object)
+	protected void addAspectRatioPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Vec2I_x_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Vec2I_x_feature", "_UI_Vec2I_type"),
-				 GraphicpipelinePackage.Literals.VEC2_I__X,
+				 getString("_UI_CinemaViewport_aspectRatio_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CinemaViewport_aspectRatio_feature", "_UI_CinemaViewport_type"),
+				 GraphicpipelinePackage.Literals.CINEMA_VIEWPORT__ASPECT_RATIO,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Min Depth feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMinDepthPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CinemaViewport_minDepth_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CinemaViewport_minDepth_feature", "_UI_CinemaViewport_type"),
+				 GraphicpipelinePackage.Literals.CINEMA_VIEWPORT__MIN_DEPTH,
 				 true,
 				 false,
 				 false,
@@ -88,20 +119,20 @@ public class Vec2IItemProvider extends ItemProviderAdapter implements IEditingDo
 	}
 
 	/**
-	 * This adds a property descriptor for the Y feature.
+	 * This adds a property descriptor for the Max Depth feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addYPropertyDescriptor(Object object)
+	protected void addMaxDepthPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Vec2I_y_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Vec2I_y_feature", "_UI_Vec2I_type"),
-				 GraphicpipelinePackage.Literals.VEC2_I__Y,
+				 getString("_UI_CinemaViewport_maxDepth_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CinemaViewport_maxDepth_feature", "_UI_CinemaViewport_type"),
+				 GraphicpipelinePackage.Literals.CINEMA_VIEWPORT__MAX_DEPTH,
 				 true,
 				 false,
 				 false,
@@ -111,7 +142,7 @@ public class Vec2IItemProvider extends ItemProviderAdapter implements IEditingDo
 	}
 
 	/**
-	 * This returns Vec2I.gif.
+	 * This returns CinemaViewport.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -119,7 +150,7 @@ public class Vec2IItemProvider extends ItemProviderAdapter implements IEditingDo
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Vec2I"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CinemaViewport"));
 	}
 
 	/**
@@ -131,9 +162,10 @@ public class Vec2IItemProvider extends ItemProviderAdapter implements IEditingDo
 	@Override
 	public String getText(Object object)
 	{
-		Vec2I vec2I = (Vec2I)object;
-		return getString("_UI_Vec2I_type") + " " + vec2I.getX();
+		CinemaViewport cinemaViewport = (CinemaViewport)object;
+		return getString("_UI_CinemaViewport_type") + " " + cinemaViewport.getAspectRatio();
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -147,10 +179,11 @@ public class Vec2IItemProvider extends ItemProviderAdapter implements IEditingDo
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Vec2I.class))
+		switch (notification.getFeatureID(CinemaViewport.class))
 		{
-			case GraphicpipelinePackage.VEC2_I__X:
-			case GraphicpipelinePackage.VEC2_I__Y:
+			case GraphicpipelinePackage.CINEMA_VIEWPORT__ASPECT_RATIO:
+			case GraphicpipelinePackage.CINEMA_VIEWPORT__MIN_DEPTH:
+			case GraphicpipelinePackage.CINEMA_VIEWPORT__MAX_DEPTH:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

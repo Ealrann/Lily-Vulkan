@@ -86,15 +86,6 @@ public interface GraphicpipelineFactory extends EFactory
 	DynamicViewportState createDynamicViewportState();
 
 	/**
-	 * Returns a new object of class '<em>Vec2 I</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Vec2 I</em>'.
-	 * @generated
-	 */
-	Vec2I createVec2I();
-
-	/**
 	 * Returns a new object of class '<em>Viewport</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -102,6 +93,15 @@ public interface GraphicpipelineFactory extends EFactory
 	 * @generated
 	 */
 	Viewport createViewport();
+
+	/**
+	 * Returns a new object of class '<em>Cinema Viewport</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cinema Viewport</em>'.
+	 * @generated
+	 */
+	CinemaViewport createCinemaViewport();
 
 	/**
 	 * Returns a new object of class '<em>Scissor</em>'.

@@ -14,6 +14,7 @@ import org.sheepy.vulkan.model.barrier.impl.BarrierPackageImpl;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
 import org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl;
+import org.sheepy.vulkan.model.graphicpipeline.CinemaViewport;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlendAttachment;
 import org.sheepy.vulkan.model.graphicpipeline.DepthStencilState;
@@ -21,11 +22,11 @@ import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicViewportState;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelineFactory;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
+import org.sheepy.vulkan.model.graphicpipeline.IViewport;
 import org.sheepy.vulkan.model.graphicpipeline.InputAssembly;
 import org.sheepy.vulkan.model.graphicpipeline.Rasterizer;
 import org.sheepy.vulkan.model.graphicpipeline.Scissor;
 import org.sheepy.vulkan.model.graphicpipeline.StaticViewportState;
-import org.sheepy.vulkan.model.graphicpipeline.Vec2I;
 import org.sheepy.vulkan.model.graphicpipeline.Viewport;
 import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
 import org.sheepy.vulkan.model.image.ImagePackage;
@@ -102,7 +103,7 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass vec2IEClass = null;
+	private EClass iViewportEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -110,6 +111,13 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 	 * @generated
 	 */
 	private EClass viewportEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cinemaViewportEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -655,31 +663,9 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 	 * @generated
 	 */
 	@Override
-	public EClass getVec2I()
+	public EClass getIViewport()
 	{
-		return vec2IEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getVec2I_X()
-	{
-		return (EAttribute)vec2IEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getVec2I_Y()
-	{
-		return (EAttribute)vec2IEClass.getEStructuralFeatures().get(1);
+		return iViewportEClass;
 	}
 
 	/**
@@ -721,9 +707,53 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 	 * @generated
 	 */
 	@Override
-	public EReference getViewport_Extent()
+	public EAttribute getViewport_Extent()
 	{
-		return (EReference)viewportEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)viewportEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCinemaViewport()
+	{
+		return cinemaViewportEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCinemaViewport_AspectRatio()
+	{
+		return (EAttribute)cinemaViewportEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCinemaViewport_MinDepth()
+	{
+		return (EAttribute)cinemaViewportEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCinemaViewport_MaxDepth()
+	{
+		return (EAttribute)cinemaViewportEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -734,7 +764,7 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 	@Override
 	public EAttribute getViewport_MinDepth()
 	{
-		return (EAttribute)viewportEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)viewportEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -745,7 +775,7 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 	@Override
 	public EAttribute getViewport_MaxDepth()
 	{
-		return (EAttribute)viewportEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)viewportEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -787,9 +817,9 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 	 * @generated
 	 */
 	@Override
-	public EReference getScissor_Extent()
+	public EAttribute getScissor_Extent()
 	{
-		return (EReference)scissorEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)scissorEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -959,21 +989,24 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 		createEAttribute(dynamicViewportStateEClass, DYNAMIC_VIEWPORT_STATE__VIEWPORT_COUNT);
 		createEAttribute(dynamicViewportStateEClass, DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT);
 
-		vec2IEClass = createEClass(VEC2_I);
-		createEAttribute(vec2IEClass, VEC2_I__X);
-		createEAttribute(vec2IEClass, VEC2_I__Y);
+		iViewportEClass = createEClass(IVIEWPORT);
 
 		viewportEClass = createEClass(VIEWPORT);
 		createEAttribute(viewportEClass, VIEWPORT__OFFSET_X);
 		createEAttribute(viewportEClass, VIEWPORT__OFFSET_Y);
-		createEReference(viewportEClass, VIEWPORT__EXTENT);
 		createEAttribute(viewportEClass, VIEWPORT__MIN_DEPTH);
 		createEAttribute(viewportEClass, VIEWPORT__MAX_DEPTH);
+		createEAttribute(viewportEClass, VIEWPORT__EXTENT);
+
+		cinemaViewportEClass = createEClass(CINEMA_VIEWPORT);
+		createEAttribute(cinemaViewportEClass, CINEMA_VIEWPORT__ASPECT_RATIO);
+		createEAttribute(cinemaViewportEClass, CINEMA_VIEWPORT__MIN_DEPTH);
+		createEAttribute(cinemaViewportEClass, CINEMA_VIEWPORT__MAX_DEPTH);
 
 		scissorEClass = createEClass(SCISSOR);
 		createEAttribute(scissorEClass, SCISSOR__OFFSET_X);
 		createEAttribute(scissorEClass, SCISSOR__OFFSET_Y);
-		createEReference(scissorEClass, SCISSOR__EXTENT);
+		createEAttribute(scissorEClass, SCISSOR__EXTENT);
 
 		depthStencilStateEClass = createEClass(DEPTH_STENCIL_STATE);
 		createEAttribute(depthStencilStateEClass, DEPTH_STENCIL_STATE__DEPTH_TEST);
@@ -1011,6 +1044,7 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 
 		// Obtain other dependent packages
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1019,6 +1053,8 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 		// Add supertypes to classes
 		staticViewportStateEClass.getESuperTypes().add(this.getViewportState());
 		dynamicViewportStateEClass.getESuperTypes().add(this.getViewportState());
+		viewportEClass.getESuperTypes().add(this.getIViewport());
+		cinemaViewportEClass.getESuperTypes().add(this.getIViewport());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(colorBlendEClass, ColorBlend.class, "ColorBlend", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1062,28 +1098,31 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 		initEClass(viewportStateEClass, ViewportState.class, "ViewportState", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(staticViewportStateEClass, StaticViewportState.class, "StaticViewportState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStaticViewportState_Viewports(), this.getViewport(), null, "viewports", null, 1, -1, StaticViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStaticViewportState_Viewports(), this.getIViewport(), null, "viewports", null, 1, -1, StaticViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStaticViewportState_Scissors(), this.getScissor(), null, "scissors", null, 1, -1, StaticViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dynamicViewportStateEClass, DynamicViewportState.class, "DynamicViewportState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDynamicViewportState_ViewportCount(), ecorePackage.getEInt(), "viewportCount", null, 0, 1, DynamicViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDynamicViewportState_ScissorCount(), ecorePackage.getEInt(), "scissorCount", null, 0, 1, DynamicViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(vec2IEClass, Vec2I.class, "Vec2I", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getVec2I_X(), ecorePackage.getEInt(), "x", "0", 0, 1, Vec2I.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getVec2I_Y(), ecorePackage.getEInt(), "y", "0", 0, 1, Vec2I.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(iViewportEClass, IViewport.class, "IViewport", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(viewportEClass, Viewport.class, "Viewport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getViewport_OffsetX(), ecorePackage.getEInt(), "offsetX", "0", 0, 1, Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getViewport_OffsetY(), ecorePackage.getEInt(), "offsetY", "0", 0, 1, Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getViewport_Extent(), this.getVec2I(), null, "extent", null, 0, 1, Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getViewport_MinDepth(), ecorePackage.getEInt(), "minDepth", "0", 0, 1, Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getViewport_MaxDepth(), ecorePackage.getEInt(), "maxDepth", "1", 0, 1, Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getViewport_Extent(), theTypesPackage.getVector2i(), "extent", null, 0, 1, Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(cinemaViewportEClass, CinemaViewport.class, "CinemaViewport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCinemaViewport_AspectRatio(), ecorePackage.getEFloat(), "aspectRatio", "1.0", 1, 1, CinemaViewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCinemaViewport_MinDepth(), ecorePackage.getEInt(), "minDepth", "0", 0, 1, CinemaViewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCinemaViewport_MaxDepth(), ecorePackage.getEInt(), "maxDepth", "1", 0, 1, CinemaViewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(scissorEClass, Scissor.class, "Scissor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getScissor_OffsetX(), ecorePackage.getEInt(), "offsetX", "0", 0, 1, Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getScissor_OffsetY(), ecorePackage.getEInt(), "offsetY", "0", 0, 1, Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getScissor_Extent(), this.getVec2I(), null, "extent", null, 0, 1, Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getScissor_Extent(), theTypesPackage.getVector2i(), "extent", null, 0, 1, Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(depthStencilStateEClass, DepthStencilState.class, "DepthStencilState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDepthStencilState_DepthTest(), ecorePackage.getEBoolean(), "depthTest", "true", 1, 1, DepthStencilState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

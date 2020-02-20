@@ -162,6 +162,11 @@ public class StaticViewportStateItemProvider extends ItemProviderAdapter impleme
 
 		newChildDescriptors.add
 			(createChildParameter
+				(GraphicpipelinePackage.Literals.STATIC_VIEWPORT_STATE__VIEWPORTS,
+				 GraphicpipelineFactory.eINSTANCE.createCinemaViewport()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(GraphicpipelinePackage.Literals.STATIC_VIEWPORT_STATE__SCISSORS,
 				 GraphicpipelineFactory.eINSTANCE.createScissor()));
 	}

@@ -23,7 +23,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.SubpassUtil;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.util.SubpassUtil;
 import org.sheepy.lily.vulkan.process.graphic.present.ImageAcquirer;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -170,7 +170,17 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	{
 		final var subpasses = process.getSubpasses();
 		final int size = subpasses.size();
-		final boolean[] reservedIndices = new boolean[size + 1];
+		int maxIndex = 0;
+		for (int i = 0; i < size; i++)
+		{
+			final var subpass = subpasses.get(i);
+			if (SubpassUtil.isGraphic(subpass) && subpass.getSubpassIndex() > maxIndex)
+			{
+				maxIndex = subpass.getSubpassIndex();
+			}
+		}
+
+		final boolean[] reservedIndices = new boolean[Math.max(size, maxIndex) + 1];
 		for (int i = 0; i < size; i++)
 		{
 			final var subpass = subpasses.get(i);

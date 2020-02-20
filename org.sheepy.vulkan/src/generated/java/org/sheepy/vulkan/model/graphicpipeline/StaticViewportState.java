@@ -25,7 +25,7 @@ public interface StaticViewportState extends ViewportState
 {
 	/**
 	 * Returns the value of the '<em><b>Viewports</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.graphicpipeline.Viewport}.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.graphicpipeline.IViewport}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Viewports</em>' containment reference list.
@@ -33,7 +33,7 @@ public interface StaticViewportState extends ViewportState
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<Viewport> getViewports();
+	EList<IViewport> getViewports();
 
 	/**
 	 * Returns the value of the '<em><b>Scissors</b></em>' containment reference list.

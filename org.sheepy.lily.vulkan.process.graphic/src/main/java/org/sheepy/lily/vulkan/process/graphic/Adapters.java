@@ -5,6 +5,8 @@ import org.sheepy.lily.core.api.adapter.IAdapterProvider;
 import org.sheepy.lily.vulkan.process.graphic.barrier.SwapImageBarrierAdapter;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.task.*;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.viewport.CinemaViewportAdapter;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.viewport.ViewportAdapter;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicProcessAdapter;
 import org.sheepy.lily.vulkan.process.graphic.resource.AttachmentDescriptorAdapter;
 import org.sheepy.lily.vulkan.process.graphic.resource.ColorAttachmentAdapter;
@@ -36,6 +38,8 @@ public class Adapters implements IAdapterProvider
 					   BackgroundImageSubpassProvider.class,
 					   ScreenEffectSubpassProvider.class,
 					   AttachmentDescriptorAdapter.class,
-					   ColorAttachmentAdapter.class);
+					   ColorAttachmentAdapter.class,
+					   ViewportAdapter.class,
+					   CinemaViewportAdapter.class);
 	}
 }

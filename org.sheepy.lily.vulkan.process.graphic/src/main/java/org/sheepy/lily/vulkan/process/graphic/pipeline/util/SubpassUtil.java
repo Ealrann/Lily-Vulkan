@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.process.graphic.pipeline;
+package org.sheepy.lily.vulkan.process.graphic.pipeline.util;
 
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
