@@ -14,8 +14,7 @@ import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
-
-import org.sheepy.lily.vulkan.model.process.impl.IVkPipelineImpl;
+import org.sheepy.lily.vulkan.model.process.impl.VkPipelineImpl;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 
 /**
@@ -32,7 +31,7 @@ import org.sheepy.lily.vulkan.model.resource.Shader;
  *
  * @generated
  */
-public class ComputePipelineImpl extends IVkPipelineImpl implements ComputePipeline
+public class ComputePipelineImpl extends VkPipelineImpl implements ComputePipeline
 {
 	/**
 	 * The cached value of the '{@link #getMaintainer() <em>Maintainer</em>}' reference.
@@ -86,7 +85,7 @@ public class ComputePipelineImpl extends IVkPipelineImpl implements ComputePipel
 	{
 		if (maintainer != null && ((EObject)maintainer).eIsProxy())
 		{
-			InternalEObject oldMaintainer = (InternalEObject)maintainer;
+			InternalEObject oldMaintainer = maintainer;
 			maintainer = (Maintainer<ComputePipeline>)eResolveProxy(oldMaintainer);
 			if (maintainer != oldMaintainer)
 			{
@@ -156,7 +155,7 @@ public class ComputePipelineImpl extends IVkPipelineImpl implements ComputePipel
 	{
 		if (shader != null && ((EObject)shader).eIsProxy())
 		{
-			InternalEObject oldShader = (InternalEObject)shader;
+			InternalEObject oldShader = shader;
 			shader = (Shader)eResolveProxy(oldShader);
 			if (shader != oldShader)
 			{

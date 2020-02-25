@@ -72,14 +72,14 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 	public void allocate(InternalExecutionContext context)
 	{
 		final var physicalDevice = context.getPhysicalDevice();
-		alignment = physicalDevice.getBufferAlignement(usage);
 
 		final var eInstanceCount = dataProvider.getInstanceCount();
 		instanceCount = InstanceCountUtil.getInstanceCount(context, eInstanceCount);
 		instance = 0;
 		firstPush = true;
 
-		dataProvider.adapt(IBufferDataProviderAdapter.class);
+		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
+		alignment = Math.max(adapter.minAlignment(), physicalDevice.getBufferAlignement(usage));
 	}
 
 	@Override
@@ -243,9 +243,9 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 		return bufferPtr;
 	}
 
-	private static long align(long index, long alignment)
+	private static long align(long size, long alignment)
 	{
-		final int chunkCount = (int) Math.ceil(((double) index) / alignment);
+		final int chunkCount = (int) Math.ceil(((double) size) / alignment);
 		return chunkCount * alignment;
 	}
 

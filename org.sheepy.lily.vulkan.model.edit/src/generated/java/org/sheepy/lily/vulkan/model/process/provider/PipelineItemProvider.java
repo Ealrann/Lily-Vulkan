@@ -16,7 +16,7 @@ import org.sheepy.lily.vulkan.model.process.Pipeline;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PipelineItemProvider extends ITaskPipelineItemProvider
+public class PipelineItemProvider extends TaskPipelineItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.

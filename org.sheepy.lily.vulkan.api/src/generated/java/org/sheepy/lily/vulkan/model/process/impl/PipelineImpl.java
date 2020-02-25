@@ -13,7 +13,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
  *
  * @generated
  */
-public class PipelineImpl extends ITaskPipelineImpl implements Pipeline
+public class PipelineImpl extends TaskPipelineImpl implements Pipeline
 {
 	/**
 	 * <!-- begin-user-doc -->

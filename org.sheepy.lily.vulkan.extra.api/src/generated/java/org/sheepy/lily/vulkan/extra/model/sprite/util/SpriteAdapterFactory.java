@@ -18,9 +18,9 @@ import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.sprite.*;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.lily.vulkan.model.process.ITaskPipeline;
-import org.sheepy.lily.vulkan.model.process.IVkPipeline;
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
+import org.sheepy.lily.vulkan.model.process.TaskPipeline;
+import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 
 /**
@@ -117,9 +117,9 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 				return createLNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseIPipeline(IPipeline object)
+			public Adapter caseAbstractPipeline(AbstractPipeline object)
 			{
-				return createIPipelineAdapter();
+				return createAbstractPipelineAdapter();
 			}
 			@Override
 			public Adapter caseIResourceContainer(IResourceContainer object)
@@ -127,14 +127,14 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 				return createIResourceContainerAdapter();
 			}
 			@Override
-			public Adapter caseITaskPipeline(ITaskPipeline object)
+			public Adapter caseTaskPipeline(TaskPipeline object)
 			{
-				return createITaskPipelineAdapter();
+				return createTaskPipelineAdapter();
 			}
 			@Override
-			public Adapter caseIVkPipeline(IVkPipeline object)
+			public Adapter caseVkPipeline(VkPipeline object)
 			{
-				return createIVkPipelineAdapter();
+				return createVkPipelineAdapter();
 			}
 			@Override
 			public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object)
@@ -289,16 +289,16 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IPipeline <em>IPipeline</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline <em>Abstract Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.IPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline
 	 * @generated
 	 */
-	public Adapter createIPipelineAdapter()
+	public Adapter createAbstractPipelineAdapter()
 	{
 		return null;
 	}
@@ -319,31 +319,31 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ITaskPipeline <em>ITask Pipeline</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.TaskPipeline <em>Task Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.ITaskPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.TaskPipeline
 	 * @generated
 	 */
-	public Adapter createITaskPipelineAdapter()
+	public Adapter createTaskPipelineAdapter()
 	{
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IVkPipeline <em>IVk Pipeline</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.VkPipeline <em>Vk Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.IVkPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.VkPipeline
 	 * @generated
 	 */
-	public Adapter createIVkPipelineAdapter()
+	public Adapter createVkPipelineAdapter()
 	{
 		return null;
 	}

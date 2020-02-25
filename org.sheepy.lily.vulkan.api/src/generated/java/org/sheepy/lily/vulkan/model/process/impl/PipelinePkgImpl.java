@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 
-import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
@@ -43,7 +43,7 @@ public class PipelinePkgImpl extends LilyEObject implements PipelinePkg
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IPipeline> pipelines;
+	protected EList<AbstractPipeline> pipelines;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -72,11 +72,11 @@ public class PipelinePkgImpl extends LilyEObject implements PipelinePkg
 	 * @generated
 	 */
 	@Override
-	public EList<IPipeline> getPipelines()
+	public EList<AbstractPipeline> getPipelines()
 	{
 		if (pipelines == null)
 		{
-			pipelines = new EObjectContainmentEList<IPipeline>(IPipeline.class, this, ProcessPackage.PIPELINE_PKG__PIPELINES);
+			pipelines = new EObjectContainmentEList<AbstractPipeline>(AbstractPipeline.class, this, ProcessPackage.PIPELINE_PKG__PIPELINES);
 		}
 		return pipelines;
 	}
@@ -126,7 +126,7 @@ public class PipelinePkgImpl extends LilyEObject implements PipelinePkg
 		{
 			case ProcessPackage.PIPELINE_PKG__PIPELINES:
 				getPipelines().clear();
-				getPipelines().addAll((Collection<? extends IPipeline>)newValue);
+				getPipelines().addAll((Collection<? extends AbstractPipeline>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

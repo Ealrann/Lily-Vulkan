@@ -327,6 +327,7 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
 			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__ATTACHMANT_REF_PKG);
 			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__PIPELINE_PKG);
+			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__EXTENSION_PKG);
 		}
 		return childrenFeatures;
 	}
@@ -401,6 +402,7 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
 			case GraphicPackage.SUBPASS__ATTACHMANT_REF_PKG:
 			case GraphicPackage.SUBPASS__PIPELINE_PKG:
+			case GraphicPackage.SUBPASS__EXTENSION_PKG:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -438,6 +440,11 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 			(createChildParameter
 				(GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
 				 ProcessFactory.eINSTANCE.createPipelinePkg()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.SUBPASS__EXTENSION_PKG,
+				 ProcessFactory.eINSTANCE.createProcessExtensionPkg()));
 	}
 
 	/**

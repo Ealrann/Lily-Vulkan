@@ -113,32 +113,32 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.IPIPELINE:
+			case ProcessPackage.ABSTRACT_PIPELINE:
 			{
-				IPipeline iPipeline = (IPipeline)theEObject;
-				T1 result = caseIPipeline(iPipeline);
-				if (result == null) result = caseLNamedElement(iPipeline);
+				AbstractPipeline abstractPipeline = (AbstractPipeline)theEObject;
+				T1 result = caseAbstractPipeline(abstractPipeline);
+				if (result == null) result = caseLNamedElement(abstractPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.ITASK_PIPELINE:
+			case ProcessPackage.TASK_PIPELINE:
 			{
-				ITaskPipeline iTaskPipeline = (ITaskPipeline)theEObject;
-				T1 result = caseITaskPipeline(iTaskPipeline);
-				if (result == null) result = caseIPipeline(iTaskPipeline);
-				if (result == null) result = caseIResourceContainer(iTaskPipeline);
-				if (result == null) result = caseLNamedElement(iTaskPipeline);
+				TaskPipeline taskPipeline = (TaskPipeline)theEObject;
+				T1 result = caseTaskPipeline(taskPipeline);
+				if (result == null) result = caseAbstractPipeline(taskPipeline);
+				if (result == null) result = caseIResourceContainer(taskPipeline);
+				if (result == null) result = caseLNamedElement(taskPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.IVK_PIPELINE:
+			case ProcessPackage.VK_PIPELINE:
 			{
-				IVkPipeline iVkPipeline = (IVkPipeline)theEObject;
-				T1 result = caseIVkPipeline(iVkPipeline);
-				if (result == null) result = caseITaskPipeline(iVkPipeline);
-				if (result == null) result = caseIPipeline(iVkPipeline);
-				if (result == null) result = caseIResourceContainer(iVkPipeline);
-				if (result == null) result = caseLNamedElement(iVkPipeline);
+				VkPipeline vkPipeline = (VkPipeline)theEObject;
+				T1 result = caseVkPipeline(vkPipeline);
+				if (result == null) result = caseTaskPipeline(vkPipeline);
+				if (result == null) result = caseAbstractPipeline(vkPipeline);
+				if (result == null) result = caseIResourceContainer(vkPipeline);
+				if (result == null) result = caseLNamedElement(vkPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -153,8 +153,8 @@ public class ProcessSwitch<T1> extends Switch<T1>
 			{
 				Pipeline pipeline = (Pipeline)theEObject;
 				T1 result = casePipeline(pipeline);
-				if (result == null) result = caseITaskPipeline(pipeline);
-				if (result == null) result = caseIPipeline(pipeline);
+				if (result == null) result = caseTaskPipeline(pipeline);
+				if (result == null) result = caseAbstractPipeline(pipeline);
 				if (result == null) result = caseIResourceContainer(pipeline);
 				if (result == null) result = caseLNamedElement(pipeline);
 				if (result == null) result = defaultCase(theEObject);
@@ -164,7 +164,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 			{
 				CompositePipeline compositePipeline = (CompositePipeline)theEObject;
 				T1 result = caseCompositePipeline(compositePipeline);
-				if (result == null) result = caseIPipeline(compositePipeline);
+				if (result == null) result = caseAbstractPipeline(compositePipeline);
 				if (result == null) result = caseLNamedElement(compositePipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -334,49 +334,49 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Pipeline</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIPipeline(IPipeline object)
+	public T1 caseAbstractPipeline(AbstractPipeline object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>ITask Pipeline</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Task Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>ITask Pipeline</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Task Pipeline</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseITaskPipeline(ITaskPipeline object)
+	public T1 caseTaskPipeline(TaskPipeline object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IVk Pipeline</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Vk Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IVk Pipeline</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Vk Pipeline</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIVkPipeline(IVkPipeline object)
+	public T1 caseVkPipeline(VkPipeline object)
 	{
 		return null;
 	}

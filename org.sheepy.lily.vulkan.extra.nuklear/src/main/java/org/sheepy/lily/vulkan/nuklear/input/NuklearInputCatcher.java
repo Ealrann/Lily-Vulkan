@@ -27,7 +27,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 	private NuklearLayoutTaskAdapter layoutAdapter;
 	private boolean clicked = false;
 	private boolean catching = false;
-	private boolean catched = false;
+	private boolean caught = false;
 
 	private NuklearInputCatcher()
 	{}
@@ -46,6 +46,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 	{
 		assert catching == true;
 		nk_input_unicode(nkContext, event.codepoint);
+		caught = true;
 	}
 
 	@Override
@@ -139,6 +140,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 			}
 			break;
 		}
+		caught = true;
 	}
 
 	@Override
@@ -148,7 +150,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 		final int x = (int) event.mouseLocation.x();
 		final int y = (int) event.mouseLocation.y();
 
-		int nkButton = -1;
+		final int nkButton;
 		switch (event.button)
 		{
 		case RIGHT:
@@ -169,6 +171,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 			if (event.pressed == true) clicked = true;
 			nk_input_button(nkContext, nkButton, x, y, event.pressed);
 		}
+		caught = true;
 	}
 
 	@Override
@@ -176,6 +179,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 	{
 		assert catching == true;
 		nk_input_motion(nkContext, (int) event.x, (int) event.y);
+		caught = true;
 	}
 
 	@Override
@@ -185,6 +189,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 		scroll.x(event.xOffset);
 		scroll.y(event.yOffset);
 		nk_input_scroll(nkContext, scroll);
+		caught = true;
 	}
 
 	@Override
@@ -193,7 +198,6 @@ public final class NuklearInputCatcher implements IInputCatcher
 		assert catching == false;
 		nk_input_begin(nkContext);
 		catching = true;
-		catched = true;
 	}
 
 	@Override
@@ -207,8 +211,8 @@ public final class NuklearInputCatcher implements IInputCatcher
 	@Override
 	public void update()
 	{
-		layoutAdapter.requestLayout(catched);
-		catched = false;
+		layoutAdapter.requestLayout(caught);
+		caught = false;
 	}
 
 	@Override

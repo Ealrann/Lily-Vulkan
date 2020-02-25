@@ -151,49 +151,42 @@ public class VulkanInputManager implements IVulkanInputManager
 
 			glfwPollEvents();
 
-			if (events.isEmpty() == false)
+			if (catcher != null)
 			{
-				if (catcher != null)
+				catcher.startCatch();
+
+				for (int i = 0; i < events.size(); i++)
 				{
-					catcher.startCatch();
+					final var event = events.get(i);
+					event.fireEvent(catcher);
+				}
 
-					for (int i = 0; i < events.size(); i++)
-					{
-						final var event = events.get(i);
-						event.fireEvent(catcher);
-					}
+				catcher.stopCatch();
+				catcher.update();
 
-					catcher.stopCatch();
-					catcher.update();
+				if (catcher.hasCaughtInputs())
+				{
+					dropInputEvents();
+				}
 
-					if (catcher.hasCaughtInputs())
+				if (catcher.isCursorThere())
+				{
+					if (inputsAreCaught == null || inputsAreCaught == false)
 					{
-						dropInputEvents();
-					}
-
-					if (catcher.isCursorThere())
-					{
-						if (inputsAreCaught == null || inputsAreCaught == false)
-						{
-							inputsAreCaught = true;
-							fireInputCaught();
-						}
-					}
-					else if (inputsAreCaught == null || inputsAreCaught == true)
-					{
-						inputsAreCaught = false;
+						inputsAreCaught = true;
 						fireInputCaught();
 					}
 				}
-
-				fireEvents();
-
-				dropInputEvents();
+				else if (inputsAreCaught == null || inputsAreCaught == true)
+				{
+					inputsAreCaught = false;
+					fireInputCaught();
+				}
 			}
-			else if (catcher != null)
-			{
-				catcher.update();
-			}
+
+			fireEvents();
+
+			dropInputEvents();
 
 			fireAfterPollInputs();
 

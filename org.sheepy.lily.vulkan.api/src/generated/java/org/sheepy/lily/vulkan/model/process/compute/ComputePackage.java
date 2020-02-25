@@ -187,13 +187,22 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__PIPELINE_PKG = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Source Engine</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PROCESS__SOURCE_ENGINE = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 1;
+	int COMPUTE_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Process</em>' class.
@@ -221,7 +230,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__NAME = ProcessPackage.IVK_PIPELINE__NAME;
+	int COMPUTE_PIPELINE__NAME = ProcessPackage.VK_PIPELINE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -230,7 +239,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__ENABLED = ProcessPackage.IVK_PIPELINE__ENABLED;
+	int COMPUTE_PIPELINE__ENABLED = ProcessPackage.VK_PIPELINE__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -239,7 +248,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__STAGE = ProcessPackage.IVK_PIPELINE__STAGE;
+	int COMPUTE_PIPELINE__STAGE = ProcessPackage.VK_PIPELINE__STAGE;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -248,7 +257,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__RESOURCE_PKG = ProcessPackage.IVK_PIPELINE__RESOURCE_PKG;
+	int COMPUTE_PIPELINE__RESOURCE_PKG = ProcessPackage.VK_PIPELINE__RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
@@ -257,7 +266,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__DESCRIPTOR_PKG = ProcessPackage.IVK_PIPELINE__DESCRIPTOR_PKG;
+	int COMPUTE_PIPELINE__DESCRIPTOR_PKG = ProcessPackage.VK_PIPELINE__DESCRIPTOR_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
@@ -266,7 +275,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__TASK_PKG = ProcessPackage.IVK_PIPELINE__TASK_PKG;
+	int COMPUTE_PIPELINE__TASK_PKG = ProcessPackage.VK_PIPELINE__TASK_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
@@ -275,7 +284,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG = ProcessPackage.IVK_PIPELINE__DESCRIPTOR_SET_PKG;
+	int COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG = ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.
@@ -284,7 +293,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__SPECIALIZATION_DATA = ProcessPackage.IVK_PIPELINE__SPECIALIZATION_DATA;
+	int COMPUTE_PIPELINE__SPECIALIZATION_DATA = ProcessPackage.VK_PIPELINE__SPECIALIZATION_DATA;
 
 	/**
 	 * The feature id for the '<em><b>Push Constant Ranges</b></em>' containment reference list.
@@ -293,7 +302,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__PUSH_CONSTANT_RANGES = ProcessPackage.IVK_PIPELINE__PUSH_CONSTANT_RANGES;
+	int COMPUTE_PIPELINE__PUSH_CONSTANT_RANGES = ProcessPackage.VK_PIPELINE__PUSH_CONSTANT_RANGES;
 
 	/**
 	 * The feature id for the '<em><b>Layout</b></em>' reference list.
@@ -302,7 +311,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__LAYOUT = ProcessPackage.IVK_PIPELINE__LAYOUT;
+	int COMPUTE_PIPELINE__LAYOUT = ProcessPackage.VK_PIPELINE__LAYOUT;
 
 	/**
 	 * The feature id for the '<em><b>Maintainer</b></em>' reference.
@@ -311,7 +320,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__MAINTAINER = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 0;
+	int COMPUTE_PIPELINE__MAINTAINER = ProcessPackage.VK_PIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Shader</b></em>' reference.
@@ -320,7 +329,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__SHADER = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 1;
+	int COMPUTE_PIPELINE__SHADER = ProcessPackage.VK_PIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Pipeline</em>' class.
@@ -329,7 +338,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE_FEATURE_COUNT = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 2;
+	int COMPUTE_PIPELINE_FEATURE_COUNT = ProcessPackage.VK_PIPELINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Pipeline</em>' class.
@@ -338,7 +347,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE_OPERATION_COUNT = ProcessPackage.IVK_PIPELINE_OPERATION_COUNT + 0;
+	int COMPUTE_PIPELINE_OPERATION_COUNT = ProcessPackage.VK_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.DispatchTaskImpl <em>Dispatch Task</em>}' class.
@@ -433,6 +442,17 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 */
 	EReference getComputeProcess_PipelinePkg();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getSourceEngine <em>Source Engine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source Engine</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getSourceEngine()
+	 * @see #getComputeProcess()
+	 * @generated
+	 */
+	EReference getComputeProcess_SourceEngine();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline <em>Pipeline</em>}'.
@@ -539,6 +559,14 @@ public interface ComputePackage extends EPackage
 		 * @generated
 		 */
 		EReference COMPUTE_PROCESS__PIPELINE_PKG = eINSTANCE.getComputeProcess_PipelinePkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Engine</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPUTE_PROCESS__SOURCE_ENGINE = eINSTANCE.getComputeProcess_SourceEngine();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl <em>Pipeline</em>}' class.

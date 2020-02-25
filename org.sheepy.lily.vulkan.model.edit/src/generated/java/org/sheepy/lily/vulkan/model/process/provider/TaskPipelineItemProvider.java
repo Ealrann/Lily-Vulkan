@@ -1,31 +1,35 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.process.compute.provider;
+package org.sheepy.lily.vulkan.model.process.provider;
+
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
-import org.sheepy.lily.vulkan.model.process.ProcessFactory;
-import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
-import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 
-import org.sheepy.lily.vulkan.model.process.provider.AbstractProcessItemProvider;
+import org.sheepy.lily.core.model.resource.ResourceFactory;
+
+import org.sheepy.lily.vulkan.model.VulkanFactory;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
+
+import org.sheepy.lily.vulkan.model.process.ProcessFactory;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.TaskPipeline} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComputeProcessItemProvider extends AbstractProcessItemProvider
+public class TaskPipelineItemProvider extends AbstractPipelineItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -33,7 +37,7 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComputeProcessItemProvider(AdapterFactory adapterFactory)
+	public TaskPipelineItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -51,32 +55,8 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addSourceEnginePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Source Engine feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSourceEnginePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ComputeProcess_sourceEngine_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ComputeProcess_sourceEngine_feature", "_UI_ComputeProcess_type"),
-				 ComputePackage.Literals.COMPUTE_PROCESS__SOURCE_ENGINE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -93,7 +73,9 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG);
+			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
+			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
+			childrenFeatures.add(ProcessPackage.Literals.TASK_PIPELINE__TASK_PKG);
 		}
 		return childrenFeatures;
 	}
@@ -113,18 +95,6 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	}
 
 	/**
-	 * This returns ComputeProcess.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object)
-	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ComputeProcess"));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -133,11 +103,12 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((ComputeProcess)object).getName();
+		String label = ((TaskPipeline)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ComputeProcess_type") :
-			getString("_UI_ComputeProcess_type") + " " + label;
+			getString("_UI_TaskPipeline_type") :
+			getString("_UI_TaskPipeline_type") + " " + label;
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -151,9 +122,11 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ComputeProcess.class))
+		switch (notification.getFeatureID(TaskPipeline.class))
 		{
-			case ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG:
+			case ProcessPackage.TASK_PIPELINE__RESOURCE_PKG:
+			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
+			case ProcessPackage.TASK_PIPELINE__TASK_PKG:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -174,20 +147,18 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
-				 ProcessFactory.eINSTANCE.createPipelinePkg()));
-	}
+				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+				 ResourceFactory.eINSTANCE.createResourcePkg()));
 
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator()
-	{
-		return LilyVulkanEditPlugin.INSTANCE;
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+				 VulkanFactory.eINSTANCE.createDescriptorPkg()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.TASK_PIPELINE__TASK_PKG,
+				 ProcessFactory.eINSTANCE.createTaskPkg()));
 	}
 
 }

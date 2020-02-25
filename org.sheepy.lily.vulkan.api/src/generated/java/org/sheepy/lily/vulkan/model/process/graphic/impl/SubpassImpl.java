@@ -22,6 +22,7 @@ import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
+import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
@@ -50,6 +51,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getWaitForAccesses <em>Wait For Accesses</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getSyncAccesses <em>Sync Accesses</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getFinishAccesses <em>Finish Accesses</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getExtensionPkg <em>Extension Pkg</em>}</li>
  * </ul>
  *
  * @generated
@@ -255,6 +257,16 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * @ordered
 	 */
 	protected EList<EAccess> finishAccesses;
+
+	/**
+	 * The cached value of the '{@link #getExtensionPkg() <em>Extension Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtensionPkg()
+	 * @generated
+	 * @ordered
+	 */
+	protected ProcessExtensionPkg extensionPkg;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -723,6 +735,56 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * @generated
 	 */
 	@Override
+	public ProcessExtensionPkg getExtensionPkg()
+	{
+		return extensionPkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetExtensionPkg(ProcessExtensionPkg newExtensionPkg, NotificationChain msgs)
+	{
+		ProcessExtensionPkg oldExtensionPkg = extensionPkg;
+		extensionPkg = newExtensionPkg;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__EXTENSION_PKG, oldExtensionPkg, newExtensionPkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setExtensionPkg(ProcessExtensionPkg newExtensionPkg)
+	{
+		if (newExtensionPkg != extensionPkg)
+		{
+			NotificationChain msgs = null;
+			if (extensionPkg != null)
+				msgs = ((InternalEObject)extensionPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__EXTENSION_PKG, null, msgs);
+			if (newExtensionPkg != null)
+				msgs = ((InternalEObject)newExtensionPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__EXTENSION_PKG, null, msgs);
+			msgs = basicSetExtensionPkg(newExtensionPkg, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__EXTENSION_PKG, newExtensionPkg, newExtensionPkg));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -735,6 +797,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return basicSetAttachmantRefPkg(null, msgs);
 			case GraphicPackage.SUBPASS__PIPELINE_PKG:
 				return basicSetPipelinePkg(null, msgs);
+			case GraphicPackage.SUBPASS__EXTENSION_PKG:
+				return basicSetExtensionPkg(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -778,6 +842,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return getSyncAccesses();
 			case GraphicPackage.SUBPASS__FINISH_ACCESSES:
 				return getFinishAccesses();
+			case GraphicPackage.SUBPASS__EXTENSION_PKG:
+				return getExtensionPkg();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -838,6 +904,9 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				getFinishAccesses().clear();
 				getFinishAccesses().addAll((Collection<? extends EAccess>)newValue);
 				return;
+			case GraphicPackage.SUBPASS__EXTENSION_PKG:
+				setExtensionPkg((ProcessExtensionPkg)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -894,6 +963,9 @@ public class SubpassImpl extends LilyEObject implements Subpass
 			case GraphicPackage.SUBPASS__FINISH_ACCESSES:
 				getFinishAccesses().clear();
 				return;
+			case GraphicPackage.SUBPASS__EXTENSION_PKG:
+				setExtensionPkg((ProcessExtensionPkg)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -936,6 +1008,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return syncAccesses != null && !syncAccesses.isEmpty();
 			case GraphicPackage.SUBPASS__FINISH_ACCESSES:
 				return finishAccesses != null && !finishAccesses.isEmpty();
+			case GraphicPackage.SUBPASS__EXTENSION_PKG:
+				return extensionPkg != null;
 		}
 		return super.eIsSet(featureID);
 	}

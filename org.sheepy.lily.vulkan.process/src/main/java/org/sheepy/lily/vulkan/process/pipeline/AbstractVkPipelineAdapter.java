@@ -8,8 +8,8 @@ import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAdapter;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipelineLayout;
 import org.sheepy.lily.vulkan.core.process.IProcessContext;
 import org.sheepy.lily.vulkan.core.resource.IDescriptorSetAdapter;
-import org.sheepy.lily.vulkan.model.process.IVkPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import java.util.ArrayList;
@@ -20,14 +20,14 @@ import java.util.stream.Collectors;
 public abstract class AbstractVkPipelineAdapter<T extends IProcessContext> extends AbstractTaskPipelineAdapter<T> implements
 																												  IVkPipelineAdapter<T>
 {
-	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.IVK_PIPELINE__DESCRIPTOR_SET_PKG,
+	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.VK_PIPELINE__DESCRIPTOR_SET_PKG,
 																							VulkanResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));
 
-	protected final IVkPipeline pipeline;
+	protected final VkPipeline pipeline;
 
 	private VkPipelineLayout<? super T> vkPipelineLayout;
 
-	public AbstractVkPipelineAdapter(IVkPipeline pipeline)
+	public AbstractVkPipelineAdapter(VkPipeline pipeline)
 	{
 		super(pipeline);
 		this.pipeline = pipeline;

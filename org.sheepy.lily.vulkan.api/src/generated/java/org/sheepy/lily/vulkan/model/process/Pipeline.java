@@ -12,5 +12,5 @@ package org.sheepy.lily.vulkan.model.process;
  * @model
  * @generated
  */
-public interface Pipeline extends ITaskPipeline
+public interface Pipeline extends TaskPipeline
 {} // Pipeline

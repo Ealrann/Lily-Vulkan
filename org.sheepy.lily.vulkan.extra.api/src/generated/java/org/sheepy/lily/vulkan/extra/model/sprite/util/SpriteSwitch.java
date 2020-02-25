@@ -16,9 +16,9 @@ import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.sprite.*;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.lily.vulkan.model.process.ITaskPipeline;
-import org.sheepy.lily.vulkan.model.process.IVkPipeline;
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
+import org.sheepy.lily.vulkan.model.process.TaskPipeline;
+import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 
 /**
@@ -91,10 +91,10 @@ public class SpriteSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseGenericRenderer(spriteRenderer);
 				if (result == null) result = caseGraphicsPipeline(spriteRenderer);
 				if (result == null) result = caseMaintainer(spriteRenderer);
-				if (result == null) result = caseIVkPipeline(spriteRenderer);
+				if (result == null) result = caseVkPipeline(spriteRenderer);
 				if (result == null) result = caseMaintainable(spriteRenderer);
-				if (result == null) result = caseITaskPipeline(spriteRenderer);
-				if (result == null) result = caseIPipeline(spriteRenderer);
+				if (result == null) result = caseTaskPipeline(spriteRenderer);
+				if (result == null) result = caseAbstractPipeline(spriteRenderer);
 				if (result == null) result = caseIResourceContainer(spriteRenderer);
 				if (result == null) result = caseLNamedElement(spriteRenderer);
 				if (result == null) result = defaultCase(theEObject);
@@ -233,17 +233,17 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Pipeline</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIPipeline(IPipeline object)
+	public T1 caseAbstractPipeline(AbstractPipeline object)
 	{
 		return null;
 	}
@@ -265,33 +265,33 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>ITask Pipeline</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Task Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>ITask Pipeline</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Task Pipeline</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseITaskPipeline(ITaskPipeline object)
+	public T1 caseTaskPipeline(TaskPipeline object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IVk Pipeline</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Vk Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IVk Pipeline</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Vk Pipeline</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIVkPipeline(IVkPipeline object)
+	public T1 caseVkPipeline(VkPipeline object)
 	{
 		return null;
 	}

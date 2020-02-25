@@ -5,10 +5,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="ComputeProcess" eSuperTypes="process.ecore#//AbstractProcess">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pipelinePkg" eType="ecore:EClass process.ecore#//PipelinePkg"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceEngine" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/application.ecore#//IEngine"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComputePipeline">
     <eStructuralFeatures xsi:type="ecore:EReference" name="shader" eType="ecore:EClass resource.ecore#//Shader"/>
-    <eGenericSuperTypes eClassifier="ecore:EClass process.ecore#//IVkPipeline"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass process.ecore#//VkPipeline"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.core.model/model/maintainer.ecore#//Maintainable">
       <eTypeArguments eClassifier="#//ComputePipeline"/>
     </eGenericSuperTypes>

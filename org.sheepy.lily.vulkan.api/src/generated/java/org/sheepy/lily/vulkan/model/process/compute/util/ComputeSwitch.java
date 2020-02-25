@@ -14,11 +14,11 @@ import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
-import org.sheepy.lily.vulkan.model.process.ITaskPipeline;
-import org.sheepy.lily.vulkan.model.process.IVkPipeline;
+import org.sheepy.lily.vulkan.model.process.TaskPipeline;
+import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.compute.*;
 
 /**
@@ -100,10 +100,10 @@ public class ComputeSwitch<T1> extends Switch<T1>
 			{
 				ComputePipeline computePipeline = (ComputePipeline)theEObject;
 				T1 result = caseComputePipeline(computePipeline);
-				if (result == null) result = caseIVkPipeline(computePipeline);
+				if (result == null) result = caseVkPipeline(computePipeline);
 				if (result == null) result = caseMaintainable(computePipeline);
-				if (result == null) result = caseITaskPipeline(computePipeline);
-				if (result == null) result = caseIPipeline(computePipeline);
+				if (result == null) result = caseTaskPipeline(computePipeline);
+				if (result == null) result = caseAbstractPipeline(computePipeline);
 				if (result == null) result = caseIResourceContainer(computePipeline);
 				if (result == null) result = caseLNamedElement(computePipeline);
 				if (result == null) result = defaultCase(theEObject);
@@ -251,49 +251,49 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Pipeline</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIPipeline(IPipeline object)
+	public T1 caseAbstractPipeline(AbstractPipeline object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>ITask Pipeline</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Task Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>ITask Pipeline</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Task Pipeline</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseITaskPipeline(ITaskPipeline object)
+	public T1 caseTaskPipeline(TaskPipeline object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IVk Pipeline</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Vk Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IVk Pipeline</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Vk Pipeline</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIVkPipeline(IVkPipeline object)
+	public T1 caseVkPipeline(VkPipeline object)
 	{
 		return null;
 	}

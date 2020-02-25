@@ -12,7 +12,7 @@ import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAdapter;
-import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
@@ -50,7 +50,7 @@ public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConst
 	@Override
 	public void record(PushConstantBuffer pushConstant, IRecordContext context)
 	{
-		final var pipeline = ModelUtil.findParent(pushConstant, IPipeline.class);
+		final var pipeline = ModelUtil.findParent(pushConstant, AbstractPipeline.class);
 		final var pipelineAdapter = pipeline.<IVkPipelineAdapter<?>>adaptNotNullGeneric(IPipelineAdapter.class);
 
 		if (updater != null)

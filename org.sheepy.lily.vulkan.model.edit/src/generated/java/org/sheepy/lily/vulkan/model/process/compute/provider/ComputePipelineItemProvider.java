@@ -13,7 +13,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
-import org.sheepy.lily.vulkan.model.process.provider.IVkPipelineItemProvider;
+import org.sheepy.lily.vulkan.model.process.provider.VkPipelineItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline} object.
@@ -21,7 +21,7 @@ import org.sheepy.lily.vulkan.model.process.provider.IVkPipelineItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComputePipelineItemProvider extends IVkPipelineItemProvider
+public class ComputePipelineItemProvider extends VkPipelineItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.

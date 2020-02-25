@@ -14,7 +14,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.process.provider.IVkPipelineItemProvider;
+import org.sheepy.lily.vulkan.model.process.provider.VkPipelineItemProvider;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelineFactory;
 
 /**
@@ -23,7 +23,7 @@ import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelineFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GraphicsPipelineItemProvider extends IVkPipelineItemProvider
+public class GraphicsPipelineItemProvider extends VkPipelineItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.

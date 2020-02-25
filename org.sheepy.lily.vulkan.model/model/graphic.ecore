@@ -101,6 +101,8 @@
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EAccess"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="finishAccesses" upperBound="-1"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EAccess"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extensionPkg" eType="ecore:EClass process.ecore#//ProcessExtensionPkg"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttachmentRefPkg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentRefs" upperBound="-1"
@@ -175,7 +177,7 @@
         eType="#//VertexInputState" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="depthStencilState" eType="ecore:EClass ../../org.sheepy.vulkan.model/model/graphicpipeline.ecore#//DepthStencilState"
         containment="true"/>
-    <eGenericSuperTypes eClassifier="ecore:EClass process.ecore#//IVkPipeline"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass process.ecore#//VkPipeline"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.core.model/model/maintainer.ecore#//Maintainable">
       <eTypeArguments eClassifier="#//GraphicsPipeline"/>
     </eGenericSuperTypes>

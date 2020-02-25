@@ -1013,13 +1013,22 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS__FINISH_ACCESSES = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 11;
 
 	/**
+	 * The feature id for the '<em><b>Extension Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__EXTENSION_PKG = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 12;
+
+	/**
 	 * The number of structural features of the '<em>Subpass</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS_FEATURE_COUNT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 12;
+	int SUBPASS_FEATURE_COUNT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 13;
 
 	/**
 	 * The number of operations of the '<em>Subpass</em>' class.
@@ -1420,7 +1429,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__NAME = ProcessPackage.IVK_PIPELINE__NAME;
+	int GRAPHICS_PIPELINE__NAME = ProcessPackage.VK_PIPELINE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -1429,7 +1438,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__ENABLED = ProcessPackage.IVK_PIPELINE__ENABLED;
+	int GRAPHICS_PIPELINE__ENABLED = ProcessPackage.VK_PIPELINE__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -1438,7 +1447,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__STAGE = ProcessPackage.IVK_PIPELINE__STAGE;
+	int GRAPHICS_PIPELINE__STAGE = ProcessPackage.VK_PIPELINE__STAGE;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -1447,7 +1456,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__RESOURCE_PKG = ProcessPackage.IVK_PIPELINE__RESOURCE_PKG;
+	int GRAPHICS_PIPELINE__RESOURCE_PKG = ProcessPackage.VK_PIPELINE__RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
@@ -1456,7 +1465,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__DESCRIPTOR_PKG = ProcessPackage.IVK_PIPELINE__DESCRIPTOR_PKG;
+	int GRAPHICS_PIPELINE__DESCRIPTOR_PKG = ProcessPackage.VK_PIPELINE__DESCRIPTOR_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
@@ -1465,7 +1474,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__TASK_PKG = ProcessPackage.IVK_PIPELINE__TASK_PKG;
+	int GRAPHICS_PIPELINE__TASK_PKG = ProcessPackage.VK_PIPELINE__TASK_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
@@ -1474,7 +1483,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG = ProcessPackage.IVK_PIPELINE__DESCRIPTOR_SET_PKG;
+	int GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG = ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.
@@ -1483,7 +1492,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__SPECIALIZATION_DATA = ProcessPackage.IVK_PIPELINE__SPECIALIZATION_DATA;
+	int GRAPHICS_PIPELINE__SPECIALIZATION_DATA = ProcessPackage.VK_PIPELINE__SPECIALIZATION_DATA;
 
 	/**
 	 * The feature id for the '<em><b>Push Constant Ranges</b></em>' containment reference list.
@@ -1492,7 +1501,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES = ProcessPackage.IVK_PIPELINE__PUSH_CONSTANT_RANGES;
+	int GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES = ProcessPackage.VK_PIPELINE__PUSH_CONSTANT_RANGES;
 
 	/**
 	 * The feature id for the '<em><b>Layout</b></em>' reference list.
@@ -1501,7 +1510,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__LAYOUT = ProcessPackage.IVK_PIPELINE__LAYOUT;
+	int GRAPHICS_PIPELINE__LAYOUT = ProcessPackage.VK_PIPELINE__LAYOUT;
 
 	/**
 	 * The feature id for the '<em><b>Maintainer</b></em>' reference.
@@ -1510,7 +1519,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__MAINTAINER = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 0;
+	int GRAPHICS_PIPELINE__MAINTAINER = ProcessPackage.VK_PIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Shaders</b></em>' reference list.
@@ -1519,7 +1528,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__SHADERS = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 1;
+	int GRAPHICS_PIPELINE__SHADERS = ProcessPackage.VK_PIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Viewport State</b></em>' containment reference.
@@ -1528,7 +1537,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__VIEWPORT_STATE = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 2;
+	int GRAPHICS_PIPELINE__VIEWPORT_STATE = ProcessPackage.VK_PIPELINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Input Assembly</b></em>' containment reference.
@@ -1537,7 +1546,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__INPUT_ASSEMBLY = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 3;
+	int GRAPHICS_PIPELINE__INPUT_ASSEMBLY = ProcessPackage.VK_PIPELINE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Rasterizer</b></em>' containment reference.
@@ -1546,7 +1555,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__RASTERIZER = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 4;
+	int GRAPHICS_PIPELINE__RASTERIZER = ProcessPackage.VK_PIPELINE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Color Blend</b></em>' containment reference.
@@ -1555,7 +1564,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__COLOR_BLEND = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 5;
+	int GRAPHICS_PIPELINE__COLOR_BLEND = ProcessPackage.VK_PIPELINE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic State</b></em>' containment reference.
@@ -1564,7 +1573,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__DYNAMIC_STATE = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 6;
+	int GRAPHICS_PIPELINE__DYNAMIC_STATE = ProcessPackage.VK_PIPELINE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Vertex Input State</b></em>' containment reference.
@@ -1573,7 +1582,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__VERTEX_INPUT_STATE = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 7;
+	int GRAPHICS_PIPELINE__VERTEX_INPUT_STATE = ProcessPackage.VK_PIPELINE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Depth Stencil State</b></em>' containment reference.
@@ -1582,7 +1591,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 8;
+	int GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE = ProcessPackage.VK_PIPELINE_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Graphics Pipeline</em>' class.
@@ -1591,7 +1600,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.IVK_PIPELINE_FEATURE_COUNT + 9;
+	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.VK_PIPELINE_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>Graphics Pipeline</em>' class.
@@ -1600,7 +1609,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE_OPERATION_COUNT = ProcessPackage.IVK_PIPELINE_OPERATION_COUNT + 0;
+	int GRAPHICS_PIPELINE_OPERATION_COUNT = ProcessPackage.VK_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageBarrierImpl <em>Swap Image Barrier</em>}' class.
@@ -3065,6 +3074,17 @@ public interface GraphicPackage extends EPackage
 	EAttribute getSubpass_FinishAccesses();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getExtensionPkg <em>Extension Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Extension Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getExtensionPkg()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EReference getSubpass_ExtensionPkg();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg <em>Attachment Ref Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4285,6 +4305,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute SUBPASS__FINISH_ACCESSES = eINSTANCE.getSubpass_FinishAccesses();
+
+		/**
+		 * The meta object literal for the '<em><b>Extension Pkg</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUBPASS__EXTENSION_PKG = eINSTANCE.getSubpass_ExtensionPkg();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefPkgImpl <em>Attachment Ref Pkg</em>}' class.

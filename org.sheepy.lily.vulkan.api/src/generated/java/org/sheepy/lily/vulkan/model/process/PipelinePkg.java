@@ -27,7 +27,7 @@ public interface PipelinePkg extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Pipelines</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.IPipeline}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.AbstractPipeline}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pipelines</em>' containment reference list.
@@ -35,6 +35,6 @@ public interface PipelinePkg extends ILilyEObject
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<IPipeline> getPipelines();
+	EList<AbstractPipeline> getPipelines();
 
 } // PipelinePkg

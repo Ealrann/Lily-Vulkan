@@ -8,24 +8,27 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.process.IVkPipeline;
+
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.VkPipeline;
+
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+
 import org.sheepy.vulkan.model.pipeline.PipelineFactory;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.IVkPipeline} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.VkPipeline} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class IVkPipelineItemProvider 
-	extends ITaskPipelineItemProvider
+public class VkPipelineItemProvider extends TaskPipelineItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -33,7 +36,7 @@ public class IVkPipelineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IVkPipelineItemProvider(AdapterFactory adapterFactory)
+	public VkPipelineItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -69,9 +72,9 @@ public class IVkPipelineItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_IVkPipeline_specializationData_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IVkPipeline_specializationData_feature", "_UI_IVkPipeline_type"),
-				 ProcessPackage.Literals.IVK_PIPELINE__SPECIALIZATION_DATA,
+				 getString("_UI_VkPipeline_specializationData_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VkPipeline_specializationData_feature", "_UI_VkPipeline_type"),
+				 ProcessPackage.Literals.VK_PIPELINE__SPECIALIZATION_DATA,
 				 true,
 				 false,
 				 true,
@@ -92,9 +95,9 @@ public class IVkPipelineItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_IVkPipeline_layout_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IVkPipeline_layout_feature", "_UI_IVkPipeline_type"),
-				 ProcessPackage.Literals.IVK_PIPELINE__LAYOUT,
+				 getString("_UI_VkPipeline_layout_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VkPipeline_layout_feature", "_UI_VkPipeline_type"),
+				 ProcessPackage.Literals.VK_PIPELINE__LAYOUT,
 				 true,
 				 false,
 				 true,
@@ -117,8 +120,8 @@ public class IVkPipelineItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ProcessPackage.Literals.IVK_PIPELINE__DESCRIPTOR_SET_PKG);
-			childrenFeatures.add(ProcessPackage.Literals.IVK_PIPELINE__PUSH_CONSTANT_RANGES);
+			childrenFeatures.add(ProcessPackage.Literals.VK_PIPELINE__DESCRIPTOR_SET_PKG);
+			childrenFeatures.add(ProcessPackage.Literals.VK_PIPELINE__PUSH_CONSTANT_RANGES);
 		}
 		return childrenFeatures;
 	}
@@ -138,18 +141,6 @@ public class IVkPipelineItemProvider
 	}
 
 	/**
-	 * This returns IVkPipeline.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object)
-	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/IVkPipeline"));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -158,10 +149,10 @@ public class IVkPipelineItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((IVkPipeline)object).getName();
+		String label = ((VkPipeline)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_IVkPipeline_type") :
-			getString("_UI_IVkPipeline_type") + " " + label;
+			getString("_UI_VkPipeline_type") :
+			getString("_UI_VkPipeline_type") + " " + label;
 	}
 
 
@@ -177,10 +168,10 @@ public class IVkPipelineItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(IVkPipeline.class))
+		switch (notification.getFeatureID(VkPipeline.class))
 		{
-			case ProcessPackage.IVK_PIPELINE__DESCRIPTOR_SET_PKG:
-			case ProcessPackage.IVK_PIPELINE__PUSH_CONSTANT_RANGES:
+			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG:
+			case ProcessPackage.VK_PIPELINE__PUSH_CONSTANT_RANGES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -201,12 +192,12 @@ public class IVkPipelineItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ProcessPackage.Literals.IVK_PIPELINE__DESCRIPTOR_SET_PKG,
+				(ProcessPackage.Literals.VK_PIPELINE__DESCRIPTOR_SET_PKG,
 				 VulkanResourceFactory.eINSTANCE.createDescriptorSetPkg()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ProcessPackage.Literals.IVK_PIPELINE__PUSH_CONSTANT_RANGES,
+				(ProcessPackage.Literals.VK_PIPELINE__PUSH_CONSTANT_RANGES,
 				 PipelineFactory.eINSTANCE.createPushConstantRange()));
 	}
 

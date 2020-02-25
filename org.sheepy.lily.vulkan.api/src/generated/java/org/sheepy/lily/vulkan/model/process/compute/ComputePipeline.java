@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.compute;
 
 import org.sheepy.lily.core.model.maintainer.Maintainable;
-import org.sheepy.lily.vulkan.model.process.IVkPipeline;
+import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 
 /**
@@ -22,7 +22,7 @@ import org.sheepy.lily.vulkan.model.resource.Shader;
  * @model
  * @generated
  */
-public interface ComputePipeline extends IVkPipeline, Maintainable<ComputePipeline>
+public interface ComputePipeline extends VkPipeline, Maintainable<ComputePipeline>
 {
 
 	/**

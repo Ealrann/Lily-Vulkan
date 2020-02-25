@@ -21,11 +21,11 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface CompositePipeline extends IPipeline
+public interface CompositePipeline extends AbstractPipeline
 {
 	/**
 	 * Returns the value of the '<em><b>Pipelines</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.ITaskPipeline}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.TaskPipeline}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pipelines</em>' containment reference list.
@@ -33,7 +33,7 @@ public interface CompositePipeline extends IPipeline
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ITaskPipeline> getPipelines();
+	EList<TaskPipeline> getPipelines();
 
 	/**
 	 * Returns the value of the '<em><b>Repeat</b></em>' attribute.

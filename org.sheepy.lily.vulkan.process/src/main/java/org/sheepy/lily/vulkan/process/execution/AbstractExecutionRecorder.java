@@ -1,8 +1,5 @@
 package org.sheepy.lily.vulkan.process.execution;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
@@ -14,12 +11,15 @@ import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext.IExecutio
 import org.sheepy.lily.vulkan.core.execution.ISubmission;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.core.process.IProcessContext;
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.CompositePipeline;
-import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
-public abstract class AbstractExecutionRecorder<T extends IProcessContext>
-		implements IExecutionRecorder<T>, IAllocable<T>
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class AbstractExecutionRecorder<T extends IProcessContext> implements IExecutionRecorder<T>,
+																					  IAllocable<T>
 {
 	protected final ICommandBuffer<? super T> commandBuffer;
 	protected final ISubmission<? super T> submission;
@@ -30,9 +30,9 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 	private boolean dirty = true;
 	private T context;
 
-	public AbstractExecutionRecorder(	ICommandBuffer<? super T> commandBuffer,
-										ISubmission<? super T> submission,
-										int index)
+	public AbstractExecutionRecorder(ICommandBuffer<? super T> commandBuffer,
+									 ISubmission<? super T> submission,
+									 int index)
 	{
 		this.commandBuffer = commandBuffer;
 		this.submission = submission;
@@ -67,7 +67,7 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 		final List<IExecutionIdleListener> listeners = new ArrayList<>();
 		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 
-		try (MemoryStack stack = MemoryStack.stackPush())
+		try (final var stack = MemoryStack.stackPush())
 		{
 			for (int i = 0; i < stages.size(); i++)
 			{
@@ -79,7 +79,8 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 				commandBuffer.end(stage);
 				listeners.addAll(context.getExecutionIdleListeners());
 			}
-		} catch (final Exception e)
+		}
+		catch (final Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -89,7 +90,7 @@ public abstract class AbstractExecutionRecorder<T extends IProcessContext>
 		setDirty(false);
 	}
 
-	protected static void record(RecordContext recordContext, final IPipeline pipeline)
+	protected static void record(RecordContext recordContext, final AbstractPipeline pipeline)
 	{
 		if (pipeline instanceof CompositePipeline)
 		{

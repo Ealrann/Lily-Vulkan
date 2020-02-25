@@ -566,7 +566,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Viewport/offsetY"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Viewport/minDepth"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Viewport/maxDepth"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Viewport/extent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Viewport/extent"/>
     </genClasses>
     <genClasses ecoreClass="graphicpipeline.ecore#//CinemaViewport">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//CinemaViewport/aspectRatio"/>

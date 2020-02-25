@@ -846,6 +846,17 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getSubpass_ExtensionPkg()
+	{
+		return (EReference)subpassEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getAttachmentRefPkg()
 	{
 		return attachmentRefPkgEClass;
@@ -1809,6 +1820,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(subpassEClass, SUBPASS__WAIT_FOR_ACCESSES);
 		createEAttribute(subpassEClass, SUBPASS__SYNC_ACCESSES);
 		createEAttribute(subpassEClass, SUBPASS__FINISH_ACCESSES);
+		createEReference(subpassEClass, SUBPASS__EXTENSION_PKG);
 
 		attachmentRefPkgEClass = createEClass(ATTACHMENT_REF_PKG);
 		createEReference(attachmentRefPkgEClass, ATTACHMENT_REF_PKG__ATTACHMENT_REFS);
@@ -1973,7 +1985,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		EGenericType g2 = createEGenericType(this.getGraphicProcess());
 		g1.getETypeArguments().add(g2);
 		graphicProcessEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theProcessPackage.getIVkPipeline());
+		g1 = createEGenericType(theProcessPackage.getVkPipeline());
 		graphicsPipelineEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theMaintainerPackage.getMaintainable());
 		g2 = createEGenericType(this.getGraphicsPipeline());
@@ -2040,6 +2052,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getSubpass_WaitForAccesses(), theEnumerationPackage.getEAccess(), "waitForAccesses", null, 0, -1, Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSubpass_SyncAccesses(), theEnumerationPackage.getEAccess(), "syncAccesses", null, 0, -1, Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSubpass_FinishAccesses(), theEnumerationPackage.getEAccess(), "finishAccesses", null, 0, -1, Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSubpass_ExtensionPkg(), theProcessPackage.getProcessExtensionPkg(), null, "extensionPkg", null, 0, 1, Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attachmentRefPkgEClass, AttachmentRefPkg.class, "AttachmentRefPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttachmentRefPkg_AttachmentRefs(), this.getAttachmentRef(), null, "attachmentRefs", null, 0, -1, AttachmentRefPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

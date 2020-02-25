@@ -32,24 +32,6 @@ public interface ProcessFactory extends EFactory
 	PipelinePkg createPipelinePkg();
 
 	/**
-	 * Returns a new object of class '<em>ITask Pipeline</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>ITask Pipeline</em>'.
-	 * @generated
-	 */
-	ITaskPipeline createITaskPipeline();
-
-	/**
-	 * Returns a new object of class '<em>IVk Pipeline</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>IVk Pipeline</em>'.
-	 * @generated
-	 */
-	IVkPipeline createIVkPipeline();
-
-	/**
 	 * Returns a new object of class '<em>Task Pkg</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

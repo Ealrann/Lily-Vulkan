@@ -10,9 +10,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -24,23 +21,19 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.core.model.resource.ResourceFactory;
+
 import org.sheepy.lily.core.model.types.TypesPackage;
 
-import org.sheepy.lily.vulkan.model.VulkanFactory;
-import org.sheepy.lily.vulkan.model.VulkanPackage;
-
-import org.sheepy.lily.vulkan.model.process.ITaskPipeline;
-import org.sheepy.lily.vulkan.model.process.ProcessFactory;
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.ITaskPipeline} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.AbstractPipeline} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ITaskPipelineItemProvider 
+public class AbstractPipelineItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -55,7 +48,7 @@ public class ITaskPipelineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ITaskPipelineItemProvider(AdapterFactory adapterFactory)
+	public AbstractPipelineItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -115,9 +108,9 @@ public class ITaskPipelineItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_IPipeline_enabled_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_enabled_feature", "_UI_IPipeline_type"),
-				 ProcessPackage.Literals.IPIPELINE__ENABLED,
+				 getString("_UI_AbstractPipeline_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractPipeline_enabled_feature", "_UI_AbstractPipeline_type"),
+				 ProcessPackage.Literals.ABSTRACT_PIPELINE__ENABLED,
 				 true,
 				 false,
 				 false,
@@ -138,62 +131,15 @@ public class ITaskPipelineItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_IPipeline_stage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature", "_UI_IPipeline_type"),
-				 ProcessPackage.Literals.IPIPELINE__STAGE,
+				 getString("_UI_AbstractPipeline_stage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractPipeline_stage_feature", "_UI_AbstractPipeline_type"),
+				 ProcessPackage.Literals.ABSTRACT_PIPELINE__STAGE,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
-			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
-			childrenFeatures.add(ProcessPackage.Literals.ITASK_PIPELINE__TASK_PKG);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns ITaskPipeline.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object)
-	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ITaskPipeline"));
 	}
 
 	/**
@@ -205,10 +151,10 @@ public class ITaskPipelineItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((ITaskPipeline)object).getName();
+		String label = ((AbstractPipeline)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ITaskPipeline_type") :
-			getString("_UI_ITaskPipeline_type") + " " + label;
+			getString("_UI_AbstractPipeline_type") :
+			getString("_UI_AbstractPipeline_type") + " " + label;
 	}
 
 
@@ -224,17 +170,12 @@ public class ITaskPipelineItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ITaskPipeline.class))
+		switch (notification.getFeatureID(AbstractPipeline.class))
 		{
-			case ProcessPackage.ITASK_PIPELINE__NAME:
-			case ProcessPackage.ITASK_PIPELINE__ENABLED:
-			case ProcessPackage.ITASK_PIPELINE__STAGE:
+			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
+			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
+			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ProcessPackage.ITASK_PIPELINE__RESOURCE_PKG:
-			case ProcessPackage.ITASK_PIPELINE__DESCRIPTOR_PKG:
-			case ProcessPackage.ITASK_PIPELINE__TASK_PKG:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -251,21 +192,6 @@ public class ITaskPipelineItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-				 ResourceFactory.eINSTANCE.createResourcePkg()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
-				 VulkanFactory.eINSTANCE.createDescriptorPkg()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ITASK_PIPELINE__TASK_PKG,
-				 ProcessFactory.eINSTANCE.createTaskPkg()));
 	}
 
 	/**

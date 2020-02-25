@@ -20,12 +20,12 @@ import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.Configuration;
-import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
-import org.sheepy.lily.vulkan.model.process.ITaskPipeline;
-import org.sheepy.lily.vulkan.model.process.IVkPipeline;
+import org.sheepy.lily.vulkan.model.process.TaskPipeline;
+import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
 
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
@@ -294,19 +294,19 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createMaintainableAdapter();
 			}
 			@Override
-			public Adapter caseIPipeline(IPipeline object)
+			public Adapter caseAbstractPipeline(AbstractPipeline object)
 			{
-				return createIPipelineAdapter();
+				return createAbstractPipelineAdapter();
 			}
 			@Override
-			public Adapter caseITaskPipeline(ITaskPipeline object)
+			public Adapter caseTaskPipeline(TaskPipeline object)
 			{
-				return createITaskPipelineAdapter();
+				return createTaskPipelineAdapter();
 			}
 			@Override
-			public Adapter caseIVkPipeline(IVkPipeline object)
+			public Adapter caseVkPipeline(VkPipeline object)
 			{
-				return createIVkPipelineAdapter();
+				return createVkPipelineAdapter();
 			}
 			@Override
 			public Adapter caseBarrier(Barrier object)
@@ -950,46 +950,46 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IPipeline <em>IPipeline</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline <em>Abstract Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.IPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline
 	 * @generated
 	 */
-	public Adapter createIPipelineAdapter()
+	public Adapter createAbstractPipelineAdapter()
 	{
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ITaskPipeline <em>ITask Pipeline</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.TaskPipeline <em>Task Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.ITaskPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.TaskPipeline
 	 * @generated
 	 */
-	public Adapter createITaskPipelineAdapter()
+	public Adapter createTaskPipelineAdapter()
 	{
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IVkPipeline <em>IVk Pipeline</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.VkPipeline <em>Vk Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.IVkPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.VkPipeline
 	 * @generated
 	 */
-	public Adapter createIVkPipelineAdapter()
+	public Adapter createVkPipelineAdapter()
 	{
 		return null;
 	}

@@ -21,8 +21,7 @@ import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
-
-import org.sheepy.lily.vulkan.model.process.impl.IVkPipelineImpl;
+import org.sheepy.lily.vulkan.model.process.impl.VkPipelineImpl;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
 import org.sheepy.vulkan.model.graphicpipeline.DepthStencilState;
@@ -52,7 +51,7 @@ import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
  *
  * @generated
  */
-public class GraphicsPipelineImpl extends IVkPipelineImpl implements GraphicsPipeline
+public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipeline
 {
 	/**
 	 * The cached value of the '{@link #getMaintainer() <em>Maintainer</em>}' reference.
@@ -176,7 +175,7 @@ public class GraphicsPipelineImpl extends IVkPipelineImpl implements GraphicsPip
 	{
 		if (maintainer != null && ((EObject)maintainer).eIsProxy())
 		{
-			InternalEObject oldMaintainer = (InternalEObject)maintainer;
+			InternalEObject oldMaintainer = maintainer;
 			maintainer = (Maintainer<GraphicsPipeline>)eResolveProxy(oldMaintainer);
 			if (maintainer != oldMaintainer)
 			{

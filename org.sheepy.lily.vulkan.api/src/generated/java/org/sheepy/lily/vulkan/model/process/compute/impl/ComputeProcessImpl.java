@@ -6,8 +6,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.sheepy.lily.core.model.application.IEngine;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
@@ -23,6 +25,7 @@ import org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl#getPipelinePkg <em>Pipeline Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl#getSourceEngine <em>Source Engine</em>}</li>
  * </ul>
  *
  * @generated
@@ -38,6 +41,16 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	 * @ordered
 	 */
 	protected PipelinePkg pipelinePkg;
+
+	/**
+	 * The cached value of the '{@link #getSourceEngine() <em>Source Engine</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSourceEngine()
+	 * @generated
+	 * @ordered
+	 */
+	protected IEngine sourceEngine;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -116,6 +129,51 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	 * @generated
 	 */
 	@Override
+	public IEngine getSourceEngine()
+	{
+		if (sourceEngine != null && ((EObject)sourceEngine).eIsProxy())
+		{
+			InternalEObject oldSourceEngine = sourceEngine;
+			sourceEngine = (IEngine)eResolveProxy(oldSourceEngine);
+			if (sourceEngine != oldSourceEngine)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ComputePackage.COMPUTE_PROCESS__SOURCE_ENGINE, oldSourceEngine, sourceEngine));
+			}
+		}
+		return sourceEngine;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IEngine basicGetSourceEngine()
+	{
+		return sourceEngine;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSourceEngine(IEngine newSourceEngine)
+	{
+		IEngine oldSourceEngine = sourceEngine;
+		sourceEngine = newSourceEngine;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PROCESS__SOURCE_ENGINE, oldSourceEngine, sourceEngine));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -138,6 +196,9 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 		{
 			case ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG:
 				return getPipelinePkg();
+			case ComputePackage.COMPUTE_PROCESS__SOURCE_ENGINE:
+				if (resolve) return getSourceEngine();
+				return basicGetSourceEngine();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -154,6 +215,9 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 		{
 			case ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG:
 				setPipelinePkg((PipelinePkg)newValue);
+				return;
+			case ComputePackage.COMPUTE_PROCESS__SOURCE_ENGINE:
+				setSourceEngine((IEngine)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -172,6 +236,9 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 			case ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG:
 				setPipelinePkg((PipelinePkg)null);
 				return;
+			case ComputePackage.COMPUTE_PROCESS__SOURCE_ENGINE:
+				setSourceEngine((IEngine)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -188,6 +255,8 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 		{
 			case ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG:
 				return pipelinePkg != null;
+			case ComputePackage.COMPUTE_PROCESS__SOURCE_ENGINE:
+				return sourceEngine != null;
 		}
 		return super.eIsSet(featureID);
 	}

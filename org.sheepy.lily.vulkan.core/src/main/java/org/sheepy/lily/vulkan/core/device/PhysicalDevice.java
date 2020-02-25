@@ -220,18 +220,18 @@ public class PhysicalDevice implements IPhysicalDevice
 	public long getBufferAlignement(int usage)
 	{
 		final var limits = getDeviceProperties().limits();
+		long alignment = 1;
+
 		if ((usage & VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT) != 0)
 		{
-			return limits.minUniformBufferOffsetAlignment();
+			alignment = Math.max(alignment,limits.minUniformBufferOffsetAlignment());
 		}
-		else if ((usage & VK_BUFFER_USAGE_STORAGE_BUFFER_BIT) != 0)
+		if ((usage & VK_BUFFER_USAGE_STORAGE_BUFFER_BIT) != 0)
 		{
-			return limits.minStorageBufferOffsetAlignment();
+			alignment = Math.max(alignment,limits.minStorageBufferOffsetAlignment());
 		}
-		else
-		{
-			return 1;
-		}
+
+		return alignment;
 	}
 
 	public void printRetainedExtensions()

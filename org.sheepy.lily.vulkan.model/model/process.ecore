@@ -31,25 +31,24 @@
   <eClassifiers xsi:type="ecore:EClass" name="Configuration" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="PipelinePkg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pipelines" upperBound="-1"
-        eType="#//IPipeline" containment="true" resolveProxies="false"/>
+        eType="#//AbstractPipeline" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IPipelineTask" abstract="true" interface="true"
       eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IPipeline" abstract="true" interface="true"
-      eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractPipeline" abstract="true" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" unique="false" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
         defaultValueLiteral="Render"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ITaskPipeline" eSuperTypes="#//IPipeline vulkan.ecore#//IResourceContainer">
+  <eClassifiers xsi:type="ecore:EClass" name="TaskPipeline" abstract="true" eSuperTypes="#//AbstractPipeline vulkan.ecore#//IResourceContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="taskPkg" eType="#//TaskPkg"
         containment="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IVkPipeline" eSuperTypes="#//ITaskPipeline">
+  <eClassifiers xsi:type="ecore:EClass" name="VkPipeline" abstract="true" eSuperTypes="#//TaskPipeline">
     <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorSetPkg" eType="ecore:EClass resource.ecore#//DescriptorSetPkg"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="specializationData" eType="ecore:EClass resource.ecore#//ConstantBuffer"/>
@@ -63,10 +62,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
         eType="#//IPipelineTask" containment="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Pipeline" eSuperTypes="#//ITaskPipeline"/>
-  <eClassifiers xsi:type="ecore:EClass" name="CompositePipeline" eSuperTypes="#//IPipeline">
+  <eClassifiers xsi:type="ecore:EClass" name="Pipeline" eSuperTypes="#//TaskPipeline"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositePipeline" eSuperTypes="#//AbstractPipeline">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pipelines" upperBound="-1"
-        eType="#//ITaskPipeline" containment="true" resolveProxies="false"/>
+        eType="#//TaskPipeline" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="repeat" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
   </eClassifiers>

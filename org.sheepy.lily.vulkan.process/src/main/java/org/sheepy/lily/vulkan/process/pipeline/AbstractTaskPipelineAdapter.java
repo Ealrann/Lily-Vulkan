@@ -14,8 +14,8 @@ import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.core.process.IProcessContext;
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
-import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -27,16 +27,16 @@ import java.util.List;
 public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext> implements IAllocableAdapter<T>,
 																						IPipelineAdapter
 {
-	private final TaskObserver taskRegister = new TaskObserver(List.of(ProcessPackage.Literals.ITASK_PIPELINE__TASK_PKG,
+	private final TaskObserver taskRegister = new TaskObserver(List.of(ProcessPackage.Literals.TASK_PIPELINE__TASK_PKG,
 																	   ProcessPackage.Literals.TASK_PKG__TASKS));
 
-	protected final IPipeline pipeline;
+	protected final AbstractPipeline pipeline;
 
 	private final List<TaskWrapper<?>> taskWrappers = new ArrayList<>();
 	private boolean recordNeeded = false;
 	private IAllocationConfigurator allocationConfig;
 
-	public AbstractTaskPipelineAdapter(IPipeline pipeline)
+	public AbstractTaskPipelineAdapter(AbstractPipeline pipeline)
 	{
 		this.pipeline = pipeline;
 	}
@@ -54,8 +54,8 @@ public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext> imp
 		taskRegister.stopRegister(pipeline);
 	}
 
-	@NotifyChanged(featureIds = ProcessPackage.IPIPELINE__ENABLED)
-	public void notifyChanged(Notification notification)
+	@NotifyChanged(featureIds = ProcessPackage.ABSTRACT_PIPELINE__ENABLED)
+	private void notifyChanged(Notification notification)
 	{
 		if (notification.getOldBooleanValue() != notification.getNewBooleanValue())
 		{

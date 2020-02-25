@@ -7,6 +7,7 @@ import org.sheepy.lily.core.model.application.IScenePart;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
+import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
@@ -30,6 +31,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getWaitForAccesses <em>Wait For Accesses</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSyncAccesses <em>Sync Accesses</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getFinishAccesses <em>Finish Accesses</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getExtensionPkg <em>Extension Pkg</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass()
@@ -268,5 +270,27 @@ public interface Subpass extends IResourceContainer, LNamedElement
 	 * @generated
 	 */
 	EList<EAccess> getFinishAccesses();
+
+	/**
+	 * Returns the value of the '<em><b>Extension Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extension Pkg</em>' containment reference.
+	 * @see #setExtensionPkg(ProcessExtensionPkg)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_ExtensionPkg()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ProcessExtensionPkg getExtensionPkg();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getExtensionPkg <em>Extension Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Extension Pkg</em>' containment reference.
+	 * @see #getExtensionPkg()
+	 * @generated
+	 */
+	void setExtensionPkg(ProcessExtensionPkg value);
 
 } // Subpass

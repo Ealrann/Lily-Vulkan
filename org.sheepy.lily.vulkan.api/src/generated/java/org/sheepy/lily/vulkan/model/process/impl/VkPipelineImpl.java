@@ -18,30 +18,33 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.sheepy.lily.vulkan.model.process.IVkPipeline;
+
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.VkPipeline;
+
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
+
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>IVk Pipeline</b></em>'.
+ * An implementation of the model object '<em><b>Vk Pipeline</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.IVkPipelineImpl#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.IVkPipelineImpl#getSpecializationData <em>Specialization Data</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.IVkPipelineImpl#getPushConstantRanges <em>Push Constant Ranges</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.IVkPipelineImpl#getLayout <em>Layout</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.VkPipelineImpl#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.VkPipelineImpl#getSpecializationData <em>Specialization Data</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.VkPipelineImpl#getPushConstantRanges <em>Push Constant Ranges</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.VkPipelineImpl#getLayout <em>Layout</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class IVkPipelineImpl extends ITaskPipelineImpl implements IVkPipeline
+public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipeline
 {
 	/**
 	 * The cached value of the '{@link #getDescriptorSetPkg() <em>Descriptor Set Pkg</em>}' containment reference.
@@ -88,7 +91,7 @@ public class IVkPipelineImpl extends ITaskPipelineImpl implements IVkPipeline
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IVkPipelineImpl()
+	protected VkPipelineImpl()
 	{
 		super();
 	}
@@ -101,7 +104,7 @@ public class IVkPipelineImpl extends ITaskPipelineImpl implements IVkPipeline
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ProcessPackage.Literals.IVK_PIPELINE;
+		return ProcessPackage.Literals.VK_PIPELINE;
 	}
 
 	/**
@@ -126,7 +129,7 @@ public class IVkPipelineImpl extends ITaskPipelineImpl implements IVkPipeline
 		descriptorSetPkg = newDescriptorSetPkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.IVK_PIPELINE__DESCRIPTOR_SET_PKG, oldDescriptorSetPkg, newDescriptorSetPkg);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG, oldDescriptorSetPkg, newDescriptorSetPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -144,14 +147,14 @@ public class IVkPipelineImpl extends ITaskPipelineImpl implements IVkPipeline
 		{
 			NotificationChain msgs = null;
 			if (descriptorSetPkg != null)
-				msgs = ((InternalEObject)descriptorSetPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.IVK_PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
+				msgs = ((InternalEObject)descriptorSetPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
 			if (newDescriptorSetPkg != null)
-				msgs = ((InternalEObject)newDescriptorSetPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.IVK_PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
+				msgs = ((InternalEObject)newDescriptorSetPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
 			msgs = basicSetDescriptorSetPkg(newDescriptorSetPkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.IVK_PIPELINE__DESCRIPTOR_SET_PKG, newDescriptorSetPkg, newDescriptorSetPkg));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG, newDescriptorSetPkg, newDescriptorSetPkg));
 	}
 
 	/**
@@ -164,12 +167,12 @@ public class IVkPipelineImpl extends ITaskPipelineImpl implements IVkPipeline
 	{
 		if (specializationData != null && ((EObject)specializationData).eIsProxy())
 		{
-			InternalEObject oldSpecializationData = (InternalEObject)specializationData;
+			InternalEObject oldSpecializationData = specializationData;
 			specializationData = (ConstantBuffer)eResolveProxy(oldSpecializationData);
 			if (specializationData != oldSpecializationData)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.IVK_PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.VK_PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
 			}
 		}
 		return specializationData;
@@ -196,7 +199,7 @@ public class IVkPipelineImpl extends ITaskPipelineImpl implements IVkPipeline
 		ConstantBuffer oldSpecializationData = specializationData;
 		specializationData = newSpecializationData;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.IVK_PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.VK_PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
 	}
 
 	/**
@@ -209,7 +212,7 @@ public class IVkPipelineImpl extends ITaskPipelineImpl implements IVkPipeline
 	{
 		if (pushConstantRanges == null)
 		{
-			pushConstantRanges = new EObjectContainmentEList<PushConstantRange>(PushConstantRange.class, this, ProcessPackage.IVK_PIPELINE__PUSH_CONSTANT_RANGES);
+			pushConstantRanges = new EObjectContainmentEList<PushConstantRange>(PushConstantRange.class, this, ProcessPackage.VK_PIPELINE__PUSH_CONSTANT_RANGES);
 		}
 		return pushConstantRanges;
 	}
@@ -224,7 +227,7 @@ public class IVkPipelineImpl extends ITaskPipelineImpl implements IVkPipeline
 	{
 		if (layout == null)
 		{
-			layout = new EObjectResolvingEList<DescriptorSet>(DescriptorSet.class, this, ProcessPackage.IVK_PIPELINE__LAYOUT);
+			layout = new EObjectResolvingEList<DescriptorSet>(DescriptorSet.class, this, ProcessPackage.VK_PIPELINE__LAYOUT);
 		}
 		return layout;
 	}
@@ -239,9 +242,9 @@ public class IVkPipelineImpl extends ITaskPipelineImpl implements IVkPipeline
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.IVK_PIPELINE__DESCRIPTOR_SET_PKG:
+			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG:
 				return basicSetDescriptorSetPkg(null, msgs);
-			case ProcessPackage.IVK_PIPELINE__PUSH_CONSTANT_RANGES:
+			case ProcessPackage.VK_PIPELINE__PUSH_CONSTANT_RANGES:
 				return ((InternalEList<?>)getPushConstantRanges()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -257,14 +260,14 @@ public class IVkPipelineImpl extends ITaskPipelineImpl implements IVkPipeline
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.IVK_PIPELINE__DESCRIPTOR_SET_PKG:
+			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG:
 				return getDescriptorSetPkg();
-			case ProcessPackage.IVK_PIPELINE__SPECIALIZATION_DATA:
+			case ProcessPackage.VK_PIPELINE__SPECIALIZATION_DATA:
 				if (resolve) return getSpecializationData();
 				return basicGetSpecializationData();
-			case ProcessPackage.IVK_PIPELINE__PUSH_CONSTANT_RANGES:
+			case ProcessPackage.VK_PIPELINE__PUSH_CONSTANT_RANGES:
 				return getPushConstantRanges();
-			case ProcessPackage.IVK_PIPELINE__LAYOUT:
+			case ProcessPackage.VK_PIPELINE__LAYOUT:
 				return getLayout();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -281,17 +284,17 @@ public class IVkPipelineImpl extends ITaskPipelineImpl implements IVkPipeline
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.IVK_PIPELINE__DESCRIPTOR_SET_PKG:
+			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG:
 				setDescriptorSetPkg((DescriptorSetPkg)newValue);
 				return;
-			case ProcessPackage.IVK_PIPELINE__SPECIALIZATION_DATA:
+			case ProcessPackage.VK_PIPELINE__SPECIALIZATION_DATA:
 				setSpecializationData((ConstantBuffer)newValue);
 				return;
-			case ProcessPackage.IVK_PIPELINE__PUSH_CONSTANT_RANGES:
+			case ProcessPackage.VK_PIPELINE__PUSH_CONSTANT_RANGES:
 				getPushConstantRanges().clear();
 				getPushConstantRanges().addAll((Collection<? extends PushConstantRange>)newValue);
 				return;
-			case ProcessPackage.IVK_PIPELINE__LAYOUT:
+			case ProcessPackage.VK_PIPELINE__LAYOUT:
 				getLayout().clear();
 				getLayout().addAll((Collection<? extends DescriptorSet>)newValue);
 				return;
@@ -309,16 +312,16 @@ public class IVkPipelineImpl extends ITaskPipelineImpl implements IVkPipeline
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.IVK_PIPELINE__DESCRIPTOR_SET_PKG:
+			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG:
 				setDescriptorSetPkg((DescriptorSetPkg)null);
 				return;
-			case ProcessPackage.IVK_PIPELINE__SPECIALIZATION_DATA:
+			case ProcessPackage.VK_PIPELINE__SPECIALIZATION_DATA:
 				setSpecializationData((ConstantBuffer)null);
 				return;
-			case ProcessPackage.IVK_PIPELINE__PUSH_CONSTANT_RANGES:
+			case ProcessPackage.VK_PIPELINE__PUSH_CONSTANT_RANGES:
 				getPushConstantRanges().clear();
 				return;
-			case ProcessPackage.IVK_PIPELINE__LAYOUT:
+			case ProcessPackage.VK_PIPELINE__LAYOUT:
 				getLayout().clear();
 				return;
 		}
@@ -335,16 +338,16 @@ public class IVkPipelineImpl extends ITaskPipelineImpl implements IVkPipeline
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.IVK_PIPELINE__DESCRIPTOR_SET_PKG:
+			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG:
 				return descriptorSetPkg != null;
-			case ProcessPackage.IVK_PIPELINE__SPECIALIZATION_DATA:
+			case ProcessPackage.VK_PIPELINE__SPECIALIZATION_DATA:
 				return specializationData != null;
-			case ProcessPackage.IVK_PIPELINE__PUSH_CONSTANT_RANGES:
+			case ProcessPackage.VK_PIPELINE__PUSH_CONSTANT_RANGES:
 				return pushConstantRanges != null && !pushConstantRanges.isEmpty();
-			case ProcessPackage.IVK_PIPELINE__LAYOUT:
+			case ProcessPackage.VK_PIPELINE__LAYOUT:
 				return layout != null && !layout.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //IVkPipelineImpl
+} //VkPipelineImpl

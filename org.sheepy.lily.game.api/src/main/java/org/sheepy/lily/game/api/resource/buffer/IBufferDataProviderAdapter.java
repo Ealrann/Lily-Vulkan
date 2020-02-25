@@ -10,4 +10,6 @@ public interface IBufferDataProviderAdapter extends IAdapter
 	void fetch(ByteBuffer buffer);
 
 	boolean hasChanged();
+
+	default int minAlignment() { return 1; }
 }
