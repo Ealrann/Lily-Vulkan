@@ -118,6 +118,7 @@
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//DepthAttachment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//DepthAttachment/clear"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//DepthAttachment/usages"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//ColorAttachment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//ColorAttachment/clearValue"/>

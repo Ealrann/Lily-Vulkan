@@ -7,7 +7,6 @@ import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.barrier.IImageBarrierAdapter;
 import org.sheepy.lily.vulkan.core.barrier.VkImageBarrier;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
-import org.sheepy.lily.vulkan.core.resource.image.ImageUtil;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
@@ -42,10 +41,9 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter
 		final var imageAdapter = image.adapt(IVkImageAdapter.class);
 		final var vkImage = imageAdapter.getVkImage();
 
-		final int imageFormat = vkImage.format;
 		final var srcLayout = imageBarrier.getSrcLayout();
 		final var dstLayout = imageBarrier.getDstLayout();
-		final var aspectMask = ImageUtil.getAspectMask(dstLayout, imageFormat);
+		final var aspectMask = vkImage.aspect;
 		final int srcAccessMask = VulkanModelUtil.getEnumeratedFlag(imageBarrier.getSrcAccessMask());
 		final int dstAccessMask = VulkanModelUtil.getEnumeratedFlag(imageBarrier.getDstAccessMask());
 

@@ -61,6 +61,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="DepthAttachment" eSuperTypes="#//ExtraAttachment">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clear" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="usages" upperBound="-1"
+        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EImageUsage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ColorAttachment" eSuperTypes="#//ExtraAttachment">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clearValue" unique="false"

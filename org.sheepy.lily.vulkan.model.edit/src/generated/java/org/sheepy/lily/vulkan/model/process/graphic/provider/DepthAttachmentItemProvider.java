@@ -48,6 +48,7 @@ public class DepthAttachmentItemProvider extends ExtraAttachmentItemProvider
 			super.getPropertyDescriptors(object);
 
 			addClearPropertyDescriptor(object);
+			addUsagesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -71,6 +72,29 @@ public class DepthAttachmentItemProvider extends ExtraAttachmentItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Usages feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUsagesPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DepthAttachment_usages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DepthAttachment_usages_feature", "_UI_DepthAttachment_type"),
+				 GraphicPackage.Literals.DEPTH_ATTACHMENT__USAGES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -117,6 +141,7 @@ public class DepthAttachmentItemProvider extends ExtraAttachmentItemProvider
 		switch (notification.getFeatureID(DepthAttachment.class))
 		{
 			case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
+			case GraphicPackage.DEPTH_ATTACHMENT__USAGES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

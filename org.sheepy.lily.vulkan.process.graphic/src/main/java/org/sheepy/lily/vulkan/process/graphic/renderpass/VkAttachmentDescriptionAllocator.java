@@ -30,18 +30,18 @@ public final class VkAttachmentDescriptionAllocator
 		return attachmentsBuffer;
 	}
 
-	private void fillAttachment(final VkAttachmentDescription vKattachment,
+	private void fillAttachment(final VkAttachmentDescription vkAttachment,
 								final Attachment attachment)
 	{
 		final var format = getAttachmentFormat(attachment);
-		vKattachment.format(format);
-		vKattachment.samples(attachment.getSamples().getValue());
-		vKattachment.loadOp(attachment.getLoadOp().getValue());
-		vKattachment.storeOp(attachment.getStoreOp().getValue());
-		vKattachment.stencilLoadOp(attachment.getStencilLoadOp().getValue());
-		vKattachment.stencilStoreOp(attachment.getStencilStoreOp().getValue());
-		vKattachment.initialLayout(attachment.getInitialLayout().getValue());
-		vKattachment.finalLayout(attachment.getFinalLayout().getValue());
+		vkAttachment.format(format);
+		vkAttachment.samples(attachment.getSamples().getValue());
+		vkAttachment.loadOp(attachment.getLoadOp().getValue());
+		vkAttachment.storeOp(attachment.getStoreOp().getValue());
+		vkAttachment.stencilLoadOp(attachment.getStencilLoadOp().getValue());
+		vkAttachment.stencilStoreOp(attachment.getStencilStoreOp().getValue());
+		vkAttachment.initialLayout(attachment.getInitialLayout().getValue());
+		vkAttachment.finalLayout(attachment.getFinalLayout().getValue());
 	}
 
 	private int getAttachmentFormat(final Attachment attachment)

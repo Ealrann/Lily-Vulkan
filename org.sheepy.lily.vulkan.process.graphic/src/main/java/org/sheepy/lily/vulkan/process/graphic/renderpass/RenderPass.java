@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.process.graphic.process;
+package org.sheepy.lily.vulkan.process.graphic.renderpass;
 
 import static org.lwjgl.vulkan.VK10.vkDestroyRenderPass;
 

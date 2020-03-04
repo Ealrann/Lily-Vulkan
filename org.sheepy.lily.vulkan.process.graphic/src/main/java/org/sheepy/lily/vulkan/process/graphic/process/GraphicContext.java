@@ -11,6 +11,7 @@ import org.sheepy.lily.vulkan.process.graphic.frame.FramebufferManager;
 import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewManager;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager;
 import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainManager;
+import org.sheepy.lily.vulkan.process.graphic.renderpass.RenderPass;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.List;

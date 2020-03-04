@@ -8,12 +8,12 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.impl.LongNotification;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
 import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.resource.attachment.IDepthAttachmentAdapter;
-import org.sheepy.lily.vulkan.core.resource.image.ImageUtil;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
@@ -29,13 +29,15 @@ import static org.lwjgl.vulkan.VK10.*;
 @Adapter(scope = DepthAttachment.class)
 public class DepthAttachmentAdapter extends Notifier implements IDepthAttachmentAdapter
 {
+	private final DepthAttachment depthAttachment;
 	private VkImage depthImageBackend;
 	private VkImageView depthImageView;
 	private int depthFormat;
 
-	public DepthAttachmentAdapter()
+	public DepthAttachmentAdapter(DepthAttachment depthAttachment)
 	{
 		super(Features.values().length);
+		this.depthAttachment = depthAttachment;
 	}
 
 	@Override
@@ -62,9 +64,11 @@ public class DepthAttachmentAdapter extends Notifier implements IDepthAttachment
 		final var extent = surfaceManager.getExtent();
 		final int width = extent.x();
 		final int height = extent.y();
-		final int usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
+		final int usages = VulkanModelUtil.getEnumeratedFlag(depthAttachment.getUsages()) | VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
+
 		final var depthImageBuilder = VkImage.newBuilder(width, height, depthFormat);
-		depthImageBuilder.usage(usage);
+		depthImageBuilder.usage(usages);
+		depthImageBuilder.aspect(VK_IMAGE_ASPECT_DEPTH_BIT);
 
 		depthImageBackend = depthImageBuilder.build();
 	}
@@ -88,8 +92,7 @@ public class DepthAttachmentAdapter extends Notifier implements IDepthAttachment
 		final var srcStage = EPipelineStage.TOP_OF_PIPE_BIT_VALUE;
 		final var dstStage = EPipelineStage.EARLY_FRAGMENT_TESTS_BIT_VALUE;
 		final var srcLayout = EImageLayout.UNDEFINED;
-		final var dstLayout = EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
-		final var aspectMask = ImageUtil.getAspectMask(dstLayout, depthFormat);
+		final var dstLayout = depthAttachment.getInitialLayout();
 
 		barrierInfo.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
 		barrierInfo.oldLayout(srcLayout.getValue());
@@ -99,7 +102,7 @@ public class DepthAttachmentAdapter extends Notifier implements IDepthAttachment
 		barrierInfo.subresourceRange().levelCount(1);
 		barrierInfo.subresourceRange().baseArrayLayer(0);
 		barrierInfo.subresourceRange().layerCount(1);
-		barrierInfo.subresourceRange().aspectMask(aspectMask);
+		barrierInfo.subresourceRange().aspectMask(VK_IMAGE_ASPECT_DEPTH_BIT);
 		barrierInfo.dstAccessMask(EAccess.DEPTH_STENCIL_ATTACHMENT_READ_BIT_VALUE | EAccess.DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_VALUE);
 
 		context.execute((context2, commandBuffer) -> vkCmdPipelineBarrier(commandBuffer.getVkCommandBuffer(),

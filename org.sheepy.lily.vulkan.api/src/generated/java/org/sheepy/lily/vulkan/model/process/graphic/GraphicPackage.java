@@ -695,13 +695,22 @@ public interface GraphicPackage extends EPackage
 	int DEPTH_ATTACHMENT__CLEAR = EXTRA_ATTACHMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_ATTACHMENT__USAGES = EXTRA_ATTACHMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Depth Attachment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPTH_ATTACHMENT_FEATURE_COUNT = EXTRA_ATTACHMENT_FEATURE_COUNT + 1;
+	int DEPTH_ATTACHMENT_FEATURE_COUNT = EXTRA_ATTACHMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Depth Attachment</em>' class.
@@ -2879,6 +2888,17 @@ public interface GraphicPackage extends EPackage
 	EAttribute getDepthAttachment_Clear();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment#getUsages <em>Usages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Usages</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment#getUsages()
+	 * @see #getDepthAttachment()
+	 * @generated
+	 */
+	EAttribute getDepthAttachment_Usages();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment <em>Color Attachment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4155,6 +4175,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute DEPTH_ATTACHMENT__CLEAR = eINSTANCE.getDepthAttachment_Clear();
+
+		/**
+		 * The meta object literal for the '<em><b>Usages</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPTH_ATTACHMENT__USAGES = eINSTANCE.getDepthAttachment_Usages();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorAttachmentImpl <em>Color Attachment</em>}' class.

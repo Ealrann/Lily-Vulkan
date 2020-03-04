@@ -2,13 +2,17 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,6 +23,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DepthAttachmentImpl#isClear <em>Clear</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DepthAttachmentImpl#getUsages <em>Usages</em>}</li>
  * </ul>
  *
  * @generated
@@ -44,6 +49,16 @@ public class DepthAttachmentImpl extends ExtraAttachmentImpl implements DepthAtt
 	 * @ordered
 	 */
 	protected boolean clear = CLEAR_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getUsages() <em>Usages</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUsages()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EImageUsage> usages;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -97,12 +112,29 @@ public class DepthAttachmentImpl extends ExtraAttachmentImpl implements DepthAtt
 	 * @generated
 	 */
 	@Override
+	public EList<EImageUsage> getUsages()
+	{
+		if (usages == null)
+		{
+			usages = new EDataTypeUniqueEList<EImageUsage>(EImageUsage.class, this, GraphicPackage.DEPTH_ATTACHMENT__USAGES);
+		}
+		return usages;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
 		{
 			case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
 				return isClear();
+			case GraphicPackage.DEPTH_ATTACHMENT__USAGES:
+				return getUsages();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -112,6 +144,7 @@ public class DepthAttachmentImpl extends ExtraAttachmentImpl implements DepthAtt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -119,6 +152,10 @@ public class DepthAttachmentImpl extends ExtraAttachmentImpl implements DepthAtt
 		{
 			case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
 				setClear((Boolean)newValue);
+				return;
+			case GraphicPackage.DEPTH_ATTACHMENT__USAGES:
+				getUsages().clear();
+				getUsages().addAll((Collection<? extends EImageUsage>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -137,6 +174,9 @@ public class DepthAttachmentImpl extends ExtraAttachmentImpl implements DepthAtt
 			case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
 				setClear(CLEAR_EDEFAULT);
 				return;
+			case GraphicPackage.DEPTH_ATTACHMENT__USAGES:
+				getUsages().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -153,6 +193,8 @@ public class DepthAttachmentImpl extends ExtraAttachmentImpl implements DepthAtt
 		{
 			case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
 				return clear != CLEAR_EDEFAULT;
+			case GraphicPackage.DEPTH_ATTACHMENT__USAGES:
+				return usages != null && !usages.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -170,6 +212,8 @@ public class DepthAttachmentImpl extends ExtraAttachmentImpl implements DepthAtt
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (clear: ");
 		result.append(clear);
+		result.append(", usages: ");
+		result.append(usages);
 		result.append(')');
 		return result.toString();
 	}

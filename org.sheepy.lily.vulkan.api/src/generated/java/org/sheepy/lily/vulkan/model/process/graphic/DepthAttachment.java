@@ -2,6 +2,9 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic;
 
+import org.eclipse.emf.common.util.EList;
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Depth Attachment</b></em>'.
@@ -12,6 +15,7 @@ package org.sheepy.lily.vulkan.model.process.graphic;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment#isClear <em>Clear</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment#getUsages <em>Usages</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getDepthAttachment()
@@ -42,5 +46,19 @@ public interface DepthAttachment extends ExtraAttachment
 	 * @generated
 	 */
 	void setClear(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Usages</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EImageUsage}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageUsage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Usages</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EImageUsage
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getDepthAttachment_Usages()
+	 * @model
+	 * @generated
+	 */
+	EList<EImageUsage> getUsages();
 
 } // DepthAttachment

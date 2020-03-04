@@ -648,6 +648,17 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getDepthAttachment_Usages()
+	{
+		return (EAttribute)depthAttachmentEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getColorAttachment()
 	{
 		return colorAttachmentEClass;
@@ -1799,6 +1810,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		depthAttachmentEClass = createEClass(DEPTH_ATTACHMENT);
 		createEAttribute(depthAttachmentEClass, DEPTH_ATTACHMENT__CLEAR);
+		createEAttribute(depthAttachmentEClass, DEPTH_ATTACHMENT__USAGES);
 
 		colorAttachmentEClass = createEClass(COLOR_ATTACHMENT);
 		createEAttribute(colorAttachmentEClass, COLOR_ATTACHMENT__CLEAR_VALUE);
@@ -2031,6 +2043,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		initEClass(depthAttachmentEClass, DepthAttachment.class, "DepthAttachment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDepthAttachment_Clear(), ecorePackage.getEBoolean(), "clear", "true", 0, 1, DepthAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDepthAttachment_Usages(), theEnumerationPackage.getEImageUsage(), "usages", null, 0, -1, DepthAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(colorAttachmentEClass, ColorAttachment.class, "ColorAttachment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getColorAttachment_ClearValue(), theTypesPackage.getColor4f(), "clearValue", "0;0;0;0", 0, 1, ColorAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
