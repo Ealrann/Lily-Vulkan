@@ -76,7 +76,7 @@ public interface SpriteStructure extends Structure
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sprites</em>' containment reference list.
 	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage#getSpriteStructure_Sprites()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Sprite> getSprites();

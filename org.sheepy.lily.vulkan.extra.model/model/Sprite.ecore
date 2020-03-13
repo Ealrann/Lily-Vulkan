@@ -21,8 +21,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sprites" lowerBound="1"
-        upperBound="-1" eType="#//Sprite" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sprites" upperBound="-1"
+        eType="#//Sprite" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SpriteType">
     <eLiterals name="Floor"/>
