@@ -23,7 +23,7 @@ import static org.lwjgl.nuklear.Nuklear.*;
 
 @Statefull
 @Adapter(scope = Panel.class)
-public class PanelAdapter extends Notifier implements IPanelAdapter, ITextWidgetAdapter
+public class PanelAdapter extends Notifier<ITextWidgetAdapter.Features> implements IPanelAdapter, ITextWidgetAdapter
 {
 	private final IWindowListener.ISizeListener listener = this::updateLocation;
 	private final Panel panel;
@@ -110,11 +110,7 @@ public class PanelAdapter extends Notifier implements IPanelAdapter, ITextWidget
 		final int x = UIUtil.computeXRelative(window.getSize(), panel);
 		final int y = UIUtil.computeYRelative(window.getSize(), panel);
 
-		final var backgroundColor = context.nkContext.style()
-													 .window()
-													 .fixed_background()
-													 .data()
-													 .color();
+		final var backgroundColor = context.nkContext.style().window().fixed_background().data().color();
 		backgroundColor.r((byte) panel.getBackgroundColor().x());
 		backgroundColor.g((byte) panel.getBackgroundColor().y());
 		backgroundColor.b((byte) panel.getBackgroundColor().z());
@@ -143,11 +139,14 @@ public class PanelAdapter extends Notifier implements IPanelAdapter, ITextWidget
 				final var nkImage = NkImage.callocStack(stack);
 				nk_image_ptr(imageAdapter.getViewPtr(), nkImage);
 				final var canvas = nk_window_get_canvas(nkContext);
-				final NkColor color = NkColor.callocStack(stack);
-				color.set((byte) 255, (byte) 255, (byte) 255, (byte) 255);
-				final var region = NkRect.mallocStack(stack);
-				nk_window_get_content_region(nkContext, region);
-				nk_draw_image(canvas, region, nkImage, color);
+				if (canvas != null)
+				{
+					final NkColor color = NkColor.callocStack(stack);
+					color.set((byte) 255, (byte) 255, (byte) 255, (byte) 255);
+					final var region = NkRect.mallocStack(stack);
+					nk_window_get_content_region(nkContext, region);
+					nk_draw_image(canvas, region, nkImage, color);
+				}
 			}
 
 			final var controls = panel.getControls();

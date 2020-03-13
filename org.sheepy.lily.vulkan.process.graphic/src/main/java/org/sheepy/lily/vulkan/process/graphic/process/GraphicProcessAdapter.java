@@ -8,7 +8,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.IScenePart;
@@ -31,6 +30,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 @Statefull
 @Adapter(scope = GraphicProcess.class)
@@ -83,7 +83,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 															  ECommandStage.POST_RENDER);
 
 	private final Map<IScenePart, Subpass> subpassMap = new HashMap<>();
-	private final INotificationListener sceneListener = this::sceneChanged;
+	private final Consumer<Notification> sceneListener = this::sceneChanged;
 	private final ImageAcquirer acquirer = new ImageAcquirer();
 
 	public GraphicProcessAdapter(GraphicProcess process)
@@ -104,7 +104,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	private void load()
 	{
 		final var application = ModelUtil.getApplication(process);
-		application.getScene().addListener(sceneListener, ApplicationPackage.SCENE__PARTS);
+		application.getScene().listen(sceneListener, ApplicationPackage.SCENE__PARTS);
 		final var parts = application.getScene().getParts();
 		for (int i = 0; i < parts.size(); i++)
 		{
@@ -117,7 +117,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	private void dispose()
 	{
 		final var application = ModelUtil.getApplication(process);
-		application.getScene().removeListener(sceneListener, ApplicationPackage.SCENE__PARTS);
+		application.getScene().sulk(sceneListener, ApplicationPackage.SCENE__PARTS);
 	}
 
 	@Override

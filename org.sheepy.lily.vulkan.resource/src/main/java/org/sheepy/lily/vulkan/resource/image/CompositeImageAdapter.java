@@ -13,7 +13,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.adapter.util.ModelDependencyInjector;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.notification.Notifier;
-import org.sheepy.lily.core.api.notification.impl.LongNotification;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
 import org.sheepy.lily.vulkan.core.execution.ICommandBuffer;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
@@ -35,8 +34,8 @@ import static org.lwjgl.vulkan.VK10.*;
 
 @Statefull
 @Adapter(scope = CompositeImage.class)
-public final class CompositeImageAdapter extends Notifier implements IVkImageAdapter,
-																	 IAllocableAdapter<InternalExecutionContext>
+public final class CompositeImageAdapter extends Notifier<IVkImageAdapter.Features> implements IVkImageAdapter,
+																							   IAllocableAdapter<InternalExecutionContext>
 {
 	private final CompositeImage image;
 	private final ModelDependencyInjector dependencyInjector;
@@ -85,8 +84,11 @@ public final class CompositeImageAdapter extends Notifier implements IVkImageAda
 
 		context.execute(this::assembleImage);
 
-		fireNotification(new LongNotification(this, Features.Image, 0, imageBackend.getPtr()));
-		fireNotification(new LongNotification(this, Features.View, 0, imageView.getPtr()));
+		final long imagePtr = imageBackend.getPtr();
+		final long viewPtr = imageView.getPtr();
+
+		notify(Features.Image, imagePtr);
+		notify(Features.View, viewPtr);
 	}
 
 	private void assembleImage(InternalExecutionContext context, ICommandBuffer<?> commandBuffer)

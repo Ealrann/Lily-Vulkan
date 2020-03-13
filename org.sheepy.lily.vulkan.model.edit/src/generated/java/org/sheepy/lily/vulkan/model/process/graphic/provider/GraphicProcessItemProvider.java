@@ -8,10 +8,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -51,32 +48,8 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addFieldOfViewYPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Field Of View Y feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFieldOfViewYPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphicProcess_fieldOfViewY_feature"),
-				 getString("_UI_GraphicProcess_fieldOfViewY_description"),
-				 GraphicPackage.Literals.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -155,9 +128,6 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 
 		switch (notification.getFeatureID(GraphicProcess.class))
 		{
-			case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
 			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:

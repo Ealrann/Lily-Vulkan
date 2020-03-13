@@ -1,11 +1,5 @@
 package org.sheepy.lily.vulkan.resource.font.util;
 
-import static org.lwjgl.stb.STBTruetype.stbtt_GetPackedQuad;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import org.lwjgl.stb.STBTTAlignedQuad;
 import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
@@ -13,12 +7,17 @@ import org.lwjgl.stb.STBTTPackedchar.Buffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.Struct;
 import org.sheepy.lily.core.api.notification.Notifier;
-import org.sheepy.lily.core.api.notification.impl.ObjectNotification;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.vulkan.core.resource.font.IFontAllocator;
 import org.sheepy.lily.vulkan.core.resource.font.IFontTableInfo;
 
-public final class FontAllocator extends Notifier implements IFontAllocator
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import static org.lwjgl.stb.STBTruetype.stbtt_GetPackedQuad;
+
+public final class FontAllocator extends Notifier<IFontAllocator.Features> implements IFontAllocator
 {
 	private final List<FontTableAllocator> tableAllocators = new ArrayList<>();
 	private final float[] X = new float[1];
@@ -67,11 +66,7 @@ public final class FontAllocator extends Notifier implements IFontAllocator
 		}
 		charCount = offset;
 
-		final var notification = new ObjectNotification(this,
-														Features.loadedCodepoints,
-														null,
-														null);
-		fireNotification(notification);
+		notify(Features.codepointsLoaded);
 	}
 
 	public void clear()

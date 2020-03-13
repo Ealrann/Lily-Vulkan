@@ -1,11 +1,9 @@
 package org.sheepy.lily.vulkan.nuklear.resource;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.nuklear.NkUserFont;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.*;
 import org.sheepy.lily.core.api.adapter.util.AdapterDeployer;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.FontPkg;
@@ -22,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 @Statefull
 @Adapter(scope = NuklearFont.class, lazy = false)
@@ -37,7 +36,7 @@ public class NuklearFontAdapter implements IAllocableAdapter<InternalExecutionCo
 			ITextWidgetAdapter.class,
 			this::newTextWidgetAdapter,
 			this::oldTextWidgetAdapter);
-	private final INotificationListener textListener = this::textChanged;
+	private final Consumer<String> textListener = this::textChanged;
 	private final List<ITextWidgetAdapter> textAdapters = new ArrayList<>();
 
 	private List<NkFontLoader> fontLoaders;
@@ -57,18 +56,18 @@ public class NuklearFontAdapter implements IAllocableAdapter<InternalExecutionCo
 
 	private void newTextWidgetAdapter(ITextWidgetAdapter newAdapter)
 	{
-		newAdapter.addListener(textListener, ITextWidgetAdapter.Features.Text.ordinal());
+		newAdapter.listen(textListener, ITextWidgetAdapter.Features.Text);
 		textAdapters.add(newAdapter);
 		dirty = true;
 	}
 
 	private void oldTextWidgetAdapter(ITextWidgetAdapter oldAdapter)
 	{
-		oldAdapter.removeListener(textListener, ITextWidgetAdapter.Features.Text.ordinal());
+		oldAdapter.sulk(textListener, ITextWidgetAdapter.Features.Text);
 		textAdapters.remove(oldAdapter);
 	}
 
-	private void textChanged(Notification notification)
+	private void textChanged(String text)
 	{
 		dirty = true;
 	}

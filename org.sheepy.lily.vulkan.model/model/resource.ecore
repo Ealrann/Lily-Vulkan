@@ -14,8 +14,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" unique="false" eType="#//ByteBuffer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenericConstantBuffer" eSuperTypes="#//ConstantBuffer">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedVariables" upperBound="-1"
         eType="ecore:EClass ../../org.sheepy.lily.core.model/model/variable.ecore#//IModelVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="VariablePkg" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/variable.ecore#//ModelVariablePkg"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IBuffer" abstract="true" interface="true"
       eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IResource"/>

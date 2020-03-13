@@ -1,16 +1,17 @@
 package org.sheepy.lily.vulkan.core.resource.font;
 
-import java.util.List;
-
 import org.lwjgl.system.Struct;
+import org.sheepy.lily.core.api.notification.IFeature;
 import org.sheepy.lily.core.api.notification.INotifier;
 import org.sheepy.lily.core.model.ui.Font;
 
-public interface IFontAllocator extends INotifier
+import java.util.List;
+
+public interface IFontAllocator extends INotifier<IFontAllocator.Features>
 {
-	enum Features
+	enum Features implements IFeature<Runnable, Features>
 	{
-		loadedCodepoints
+		codepointsLoaded
 	}
 
 	Font getFont();

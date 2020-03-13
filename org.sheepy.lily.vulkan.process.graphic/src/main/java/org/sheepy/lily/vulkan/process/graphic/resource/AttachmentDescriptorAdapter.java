@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.process.graphic.resource;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.core.resource.IDescriptorAdapter;
@@ -11,13 +10,15 @@ import org.sheepy.lily.vulkan.core.resource.image.VkImageDescriptor;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescriptor;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
+import java.util.function.LongConsumer;
+
 @Statefull
 @Adapter(scope = AttachmentDescriptor.class)
 public final class AttachmentDescriptorAdapter implements IDescriptorAdapter
 {
 	private final AttachmentDescriptor descriptor;
 	private final VkImageDescriptor vkDescriptor;
-	private final INotificationListener viewListener = n -> updateView(n.getNewLongValue());
+	private final LongConsumer viewListener = this::updateView;
 
 	private AttachmentDescriptorAdapter(AttachmentDescriptor descriptor)
 	{
@@ -35,7 +36,7 @@ public final class AttachmentDescriptorAdapter implements IDescriptorAdapter
 		final var attachment = descriptor.getAttachment();
 		final var attachmentAdapter = attachment.adaptNotNull(IExtraAttachmentAdapter.class);
 		updateView(attachmentAdapter.getViewPtr());
-		attachmentAdapter.addListener(viewListener, IExtraAttachmentAdapter.Features.View.ordinal());
+		attachmentAdapter.listen(viewListener, IExtraAttachmentAdapter.Features.View);
 	}
 
 	@Override
@@ -43,7 +44,7 @@ public final class AttachmentDescriptorAdapter implements IDescriptorAdapter
 	{
 		final var attachment = descriptor.getAttachment();
 		final var attachmentAdapter = attachment.adaptNotNull(IExtraAttachmentAdapter.class);
-		attachmentAdapter.removeListener(viewListener, IExtraAttachmentAdapter.Features.View.ordinal());
+		attachmentAdapter.sulk(viewListener, IExtraAttachmentAdapter.Features.View);
 	}
 
 	public void updateView(long viewPtr)

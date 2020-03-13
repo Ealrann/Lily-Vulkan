@@ -11,7 +11,6 @@ import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.core.model.resource.IResource;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
-
 import org.sheepy.lily.vulkan.model.IDescriptor;
 
 import org.sheepy.lily.vulkan.model.resource.*;

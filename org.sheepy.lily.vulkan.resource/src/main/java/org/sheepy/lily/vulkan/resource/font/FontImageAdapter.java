@@ -9,10 +9,10 @@ import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
-import org.sheepy.lily.core.api.notification.impl.LongNotification;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter.IMemoryTicket.EReservationStatus;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.font.IFontImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
@@ -40,8 +40,8 @@ import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
 @Statefull
 @Adapter(scope = FontImage.class)
-public final class FontImageAdapter extends Notifier implements IFontImageAdapter,
-																IAllocableAdapter<InternalExecutionContext>
+public final class FontImageAdapter extends Notifier<IVkImageAdapter.Features> implements IFontImageAdapter,
+																						  IAllocableAdapter<InternalExecutionContext>
 {
 	private static final int BASE_FONTIMAGE_WIDTH = 1024;
 	private static final int BASE_FONTIMAGE_HEIGHT = 1024;
@@ -230,19 +230,16 @@ public final class FontImageAdapter extends Notifier implements IFontImageAdapte
 
 	private void nextInstance()
 	{
-		final var oldImage = images[instance];
-		final var oldView = views[instance];
-
 		instance = (instance + 1) % instanceCount;
 
 		final var newImage = images[instance];
 		final var newView = views[instance];
 
-		final var imageNotification = new LongNotification(this, Features.Image, oldImage.getPtr(), newImage.getPtr());
-		final var viewNotification = new LongNotification(this, Features.View, oldView.getPtr(), newView.getPtr());
+		final long imagePtr = newImage.getPtr();
+		final long viewPtr = newView.getPtr();
 
-		fireNotification(imageNotification);
-		fireNotification(viewNotification);
+		notify(Features.Image, imagePtr);
+		notify(Features.View, viewPtr);
 	}
 
 	@Override

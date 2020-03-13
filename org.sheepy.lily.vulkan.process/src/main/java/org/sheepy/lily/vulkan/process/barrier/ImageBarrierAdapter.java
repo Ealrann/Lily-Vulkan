@@ -1,8 +1,6 @@
 package org.sheepy.lily.vulkan.process.barrier;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.annotation.*;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.barrier.IImageBarrierAdapter;
 import org.sheepy.lily.vulkan.core.barrier.VkImageBarrier;
@@ -10,11 +8,13 @@ import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
+import java.util.function.LongConsumer;
+
 @Statefull
 @Adapter(scope = ImageBarrier.class)
 public class ImageBarrierAdapter implements IImageBarrierAdapter
 {
-	private final INotificationListener imageListener = this::imageChanged;
+	private final LongConsumer imageListener = this::imageChanged;
 	private final ImageBarrier imageBarrier;
 
 	private VkImageBarrier vkBarrier;
@@ -26,7 +26,7 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter
 	}
 
 	@NotifyChanged(featureIds = VulkanResourcePackage.IMAGE_BARRIER__IMAGE)
-	private void imageChanged(Notification notification)
+	private void imageChanged(Long ptr)
 	{
 		changed = true;
 	}
@@ -35,7 +35,7 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter
 	private void load()
 	{
 		final var adapter = imageBarrier.getImage().adapt(IVkImageAdapter.class);
-		adapter.addListener(imageListener, IVkImageAdapter.Features.Image.ordinal());
+		adapter.listen(imageListener, IVkImageAdapter.Features.Image);
 
 		final var image = imageBarrier.getImage();
 		final var imageAdapter = image.adapt(IVkImageAdapter.class);
@@ -59,7 +59,7 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter
 	private void dispose()
 	{
 		final var adapter = imageBarrier.getImage().adapt(IVkImageAdapter.class);
-		adapter.removeListener(imageListener, IVkImageAdapter.Features.Image.ordinal());
+		adapter.sulk(imageListener, IVkImageAdapter.Features.Image);
 	}
 
 	@Override

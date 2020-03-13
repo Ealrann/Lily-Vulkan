@@ -1,17 +1,19 @@
 package org.sheepy.lily.game.api.resource.buffer;
 
-import java.nio.ByteBuffer;
-
 import org.sheepy.lily.core.api.adapter.INotifierAdapter;
+import org.sheepy.lily.core.api.notification.IFeature;
 
-public interface IBufferAdapter extends INotifierAdapter
+import java.nio.ByteBuffer;
+import java.util.function.LongConsumer;
+
+public interface IBufferAdapter extends INotifierAdapter<IBufferAdapter.Features>
 {
-	static enum Features
+	enum Features implements IFeature<LongConsumer, Features>
 	{
 		Size,
 		Offset,
 		Ptr
-	};
+	}
 
 	long getPtr();
 	long getMemoryPtr();
@@ -19,23 +21,22 @@ public interface IBufferAdapter extends INotifierAdapter
 	long getBindSize();
 	long getBindOffset();
 
-	public long mapMemory();
-	public void unmapMemory();
+	long mapMemory();
+	void unmapMemory();
 
 	/**
 	 * Flush a memory range of the buffer to make it visible to the device
 	 *
-	 * @note Only required for host visible, non-coherent memory
-	 *
+	 * @apiNote Only required for host visible, non-coherent memory
 	 */
-	public void flush();
+	void flush();
 
 	/**
 	 * Invalidate a memory range of the buffer to make it visible to the host
 	 *
-	 * @note Only required for host visible, non-coherent memory
+	 * @apiNote Only required for host visible, non-coherent memory
 	 */
-	public void invalidate();
+	void invalidate();
 
 	@Deprecated
 	void pushData(ByteBuffer data);

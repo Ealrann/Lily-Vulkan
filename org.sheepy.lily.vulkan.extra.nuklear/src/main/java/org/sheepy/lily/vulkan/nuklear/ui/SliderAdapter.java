@@ -1,11 +1,9 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
 import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.core.model.ui.Slider;
@@ -13,6 +11,7 @@ import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
 import java.nio.IntBuffer;
+import java.util.function.Consumer;
 
 import static org.lwjgl.nuklear.Nuklear.nk_slider_int;
 
@@ -21,7 +20,7 @@ import static org.lwjgl.nuklear.Nuklear.nk_slider_int;
 public class SliderAdapter implements IUIElementAdapter
 {
 	private final IntBuffer buffer;
-	private final INotificationListener listener = this::valueChanged;
+	private final Consumer<Object> listener = this::valueChanged;
 	private final IVariableResolverAdapter<IVariableResolver> resolverAdapter;
 	private final IVariableResolver variableResolver;
 
@@ -37,19 +36,19 @@ public class SliderAdapter implements IUIElementAdapter
 		final var val = (Integer) resolverAdapter.getValue(variableResolver);
 		updateValue(val);
 
-		resolverAdapter.addListener(listener);
+		resolverAdapter.listen(listener);
 	}
 
 	@Dispose
 	public void dispose()
 	{
-		resolverAdapter.removeListener(listener);
+		resolverAdapter.sulk(listener);
 		MemoryUtil.memFree(buffer);
 	}
 
-	private void valueChanged(Notification notification)
+	private void valueChanged(Object value)
 	{
-		updateValue(notification.getNewIntValue());
+		updateValue((Integer) value);
 	}
 
 	private void updateValue(int val)
@@ -68,11 +67,7 @@ public class SliderAdapter implements IUIElementAdapter
 		dirty = false;
 
 		context.setFont(slider.getFont());
-		nk_slider_int(context.nkContext,
-					  slider.getMinValue(),
-					  buffer,
-					  slider.getMaxValue(),
-					  slider.getStep());
+		nk_slider_int(context.nkContext, slider.getMinValue(), buffer, slider.getMaxValue(), slider.getStep());
 
 		final Integer val = (Integer) resolverAdapter.getValue(variableResolver);
 		if (val != buffer.get(0))

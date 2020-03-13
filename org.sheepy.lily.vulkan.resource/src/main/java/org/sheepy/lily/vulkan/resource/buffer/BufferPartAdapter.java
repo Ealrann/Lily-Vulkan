@@ -4,7 +4,7 @@ import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
-import org.sheepy.lily.core.api.notification.impl.LongNotification;
+import org.sheepy.lily.game.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter.IMemoryTicket;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter.IMemoryTicket.EReservationStatus;
@@ -24,8 +24,8 @@ import java.util.function.Consumer;
 
 @Statefull
 @Adapter(scope = BufferPart.class)
-public final class BufferPartAdapter extends Notifier implements IBufferPartAdapter,
-																 IAllocableAdapter<InternalExecutionContext>
+public final class BufferPartAdapter extends Notifier<IBufferAdapter.Features> implements IBufferPartAdapter,
+																						  IAllocableAdapter<InternalExecutionContext>
 {
 	public final BufferDataProvider dataProvider;
 
@@ -98,11 +98,11 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 
 		if (oldSize != this.instanceSize)
 		{
-			fireNotification(new LongNotification(this, Features.Size, oldSize, this.instanceSize));
+			notify(Features.Size, this.instanceSize);
 		}
 		if (oldOffset != this.offset)
 		{
-			fireNotification(new LongNotification(this, Features.Offset, oldOffset, this.offset));
+			notify(Features.Offset, this.offset);
 		}
 	}
 
@@ -124,7 +124,7 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 
 		if (oldBufferPtr != bufferPtr)
 		{
-			fireNotification(new LongNotification(this, Features.Ptr, oldBufferPtr, this.bufferPtr));
+			notify(Features.Ptr, this.bufferPtr);
 		}
 	}
 
@@ -192,21 +192,16 @@ public final class BufferPartAdapter extends Notifier implements IBufferPartAdap
 
 	private void nextInstance()
 	{
-		final long oldOffset = getBindOffset();
-
 		instance = (instance + 1) % instanceCount;
-
-		final long newOffset = getBindOffset();
-
-		fireNotification(new LongNotification(this, Features.Offset, oldOffset, newOffset));
+		notify(Features.Offset, getBindOffset());
 	}
 
 	public void fetchDeviceData()
 	{
 		assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
 
-		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
-		final Consumer<IMemoryTicket> transferDone = ticket -> adapter.fetch(memTicket.toReadBuffer());
+		final Consumer<IMemoryTicket> transferDone = ticket -> dataProvider.adapt(IBufferDataProviderAdapter.class)
+																		   .fetch(memTicket.toReadBuffer());
 
 		final long instanceOffset = getInstanceOffset(instance);
 		final var stage = dataProvider.getStageBeforeFetch();

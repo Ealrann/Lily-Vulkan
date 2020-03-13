@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.demo.mesh;
 import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.demo.adapter.CameraConstantAdapter;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
-import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
@@ -86,7 +86,7 @@ public final class MeshSubpassBuilder
 		return depthAttachmentDescriptor;
 	}
 
-	private List<IPipeline> buildPipelines()
+	private List<AbstractPipeline> buildPipelines()
 	{
 		final var module = meshConfiguration.module;
 

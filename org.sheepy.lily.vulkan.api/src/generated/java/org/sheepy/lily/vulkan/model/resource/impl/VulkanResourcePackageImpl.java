@@ -500,9 +500,20 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EReference getGenericConstantBuffer_Variables()
+	public EReference getGenericConstantBuffer_ReferencedVariables()
 	{
 		return (EReference)genericConstantBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getGenericConstantBuffer_VariablePkg()
+	{
+		return (EReference)genericConstantBufferEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1415,7 +1426,8 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		createEAttribute(constantBufferEClass, CONSTANT_BUFFER__DATA);
 
 		genericConstantBufferEClass = createEClass(GENERIC_CONSTANT_BUFFER);
-		createEReference(genericConstantBufferEClass, GENERIC_CONSTANT_BUFFER__VARIABLES);
+		createEReference(genericConstantBufferEClass, GENERIC_CONSTANT_BUFFER__REFERENCED_VARIABLES);
+		createEReference(genericConstantBufferEClass, GENERIC_CONSTANT_BUFFER__VARIABLE_PKG);
 
 		iBufferEClass = createEClass(IBUFFER);
 
@@ -1604,7 +1616,8 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEAttribute(getConstantBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1, ConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(genericConstantBufferEClass, GenericConstantBuffer.class, "GenericConstantBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGenericConstantBuffer_Variables(), theVariablePackage.getIModelVariable(), null, "variables", null, 0, -1, GenericConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenericConstantBuffer_ReferencedVariables(), theVariablePackage.getIModelVariable(), null, "referencedVariables", null, 0, -1, GenericConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenericConstantBuffer_VariablePkg(), theVariablePackage.getModelVariablePkg(), null, "VariablePkg", null, 0, 1, GenericConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iBufferEClass, IBuffer.class, "IBuffer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

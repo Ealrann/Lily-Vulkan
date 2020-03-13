@@ -94,8 +94,8 @@ public final class ScreenEffectSubpassProvider implements IScenePart_SubpassProv
 		graphicPipeline.getShaders().remove(1);
 		graphicPipeline.getShaders().add(shader);
 
-		constantBuffer.getVariables().clear();
-		constantBuffer.getVariables().addAll(effect.getInputs());
+		constantBuffer.getReferencedVariables().clear();
+		constantBuffer.getReferencedVariables().addAll(effect.getInputs());
 	}
 
 	private void uninstallEffect()

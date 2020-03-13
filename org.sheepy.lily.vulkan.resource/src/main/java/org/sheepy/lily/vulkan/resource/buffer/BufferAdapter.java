@@ -20,7 +20,8 @@ import java.nio.ByteBuffer;
 
 @Statefull
 @Adapter(scope = Buffer.class)
-public final class BufferAdapter extends Notifier implements IBufferAdapter, IAllocableAdapter<InternalExecutionContext>
+public final class BufferAdapter extends Notifier<IBufferAdapter.Features> implements IBufferAdapter,
+																					  IAllocableAdapter<InternalExecutionContext>
 {
 	private final Buffer buffer;
 

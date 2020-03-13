@@ -1,16 +1,14 @@
 package org.sheepy.lily.vulkan.nuklear.font.util;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.nuklear.NkUserFontGlyph;
 import org.lwjgl.stb.STBTTAlignedQuad;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.core.resource.font.IFontAllocator;
 
 public class FontQueryData
 {
 	private final IFontAllocator fontAllocator;
 	private final float fontHeight;
-	private final INotificationListener reloadNotification = this::fontAllocatorReloaded;
+	private final Runnable reloadNotification = this::fontAllocatorReloaded;
 
 	private NkUserFontGlyph.Buffer patternGlyphs;
 
@@ -20,7 +18,7 @@ public class FontQueryData
 		this.fontHeight = fontHeight;
 	}
 
-	private void fontAllocatorReloaded(Notification notification)
+	private void fontAllocatorReloaded()
 	{
 		dispose();
 		load();
@@ -29,12 +27,12 @@ public class FontQueryData
 	public void allocate()
 	{
 		load();
-		fontAllocator.addListener(reloadNotification, IFontAllocator.Features.loadedCodepoints.ordinal());
+		fontAllocator.listen(reloadNotification, IFontAllocator.Features.codepointsLoaded);
 	}
 
 	public void free()
 	{
-		fontAllocator.removeListener(reloadNotification, IFontAllocator.Features.loadedCodepoints.ordinal());
+		fontAllocator.sulk(reloadNotification, IFontAllocator.Features.codepointsLoaded);
 		dispose();
 	}
 

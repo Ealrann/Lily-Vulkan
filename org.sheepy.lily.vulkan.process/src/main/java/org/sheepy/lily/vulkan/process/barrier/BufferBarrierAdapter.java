@@ -1,22 +1,22 @@
 package org.sheepy.lily.vulkan.process.barrier;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.barrier.IBufferBarrierAdapter;
 import org.sheepy.lily.vulkan.core.barrier.VkBufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 
+import java.util.function.LongConsumer;
+
 @Statefull
 @Adapter(scope = BufferBarrier.class)
 public class BufferBarrierAdapter implements IBufferBarrierAdapter
 {
-	private final INotificationListener bufferListener = this::bufferChanged;
+	private final LongConsumer bufferListener = this::bufferChanged;
 	private final VkBufferBarrier vkBarrier;
 	private final BufferBarrier barrier;
 
@@ -35,14 +35,14 @@ public class BufferBarrierAdapter implements IBufferBarrierAdapter
 	public void load(BufferBarrier barrier)
 	{
 		final var bufferAdapter = barrier.getBuffer().adaptNotNull(IBufferAdapter.class);
-		bufferAdapter.addListener(bufferListener, IBufferAdapter.Features.Ptr.ordinal());
+		bufferAdapter.listen(bufferListener, IBufferAdapter.Features.Ptr);
 	}
 
 	@Dispose
 	public void dispose(BufferBarrier barrier)
 	{
 		final var bufferAdapter = barrier.getBuffer().adaptNotNull(IBufferAdapter.class);
-		bufferAdapter.removeListener(bufferListener, IBufferAdapter.Features.Ptr.ordinal());
+		bufferAdapter.sulk(bufferListener, IBufferAdapter.Features.Ptr);
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class BufferBarrierAdapter implements IBufferBarrierAdapter
 		// + adapter.getBindOffset());
 	}
 
-	private void bufferChanged(Notification notification)
+	private void bufferChanged(Long ptr)
 	{
 		updateBarrier();
 	}

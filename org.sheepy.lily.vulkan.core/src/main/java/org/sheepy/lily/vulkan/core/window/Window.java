@@ -7,7 +7,6 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.vulkan.VkInstance;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.Scene;
 import org.sheepy.lily.game.api.window.IWindow;
@@ -16,6 +15,7 @@ import org.sheepy.lily.vulkan.core.util.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.glfw.GLFWVulkan.glfwCreateWindowSurface;
@@ -30,8 +30,8 @@ public class Window implements IWindow
 	private final List<IWindowListener.IOpenListener> openListeners = new ArrayList<>();
 	private final List<IWindowListener.ISurfaceDeprecatedListener> surfaceListeners = new ArrayList<>();
 	private final Scene scene;
-	private final INotificationListener fullscreenListener = this::requestFullscreen;
-	private final INotificationListener sizeListener = this::resize;
+	private final Consumer<Notification> fullscreenListener = this::requestFullscreen;
+	private final Consumer<Notification> sizeListener = this::resize;
 
 	private long id;
 
@@ -102,8 +102,8 @@ public class Window implements IWindow
 
 		opened = true;
 
-		scene.addListener(fullscreenListener, ApplicationPackage.SCENE__FULLSCREEN);
-		scene.addListener(sizeListener, ApplicationPackage.SCENE__SIZE);
+		scene.listen(fullscreenListener, ApplicationPackage.SCENE__FULLSCREEN);
+		scene.listen(sizeListener, ApplicationPackage.SCENE__SIZE);
 
 		fireOpenWindow();
 		fireResizeEvent();
@@ -130,8 +130,8 @@ public class Window implements IWindow
 		glfwSetWindowSizeCallback(id, null);
 		callback.free();
 		glfwDestroyWindow(id);
-		scene.removeListener(fullscreenListener, ApplicationPackage.SCENE__FULLSCREEN);
-		scene.removeListener(sizeListener, ApplicationPackage.SCENE__SIZE);
+		scene.sulk(fullscreenListener, ApplicationPackage.SCENE__FULLSCREEN);
+		scene.sulk(sizeListener, ApplicationPackage.SCENE__SIZE);
 	}
 
 	public void destroy()

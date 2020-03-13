@@ -14,6 +14,7 @@ import org.sheepy.lily.core.model.application.IEngine;
 import org.sheepy.lily.core.model.cadence.ICadenceTask;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
+import org.sheepy.lily.core.model.variable.IModelVariable;
 import org.sheepy.lily.vulkan.model.*;
 
 /**
@@ -119,6 +120,11 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 				return createIDescriptorAdapter();
 			}
 			@Override
+			public Adapter caseMouseLocation(MouseLocation object)
+			{
+				return createMouseLocationAdapter();
+			}
+			@Override
 			public Adapter caseIEngine(IEngine object)
 			{
 				return createIEngineAdapter();
@@ -132,6 +138,11 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseICadenceTask(ICadenceTask object)
 			{
 				return createICadenceTaskAdapter();
+			}
+			@Override
+			public Adapter caseIModelVariable(IModelVariable object)
+			{
+				return createIModelVariableAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -275,6 +286,21 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.MouseLocation <em>Mouse Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.MouseLocation
+	 * @generated
+	 */
+	public Adapter createMouseLocationAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.application.IEngine <em>IEngine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -315,6 +341,21 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createICadenceTaskAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.variable.IModelVariable <em>IModel Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.core.model.variable.IModelVariable
+	 * @generated
+	 */
+	public Adapter createIModelVariableAdapter()
 	{
 		return null;
 	}

@@ -11,6 +11,7 @@ import org.sheepy.lily.core.model.application.ApplicationPackage;
 
 import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.core.model.variable.VariablePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -458,6 +459,52 @@ public interface VulkanPackage extends EPackage
 	int IDESCRIPTOR_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.impl.MouseLocationImpl <em>Mouse Location</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.impl.MouseLocationImpl
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getMouseLocation()
+	 * @generated
+	 */
+	int MOUSE_LOCATION = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_LOCATION__NAME = VariablePackage.IMODEL_VARIABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Vulkan Engine</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_LOCATION__VULKAN_ENGINE = VariablePackage.IMODEL_VARIABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Mouse Location</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_LOCATION_FEATURE_COUNT = VariablePackage.IMODEL_VARIABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Mouse Location</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_LOCATION_OPERATION_COUNT = VariablePackage.IMODEL_VARIABLE_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.VulkanEngine <em>Engine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -692,6 +739,27 @@ public interface VulkanPackage extends EPackage
 	EAttribute getIDescriptor_ShaderStages();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.MouseLocation <em>Mouse Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mouse Location</em>'.
+	 * @see org.sheepy.lily.vulkan.model.MouseLocation
+	 * @generated
+	 */
+	EClass getMouseLocation();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.MouseLocation#getVulkanEngine <em>Vulkan Engine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Vulkan Engine</em>'.
+	 * @see org.sheepy.lily.vulkan.model.MouseLocation#getVulkanEngine()
+	 * @see #getMouseLocation()
+	 * @generated
+	 */
+	EReference getMouseLocation_VulkanEngine();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -906,6 +974,24 @@ public interface VulkanPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute IDESCRIPTOR__SHADER_STAGES = eINSTANCE.getIDescriptor_ShaderStages();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.MouseLocationImpl <em>Mouse Location</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.impl.MouseLocationImpl
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getMouseLocation()
+		 * @generated
+		 */
+		EClass MOUSE_LOCATION = eINSTANCE.getMouseLocation();
+
+		/**
+		 * The meta object literal for the '<em><b>Vulkan Engine</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MOUSE_LOCATION__VULKAN_ENGINE = eINSTANCE.getMouseLocation_VulkanEngine();
 
 	}
 

@@ -1,14 +1,11 @@
 package org.sheepy.lily.vulkan.process.pipeline.task;
 
-import static org.lwjgl.vulkan.VK10.vkCmdCopyBuffer;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.vulkan.VkBufferCopy;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
@@ -17,17 +14,16 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
+import java.util.EnumSet;
+import java.util.function.LongConsumer;
+
+import static org.lwjgl.vulkan.VK10.vkCmdCopyBuffer;
+
 @Statefull
 @Adapter(scope = CopyBufferTask.class)
 public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBufferTask>
 {
-	private static final int[] FEATURES = new int[] {
-			IBufferAdapter.Features.Size.ordinal(),
-			IBufferAdapter.Features.Offset.ordinal(),
-			IBufferAdapter.Features.Ptr.ordinal()
-	};
-
-	private final INotificationListener bufferChanged = n -> dirty = true;
+	private final LongConsumer bufferChanged = n -> dirty = true;
 
 	private final VkBufferCopy.Buffer copyInfo;
 	private final CopyBufferTask task;
@@ -48,8 +44,8 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 		dstBuffer = task.getDstBuffer();
 		srcAdapter = srcBuffer.adapt(IBufferAdapter.class);
 		dstAdapter = dstBuffer.adapt(IBufferAdapter.class);
-		srcAdapter.addListener(bufferChanged, FEATURES);
-		dstAdapter.addListener(bufferChanged, FEATURES);
+		listenAdapter(srcAdapter);
+		listenAdapter(dstAdapter);
 	}
 
 	@NotifyChanged(featureIds = ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER)
@@ -69,17 +65,17 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 	private IBufferAdapter reinstallListener(IBuffer bufferRef, IBufferAdapter oldAdapter)
 	{
 		dirty = true;
-		oldAdapter.removeListener(bufferChanged, FEATURES);
+		sulkAdapter(oldAdapter);
 		final var res = bufferRef.adapt(IBufferAdapter.class);
-		res.addListener(bufferChanged, FEATURES);
+		listenAdapter(res);
 		return res;
 	}
 
 	@Dispose
 	public void dispose()
 	{
-		srcAdapter.removeListener(bufferChanged, FEATURES);
-		dstAdapter.removeListener(bufferChanged, FEATURES);
+		sulkAdapter(srcAdapter);
+		sulkAdapter(dstAdapter);
 		copyInfo.free();
 	}
 
@@ -118,13 +114,27 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 		final var commandBuffer = ((RecordContext) context).commandBuffer;
 		final var scrPtr = srcAdapter.getPtr();
 		final var dstPtr = dstAdapter.getPtr();
-
 		final var srcBufferAdapter = srcBuffer.adapt(IBufferAdapter.class);
+
 		srcBufferAdapter.flush();
-
 		vkCmdCopyBuffer(commandBuffer, scrPtr, dstPtr, copyInfo);
-
 		dirty = false;
+	}
+
+	private void listenAdapter(final IBufferAdapter adapter)
+	{
+		adapter.listen(bufferChanged,
+					   EnumSet.of(IBufferAdapter.Features.Size,
+								  IBufferAdapter.Features.Ptr,
+								  IBufferAdapter.Features.Offset));
+	}
+
+	private void sulkAdapter(final IBufferAdapter adapter)
+	{
+		adapter.sulk(bufferChanged,
+					 EnumSet.of(IBufferAdapter.Features.Size,
+								IBufferAdapter.Features.Ptr,
+								IBufferAdapter.Features.Offset));
 	}
 
 	@Override

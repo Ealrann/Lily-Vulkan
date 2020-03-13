@@ -92,7 +92,7 @@ public class NuklearContextAdapter implements IAllocableAdapter<InternalExecutio
 				imageList.addAll((List<IImage>) notification.getNewValue());
 				break;
 			case Notification.REMOVE:
-				imageList.remove(notification.getNewValue());
+				imageList.remove((IImage) notification.getNewValue());
 				break;
 			case Notification.REMOVE_MANY:
 				imageList.removeAll((List<IImage>) notification.getNewValue());

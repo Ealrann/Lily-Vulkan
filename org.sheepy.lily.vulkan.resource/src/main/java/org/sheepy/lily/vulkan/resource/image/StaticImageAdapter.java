@@ -16,7 +16,8 @@ import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
 @Statefull
 @Adapter(scope = StaticImage.class)
-public class StaticImageAdapter extends Notifier implements IVkImageAdapter, IAllocableAdapter<InternalExecutionContext>
+public class StaticImageAdapter extends Notifier<IVkImageAdapter.Features> implements IVkImageAdapter,
+																					  IAllocableAdapter<InternalExecutionContext>
 {
 	private final StaticImage image;
 

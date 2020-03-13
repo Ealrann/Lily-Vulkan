@@ -1,6 +1,5 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.joml.Vector2ic;
 import org.joml.Vector3fc;
 import org.lwjgl.nuklear.NkColor;
@@ -10,7 +9,6 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
 import org.sheepy.lily.core.model.resource.IImage;
@@ -30,16 +28,18 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 import static org.lwjgl.nuklear.Nuklear.*;
 
 @Statefull
 @Adapter(scope = SelectorPanel.class)
-public final class SelectorPanelAdapter extends Notifier implements IPanelAdapter, ITextWidgetAdapter
+public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Features> implements IPanelAdapter,
+																								 ITextWidgetAdapter
 {
 	private static final int MARGING_W = 5;
 
-	private final INotificationListener selectionListener = this::updateValue;
+	private final Consumer<Object> selectionListener = this::updateValue;
 	private final IWindowListener.ISizeListener listener = this::updateDataLocations;
 	private final SelectorPanel panel;
 	private final List<LineData> datas;
@@ -94,13 +94,13 @@ public final class SelectorPanelAdapter extends Notifier implements IPanelAdapte
 			width = (buttonSize + MARGING_W) * datas.size();
 		}
 
-		resolverAdapter.addListener(selectionListener);
+		resolverAdapter.listen(selectionListener);
 		selectedElement = resolverAdapter.getValue(resolver);
 	}
 
-	private void updateValue(Notification notification)
+	private void updateValue(Object value)
 	{
-		this.selectedElement = notification.getNewValue();
+		this.selectedElement = value;
 		dirty = true;
 	}
 
@@ -122,7 +122,7 @@ public final class SelectorPanelAdapter extends Notifier implements IPanelAdapte
 	@Dispose
 	public void unsetTarget()
 	{
-		resolverAdapter.removeListener(selectionListener);
+		resolverAdapter.sulk(selectionListener);
 		labelColor.free();
 		for (final var data : datas)
 		{

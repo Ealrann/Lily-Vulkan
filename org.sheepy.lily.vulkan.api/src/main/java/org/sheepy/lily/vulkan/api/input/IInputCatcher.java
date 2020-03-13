@@ -1,12 +1,12 @@
 package org.sheepy.lily.vulkan.api.input;
 
-import org.sheepy.lily.core.api.input.IInputManager.IInputListener;
+import org.sheepy.lily.core.api.input.event.InputEvent;
 
-public interface IInputCatcher extends IInputListener
+import java.util.List;
+
+public interface IInputCatcher
 {
-	void startCatch();
-	void stopCatch();
-	void update();
+	void update(final List<InputEvent<?>> events);
 
 	boolean hasCaughtInputs();
 	boolean isCursorThere();

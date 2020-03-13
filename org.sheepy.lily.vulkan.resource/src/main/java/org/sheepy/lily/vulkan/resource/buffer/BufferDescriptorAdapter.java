@@ -1,10 +1,8 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
@@ -12,18 +10,26 @@ import org.sheepy.lily.vulkan.core.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
+import java.util.function.LongConsumer;
+
 @Statefull
 @Adapter(scope = BufferDescriptor.class)
 public final class BufferDescriptorAdapter implements IDescriptorAdapter
 {
-	private final INotificationListener bufferListener = this::bindChange;
 	private final BufferDescriptor descriptor;
 	private final VkBufferDescriptor vkDescriptor;
+
+	private final LongConsumer ptrChange;
+	private final LongConsumer sizeChange;
+	private final LongConsumer offsetChange;
 
 	private BufferDescriptorAdapter(BufferDescriptor descriptor)
 	{
 		this.descriptor = descriptor;
 		vkDescriptor = new VkBufferDescriptor(0, 0, 0, descriptor.getType(), descriptor.getShaderStages());
+		ptrChange = vkDescriptor::updateBufferPtr;
+		sizeChange = vkDescriptor::updateSize;
+		offsetChange = vkDescriptor::updateOffset;
 	}
 
 	@Override
@@ -34,10 +40,9 @@ public final class BufferDescriptorAdapter implements IDescriptorAdapter
 
 		updateFromBuffer();
 
-		bufferAdapter.addListener(bufferListener,
-								  IBufferAdapter.Features.Size.ordinal(),
-								  IBufferAdapter.Features.Offset.ordinal(),
-								  IBufferAdapter.Features.Ptr.ordinal());
+		bufferAdapter.listen(ptrChange, IBufferAdapter.Features.Ptr);
+		bufferAdapter.listen(sizeChange, IBufferAdapter.Features.Size);
+		bufferAdapter.listen(offsetChange, IBufferAdapter.Features.Offset);
 	}
 
 	@Override
@@ -46,10 +51,9 @@ public final class BufferDescriptorAdapter implements IDescriptorAdapter
 		final var buffer = descriptor.getBuffer();
 		final var bufferAdapter = buffer.adaptNotNull(IBufferAdapter.class);
 
-		bufferAdapter.removeListener(bufferListener,
-									 IBufferAdapter.Features.Size.ordinal(),
-									 IBufferAdapter.Features.Offset.ordinal(),
-									 IBufferAdapter.Features.Ptr.ordinal());
+		bufferAdapter.sulk(ptrChange, IBufferAdapter.Features.Ptr);
+		bufferAdapter.sulk(sizeChange, IBufferAdapter.Features.Size);
+		bufferAdapter.sulk(offsetChange, IBufferAdapter.Features.Offset);
 	}
 
 	@NotifyChanged(featureIds = VulkanResourcePackage.BUFFER_DESCRIPTOR__BUFFER)
@@ -66,24 +70,6 @@ public final class BufferDescriptorAdapter implements IDescriptorAdapter
 		vkDescriptor.updateBufferPtr(bufferAdapter.getPtr());
 		vkDescriptor.updateSize(bufferAdapter.getBindSize());
 		vkDescriptor.updateOffset(bufferAdapter.getBindOffset());
-	}
-
-	private void bindChange(Notification notification)
-	{
-		switch ((IBufferAdapter.Features) notification.getFeature())
-		{
-			case Ptr:
-				vkDescriptor.updateBufferPtr(notification.getNewLongValue());
-				break;
-			case Offset:
-				vkDescriptor.updateOffset(notification.getNewLongValue());
-				break;
-			case Size:
-				vkDescriptor.updateSize(notification.getNewLongValue());
-				break;
-			default:
-				break;
-		}
 	}
 
 	@Override

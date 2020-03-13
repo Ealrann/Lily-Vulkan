@@ -1,8 +1,7 @@
 import org.sheepy.lily.core.api.adapter.IAdapterProvider;
 import org.sheepy.lily.vulkan.core.Adapters;
 
-module org.sheepy.lily.vulkan.core
-{
+module org.sheepy.lily.vulkan.core {
 	requires transitive org.sheepy.lily.vulkan.api;
 	requires transitive org.sheepy.lily.game.core;
 	requires transitive org.lwjgl.vulkan;
@@ -35,6 +34,7 @@ module org.sheepy.lily.vulkan.core
 
 	opens org.sheepy.lily.vulkan.core.cadence;
 	opens org.sheepy.lily.vulkan.core.engine;
+	opens org.sheepy.lily.vulkan.core.variable;
 
 	provides IAdapterProvider with Adapters;
 }

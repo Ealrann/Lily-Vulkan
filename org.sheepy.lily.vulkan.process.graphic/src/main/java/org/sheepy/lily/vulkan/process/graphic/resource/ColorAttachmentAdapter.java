@@ -6,12 +6,12 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.notification.Notifier;
-import org.sheepy.lily.core.api.notification.impl.LongNotification;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
 import org.sheepy.lily.vulkan.core.graphic.ClearInfo;
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.attachment.IExtraAttachmentAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
@@ -26,7 +26,7 @@ import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
 @Statefull
 @Adapter(scope = ColorAttachment.class)
-public class ColorAttachmentAdapter extends Notifier implements IExtraAttachmentAdapter
+public class ColorAttachmentAdapter extends Notifier<IVkImageAdapter.Features> implements IExtraAttachmentAdapter
 {
 	private final ColorAttachment colorAttachment;
 
@@ -57,8 +57,8 @@ public class ColorAttachmentAdapter extends Notifier implements IExtraAttachment
 		createAndAllocateImageView(context.getLogicalDevice());
 		layoutTransition(context);
 
-		fireNotification(new LongNotification(this, Features.View, 0, colorImageView.getPtr()));
-		fireNotification(new LongNotification(this, Features.Image, 0, colorImageBackend.getPtr()));
+		notify(Features.View, colorImageView.getPtr());
+		notify(Features.Image, colorImageBackend.getPtr());
 	}
 
 	private void createImage(IGraphicContext context)

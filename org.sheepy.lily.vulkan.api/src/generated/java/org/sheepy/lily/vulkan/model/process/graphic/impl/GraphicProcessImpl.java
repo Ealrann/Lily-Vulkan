@@ -37,7 +37,6 @@ import org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getMaintainer <em>Maintainer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getConfiguration <em>Configuration</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getAttachmentPkg <em>Attachment Pkg</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getFieldOfViewY <em>Field Of View Y</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getSubpasses <em>Subpasses</em>}</li>
  * </ul>
  *
@@ -74,26 +73,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * @ordered
 	 */
 	protected AttachmentPkg attachmentPkg;
-
-	/**
-	 * The default value of the '{@link #getFieldOfViewY() <em>Field Of View Y</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFieldOfViewY()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final float FIELD_OF_VIEW_Y_EDEFAULT = 45.0F;
-
-	/**
-	 * The cached value of the '{@link #getFieldOfViewY() <em>Field Of View Y</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFieldOfViewY()
-	 * @generated
-	 * @ordered
-	 */
-	protected float fieldOfViewY = FIELD_OF_VIEW_Y_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getSubpasses() <em>Subpasses</em>}' containment reference list.
@@ -137,7 +116,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		if (maintainer != null && ((EObject)maintainer).eIsProxy())
 		{
-			InternalEObject oldMaintainer = (InternalEObject)maintainer;
+			InternalEObject oldMaintainer = maintainer;
 			maintainer = (Maintainer<GraphicProcess>)eResolveProxy(oldMaintainer);
 			if (maintainer != oldMaintainer)
 			{
@@ -303,31 +282,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * @generated
 	 */
 	@Override
-	public float getFieldOfViewY()
-	{
-		return fieldOfViewY;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setFieldOfViewY(float newFieldOfViewY)
-	{
-		float oldFieldOfViewY = fieldOfViewY;
-		fieldOfViewY = newFieldOfViewY;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y, oldFieldOfViewY, fieldOfViewY));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<Subpass> getSubpasses()
 	{
 		if (subpasses == null)
@@ -395,8 +349,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 				return getConfiguration();
 			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
 				return getAttachmentPkg();
-			case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
-				return getFieldOfViewY();
 			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:
 				return getSubpasses();
 		}
@@ -422,9 +374,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 				return;
 			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
 				setAttachmentPkg((AttachmentPkg)newValue);
-				return;
-			case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
-				setFieldOfViewY((Float)newValue);
 				return;
 			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:
 				getSubpasses().clear();
@@ -453,9 +402,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
 				setAttachmentPkg((AttachmentPkg)null);
 				return;
-			case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
-				setFieldOfViewY(FIELD_OF_VIEW_Y_EDEFAULT);
-				return;
 			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:
 				getSubpasses().clear();
 				return;
@@ -479,8 +425,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 				return configuration != null;
 			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
 				return attachmentPkg != null;
-			case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
-				return fieldOfViewY != FIELD_OF_VIEW_Y_EDEFAULT;
 			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:
 				return subpasses != null && !subpasses.isEmpty();
 		}
@@ -523,23 +467,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (fieldOfViewY: ");
-		result.append(fieldOfViewY);
-		result.append(')');
-		return result.toString();
 	}
 
 } //GraphicProcessImpl

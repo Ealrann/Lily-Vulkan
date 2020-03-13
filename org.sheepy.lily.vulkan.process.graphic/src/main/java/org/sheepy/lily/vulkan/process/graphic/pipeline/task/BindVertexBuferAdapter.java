@@ -1,21 +1,22 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer;
+
+import java.util.EnumSet;
+import java.util.function.LongConsumer;
 
 import static org.lwjgl.vulkan.VK10.vkCmdBindVertexBuffers;
 
 @Adapter(scope = BindVertexBuffer.class)
 public class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBuffer>
 {
-	private final INotificationListener bufferListener = this::bufferChanged;
+	private final LongConsumer bufferListener = this::bufferChanged;
 
 	private boolean changed = true;
 
@@ -27,9 +28,8 @@ public class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBu
 		{
 			final var binding = bindings.get(i);
 			final var bufferAdapter = binding.getBuffer().adapt(IBufferAdapter.class);
-			bufferAdapter.addListener(bufferListener,
-									  IBufferAdapter.Features.Ptr.ordinal(),
-									  IBufferAdapter.Features.Offset.ordinal());
+			bufferAdapter.listen(bufferListener,
+								 EnumSet.of(IBufferAdapter.Features.Ptr, IBufferAdapter.Features.Offset));
 		}
 	}
 
@@ -41,13 +41,11 @@ public class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBu
 		{
 			final var binding = bindings.get(i);
 			final var bufferAdapter = binding.getBuffer().adapt(IBufferAdapter.class);
-			bufferAdapter.removeListener(bufferListener,
-										 IBufferAdapter.Features.Ptr.ordinal(),
-										 IBufferAdapter.Features.Offset.ordinal());
+			bufferAdapter.sulk(bufferListener, EnumSet.of(IBufferAdapter.Features.Ptr, IBufferAdapter.Features.Offset));
 		}
 	}
 
-	private void bufferChanged(Notification notification)
+	private void bufferChanged(Long ptr)
 	{
 		changed = true;
 	}

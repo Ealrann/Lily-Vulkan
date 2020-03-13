@@ -1,9 +1,5 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
-import static org.lwjgl.nuklear.Nuklear.nk_button_label;
-
-import java.nio.ByteBuffer;
-
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.action.IActionAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
@@ -15,9 +11,14 @@ import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
+import java.nio.ByteBuffer;
+
+import static org.lwjgl.nuklear.Nuklear.nk_button_label;
+
 @Statefull
 @Adapter(scope = Button.class)
-public final class ButtonAdapter extends Notifier implements IUIElementAdapter, ITextWidgetAdapter
+public final class ButtonAdapter extends Notifier<ITextWidgetAdapter.Features> implements IUIElementAdapter,
+																						  ITextWidgetAdapter
 {
 	private final ByteBuffer textBuffer;
 	private final Button button;

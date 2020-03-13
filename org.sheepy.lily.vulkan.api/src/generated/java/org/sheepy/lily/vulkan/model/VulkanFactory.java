@@ -59,6 +59,15 @@ public interface VulkanFactory extends EFactory
 	DescriptorPkg createDescriptorPkg();
 
 	/**
+	 * Returns a new object of class '<em>Mouse Location</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mouse Location</em>'.
+	 * @generated
+	 */
+	MouseLocation createMouseLocation();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

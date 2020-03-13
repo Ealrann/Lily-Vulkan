@@ -1077,20 +1077,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getGraphicProcess_FieldOfViewY()
-	{
-		return (EAttribute)graphicProcessEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getGraphicProcess_Subpasses()
 	{
-		return (EReference)graphicProcessEClass.getEStructuralFeatures().get(3);
+		return (EReference)graphicProcessEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1858,7 +1847,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		graphicProcessEClass = createEClass(GRAPHIC_PROCESS);
 		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__CONFIGURATION);
 		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__ATTACHMENT_PKG);
-		createEAttribute(graphicProcessEClass, GRAPHIC_PROCESS__FIELD_OF_VIEW_Y);
 		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__SUBPASSES);
 
 		graphicsPipelineEClass = createEClass(GRAPHICS_PIPELINE);
@@ -2091,7 +2079,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEClass(graphicProcessEClass, GraphicProcess.class, "GraphicProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGraphicProcess_Configuration(), this.getGraphicConfiguration(), null, "configuration", null, 1, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphicProcess_AttachmentPkg(), this.getAttachmentPkg(), null, "attachmentPkg", null, 1, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getGraphicProcess_FieldOfViewY(), ecorePackage.getEFloat(), "fieldOfViewY", "45", 0, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphicProcess_Subpasses(), this.getSubpass(), null, "subpasses", null, 0, -1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(graphicsPipelineEClass, GraphicsPipeline.class, "GraphicsPipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

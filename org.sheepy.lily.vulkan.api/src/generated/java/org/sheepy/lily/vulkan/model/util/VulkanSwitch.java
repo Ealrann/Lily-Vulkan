@@ -12,6 +12,7 @@ import org.sheepy.lily.core.model.application.IEngine;
 import org.sheepy.lily.core.model.cadence.ICadenceTask;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
+import org.sheepy.lily.core.model.variable.IModelVariable;
 import org.sheepy.lily.vulkan.model.*;
 
 /**
@@ -138,6 +139,15 @@ public class VulkanSwitch<T> extends Switch<T>
 				IDescriptor iDescriptor = (IDescriptor)theEObject;
 				T result = caseIDescriptor(iDescriptor);
 				if (result == null) result = caseLNamedElement(iDescriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanPackage.MOUSE_LOCATION:
+			{
+				MouseLocation mouseLocation = (MouseLocation)theEObject;
+				T result = caseMouseLocation(mouseLocation);
+				if (result == null) result = caseIModelVariable(mouseLocation);
+				if (result == null) result = caseLNamedElement(mouseLocation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -274,6 +284,22 @@ public class VulkanSwitch<T> extends Switch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mouse Location</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mouse Location</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMouseLocation(MouseLocation object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>IEngine</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -317,6 +343,22 @@ public class VulkanSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseICadenceTask(ICadenceTask object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IModel Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IModel Variable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIModelVariable(IModelVariable object)
 	{
 		return null;
 	}

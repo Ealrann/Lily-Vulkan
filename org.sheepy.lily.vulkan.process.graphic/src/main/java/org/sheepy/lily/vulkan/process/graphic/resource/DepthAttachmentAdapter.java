@@ -7,12 +7,12 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.notification.Notifier;
-import org.sheepy.lily.core.api.notification.impl.LongNotification;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
 import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.attachment.IDepthAttachmentAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
@@ -27,7 +27,7 @@ import static org.lwjgl.vulkan.VK10.*;
 
 @Statefull
 @Adapter(scope = DepthAttachment.class)
-public class DepthAttachmentAdapter extends Notifier implements IDepthAttachmentAdapter
+public class DepthAttachmentAdapter extends Notifier<IVkImageAdapter.Features> implements IDepthAttachmentAdapter
 {
 	private final DepthAttachment depthAttachment;
 	private VkImage depthImageBackend;
@@ -55,7 +55,8 @@ public class DepthAttachmentAdapter extends Notifier implements IDepthAttachment
 		allocateDepthImage(context);
 		createAndAllocateImageView(context.getLogicalDevice());
 		layoutTransitionOfDepthImage(context);
-		fireNotification(new LongNotification(this, Features.View, 0, depthImageView.getPtr()));
+
+		notify(Features.View, getViewPtr());
 	}
 
 	private void createDepthImage(IGraphicContext context)

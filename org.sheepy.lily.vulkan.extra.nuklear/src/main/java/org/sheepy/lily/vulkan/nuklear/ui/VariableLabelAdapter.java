@@ -1,16 +1,10 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
-import static org.lwjgl.nuklear.Nuklear.*;
-
-import java.nio.ByteBuffer;
-
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.notification.Notifier;
-import org.sheepy.lily.core.api.notification.impl.ObjectNotification;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IUIElement;
@@ -18,11 +12,17 @@ import org.sheepy.lily.core.model.ui.VariableLabel;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
+import java.nio.ByteBuffer;
+import java.util.function.Consumer;
+
+import static org.lwjgl.nuklear.Nuklear.*;
+
 @Statefull
 @Adapter(scope = VariableLabel.class)
-public class VariableLabelAdapter extends Notifier implements IUIElementAdapter, ITextWidgetAdapter
+public class VariableLabelAdapter extends Notifier<ITextWidgetAdapter.Features> implements IUIElementAdapter,
+																						   ITextWidgetAdapter
 {
-	private final INotificationListener listener = n -> updateText(n.getNewValue());
+	private final Consumer<Object> listener = this::updateText;
 	private final VariableLabel label;
 	private final IVariableResolverAdapter<IVariableResolver> resolver;
 
@@ -41,13 +41,13 @@ public class VariableLabelAdapter extends Notifier implements IUIElementAdapter,
 
 		updateText(resolver.getValue(variableResolver));
 
-		resolver.addListener(listener);
+		resolver.listen(listener);
 	}
 
 	@Dispose
 	public void unsetTarget()
 	{
-		resolver.removeListener(listener);
+		resolver.sulk(listener);
 		MemoryUtil.memFree(textBuffer);
 	}
 
@@ -56,19 +56,18 @@ public class VariableLabelAdapter extends Notifier implements IUIElementAdapter,
 	{
 		final boolean res = dirty;
 		final var label = (VariableLabel) control;
-
-		int align = 0;
+		final int align;
 		switch (label.getHorizontalRelative())
 		{
-		case MIDDLE:
-			align = NK_TEXT_CENTERED;
-			break;
-		case RIGHT:
-			align = NK_TEXT_RIGHT;
-			break;
-		default:
-			align = NK_TEXT_LEFT;
-			break;
+			case MIDDLE:
+				align = NK_TEXT_CENTERED;
+				break;
+			case RIGHT:
+				align = NK_TEXT_RIGHT;
+				break;
+			default:
+				align = NK_TEXT_LEFT;
+				break;
 		}
 
 		context.setFont(label.getFont());
@@ -86,13 +85,10 @@ public class VariableLabelAdapter extends Notifier implements IUIElementAdapter,
 
 	private void updateText(Object val)
 	{
-		final var oldText = text;
 		final var format = label.getFormat();
-		final String value = (format != null && !format.isBlank())
-				? String.format(format, val)
-				: String.valueOf(val);
+		final String value = (format != null && !format.isBlank()) ? String.format(format, val) : String.valueOf(val);
 		final String labelText = label.getText();
-		String resultString = "";
+		final String resultString;
 
 		if (label.isShowName() == false) resultString = String.format("%s", value);
 		else if (labelText.isBlank()) resultString = String.format("%s%s", labelText, value);
@@ -105,7 +101,7 @@ public class VariableLabelAdapter extends Notifier implements IUIElementAdapter,
 			textBuffer = MemoryUtil.memASCII(text);
 		}
 		dirty = true;
-		fireNotification(new ObjectNotification(this, Features.Text, oldText, text));
+		notify(Features.Text, text);
 	}
 
 	@Override

@@ -19,7 +19,8 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
 @Statefull
 @Adapter(scope = FileImage.class)
-public class FileImageAdapter extends Notifier implements IVkImageAdapter, IAllocableAdapter<InternalExecutionContext>
+public class FileImageAdapter extends Notifier<IVkImageAdapter.Features> implements IVkImageAdapter,
+																					IAllocableAdapter<InternalExecutionContext>
 {
 	private final STBImageLoader imageLoader = new STBImageLoader();
 	private final ImageBuffer imageBuffer;

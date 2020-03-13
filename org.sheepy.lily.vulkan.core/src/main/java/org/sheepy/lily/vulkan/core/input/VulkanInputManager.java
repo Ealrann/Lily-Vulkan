@@ -3,7 +3,9 @@ package org.sheepy.lily.vulkan.core.input;
 import org.joml.Vector2f;
 import org.joml.Vector2fc;
 import org.lwjgl.glfw.*;
+import org.sheepy.lily.core.api.input.IInputManager;
 import org.sheepy.lily.core.api.input.event.*;
+import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.types.EKeyState;
 import org.sheepy.lily.core.model.types.EMouseButton;
@@ -16,7 +18,7 @@ import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-public class VulkanInputManager implements IVulkanInputManager
+public class VulkanInputManager extends Notifier<IInputManager.Features<?>> implements IVulkanInputManager
 {
 	private final Application application;
 	private final Window window;
@@ -24,8 +26,7 @@ public class VulkanInputManager implements IVulkanInputManager
 	private final double[] cursorPositionX = new double[1];
 	private final double[] cursorPositionY = new double[1];
 
-	private final List<IInputEvent> events = new ArrayList<>();
-	private final List<IInputListener> listeners = new ArrayList<>();
+	private final List<InputEvent<?>> events = new ArrayList<>();
 
 	private IInputCatcher catcher;
 	private Boolean inputsAreCaught = null;
@@ -45,38 +46,40 @@ public class VulkanInputManager implements IVulkanInputManager
 		@Override
 		public void invoke(long window, int key, int scancode, int action, int mods)
 		{
-			EKeyState state = EKeyState.RELEASED;
+			final EKeyState state;
 			switch (action)
 			{
-				case GLFW_RELEASE:
-					state = EKeyState.RELEASED;
-					break;
 				case GLFW_PRESS:
 					state = EKeyState.PRESSED;
 					break;
 				case GLFW_REPEAT:
 					state = EKeyState.REPEATED;
 					break;
+				case GLFW_RELEASE:
+				default:
+					state = EKeyState.RELEASED;
 			}
 
 			final var event = new KeyEvent(key, state, mods);
 			events.add(event);
 		}
 	};
+
 	private final GLFWCursorPosCallback glfwSetCursorPosCallback = new GLFWCursorPosCallback()
 	{
 		@Override
 		public void invoke(long window, double xpos, double ypos)
 		{
-			events.add(new MouseLocationEvent((float) xpos, (float) ypos));
+			events.add(new CursorLocationEvent((float) xpos, (float) ypos));
 		}
 	};
+
 	private final GLFWMouseButtonCallback glfwSetMouseButtonCallback = new GLFWMouseButtonCallback()
 	{
 		@Override
 		public void invoke(long windowPtr, int button, int action, int mods)
 		{
-			EMouseButton mouseButton = null;
+			final EMouseButton mouseButton;
 			switch (button)
 			{
 				case GLFW_MOUSE_BUTTON_RIGHT:
@@ -103,8 +106,10 @@ public class VulkanInputManager implements IVulkanInputManager
 				case GLFW_MOUSE_BUTTON_8:
 					mouseButton = EMouseButton._8;
 					break;
+				default:
+					mouseButton = null;
 			}
-			events.add(new MouseButtonEvent(cursorPosition, mouseButton, action == GLFW_PRESS));
+			events.add(new MouseClickEvent(cursorPosition, mouseButton, action == GLFW_PRESS));
 		}
 	};
 
@@ -119,6 +124,7 @@ public class VulkanInputManager implements IVulkanInputManager
 
 	public VulkanInputManager(Application application, Window window)
 	{
+		super(Features.COUNT);
 		this.application = application;
 		this.window = window;
 	}
@@ -148,21 +154,11 @@ public class VulkanInputManager implements IVulkanInputManager
 		if (window.isOpenned())
 		{
 			updateMouseLocation();
-
 			glfwPollEvents();
 
 			if (catcher != null)
 			{
-				catcher.startCatch();
-
-				for (int i = 0; i < events.size(); i++)
-				{
-					final var event = events.get(i);
-					event.fireEvent(catcher);
-				}
-
-				catcher.stopCatch();
-				catcher.update();
+				catcher.update(events);
 
 				if (catcher.hasCaughtInputs())
 				{
@@ -185,9 +181,7 @@ public class VulkanInputManager implements IVulkanInputManager
 			}
 
 			fireEvents();
-
 			dropInputEvents();
-
 			fireAfterPollInputs();
 
 			if (window.shouldClose())
@@ -224,12 +218,12 @@ public class VulkanInputManager implements IVulkanInputManager
 		cursorPosition = new Vector2f(position);
 	}
 
-	public void fireEvents()
+	private void fireEvents()
 	{
 		for (int i = 0; i < events.size(); i++)
 		{
-			final IInputEvent event = events.get(i);
-			fireEvent(event);
+			final var event = events.get(i);
+			event.notify(this);
 		}
 	}
 
@@ -244,42 +238,14 @@ public class VulkanInputManager implements IVulkanInputManager
 		this.catcher = catcher;
 	}
 
-	private void fireEvent(IInputEvent event)
-	{
-		for (int i = 0; i < listeners.size(); i++)
-		{
-			final var listener = listeners.get(i);
-			event.fireEvent(listener);
-		}
-	}
-
 	private void fireAfterPollInputs()
 	{
-		for (int i = 0; i < listeners.size(); i++)
-		{
-			final var listener = listeners.get(i);
-			listener.afterPollInputs();
-		}
+		notify(IInputManager.Features.AfterPollInputs);
 	}
 
 	private void fireInputCaught()
 	{
-		for (final IInputListener listener : listeners)
-		{
-			listener.onMouseOverUI(inputsAreCaught);
-		}
-	}
-
-	@Override
-	public void addListener(IInputListener listener)
-	{
-		listeners.add(listener);
-	}
-
-	@Override
-	public void removeListener(IInputListener listener)
-	{
-		listeners.remove(listener);
+		notify(IInputManager.Features.MouseOverUIEvent, inputsAreCaught);
 	}
 
 	@Override

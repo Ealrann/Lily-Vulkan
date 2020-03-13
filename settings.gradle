@@ -26,5 +26,7 @@ include ':org.sheepy.lily.vulkan.demo.gameoflife'
 include ':org.sheepy.lily.vulkan.demo.test'
 include ':org.sheepy.lily.vulkan.demo.texture'
 
-// Lily-Core
-includeBuild '../Lily-core'
+
+if (gradle.parent == null) {
+	includeBuild '../Lily-core'
+}

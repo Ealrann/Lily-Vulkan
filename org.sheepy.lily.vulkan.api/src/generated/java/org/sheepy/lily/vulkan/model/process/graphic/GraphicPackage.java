@@ -1386,22 +1386,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__ATTACHMENT_PKG = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Field Of View Y</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS__FIELD_OF_VIEW_Y = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Subpasses</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__SUBPASSES = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 4;
+	int GRAPHIC_PROCESS__SUBPASSES = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Process</em>' class.
@@ -1410,7 +1401,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 5;
+	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Process</em>' class.
@@ -3308,17 +3299,6 @@ public interface GraphicPackage extends EPackage
 	EReference getGraphicProcess_AttachmentPkg();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getFieldOfViewY <em>Field Of View Y</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Field Of View Y</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getFieldOfViewY()
-	 * @see #getGraphicProcess()
-	 * @generated
-	 */
-	EAttribute getGraphicProcess_FieldOfViewY();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getSubpasses <em>Subpasses</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4505,14 +4485,6 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference GRAPHIC_PROCESS__ATTACHMENT_PKG = eINSTANCE.getGraphicProcess_AttachmentPkg();
-
-		/**
-		 * The meta object literal for the '<em><b>Field Of View Y</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute GRAPHIC_PROCESS__FIELD_OF_VIEW_Y = eINSTANCE.getGraphicProcess_FieldOfViewY();
 
 		/**
 		 * The meta object literal for the '<em><b>Subpasses</b></em>' containment reference list feature.

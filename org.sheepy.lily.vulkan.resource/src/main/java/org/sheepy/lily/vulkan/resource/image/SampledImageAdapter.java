@@ -7,8 +7,8 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.ISampledImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.lily.vulkan.resource.image.backend.VkSampler;
@@ -16,7 +16,7 @@ import org.sheepy.lily.vulkan.resource.image.backend.VkSampler;
 @SuppressWarnings("unchecked")
 @Statefull
 @Adapter(scope = SampledImage.class)
-public class SampledImageAdapter extends Notifier implements ISampledImageAdapter
+public class SampledImageAdapter extends Notifier<IVkImageAdapter.Features> implements ISampledImageAdapter
 {
 	private final SampledImage sampledImage;
 	private final IVkImageAdapter imageAdapter;

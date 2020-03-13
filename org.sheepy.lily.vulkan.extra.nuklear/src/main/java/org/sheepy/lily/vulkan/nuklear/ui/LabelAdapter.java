@@ -8,7 +8,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.notification.Notifier;
-import org.sheepy.lily.core.api.notification.impl.ObjectNotification;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.core.model.ui.Label;
@@ -23,7 +22,8 @@ import static org.lwjgl.nuklear.Nuklear.*;
 
 @Statefull
 @Adapter(scope = Label.class)
-public final class LabelAdapter extends Notifier implements IUIElementAdapter, ITextWidgetAdapter
+public final class LabelAdapter extends Notifier<ITextWidgetAdapter.Features> implements IUIElementAdapter,
+																						 ITextWidgetAdapter
 {
 	private final Label label;
 	private final INotificationListener textListener = this::textChanged;
@@ -67,8 +67,7 @@ public final class LabelAdapter extends Notifier implements IUIElementAdapter, I
 		final String text = label.getText();
 		textBuffer = MemoryUtil.memUTF8(text);
 
-		final var notification = new ObjectNotification(this, Features.Text, null, text);
-		fireNotification(notification);
+		notify(Features.Text, text);
 
 		if (label.isNarrator())
 		{

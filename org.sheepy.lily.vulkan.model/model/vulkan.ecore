@@ -46,4 +46,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="shaderStages" lowerBound="1"
         upperBound="-1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EShaderStage"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MouseLocation" eSuperTypes="../../org.sheepy.lily.core.model/model/variable.ecore#//IModelVariable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vulkanEngine" lowerBound="1"
+        eType="#//VulkanEngine"/>
+  </eClassifiers>
 </ecore:EPackage>

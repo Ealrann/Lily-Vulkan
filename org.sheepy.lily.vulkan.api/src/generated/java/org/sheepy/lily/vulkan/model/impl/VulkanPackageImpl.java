@@ -26,6 +26,7 @@ import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
+import org.sheepy.lily.vulkan.model.MouseLocation;
 import org.sheepy.lily.vulkan.model.RunProcess;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
@@ -110,6 +111,13 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	private EClass iDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mouseLocationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -461,6 +469,28 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getMouseLocation()
+	{
+		return mouseLocationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMouseLocation_VulkanEngine()
+	{
+		return (EReference)mouseLocationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public VulkanFactory getVulkanFactory()
 	{
 		return (VulkanFactory)getEFactoryInstance();
@@ -515,6 +545,9 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		iDescriptorEClass = createEClass(IDESCRIPTOR);
 		createEAttribute(iDescriptorEClass, IDESCRIPTOR__TYPE);
 		createEAttribute(iDescriptorEClass, IDESCRIPTOR__SHADER_STAGES);
+
+		mouseLocationEClass = createEClass(MOUSE_LOCATION);
+		createEReference(mouseLocationEClass, MOUSE_LOCATION__VULKAN_ENGINE);
 	}
 
 	/**
@@ -547,6 +580,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		CadencePackage theCadencePackage = (CadencePackage)EPackage.Registry.INSTANCE.getEPackage(CadencePackage.eNS_URI);
+		VariablePackage theVariablePackage = (VariablePackage)EPackage.Registry.INSTANCE.getEPackage(VariablePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -561,6 +595,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		runProcessEClass.getESuperTypes().add(theCadencePackage.getICadenceTask());
 		waitProcessIdleEClass.getESuperTypes().add(theCadencePackage.getICadenceTask());
 		iDescriptorEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
+		mouseLocationEClass.getESuperTypes().add(theVariablePackage.getIModelVariable());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(vulkanEngineEClass, VulkanEngine.class, "VulkanEngine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -592,6 +627,9 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		initEClass(iDescriptorEClass, IDescriptor.class, "IDescriptor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIDescriptor_Type(), theEnumerationPackage.getEDescriptorType(), "type", null, 1, 1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getIDescriptor_ShaderStages(), theEnumerationPackage.getEShaderStage(), "shaderStages", null, 1, -1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(mouseLocationEClass, MouseLocation.class, "MouseLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMouseLocation_VulkanEngine(), this.getVulkanEngine(), null, "vulkanEngine", null, 1, 1, MouseLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -1,22 +1,22 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.vulkan.extra.api.nuklear.IControlProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer;
 
+import java.util.function.Consumer;
+
 @Statefull
 @Adapter(scope = PanelViewer.class)
 public final class PanelViewerAdapter extends PanelAdapter implements IPanelAdapter
 {
-	private final INotificationListener selectionListener = this::updateValue;
+	private final Consumer<Object> selectionListener = this::updateValue;
 	private final PanelViewer viewer;
 	private final DirectVariableResolver resolver;
 
@@ -35,14 +35,14 @@ public final class PanelViewerAdapter extends PanelAdapter implements IPanelAdap
 	public void load()
 	{
 		resolverAdapter = resolver.adaptNotNullGeneric(IVariableResolverAdapter.class);
-		resolverAdapter.addListener(selectionListener);
+		resolverAdapter.listen(selectionListener);
 		selectedElement = (LilyEObject) resolverAdapter.getValue(resolver);
 		update();
 	}
 
-	private void updateValue(Notification notification)
+	private void updateValue(Object value)
 	{
-		this.selectedElement = (LilyEObject) notification.getNewValue();
+		this.selectedElement = (LilyEObject) value;
 		update();
 	}
 
@@ -64,7 +64,7 @@ public final class PanelViewerAdapter extends PanelAdapter implements IPanelAdap
 	@Override
 	public void unsetTarget()
 	{
-		resolverAdapter.removeListener(selectionListener);
+		resolverAdapter.sulk(selectionListener);
 		super.unsetTarget();
 	}
 

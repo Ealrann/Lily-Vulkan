@@ -16,7 +16,7 @@ public interface IPanelAdapter extends IAdapter
 	boolean isHovered();
 	boolean needLayout();
 
-	static final class UIContext
+	final class UIContext
 	{
 		public final Window window;
 		public final NkContext nkContext;

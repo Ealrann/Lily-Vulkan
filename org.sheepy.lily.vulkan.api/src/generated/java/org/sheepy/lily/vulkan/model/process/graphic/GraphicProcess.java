@@ -18,7 +18,6 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getConfiguration <em>Configuration</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getAttachmentPkg <em>Attachment Pkg</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getFieldOfViewY <em>Field Of View Y</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getSubpasses <em>Subpasses</em>}</li>
  * </ul>
  *
@@ -71,29 +70,6 @@ public interface GraphicProcess extends AbstractProcess, Maintainable<GraphicPro
 	 * @generated
 	 */
 	void setAttachmentPkg(AttachmentPkg value);
-
-	/**
-	 * Returns the value of the '<em><b>Field Of View Y</b></em>' attribute.
-	 * The default value is <code>"45"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Field Of View Y</em>' attribute.
-	 * @see #setFieldOfViewY(float)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicProcess_FieldOfViewY()
-	 * @model default="45" unique="false"
-	 * @generated
-	 */
-	float getFieldOfViewY();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getFieldOfViewY <em>Field Of View Y</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Field Of View Y</em>' attribute.
-	 * @see #getFieldOfViewY()
-	 * @generated
-	 */
-	void setFieldOfViewY(float value);
 
 	/**
 	 * Returns the value of the '<em><b>Subpasses</b></em>' containment reference list.

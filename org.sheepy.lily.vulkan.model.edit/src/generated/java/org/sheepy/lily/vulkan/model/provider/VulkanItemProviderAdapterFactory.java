@@ -33,6 +33,9 @@ import org.sheepy.lily.core.model.application.util.ApplicationSwitch;
 import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.cadence.CadenceTaskPkg;
 import org.sheepy.lily.core.model.cadence.util.CadenceSwitch;
+import org.sheepy.lily.core.model.variable.ModelVariablePkg;
+import org.sheepy.lily.core.model.variable.VariablePackage;
+import org.sheepy.lily.core.model.variable.util.VariableSwitch;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
@@ -195,6 +198,31 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 		}
 
 		return descriptorPkgItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.MouseLocation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MouseLocationItemProvider mouseLocationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.MouseLocation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMouseLocationAdapter()
+	{
+		if (mouseLocationItemProvider == null)
+		{
+			mouseLocationItemProvider = new MouseLocationItemProvider(this);
+		}
+
+		return mouseLocationItemProvider;
 	}
 
 	/**
@@ -396,6 +424,102 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 				return null;
 			}
 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected CommandParameter createChildParameter(Object feature, Object child)
+			{
+				return new CommandParameter(null, feature, child);
+			}
+
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
+		{
+			ArrayList<Object> result = new ArrayList<Object>();
+			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			return result;
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public ResourceLocator getResourceLocator()
+		{
+			return LilyVulkanEditPlugin.INSTANCE;
+		}
+	}
+
+	/**
+	 * A child creation extender for the {@link VariablePackage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static class VariableChildCreationExtender implements IChildCreationExtender
+	{
+		/**
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected static class CreationSwitch extends VariableSwitch<Object>
+		{
+			/**
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected List<Object> newChildDescriptors;
+
+			/**
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected EditingDomain editingDomain;
+
+			/**
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			{
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseModelVariablePkg(ModelVariablePkg object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(VariablePackage.Literals.MODEL_VARIABLE_PKG__VARIABLES,
+						 VulkanFactory.eINSTANCE.createMouseLocation()));
+
+				return null;
+			}
+ 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

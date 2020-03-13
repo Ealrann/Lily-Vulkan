@@ -2,14 +2,13 @@ package org.sheepy.lily.vulkan.process.pipeline;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.core.api.notification.util.AbstractModelSetRegistry;
+import org.sheepy.lily.core.api.notification.util.ModelStructureObserver;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
@@ -27,8 +26,10 @@ import java.util.List;
 public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext> implements IAllocableAdapter<T>,
 																						IPipelineAdapter
 {
-	private final TaskObserver taskRegister = new TaskObserver(List.of(ProcessPackage.Literals.TASK_PIPELINE__TASK_PKG,
-																	   ProcessPackage.Literals.TASK_PKG__TASKS));
+	private final ModelStructureObserver taskObserver = new ModelStructureObserver(List.of(ProcessPackage.Literals.TASK_PIPELINE__TASK_PKG,
+																						   ProcessPackage.Literals.TASK_PKG__TASKS),
+																				   this::addTask,
+																				   this::removeTask);
 
 	protected final AbstractPipeline pipeline;
 
@@ -45,13 +46,13 @@ public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext> imp
 	public void configureAllocation(IAllocationConfigurator config, T context)
 	{
 		this.allocationConfig = config;
-		taskRegister.startRegister(pipeline);
+		taskObserver.startObserve(pipeline);
 	}
 
 	@Dispose
 	public void dispose()
 	{
-		taskRegister.stopRegister(pipeline);
+		taskObserver.stopObserve(pipeline);
 	}
 
 	@NotifyChanged(featureIds = ProcessPackage.ABSTRACT_PIPELINE__ENABLED)
@@ -153,65 +154,55 @@ public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext> imp
 		return res;
 	}
 
-	private final class TaskObserver extends AbstractModelSetRegistry
+	private void addTask(ILilyEObject newValue)
 	{
-		public TaskObserver(List<EStructuralFeature> features)
+		final var task = (IPipelineTask) newValue;
+		final int taskIndex = taskIndex(task);
+		taskWrappers.add(taskIndex, new TaskWrapper<>(task, pipeline.getStage()));
+
+		final var adapter = task.<IAllocableAdapter<? super T>>adaptGeneric(IAllocableAdapter.class);
+
+		if (adapter != null)
 		{
-			super(features);
+			allocationConfig.addChildren(List.of(adapter));
+			allocationConfig.setDirty();
 		}
 
-		@Override
-		protected void add(ILilyEObject newValue)
+		if (task.isEnabled())
 		{
-			final var task = (IPipelineTask) newValue;
-			final int taskIndex = taskIndex(task);
-			taskWrappers.add(taskIndex, new TaskWrapper<>(task, pipeline.getStage()));
+			recordNeeded = true;
+		}
+	}
 
-			final var adapter = task.<IAllocableAdapter<? super T>>adaptGeneric(IAllocableAdapter.class);
+	private static int taskIndex(IPipelineTask task)
+	{
+		final var container = task.eContainer();
+		@SuppressWarnings("unchecked") final var containningList = (List<EObject>) container.eGet(task.eContainingFeature());
+		int index = containningList.indexOf(task);
 
-			if (adapter != null)
-			{
-				allocationConfig.addChildren(List.of(adapter));
-				allocationConfig.setDirty();
-			}
-
-			if (task.isEnabled())
-			{
-				recordNeeded = true;
-			}
+		if (container instanceof IPipelineTask)
+		{
+			index += taskIndex((IPipelineTask) container);
 		}
 
-		private int taskIndex(IPipelineTask task)
+		return index;
+	}
+
+	private void removeTask(ILilyEObject oldValue)
+	{
+		final var task = (IPipelineTask) oldValue;
+		taskWrappers.removeIf(wrapper -> wrapper.task == task);
+
+		final var adapter = task.<IAllocableAdapter<? super T>>adaptGeneric(IAllocableAdapter.class);
+		if (adapter != null)
 		{
-			final var container = task.eContainer();
-			@SuppressWarnings("unchecked") final var containningList = (List<EObject>) container.eGet(task.eContainingFeature());
-			int index = containningList.indexOf(task);
-
-			if (container instanceof IPipelineTask)
-			{
-				index += taskIndex((IPipelineTask) container);
-			}
-
-			return index;
+			allocationConfig.removeChildren(List.of(adapter));
+			allocationConfig.setDirty();
 		}
 
-		@Override
-		protected void remove(ILilyEObject oldValue)
+		if (task.isEnabled())
 		{
-			final var task = (IPipelineTask) oldValue;
-			taskWrappers.removeIf(wrapper -> wrapper.task == task);
-
-			final var adapter = task.<IAllocableAdapter<? super T>>adaptGeneric(IAllocableAdapter.class);
-			if (adapter != null)
-			{
-				allocationConfig.removeChildren(List.of(adapter));
-				allocationConfig.setDirty();
-			}
-
-			if (task.isEnabled())
-			{
-				recordNeeded = true;
-			}
+			recordNeeded = true;
 		}
 	}
 

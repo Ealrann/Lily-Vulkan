@@ -170,8 +170,6 @@
     <genClasses ecoreClass="graphic.ecore#//GraphicProcess">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/configuration"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/attachmentPkg"/>
-      <genFeatures createChild="false" propertyDescription="Field of View in degree ]0 ; 360["
-          ecoreFeature="ecore:EAttribute graphic.ecore#//GraphicProcess/fieldOfViewY"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/subpasses"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//GraphicsPipeline">
@@ -358,7 +356,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ConstantBuffer/data"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//GenericConstantBuffer">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//GenericConstantBuffer/variables"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//GenericConstantBuffer/referencedVariables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//GenericConstantBuffer/VariablePkg"/>
     </genClasses>
     <genClasses image="false" ecoreClass="resource.ecore#//IBuffer"/>
     <genClasses ecoreClass="resource.ecore#//Buffer">
@@ -493,6 +492,9 @@
     <genClasses image="false" ecoreClass="vulkan.ecore#//IDescriptor">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IDescriptor/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IDescriptor/shaderStages"/>
+    </genClasses>
+    <genClasses ecoreClass="vulkan.ecore#//MouseLocation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference vulkan.ecore#//MouseLocation/vulkanEngine"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
