@@ -75,6 +75,12 @@ public class PanelAdapter extends Notifier<ITextWidgetAdapter.Features> implemen
 		}
 	}
 
+	@Override
+	public Panel getPanel()
+	{
+		return panel;
+	}
+
 	private void updateLocation(Vector2ic size)
 	{
 		final int width = panel.getWidth();

@@ -5,10 +5,10 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
+import org.sheepy.lily.core.api.adapter.annotation.Observe;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.adapter.util.AdapterSetRegistry;
+import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.ui.IPanel;
 import org.sheepy.lily.core.model.ui.UI;
@@ -27,6 +27,7 @@ import org.sheepy.lily.vulkan.nuklear.resource.NuklearFontAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Statefull
@@ -34,17 +35,14 @@ import java.util.List;
 public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<NuklearLayoutTask>,
 													   IAllocableAdapter<IGraphicContext>
 {
-	private final AdapterSetRegistry<IPanelAdapter> panelRegistry = new AdapterSetRegistry<>(IPanelAdapter.class,
-																							 List.of(UiPackage.Literals.UI__CURRENT_UI_PAGE,
-																									 UiPackage.Literals.UI_PAGE__PANELS));
-
 	private final NuklearLayoutTask task;
 	private final GraphicsPipeline pipeline;
 	private final IWindowListener.ISizeListener resizeListener = this::onResize;
 	private final UI ui;
+	private final LayoutManager layoutManager;
+	private final List<IPanelAdapter> panelAdapters = new ArrayList<>();
 
 	private IGraphicContext context;
-	private LayoutManager layoutManager;
 	private ELayoutRequest layoutRequested = ELayoutRequest.None;
 	private NuklearContextAdapter nuklearContextAdapter;
 	private Window window;
@@ -62,13 +60,36 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 		pipeline = ModelUtil.findParent(task, GraphicsPipeline.class);
 		final var subpass = ModelUtil.findParent(pipeline, Subpass.class);
 		ui = (UI) subpass.getScenePart();
+		layoutManager = new LayoutManager();
+	}
+
+	@Observe
+	private void observe(IObservatoryBuilder observatory)
+	{
+		observatory.focus(ui)
+				   .explore(UiPackage.Literals.UI__CURRENT_UI_PAGE)
+				   .explore(UiPackage.Literals.UI_PAGE__PANELS)
+				   .adapt(IPanelAdapter.class)
+				   .listenAdd(this::addPanelAdapter)
+				   .listenRemove(this::removePanelAdapter);
+	}
+
+	private void addPanelAdapter(IPanelAdapter adapter)
+	{
+		panelAdapters.add(adapter);
+		layoutRequested = ELayoutRequest.Force;
+	}
+
+	private void removePanelAdapter(IPanelAdapter adapter)
+	{
+		layoutRequested = ELayoutRequest.Force;
+		panelAdapters.remove(adapter);
 	}
 
 	@Load
 	public void load()
 	{
 		nuklearContextAdapter = task.getContext().adaptNotNull(NuklearContextAdapter.class);
-		panelRegistry.startRegister(ui);
 
 		final int imageCount = ui.getImages().size();
 
@@ -81,15 +102,6 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 
 		pipeline.getResourcePkg().getResources().add(constantBuffer);
 		pipeline.setSpecializationData(constantBuffer);
-
-		layoutManager = new LayoutManager(panelRegistry);
-	}
-
-	@Dispose
-	public void dispose()
-	{
-		panelRegistry.stopRegister(ui);
-		layoutManager = null;
 	}
 
 	private void onResize(Vector2ic size)
@@ -143,7 +155,7 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 		try (final var stack = MemoryStack.stackPush())
 		{
 			final var uiContext = new UIContext(window, nkContext, fontMap, defaultFont, stack);
-			layoutManager.layout(uiContext, extent);
+			layoutManager.layout(panelAdapters, uiContext, extent);
 		}
 	}
 
@@ -154,21 +166,33 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 			case Force:
 				return true;
 			case IfNecessary:
-				return layoutManager.needLayout();
+				return doesPanelNeedLayout();
 			default:
 				return false;
 		}
 	}
 
+	public boolean doesPanelNeedLayout()
+	{
+		for (int i = 0; i < panelAdapters.size(); i++)
+		{
+			final var panelAdapter = panelAdapters.get(i);
+			if (panelAdapter.needLayout())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public IPanel getHoveredPanel()
 	{
-		final var panelAdapters = panelRegistry.getAdapters();
 		for (int i = 0; i < panelAdapters.size(); i++)
 		{
 			final var panelAdapter = panelAdapters.get(i);
 			if (panelAdapter.isHovered())
 			{
-				return (IPanel) panelRegistry.getObjects().get(i);
+				return panelAdapter.getPanel();
 			}
 		}
 		return null;

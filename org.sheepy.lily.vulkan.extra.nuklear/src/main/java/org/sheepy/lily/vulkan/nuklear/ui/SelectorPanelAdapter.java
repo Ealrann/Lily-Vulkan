@@ -308,6 +308,12 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 	}
 
 	@Override
+	public SelectorPanel getPanel()
+	{
+		return panel;
+	}
+
+	@Override
 	public Font getFont()
 	{
 		return null;

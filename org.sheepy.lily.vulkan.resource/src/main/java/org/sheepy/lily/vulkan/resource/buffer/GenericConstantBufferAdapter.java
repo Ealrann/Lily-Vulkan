@@ -36,16 +36,16 @@ public final class GenericConstantBufferAdapter implements IAdapter
 	@Observe
 	private void observe(final IObservatoryBuilder observatory)
 	{
-		observatory.focus(VulkanResourcePackage.Literals.GENERIC_CONSTANT_BUFFER__VARIABLE_PKG)
-				   .focus(VariablePackage.Literals.MODEL_VARIABLE_PKG__VARIABLES)
+		observatory.explore(VulkanResourcePackage.Literals.GENERIC_CONSTANT_BUFFER__VARIABLE_PKG)
+				   .explore(VariablePackage.Literals.MODEL_VARIABLE_PKG__VARIABLES)
 				   .listenAdd(this::addEntry)
 				   .listenRemove(this::removeEntry)
-				   .focus(IModelVariableAdapter.notifierClass())
+				   .adaptNotifier(IModelVariableAdapter.notifierClass())
 				   .listenNoParam(() -> valueDirty = true, IModelVariableAdapter.Features.Value);
-		observatory.focus(VulkanResourcePackage.Literals.GENERIC_CONSTANT_BUFFER__REFERENCED_VARIABLES)
+		observatory.explore(VulkanResourcePackage.Literals.GENERIC_CONSTANT_BUFFER__REFERENCED_VARIABLES)
 				   .listenAdd(this::addEntry)
 				   .listenRemove(this::removeEntry)
-				   .focus(IModelVariableAdapter.notifierClass())
+				   .adaptNotifier(IModelVariableAdapter.notifierClass())
 				   .listenNoParam(() -> valueDirty = true, IModelVariableAdapter.Features.Value);
 	}
 

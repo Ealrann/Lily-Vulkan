@@ -36,7 +36,7 @@ public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConst
 	@Observe
 	private void observe(IObservatoryBuilder observatory)
 	{
-		observatory.focus(ProcessPackage.Literals.PUSH_CONSTANT_BUFFER__BUFFER)
+		observatory.explore(ProcessPackage.Literals.PUSH_CONSTANT_BUFFER__BUFFER)
 				   .listenNoParam(() -> dirty = true, VulkanResourcePackage.CONSTANT_BUFFER__DATA);
 	}
 

@@ -1,20 +1,22 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
-import java.util.Map;
-
 import org.lwjgl.nuklear.NkContext;
 import org.lwjgl.nuklear.NkUserFont;
 import org.lwjgl.nuklear.Nuklear;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.model.ui.Font;
+import org.sheepy.lily.core.model.ui.IPanel;
 import org.sheepy.lily.vulkan.core.window.Window;
+
+import java.util.Map;
 
 public interface IPanelAdapter extends IAdapter
 {
 	boolean layout(UIContext context);
 	boolean isHovered();
 	boolean needLayout();
+	IPanel getPanel();
 
 	final class UIContext
 	{
@@ -27,11 +29,11 @@ public interface IPanelAdapter extends IAdapter
 
 		private Font currentFont;
 
-		public UIContext(	Window window,
-							NkContext nkContext,
-							Map<Font, NkUserFont> fontMap,
-							Font defaultFont,
-							MemoryStack stack)
+		public UIContext(Window window,
+						 NkContext nkContext,
+						 Map<Font, NkUserFont> fontMap,
+						 Font defaultFont,
+						 MemoryStack stack)
 		{
 			this.window = window;
 			this.nkContext = nkContext;
