@@ -11,11 +11,12 @@ import org.sheepy.lily.core.model.resource.Music;
 import org.sheepy.lily.game.api.allocation.IGameAllocationContext;
 import org.sheepy.lily.game.api.audio.AudioConfiguration;
 import org.sheepy.lily.game.api.audio.IAudioAdapter;
+import org.sheepy.lily.openal.core.engine.IOpenALAudioHandle;
 import org.sheepy.lily.openal.core.engine.OpenALEngineAdapter;
+import org.sheepy.lily.openal.core.engine.context.ISoundContext;
+import org.sheepy.lily.openal.core.engine.descriptor.StreamSoundDescriptor;
+import org.sheepy.lily.openal.core.engine.handle.StreamPacket;
 import org.sheepy.lily.openal.core.resource.decoder.EAudioFormat;
-import org.sheepy.lily.openal.core.resource.handle.IOpenALAudioHandle;
-import org.sheepy.lily.openal.core.resource.handle.StreamPacket;
-import org.sheepy.lily.openal.core.resource.handle.StreamSoundHandle;
 import org.sheepy.lily.openal.core.resource.util.RawAudioBuffer;
 import org.sheepy.lily.openal.model.openal.OpenALEngine;
 
@@ -31,15 +32,14 @@ import java.util.function.IntFunction;
 public final class MusicAdapter implements IAudioAdapter, IAllocableAdapter<IGameAllocationContext>
 {
 	private final Music music;
-	private final OpenALEngine engine;
 
 	private ByteBuffer encodedBuffer;
 	private EAudioFormat format;
+	private ISoundContext soundContext;
 
 	private MusicAdapter(Music music)
 	{
 		this.music = music;
-		engine = ModelUtil.findParent(music, OpenALEngine.class);
 	}
 
 	@Override
@@ -49,6 +49,10 @@ public final class MusicAdapter implements IAudioAdapter, IAllocableAdapter<IGam
 		final var fileAdapter = file.adaptNotNull(IFileResourceAdapter.class);
 		encodedBuffer = fileAdapter.allocByteBuffer(file);
 		format = EAudioFormat.fromFileName(file.getPath());
+
+		final var engine = ModelUtil.findParent(music, OpenALEngine.class);
+		final var engineAdapter = engine.adapt(OpenALEngineAdapter.class);
+		soundContext = engineAdapter.getContext();
 	}
 
 	@Override
@@ -56,15 +60,16 @@ public final class MusicAdapter implements IAudioAdapter, IAllocableAdapter<IGam
 	{
 		MemoryUtil.memFree(encodedBuffer);
 		encodedBuffer = null;
+		soundContext = null;
 	}
 
 	@Override
 	public IOpenALAudioHandle play(AudioConfiguration config)
 	{
 		final var supplier = new DecodedAudioSupplier(format, encodedBuffer);
-		final var handle = new StreamSoundHandle(config, supplier, null, supplier::free);
+		final var descriptor = new StreamSoundDescriptor(config, supplier, null, supplier::free);
+		final var handle = soundContext.newHandle(descriptor);
 
-		engine.adapt(OpenALEngineAdapter.class).registerHandle(handle);
 		handle.play();
 
 		return handle;

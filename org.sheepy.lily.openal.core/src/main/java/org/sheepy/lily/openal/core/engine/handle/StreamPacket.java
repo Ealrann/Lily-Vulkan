@@ -1,4 +1,4 @@
-package org.sheepy.lily.openal.core.resource.handle;
+package org.sheepy.lily.openal.core.engine.handle;
 
 import org.sheepy.lily.openal.core.resource.util.RawAudioBuffer;
 

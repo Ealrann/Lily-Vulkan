@@ -8,11 +8,12 @@ import org.sheepy.lily.core.model.resource.SoundContinuous;
 import org.sheepy.lily.game.api.allocation.IGameAllocationContext;
 import org.sheepy.lily.game.api.audio.AudioConfiguration;
 import org.sheepy.lily.game.api.audio.IAudioAdapter;
+import org.sheepy.lily.openal.core.engine.IOpenALAudioHandle;
 import org.sheepy.lily.openal.core.engine.OpenALEngineAdapter;
+import org.sheepy.lily.openal.core.engine.context.ISoundContext;
+import org.sheepy.lily.openal.core.engine.descriptor.StreamSoundDescriptor;
+import org.sheepy.lily.openal.core.engine.handle.StreamPacket;
 import org.sheepy.lily.openal.core.resource.decoder.DecoderUtil;
-import org.sheepy.lily.openal.core.resource.handle.IOpenALAudioHandle;
-import org.sheepy.lily.openal.core.resource.handle.StreamPacket;
-import org.sheepy.lily.openal.core.resource.handle.StreamSoundHandle;
 import org.sheepy.lily.openal.core.resource.util.RawAudioBuffer;
 import org.sheepy.lily.openal.model.openal.OpenALEngine;
 
@@ -21,17 +22,16 @@ import org.sheepy.lily.openal.model.openal.OpenALEngine;
 public final class SoundContinuousAdapter implements IAudioAdapter, IAllocableAdapter<IGameAllocationContext>
 {
 	private final SoundContinuous sound;
-	private final OpenALEngine engine;
 
 	private RawAudioBuffer rawAudioBuffer;
 	private RawAudioBuffer attackAudio;
 	private RawAudioBuffer sustainAudio;
 	private RawAudioBuffer decayAudio;
+	private ISoundContext soundContext;
 
 	private SoundContinuousAdapter(SoundContinuous sound)
 	{
 		this.sound = sound;
-		engine = ModelUtil.findParent(sound, OpenALEngine.class);
 	}
 
 	@Override
@@ -46,6 +46,10 @@ public final class SoundContinuousAdapter implements IAudioAdapter, IAllocableAd
 		attackAudio = rawAudioBuffer.slice(0, attackMs);
 		sustainAudio = rawAudioBuffer.slice(attackMs, decayMs);
 		decayAudio = rawAudioBuffer.slice(decayMs, totalMs);
+
+		final var engine = ModelUtil.findParent(sound, OpenALEngine.class);
+		final var engineAdapter = engine.adapt(OpenALEngineAdapter.class);
+		soundContext = engineAdapter.getContext();
 	}
 
 	@Override
@@ -53,13 +57,14 @@ public final class SoundContinuousAdapter implements IAudioAdapter, IAllocableAd
 	{
 		rawAudioBuffer.free();
 		rawAudioBuffer = null;
+		soundContext = null;
 	}
 
 	@Override
 	public IOpenALAudioHandle play(AudioConfiguration config)
 	{
-		final var handle = new StreamSoundHandle(config, this::getAudioPacket, this::getFinalAudioPacket);
-		engine.adapt(OpenALEngineAdapter.class).registerHandle(handle);
+		final var descriptor = new StreamSoundDescriptor(config, this::getAudioPacket, this::getFinalAudioPacket);
+		final var handle = soundContext.newHandle(descriptor);
 		handle.play();
 		return handle;
 	}

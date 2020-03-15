@@ -8,10 +8,11 @@ import org.sheepy.lily.core.model.resource.Sound;
 import org.sheepy.lily.game.api.allocation.IGameAllocationContext;
 import org.sheepy.lily.game.api.audio.AudioConfiguration;
 import org.sheepy.lily.game.api.audio.IAudioAdapter;
+import org.sheepy.lily.openal.core.engine.IOpenALAudioHandle;
 import org.sheepy.lily.openal.core.engine.OpenALEngineAdapter;
+import org.sheepy.lily.openal.core.engine.context.ISoundContext;
+import org.sheepy.lily.openal.core.engine.descriptor.DirectSoundDescriptor;
 import org.sheepy.lily.openal.core.resource.decoder.DecoderUtil;
-import org.sheepy.lily.openal.core.resource.handle.DirectSoundHandle;
-import org.sheepy.lily.openal.core.resource.handle.IOpenALAudioHandle;
 import org.sheepy.lily.openal.core.resource.util.RawAudioBuffer;
 import org.sheepy.lily.openal.model.openal.OpenALEngine;
 
@@ -20,14 +21,13 @@ import org.sheepy.lily.openal.model.openal.OpenALEngine;
 public final class SoundAdapter implements IAudioAdapter, IAllocableAdapter<IGameAllocationContext>
 {
 	private final Sound sound;
-	private final OpenALEngine engine;
 
 	private RawAudioBuffer rawAudioBuffer;
+	private ISoundContext soundContext;
 
 	private SoundAdapter(Sound sound)
 	{
 		this.sound = sound;
-		engine = ModelUtil.findParent(sound, OpenALEngine.class);
 	}
 
 	@Override
@@ -36,6 +36,10 @@ public final class SoundAdapter implements IAudioAdapter, IAllocableAdapter<IGam
 		final var stack = context.stack();
 		final var file = sound.getFile();
 		rawAudioBuffer = DecoderUtil.decode(stack, file);
+
+		final var engine = ModelUtil.findParent(sound, OpenALEngine.class);
+		final var engineAdapter = engine.adapt(OpenALEngineAdapter.class);
+		soundContext = engineAdapter.getContext();
 	}
 
 	@Override
@@ -43,13 +47,14 @@ public final class SoundAdapter implements IAudioAdapter, IAllocableAdapter<IGam
 	{
 		rawAudioBuffer.free();
 		rawAudioBuffer = null;
+		soundContext = null;
 	}
 
 	@Override
 	public IOpenALAudioHandle play(AudioConfiguration config)
 	{
-		final var handle = new DirectSoundHandle(config, rawAudioBuffer);
-		engine.adapt(OpenALEngineAdapter.class).registerHandle(handle);
+		final var descriptor = new DirectSoundDescriptor(config, rawAudioBuffer);
+		final var handle = soundContext.newHandle(descriptor);
 		handle.play();
 		return handle;
 	}

@@ -1,9 +1,5 @@
 package org.sheepy.lily.openal.core.engine;
 
-import org.lwjgl.openal.AL;
-import org.lwjgl.openal.ALC;
-import org.lwjgl.openal.ALCCapabilities;
-import org.lwjgl.openal.ALCapabilities;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.adapter.annotation.Tick;
@@ -13,16 +9,12 @@ import org.sheepy.lily.core.api.cadence.ETickerClock;
 import org.sheepy.lily.core.api.engine.IEngineAdapter;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
-import org.sheepy.lily.game.api.audio.IAudioHandle;
 import org.sheepy.lily.game.core.allocation.GameAllocationContext;
 import org.sheepy.lily.game.core.allocation.GenericAllocator;
-import org.sheepy.lily.openal.core.resource.handle.IOpenALAudioHandle;
+import org.sheepy.lily.openal.core.engine.context.ISoundContext;
 import org.sheepy.lily.openal.model.openal.OpenALEngine;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static org.lwjgl.openal.ALC10.*;
 
 @Statefull
 @Adapter(scope = OpenALEngine.class)
@@ -33,12 +25,8 @@ public final class OpenALEngineAdapter implements IEngineAdapter
 			ApplicationPackage.Literals.IENGINE__RESOURCE_PKG,
 			ResourcePackage.Literals.RESOURCE_PKG__RESOURCES)));
 	private final IRootAllocator<GameAllocationContext> allocator;
-	private final List<IOpenALAudioHandle> handles = new ArrayList<>();
 
-	private long device;
-	private long context;
-	private ALCCapabilities alcCapabilities;
-	private ALCapabilities alCapabilities;
+	private ISoundContext context = null;
 
 	private OpenALEngineAdapter(OpenALEngine engine)
 	{
@@ -50,15 +38,7 @@ public final class OpenALEngineAdapter implements IEngineAdapter
 	@Override
 	public void start()
 	{
-		final String defaultDeviceName = alcGetString(0, ALC_DEFAULT_DEVICE_SPECIFIER);
-		final int[] attributes = {0};
-
-		device = alcOpenDevice(defaultDeviceName);
-		context = alcCreateContext(device, attributes);
-		alcMakeContextCurrent(context);
-		alcCapabilities = ALC.createCapabilities(device);
-		alCapabilities = AL.createCapabilities(alcCapabilities);
-
+		context = ISoundContext.newContext();
 		resourceAllocator.start(engine);
 		allocator.allocate();
 	}
@@ -68,30 +48,18 @@ public final class OpenALEngineAdapter implements IEngineAdapter
 	{
 		allocator.free();
 		resourceAllocator.stop(engine);
-		alcDestroyContext(context);
-		alcCloseDevice(device);
+		context.destroy();
 	}
 
-	public void registerHandle(IOpenALAudioHandle handle)
+	public ISoundContext getContext()
 	{
-		handles.add(handle);
+		return context;
 	}
 
 	@Tick(frequency = 10, clock = ETickerClock.RealWorld)
 	private void updateHandles()
 	{
-		final var it = handles.iterator();
-		while (it.hasNext())
-		{
-			final var handle = it.next();
-			handle.update();
-
-			if (handle.getStatus() == IAudioHandle.EStatus.Stopped)
-			{
-				handle.free();
-				it.remove();
-			}
-		}
+		context.updateHandles();
 	}
 
 	@Override
