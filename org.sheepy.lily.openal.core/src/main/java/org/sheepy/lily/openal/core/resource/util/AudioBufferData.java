@@ -26,14 +26,11 @@ public final class AudioBufferData
 
 	private static int findFormat(int channels)
 	{
-		switch (channels)
-		{
-			case 1:
-				return AL_FORMAT_MONO16;
-			case 2:
-				return AL_FORMAT_STEREO16;
-			default:
-				return -1;
-		}
+		return switch (channels)
+				{
+					case 1 -> AL_FORMAT_MONO16;
+					case 2 -> AL_FORMAT_STEREO16;
+					default -> -1;
+				};
 	}
 }

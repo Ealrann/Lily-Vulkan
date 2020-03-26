@@ -94,19 +94,12 @@ public final class LabelAdapter extends Notifier<ITextWidgetAdapter.Features> im
 		dirty = false;
 		final Label label = (Label) control;
 
-		final int align;
-		switch (label.getHorizontalRelative())
-		{
-			case MIDDLE:
-				align = NK_TEXT_CENTERED;
-				break;
-			case RIGHT:
-				align = NK_TEXT_RIGHT;
-				break;
-			default:
-				align = NK_TEXT_LEFT;
-				break;
-		}
+		final int align = switch (label.getHorizontalRelative())
+				{
+					case MIDDLE -> NK_TEXT_CENTERED;
+					case RIGHT -> NK_TEXT_RIGHT;
+					default -> NK_TEXT_LEFT;
+				};
 
 		context.setFont(label.getFont());
 

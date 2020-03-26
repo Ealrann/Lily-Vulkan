@@ -28,7 +28,7 @@ public class ALSource
 		if (newConfig.repeat != oldConfig.repeat) setLooping(newConfig.repeat);
 		if (newConfig.gain != oldConfig.gain) setGain(newConfig.gain);
 
-		this.config = config;
+		this.config = newConfig;
 	}
 
 	public void play()
@@ -82,18 +82,13 @@ public class ALSource
 	public IAudioHandle.EStatus getStatus()
 	{
 		final int state = alGetSourcei(ptr, AL_SOURCE_STATE);
-		switch (state)
-		{
-			case AL_PLAYING:
-				return IAudioHandle.EStatus.Playing;
-			case AL_PAUSED:
-				return IAudioHandle.EStatus.Paused;
-			case AL_STOPPED:
-				return IAudioHandle.EStatus.Stopped;
-			case AL_INITIAL:
-			default:
-				return IAudioHandle.EStatus.Initialized;
-		}
+		return switch (state)
+				{
+					case AL_PLAYING -> IAudioHandle.EStatus.Playing;
+					case AL_PAUSED -> IAudioHandle.EStatus.Paused;
+					case AL_STOPPED -> IAudioHandle.EStatus.Stopped;
+					default -> IAudioHandle.EStatus.Initialized;
+				};
 	}
 
 	public void free()

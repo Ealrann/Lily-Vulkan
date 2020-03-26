@@ -1,10 +1,5 @@
 package org.sheepy.lily.vulkan.process.graphic.renderpass;
 
-import static org.lwjgl.vulkan.VK10.vkDestroyRenderPass;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.AllocationChildrenRegistry;
@@ -16,13 +11,17 @@ import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.lily.vulkan.process.graphic.renderpass.VkRenderPassAllocator;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.vkDestroyRenderPass;
 
 public class RenderPass implements IRenderPass
 {
-	private final AllocationChildrenRegistry attachmentsRegistry = new AllocationChildrenRegistry(	List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__ATTACHMENT_PKG,
-																											GraphicPackage.Literals.ATTACHMENT_PKG__EXTRA_ATTACHMENTS),
-																									true);
+	private final AllocationChildrenRegistry attachmentsRegistry = new AllocationChildrenRegistry(List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__ATTACHMENT_PKG,
+																										  GraphicPackage.Literals.ATTACHMENT_PKG__EXTRA_ATTACHMENTS),
+																								  true);
 
 	private final GraphicProcess process;
 	private long renderPass = 0;
@@ -80,8 +79,7 @@ public class RenderPass implements IRenderPass
 		renderPass = 0;
 	}
 
-	private void fillClearInfos(List<ExtraAttachment> attachments,
-								FramebufferConfiguration configuration)
+	private void fillClearInfos(List<ExtraAttachment> attachments, FramebufferConfiguration configuration)
 	{
 		clearInfos = new ArrayList<>();
 		clearInfos.add(new ClearInfo(false, configuration.getClearValue()));

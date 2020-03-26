@@ -36,27 +36,18 @@ public class ComputeCommandBuffer extends AbstractCommandBuffer<IComputeContext>
 	@Override
 	public void start(ECommandStage stage)
 	{
-		switch (stage)
+		if (stage == ECommandStage.TRANSFER)
 		{
-		case TRANSFER:
-			Logger.check(vkBeginCommandBuffer(vkCommandBuffer, beginInfo),
-					FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER);
-			break;
-		default:
-			break;
+			Logger.check(vkBeginCommandBuffer(vkCommandBuffer, beginInfo), FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER);
 		}
 	}
 
 	@Override
 	public void end(ECommandStage stage)
 	{
-		switch (stage)
+		if (stage == ECommandStage.COMPUTE)
 		{
-		case COMPUTE:
 			Logger.check(vkEndCommandBuffer(vkCommandBuffer), FAILED_TO_RECORD_COMMAND_BUFFER);
-			break;
-		default:
-			break;
 		}
 	}
 }

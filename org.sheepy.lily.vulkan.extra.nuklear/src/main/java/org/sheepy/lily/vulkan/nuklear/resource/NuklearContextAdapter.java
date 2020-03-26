@@ -9,7 +9,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.core.model.ui.UI;
@@ -25,6 +24,7 @@ import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
 import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 import static org.lwjgl.glfw.GLFW.glfwSetClipboardString;
 import static org.lwjgl.glfw.GLFW.nglfwGetClipboardString;
@@ -62,7 +62,7 @@ public class NuklearContextAdapter implements IAllocableAdapter<InternalExecutio
 	private final NkDrawNullTexture nkNullTexture = NkDrawNullTexture.create();
 	private final NkConvertConfig config = NkConvertConfig.create();
 	private final UI ui;
-	private final INotificationListener uiImagesListener = this::uiImagesChanged;
+	private final Consumer<Notification> uiImagesListener = this::uiImagesChanged;
 
 	private NkAllocator ALLOCATOR;
 	private NkBuffer cmds;
@@ -85,18 +85,10 @@ public class NuklearContextAdapter implements IAllocableAdapter<InternalExecutio
 		final var imageList = nuklearContext.getImageArrayDescriptor().getImages();
 		switch (notification.getEventType())
 		{
-			case Notification.ADD:
-				imageList.add((IImage) notification.getNewValue());
-				break;
-			case Notification.ADD_MANY:
-				imageList.addAll((List<IImage>) notification.getNewValue());
-				break;
-			case Notification.REMOVE:
-				imageList.remove((IImage) notification.getNewValue());
-				break;
-			case Notification.REMOVE_MANY:
-				imageList.removeAll((List<IImage>) notification.getNewValue());
-				break;
+			case Notification.ADD -> imageList.add((IImage) notification.getNewValue());
+			case Notification.ADD_MANY -> imageList.addAll((List<IImage>) notification.getNewValue());
+			case Notification.REMOVE -> imageList.remove((IImage) notification.getNewValue());
+			case Notification.REMOVE_MANY -> imageList.removeAll((List<IImage>) notification.getNewValue());
 		}
 	}
 
@@ -116,13 +108,13 @@ public class NuklearContextAdapter implements IAllocableAdapter<InternalExecutio
 
 		final var layoutTask = nuklearContext.getLayoutTask();
 		layoutTaskAdapter = layoutTask.adaptNotNull(NuklearLayoutTaskAdapter.class);
-		ui.addListener(uiImagesListener, UiPackage.UI__IMAGES);
+		ui.listen(uiImagesListener, UiPackage.UI__IMAGES);
 	}
 
 	@Dispose
 	public void dispose()
 	{
-		ui.removeListener(uiImagesListener, UiPackage.UI__IMAGES);
+		ui.sulk(uiImagesListener, UiPackage.UI__IMAGES);
 		Objects.requireNonNull(ALLOCATOR.alloc()).free();
 		Objects.requireNonNull(ALLOCATOR.mfree()).free();
 		ALLOCATOR.free();
@@ -161,12 +153,11 @@ public class NuklearContextAdapter implements IAllocableAdapter<InternalExecutio
 				return;
 			}
 
-			try (var stack2 = MemoryStack.stackPush())
+			try (final var stack = MemoryStack.stackPush())
 			{
-				final ByteBuffer str = stack2.malloc(len + 1);
+				final ByteBuffer str = stack.malloc(len + 1);
 				MemoryUtil.memCopy(text, MemoryUtil.memAddress(str), len);
 				str.put(len, (byte) 0);
-
 				glfwSetClipboardString(context.getWindow().getPtr(), str);
 			}
 		}).paste((handle, edit) -> {

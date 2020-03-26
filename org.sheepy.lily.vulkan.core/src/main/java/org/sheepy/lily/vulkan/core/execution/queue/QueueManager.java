@@ -1,21 +1,17 @@
 package org.sheepy.lily.vulkan.core.execution.queue;
 
-import static org.lwjgl.vulkan.VK10.*;
+import org.lwjgl.PointerBuffer;
+import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.*;
+import org.sheepy.lily.vulkan.core.execution.loader.QueueFinder;
+import org.sheepy.lily.vulkan.core.window.VkSurface;
 
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
-import org.lwjgl.PointerBuffer;
-import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkDevice;
-import org.lwjgl.vulkan.VkDeviceQueueCreateInfo;
-import org.lwjgl.vulkan.VkPhysicalDevice;
-import org.lwjgl.vulkan.VkQueue;
-import org.lwjgl.vulkan.VkQueueFamilyProperties;
-import org.sheepy.lily.vulkan.core.execution.loader.QueueFinder;
-import org.sheepy.lily.vulkan.core.window.VkSurface;
+import static org.lwjgl.vulkan.VK10.*;
 
 public class QueueManager
 {
@@ -24,9 +20,7 @@ public class QueueManager
 	private final int[] queueFamilyIndices;
 	private boolean exclusive = false;
 
-	public QueueManager(VkPhysicalDevice physicalDevice,
-						List<EQueueType> requestedQueueTypes,
-						VkSurface surface)
+	public QueueManager(VkPhysicalDevice physicalDevice, List<EQueueType> requestedQueueTypes, VkSurface surface)
 	{
 		queueFinder = new QueueFinder(physicalDevice);
 		queueFamilyIndices = new int[EQueueType.values().length];
@@ -38,8 +32,7 @@ public class QueueManager
 
 	private void buildQueueHolders(List<EQueueType> requestedQueueTypes, VkSurface surface)
 	{
-		final QueueFamilyHolder.Builder[] builders = new QueueFamilyHolder.Builder[queueFinder
-				.getFamilyCount()];
+		final QueueFamilyHolder.Builder[] builders = new QueueFamilyHolder.Builder[queueFinder.getFamilyCount()];
 		final var uniqueTypes = EnumSet.copyOf(requestedQueueTypes);
 		for (final var type : uniqueTypes)
 		{
@@ -75,17 +68,12 @@ public class QueueManager
 
 	private Integer findQueueFamilyIndex(final EQueueType type, VkSurface surface)
 	{
-		switch (type)
-		{
-		case Graphic:
-			return queueFinder.findGraphicQueueIndex();
-		case Compute:
-			return queueFinder.findComputeQueueIndex();
-		case Present:
-			return queueFinder.findPresentQueueIndex(surface);
-		default:
-			throw new IllegalArgumentException();
-		}
+		return switch (type)
+				{
+					case Graphic -> queueFinder.findGraphicQueueIndex();
+					case Compute -> queueFinder.findComputeQueueIndex();
+					case Present -> queueFinder.findPresentQueueIndex(surface);
+				};
 	}
 
 	public void allocate(MemoryStack stack, VkDevice device)
@@ -181,8 +169,11 @@ public class QueueManager
 				final var queuePriorities = familyHolder.allocPriorities(stack);
 
 				final var queueCreateInfo = queueCreateInfos.get();
-				queueCreateInfo.set(VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO, VK_NULL_HANDLE, 0,
-						familyHolder.familyIndex, queuePriorities);
+				queueCreateInfo.set(VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
+									VK_NULL_HANDLE,
+									0,
+									familyHolder.familyIndex,
+									queuePriorities);
 			}
 		}
 		queueCreateInfos.flip();
@@ -198,10 +189,10 @@ public class QueueManager
 		private final int requestedQueueCount;
 		private final int effectiveQueueCount;
 
-		public QueueFamilyHolder(	EnumSet<EQueueType> types,
-									int familyIndex,
-									int requestedQueueCount,
-									int effectiveQueueCount)
+		public QueueFamilyHolder(EnumSet<EQueueType> types,
+								 int familyIndex,
+								 int requestedQueueCount,
+								 int effectiveQueueCount)
 		{
 			// this.types = EnumSet.copyOf(types);
 			this.requestedQueueCount = requestedQueueCount;
@@ -314,10 +305,11 @@ public class QueueManager
 
 			public QueueFamilyHolder build()
 			{
-				final int effectiveQueueCount = Math.min(requestedQueueCount,
-						properties.queueCount());
-				return new QueueFamilyHolder(EnumSet.copyOf(types), familyIndex,
-						requestedQueueCount, effectiveQueueCount);
+				final int effectiveQueueCount = Math.min(requestedQueueCount, properties.queueCount());
+				return new QueueFamilyHolder(EnumSet.copyOf(types),
+											 familyIndex,
+											 requestedQueueCount,
+											 effectiveQueueCount);
 			}
 		}
 	}

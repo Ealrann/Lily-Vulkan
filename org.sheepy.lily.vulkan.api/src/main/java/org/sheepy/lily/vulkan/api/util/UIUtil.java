@@ -21,15 +21,12 @@ public class UIUtil
 
 	public final static int computeXRelative(EHorizontalRelative relative, int areaWidth, int x, int width)
 	{
-		switch (relative)
-		{
-			case RIGHT:
-				return areaWidth - width - x - 1;
-			case MIDDLE:
-				return (areaWidth / 2) - (width / 2) + x;
-			default:
-				return x;
-		}
+		return switch (relative)
+				{
+					case RIGHT -> areaWidth - width - x - 1;
+					case MIDDLE -> (areaWidth / 2) - (width / 2) + x;
+					default -> x;
+				};
 	}
 
 	public final static int computeYRelative(Vector2ic size, ISizedElement panel)
@@ -45,14 +42,11 @@ public class UIUtil
 
 	public final static int computeYRelative(EVerticalRelative relative, int areaHeight, int y, int height)
 	{
-		switch (relative)
-		{
-			case BOTTOM:
-				return areaHeight - height - y - 1;
-			case MIDDLE:
-				return (areaHeight / 2) - (height / 2) + y;
-			default:
-				return y;
-		}
+		return switch (relative)
+				{
+					case BOTTOM -> areaHeight - height - y - 1;
+					case MIDDLE -> (areaHeight / 2) - (height / 2) + y;
+					default -> y;
+				};
 	}
 }

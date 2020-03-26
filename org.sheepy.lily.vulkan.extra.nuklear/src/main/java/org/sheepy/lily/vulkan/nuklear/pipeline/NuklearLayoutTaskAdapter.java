@@ -161,15 +161,12 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 
 	private boolean isLayoutNecessary()
 	{
-		switch (layoutRequested)
-		{
-			case Force:
-				return true;
-			case IfNecessary:
-				return doesPanelNeedLayout();
-			default:
-				return false;
-		}
+		return switch (layoutRequested)
+				{
+					case Force -> true;
+					case IfNecessary -> doesPanelNeedLayout();
+					case None -> false;
+				};
 	}
 
 	public boolean doesPanelNeedLayout()

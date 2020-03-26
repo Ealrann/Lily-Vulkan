@@ -46,19 +46,12 @@ public class VulkanInputManager extends Notifier<IInputManager.Features<?>> impl
 		@Override
 		public void invoke(long window, int key, int scancode, int action, int mods)
 		{
-			final EKeyState state;
-			switch (action)
-			{
-				case GLFW_PRESS:
-					state = EKeyState.PRESSED;
-					break;
-				case GLFW_REPEAT:
-					state = EKeyState.REPEATED;
-					break;
-				case GLFW_RELEASE:
-				default:
-					state = EKeyState.RELEASED;
-			}
+			final EKeyState state = switch (action)
+					{
+						case GLFW_PRESS -> EKeyState.PRESSED;
+						case GLFW_REPEAT -> EKeyState.REPEATED;
+						default -> EKeyState.RELEASED;
+					};
 
 			final var event = new KeyEvent(key, state, mods);
 			events.add(event);
@@ -79,36 +72,18 @@ public class VulkanInputManager extends Notifier<IInputManager.Features<?>> impl
 		@Override
 		public void invoke(long windowPtr, int button, int action, int mods)
 		{
-			final EMouseButton mouseButton;
-			switch (button)
-			{
-				case GLFW_MOUSE_BUTTON_RIGHT:
-					mouseButton = EMouseButton.RIGHT;
-					break;
-				case GLFW_MOUSE_BUTTON_MIDDLE:
-					mouseButton = EMouseButton.MIDDLE;
-					break;
-				case GLFW_MOUSE_BUTTON_LEFT:
-					mouseButton = EMouseButton.LEFT;
-					break;
-				case GLFW_MOUSE_BUTTON_4:
-					mouseButton = EMouseButton._4;
-					break;
-				case GLFW_MOUSE_BUTTON_5:
-					mouseButton = EMouseButton._5;
-					break;
-				case GLFW_MOUSE_BUTTON_6:
-					mouseButton = EMouseButton._6;
-					break;
-				case GLFW_MOUSE_BUTTON_7:
-					mouseButton = EMouseButton._7;
-					break;
-				case GLFW_MOUSE_BUTTON_8:
-					mouseButton = EMouseButton._8;
-					break;
-				default:
-					mouseButton = null;
-			}
+			final EMouseButton mouseButton = switch (button)
+					{
+						case GLFW_MOUSE_BUTTON_RIGHT -> EMouseButton.RIGHT;
+						case GLFW_MOUSE_BUTTON_MIDDLE -> EMouseButton.MIDDLE;
+						case GLFW_MOUSE_BUTTON_LEFT -> EMouseButton.LEFT;
+						case GLFW_MOUSE_BUTTON_4 -> EMouseButton._4;
+						case GLFW_MOUSE_BUTTON_5 -> EMouseButton._5;
+						case GLFW_MOUSE_BUTTON_6 -> EMouseButton._6;
+						case GLFW_MOUSE_BUTTON_7 -> EMouseButton._7;
+						case GLFW_MOUSE_BUTTON_8 -> EMouseButton._8;
+						default -> null;
+					};
 			events.add(new MouseClickEvent(cursorPosition, mouseButton, action == GLFW_PRESS));
 		}
 	};

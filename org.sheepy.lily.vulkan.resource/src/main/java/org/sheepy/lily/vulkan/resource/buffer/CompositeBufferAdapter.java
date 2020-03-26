@@ -45,14 +45,14 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	}
 
 	@Load
-	private void load()
+	public void load()
 	{
 		partsRegistry.startRegister(compositeBuffer);
 		sizeListenerDeployer.startDeploy(compositeBuffer);
 	}
 
 	@Dispose
-	private void dispose()
+	public void dispose()
 	{
 		sizeListenerDeployer.stopDeploy(compositeBuffer);
 		partsRegistry.stopRegister(compositeBuffer);

@@ -6,19 +6,13 @@ import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 
 public final class InstanceCountUtil
 {
-	public static int getInstanceCount(	InternalExecutionContext context,
-										EInstanceCount eInstanceCount)
+	public static int getInstanceCount(InternalExecutionContext context, EInstanceCount eInstanceCount)
 	{
-		switch (eInstanceCount)
-		{
-		case FIT_TO_SWAP_IMAGE_COUNT:
-			return ((IGraphicContext) context).getSwapChainManager().getImageCount();
-		case ONE:
-			return 1;
-		case TWO:
-			return 2;
-		}
-
-		return 0;
+		return switch (eInstanceCount)
+				{
+					case FIT_TO_SWAP_IMAGE_COUNT -> ((IGraphicContext) context).getSwapChainManager().getImageCount();
+					case ONE -> 1;
+					case TWO -> 2;
+				};
 	}
 }

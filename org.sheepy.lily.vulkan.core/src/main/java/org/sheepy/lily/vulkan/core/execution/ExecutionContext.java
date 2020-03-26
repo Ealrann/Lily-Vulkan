@@ -37,16 +37,9 @@ public class ExecutionContext extends GameAllocationContext implements InternalE
 		final var logicalDevice = vulkanContext.getLogicalDevice();
 		switch (queueType)
 		{
-			case Compute:
-				queue = logicalDevice.borrowComputeQueue();
-				break;
-			case Graphic:
-				queue = logicalDevice.borrowGraphicQueue();
-				break;
-			case Present:
-				throw new AssertionError("Present is not a valid ExecutionContext");
-			default:
-				break;
+			case Compute -> queue = logicalDevice.borrowComputeQueue();
+			case Graphic -> queue = logicalDevice.borrowGraphicQueue();
+			case Present -> throw new AssertionError("Present is not a valid ExecutionContext");
 		}
 
 		commandPool = new CommandPool(queue.familyIndex, resetAllowed);

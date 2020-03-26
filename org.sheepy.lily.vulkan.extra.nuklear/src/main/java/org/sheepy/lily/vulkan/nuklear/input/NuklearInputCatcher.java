@@ -49,46 +49,24 @@ public final class NuklearInputCatcher implements IInputCatcher
 		final boolean press = event.state == EKeyState.PRESSED;
 		switch (event.key)
 		{
-			case GLFW_KEY_ESCAPE:
-				break;
-			case GLFW_KEY_DELETE:
-				nk_input_key(nkContext, NK_KEY_DEL, press);
-				break;
-			case GLFW_KEY_ENTER:
-				nk_input_key(nkContext, NK_KEY_ENTER, press);
-				break;
-			case GLFW_KEY_TAB:
-				nk_input_key(nkContext, NK_KEY_TAB, press);
-				break;
-			case GLFW_KEY_BACKSPACE:
-				nk_input_key(nkContext, NK_KEY_BACKSPACE, press);
-				break;
-			case GLFW_KEY_UP:
-				nk_input_key(nkContext, NK_KEY_UP, press);
-				break;
-			case GLFW_KEY_DOWN:
-				nk_input_key(nkContext, NK_KEY_DOWN, press);
-				break;
-			case GLFW_KEY_HOME:
+			case GLFW_KEY_DELETE -> nk_input_key(nkContext, NK_KEY_DEL, press);
+			case GLFW_KEY_ENTER -> nk_input_key(nkContext, NK_KEY_ENTER, press);
+			case GLFW_KEY_TAB -> nk_input_key(nkContext, NK_KEY_TAB, press);
+			case GLFW_KEY_BACKSPACE -> nk_input_key(nkContext, NK_KEY_BACKSPACE, press);
+			case GLFW_KEY_UP -> nk_input_key(nkContext, NK_KEY_UP, press);
+			case GLFW_KEY_DOWN -> nk_input_key(nkContext, NK_KEY_DOWN, press);
+			case GLFW_KEY_HOME -> {
 				nk_input_key(nkContext, NK_KEY_TEXT_START, press);
 				nk_input_key(nkContext, NK_KEY_SCROLL_START, press);
-				break;
-			case GLFW_KEY_END:
+			}
+			case GLFW_KEY_END -> {
 				nk_input_key(nkContext, NK_KEY_TEXT_END, press);
 				nk_input_key(nkContext, NK_KEY_SCROLL_END, press);
-				break;
-			case GLFW_KEY_PAGE_DOWN:
-				nk_input_key(nkContext, NK_KEY_SCROLL_DOWN, press);
-				break;
-			case GLFW_KEY_PAGE_UP:
-				nk_input_key(nkContext, NK_KEY_SCROLL_UP, press);
-				break;
-			case GLFW_KEY_LEFT_SHIFT:
-			case GLFW_KEY_RIGHT_SHIFT:
-				nk_input_key(nkContext, NK_KEY_SHIFT, press);
-				break;
-			case GLFW_KEY_LEFT_CONTROL:
-			case GLFW_KEY_RIGHT_CONTROL:
+			}
+			case GLFW_KEY_PAGE_DOWN -> nk_input_key(nkContext, NK_KEY_SCROLL_DOWN, press);
+			case GLFW_KEY_PAGE_UP -> nk_input_key(nkContext, NK_KEY_SCROLL_UP, press);
+			case GLFW_KEY_LEFT_SHIFT, GLFW_KEY_RIGHT_SHIFT -> nk_input_key(nkContext, NK_KEY_SHIFT, press);
+			case GLFW_KEY_LEFT_CONTROL, GLFW_KEY_RIGHT_CONTROL -> {
 				if (press)
 				{
 					nk_input_key(nkContext, NK_KEY_COPY, glfwGetKey(windowId, GLFW_KEY_C) == GLFW_PRESS);
@@ -110,7 +88,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 					nk_input_key(nkContext, NK_KEY_CUT, false);
 					nk_input_key(nkContext, NK_KEY_SHIFT, false);
 				}
-				break;
+			}
 		}
 		caught = true;
 	}
@@ -120,21 +98,13 @@ public final class NuklearInputCatcher implements IInputCatcher
 		final int x = (int) event.mouseLocation.x();
 		final int y = (int) event.mouseLocation.y();
 
-		final int nkButton;
-		switch (event.button)
-		{
-			case RIGHT:
-				nkButton = NK_BUTTON_RIGHT;
-				break;
-			case MIDDLE:
-				nkButton = NK_BUTTON_MIDDLE;
-				break;
-			case LEFT:
-				nkButton = NK_BUTTON_LEFT;
-				break;
-			default:
-				nkButton = -1;
-		}
+		final int nkButton = switch (event.button)
+				{
+					case RIGHT -> NK_BUTTON_RIGHT;
+					case MIDDLE -> NK_BUTTON_MIDDLE;
+					case LEFT -> NK_BUTTON_LEFT;
+					default -> -1;
+				};
 
 		if (nkButton != -1)
 		{

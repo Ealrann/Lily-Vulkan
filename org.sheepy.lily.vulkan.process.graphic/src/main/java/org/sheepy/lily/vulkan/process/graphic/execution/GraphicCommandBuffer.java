@@ -102,15 +102,9 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 	{
 		switch (stage)
 		{
-			case TRANSFER:
-				Logger.check(vkBeginCommandBuffer(vkCommandBuffer, beginInfo),
-							 FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER);
-				break;
-			case RENDER:
-				vkCmdBeginRenderPass(vkCommandBuffer, renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
-				break;
-			default:
-				break;
+			case TRANSFER -> Logger.check(vkBeginCommandBuffer(vkCommandBuffer, beginInfo),
+										  FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER);
+			case RENDER -> vkCmdBeginRenderPass(vkCommandBuffer, renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 		}
 	}
 
@@ -119,14 +113,8 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 	{
 		switch (stage)
 		{
-			case RENDER:
-				vkCmdEndRenderPass(vkCommandBuffer);
-				break;
-			case POST_RENDER:
-				Logger.check(vkEndCommandBuffer(vkCommandBuffer), FAILED_TO_RECORD_COMMAND_BUFFER);
-				break;
-			default:
-				break;
+			case RENDER -> vkCmdEndRenderPass(vkCommandBuffer);
+			case POST_RENDER -> Logger.check(vkEndCommandBuffer(vkCommandBuffer), FAILED_TO_RECORD_COMMAND_BUFFER);
 		}
 	}
 }
