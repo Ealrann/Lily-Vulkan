@@ -27,7 +27,7 @@ import static org.lwjgl.vulkan.VK10.*;
 
 @Statefull
 @Adapter(scope = DepthAttachment.class)
-public class DepthAttachmentAdapter extends Notifier<IVkImageAdapter.Features> implements IDepthAttachmentAdapter
+public final class DepthAttachmentAdapter extends Notifier<IVkImageAdapter.Features> implements IDepthAttachmentAdapter
 {
 	private final DepthAttachment depthAttachment;
 	private VkImage depthImageBackend;
@@ -65,7 +65,8 @@ public class DepthAttachmentAdapter extends Notifier<IVkImageAdapter.Features> i
 		final var extent = surfaceManager.getExtent();
 		final int width = extent.x();
 		final int height = extent.y();
-		final int usages = VulkanModelUtil.getEnumeratedFlag(depthAttachment.getUsages()) | VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
+		final int usages = VulkanModelUtil.getEnumeratedFlag(depthAttachment.getUsages()) |
+				VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
 
 		final var depthImageBuilder = VkImage.newBuilder(width, height, depthFormat);
 		depthImageBuilder.usage(usages);
@@ -104,7 +105,8 @@ public class DepthAttachmentAdapter extends Notifier<IVkImageAdapter.Features> i
 		barrierInfo.subresourceRange().baseArrayLayer(0);
 		barrierInfo.subresourceRange().layerCount(1);
 		barrierInfo.subresourceRange().aspectMask(VK_IMAGE_ASPECT_DEPTH_BIT);
-		barrierInfo.dstAccessMask(EAccess.DEPTH_STENCIL_ATTACHMENT_READ_BIT_VALUE | EAccess.DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_VALUE);
+		barrierInfo.dstAccessMask(
+				EAccess.DEPTH_STENCIL_ATTACHMENT_READ_BIT_VALUE | EAccess.DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_VALUE);
 
 		context.execute((context2, commandBuffer) -> vkCmdPipelineBarrier(commandBuffer.getVkCommandBuffer(),
 																		  srcStage,
@@ -117,7 +119,7 @@ public class DepthAttachmentAdapter extends Notifier<IVkImageAdapter.Features> i
 
 	private static int findDepthFormat(PhysicalDevice physicalDevice)
 	{
-		return physicalDevice.findSupportedFormat(new int[]{VK_FORMAT_D32_SFLOAT, VK_FORMAT_D32_SFLOAT_S8_UINT, VK_FORMAT_D24_UNORM_S8_UINT},
+		return physicalDevice.findSupportedFormat(new int[]{VK_FORMAT_D32_SFLOAT},
 												  VK_IMAGE_TILING_OPTIMAL,
 												  VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT);
 	}

@@ -123,6 +123,7 @@
     <genClasses ecoreClass="graphic.ecore#//ColorAttachment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//ColorAttachment/clearValue"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//ColorAttachment/usages"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//ColorAttachment/format"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//AttachmentPkg">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentPkg/colorAttachment"/>

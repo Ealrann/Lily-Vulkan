@@ -19,7 +19,8 @@ public final class VulkanInstance
 	private static final String ENGINE_NAME = "Lily";
 	private static final String CREATION_FAILED = "Failed to create VkInstance";
 
-	private static final String[] LAYERS_TO_ENABLE = {"VK_LAYER_KHRONOS_validation", "VK_LAYER_RENDERDOC_Capture",
+	private static final String[] LAYERS_TO_ENABLE = {"VK_LAYER_KHRONOS_validation",
+			"VK_LAYER_RENDERDOC_Capture",
 //			"VK_LAYER_MESA_overlay",
 //			 "VK_LAYER_LUNARG_monitor",
 			// "VK_LAYER_LUNARG_api_dump"

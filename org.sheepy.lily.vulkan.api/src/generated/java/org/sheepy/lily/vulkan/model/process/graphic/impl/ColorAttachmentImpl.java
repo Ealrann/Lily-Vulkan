@@ -18,6 +18,7 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
 /**
@@ -30,6 +31,7 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorAttachmentImpl#getClearValue <em>Clear Value</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorAttachmentImpl#getUsages <em>Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorAttachmentImpl#getFormat <em>Format</em>}</li>
  * </ul>
  *
  * @generated
@@ -65,6 +67,26 @@ public class ColorAttachmentImpl extends ExtraAttachmentImpl implements ColorAtt
 	 * @ordered
 	 */
 	protected EList<EImageUsage> usages;
+
+	/**
+	 * The default value of the '{@link #getFormat() <em>Format</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFormat()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EFormat FORMAT_EDEFAULT = EFormat.UNDEFINED;
+
+	/**
+	 * The cached value of the '{@link #getFormat() <em>Format</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFormat()
+	 * @generated
+	 * @ordered
+	 */
+	protected EFormat format = FORMAT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,6 +155,31 @@ public class ColorAttachmentImpl extends ExtraAttachmentImpl implements ColorAtt
 	 * @generated
 	 */
 	@Override
+	public EFormat getFormat()
+	{
+		return format;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFormat(EFormat newFormat)
+	{
+		EFormat oldFormat = format;
+		format = newFormat == null ? FORMAT_EDEFAULT : newFormat;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.COLOR_ATTACHMENT__FORMAT, oldFormat, format));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -141,6 +188,8 @@ public class ColorAttachmentImpl extends ExtraAttachmentImpl implements ColorAtt
 				return getClearValue();
 			case GraphicPackage.COLOR_ATTACHMENT__USAGES:
 				return getUsages();
+			case GraphicPackage.COLOR_ATTACHMENT__FORMAT:
+				return getFormat();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -163,6 +212,9 @@ public class ColorAttachmentImpl extends ExtraAttachmentImpl implements ColorAtt
 				getUsages().clear();
 				getUsages().addAll((Collection<? extends EImageUsage>)newValue);
 				return;
+			case GraphicPackage.COLOR_ATTACHMENT__FORMAT:
+				setFormat((EFormat)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -183,6 +235,9 @@ public class ColorAttachmentImpl extends ExtraAttachmentImpl implements ColorAtt
 			case GraphicPackage.COLOR_ATTACHMENT__USAGES:
 				getUsages().clear();
 				return;
+			case GraphicPackage.COLOR_ATTACHMENT__FORMAT:
+				setFormat(FORMAT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -201,6 +256,8 @@ public class ColorAttachmentImpl extends ExtraAttachmentImpl implements ColorAtt
 				return CLEAR_VALUE_EDEFAULT == null ? clearValue != null : !CLEAR_VALUE_EDEFAULT.equals(clearValue);
 			case GraphicPackage.COLOR_ATTACHMENT__USAGES:
 				return usages != null && !usages.isEmpty();
+			case GraphicPackage.COLOR_ATTACHMENT__FORMAT:
+				return format != FORMAT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -220,6 +277,8 @@ public class ColorAttachmentImpl extends ExtraAttachmentImpl implements ColorAtt
 		result.append(clearValue);
 		result.append(", usages: ");
 		result.append(usages);
+		result.append(", format: ");
+		result.append(format);
 		result.append(')');
 		return result.toString();
 	}

@@ -71,6 +71,9 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated Extra -->
       <extender
+            uri="org.sheepy.lily.core.model.variable"
+            class="org.sheepy.lily.vulkan.extra.model.rendering.provider.RenderingItemProviderAdapterFactory$VariableChildCreationExtender"/>
+      <extender
             uri="org.sheepy.lily.vulkan.model.process"
             class="org.sheepy.lily.vulkan.extra.model.rendering.provider.RenderingItemProviderAdapterFactory$ProcessChildCreationExtender"/>
       <extender

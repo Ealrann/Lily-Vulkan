@@ -1,21 +1,17 @@
 package org.sheepy.lily.vulkan.demo.adapter;
 
-import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
-
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.IAdapter;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.adapter.annotation.Tick;
+import org.sheepy.lily.core.api.adapter.annotation.*;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.Scene;
 import org.sheepy.lily.vulkan.api.util.SizeOf;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
+
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
 
 @Statefull
 @Adapter(scope = ConstantBuffer.class, name = CameraConstantAdapter.DEMO_CAMERA, lazy = false)
@@ -74,9 +70,9 @@ public class CameraConstantAdapter implements IAdapter
 
 		view.identity().lookAt(EYE_LOCATION, CENTER_LOCATION, UP_AXIS);
 
-		proj.identity().perspective(RADIANS_45DEG, (float) width / (float) height, 0.1f, 10f);
-		// inverse the y axis
-		proj.mul(new Matrix4f().m11(-1f));
+		proj.identity();
+		proj.scale(1, -1, 1);
+		proj.perspective(RADIANS_45DEG, (float) width / (float) height, 0.1f, 10f, true);
 
 		finalMatrix.identity();
 		finalMatrix.mul(proj);

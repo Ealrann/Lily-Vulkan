@@ -26,7 +26,7 @@ import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
 @Statefull
 @Adapter(scope = ColorAttachment.class)
-public class ColorAttachmentAdapter extends Notifier<IVkImageAdapter.Features> implements IExtraAttachmentAdapter
+public final class ColorAttachmentAdapter extends Notifier<IVkImageAdapter.Features> implements IExtraAttachmentAdapter
 {
 	private final ColorAttachment colorAttachment;
 
@@ -51,7 +51,11 @@ public class ColorAttachmentAdapter extends Notifier<IVkImageAdapter.Features> i
 	public void allocate(IGraphicContext context)
 	{
 		final var surfaceManager = context.getSurfaceManager();
-		colorFormat = surfaceManager.getColorDomain().getFormat().getValue();
+		final var format = colorAttachment.getFormat().getValue();
+		final int surfaceFormat = surfaceManager.getColorDomain().getFormat().getValue();
+
+		colorFormat = format == 0 ? surfaceFormat : format;
+
 		createImage(context);
 		allocateImage(context);
 		createAndAllocateImageView(context.getLogicalDevice());

@@ -55,11 +55,10 @@ public class VkSubpassDescriptionAllocator
 		for (final var subpass : subpasses)
 		{
 			final var vkSubpass = vkSubpasses.get();
-
-			vkSubpass.pipelineBindPoint(subpass.getBindPoint());
-
 			final var attachmantRefPkg = subpass.getAttachmantRefPkg();
 			final var refs = attachmantRefPkg != null ? attachmantRefPkg.getAttachmentRefs() : List.<AttachmentRef>of();
+
+			vkSubpass.pipelineBindPoint(subpass.getBindPoint());
 
 			// Color
 			final var colorRefs = refs.stream()
@@ -76,12 +75,11 @@ public class VkSubpassDescriptionAllocator
 															   attachmentRef,
 															   vkSubpass::pDepthStencilAttachment));
 
-			// Color
+			// Input
 			final var inputRefs = refs.stream()
 									  .filter(a -> a.getType() == EAttachmentType.INPUT)
 									  .collect(Collectors.toList());
 			fillAttachment(stack, inputRefs, vkSubpass::pInputAttachments);
-
 		}
 		vkSubpasses.flip();
 	}

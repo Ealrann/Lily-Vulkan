@@ -4,10 +4,12 @@ package org.sheepy.lily.vulkan.extra.model.rendering;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
@@ -1711,6 +1713,72 @@ public interface RenderingPackage extends EPackage
 
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PhysicalEntityVariableImpl <em>Physical Entity Variable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.PhysicalEntityVariableImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getPhysicalEntityVariable()
+	 * @generated
+	 */
+	int PHYSICAL_ENTITY_VARIABLE = 23;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHYSICAL_ENTITY_VARIABLE__NAME = VariablePackage.IMODEL_VARIABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Entity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHYSICAL_ENTITY_VARIABLE__ENTITY = VariablePackage.IMODEL_VARIABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHYSICAL_ENTITY_VARIABLE__FEATURE = VariablePackage.IMODEL_VARIABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Physical Entity Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHYSICAL_ENTITY_VARIABLE_FEATURE_COUNT = VariablePackage.IMODEL_VARIABLE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Physical Entity Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHYSICAL_ENTITY_VARIABLE_OPERATION_COUNT = VariablePackage.IMODEL_VARIABLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature <em>EPhysical Entity Feature</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEPhysicalEntityFeature()
+	 * @generated
+	 */
+	int EPHYSICAL_ENTITY_FEATURE = 24;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.Entity <em>Entity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2348,6 +2416,48 @@ public interface RenderingPackage extends EPackage
 	EReference getRenderIndexedDrawTask_Structure();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable <em>Physical Entity Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Physical Entity Variable</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable
+	 * @generated
+	 */
+	EClass getPhysicalEntityVariable();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable#getEntity <em>Entity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Entity</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable#getEntity()
+	 * @see #getPhysicalEntityVariable()
+	 * @generated
+	 */
+	EReference getPhysicalEntityVariable_Entity();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable#getFeature <em>Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Feature</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable#getFeature()
+	 * @see #getPhysicalEntityVariable()
+	 * @generated
+	 */
+	EAttribute getPhysicalEntityVariable_Feature();
+
+	/**
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature <em>EPhysical Entity Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>EPhysical Entity Feature</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature
+	 * @generated
+	 */
+	EEnum getEPhysicalEntityFeature();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2895,6 +3005,42 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EReference RENDER_INDEXED_DRAW_TASK__STRUCTURE = eINSTANCE.getRenderIndexedDrawTask_Structure();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PhysicalEntityVariableImpl <em>Physical Entity Variable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.PhysicalEntityVariableImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getPhysicalEntityVariable()
+		 * @generated
+		 */
+		EClass PHYSICAL_ENTITY_VARIABLE = eINSTANCE.getPhysicalEntityVariable();
+
+		/**
+		 * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PHYSICAL_ENTITY_VARIABLE__ENTITY = eINSTANCE.getPhysicalEntityVariable_Entity();
+
+		/**
+		 * The meta object literal for the '<em><b>Feature</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PHYSICAL_ENTITY_VARIABLE__FEATURE = eINSTANCE.getPhysicalEntityVariable_Feature();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature <em>EPhysical Entity Feature</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEPhysicalEntityFeature()
+		 * @generated
+		 */
+		EEnum EPHYSICAL_ENTITY_FEATURE = eINSTANCE.getEPhysicalEntityFeature();
 
 	}
 

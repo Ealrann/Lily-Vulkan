@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.common.util.EList;
 import org.joml.Vector4fc;
+import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
 /**
@@ -17,6 +18,7 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment#getClearValue <em>Clear Value</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment#getUsages <em>Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment#getFormat <em>Format</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getColorAttachment()
@@ -61,5 +63,30 @@ public interface ColorAttachment extends ExtraAttachment
 	 * @generated
 	 */
 	EList<EImageUsage> getUsages();
+
+	/**
+	 * Returns the value of the '<em><b>Format</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EFormat}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Format</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EFormat
+	 * @see #setFormat(EFormat)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getColorAttachment_Format()
+	 * @model
+	 * @generated
+	 */
+	EFormat getFormat();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment#getFormat <em>Format</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Format</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EFormat
+	 * @see #getFormat()
+	 * @generated
+	 */
+	void setFormat(EFormat value);
 
 } // ColorAttachment

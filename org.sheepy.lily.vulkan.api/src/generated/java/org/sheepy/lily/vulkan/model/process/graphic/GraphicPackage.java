@@ -822,13 +822,22 @@ public interface GraphicPackage extends EPackage
 	int COLOR_ATTACHMENT__USAGES = EXTRA_ATTACHMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Format</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_ATTACHMENT__FORMAT = EXTRA_ATTACHMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Color Attachment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLOR_ATTACHMENT_FEATURE_COUNT = EXTRA_ATTACHMENT_FEATURE_COUNT + 2;
+	int COLOR_ATTACHMENT_FEATURE_COUNT = EXTRA_ATTACHMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Color Attachment</em>' class.
@@ -2922,6 +2931,17 @@ public interface GraphicPackage extends EPackage
 	EAttribute getColorAttachment_Usages();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment#getFormat <em>Format</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Format</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment#getFormat()
+	 * @see #getColorAttachment()
+	 * @generated
+	 */
+	EAttribute getColorAttachment_Format();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg <em>Attachment Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4189,6 +4209,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute COLOR_ATTACHMENT__USAGES = eINSTANCE.getColorAttachment_Usages();
+
+		/**
+		 * The meta object literal for the '<em><b>Format</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_ATTACHMENT__FORMAT = eINSTANCE.getColorAttachment_Format();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentPkgImpl <em>Attachment Pkg</em>}' class.

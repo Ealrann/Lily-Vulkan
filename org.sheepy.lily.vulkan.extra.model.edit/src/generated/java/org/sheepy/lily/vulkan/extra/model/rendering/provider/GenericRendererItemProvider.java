@@ -20,11 +20,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.provider.GraphicsPipelineItemProvider;
-import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelineFactory;
-import org.sheepy.vulkan.model.pipeline.PipelineFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer} object.
@@ -270,46 +266,6 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.VK_PIPELINE__PUSH_CONSTANT_RANGES,
-				 PipelineFactory.eINSTANCE.createPushConstantRange()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE,
-				 GraphicpipelineFactory.eINSTANCE.createStaticViewportState()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE,
-				 GraphicpipelineFactory.eINSTANCE.createDynamicViewportState()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.GRAPHICS_PIPELINE__INPUT_ASSEMBLY,
-				 GraphicpipelineFactory.eINSTANCE.createInputAssembly()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.GRAPHICS_PIPELINE__RASTERIZER,
-				 GraphicpipelineFactory.eINSTANCE.createRasterizer()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.GRAPHICS_PIPELINE__COLOR_BLEND,
-				 GraphicpipelineFactory.eINSTANCE.createColorBlend()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.GRAPHICS_PIPELINE__DYNAMIC_STATE,
-				 GraphicpipelineFactory.eINSTANCE.createDynamicState()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE,
-				 GraphicpipelineFactory.eINSTANCE.createDepthStencilState()));
 
 		newChildDescriptors.add
 			(createChildParameter

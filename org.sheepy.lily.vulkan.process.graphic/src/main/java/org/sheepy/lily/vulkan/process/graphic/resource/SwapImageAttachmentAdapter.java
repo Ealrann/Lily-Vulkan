@@ -15,7 +15,7 @@ import static org.lwjgl.vulkan.KHRSwapchain.vkGetSwapchainImagesKHR;
 
 @Statefull
 @Adapter(scope = SwapImageAttachment.class)
-public class SwapImageAttachmentAdapter implements IAdapter
+public final class SwapImageAttachmentAdapter implements IAdapter
 {
 	private List<Long> swapChainImages = null;
 

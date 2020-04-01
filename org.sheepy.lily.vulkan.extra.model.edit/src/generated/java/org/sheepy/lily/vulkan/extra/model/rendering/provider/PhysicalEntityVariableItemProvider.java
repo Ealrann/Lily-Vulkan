@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.process.graphic.provider;
+package org.sheepy.lily.vulkan.extra.model.rendering.provider;
 
 
 import java.util.Collection;
@@ -9,21 +9,39 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.core.model.types.TypesPackage;
+
+import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ColorAttachmentItemProvider extends ExtraAttachmentItemProvider
+public class PhysicalEntityVariableItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -31,7 +49,7 @@ public class ColorAttachmentItemProvider extends ExtraAttachmentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ColorAttachmentItemProvider(AdapterFactory adapterFactory)
+	public PhysicalEntityVariableItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -49,28 +67,28 @@ public class ColorAttachmentItemProvider extends ExtraAttachmentItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addClearValuePropertyDescriptor(object);
-			addUsagesPropertyDescriptor(object);
-			addFormatPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
+			addEntityPropertyDescriptor(object);
+			addFeaturePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Clear Value feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addClearValuePropertyDescriptor(Object object)
+	protected void addNamePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ColorAttachment_clearValue_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorAttachment_clearValue_feature", "_UI_ColorAttachment_type"),
-				 GraphicPackage.Literals.COLOR_ATTACHMENT__CLEAR_VALUE,
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
 				 true,
 				 false,
 				 false,
@@ -80,20 +98,43 @@ public class ColorAttachmentItemProvider extends ExtraAttachmentItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Usages feature.
+	 * This adds a property descriptor for the Entity feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addUsagesPropertyDescriptor(Object object)
+	protected void addEntityPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ColorAttachment_usages_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorAttachment_usages_feature", "_UI_ColorAttachment_type"),
-				 GraphicPackage.Literals.COLOR_ATTACHMENT__USAGES,
+				 getString("_UI_PhysicalEntityVariable_entity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PhysicalEntityVariable_entity_feature", "_UI_PhysicalEntityVariable_type"),
+				 RenderingPackage.Literals.PHYSICAL_ENTITY_VARIABLE__ENTITY,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Feature feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFeaturePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PhysicalEntityVariable_feature_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PhysicalEntityVariable_feature_feature", "_UI_PhysicalEntityVariable_type"),
+				 RenderingPackage.Literals.PHYSICAL_ENTITY_VARIABLE__FEATURE,
 				 true,
 				 false,
 				 false,
@@ -103,30 +144,7 @@ public class ColorAttachmentItemProvider extends ExtraAttachmentItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Format feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFormatPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorAttachment_format_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorAttachment_format_feature", "_UI_ColorAttachment_type"),
-				 GraphicPackage.Literals.COLOR_ATTACHMENT__FORMAT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns ColorAttachment.gif.
+	 * This returns PhysicalEntityVariable.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -134,7 +152,7 @@ public class ColorAttachmentItemProvider extends ExtraAttachmentItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ColorAttachment"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PhysicalEntityVariable"));
 	}
 
 	/**
@@ -146,10 +164,10 @@ public class ColorAttachmentItemProvider extends ExtraAttachmentItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((ColorAttachment)object).getName();
+		String label = ((PhysicalEntityVariable)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ColorAttachment_type") :
-			getString("_UI_ColorAttachment_type") + " " + label;
+			getString("_UI_PhysicalEntityVariable_type") :
+			getString("_UI_PhysicalEntityVariable_type") + " " + label;
 	}
 
 
@@ -165,11 +183,10 @@ public class ColorAttachmentItemProvider extends ExtraAttachmentItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ColorAttachment.class))
+		switch (notification.getFeatureID(PhysicalEntityVariable.class))
 		{
-			case GraphicPackage.COLOR_ATTACHMENT__CLEAR_VALUE:
-			case GraphicPackage.COLOR_ATTACHMENT__USAGES:
-			case GraphicPackage.COLOR_ATTACHMENT__FORMAT:
+			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE__NAME:
+			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE__FEATURE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -187,6 +204,18 @@ public class ColorAttachmentItemProvider extends ExtraAttachmentItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator()
+	{
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

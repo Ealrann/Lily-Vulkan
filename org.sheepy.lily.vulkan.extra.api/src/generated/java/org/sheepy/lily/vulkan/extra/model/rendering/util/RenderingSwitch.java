@@ -11,6 +11,7 @@ import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
+import org.sheepy.lily.core.model.variable.IModelVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.*;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
@@ -273,6 +274,15 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				T1 result = caseRenderIndexedDrawTask(renderIndexedDrawTask);
 				if (result == null) result = caseIPipelineTask(renderIndexedDrawTask);
 				if (result == null) result = caseLNamedElement(renderIndexedDrawTask);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE:
+			{
+				PhysicalEntityVariable physicalEntityVariable = (PhysicalEntityVariable)theEObject;
+				T1 result = casePhysicalEntityVariable(physicalEntityVariable);
+				if (result == null) result = caseIModelVariable(physicalEntityVariable);
+				if (result == null) result = caseLNamedElement(physicalEntityVariable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -649,6 +659,22 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Physical Entity Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Physical Entity Variable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 casePhysicalEntityVariable(PhysicalEntityVariable object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>LNamed Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -836,6 +862,22 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIPipelineTask(IPipelineTask object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IModel Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IModel Variable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIModelVariable(IModelVariable object)
 	{
 		return null;
 	}

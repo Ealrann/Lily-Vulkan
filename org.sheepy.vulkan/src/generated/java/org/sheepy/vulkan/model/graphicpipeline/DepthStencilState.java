@@ -151,13 +151,13 @@ public interface DepthStencilState extends ILilyEObject
 
 	/**
 	 * Returns the value of the '<em><b>Min Depth Bounds</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
+	 * The default value is <code>"0.0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Min Depth Bounds</em>' attribute.
 	 * @see #setMinDepthBounds(float)
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getDepthStencilState_MinDepthBounds()
-	 * @model default="0" required="true"
+	 * @model default="0.0" required="true"
 	 * @generated
 	 */
 	float getMinDepthBounds();
@@ -174,13 +174,13 @@ public interface DepthStencilState extends ILilyEObject
 
 	/**
 	 * Returns the value of the '<em><b>Max Depth Bounds</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
+	 * The default value is <code>"1.0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Max Depth Bounds</em>' attribute.
 	 * @see #setMaxDepthBounds(float)
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getDepthStencilState_MaxDepthBounds()
-	 * @model default="0" required="true"
+	 * @model default="1.0" required="true"
 	 * @generated
 	 */
 	float getMaxDepthBounds();

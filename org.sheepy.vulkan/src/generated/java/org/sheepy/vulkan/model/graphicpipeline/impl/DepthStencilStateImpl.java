@@ -164,7 +164,7 @@ public class DepthStencilStateImpl extends LilyEObject implements DepthStencilSt
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float MAX_DEPTH_BOUNDS_EDEFAULT = 0.0F;
+	protected static final float MAX_DEPTH_BOUNDS_EDEFAULT = 1.0F;
 
 	/**
 	 * The cached value of the '{@link #getMaxDepthBounds() <em>Max Depth Bounds</em>}' attribute.

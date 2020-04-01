@@ -1,29 +1,31 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline.builder;
 
-import static org.lwjgl.vulkan.VK10.*;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineColorBlendAttachmentState;
 import org.lwjgl.vulkan.VkPipelineColorBlendStateCreateInfo;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlendAttachment;
 
+import static org.lwjgl.vulkan.VK10.*;
+
 public class ColorBlendBuilder
 {
-	public VkPipelineColorBlendStateCreateInfo allocCreateInfo(	MemoryStack stack,
-																ColorBlend colorBlend)
+	public VkPipelineColorBlendStateCreateInfo allocCreateInfo(MemoryStack stack, ColorBlend colorBlend)
 	{
 		final int size = colorBlend.getAttachments().size();
 		final var colorBlendAttachments = VkPipelineColorBlendAttachmentState.callocStack(size, stack);
 		for (final ColorBlendAttachment attachement : colorBlend.getAttachments())
 		{
 			final var colorBlendAttachment = colorBlendAttachments.get();
+			final boolean red = attachement.isRedComponentEnable();
+			final boolean green = attachement.isGreenComponentEnable();
+			final boolean blue = attachement.isBlueComponentEnable();
+			final boolean alpha = attachement.isAlphaComponentEnable();
 
-			int writeMask = 0;
-			if (attachement.isRedComponentEnable()) writeMask |= VK_COLOR_COMPONENT_R_BIT;
-			if (attachement.isGreenComponentEnable()) writeMask |= VK_COLOR_COMPONENT_G_BIT;
-			if (attachement.isBlueComponentEnable()) writeMask |= VK_COLOR_COMPONENT_B_BIT;
-			if (attachement.isAlphaComponentEnable()) writeMask |= VK_COLOR_COMPONENT_A_BIT;
+			final int writeMask = (red ? VK_COLOR_COMPONENT_R_BIT : 0) |
+								  (green ? VK_COLOR_COMPONENT_G_BIT : 0) |
+								  (blue ? VK_COLOR_COMPONENT_B_BIT : 0) |
+								  (alpha ? VK_COLOR_COMPONENT_A_BIT : 0);
 
 			colorBlendAttachment.colorWriteMask(writeMask);
 			colorBlendAttachment.blendEnable(attachement.isBlendEnable());

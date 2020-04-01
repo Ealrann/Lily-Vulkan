@@ -70,6 +70,7 @@
         defaultValueLiteral="0;0;0;0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usages" upperBound="-1"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EImageUsage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EFormat"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttachmentPkg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="colorAttachment" lowerBound="1"

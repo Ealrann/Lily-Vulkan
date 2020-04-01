@@ -37,6 +37,9 @@ import org.sheepy.lily.core.model.resource.ResourcePkg;
 
 import org.sheepy.lily.core.model.resource.util.ResourceSwitch;
 
+import org.sheepy.lily.core.model.variable.ModelVariablePkg;
+import org.sheepy.lily.core.model.variable.VariablePackage;
+import org.sheepy.lily.core.model.variable.util.VariableSwitch;
 import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
@@ -488,6 +491,31 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PhysicalEntityVariableItemProvider physicalEntityVariableItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPhysicalEntityVariableAdapter()
+	{
+		if (physicalEntityVariableItemProvider == null)
+		{
+			physicalEntityVariableItemProvider = new PhysicalEntityVariableItemProvider(this);
+		}
+
+		return physicalEntityVariableItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -651,6 +679,103 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 		if (iSpecializationItemProvider != null) iSpecializationItemProvider.dispose();
 		if (renderDrawTaskItemProvider != null) renderDrawTaskItemProvider.dispose();
 		if (renderIndexedDrawTaskItemProvider != null) renderIndexedDrawTaskItemProvider.dispose();
+		if (physicalEntityVariableItemProvider != null) physicalEntityVariableItemProvider.dispose();
+	}
+
+	/**
+	 * A child creation extender for the {@link VariablePackage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static class VariableChildCreationExtender implements IChildCreationExtender
+	{
+		/**
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected static class CreationSwitch extends VariableSwitch<Object>
+		{
+			/**
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected List<Object> newChildDescriptors;
+
+			/**
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected EditingDomain editingDomain;
+
+			/**
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			{
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseModelVariablePkg(ModelVariablePkg object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(VariablePackage.Literals.MODEL_VARIABLE_PKG__VARIABLES,
+						 RenderingFactory.eINSTANCE.createPhysicalEntityVariable()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected CommandParameter createChildParameter(Object feature, Object child)
+			{
+				return new CommandParameter(null, feature, child);
+			}
+
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
+		{
+			ArrayList<Object> result = new ArrayList<Object>();
+			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			return result;
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public ResourceLocator getResourceLocator()
+		{
+			return ExtraEditPlugin.INSTANCE;
+		}
 	}
 
 	/**

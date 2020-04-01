@@ -158,6 +158,15 @@ public interface RenderingFactory extends EFactory
 	RenderIndexedDrawTask createRenderIndexedDrawTask();
 
 	/**
+	 * Returns a new object of class '<em>Physical Entity Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Physical Entity Variable</em>'.
+	 * @generated
+	 */
+	PhysicalEntityVariable createPhysicalEntityVariable();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

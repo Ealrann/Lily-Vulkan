@@ -1130,8 +1130,8 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 		initEAttribute(getDepthStencilState_DepthBoundTest(), ecorePackage.getEBoolean(), "depthBoundTest", "false", 1, 1, DepthStencilState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDepthStencilState_StencilTest(), ecorePackage.getEBoolean(), "stencilTest", "false", 1, 1, DepthStencilState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDepthStencilState_DepthCompareOp(), theEnumerationPackage.getECompareOp(), "depthCompareOp", "LESS", 1, 1, DepthStencilState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDepthStencilState_MinDepthBounds(), ecorePackage.getEFloat(), "minDepthBounds", "0", 1, 1, DepthStencilState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDepthStencilState_MaxDepthBounds(), ecorePackage.getEFloat(), "maxDepthBounds", "0", 1, 1, DepthStencilState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDepthStencilState_MinDepthBounds(), ecorePackage.getEFloat(), "minDepthBounds", "0.0", 1, 1, DepthStencilState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDepthStencilState_MaxDepthBounds(), ecorePackage.getEFloat(), "maxDepthBounds", "1.0", 1, 1, DepthStencilState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

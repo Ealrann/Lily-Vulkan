@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.extra.model.rendering.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -38,12 +39,14 @@ import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature;
 import org.sheepy.lily.vulkan.extra.model.rendering.Entity;
 import org.sheepy.lily.vulkan.extra.model.rendering.EntityPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity;
+import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
@@ -243,6 +246,20 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	private EClass renderIndexedDrawTaskEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass physicalEntityVariableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum ePhysicalEntityFeatureEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1008,6 +1025,50 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
+	public EClass getPhysicalEntityVariable()
+	{
+		return physicalEntityVariableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPhysicalEntityVariable_Entity()
+	{
+		return (EReference)physicalEntityVariableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPhysicalEntityVariable_Feature()
+	{
+		return (EAttribute)physicalEntityVariableEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getEPhysicalEntityFeature()
+	{
+		return ePhysicalEntityFeatureEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public RenderingFactory getRenderingFactory()
 	{
 		return (RenderingFactory)getEFactoryInstance();
@@ -1115,6 +1176,13 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		renderIndexedDrawTaskEClass = createEClass(RENDER_INDEXED_DRAW_TASK);
 		createEReference(renderIndexedDrawTaskEClass, RENDER_INDEXED_DRAW_TASK__INDEX_PROVIDER);
 		createEReference(renderIndexedDrawTaskEClass, RENDER_INDEXED_DRAW_TASK__STRUCTURE);
+
+		physicalEntityVariableEClass = createEClass(PHYSICAL_ENTITY_VARIABLE);
+		createEReference(physicalEntityVariableEClass, PHYSICAL_ENTITY_VARIABLE__ENTITY);
+		createEAttribute(physicalEntityVariableEClass, PHYSICAL_ENTITY_VARIABLE__FEATURE);
+
+		// Create enums
+		ePhysicalEntityFeatureEEnum = createEEnum(EPHYSICAL_ENTITY_FEATURE);
 	}
 
 	/**
@@ -1149,6 +1217,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
+		VariablePackage theVariablePackage = (VariablePackage)EPackage.Registry.INSTANCE.getEPackage(VariablePackage.eNS_URI);
 
 		// Create type parameters
 		ETypeParameter genericRendererEClass_T = addETypeParameter(genericRendererEClass, "T");
@@ -1199,6 +1268,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		renderProxyConstantBufferEClass.getESuperTypes().add(theVulkanResourcePackage.getConstantBuffer());
 		renderDrawTaskEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		renderIndexedDrawTaskEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
+		physicalEntityVariableEClass.getESuperTypes().add(theVariablePackage.getIModelVariable());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(entityEClass, Entity.class, "Entity", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1301,6 +1371,14 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		g1.getETypeArguments().add(g2);
 		initEReference(getRenderIndexedDrawTask_IndexProvider(), g1, null, "indexProvider", null, 1, 1, RenderIndexedDrawTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRenderIndexedDrawTask_Structure(), this.getStructure(), null, "structure", null, 1, 1, RenderIndexedDrawTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(physicalEntityVariableEClass, PhysicalEntityVariable.class, "PhysicalEntityVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPhysicalEntityVariable_Entity(), this.getPhysicalEntity(), null, "entity", null, 0, 1, PhysicalEntityVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPhysicalEntityVariable_Feature(), this.getEPhysicalEntityFeature(), "feature", null, 1, 1, PhysicalEntityVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(ePhysicalEntityFeatureEEnum, EPhysicalEntityFeature.class, "EPhysicalEntityFeature");
+		addEEnumLiteral(ePhysicalEntityFeatureEEnum, EPhysicalEntityFeature.LOCATION);
 
 		// Create resource
 		createResource(eNS_URI);

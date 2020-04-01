@@ -165,8 +165,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="depthCompareOp" lowerBound="1"
         eType="ecore:EEnum enumeration.ecore#//ECompareOp" defaultValueLiteral="LESS"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minDepthBounds" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="0"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="0.0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxDepthBounds" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="0"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="1.0"/>
   </eClassifiers>
 </ecore:EPackage>

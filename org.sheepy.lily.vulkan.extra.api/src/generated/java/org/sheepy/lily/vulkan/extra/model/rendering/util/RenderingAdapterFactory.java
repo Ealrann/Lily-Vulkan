@@ -13,6 +13,7 @@ import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
+import org.sheepy.lily.core.model.variable.IModelVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.*;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
@@ -202,6 +203,11 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createRenderIndexedDrawTaskAdapter();
 			}
 			@Override
+			public Adapter casePhysicalEntityVariable(PhysicalEntityVariable object)
+			{
+				return createPhysicalEntityVariableAdapter();
+			}
+			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
@@ -260,6 +266,11 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIPipelineTask(IPipelineTask object)
 			{
 				return createIPipelineTaskAdapter();
+			}
+			@Override
+			public Adapter caseIModelVariable(IModelVariable object)
+			{
+				return createIModelVariableAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -629,6 +640,21 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable <em>Physical Entity Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable
+	 * @generated
+	 */
+	public Adapter createPhysicalEntityVariableAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.types.LNamedElement <em>LNamed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -804,6 +830,21 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIPipelineTaskAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.variable.IModelVariable <em>IModel Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.core.model.variable.IModelVariable
+	 * @generated
+	 */
+	public Adapter createIModelVariableAdapter()
 	{
 		return null;
 	}

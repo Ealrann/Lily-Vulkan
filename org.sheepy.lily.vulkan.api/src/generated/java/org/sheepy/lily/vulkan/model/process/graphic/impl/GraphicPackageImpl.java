@@ -692,6 +692,17 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getColorAttachment_Format()
+	{
+		return (EAttribute)colorAttachmentEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getAttachmentPkg()
 	{
 		return attachmentPkgEClass;
@@ -1804,6 +1815,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		colorAttachmentEClass = createEClass(COLOR_ATTACHMENT);
 		createEAttribute(colorAttachmentEClass, COLOR_ATTACHMENT__CLEAR_VALUE);
 		createEAttribute(colorAttachmentEClass, COLOR_ATTACHMENT__USAGES);
+		createEAttribute(colorAttachmentEClass, COLOR_ATTACHMENT__FORMAT);
 
 		attachmentPkgEClass = createEClass(ATTACHMENT_PKG);
 		createEReference(attachmentPkgEClass, ATTACHMENT_PKG__COLOR_ATTACHMENT);
@@ -2036,6 +2048,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEClass(colorAttachmentEClass, ColorAttachment.class, "ColorAttachment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getColorAttachment_ClearValue(), theTypesPackage.getColor4f(), "clearValue", "0;0;0;0", 0, 1, ColorAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getColorAttachment_Usages(), theEnumerationPackage.getEImageUsage(), "usages", null, 0, -1, ColorAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorAttachment_Format(), theEnumerationPackage.getEFormat(), "format", null, 0, 1, ColorAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attachmentPkgEClass, AttachmentPkg.class, "AttachmentPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttachmentPkg_ColorAttachment(), this.getSwapImageAttachment(), null, "colorAttachment", null, 1, 1, AttachmentPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

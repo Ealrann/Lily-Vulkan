@@ -83,6 +83,9 @@
   <genPackages prefix="Rendering" basePackage="org.sheepy.lily.vulkan.extra.model"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
       ecorePackage="Rendering.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Rendering.ecore#//EPhysicalEntityFeature">
+      <genEnumLiterals ecoreEnumLiteral="Rendering.ecore#//EPhysicalEntityFeature/Location"/>
+    </genEnums>
     <genClasses image="false" ecoreClass="Rendering.ecore#//Entity"/>
     <genClasses ecoreClass="Rendering.ecore#//PhysicalEntity">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//PhysicalEntity/geoLocation"/>
@@ -169,6 +172,10 @@
     <genClasses ecoreClass="Rendering.ecore#//RenderIndexedDrawTask">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//RenderIndexedDrawTask/indexProvider"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//RenderIndexedDrawTask/structure"/>
+    </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//PhysicalEntityVariable">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//PhysicalEntityVariable/entity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//PhysicalEntityVariable/feature"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Sprite" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
