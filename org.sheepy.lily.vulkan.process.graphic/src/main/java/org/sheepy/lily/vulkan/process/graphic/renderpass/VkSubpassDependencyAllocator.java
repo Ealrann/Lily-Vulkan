@@ -24,7 +24,6 @@ public final class VkSubpassDependencyAllocator
 		final var dependencies = VkSubpassDependency.callocStack(size, stack);
 		if (subpasses.isEmpty() == false)
 		{
-
 			for (int i = 0; i < size; i++)
 			{
 				final var subpass = subpasses.get(i);

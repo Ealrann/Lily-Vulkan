@@ -968,13 +968,13 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS__BIND_POINT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Scene Part</b></em>' reference.
+	 * The feature id for the '<em><b>Compositor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__SCENE_PART = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 5;
+	int SUBPASS__COMPOSITOR = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Wait For Stage</b></em>' attribute.
@@ -3028,15 +3028,15 @@ public interface GraphicPackage extends EPackage
 	EAttribute getSubpass_BindPoint();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getScenePart <em>Scene Part</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getCompositor <em>Compositor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Scene Part</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getScenePart()
+	 * @return the meta object for the reference '<em>Compositor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getCompositor()
 	 * @see #getSubpass()
 	 * @generated
 	 */
-	EReference getSubpass_ScenePart();
+	EReference getSubpass_Compositor();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getWaitForStage <em>Wait For Stage</em>}'.
@@ -4287,12 +4287,12 @@ public interface GraphicPackage extends EPackage
 		EAttribute SUBPASS__BIND_POINT = eINSTANCE.getSubpass_BindPoint();
 
 		/**
-		 * The meta object literal for the '<em><b>Scene Part</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Compositor</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUBPASS__SCENE_PART = eINSTANCE.getSubpass_ScenePart();
+		EReference SUBPASS__COMPOSITOR = eINSTANCE.getSubpass_Compositor();
 
 		/**
 		 * The meta object literal for the '<em><b>Wait For Stage</b></em>' attribute feature.

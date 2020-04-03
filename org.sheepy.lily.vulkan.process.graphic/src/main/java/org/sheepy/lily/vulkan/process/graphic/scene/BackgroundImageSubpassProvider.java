@@ -7,7 +7,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.BackgroundImage;
 import org.sheepy.lily.core.model.resource.IImage;
-import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
+import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
@@ -18,7 +18,7 @@ import org.sheepy.vulkan.model.enumeration.*;
 
 @Statefull
 @Adapter(scope = BackgroundImage.class)
-public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvider<BackgroundImage>
+public class BackgroundImageSubpassProvider implements ICompositor_SubpassProvider<BackgroundImage>
 {
 	private ImageBarrier imageBarrier;
 	private AbstractBlitTask blit;
@@ -86,15 +86,11 @@ public class BackgroundImageSubpassProvider implements IScenePart_SubpassProvide
 
 		blit = createBlitTask(part);
 		blit.setClearColor(part.getClearColor());
-		switch (part.getSampling())
-		{
-			case LINEAR:
-				blit.setFilter(EFilter.LINEAR);
-				break;
-			case NEAREST:
-				blit.setFilter(EFilter.NEAREST);
-				break;
-		}
+		blit.setFilter(switch (part.getSampling())
+							   {
+								   case LINEAR -> EFilter.LINEAR;
+								   case NEAREST -> EFilter.NEAREST;
+							   });
 
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 		taskPkg.getTasks().add(pipelineBarrier1);

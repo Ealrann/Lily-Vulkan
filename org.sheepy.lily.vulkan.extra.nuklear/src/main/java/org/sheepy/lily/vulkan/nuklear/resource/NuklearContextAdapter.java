@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.nuklear.resource;
 
-import org.eclipse.emf.common.notify.Notification;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.nuklear.*;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
@@ -12,19 +12,21 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.core.model.ui.UI;
-import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.lily.vulkan.nuklear.input.NuklearInputCatcher;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
+import org.sheepy.lily.vulkan.nuklear.ui.IImageWidgetAdapter;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 
 import static org.lwjgl.glfw.GLFW.glfwSetClipboardString;
 import static org.lwjgl.glfw.GLFW.nglfwGetClipboardString;
@@ -62,7 +64,6 @@ public class NuklearContextAdapter implements IAllocableAdapter<InternalExecutio
 	private final NkDrawNullTexture nkNullTexture = NkDrawNullTexture.create();
 	private final NkConvertConfig config = NkConvertConfig.create();
 	private final UI ui;
-	private final Consumer<Notification> uiImagesListener = this::uiImagesChanged;
 
 	private NkAllocator ALLOCATOR;
 	private NkBuffer cmds;
@@ -76,20 +77,7 @@ public class NuklearContextAdapter implements IAllocableAdapter<InternalExecutio
 	{
 		this.nuklearContext = context;
 		final var subpass = ModelUtil.findParent(context, Subpass.class);
-		ui = (UI) subpass.getScenePart();
-	}
-
-	@SuppressWarnings("unchecked")
-	private void uiImagesChanged(Notification notification)
-	{
-		final var imageList = nuklearContext.getImageArrayDescriptor().getImages();
-		switch (notification.getEventType())
-		{
-			case Notification.ADD -> imageList.add((IImage) notification.getNewValue());
-			case Notification.ADD_MANY -> imageList.addAll((List<IImage>) notification.getNewValue());
-			case Notification.REMOVE -> imageList.remove((IImage) notification.getNewValue());
-			case Notification.REMOVE_MANY -> imageList.removeAll((List<IImage>) notification.getNewValue());
-		}
+		ui = (UI) subpass.getCompositor();
 	}
 
 	@Load
@@ -99,22 +87,51 @@ public class NuklearContextAdapter implements IAllocableAdapter<InternalExecutio
 							   .alloc((handle, old, size) -> nmemAllocChecked(size))
 							   .mfree((handle, ptr) -> nmemFree(ptr));
 
-		final var imageDescriptor = nuklearContext.getImageArrayDescriptor();
-		final var images = ui.getImages();
-		if (imageDescriptor != null)
-		{
-			imageDescriptor.getImages().addAll(images);
-		}
+		updateImageArrayDescriptor();
 
 		final var layoutTask = nuklearContext.getLayoutTask();
 		layoutTaskAdapter = layoutTask.adaptNotNull(NuklearLayoutTaskAdapter.class);
-		ui.listen(uiImagesListener, UiPackage.UI__IMAGES);
+	}
+
+	private void updateImageArrayDescriptor()
+	{
+		final var imageDescriptor = nuklearContext.getImageArrayDescriptor();
+		final var pipeline = ModelUtil.findParent(nuklearContext, GraphicsPipeline.class);
+		if (imageDescriptor != null)
+		{
+			imageDescriptor.getImages().clear();
+			if (ui.getCurrentUIPage() != null)
+			{
+				final List<IImage> images = new ArrayList<>();
+				for (var panel : ui.getCurrentUIPage().getPanels())
+				{
+					final var adapter = panel.adapt(IImageWidgetAdapter.class);
+					if (adapter != null)
+					{
+						images.addAll(adapter.getImages());
+					}
+				}
+
+				imageDescriptor.getImages().addAll(images);
+
+				final int imageCount = images.size();
+
+				final var specializationBuffer = BufferUtils.createByteBuffer(4);
+				specializationBuffer.putInt(imageCount);
+				specializationBuffer.flip();
+
+				final var constantBuffer = VulkanResourceFactory.eINSTANCE.createConstantBuffer();
+				constantBuffer.setData(specializationBuffer);
+
+				pipeline.getResourcePkg().getResources().add(constantBuffer);
+				pipeline.setSpecializationData(constantBuffer);
+			}
+		}
 	}
 
 	@Dispose
 	public void dispose()
 	{
-		ui.sulk(uiImagesListener, UiPackage.UI__IMAGES);
 		Objects.requireNonNull(ALLOCATOR.alloc()).free();
 		Objects.requireNonNull(ALLOCATOR.mfree()).free();
 		ALLOCATOR.free();

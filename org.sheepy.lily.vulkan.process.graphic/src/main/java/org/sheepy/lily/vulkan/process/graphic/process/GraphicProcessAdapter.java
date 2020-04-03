@@ -1,19 +1,18 @@
 package org.sheepy.lily.vulkan.process.graphic.process;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
+import org.sheepy.lily.core.api.adapter.annotation.Observe;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
+import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
-import org.sheepy.lily.core.model.application.IScenePart;
+import org.sheepy.lily.core.model.application.ICompositor;
 import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
-import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
+import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
@@ -30,7 +29,6 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 @Statefull
 @Adapter(scope = GraphicProcess.class)
@@ -82,8 +80,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 															  ECommandStage.RENDER,
 															  ECommandStage.POST_RENDER);
 
-	private final Map<IScenePart, Subpass> subpassMap = new HashMap<>();
-	private final Consumer<Notification> sceneListener = this::sceneChanged;
+	private final Map<ICompositor, Subpass> subpassMap = new HashMap<>();
 	private final ImageAcquirer acquirer = new ImageAcquirer();
 
 	public GraphicProcessAdapter(GraphicProcess process)
@@ -100,24 +97,14 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		}
 	}
 
-	@Load
-	private void load()
+	@Observe
+	private void observe(IObservatoryBuilder observatory)
 	{
 		final var application = ModelUtil.getApplication(process);
-		application.getScene().listen(sceneListener, ApplicationPackage.SCENE__PARTS);
-		final var parts = application.getScene().getParts();
-		for (int i = 0; i < parts.size(); i++)
-		{
-			final var part = parts.get(i);
-			setupScenePart(part);
-		}
-	}
-
-	@Dispose
-	private void dispose()
-	{
-		final var application = ModelUtil.getApplication(process);
-		application.getScene().sulk(sceneListener, ApplicationPackage.SCENE__PARTS);
+		final var scene = application.getScene();
+		observatory.focus(scene)
+				   .explore(ApplicationPackage.Literals.SCENE__COMPOSITORS, ICompositor.class)
+				   .gatherBulk(this::installCompositors, this::uninstallCompositors);
 	}
 
 	@Override
@@ -126,18 +113,23 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		return List.of(acquirer);
 	}
 
-	private void sceneChanged(Notification notification)
+	private void installCompositors(List<ICompositor> compositors)
 	{
-		switch (notification.getEventType())
+		for (int i = 0; i < compositors.size(); i++)
 		{
-			case Notification.ADD:
-				final var graphicProcess = (GraphicProcess) process;
-				graphicProcess.getAttachmentPkg().getExtraAttachments().clear();
-				setupScenePart((IScenePart) notification.getNewValue());
-				break;
-			case Notification.REMOVE:
-				uninstallScenePart((IScenePart) notification.getOldValue());
-				break;
+			final var compositor = compositors.get(i);
+			setupScenePart(compositor);
+		}
+	}
+
+	private void uninstallCompositors(List<ICompositor> compositors)
+	{
+		for (int i = 0; i < compositors.size(); i++)
+		{
+			final var compositor = compositors.get(i);
+			final var subpass = subpassMap.get(compositor);
+			EcoreUtil.delete(subpass);
+			subpassMap.remove(compositor);
 		}
 	}
 
@@ -148,13 +140,13 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		return new GraphicContext(getExecutionQueueType(), isResetAllowed(), descriptorPool, graphicProcess);
 	}
 
-	private void setupScenePart(IScenePart part)
+	private void setupScenePart(ICompositor part)
 	{
 		final var subpass = buildSubpass(part);
 		final var graphicProcess = (GraphicProcess) process;
 		final int index = findAvailableIndex(graphicProcess);
 
-		subpass.setScenePart(part);
+		subpass.setCompositor(part);
 		subpass.setSubpassIndex(index);
 		graphicProcess.getSubpasses().add(subpass);
 
@@ -202,17 +194,10 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		return res;
 	}
 
-	private void uninstallScenePart(IScenePart part)
-	{
-		final var subpass = subpassMap.get(part);
-		EcoreUtil.delete(subpass);
-		subpassMap.remove(part);
-	}
-
-	private <T extends IScenePart> Subpass buildSubpass(T scenePart)
+	private <T extends ICompositor> Subpass buildSubpass(T scenePart)
 	{
 		final var graphicProcess = (GraphicProcess) process;
-		final var subpassProvider = scenePart.<IScenePart_SubpassProvider<T>>adaptGeneric(IScenePart_SubpassProvider.class);
+		final var subpassProvider = scenePart.<ICompositor_SubpassProvider<T>>adaptGeneric(ICompositor_SubpassProvider.class);
 		return subpassProvider.build(scenePart, graphicProcess.getAttachmentPkg());
 	}
 

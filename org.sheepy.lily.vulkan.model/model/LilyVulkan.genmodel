@@ -134,7 +134,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/subpassIndex"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/pipelinePkg"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/bindPoint"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/scenePart"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/compositor"/>
       <genFeatures createChild="false" propertyCategory="0 - WaitFor (previous subpass)"
           ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/waitForStage"/>
       <genFeatures createChild="false" propertyCategory="1 - Sync (current subpass)"

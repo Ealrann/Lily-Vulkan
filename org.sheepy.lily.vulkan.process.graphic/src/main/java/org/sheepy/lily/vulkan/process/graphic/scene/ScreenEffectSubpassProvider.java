@@ -10,7 +10,7 @@ import org.sheepy.lily.core.api.resource.IResourceLoader;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.ScreenEffect;
 import org.sheepy.lily.core.model.application.SpecialEffect;
-import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
+import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
 import org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.Shader;
@@ -22,7 +22,7 @@ import java.io.IOException;
 
 @Statefull
 @Adapter(scope = ScreenEffect.class)
-public final class ScreenEffectSubpassProvider implements IScenePart_SubpassProvider<ScreenEffect>
+public final class ScreenEffectSubpassProvider implements ICompositor_SubpassProvider<ScreenEffect>
 {
 	private static final String SUBPASS_PATH = "ScreenEffect.subpass";
 

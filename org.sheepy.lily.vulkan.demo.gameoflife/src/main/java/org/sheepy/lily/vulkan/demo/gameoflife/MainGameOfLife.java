@@ -35,7 +35,7 @@ public class MainGameOfLife
 		background.setDstImage(engineBuilder.colorAttachment);
 
 		scene.setSize(size);
-		scene.getParts().add(background);
+		scene.getCompositors().add(background);
 
 		application.setTitle(NAME);
 		application.getEngines().add(engineBuilder.build());

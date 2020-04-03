@@ -68,7 +68,7 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 			addNamePropertyDescriptor(object);
 			addSubpassIndexPropertyDescriptor(object);
 			addBindPointPropertyDescriptor(object);
-			addScenePartPropertyDescriptor(object);
+			addCompositorPropertyDescriptor(object);
 			addWaitForStagePropertyDescriptor(object);
 			addSyncStagePropertyDescriptor(object);
 			addFinishStagePropertyDescriptor(object);
@@ -149,20 +149,20 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 	}
 
 	/**
-	 * This adds a property descriptor for the Scene Part feature.
+	 * This adds a property descriptor for the Compositor feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addScenePartPropertyDescriptor(Object object)
+	protected void addCompositorPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Subpass_scenePart_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_scenePart_feature", "_UI_Subpass_type"),
-				 GraphicPackage.Literals.SUBPASS__SCENE_PART,
+				 getString("_UI_Subpass_compositor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_compositor_feature", "_UI_Subpass_type"),
+				 GraphicPackage.Literals.SUBPASS__COMPOSITOR,
 				 true,
 				 false,
 				 true,

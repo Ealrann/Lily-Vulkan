@@ -1,7 +1,6 @@
 package org.sheepy.lily.vulkan.nuklear.pipeline;
 
 import org.joml.Vector2ic;
-import org.lwjgl.BufferUtils;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
@@ -18,9 +17,7 @@ import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.window.Window;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.lily.vulkan.nuklear.pipeline.layout.LayoutManager;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearFontAdapter;
@@ -36,7 +33,6 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 													   IAllocableAdapter<IGraphicContext>
 {
 	private final NuklearLayoutTask task;
-	private final GraphicsPipeline pipeline;
 	private final IWindowListener.ISizeListener resizeListener = this::onResize;
 	private final UI ui;
 	private final LayoutManager layoutManager;
@@ -57,9 +53,8 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 	public NuklearLayoutTaskAdapter(NuklearLayoutTask task)
 	{
 		this.task = task;
-		pipeline = ModelUtil.findParent(task, GraphicsPipeline.class);
-		final var subpass = ModelUtil.findParent(pipeline, Subpass.class);
-		ui = (UI) subpass.getScenePart();
+		final var subpass = ModelUtil.findParent(task, Subpass.class);
+		ui = (UI) subpass.getCompositor();
 		layoutManager = new LayoutManager();
 	}
 
@@ -70,8 +65,7 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 				   .explore(UiPackage.Literals.UI__CURRENT_UI_PAGE)
 				   .explore(UiPackage.Literals.UI_PAGE__PANELS)
 				   .adapt(IPanelAdapter.class)
-				   .listenAdd(this::addPanelAdapter)
-				   .listenRemove(this::removePanelAdapter);
+				   .gather(this::addPanelAdapter, this::removePanelAdapter);
 	}
 
 	private void addPanelAdapter(IPanelAdapter adapter)
@@ -90,18 +84,6 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 	public void load()
 	{
 		nuklearContextAdapter = task.getContext().adaptNotNull(NuklearContextAdapter.class);
-
-		final int imageCount = ui.getImages().size();
-
-		final var specializationBuffer = BufferUtils.createByteBuffer(4);
-		specializationBuffer.putInt(imageCount);
-		specializationBuffer.flip();
-
-		final var constantBuffer = VulkanResourceFactory.eINSTANCE.createConstantBuffer();
-		constantBuffer.setData(specializationBuffer);
-
-		pipeline.getResourcePkg().getResources().add(constantBuffer);
-		pipeline.setSpecializationData(constantBuffer);
 	}
 
 	private void onResize(Vector2ic size)

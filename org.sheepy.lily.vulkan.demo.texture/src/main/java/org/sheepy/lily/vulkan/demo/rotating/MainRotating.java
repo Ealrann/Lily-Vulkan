@@ -27,7 +27,7 @@ public class MainRotating
 		part.setName(NAME);
 
 		scene.setSize(new Vector2i(800, 600));
-		scene.getParts().add(part);
+		scene.getCompositors().add(part);
 
 		application.setTitle(NAME);
 		application.getEngines().add(MeshEngineFactory.build());

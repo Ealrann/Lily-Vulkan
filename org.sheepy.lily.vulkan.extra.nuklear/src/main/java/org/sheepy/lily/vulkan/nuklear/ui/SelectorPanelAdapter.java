@@ -26,6 +26,7 @@ import org.sheepy.lily.vulkan.nuklear.util.ProgressTimer;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
@@ -35,7 +36,8 @@ import static org.lwjgl.nuklear.Nuklear.*;
 @Statefull
 @Adapter(scope = SelectorPanel.class)
 public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Features> implements IPanelAdapter,
-																								 ITextWidgetAdapter
+																								 ITextWidgetAdapter,
+																								 IImageWidgetAdapter
 {
 	private static final int MARGING_W = 5;
 
@@ -104,6 +106,12 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 		dirty = true;
 	}
 
+	@Override
+	public Collection<? extends IImage> getImages()
+	{
+		return inputProviderAdapter.getUsedImages();
+	}
+
 	private List<LineData> buildLineDatas(List<?> elements)
 	{
 		final boolean right = panel.getHorizontalRelative() == EHorizontalRelative.RIGHT;
@@ -162,7 +170,7 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 		final boolean res = dirty;
 		// !! must remain here- vvv
 		dirty = false;
-		// -------------------- ^^^
+// -------------------- ^^^
 
 		final var nkContext = context.nkContext;
 		boolean labelPanelHovered = false;

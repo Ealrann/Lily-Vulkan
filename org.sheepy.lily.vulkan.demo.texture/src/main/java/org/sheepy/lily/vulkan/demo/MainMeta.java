@@ -65,7 +65,7 @@ public class MainMeta
 	public static void setupScene(final Application application, String name)
 	{
 		final var part = ApplicationFactory.eINSTANCE.createGenericScenePart();
-		final var parts = application.getScene().getParts();
+		final var parts = application.getScene().getCompositors();
 
 		part.setName(name);
 

@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.resource.buffer;
 
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.IAdapter;
-import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Observe;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -37,14 +36,13 @@ public final class GenericConstantBufferAdapter implements IAdapter
 	private void observe(final IObservatoryBuilder observatory)
 	{
 		observatory.explore(VulkanResourcePackage.Literals.GENERIC_CONSTANT_BUFFER__VARIABLE_PKG)
-				   .explore(VariablePackage.Literals.MODEL_VARIABLE_PKG__VARIABLES)
-				   .listenAdd(this::addEntry)
-				   .listenRemove(this::removeEntry)
+				   .explore(VariablePackage.Literals.MODEL_VARIABLE_PKG__VARIABLES, IModelVariable.class)
+				   .gather(this::addEntry, this::removeEntry)
 				   .adaptNotifier(IModelVariableAdapter.notifierClass())
 				   .listenNoParam(() -> valueDirty = true, IModelVariableAdapter.Features.Value);
-		observatory.explore(VulkanResourcePackage.Literals.GENERIC_CONSTANT_BUFFER__REFERENCED_VARIABLES)
-				   .listenAdd(this::addEntry)
-				   .listenRemove(this::removeEntry)
+		observatory.explore(VulkanResourcePackage.Literals.GENERIC_CONSTANT_BUFFER__REFERENCED_VARIABLES,
+							IModelVariable.class)
+				   .gather(this::addEntry, this::removeEntry)
 				   .adaptNotifier(IModelVariableAdapter.notifierClass())
 				   .listenNoParam(() -> valueDirty = true, IModelVariableAdapter.Features.Value);
 	}
@@ -110,7 +108,7 @@ public final class GenericConstantBufferAdapter implements IAdapter
 		return size;
 	}
 
-	private void addEntry(final ILilyEObject newValue)
+	private void addEntry(final IModelVariable newValue)
 	{
 		final var variable = (IModelVariable) newValue;
 		final var entry = new AdaptedVariableEntry<>(variable);
@@ -118,7 +116,7 @@ public final class GenericConstantBufferAdapter implements IAdapter
 		bufferDirty = true;
 	}
 
-	private void removeEntry(final ILilyEObject oldValue)
+	private void removeEntry(final IModelVariable oldValue)
 	{
 		final var it = adaptedVariables.iterator();
 		while (it.hasNext())

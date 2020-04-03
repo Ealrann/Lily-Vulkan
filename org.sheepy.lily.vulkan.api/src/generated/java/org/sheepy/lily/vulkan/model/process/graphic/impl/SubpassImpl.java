@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.core.model.application.IScenePart;
+import org.sheepy.lily.core.model.application.ICompositor;
 import org.sheepy.lily.core.model.resource.ResourcePkg;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
@@ -44,7 +44,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getSubpassIndex <em>Subpass Index</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getBindPoint <em>Bind Point</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getScenePart <em>Scene Part</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getCompositor <em>Compositor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getWaitForStage <em>Wait For Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getSyncStage <em>Sync Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getFinishStage <em>Finish Stage</em>}</li>
@@ -159,14 +159,14 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	protected int bindPoint = BIND_POINT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getScenePart() <em>Scene Part</em>}' reference.
+	 * The cached value of the '{@link #getCompositor() <em>Compositor</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getScenePart()
+	 * @see #getCompositor()
 	 * @generated
 	 * @ordered
 	 */
-	protected IScenePart scenePart;
+	protected ICompositor compositor;
 
 	/**
 	 * The default value of the '{@link #getWaitForStage() <em>Wait For Stage</em>}' attribute.
@@ -570,19 +570,19 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * @generated
 	 */
 	@Override
-	public IScenePart getScenePart()
+	public ICompositor getCompositor()
 	{
-		if (scenePart != null && ((EObject)scenePart).eIsProxy())
+		if (compositor != null && ((EObject)compositor).eIsProxy())
 		{
-			InternalEObject oldScenePart = scenePart;
-			scenePart = (IScenePart)eResolveProxy(oldScenePart);
-			if (scenePart != oldScenePart)
+			InternalEObject oldCompositor = compositor;
+			compositor = (ICompositor)eResolveProxy(oldCompositor);
+			if (compositor != oldCompositor)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.SUBPASS__SCENE_PART, oldScenePart, scenePart));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.SUBPASS__COMPOSITOR, oldCompositor, compositor));
 			}
 		}
-		return scenePart;
+		return compositor;
 	}
 
 	/**
@@ -590,9 +590,9 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IScenePart basicGetScenePart()
+	public ICompositor basicGetCompositor()
 	{
-		return scenePart;
+		return compositor;
 	}
 
 	/**
@@ -601,12 +601,12 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * @generated
 	 */
 	@Override
-	public void setScenePart(IScenePart newScenePart)
+	public void setCompositor(ICompositor newCompositor)
 	{
-		IScenePart oldScenePart = scenePart;
-		scenePart = newScenePart;
+		ICompositor oldCompositor = compositor;
+		compositor = newCompositor;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__SCENE_PART, oldScenePart, scenePart));
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__COMPOSITOR, oldCompositor, compositor));
 	}
 
 	/**
@@ -827,9 +827,9 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return getPipelinePkg();
 			case GraphicPackage.SUBPASS__BIND_POINT:
 				return getBindPoint();
-			case GraphicPackage.SUBPASS__SCENE_PART:
-				if (resolve) return getScenePart();
-				return basicGetScenePart();
+			case GraphicPackage.SUBPASS__COMPOSITOR:
+				if (resolve) return getCompositor();
+				return basicGetCompositor();
 			case GraphicPackage.SUBPASS__WAIT_FOR_STAGE:
 				return getWaitForStage();
 			case GraphicPackage.SUBPASS__SYNC_STAGE:
@@ -880,8 +880,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 			case GraphicPackage.SUBPASS__BIND_POINT:
 				setBindPoint((Integer)newValue);
 				return;
-			case GraphicPackage.SUBPASS__SCENE_PART:
-				setScenePart((IScenePart)newValue);
+			case GraphicPackage.SUBPASS__COMPOSITOR:
+				setCompositor((ICompositor)newValue);
 				return;
 			case GraphicPackage.SUBPASS__WAIT_FOR_STAGE:
 				setWaitForStage((EPipelineStage)newValue);
@@ -942,8 +942,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 			case GraphicPackage.SUBPASS__BIND_POINT:
 				setBindPoint(BIND_POINT_EDEFAULT);
 				return;
-			case GraphicPackage.SUBPASS__SCENE_PART:
-				setScenePart((IScenePart)null);
+			case GraphicPackage.SUBPASS__COMPOSITOR:
+				setCompositor((ICompositor)null);
 				return;
 			case GraphicPackage.SUBPASS__WAIT_FOR_STAGE:
 				setWaitForStage(WAIT_FOR_STAGE_EDEFAULT);
@@ -994,8 +994,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return pipelinePkg != null;
 			case GraphicPackage.SUBPASS__BIND_POINT:
 				return bindPoint != BIND_POINT_EDEFAULT;
-			case GraphicPackage.SUBPASS__SCENE_PART:
-				return scenePart != null;
+			case GraphicPackage.SUBPASS__COMPOSITOR:
+				return compositor != null;
 			case GraphicPackage.SUBPASS__WAIT_FOR_STAGE:
 				return waitForStage != WAIT_FOR_STAGE_EDEFAULT;
 			case GraphicPackage.SUBPASS__SYNC_STAGE:

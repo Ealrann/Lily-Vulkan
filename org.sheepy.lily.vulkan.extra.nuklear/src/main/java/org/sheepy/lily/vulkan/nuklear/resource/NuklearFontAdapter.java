@@ -46,7 +46,7 @@ public class NuklearFontAdapter implements IAllocableAdapter<InternalExecutionCo
 	{
 		this.nuklearFont = nuklearFont;
 		final var subpass = ModelUtil.findParent(nuklearFont, Subpass.class);
-		ui = (UI) subpass.getScenePart();
+		ui = (UI) subpass.getCompositor();
 
 		final var fontImage = nuklearFont.getFontImage();
 		final List<Font> fonts = Builder.gatherFonts(ui.getFontPkg());

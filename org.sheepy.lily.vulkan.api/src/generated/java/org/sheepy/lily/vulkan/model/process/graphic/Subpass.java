@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.lily.core.model.application.IScenePart;
+import org.sheepy.lily.core.model.application.ICompositor;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
@@ -24,7 +24,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSubpassIndex <em>Subpass Index</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getBindPoint <em>Bind Point</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getScenePart <em>Scene Part</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getCompositor <em>Compositor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getWaitForStage <em>Wait For Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSyncStage <em>Sync Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getFinishStage <em>Finish Stage</em>}</li>
@@ -131,26 +131,26 @@ public interface Subpass extends IResourceContainer, LNamedElement
 	void setBindPoint(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Scene Part</b></em>' reference.
+	 * Returns the value of the '<em><b>Compositor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Scene Part</em>' reference.
-	 * @see #setScenePart(IScenePart)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_ScenePart()
+	 * @return the value of the '<em>Compositor</em>' reference.
+	 * @see #setCompositor(ICompositor)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_Compositor()
 	 * @model
 	 * @generated
 	 */
-	IScenePart getScenePart();
+	ICompositor getCompositor();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getScenePart <em>Scene Part</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getCompositor <em>Compositor</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Scene Part</em>' reference.
-	 * @see #getScenePart()
+	 * @param value the new value of the '<em>Compositor</em>' reference.
+	 * @see #getCompositor()
 	 * @generated
 	 */
-	void setScenePart(IScenePart value);
+	void setCompositor(ICompositor value);
 
 	/**
 	 * Returns the value of the '<em><b>Wait For Stage</b></em>' attribute.

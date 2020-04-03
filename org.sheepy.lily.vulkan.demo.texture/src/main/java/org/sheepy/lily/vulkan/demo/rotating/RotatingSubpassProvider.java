@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.demo.rotating;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.model.application.GenericScenePart;
 import org.sheepy.lily.core.model.application.Scene;
-import org.sheepy.lily.vulkan.api.view.IScenePart_SubpassProvider;
+import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
 import org.sheepy.lily.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.lily.vulkan.demo.mesh.MeshSubpassBuilder;
 import org.sheepy.lily.vulkan.demo.triangle.TriangleMeshBuilder;
@@ -12,7 +12,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
 
 @Adapter(scope = GenericScenePart.class, name = MainRotating.NAME)
-public class RotatingSubpassProvider implements IScenePart_SubpassProvider<GenericScenePart>
+public class RotatingSubpassProvider implements ICompositor_SubpassProvider<GenericScenePart>
 {
 	static final String VERTEX_SHADER_PATH = "rotating.vert.spv";
 	static final String FRAGMENT_SHADER_PATH = "rotating.frag.spv";

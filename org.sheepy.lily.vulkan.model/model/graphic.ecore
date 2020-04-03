@@ -89,7 +89,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindPoint" unique="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="scenePart" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/application.ecore#//IScenePart"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositor" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/application.ecore#//ICompositor"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="waitForStage" lowerBound="1"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EPipelineStage"
         defaultValueLiteral="BOTTOM_OF_PIPE_BIT"/>

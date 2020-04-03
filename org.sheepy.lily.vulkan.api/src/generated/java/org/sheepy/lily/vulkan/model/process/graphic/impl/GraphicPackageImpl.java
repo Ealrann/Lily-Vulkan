@@ -791,7 +791,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getSubpass_ScenePart()
+	public EReference getSubpass_Compositor()
 	{
 		return (EReference)subpassEClass.getEStructuralFeatures().get(4);
 	}
@@ -1826,7 +1826,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(subpassEClass, SUBPASS__SUBPASS_INDEX);
 		createEReference(subpassEClass, SUBPASS__PIPELINE_PKG);
 		createEAttribute(subpassEClass, SUBPASS__BIND_POINT);
-		createEReference(subpassEClass, SUBPASS__SCENE_PART);
+		createEReference(subpassEClass, SUBPASS__COMPOSITOR);
 		createEAttribute(subpassEClass, SUBPASS__WAIT_FOR_STAGE);
 		createEAttribute(subpassEClass, SUBPASS__SYNC_STAGE);
 		createEAttribute(subpassEClass, SUBPASS__FINISH_STAGE);
@@ -2059,7 +2059,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getSubpass_SubpassIndex(), ecorePackage.getEInt(), "subpassIndex", "0", 1, 1, Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSubpass_PipelinePkg(), theProcessPackage.getPipelinePkg(), null, "pipelinePkg", null, 0, 1, Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSubpass_BindPoint(), ecorePackage.getEInt(), "bindPoint", "0", 1, 1, Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSubpass_ScenePart(), theApplicationPackage.getIScenePart(), null, "scenePart", null, 0, 1, Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSubpass_Compositor(), theApplicationPackage.getICompositor(), null, "compositor", null, 0, 1, Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSubpass_WaitForStage(), theEnumerationPackage.getEPipelineStage(), "waitForStage", "BOTTOM_OF_PIPE_BIT", 1, 1, Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSubpass_SyncStage(), theEnumerationPackage.getEPipelineStage(), "syncStage", null, 1, 1, Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSubpass_FinishStage(), theEnumerationPackage.getEPipelineStage(), "finishStage", "BOTTOM_OF_PIPE_BIT", 1, 1, Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
