@@ -162,15 +162,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	{
 		final var subpasses = process.getSubpasses();
 		final int size = subpasses.size();
-		int maxIndex = 0;
-		for (int i = 0; i < size; i++)
-		{
-			final var subpass = subpasses.get(i);
-			if (SubpassUtil.isGraphic(subpass) && subpass.getSubpassIndex() > maxIndex)
-			{
-				maxIndex = subpass.getSubpassIndex();
-			}
-		}
+		final int maxIndex = SubpassUtil.maxGraphicIndex(subpasses);
 
 		final boolean[] reservedIndices = new boolean[Math.max(size, maxIndex) + 1];
 		for (int i = 0; i < size; i++)
@@ -182,16 +174,14 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 			}
 		}
 
-		int res = 0;
 		for (int i = 0; i < reservedIndices.length; i++)
 		{
 			if (reservedIndices[i] == false)
 			{
-				res = i;
-				break;
+				return i;
 			}
 		}
-		return res;
+		return 0;
 	}
 
 	private <T extends ICompositor> Subpass buildSubpass(T scenePart)

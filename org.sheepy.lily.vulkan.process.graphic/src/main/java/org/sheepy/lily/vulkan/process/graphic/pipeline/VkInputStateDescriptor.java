@@ -1,25 +1,23 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
-import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineVertexInputStateCreateInfo;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
 import org.lwjgl.vulkan.VkVertexInputBindingDescription;
 import org.sheepy.vulkan.model.enumeration.EInputRate;
 
+import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
+
 public class VkInputStateDescriptor
 {
 	private final List<VkVertexBinding> bindings;
-	private final int vertexSize;
 	private final int attributeCount;
 
 	public VkInputStateDescriptor(List<VkVertexBinding> bindings)
 	{
 		this.bindings = List.copyOf(bindings);
-		vertexSize = computeVertexSize();
 		attributeCount = countAttributes();
 	}
 
@@ -33,45 +31,29 @@ public class VkInputStateDescriptor
 		return count;
 	}
 
-	private int computeVertexSize()
-	{
-		int size = 0;
-		for (final var vkVertexBinding : bindings)
-		{
-			if (vkVertexBinding.inputRate == EInputRate.VERTEX)
-			{
-				size += vkVertexBinding.strideLength;
-			}
-		}
-		return size;
-	}
-
 	public VkPipelineVertexInputStateCreateInfo allocCreateInfo(MemoryStack stack)
 	{
-		final var vertexInputInfo = VkPipelineVertexInputStateCreateInfo.callocStack(stack);
-		vertexInputInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO);
+		final var vertexInputInfo = VkPipelineVertexInputStateCreateInfo.mallocStack(stack);
+		final var bindingDescription = allocBindingDescription(stack);
+		final var attributeDescriptions = allocAttributeDescriptions(stack);
 
-		final var allocBindingDescription = allocBindingDescription(stack);
-		final var getgetAttributeDescriptions = allocAttributeDescriptions(stack);
-
-		vertexInputInfo.pVertexBindingDescriptions(allocBindingDescription);
-		vertexInputInfo.pVertexAttributeDescriptions(getgetAttributeDescriptions);
+		vertexInputInfo.set(VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO,
+							0,
+							0,
+							bindingDescription,
+							attributeDescriptions);
 
 		return vertexInputInfo;
 	}
 
 	public VkVertexInputBindingDescription.Buffer allocBindingDescription(MemoryStack stack)
 	{
-		final var bindingDescriptions = VkVertexInputBindingDescription.mallocStack(bindings.size(),
-				stack);
+		final var bindingDescriptions = VkVertexInputBindingDescription.mallocStack(bindings.size(), stack);
 
 		for (int i = 0; i < bindings.size(); i++)
 		{
 			final VkVertexBinding binding = bindings.get(i);
-			final var bindingDescription = bindingDescriptions.get();
-			bindingDescription.binding(i);
-			bindingDescription.stride(binding.strideLength);
-			bindingDescription.inputRate(binding.inputRate.getValue());
+			bindingDescriptions.get().set(i, binding.strideLength, binding.inputRate.getValue());
 		}
 
 		return bindingDescriptions.flip();
@@ -79,8 +61,7 @@ public class VkInputStateDescriptor
 
 	public VkVertexInputAttributeDescription.Buffer allocAttributeDescriptions(MemoryStack stack)
 	{
-		final var attributeDescriptions = VkVertexInputAttributeDescription
-				.callocStack(attributeCount, stack);
+		final var attributeDescriptions = VkVertexInputAttributeDescription.mallocStack(attributeCount, stack);
 
 		int location = 0;
 		for (int bindingIndex = 0; bindingIndex < bindings.size(); bindingIndex++)
@@ -94,19 +75,11 @@ public class VkInputStateDescriptor
 				final int format = attribute.format;
 
 				final var attributeDescriptionPosition = attributeDescriptions.get();
-				attributeDescriptionPosition.binding(bindingIndex);
-				attributeDescriptionPosition.location(location++);
-				attributeDescriptionPosition.format(format);
-				attributeDescriptionPosition.offset(offset);
+				attributeDescriptionPosition.set(location++, bindingIndex, format, offset);
 			}
 		}
 
 		return attributeDescriptions.flip();
-	}
-
-	public final int sizeOfVertex()
-	{
-		return vertexSize;
 	}
 
 	public static final class VkVertexBinding
@@ -115,9 +88,7 @@ public class VkInputStateDescriptor
 		public int strideLength;
 		public final List<VkAttributeDescription> attributes;
 
-		public VkVertexBinding(	EInputRate inputRate,
-								int strideLength,
-								List<VkAttributeDescription> attributes)
+		public VkVertexBinding(EInputRate inputRate, int strideLength, List<VkAttributeDescription> attributes)
 		{
 			this.inputRate = inputRate;
 			this.strideLength = strideLength;

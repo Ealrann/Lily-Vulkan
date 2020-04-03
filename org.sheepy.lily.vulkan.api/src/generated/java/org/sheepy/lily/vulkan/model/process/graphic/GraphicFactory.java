@@ -275,6 +275,15 @@ public interface GraphicFactory extends EFactory
 	AttachmentDescriptor createAttachmentDescriptor();
 
 	/**
+	 * Returns a new object of class '<em>Compositor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Compositor</em>'.
+	 * @generated
+	 */
+	Compositor createCompositor();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1,14 +1,15 @@
 package org.sheepy.lily.vulkan.process.graphic.frame.util;
 
-import static org.lwjgl.vulkan.KHRSurface.*;
-
-import java.util.List;
-
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
+
+import java.util.List;
+
+import static org.lwjgl.vulkan.KHRSurface.VK_PRESENT_MODE_FIFO_KHR;
+import static org.lwjgl.vulkan.KHRSurface.vkGetPhysicalDeviceSurfacePresentModesKHR;
 
 public class PresentationModeSelector
 {
@@ -26,34 +27,34 @@ public class PresentationModeSelector
 		{
 			if (presentWhenVBlank)
 			{
-				presentModeRanks = List.of(	EPresentMode.FIFO,
-											EPresentMode.FIFO_RELAXED,
-											EPresentMode.MAIL_BOX,
-											EPresentMode.IMMEDIATE);
+				presentModeRanks = List.of(EPresentMode.FIFO,
+										   EPresentMode.FIFO_RELAXED,
+										   EPresentMode.MAIL_BOX,
+										   EPresentMode.IMMEDIATE);
 			}
 			else
 			{
-				presentModeRanks = List.of(	EPresentMode.FIFO_RELAXED,
-											EPresentMode.FIFO,
-											EPresentMode.IMMEDIATE,
-											EPresentMode.MAIL_BOX);
+				presentModeRanks = List.of(EPresentMode.FIFO_RELAXED,
+										   EPresentMode.FIFO,
+										   EPresentMode.IMMEDIATE,
+										   EPresentMode.MAIL_BOX);
 			}
 		}
 		else
 		{
 			if (presentWhenVBlank)
 			{
-				presentModeRanks = List.of(	EPresentMode.MAIL_BOX,
-											EPresentMode.IMMEDIATE,
-											EPresentMode.FIFO,
-											EPresentMode.FIFO_RELAXED);
+				presentModeRanks = List.of(EPresentMode.MAIL_BOX,
+										   EPresentMode.IMMEDIATE,
+										   EPresentMode.FIFO,
+										   EPresentMode.FIFO_RELAXED);
 			}
 			else
 			{
-				presentModeRanks = List.of(	EPresentMode.IMMEDIATE,
-											EPresentMode.MAIL_BOX,
-											EPresentMode.FIFO_RELAXED,
-											EPresentMode.FIFO);
+				presentModeRanks = List.of(EPresentMode.IMMEDIATE,
+										   EPresentMode.MAIL_BOX,
+										   EPresentMode.FIFO_RELAXED,
+										   EPresentMode.FIFO);
 			}
 		}
 	}
@@ -64,19 +65,13 @@ public class PresentationModeSelector
 		final var stack = context.stack();
 
 		final var pPresentModeCount = stack.mallocInt(1);
-		int err = vkGetPhysicalDeviceSurfacePresentModesKHR(device,
-															surface.ptr,
-															pPresentModeCount,
-															null);
-		final int presentModeCount = pPresentModeCount.get(0);
-		Logger.check(err, FAILED_COUNT_MODES);
+		Logger.check(vkGetPhysicalDeviceSurfacePresentModesKHR(device, surface.ptr, pPresentModeCount, null),
+					 FAILED_COUNT_MODES);
 
+		final int presentModeCount = pPresentModeCount.get(0);
 		final var pPresentModes = stack.mallocInt(presentModeCount);
-		err = vkGetPhysicalDeviceSurfacePresentModesKHR(device,
-														surface.ptr,
-														pPresentModeCount,
-														pPresentModes);
-		Logger.check(err, FAILED_GET_MODES);
+		Logger.check(vkGetPhysicalDeviceSurfacePresentModesKHR(device, surface.ptr, pPresentModeCount, pPresentModes),
+					 FAILED_GET_MODES);
 
 		int swapchainPresentMode = VK_PRESENT_MODE_FIFO_KHR;
 		int rankFound = Integer.MAX_VALUE;

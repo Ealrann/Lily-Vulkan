@@ -1,12 +1,6 @@
 package org.sheepy.lily.vulkan.process.graphic.execution;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.util.List;
-
-import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
@@ -18,12 +12,17 @@ import org.sheepy.lily.vulkan.process.execution.AbstractExecutionRecorder;
 import org.sheepy.lily.vulkan.process.execution.Submission;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
-public class GraphicExecutionRecorder extends AbstractExecutionRecorder<IGraphicContext>
+import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.VK_SUBPASS_CONTENTS_INLINE;
+import static org.lwjgl.vulkan.VK10.vkCmdNextSubpass;
+
+public final class GraphicExecutionRecorder extends AbstractExecutionRecorder<IGraphicContext>
 {
 	private final GraphicProcess process;
 	private final PresentSubmission presentSubmission;
 	private final VkSemaphore presentSemaphore;
-	private final INotificationListener subpassListener = this::subpassChanged;
+	private final Runnable subpassListener = this::countSubpasses;
 
 	private int subpassCount;
 
@@ -38,34 +37,29 @@ public class GraphicExecutionRecorder extends AbstractExecutionRecorder<IGraphic
 		this.process = process;
 		this.presentSubmission = presentSubmission;
 		this.presentSemaphore = presentSemaphore;
-		subpassCount = countSubpasses(process);
+		countSubpasses();
 	}
 
-	private void subpassChanged(Notification notification)
+	@Override
+	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
 	{
-		subpassCount = countSubpasses(process);
+		config.addChildren(List.of(presentSemaphore));
+		super.configureAllocation(config, context);
+		config.addChildren(List.of(presentSubmission));
 	}
 
 	@Override
 	public void allocate(IGraphicContext context)
 	{
 		super.allocate(context);
-		process.addListener(subpassListener, GraphicPackage.GRAPHIC_PROCESS__SUBPASSES);
+		process.listenNoParam(subpassListener, GraphicPackage.GRAPHIC_PROCESS__SUBPASSES);
 	}
 
 	@Override
 	public void free(IGraphicContext context)
 	{
-		process.removeListener(subpassListener, GraphicPackage.GRAPHIC_PROCESS__SUBPASSES);
+		process.sulkNoParam(subpassListener, GraphicPackage.GRAPHIC_PROCESS__SUBPASSES);
 		super.free(context);
-	}
-
-	@Override
-	public final void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
-	{
-		config.addChildren(List.of(presentSemaphore));
-		super.configureAllocation(config, context);
-		config.addChildren(List.of(presentSubmission));
 	}
 
 	@Override
@@ -107,6 +101,20 @@ public class GraphicExecutionRecorder extends AbstractExecutionRecorder<IGraphic
 		return res;
 	}
 
+	private void countSubpasses()
+	{
+		int res = 0;
+		for (final var subpass : process.getSubpasses())
+		{
+			final int subpassIndex = subpass.getSubpassIndex() + 1;
+			if (subpassIndex > res)
+			{
+				res = subpassIndex;
+			}
+		}
+		subpassCount = res;
+	}
+
 	private static void record(Subpass subpass, RecordContext recordContext)
 	{
 		final var pipelinePkg = subpass.getPipelinePkg();
@@ -119,19 +127,5 @@ public class GraphicExecutionRecorder extends AbstractExecutionRecorder<IGraphic
 				record(recordContext, pipeline);
 			}
 		}
-	}
-
-	private static int countSubpasses(GraphicProcess process)
-	{
-		int res = 0;
-		for (final var subpass : process.getSubpasses())
-		{
-			final int subpassIndex = subpass.getSubpassIndex() + 1;
-			if (subpassIndex > res)
-			{
-				res = subpassIndex;
-			}
-		}
-		return res;
 	}
 }

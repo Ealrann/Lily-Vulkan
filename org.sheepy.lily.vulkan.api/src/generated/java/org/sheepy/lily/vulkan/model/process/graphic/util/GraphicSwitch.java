@@ -6,7 +6,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-
+import org.sheepy.lily.core.model.application.ICompositor;
+import org.sheepy.lily.core.model.inference.IInferenceObject;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 
 import org.sheepy.lily.core.model.resource.IImage;
@@ -373,6 +374,16 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				T1 result = caseAttachmentDescriptor(attachmentDescriptor);
 				if (result == null) result = caseIDescriptor(attachmentDescriptor);
 				if (result == null) result = caseLNamedElement(attachmentDescriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicPackage.COMPOSITOR:
+			{
+				Compositor compositor = (Compositor)theEObject;
+				T1 result = caseCompositor(compositor);
+				if (result == null) result = caseICompositor(compositor);
+				if (result == null) result = caseLNamedElement(compositor);
+				if (result == null) result = caseIInferenceObject(compositor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -877,6 +888,22 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Compositor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Compositor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseCompositor(Compositor object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1128,6 +1155,38 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIDescriptor(IDescriptor object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IInference Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IInference Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIInferenceObject(IInferenceObject object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ICompositor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ICompositor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseICompositor(ICompositor object)
 	{
 		return null;
 	}

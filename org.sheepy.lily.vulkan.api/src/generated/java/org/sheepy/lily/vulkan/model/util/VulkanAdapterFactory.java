@@ -8,9 +8,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.sheepy.lily.core.model.application.IEngine;
-
 import org.sheepy.lily.core.model.cadence.ICadenceTask;
 import org.sheepy.lily.core.model.types.LNamedElement;
 

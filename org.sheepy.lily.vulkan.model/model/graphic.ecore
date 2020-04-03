@@ -283,4 +283,18 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachment" lowerBound="1"
         eType="#//ExtraAttachment"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Compositor" eSuperTypes="../../org.sheepy.lily.core.model/model/application.ecore#//ICompositor ../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vertexShader" lowerBound="1"
+        eType="ecore:EClass resource.ecore#//Shader"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fragmentShader" lowerBound="1"
+        eType="ecore:EClass resource.ecore#//Shader"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="colorAttachments" lowerBound="1"
+        upperBound="-1" eType="#//Attachment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputAttachments" upperBound="-1"
+        eType="#//ExtraAttachment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constantVariables" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/variable.ecore#//ModelVariablePkg"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorPkg" eType="ecore:EClass vulkan.ecore#//DescriptorPkg"
+        containment="true"/>
+  </eClassifiers>
 </ecore:EPackage>

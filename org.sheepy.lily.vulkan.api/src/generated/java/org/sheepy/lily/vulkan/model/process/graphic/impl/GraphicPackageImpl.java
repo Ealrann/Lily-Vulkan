@@ -11,9 +11,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.sheepy.lily.core.model.action.ActionPackage;
-
 import org.sheepy.lily.core.model.application.ApplicationPackage;
-
 import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 
@@ -44,6 +42,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.BlitTask;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
+import org.sheepy.lily.vulkan.model.process.graphic.Compositor;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.Draw;
 import org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed;
@@ -301,6 +300,13 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	private EClass attachmentDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compositorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1748,6 +1754,83 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getCompositor()
+	{
+		return compositorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompositor_VertexShader()
+	{
+		return (EReference)compositorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompositor_FragmentShader()
+	{
+		return (EReference)compositorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompositor_ColorAttachments()
+	{
+		return (EReference)compositorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompositor_InputAttachments()
+	{
+		return (EReference)compositorEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompositor_ConstantVariables()
+	{
+		return (EReference)compositorEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompositor_DescriptorPkg()
+	{
+		return (EReference)compositorEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getEAttachmentType()
 	{
 		return eAttachmentTypeEEnum;
@@ -1936,6 +2019,14 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		attachmentDescriptorEClass = createEClass(ATTACHMENT_DESCRIPTOR);
 		createEReference(attachmentDescriptorEClass, ATTACHMENT_DESCRIPTOR__ATTACHMENT);
 
+		compositorEClass = createEClass(COMPOSITOR);
+		createEReference(compositorEClass, COMPOSITOR__VERTEX_SHADER);
+		createEReference(compositorEClass, COMPOSITOR__FRAGMENT_SHADER);
+		createEReference(compositorEClass, COMPOSITOR__COLOR_ATTACHMENTS);
+		createEReference(compositorEClass, COMPOSITOR__INPUT_ATTACHMENTS);
+		createEReference(compositorEClass, COMPOSITOR__CONSTANT_VARIABLES);
+		createEReference(compositorEClass, COMPOSITOR__DESCRIPTOR_PKG);
+
 		// Create enums
 		eAttachmentTypeEEnum = createEEnum(EATTACHMENT_TYPE);
 	}
@@ -1975,6 +2066,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		MaintainerPackage theMaintainerPackage = (MaintainerPackage)EPackage.Registry.INSTANCE.getEPackage(MaintainerPackage.eNS_URI);
 		GraphicpipelinePackage theGraphicpipelinePackage = (GraphicpipelinePackage)EPackage.Registry.INSTANCE.getEPackage(GraphicpipelinePackage.eNS_URI);
 		BarrierPackage theBarrierPackage = (BarrierPackage)EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
+		VariablePackage theVariablePackage = (VariablePackage)EPackage.Registry.INSTANCE.getEPackage(VariablePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -2015,6 +2107,8 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		setViewportEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		bindIndexBufferEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		attachmentDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
+		compositorEClass.getESuperTypes().add(theApplicationPackage.getICompositor());
+		compositorEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(graphicConfigurationEClass, GraphicConfiguration.class, "GraphicConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2168,6 +2262,14 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		initEClass(attachmentDescriptorEClass, AttachmentDescriptor.class, "AttachmentDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttachmentDescriptor_Attachment(), this.getExtraAttachment(), null, "attachment", null, 1, 1, AttachmentDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(compositorEClass, Compositor.class, "Compositor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompositor_VertexShader(), theVulkanResourcePackage.getShader(), null, "vertexShader", null, 1, 1, Compositor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositor_FragmentShader(), theVulkanResourcePackage.getShader(), null, "fragmentShader", null, 1, 1, Compositor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositor_ColorAttachments(), this.getAttachment(), null, "colorAttachments", null, 1, -1, Compositor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositor_InputAttachments(), this.getExtraAttachment(), null, "inputAttachments", null, 1, -1, Compositor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositor_ConstantVariables(), theVariablePackage.getModelVariablePkg(), null, "constantVariables", null, 0, 1, Compositor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositor_DescriptorPkg(), theVulkanPackage.getDescriptorPkg(), null, "descriptorPkg", null, 0, 1, Compositor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(eAttachmentTypeEEnum, EAttachmentType.class, "EAttachmentType");

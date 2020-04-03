@@ -247,6 +247,14 @@
     <genClasses ecoreClass="graphic.ecore#//AttachmentDescriptor">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentDescriptor/attachment"/>
     </genClasses>
+    <genClasses ecoreClass="graphic.ecore#//Compositor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//Compositor/vertexShader"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//Compositor/fragmentShader"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//Compositor/colorAttachments"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//Compositor/inputAttachments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Compositor/constantVariables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Compositor/descriptorPkg"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Process" basePackage="org.sheepy.lily.vulkan.model" resource="XMI"
       extensibleProviderFactory="true" childCreationExtenders="true" ecorePackage="process.ecore#/">

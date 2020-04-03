@@ -423,7 +423,6 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 
 				return null;
 			}
-
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

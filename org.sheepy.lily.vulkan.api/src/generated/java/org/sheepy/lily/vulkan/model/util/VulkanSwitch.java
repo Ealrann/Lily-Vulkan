@@ -6,9 +6,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-
 import org.sheepy.lily.core.model.application.IEngine;
-
 import org.sheepy.lily.core.model.cadence.ICadenceTask;
 import org.sheepy.lily.core.model.types.LNamedElement;
 

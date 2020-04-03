@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
+import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -2653,6 +2653,115 @@ public interface GraphicPackage extends EPackage
 	int ATTACHMENT_DESCRIPTOR_OPERATION_COUNT = VulkanPackage.IDESCRIPTOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.CompositorImpl <em>Compositor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.CompositorImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getCompositor()
+	 * @generated
+	 */
+	int COMPOSITOR = 31;
+
+	/**
+	 * The feature id for the '<em><b>Extension Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITOR__EXTENSION_PKG = ApplicationPackage.ICOMPOSITOR__EXTENSION_PKG;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITOR__NAME = ApplicationPackage.ICOMPOSITOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Vertex Shader</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITOR__VERTEX_SHADER = ApplicationPackage.ICOMPOSITOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Fragment Shader</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITOR__FRAGMENT_SHADER = ApplicationPackage.ICOMPOSITOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Color Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITOR__COLOR_ATTACHMENTS = ApplicationPackage.ICOMPOSITOR_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Input Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITOR__INPUT_ATTACHMENTS = ApplicationPackage.ICOMPOSITOR_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Constant Variables</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITOR__CONSTANT_VARIABLES = ApplicationPackage.ICOMPOSITOR_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITOR__DESCRIPTOR_PKG = ApplicationPackage.ICOMPOSITOR_FEATURE_COUNT + 6;
+
+	/**
+	 * The number of structural features of the '<em>Compositor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITOR_FEATURE_COUNT = ApplicationPackage.ICOMPOSITOR_FEATURE_COUNT + 7;
+
+	/**
+	 * The operation id for the '<em>LInference Object</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITOR___LINFERENCE_OBJECT = ApplicationPackage.ICOMPOSITOR___LINFERENCE_OBJECT;
+
+	/**
+	 * The number of operations of the '<em>Compositor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITOR_OPERATION_COUNT = ApplicationPackage.ICOMPOSITOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType <em>EAttachment Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2660,7 +2769,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getEAttachmentType()
 	 * @generated
 	 */
-	int EATTACHMENT_TYPE = 31;
+	int EATTACHMENT_TYPE = 32;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration <em>Configuration</em>}'.
@@ -3963,6 +4072,82 @@ public interface GraphicPackage extends EPackage
 	EReference getAttachmentDescriptor_Attachment();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.Compositor <em>Compositor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Compositor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Compositor
+	 * @generated
+	 */
+	EClass getCompositor();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.Compositor#getVertexShader <em>Vertex Shader</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Vertex Shader</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Compositor#getVertexShader()
+	 * @see #getCompositor()
+	 * @generated
+	 */
+	EReference getCompositor_VertexShader();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.Compositor#getFragmentShader <em>Fragment Shader</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Fragment Shader</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Compositor#getFragmentShader()
+	 * @see #getCompositor()
+	 * @generated
+	 */
+	EReference getCompositor_FragmentShader();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.Compositor#getColorAttachments <em>Color Attachments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Color Attachments</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Compositor#getColorAttachments()
+	 * @see #getCompositor()
+	 * @generated
+	 */
+	EReference getCompositor_ColorAttachments();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.Compositor#getInputAttachments <em>Input Attachments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Input Attachments</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Compositor#getInputAttachments()
+	 * @see #getCompositor()
+	 * @generated
+	 */
+	EReference getCompositor_InputAttachments();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.Compositor#getConstantVariables <em>Constant Variables</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Constant Variables</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Compositor#getConstantVariables()
+	 * @see #getCompositor()
+	 * @generated
+	 */
+	EReference getCompositor_ConstantVariables();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.Compositor#getDescriptorPkg <em>Descriptor Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Descriptor Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Compositor#getDescriptorPkg()
+	 * @see #getCompositor()
+	 * @generated
+	 */
+	EReference getCompositor_DescriptorPkg();
+
+	/**
 	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType <em>EAttachment Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5025,6 +5210,64 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference ATTACHMENT_DESCRIPTOR__ATTACHMENT = eINSTANCE.getAttachmentDescriptor_Attachment();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.CompositorImpl <em>Compositor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.CompositorImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getCompositor()
+		 * @generated
+		 */
+		EClass COMPOSITOR = eINSTANCE.getCompositor();
+
+		/**
+		 * The meta object literal for the '<em><b>Vertex Shader</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITOR__VERTEX_SHADER = eINSTANCE.getCompositor_VertexShader();
+
+		/**
+		 * The meta object literal for the '<em><b>Fragment Shader</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITOR__FRAGMENT_SHADER = eINSTANCE.getCompositor_FragmentShader();
+
+		/**
+		 * The meta object literal for the '<em><b>Color Attachments</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITOR__COLOR_ATTACHMENTS = eINSTANCE.getCompositor_ColorAttachments();
+
+		/**
+		 * The meta object literal for the '<em><b>Input Attachments</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITOR__INPUT_ATTACHMENTS = eINSTANCE.getCompositor_InputAttachments();
+
+		/**
+		 * The meta object literal for the '<em><b>Constant Variables</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITOR__CONSTANT_VARIABLES = eINSTANCE.getCompositor_ConstantVariables();
+
+		/**
+		 * The meta object literal for the '<em><b>Descriptor Pkg</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITOR__DESCRIPTOR_PKG = eINSTANCE.getCompositor_DescriptorPkg();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType <em>EAttachment Type</em>}' enum.

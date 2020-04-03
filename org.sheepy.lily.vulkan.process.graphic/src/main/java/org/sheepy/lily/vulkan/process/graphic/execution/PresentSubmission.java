@@ -1,13 +1,5 @@
 package org.sheepy.lily.vulkan.process.graphic.execution;
 
-import static org.lwjgl.system.MemoryUtil.*;
-import static org.lwjgl.vulkan.KHRSwapchain.*;
-import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
-
-import java.nio.IntBuffer;
-import java.nio.LongBuffer;
-import java.util.List;
-
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VK10;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
@@ -18,6 +10,15 @@ import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
+
+import java.nio.IntBuffer;
+import java.nio.LongBuffer;
+import java.util.List;
+
+import static org.lwjgl.system.MemoryUtil.*;
+import static org.lwjgl.vulkan.KHRSwapchain.VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+import static org.lwjgl.vulkan.KHRSwapchain.vkQueuePresentKHR;
+import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
 
 public class PresentSubmission implements IAllocable<IGraphicContext>
 {
