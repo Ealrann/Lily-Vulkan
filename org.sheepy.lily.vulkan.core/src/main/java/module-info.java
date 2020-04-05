@@ -20,7 +20,6 @@ module org.sheepy.lily.vulkan.core {
 	exports org.sheepy.lily.vulkan.core.engine.extension;
 	exports org.sheepy.lily.vulkan.core.execution.queue;
 	exports org.sheepy.lily.vulkan.core.graphic;
-	exports org.sheepy.lily.vulkan.core.instance;
 	exports org.sheepy.lily.vulkan.core.pipeline;
 	exports org.sheepy.lily.vulkan.core.process;
 	exports org.sheepy.lily.vulkan.core.resource;

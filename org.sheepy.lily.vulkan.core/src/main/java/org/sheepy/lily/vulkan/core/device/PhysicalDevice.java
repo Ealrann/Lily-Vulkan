@@ -1,18 +1,6 @@
 package org.sheepy.lily.vulkan.core.device;
 
-import static org.lwjgl.system.MemoryUtil.*;
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkExtensionProperties;
 import org.lwjgl.vulkan.VkFormatProperties;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceMemoryProperties;
@@ -21,10 +9,17 @@ import org.sheepy.lily.vulkan.api.device.IPhysicalDevice;
 import org.sheepy.lily.vulkan.core.device.data.DeviceProperties;
 import org.sheepy.lily.vulkan.core.device.data.DisplayInfo;
 import org.sheepy.lily.vulkan.core.device.loader.DisplayInformationLoader;
+import org.sheepy.lily.vulkan.core.engine.extension.DeviceExtensions;
 import org.sheepy.lily.vulkan.core.engine.extension.EDeviceExtension;
 import org.sheepy.lily.vulkan.core.engine.extension.EInstanceExtension;
-import org.sheepy.lily.vulkan.core.engine.extension.EngineExtensionRequirement;
-import org.sheepy.lily.vulkan.core.instance.VulkanInstance;
+import org.sheepy.lily.vulkan.core.engine.extension.InstanceExtensions;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import static org.lwjgl.vulkan.VK10.*;
 
 public class PhysicalDevice implements IPhysicalDevice
 {
@@ -32,51 +27,31 @@ public class PhysicalDevice implements IPhysicalDevice
 	private static final String USING_GRAPHIC_DEVICE = "\nUsing Graphic Device: %s (%s)";
 
 	public final VkPhysicalDevice vkPhysicalDevice;
-	public final VulkanInstance vkInstance;
 	public final String name;
-	public final int driverVersion;
 	public final DeviceProperties deviceProperties;
-
+	public final DeviceExtensions deviceExtensions;
+	private final VkPhysicalDeviceMemoryProperties memProperties;
 	private final Map<Integer, VkFormatProperties> formatProperties = new HashMap<>();
-	private final List<EDeviceExtension> retainedExtensions;
-	private final List<String> availableExtensions;
-	private final EngineExtensionRequirement extensionRequirement;
+	private final List<DisplayInfo> displaysInfomation;
 
-	private VkPhysicalDeviceMemoryProperties memProperties;
-	private List<DisplayInfo> displaysInfomations = null;
-
-	public PhysicalDevice(	VkPhysicalDevice vkPhysicalDevice,
-							VulkanInstance vkInstance,
-							EngineExtensionRequirement extensionRequirement)
+	public PhysicalDevice(VkPhysicalDevice vkPhysicalDevice,
+						  String name,
+						  DeviceExtensions deviceExtensions,
+						  DeviceProperties deviceProperties,
+						  VkPhysicalDeviceMemoryProperties memProperties,
+						  List<DisplayInfo> displaysInfomation)
 	{
 		this.vkPhysicalDevice = vkPhysicalDevice;
-		this.vkInstance = vkInstance;
-		this.extensionRequirement = extensionRequirement;
-
-		deviceProperties = new DeviceProperties(vkPhysicalDevice);
-		name = deviceProperties.vkDeviceProperties.deviceNameString();
-		driverVersion = deviceProperties.vkDeviceProperties.driverVersion();
-
-		availableExtensions = List.copyOf(gatherAvailableExtensions());
-		retainedExtensions = List.copyOf(gatherSupportedExtensions(extensionRequirement));
-	}
-
-	public void allocate(MemoryStack stack)
-	{
-		memProperties = VkPhysicalDeviceMemoryProperties.calloc();
-		vkGetPhysicalDeviceMemoryProperties(vkPhysicalDevice, memProperties);
-
-		if (extensionRequirement.getRequiredInstanceExtensions()
-								.contains(EInstanceExtension.VK_KHR_display))
-		{
-			displaysInfomations = DisplayInformationLoader.getDisplayInfos(stack, vkPhysicalDevice);
-		}
+		this.deviceExtensions = deviceExtensions;
+		this.deviceProperties = deviceProperties;
+		this.name = name;
+		this.memProperties = memProperties;
+		this.displaysInfomation = displaysInfomation;
 	}
 
 	public void free()
 	{
 		memProperties.free();
-		memProperties = null;
 
 		for (final var formatProperty : formatProperties.values())
 		{
@@ -92,13 +67,12 @@ public class PhysicalDevice implements IPhysicalDevice
 		{
 			final var formatProperty = getFormatProperty(format);
 
-			if (tiling == VK_IMAGE_TILING_LINEAR
-					&& (formatProperty.linearTilingFeatures() & features) == features)
+			if (tiling == VK_IMAGE_TILING_LINEAR && (formatProperty.linearTilingFeatures() & features) == features)
 			{
 				return format;
 			}
-			else if (tiling == VK_IMAGE_TILING_OPTIMAL
-					&& (formatProperty.optimalTilingFeatures() & features) == features)
+			else if (tiling == VK_IMAGE_TILING_OPTIMAL &&
+					 (formatProperty.optimalTilingFeatures() & features) == features)
 			{
 				return format;
 			}
@@ -147,76 +121,6 @@ public class PhysicalDevice implements IPhysicalDevice
 		return formatProperty;
 	}
 
-	private List<String> gatherAvailableExtensions()
-	{
-		final List<String> extensions = new ArrayList<>();
-		final IntBuffer extensionCount = memAllocInt(1);
-
-		vkEnumerateDeviceExtensionProperties(	vkPhysicalDevice,
-												(ByteBuffer) null,
-												extensionCount,
-												 null);
-		final var availableExtensions = VkExtensionProperties.calloc(extensionCount.get(0));
-
-		vkEnumerateDeviceExtensionProperties(	vkPhysicalDevice,
-												(ByteBuffer) null,
-												extensionCount,
-												availableExtensions);
-
-		for (final VkExtensionProperties extension : availableExtensions)
-		{
-			extensions.add(extension.extensionNameString());
-		}
-
-		availableExtensions.free();
-		memFree(extensionCount);
-
-		return extensions;
-	}
-
-	private List<EDeviceExtension> gatherSupportedExtensions(EngineExtensionRequirement extensionRequirement)
-	{
-		List<EDeviceExtension> compatibleExtensions = new ArrayList<>();
-		for (final EDeviceExtension requiredExtension : extensionRequirement.getRequiredDeviceExtensions())
-		{
-			boolean found = false;
-			for (final String extension : availableExtensions)
-			{
-				if (requiredExtension.name.equals(extension))
-				{
-					found = true;
-					compatibleExtensions.add(requiredExtension);
-					break;
-				}
-			}
-
-			if (found == false && requiredExtension.mandatory)
-			{
-				compatibleExtensions = null;
-				break;
-			}
-		}
-		return compatibleExtensions;
-	}
-
-	public List<EDeviceExtension> getRetainedExtensions()
-	{
-		return retainedExtensions;
-	}
-
-	public PointerBuffer allocRetainedExtensions(MemoryStack stack)
-	{
-		final int extensionCount = retainedExtensions.size();
-		final var extensionsBuffer = stack.mallocPointer(extensionCount);
-		for (int i = 0; i < extensionCount; i++)
-		{
-			final var requiredExtension = retainedExtensions.get(i);
-			extensionsBuffer.put(stack.UTF8(requiredExtension.name));
-		}
-		extensionsBuffer.flip();
-		return extensionsBuffer;
-	}
-
 	public long getBufferAlignement(int usage)
 	{
 		final var limits = getDeviceProperties().limits();
@@ -224,53 +128,19 @@ public class PhysicalDevice implements IPhysicalDevice
 
 		if ((usage & VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT) != 0)
 		{
-			alignment = Math.max(alignment,limits.minUniformBufferOffsetAlignment());
+			alignment = Math.max(alignment, limits.minUniformBufferOffsetAlignment());
 		}
 		if ((usage & VK_BUFFER_USAGE_STORAGE_BUFFER_BIT) != 0)
 		{
-			alignment = Math.max(alignment,limits.minStorageBufferOffsetAlignment());
+			alignment = Math.max(alignment, limits.minStorageBufferOffsetAlignment());
 		}
 
 		return alignment;
 	}
 
-	public void printRetainedExtensions()
+	List<DisplayInfo> getDisplaysInfomation()
 	{
-		System.out.println("\nUsing Device Extensions:");
-		for (final EDeviceExtension deviceExtension : retainedExtensions)
-		{
-			System.out.println("\t- " + deviceExtension.name);
-		}
-	}
-
-	public void printAvailableExtensions()
-	{
-		System.out.println("\nAvailable Device Extensions:");
-		for (final String extension : availableExtensions)
-		{
-			System.out.println("\t- " + extension);
-		}
-	}
-
-	public void printPhysicalProperties()
-	{
-		System.out.println("\nPhysical Properties:");
-		deviceProperties.print();
-
-		System.out.println("\nPhysical Memory Properties:");
-		final int count = memProperties.memoryHeapCount();
-		for (int i = 0; i < count; i++)
-		{
-			final var heap = memProperties.memoryHeaps(i);
-			final var flag = heap.flags();
-			final var size = heap.size();
-			System.out.println(String.format("\tHeap %d: flags: %d - size: %d", i, flag, size));
-		}
-	}
-
-	List<DisplayInfo> getDisplaysInfomations()
-	{
-		return displaysInfomations;
+		return displaysInfomation;
 	}
 
 	public VkPhysicalDeviceProperties getDeviceProperties()
@@ -278,9 +148,68 @@ public class PhysicalDevice implements IPhysicalDevice
 		return deviceProperties.vkDeviceProperties;
 	}
 
-	public void printInfo()
+	public static final class Builder
 	{
-		final var deviceInfo = String.format(USING_GRAPHIC_DEVICE, name, driverVersion);
-		System.out.println(deviceInfo);
+		public final VkPhysicalDevice vkPhysicalDevice;
+		public final DeviceProperties deviceProperties;
+		public final DeviceExtensions.Builder deviceExtensions;
+		public final String name;
+		public final VkPhysicalDeviceMemoryProperties memProperties;
+		public int driverVersion;
+
+		public Builder(VkPhysicalDevice vkPhysicalDevice, Set<EDeviceExtension> extensions, MemoryStack stack)
+		{
+			this.vkPhysicalDevice = vkPhysicalDevice;
+			deviceProperties = new DeviceProperties(vkPhysicalDevice);
+			name = deviceProperties.vkDeviceProperties.deviceNameString();
+			deviceExtensions = new DeviceExtensions.Builder(vkPhysicalDevice, stack);
+			for (var extension : extensions) deviceExtensions.requires(extension);
+			memProperties = VkPhysicalDeviceMemoryProperties.calloc();
+			vkGetPhysicalDeviceMemoryProperties(vkPhysicalDevice, memProperties);
+			driverVersion = deviceProperties.vkDeviceProperties.driverVersion();
+		}
+
+		public PhysicalDevice build(InstanceExtensions instanceExtensions, MemoryStack stack)
+		{
+			List<DisplayInfo> displaysInfomation = null;
+			if (instanceExtensions.extensions.contains(EInstanceExtension.VK_KHR_display.name))
+			{
+				displaysInfomation = DisplayInformationLoader.getDisplayInfos(stack, vkPhysicalDevice);
+			}
+
+			return new PhysicalDevice(vkPhysicalDevice,
+									  name,
+									  deviceExtensions.build(),
+									  deviceProperties,
+									  memProperties,
+									  displaysInfomation);
+		}
+
+		public void printInfo(final boolean verbose)
+		{
+			final var deviceInfo = String.format(USING_GRAPHIC_DEVICE, name, driverVersion);
+			System.out.println(deviceInfo);
+			deviceExtensions.log(verbose);
+			if (verbose)
+			{
+				printPhysicalProperties();
+			}
+		}
+
+		private void printPhysicalProperties()
+		{
+			System.out.println("\nPhysical Properties:");
+			deviceProperties.print();
+
+			System.out.println("\nPhysical Memory Properties:");
+			final int count = memProperties.memoryHeapCount();
+			for (int i = 0; i < count; i++)
+			{
+				final var heap = memProperties.memoryHeaps(i);
+				final var flag = heap.flags();
+				final var size = heap.size();
+				System.out.println(String.format("\tHeap %d: flags: %d - size: %d", i, flag, size));
+			}
+		}
 	}
 }

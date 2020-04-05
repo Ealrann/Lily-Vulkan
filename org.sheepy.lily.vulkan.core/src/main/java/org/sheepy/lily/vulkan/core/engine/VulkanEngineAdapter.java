@@ -21,14 +21,17 @@ import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.core.concurrent.VkFence;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
 import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
-import org.sheepy.lily.vulkan.core.device.PhysicalDeviceSelector;
 import org.sheepy.lily.vulkan.core.device.VulkanContext;
-import org.sheepy.lily.vulkan.core.engine.extension.EngineExtensionRequirement;
+import org.sheepy.lily.vulkan.core.device.loader.PhysicalDeviceSelector;
+import org.sheepy.lily.vulkan.core.engine.extension.EDeviceExtension;
+import org.sheepy.lily.vulkan.core.engine.extension.EInstanceExtension;
+import org.sheepy.lily.vulkan.core.engine.extension.InstanceExtensions;
 import org.sheepy.lily.vulkan.core.engine.utils.VulkanEngineAllocationRoot;
 import org.sheepy.lily.vulkan.core.engine.utils.VulkanEngineUtils;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.input.VulkanInputManager;
 import org.sheepy.lily.vulkan.core.instance.VulkanInstance;
+import org.sheepy.lily.vulkan.core.instance.loader.Layers;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
 import org.sheepy.lily.vulkan.core.window.Window;
@@ -37,6 +40,7 @@ import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,7 +60,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private final VulkanInputManager inputManager;
 	private final VulkanEngine engine;
 	private final Application application;
-	private final EngineExtensionRequirement extensionRequirement;
+	private final InstanceExtensions extensionRequirement;
 	private final GenericAllocator<ExecutionContext> resourceAllocator = new GenericAllocator<>(List.of(
 			RESOURCE_FEATURES,
 			DESCRIPTOR_FEATURES));
@@ -90,9 +94,14 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 		try (final var stack = stackPush())
 		{
-			extensionRequirement = new EngineExtensionRequirement(stack,
-																  DebugUtil.DEBUG_ENABLED,
-																  DebugUtil.DEBUG_VERBOSE_ENABLED);
+			final var extRequirementBuilder = new InstanceExtensions.Builder(stack);
+			extRequirementBuilder.requiresWindow();
+			if (DebugUtil.DEBUG_ENABLED)
+			{
+				extRequirementBuilder.requires(EInstanceExtension.VK_EXT_debug_report.name);
+				extRequirementBuilder.log(DebugUtil.DEBUG_VERBOSE_ENABLED);
+			}
+			extensionRequirement = extRequirementBuilder.build();
 		}
 	}
 
@@ -272,10 +281,14 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void createInstance(MemoryStack stack)
 	{
-		vkInstance = new VulkanInstance(application.getTitle(),
-										extensionRequirement,
-										DebugUtil.DEBUG_ENABLED,
-										DebugUtil.DEBUG_VERBOSE_ENABLED);
+		final var layersBuilder = new Layers.Builder(stack);
+		if (DebugUtil.DEBUG_ENABLED)
+		{
+			layersBuilder.requiresDebug();
+			layersBuilder.log(DebugUtil.DEBUG_VERBOSE_ENABLED);
+		}
+		final var layers = layersBuilder.build();
+		vkInstance = new VulkanInstance(application.getTitle(), extensionRequirement, layers, DebugUtil.DEBUG_ENABLED);
 		vkInstance.allocate(stack);
 	}
 
@@ -283,21 +296,9 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	{
 		final var deviceSelector = new PhysicalDeviceSelector(vkInstance,
 															  extensionRequirement,
-															  dummySurface,
-															  DebugUtil.DEBUG_VERBOSE_ENABLED);
-
+															  EnumSet.of(EDeviceExtension.VK_KHR_swapchain),
+															  dummySurface);
 		physicalDevice = deviceSelector.findBestPhysicalDevice(stack);
-
-		physicalDevice.printInfo();
-
-		if (DebugUtil.DEBUG_ENABLED)
-		{
-			physicalDevice.printRetainedExtensions();
-		}
-		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
-		{
-			physicalDevice.printPhysicalProperties();
-		}
 	}
 
 	private void createLogicalDevice(MemoryStack stack, VkSurface dummySurface)

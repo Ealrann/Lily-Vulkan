@@ -1,20 +1,19 @@
 package org.sheepy.lily.vulkan.core.device.loader;
 
-import static org.lwjgl.vulkan.KHRDisplay.vkGetPhysicalDeviceDisplayPropertiesKHR;
-
-import java.nio.IntBuffer;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDisplayPropertiesKHR;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.sheepy.lily.vulkan.core.device.data.DisplayInfo;
 
+import java.nio.IntBuffer;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.lwjgl.vulkan.KHRDisplay.vkGetPhysicalDeviceDisplayPropertiesKHR;
+
 public class DisplayInformationLoader
 {
-	public static final List<DisplayInfo> getDisplayInfos(	MemoryStack stack,
-															VkPhysicalDevice device)
+	public static final List<DisplayInfo> getDisplayInfos(MemoryStack stack, VkPhysicalDevice device)
 	{
 		final List<DisplayInfo> res = new ArrayList<>();
 		final IntBuffer countBuffer = stack.callocInt(1);
@@ -23,8 +22,7 @@ public class DisplayInformationLoader
 		final int count = countBuffer.get(0);
 		if (count > 0)
 		{
-			final VkDisplayPropertiesKHR.Buffer properties = VkDisplayPropertiesKHR.callocStack(count,
-					stack);
+			final VkDisplayPropertiesKHR.Buffer properties = VkDisplayPropertiesKHR.callocStack(count, stack);
 
 			vkGetPhysicalDeviceDisplayPropertiesKHR(device, countBuffer, properties);
 

@@ -1,9 +1,5 @@
 package org.sheepy.lily.vulkan.core.device;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkDeviceCreateInfo;
@@ -17,6 +13,10 @@ import org.sheepy.lily.vulkan.core.execution.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
 
+import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.*;
+
 public class LogicalDevice implements ILogicalDevice
 {
 	private static final String FAILED_TO_CREATE_LOGICAL_DEVICE = "Failed to create logical device";
@@ -29,10 +29,10 @@ public class LogicalDevice implements ILogicalDevice
 
 	private VkDevice vkDevice;
 
-	public LogicalDevice(	PhysicalDevice physicalDevice,
-							List<EQueueType> queueTypes,
-							VkSurface dummySurface,
-							List<EPhysicalFeature> features)
+	public LogicalDevice(PhysicalDevice physicalDevice,
+						 List<EQueueType> queueTypes,
+						 VkSurface dummySurface,
+						 List<EPhysicalFeature> features)
 	{
 		this.physicalDevice = physicalDevice;
 		this.dummySurface = dummySurface;
@@ -44,23 +44,20 @@ public class LogicalDevice implements ILogicalDevice
 	public void allocate(MemoryStack stack)
 	{
 		final var queueCreateInfos = queueManager.allocQueueInfos(stack);
-		final var extensionsBuffer = physicalDevice.allocRetainedExtensions(stack);
+		final var extensionsBuffer = physicalDevice.deviceExtensions.allocBuffer(stack);
 		final var deviceFeatures = allocPhysicalFeatures(stack);
-		final var createInfo = VkDeviceCreateInfo	.mallocStack(stack)
-													.set(	VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
-															VK_NULL_HANDLE,
-															0,
-															queueCreateInfos,
-															null,
-															extensionsBuffer,
-															deviceFeatures);
+		final var createInfo = VkDeviceCreateInfo.mallocStack(stack)
+												 .set(VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
+													  VK_NULL_HANDLE,
+													  0,
+													  queueCreateInfos,
+													  null,
+													  extensionsBuffer,
+													  deviceFeatures);
 
 		final var pDevice = stack.callocPointer(1);
-		Logger.check(	FAILED_TO_CREATE_LOGICAL_DEVICE,
-						() -> vkCreateDevice(	physicalDevice.vkPhysicalDevice,
-												createInfo,
-												null,
-												pDevice));
+		Logger.check(FAILED_TO_CREATE_LOGICAL_DEVICE,
+					 () -> vkCreateDevice(physicalDevice.vkPhysicalDevice, createInfo, null, pDevice));
 
 		final long deviceId = pDevice.get(0);
 		vkDevice = new VkDevice(deviceId, physicalDevice.vkPhysicalDevice, createInfo);
