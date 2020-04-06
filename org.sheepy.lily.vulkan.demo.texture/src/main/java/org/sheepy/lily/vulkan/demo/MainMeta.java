@@ -32,15 +32,9 @@ public class MainMeta
 
 				switch (currentIndex)
 				{
-				case 0:
-					setupScene(application, MainTriangle.NAME);
-					break;
-				case 1:
-					setupScene(application, MainRotating.NAME);
-					break;
-				case 2:
-					setupScene(application, MainTexture.NAME);
-					break;
+					case 0 -> setupScene(application, MainTriangle.NAME);
+					case 1 -> setupScene(application, MainRotating.NAME);
+					case 2 -> setupScene(application, MainTexture.NAME);
 				}
 			}
 		});
@@ -64,9 +58,8 @@ public class MainMeta
 
 	public static void setupScene(final Application application, String name)
 	{
-		final var part = ApplicationFactory.eINSTANCE.createGenericScenePart();
 		final var parts = application.getScene().getCompositors();
-
+		final var part = ApplicationFactory.eINSTANCE.createGenericScenePart();
 		part.setName(name);
 
 		parts.clear();

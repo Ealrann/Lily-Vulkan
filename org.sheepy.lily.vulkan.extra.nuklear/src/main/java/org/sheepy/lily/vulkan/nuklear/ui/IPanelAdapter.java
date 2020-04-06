@@ -7,7 +7,7 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IPanel;
-import org.sheepy.lily.vulkan.core.window.Window;
+import org.sheepy.lily.game.api.window.IWindow;
 
 import java.util.Map;
 
@@ -20,7 +20,7 @@ public interface IPanelAdapter extends IAdapter
 
 	final class UIContext
 	{
-		public final Window window;
+		public final IWindow window;
 		public final NkContext nkContext;
 		public final MemoryStack stack;
 
@@ -29,7 +29,7 @@ public interface IPanelAdapter extends IAdapter
 
 		private Font currentFont;
 
-		public UIContext(Window window,
+		public UIContext(IWindow window,
 						 NkContext nkContext,
 						 Map<Font, NkUserFont> fontMap,
 						 Font defaultFont,

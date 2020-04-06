@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.core.resource;
 
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.device.VulkanContext;
 
-public interface ISamplerAdapter extends IAllocableAdapter<InternalExecutionContext>
+public interface ISamplerAdapter extends IAllocableAdapter<VulkanContext>
 {
 	long getSamplerPtr();
 	long getViewPtr();

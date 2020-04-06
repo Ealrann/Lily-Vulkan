@@ -1,14 +1,14 @@
 package org.sheepy.lily.vulkan.core.resource.buffer;
 
-import static org.lwjgl.vulkan.VK10.*;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferCreateInfo;
-import org.sheepy.lily.vulkan.core.device.InternalVulkanContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+
+import static org.lwjgl.vulkan.VK10.*;
 
 public class VkBufferAllocator
 {
-	public static long allocate(InternalVulkanContext context, BufferInfo bufferInfo)
+	public static long allocate(ExecutionContext context, BufferInfo bufferInfo)
 	{
 		assert bufferInfo.getTotalSize() != 0;
 

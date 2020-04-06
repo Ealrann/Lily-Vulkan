@@ -2,12 +2,14 @@ package org.sheepy.lily.vulkan.process.graphic.frame;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkFramebufferCreateInfo;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.core.graphic.IFramebufferManager;
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.resource.attachment.IExtraAttachmentAdapter;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
 import java.nio.LongBuffer;
 import java.util.ArrayList;
@@ -15,14 +17,14 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public class FramebufferManager implements IFramebufferManager
+public class FramebufferManager implements IFramebufferManager, IAllocable<GraphicContext>
 {
 	private static final String FAILED_TO_CREATE_FRAMEBUFFER = "Failed to create framebuffer";
 
 	private List<Long> framebuffersIds = null;
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
 	{
 		final var swapChainManager = context.getSwapChainManager();
 		final var imageViewManager = context.getImageViewManager();
@@ -32,14 +34,13 @@ public class FramebufferManager implements IFramebufferManager
 	}
 
 	@Override
-	public void allocate(IGraphicContext context)
+	public void allocate(GraphicContext context)
 	{
 		final var stack = context.stack();
 		final var vkDevice = context.getVkDevice();
 		final var imageViews = context.getImageViewManager().getImageViews();
 		final var aFramebufferId = new long[1];
-		final var attachmentPkg = context.getGraphicProcess().getAttachmentPkg();
-		final var attachments = attachmentPkg.getExtraAttachments();
+		final var attachments = context.getRenderPass().getUsedExtraAttachments();
 
 		framebuffersIds = new ArrayList<>(imageViews.size());
 		for (final var imageView : imageViews)
@@ -85,7 +86,7 @@ public class FramebufferManager implements IFramebufferManager
 	}
 
 	@Override
-	public void free(IGraphicContext context)
+	public void free(GraphicContext context)
 	{
 		for (final long framebuffer : framebuffersIds)
 		{

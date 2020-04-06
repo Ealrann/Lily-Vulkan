@@ -2,9 +2,10 @@ package org.sheepy.lily.vulkan.core.execution;
 
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPhysicalDevice;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.game.core.allocation.GameAllocationContext;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.core.device.InternalVulkanContext;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
 import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.core.device.VulkanContext;
@@ -15,7 +16,9 @@ import org.sheepy.lily.vulkan.core.window.Window;
 import java.util.Collection;
 import java.util.List;
 
-public class ExecutionContext extends GameAllocationContext implements InternalExecutionContext, InternalVulkanContext
+public class ExecutionContext extends GameAllocationContext implements VulkanContext,
+																	   IExecutionContext,
+																	   IAllocable<VulkanContext>
 {
 	public final EQueueType queueType;
 	private final boolean resetAllowed;
@@ -53,25 +56,21 @@ public class ExecutionContext extends GameAllocationContext implements InternalE
 		commandPool.free(vulkanContext);
 	}
 
-	@Override
 	public VulkanQueue getQueue()
 	{
 		return queue;
 	}
 
-	@Override
 	public CommandPool getCommandPool()
 	{
 		return commandPool;
 	}
 
-	@Override
 	public void execute(ISingleTimeCommand command)
 	{
 		execute(List.of(), command);
 	}
 
-	@Override
 	public void execute(Collection<VkSemaphore> semaphoreToSignal, ISingleTimeCommand command)
 	{
 		final var stc = new SingleTimeCommandImpl(this, semaphoreToSignal, command);
@@ -121,7 +120,7 @@ public class ExecutionContext extends GameAllocationContext implements InternalE
 		}
 
 		@Override
-		protected void doExecute(InternalExecutionContext context, ICommandBuffer<?> commandBuffer)
+		protected void doExecute(ExecutionContext context, ICommandBuffer<?> commandBuffer)
 		{
 			command.execute(context, commandBuffer);
 		}

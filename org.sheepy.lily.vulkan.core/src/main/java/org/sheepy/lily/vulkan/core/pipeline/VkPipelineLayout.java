@@ -1,10 +1,5 @@
 package org.sheepy.lily.vulkan.core.pipeline;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.nio.LongBuffer;
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
@@ -13,11 +8,16 @@ import org.lwjgl.vulkan.VkPushConstantRange;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptorSet;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.device.VulkanContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 
-public final class VkPipelineLayout<T extends InternalExecutionContext> implements IAllocable<T>
+import java.nio.LongBuffer;
+import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.*;
+
+public final class VkPipelineLayout<T extends VulkanContext> implements IAllocable<T>
 {
 	private static final String CREATION_ERROR = "Failed to create pipeline layout";
 
@@ -26,8 +26,7 @@ public final class VkPipelineLayout<T extends InternalExecutionContext> implemen
 
 	protected long pipelineLayout = -1;
 
-	public VkPipelineLayout(List<IVkDescriptorSet> descriptorSets,
-							List<PushConstantRange> constantRanges)
+	public VkPipelineLayout(List<IVkDescriptorSet> descriptorSets, List<PushConstantRange> constantRanges)
 	{
 		this.descriptorSets = List.copyOf(descriptorSets);
 		this.constantRanges = List.copyOf(constantRanges);
@@ -43,12 +42,12 @@ public final class VkPipelineLayout<T extends InternalExecutionContext> implemen
 
 		// Create compute pipeline
 		final long[] aLayout = new long[1];
-		final var info = VkPipelineLayoutCreateInfo	.callocStack(stack)
-													.set(	VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO,
-															VK_NULL_HANDLE,
-															0,
-															layouts,
-															pPushConstantRanges);
+		final var info = VkPipelineLayoutCreateInfo.callocStack(stack)
+												   .set(VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO,
+														VK_NULL_HANDLE,
+														0,
+														layouts,
+														pPushConstantRanges);
 
 		Logger.check(CREATION_ERROR, () -> vkCreatePipelineLayout(vkDevice, info, null, aLayout));
 		pipelineLayout = aLayout[0];
@@ -76,9 +75,7 @@ public final class VkPipelineLayout<T extends InternalExecutionContext> implemen
 		return layouts;
 	}
 
-	public void bindDescriptors(VkCommandBuffer commandBuffer,
-								List<IVkDescriptorSet> sets,
-								int bindPoint)
+	public void bindDescriptors(VkCommandBuffer commandBuffer, List<IVkDescriptorSet> sets, int bindPoint)
 	{
 		if (sets.size() > 0)
 		{
@@ -92,12 +89,7 @@ public final class VkPipelineLayout<T extends InternalExecutionContext> implemen
 			}
 			descriptorSetAddressBuffer.flip();
 
-			vkCmdBindDescriptorSets(commandBuffer,
-									bindPoint,
-									pipelineLayout,
-									0,
-									descriptorSetAddressBuffer,
-									null);
+			vkCmdBindDescriptorSets(commandBuffer, bindPoint, pipelineLayout, 0, descriptorSetAddressBuffer, null);
 		}
 	}
 

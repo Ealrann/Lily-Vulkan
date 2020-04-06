@@ -1,21 +1,21 @@
 package org.sheepy.lily.vulkan.core.concurrent;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.util.List;
-
 import org.lwjgl.vulkan.VkSemaphoreCreateInfo;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.concurrent.ISemaphore;
-import org.sheepy.lily.vulkan.core.device.InternalVulkanContext;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.device.VulkanContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 
-public class VkSemaphore implements ISemaphore, IAllocable<InternalVulkanContext>
+import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.*;
+
+public class VkSemaphore implements ISemaphore, IAllocable<VulkanContext>
 {
 	private long semaphorePtr = VK_NULL_HANDLE;
 
 	@Override
-	public void allocate(InternalVulkanContext context)
+	public void allocate(VulkanContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
 		final VkSemaphoreCreateInfo semaphoreInfo = VkSemaphoreCreateInfo.calloc();
@@ -24,10 +24,7 @@ public class VkSemaphore implements ISemaphore, IAllocable<InternalVulkanContext
 		semaphoreInfo.flags(0);
 
 		final long[] aSemaphore = new long[1];
-		if (vkCreateSemaphore(	logicalDevice.getVkDevice(),
-								semaphoreInfo,
-								null,
-								aSemaphore) != VK_SUCCESS)
+		if (vkCreateSemaphore(logicalDevice.getVkDevice(), semaphoreInfo, null, aSemaphore) != VK_SUCCESS)
 		{
 			throw new AssertionError("Failed to create semaphores");
 		}
@@ -41,19 +38,19 @@ public class VkSemaphore implements ISemaphore, IAllocable<InternalVulkanContext
 		return semaphorePtr;
 	}
 
-	public void signalSemaphore(InternalExecutionContext executionContext)
+	public void signalSemaphore(ExecutionContext executionContext)
 	{
 		if (semaphorePtr == VK_NULL_HANDLE)
 		{
 			throw new AssertionError("Unallocated Semaphore");
 		}
 
-		executionContext.execute(List.of(this), (s, c) ->
-		{});
+		executionContext.execute(List.of(this), (s, c) -> {
+		});
 	}
 
 	@Override
-	public void free(InternalVulkanContext context)
+	public void free(VulkanContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
 		vkDestroySemaphore(logicalDevice.getVkDevice(), semaphorePtr, null);

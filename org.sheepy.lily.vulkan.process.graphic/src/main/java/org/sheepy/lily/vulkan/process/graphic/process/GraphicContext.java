@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.process.graphic.process;
 import org.sheepy.lily.vulkan.core.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.core.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
-import org.sheepy.lily.vulkan.core.graphic.*;
+import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicExecutionRecorders;
@@ -16,7 +16,7 @@ import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.List;
 
-final class GraphicContext extends ProcessContext<IGraphicContext> implements IGraphicContext
+public final class GraphicContext extends ProcessContext<GraphicContext> implements IGraphicContext
 {
 	public final GraphicConfiguration configuration;
 	public final GraphicProcess graphicProcess;
@@ -49,7 +49,7 @@ final class GraphicContext extends ProcessContext<IGraphicContext> implements IG
 	}
 
 	@Override
-	public ISurfaceManager getSurfaceManager()
+	public PhysicalDeviceSurfaceManager getSurfaceManager()
 	{
 		return surfaceManager;
 	}
@@ -61,7 +61,7 @@ final class GraphicContext extends ProcessContext<IGraphicContext> implements IG
 	}
 
 	@Override
-	public ISwapChainManager getSwapChainManager()
+	public SwapChainManager getSwapChainManager()
 	{
 		return swapChainManager;
 	}
@@ -79,31 +79,31 @@ final class GraphicContext extends ProcessContext<IGraphicContext> implements IG
 	}
 
 	@Override
-	public List<IExecutionRecorder<? super IGraphicContext>> getRecorders()
+	public List<IExecutionRecorder<? super GraphicContext>> getRecorders()
 	{
 		return executionRecorders.getRecorders();
 	}
 
 	@Override
-	public IImageViewManager getImageViewManager()
+	public ImageViewManager getImageViewManager()
 	{
 		return imageViewManager;
 	}
 
 	@Override
-	public IRenderPass getRenderPass()
+	public RenderPass getRenderPass()
 	{
 		return renderPass;
 	}
 
 	@Override
-	public IFramebufferManager getFramebufferManager()
+	public FramebufferManager getFramebufferManager()
 	{
 		return framebuffers;
 	}
 
 	@Override
-	public IGraphicExecutionRecorders getGraphicExecutionRecorders()
+	public GraphicExecutionRecorders getGraphicExecutionRecorders()
 	{
 		return executionRecorders;
 	}

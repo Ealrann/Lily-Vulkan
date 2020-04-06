@@ -1,15 +1,11 @@
 package org.sheepy.lily.vulkan.resource.buffer.transfer.internal;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter.IRecordContext;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter.IMemoryTicket.EReservationStatus;
-import org.sheepy.lily.vulkan.core.device.InternalVulkanContext;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
@@ -21,7 +17,11 @@ import org.sheepy.lily.vulkan.resource.buffer.memory.MemorySpaceManager.MemorySp
 import org.sheepy.lily.vulkan.resource.buffer.memory.MemoryTicket;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
-public class TransferBufferBackend implements IAllocable<InternalVulkanContext>
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+public class TransferBufferBackend implements IAllocable<ExecutionContext>
 {
 	private static final String MEMORY_RESERVATION_REJECTED = "MemoryTicket reservation was rejected";
 
@@ -32,12 +32,9 @@ public class TransferBufferBackend implements IAllocable<InternalVulkanContext>
 	private final long capacity;
 	private final MemorySpaceManager spaceManager;
 
-	private InternalVulkanContext context;
+	private ExecutionContext context;
 
-	public TransferBufferBackend(	long capacity,
-									int instanceCount,
-									boolean usedToPush,
-									boolean usedToFetch)
+	public TransferBufferBackend(long capacity, int instanceCount, boolean usedToPush, boolean usedToFetch)
 	{
 		this.capacity = capacity;
 		spaceManager = new MemorySpaceManager(capacity);
@@ -51,14 +48,14 @@ public class TransferBufferBackend implements IAllocable<InternalVulkanContext>
 	}
 
 	@Override
-	public void allocate(InternalVulkanContext context)
+	public void allocate(ExecutionContext context)
 	{
 		this.context = context;
 		bufferBackend.allocate(context);
 	}
 
 	@Override
-	public void free(InternalVulkanContext context)
+	public void free(ExecutionContext context)
 	{
 		bufferBackend.free(context);
 	}
@@ -147,10 +144,7 @@ public class TransferBufferBackend implements IAllocable<InternalVulkanContext>
 		return new MemoryTicket(failure, null, -1, -1, -1, -1);
 	}
 
-	private MemoryTicket newSuccessTicket(	MemorySpace space,
-											long memoryPtr,
-											long bufferOffset,
-											long size)
+	private MemoryTicket newSuccessTicket(MemorySpace space, long memoryPtr, long bufferOffset, long size)
 	{
 		return new MemoryTicket(EReservationStatus.SUCCESS,
 								space,
@@ -169,10 +163,10 @@ public class TransferBufferBackend implements IAllocable<InternalVulkanContext>
 		private final boolean containingFetchCommand;
 		private final int instance;
 
-		public FlushRecord(	LogicalDevice logicalDevice,
-							CPUBufferBackend bufferBackend,
-							int instance,
-							Collection<IDataFlowCommand> commands)
+		public FlushRecord(LogicalDevice logicalDevice,
+						   CPUBufferBackend bufferBackend,
+						   int instance,
+						   Collection<IDataFlowCommand> commands)
 		{
 			this.logicalDevice = logicalDevice;
 			this.bufferBackend = bufferBackend;

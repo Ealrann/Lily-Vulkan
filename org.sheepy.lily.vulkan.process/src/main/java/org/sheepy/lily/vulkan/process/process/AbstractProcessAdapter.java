@@ -20,7 +20,7 @@ import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.core.device.VulkanContext;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAdapter;
-import org.sheepy.lily.vulkan.core.process.IProcessContext.IRecorderContext;
+import org.sheepy.lily.vulkan.core.process.IRecorderContext;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.core.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;

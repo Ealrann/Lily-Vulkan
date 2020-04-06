@@ -7,7 +7,7 @@ import org.sheepy.lily.vulkan.core.execution.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
 
-public interface ISurfaceManager extends IAllocable<IGraphicContext>
+public interface ISurfaceManager
 {
 	Vector2ic getExtent();
 

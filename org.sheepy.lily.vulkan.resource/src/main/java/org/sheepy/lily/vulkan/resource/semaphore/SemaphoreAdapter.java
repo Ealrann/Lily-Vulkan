@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.resource.semaphore;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.ISemaphoreAdapter;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 
@@ -20,7 +20,7 @@ public class SemaphoreAdapter implements ISemaphoreAdapter
 	}
 
 	@Override
-	public void allocate(InternalExecutionContext context)
+	public void allocate(ExecutionContext context)
 	{
 		vkSemaphore.allocate(context);
 
@@ -31,7 +31,7 @@ public class SemaphoreAdapter implements ISemaphoreAdapter
 	}
 
 	@Override
-	public void free(InternalExecutionContext context)
+	public void free(ExecutionContext context)
 	{
 		vkSemaphore.free(context);
 	}

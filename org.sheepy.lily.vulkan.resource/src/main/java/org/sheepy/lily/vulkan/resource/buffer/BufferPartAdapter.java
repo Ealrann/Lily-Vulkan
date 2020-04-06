@@ -9,7 +9,7 @@ import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter.IMemoryTicket;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter.IMemoryTicket.EReservationStatus;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.IBufferPartAdapter;
 import org.sheepy.lily.vulkan.core.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
@@ -25,7 +25,7 @@ import java.util.function.Consumer;
 @Statefull
 @Adapter(scope = BufferPart.class)
 public final class BufferPartAdapter extends Notifier<IBufferAdapter.Features> implements IBufferPartAdapter,
-																						  IAllocableAdapter<InternalExecutionContext>
+																						  IAllocableAdapter<ExecutionContext>
 {
 	public final BufferDataProvider dataProvider;
 
@@ -69,7 +69,7 @@ public final class BufferPartAdapter extends Notifier<IBufferAdapter.Features> i
 	}
 
 	@Override
-	public void allocate(InternalExecutionContext context)
+	public void allocate(ExecutionContext context)
 	{
 		final var physicalDevice = context.getPhysicalDevice();
 
@@ -83,7 +83,7 @@ public final class BufferPartAdapter extends Notifier<IBufferAdapter.Features> i
 	}
 
 	@Override
-	public void free(InternalExecutionContext context)
+	public void free(ExecutionContext context)
 	{
 	}
 
@@ -144,7 +144,8 @@ public final class BufferPartAdapter extends Notifier<IBufferAdapter.Features> i
 
 	public void releaseMemory()
 	{
-		if (memTicket.getReservationStatus() == EReservationStatus.SUCCESS || memTicket.getReservationStatus() == EReservationStatus.FLUSHED)
+		if (memTicket.getReservationStatus() == EReservationStatus.SUCCESS ||
+			memTicket.getReservationStatus() == EReservationStatus.FLUSHED)
 		{
 			transferBuffer.releaseTicket(memTicket);
 		}

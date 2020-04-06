@@ -1,13 +1,5 @@
 package org.sheepy.lily.vulkan.process.execution;
 
-import static org.lwjgl.system.MemoryUtil.*;
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.nio.IntBuffer;
-import java.nio.LongBuffer;
-import java.util.Collection;
-import java.util.List;
-
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSubmitInfo;
@@ -19,11 +11,19 @@ import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.ICommandBuffer;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext.IExecutionIdleListener;
 import org.sheepy.lily.vulkan.core.execution.ISubmission;
-import org.sheepy.lily.vulkan.core.process.IProcessContext;
 import org.sheepy.lily.vulkan.core.util.EVulkanErrorStatus;
 import org.sheepy.lily.vulkan.core.util.Logger;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
-public class Submission<T extends IProcessContext> implements ISubmission<T>
+import java.nio.IntBuffer;
+import java.nio.LongBuffer;
+import java.util.Collection;
+import java.util.List;
+
+import static org.lwjgl.system.MemoryUtil.*;
+import static org.lwjgl.vulkan.VK10.*;
+
+public class Submission<T extends ProcessContext<?>> implements ISubmission<T>
 {
 	private static final String FENCE_TIMEOUT = "Fence timeout";
 	private static final int TIMEOUT = (int) 60e9;
@@ -43,10 +43,10 @@ public class Submission<T extends IProcessContext> implements ISubmission<T>
 	private List<IExecutionIdleListener> listeners;
 	private VkQueue queue;
 
-	public Submission(	ICommandBuffer<? super T> commandBuffer,
-						Collection<WaitData> waitSemaphores,
-						Collection<VkSemaphore> signalSemaphores,
-						boolean useFence)
+	public Submission(ICommandBuffer<? super T> commandBuffer,
+					  Collection<WaitData> waitSemaphores,
+					  Collection<VkSemaphore> signalSemaphores,
+					  boolean useFence)
 	{
 		this.commandBuffer = commandBuffer;
 		this.waitSemaphores = List.copyOf(waitSemaphores);

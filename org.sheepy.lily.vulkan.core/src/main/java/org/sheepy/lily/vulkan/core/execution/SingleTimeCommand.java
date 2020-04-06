@@ -1,11 +1,5 @@
 package org.sheepy.lily.vulkan.core.execution;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.nio.LongBuffer;
-import java.util.Collection;
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
@@ -13,19 +7,24 @@ import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
-public abstract class SingleTimeCommand extends AbstractCommandBuffer<InternalExecutionContext>
+import java.nio.LongBuffer;
+import java.util.Collection;
+import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.*;
+
+public abstract class SingleTimeCommand extends AbstractCommandBuffer<ExecutionContext>
 {
-	protected final InternalExecutionContext executionContext;
+	protected final ExecutionContext executionContext;
 	private final MemoryStack stack;
 	private final List<VkSemaphore> semaphoreToSignal;
 
-	public SingleTimeCommand(InternalExecutionContext executionContext)
+	public SingleTimeCommand(ExecutionContext executionContext)
 	{
 		this(executionContext, null);
 	}
 
-	public SingleTimeCommand(	InternalExecutionContext executionContext,
-								Collection<VkSemaphore> semaphoreToSignal)
+	public SingleTimeCommand(ExecutionContext executionContext, Collection<VkSemaphore> semaphoreToSignal)
 	{
 		this.executionContext = executionContext;
 		this.stack = executionContext.stack();
@@ -95,9 +94,9 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer<InternalEx
 		if (lBuffer != null) MemoryUtil.memFree(lBuffer);
 	}
 
-	protected abstract void doExecute(	InternalExecutionContext context,
-										ICommandBuffer<?> commandBuffer);
+	protected abstract void doExecute(ExecutionContext context, ICommandBuffer<?> commandBuffer);
 
 	protected void postExecute()
-	{}
+	{
+	}
 }

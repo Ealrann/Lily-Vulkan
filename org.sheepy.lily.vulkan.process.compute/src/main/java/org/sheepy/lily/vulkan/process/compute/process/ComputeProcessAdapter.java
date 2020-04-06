@@ -6,7 +6,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
-import org.sheepy.lily.vulkan.core.process.IComputeContext;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
@@ -18,7 +17,7 @@ import java.util.List;
 
 @Statefull
 @Adapter(scope = ComputeProcess.class)
-public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContext>
+public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeContext>
 {
 	private static final List<EReference> PIPELINE__FEATURES = List.of(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
 																	   ProcessPackage.Literals.PIPELINE_PKG__PIPELINES);
@@ -69,7 +68,7 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContex
 	}
 
 	@Override
-	protected List<IAllocable<? super IComputeContext>> getExtraAllocables()
+	protected List<IAllocable<? super ComputeContext>> getExtraAllocables()
 	{
 		return List.of();
 	}

@@ -1,14 +1,13 @@
 package org.sheepy.lily.vulkan.core.execution;
 
-import static org.lwjgl.vulkan.VK10.*;
-
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkCommandBufferAllocateInfo;
 import org.sheepy.lily.vulkan.core.util.Logger;
 
-public abstract class AbstractCommandBuffer<T extends InternalExecutionContext>
-		implements ICommandBuffer<T>
+import static org.lwjgl.vulkan.VK10.*;
+
+public abstract class AbstractCommandBuffer<T extends ExecutionContext> implements ICommandBuffer<T>
 {
 	protected VkCommandBuffer vkCommandBuffer;
 
@@ -27,7 +26,7 @@ public abstract class AbstractCommandBuffer<T extends InternalExecutionContext>
 
 		final PointerBuffer pCommandBuffer = stack.mallocPointer(1);
 		Logger.check("Failed to allocate command buffers",
-				() -> vkAllocateCommandBuffers(vkDevice, allocInfo, pCommandBuffer));
+					 () -> vkAllocateCommandBuffers(vkDevice, allocInfo, pCommandBuffer));
 
 		vkCommandBuffer = new VkCommandBuffer(pCommandBuffer.get(0), vkDevice);
 	}

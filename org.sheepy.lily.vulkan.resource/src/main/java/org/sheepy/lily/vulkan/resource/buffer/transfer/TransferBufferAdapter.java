@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.resource.buffer.transfer;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAdapter;
 import org.sheepy.lily.vulkan.core.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
@@ -14,7 +14,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 @Statefull
 @Adapter(scope = TransferBuffer.class)
-public class TransferBufferAdapter implements InternalTransferBufferAdapter, IAllocableAdapter<InternalExecutionContext>
+public class TransferBufferAdapter implements InternalTransferBufferAdapter, IAllocableAdapter<ExecutionContext>
 {
 	private final TransferBuffer transferBuffer;
 
@@ -26,7 +26,7 @@ public class TransferBufferAdapter implements InternalTransferBufferAdapter, IAl
 	}
 
 	@Override
-	public void allocate(InternalExecutionContext context)
+	public void allocate(ExecutionContext context)
 	{
 		final long size = transferBuffer.getSize();
 		final int instanceCount = InstanceCountUtil.getInstanceCount(context, transferBuffer.getInstanceCount());
@@ -38,7 +38,7 @@ public class TransferBufferAdapter implements InternalTransferBufferAdapter, IAl
 	}
 
 	@Override
-	public void free(InternalExecutionContext context)
+	public void free(ExecutionContext context)
 	{
 		backendBuffer.free(context);
 	}

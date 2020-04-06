@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.process.graphic.frame.util;
 
-import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
 
 import java.util.List;
@@ -59,7 +59,7 @@ public class PresentationModeSelector
 		}
 	}
 
-	public int findBestMode(IGraphicContext context, VkSurface surface)
+	public int findBestMode(GraphicContext context, VkSurface surface)
 	{
 		final var device = context.getVkPhysicalDevice();
 		final var stack = context.stack();

@@ -1,4 +1,7 @@
 package org.sheepy.lily.vulkan.core.process;
 
-public interface IComputeContext extends IProcessContext.IRecorderContext<IComputeContext>
-{}
+import org.sheepy.lily.vulkan.api.process.IProcessContext;
+
+public interface IComputeContext extends IProcessContext
+{
+}

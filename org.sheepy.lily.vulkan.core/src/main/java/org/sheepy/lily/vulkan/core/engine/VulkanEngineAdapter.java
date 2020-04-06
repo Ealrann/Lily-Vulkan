@@ -3,6 +3,8 @@ package org.sheepy.lily.vulkan.core.engine;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EReference;
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkDevice;
+import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -14,6 +16,7 @@ import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.game.api.window.IWindowListener;
+import org.sheepy.lily.game.core.allocation.GameAllocationContext;
 import org.sheepy.lily.game.core.allocation.GenericAllocator;
 import org.sheepy.lily.vulkan.api.device.EPhysicalFeature;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
@@ -231,7 +234,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private void allocate()
 	{
 		resourceAllocator.start(engine);
-		vulkanContext = new VulkanContext(logicalDevice, window);
+		vulkanContext = new EngineVulkanContext(logicalDevice, window);
 
 		allocationRoot = new VulkanEngineAllocationRoot(List.of(resourceAllocator.getAllocable()));
 		allocator = IAllocationService.INSTANCE.createAllocator(allocationRoot, vulkanContext);
@@ -365,4 +368,47 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	{
 		return inputManager;
 	}
+
+	private static class EngineVulkanContext extends GameAllocationContext implements VulkanContext
+	{
+		final Window window;
+		final LogicalDevice logicalDevice;
+
+		public EngineVulkanContext(LogicalDevice logicalDevice, Window window)
+		{
+			this.logicalDevice = logicalDevice;
+			this.window = window;
+		}
+
+		@Override
+		public Window getWindow()
+		{
+			return window;
+		}
+
+		@Override
+		public PhysicalDevice getPhysicalDevice()
+		{
+			return logicalDevice.physicalDevice;
+		}
+
+		@Override
+		public VkPhysicalDevice getVkPhysicalDevice()
+		{
+			return logicalDevice.physicalDevice.vkPhysicalDevice;
+		}
+
+		@Override
+		public LogicalDevice getLogicalDevice()
+		{
+			return logicalDevice;
+		}
+
+		@Override
+		public VkDevice getVkDevice()
+		{
+			return logicalDevice.getVkDevice();
+		}
+	}
+
 }

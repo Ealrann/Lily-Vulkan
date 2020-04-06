@@ -1,21 +1,21 @@
 package org.sheepy.lily.vulkan.process.compute.execution;
 
-import static org.lwjgl.vulkan.VK10.*;
-
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.sheepy.lily.vulkan.core.execution.AbstractCommandBuffer;
-import org.sheepy.lily.vulkan.core.process.IComputeContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
+import org.sheepy.lily.vulkan.process.compute.process.ComputeContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
-public class ComputeCommandBuffer extends AbstractCommandBuffer<IComputeContext>
+import static org.lwjgl.vulkan.VK10.*;
+
+public class ComputeCommandBuffer extends AbstractCommandBuffer<ComputeContext>
 {
 	private static final String FAILED_TO_RECORD_COMMAND_BUFFER = "Failed to record command buffer";
 	private static final String FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER = "Failed to begin recording command buffer";
 	private VkCommandBufferBeginInfo beginInfo;
 
 	@Override
-	public void allocate(IComputeContext context)
+	public void allocate(ComputeContext context)
 	{
 		beginInfo = VkCommandBufferBeginInfo.calloc();
 		beginInfo.sType(VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO);
@@ -26,7 +26,7 @@ public class ComputeCommandBuffer extends AbstractCommandBuffer<IComputeContext>
 	}
 
 	@Override
-	public void free(IComputeContext context)
+	public void free(ComputeContext context)
 	{
 		beginInfo.free();
 

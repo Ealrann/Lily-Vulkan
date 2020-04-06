@@ -16,6 +16,7 @@ import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage.VkImageBuilder;
 import org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.vulkan.model.enumeration.*;
 import org.sheepy.vulkan.model.image.ImageFactory;
 
@@ -23,7 +24,7 @@ import static org.lwjgl.vulkan.VK10.*;
 
 @Statefull
 public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<AbstractBlitTask>,
-														 IAllocableAdapter<IGraphicContext>
+														 IAllocableAdapter<GraphicContext>
 {
 	private static final int FORMAT = EFormat.R8G8B8A8_UNORM_VALUE;
 	private static final VkImage.Builder clearTextureBuilder = new VkImageBuilder(1, 1, FORMAT).usage(
@@ -48,7 +49,7 @@ public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<Ab
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
 	{
 		dependencyInjector.start(config);
 	}
@@ -60,7 +61,7 @@ public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<Ab
 	}
 
 	@Override
-	public void allocate(IGraphicContext context)
+	public void allocate(GraphicContext context)
 	{
 		final var dstSize = getDtImageSize(context);
 
@@ -143,7 +144,7 @@ public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<Ab
 	}
 
 	@Override
-	public void free(IGraphicContext context)
+	public void free(GraphicContext context)
 	{
 		region.free();
 

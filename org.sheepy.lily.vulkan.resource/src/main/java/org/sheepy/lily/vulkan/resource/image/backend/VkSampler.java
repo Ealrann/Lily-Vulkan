@@ -1,12 +1,12 @@
 package org.sheepy.lily.vulkan.resource.image.backend;
 
-import static org.lwjgl.vulkan.VK10.*;
-
 import org.lwjgl.vulkan.VkSamplerCreateInfo;
-import org.sheepy.lily.vulkan.core.device.InternalVulkanContext;
+import org.sheepy.lily.vulkan.core.device.VulkanContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.vulkan.model.image.ImageFactory;
 import org.sheepy.vulkan.model.image.SamplerInfo;
+
+import static org.lwjgl.vulkan.VK10.*;
 
 public class VkSampler
 {
@@ -26,7 +26,7 @@ public class VkSampler
 		this.info = info;
 	}
 
-	public void allocate(InternalVulkanContext context)
+	public void allocate(VulkanContext context)
 	{
 		final var stack = context.stack();
 		final var samplerInfo = VkSamplerCreateInfo.callocStack(stack);
@@ -50,8 +50,7 @@ public class VkSampler
 		samplerInfo.maxLod(info.getMaxLod());
 
 		final long[] aSamplerId = new long[1];
-		Logger.check(	vkCreateSampler(context.getVkDevice(), samplerInfo, null, aSamplerId),
-						FAILED_TO_CREATE_SAMPLER);
+		Logger.check(vkCreateSampler(context.getVkDevice(), samplerInfo, null, aSamplerId), FAILED_TO_CREATE_SAMPLER);
 		samplerPtr = aSamplerId[0];
 	}
 
@@ -60,7 +59,7 @@ public class VkSampler
 		return samplerPtr;
 	}
 
-	public void free(InternalVulkanContext context)
+	public void free(VulkanContext context)
 	{
 		vkDestroySampler(context.getVkDevice(), samplerPtr, null);
 		samplerPtr = -1;

@@ -8,7 +8,7 @@ import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.buffer.GPUBufferBackend;
@@ -21,12 +21,12 @@ import java.nio.ByteBuffer;
 @Statefull
 @Adapter(scope = Buffer.class)
 public final class BufferAdapter extends Notifier<IBufferAdapter.Features> implements IBufferAdapter,
-																					  IAllocableAdapter<InternalExecutionContext>
+																					  IAllocableAdapter<ExecutionContext>
 {
 	private final Buffer buffer;
 
 	private IBufferBackend bufferBackend;
-	private InternalExecutionContext executionManager;
+	private ExecutionContext executionManager;
 
 	public BufferAdapter(Buffer buffer)
 	{
@@ -35,7 +35,7 @@ public final class BufferAdapter extends Notifier<IBufferAdapter.Features> imple
 	}
 
 	@Override
-	public void allocate(InternalExecutionContext context)
+	public void allocate(ExecutionContext context)
 	{
 		executionManager = context;
 		final var info = createInfo(context, buffer);
@@ -71,7 +71,7 @@ public final class BufferAdapter extends Notifier<IBufferAdapter.Features> imple
 	}
 
 	@Override
-	public void free(InternalExecutionContext context)
+	public void free(ExecutionContext context)
 	{
 		bufferBackend.free(context);
 		bufferBackend = null;
@@ -113,7 +113,7 @@ public final class BufferAdapter extends Notifier<IBufferAdapter.Features> imple
 		bufferBackend.unmapMemory();
 	}
 
-	private static BufferInfo createInfo(InternalExecutionContext context, Buffer buffer)
+	private static BufferInfo createInfo(ExecutionContext context, Buffer buffer)
 	{
 		final var size = buffer.getSize();
 		final int usage = VulkanModelUtil.getEnumeratedFlag(buffer.getUsages());

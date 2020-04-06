@@ -1,17 +1,12 @@
 package org.sheepy.lily.vulkan.resource.image.backend;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.nio.ByteBuffer;
-import java.util.List;
-
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
@@ -21,7 +16,12 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.image.ImageLayout;
 
-public class VkTexture implements IAllocable<InternalExecutionContext>
+import java.nio.ByteBuffer;
+import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.*;
+
+public class VkTexture implements IAllocable<ExecutionContext>
 {
 	private final VkImage image;
 
@@ -31,9 +31,7 @@ public class VkTexture implements IAllocable<InternalExecutionContext>
 	{
 		if (enableMipmap)
 		{
-			final int mipLevels = (int) Math.floor(log2nlz(Math.max(imageBuilder.width(),
-																	imageBuilder.height())))
-					+ 1;
+			final int mipLevels = (int) Math.floor(log2nlz(Math.max(imageBuilder.width(), imageBuilder.height()))) + 1;
 			imageBuilder = new VkImage.VkImageBuilder(imageBuilder).mipLevels(mipLevels);
 		}
 
@@ -41,7 +39,7 @@ public class VkTexture implements IAllocable<InternalExecutionContext>
 	}
 
 	@Override
-	public void allocate(InternalExecutionContext context)
+	public void allocate(ExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
 		image.allocate(context);
@@ -49,7 +47,7 @@ public class VkTexture implements IAllocable<InternalExecutionContext>
 		imageView.allocate(vkDevice, image);
 	}
 
-	public void loadImage(InternalExecutionContext executionContext, ByteBuffer data)
+	public void loadImage(ExecutionContext executionContext, ByteBuffer data)
 	{
 		final int stagingUsage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 		final List<EAccess> srcAccessMask = List.of();
@@ -60,8 +58,7 @@ public class VkTexture implements IAllocable<InternalExecutionContext>
 		stagingBuffer.allocate(executionContext);
 		stagingBuffer.pushData(executionContext, data);
 
-		executionContext.execute((context2, commandBuffer) ->
-		{
+		executionContext.execute((context2, commandBuffer) -> {
 			final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 			image.transitionImageLayout(context2.stack(),
 										vkCommandBuffer,
@@ -103,13 +100,13 @@ public class VkTexture implements IAllocable<InternalExecutionContext>
 			barrier.srcAccessMask(VK_ACCESS_TRANSFER_WRITE_BIT);
 			barrier.dstAccessMask(VK_ACCESS_TRANSFER_READ_BIT);
 
-			vkCmdPipelineBarrier(	commandBuffer,
-									VK_PIPELINE_STAGE_TRANSFER_BIT,
-									VK_PIPELINE_STAGE_TRANSFER_BIT,
-									0,
-									null,
-									null,
-									barrier);
+			vkCmdPipelineBarrier(commandBuffer,
+								 VK_PIPELINE_STAGE_TRANSFER_BIT,
+								 VK_PIPELINE_STAGE_TRANSFER_BIT,
+								 0,
+								 null,
+								 null,
+								 barrier);
 
 			final VkOffset3D.Buffer srcOffsets = VkOffset3D.calloc(2);
 			srcOffsets.get(0).set(0, 0, 0);
@@ -131,26 +128,26 @@ public class VkTexture implements IAllocable<InternalExecutionContext>
 			blit.dstSubresource().baseArrayLayer(0);
 			blit.dstSubresource().layerCount(1);
 
-			vkCmdBlitImage(	commandBuffer,
-							imageAddress,
-							VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
-							imageAddress,
-							VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
-							blit,
-							VK_FILTER_LINEAR);
+			vkCmdBlitImage(commandBuffer,
+						   imageAddress,
+						   VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
+						   imageAddress,
+						   VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+						   blit,
+						   VK_FILTER_LINEAR);
 
 			barrier.oldLayout(VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
 			barrier.newLayout(VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 			barrier.srcAccessMask(VK_ACCESS_TRANSFER_READ_BIT);
 			barrier.dstAccessMask(VK_ACCESS_SHADER_READ_BIT);
 
-			vkCmdPipelineBarrier(	commandBuffer,
-									VK_PIPELINE_STAGE_TRANSFER_BIT,
-									VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT,
-									0,
-									null,
-									null,
-									barrier);
+			vkCmdPipelineBarrier(commandBuffer,
+								 VK_PIPELINE_STAGE_TRANSFER_BIT,
+								 VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT,
+								 0,
+								 null,
+								 null,
+								 barrier);
 
 			if (mipWidth > 1) mipWidth /= 2;
 			if (mipHeight > 1) mipHeight /= 2;
@@ -180,13 +177,7 @@ public class VkTexture implements IAllocable<InternalExecutionContext>
 		barrier.srcAccessMask(VK_ACCESS_TRANSFER_WRITE_BIT);
 		barrier.dstAccessMask(trgAccess);
 
-		vkCmdPipelineBarrier(	commandBuffer,
-								VK_PIPELINE_STAGE_TRANSFER_BIT,
-								trgStage,
-								0,
-								null,
-								null,
-								barrier);
+		vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT, trgStage, 0, null, null, barrier);
 
 		barrier.free();
 	}
@@ -212,7 +203,7 @@ public class VkTexture implements IAllocable<InternalExecutionContext>
 	}
 
 	@Override
-	public void free(InternalExecutionContext context)
+	public void free(ExecutionContext context)
 	{
 		imageView.free(context.getVkDevice());
 		image.free(context);

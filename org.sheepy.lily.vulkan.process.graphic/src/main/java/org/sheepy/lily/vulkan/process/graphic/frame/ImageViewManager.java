@@ -1,31 +1,31 @@
 package org.sheepy.lily.vulkan.process.graphic.frame;
 
-import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
+import org.sheepy.lily.core.api.allocation.IAllocable;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.vulkan.core.graphic.IImageViewManager;
+import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.core.graphic.IImageViewManager;
-import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
+import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
-public class ImageViewManager implements IImageViewManager
+public class ImageViewManager implements IImageViewManager, IAllocable<GraphicContext>
 {
 	private static final int IMAGE_ASPECT = VK_IMAGE_ASPECT_COLOR_BIT;
 
 	private List<VkImageView> imageViews = null;
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
 	{
 		final var swapChainManager = context.getSwapChainManager();
-
 		config.addDependencies(List.of(swapChainManager));
 	}
 
 	@Override
-	public void allocate(IGraphicContext context)
+	public void allocate(GraphicContext context)
 	{
 		final var device = context.getVkDevice();
 		final var swapChainManager = context.getSwapChainManager();
@@ -56,7 +56,7 @@ public class ImageViewManager implements IImageViewManager
 	}
 
 	@Override
-	public void free(IGraphicContext context)
+	public void free(GraphicContext context)
 	{
 		final var device = context.getVkDevice();
 		for (final var view : imageViews)

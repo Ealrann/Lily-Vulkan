@@ -11,8 +11,8 @@ import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.notification.util.ModelStructureObserver;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.core.device.VulkanContext;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
-import org.sheepy.lily.vulkan.core.process.IProcessContext;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Statefull
-public abstract class AbstractTaskPipelineAdapter<T extends IProcessContext> implements IAllocableAdapter<T>,
-																						IPipelineAdapter
+public abstract class AbstractTaskPipelineAdapter<T extends VulkanContext> implements IAllocableAdapter<T>,
+																					  IPipelineAdapter
 {
 	private final ModelStructureObserver taskObserver = new ModelStructureObserver(List.of(ProcessPackage.Literals.TASK_PIPELINE__TASK_PKG,
 																						   ProcessPackage.Literals.TASK_PKG__TASKS),

@@ -5,13 +5,13 @@ import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.core.execution.AbstractCommandBuffer;
-import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
+public class GraphicCommandBuffer extends AbstractCommandBuffer<GraphicContext>
 {
 	private static final String FAILED_TO_RECORD_COMMAND_BUFFER = "Failed to record command buffer";
 	private static final String FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER = "Failed to begin recording command buffer";
@@ -28,14 +28,14 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
 	{
 		config.addDependency(context.getFramebufferManager());
 		config.addDependency(context.getRenderPass());
 	}
 
 	@Override
-	public void allocate(IGraphicContext context)
+	public void allocate(GraphicContext context)
 	{
 		final var extent = context.getSurfaceManager().getExtent();
 		final var framebufferManager = context.getFramebufferManager();
@@ -80,7 +80,7 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 	}
 
 	@Override
-	public void free(IGraphicContext context)
+	public void free(GraphicContext context)
 	{
 		if (clearValues != null)
 		{

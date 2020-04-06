@@ -8,7 +8,7 @@ import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.FontPkg;
 import org.sheepy.lily.core.model.ui.UI;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.font.IFontAllocator;
 import org.sheepy.lily.vulkan.core.resource.font.IFontImageAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
@@ -24,7 +24,7 @@ import java.util.function.Consumer;
 
 @Statefull
 @Adapter(scope = NuklearFont.class, lazy = false)
-public class NuklearFontAdapter implements IAllocableAdapter<InternalExecutionContext>
+public class NuklearFontAdapter implements IAllocableAdapter<ExecutionContext>
 {
 	public final Font defaultFont;
 	public Map<Font, NkUserFont> fontMap;
@@ -92,7 +92,7 @@ public class NuklearFontAdapter implements IAllocableAdapter<InternalExecutionCo
 	}
 
 	@Override
-	public void allocate(InternalExecutionContext context)
+	public void allocate(ExecutionContext context)
 	{
 		for (final var loader : fontLoaders)
 		{
@@ -101,7 +101,7 @@ public class NuklearFontAdapter implements IAllocableAdapter<InternalExecutionCo
 	}
 
 	@Override
-	public void free(InternalExecutionContext context)
+	public void free(ExecutionContext context)
 	{
 		for (final var loader : fontLoaders)
 		{

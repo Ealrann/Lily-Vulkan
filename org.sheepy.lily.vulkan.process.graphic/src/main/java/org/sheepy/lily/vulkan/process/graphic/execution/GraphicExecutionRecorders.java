@@ -1,8 +1,5 @@
 package org.sheepy.lily.vulkan.process.graphic.execution;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
@@ -12,9 +9,13 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
 import org.sheepy.lily.vulkan.process.execution.Submission;
 import org.sheepy.lily.vulkan.process.execution.WaitData;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
-public final class GraphicExecutionRecorders extends ExecutionRecorders<IGraphicContext>
-		implements IGraphicExecutionRecorders
+import java.util.ArrayList;
+import java.util.List;
+
+public final class GraphicExecutionRecorders extends ExecutionRecorders<GraphicContext> implements
+																						IGraphicExecutionRecorders
 {
 	private final VkSemaphore imageAvailableSemaphore;
 
@@ -24,7 +25,7 @@ public final class GraphicExecutionRecorders extends ExecutionRecorders<IGraphic
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
 	{
 		config.addChildren(List.of(imageAvailableSemaphore));
 		config.addDependencies(List.of(context.getSwapChainManager()));
@@ -32,7 +33,7 @@ public final class GraphicExecutionRecorders extends ExecutionRecorders<IGraphic
 	}
 
 	@Override
-	public List<GraphicExecutionRecorder> createRecorders(IGraphicContext context)
+	public List<GraphicExecutionRecorder> createRecorders(GraphicContext context)
 	{
 		final List<GraphicExecutionRecorder> res = new ArrayList<>();
 
@@ -49,10 +50,10 @@ public final class GraphicExecutionRecorders extends ExecutionRecorders<IGraphic
 		return res;
 	}
 
-	private static GraphicExecutionRecorder createRecorder(	GraphicProcess process,
-															List<WaitData> waitForEmitters,
-															List<VkSemaphore> signals,
-															int index)
+	private static GraphicExecutionRecorder createRecorder(GraphicProcess process,
+														   List<WaitData> waitForEmitters,
+														   List<VkSemaphore> signals,
+														   int index)
 	{
 		final var commandBuffer = new GraphicCommandBuffer(index);
 		final var presentSemaphore = new VkSemaphore();
@@ -61,10 +62,10 @@ public final class GraphicExecutionRecorders extends ExecutionRecorders<IGraphic
 		currentSignalSemaphores.addAll(signals);
 		currentSignalSemaphores.add(presentSemaphore);
 
-		final var submission = new Submission<IGraphicContext>(	commandBuffer,
-																waitForEmitters,
-																currentSignalSemaphores,
-																true);
+		final var submission = new Submission<GraphicContext>(commandBuffer,
+															   waitForEmitters,
+															   currentSignalSemaphores,
+															   true);
 		final var presentSubmission = new PresentSubmission(index, presentSemaphore);
 
 		return new GraphicExecutionRecorder(process,

@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.graphic.frame;
 
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
@@ -14,6 +15,7 @@ import org.sheepy.lily.vulkan.core.window.VkSurface;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 import org.sheepy.lily.vulkan.process.graphic.frame.util.PresentationModeSelector;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.process.graphic.resource.SwapImageAttachmentAdapter;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
@@ -29,7 +31,7 @@ import static org.lwjgl.vulkan.KHRSurface.VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;
 import static org.lwjgl.vulkan.KHRSwapchain.*;
 import static org.lwjgl.vulkan.VK10.*;
 
-public final class SwapChainManager implements ISwapChainManager
+public final class SwapChainManager implements ISwapChainManager, IAllocable<GraphicContext>
 {
 	private static final String FAILED_TO_CREATE_SWAP_CHAIN = "Failed to create swap chain";
 
@@ -46,14 +48,14 @@ public final class SwapChainManager implements ISwapChainManager
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
 	{
 		config.addDependencies(List.of(context.getSurfaceManager()));
 		config.setAllocationCondition(c -> ((IGraphicContext) c).getSurfaceManager().isPresentable());
 	}
 
 	@Override
-	public void allocate(IGraphicContext context)
+	public void allocate(GraphicContext context)
 	{
 		final var pdsManager = context.getSurfaceManager();
 		final var extent = pdsManager.getExtent();
@@ -116,7 +118,7 @@ public final class SwapChainManager implements ISwapChainManager
 	}
 
 	@Override
-	public void free(IGraphicContext context)
+	public void free(GraphicContext context)
 	{
 		vkDestroySwapchainKHR(context.getVkDevice(), swapChainPtr, null);
 		swapImageAttachment.adapt(SwapImageAttachmentAdapter.class).free();
@@ -163,7 +165,7 @@ public final class SwapChainManager implements ISwapChainManager
 		System.out.println(message);
 	}
 
-	private static int selectPresentMode(IGraphicContext context,
+	private static int selectPresentMode(GraphicContext context,
 										 SwapchainConfiguration configuration,
 										 VkSurface surface)
 	{

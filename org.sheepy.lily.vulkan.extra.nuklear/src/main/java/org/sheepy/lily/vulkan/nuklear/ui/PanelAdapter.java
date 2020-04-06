@@ -12,10 +12,10 @@ import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
+import org.sheepy.lily.game.api.window.IWindow;
 import org.sheepy.lily.game.api.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
-import org.sheepy.lily.vulkan.core.window.Window;
 
 import java.nio.ByteBuffer;
 
@@ -30,7 +30,7 @@ public class PanelAdapter extends Notifier<ITextWidgetAdapter.Features> implemen
 	private final ByteBuffer textBuffer;
 
 	private NkRect rect = NkRect.create();
-	private Window window = null;
+	private IWindow window = null;
 	private int style;
 	private boolean dirty = true;
 	private boolean hovered = false;

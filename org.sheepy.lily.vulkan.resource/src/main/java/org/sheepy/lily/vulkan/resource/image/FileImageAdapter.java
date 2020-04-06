@@ -7,7 +7,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage.Builder;
@@ -20,7 +20,7 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
 @Statefull
 @Adapter(scope = FileImage.class)
 public class FileImageAdapter extends Notifier<IVkImageAdapter.Features> implements IVkImageAdapter,
-																					IAllocableAdapter<InternalExecutionContext>
+																					IAllocableAdapter<ExecutionContext>
 {
 	private final STBImageLoader imageLoader = new STBImageLoader();
 	private final ImageBuffer imageBuffer;
@@ -60,7 +60,7 @@ public class FileImageAdapter extends Notifier<IVkImageAdapter.Features> impleme
 	}
 
 	@Override
-	public void allocate(InternalExecutionContext context)
+	public void allocate(ExecutionContext context)
 	{
 		final var executionContext = context;
 
@@ -77,7 +77,7 @@ public class FileImageAdapter extends Notifier<IVkImageAdapter.Features> impleme
 	}
 
 	@Override
-	public void free(InternalExecutionContext context)
+	public void free(ExecutionContext context)
 	{
 		vkTexture.free(context);
 		vkTexture = null;

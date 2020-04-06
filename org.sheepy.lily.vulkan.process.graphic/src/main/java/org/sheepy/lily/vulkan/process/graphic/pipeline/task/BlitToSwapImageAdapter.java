@@ -8,6 +8,7 @@ import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.graphic.IImageViewManager;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class BlitToSwapImageAdapter extends AbstractBlitTaskAdapter
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
 	{
 		final var imageViewManager = context.getImageViewManager();
 		config.addDependencies(List.of(imageViewManager));
@@ -31,14 +32,14 @@ public class BlitToSwapImageAdapter extends AbstractBlitTaskAdapter
 	}
 
 	@Override
-	public void allocate(IGraphicContext context)
+	public void allocate(GraphicContext context)
 	{
 		imageViewManager = context.getImageViewManager();
 		super.allocate(context);
 	}
 
 	@Override
-	public void free(IGraphicContext context)
+	public void free(GraphicContext context)
 	{
 		super.free(context);
 		imageViewManager = null;

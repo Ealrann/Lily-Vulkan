@@ -12,6 +12,7 @@ import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
 @Statefull
 @Adapter(scope = BlitTask.class)
@@ -30,7 +31,7 @@ public class BlitTaskAdapter extends AbstractBlitTaskAdapter
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
 	{
 		super.configureAllocation(config, context);
 		dependencyInjector.start(config);
@@ -43,7 +44,7 @@ public class BlitTaskAdapter extends AbstractBlitTaskAdapter
 	}
 
 	@Override
-	public void allocate(final IGraphicContext context)
+	public void allocate(final GraphicContext context)
 	{
 		final var dstImage = blitTask.getDstImage();
 		final var imageAdapter = dstImage.adaptNotNull(IVkImageAdapter.class);

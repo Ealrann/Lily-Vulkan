@@ -8,8 +8,8 @@ import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
@@ -20,7 +20,7 @@ import static org.lwjgl.vulkan.KHRSwapchain.VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
 import static org.lwjgl.vulkan.KHRSwapchain.vkQueuePresentKHR;
 import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
 
-public class PresentSubmission implements IAllocable<IGraphicContext>
+public class PresentSubmission implements IAllocable<GraphicContext>
 {
 	private static final String FAILED_SUBMIT_PRESENT = "[Present] Failed to submit present command buffer";
 
@@ -40,14 +40,14 @@ public class PresentSubmission implements IAllocable<IGraphicContext>
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
 	{
 		config.addDependencies(List.of(context.getSwapChainManager()));
 		config.addDependencies(List.of(context.getSurfaceManager()));
 	}
 
 	@Override
-	public void allocate(IGraphicContext context)
+	public void allocate(GraphicContext context)
 	{
 		final var swapChain = context.getSwapChainManager();
 		final long waitSemaphorePtr = presentWaitSemaphore.getPtr();
@@ -77,7 +77,7 @@ public class PresentSubmission implements IAllocable<IGraphicContext>
 	}
 
 	@Override
-	public void free(IGraphicContext context)
+	public void free(GraphicContext context)
 	{
 		presentInfo.free();
 		memFree(bImageIndex);

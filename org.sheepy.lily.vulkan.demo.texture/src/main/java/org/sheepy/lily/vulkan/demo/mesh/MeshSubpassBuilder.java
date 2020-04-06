@@ -6,7 +6,10 @@ import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
-import org.sheepy.lily.vulkan.model.process.graphic.*;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
+import org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
@@ -30,21 +33,6 @@ public final class MeshSubpassBuilder
 	public Subpass build(AttachmentPkg attachmentPkg)
 	{
 		final var pipelines = buildPipelines();
-
-		final List<ExtraAttachment> extraAttachments;
-		final ExtraAttachment depthAttachment;
-		if (meshConfiguration.depth == true)
-		{
-			depthAttachment = buildDepthAttachmentDescriptor();
-			extraAttachments = List.of(depthAttachment);
-		}
-		else
-		{
-			depthAttachment = null;
-			extraAttachments = List.of();
-		}
-
-		attachmentPkg.getExtraAttachments().addAll(extraAttachments);
 		final var pipelinePkg = ProcessFactory.eINSTANCE.createPipelinePkg();
 		pipelinePkg.getPipelines().addAll(pipelines);
 		final var attachmentRefPkg = GraphicFactory.eINSTANCE.createAttachmentRefPkg();
@@ -54,8 +42,9 @@ public final class MeshSubpassBuilder
 		colorRef.setAttachment(attachmentPkg.getColorAttachment());
 		attachmentRefPkg.getAttachmentRefs().add(colorRef);
 
-		if (depthAttachment != null)
+		if (meshConfiguration.depth)
 		{
+			final var depthAttachment = attachmentPkg.getExtraAttachments().get(0);
 			final var depthRef = GraphicFactory.eINSTANCE.createAttachmentRef();
 			depthRef.setLayout(EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
 			depthRef.setAttachment(depthAttachment);
@@ -69,21 +58,6 @@ public final class MeshSubpassBuilder
 		res.setAttachmantRefPkg(attachmentRefPkg);
 		res.setPipelinePkg(pipelinePkg);
 		return res;
-	}
-
-	private static ExtraAttachment buildDepthAttachmentDescriptor()
-	{
-		final var depthAttachmentDescriptor = GraphicFactory.eINSTANCE.createDepthAttachment();
-
-		depthAttachmentDescriptor.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
-		depthAttachmentDescriptor.setLoadOp(EAttachmentLoadOp.CLEAR);
-		depthAttachmentDescriptor.setStoreOp(EAttachmentStoreOp.DONT_CARE);
-		depthAttachmentDescriptor.setStencilLoadOp(EAttachmentLoadOp.DONT_CARE);
-		depthAttachmentDescriptor.setStencilStoreOp(EAttachmentStoreOp.DONT_CARE);
-		depthAttachmentDescriptor.setInitialLayout(EImageLayout.UNDEFINED);
-		depthAttachmentDescriptor.setFinalLayout(EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
-
-		return depthAttachmentDescriptor;
 	}
 
 	private List<AbstractPipeline> buildPipelines()

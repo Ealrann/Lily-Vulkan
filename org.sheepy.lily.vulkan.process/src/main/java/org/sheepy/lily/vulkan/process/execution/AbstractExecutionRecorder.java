@@ -4,13 +4,13 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.ICommandBuffer;
 import org.sheepy.lily.vulkan.core.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext.IExecutionIdleListener;
 import org.sheepy.lily.vulkan.core.execution.ISubmission;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
-import org.sheepy.lily.vulkan.core.process.IProcessContext;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.CompositePipeline;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -18,8 +18,8 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractExecutionRecorder<T extends IProcessContext> implements IExecutionRecorder<T>,
-																					  IAllocable<T>
+public abstract class AbstractExecutionRecorder<T extends ExecutionContext> implements IExecutionRecorder<T>,
+																					   IAllocable<T>
 {
 	protected final ICommandBuffer<? super T> commandBuffer;
 	protected final ISubmission<? super T> submission;

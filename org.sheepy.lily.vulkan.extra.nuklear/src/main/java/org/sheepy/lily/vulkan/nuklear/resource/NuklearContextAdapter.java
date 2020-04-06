@@ -14,7 +14,7 @@ import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
@@ -36,7 +36,7 @@ import static org.lwjgl.system.MemoryUtil.nmemFree;
 
 @Statefull
 @Adapter(scope = NuklearContext.class, lazy = false)
-public class NuklearContextAdapter implements IAllocableAdapter<InternalExecutionContext>
+public class NuklearContextAdapter implements IAllocableAdapter<ExecutionContext>
 {
 	public static final long INDEXED_BUFFER_SIZE = (long) Math.pow(2, 19);
 	public static final long INDEX_BUFFER_SIZE = (long) Math.pow(2, 16);
@@ -144,7 +144,7 @@ public class NuklearContextAdapter implements IAllocableAdapter<InternalExecutio
 	}
 
 	@Override
-	public void allocate(InternalExecutionContext context)
+	public void allocate(ExecutionContext context)
 	{
 		final var font = nuklearContext.getFont();
 		final var fontAdapter = font.adaptNotNull(NuklearFontAdapter.class);
@@ -204,7 +204,7 @@ public class NuklearContextAdapter implements IAllocableAdapter<InternalExecutio
 	}
 
 	@Override
-	public void free(InternalExecutionContext context)
+	public void free(ExecutionContext context)
 	{
 		Objects.requireNonNull(nkContext.clip().copy()).free();
 		Objects.requireNonNull(nkContext.clip().paste()).free();

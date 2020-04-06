@@ -1,20 +1,21 @@
 package org.sheepy.lily.vulkan.process.graphic.present;
 
-import static org.lwjgl.vulkan.KHRSwapchain.*;
-import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
-
-import java.util.List;
-
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.graphic.ISurfaceManager;
 import org.sheepy.lily.vulkan.core.util.Logger;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
-public class ImageAcquirer implements IAllocable<IGraphicContext>
+import java.util.List;
+
+import static org.lwjgl.vulkan.KHRSwapchain.VK_SUBOPTIMAL_KHR;
+import static org.lwjgl.vulkan.KHRSwapchain.vkAcquireNextImageKHR;
+import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
+
+public class ImageAcquirer implements IAllocable<GraphicContext>
 {
 	private static final String FAILED_ACQUIRE_IMAGE = "[Acquire] Failed to acquire next image";
 
@@ -28,7 +29,7 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 	private Container container;
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
 	{
 		final var swapChainManager = context.getSwapChainManager();
 
@@ -36,13 +37,13 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 	}
 
 	@Override
-	public void allocate(IGraphicContext context)
+	public void allocate(GraphicContext context)
 	{
 		container = new Container(context);
 	}
 
 	@Override
-	public void free(IGraphicContext context)
+	public void free(GraphicContext context)
 	{
 		container = null;
 	}
@@ -62,7 +63,7 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 		private final ISurfaceManager surfaceManager;
 		private final VkDevice device;
 
-		private Container(IGraphicContext context)
+		private Container(GraphicContext context)
 		{
 			semaphore = context.getGraphicExecutionRecorders().getAcquireSemaphore();
 			swapChain = context.getSwapChainManager().getAddress();
@@ -73,12 +74,7 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 		public Integer acquireNextImage(int[] nextImageArray)
 		{
 			final long semaphorePtr = semaphore.getPtr();
-			final int res = vkAcquireNextImageKHR(	device,
-													swapChain,
-													TIMEOUT_NS,
-													semaphorePtr,
-													0,
-													nextImageArray);
+			final int res = vkAcquireNextImageKHR(device, swapChain, TIMEOUT_NS, semaphorePtr, 0, nextImageArray);
 
 			if (res == VK_SUCCESS || res == VK_SUBOPTIMAL_KHR) return nextImageArray[0];
 			else

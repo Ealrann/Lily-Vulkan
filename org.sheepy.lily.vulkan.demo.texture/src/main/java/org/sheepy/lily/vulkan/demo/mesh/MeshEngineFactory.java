@@ -7,10 +7,7 @@ import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
-import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.vulkan.model.enumeration.ESampleCount;
+import org.sheepy.vulkan.model.enumeration.*;
 
 public final class MeshEngineFactory
 {
@@ -42,16 +39,28 @@ public final class MeshEngineFactory
 		colorAttachmentDescriptor.setInitialLayout(EImageLayout.UNDEFINED);
 		colorAttachmentDescriptor.setFinalLayout(EImageLayout.PRESENT_SRC_KHR);
 
+		final var depthAttachment = GraphicFactory.eINSTANCE.createDepthAttachment();
+
+		depthAttachment.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
+		depthAttachment.setLoadOp(EAttachmentLoadOp.CLEAR);
+		depthAttachment.setStoreOp(EAttachmentStoreOp.DONT_CARE);
+		depthAttachment.setStencilLoadOp(EAttachmentLoadOp.DONT_CARE);
+		depthAttachment.setStencilStoreOp(EAttachmentStoreOp.DONT_CARE);
+		depthAttachment.setInitialLayout(EImageLayout.UNDEFINED);
+		depthAttachment.setFinalLayout(EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
+		depthAttachment.getUsages().add(EImageUsage.DEPTH_STENCIL_ATTACHMENT);
+
 		final var attachmentPkg = GraphicFactory.eINSTANCE.createAttachmentPkg();
 		graphicProcess.setAttachmentPkg(attachmentPkg);
 		attachmentPkg.setColorAttachment(colorAttachmentDescriptor);
+		attachmentPkg.getExtraAttachments().add(depthAttachment);
 
 		engine.getProcesses().add(graphicProcess);
 
 		return engine;
 	}
 
-	private static final Cadence buildCadence(GraphicProcess graphicProcess)
+	private static Cadence buildCadence(GraphicProcess graphicProcess)
 	{
 		final var runGraphicTask = VulkanFactory.eINSTANCE.createRunProcess();
 		final var printUPS = CadenceFactory.eINSTANCE.createPrintUPS();

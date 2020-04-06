@@ -2,9 +2,9 @@ package org.sheepy.lily.vulkan.resource.image;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
+import org.sheepy.lily.vulkan.core.device.VulkanContext;
 import org.sheepy.lily.vulkan.core.resource.ISamplerAdapter;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.resource.image.backend.VkSampler;
 
@@ -30,14 +30,14 @@ public class SamplerAdapter implements ISamplerAdapter
 	}
 
 	@Override
-	public void allocate(InternalExecutionContext context)
+	public void allocate(VulkanContext context)
 	{
 
 		vkSampler.allocate(context);
 	}
 
 	@Override
-	public void free(InternalExecutionContext context)
+	public void free(VulkanContext context)
 	{
 		vkSampler.free(context);
 	}

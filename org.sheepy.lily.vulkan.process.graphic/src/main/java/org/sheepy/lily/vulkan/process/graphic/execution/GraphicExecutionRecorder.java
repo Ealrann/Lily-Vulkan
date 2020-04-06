@@ -4,12 +4,12 @@ import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
-import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.process.execution.AbstractExecutionRecorder;
 import org.sheepy.lily.vulkan.process.execution.Submission;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 import static org.lwjgl.vulkan.VK10.VK_SUBPASS_CONTENTS_INLINE;
 import static org.lwjgl.vulkan.VK10.vkCmdNextSubpass;
 
-public final class GraphicExecutionRecorder extends AbstractExecutionRecorder<IGraphicContext>
+public final class GraphicExecutionRecorder extends AbstractExecutionRecorder<GraphicContext>
 {
 	private final GraphicProcess process;
 	private final PresentSubmission presentSubmission;
@@ -28,7 +28,7 @@ public final class GraphicExecutionRecorder extends AbstractExecutionRecorder<IG
 
 	public GraphicExecutionRecorder(GraphicProcess process,
 									GraphicCommandBuffer commandBuffer,
-									Submission<IGraphicContext> submission,
+									Submission<GraphicContext> submission,
 									PresentSubmission presentSubmission,
 									VkSemaphore presentSemaphore,
 									int index)
@@ -41,7 +41,7 @@ public final class GraphicExecutionRecorder extends AbstractExecutionRecorder<IG
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
 	{
 		config.addChildren(List.of(presentSemaphore));
 		super.configureAllocation(config, context);
@@ -49,21 +49,21 @@ public final class GraphicExecutionRecorder extends AbstractExecutionRecorder<IG
 	}
 
 	@Override
-	public void allocate(IGraphicContext context)
+	public void allocate(GraphicContext context)
 	{
 		super.allocate(context);
 		process.listenNoParam(subpassListener, GraphicPackage.GRAPHIC_PROCESS__SUBPASSES);
 	}
 
 	@Override
-	public void free(IGraphicContext context)
+	public void free(GraphicContext context)
 	{
 		process.sulkNoParam(subpassListener, GraphicPackage.GRAPHIC_PROCESS__SUBPASSES);
 		super.free(context);
 	}
 
 	@Override
-	protected void recordCommand(IGraphicContext graphicContext, RecordContext recordContext)
+	protected void recordCommand(GraphicContext graphicContext, RecordContext recordContext)
 	{
 		final var graphicProcess = (GraphicProcess) graphicContext.getProcess();
 		final var subpasses = graphicProcess.getSubpasses();

@@ -7,8 +7,6 @@ module org.sheepy.lily.vulkan.process.graphic {
 	requires org.sheepy.lily.vulkan.core;
 	requires org.sheepy.lily.vulkan.process;
 
-	exports org.sheepy.lily.vulkan.process.graphic.pipeline;
-
 	opens org.sheepy.lily.vulkan.process.graphic.barrier;
 	opens org.sheepy.lily.vulkan.process.graphic.frame;
 	opens org.sheepy.lily.vulkan.process.graphic.execution;

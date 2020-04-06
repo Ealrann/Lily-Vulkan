@@ -8,9 +8,8 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.adapter.util.AdapterSetRegistry;
 import org.sheepy.lily.core.api.adapter.util.NotificationListenerDeployer;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.GPUBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.buffer.ICompositeBufferAdapter;
@@ -19,6 +18,7 @@ import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 @Statefull
 @Adapter(scope = CompositeBuffer.class, lazy = false)
@@ -26,7 +26,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 {
 	private final AdapterSetRegistry<BufferPartAdapter> partsRegistry = new AdapterSetRegistry<>(BufferPartAdapter.class,
 																								 List.of(VulkanResourcePackage.Literals.COMPOSITE_BUFFER__PARTS));
-	private final INotificationListener sizeListener = this::partResized;
+	private final Consumer<Notification> sizeListener = this::partResized;
 	private final NotificationListenerDeployer sizeListenerDeployer = new NotificationListenerDeployer(List.of(
 			VulkanResourcePackage.Literals.COMPOSITE_BUFFER__PARTS,
 			VulkanResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER),
@@ -36,7 +36,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	private final CompositeBuffer compositeBuffer;
 
 	private GPUBufferBackend bufferBackend;
-	private InternalExecutionContext context;
+	private ExecutionContext context;
 	private IAllocationConfigurator configurator;
 
 	public CompositeBufferAdapter(CompositeBuffer compositeBuffer)
@@ -59,7 +59,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator configurator, InternalExecutionContext context)
+	public void configureAllocation(IAllocationConfigurator configurator, ExecutionContext context)
 	{
 		this.configurator = configurator;
 		configurator.addChildren(partsRegistry.getAdapters());
@@ -84,7 +84,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	}
 
 	@Override
-	public void allocate(InternalExecutionContext context)
+	public void allocate(ExecutionContext context)
 	{
 		this.context = context;
 
@@ -94,7 +94,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	}
 
 	@Override
-	public void free(InternalExecutionContext context)
+	public void free(ExecutionContext context)
 	{
 		bufferBackend.free(context);
 		bufferBackend = null;

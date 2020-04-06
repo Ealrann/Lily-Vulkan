@@ -14,7 +14,6 @@ import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
-import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -32,7 +31,7 @@ import java.util.Map;
 
 @Statefull
 @Adapter(scope = GraphicProcess.class)
-public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphicContext>
+public final class GraphicProcessAdapter extends AbstractProcessAdapter<GraphicContext>
 {
 	private static final List<EReference> PIPELINE__FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
 																	   GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
@@ -108,7 +107,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 	}
 
 	@Override
-	protected List<IAllocable<? super IGraphicContext>> getExtraAllocables()
+	protected List<IAllocable<? super GraphicContext>> getExtraAllocables()
 	{
 		return List.of(acquirer);
 	}
@@ -130,6 +129,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 			final var subpass = subpassMap.get(compositor);
 			EcoreUtil.delete(subpass);
 			subpassMap.remove(compositor);
+			if (config != null) config.setDirty();
 		}
 	}
 
@@ -150,12 +150,8 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphic
 		subpass.setSubpassIndex(index);
 		graphicProcess.getSubpasses().add(subpass);
 
-		if (config != null)
-		{
-			config.setDirty();
-		}
-
 		subpassMap.put(part, subpass);
+		if (config != null) config.setDirty();
 	}
 
 	private static int findAvailableIndex(GraphicProcess process)

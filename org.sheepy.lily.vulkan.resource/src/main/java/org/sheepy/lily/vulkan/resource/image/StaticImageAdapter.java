@@ -6,7 +6,7 @@ import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
@@ -17,7 +17,7 @@ import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 @Statefull
 @Adapter(scope = StaticImage.class)
 public class StaticImageAdapter extends Notifier<IVkImageAdapter.Features> implements IVkImageAdapter,
-																					  IAllocableAdapter<InternalExecutionContext>
+																					  IAllocableAdapter<ExecutionContext>
 {
 	private final StaticImage image;
 
@@ -39,7 +39,7 @@ public class StaticImageAdapter extends Notifier<IVkImageAdapter.Features> imple
 	}
 
 	@Override
-	public void allocate(InternalExecutionContext context)
+	public void allocate(ExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
 		final var size = image.getSize();
@@ -59,7 +59,7 @@ public class StaticImageAdapter extends Notifier<IVkImageAdapter.Features> imple
 	}
 
 	@Override
-	public void free(InternalExecutionContext context)
+	public void free(ExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
 		imageView.free(vkDevice);
@@ -102,6 +102,6 @@ public class StaticImageAdapter extends Notifier<IVkImageAdapter.Features> imple
 
 	public interface IImageLoader
 	{
-		void load(InternalExecutionContext executionManager, VkImage backendBuffer);
+		void load(ExecutionContext executionManager, VkImage backendBuffer);
 	}
 }

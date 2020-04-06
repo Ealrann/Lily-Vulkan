@@ -11,7 +11,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter.IMemoryTicket.EReservationStatus;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.font.IFontImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
@@ -41,7 +41,7 @@ import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 @Statefull
 @Adapter(scope = FontImage.class)
 public final class FontImageAdapter extends Notifier<IVkImageAdapter.Features> implements IFontImageAdapter,
-																						  IAllocableAdapter<InternalExecutionContext>
+																						  IAllocableAdapter<ExecutionContext>
 {
 	private static final int BASE_FONTIMAGE_WIDTH = 1024;
 	private static final int BASE_FONTIMAGE_HEIGHT = 1024;
@@ -72,7 +72,7 @@ public final class FontImageAdapter extends Notifier<IVkImageAdapter.Features> i
 	}
 
 	@Override
-	public void allocate(InternalExecutionContext context)
+	public void allocate(ExecutionContext context)
 	{
 		final var stack = context.stack();
 		final var vkDevice = context.getVkDevice();
@@ -112,7 +112,7 @@ public final class FontImageAdapter extends Notifier<IVkImageAdapter.Features> i
 	}
 
 	@Override
-	public void free(InternalExecutionContext context)
+	public void free(ExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
 		for (int i = 0; i < instanceCount; i++)

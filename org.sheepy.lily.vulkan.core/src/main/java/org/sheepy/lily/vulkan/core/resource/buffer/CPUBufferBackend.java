@@ -1,24 +1,22 @@
 package org.sheepy.lily.vulkan.core.resource.buffer;
 
-import static org.lwjgl.system.MemoryUtil.memAddress;
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.nio.ByteBuffer;
-
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.core.device.InternalVulkanContext;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunk;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunkBuilder;
 
+import java.nio.ByteBuffer;
+
+import static org.lwjgl.system.MemoryUtil.memAddress;
+import static org.lwjgl.vulkan.VK10.*;
+
 public final class CPUBufferBackend implements IBufferBackend
 {
-	public static final int HOST_VISIBLE = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT
-			| VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
+	public static final int HOST_VISIBLE = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
 
 	public final int properties;
 	public final BufferInfo info;
@@ -52,7 +50,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void allocate(InternalVulkanContext context)
+	public void allocate(ExecutionContext context)
 	{
 		final var memoryBuilder = new MemoryChunkBuilder(context, properties);
 		allocate(context, memoryBuilder);
@@ -61,15 +59,14 @@ public final class CPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void allocate(InternalVulkanContext context, MemoryChunkBuilder memoryBuilder)
+	public void allocate(ExecutionContext context, MemoryChunkBuilder memoryBuilder)
 	{
 		vkDevice = context.getVkDevice();
 
 		info.computeAlignment(context.getPhysicalDevice());
 		address = VkBufferAllocator.allocate(context, info);
 
-		memoryBuilder.registerBuffer(address, (memoryPtr, offset, memorySize) ->
-		{
+		memoryBuilder.registerBuffer(address, (memoryPtr, offset, memorySize) -> {
 			memoryAddress = memoryPtr;
 
 			vkBindBufferMemory(vkDevice, address, memoryAddress, offset);
@@ -83,7 +80,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void free(InternalVulkanContext context)
+	public void free(ExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
 
@@ -100,7 +97,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void pushData(InternalExecutionContext executionContext, ByteBuffer data)
+	public void pushData(ExecutionContext executionContext, ByteBuffer data)
 	{
 		if (address == -1)
 		{
@@ -169,7 +166,6 @@ public final class CPUBufferBackend implements IBufferBackend
 	 * Flush a memory range of the buffer to make it visible to the device
 	 *
 	 * @apiNote Only required for non-coherent memory
-	 *
 	 */
 	@Override
 	public void flush(MemoryStack stack, LogicalDevice logicalDevice)
@@ -184,7 +180,6 @@ public final class CPUBufferBackend implements IBufferBackend
 	 * Flush a memory range of the buffer to make it visible to the device
 	 *
 	 * @apiNote Only required for non-coherent memory
-	 *
 	 */
 	public void flush(MemoryStack stack, LogicalDevice logicalDevice, int instance)
 	{
@@ -206,11 +201,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	{
 		if (coherent == false)
 		{
-			BufferUtils.invalidate(	stack,
-									logicalDevice,
-									memoryAddress,
-									VK_WHOLE_SIZE,
-									currentOffset);
+			BufferUtils.invalidate(stack, logicalDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
 		}
 	}
 

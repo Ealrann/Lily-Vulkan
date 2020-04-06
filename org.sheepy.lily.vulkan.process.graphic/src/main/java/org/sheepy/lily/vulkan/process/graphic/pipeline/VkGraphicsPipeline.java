@@ -1,32 +1,21 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.nio.ByteBuffer;
-import java.util.List;
-
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
-import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipeline;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipelineLayout;
 import org.sheepy.lily.vulkan.core.pipeline.VkShaderStage;
 import org.sheepy.lily.vulkan.core.util.Logger;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.ColorBlendBuilder;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.DepthStencilBuilder;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.DynamicStateBuilder;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.InputAssemblyBuilder;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.MultisampleBuilder;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.RasterizerBuilder;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.ViewportStateBuilder;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.*;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.process.pipeline.builder.ShaderStageBuilder;
-import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
-import org.sheepy.vulkan.model.graphicpipeline.DepthStencilState;
-import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
-import org.sheepy.vulkan.model.graphicpipeline.InputAssembly;
-import org.sheepy.vulkan.model.graphicpipeline.Rasterizer;
-import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
+import org.sheepy.vulkan.model.graphicpipeline.*;
 
-public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
+import java.nio.ByteBuffer;
+import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.*;
+
+public class VkGraphicsPipeline extends VkPipeline<GraphicContext>
 {
 	private static final String FAILED_TO_CREATE_GRAPHICS_PIPELINE = "Failed to create graphics pipeline";
 
@@ -39,7 +28,7 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 	private final ColorBlendBuilder colorBlendBuilder;
 	private final DynamicStateBuilder dynamicStateBuilder;
 
-	private final VkPipelineLayout<? super IGraphicContext> pipelineLayout;
+	private final VkPipelineLayout<? super GraphicContext> pipelineLayout;
 	private final ColorBlend colorBlend;
 	private final Rasterizer rasterizer;
 	private final InputAssembly inputAssembly;
@@ -53,17 +42,17 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 
 	protected long pipelinePtr = 0;
 
-	public VkGraphicsPipeline(	VkPipelineLayout<? super IGraphicContext> pipelineLayout,
-								ColorBlend colorBlend,
-								Rasterizer rasterizer,
-								InputAssembly inputAssembly,
-								ViewportState viewportState,
-								DynamicState dynamicState,
-								DepthStencilState depthStencilState,
-								VkInputStateDescriptor vertexBufferDescriptor,
-								List<VkShaderStage> shaderStages,
-								ByteBuffer specializationData,
-								int subpass)
+	public VkGraphicsPipeline(VkPipelineLayout<? super GraphicContext> pipelineLayout,
+							  ColorBlend colorBlend,
+							  Rasterizer rasterizer,
+							  InputAssembly inputAssembly,
+							  ViewportState viewportState,
+							  DynamicState dynamicState,
+							  DepthStencilState depthStencilState,
+							  VkInputStateDescriptor vertexBufferDescriptor,
+							  List<VkShaderStage> shaderStages,
+							  ByteBuffer specializationData,
+							  int subpass)
 	{
 		super(VK_PIPELINE_BIND_POINT_GRAPHICS);
 
@@ -90,7 +79,7 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 	}
 
 	@Override
-	public void allocate(IGraphicContext context)
+	public void allocate(GraphicContext context)
 	{
 		final var device = context.getVkDevice();
 		final var surfaceManager = context.getSurfaceManager();
@@ -102,9 +91,7 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 		// -----------------------
 		final var info = VkGraphicsPipelineCreateInfo.callocStack(1, stack);
 		info.sType(VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO);
-		info.pStages(shaderStageBuilder.allocShaderStageInfo(	stack,
-																shaderStages,
-																specializationData));
+		info.pStages(shaderStageBuilder.allocShaderStageInfo(stack, shaderStages, specializationData));
 		info.pVertexInputState(vertexDescriptor.allocCreateInfo(stack));
 		info.pInputAssemblyState(inputAssemblyBuilder.allocCreateInfo(stack, inputAssembly));
 		info.pViewportState(viewportStateBuilder.allocCreateInfo(stack, extent, viewportState));
@@ -113,8 +100,7 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 		if (depthStencilState != null)
 			info.pDepthStencilState(depthStencilBuidler.allocCreateInfo(stack, depthStencilState));
 		info.pColorBlendState(colorBlendBuilder.allocCreateInfo(stack, colorBlend));
-		if (dynamicState != null)
-			info.pDynamicState(dynamicStateBuilder.allocCreateInfo(stack, dynamicState));
+		if (dynamicState != null) info.pDynamicState(dynamicStateBuilder.allocCreateInfo(stack, dynamicState));
 
 		info.layout(pipelineLayout.getId());
 		info.renderPass(renderPass.getPtr());
@@ -123,13 +109,13 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 		info.basePipelineIndex(-1);
 
 		final long[] aId = new long[1];
-		Logger.check(	vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, info, null, aId),
-						FAILED_TO_CREATE_GRAPHICS_PIPELINE);
+		Logger.check(vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, info, null, aId),
+					 FAILED_TO_CREATE_GRAPHICS_PIPELINE);
 		pipelinePtr = aId[0];
 	}
 
 	@Override
-	public void free(IGraphicContext context)
+	public void free(GraphicContext context)
 	{
 		final var device = context.getVkDevice();
 		vkDestroyPipeline(device, pipelinePtr, null);

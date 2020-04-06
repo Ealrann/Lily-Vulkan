@@ -1,17 +1,15 @@
 package org.sheepy.lily.vulkan.core.resource.buffer;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.nio.ByteBuffer;
-
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.core.device.InternalVulkanContext;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunk;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunkBuilder;
 import org.sheepy.lily.vulkan.core.util.VulkanDebugUtil;
+
+import java.nio.ByteBuffer;
+
+import static org.lwjgl.vulkan.VK10.*;
 
 public final class GPUBufferBackend implements IBufferBackend
 {
@@ -37,9 +35,7 @@ public final class GPUBufferBackend implements IBufferBackend
 
 		if (keepStagingBuffer)
 		{
-			final BufferInfo stagingInfo = new BufferInfo(	info.size,
-															VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
-															info.keptMapped);
+			final BufferInfo stagingInfo = new BufferInfo(info.size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, info.keptMapped);
 			cpuBackend = new CPUBufferBackend(stagingInfo, true);
 		}
 
@@ -47,7 +43,7 @@ public final class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void allocate(InternalVulkanContext context)
+	public void allocate(ExecutionContext context)
 	{
 		final var memoryBuilder = new MemoryChunkBuilder(context, properties);
 		allocate(context, memoryBuilder);
@@ -56,15 +52,14 @@ public final class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void allocate(InternalVulkanContext context, MemoryChunkBuilder memoryBuilder)
+	public void allocate(ExecutionContext context, MemoryChunkBuilder memoryBuilder)
 	{
 		final var vkDevice = context.getVkDevice();
 
 		info.computeAlignment(context.getPhysicalDevice());
 		address = VkBufferAllocator.allocate(context, info);
 
-		memoryBuilder.registerBuffer(address, (memoryPtr, offset, memorySize) ->
-		{
+		memoryBuilder.registerBuffer(address, (memoryPtr, offset, memorySize) -> {
 			memoryAddress = memoryPtr;
 
 			vkBindBufferMemory(vkDevice, address, memoryAddress, offset);
@@ -78,7 +73,7 @@ public final class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void free(InternalVulkanContext context)
+	public void free(ExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
 
@@ -95,7 +90,7 @@ public final class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void pushData(InternalExecutionContext executionContext, ByteBuffer data)
+	public void pushData(ExecutionContext executionContext, ByteBuffer data)
 	{
 		if (address == -1)
 		{
@@ -110,7 +105,8 @@ public final class GPUBufferBackend implements IBufferBackend
 
 			if (VulkanDebugUtil.DEBUG_ENABLED)
 			{
-				System.err.println("[Warning] Pushing in a non staged GPU Buffer is slow. Don't use it in the main loop.");
+				System.err.println(
+						"[Warning] Pushing in a non staged GPU Buffer is slow. Don't use it in the main loop.");
 			}
 		}
 		else
@@ -120,21 +116,20 @@ public final class GPUBufferBackend implements IBufferBackend
 		}
 	}
 
-	public void pushData(InternalExecutionContext executionContext, CPUBufferBackend stagingBuffer)
+	public void pushData(ExecutionContext executionContext, CPUBufferBackend stagingBuffer)
 	{
 		final int size = (int) Math.min(stagingBuffer.info.size, info.size);
 		final long bufferPtr = stagingBuffer.getAddress();
 
-		executionContext.execute((context, commandBuffer) ->
-		{
+		executionContext.execute((context, commandBuffer) -> {
 			final var stack = context.stack();
-			BufferUtils.copyBuffer(	stack,
-									commandBuffer.getVkCommandBuffer(),
-									bufferPtr,
-									0,
-									address,
-									currentOffset,
-									size);
+			BufferUtils.copyBuffer(stack,
+								   commandBuffer.getVkCommandBuffer(),
+								   bufferPtr,
+								   0,
+								   address,
+								   currentOffset,
+								   size);
 		});
 	}
 

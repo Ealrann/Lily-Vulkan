@@ -221,6 +221,7 @@ public class Window implements IWindow
 		}
 	}
 
+	@Override
 	public Vector2ic getSize()
 	{
 		return scene.getSize();

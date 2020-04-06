@@ -6,7 +6,7 @@ import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.device.VulkanContext;
 import org.sheepy.lily.vulkan.core.resource.ISampledImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
@@ -33,13 +33,13 @@ public class SampledImageAdapter extends Notifier<IVkImageAdapter.Features> impl
 	}
 
 	@Override
-	public void allocate(InternalExecutionContext context)
+	public void allocate(VulkanContext context)
 	{
 		final var samplerInfo = sampledImage.getSampler();
 
 		if (imageAdapter != null)
 		{
-			((IAllocableAdapter<? super InternalExecutionContext>) imageAdapter).allocate(context);
+			((IAllocableAdapter<? super VulkanContext>) imageAdapter).allocate(context);
 			final int mipLevels = imageAdapter.getVkImage().mipLevels;
 			samplerInfo.setMaxLod(Math.max(mipLevels, samplerInfo.getMaxLod()));
 		}
@@ -49,10 +49,10 @@ public class SampledImageAdapter extends Notifier<IVkImageAdapter.Features> impl
 	}
 
 	@Override
-	public void free(InternalExecutionContext context)
+	public void free(VulkanContext context)
 	{
 		vkSampler.free(context);
-		((IAllocableAdapter<? super InternalExecutionContext>) imageAdapter).free(context);
+		((IAllocableAdapter<? super VulkanContext>) imageAdapter).free(context);
 
 		vkSampler = null;
 	}

@@ -1,7 +1,5 @@
 package org.sheepy.lily.vulkan.process.compute.process;
 
-import java.util.List;
-
 import org.sheepy.lily.vulkan.core.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.core.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
@@ -10,15 +8,17 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeExecutionRecorders;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
-public final class ComputeContext extends ProcessContext<IComputeContext> implements IComputeContext
+import java.util.List;
+
+public final class ComputeContext extends ProcessContext<ComputeContext> implements IComputeContext
 {
 	public final AbstractProcess Process;
 	public final ComputeExecutionRecorders executionRecorders = new ComputeExecutionRecorders();
 
-	public ComputeContext(	EQueueType queueType,
-							boolean resetAllowed,
-							DescriptorPool descriptorPool,
-							AbstractProcess Process)
+	public ComputeContext(EQueueType queueType,
+						  boolean resetAllowed,
+						  DescriptorPool descriptorPool,
+						  AbstractProcess Process)
 	{
 		super(queueType, resetAllowed, descriptorPool, Process);
 		this.Process = Process;
@@ -27,7 +27,7 @@ public final class ComputeContext extends ProcessContext<IComputeContext> implem
 	}
 
 	@Override
-	public List<IExecutionRecorder<? super IComputeContext>> getRecorders()
+	public List<IExecutionRecorder<? super ComputeContext>> getRecorders()
 	{
 		return executionRecorders.getRecorders();
 	}

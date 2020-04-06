@@ -2,20 +2,20 @@ package org.sheepy.lily.vulkan.process.graphic.resource;
 
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
 import org.sheepy.lily.vulkan.core.graphic.ClearInfo;
-import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.attachment.IExtraAttachmentAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.image.ImageFactory;
@@ -26,7 +26,8 @@ import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
 @Statefull
 @Adapter(scope = ColorAttachment.class)
-public final class ColorAttachmentAdapter extends Notifier<IVkImageAdapter.Features> implements IExtraAttachmentAdapter
+public final class ColorAttachmentAdapter extends Notifier<IVkImageAdapter.Features> implements IExtraAttachmentAdapter,
+																								IAllocableAdapter<GraphicContext>
 {
 	private final ColorAttachment colorAttachment;
 
@@ -41,14 +42,14 @@ public final class ColorAttachmentAdapter extends Notifier<IVkImageAdapter.Featu
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
 	{
 		final var surfaceManager = context.getSurfaceManager();
 		config.addDependencies(List.of(surfaceManager));
 	}
 
 	@Override
-	public void allocate(IGraphicContext context)
+	public void allocate(GraphicContext context)
 	{
 		final var surfaceManager = context.getSurfaceManager();
 		final var format = colorAttachment.getFormat().getValue();
@@ -65,7 +66,7 @@ public final class ColorAttachmentAdapter extends Notifier<IVkImageAdapter.Featu
 		notify(Features.Image, colorImageBackend.getPtr());
 	}
 
-	private void createImage(IGraphicContext context)
+	private void createImage(GraphicContext context)
 	{
 		final var surfaceManager = context.getSurfaceManager();
 		final var extent = surfaceManager.getExtent();
@@ -82,7 +83,7 @@ public final class ColorAttachmentAdapter extends Notifier<IVkImageAdapter.Featu
 		colorImageBackend = imageBuilder.build();
 	}
 
-	private void allocateImage(IGraphicContext context)
+	private void allocateImage(GraphicContext context)
 	{
 		colorImageBackend.allocate(context);
 	}
@@ -94,7 +95,7 @@ public final class ColorAttachmentAdapter extends Notifier<IVkImageAdapter.Featu
 		colorImageView.allocate(device, colorImageBackend);
 	}
 
-	private void layoutTransition(InternalExecutionContext context)
+	private void layoutTransition(GraphicContext context)
 	{
 		final var stack = context.stack();
 		final var srcStage = EPipelineStage.TOP_OF_PIPE_BIT;
@@ -107,7 +108,7 @@ public final class ColorAttachmentAdapter extends Notifier<IVkImageAdapter.Featu
 	}
 
 	@Override
-	public void free(IGraphicContext context)
+	public void free(GraphicContext context)
 	{
 		final var device = context.getVkDevice();
 		colorImageView.free(device);

@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.resource.shader;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.pipeline.VkShaderStage;
 import org.sheepy.lily.vulkan.core.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.model.resource.Shader;
@@ -21,7 +21,7 @@ public class ShaderAdapter implements IShaderAdapter
 	}
 
 	@Override
-	public void allocate(InternalExecutionContext context)
+	public void allocate(ExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
 		final var resource = shader.getFile();
@@ -38,7 +38,7 @@ public class ShaderAdapter implements IShaderAdapter
 	}
 
 	@Override
-	public void free(InternalExecutionContext context)
+	public void free(ExecutionContext context)
 	{
 		shaderBackend.free();
 		shaderBackend = null;

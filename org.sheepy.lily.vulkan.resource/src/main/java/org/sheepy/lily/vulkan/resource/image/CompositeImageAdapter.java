@@ -14,8 +14,8 @@ import org.sheepy.lily.core.api.adapter.util.ModelDependencyInjector;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.ICommandBuffer;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
@@ -35,7 +35,7 @@ import static org.lwjgl.vulkan.VK10.*;
 @Statefull
 @Adapter(scope = CompositeImage.class)
 public final class CompositeImageAdapter extends Notifier<IVkImageAdapter.Features> implements IVkImageAdapter,
-																							   IAllocableAdapter<InternalExecutionContext>
+																							   IAllocableAdapter<ExecutionContext>
 {
 	private final CompositeImage image;
 	private final ModelDependencyInjector dependencyInjector;
@@ -55,7 +55,7 @@ public final class CompositeImageAdapter extends Notifier<IVkImageAdapter.Featur
 	}
 
 	@Override
-	public void configureAllocation(final IAllocationConfigurator configurator, final InternalExecutionContext context)
+	public void configureAllocation(final IAllocationConfigurator configurator, final ExecutionContext context)
 	{
 		dependencyInjector.start(configurator);
 	}
@@ -67,7 +67,7 @@ public final class CompositeImageAdapter extends Notifier<IVkImageAdapter.Featur
 	}
 
 	@Override
-	public void allocate(InternalExecutionContext context)
+	public void allocate(ExecutionContext context)
 	{
 		final var background = image.getBackground();
 		final var backgroundAdapter = background.adapt(IVkImageAdapter.class);
@@ -91,7 +91,7 @@ public final class CompositeImageAdapter extends Notifier<IVkImageAdapter.Featur
 		notify(Features.View, viewPtr);
 	}
 
-	private void assembleImage(InternalExecutionContext context, ICommandBuffer<?> commandBuffer)
+	private void assembleImage(ExecutionContext context, ICommandBuffer<?> commandBuffer)
 	{
 		final var background = image.getBackground();
 		final var backgroundAdapter = background.adapt(IVkImageAdapter.class);
@@ -191,7 +191,7 @@ public final class CompositeImageAdapter extends Notifier<IVkImageAdapter.Featur
 	}
 
 	@Override
-	public void free(InternalExecutionContext context)
+	public void free(ExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
 		imageView.free(vkDevice);

@@ -4,10 +4,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkRenderPassCreateInfo;
 import org.sheepy.lily.vulkan.core.util.Logger;
-import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
+import org.sheepy.lily.vulkan.model.process.graphic.*;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.util.SubpassUtil;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 
@@ -23,10 +20,12 @@ public final class VkRenderPassAllocator
 	private static final String CREATION_ERROR = "Failed to create render pass";
 
 	private final EFormat swapchainImageFormat;
+	private final List<ExtraAttachment> extraAttachments;
 	private final VkDevice device;
 
-	public VkRenderPassAllocator(VkDevice device, EFormat swapchainImageFormat)
+	public VkRenderPassAllocator(List<ExtraAttachment> extraAttachments, VkDevice device, EFormat swapchainImageFormat)
 	{
+		this.extraAttachments = extraAttachments;
 		this.device = device;
 		this.swapchainImageFormat = swapchainImageFormat;
 	}
@@ -64,11 +63,11 @@ public final class VkRenderPassAllocator
 		return aRenderPass[0];
 	}
 
-	private static List<Attachment> getAttachments(AttachmentPkg attachmentPkg)
+	private List<Attachment> getAttachments(AttachmentPkg attachmentPkg)
 	{
 		final List<Attachment> res = new ArrayList<>();
 		res.add(attachmentPkg.getColorAttachment());
-		res.addAll(attachmentPkg.getExtraAttachments());
+		res.addAll(extraAttachments);
 		return res;
 	}
 }

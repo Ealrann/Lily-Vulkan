@@ -36,8 +36,7 @@ public final class CommandPool implements IAllocable<VulkanContext>
 		poolInfo.flags(allowReset ? VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT : 0);
 
 		final long[] aCommandPool = new long[1];
-		Logger.check(vkCreateCommandPool(device, poolInfo, null, aCommandPool),
-					 FAILED_TO_CREATE_COMMAND_POOL);
+		Logger.check(vkCreateCommandPool(device, poolInfo, null, aCommandPool), FAILED_TO_CREATE_COMMAND_POOL);
 		commandPoolId = aCommandPool[0];
 	}
 

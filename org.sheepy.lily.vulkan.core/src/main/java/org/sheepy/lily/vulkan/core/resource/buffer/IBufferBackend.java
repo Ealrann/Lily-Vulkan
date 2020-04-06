@@ -1,18 +1,17 @@
 package org.sheepy.lily.vulkan.core.resource.buffer;
 
-import java.nio.ByteBuffer;
-
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.core.device.InternalVulkanContext;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunkBuilder;
+
+import java.nio.ByteBuffer;
 
 public interface IBufferBackend
 {
-	void allocate(InternalVulkanContext context, MemoryChunkBuilder memoryBuilder);
-	void allocate(InternalVulkanContext context);
-	void free(InternalVulkanContext context);
+	void allocate(ExecutionContext context, MemoryChunkBuilder memoryBuilder);
+	void allocate(ExecutionContext context);
+	void free(ExecutionContext context);
 
 	long getAddress();
 	long getMemoryAddress();
@@ -24,7 +23,6 @@ public interface IBufferBackend
 	 * Flush a memory range of the buffer to make it visible to the device
 	 *
 	 * @apiNote Only required for host visible, non-coherent memory
-	 *
 	 */
 	void flush(MemoryStack stack, LogicalDevice logicalDevice);
 
@@ -40,5 +38,5 @@ public interface IBufferBackend
 	long getInstanceSize();
 	int getProperties();
 
-	void pushData(InternalExecutionContext executionContext, ByteBuffer data);
+	void pushData(ExecutionContext executionContext, ByteBuffer data);
 }

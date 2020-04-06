@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.graphic.frame;
 
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.game.api.window.IWindowListener;
 import org.sheepy.lily.vulkan.core.device.capabilities.Capabilities;
@@ -15,8 +16,9 @@ import org.sheepy.lily.vulkan.core.window.VkSurface;
 import org.sheepy.lily.vulkan.core.window.VkSurface.ISurfaceListener;
 import org.sheepy.lily.vulkan.core.window.Window;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
-public class PhysicalDeviceSurfaceManager implements ISurfaceManager
+public class PhysicalDeviceSurfaceManager implements ISurfaceManager, IAllocable<GraphicContext>
 {
 	private final IWindowListener.ISizeListener sizeListener = size -> setDirty(true);
 	private final IWindowListener.ISurfaceDeprecatedListener surfaceDeprecationListener = () -> setDirty(true);
@@ -33,13 +35,13 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	private VkSurface surface;
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, IGraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
 	{
 		this.allocationConfiguration = config;
 	}
 
 	@Override
-	public void allocate(IGraphicContext context)
+	public void allocate(GraphicContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
 
@@ -88,7 +90,7 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager
 	}
 
 	@Override
-	public void free(IGraphicContext context)
+	public void free(GraphicContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
 

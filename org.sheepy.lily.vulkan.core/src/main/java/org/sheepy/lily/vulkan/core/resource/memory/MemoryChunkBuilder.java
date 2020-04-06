@@ -1,25 +1,25 @@
 package org.sheepy.lily.vulkan.core.resource.memory;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkMemoryAllocateInfo;
 import org.lwjgl.vulkan.VkMemoryRequirements;
-import org.sheepy.lily.vulkan.core.device.InternalVulkanContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunk.MemoryConsumer;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.*;
 
 public final class MemoryChunkBuilder
 {
-	public final InternalVulkanContext context;
+	public final ExecutionContext context;
 	public final int properties;
 	private final MemoryRequirements memReq;
 	private final List<MemoryConsumer> consumers = new ArrayList<>();
 
-	public MemoryChunkBuilder(InternalVulkanContext context, int properties)
+	public MemoryChunkBuilder(ExecutionContext context, int properties)
 	{
 		this.context = context;
 		this.properties = properties;
@@ -74,7 +74,7 @@ public final class MemoryChunkBuilder
 		private long size = 0;
 		private int memoryTypeBits = 0;
 
-		public MemoryRequirements(InternalVulkanContext context)
+		public MemoryRequirements(ExecutionContext context)
 		{
 			final var stack = context.stack();
 			requirementBuffer = VkMemoryRequirements.mallocStack(stack);

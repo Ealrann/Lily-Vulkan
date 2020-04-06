@@ -1,12 +1,12 @@
 package org.sheepy.lily.vulkan.core.pipeline;
 
-import static org.lwjgl.vulkan.VK10.vkCmdBindPipeline;
-
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.core.device.VulkanContext;
 
-public abstract class VkPipeline<T extends IExecutionContext> implements IAllocable<T>
+import static org.lwjgl.vulkan.VK10.vkCmdBindPipeline;
+
+public abstract class VkPipeline<T extends VulkanContext> implements IAllocable<T>
 {
 	private final int bindPoint;
 

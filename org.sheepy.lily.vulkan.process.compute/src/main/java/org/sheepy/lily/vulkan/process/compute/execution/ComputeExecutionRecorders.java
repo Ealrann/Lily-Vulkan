@@ -1,15 +1,15 @@
 package org.sheepy.lily.vulkan.process.compute.execution;
 
-import java.util.List;
-
-import org.sheepy.lily.vulkan.core.process.IComputeContext;
+import org.sheepy.lily.vulkan.process.compute.process.ComputeContext;
 import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
 import org.sheepy.lily.vulkan.process.execution.Submission;
 
-public class ComputeExecutionRecorders extends ExecutionRecorders<IComputeContext>
+import java.util.List;
+
+public class ComputeExecutionRecorders extends ExecutionRecorders<ComputeContext>
 {
 	@Override
-	public List<ComputeExecutionRecorder> createRecorders(IComputeContext context)
+	public List<ComputeExecutionRecorder> createRecorders(ComputeContext context)
 	{
 		final var computeContext = context;
 		final var process = computeContext.getProcess();
@@ -18,10 +18,7 @@ public class ComputeExecutionRecorders extends ExecutionRecorders<IComputeContex
 		final var signals = gatherSinalSemaphores(process);
 
 		final var commandBuffer = new ComputeCommandBuffer();
-		final var submission = new Submission<IComputeContext>(	commandBuffer,
-																waitForEmitters,
-																signals,
-																true);
+		final var submission = new Submission<ComputeContext>(commandBuffer, waitForEmitters, signals, true);
 
 		final var res = new ComputeExecutionRecorder(commandBuffer, submission, 0);
 

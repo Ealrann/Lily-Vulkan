@@ -12,10 +12,10 @@ import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.ui.IPanel;
 import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.core.model.ui.UiPackage;
+import org.sheepy.lily.game.api.window.IWindow;
 import org.sheepy.lily.game.api.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.core.window.Window;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.nuklear.pipeline.layout.LayoutManager;
@@ -41,7 +41,7 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 	private IGraphicContext context;
 	private ELayoutRequest layoutRequested = ELayoutRequest.None;
 	private NuklearContextAdapter nuklearContextAdapter;
-	private Window window;
+	private IWindow window;
 
 	enum ELayoutRequest
 	{

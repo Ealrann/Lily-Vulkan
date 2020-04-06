@@ -4,7 +4,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.*;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
-import org.sheepy.lily.vulkan.core.execution.InternalExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunk;
@@ -77,7 +77,7 @@ public final class VkImage
 		return new VkImageBuilder(info, width, height);
 	}
 
-	public void allocate(InternalExecutionContext context)
+	public void allocate(ExecutionContext context)
 	{
 		final var memoryBuilder = new MemoryChunkBuilder(context, properties);
 		allocate(context, memoryBuilder);
@@ -85,7 +85,7 @@ public final class VkImage
 		memory.allocate(context);
 	}
 
-	public void allocate(InternalExecutionContext context, MemoryChunkBuilder memoryChunkBuilder)
+	public void allocate(ExecutionContext context, MemoryChunkBuilder memoryChunkBuilder)
 	{
 		final var logicalDevice = context.getLogicalDevice();
 
@@ -115,7 +115,7 @@ public final class VkImage
 		});
 	}
 
-	private void fillWithZero(final InternalExecutionContext executionContext, final long memorySize)
+	private void fillWithZero(final ExecutionContext executionContext, final long memorySize)
 	{
 		final ByteBuffer data = MemoryUtil.memCalloc((int) memorySize);
 
@@ -123,7 +123,7 @@ public final class VkImage
 		MemoryUtil.memFree(data);
 	}
 
-	private void fillWith(final InternalExecutionContext context, final ByteBuffer data)
+	private void fillWith(final ExecutionContext context, final ByteBuffer data)
 	{
 		final int usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 		final var size = data.limit();
@@ -245,7 +245,7 @@ public final class VkImage
 		vkCmdPipelineBarrier(commandBuffer, srcStage.getValue(), dstStage.getValue(), 0, null, null, barrierInfo);
 	}
 
-	public void free(InternalExecutionContext context)
+	public void free(ExecutionContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
 
@@ -266,7 +266,7 @@ public final class VkImage
 		return memoryPtr;
 	}
 
-	private long allocateImage(InternalExecutionContext context) throws AssertionError
+	private long allocateImage(ExecutionContext context) throws AssertionError
 	{
 		final var stack = context.stack();
 		final var device = context.getVkDevice();
