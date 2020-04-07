@@ -20,7 +20,7 @@ import static org.lwjgl.vulkan.VK10.vkDestroyRenderPass;
 public class RenderPass implements IRenderPass, IAllocable<GraphicContext>
 {
 	private final AllocationChildrenRegistry attachmentsRegistry = new AllocationChildrenRegistry(List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
-																										  GraphicPackage.Literals.SUBPASS__ATTACHMANT_REF_PKG,
+																										  GraphicPackage.Literals.SUBPASS__ATTACHMENT_REF_PKG,
 																										  GraphicPackage.Literals.ATTACHMENT_REF_PKG__ATTACHMENT_REFS,
 																										  GraphicPackage.Literals.ATTACHMENT_REF__ATTACHMENT),
 																								  true);
@@ -36,9 +36,9 @@ public class RenderPass implements IRenderPass, IAllocable<GraphicContext>
 	{
 		this.process = process;
 
-		final var observatory = IObservatoryBuilder.newObservatoryBuilder(process);
+		final var observatory = IObservatoryBuilder.newObservatoryBuilder();
 		observatory.explore(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES)
-				   .explore(GraphicPackage.Literals.SUBPASS__ATTACHMANT_REF_PKG)
+				   .explore(GraphicPackage.Literals.SUBPASS__ATTACHMENT_REF_PKG)
 				   .explore(GraphicPackage.Literals.ATTACHMENT_REF_PKG__ATTACHMENT_REFS)
 				   .explore(GraphicPackage.Literals.ATTACHMENT_REF__ATTACHMENT, Attachment.class)
 				   .gather(this::addAttachment, this::removeAttachment);

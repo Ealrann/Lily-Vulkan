@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.process.graphic.process;
 
+import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.core.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
-import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicExecutionRecorders;
@@ -38,7 +38,7 @@ public final class GraphicContext extends ProcessContext<GraphicContext> impleme
 		this.graphicProcess = graphicProcess;
 		this.configuration = graphicProcess.getConfiguration();
 		this.renderPass = new RenderPass(graphicProcess);
-		this.swapChainManager = new SwapChainManager(graphicProcess.getAttachmentPkg().getColorAttachment());
+		this.swapChainManager = new SwapChainManager(graphicProcess.getColorAttachment());
 
 		allocationList.add(surfaceManager);
 		allocationList.add(swapChainManager);
@@ -84,13 +84,11 @@ public final class GraphicContext extends ProcessContext<GraphicContext> impleme
 		return executionRecorders.getRecorders();
 	}
 
-	@Override
 	public ImageViewManager getImageViewManager()
 	{
 		return imageViewManager;
 	}
 
-	@Override
 	public RenderPass getRenderPass()
 	{
 		return renderPass;

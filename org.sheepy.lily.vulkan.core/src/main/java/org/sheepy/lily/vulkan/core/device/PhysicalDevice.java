@@ -6,6 +6,7 @@ import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceMemoryProperties;
 import org.lwjgl.vulkan.VkPhysicalDeviceProperties;
 import org.sheepy.lily.vulkan.api.device.IPhysicalDevice;
+import org.sheepy.lily.vulkan.core.device.capabilities.Capabilities;
 import org.sheepy.lily.vulkan.core.device.data.DeviceProperties;
 import org.sheepy.lily.vulkan.core.device.data.DisplayInfo;
 import org.sheepy.lily.vulkan.core.device.loader.DisplayInformationLoader;
@@ -13,11 +14,10 @@ import org.sheepy.lily.vulkan.core.engine.extension.DeviceExtensions;
 import org.sheepy.lily.vulkan.core.engine.extension.EDeviceExtension;
 import org.sheepy.lily.vulkan.core.engine.extension.EInstanceExtension;
 import org.sheepy.lily.vulkan.core.engine.extension.InstanceExtensions;
+import org.sheepy.lily.vulkan.core.window.VkSurface;
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -33,13 +33,15 @@ public class PhysicalDevice implements IPhysicalDevice
 	private final VkPhysicalDeviceMemoryProperties memProperties;
 	private final Map<Integer, VkFormatProperties> formatProperties = new HashMap<>();
 	private final List<DisplayInfo> displaysInfomation;
+	public final Set<EImageUsage> supportedSwapUsages;
 
 	public PhysicalDevice(VkPhysicalDevice vkPhysicalDevice,
 						  String name,
 						  DeviceExtensions deviceExtensions,
 						  DeviceProperties deviceProperties,
 						  VkPhysicalDeviceMemoryProperties memProperties,
-						  List<DisplayInfo> displaysInfomation)
+						  List<DisplayInfo> displaysInfomation,
+						  Set<EImageUsage> supportedSwapUsages)
 	{
 		this.vkPhysicalDevice = vkPhysicalDevice;
 		this.deviceExtensions = deviceExtensions;
@@ -47,6 +49,13 @@ public class PhysicalDevice implements IPhysicalDevice
 		this.name = name;
 		this.memProperties = memProperties;
 		this.displaysInfomation = displaysInfomation;
+		this.supportedSwapUsages = supportedSwapUsages;
+	}
+
+	@Override
+	public Set<EImageUsage> supportedSwapUsages()
+	{
+		return supportedSwapUsages;
 	}
 
 	public void free()
@@ -169,7 +178,7 @@ public class PhysicalDevice implements IPhysicalDevice
 			driverVersion = deviceProperties.vkDeviceProperties.driverVersion();
 		}
 
-		public PhysicalDevice build(InstanceExtensions instanceExtensions, MemoryStack stack)
+		public PhysicalDevice build(InstanceExtensions instanceExtensions, VkSurface dummySurface, MemoryStack stack)
 		{
 			List<DisplayInfo> displaysInfomation = null;
 			if (instanceExtensions.extensions.contains(EInstanceExtension.VK_KHR_display.name))
@@ -177,12 +186,26 @@ public class PhysicalDevice implements IPhysicalDevice
 				displaysInfomation = DisplayInformationLoader.getDisplayInfos(stack, vkPhysicalDevice);
 			}
 
+			final Capabilities capabilities = new Capabilities(vkPhysicalDevice, dummySurface);
+			final int usageFlag = capabilities.vkCapabilities.supportedUsageFlags();
+			capabilities.free();
+
+			final List<EImageUsage> usages = new ArrayList<>();
+			for (var usage : EImageUsage.values())
+			{
+				if ((usage.getValue() & usageFlag) != 0)
+				{
+					usages.add(usage);
+				}
+			}
+
 			return new PhysicalDevice(vkPhysicalDevice,
 									  name,
 									  deviceExtensions.build(),
 									  deviceProperties,
 									  memProperties,
-									  displaysInfomation);
+									  displaysInfomation,
+									  EnumSet.copyOf(usages));
 		}
 
 		public void printInfo(final boolean verbose)

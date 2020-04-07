@@ -20,7 +20,8 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmantRefPkg <em>Attachmant Ref Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmentRefPkg <em>Attachment Ref Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmentPkg <em>Attachment Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSubpassIndex <em>Subpass Index</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getBindPoint <em>Bind Point</em>}</li>
@@ -41,26 +42,48 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 public interface Subpass extends IResourceContainer, LNamedElement
 {
 	/**
-	 * Returns the value of the '<em><b>Attachmant Ref Pkg</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Attachment Ref Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Attachmant Ref Pkg</em>' containment reference.
-	 * @see #setAttachmantRefPkg(AttachmentRefPkg)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_AttachmantRefPkg()
+	 * @return the value of the '<em>Attachment Ref Pkg</em>' containment reference.
+	 * @see #setAttachmentRefPkg(AttachmentRefPkg)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_AttachmentRefPkg()
 	 * @model containment="true"
 	 * @generated
 	 */
-	AttachmentRefPkg getAttachmantRefPkg();
+	AttachmentRefPkg getAttachmentRefPkg();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmantRefPkg <em>Attachmant Ref Pkg</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmentRefPkg <em>Attachment Ref Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Attachmant Ref Pkg</em>' containment reference.
-	 * @see #getAttachmantRefPkg()
+	 * @param value the new value of the '<em>Attachment Ref Pkg</em>' containment reference.
+	 * @see #getAttachmentRefPkg()
 	 * @generated
 	 */
-	void setAttachmantRefPkg(AttachmentRefPkg value);
+	void setAttachmentRefPkg(AttachmentRefPkg value);
+
+	/**
+	 * Returns the value of the '<em><b>Attachment Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attachment Pkg</em>' containment reference.
+	 * @see #setAttachmentPkg(AttachmentPkg)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_AttachmentPkg()
+	 * @model containment="true"
+	 * @generated
+	 */
+	AttachmentPkg getAttachmentPkg();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmentPkg <em>Attachment Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Attachment Pkg</em>' containment reference.
+	 * @see #getAttachmentPkg()
+	 * @generated
+	 */
+	void setAttachmentPkg(AttachmentPkg value);
 
 	/**
 	 * Returns the value of the '<em><b>Subpass Index</b></em>' attribute.

@@ -325,7 +325,8 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
-			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__ATTACHMANT_REF_PKG);
+			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__ATTACHMENT_REF_PKG);
+			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__ATTACHMENT_PKG);
 			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__PIPELINE_PKG);
 			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__EXTENSION_PKG);
 		}
@@ -400,7 +401,8 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 				return;
 			case GraphicPackage.SUBPASS__RESOURCE_PKG:
 			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
-			case GraphicPackage.SUBPASS__ATTACHMANT_REF_PKG:
+			case GraphicPackage.SUBPASS__ATTACHMENT_REF_PKG:
+			case GraphicPackage.SUBPASS__ATTACHMENT_PKG:
 			case GraphicPackage.SUBPASS__PIPELINE_PKG:
 			case GraphicPackage.SUBPASS__EXTENSION_PKG:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -433,8 +435,13 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GraphicPackage.Literals.SUBPASS__ATTACHMANT_REF_PKG,
+				(GraphicPackage.Literals.SUBPASS__ATTACHMENT_REF_PKG,
 				 GraphicFactory.eINSTANCE.createAttachmentRefPkg()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.SUBPASS__ATTACHMENT_PKG,
+				 GraphicFactory.eINSTANCE.createAttachmentPkg()));
 
 		newChildDescriptors.add
 			(createChildParameter

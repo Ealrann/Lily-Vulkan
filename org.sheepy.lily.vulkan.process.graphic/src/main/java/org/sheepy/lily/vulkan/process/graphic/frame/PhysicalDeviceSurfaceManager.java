@@ -5,12 +5,12 @@ import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.game.api.window.IWindowListener;
+import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.api.graphic.ISurfaceManager;
 import org.sheepy.lily.vulkan.core.device.capabilities.Capabilities;
 import org.sheepy.lily.vulkan.core.device.capabilities.ColorDomains;
 import org.sheepy.lily.vulkan.core.device.capabilities.VkColorDomain;
 import org.sheepy.lily.vulkan.core.execution.queue.VulkanQueue;
-import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.core.graphic.ISurfaceManager;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
 import org.sheepy.lily.vulkan.core.window.VkSurface.ISurfaceListener;
@@ -147,13 +147,11 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager, IAllocable
 		return extent;
 	}
 
-	@Override
 	public Capabilities getCapabilities()
 	{
 		return capabilities;
 	}
 
-	@Override
 	public VkSurface getSurface()
 	{
 		return surface;
@@ -168,7 +166,6 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager, IAllocable
 		}
 	}
 
-	@Override
 	public VulkanQueue getPresentQueue()
 	{
 		return presentQueue;
@@ -178,5 +175,11 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager, IAllocable
 	public boolean isPresentable()
 	{
 		return extent.x() != 0 && extent.y() != 0;
+	}
+
+	@Override
+	public int supportedUsageFlags()
+	{
+		return capabilities.vkCapabilities.supportedUsageFlags();
 	}
 }

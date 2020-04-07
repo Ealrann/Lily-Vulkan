@@ -1,25 +1,33 @@
 package org.sheepy.lily.vulkan.process.graphic.scene;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.resource.IResourceLoader;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.BackgroundImage;
 import org.sheepy.lily.core.model.resource.IImage;
+import org.sheepy.lily.vulkan.api.device.IVulkanContext;
 import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
-import org.sheepy.lily.vulkan.model.process.ProcessFactory;
+import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
-import org.sheepy.vulkan.model.enumeration.*;
+import org.sheepy.vulkan.model.enumeration.EFilter;
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
+
+import java.io.IOException;
 
 @Statefull
 @Adapter(scope = BackgroundImage.class)
 public class BackgroundImageSubpassProvider implements ICompositor_SubpassProvider<BackgroundImage>
 {
+	private static final String SUBPASS_PATH = "BackgroundImage.subpass";
+
 	private ImageBarrier imageBarrier;
 	private AbstractBlitTask blit;
 
@@ -31,17 +39,70 @@ public class BackgroundImageSubpassProvider implements ICompositor_SubpassProvid
 	}
 
 	@Override
-	public Subpass build(BackgroundImage part, AttachmentPkg attachmentPkg)
+	public Subpass build(BackgroundImage part, IVulkanContext context)
 	{
-		final var pipeline = buildPipeline(part);
+		final var subpass = loadSubpass();
+		final var swapUsages = context.getPhysicalDevice().supportedSwapUsages();
+		final var supportTransfer = swapUsages.contains(EImageUsage.TRANSFER_DST);
+		final boolean toSwap = part.getDstImage() instanceof SwapImageAttachment;
+		final var pipelines = subpass.getPipelinePkg().getPipelines();
+		refineSubpass(supportTransfer, subpass, toSwap);
+
+		final var blitPipeline = (Pipeline) pipelines.get(0);
+		final var pipelineBarrier = (PipelineBarrier) blitPipeline.getTaskPkg().getTasks().get(0);
+		imageBarrier = (ImageBarrier) pipelineBarrier.getBarriers().get(0);
+		blit = (AbstractBlitTask) blitPipeline.getTaskPkg().getTasks().get(1);
+		blit.setClearColor(part.getClearColor());
+		blit.setFilter(switch (part.getSampling())
+							   {
+								   case LINEAR -> EFilter.LINEAR;
+								   case NEAREST -> EFilter.NEAREST;
+							   });
+		if (!toSwap)
+		{
+			final var dstImage = part.getDstImage();
+			final var dstImageBarrier = (ImageBarrier) pipelineBarrier.getBarriers().get(1);
+			final var blitTask = (BlitTask) blit;
+			dstImageBarrier.setImage(dstImage);
+			blitTask.setDstImage(dstImage);
+		}
+		if (!supportTransfer)
+		{
+			System.err.println("[BackgroundImage] Transfer to swapchain is unsupported. Using compatibility pipeline.");
+			final var dstImage = (ColorAttachment) subpass.getAttachmentPkg().getExtraAttachments().get(0);
+			final var dstImageBarrier = (ImageBarrier) pipelineBarrier.getBarriers().get(1);
+			final var blitTask = (BlitTask) blit;
+			final var targetRef = subpass.getAttachmentRefPkg().getAttachmentRefs().get(0);
+			dstImageBarrier.setImage(dstImage);
+			blitTask.setDstImage(dstImage);
+
+			targetRef.setAttachment((Attachment) part.getDstImage());
+		}
+
 		setupImage((Image) part.getSrcImage());
+		return subpass;
+	}
 
-		final var pipelinePkg = ProcessFactory.eINSTANCE.createPipelinePkg();
-		pipelinePkg.getPipelines().add(pipeline);
-
-		final var res = GraphicFactory.eINSTANCE.createSubpass();
-		res.setPipelinePkg(pipelinePkg);
-		return res;
+	private static void refineSubpass(final boolean supportTransfer, final Subpass subpass, final boolean toSwap)
+	{
+		final var pipelines = subpass.getPipelinePkg().getPipelines();
+		final var pipelineBlitToSwap = pipelines.get(0);
+		final var pipelineBlitToImage = pipelines.get(1);
+		final var pipelineCompatibility = pipelines.get(2);
+		if (supportTransfer)
+		{
+			EcoreUtil.delete(pipelineCompatibility);
+			EcoreUtil.delete(subpass.getAttachmentPkg().getExtraAttachments().get(0));
+			EcoreUtil.delete(subpass.getAttachmentRefPkg().getAttachmentRefs().get(0));
+		}
+		if (toSwap && supportTransfer)
+		{
+			EcoreUtil.delete(pipelineBlitToImage);
+		}
+		else
+		{
+			EcoreUtil.delete(pipelineBlitToSwap);
+		}
 	}
 
 	private void setupImage(Image image)
@@ -50,68 +111,21 @@ public class BackgroundImageSubpassProvider implements ICompositor_SubpassProvid
 		blit.setSrcImage(image);
 	}
 
-	private Pipeline buildPipeline(BackgroundImage part)
+	private static Subpass loadSubpass()
 	{
-		final Pipeline pipeline = ProcessFactory.eINSTANCE.createPipeline();
-
-		imageBarrier = VulkanResourceFactory.eINSTANCE.createImageBarrier();
-		imageBarrier.getDstAccessMask().add(EAccess.TRANSFER_READ_BIT);
-		imageBarrier.setSrcLayout(EImageLayout.UNDEFINED);
-		imageBarrier.setDstLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
-
-		final var pipelineBarrier1 = ProcessFactory.eINSTANCE.createPipelineBarrier();
-		pipelineBarrier1.setSrcStage(EPipelineStage.COMPUTE_SHADER_BIT);
-		pipelineBarrier1.setDstStage(EPipelineStage.TRANSFER_BIT);
-		pipelineBarrier1.getBarriers().add(imageBarrier);
-
-		final IImage dstImage = part.getDstImage();
-		if (dstImage instanceof SwapImageAttachment)
+		final var module = ScreenEffectSubpassProvider.class.getModule();
+		try
 		{
-			final var swapImageBarrier = GraphicFactory.eINSTANCE.createSwapImageBarrier();
-			swapImageBarrier.getSrcAccessMask().add(EAccess.SHADER_WRITE_BIT);
-			swapImageBarrier.getDstAccessMask().add(EAccess.TRANSFER_WRITE_BIT);
-			swapImageBarrier.setSrcLayout(EImageLayout.UNDEFINED);
-			swapImageBarrier.setDstLayout(EImageLayout.TRANSFER_DST_OPTIMAL);
-			pipelineBarrier1.getBarriers().add(swapImageBarrier);
+			final var resourceLoader = IResourceLoader.INSTANCE;
+			final var inputStream = module.getResourceAsStream(SUBPASS_PATH);
+			final var resource = resourceLoader.loadResource(inputStream);
+			final EObject subpass = resource.getContents().get(0);
+			return subpass != null ? (Subpass) subpass : GraphicFactory.eINSTANCE.createSubpass();
 		}
-		else
+		catch (final IOException e)
 		{
-			final var dstImageBarrier = VulkanResourceFactory.eINSTANCE.createImageBarrier();
-			dstImageBarrier.getDstAccessMask().add(EAccess.TRANSFER_WRITE_BIT);
-			dstImageBarrier.setSrcLayout(EImageLayout.UNDEFINED);
-			dstImageBarrier.setDstLayout(EImageLayout.TRANSFER_DST_OPTIMAL);
-			dstImageBarrier.setImage(dstImage);
-			pipelineBarrier1.getBarriers().add(dstImageBarrier);
-		}
-
-		blit = createBlitTask(part);
-		blit.setClearColor(part.getClearColor());
-		blit.setFilter(switch (part.getSampling())
-							   {
-								   case LINEAR -> EFilter.LINEAR;
-								   case NEAREST -> EFilter.NEAREST;
-							   });
-
-		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
-		taskPkg.getTasks().add(pipelineBarrier1);
-		taskPkg.getTasks().add(blit);
-
-		pipeline.setStage(ECommandStage.TRANSFER);
-		pipeline.setTaskPkg(taskPkg);
-		return pipeline;
-	}
-
-	private static AbstractBlitTask createBlitTask(BackgroundImage part)
-	{
-		if (part.getDstImage() instanceof SwapImageAttachment)
-		{
-			return GraphicFactory.eINSTANCE.createBlitToSwapImage();
-		}
-		else
-		{
-			final var res = GraphicFactory.eINSTANCE.createBlitTask();
-			res.setDstImage(part.getDstImage());
-			return res;
+			e.printStackTrace();
+			return GraphicFactory.eINSTANCE.createSubpass();
 		}
 	}
 }

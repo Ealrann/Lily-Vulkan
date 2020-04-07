@@ -6,15 +6,15 @@ import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.core.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.IExecutionRecorder;
+import org.sheepy.lily.vulkan.core.execution.IExecutionRecorders;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
-import org.sheepy.lily.vulkan.core.process.IRecorderContext;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ProcessContext<T extends IRecorderContext<T>> extends ExecutionContext implements IProcessContext,
-																										IRecorderContext<T>
+public abstract class ProcessContext<T extends ProcessContext<T>> extends ExecutionContext implements IProcessContext
 {
 	public final DescriptorPool descriptorPool;
 	public final Application application;
@@ -34,7 +34,6 @@ public abstract class ProcessContext<T extends IRecorderContext<T>> extends Exec
 		this.application = (Application) EcoreUtil.getRootContainer(process);
 	}
 
-	@Override
 	public List<IAllocable<? super T>> getAllocationChildren()
 	{
 		return allocationList;
@@ -49,4 +48,7 @@ public abstract class ProcessContext<T extends IRecorderContext<T>> extends Exec
 	{
 		return process;
 	}
+
+	public abstract IExecutionRecorders<? super T> getExecutionRecorders();
+	public abstract List<IExecutionRecorder<? super T>> getRecorders();
 }

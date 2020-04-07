@@ -10,6 +10,7 @@ import org.sheepy.lily.core.api.resource.IResourceLoader;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.ScreenEffect;
 import org.sheepy.lily.core.model.application.SpecialEffect;
+import org.sheepy.lily.vulkan.api.device.IVulkanContext;
 import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
 import org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer;
@@ -38,7 +39,7 @@ public final class ScreenEffectSubpassProvider implements ICompositor_SubpassPro
 		final var dstAttachment = (Attachment) part.getDstImage();
 
 		subpass = loadSubpass();
-		final var attachmentRefPkg = subpass.getAttachmantRefPkg();
+		final var attachmentRefPkg = subpass.getAttachmentRefPkg();
 		final var srcRef = GraphicFactory.eINSTANCE.createAttachmentRef();
 		srcRef.setLayout(EImageLayout.SHADER_READ_ONLY_OPTIMAL);
 		srcRef.setAttachment(srcAttachment);
@@ -79,7 +80,7 @@ public final class ScreenEffectSubpassProvider implements ICompositor_SubpassPro
 	}
 
 	@Override
-	public Subpass build(final ScreenEffect part, final AttachmentPkg attachmentPkg)
+	public Subpass build(final ScreenEffect part, final IVulkanContext context)
 	{
 		return subpass;
 	}

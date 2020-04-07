@@ -126,11 +126,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//ColorAttachment/format"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//AttachmentPkg">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentPkg/colorAttachment"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentPkg/extraAttachments"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//Subpass">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/attachmantRefPkg"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/attachmentRefPkg"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/attachmentPkg"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/subpassIndex"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/pipelinePkg"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/bindPoint"/>
@@ -170,6 +170,7 @@
     <genClasses image="false" ecoreClass="graphic.ecore#//ExtraAttachment"/>
     <genClasses ecoreClass="graphic.ecore#//GraphicProcess">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/configuration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/colorAttachment"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/attachmentPkg"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/subpasses"/>
     </genClasses>

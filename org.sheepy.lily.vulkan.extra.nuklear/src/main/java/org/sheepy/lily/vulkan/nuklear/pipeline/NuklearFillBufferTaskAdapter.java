@@ -7,7 +7,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageArrayDescriptor;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFillBufferTask;

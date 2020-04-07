@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphic:Subpass xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:graphic="org.sheepy.lily.vulkan.model.process.graphic" xmlns:graphicpipeline="org.sheepy.vulkan.model.graphicpipeline" xmlns:process="org.sheepy.lily.vulkan.model.process" xmlns:resource="org.sheepy.lily.vulkan.model.resource" xmlns:resource_1="org.sheepy.lily.core.model.resource" name="BackgroundImage" waitForStage="TRANSFER_BIT" syncStage="FRAGMENT_SHADER_BIT" finishStage="COLOR_ATTACHMENT_OUTPUT_BIT">
+  <resourcePkg/>
+  <descriptorPkg/>
+  <attachmentRefPkg>
+    <attachmentRefs layout="COLOR_ATTACHMENT_OPTIMAL"/>
+    <attachmentRefs attachment="//@attachmentPkg/@extraAttachments.0" layout="SHADER_READ_ONLY_OPTIMAL" type="Input"/>
+  </attachmentRefPkg>
+  <attachmentPkg>
+    <extraAttachments xsi:type="graphic:ColorAttachment" loadOp="DONT_CARE" storeOp="DONT_CARE" stencilLoadOp="DONT_CARE" stencilStoreOp="DONT_CARE" initialLayout="TRANSFER_DST_OPTIMAL" finalLayout="SHADER_READ_ONLY_OPTIMAL">
+      <usages>TransferDst</usages>
+      <usages>InputAttachement</usages>
+    </extraAttachments>
+  </attachmentPkg>
+  <pipelinePkg>
+    <pipelines xsi:type="process:Pipeline" name="Blit to Swap" stage="Transfer">
+      <taskPkg>
+        <tasks xsi:type="process:PipelineBarrier" dstStage="TRANSFER_BIT">
+          <barriers xsi:type="resource:ImageBarrier" name="Src Image Barrier" dstLayout="TRANSFER_SRC_OPTIMAL">
+            <dstAccessMask>TRANSFER_READ_BIT</dstAccessMask>
+          </barriers>
+          <barriers xsi:type="graphic:SwapImageBarrier" dstLayout="TRANSFER_DST_OPTIMAL">
+            <dstAccessMask>TRANSFER_WRITE_BIT</dstAccessMask>
+          </barriers>
+        </tasks>
+        <tasks xsi:type="graphic:BlitToSwapImage"/>
+      </taskPkg>
+    </pipelines>
+    <pipelines xsi:type="process:Pipeline" name="Blit to Image" stage="Transfer">
+      <taskPkg>
+        <tasks xsi:type="process:PipelineBarrier" dstStage="TRANSFER_BIT">
+          <barriers xsi:type="resource:ImageBarrier" name="Src Image Barrier" dstLayout="TRANSFER_SRC_OPTIMAL">
+            <dstAccessMask>TRANSFER_READ_BIT</dstAccessMask>
+          </barriers>
+          <barriers xsi:type="resource:ImageBarrier" name="Color Image Barrier" dstLayout="TRANSFER_DST_OPTIMAL">
+            <dstAccessMask>TRANSFER_WRITE_BIT</dstAccessMask>
+          </barriers>
+        </tasks>
+        <tasks xsi:type="graphic:BlitTask"/>
+      </taskPkg>
+    </pipelines>
+    <pipelines xsi:type="graphic:GraphicsPipeline" name=" Compatibility" layout="//@pipelinePkg/@pipelines.2/@descriptorSetPkg/@descriptorSets.0" shaders="//@pipelinePkg/@pipelines.2/@resourcePkg/@resources.0 //@pipelinePkg/@pipelines.2/@resourcePkg/@resources.1">
+      <resourcePkg>
+        <resources xsi:type="resource:Shader" name="BackgroundCompatVertex">
+          <file xsi:type="resource_1:StringModuleResource" path="background_compat.vert.spv" moduleName="org.sheepy.lily.vulkan.process.graphic"/>
+        </resources>
+        <resources xsi:type="resource:Shader" name="BackgroundCompatFragment" stage="FRAGMENT_BIT">
+          <file xsi:type="resource_1:StringModuleResource" path="background_compat.frag.spv" moduleName="org.sheepy.lily.vulkan.process.graphic"/>
+        </resources>
+      </resourcePkg>
+      <descriptorPkg>
+        <descriptors xsi:type="graphic:AttachmentDescriptor" name="Compat color" type="INPUT_ATTACHMENT" attachment="//@attachmentPkg/@extraAttachments.0">
+          <shaderStages>FRAGMENT_BIT</shaderStages>
+        </descriptors>
+      </descriptorPkg>
+      <taskPkg>
+        <tasks xsi:type="process:PipelineBarrier" name="SwapToTransfer" dstStage="TRANSFER_BIT" recordDuringStage="PreRender">
+          <barriers xsi:type="graphic:SwapImageBarrier" dstLayout="TRANSFER_DST_OPTIMAL">
+            <dstAccessMask>TRANSFER_WRITE_BIT</dstAccessMask>
+          </barriers>
+        </tasks>
+        <tasks xsi:type="process:BindDescriptorSets" descriptorSets="//@pipelinePkg/@pipelines.2/@descriptorSetPkg/@descriptorSets.0"/>
+        <tasks xsi:type="graphic:Draw" vertexCount="3"/>
+      </taskPkg>
+      <descriptorSetPkg>
+        <descriptorSets descriptors="//@pipelinePkg/@pipelines.2/@descriptorPkg/@descriptors.0"/>
+      </descriptorSetPkg>
+      <viewportState xsi:type="graphicpipeline:StaticViewportState">
+        <viewports xsi:type="graphicpipeline:Viewport"/>
+        <scissors/>
+      </viewportState>
+      <inputAssembly/>
+      <rasterizer/>
+      <colorBlend>
+        <attachments/>
+      </colorBlend>
+      <vertexInputState/>
+    </pipelines>
+  </pipelinePkg>
+  <waitForAccesses>COLOR_ATTACHMENT_WRITE_BIT</waitForAccesses>
+  <waitForAccesses>TRANSFER_WRITE_BIT</waitForAccesses>
+  <syncAccesses>INPUT_ATTACHMENT_READ_BIT</syncAccesses>
+  <finishAccesses>COLOR_ATTACHMENT_WRITE_BIT</finishAccesses>
+</graphic:Subpass>

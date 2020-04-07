@@ -2,8 +2,7 @@ package org.sheepy.lily.vulkan.process.graphic.execution;
 
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.core.graphic.IGraphicExecutionRecorders;
+import org.sheepy.lily.vulkan.api.graphic.IGraphicExecutionRecorders;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;

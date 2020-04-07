@@ -55,7 +55,7 @@ public class VkSubpassDescriptionAllocator
 		for (final var subpass : subpasses)
 		{
 			final var vkSubpass = vkSubpasses.get();
-			final var attachmantRefPkg = subpass.getAttachmantRefPkg();
+			final var attachmantRefPkg = subpass.getAttachmentRefPkg();
 			final var refs = attachmantRefPkg != null ? attachmantRefPkg.getAttachmentRefs() : List.<AttachmentRef>of();
 
 			vkSubpass.pipelineBindPoint(subpass.getBindPoint());

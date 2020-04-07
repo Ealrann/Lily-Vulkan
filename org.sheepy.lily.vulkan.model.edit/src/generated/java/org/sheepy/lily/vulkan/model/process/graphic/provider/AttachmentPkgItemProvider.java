@@ -83,7 +83,6 @@ public class AttachmentPkgItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GraphicPackage.Literals.ATTACHMENT_PKG__COLOR_ATTACHMENT);
 			childrenFeatures.add(GraphicPackage.Literals.ATTACHMENT_PKG__EXTRA_ATTACHMENTS);
 		}
 		return childrenFeatures;
@@ -142,7 +141,6 @@ public class AttachmentPkgItemProvider
 
 		switch (notification.getFeatureID(AttachmentPkg.class))
 		{
-			case GraphicPackage.ATTACHMENT_PKG__COLOR_ATTACHMENT:
 			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -161,11 +159,6 @@ public class AttachmentPkgItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.ATTACHMENT_PKG__COLOR_ATTACHMENT,
-				 GraphicFactory.eINSTANCE.createSwapImageAttachment()));
 
 		newChildDescriptors.add
 			(createChildParameter

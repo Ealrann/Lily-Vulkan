@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.core.util;
 
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 
 public final class InstanceCountUtil

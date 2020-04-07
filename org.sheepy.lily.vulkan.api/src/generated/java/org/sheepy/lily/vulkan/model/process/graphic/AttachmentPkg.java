@@ -15,7 +15,6 @@ import org.sheepy.lily.core.api.adapter.ILilyEObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg#getColorAttachment <em>Color Attachment</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg#getExtraAttachments <em>Extra Attachments</em>}</li>
  * </ul>
  *
@@ -37,27 +36,5 @@ public interface AttachmentPkg extends ILilyEObject
 	 * @generated
 	 */
 	EList<ExtraAttachment> getExtraAttachments();
-
-	/**
-	 * Returns the value of the '<em><b>Color Attachment</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Color Attachment</em>' containment reference.
-	 * @see #setColorAttachment(SwapImageAttachment)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAttachmentPkg_ColorAttachment()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	SwapImageAttachment getColorAttachment();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg#getColorAttachment <em>Color Attachment</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Color Attachment</em>' containment reference.
-	 * @see #getColorAttachment()
-	 * @generated
-	 */
-	void setColorAttachment(SwapImageAttachment value);
 
 } // AttachmentPkg

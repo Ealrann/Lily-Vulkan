@@ -4,6 +4,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.resource.IResourceLoader;
 import org.sheepy.lily.core.model.variable.ModelVariablePkg;
+import org.sheepy.lily.vulkan.api.device.IVulkanContext;
 import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
@@ -20,12 +21,12 @@ public class CompositorSubpassProvider implements ICompositor_SubpassProvider<Co
 	private static final String PIPELINE_PATH = "com/isotropy/materia/asset/model/Compositor.subpass";
 
 	@Override
-	public Subpass build(Compositor compositor, AttachmentPkg attachmentPkg)
+	public Subpass build(Compositor compositor, IVulkanContext context)
 	{
 		final var colorAttachments = compositor.getColorAttachments();
 		final var inputAttachments = compositor.getInputAttachments();
 		final var subpass = loadSubpass();
-		final var attachmentRefPkg = subpass.getAttachmantRefPkg();
+		final var attachmentRefPkg = subpass.getAttachmentRefPkg();
 		final var genericConstants = (GenericConstantBuffer) subpass.getResourcePkg().getResources().get(0);
 		final var pipeline = (GraphicsPipeline) subpass.getPipelinePkg().getPipelines().get(0);
 

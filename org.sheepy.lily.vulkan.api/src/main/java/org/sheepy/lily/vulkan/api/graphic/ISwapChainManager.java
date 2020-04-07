@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.core.graphic;
+package org.sheepy.lily.vulkan.api.graphic;
 
 import java.util.List;
 

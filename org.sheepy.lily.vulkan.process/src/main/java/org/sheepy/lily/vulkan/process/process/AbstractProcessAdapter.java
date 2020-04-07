@@ -20,7 +20,6 @@ import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.core.device.VulkanContext;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAdapter;
-import org.sheepy.lily.vulkan.core.process.IRecorderContext;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.core.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
@@ -33,8 +32,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Statefull
-public abstract class AbstractProcessAdapter<T extends IRecorderContext<T>> implements InternalProcessAdapter,
-																					   IAllocable<VulkanContext>
+public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implements InternalProcessAdapter,
+																					 IAllocable<VulkanContext>
 {
 	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG,
 																							VulkanResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));

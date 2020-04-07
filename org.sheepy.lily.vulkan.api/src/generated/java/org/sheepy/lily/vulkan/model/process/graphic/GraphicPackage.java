@@ -859,22 +859,13 @@ public interface GraphicPackage extends EPackage
 	int ATTACHMENT_PKG = 7;
 
 	/**
-	 * The feature id for the '<em><b>Color Attachment</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTACHMENT_PKG__COLOR_ATTACHMENT = 0;
-
-	/**
 	 * The feature id for the '<em><b>Extra Attachments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_PKG__EXTRA_ATTACHMENTS = 1;
+	int ATTACHMENT_PKG__EXTRA_ATTACHMENTS = 0;
 
 	/**
 	 * The number of structural features of the '<em>Attachment Pkg</em>' class.
@@ -883,7 +874,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_PKG_FEATURE_COUNT = 2;
+	int ATTACHMENT_PKG_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Attachment Pkg</em>' class.
@@ -932,13 +923,22 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS__NAME = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Attachmant Ref Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Attachment Ref Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__ATTACHMANT_REF_PKG = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 1;
+	int SUBPASS__ATTACHMENT_REF_PKG = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Attachment Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__ATTACHMENT_PKG = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Subpass Index</b></em>' attribute.
@@ -947,7 +947,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__SUBPASS_INDEX = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 2;
+	int SUBPASS__SUBPASS_INDEX = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
@@ -956,7 +956,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__PIPELINE_PKG = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 3;
+	int SUBPASS__PIPELINE_PKG = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Bind Point</b></em>' attribute.
@@ -965,7 +965,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__BIND_POINT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 4;
+	int SUBPASS__BIND_POINT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Compositor</b></em>' reference.
@@ -974,7 +974,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__COMPOSITOR = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 5;
+	int SUBPASS__COMPOSITOR = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Wait For Stage</b></em>' attribute.
@@ -983,7 +983,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__WAIT_FOR_STAGE = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 6;
+	int SUBPASS__WAIT_FOR_STAGE = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Sync Stage</b></em>' attribute.
@@ -992,7 +992,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__SYNC_STAGE = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 7;
+	int SUBPASS__SYNC_STAGE = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Finish Stage</b></em>' attribute.
@@ -1001,7 +1001,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__FINISH_STAGE = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 8;
+	int SUBPASS__FINISH_STAGE = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Wait For Accesses</b></em>' attribute list.
@@ -1010,7 +1010,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__WAIT_FOR_ACCESSES = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 9;
+	int SUBPASS__WAIT_FOR_ACCESSES = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Sync Accesses</b></em>' attribute list.
@@ -1019,7 +1019,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__SYNC_ACCESSES = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 10;
+	int SUBPASS__SYNC_ACCESSES = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Finish Accesses</b></em>' attribute list.
@@ -1028,7 +1028,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__FINISH_ACCESSES = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 11;
+	int SUBPASS__FINISH_ACCESSES = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Extension Pkg</b></em>' containment reference.
@@ -1037,7 +1037,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__EXTENSION_PKG = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 12;
+	int SUBPASS__EXTENSION_PKG = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 13;
 
 	/**
 	 * The number of structural features of the '<em>Subpass</em>' class.
@@ -1046,7 +1046,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS_FEATURE_COUNT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 13;
+	int SUBPASS_FEATURE_COUNT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 14;
 
 	/**
 	 * The number of operations of the '<em>Subpass</em>' class.
@@ -1386,13 +1386,22 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__CONFIGURATION = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Color Attachment</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_PROCESS__COLOR_ATTACHMENT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Attachment Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__ATTACHMENT_PKG = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
+	int GRAPHIC_PROCESS__ATTACHMENT_PKG = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Subpasses</b></em>' containment reference list.
@@ -1401,7 +1410,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__SUBPASSES = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 3;
+	int GRAPHIC_PROCESS__SUBPASSES = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Process</em>' class.
@@ -1410,7 +1419,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 4;
+	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Process</em>' class.
@@ -3072,17 +3081,6 @@ public interface GraphicPackage extends EPackage
 	EReference getAttachmentPkg_ExtraAttachments();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg#getColorAttachment <em>Color Attachment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Color Attachment</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg#getColorAttachment()
-	 * @see #getAttachmentPkg()
-	 * @generated
-	 */
-	EReference getAttachmentPkg_ColorAttachment();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass <em>Subpass</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3093,15 +3091,26 @@ public interface GraphicPackage extends EPackage
 	EClass getSubpass();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmantRefPkg <em>Attachmant Ref Pkg</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmentRefPkg <em>Attachment Ref Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Attachmant Ref Pkg</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmantRefPkg()
+	 * @return the meta object for the containment reference '<em>Attachment Ref Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmentRefPkg()
 	 * @see #getSubpass()
 	 * @generated
 	 */
-	EReference getSubpass_AttachmantRefPkg();
+	EReference getSubpass_AttachmentRefPkg();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmentPkg <em>Attachment Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Attachment Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getAttachmentPkg()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EReference getSubpass_AttachmentPkg();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSubpassIndex <em>Subpass Index</em>}'.
@@ -3415,6 +3424,17 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EReference getGraphicProcess_Configuration();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getColorAttachment <em>Color Attachment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Color Attachment</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getColorAttachment()
+	 * @see #getGraphicProcess()
+	 * @generated
+	 */
+	EReference getGraphicProcess_ColorAttachment();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getAttachmentPkg <em>Attachment Pkg</em>}'.
@@ -4422,14 +4442,6 @@ public interface GraphicPackage extends EPackage
 		EReference ATTACHMENT_PKG__EXTRA_ATTACHMENTS = eINSTANCE.getAttachmentPkg_ExtraAttachments();
 
 		/**
-		 * The meta object literal for the '<em><b>Color Attachment</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ATTACHMENT_PKG__COLOR_ATTACHMENT = eINSTANCE.getAttachmentPkg_ColorAttachment();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl <em>Subpass</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4440,12 +4452,20 @@ public interface GraphicPackage extends EPackage
 		EClass SUBPASS = eINSTANCE.getSubpass();
 
 		/**
-		 * The meta object literal for the '<em><b>Attachmant Ref Pkg</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Attachment Ref Pkg</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUBPASS__ATTACHMANT_REF_PKG = eINSTANCE.getSubpass_AttachmantRefPkg();
+		EReference SUBPASS__ATTACHMENT_REF_PKG = eINSTANCE.getSubpass_AttachmentRefPkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Attachment Pkg</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUBPASS__ATTACHMENT_PKG = eINSTANCE.getSubpass_AttachmentPkg();
 
 		/**
 		 * The meta object literal for the '<em><b>Subpass Index</b></em>' attribute feature.
@@ -4690,6 +4710,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference GRAPHIC_PROCESS__CONFIGURATION = eINSTANCE.getGraphicProcess_Configuration();
+
+		/**
+		 * The meta object literal for the '<em><b>Color Attachment</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHIC_PROCESS__COLOR_ATTACHMENT = eINSTANCE.getGraphicProcess_ColorAttachment();
 
 		/**
 		 * The meta object literal for the '<em><b>Attachment Pkg</b></em>' containment reference feature.

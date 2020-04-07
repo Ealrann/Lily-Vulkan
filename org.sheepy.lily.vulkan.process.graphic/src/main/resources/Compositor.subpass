@@ -4,7 +4,7 @@
     <resources xsi:type="resource:GenericConstantBuffer" name="Fragment Constants"/>
   </resourcePkg>
   <descriptorPkg/>
-  <attachmantRefPkg/>
+  <attachmentRefPkg/>
   <pipelinePkg>
     <pipelines xsi:type="graphic:GraphicsPipeline" layout="//@pipelinePkg/@pipelines.0/@descriptorSetPkg/@descriptorSets.0">
       <taskPkg>

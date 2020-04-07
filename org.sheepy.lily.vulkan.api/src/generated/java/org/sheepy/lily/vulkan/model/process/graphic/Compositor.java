@@ -100,7 +100,7 @@ public interface Compositor extends ICompositor, LNamedElement
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Input Attachments</em>' reference list.
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getCompositor_InputAttachments()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	EList<ExtraAttachment> getInputAttachments();

@@ -4,8 +4,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkFramebufferCreateInfo;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.vulkan.core.graphic.IFramebufferManager;
-import org.sheepy.lily.vulkan.core.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.api.graphic.IFramebufferManager;
 import org.sheepy.lily.vulkan.core.resource.attachment.IExtraAttachmentAdapter;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
@@ -71,7 +70,7 @@ public class FramebufferManager implements IFramebufferManager, IAllocable<Graph
 	}
 
 	private static VkFramebufferCreateInfo allocCreateInfo(MemoryStack stack,
-														   IGraphicContext graphicContext,
+														   GraphicContext graphicContext,
 														   LongBuffer attachments)
 	{
 		final var extent = graphicContext.getSurfaceManager().getExtent();

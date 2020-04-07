@@ -49,7 +49,7 @@ public class PhysicalDeviceSelector
 		devices.sort(Comparator.comparingInt(o -> o.score));
 		final var winner = devices.get(0).deviceBuilder;
 		if (DebugUtil.DEBUG_ENABLED) winner.printInfo(DebugUtil.DEBUG_VERBOSE_ENABLED);
-		return winner.build(instanceExtensions, stack);
+		return winner.build(instanceExtensions, surface, stack);
 	}
 
 	private void load(MemoryStack stack) throws AssertionError

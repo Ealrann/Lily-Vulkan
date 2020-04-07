@@ -73,14 +73,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EFormat"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttachmentPkg">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="colorAttachment" lowerBound="1"
-        eType="#//SwapImageAttachment" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extraAttachments" upperBound="-1"
         eType="#//ExtraAttachment" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Subpass" eSuperTypes="vulkan.ecore#//IResourceContainer ../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attachmantRefPkg" eType="#//AttachmentRefPkg"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentRefPkg" eType="#//AttachmentRefPkg"
         containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentPkg" eType="#//AttachmentPkg"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="subpassIndex" unique="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="0"/>
@@ -144,6 +144,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="GraphicProcess">
     <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
         eType="#//GraphicConfiguration" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="colorAttachment" lowerBound="1"
+        eType="#//SwapImageAttachment" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentPkg" lowerBound="1"
         eType="#//AttachmentPkg" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subpasses" upperBound="-1"

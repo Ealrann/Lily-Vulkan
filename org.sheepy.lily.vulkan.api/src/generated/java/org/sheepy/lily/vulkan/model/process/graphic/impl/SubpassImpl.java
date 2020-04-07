@@ -23,6 +23,7 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
@@ -40,7 +41,8 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getResourcePkg <em>Resource Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getDescriptorPkg <em>Descriptor Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getAttachmantRefPkg <em>Attachmant Ref Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getAttachmentRefPkg <em>Attachment Ref Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getAttachmentPkg <em>Attachment Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getSubpassIndex <em>Subpass Index</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getBindPoint <em>Bind Point</em>}</li>
@@ -99,14 +101,24 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAttachmantRefPkg() <em>Attachmant Ref Pkg</em>}' containment reference.
+	 * The cached value of the '{@link #getAttachmentRefPkg() <em>Attachment Ref Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAttachmantRefPkg()
+	 * @see #getAttachmentRefPkg()
 	 * @generated
 	 * @ordered
 	 */
-	protected AttachmentRefPkg attachmantRefPkg;
+	protected AttachmentRefPkg attachmentRefPkg;
+
+	/**
+	 * The cached value of the '{@link #getAttachmentPkg() <em>Attachment Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAttachmentPkg()
+	 * @generated
+	 * @ordered
+	 */
+	protected AttachmentPkg attachmentPkg;
 
 	/**
 	 * The default value of the '{@link #getSubpassIndex() <em>Subpass Index</em>}' attribute.
@@ -420,9 +432,9 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * @generated
 	 */
 	@Override
-	public AttachmentRefPkg getAttachmantRefPkg()
+	public AttachmentRefPkg getAttachmentRefPkg()
 	{
-		return attachmantRefPkg;
+		return attachmentRefPkg;
 	}
 
 	/**
@@ -430,13 +442,13 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetAttachmantRefPkg(AttachmentRefPkg newAttachmantRefPkg, NotificationChain msgs)
+	public NotificationChain basicSetAttachmentRefPkg(AttachmentRefPkg newAttachmentRefPkg, NotificationChain msgs)
 	{
-		AttachmentRefPkg oldAttachmantRefPkg = attachmantRefPkg;
-		attachmantRefPkg = newAttachmantRefPkg;
+		AttachmentRefPkg oldAttachmentRefPkg = attachmentRefPkg;
+		attachmentRefPkg = newAttachmentRefPkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__ATTACHMANT_REF_PKG, oldAttachmantRefPkg, newAttachmantRefPkg);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__ATTACHMENT_REF_PKG, oldAttachmentRefPkg, newAttachmentRefPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -448,20 +460,70 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * @generated
 	 */
 	@Override
-	public void setAttachmantRefPkg(AttachmentRefPkg newAttachmantRefPkg)
+	public void setAttachmentRefPkg(AttachmentRefPkg newAttachmentRefPkg)
 	{
-		if (newAttachmantRefPkg != attachmantRefPkg)
+		if (newAttachmentRefPkg != attachmentRefPkg)
 		{
 			NotificationChain msgs = null;
-			if (attachmantRefPkg != null)
-				msgs = ((InternalEObject)attachmantRefPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__ATTACHMANT_REF_PKG, null, msgs);
-			if (newAttachmantRefPkg != null)
-				msgs = ((InternalEObject)newAttachmantRefPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__ATTACHMANT_REF_PKG, null, msgs);
-			msgs = basicSetAttachmantRefPkg(newAttachmantRefPkg, msgs);
+			if (attachmentRefPkg != null)
+				msgs = ((InternalEObject)attachmentRefPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__ATTACHMENT_REF_PKG, null, msgs);
+			if (newAttachmentRefPkg != null)
+				msgs = ((InternalEObject)newAttachmentRefPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__ATTACHMENT_REF_PKG, null, msgs);
+			msgs = basicSetAttachmentRefPkg(newAttachmentRefPkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__ATTACHMANT_REF_PKG, newAttachmantRefPkg, newAttachmantRefPkg));
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__ATTACHMENT_REF_PKG, newAttachmentRefPkg, newAttachmentRefPkg));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AttachmentPkg getAttachmentPkg()
+	{
+		return attachmentPkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAttachmentPkg(AttachmentPkg newAttachmentPkg, NotificationChain msgs)
+	{
+		AttachmentPkg oldAttachmentPkg = attachmentPkg;
+		attachmentPkg = newAttachmentPkg;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__ATTACHMENT_PKG, oldAttachmentPkg, newAttachmentPkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setAttachmentPkg(AttachmentPkg newAttachmentPkg)
+	{
+		if (newAttachmentPkg != attachmentPkg)
+		{
+			NotificationChain msgs = null;
+			if (attachmentPkg != null)
+				msgs = ((InternalEObject)attachmentPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__ATTACHMENT_PKG, null, msgs);
+			if (newAttachmentPkg != null)
+				msgs = ((InternalEObject)newAttachmentPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__ATTACHMENT_PKG, null, msgs);
+			msgs = basicSetAttachmentPkg(newAttachmentPkg, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__ATTACHMENT_PKG, newAttachmentPkg, newAttachmentPkg));
 	}
 
 	/**
@@ -793,8 +855,10 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return basicSetResourcePkg(null, msgs);
 			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
 				return basicSetDescriptorPkg(null, msgs);
-			case GraphicPackage.SUBPASS__ATTACHMANT_REF_PKG:
-				return basicSetAttachmantRefPkg(null, msgs);
+			case GraphicPackage.SUBPASS__ATTACHMENT_REF_PKG:
+				return basicSetAttachmentRefPkg(null, msgs);
+			case GraphicPackage.SUBPASS__ATTACHMENT_PKG:
+				return basicSetAttachmentPkg(null, msgs);
 			case GraphicPackage.SUBPASS__PIPELINE_PKG:
 				return basicSetPipelinePkg(null, msgs);
 			case GraphicPackage.SUBPASS__EXTENSION_PKG:
@@ -819,8 +883,10 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return getDescriptorPkg();
 			case GraphicPackage.SUBPASS__NAME:
 				return getName();
-			case GraphicPackage.SUBPASS__ATTACHMANT_REF_PKG:
-				return getAttachmantRefPkg();
+			case GraphicPackage.SUBPASS__ATTACHMENT_REF_PKG:
+				return getAttachmentRefPkg();
+			case GraphicPackage.SUBPASS__ATTACHMENT_PKG:
+				return getAttachmentPkg();
 			case GraphicPackage.SUBPASS__SUBPASS_INDEX:
 				return getSubpassIndex();
 			case GraphicPackage.SUBPASS__PIPELINE_PKG:
@@ -868,8 +934,11 @@ public class SubpassImpl extends LilyEObject implements Subpass
 			case GraphicPackage.SUBPASS__NAME:
 				setName((String)newValue);
 				return;
-			case GraphicPackage.SUBPASS__ATTACHMANT_REF_PKG:
-				setAttachmantRefPkg((AttachmentRefPkg)newValue);
+			case GraphicPackage.SUBPASS__ATTACHMENT_REF_PKG:
+				setAttachmentRefPkg((AttachmentRefPkg)newValue);
+				return;
+			case GraphicPackage.SUBPASS__ATTACHMENT_PKG:
+				setAttachmentPkg((AttachmentPkg)newValue);
 				return;
 			case GraphicPackage.SUBPASS__SUBPASS_INDEX:
 				setSubpassIndex((Integer)newValue);
@@ -930,8 +999,11 @@ public class SubpassImpl extends LilyEObject implements Subpass
 			case GraphicPackage.SUBPASS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case GraphicPackage.SUBPASS__ATTACHMANT_REF_PKG:
-				setAttachmantRefPkg((AttachmentRefPkg)null);
+			case GraphicPackage.SUBPASS__ATTACHMENT_REF_PKG:
+				setAttachmentRefPkg((AttachmentRefPkg)null);
+				return;
+			case GraphicPackage.SUBPASS__ATTACHMENT_PKG:
+				setAttachmentPkg((AttachmentPkg)null);
 				return;
 			case GraphicPackage.SUBPASS__SUBPASS_INDEX:
 				setSubpassIndex(SUBPASS_INDEX_EDEFAULT);
@@ -986,8 +1058,10 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return descriptorPkg != null;
 			case GraphicPackage.SUBPASS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case GraphicPackage.SUBPASS__ATTACHMANT_REF_PKG:
-				return attachmantRefPkg != null;
+			case GraphicPackage.SUBPASS__ATTACHMENT_REF_PKG:
+				return attachmentRefPkg != null;
+			case GraphicPackage.SUBPASS__ATTACHMENT_PKG:
+				return attachmentPkg != null;
 			case GraphicPackage.SUBPASS__SUBPASS_INDEX:
 				return subpassIndex != SUBPASS_INDEX_EDEFAULT;
 			case GraphicPackage.SUBPASS__PIPELINE_PKG:

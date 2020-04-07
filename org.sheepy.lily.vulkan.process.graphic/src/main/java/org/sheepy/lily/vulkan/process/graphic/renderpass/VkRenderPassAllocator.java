@@ -4,7 +4,10 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkRenderPassCreateInfo;
 import org.sheepy.lily.vulkan.core.util.Logger;
-import org.sheepy.lily.vulkan.model.process.graphic.*;
+import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
+import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.util.SubpassUtil;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 
@@ -34,7 +37,7 @@ public final class VkRenderPassAllocator
 	{
 		final var format = swapchainImageFormat.getValue();
 		final var attachementAllocator = new VkAttachmentDescriptionAllocator(format);
-		final var descriptions = getAttachments(process.getAttachmentPkg());
+		final var descriptions = getAttachments(process);
 		final var attachments = attachementAllocator.allocate(stack, descriptions);
 
 		final List<Subpass> renderSubpasses = new ArrayList<>();
@@ -63,10 +66,10 @@ public final class VkRenderPassAllocator
 		return aRenderPass[0];
 	}
 
-	private List<Attachment> getAttachments(AttachmentPkg attachmentPkg)
+	private List<Attachment> getAttachments(GraphicProcess process)
 	{
 		final List<Attachment> res = new ArrayList<>();
-		res.add(attachmentPkg.getColorAttachment());
+		res.add(process.getColorAttachment());
 		res.addAll(extraAttachments);
 		return res;
 	}

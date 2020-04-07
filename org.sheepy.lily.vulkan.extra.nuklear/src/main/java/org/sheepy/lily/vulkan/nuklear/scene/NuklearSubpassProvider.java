@@ -4,8 +4,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.resource.IResourceLoader;
 import org.sheepy.lily.core.model.ui.UI;
+import org.sheepy.lily.vulkan.api.device.IVulkanContext;
 import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
+import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -19,13 +20,14 @@ public final class NuklearSubpassProvider implements ICompositor_SubpassProvider
 	private static final String PIPELINE_PATH = "Nuklear.subpass";
 
 	@Override
-	public Subpass build(UI part, AttachmentPkg attachmentPkg)
+	public Subpass build(UI part, IVulkanContext context)
 	{
+		final var colorAttachment = (Attachment) part.getDstImage();
 		final var subpass = loadSubpass(part.isImageSupport());
-		final var attachmentRefPkg = subpass.getAttachmantRefPkg();
+		final var attachmentRefPkg = subpass.getAttachmentRefPkg();
 		final var colorRef = GraphicFactory.eINSTANCE.createAttachmentRef();
 		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
-		colorRef.setAttachment(attachmentPkg.getColorAttachment());
+		colorRef.setAttachment(colorAttachment);
 		attachmentRefPkg.getAttachmentRefs().add(colorRef);
 
 		return subpass;
