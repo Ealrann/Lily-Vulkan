@@ -7,42 +7,32 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.vulkan.VkInstance;
+import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.Scene;
 import org.sheepy.lily.game.api.window.IWindow;
-import org.sheepy.lily.game.api.window.IWindowListener;
 import org.sheepy.lily.vulkan.core.util.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.glfw.GLFWVulkan.glfwCreateWindowSurface;
 import static org.lwjgl.glfw.GLFWVulkan.glfwGetRequiredInstanceExtensions;
 
-public class Window implements IWindow
+public class Window extends Notifier<IWindow.Features<?>> implements IWindow
 {
 	private static final String FAILED_TO_CREATE_SURFACE = "Failed to create surface";
 
-	private final List<IWindowListener.ISizeListener> sizeListeners = new ArrayList<>();
-	private final List<IWindowListener.ICloseListener> closeListeners = new ArrayList<>();
-	private final List<IWindowListener.IOpenListener> openListeners = new ArrayList<>();
-	private final List<IWindowListener.ISurfaceDeprecatedListener> surfaceListeners = new ArrayList<>();
 	private final Scene scene;
 	private final Consumer<Notification> fullscreenListener = this::requestFullscreen;
 	private final Consumer<Notification> sizeListener = this::resize;
 
-	private long id;
-
+	private long ptr;
 	private final String title;
 	private boolean opened = false;
 	private boolean cursorHide = false;
 
-	private final long[] aSurface = new long[1];
-
 	private GLFWWindowSizeCallback callback;
-
 	private GLFWVidMode mode;
 	private Vector2ic windowSize = null;
 
@@ -50,6 +40,7 @@ public class Window implements IWindow
 
 	public Window(Scene scene, String title)
 	{
+		super(Features.COUNT);
 		this.scene = scene;
 		this.title = title;
 		load();
@@ -83,7 +74,7 @@ public class Window implements IWindow
 		}
 
 		final var size = scene.getSize();
-		id = glfwCreateWindow(size.x(), size.y(), title, monitor, 0);
+		ptr = glfwCreateWindow(size.x(), size.y(), title, monitor, 0);
 		hideCursor(cursorHide);
 		callback = new GLFWWindowSizeCallback()
 		{
@@ -91,22 +82,23 @@ public class Window implements IWindow
 			public void invoke(long window, int width, int height)
 			{
 				disableResizeListener = true;
-				scene.setSize(new Vector2i(width, height));
-				fireResizeEvent();
+				final Vector2i size = new Vector2i(width, height);
+				scene.setSize(size);
+				Window.this.notify(Features.Size, size);
 				disableResizeListener = false;
 			}
 		};
-		glfwSetWindowSizeCallback(id, callback);
+		glfwSetWindowSizeCallback(ptr, callback);
 
 		opened = true;
 
 		scene.listen(fullscreenListener, ApplicationPackage.SCENE__FULLSCREEN);
 		scene.listen(sizeListener, ApplicationPackage.SCENE__SIZE);
 
-		fireOpenWindow();
-		fireResizeEvent();
+		Window.this.notify(Features.Open, ptr);
+		Window.this.notify(Features.Size, scene.getSize());
 
-		glfwShowWindow(id);
+		glfwShowWindow(ptr);
 	}
 
 	@Override
@@ -118,16 +110,16 @@ public class Window implements IWindow
 	@Override
 	public long getPtr()
 	{
-		return id;
+		return ptr;
 	}
 
 	public void close()
 	{
 		opened = false;
-		fireCloseWindow();
-		glfwSetWindowSizeCallback(id, null);
+		Window.this.notify(Features.Close, ptr);
+		glfwSetWindowSizeCallback(ptr, null);
 		callback.free();
-		glfwDestroyWindow(id);
+		glfwDestroyWindow(ptr);
 		scene.sulk(fullscreenListener, ApplicationPackage.SCENE__FULLSCREEN);
 		scene.sulk(sizeListener, ApplicationPackage.SCENE__SIZE);
 	}
@@ -139,14 +131,15 @@ public class Window implements IWindow
 
 	public boolean shouldClose()
 	{
-		return glfwWindowShouldClose(id);
+		return glfwWindowShouldClose(ptr);
 	}
 
 	public VkSurface createSurface(VkInstance vkInstance)
 	{
 		manageFullscreenChange();
 
-		final int err = glfwCreateWindowSurface(vkInstance, id, null, aSurface);
+		final long[] aSurface = new long[1];
+		final int err = glfwCreateWindowSurface(vkInstance, ptr, null, aSurface);
 		Logger.check(err, FAILED_TO_CREATE_SURFACE);
 
 		return new VkSurface(vkInstance, aSurface[0]);
@@ -157,8 +150,7 @@ public class Window implements IWindow
 		if (notification.getNewBooleanValue() != notification.getOldBooleanValue())
 		{
 			fullscreenChangeRequested = true;
-
-			fireSurfaceDeprecation();
+			Window.this.notify(Features.SurfaceDeprecated);
 		}
 	}
 
@@ -170,7 +162,7 @@ public class Window implements IWindow
 			final var newSize = (Vector2ic) notification.getNewValue();
 			if (newSize.x() != oldSize.x() || newSize.y() != oldSize.y())
 			{
-				glfwSetWindowSize(id, newSize.x(), newSize.y());
+				glfwSetWindowSize(ptr, newSize.x(), newSize.y());
 			}
 		}
 	}
@@ -200,7 +192,7 @@ public class Window implements IWindow
 		final int[] width = new int[1];
 		final int[] height = new int[1];
 
-		glfwGetFramebufferSize(id, width, height);
+		glfwGetFramebufferSize(ptr, width, height);
 		return new Vector2i(width[0], height[0]);
 	}
 
@@ -210,12 +202,12 @@ public class Window implements IWindow
 		if (hide)
 		{
 			cursorHide = true;
-			glfwSetInputMode(id, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+			glfwSetInputMode(ptr, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 		}
 		else
 		{
 			cursorHide = false;
-			glfwSetInputMode(id, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+			glfwSetInputMode(ptr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 		}
 	}
 
@@ -229,56 +221,5 @@ public class Window implements IWindow
 	public boolean isOpenned()
 	{
 		return opened;
-	}
-
-	@Override
-	public void addListener(IWindowListener l)
-	{
-		if (l instanceof IWindowListener.ISizeListener) sizeListeners.add((IWindowListener.ISizeListener) l);
-		else if (l instanceof IWindowListener.ICloseListener) closeListeners.add((IWindowListener.ICloseListener) l);
-		else if (l instanceof IWindowListener.IOpenListener) openListeners.add((IWindowListener.IOpenListener) l);
-		else if (l instanceof IWindowListener.ISurfaceDeprecatedListener)
-			surfaceListeners.add((IWindowListener.ISurfaceDeprecatedListener) l);
-	}
-
-	@Override
-	public void removeListener(IWindowListener l)
-	{
-		if (l instanceof IWindowListener.ISizeListener) sizeListeners.remove(l);
-		else if (l instanceof IWindowListener.ICloseListener) closeListeners.remove(l);
-		else if (l instanceof IWindowListener.IOpenListener) openListeners.remove(l);
-		else if (l instanceof IWindowListener.ISurfaceDeprecatedListener) surfaceListeners.remove(l);
-	}
-
-	private void fireResizeEvent()
-	{
-		for (final var listener : sizeListeners)
-		{
-			listener.onResize(scene.getSize());
-		}
-	}
-
-	private void fireCloseWindow()
-	{
-		for (final var listener : closeListeners)
-		{
-			listener.onClose(id);
-		}
-	}
-
-	private void fireOpenWindow()
-	{
-		for (final var listener : openListeners)
-		{
-			listener.onOpen(id);
-		}
-	}
-
-	private void fireSurfaceDeprecation()
-	{
-		for (final var listener : surfaceListeners)
-		{
-			listener.onSurfaceDeprecation();
-		}
 	}
 }

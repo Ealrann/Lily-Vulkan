@@ -12,7 +12,7 @@ import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
-import org.sheepy.lily.game.api.window.IWindowListener;
+import org.sheepy.lily.game.api.window.IWindow;
 import org.sheepy.lily.game.core.allocation.GenericAllocator;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
@@ -51,7 +51,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private final GenericAllocator<ExecutionContext> resourceAllocator = new GenericAllocator<>(List.of(
 			RESOURCE_FEATURES,
 			DESCRIPTOR_FEATURES));
-	private final IWindowListener.IOpenListener openListener = id -> loadInputManager();
+	private final Runnable openListener = this::loadInputManager;
 	private final Window window;
 
 	private VulkanContext vulkanContext;
@@ -116,7 +116,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 			if (window != null)
 			{
 				loadInputManager();
-				window.addListener(openListener);
+				window.listenNoParam(openListener, IWindow.Features.Open);
 			}
 		}
 
@@ -191,7 +191,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 		if (window != null)
 		{
-			window.removeListener(openListener);
+			window.sulkNoParam(openListener, IWindow.Features.Open);
 		}
 
 		if (inputManager != null) inputManager.dispose();

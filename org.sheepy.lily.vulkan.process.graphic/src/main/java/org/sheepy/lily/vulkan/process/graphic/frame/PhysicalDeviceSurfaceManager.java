@@ -4,7 +4,7 @@ import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.game.api.window.IWindowListener;
+import org.sheepy.lily.game.api.window.IWindow;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.ISurfaceManager;
 import org.sheepy.lily.vulkan.core.device.capabilities.Capabilities;
@@ -20,8 +20,8 @@ import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
 public class PhysicalDeviceSurfaceManager implements ISurfaceManager, IAllocable<GraphicContext>
 {
-	private final IWindowListener.ISizeListener sizeListener = size -> setDirty(true);
-	private final IWindowListener.ISurfaceDeprecatedListener surfaceDeprecationListener = () -> setDirty(true);
+	private final Runnable sizeListener = () -> setDirty(true);
+	private final Runnable surfaceDeprecationListener = () -> setDirty(true);
 	private final ISurfaceListener surfaceListener = () -> setDirty(true);
 
 	private Capabilities capabilities;
@@ -50,8 +50,8 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager, IAllocable
 		surface.addListener(surfaceListener);
 
 		presentQueue = logicalDevice.borrowPresentQueue(surface);
-		window.addListener(sizeListener);
-		window.addListener(surfaceDeprecationListener);
+		window.listenNoParam(sizeListener, IWindow.Features.Size);
+		window.listen(surfaceDeprecationListener, IWindow.Features.SurfaceDeprecated);
 
 		capabilities = new Capabilities(context.getVkPhysicalDevice(), surface);
 		colorDomains = new ColorDomains(context.getVkPhysicalDevice(), surface);
@@ -93,10 +93,11 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager, IAllocable
 	public void free(GraphicContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
+		final var window = context.getWindow();
 
 		logicalDevice.returnQueue(presentQueue);
-		context.getWindow().removeListener(sizeListener);
-		context.getWindow().removeListener(surfaceDeprecationListener);
+		window.sulkNoParam(sizeListener, IWindow.Features.Size);
+		window.sulk(surfaceDeprecationListener, IWindow.Features.SurfaceDeprecated);
 		surface.removeListener(surfaceListener);
 
 		capabilities.free();

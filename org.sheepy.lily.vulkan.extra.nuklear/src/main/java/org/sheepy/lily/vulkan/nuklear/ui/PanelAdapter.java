@@ -13,11 +13,11 @@ import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.game.api.window.IWindow;
-import org.sheepy.lily.game.api.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 
 import java.nio.ByteBuffer;
+import java.util.function.Consumer;
 
 import static org.lwjgl.nuklear.Nuklear.*;
 
@@ -25,7 +25,7 @@ import static org.lwjgl.nuklear.Nuklear.*;
 @Adapter(scope = Panel.class)
 public class PanelAdapter extends Notifier<ITextWidgetAdapter.Features> implements IPanelAdapter, ITextWidgetAdapter
 {
-	private final IWindowListener.ISizeListener listener = this::updateLocation;
+	private final Consumer<Vector2ic> sizeListener = this::updateLocation;
 	private final Panel panel;
 	private final ByteBuffer textBuffer;
 
@@ -71,7 +71,7 @@ public class PanelAdapter extends Notifier<ITextWidgetAdapter.Features> implemen
 
 		if (window != null)
 		{
-			window.removeListener(listener);
+			window.sulk(sizeListener, IWindow.Features.Size);
 		}
 	}
 
@@ -97,7 +97,7 @@ public class PanelAdapter extends Notifier<ITextWidgetAdapter.Features> implemen
 		{
 			window = context.window;
 			updateLocation(window.getSize());
-			window.addListener(listener);
+			window.listen(sizeListener, IWindow.Features.Size);
 		}
 	}
 

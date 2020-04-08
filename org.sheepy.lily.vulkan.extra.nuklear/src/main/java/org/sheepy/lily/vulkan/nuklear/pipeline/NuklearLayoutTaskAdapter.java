@@ -13,9 +13,8 @@ import org.sheepy.lily.core.model.ui.IPanel;
 import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.game.api.window.IWindow;
-import org.sheepy.lily.game.api.window.IWindowListener;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.nuklear.pipeline.layout.LayoutManager;
@@ -26,6 +25,7 @@ import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 @Statefull
 @Adapter(scope = NuklearLayoutTask.class, lazy = false)
@@ -33,7 +33,7 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 													   IAllocableAdapter<IGraphicContext>
 {
 	private final NuklearLayoutTask task;
-	private final IWindowListener.ISizeListener resizeListener = this::onResize;
+	private final Consumer<Vector2ic> resizeListener = this::onResize;
 	private final UI ui;
 	private final LayoutManager layoutManager;
 	private final List<IPanelAdapter> panelAdapters = new ArrayList<>();
@@ -96,14 +96,14 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 	{
 		this.context = context;
 		window = context.getWindow();
-		window.addListener(resizeListener);
+		window.listen(resizeListener, IWindow.Features.Size);
 		requestLayout(true);
 	}
 
 	@Override
 	public void free(IGraphicContext context)
 	{
-		window.removeListener(resizeListener);
+		window.sulk(resizeListener, IWindow.Features.Size);
 		this.context = null;
 	}
 

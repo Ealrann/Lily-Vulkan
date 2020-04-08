@@ -16,7 +16,7 @@ import org.sheepy.lily.core.model.types.EHorizontalRelative;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
-import org.sheepy.lily.game.api.window.IWindowListener;
+import org.sheepy.lily.game.api.window.IWindow;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.extra.api.nuklear.ISelectorInputProviderAdapter;
@@ -42,7 +42,7 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 	private static final int MARGING_W = 5;
 
 	private final Consumer<Object> selectionListener = this::updateValue;
-	private final IWindowListener.ISizeListener listener = this::updateDataLocations;
+	private final Consumer<Vector2ic> sizeListener = this::updateDataLocations;
 	private final SelectorPanel panel;
 	private final List<LineData> datas;
 	private final int buttonSize;
@@ -62,6 +62,7 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 	private boolean hovered = false;
 
 	private NkColor backgroundColor;
+	private IWindow window;
 
 	public SelectorPanelAdapter(SelectorPanel panel)
 	{
@@ -136,6 +137,7 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 		{
 			data.free();
 		}
+		window.sulk(sizeListener, IWindow.Features.Size);
 	}
 
 	private void load(UIContext context)
@@ -143,7 +145,8 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 		final var surface = context.window.getSize();
 
 		updateDataLocations(surface);
-		context.window.addListener(listener);
+		window = context.window;
+		window.listen(sizeListener, IWindow.Features.Size);
 		backgroundColor = context.nkContext.style().window().fixed_background().data().color();
 	}
 
