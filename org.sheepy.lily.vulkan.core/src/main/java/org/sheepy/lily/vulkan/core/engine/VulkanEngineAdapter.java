@@ -32,6 +32,7 @@ import org.sheepy.lily.vulkan.core.engine.extension.InstanceExtensions;
 import org.sheepy.lily.vulkan.core.engine.utils.VulkanEngineAllocationRoot;
 import org.sheepy.lily.vulkan.core.engine.utils.VulkanEngineUtils;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.queue.QueueManager;
 import org.sheepy.lily.vulkan.core.input.VulkanInputManager;
 import org.sheepy.lily.vulkan.core.instance.VulkanInstance;
 import org.sheepy.lily.vulkan.core.instance.loader.Layers;
@@ -84,21 +85,22 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 		this.engine = engine;
 		application = (Application) engine.eContainer();
 		final var scene = application.getScene();
-		if (scene != null)
-		{
-			window = new Window(scene, application.getTitle());
-			inputManager = new VulkanInputManager(application, window);
-		}
-		else
-		{
-			window = null;
-			inputManager = null;
-		}
 
 		try (final var stack = stackPush())
 		{
 			final var extRequirementBuilder = new InstanceExtensions.Builder(stack);
-			extRequirementBuilder.requiresWindow();
+			if (scene != null)
+			{
+				window = new Window(scene, application.getTitle());
+				inputManager = new VulkanInputManager(application, window);
+				extRequirementBuilder.requiresWindow();
+			}
+			else
+			{
+				window = null;
+				inputManager = null;
+			}
+
 			if (DebugUtil.DEBUG_ENABLED)
 			{
 				extRequirementBuilder.requires(EInstanceExtension.VK_EXT_debug_report.name);
@@ -313,7 +315,8 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 		final var queueList = VulkanEngineUtils.generateQueueList(engine);
 		queueList.add(VulkanEngineAllocationRoot.ENGINE_QUEUE_TYPE);
-		logicalDevice = new LogicalDevice(physicalDevice, queueList, dummySurface, vkFeatures);
+		final var queueManager = new QueueManager(physicalDevice.vkPhysicalDevice, queueList, dummySurface);
+		logicalDevice = new LogicalDevice(physicalDevice, queueManager, vkFeatures);
 		logicalDevice.allocate(stack);
 	}
 

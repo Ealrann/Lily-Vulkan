@@ -21,7 +21,7 @@ public class CompositorSubpassProvider implements ICompositor_SubpassProvider<Co
 	private static final String PIPELINE_PATH = "com/isotropy/materia/asset/model/Compositor.subpass";
 
 	@Override
-	public Subpass build(Compositor compositor, IVulkanContext context)
+	public Subpass build(Compositor compositor, GraphicProcess process, IVulkanContext context)
 	{
 		final var colorAttachments = compositor.getColorAttachments();
 		final var inputAttachments = compositor.getInputAttachments();

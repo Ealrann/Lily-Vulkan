@@ -80,7 +80,7 @@ public final class ScreenEffectSubpassProvider implements ICompositor_SubpassPro
 	}
 
 	@Override
-	public Subpass build(final ScreenEffect part, final IVulkanContext context)
+	public Subpass build(final ScreenEffect part, GraphicProcess process, IVulkanContext context)
 	{
 		return subpass;
 	}

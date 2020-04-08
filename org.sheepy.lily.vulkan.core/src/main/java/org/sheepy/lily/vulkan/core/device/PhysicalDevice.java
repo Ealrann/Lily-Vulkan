@@ -186,26 +186,38 @@ public class PhysicalDevice implements IPhysicalDevice
 				displaysInfomation = DisplayInformationLoader.getDisplayInfos(stack, vkPhysicalDevice);
 			}
 
-			final Capabilities capabilities = new Capabilities(vkPhysicalDevice, dummySurface);
-			final int usageFlag = capabilities.vkCapabilities.supportedUsageFlags();
-			capabilities.free();
-
-			final List<EImageUsage> usages = new ArrayList<>();
-			for (var usage : EImageUsage.values())
-			{
-				if ((usage.getValue() & usageFlag) != 0)
-				{
-					usages.add(usage);
-				}
-			}
-
+			final var usages = swapUsages(dummySurface);
 			return new PhysicalDevice(vkPhysicalDevice,
 									  name,
 									  deviceExtensions.build(),
 									  deviceProperties,
 									  memProperties,
 									  displaysInfomation,
-									  EnumSet.copyOf(usages));
+									  usages);
+		}
+
+		private Set<EImageUsage> swapUsages(final VkSurface dummySurface)
+		{
+			if (dummySurface == null)
+			{
+				return Set.of();
+			}
+			else
+			{
+				final var capabilities = new Capabilities(vkPhysicalDevice, dummySurface);
+				final int usageFlag = capabilities.vkCapabilities.supportedUsageFlags();
+				capabilities.free();
+
+				final List<EImageUsage> usages = new ArrayList<>();
+				for (var usage : EImageUsage.values())
+				{
+					if ((usage.getValue() & usageFlag) != 0)
+					{
+						usages.add(usage);
+					}
+				}
+				return EnumSet.copyOf(usages);
+			}
 		}
 
 		public void printInfo(final boolean verbose)

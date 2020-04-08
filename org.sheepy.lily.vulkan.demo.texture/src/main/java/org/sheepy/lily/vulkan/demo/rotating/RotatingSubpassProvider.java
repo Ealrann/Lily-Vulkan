@@ -3,11 +3,12 @@ package org.sheepy.lily.vulkan.demo.rotating;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.model.application.GenericScenePart;
 import org.sheepy.lily.core.model.application.Scene;
-import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.api.device.IVulkanContext;
 import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
 import org.sheepy.lily.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.lily.vulkan.demo.mesh.MeshSubpassBuilder;
 import org.sheepy.lily.vulkan.demo.triangle.TriangleMeshBuilder;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
 
@@ -18,11 +19,10 @@ public class RotatingSubpassProvider implements ICompositor_SubpassProvider<Gene
 	static final String FRAGMENT_SHADER_PATH = "rotating.frag.spv";
 
 	@Override
-	public Subpass build(GenericScenePart part, IGraphicContext context)
+	public Subpass build(GenericScenePart part, GraphicProcess process, IVulkanContext context)
 	{
 		final var scene = (Scene) part.eContainer();
 		final var size = scene.getSize();
-		final var attachmentPkg = context.getGraphicProcess().getAttachmentPkg();
 		final var meshBuilder = new TriangleMeshBuilder();
 		final var meshConfiguration = new MeshConfiguration(meshBuilder, size);
 		meshConfiguration.useCamera = true;
@@ -31,6 +31,6 @@ public class RotatingSubpassProvider implements ICompositor_SubpassProvider<Gene
 		meshConfiguration.rasterizerFrontFace = EFrontFace.COUNTER_CLOCKWISE;
 
 		final var builder = new MeshSubpassBuilder(meshConfiguration);
-		return builder.build(attachmentPkg);
+		return builder.build(process);
 	}
 }

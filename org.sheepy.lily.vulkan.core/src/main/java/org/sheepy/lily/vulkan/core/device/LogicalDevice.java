@@ -22,23 +22,17 @@ public class LogicalDevice implements ILogicalDevice
 	private static final String FAILED_TO_CREATE_LOGICAL_DEVICE = "Failed to create logical device";
 	private static final String WAIT_IDLE_FAILED = "Wait idle failed";
 	public final PhysicalDevice physicalDevice;
-	public final VkSurface dummySurface;
 
 	private final List<EPhysicalFeature> features;
 	private final QueueManager queueManager;
 
 	private VkDevice vkDevice;
 
-	public LogicalDevice(PhysicalDevice physicalDevice,
-						 List<EQueueType> queueTypes,
-						 VkSurface dummySurface,
-						 List<EPhysicalFeature> features)
+	public LogicalDevice(PhysicalDevice physicalDevice, QueueManager queueManager, List<EPhysicalFeature> features)
 	{
 		this.physicalDevice = physicalDevice;
-		this.dummySurface = dummySurface;
 		this.features = List.copyOf(features);
-
-		queueManager = new QueueManager(physicalDevice.vkPhysicalDevice, queueTypes, dummySurface);
+		this.queueManager = queueManager;
 	}
 
 	public void allocate(MemoryStack stack)

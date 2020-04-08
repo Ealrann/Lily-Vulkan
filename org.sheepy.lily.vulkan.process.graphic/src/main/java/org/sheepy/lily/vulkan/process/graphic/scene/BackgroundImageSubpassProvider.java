@@ -39,7 +39,7 @@ public class BackgroundImageSubpassProvider implements ICompositor_SubpassProvid
 	}
 
 	@Override
-	public Subpass build(BackgroundImage part, IVulkanContext context)
+	public Subpass build(BackgroundImage part, GraphicProcess process, IVulkanContext context)
 	{
 		final var subpass = loadSubpass();
 		final var swapUsages = context.getPhysicalDevice().supportedSwapUsages();

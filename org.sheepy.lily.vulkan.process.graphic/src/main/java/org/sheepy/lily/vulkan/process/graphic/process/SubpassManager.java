@@ -111,6 +111,6 @@ public class SubpassManager
 	private <T extends ICompositor> Subpass buildSubpass(T scenePart)
 	{
 		final var subpassProvider = scenePart.<ICompositor_SubpassProvider<T>>adaptGeneric(ICompositor_SubpassProvider.class);
-		return subpassProvider.build(scenePart, context);
+		return subpassProvider.build(scenePart, process, context);
 	}
 }

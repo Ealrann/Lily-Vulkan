@@ -18,7 +18,6 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
@@ -72,9 +71,10 @@ public final class EngineBuilder
 
 		createComputeProcessPool(sharedResources, sharedDescriptors);
 
+		loadColorAttachment();
 		graphicProcess = GraphicFactory.eINSTANCE.createGraphicProcess();
 		graphicProcess.setConfiguration(configuration);
-		graphicProcess.setAttachmentPkg(newAttachmentPkg());
+		graphicProcess.setColorAttachment(colorAttachment);
 		graphicProcess.setCadence(buildCadence(FRAME_COUNT));
 
 		engine.getProcesses().add(barrierProcess);
@@ -87,10 +87,8 @@ public final class EngineBuilder
 		return engine;
 	}
 
-	private AttachmentPkg newAttachmentPkg()
+	private void loadColorAttachment()
 	{
-		final var attachments = GraphicFactory.eINSTANCE.createAttachmentPkg();
-
 		colorAttachment.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
 		colorAttachment.setLoadOp(EAttachmentLoadOp.LOAD);
 		colorAttachment.setStoreOp(EAttachmentStoreOp.STORE);
@@ -98,10 +96,6 @@ public final class EngineBuilder
 		colorAttachment.setStencilStoreOp(EAttachmentStoreOp.DONT_CARE);
 		colorAttachment.setInitialLayout(EImageLayout.TRANSFER_DST_OPTIMAL);
 		colorAttachment.setFinalLayout(EImageLayout.PRESENT_SRC_KHR);
-
-		attachments.setColorAttachment(colorAttachment);
-
-		return attachments;
 	}
 
 	private void createComputeProcessPool(ResourcePkg sharedResources, DescriptorPkg sharedDescriptors)

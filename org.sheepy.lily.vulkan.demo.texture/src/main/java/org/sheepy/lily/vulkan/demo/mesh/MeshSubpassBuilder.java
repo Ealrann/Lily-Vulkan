@@ -6,9 +6,9 @@ import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.Shader;
@@ -30,7 +30,7 @@ public final class MeshSubpassBuilder
 		this.meshConfiguration = meshConfiguration;
 	}
 
-	public Subpass build(AttachmentPkg attachmentPkg)
+	public Subpass build(GraphicProcess process)
 	{
 		final var pipelines = buildPipelines();
 		final var pipelinePkg = ProcessFactory.eINSTANCE.createPipelinePkg();
@@ -39,12 +39,12 @@ public final class MeshSubpassBuilder
 
 		final var colorRef = GraphicFactory.eINSTANCE.createAttachmentRef();
 		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
-		colorRef.setAttachment(attachmentPkg.getColorAttachment());
+		colorRef.setAttachment(process.getColorAttachment());
 		attachmentRefPkg.getAttachmentRefs().add(colorRef);
 
 		if (meshConfiguration.depth)
 		{
-			final var depthAttachment = attachmentPkg.getExtraAttachments().get(0);
+			final var depthAttachment = process.getAttachmentPkg().getExtraAttachments().get(0);
 			final var depthRef = GraphicFactory.eINSTANCE.createAttachmentRef();
 			depthRef.setLayout(EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
 			depthRef.setAttachment(depthAttachment);
@@ -55,7 +55,7 @@ public final class MeshSubpassBuilder
 		final var res = GraphicFactory.eINSTANCE.createSubpass();
 		res.setWaitForStage(EPipelineStage.TOP_OF_PIPE_BIT);
 		res.setSyncStage(EPipelineStage.EARLY_FRAGMENT_TESTS_BIT);
-		res.setAttachmantRefPkg(attachmentRefPkg);
+		res.setAttachmentRefPkg(attachmentRefPkg);
 		res.setPipelinePkg(pipelinePkg);
 		return res;
 	}

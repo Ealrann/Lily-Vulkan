@@ -52,7 +52,7 @@ public final class MeshEngineFactory
 
 		final var attachmentPkg = GraphicFactory.eINSTANCE.createAttachmentPkg();
 		graphicProcess.setAttachmentPkg(attachmentPkg);
-		attachmentPkg.setColorAttachment(colorAttachmentDescriptor);
+		graphicProcess.setColorAttachment(colorAttachmentDescriptor);
 		attachmentPkg.getExtraAttachments().add(depthAttachment);
 
 		engine.getProcesses().add(graphicProcess);
