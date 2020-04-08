@@ -88,7 +88,7 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 
 	private void onResize(Vector2ic size)
 	{
-		requestLayout(true);
+		layoutRequested = ELayoutRequest.Force;
 	}
 
 	@Override
