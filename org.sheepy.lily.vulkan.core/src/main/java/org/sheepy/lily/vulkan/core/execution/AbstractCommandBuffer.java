@@ -15,7 +15,7 @@ public abstract class AbstractCommandBuffer<T extends ExecutionContext> implemen
 	public void allocate(T context)
 	{
 		final var stack = context.stack();
-		final long commandPoolId = context.getCommandPool().getId();
+		final long commandPoolId = context.getCommandPool().getPtr();
 		final var vkDevice = context.getVkDevice();
 
 		final var allocInfo = VkCommandBufferAllocateInfo.callocStack(stack);
@@ -41,7 +41,7 @@ public abstract class AbstractCommandBuffer<T extends ExecutionContext> implemen
 	public void free(T context)
 	{
 		final var device = context.getVkDevice();
-		final long poolId = context.getCommandPool().getId();
+		final long poolId = context.getCommandPool().getPtr();
 
 		vkFreeCommandBuffers(device, poolId, vkCommandBuffer);
 	}

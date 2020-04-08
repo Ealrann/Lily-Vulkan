@@ -45,8 +45,7 @@ public class ExecutionContext extends GameAllocationContext implements VulkanCon
 			case Present -> throw new AssertionError("Present is not a valid ExecutionContext");
 		}
 
-		commandPool = new CommandPool(queue.familyIndex, resetAllowed);
-		commandPool.allocate(vulkanContext);
+		commandPool = new CommandPool.Builder(queue.familyIndex, resetAllowed).build(vulkanContext);
 	}
 
 	@Override
