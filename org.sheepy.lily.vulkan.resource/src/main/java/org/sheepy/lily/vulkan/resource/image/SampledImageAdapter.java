@@ -13,6 +13,8 @@ import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.lily.vulkan.resource.image.backend.VkSampler;
 
+import java.util.List;
+
 @SuppressWarnings("unchecked")
 @Statefull
 @Adapter(scope = SampledImage.class)
@@ -25,7 +27,7 @@ public class SampledImageAdapter extends Notifier<IVkImageAdapter.Features> impl
 
 	public SampledImageAdapter(SampledImage sampledImage)
 	{
-		super(Features.values().length);
+		super(List.of(Features.Image, Features.View));
 
 		this.sampledImage = sampledImage;
 		final var image = sampledImage.getImage();

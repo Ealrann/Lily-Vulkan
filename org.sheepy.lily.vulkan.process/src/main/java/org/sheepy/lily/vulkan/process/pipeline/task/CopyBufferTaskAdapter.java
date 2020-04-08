@@ -14,7 +14,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
-import java.util.EnumSet;
+import java.util.List;
 import java.util.function.LongConsumer;
 
 import static org.lwjgl.vulkan.VK10.vkCmdCopyBuffer;
@@ -124,17 +124,17 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 	private void listenAdapter(final IBufferAdapter adapter)
 	{
 		adapter.listen(bufferChanged,
-					   EnumSet.of(IBufferAdapter.Features.Size,
-								  IBufferAdapter.Features.Ptr,
-								  IBufferAdapter.Features.Offset));
+					   List.of(IBufferAdapter.Features.Size,
+							   IBufferAdapter.Features.Ptr,
+							   IBufferAdapter.Features.Offset));
 	}
 
 	private void sulkAdapter(final IBufferAdapter adapter)
 	{
 		adapter.sulk(bufferChanged,
-					 EnumSet.of(IBufferAdapter.Features.Size,
-								IBufferAdapter.Features.Ptr,
-								IBufferAdapter.Features.Offset));
+					 List.of(IBufferAdapter.Features.Size,
+							 IBufferAdapter.Features.Ptr,
+							 IBufferAdapter.Features.Offset));
 	}
 
 	@Override

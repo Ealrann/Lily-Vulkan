@@ -13,13 +13,14 @@ import org.sheepy.lily.core.model.application.Scene;
 import org.sheepy.lily.game.api.window.IWindow;
 import org.sheepy.lily.vulkan.core.util.Logger;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.glfw.GLFWVulkan.glfwCreateWindowSurface;
 import static org.lwjgl.glfw.GLFWVulkan.glfwGetRequiredInstanceExtensions;
 
-public class Window extends Notifier<IWindow.Features<?>> implements IWindow
+public class Window extends Notifier<IWindow.Features> implements IWindow
 {
 	private static final String FAILED_TO_CREATE_SURFACE = "Failed to create surface";
 
@@ -40,7 +41,7 @@ public class Window extends Notifier<IWindow.Features<?>> implements IWindow
 
 	public Window(Scene scene, String title)
 	{
-		super(Features.COUNT);
+		super(List.of(Features.Size, Features.Open, Features.Close, Features.SurfaceDeprecated));
 		this.scene = scene;
 		this.title = title;
 		load();

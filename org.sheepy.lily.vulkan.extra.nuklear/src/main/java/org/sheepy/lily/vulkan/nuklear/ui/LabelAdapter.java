@@ -16,6 +16,7 @@ import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 import org.sheepy.lily.vulkan.nuklear.util.ProgressTimer;
 
 import java.nio.ByteBuffer;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.lwjgl.nuklear.Nuklear.*;
@@ -34,7 +35,7 @@ public final class LabelAdapter extends Notifier<ITextWidgetAdapter.Features> im
 
 	private LabelAdapter(Label label)
 	{
-		super(Features.values().length);
+		super(List.of(Features.Text));
 		this.label = label;
 	}
 

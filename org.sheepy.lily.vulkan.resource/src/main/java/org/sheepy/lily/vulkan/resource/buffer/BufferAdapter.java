@@ -17,6 +17,7 @@ import org.sheepy.lily.vulkan.core.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 
 import java.nio.ByteBuffer;
+import java.util.List;
 
 @Statefull
 @Adapter(scope = Buffer.class)
@@ -30,7 +31,7 @@ public final class BufferAdapter extends Notifier<IBufferAdapter.Features> imple
 
 	public BufferAdapter(Buffer buffer)
 	{
-		super(Features.values().length);
+		super(List.of(Features.Size, Features.Offset, Features.Ptr));
 		this.buffer = buffer;
 	}
 

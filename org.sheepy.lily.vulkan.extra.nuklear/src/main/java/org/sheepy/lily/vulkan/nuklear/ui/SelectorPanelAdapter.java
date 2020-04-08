@@ -66,7 +66,7 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 
 	public SelectorPanelAdapter(SelectorPanel panel)
 	{
-		super(Features.values().length);
+		super(List.of(Features.Text));
 		if (panel.isPrintLabels() && panel.isVertical() == false)
 		{
 			throw new AssertionError("Horizontal panel with labels is not supported");

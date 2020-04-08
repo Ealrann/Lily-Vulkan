@@ -38,7 +38,7 @@ public final class DepthAttachmentAdapter extends Notifier<IVkImageAdapter.Featu
 
 	public DepthAttachmentAdapter(DepthAttachment depthAttachment)
 	{
-		super(Features.values().length);
+		super(List.of(Features.Image, Features.View));
 		this.depthAttachment = depthAttachment;
 	}
 

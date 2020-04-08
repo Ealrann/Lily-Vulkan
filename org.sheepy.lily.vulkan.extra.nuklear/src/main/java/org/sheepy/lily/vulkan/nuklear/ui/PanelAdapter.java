@@ -17,6 +17,7 @@ import org.sheepy.lily.vulkan.api.util.UIUtil;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 
 import java.nio.ByteBuffer;
+import java.util.List;
 import java.util.function.Consumer;
 
 import static org.lwjgl.nuklear.Nuklear.*;
@@ -37,7 +38,7 @@ public class PanelAdapter extends Notifier<ITextWidgetAdapter.Features> implemen
 
 	public PanelAdapter(Panel panel)
 	{
-		super(Features.values().length);
+		super(List.of(Features.Text));
 		this.panel = panel;
 		final String name = panel.getName();
 

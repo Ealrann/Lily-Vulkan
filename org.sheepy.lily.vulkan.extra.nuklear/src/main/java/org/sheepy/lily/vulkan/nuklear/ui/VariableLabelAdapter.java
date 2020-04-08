@@ -13,6 +13,7 @@ import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
 import java.nio.ByteBuffer;
+import java.util.List;
 import java.util.function.Consumer;
 
 import static org.lwjgl.nuklear.Nuklear.*;
@@ -34,7 +35,7 @@ public class VariableLabelAdapter extends Notifier<ITextWidgetAdapter.Features> 
 	@SuppressWarnings("unchecked")
 	public VariableLabelAdapter(VariableLabel label)
 	{
-		super(Features.values().length);
+		super(List.of(Features.Text));
 		this.label = label;
 		final var variableResolver = label.getVariableResolver();
 		resolver = variableResolver.adaptNotNull(IVariableResolverAdapter.class);

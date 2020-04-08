@@ -18,7 +18,7 @@ import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-public class VulkanInputManager extends Notifier<IInputManager.Features<?>> implements IVulkanInputManager
+public class VulkanInputManager extends Notifier<IInputManager.Features> implements IVulkanInputManager
 {
 	private final Application application;
 	private final Window window;
@@ -99,7 +99,13 @@ public class VulkanInputManager extends Notifier<IInputManager.Features<?>> impl
 
 	public VulkanInputManager(Application application, Window window)
 	{
-		super(Features.COUNT);
+		super(List.of(Features.CharEvent,
+					  Features.KeyEvent,
+					  Features.MouseClickEvent,
+					  Features.CursorLocationEvent,
+					  Features.ScrollEvent,
+					  Features.MouseOverUIEvent,
+					  Features.AfterPollInputs));
 		this.application = application;
 		this.window = window;
 	}

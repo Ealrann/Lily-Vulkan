@@ -32,7 +32,7 @@ public final class FontAllocator extends Notifier<IFontAllocator.Features> imple
 
 	public FontAllocator(Font font)
 	{
-		super(Features.values().length);
+		super(List.of(Features.codepointsLoaded));
 		this.font = font;
 	}
 

@@ -37,7 +37,7 @@ public final class ColorAttachmentAdapter extends Notifier<IVkImageAdapter.Featu
 
 	public ColorAttachmentAdapter(ColorAttachment colorAttachment)
 	{
-		super(Features.values().length);
+		super(List.of(Features.Image, Features.View));
 		this.colorAttachment = colorAttachment;
 	}
 

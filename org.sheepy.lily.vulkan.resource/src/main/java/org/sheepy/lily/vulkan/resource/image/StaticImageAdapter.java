@@ -12,6 +12,8 @@ import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
 
+import java.util.List;
+
 import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
 @Statefull
@@ -28,7 +30,7 @@ public class StaticImageAdapter extends Notifier<IVkImageAdapter.Features> imple
 
 	public StaticImageAdapter(StaticImage image)
 	{
-		super(Features.values().length);
+		super(List.of(Features.Image, Features.View));
 
 		this.image = image;
 	}

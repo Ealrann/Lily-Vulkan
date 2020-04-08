@@ -13,6 +13,7 @@ import org.sheepy.lily.vulkan.api.input.IVulkanInputManager;
 import org.sheepy.lily.vulkan.model.MouseLocation;
 
 import java.nio.ByteBuffer;
+import java.util.List;
 import java.util.function.Consumer;
 
 @Statefull
@@ -25,7 +26,7 @@ public final class MouseLocationAdapter extends Notifier<IModelVariableAdapter.F
 
 	private MouseLocationAdapter(MouseLocation variable)
 	{
-		super(IModelVariableAdapter.Features.values().length);
+		super(List.of(Features.Value));
 		final var adapter = variable.getVulkanEngine().adapt(IVulkanEngineAdapter.class);
 		inputManager = adapter.getInputManager();
 	}

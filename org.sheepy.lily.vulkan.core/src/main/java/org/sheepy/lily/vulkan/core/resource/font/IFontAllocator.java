@@ -1,7 +1,8 @@
 package org.sheepy.lily.vulkan.core.resource.font;
 
 import org.lwjgl.system.Struct;
-import org.sheepy.lily.core.api.notification.IFeature;
+import org.sheepy.lily.core.api.notification.Feature;
+import org.sheepy.lily.core.api.notification.IFeatures;
 import org.sheepy.lily.core.api.notification.INotifier;
 import org.sheepy.lily.core.model.ui.Font;
 
@@ -9,9 +10,9 @@ import java.util.List;
 
 public interface IFontAllocator extends INotifier<IFontAllocator.Features>
 {
-	enum Features implements IFeature<Runnable, Features>
+	interface Features extends IFeatures<Features>
 	{
-		codepointsLoaded
+		Feature<Runnable, Features> codepointsLoaded = Feature.newFeature();
 	}
 
 	Font getFont();

@@ -17,6 +17,8 @@ import org.sheepy.lily.vulkan.resource.image.backend.STBImageLoader;
 import org.sheepy.lily.vulkan.resource.image.backend.VkTexture;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
+import java.util.List;
+
 @Statefull
 @Adapter(scope = FileImage.class)
 public class FileImageAdapter extends Notifier<IVkImageAdapter.Features> implements IVkImageAdapter,
@@ -30,7 +32,7 @@ public class FileImageAdapter extends Notifier<IVkImageAdapter.Features> impleme
 
 	public FileImageAdapter(FileImage image)
 	{
-		super(Features.values().length);
+		super(List.of(Features.Image, Features.View));
 
 		this.image = image;
 		imageBuffer = new ImageBuffer(image.getFile());

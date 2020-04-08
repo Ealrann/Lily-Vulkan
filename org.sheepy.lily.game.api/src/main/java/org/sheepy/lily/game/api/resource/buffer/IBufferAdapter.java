@@ -1,18 +1,19 @@
 package org.sheepy.lily.game.api.resource.buffer;
 
 import org.sheepy.lily.core.api.adapter.INotifierAdapter;
-import org.sheepy.lily.core.api.notification.IFeature;
+import org.sheepy.lily.core.api.notification.Feature;
+import org.sheepy.lily.core.api.notification.IFeatures;
 
 import java.nio.ByteBuffer;
 import java.util.function.LongConsumer;
 
 public interface IBufferAdapter extends INotifierAdapter<IBufferAdapter.Features>
 {
-	enum Features implements IFeature<LongConsumer, Features>
+	interface Features extends IFeatures<Features>
 	{
-		Size,
-		Offset,
-		Ptr
+		Feature<LongConsumer, Features> Size = Feature.newFeature();
+		Feature<LongConsumer, Features> Offset = Feature.newFeature();
+		Feature<LongConsumer, Features> Ptr = Feature.newFeature();
 	}
 
 	long getPtr();

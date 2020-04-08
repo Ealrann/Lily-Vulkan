@@ -64,7 +64,7 @@ public final class FontImageAdapter extends Notifier<IVkImageAdapter.Features> i
 
 	public FontImageAdapter(FontImage fontImage)
 	{
-		super(Features.values().length);
+		super(List.of(Features.Image, Features.View));
 
 		this.fontImage = fontImage;
 		fonts = List.copyOf(fontImage.getFonts());

@@ -20,6 +20,7 @@ import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFa
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 import java.nio.ByteBuffer;
+import java.util.List;
 import java.util.function.Consumer;
 
 @Statefull
@@ -48,7 +49,7 @@ public final class BufferPartAdapter extends Notifier<IBufferAdapter.Features> i
 
 	private BufferPartAdapter(BufferPart bufferPart)
 	{
-		super(Features.values().length);
+		super(List.of(Features.Size, Features.Offset, Features.Ptr));
 
 		assert bufferPart.getDataProvider() != null;
 

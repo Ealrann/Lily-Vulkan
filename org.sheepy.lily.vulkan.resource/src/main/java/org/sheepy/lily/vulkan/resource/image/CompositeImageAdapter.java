@@ -45,7 +45,7 @@ public final class CompositeImageAdapter extends Notifier<IVkImageAdapter.Featur
 
 	private CompositeImageAdapter(CompositeImage image)
 	{
-		super(Features.values().length);
+		super(List.of(Features.Image, Features.View));
 		this.image = image;
 
 		dependencyInjector = new ModelDependencyInjector(image,

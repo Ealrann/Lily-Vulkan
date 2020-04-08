@@ -12,6 +12,7 @@ import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
 import java.nio.ByteBuffer;
+import java.util.List;
 
 import static org.lwjgl.nuklear.Nuklear.nk_button_label;
 
@@ -25,7 +26,7 @@ public final class ButtonAdapter extends Notifier<ITextWidgetAdapter.Features> i
 
 	public ButtonAdapter(Button button)
 	{
-		super(Features.values().length);
+		super(List.of(Features.Text));
 		this.button = button;
 		textBuffer = MemoryUtil.memASCII(button.getText());
 	}
