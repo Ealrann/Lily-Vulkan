@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.core.concurrent;
 
-import org.sheepy.lily.vulkan.core.device.VulkanContext;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +11,9 @@ public class SemaphoreManager
 	private final List<VkSemaphore> semaphores = new ArrayList<>();
 	private final List<Long> semaphorePtrs = new ArrayList<>();
 
-	private final VulkanContext context;
+	private final IVulkanContext context;
 
-	public SemaphoreManager(VulkanContext context)
+	public SemaphoreManager(IVulkanContext context)
 	{
 		this.context = context;
 	}

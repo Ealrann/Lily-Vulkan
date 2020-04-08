@@ -1,14 +1,15 @@
 package org.sheepy.lily.vulkan.core.execution;
 
 import org.lwjgl.vulkan.VkDevice;
+import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.game.core.allocation.GameAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
 import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
-import org.sheepy.lily.vulkan.core.device.VulkanContext;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.core.execution.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.core.window.Window;
@@ -16,16 +17,16 @@ import org.sheepy.lily.vulkan.core.window.Window;
 import java.util.Collection;
 import java.util.List;
 
-public class ExecutionContext extends GameAllocationContext implements VulkanContext,
+public class ExecutionContext extends GameAllocationContext implements IVulkanContext,
 																	   IExecutionContext,
-																	   IAllocable<VulkanContext>
+																	   IAllocable<IVulkanContext>
 {
 	public final EQueueType queueType;
 	private final boolean resetAllowed;
 
 	public VulkanQueue queue;
 	public CommandPool commandPool;
-	private VulkanContext vulkanContext;
+	private IVulkanContext vulkanContext;
 
 	public ExecutionContext(EQueueType queueType, boolean resetAllowed)
 	{
@@ -34,7 +35,7 @@ public class ExecutionContext extends GameAllocationContext implements VulkanCon
 	}
 
 	@Override
-	public void allocate(VulkanContext vulkanContext)
+	public void allocate(IVulkanContext vulkanContext)
 	{
 		this.vulkanContext = vulkanContext;
 		final var logicalDevice = vulkanContext.getLogicalDevice();
@@ -49,7 +50,7 @@ public class ExecutionContext extends GameAllocationContext implements VulkanCon
 	}
 
 	@Override
-	public void free(VulkanContext vulkanContext)
+	public void free(IVulkanContext vulkanContext)
 	{
 		getLogicalDevice().returnQueue(queue);
 		commandPool.free(vulkanContext);
@@ -98,6 +99,12 @@ public class ExecutionContext extends GameAllocationContext implements VulkanCon
 	public VkDevice getVkDevice()
 	{
 		return vulkanContext.getVkDevice();
+	}
+
+	@Override
+	public VkInstance getVkInstance()
+	{
+		return vulkanContext.getVkInstance();
 	}
 
 	@Override

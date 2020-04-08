@@ -5,12 +5,12 @@ import org.lwjgl.vulkan.VkFenceCreateInfo;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
-import org.sheepy.lily.vulkan.core.device.VulkanContext;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public class VkFence implements IAllocable<VulkanContext>, IFenceView, IFence
+public class VkFence implements IAllocable<IVulkanContext>, IFenceView, IFence
 {
 	private final boolean signaledAfterAllocation;
 	private long id;
@@ -24,7 +24,7 @@ public class VkFence implements IAllocable<VulkanContext>, IFenceView, IFence
 	}
 
 	@Override
-	public void allocate(VulkanContext context)
+	public void allocate(IVulkanContext context)
 	{
 		device = context.getVkDevice();
 		final VkFenceCreateInfo createInfo = VkFenceCreateInfo.calloc();
@@ -41,7 +41,7 @@ public class VkFence implements IAllocable<VulkanContext>, IFenceView, IFence
 	}
 
 	@Override
-	public void free(VulkanContext context)
+	public void free(IVulkanContext context)
 	{
 		vkDestroyFence(device, id, null);
 		id = -1;

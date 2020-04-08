@@ -10,7 +10,7 @@ import org.sheepy.lily.core.api.resource.IResourceLoader;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.BackgroundImage;
 import org.sheepy.lily.core.model.resource.IImage;
-import org.sheepy.lily.vulkan.api.device.IVulkanContext;
+import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;
 import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
@@ -39,7 +39,7 @@ public class BackgroundImageSubpassProvider implements ICompositor_SubpassProvid
 	}
 
 	@Override
-	public Subpass build(BackgroundImage part, GraphicProcess process, IVulkanContext context)
+	public Subpass build(BackgroundImage part, GraphicProcess process, IVulkanApiContext context)
 	{
 		final var subpass = loadSubpass();
 		final var swapUsages = context.getPhysicalDevice().supportedSwapUsages();

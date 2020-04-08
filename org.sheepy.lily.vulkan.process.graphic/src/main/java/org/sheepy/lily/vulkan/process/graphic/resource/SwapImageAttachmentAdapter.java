@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.process.graphic.resource;
 import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.core.device.VulkanContext;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.util.VulkanBufferUtils;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
 
@@ -19,7 +19,7 @@ public final class SwapImageAttachmentAdapter implements IAdapter
 {
 	private List<Long> swapChainImages = null;
 
-	public void allocate(final VulkanContext context, long swapChainPtr)
+	public void allocate(final IVulkanContext context, long swapChainPtr)
 	{
 		final var stack = context.stack();
 		final var vkDevice = context.getVkDevice();

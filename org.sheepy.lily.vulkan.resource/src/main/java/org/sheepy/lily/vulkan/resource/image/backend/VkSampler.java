@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.resource.image.backend;
 
 import org.lwjgl.vulkan.VkSamplerCreateInfo;
-import org.sheepy.lily.vulkan.core.device.VulkanContext;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.vulkan.model.image.ImageFactory;
 import org.sheepy.vulkan.model.image.SamplerInfo;
@@ -26,7 +26,7 @@ public class VkSampler
 		this.info = info;
 	}
 
-	public void allocate(VulkanContext context)
+	public void allocate(IVulkanContext context)
 	{
 		final var stack = context.stack();
 		final var samplerInfo = VkSamplerCreateInfo.callocStack(stack);
@@ -59,7 +59,7 @@ public class VkSampler
 		return samplerPtr;
 	}
 
-	public void free(VulkanContext context)
+	public void free(IVulkanContext context)
 	{
 		vkDestroySampler(context.getVkDevice(), samplerPtr, null);
 		samplerPtr = -1;

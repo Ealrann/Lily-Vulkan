@@ -10,7 +10,7 @@ import org.sheepy.lily.core.api.resource.IResourceLoader;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.ScreenEffect;
 import org.sheepy.lily.core.model.application.SpecialEffect;
-import org.sheepy.lily.vulkan.api.device.IVulkanContext;
+import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;
 import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
 import org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer;
@@ -80,7 +80,7 @@ public final class ScreenEffectSubpassProvider implements ICompositor_SubpassPro
 	}
 
 	@Override
-	public Subpass build(final ScreenEffect part, GraphicProcess process, IVulkanContext context)
+	public Subpass build(final ScreenEffect part, GraphicProcess process, IVulkanApiContext context)
 	{
 		return subpass;
 	}

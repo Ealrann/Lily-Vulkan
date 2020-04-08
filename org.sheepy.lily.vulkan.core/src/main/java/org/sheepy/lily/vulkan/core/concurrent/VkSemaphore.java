@@ -3,19 +3,19 @@ package org.sheepy.lily.vulkan.core.concurrent;
 import org.lwjgl.vulkan.VkSemaphoreCreateInfo;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.concurrent.ISemaphore;
-import org.sheepy.lily.vulkan.core.device.VulkanContext;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 
 import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public class VkSemaphore implements ISemaphore, IAllocable<VulkanContext>
+public class VkSemaphore implements ISemaphore, IAllocable<IVulkanContext>
 {
 	private long semaphorePtr = VK_NULL_HANDLE;
 
 	@Override
-	public void allocate(VulkanContext context)
+	public void allocate(IVulkanContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
 		final VkSemaphoreCreateInfo semaphoreInfo = VkSemaphoreCreateInfo.calloc();
@@ -50,7 +50,7 @@ public class VkSemaphore implements ISemaphore, IAllocable<VulkanContext>
 	}
 
 	@Override
-	public void free(VulkanContext context)
+	public void free(IVulkanContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
 		vkDestroySemaphore(logicalDevice.getVkDevice(), semaphorePtr, null);

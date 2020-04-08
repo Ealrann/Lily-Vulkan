@@ -4,7 +4,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptorSet;
-import org.sheepy.lily.vulkan.core.device.VulkanContext;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAdapter;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipelineLayout;
 import org.sheepy.lily.vulkan.core.resource.IDescriptorSetAdapter;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Statefull
-public abstract class AbstractVkPipelineAdapter<T extends VulkanContext> extends AbstractTaskPipelineAdapter<T> implements
+public abstract class AbstractVkPipelineAdapter<T extends IVulkanContext> extends AbstractTaskPipelineAdapter<T> implements
 																												IVkPipelineAdapter<T>
 {
 	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.VK_PIPELINE__DESCRIPTOR_SET_PKG,

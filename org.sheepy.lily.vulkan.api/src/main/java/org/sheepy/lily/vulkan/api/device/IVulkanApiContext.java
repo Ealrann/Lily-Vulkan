@@ -4,7 +4,7 @@ import org.sheepy.lily.game.api.allocation.IGameAllocationContext;
 import org.sheepy.lily.game.api.window.IWindow;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 
-public interface IVulkanContext extends IGameAllocationContext
+public interface IVulkanApiContext extends IGameAllocationContext
 {
 	IWindow getWindow();
 	IPhysicalDevice getPhysicalDevice();

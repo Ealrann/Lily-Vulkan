@@ -2,9 +2,6 @@ package org.sheepy.lily.vulkan.core.engine;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EReference;
-import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkDevice;
-import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -16,37 +13,24 @@ import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.game.api.window.IWindowListener;
-import org.sheepy.lily.game.core.allocation.GameAllocationContext;
 import org.sheepy.lily.game.core.allocation.GenericAllocator;
-import org.sheepy.lily.vulkan.api.device.EPhysicalFeature;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.core.concurrent.VkFence;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
-import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
-import org.sheepy.lily.vulkan.core.device.VulkanContext;
-import org.sheepy.lily.vulkan.core.device.loader.PhysicalDeviceSelector;
-import org.sheepy.lily.vulkan.core.engine.extension.EDeviceExtension;
-import org.sheepy.lily.vulkan.core.engine.extension.EInstanceExtension;
-import org.sheepy.lily.vulkan.core.engine.extension.InstanceExtensions;
 import org.sheepy.lily.vulkan.core.engine.utils.VulkanEngineAllocationRoot;
 import org.sheepy.lily.vulkan.core.engine.utils.VulkanEngineUtils;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.execution.queue.QueueManager;
 import org.sheepy.lily.vulkan.core.input.VulkanInputManager;
-import org.sheepy.lily.vulkan.core.instance.VulkanInstance;
-import org.sheepy.lily.vulkan.core.instance.loader.Layers;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
-import org.sheepy.lily.vulkan.core.window.VkSurface;
 import org.sheepy.lily.vulkan.core.window.Window;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.lwjgl.system.MemoryStack.stackPush;
 
@@ -64,49 +48,31 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private final VulkanInputManager inputManager;
 	private final VulkanEngine engine;
 	private final Application application;
-	private final InstanceExtensions extensionRequirement;
 	private final GenericAllocator<ExecutionContext> resourceAllocator = new GenericAllocator<>(List.of(
 			RESOURCE_FEATURES,
 			DESCRIPTOR_FEATURES));
 	private final IWindowListener.IOpenListener openListener = id -> loadInputManager();
 	private final Window window;
 
-	private VulkanInstance vkInstance;
-	private PhysicalDevice physicalDevice;
-	private LogicalDevice logicalDevice = null;
-	private IRootAllocator<VulkanContext> allocator;
-	private boolean allocated = false;
-
 	private VulkanContext vulkanContext;
+	private IRootAllocator<IVulkanContext> allocator;
 	private VulkanEngineAllocationRoot allocationRoot;
+	private boolean allocated = false;
 
 	public VulkanEngineAdapter(VulkanEngine engine)
 	{
 		this.engine = engine;
 		application = (Application) engine.eContainer();
 		final var scene = application.getScene();
-
-		try (final var stack = stackPush())
+		if (scene != null)
 		{
-			final var extRequirementBuilder = new InstanceExtensions.Builder(stack);
-			if (scene != null)
-			{
-				window = new Window(scene, application.getTitle());
-				inputManager = new VulkanInputManager(application, window);
-				extRequirementBuilder.requiresWindow();
-			}
-			else
-			{
-				window = null;
-				inputManager = null;
-			}
-
-			if (DebugUtil.DEBUG_ENABLED)
-			{
-				extRequirementBuilder.requires(EInstanceExtension.VK_EXT_debug_report.name);
-				extRequirementBuilder.log(DebugUtil.DEBUG_VERBOSE_ENABLED);
-			}
-			extensionRequirement = extRequirementBuilder.build();
+			window = new Window(scene, application.getTitle());
+			inputManager = new VulkanInputManager(application, window);
+		}
+		else
+		{
+			window = null;
+			inputManager = null;
 		}
 	}
 
@@ -139,13 +105,13 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	{
 		try (final var stack = stackPush())
 		{
-			createInstance(stack);
-			if (window != null) window.open(vkInstance.getVkInstance());
+			final var instanceName = application.getTitle();
+			final var queueTypes = VulkanEngineUtils.generateQueueTypes(engine);
+			final var features = engine.getFeatures();
+			final var contextBuilder = new VulkanContext.Builder();
+			contextBuilder.setWindow(window);
 
-			final var dummySurface = window != null ? window.createSurface() : null;
-			pickPhysicalDevice(stack, dummySurface);
-			createLogicalDevice(stack, dummySurface);
-			if (dummySurface != null) dummySurface.free();
+			vulkanContext = contextBuilder.build(stack, instanceName, queueTypes, features);
 
 			if (window != null)
 			{
@@ -218,9 +184,9 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 			free();
 		}
 
-		if (logicalDevice != null)
+		if (vulkanContext.getLogicalDevice() != null)
 		{
-			logicalDevice.waitIdle();
+			vulkanContext.getLogicalDevice().waitIdle();
 		}
 
 		if (window != null)
@@ -228,15 +194,14 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 			window.removeListener(openListener);
 		}
 
+		if (inputManager != null) inputManager.dispose();
+		vulkanContext.free();
 		vulkanContext = null;
-
-		cleanup();
 	}
 
 	private void allocate()
 	{
 		resourceAllocator.start(engine);
-		vulkanContext = new EngineVulkanContext(logicalDevice, window);
 
 		allocationRoot = new VulkanEngineAllocationRoot(List.of(resourceAllocator.getAllocable()));
 		allocator = IAllocationService.INSTANCE.createAllocator(allocationRoot, vulkanContext);
@@ -284,56 +249,6 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 		}
 	}
 
-	private void createInstance(MemoryStack stack)
-	{
-		final var layersBuilder = new Layers.Builder(stack);
-		if (DebugUtil.DEBUG_ENABLED)
-		{
-			layersBuilder.requiresDebug();
-			layersBuilder.log(DebugUtil.DEBUG_VERBOSE_ENABLED);
-		}
-		final var layers = layersBuilder.build();
-		vkInstance = new VulkanInstance(application.getTitle(), extensionRequirement, layers, DebugUtil.DEBUG_ENABLED);
-		vkInstance.allocate(stack);
-	}
-
-	private void pickPhysicalDevice(MemoryStack stack, VkSurface dummySurface)
-	{
-		final var deviceSelector = new PhysicalDeviceSelector(vkInstance,
-															  extensionRequirement,
-															  EnumSet.of(EDeviceExtension.VK_KHR_swapchain),
-															  dummySurface);
-		physicalDevice = deviceSelector.findBestPhysicalDevice(stack);
-	}
-
-	private void createLogicalDevice(MemoryStack stack, VkSurface dummySurface)
-	{
-		final var features = engine.getFeatures();
-		final var vkFeatures = features.stream()
-									   .map(f -> EPhysicalFeature.valueOf(f.getName()))
-									   .collect(Collectors.toList());
-
-		final var queueList = VulkanEngineUtils.generateQueueList(engine);
-		queueList.add(VulkanEngineAllocationRoot.ENGINE_QUEUE_TYPE);
-		final var queueManager = new QueueManager(physicalDevice.vkPhysicalDevice, queueList, dummySurface);
-		logicalDevice = new LogicalDevice(physicalDevice, queueManager, vkFeatures);
-		logicalDevice.allocate(stack);
-	}
-
-	private void cleanup()
-	{
-		if (inputManager != null) inputManager.dispose();
-		logicalDevice.free();
-
-		if (window != null) window.close();
-		if (window != null) window.destroy();
-
-		physicalDevice.free();
-
-		vkInstance.free();
-		vkInstance = null;
-	}
-
 	private void loadInputManager()
 	{
 		inputManager.load();
@@ -357,7 +272,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	public LogicalDevice getLogicalDevice()
 	{
-		return logicalDevice;
+		return vulkanContext.getLogicalDevice();
 	}
 
 	@Override
@@ -371,47 +286,4 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	{
 		return inputManager;
 	}
-
-	private static class EngineVulkanContext extends GameAllocationContext implements VulkanContext
-	{
-		final Window window;
-		final LogicalDevice logicalDevice;
-
-		public EngineVulkanContext(LogicalDevice logicalDevice, Window window)
-		{
-			this.logicalDevice = logicalDevice;
-			this.window = window;
-		}
-
-		@Override
-		public Window getWindow()
-		{
-			return window;
-		}
-
-		@Override
-		public PhysicalDevice getPhysicalDevice()
-		{
-			return logicalDevice.physicalDevice;
-		}
-
-		@Override
-		public VkPhysicalDevice getVkPhysicalDevice()
-		{
-			return logicalDevice.physicalDevice.vkPhysicalDevice;
-		}
-
-		@Override
-		public LogicalDevice getLogicalDevice()
-		{
-			return logicalDevice;
-		}
-
-		@Override
-		public VkDevice getVkDevice()
-		{
-			return logicalDevice.getVkDevice();
-		}
-	}
-
 }

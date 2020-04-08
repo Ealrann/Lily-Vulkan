@@ -6,7 +6,7 @@ import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.ICompositor;
-import org.sheepy.lily.vulkan.api.device.IVulkanContext;
+import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;
 import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
@@ -21,7 +21,7 @@ public class SubpassManager
 	private final IObservatory observatory;
 	private final Map<ICompositor, Subpass> subpassMap = new HashMap<>();
 	private final GraphicProcess process;
-	private IVulkanContext context;
+	private IVulkanApiContext context;
 
 	public SubpassManager(GraphicProcess process)
 	{
@@ -32,7 +32,7 @@ public class SubpassManager
 										 .build();
 	}
 
-	public void start(final IVulkanContext context)
+	public void start(final IVulkanApiContext context)
 	{
 		this.context = context;
 		final var application = ModelUtil.getApplication(process);
@@ -41,7 +41,7 @@ public class SubpassManager
 		observatory.observe(scene);
 	}
 
-	public void stop(final IVulkanContext context)
+	public void stop(final IVulkanApiContext context)
 	{
 		final var application = ModelUtil.getApplication(process);
 		final var scene = application.getScene();

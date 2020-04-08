@@ -17,7 +17,7 @@ import org.sheepy.lily.game.core.allocation.GenericAllocator;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptorSet;
-import org.sheepy.lily.vulkan.core.device.VulkanContext;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAdapter;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
 
 @Statefull
 public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implements InternalProcessAdapter,
-																					 IAllocable<VulkanContext>
+																					 IAllocable<IVulkanContext>
 {
 	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG,
 																							VulkanResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));
@@ -48,7 +48,7 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 
 	protected IAllocationConfigurator config;
 	protected List<IPipelineAdapter> pipelineAdapters;
-	private IRootAllocator<VulkanContext> allocator;
+	private IRootAllocator<IVulkanContext> allocator;
 	private long startPrepareNs = 0;
 
 	public AbstractProcessAdapter(AbstractProcess process)
@@ -76,7 +76,7 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, VulkanContext context)
+	public void configureAllocation(IAllocationConfigurator config, IVulkanContext context)
 	{
 		this.config = config;
 		config.setChildrenContext(this.context);
@@ -93,17 +93,17 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	}
 
 	@Override
-	public void allocate(VulkanContext context)
+	public void allocate(IVulkanContext context)
 	{
 	}
 
 	@Override
-	public void free(VulkanContext context)
+	public void free(IVulkanContext context)
 	{
 	}
 
 	@Override
-	public void start(final VulkanContext vulkanContext, final IRootAllocator<VulkanContext> rootAllocator)
+	public void start(final IVulkanContext vulkanContext, final IRootAllocator<IVulkanContext> rootAllocator)
 	{
 		refreshStructure();
 		allocator = IAllocationService.INSTANCE.createAllocator(rootAllocator, this, vulkanContext);
@@ -132,7 +132,7 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	}
 
 	@Override
-	public void stop(VulkanContext vulkanContext)
+	public void stop(IVulkanContext vulkanContext)
 	{
 		waitIdle();
 		allocator.free();

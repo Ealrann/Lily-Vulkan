@@ -8,7 +8,7 @@ import org.lwjgl.vulkan.VkPushConstantRange;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptorSet;
-import org.sheepy.lily.vulkan.core.device.VulkanContext;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 
@@ -17,7 +17,7 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public final class VkPipelineLayout<T extends VulkanContext> implements IAllocable<T>
+public final class VkPipelineLayout<T extends IVulkanContext> implements IAllocable<T>
 {
 	private static final String CREATION_ERROR = "Failed to create pipeline layout";
 

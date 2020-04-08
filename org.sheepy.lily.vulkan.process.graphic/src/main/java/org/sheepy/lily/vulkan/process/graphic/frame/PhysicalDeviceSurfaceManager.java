@@ -44,9 +44,9 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager, IAllocable
 	public void allocate(GraphicContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
-
+		final var vkInstance = context.getVkInstance();
 		final var window = context.getWindow();
-		surface = window.createSurface();
+		surface = window.createSurface(vkInstance);
 		surface.addListener(surfaceListener);
 
 		presentQueue = logicalDevice.borrowPresentQueue(surface);

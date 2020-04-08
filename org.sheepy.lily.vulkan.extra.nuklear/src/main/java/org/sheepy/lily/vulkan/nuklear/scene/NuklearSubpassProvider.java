@@ -4,7 +4,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.resource.IResourceLoader;
 import org.sheepy.lily.core.model.ui.UI;
-import org.sheepy.lily.vulkan.api.device.IVulkanContext;
+import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;
 import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
 import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
@@ -21,7 +21,7 @@ public final class NuklearSubpassProvider implements ICompositor_SubpassProvider
 	private static final String PIPELINE_PATH = "Nuklear.subpass";
 
 	@Override
-	public Subpass build(UI part, GraphicProcess process, IVulkanContext context)
+	public Subpass build(UI part, GraphicProcess process, IVulkanApiContext context)
 	{
 		final var colorAttachment = (Attachment) part.getDstImage();
 		final var subpass = loadSubpass(part.isImageSupport());

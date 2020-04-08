@@ -12,7 +12,7 @@ public final class VulkanEngineUtils
 	private VulkanEngineUtils()
 	{}
 
-	public static List<EQueueType> generateQueueList(VulkanEngine engine)
+	public static List<EQueueType> generateQueueTypes(VulkanEngine engine)
 	{
 		final List<EQueueType> res = new ArrayList<>();
 		boolean needPresent = false;

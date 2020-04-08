@@ -7,7 +7,7 @@ import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IRootAllocator;
 import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
-import org.sheepy.lily.vulkan.core.device.VulkanContext;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -89,14 +89,14 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<GraphicC
 	}
 
 	@Override
-	public void start(final VulkanContext vulkanContext, final IRootAllocator<VulkanContext> rootAllocator)
+	public void start(final IVulkanContext vulkanContext, final IRootAllocator<IVulkanContext> rootAllocator)
 	{
 		subpassManager.start(vulkanContext);
 		super.start(vulkanContext, rootAllocator);
 	}
 
 	@Override
-	public void stop(final VulkanContext vulkanContext)
+	public void stop(final IVulkanContext vulkanContext)
 	{
 		super.stop(vulkanContext);
 		subpassManager.stop(vulkanContext);

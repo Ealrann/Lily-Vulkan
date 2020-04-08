@@ -9,7 +9,7 @@ import java.util.*;
 import static org.lwjgl.vulkan.KHRSurface.vkGetPhysicalDeviceSurfaceFormatsKHR;
 import static org.lwjgl.vulkan.VK10.VK_FORMAT_UNDEFINED;
 
-public class ColorDomains implements Iterable<VkColorDomain>
+public final class ColorDomains implements Iterable<VkColorDomain>
 {
 	private final List<VkColorDomain> colorDomains = new ArrayList<>();
 	private final Set<ColorDomainWithHash> setDomains = new HashSet<>();

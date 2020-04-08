@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.core.execution;
 
 import org.lwjgl.vulkan.VkCommandPoolCreateInfo;
-import org.sheepy.lily.vulkan.core.device.VulkanContext;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
 
 import static org.lwjgl.vulkan.VK10.*;
@@ -20,7 +20,7 @@ public final class CommandPool
 		return ptr;
 	}
 
-	public void free(VulkanContext context)
+	public void free(IVulkanContext context)
 	{
 		final var device = context.getVkDevice();
 		vkDestroyCommandPool(device, ptr, null);
@@ -38,7 +38,7 @@ public final class CommandPool
 			this.allowReset = allowReset;
 		}
 
-		public CommandPool build(VulkanContext context)
+		public CommandPool build(IVulkanContext context)
 		{
 			final var stack = context.stack();
 			final var device = context.getVkDevice();

@@ -1,11 +1,12 @@
 package org.sheepy.lily.vulkan.core.device;
 
 import org.lwjgl.vulkan.VkDevice;
+import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkPhysicalDevice;
-import org.sheepy.lily.vulkan.api.device.IVulkanContext;
+import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;
 import org.sheepy.lily.vulkan.core.window.Window;
 
-public interface VulkanContext extends IVulkanContext
+public interface IVulkanContext extends IVulkanApiContext
 {
 	@Override
 	Window getWindow();
@@ -19,4 +20,5 @@ public interface VulkanContext extends IVulkanContext
 	LogicalDevice getLogicalDevice();
 
 	VkDevice getVkDevice();
+	VkInstance getVkInstance();
 }

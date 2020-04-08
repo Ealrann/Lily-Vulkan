@@ -45,7 +45,6 @@ public class Window implements IWindow
 
 	private GLFWVidMode mode;
 	private Vector2ic windowSize = null;
-	private VkInstance vkInstance;
 
 	private boolean fullscreenChangeRequested = false;
 
@@ -69,12 +68,11 @@ public class Window implements IWindow
 
 	private boolean disableResizeListener = false;
 
-	public void open(VkInstance vkInstance)
+	public void open()
 	{
 		final long glfwGetPrimaryMonitor = glfwGetPrimaryMonitor();
 		long monitor = 0;
 
-		this.vkInstance = vkInstance;
 		fullscreenChangeRequested = false;
 		mode = glfwGetVideoMode(glfwGetPrimaryMonitor);
 		if (scene.isFullscreen())
@@ -144,7 +142,7 @@ public class Window implements IWindow
 		return glfwWindowShouldClose(id);
 	}
 
-	public VkSurface createSurface()
+	public VkSurface createSurface(VkInstance vkInstance)
 	{
 		manageFullscreenChange();
 
@@ -188,7 +186,7 @@ public class Window implements IWindow
 				disableResizeListener = false;
 			}
 			close();
-			open(vkInstance);
+			open();
 		}
 	}
 

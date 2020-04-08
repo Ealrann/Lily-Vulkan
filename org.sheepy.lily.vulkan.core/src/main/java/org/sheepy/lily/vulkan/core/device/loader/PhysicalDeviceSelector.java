@@ -21,7 +21,7 @@ import static org.lwjgl.vulkan.VK10.vkEnumeratePhysicalDevices;
 
 public class PhysicalDeviceSelector
 {
-	private final VulkanInstance vkInstance;
+	private final VulkanInstance vulkanInstance;
 	private final List<DeviceScore> devices = new ArrayList<>();
 	private final InstanceExtensions instanceExtensions;
 	private final Set<EDeviceExtension> requiredDeviceExtensions;
@@ -31,12 +31,12 @@ public class PhysicalDeviceSelector
 
 	private PointerBuffer pPhysicalDevices;
 
-	public PhysicalDeviceSelector(VulkanInstance vkInstance,
+	public PhysicalDeviceSelector(VulkanInstance vulkanInstance,
 								  InstanceExtensions extensionRequirement,
 								  Set<EDeviceExtension> requiredDeviceExtensions,
 								  VkSurface surface)
 	{
-		this.vkInstance = vkInstance;
+		this.vulkanInstance = vulkanInstance;
 		this.instanceExtensions = extensionRequirement;
 		this.requiredDeviceExtensions = requiredDeviceExtensions;
 		this.surface = surface;
@@ -54,24 +54,24 @@ public class PhysicalDeviceSelector
 
 	private void load(MemoryStack stack) throws AssertionError
 	{
-		final var vulkanInstance = vkInstance.getVkInstance();
+		final var vkInstance = vulkanInstance.getVkInstance();
 		pPhysicalDeviceCount = stack.mallocInt(1);
-		int err = vkEnumeratePhysicalDevices(vulkanInstance, pPhysicalDeviceCount, null);
+		int err = vkEnumeratePhysicalDevices(vkInstance, pPhysicalDeviceCount, null);
 		Logger.check(err, "Failed to get count of physical devices");
 
 		pPhysicalDevices = stack.mallocPointer(pPhysicalDeviceCount.get(0));
-		err = vkEnumeratePhysicalDevices(vulkanInstance, pPhysicalDeviceCount, pPhysicalDevices);
+		err = vkEnumeratePhysicalDevices(vkInstance, pPhysicalDeviceCount, pPhysicalDevices);
 		Logger.check(err, "Failed to get physical devices");
 	}
 
 	private void gatherDevices(MemoryStack stack)
 	{
-		final var vulkanInstance = vkInstance.getVkInstance();
+		final var vkInstance = vulkanInstance.getVkInstance();
 		final var judge = new PhysicalDeviceJudge(surface);
 
 		for (int i = 0; i < pPhysicalDeviceCount.get(0); i++)
 		{
-			final var vkPhysicalDevice = new VkPhysicalDevice(pPhysicalDevices.get(i), vulkanInstance);
+			final var vkPhysicalDevice = new VkPhysicalDevice(pPhysicalDevices.get(i), vkInstance);
 			final var deviceBuilder = new PhysicalDevice.Builder(vkPhysicalDevice, requiredDeviceExtensions, stack);
 			final int deviceScore = judge.rateDeviceSuitability(deviceBuilder);
 			if (DebugUtil.DEBUG_VERBOSE_ENABLED)

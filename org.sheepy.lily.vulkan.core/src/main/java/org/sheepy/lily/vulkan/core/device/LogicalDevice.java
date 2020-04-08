@@ -3,7 +3,6 @@ package org.sheepy.lily.vulkan.core.device;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkDeviceCreateInfo;
-import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
 import org.sheepy.lily.vulkan.api.device.EPhysicalFeature;
 import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
@@ -93,16 +92,6 @@ public class LogicalDevice implements ILogicalDevice
 	public VkDevice getVkDevice()
 	{
 		return vkDevice;
-	}
-
-	public VkPhysicalDevice getVkPhysicalDevice()
-	{
-		return physicalDevice.vkPhysicalDevice;
-	}
-
-	public PhysicalDevice getPhysicalDevice()
-	{
-		return physicalDevice;
 	}
 
 	public VulkanQueue borrowGraphicQueue()
