@@ -1,9 +1,10 @@
-package org.sheepy.lily.vulkan.demo.rotating;
+package org.sheepy.lily.vulkan.demo.test.rotating;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.jupiter.api.Test;
 import org.sheepy.lily.core.api.LilyLauncher;
+import org.sheepy.lily.vulkan.demo.rotating.MainRotating;
 
 public class MainRotatingTest
 {

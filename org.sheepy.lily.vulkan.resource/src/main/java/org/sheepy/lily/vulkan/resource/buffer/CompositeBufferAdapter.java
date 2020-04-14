@@ -147,8 +147,8 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	private void createBufferBackend(long size, int usage)
 	{
 		final var info = new BufferInfo(size, usage, false);
-		bufferBackend = new GPUBufferBackend(info, false);
-		bufferBackend.allocate(context);
+		final var bufferBuilder = new GPUBufferBackend.Builder(info, false);
+		bufferBackend = bufferBuilder.build(context);
 
 		final var adapters = partsRegistry.getAdapters();
 		for (int i = 0; i < adapters.size(); i++)

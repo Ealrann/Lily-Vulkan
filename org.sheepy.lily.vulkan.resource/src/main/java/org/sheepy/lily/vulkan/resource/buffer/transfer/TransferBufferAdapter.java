@@ -19,6 +19,7 @@ public class TransferBufferAdapter implements InternalTransferBufferAdapter, IAl
 	private final TransferBuffer transferBuffer;
 
 	private TransferBufferBackend backendBuffer;
+	private ExecutionContext context;
 
 	public TransferBufferAdapter(TransferBuffer transferBuffer)
 	{
@@ -28,13 +29,14 @@ public class TransferBufferAdapter implements InternalTransferBufferAdapter, IAl
 	@Override
 	public void allocate(ExecutionContext context)
 	{
+		this.context = context;
 		final long size = transferBuffer.getSize();
 		final int instanceCount = InstanceCountUtil.getInstanceCount(context, transferBuffer.getInstanceCount());
 		final boolean usedToPush = transferBuffer.isUsedToPush();
 		final boolean usedToFetch = transferBuffer.isUsedToFetch();
 
-		backendBuffer = new TransferBufferBackend(size, instanceCount, usedToPush, usedToFetch);
-		backendBuffer.allocate(context);
+		final var bufferBuilder = new TransferBufferBackend.Builder(size, instanceCount, usedToPush, usedToFetch);
+		backendBuffer = bufferBuilder.build(context);
 	}
 
 	@Override
@@ -85,6 +87,6 @@ public class TransferBufferAdapter implements InternalTransferBufferAdapter, IAl
 	@Override
 	public IFlushRecorder recordFlush()
 	{
-		return backendBuffer.recordFlush();
+		return backendBuffer.recordFlush(context.getVkDevice());
 	}
 }

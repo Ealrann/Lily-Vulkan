@@ -8,12 +8,13 @@ import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.adapter.util.ModelDependencyInjector;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
-import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.image.IVkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
-import org.sheepy.lily.vulkan.core.resource.image.VkImage.VkImageBuilder;
+import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
@@ -27,7 +28,7 @@ public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<Ab
 														 IAllocableAdapter<GraphicContext>
 {
 	private static final int FORMAT = EFormat.R8G8B8A8_UNORM_VALUE;
-	private static final VkImage.Builder clearTextureBuilder = new VkImageBuilder(1, 1, FORMAT).usage(
+	private static final IVkImageBuilder clearTextureBuilder = new VkImageBuilder(1, 1, FORMAT).usage(
 			VK_IMAGE_USAGE_TRANSFER_SRC_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_STORAGE_BIT)
 																							   .tiling(VK_IMAGE_TILING_OPTIMAL)
 																							   .mipLevels(1)
@@ -124,9 +125,10 @@ public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<Ab
 
 		if (clearRegions != null)
 		{
+			final var stack = context.stack();
 			final var clearColor = blitTask.getClearColor();
 			final int intColor = clearColor.x() + (clearColor.y() << 8) + (clearColor.z() << 16);
-			final var buffer = BufferUtils.createByteBuffer(4);
+			final var buffer = stack.malloc(4);
 			buffer.putInt(intColor);
 			buffer.flip();
 
@@ -135,11 +137,10 @@ public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<Ab
 			initialLayout.getAccessMask().add(EAccess.TRANSFER_READ_BIT);
 			initialLayout.setStage(EPipelineStage.TRANSFER_BIT);
 
-			final VkImageBuilder builder = new VkImageBuilder(clearTextureBuilder);
+			final var builder = clearTextureBuilder.copy();
 			builder.fillWith(buffer);
 			builder.initialLayout(initialLayout);
-			clearTexture = builder.build();
-			clearTexture.allocate(context);
+			clearTexture = builder.build(context);
 		}
 	}
 

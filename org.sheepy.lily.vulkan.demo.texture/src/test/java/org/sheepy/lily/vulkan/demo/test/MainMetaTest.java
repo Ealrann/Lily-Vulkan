@@ -1,10 +1,11 @@
-package org.sheepy.lily.vulkan.demo;
+package org.sheepy.lily.vulkan.demo.test;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.jupiter.api.Test;
 import org.sheepy.lily.core.api.LilyLauncher;
 import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.vulkan.demo.MainMeta;
 import org.sheepy.lily.vulkan.demo.rotating.MainRotating;
 import org.sheepy.lily.vulkan.demo.texture.MainTexture;
 import org.sheepy.lily.vulkan.demo.triangle.MainTriangle;

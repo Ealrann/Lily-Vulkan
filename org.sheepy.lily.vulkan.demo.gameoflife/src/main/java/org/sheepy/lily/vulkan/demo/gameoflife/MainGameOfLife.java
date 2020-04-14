@@ -18,13 +18,14 @@ public class MainGameOfLife
 	{
 		DebugUtil.DEBUG_ENABLED = true;
 
-		final Application application = buildApplication();
+		final Application application = buildApplication(0);
 
 		LilyLauncher.launch(application);
 	}
 
-	public static Application buildApplication()
+	public static Application buildApplication(int frameCount)
 	{
+		EngineBuilder.FRAME_COUNT = frameCount;
 		final var size = new Vector2i(WIDTH, HEIGHT);
 		final var application = ApplicationFactory.eINSTANCE.createApplication();
 		final var scene = ApplicationFactory.eINSTANCE.createScene();

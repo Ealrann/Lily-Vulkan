@@ -1,9 +1,9 @@
-package org.sheepy.lily.vulkan.demo.gameoflife;
+package org.sheepy.lily.vulkan.demo.gameoflife.test;
 
 import org.junit.jupiter.api.Test;
 import org.sheepy.lily.core.api.LilyLauncher;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.demo.gameoflife.model.EngineBuilder;
+import org.sheepy.lily.vulkan.demo.gameoflife.MainGameOfLife;
 
 public class MainGameOfLifeTest
 {
@@ -11,8 +11,7 @@ public class MainGameOfLifeTest
 	public void main()
 	{
 		DebugUtil.DEBUG_ENABLED = true;
-		EngineBuilder.FRAME_COUNT = 300;
-		final var application = MainGameOfLife.buildApplication();
+		final var application = MainGameOfLife.buildApplication(300);
 		LilyLauncher.launch(application);
 	}
 }

@@ -9,8 +9,9 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.image.IVkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
-import org.sheepy.lily.vulkan.core.resource.image.VkImage.Builder;
+import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
 import org.sheepy.lily.vulkan.resource.image.backend.ImageBuffer;
 import org.sheepy.lily.vulkan.resource.image.backend.STBImageLoader;
@@ -47,14 +48,14 @@ public class FileImageAdapter extends Notifier<IVkImageAdapter.Features> impleme
 		imageBuffer.free();
 	}
 
-	private static Builder createBuilder(FileImage image, Vector2ic size)
+	private static IVkImageBuilder createBuilder(FileImage image, Vector2ic size)
 	{
 		final int width = size.x();
 		final int height = size.y();
 
 		final int mipLevels = image.isMipmapEnabled() ? (int) Math.floor(log2nlz(Math.max(width, height))) + 1 : 1;
 
-		final var imageBuilder = new VkImage.VkImageBuilder(image, width, height);
+		final var imageBuilder = new VkImageBuilder(image, width, height);
 		imageBuilder.mipLevels(mipLevels);
 		imageBuilder.addUsage(EImageUsage.TRANSFER_DST_VALUE);
 

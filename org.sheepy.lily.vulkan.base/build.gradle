@@ -1,7 +1,3 @@
-plugins {
-	id 'java-library'
-}
-
 dependencies {
 	implementation 'org.sheepy.lily.core:org.sheepy.lily.core.base'
 

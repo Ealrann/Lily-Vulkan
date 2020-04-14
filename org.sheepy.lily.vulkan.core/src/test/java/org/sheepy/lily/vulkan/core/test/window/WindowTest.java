@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.core.window;
+package org.sheepy.lily.vulkan.core.test.window;
 
 import java.util.Random;
 
@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.sheepy.lily.core.api.LilyLauncher;
 import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.vulkan.core.test.BasicModelFactory;
-import org.sheepy.lily.vulkan.core.test.TestUtils;
+import org.sheepy.lily.vulkan.core.test.test.BasicModelFactory;
+import org.sheepy.lily.vulkan.core.test.test.TestUtils;
 
 public class WindowTest
 {

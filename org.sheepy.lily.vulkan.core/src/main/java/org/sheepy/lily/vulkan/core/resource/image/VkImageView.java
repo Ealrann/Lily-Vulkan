@@ -30,7 +30,7 @@ public final class VkImageView
 
 	public void allocate(VkDevice device, VkImage image)
 	{
-		allocate(device, image.imagePtr, image.mipLevels, image.format);
+		allocate(device, image.getPtr(), image.mipLevels, image.format);
 	}
 
 	public void allocate(VkDevice device, long imagePtr, int levelCount, int format)

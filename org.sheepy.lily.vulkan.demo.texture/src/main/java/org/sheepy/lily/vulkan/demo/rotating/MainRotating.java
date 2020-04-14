@@ -18,7 +18,7 @@ public class MainRotating
 		LilyLauncher.launch(application);
 	}
 
-	static Application createApplication()
+	public static Application createApplication()
 	{
 		final var application = ApplicationFactory.eINSTANCE.createApplication();
 		final var scene = ApplicationFactory.eINSTANCE.createScene();

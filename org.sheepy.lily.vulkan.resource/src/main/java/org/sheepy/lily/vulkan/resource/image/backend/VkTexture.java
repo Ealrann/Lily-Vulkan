@@ -9,7 +9,9 @@ import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
+import org.sheepy.lily.vulkan.core.resource.image.IVkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
+import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -17,32 +19,34 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.image.ImageLayout;
 
 import java.nio.ByteBuffer;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.lwjgl.vulkan.VK10.*;
 
 public class VkTexture implements IAllocable<ExecutionContext>
 {
-	private final VkImage image;
+	private final IVkImageBuilder imageBuilder;
 
+	private VkImage image;
 	private VkImageView imageView;
 
-	public VkTexture(VkImage.Builder imageBuilder, boolean enableMipmap)
+	public VkTexture(IVkImageBuilder imageBuilder, boolean enableMipmap)
 	{
 		if (enableMipmap)
 		{
 			final int mipLevels = (int) Math.floor(log2nlz(Math.max(imageBuilder.width(), imageBuilder.height()))) + 1;
-			imageBuilder = new VkImage.VkImageBuilder(imageBuilder).mipLevels(mipLevels);
+			imageBuilder = new VkImageBuilder(imageBuilder).mipLevels(mipLevels);
 		}
-
-		image = imageBuilder.build();
+		this.imageBuilder = imageBuilder.copyImmutable();
 	}
 
 	@Override
 	public void allocate(ExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
-		image.allocate(context);
+		image = imageBuilder.build(context);
 		imageView = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
 		imageView.allocate(vkDevice, image);
 	}
@@ -50,12 +54,12 @@ public class VkTexture implements IAllocable<ExecutionContext>
 	public void loadImage(ExecutionContext executionContext, ByteBuffer data)
 	{
 		final int stagingUsage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-		final List<EAccess> srcAccessMask = List.of();
-		final List<EAccess> dstAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
+		final Set<EAccess> srcAccessMask = EnumSet.noneOf(EAccess.class);
+		final Set<EAccess> dstAccessMask = EnumSet.of(EAccess.TRANSFER_WRITE_BIT);
 
 		final var bufferInfo = new BufferInfo(data.remaining(), stagingUsage, false);
-		final var stagingBuffer = new CPUBufferBackend(bufferInfo, true);
-		stagingBuffer.allocate(executionContext);
+		final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo, true);
+		final var stagingBuffer = bufferBuilder.build(executionContext);
 		stagingBuffer.pushData(executionContext, data);
 
 		executionContext.execute((context2, commandBuffer) -> {

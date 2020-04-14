@@ -1,6 +1,6 @@
-module org.sheepy.lily.vulkan.demo.gameoflife
+open module org.sheepy.lily.vulkan.demo.gameoflife
 {
 	requires org.sheepy.lily.vulkan.api;
 
-	requires org.joml;
+	exports org.sheepy.lily.vulkan.demo.gameoflife;
 }

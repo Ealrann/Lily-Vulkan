@@ -1,10 +1,9 @@
 package org.sheepy.lily.vulkan.resource.buffer.transfer.internal;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.allocation.IAllocable;
+import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter.IRecordContext;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter.IMemoryTicket.EReservationStatus;
-import org.sheepy.lily.vulkan.core.device.LogicalDevice;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
@@ -21,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class TransferBufferBackend implements IAllocable<ExecutionContext>
+public final class TransferBufferBackend
 {
 	private static final String MEMORY_RESERVATION_REJECTED = "MemoryTicket reservation was rejected";
 
@@ -32,29 +31,13 @@ public class TransferBufferBackend implements IAllocable<ExecutionContext>
 	private final long capacity;
 	private final MemorySpaceManager spaceManager;
 
-	private ExecutionContext context;
-
-	public TransferBufferBackend(long capacity, int instanceCount, boolean usedToPush, boolean usedToFetch)
+	private TransferBufferBackend(CPUBufferBackend bufferBackend)
 	{
-		this.capacity = capacity;
+		this.bufferBackend = bufferBackend;
+		this.capacity = bufferBackend.info.getInstanceSize();
 		spaceManager = new MemorySpaceManager(capacity);
-
-		final int pushUsage = usedToPush ? EBufferUsage.TRANSFER_SRC_BIT_VALUE : 0;
-		final int fetchUsage = usedToFetch ? EBufferUsage.TRANSFER_DST_BIT_VALUE : 0;
-		final int usage = pushUsage | fetchUsage;
-
-		final var info = new BufferInfo(capacity, usage, true, instanceCount);
-		bufferBackend = new CPUBufferBackend(info, false);
 	}
 
-	@Override
-	public void allocate(ExecutionContext context)
-	{
-		this.context = context;
-		bufferBackend.allocate(context);
-	}
-
-	@Override
 	public void free(ExecutionContext context)
 	{
 		bufferBackend.free(context);
@@ -116,16 +99,15 @@ public class TransferBufferBackend implements IAllocable<ExecutionContext>
 		return commands.isEmpty();
 	}
 
-	public IFlushRecorder recordFlush()
+	public IFlushRecorder recordFlush(VkDevice vkDevice)
 	{
-		final var logicalDevice = context.getLogicalDevice();
 		final int instance = bufferBackend.getCurrentInstance();
-		final var res = new FlushRecord(logicalDevice, bufferBackend, instance, commands);
-		clear();
+		final var res = new FlushRecord(vkDevice, bufferBackend, instance, commands);
+		clear(vkDevice);
 		return res;
 	}
 
-	private void clear()
+	private void clear(VkDevice vkDevice)
 	{
 		for (int i = 0; i < tickets.size(); i++)
 		{
@@ -133,7 +115,7 @@ public class TransferBufferBackend implements IAllocable<ExecutionContext>
 			ticket.invalidate();
 		}
 
-		bufferBackend.nextInstance();
+		bufferBackend.nextInstance(vkDevice);
 		commands.clear();
 		spaceManager.clear();
 		tickets.clear();
@@ -156,19 +138,19 @@ public class TransferBufferBackend implements IAllocable<ExecutionContext>
 
 	private static final class FlushRecord implements IFlushRecorder
 	{
-		private final LogicalDevice logicalDevice;
+		private final VkDevice vkDevice;
 		private final CPUBufferBackend bufferBackend;
 		private final List<IDataFlowCommand> commands;
 
 		private final boolean containingFetchCommand;
 		private final int instance;
 
-		public FlushRecord(LogicalDevice logicalDevice,
+		public FlushRecord(VkDevice vkDevice,
 						   CPUBufferBackend bufferBackend,
 						   int instance,
 						   Collection<IDataFlowCommand> commands)
 		{
-			this.logicalDevice = logicalDevice;
+			this.vkDevice = vkDevice;
 			this.bufferBackend = bufferBackend;
 			this.instance = instance;
 			this.commands = List.copyOf(commands);
@@ -180,7 +162,7 @@ public class TransferBufferBackend implements IAllocable<ExecutionContext>
 			{
 				try (final var stack = MemoryStack.stackPush())
 				{
-					bufferBackend.flush(stack, logicalDevice, instance);
+					bufferBackend.flush(stack, vkDevice, instance);
 				}
 			}
 		}
@@ -216,7 +198,7 @@ public class TransferBufferBackend implements IAllocable<ExecutionContext>
 		{
 			try (final MemoryStack stack = MemoryStack.stackPush())
 			{
-				bufferBackend.invalidate(stack, logicalDevice, instance);
+				bufferBackend.invalidate(stack, vkDevice, instance);
 			}
 		}
 
@@ -231,6 +213,33 @@ public class TransferBufferBackend implements IAllocable<ExecutionContext>
 				}
 			}
 			return res;
+		}
+	}
+
+	public static final class Builder
+	{
+		private final long capacity;
+		private final int instanceCount;
+		private final boolean usedToPush;
+		private final boolean usedToFetch;
+
+		public Builder(long capacity, int instanceCount, boolean usedToPush, boolean usedToFetch)
+		{
+			this.capacity = capacity;
+			this.instanceCount = instanceCount;
+			this.usedToPush = usedToPush;
+			this.usedToFetch = usedToFetch;
+		}
+
+		public TransferBufferBackend build(ExecutionContext context)
+		{
+			final int pushUsage = usedToPush ? EBufferUsage.TRANSFER_SRC_BIT_VALUE : 0;
+			final int fetchUsage = usedToFetch ? EBufferUsage.TRANSFER_DST_BIT_VALUE : 0;
+			final int usage = pushUsage | fetchUsage;
+			final var info = new BufferInfo(capacity, usage, true, instanceCount);
+			final var bufferBuilder = new CPUBufferBackend.Builder(info, false);
+			final var bufferBackend = bufferBuilder.build(context);
+			return new TransferBufferBackend(bufferBackend);
 		}
 	}
 }

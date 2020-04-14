@@ -1,13 +1,5 @@
 import org.gradle.internal.os.OperatingSystem
 
-plugins {
-	id 'java-library'
-}
-
-test {
-	useJUnitPlatform()
-}
-
 dependencies {
 	api project(':org.sheepy.lily.vulkan.api')
 	api project(':org.sheepy.lily.game.core')
@@ -27,4 +19,8 @@ dependencies {
 
 	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
 	testRuntimeOnly "org.junit.platform:junit-platform-launcher:$junitPlatformVersion"
+}
+
+test {
+	useJUnitPlatform()
 }

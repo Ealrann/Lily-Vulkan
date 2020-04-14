@@ -4,7 +4,6 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.core.device.LogicalDevice;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunk;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunkBuilder;
@@ -16,67 +15,37 @@ import static org.lwjgl.vulkan.VK10.*;
 
 public final class CPUBufferBackend implements IBufferBackend
 {
-	public static final int HOST_VISIBLE = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
-
-	public final int properties;
 	public final BufferInfo info;
 	public final boolean coherent;
+	private final long address;
 
-	private long address = -1;
 	private long memoryAddress;
 	private MemoryChunk memory;
-	private long memoryMap = -1;
+	private long memoryMap = 0;
 	private int currentInstance = 0;
 	private long currentOffset = 0;
 
-	private VkDevice vkDevice;
-
-	public CPUBufferBackend(BufferInfo info, boolean coherent)
+	private CPUBufferBackend(BufferInfo info, long address, boolean coherent)
 	{
 		this.info = info;
 		this.coherent = coherent;
-
-		properties = createPropertyMask(coherent);
+		this.address = address;
 	}
 
-	private static int createPropertyMask(boolean coherent)
+	private void bindBufferMemory(VkDevice vkDevice, long memoryPtr, long offset, long size)
 	{
-		int properties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT;
-		if (coherent)
+		memoryAddress = memoryPtr;
+		vkBindBufferMemory(vkDevice, address, memoryAddress, offset);
+		// System.out.println(Long.toHexString(bufferMemoryId));
+		if (info.keptMapped)
 		{
-			properties |= VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
+			mapMemory(vkDevice);
 		}
-		return properties;
 	}
 
-	@Override
-	public void allocate(ExecutionContext context)
+	private void linkMemory(final MemoryChunk memory)
 	{
-		final var memoryBuilder = new MemoryChunkBuilder(context, properties);
-		allocate(context, memoryBuilder);
-		memory = memoryBuilder.build();
-		memory.allocate(context);
-	}
-
-	@Override
-	public void allocate(ExecutionContext context, MemoryChunkBuilder memoryBuilder)
-	{
-		vkDevice = context.getVkDevice();
-
-		info.computeAlignment(context.getPhysicalDevice());
-		address = VkBufferAllocator.allocate(context, info);
-
-		memoryBuilder.registerBuffer(address, (memoryPtr, offset, memorySize) -> {
-			memoryAddress = memoryPtr;
-
-			vkBindBufferMemory(vkDevice, address, memoryAddress, offset);
-			// System.out.println(Long.toHexString(bufferMemoryId));
-
-			if (info.keptMapped)
-			{
-				mapMemory();
-			}
-		});
+		this.memory = memory;
 	}
 
 	@Override
@@ -84,39 +53,39 @@ public final class CPUBufferBackend implements IBufferBackend
 	{
 		final var vkDevice = context.getVkDevice();
 
-		if (memoryMap != -1)
+		if (memoryMap != 0)
 		{
-			unmapMemory();
+			unmapMemory(vkDevice);
 		}
 
 		vkDestroyBuffer(vkDevice, address, null);
 		if (memory != null) memory.free(context);
 
-		address = -1;
-		memoryAddress = -1;
+		memoryAddress = 0;
 	}
 
 	@Override
 	public void pushData(ExecutionContext executionContext, ByteBuffer data)
 	{
-		if (address == -1)
+		if (address == 0)
 		{
 			throw new AssertionError("Buffer not allocated");
 		}
 
-		mapMemory();
+		final VkDevice vkDevice = executionContext.getVkDevice();
+		mapMemory(vkDevice);
 		MemoryUtil.memCopy(memAddress(data), memoryMap, info.size);
 
 		if (info.keptMapped == false)
 		{
-			unmapMemory();
+			unmapMemory(vkDevice);
 		}
 	}
 
 	@Override
-	public long mapMemory()
+	public long mapMemory(VkDevice vkDevice)
 	{
-		if (memoryMap == -1)
+		if (memoryMap == 0)
 		{
 			final PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
 			vkMapMemory(vkDevice, memoryAddress, currentOffset, info.getInstanceSize(), 0, pBuffer);
@@ -128,36 +97,34 @@ public final class CPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void unmapMemory()
+	public void unmapMemory(VkDevice vkDevice)
 	{
-		if (memoryMap != -1)
+		if (memoryMap != 0)
 		{
 			vkUnmapMemory(vkDevice, memoryAddress);
-			memoryMap = -1;
+			memoryMap = 0;
 		}
 	}
 
 	@Override
-	public void nextInstance()
+	public void nextInstance(VkDevice vkDevice)
 	{
 		final int newInstance = (currentInstance + 1) % info.instanceCount;
 
 		if (newInstance != currentInstance)
 		{
-			final boolean wasMapped = memoryMap != -1;
-
+			final boolean wasMapped = memoryMap != 0;
 			if (wasMapped)
 			{
-				unmapMemory();
+				unmapMemory(vkDevice);
 			}
 
 			currentInstance = newInstance;
-
 			currentOffset = getOffset(currentInstance);
 
 			if (wasMapped)
 			{
-				mapMemory();
+				mapMemory(vkDevice);
 			}
 		}
 	}
@@ -168,11 +135,11 @@ public final class CPUBufferBackend implements IBufferBackend
 	 * @apiNote Only required for non-coherent memory
 	 */
 	@Override
-	public void flush(MemoryStack stack, LogicalDevice logicalDevice)
+	public void flush(MemoryStack stack, VkDevice vkDevice)
 	{
 		if (coherent == false)
 		{
-			BufferUtils.flush(stack, logicalDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
+			BufferUtils.flush(stack, vkDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
 		}
 	}
 
@@ -181,13 +148,13 @@ public final class CPUBufferBackend implements IBufferBackend
 	 *
 	 * @apiNote Only required for non-coherent memory
 	 */
-	public void flush(MemoryStack stack, LogicalDevice logicalDevice, int instance)
+	public void flush(MemoryStack stack, VkDevice vkDevice, int instance)
 	{
 		if (coherent == false)
 		{
 			final long size = info.getInstanceSize();
 			final long offset = getOffset(instance);
-			BufferUtils.flush(stack, logicalDevice, memoryAddress, size, offset);
+			BufferUtils.flush(stack, vkDevice, memoryAddress, size, offset);
 		}
 	}
 
@@ -197,11 +164,11 @@ public final class CPUBufferBackend implements IBufferBackend
 	 * @apiNote Only required for non-coherent memory
 	 */
 	@Override
-	public void invalidate(MemoryStack stack, LogicalDevice logicalDevice)
+	public void invalidate(MemoryStack stack, VkDevice vkDevice)
 	{
 		if (coherent == false)
 		{
-			BufferUtils.invalidate(stack, logicalDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
+			BufferUtils.invalidate(stack, vkDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
 		}
 	}
 
@@ -210,13 +177,13 @@ public final class CPUBufferBackend implements IBufferBackend
 	 *
 	 * @apiNote Only required for non-coherent memory
 	 */
-	public void invalidate(MemoryStack stack, LogicalDevice logicalDevice, int instance)
+	public void invalidate(MemoryStack stack, VkDevice vkDevice, int instance)
 	{
 		if (coherent == false)
 		{
 			final long size = info.getInstanceSize();
 			final long offset = getOffset(instance);
-			BufferUtils.invalidate(stack, logicalDevice, memoryAddress, size, offset);
+			BufferUtils.invalidate(stack, vkDevice, memoryAddress, size, offset);
 		}
 	}
 
@@ -259,14 +226,51 @@ public final class CPUBufferBackend implements IBufferBackend
 		return memoryMap;
 	}
 
-	@Override
-	public int getProperties()
-	{
-		return properties;
-	}
-
 	public int getCurrentInstance()
 	{
 		return currentInstance;
+	}
+
+	public static final class Builder
+	{
+		private final BufferInfo info;
+		private final boolean coherent;
+		private final int properties;
+
+		public Builder(BufferInfo info, boolean coherent)
+		{
+			this.info = info;
+			this.coherent = coherent;
+			this.properties = createPropertyMask(coherent);
+		}
+
+		public CPUBufferBackend build(ExecutionContext context)
+		{
+			final var memoryBuilder = new MemoryChunkBuilder(context, properties);
+			final var res = build(context, memoryBuilder);
+			final var memory = memoryBuilder.build();
+			memory.allocate(context);
+			res.linkMemory(memory);
+			return res;
+		}
+
+		public CPUBufferBackend build(ExecutionContext context, MemoryChunkBuilder memoryBuilder)
+		{
+			info.computeAlignment(context.getPhysicalDevice());
+			final long address = VkBufferAllocator.allocate(context, info);
+			final var backend = new CPUBufferBackend(info, address, coherent);
+			memoryBuilder.registerBuffer(address, backend::bindBufferMemory);
+			return backend;
+		}
+
+		private static int createPropertyMask(boolean coherent)
+		{
+			int properties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT;
+			if (coherent)
+			{
+				properties |= VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
+			}
+			return properties;
+		}
 	}
 }

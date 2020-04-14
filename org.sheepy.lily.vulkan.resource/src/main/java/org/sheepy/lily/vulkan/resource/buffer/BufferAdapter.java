@@ -40,19 +40,18 @@ public final class BufferAdapter extends Notifier<IBufferAdapter.Features> imple
 	{
 		executionManager = context;
 		final var info = createInfo(context, buffer);
-
 		if (!buffer.isHostVisible())
 		{
-			bufferBackend = new GPUBufferBackend(info, buffer.isKeptMapped());
+			final var bufferBuilder = new GPUBufferBackend.Builder(info, buffer.isKeptMapped());
+			bufferBackend = bufferBuilder.build(context);
 		}
 		else
 		{
-			bufferBackend = new CPUBufferBackend(info, buffer.isCoherent());
+			final var bufferBuilder = new CPUBufferBackend.Builder(info, buffer.isCoherent());
+			bufferBackend = bufferBuilder.build(context);
 		}
 
-		bufferBackend.allocate(context);
-
-		final ByteBuffer data = buffer.getData();
+		final var data = buffer.getData();
 		if (data != null)
 		{
 			bufferBackend.pushData(executionManager, data);
@@ -67,7 +66,7 @@ public final class BufferAdapter extends Notifier<IBufferAdapter.Features> imple
 			System.err.println("[Warning] BufferAdapter.pushData() is slow. Don't use it in the main loop.");
 		}
 
-		bufferBackend.nextInstance();
+		bufferBackend.nextInstance(executionManager.getVkDevice());
 		bufferBackend.pushData(executionManager, data);
 	}
 
@@ -105,13 +104,13 @@ public final class BufferAdapter extends Notifier<IBufferAdapter.Features> imple
 	@Override
 	public long mapMemory()
 	{
-		return bufferBackend.mapMemory();
+		return bufferBackend.mapMemory(executionManager.getVkDevice());
 	}
 
 	@Override
 	public void unmapMemory()
 	{
-		bufferBackend.unmapMemory();
+		bufferBackend.unmapMemory(executionManager.getVkDevice());
 	}
 
 	private static BufferInfo createInfo(ExecutionContext context, Buffer buffer)
@@ -130,7 +129,7 @@ public final class BufferAdapter extends Notifier<IBufferAdapter.Features> imple
 	{
 		try (final var stack = MemoryStack.stackPush())
 		{
-			bufferBackend.flush(stack, executionManager.getLogicalDevice());
+			bufferBackend.flush(stack, executionManager.getVkDevice());
 		}
 	}
 
@@ -139,7 +138,7 @@ public final class BufferAdapter extends Notifier<IBufferAdapter.Features> imple
 	{
 		try (final var stack = MemoryStack.stackPush())
 		{
-			bufferBackend.invalidate(stack, executionManager.getLogicalDevice());
+			bufferBackend.invalidate(stack, executionManager.getVkDevice());
 		}
 	}
 }

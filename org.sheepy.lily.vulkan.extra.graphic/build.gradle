@@ -1,7 +1,3 @@
-plugins {
-	id 'java-library'
-}
-
 dependencies {
 	api project(':org.sheepy.lily.vulkan.extra.api')
 	implementation project(':org.sheepy.lily.vulkan.core')

@@ -18,6 +18,7 @@ import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.ICommandBuffer;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
+import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.model.resource.CompositeImage;
 import org.sheepy.lily.vulkan.model.resource.ImageInlay;
@@ -73,11 +74,9 @@ public final class CompositeImageAdapter extends Notifier<IVkImageAdapter.Featur
 		final var backgroundAdapter = background.adapt(IVkImageAdapter.class);
 		final var vkDevice = context.getVkDevice();
 		final var vkBackground = backgroundAdapter.getVkImage();
-		final var builder = new VkImage.VkImageBuilder(image, vkBackground.width, vkBackground.height).initialLayout(
-				null);
+		final var builder = new VkImageBuilder(image, vkBackground.width, vkBackground.height).initialLayout(null);
 
-		imageBackend = builder.build();
-		imageBackend.allocate(context);
+		imageBackend = builder.build(context);
 
 		imageView = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
 		imageView.allocate(vkDevice, imageBackend);

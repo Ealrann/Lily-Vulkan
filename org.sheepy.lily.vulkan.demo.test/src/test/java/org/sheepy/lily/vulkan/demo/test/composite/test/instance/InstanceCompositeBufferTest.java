@@ -1,7 +1,8 @@
-package org.sheepy.lily.vulkan.demo.test.composite.instance;
+package org.sheepy.lily.vulkan.demo.test.composite.test.instance;
 
 import org.junit.jupiter.api.Test;
 import org.sheepy.lily.core.api.LilyLauncher;
+import org.sheepy.lily.vulkan.demo.test.composite.instance.MainCompositeInstanceTest;
 import org.sheepy.lily.vulkan.demo.test.composite.instance.model.InstanceEngineFactory;
 
 public class InstanceCompositeBufferTest

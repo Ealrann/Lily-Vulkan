@@ -5,6 +5,7 @@ import org.joml.Vector2ic;
 import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VK10;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -15,6 +16,7 @@ import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.font.IFontImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
+import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunk;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunkBuilder;
@@ -87,21 +89,14 @@ public final class FontImageAdapter extends Notifier<IVkImageAdapter.Features> i
 		images = new VkImage[instanceCount];
 		views = new VkImageView[instanceCount];
 
-		final var builder = new VkImage.VkImageBuilder(fontImage, BASE_FONTIMAGE_WIDTH, BASE_FONTIMAGE_HEIGHT);
-
-		int properties = 0;
+		final var builder = new VkImageBuilder(fontImage, BASE_FONTIMAGE_WIDTH, BASE_FONTIMAGE_HEIGHT);
+		final var memoryBuilder = new MemoryChunkBuilder(context, VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 		for (int i = 0; i < instanceCount; i++)
 		{
-			final var image = builder.build();
 			final var view = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
+			final var image = builder.build(context, memoryBuilder);
 			images[i] = image;
 			views[i] = view;
-			properties |= image.properties;
-		}
-		final var memoryBuilder = new MemoryChunkBuilder(context, properties);
-		for (int i = 0; i < instanceCount; i++)
-		{
-			images[i].allocate(context, memoryBuilder);
 		}
 		memory = memoryBuilder.build();
 		memory.allocate(context);

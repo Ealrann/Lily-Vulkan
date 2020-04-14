@@ -1,11 +1,11 @@
 package org.sheepy.lily.vulkan.process.graphic.renderpass;
 
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.notification.observatory.IObservatory;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
-import org.sheepy.lily.core.api.util.AllocationChildrenRegistry;
 import org.sheepy.lily.vulkan.core.graphic.ClearInfo;
 import org.sheepy.lily.vulkan.core.graphic.IRenderPass;
 import org.sheepy.lily.vulkan.core.resource.attachment.IExtraAttachmentAdapter;
@@ -19,25 +19,22 @@ import static org.lwjgl.vulkan.VK10.vkDestroyRenderPass;
 
 public class RenderPass implements IRenderPass, IAllocable<GraphicContext>
 {
-	private final AllocationChildrenRegistry attachmentsRegistry = new AllocationChildrenRegistry(List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
-																										  GraphicPackage.Literals.SUBPASS__ATTACHMENT_REF_PKG,
-																										  GraphicPackage.Literals.ATTACHMENT_REF_PKG__ATTACHMENT_REFS,
-																										  GraphicPackage.Literals.ATTACHMENT_REF__ATTACHMENT),
-																								  true);
-
 	private final GraphicProcess process;
 	private final List<ExtraAttachment> extraAttachments = new ArrayList<>();
 	private final IObservatory observatory;
+
 	private long renderPass = 0;
 	private List<ClearInfo> clearInfos = null;
 	private boolean listeningAttachments = false;
+	private IAllocationConfigurator config;
 
 	public RenderPass(GraphicProcess process)
 	{
 		this.process = process;
 
 		final var observatory = IObservatoryBuilder.newObservatoryBuilder();
-		observatory.explore(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES)
+		observatory.listenNoParam(this::setDirty, GraphicPackage.GRAPHIC_PROCESS__SUBPASSES)
+				   .explore(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES)
 				   .explore(GraphicPackage.Literals.SUBPASS__ATTACHMENT_REF_PKG)
 				   .explore(GraphicPackage.Literals.ATTACHMENT_REF_PKG__ATTACHMENT_REFS)
 				   .explore(GraphicPackage.Literals.ATTACHMENT_REF__ATTACHMENT, Attachment.class)
@@ -45,38 +42,18 @@ public class RenderPass implements IRenderPass, IAllocable<GraphicContext>
 		this.observatory = observatory.build();
 	}
 
-	private void addAttachment(Attachment attachment)
-	{
-		if (attachment instanceof ExtraAttachment)
-		{
-			final var extraAttachment = (ExtraAttachment) attachment;
-			if (extraAttachments.contains(extraAttachment) == false)
-			{
-				extraAttachments.add(extraAttachment);
-			}
-		}
-	}
-
-	private void removeAttachment(Attachment attachment)
-	{
-		if (attachment instanceof ExtraAttachment)
-		{
-			final var extraAttachment = (ExtraAttachment) attachment;
-			extraAttachments.remove(extraAttachment);
-		}
-	}
-
 	@Override
 	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
 	{
+		this.config = config;
 		final var swapChainManager = context.getSwapChainManager();
 		config.addDependencies(List.of(swapChainManager));
 
 		if (listeningAttachments == true)
 		{
-			attachmentsRegistry.stopRegister(process);
+			observatory.shut(process);
 		}
-		attachmentsRegistry.startRegister(process, config);
+		observatory.observe(process);
 		listeningAttachments = true;
 	}
 
@@ -85,7 +62,7 @@ public class RenderPass implements IRenderPass, IAllocable<GraphicContext>
 	{
 		if (listeningAttachments == true)
 		{
-			attachmentsRegistry.stopRegister(process);
+			observatory.shut(process);
 			listeningAttachments = false;
 		}
 	}
@@ -93,8 +70,6 @@ public class RenderPass implements IRenderPass, IAllocable<GraphicContext>
 	@Override
 	public void allocate(GraphicContext context)
 	{
-		observatory.observe(process);
-
 		final var stack = context.stack();
 		final var format = context.getSurfaceManager().getColorDomain().getFormat();
 
@@ -110,7 +85,44 @@ public class RenderPass implements IRenderPass, IAllocable<GraphicContext>
 	{
 		vkDestroyRenderPass(context.getVkDevice(), renderPass, null);
 		renderPass = 0;
-		observatory.shut(process);
+	}
+
+	private void addAttachment(Attachment attachment)
+	{
+		if (attachment instanceof ExtraAttachment)
+		{
+			final var extraAttachment = (ExtraAttachment) attachment;
+			if (extraAttachments.contains(extraAttachment) == false)
+			{
+				extraAttachments.add(extraAttachment);
+				final IAllocableAdapter<?> adapter = extraAttachment.adapt(IAllocableAdapter.class);
+				if (adapter != null)
+				{
+					config.addChildren(List.of(adapter));
+				}
+				config.setDirty();
+			}
+		}
+	}
+
+	private void removeAttachment(Attachment attachment)
+	{
+		if (attachment instanceof ExtraAttachment)
+		{
+			final var extraAttachment = (ExtraAttachment) attachment;
+			extraAttachments.remove(extraAttachment);
+			final IAllocableAdapter<?> adapter = extraAttachment.adapt(IAllocableAdapter.class);
+			if (adapter != null)
+			{
+				config.removeChildren(List.of(adapter));
+			}
+			config.setDirty();
+		}
+	}
+
+	private void setDirty()
+	{
+		config.setDirty();
 	}
 
 	private void fillClearInfos(List<ExtraAttachment> attachments, FramebufferConfiguration configuration)

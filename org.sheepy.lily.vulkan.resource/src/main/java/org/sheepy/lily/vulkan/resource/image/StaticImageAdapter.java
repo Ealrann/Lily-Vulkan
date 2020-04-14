@@ -9,6 +9,7 @@ import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
+import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
 
@@ -45,11 +46,9 @@ public class StaticImageAdapter extends Notifier<IVkImageAdapter.Features> imple
 	{
 		final var vkDevice = context.getVkDevice();
 		final var size = image.getSize();
-		final var builder = new VkImage.VkImageBuilder(image, size.x(), size.y());
+		final var builder = new VkImageBuilder(image, size.x(), size.y());
 		builder.fillWith(image.getFillWith());
-
-		imageBackend = builder.build();
-		imageBackend.allocate(context);
+		imageBackend = builder.build(context);
 
 		imageView = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
 		imageView.allocate(vkDevice, imageBackend);

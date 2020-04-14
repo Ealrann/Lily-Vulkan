@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.core.test;
+package org.sheepy.lily.vulkan.core.test.test;
 
 import org.joml.Vector2i;
 import org.sheepy.lily.core.model.application.Application;

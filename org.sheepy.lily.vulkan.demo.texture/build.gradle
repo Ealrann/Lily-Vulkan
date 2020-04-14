@@ -1,12 +1,18 @@
 plugins {
-	id 'java-library'
 	id 'application'
 }
 
-mainClassName = "$moduleName/org.sheepy.lily.vulkan.demo.MainMeta"
+application {
+	mainModule = 'org.sheepy.lily.vulkan.demo.texture'
+	mainClass = 'org.sheepy.lily.vulkan.demo.MainMeta'
+}
+
+// Temporary: https://github.com/gradle/gradle/issues/890#issuecomment-613427968
+test { classpath = configurations[sourceSets.test.runtimeClasspathConfigurationName] + files(compileTestJava) }
+dependencies { testImplementation project(path) }
+// end Temporary ---------------------------------------------------------------
 
 dependencies {
-
 	implementation project(':org.sheepy.lily.vulkan.api')
 	runtimeOnly project(':org.sheepy.lily.vulkan.base')
 
@@ -24,7 +30,6 @@ test {
 
 sourceSets {
 	main {
-		java.srcDirs = ['src/main/java',
-			'src/main/shader']
+		java.srcDirs += ['src/main/shader']
 	}
 }

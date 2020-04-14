@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.core.resource.buffer;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.core.device.LogicalDevice;
+import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunk;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunkBuilder;
@@ -17,59 +17,32 @@ public final class GPUBufferBackend implements IBufferBackend
 
 	public static final int DEVICE_LOCAL = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
 
-	public final int properties;
-
 	private final BufferInfo info;
+	private final long address;
+	private final CPUBufferBackend cpuBackend;
 
-	private long address = -1;
 	private long memoryAddress;
 	private MemoryChunk memory;
 	private int currentInstance = 0;
 	private long currentOffset = 0;
 
-	private CPUBufferBackend cpuBackend = null;
-
-	public GPUBufferBackend(BufferInfo info, boolean keepStagingBuffer)
+	public GPUBufferBackend(BufferInfo info, long address, CPUBufferBackend cpuBackend)
 	{
 		this.info = info;
-
-		if (keepStagingBuffer)
-		{
-			final BufferInfo stagingInfo = new BufferInfo(info.size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, info.keptMapped);
-			cpuBackend = new CPUBufferBackend(stagingInfo, true);
-		}
-
-		properties = DEVICE_LOCAL;
+		this.address = address;
+		this.cpuBackend = cpuBackend;
 	}
 
-	@Override
-	public void allocate(ExecutionContext context)
+	private void bindBufferMemory(VkDevice vkDevice, long memoryPtr, long offset, long size)
 	{
-		final var memoryBuilder = new MemoryChunkBuilder(context, properties);
-		allocate(context, memoryBuilder);
-		memory = memoryBuilder.build();
-		memory.allocate(context);
+		memoryAddress = memoryPtr;
+		vkBindBufferMemory(vkDevice, address, memoryAddress, offset);
+		// System.out.println(Long.toHexString(bufferMemoryId));
 	}
 
-	@Override
-	public void allocate(ExecutionContext context, MemoryChunkBuilder memoryBuilder)
+	private void linkMemory(final MemoryChunk memory)
 	{
-		final var vkDevice = context.getVkDevice();
-
-		info.computeAlignment(context.getPhysicalDevice());
-		address = VkBufferAllocator.allocate(context, info);
-
-		memoryBuilder.registerBuffer(address, (memoryPtr, offset, memorySize) -> {
-			memoryAddress = memoryPtr;
-
-			vkBindBufferMemory(vkDevice, address, memoryAddress, offset);
-			// System.out.println(Long.toHexString(bufferMemoryId));
-		});
-
-		if (cpuBackend != null)
-		{
-			cpuBackend.allocate(context);
-		}
+		this.memory = memory;
 	}
 
 	@Override
@@ -79,24 +52,14 @@ public final class GPUBufferBackend implements IBufferBackend
 
 		vkDestroyBuffer(vkDevice, address, null);
 		if (memory != null) memory.free(context);
+		if (cpuBackend != null) cpuBackend.free(context);
 
-		if (cpuBackend != null)
-		{
-			cpuBackend.free(context);
-		}
-
-		address = -1;
-		memoryAddress = -1;
+		memoryAddress = 0;
 	}
 
 	@Override
 	public void pushData(ExecutionContext executionContext, ByteBuffer data)
 	{
-		if (address == -1)
-		{
-			throw new AssertionError("Buffer not allocated");
-		}
-
 		if (cpuBackend == null)
 		{
 			final int size = (int) Math.min(data.remaining(), info.size);
@@ -134,25 +97,25 @@ public final class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public long mapMemory()
+	public long mapMemory(VkDevice vkDevice)
 	{
 		if (cpuBackend == null)
 		{
 			throwNoStagingError();
 		}
 
-		return cpuBackend.mapMemory();
+		return cpuBackend.mapMemory(vkDevice);
 	}
 
 	@Override
-	public void unmapMemory()
+	public void unmapMemory(VkDevice vkDevice)
 	{
 		if (cpuBackend == null)
 		{
 			throwNoStagingError();
 		}
 
-		cpuBackend.unmapMemory();
+		cpuBackend.unmapMemory(vkDevice);
 	}
 
 	private static void throwNoStagingError() throws AssertionError
@@ -171,7 +134,7 @@ public final class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void nextInstance()
+	public void nextInstance(VkDevice vkDevice)
 	{
 		currentInstance++;
 		if (currentInstance >= info.instanceCount)
@@ -207,20 +170,53 @@ public final class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public int getProperties()
-	{
-		return properties;
-	}
-
-	@Override
-	public void flush(MemoryStack stack, LogicalDevice logicalDevice)
+	public void flush(MemoryStack stack, VkDevice vkDevice)
 	{
 		// Nothing to flush for device local buffer
 	}
 
 	@Override
-	public void invalidate(MemoryStack stack, LogicalDevice logicalDevice)
+	public void invalidate(MemoryStack stack, VkDevice vkDevice)
 	{
 		// Nothing to invalidate for device local buffer
+	}
+
+	public static final class Builder
+	{
+		private final BufferInfo info;
+		private final boolean keepStagingBuffer;
+
+		public Builder(BufferInfo info, boolean keepStagingBuffer)
+		{
+			this.info = info;
+			this.keepStagingBuffer = keepStagingBuffer;
+		}
+
+		public GPUBufferBackend build(ExecutionContext context)
+		{
+			final var memoryBuilder = new MemoryChunkBuilder(context, DEVICE_LOCAL);
+			final var res = build(context, memoryBuilder);
+			final var memory = memoryBuilder.build();
+			memory.allocate(context);
+			res.linkMemory(memory);
+			return res;
+		}
+
+		public GPUBufferBackend build(ExecutionContext context, MemoryChunkBuilder memoryBuilder)
+		{
+			info.computeAlignment(context.getPhysicalDevice());
+			final long address = VkBufferAllocator.allocate(context, info);
+			final var cpuBuffer = keepStagingBuffer ? createCpuBuffer(context) : null;
+			final var backend = new GPUBufferBackend(info, address, cpuBuffer);
+			memoryBuilder.registerBuffer(address, backend::bindBufferMemory);
+			return backend;
+		}
+
+		private CPUBufferBackend createCpuBuffer(ExecutionContext context)
+		{
+			final BufferInfo stagingInfo = new BufferInfo(info.size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, info.keptMapped);
+			final var bufferBuilder = new CPUBufferBackend.Builder(stagingInfo, true);
+			return bufferBuilder.build(context);
+		}
 	}
 }

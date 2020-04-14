@@ -54,7 +54,6 @@ public final class DepthAttachmentAdapter extends Notifier<IVkImageAdapter.Featu
 	{
 		depthFormat = findDepthFormat(context.getPhysicalDevice());
 		createDepthImage(context);
-		allocateDepthImage(context);
 		createAndAllocateImageView(context.getLogicalDevice());
 		layoutTransitionOfDepthImage(context);
 
@@ -74,12 +73,7 @@ public final class DepthAttachmentAdapter extends Notifier<IVkImageAdapter.Featu
 		depthImageBuilder.usage(usages);
 		depthImageBuilder.aspect(VK_IMAGE_ASPECT_DEPTH_BIT);
 
-		depthImageBackend = depthImageBuilder.build();
-	}
-
-	private void allocateDepthImage(GraphicContext context)
-	{
-		depthImageBackend.allocate(context);
+		depthImageBackend = depthImageBuilder.build(context);
 	}
 
 	private void createAndAllocateImageView(LogicalDevice logicalDevice)

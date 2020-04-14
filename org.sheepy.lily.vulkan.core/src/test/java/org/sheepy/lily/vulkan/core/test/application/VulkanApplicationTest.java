@@ -1,11 +1,12 @@
-package org.sheepy.lily.vulkan.core.application;
+package org.sheepy.lily.vulkan.core.test.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.sheepy.lily.core.api.LilyLauncher;
 import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.vulkan.core.test.TestUtils;
+import org.sheepy.lily.vulkan.core.test.test.TestUtils;
 
 public class VulkanApplicationTest
 {
@@ -16,7 +17,7 @@ public class VulkanApplicationTest
 
 		LilyLauncher.launch(application, () ->
 		{
-			assertEquals(true, VulkanApplicationUtil.getWindow(application).isOpenned());
+			assertTrue(VulkanApplicationUtil.getWindow(application).isOpenned());
 			application.setRun(false);
 		});
 	}

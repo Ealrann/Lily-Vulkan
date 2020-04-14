@@ -1,10 +1,10 @@
-package org.sheepy.lily.vulkan.core.window;
+package org.sheepy.lily.vulkan.core.test.window;
 
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.lwjgl.glfw.GLFW.glfwGetWindowSize;
 
 import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.vulkan.core.application.VulkanApplicationUtil;
+import org.sheepy.lily.vulkan.core.test.application.VulkanApplicationUtil;
 
 public class WindowTestUtil
 {

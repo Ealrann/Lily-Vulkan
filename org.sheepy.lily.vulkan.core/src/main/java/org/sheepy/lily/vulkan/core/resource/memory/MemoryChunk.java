@@ -29,13 +29,14 @@ public final class MemoryChunk implements IAllocable<ExecutionContext>
 	@Override
 	public void allocate(ExecutionContext context)
 	{
+		final var vkDevice = context.getVkDevice();
 		ptr = allocateBuffer(context);
 		long offset = 0;
 		for (int i = 0; i < consumers.size(); i++)
 		{
 			final var memoryConsumer = consumers.get(i);
 			final var size = memoryConsumer.size;
-			memoryConsumer.callBack.finalize(ptr, offset, size);
+			memoryConsumer.callBack.finalize(vkDevice, ptr, offset, size);
 			offset += size;
 		}
 	}

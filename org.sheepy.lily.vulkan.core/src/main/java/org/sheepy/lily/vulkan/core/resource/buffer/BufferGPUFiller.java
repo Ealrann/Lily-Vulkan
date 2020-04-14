@@ -49,8 +49,8 @@ public class BufferGPUFiller
 	{
 		final int usage = STAGING_USAGE;
 		final var bufferInfo = new BufferInfo(byteSize, usage, false);
-		stagingBuffer = new CPUBufferBackend(bufferInfo, true);
-		stagingBuffer.allocate(context);
+		final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo, true);
+		stagingBuffer = bufferBuilder.build(context);
 		stagingBuffer.pushData(context, sourceBuffer);
 	}
 

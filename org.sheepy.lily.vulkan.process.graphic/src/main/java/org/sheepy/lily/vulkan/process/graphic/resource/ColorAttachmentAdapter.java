@@ -58,7 +58,6 @@ public final class ColorAttachmentAdapter extends Notifier<IVkImageAdapter.Featu
 		colorFormat = format == 0 ? surfaceFormat : format;
 
 		createImage(context);
-		allocateImage(context);
 		createAndAllocateImageView(context.getLogicalDevice());
 		layoutTransition(context);
 
@@ -80,12 +79,7 @@ public final class ColorAttachmentAdapter extends Notifier<IVkImageAdapter.Featu
 		imageBuilder.usage(usage);
 		imageBuilder.initialLayout(initialLayout);
 
-		colorImageBackend = imageBuilder.build();
-	}
-
-	private void allocateImage(GraphicContext context)
-	{
-		colorImageBackend.allocate(context);
+		colorImageBackend = imageBuilder.build(context);
 	}
 
 	private void createAndAllocateImageView(LogicalDevice logicalDevice)

@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.core.application;
+package org.sheepy.lily.vulkan.core.test.application;
 
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.IEngine;

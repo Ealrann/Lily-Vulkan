@@ -1,7 +1,3 @@
-plugins {
-	id 'java-library'
-}
-
 dependencies {
 	implementation project(':org.sheepy.lily.openal.api')
 	implementation project(':org.sheepy.lily.game.core')
