@@ -5,6 +5,7 @@ import org.joml.Vector3f;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.*;
+import org.sheepy.lily.core.api.cadence.Tick;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.Scene;
 import org.sheepy.lily.vulkan.api.util.SizeOf;

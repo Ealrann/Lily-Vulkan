@@ -2,7 +2,7 @@ package org.sheepy.lily.openal.core.engine;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.adapter.annotation.Tick;
+import org.sheepy.lily.core.api.cadence.Tick;
 import org.sheepy.lily.core.api.allocation.IAllocationService;
 import org.sheepy.lily.core.api.allocation.IRootAllocator;
 import org.sheepy.lily.core.api.cadence.ETickerClock;

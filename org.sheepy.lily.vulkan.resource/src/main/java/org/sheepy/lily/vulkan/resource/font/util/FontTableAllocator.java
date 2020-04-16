@@ -1,13 +1,5 @@
 package org.sheepy.lily.vulkan.resource.font.util;
 
-import static org.lwjgl.stb.STBTruetype.*;
-
-import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
 import org.lwjgl.stb.STBTTFontinfo;
 import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar.Buffer;
@@ -18,6 +10,14 @@ import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.FontTable;
 import org.sheepy.lily.vulkan.core.resource.font.IFontTableInfo;
 import org.sheepy.lily.vulkan.core.util.Logger;
+
+import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+import static org.lwjgl.stb.STBTruetype.*;
 
 public final class FontTableAllocator implements IFontTableInfo
 {

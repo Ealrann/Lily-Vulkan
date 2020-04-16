@@ -4,6 +4,7 @@ import org.lwjgl.nuklear.NkUserFont;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.*;
 import org.sheepy.lily.core.api.adapter.util.AdapterDeployer;
+import org.sheepy.lily.core.api.cadence.Tick;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.FontPkg;
