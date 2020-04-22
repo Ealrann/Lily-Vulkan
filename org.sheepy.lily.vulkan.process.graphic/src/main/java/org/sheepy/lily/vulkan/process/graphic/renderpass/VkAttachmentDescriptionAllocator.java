@@ -1,12 +1,12 @@
 package org.sheepy.lily.vulkan.process.graphic.renderpass;
 
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkAttachmentDescription;
 import org.sheepy.lily.vulkan.core.resource.attachment.IExtraAttachmentAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
+
+import java.util.List;
 
 public final class VkAttachmentDescriptionAllocator
 {
@@ -17,11 +17,9 @@ public final class VkAttachmentDescriptionAllocator
 		this.swapchainImageFormat = swapchainImageFormat;
 	}
 
-	public VkAttachmentDescription.Buffer allocate(	final MemoryStack stack,
-													final List<Attachment> attachments)
+	public VkAttachmentDescription.Buffer allocate(final MemoryStack stack, final List<Attachment> attachments)
 	{
-		final var attachmentsBuffer = VkAttachmentDescription.callocStack(	attachments.size(),
-																			stack);
+		final var attachmentsBuffer = VkAttachmentDescription.callocStack(attachments.size(), stack);
 		for (final var attachmentDescription : attachments)
 		{
 			fillAttachment(attachmentsBuffer.get(), attachmentDescription);
@@ -30,8 +28,7 @@ public final class VkAttachmentDescriptionAllocator
 		return attachmentsBuffer;
 	}
 
-	private void fillAttachment(final VkAttachmentDescription vkAttachment,
-								final Attachment attachment)
+	private void fillAttachment(final VkAttachmentDescription vkAttachment, final Attachment attachment)
 	{
 		final var format = getAttachmentFormat(attachment);
 		vkAttachment.format(format);

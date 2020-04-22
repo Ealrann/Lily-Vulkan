@@ -126,6 +126,8 @@ public final class EngineBuilder
 		final Board board = Board.createTestBoard(size);
 		final Buffer boardBuffer1 = BoardBufferFactory.createBoardBuffer(board);
 		final Buffer boardBuffer2 = BoardBufferFactory.createBoardBuffer(board);
+		boardBuffer1.setName("BoardBuffer1");
+		boardBuffer2.setName("BoardBuffer2");
 
 		final var boardBuffer1Descriptor = newDescriptor(boardBuffer1);
 		final var boardBuffer2Descriptor = newDescriptor(boardBuffer2);

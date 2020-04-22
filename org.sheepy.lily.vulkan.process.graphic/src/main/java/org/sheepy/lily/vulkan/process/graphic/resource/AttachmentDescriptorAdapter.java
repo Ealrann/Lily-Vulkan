@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.process.graphic.resource;
 
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Observe;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -15,7 +16,7 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 @Statefull
 @Adapter(scope = AttachmentDescriptor.class)
-public final class AttachmentDescriptorAdapter implements IDescriptorAdapter
+public final class AttachmentDescriptorAdapter implements IDescriptorAdapter, IAllocableAdapter<IExecutionContext>
 {
 	private final AttachmentDescriptor descriptor;
 	private final VkImageDescriptor vkDescriptor;

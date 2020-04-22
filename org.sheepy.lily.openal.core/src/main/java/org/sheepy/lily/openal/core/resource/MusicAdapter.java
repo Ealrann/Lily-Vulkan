@@ -2,9 +2,10 @@ package org.sheepy.lily.openal.core.resource;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
+import org.sheepy.lily.core.api.allocation.up.annotation.Free;
 import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.resource.Music;
@@ -29,21 +30,14 @@ import java.util.function.IntFunction;
 
 @Statefull
 @Adapter(scope = Music.class)
-public final class MusicAdapter implements IAudioAdapter, IAllocableAdapter<IGameAllocationContext>
+@Allocable(context = IGameAllocationContext.class)
+public final class MusicAdapter implements IAudioAdapter
 {
-	private final Music music;
+	private final ByteBuffer encodedBuffer;
+	private final EAudioFormat format;
+	private final ISoundContext soundContext;
 
-	private ByteBuffer encodedBuffer;
-	private EAudioFormat format;
-	private ISoundContext soundContext;
-
-	private MusicAdapter(Music music)
-	{
-		this.music = music;
-	}
-
-	@Override
-	public void allocate(IGameAllocationContext context)
+	public MusicAdapter(Music music)
 	{
 		final var file = music.getFile();
 		final var fileAdapter = file.adaptNotNull(IFileResourceAdapter.class);
@@ -55,12 +49,10 @@ public final class MusicAdapter implements IAudioAdapter, IAllocableAdapter<IGam
 		soundContext = engineAdapter.getContext();
 	}
 
-	@Override
-	public void free(IGameAllocationContext context)
+	@Free
+	public void free()
 	{
 		MemoryUtil.memFree(encodedBuffer);
-		encodedBuffer = null;
-		soundContext = null;
 	}
 
 	@Override
@@ -101,7 +93,8 @@ public final class MusicAdapter implements IAudioAdapter, IAllocableAdapter<IGam
 		public StreamPacket apply(int index)
 		{
 			final var done = future.isDone();
-			final var status = index == 0 ? (done ? StreamPacket.EStatus.Ready : StreamPacket.EStatus.Delayed) : StreamPacket.EStatus.End;
+			final var status = index ==
+							   0 ? (done ? StreamPacket.EStatus.Ready : StreamPacket.EStatus.Delayed) : StreamPacket.EStatus.End;
 
 			if (done && rawAudioBuffer == null)
 			{
@@ -120,8 +113,10 @@ public final class MusicAdapter implements IAudioAdapter, IAllocableAdapter<IGam
 
 		public void free()
 		{
-			if (executor.isTerminated() == false) executor.shutdownNow();
-			if (rawAudioBuffer != null) rawAudioBuffer.free();
+			if (executor.isTerminated() == false)
+				executor.shutdownNow();
+			if (rawAudioBuffer != null)
+				rawAudioBuffer.free();
 		}
 	}
 }

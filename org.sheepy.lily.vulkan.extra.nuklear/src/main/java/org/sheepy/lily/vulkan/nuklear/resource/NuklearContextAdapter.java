@@ -38,10 +38,6 @@ import static org.lwjgl.system.MemoryUtil.nmemFree;
 @Adapter(scope = NuklearContext.class, lazy = false)
 public class NuklearContextAdapter implements IAllocableAdapter<ExecutionContext>
 {
-	public static final long INDEXED_BUFFER_SIZE = (long) Math.pow(2, 19);
-	public static final long INDEX_BUFFER_SIZE = (long) Math.pow(2, 16);
-	public static final long VERTEX_BUFFER_SIZE = INDEXED_BUFFER_SIZE - INDEX_BUFFER_SIZE;
-	public static final long INDEX_OFFSET = INDEXED_BUFFER_SIZE - INDEX_BUFFER_SIZE;
 	public static final int NULL_TEXTURE_DESCRIPTOR_INDEX = 0;
 	public static final int FONT_TEXTURE_DESCRIPTOR_INDEX = 1;
 

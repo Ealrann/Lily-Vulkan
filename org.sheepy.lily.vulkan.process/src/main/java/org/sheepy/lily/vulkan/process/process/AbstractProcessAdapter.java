@@ -14,6 +14,7 @@ import org.sheepy.lily.core.api.util.CompositeModelExplorer;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.game.core.allocation.GenericAllocator;
+import org.sheepy.lily.game.core.allocation.ModelAllocator;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptorSet;
@@ -40,9 +41,10 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 
 	protected final AbstractProcess process;
 	protected final DescriptorPool descriptorPool = new DescriptorPool();
-	protected final T context;
+	protected T context;
 
 	private final GenericAllocator<T> resourceAllocator;
+	private final ModelAllocator resourceAllocator2;
 	private final GenericAllocator<T> pipelineAllocator;
 	private final CompositeModelExplorer pipelineExplorer;
 
@@ -54,9 +56,9 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	public AbstractProcessAdapter(AbstractProcess process)
 	{
 		this.process = process;
-		context = createContext();
 
 		resourceAllocator = new GenericAllocator<>(getResourceFeatureLists());
+		resourceAllocator2 = new ModelAllocator(getResourceFeatureLists());
 		pipelineAllocator = new GenericAllocator<>(getPipelineFeatureLists());
 		pipelineExplorer = new CompositeModelExplorer(getPipelineFeatureLists());
 	}
@@ -105,8 +107,12 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	@Override
 	public void start(final IVulkanContext vulkanContext, final IRootAllocator<IVulkanContext> rootAllocator)
 	{
+		context = createContext(vulkanContext);
+		resourceAllocator2.start(process, vulkanContext);
+
 		refreshStructure();
-		allocator = IAllocationService.INSTANCE.createAllocator(rootAllocator, this, vulkanContext);
+
+		allocator = IAllocationService.INSTANCE.createAllocator(rootAllocator, this, context);
 		allocator.allocate();
 
 		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
@@ -136,6 +142,7 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	{
 		waitIdle();
 		allocator.free();
+		resourceAllocator2.stop(process, context);
 		allocator = null;
 	}
 
@@ -290,6 +297,7 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	private boolean prepareAllocation()
 	{
 		refresh();
+		resourceAllocator2.update(context);
 		if (allocator.isAllocationDirty())
 		{
 			waitIdle();
@@ -367,5 +375,5 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	protected abstract List<IAllocable<? super T>> getExtraAllocables();
 	protected abstract Integer prepareNextExecution();
 	protected abstract List<ECommandStage> getStages();
-	protected abstract T createContext();
+	protected abstract T createContext(final IVulkanContext vulkanContext);
 }

@@ -5,6 +5,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -56,9 +57,9 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeContext
 	}
 
 	@Override
-	protected ComputeContext createContext()
+	protected ComputeContext createContext(final IVulkanContext vulkanContext)
 	{
-		return new ComputeContext(getExecutionQueueType(), isResetAllowed(), descriptorPool, process);
+		return new ComputeContext(vulkanContext, getExecutionQueueType(), isResetAllowed(), descriptorPool, process);
 	}
 
 	@Override

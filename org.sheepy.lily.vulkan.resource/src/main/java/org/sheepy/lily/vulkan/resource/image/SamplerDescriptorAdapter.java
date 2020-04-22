@@ -1,18 +1,19 @@
 package org.sheepy.lily.vulkan.resource.image;
 
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.core.resource.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.core.resource.ISamplerAdapter;
-import org.sheepy.lily.vulkan.model.resource.SamplerDescriptor;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageDescriptor;
+import org.sheepy.lily.vulkan.model.resource.SamplerDescriptor;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 @Statefull
 @Adapter(scope = SamplerDescriptor.class)
-public class SamplerDescriptorAdapter implements IDescriptorAdapter
+public class SamplerDescriptorAdapter implements IDescriptorAdapter, IAllocableAdapter<IExecutionContext>
 {
 	private final VkImageDescriptor vkDescriptor;
 	private final SamplerDescriptor descriptor;
@@ -21,11 +22,11 @@ public class SamplerDescriptorAdapter implements IDescriptorAdapter
 	{
 		this.descriptor = descriptor;
 
-		vkDescriptor = new VkImageDescriptor(	0,
-												0,
-												EImageLayout.GENERAL,
-												descriptor.getType(),
-												descriptor.getShaderStages());
+		vkDescriptor = new VkImageDescriptor(0,
+											 0,
+											 EImageLayout.GENERAL,
+											 descriptor.getType(),
+											 descriptor.getShaderStages());
 	}
 
 	@Override
@@ -40,7 +41,8 @@ public class SamplerDescriptorAdapter implements IDescriptorAdapter
 
 	@Override
 	public void free(IExecutionContext context)
-	{}
+	{
+	}
 
 	@Override
 	public IVkDescriptor getVkDescriptor()

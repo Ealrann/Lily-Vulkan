@@ -1,8 +1,10 @@
 package org.sheepy.lily.openal.core.resource;
 
-import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
+import org.sheepy.lily.core.api.allocation.up.annotation.Context;
+import org.sheepy.lily.core.api.allocation.up.annotation.Free;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.resource.Sound;
 import org.sheepy.lily.game.api.allocation.IGameAllocationContext;
@@ -18,20 +20,13 @@ import org.sheepy.lily.openal.model.openal.OpenALEngine;
 
 @Statefull
 @Adapter(scope = Sound.class)
-public final class SoundAdapter implements IAudioAdapter, IAllocableAdapter<IGameAllocationContext>
+@Allocable(context = IGameAllocationContext.class)
+public final class SoundAdapter implements IAudioAdapter
 {
-	private final Sound sound;
+	private final RawAudioBuffer rawAudioBuffer;
+	private final ISoundContext soundContext;
 
-	private RawAudioBuffer rawAudioBuffer;
-	private ISoundContext soundContext;
-
-	private SoundAdapter(Sound sound)
-	{
-		this.sound = sound;
-	}
-
-	@Override
-	public void allocate(IGameAllocationContext context)
+	public SoundAdapter(Sound sound, @Context IGameAllocationContext context)
 	{
 		final var stack = context.stack();
 		final var file = sound.getFile();
@@ -42,12 +37,10 @@ public final class SoundAdapter implements IAudioAdapter, IAllocableAdapter<IGam
 		soundContext = engineAdapter.getContext();
 	}
 
-	@Override
-	public void free(IGameAllocationContext context)
+	@Free
+	public void free()
 	{
 		rawAudioBuffer.free();
-		rawAudioBuffer = null;
-		soundContext = null;
 	}
 
 	@Override

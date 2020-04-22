@@ -13,12 +13,10 @@ public class VulkanEngineAllocationRoot implements IAllocable<IVulkanContext>
 	public static final EQueueType ENGINE_QUEUE_TYPE = EQueueType.Compute;
 
 	private final List<IAllocable<? super ExecutionContext>> allocationObjects;
-	public final ExecutionContext executionContext;
 
 	public VulkanEngineAllocationRoot(List<? extends IAllocable<? super ExecutionContext>> allocationObjects)
 	{
 		this.allocationObjects = List.copyOf(allocationObjects);
-		executionContext = new ExecutionContext(ENGINE_QUEUE_TYPE, false);
 	}
 
 	@Override
@@ -34,7 +32,6 @@ public class VulkanEngineAllocationRoot implements IAllocable<IVulkanContext>
 	@Override
 	public void configureAllocation(IAllocationConfigurator config, IVulkanContext context)
 	{
-		config.setChildrenContext(executionContext);
 		config.addChildren(allocationObjects);
 	}
 }

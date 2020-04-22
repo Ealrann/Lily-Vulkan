@@ -53,7 +53,7 @@ public final class InstanceDataProviderAdapter implements IBufferDataProviderAda
 			final int prevIncr = previous[i] + 1;
 			if (currentVal != prevIncr)
 			{
-				System.out.print(String.format(	"\t- Failed step %d: %d != %d",
+				System.err.print(String.format(	"\t- Failed step %d: %d != %d\n",
 												i,
 												currentVal,
 												prevIncr));

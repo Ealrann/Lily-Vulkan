@@ -1,22 +1,20 @@
 package org.sheepy.lily.vulkan.process.barrier;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
+import org.sheepy.lily.core.api.adapter.annotation.Observe;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.barrier.IBufferBarrierAdapter;
 import org.sheepy.lily.vulkan.core.barrier.VkBufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
-
-import java.util.function.LongConsumer;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 @Statefull
 @Adapter(scope = BufferBarrier.class)
 public class BufferBarrierAdapter implements IBufferBarrierAdapter
 {
-	private final LongConsumer bufferListener = this::bufferChanged;
 	private final VkBufferBarrier vkBarrier;
 	private final BufferBarrier barrier;
 
@@ -31,18 +29,12 @@ public class BufferBarrierAdapter implements IBufferBarrierAdapter
 		vkBarrier = new VkBufferBarrier(srcAccessMask, dstAccessMask);
 	}
 
-	@Load
-	public void load(BufferBarrier barrier)
+	@Observe
+	private void observe(IObservatoryBuilder observatory)
 	{
-		final var bufferAdapter = barrier.getBuffer().adaptNotNull(IBufferAdapter.class);
-		bufferAdapter.listen(bufferListener, IBufferAdapter.Features.Ptr);
-	}
-
-	@Dispose
-	public void dispose(BufferBarrier barrier)
-	{
-		final var bufferAdapter = barrier.getBuffer().adaptNotNull(IBufferAdapter.class);
-		bufferAdapter.sulk(bufferListener, IBufferAdapter.Features.Ptr);
+		observatory.explore(VulkanResourcePackage.Literals.BUFFER_BARRIER__BUFFER)
+				   .adaptNotifier(IBufferAdapter.class)
+				   .listenNoParam(this::updateBarrier, IBufferAdapter.Features.Ptr);
 	}
 
 	@Override
@@ -67,11 +59,6 @@ public class BufferBarrierAdapter implements IBufferBarrierAdapter
 		// + adapter.getPtr()
 		// + ", offset="
 		// + adapter.getBindOffset());
-	}
-
-	private void bufferChanged(Long ptr)
-	{
-		updateBarrier();
 	}
 
 	@Override

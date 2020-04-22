@@ -6,12 +6,12 @@ import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationContext;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.notification.util.ModelObserver;
 import org.sheepy.lily.core.api.notification.util.NotificationUnifier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public final class GenericAllocator<T extends IAllocationContext>
 {
@@ -55,7 +55,6 @@ public final class GenericAllocator<T extends IAllocationContext>
 				res.add(adapter);
 			}
 		}
-
 		container.addChildren(res);
 	}
 
@@ -85,7 +84,7 @@ public final class GenericAllocator<T extends IAllocationContext>
 	}
 
 	private static List<ModelObserver> buildObservers(List<List<EReference>> featureLists,
-													  INotificationListener listener)
+													  Consumer<Notification> listener)
 	{
 		final List<ModelObserver> res = new ArrayList<>();
 		for (final var featureList : featureLists)

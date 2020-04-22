@@ -177,15 +177,13 @@ public final class BufferPartAdapter extends Notifier<IBufferAdapter.Features> i
 																	  stage,
 																	  accessBeforePush);
 
-		// System.out.println(String.format( "[%s] push %d bytes",
-		// dataProvider.eClass().getName(),
-		// memTicket.getSize()));
-		// System.out.println(String.format( "from buffer %d, offset %d",
-		// bufferAddress,
-		// alignedOffset));
-		// System.out.println(String.format( "to buffer %d, offset %d",
-		// memTicket.getBufferPtr(),
-		// memTicket.getBufferOffset()));
+//		System.out.println(String.format("[%s] record push %d bytes",
+//										 dataProvider.eClass().getName(),
+//										 memTicket.getSize()));
+//		System.out.println(String.format("\tfrom buffer %d, offset %d",
+//										 memTicket.getBufferPtr(),
+//										 memTicket.getBufferOffset()));
+//		System.out.println(String.format("\tto buffer %d, offset %d", bufferPtr, instanceOffset));
 
 		transferBuffer.addTransferCommand(pushCommand);
 
@@ -214,6 +212,14 @@ public final class BufferPartAdapter extends Notifier<IBufferAdapter.Features> i
 																		stage,
 																		accessBeforeFetch,
 																		transferDone);
+
+//		System.out.println(String.format("[%s] record fetch %d bytes",
+//										 dataProvider.eClass().getName(),
+//										 memTicket.getSize()));
+//		System.out.println(String.format("\tfrom buffer %d, offset %d", bufferPtr, instanceOffset));
+//		System.out.println(String.format("\tto buffer %d, offset %d",
+//										 memTicket.getBufferPtr(),
+//										 memTicket.getBufferOffset()));
 
 		transferBuffer.addTransferCommand(fetchCommand);
 	}

@@ -14,6 +14,7 @@ import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.game.api.window.IWindow;
 import org.sheepy.lily.game.core.allocation.GenericAllocator;
+import org.sheepy.lily.game.core.allocation.ModelAllocator;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.core.concurrent.VkFence;
@@ -22,6 +23,7 @@ import org.sheepy.lily.vulkan.core.device.LogicalDevice;
 import org.sheepy.lily.vulkan.core.engine.utils.VulkanEngineAllocationRoot;
 import org.sheepy.lily.vulkan.core.engine.utils.VulkanEngineUtils;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.core.input.VulkanInputManager;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.core.window.Window;
@@ -51,12 +53,14 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private final GenericAllocator<ExecutionContext> resourceAllocator = new GenericAllocator<>(List.of(
 			RESOURCE_FEATURES,
 			DESCRIPTOR_FEATURES));
+	private final ModelAllocator resourceAllocator2 = new ModelAllocator(List.of(RESOURCE_FEATURES,
+																				 DESCRIPTOR_FEATURES));
 	private final Runnable openListener = this::loadInputManager;
 	private final Window window;
 
 	private VulkanContext vulkanContext;
+	private ExecutionContext executionContext;
 	private IRootAllocator<IVulkanContext> allocator;
-	private VulkanEngineAllocationRoot allocationRoot;
 	private boolean allocated = false;
 
 	public VulkanEngineAdapter(VulkanEngine engine)
@@ -112,6 +116,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 			contextBuilder.setWindow(window);
 
 			vulkanContext = contextBuilder.build(stack, instanceName, queueTypes, features);
+			executionContext = new ExecutionContext(vulkanContext, EQueueType.Compute, false);
 
 			if (window != null)
 			{
@@ -160,6 +165,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void updateAllocation()
 	{
+		resourceAllocator2.update(executionContext);
 		if (allocator.isAllocationDirty())
 		{
 			for (final var process : engine.getProcesses())
@@ -184,9 +190,9 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 			free();
 		}
 
-		if (vulkanContext.getLogicalDevice() != null)
+		if (executionContext.getLogicalDevice() != null)
 		{
-			vulkanContext.getLogicalDevice().waitIdle();
+			executionContext.getLogicalDevice().waitIdle();
 		}
 
 		if (window != null)
@@ -195,6 +201,8 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 		}
 
 		if (inputManager != null) inputManager.dispose();
+		executionContext.free(vulkanContext);
+		executionContext = null;
 		vulkanContext.free();
 		vulkanContext = null;
 	}
@@ -203,8 +211,10 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	{
 		resourceAllocator.start(engine);
 
-		allocationRoot = new VulkanEngineAllocationRoot(List.of(resourceAllocator.getAllocable()));
-		allocator = IAllocationService.INSTANCE.createAllocator(allocationRoot, vulkanContext);
+		final var allocationRoot = new VulkanEngineAllocationRoot(List.of(resourceAllocator.getAllocable()));
+		allocator = IAllocationService.INSTANCE.createAllocator(allocationRoot, executionContext);
+
+		resourceAllocator2.start(engine, executionContext);
 		allocator.allocate();
 
 		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
@@ -223,19 +233,20 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 		for (final IProcess process : engine.getProcesses())
 		{
 			final var adapter = process.adaptNotNull(InternalProcessAdapter.class);
-			adapter.start(vulkanContext, allocator);
+			adapter.start(executionContext, allocator);
 		}
 	}
 
 	private void free()
 	{
-		allocationRoot.executionContext.getQueue().waitIdle();
+		executionContext.getQueue().waitIdle();
 		stopProcesses();
 		allocator.free();
+		resourceAllocator2.stop(engine, executionContext);
 
 		for (final VkFence fence : fences)
 		{
-			fence.free(vulkanContext);
+			fence.free(executionContext);
 		}
 		allocated = false;
 	}
@@ -245,7 +256,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 		for (final var process : engine.getProcesses())
 		{
 			final var adapter = process.adaptNotNull(InternalProcessAdapter.class);
-			adapter.stop(vulkanContext);
+			adapter.stop(executionContext);
 		}
 	}
 
@@ -264,7 +275,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	public VkFence newFence(boolean signaled)
 	{
 		final VkFence res = new VkFence(signaled);
-		res.allocate(vulkanContext);
+		res.allocate(executionContext);
 
 		fences.add(res);
 		return res;
@@ -272,7 +283,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	public LogicalDevice getLogicalDevice()
 	{
-		return vulkanContext.getLogicalDevice();
+		return executionContext.getLogicalDevice();
 	}
 
 	@Override

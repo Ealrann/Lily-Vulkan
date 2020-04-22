@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.resource.image;
 
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
@@ -12,7 +13,7 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 @Statefull
 @Adapter(scope = SampledImageDescriptor.class)
-public class SampledImageDescriptorAdapter implements IDescriptorAdapter
+public class SampledImageDescriptorAdapter implements IDescriptorAdapter, IAllocableAdapter<IExecutionContext>
 {
 	private final SampledImageDescriptor descriptor;
 	private final VkImageDescriptor vkDescriptor;

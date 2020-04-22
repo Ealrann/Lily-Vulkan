@@ -53,7 +53,6 @@ public class MemorySpaceManager
 
 			if (foundMemory != null)
 			{
-
 				foundMemory.size -= size;
 				foundMemory.offset += size;
 

@@ -1,9 +1,11 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
+import org.sheepy.lily.core.api.allocation.up.annotation.Context;
+import org.sheepy.lily.core.api.allocation.up.annotation.Free;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAdapter;
@@ -21,23 +23,15 @@ import java.util.List;
 
 @Statefull
 @Adapter(scope = Buffer.class)
-public final class BufferAdapter extends Notifier<IBufferAdapter.Features> implements IBufferAdapter,
-																					  IAllocableAdapter<ExecutionContext>
+@Allocable(context = ExecutionContext.class)
+public final class BufferAdapter extends Notifier<IBufferAdapter.Features> implements IBufferAdapter
 {
-	private final Buffer buffer;
+	private final IBufferBackend bufferBackend;
+	private final ExecutionContext executionManager;
 
-	private IBufferBackend bufferBackend;
-	private ExecutionContext executionManager;
-
-	public BufferAdapter(Buffer buffer)
+	public BufferAdapter(Buffer buffer, @Context ExecutionContext context)
 	{
 		super(List.of(Features.Size, Features.Offset, Features.Ptr));
-		this.buffer = buffer;
-	}
-
-	@Override
-	public void allocate(ExecutionContext context)
-	{
 		executionManager = context;
 		final var info = createInfo(context, buffer);
 		if (!buffer.isHostVisible())
@@ -65,16 +59,14 @@ public final class BufferAdapter extends Notifier<IBufferAdapter.Features> imple
 		{
 			System.err.println("[Warning] BufferAdapter.pushData() is slow. Don't use it in the main loop.");
 		}
-
 		bufferBackend.nextInstance(executionManager.getVkDevice());
 		bufferBackend.pushData(executionManager, data);
 	}
 
-	@Override
+	@Free
 	public void free(ExecutionContext context)
 	{
 		bufferBackend.free(context);
-		bufferBackend = null;
 	}
 
 	@Override

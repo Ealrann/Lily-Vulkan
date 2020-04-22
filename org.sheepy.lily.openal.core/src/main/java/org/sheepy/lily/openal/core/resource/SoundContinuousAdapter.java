@@ -1,8 +1,10 @@
 package org.sheepy.lily.openal.core.resource;
 
-import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
+import org.sheepy.lily.core.api.allocation.up.annotation.Context;
+import org.sheepy.lily.core.api.allocation.up.annotation.Free;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.resource.SoundContinuous;
 import org.sheepy.lily.game.api.allocation.IGameAllocationContext;
@@ -19,23 +21,16 @@ import org.sheepy.lily.openal.model.openal.OpenALEngine;
 
 @Statefull
 @Adapter(scope = SoundContinuous.class)
-public final class SoundContinuousAdapter implements IAudioAdapter, IAllocableAdapter<IGameAllocationContext>
+@Allocable(context = IGameAllocationContext.class)
+public final class SoundContinuousAdapter implements IAudioAdapter
 {
-	private final SoundContinuous sound;
+	private final RawAudioBuffer rawAudioBuffer;
+	private final RawAudioBuffer attackAudio;
+	private final RawAudioBuffer sustainAudio;
+	private final RawAudioBuffer decayAudio;
+	private final ISoundContext soundContext;
 
-	private RawAudioBuffer rawAudioBuffer;
-	private RawAudioBuffer attackAudio;
-	private RawAudioBuffer sustainAudio;
-	private RawAudioBuffer decayAudio;
-	private ISoundContext soundContext;
-
-	private SoundContinuousAdapter(SoundContinuous sound)
-	{
-		this.sound = sound;
-	}
-
-	@Override
-	public void allocate(IGameAllocationContext context)
+	public SoundContinuousAdapter(SoundContinuous sound, @Context IGameAllocationContext context)
 	{
 		final var stack = context.stack();
 		final var file = sound.getFile();
@@ -46,18 +41,15 @@ public final class SoundContinuousAdapter implements IAudioAdapter, IAllocableAd
 		attackAudio = rawAudioBuffer.slice(0, attackMs);
 		sustainAudio = rawAudioBuffer.slice(attackMs, decayMs);
 		decayAudio = rawAudioBuffer.slice(decayMs, totalMs);
-
 		final var engine = ModelUtil.findParent(sound, OpenALEngine.class);
 		final var engineAdapter = engine.adapt(OpenALEngineAdapter.class);
 		soundContext = engineAdapter.getContext();
 	}
 
-	@Override
-	public void free(IGameAllocationContext context)
+	@Free
+	public void free()
 	{
 		rawAudioBuffer.free();
-		rawAudioBuffer = null;
-		soundContext = null;
 	}
 
 	@Override

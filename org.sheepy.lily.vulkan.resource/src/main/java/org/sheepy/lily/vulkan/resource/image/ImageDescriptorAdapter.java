@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.resource.image;
 
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
@@ -14,7 +15,7 @@ import java.util.function.LongConsumer;
 
 @Statefull
 @Adapter(scope = ImageDescriptor.class)
-public final class ImageDescriptorAdapter implements IDescriptorAdapter
+public final class ImageDescriptorAdapter implements IDescriptorAdapter, IAllocableAdapter<IExecutionContext>
 {
 	private final ImageDescriptor descriptor;
 	private final VkImageDescriptor vkDescriptor;

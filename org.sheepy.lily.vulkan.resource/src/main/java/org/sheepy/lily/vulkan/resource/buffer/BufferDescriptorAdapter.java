@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
+import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -14,7 +15,7 @@ import java.util.function.LongConsumer;
 
 @Statefull
 @Adapter(scope = BufferDescriptor.class)
-public final class BufferDescriptorAdapter implements IDescriptorAdapter
+public final class BufferDescriptorAdapter implements IDescriptorAdapter, IAllocableAdapter<IExecutionContext>
 {
 	private final BufferDescriptor descriptor;
 	private final VkBufferDescriptor vkDescriptor;
@@ -78,3 +79,63 @@ public final class BufferDescriptorAdapter implements IDescriptorAdapter
 		return vkDescriptor;
 	}
 }
+
+//
+//@Statefull
+//@Allocable
+//@Adapter(scope = BufferDescriptor.class)
+//public final class BufferDescriptorAdapter implements IDescriptorAdapter
+//{
+//	private final BufferDescriptor descriptor;
+//	private final VkBufferDescriptor vkDescriptor;
+//
+//	private final LongConsumer ptrChange;
+//	private final LongConsumer sizeChange;
+//	private final LongConsumer offsetChange;
+//
+//	private BufferDescriptorAdapter(BufferDescriptor descriptor,
+//									@Depends(feature = VulkanResourcePackage.BUFFER_DESCRIPTOR__BUFFER) IBufferAdapter bufferAdapter)
+//	{
+//		this.descriptor = descriptor;
+//		vkDescriptor = new VkBufferDescriptor(0, 0, 0, descriptor.getType(), descriptor.getShaderStages());
+//		ptrChange = vkDescriptor::updateBufferPtr;
+//		sizeChange = vkDescriptor::updateSize;
+//		offsetChange = vkDescriptor::updateOffset;
+//
+//		updateFromBuffer(bufferAdapter);
+//
+//		bufferAdapter.listen(ptrChange, IBufferAdapter.Features.Ptr);
+//		bufferAdapter.listen(sizeChange, IBufferAdapter.Features.Size);
+//		bufferAdapter.listen(offsetChange, IBufferAdapter.Features.Offset);
+//	}
+//
+//	@Free
+//	public void free()
+//	{
+//		final var buffer = descriptor.getBuffer();
+//		final var bufferAdapter = buffer.adaptNotNull(IBufferAdapter.class);
+//
+//		bufferAdapter.sulk(ptrChange, IBufferAdapter.Features.Ptr);
+//		bufferAdapter.sulk(sizeChange, IBufferAdapter.Features.Size);
+//		bufferAdapter.sulk(offsetChange, IBufferAdapter.Features.Offset);
+//	}
+//
+//	@UpdateDependency(feature = VulkanResourcePackage.BUFFER_DESCRIPTOR__BUFFER)
+//	private void update(IBufferAdapter bufferAdapter)
+//	{
+//		updateFromBuffer(bufferAdapter);
+//	}
+//
+//	private void updateFromBuffer(IBufferAdapter bufferAdapter)
+//	{
+//		vkDescriptor.updateBufferPtr(bufferAdapter.getPtr());
+//		vkDescriptor.updateSize(bufferAdapter.getBindSize());
+//		vkDescriptor.updateOffset(bufferAdapter.getBindOffset());
+//	}
+//
+//	@Override
+//	public IVkDescriptor getVkDescriptor()
+//	{
+//		return vkDescriptor;
+//	}
+//}

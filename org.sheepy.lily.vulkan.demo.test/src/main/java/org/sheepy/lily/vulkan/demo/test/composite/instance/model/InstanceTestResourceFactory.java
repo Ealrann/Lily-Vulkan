@@ -78,7 +78,6 @@ class InstanceTestResourceFactory
 		{
 			final var bufferPart = VulkanResourceFactory.eINSTANCE.createBufferPart();
 			bufferPart.setDataProvider(EcoreUtil.copy(provider));
-
 			parts.add(bufferPart);
 		}
 

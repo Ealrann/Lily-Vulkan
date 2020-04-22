@@ -109,10 +109,14 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<GraphicC
 	}
 
 	@Override
-	protected GraphicContext createContext()
+	protected GraphicContext createContext(final IVulkanContext vulkanContext)
 	{
 		final var graphicProcess = (GraphicProcess) this.process;
-		return new GraphicContext(getExecutionQueueType(), isResetAllowed(), descriptorPool, graphicProcess);
+		return new GraphicContext(vulkanContext,
+								  getExecutionQueueType(),
+								  isResetAllowed(),
+								  descriptorPool,
+								  graphicProcess);
 	}
 
 	@Override
