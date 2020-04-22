@@ -4,7 +4,7 @@ package org.sheepy.lily.vulkan.model.resource;
 
 import org.joml.Vector2ic;
 
-import org.sheepy.lily.core.api.adapter.ILilyEObject;
+import org.sheepy.lily.core.api.model.ILilyEObject;
 
 import org.sheepy.lily.core.model.types.EHorizontalRelative;
 import org.sheepy.lily.core.model.types.EVerticalRelative;

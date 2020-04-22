@@ -91,13 +91,6 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.CONFIGURATION:
-			{
-				Configuration configuration = (Configuration)theEObject;
-				T1 result = caseConfiguration(configuration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ProcessPackage.PIPELINE_PKG:
 			{
 				PipelinePkg pipelinePkg = (PipelinePkg)theEObject;
@@ -265,6 +258,27 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ProcessPackage.PROCESS_CONFIGURATION:
+			{
+				ProcessConfiguration processConfiguration = (ProcessConfiguration)theEObject;
+				T1 result = caseProcessConfiguration(processConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.PROCESS_EXECUTION_MANAGER:
+			{
+				ProcessExecutionManager processExecutionManager = (ProcessExecutionManager)theEObject;
+				T1 result = caseProcessExecutionManager(processExecutionManager);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.EXECUTION_RECORDER:
+			{
+				ExecutionRecorder executionRecorder = (ExecutionRecorder)theEObject;
+				T1 result = caseExecutionRecorder(executionRecorder);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -281,22 +295,6 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseAbstractProcess(AbstractProcess object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Configuration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseConfiguration(Configuration object)
 	{
 		return null;
 	}
@@ -601,6 +599,54 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseSwapBindingsTask(SwapBindingsTask object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseProcessConfiguration(ProcessConfiguration object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Execution Manager</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Execution Manager</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseProcessExecutionManager(ProcessExecutionManager object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Execution Recorder</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Execution Recorder</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseExecutionRecorder(ExecutionRecorder object)
 	{
 		return null;
 	}

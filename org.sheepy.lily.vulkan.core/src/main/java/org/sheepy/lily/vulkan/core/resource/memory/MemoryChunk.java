@@ -1,7 +1,6 @@
 package org.sheepy.lily.vulkan.core.resource.memory;
 
 import org.lwjgl.vulkan.VkMemoryAllocateInfo;
-import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunkBuilder.MemoryAllocationCallback;
 import org.sheepy.lily.vulkan.core.util.Logger;
@@ -11,7 +10,7 @@ import java.util.List;
 import static org.lwjgl.vulkan.VK10.vkAllocateMemory;
 import static org.lwjgl.vulkan.VK10.vkFreeMemory;
 
-public final class MemoryChunk implements IAllocable<ExecutionContext>
+public final class MemoryChunk
 {
 	private static final String ALLOC_ERROR = "Failed to allocate buffer";
 
@@ -26,7 +25,6 @@ public final class MemoryChunk implements IAllocable<ExecutionContext>
 		this.consumers = List.copyOf(consumers);
 	}
 
-	@Override
 	public void allocate(ExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
@@ -49,7 +47,6 @@ public final class MemoryChunk implements IAllocable<ExecutionContext>
 		return aMemoryId[0];
 	}
 
-	@Override
 	public void free(ExecutionContext context)
 	{
 		vkFreeMemory(context.getVkDevice(), ptr, null);

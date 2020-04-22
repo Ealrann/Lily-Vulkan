@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public abstract class SingleTimeCommand extends AbstractCommandBuffer<ExecutionContext>
+public abstract class SingleTimeCommand extends AbstractCommandBuffer
 {
 	protected final ExecutionContext executionContext;
 	private final MemoryStack stack;
@@ -26,6 +26,8 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer<ExecutionC
 
 	public SingleTimeCommand(ExecutionContext executionContext, Collection<VkSemaphore> semaphoreToSignal)
 	{
+		super(executionContext);
+
 		this.executionContext = executionContext;
 		this.stack = executionContext.stack();
 		if (semaphoreToSignal != null && semaphoreToSignal.isEmpty() == false)
@@ -36,8 +38,6 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer<ExecutionC
 		{
 			this.semaphoreToSignal = List.of();
 		}
-
-		allocate(executionContext);
 	}
 
 	public void execute()
@@ -94,7 +94,7 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer<ExecutionC
 		if (lBuffer != null) MemoryUtil.memFree(lBuffer);
 	}
 
-	protected abstract void doExecute(ExecutionContext context, ICommandBuffer<?> commandBuffer);
+	protected abstract void doExecute(ExecutionContext context, ICommandBuffer commandBuffer);
 
 	protected void postExecute()
 	{

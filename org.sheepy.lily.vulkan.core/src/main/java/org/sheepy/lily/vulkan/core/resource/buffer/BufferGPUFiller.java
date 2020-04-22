@@ -31,16 +31,23 @@ public class BufferGPUFiller
 		context.execute(new ISingleTimeCommand()
 		{
 			@Override
-			public void execute(ExecutionContext context, ICommandBuffer<?> commandBuffer)
+			public void execute(ExecutionContext context, ICommandBuffer commandBuffer)
 			{
 				final var stack = context.stack();
-				fillBuffer(stack, commandBuffer.getVkCommandBuffer(), offset, byteSize);
+				final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
+				fillBuffer(stack, vkCommandBuffer, offset, byteSize);
 			}
 
 			@Override
 			public void postExecute()
 			{
 				stagingBuffer.free(context);
+			}
+
+			private void fillBuffer(MemoryStack stack, VkCommandBuffer commandBuffer, long offset, long byteSize)
+			{
+				final var srcAddress = stagingBuffer.getAddress();
+				BufferUtils.copyBuffer(stack, commandBuffer, srcAddress, 0, targetBufferId, offset, byteSize);
 			}
 		});
 	}
@@ -52,12 +59,5 @@ public class BufferGPUFiller
 		final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo, true);
 		stagingBuffer = bufferBuilder.build(context);
 		stagingBuffer.pushData(context, sourceBuffer);
-	}
-
-	private void fillBuffer(MemoryStack stack, VkCommandBuffer commandBuffer, long offset, long byteSize)
-	{
-		final var srcAddress = stagingBuffer.getAddress();
-
-		BufferUtils.copyBuffer(stack, commandBuffer, srcAddress, 0, targetBufferId, offset, byteSize);
 	}
 }

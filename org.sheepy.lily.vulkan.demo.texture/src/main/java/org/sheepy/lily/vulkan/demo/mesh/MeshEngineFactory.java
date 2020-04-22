@@ -15,21 +15,6 @@ public final class MeshEngineFactory
 	{
 		final VulkanEngine engine = VulkanFactory.eINSTANCE.createVulkanEngine();
 
-		final var framebufferConfiguration = GraphicFactory.eINSTANCE.createFramebufferConfiguration();
-		final var graphicConfiguration = GraphicFactory.eINSTANCE.createGraphicConfiguration();
-		final var swapchainConfiguration = GraphicFactory.eINSTANCE.createSwapchainConfiguration();
-		swapchainConfiguration.setAcquireWaitForVBlank(false);
-		swapchainConfiguration.setPresentWhenVBlank(false);
-
-		graphicConfiguration.setSwapchainConfiguration(swapchainConfiguration);
-		graphicConfiguration.setFramebufferConfiguration(framebufferConfiguration);
-		graphicConfiguration.setColorDomain(GraphicFactory.eINSTANCE.createColorDomain());
-
-		final var graphicProcess = GraphicFactory.eINSTANCE.createGraphicProcess();
-		graphicProcess.setResetAllowed(true);
-		graphicProcess.setConfiguration(graphicConfiguration);
-		graphicProcess.setCadence(buildCadence(graphicProcess));
-
 		final var colorAttachmentDescriptor = GraphicFactory.eINSTANCE.createSwapImageAttachment();
 		colorAttachmentDescriptor.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
 		colorAttachmentDescriptor.setLoadOp(EAttachmentLoadOp.CLEAR);
@@ -38,6 +23,30 @@ public final class MeshEngineFactory
 		colorAttachmentDescriptor.setStencilStoreOp(EAttachmentStoreOp.DONT_CARE);
 		colorAttachmentDescriptor.setInitialLayout(EImageLayout.UNDEFINED);
 		colorAttachmentDescriptor.setFinalLayout(EImageLayout.PRESENT_SRC_KHR);
+
+		final var surface = GraphicFactory.eINSTANCE.createPhysicalSurface();
+		final var framebufferConfiguration = GraphicFactory.eINSTANCE.createFramebufferConfiguration();
+		final var graphicConfiguration = GraphicFactory.eINSTANCE.createGraphicConfiguration();
+		final var swapchainConfiguration = GraphicFactory.eINSTANCE.createSwapchainConfiguration();
+		final var imageViews = GraphicFactory.eINSTANCE.createImageViews();
+		final var renderPass = GraphicFactory.eINSTANCE.createRenderPass();
+		swapchainConfiguration.setAcquireWaitForVBlank(false);
+		swapchainConfiguration.setPresentWhenVBlank(false);
+		swapchainConfiguration.setColorAttachment(colorAttachmentDescriptor);
+
+		surface.setColorDomain(GraphicFactory.eINSTANCE.createColorDomain());
+
+		graphicConfiguration.setSurface(surface);
+		graphicConfiguration.setSwapchainConfiguration(swapchainConfiguration);
+		graphicConfiguration.setFramebufferConfiguration(framebufferConfiguration);
+		graphicConfiguration.setImageViews(imageViews);
+		graphicConfiguration.setRenderPass(renderPass);
+
+		final var graphicProcess = GraphicFactory.eINSTANCE.createGraphicProcess();
+		graphicProcess.setExecutionManager(GraphicFactory.eINSTANCE.createGraphicExecutionManager());
+		graphicProcess.setResetAllowed(true);
+		graphicProcess.setConfiguration(graphicConfiguration);
+		graphicProcess.setCadence(buildCadence(graphicProcess));
 
 		final var depthAttachment = GraphicFactory.eINSTANCE.createDepthAttachment();
 
@@ -52,7 +61,6 @@ public final class MeshEngineFactory
 
 		final var attachmentPkg = GraphicFactory.eINSTANCE.createAttachmentPkg();
 		graphicProcess.setAttachmentPkg(attachmentPkg);
-		graphicProcess.setColorAttachment(colorAttachmentDescriptor);
 		attachmentPkg.getExtraAttachments().add(depthAttachment);
 
 		engine.getProcesses().add(graphicProcess);

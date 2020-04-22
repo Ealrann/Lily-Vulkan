@@ -57,8 +57,14 @@ public class VkSurface
 	}
 
 	@FunctionalInterface
-	public interface ISurfaceListener
+	public interface ISurfaceListener extends Runnable
 	{
 		void onSurfaceDeprecation();
+
+		@Override
+		default void run()
+		{
+			onSurfaceDeprecation();
+		}
 	}
 }

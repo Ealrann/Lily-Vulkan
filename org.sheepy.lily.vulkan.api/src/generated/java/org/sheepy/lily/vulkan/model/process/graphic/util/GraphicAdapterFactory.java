@@ -23,8 +23,10 @@ import org.sheepy.lily.vulkan.model.IResourceContainer;
 
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.process.Configuration;
+import org.sheepy.lily.vulkan.model.process.ExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
+import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
+import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
@@ -100,9 +102,24 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createGraphicConfigurationAdapter();
 			}
 			@Override
+			public Adapter caseGraphicExecutionManager(GraphicExecutionManager object)
+			{
+				return createGraphicExecutionManagerAdapter();
+			}
+			@Override
+			public Adapter caseGraphicExecutionRecorder(GraphicExecutionRecorder object)
+			{
+				return createGraphicExecutionRecorderAdapter();
+			}
+			@Override
 			public Adapter caseColorDomain(ColorDomain object)
 			{
 				return createColorDomainAdapter();
+			}
+			@Override
+			public Adapter casePhysicalSurface(PhysicalSurface object)
+			{
+				return createPhysicalSurfaceAdapter();
 			}
 			@Override
 			public Adapter caseSwapchainConfiguration(SwapchainConfiguration object)
@@ -113,6 +130,16 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseFramebufferConfiguration(FramebufferConfiguration object)
 			{
 				return createFramebufferConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseImageViews(ImageViews object)
+			{
+				return createImageViewsAdapter();
+			}
+			@Override
+			public Adapter caseRenderPass(RenderPass object)
+			{
+				return createRenderPassAdapter();
 			}
 			@Override
 			public Adapter caseImageAttachment(ImageAttachment object)
@@ -255,9 +282,19 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createCompositorAdapter();
 			}
 			@Override
-			public Adapter caseConfiguration(Configuration object)
+			public Adapter caseProcessConfiguration(ProcessConfiguration object)
 			{
-				return createConfigurationAdapter();
+				return createProcessConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseProcessExecutionManager(ProcessExecutionManager object)
+			{
+				return createProcessExecutionManagerAdapter();
+			}
+			@Override
+			public Adapter caseExecutionRecorder(ExecutionRecorder object)
+			{
+				return createExecutionRecorderAdapter();
 			}
 			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
@@ -381,6 +418,36 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager <em>Execution Manager</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager
+	 * @generated
+	 */
+	public Adapter createGraphicExecutionManagerAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder <em>Execution Recorder</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder
+	 * @generated
+	 */
+	public Adapter createGraphicExecutionRecorderAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorDomain <em>Color Domain</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -391,6 +458,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createColorDomainAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.PhysicalSurface <em>Physical Surface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.PhysicalSurface
+	 * @generated
+	 */
+	public Adapter createPhysicalSurfaceAdapter()
 	{
 		return null;
 	}
@@ -421,6 +503,36 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createFramebufferConfigurationAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ImageViews <em>Image Views</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ImageViews
+	 * @generated
+	 */
+	public Adapter createImageViewsAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPass <em>Render Pass</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.RenderPass
+	 * @generated
+	 */
+	public Adapter createRenderPassAdapter()
 	{
 		return null;
 	}
@@ -846,16 +958,46 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ProcessConfiguration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.Configuration
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessConfiguration
 	 * @generated
 	 */
-	public Adapter createConfigurationAdapter()
+	public Adapter createProcessConfigurationAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ProcessExecutionManager <em>Execution Manager</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessExecutionManager
+	 * @generated
+	 */
+	public Adapter createProcessExecutionManagerAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ExecutionRecorder <em>Execution Recorder</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.ExecutionRecorder
+	 * @generated
+	 */
+	public Adapter createExecutionRecorderAdapter()
 	{
 		return null;
 	}

@@ -11,6 +11,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.enumeration.*;
@@ -39,7 +40,7 @@ public final class MeshSubpassBuilder
 
 		final var colorRef = GraphicFactory.eINSTANCE.createAttachmentRef();
 		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
-		colorRef.setAttachment(process.getColorAttachment());
+		colorRef.setAttachment(process.getConfiguration().getSwapchainConfiguration().getColorAttachment());
 		attachmentRefPkg.getAttachmentRefs().add(colorRef);
 
 		if (meshConfiguration.depth)
@@ -93,10 +94,6 @@ public final class MeshSubpassBuilder
 		indexBuffer.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
 		indexBuffer.setData(meshConfiguration.indexData);
 
-		final var transferBuffer = VulkanResourceFactory.eINSTANCE.createTransferBuffer();
-		transferBuffer.setInstanceCount(EInstanceCount.FIT_TO_SWAP_IMAGE_COUNT);
-		transferBuffer.setSize((long) Math.pow(2, 16));
-
 		PushConstantRange pushConstantRange = null;
 		PushConstantBuffer pushConstants = null;
 		ConstantBuffer constantBuffer = null;
@@ -113,8 +110,6 @@ public final class MeshSubpassBuilder
 			pushConstantRange.setSize(CameraConstantAdapter.SIZE_OF);
 			pushConstantRange.getStages().add(EShaderStage.VERTEX_BIT);
 		}
-
-		final var descriptorSet = VulkanResourceFactory.eINSTANCE.createDescriptorSet();
 
 		final var rasterizer = GraphicpipelineFactory.eINSTANCE.createRasterizer();
 		rasterizer.setFrontFace(meshConfiguration.rasterizerFrontFace);
@@ -191,7 +186,6 @@ public final class MeshSubpassBuilder
 
 		resourcePkg.getResources().add(vertexShader);
 		resourcePkg.getResources().add(fragmentShader);
-		resourcePkg.getResources().add(transferBuffer);
 		resourcePkg.getResources().add(vertexBuffer);
 		resourcePkg.getResources().add(indexBuffer);
 		if (constantBuffer != null) resourcePkg.getResources().add(constantBuffer);
@@ -219,21 +213,22 @@ public final class MeshSubpassBuilder
 			sampledImageDescriptor.getShaderStages().add(EShaderStage.FRAGMENT_BIT);
 			sampledImageDescriptor.setSampledImage(sampledImage);
 
+			resourcePkg.getResources().add(texture);
 			resourcePkg.getResources().add(sampledImage);
 			resourcePkg.getResources().add(imageFile);
+
+			final var descriptorSet = VulkanResourceFactory.eINSTANCE.createDescriptorSet();
 			descriptorSet.getDescriptors().add(sampledImageDescriptor);
 
 			final var descriptorPkg = VulkanFactory.eINSTANCE.createDescriptorPkg();
 			descriptorPkg.getDescriptors().add(sampledImageDescriptor);
 			graphicPipeline.setDescriptorPkg(descriptorPkg);
-		}
 
-		if (descriptorSet.getDescriptors().isEmpty() == false)
-		{
-			graphicPipeline.setDescriptorSetPkg(VulkanResourceFactory.eINSTANCE.createDescriptorSetPkg());
-			graphicPipeline.getDescriptorSetPkg().getDescriptorSets().add(descriptorSet);
+			final DescriptorPool descriptorPool = VulkanResourceFactory.eINSTANCE.createDescriptorPool();
+			graphicPipeline.setDescriptorPool(descriptorPool);
 			bindDescriptorSets.getDescriptorSets().add(descriptorSet);
 			graphicPipeline.getLayout().add(descriptorSet);
+			descriptorPool.getDescriptorSets().add(descriptorSet);
 		}
 
 		return List.of(graphicPipeline);

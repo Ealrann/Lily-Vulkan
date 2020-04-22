@@ -1,14 +1,14 @@
 package org.sheepy.lily.vulkan.process.cadence;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.cadence.ICadenceContext;
 import org.sheepy.lily.core.api.cadence.ICadenceTaskAdapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.cadence.ICadenceTask;
 import org.sheepy.lily.vulkan.model.process.SwapBindingsTask;
 
-@Statefull
-@Adapter(scope = SwapBindingsTask.class)
+@ModelExtender(scope = SwapBindingsTask.class)
+@Adapter
 public class SwapBindingsTaskAdapter implements ICadenceTaskAdapter
 {
 	private int current = -1;

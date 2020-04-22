@@ -1,16 +1,18 @@
 package org.sheepy.lily.vulkan.process.binding.task;
 
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite;
+import org.sheepy.lily.vulkan.model.resource.BufferPart;
+import org.sheepy.lily.vulkan.model.resource.FixedBufferReference;
+import org.sheepy.lily.vulkan.process.binding.BindConfiguration;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite;
-import org.sheepy.lily.vulkan.model.resource.BufferPart;
-import org.sheepy.lily.vulkan.process.binding.BindConfiguration;
-
-@Adapter(scope = ConfigurePrepareComposite.class)
-public final class ConfigurePrepareCompositeAdapter
-		implements IConfigureTaskAdapter<ConfigurePrepareComposite>
+@ModelExtender(scope = ConfigurePrepareComposite.class)
+@Adapter(singleton = true)
+public final class ConfigurePrepareCompositeAdapter implements IConfigureTaskAdapter<ConfigurePrepareComposite>
 {
 	@Override
 	public void configure(BindConfiguration configuration, ConfigurePrepareComposite configure)
@@ -26,7 +28,9 @@ public final class ConfigurePrepareCompositeAdapter
 			parts.add(compositeBuffer.getParts().get(index));
 		}
 
-		prepareTask.getParts().clear();
-		prepareTask.getParts().addAll(parts);
+		final var bufferRef = (FixedBufferReference) prepareTask.getBufferReference();
+
+		bufferRef.getBuffers().clear();
+		bufferRef.getBuffers().addAll(parts);
 	}
 }

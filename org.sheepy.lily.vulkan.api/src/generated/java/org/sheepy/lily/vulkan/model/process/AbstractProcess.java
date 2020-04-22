@@ -5,7 +5,7 @@ package org.sheepy.lily.vulkan.model.process;
 import org.eclipse.emf.common.util.EList;
 
 import org.sheepy.lily.vulkan.model.IProcess;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
+import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 
 /**
@@ -17,7 +17,7 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorPool <em>Descriptor Pool</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isResetAllowed <em>Reset Allowed</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getSignals <em>Signals</em>}</li>
@@ -31,6 +31,28 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  */
 public interface AbstractProcess extends IProcess
 {
+	/**
+	 * Returns the value of the '<em><b>Descriptor Pool</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Descriptor Pool</em>' containment reference.
+	 * @see #setDescriptorPool(DescriptorPool)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_DescriptorPool()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	DescriptorPool getDescriptorPool();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorPool <em>Descriptor Pool</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Descriptor Pool</em>' containment reference.
+	 * @see #getDescriptorPool()
+	 * @generated
+	 */
+	void setDescriptorPool(DescriptorPool value);
+
 	/**
 	 * Returns the value of the '<em><b>Waiting Fence During Acquire</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
@@ -121,27 +143,5 @@ public interface AbstractProcess extends IProcess
 	 * @generated
 	 */
 	void setExtensionPkg(ProcessExtensionPkg value);
-
-	/**
-	 * Returns the value of the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Descriptor Set Pkg</em>' containment reference.
-	 * @see #setDescriptorSetPkg(DescriptorSetPkg)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_DescriptorSetPkg()
-	 * @model containment="true"
-	 * @generated
-	 */
-	DescriptorSetPkg getDescriptorSetPkg();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Descriptor Set Pkg</em>' containment reference.
-	 * @see #getDescriptorSetPkg()
-	 * @generated
-	 */
-	void setDescriptorSetPkg(DescriptorSetPkg value);
 
 } // AbstractProcess

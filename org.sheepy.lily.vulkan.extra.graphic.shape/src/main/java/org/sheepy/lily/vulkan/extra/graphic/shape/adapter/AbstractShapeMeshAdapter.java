@@ -1,10 +1,5 @@
 package org.sheepy.lily.vulkan.extra.graphic.shape.adapter;
 
-import static org.lwjgl.util.par.ParShapes.*;
-
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
-
 import org.joml.Vector3d;
 import org.lwjgl.util.par.ParShapesMesh;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
@@ -12,8 +7,13 @@ import org.sheepy.lily.vulkan.extra.api.mesh.IMeshStructureAdapter;
 import org.sheepy.lily.vulkan.extra.model.mesh.GeometricStructure;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
-public abstract class AbstractShapeMeshAdapter<T extends GeometricStructure>
-		implements IMeshStructureAdapter
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+
+import static org.lwjgl.util.par.ParShapes.par_shapes_compute_normals;
+import static org.lwjgl.util.par.ParShapes.par_shapes_free_mesh;
+
+public abstract class AbstractShapeMeshAdapter<T extends GeometricStructure> implements IMeshStructureAdapter
 {
 	private final int[] indexes;
 	private final double[] vertices;
@@ -33,7 +33,7 @@ public abstract class AbstractShapeMeshAdapter<T extends GeometricStructure>
 		trianglesNormals = computeTriangleNormals();
 	}
 
-	private static final double[] doubleBufferToArray(FloatBuffer buffer)
+	private static double[] doubleBufferToArray(FloatBuffer buffer)
 	{
 		final int limit = buffer.limit();
 		final double[] res = new double[limit];
@@ -46,7 +46,7 @@ public abstract class AbstractShapeMeshAdapter<T extends GeometricStructure>
 		return res;
 	}
 
-	private static final int[] intBufferToArray(IntBuffer buffer)
+	private static int[] intBufferToArray(IntBuffer buffer)
 	{
 		final int[] res = new int[buffer.limit()];
 		buffer.get(res);
@@ -116,10 +116,7 @@ public abstract class AbstractShapeMeshAdapter<T extends GeometricStructure>
 	@SuppressWarnings("unchecked")
 	public int getInstanceCount(Structure structure)
 	{
-		return (int) ((T) structure).getMeshes()
-									.stream()
-									.flatMap(mesh -> mesh.getPresentedEntities().stream())
-									.count();
+		return (int) ((T) structure).getMeshes().stream().mapToLong(mesh -> mesh.getPresentedEntities().size()).sum();
 	}
 
 	@Override

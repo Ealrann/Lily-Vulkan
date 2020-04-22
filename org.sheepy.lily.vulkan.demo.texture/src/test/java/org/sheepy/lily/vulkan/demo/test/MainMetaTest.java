@@ -31,18 +31,10 @@ public class MainMetaTest
 
 				switch (currentIndex)
 				{
-				case 0:
-					MainMeta.setupScene(application, MainTriangle.NAME);
-					break;
-				case 1:
-					MainMeta.setupScene(application, MainRotating.NAME);
-					break;
-				case 2:
-					MainMeta.setupScene(application, MainTexture.NAME);
-					break;
-				case 3:
-					application.setRun(false);
-					break;
+					case 0 -> MainMeta.setupScene(application, MainTriangle.NAME);
+					case 1 -> MainMeta.setupScene(application, MainRotating.NAME);
+					case 2 -> MainMeta.setupScene(application, MainTexture.NAME);
+					case 3 -> application.setRun(false);
 				}
 			}
 		});

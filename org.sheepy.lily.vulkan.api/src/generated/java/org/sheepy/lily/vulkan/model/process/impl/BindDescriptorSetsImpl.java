@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import org.sheepy.lily.core.api.adapter.LilyEObject;
+import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
@@ -31,6 +31,7 @@ import org.sheepy.vulkan.model.enumeration.EBindPoint;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl#getDescriptorSets <em>Descriptor Sets</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl#getBindPoint <em>Bind Point</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl#getStride <em>Stride</em>}</li>
  * </ul>
  *
  * @generated
@@ -106,6 +107,26 @@ public class BindDescriptorSetsImpl extends LilyEObject implements BindDescripto
 	 * @ordered
 	 */
 	protected EBindPoint bindPoint = BIND_POINT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getStride() <em>Stride</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStride()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int STRIDE_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getStride() <em>Stride</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStride()
+	 * @generated
+	 * @ordered
+	 */
+	protected int stride = STRIDE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -224,6 +245,31 @@ public class BindDescriptorSetsImpl extends LilyEObject implements BindDescripto
 	 * @generated
 	 */
 	@Override
+	public int getStride()
+	{
+		return stride;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setStride(int newStride)
+	{
+		int oldStride = stride;
+		stride = newStride;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.BIND_DESCRIPTOR_SETS__STRIDE, oldStride, stride));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -236,6 +282,8 @@ public class BindDescriptorSetsImpl extends LilyEObject implements BindDescripto
 				return getDescriptorSets();
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__BIND_POINT:
 				return getBindPoint();
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__STRIDE:
+				return getStride();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -264,6 +312,9 @@ public class BindDescriptorSetsImpl extends LilyEObject implements BindDescripto
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__BIND_POINT:
 				setBindPoint((EBindPoint)newValue);
 				return;
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__STRIDE:
+				setStride((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -290,6 +341,9 @@ public class BindDescriptorSetsImpl extends LilyEObject implements BindDescripto
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__BIND_POINT:
 				setBindPoint(BIND_POINT_EDEFAULT);
 				return;
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__STRIDE:
+				setStride(STRIDE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -312,6 +366,8 @@ public class BindDescriptorSetsImpl extends LilyEObject implements BindDescripto
 				return descriptorSets != null && !descriptorSets.isEmpty();
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__BIND_POINT:
 				return bindPoint != BIND_POINT_EDEFAULT;
+			case ProcessPackage.BIND_DESCRIPTOR_SETS__STRIDE:
+				return stride != STRIDE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -333,6 +389,8 @@ public class BindDescriptorSetsImpl extends LilyEObject implements BindDescripto
 		result.append(enabled);
 		result.append(", bindPoint: ");
 		result.append(bindPoint);
+		result.append(", stride: ");
+		result.append(stride);
 		result.append(')');
 		return result.toString();
 	}

@@ -1,50 +1,39 @@
 package org.sheepy.lily.vulkan.resource.image;
 
+import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
-import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
-import org.sheepy.lily.vulkan.core.resource.IDescriptorAdapter;
-import org.sheepy.lily.vulkan.core.resource.ISamplerAdapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
+import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.model.resource.SamplerDescriptor;
-import org.sheepy.lily.vulkan.core.resource.image.VkImageDescriptor;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
-@Statefull
-@Adapter(scope = SamplerDescriptor.class)
-public class SamplerDescriptorAdapter implements IDescriptorAdapter
+@ModelExtender(scope = SamplerDescriptor.class)
+@Adapter
+public final class SamplerDescriptorAdapter implements IDescriptorAdapter
 {
-	private final VkImageDescriptor vkDescriptor;
 	private final SamplerDescriptor descriptor;
 
-	public SamplerDescriptorAdapter(SamplerDescriptor descriptor)
+	private SamplerDescriptorAdapter(SamplerDescriptor descriptor)
 	{
 		this.descriptor = descriptor;
-
-		vkDescriptor = new VkImageDescriptor(	0,
-												0,
-												EImageLayout.GENERAL,
-												descriptor.getType(),
-												descriptor.getShaderStages());
 	}
 
 	@Override
-	public void allocate(IExecutionContext context)
+	public int sizeInPool()
 	{
-		final var sampler = descriptor.getSampler();
-		final var samplerAdapter = sampler.adaptNotNull(ISamplerAdapter.class);
-
-		vkDescriptor.updateSamplerPtr(samplerAdapter.getSamplerPtr());
-		vkDescriptor.updateViewPtr(samplerAdapter.getViewPtr());
+		return 1;
 	}
 
 	@Override
-	public void free(IExecutionContext context)
-	{}
-
-	@Override
-	public IVkDescriptor getVkDescriptor()
+	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
 	{
-		return vkDescriptor;
+		final var shaderStages = VulkanModelUtil.getEnumeratedFlag(descriptor.getShaderStages());
+
+		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
+		res.descriptorType(descriptor.getType().getValue());
+		res.descriptorCount(1);
+		res.stageFlags(shaderStages);
+		return res;
 	}
 }

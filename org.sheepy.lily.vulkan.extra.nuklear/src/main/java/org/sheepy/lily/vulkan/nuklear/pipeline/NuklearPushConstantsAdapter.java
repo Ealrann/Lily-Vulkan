@@ -3,12 +3,10 @@ package org.sheepy.lily.vulkan.nuklear.pipeline;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
-import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAdapter;
+import org.sheepy.lily.vulkan.core.pipeline.IPipelineAllocation;
+import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
@@ -17,18 +15,15 @@ import java.nio.ByteBuffer;
 
 import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
 
-@Statefull
-@Adapter(scope = NuklearPushConstants.class)
-public class NuklearPushConstantsAdapter implements IPipelineTaskAdapter<NuklearPushConstants>
+@ModelExtender(scope = NuklearPushConstants.class)
+@Adapter
+public class NuklearPushConstantsAdapter implements IPipelineTaskRecorder
 {
-	public static final int STAGE_FLAGS = EShaderStage.VERTEX_BIT_VALUE
-			| EShaderStage.FRAGMENT_BIT_VALUE;
+	public static final int STAGE_FLAGS = EShaderStage.VERTEX_BIT_VALUE | EShaderStage.FRAGMENT_BIT_VALUE;
 	public static final int SIZE = 16 * 4 + 4;
 
 	private final ByteBuffer buffer;
 	private final NuklearPushConstants pushConstants;
-
-	private boolean needRecord = true;
 
 	public NuklearPushConstantsAdapter(NuklearPushConstants pushConstants)
 	{
@@ -38,22 +33,14 @@ public class NuklearPushConstantsAdapter implements IPipelineTaskAdapter<Nuklear
 	}
 
 	@Override
-	public void record(NuklearPushConstants pushConstant, IRecordContext context)
+	public void record(RecordContext context)
 	{
-		final var pipeline = ModelUtil.findParent(pushConstant, AbstractPipeline.class);
-		final var pipelineAdapter = pipeline.<IVkPipelineAdapter<?>> adaptNotNullGeneric(IPipelineAdapter.class);
+		final var pipeline = ModelUtil.findParent(pushConstants, AbstractPipeline.class);
+		final var pipelineAdapter = pipeline.adaptNotNull(IPipelineAllocation.class);
 		final long layoutId = pipelineAdapter.getVkPipelineLayout().getId();
-		final var commandBuffer = ((RecordContext) context).commandBuffer;
+		final var commandBuffer = context.commandBuffer;
 
 		vkCmdPushConstants(commandBuffer, layoutId, STAGE_FLAGS, 0, buffer);
-
-		needRecord = false;
-	}
-
-	@Override
-	public boolean needRecord(NuklearPushConstants task, int index)
-	{
-		return needRecord;
 	}
 
 	@Dispose
@@ -87,7 +74,5 @@ public class NuklearPushConstantsAdapter implements IPipelineTaskAdapter<Nuklear
 		buffer.putInt(pushConstants.getCurrentDescriptor());
 
 		buffer.flip();
-
-		needRecord = true;
 	}
 }

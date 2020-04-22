@@ -1,15 +1,15 @@
 package org.sheepy.lily.vulkan.process.binding;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.model.binding.BindingConfiguration;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 
-@Statefull
-@Adapter(scope = BindingConfiguration.class, lazy = false)
+import java.util.ArrayList;
+import java.util.List;
+
+@ModelExtender(scope = BindingConfiguration.class)
+@Adapter(lazy = false)
 public final class BindingConfigurationAdapter extends AbstractContextConfigurationAdapter
 {
 	private BindingConfigurationAdapter(BindingConfiguration config)

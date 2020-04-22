@@ -32,6 +32,15 @@ public interface VulkanResourceFactory extends EFactory
 	TransferBuffer createTransferBuffer();
 
 	/**
+	 * Returns a new object of class '<em>Descriptor Pool</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Descriptor Pool</em>'.
+	 * @generated
+	 */
+	DescriptorPool createDescriptorPool();
+
+	/**
 	 * Returns a new object of class '<em>Constant Buffer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -48,6 +57,24 @@ public interface VulkanResourceFactory extends EFactory
 	 * @generated
 	 */
 	GenericConstantBuffer createGenericConstantBuffer();
+
+	/**
+	 * Returns a new object of class '<em>Fixed Buffer Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fixed Buffer Reference</em>'.
+	 * @generated
+	 */
+	FixedBufferReference createFixedBufferReference();
+
+	/**
+	 * Returns a new object of class '<em>Circular Buffer Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Circular Buffer Reference</em>'.
+	 * @generated
+	 */
+	CircularBufferReference createCircularBufferReference();
 
 	/**
 	 * Returns a new object of class '<em>Buffer</em>'.
@@ -201,15 +228,6 @@ public interface VulkanResourceFactory extends EFactory
 	 * @generated
 	 */
 	DescriptorSet createDescriptorSet();
-
-	/**
-	 * Returns a new object of class '<em>Descriptor Set Pkg</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Descriptor Set Pkg</em>'.
-	 * @generated
-	 */
-	DescriptorSetPkg createDescriptorSetPkg();
 
 	/**
 	 * Returns a new object of class '<em>Buffer Barrier</em>'.

@@ -6,17 +6,17 @@
   <descriptorPkg/>
   <attachmentRefPkg/>
   <pipelinePkg>
-    <pipelines xsi:type="graphic:GraphicsPipeline" layout="//@pipelinePkg/@pipelines.0/@descriptorSetPkg/@descriptorSets.0">
+    <pipelines xsi:type="graphic:GraphicsPipeline" layout="//@pipelinePkg/@pipelines.0/@descriptorPool/@descriptorSets.0">
       <taskPkg>
-        <tasks xsi:type="process:BindDescriptorSets" descriptorSets="//@pipelinePkg/@pipelines.0/@descriptorSetPkg/@descriptorSets.0"/>
+        <tasks xsi:type="process:BindDescriptorSets" descriptorSets="//@pipelinePkg/@pipelines.0/@descriptorPool/@descriptorSets.0"/>
         <tasks xsi:type="process:PushConstantBuffer" buffer="//@resourcePkg/@resources.0">
           <stages>FRAGMENT_BIT</stages>
         </tasks>
         <tasks xsi:type="graphic:Draw" vertexCount="4"/>
       </taskPkg>
-      <descriptorSetPkg>
+      <descriptorPool>
         <descriptorSets name="DS"/>
-      </descriptorSetPkg>
+      </descriptorPool>
       <pushConstantRanges size="128">
         <stages>FRAGMENT_BIT</stages>
       </pushConstantRanges>

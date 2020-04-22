@@ -1,5 +1,5 @@
-import org.sheepy.lily.core.api.adapter.IAdapterProvider;
-import org.sheepy.lily.vulkan.demo.Adapters;
+import org.sheepy.lily.core.api.extender.IExtenderProvider;
+import org.sheepy.lily.vulkan.demo.Extenders;
 
 module org.sheepy.lily.vulkan.demo.texture
 {
@@ -16,5 +16,5 @@ module org.sheepy.lily.vulkan.demo.texture
 	opens org.sheepy.lily.vulkan.demo.rotating;
 	opens org.sheepy.lily.vulkan.demo.triangle;
 
-	provides IAdapterProvider with Adapters;
+	provides IExtenderProvider with Extenders;
 }

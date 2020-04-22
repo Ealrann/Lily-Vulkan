@@ -4,7 +4,6 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
-import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
@@ -20,12 +19,11 @@ import org.sheepy.vulkan.model.image.ImageLayout;
 
 import java.nio.ByteBuffer;
 import java.util.EnumSet;
-import java.util.List;
 import java.util.Set;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public class VkTexture implements IAllocable<ExecutionContext>
+public class VkTexture
 {
 	private final IVkImageBuilder imageBuilder;
 
@@ -42,7 +40,6 @@ public class VkTexture implements IAllocable<ExecutionContext>
 		this.imageBuilder = imageBuilder.copyImmutable();
 	}
 
-	@Override
 	public void allocate(ExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
@@ -206,7 +203,6 @@ public class VkTexture implements IAllocable<ExecutionContext>
 		return image;
 	}
 
-	@Override
 	public void free(ExecutionContext context)
 	{
 		imageView.free(context.getVkDevice());

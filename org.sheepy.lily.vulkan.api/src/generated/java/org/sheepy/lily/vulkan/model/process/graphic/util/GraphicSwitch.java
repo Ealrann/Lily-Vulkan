@@ -21,8 +21,10 @@ import org.sheepy.lily.vulkan.model.IResourceContainer;
 
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.process.Configuration;
+import org.sheepy.lily.vulkan.model.process.ExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
+import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
+import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
@@ -97,7 +99,23 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			{
 				GraphicConfiguration graphicConfiguration = (GraphicConfiguration)theEObject;
 				T1 result = caseGraphicConfiguration(graphicConfiguration);
-				if (result == null) result = caseConfiguration(graphicConfiguration);
+				if (result == null) result = caseProcessConfiguration(graphicConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicPackage.GRAPHIC_EXECUTION_MANAGER:
+			{
+				GraphicExecutionManager graphicExecutionManager = (GraphicExecutionManager)theEObject;
+				T1 result = caseGraphicExecutionManager(graphicExecutionManager);
+				if (result == null) result = caseProcessExecutionManager(graphicExecutionManager);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER:
+			{
+				GraphicExecutionRecorder graphicExecutionRecorder = (GraphicExecutionRecorder)theEObject;
+				T1 result = caseGraphicExecutionRecorder(graphicExecutionRecorder);
+				if (result == null) result = caseExecutionRecorder(graphicExecutionRecorder);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -105,6 +123,13 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			{
 				ColorDomain colorDomain = (ColorDomain)theEObject;
 				T1 result = caseColorDomain(colorDomain);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicPackage.PHYSICAL_SURFACE:
+			{
+				PhysicalSurface physicalSurface = (PhysicalSurface)theEObject;
+				T1 result = casePhysicalSurface(physicalSurface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -119,6 +144,20 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			{
 				FramebufferConfiguration framebufferConfiguration = (FramebufferConfiguration)theEObject;
 				T1 result = caseFramebufferConfiguration(framebufferConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicPackage.IMAGE_VIEWS:
+			{
+				ImageViews imageViews = (ImageViews)theEObject;
+				T1 result = caseImageViews(imageViews);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicPackage.RENDER_PASS:
+			{
+				RenderPass renderPass = (RenderPass)theEObject;
+				T1 result = caseRenderPass(renderPass);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -408,6 +447,38 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Execution Manager</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Execution Manager</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseGraphicExecutionManager(GraphicExecutionManager object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Execution Recorder</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Execution Recorder</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseGraphicExecutionRecorder(GraphicExecutionRecorder object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Color Domain</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -419,6 +490,22 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseColorDomain(ColorDomain object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Physical Surface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Physical Surface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 casePhysicalSurface(PhysicalSurface object)
 	{
 		return null;
 	}
@@ -451,6 +538,38 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseFramebufferConfiguration(FramebufferConfiguration object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Image Views</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Image Views</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseImageViews(ImageViews object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Render Pass</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Render Pass</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseRenderPass(RenderPass object)
 	{
 		return null;
 	}
@@ -914,7 +1033,39 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseConfiguration(Configuration object)
+	public T1 caseProcessConfiguration(ProcessConfiguration object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Execution Manager</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Execution Manager</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseProcessExecutionManager(ProcessExecutionManager object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Execution Recorder</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Execution Recorder</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseExecutionRecorder(ExecutionRecorder object)
 	{
 		return null;
 	}

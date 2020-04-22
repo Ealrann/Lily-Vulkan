@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.sheepy.lily.core.api.adapter.LilyEObject;
+import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.binding.BindingPackage;
 import org.sheepy.lily.vulkan.model.binding.IContextConfiguration;
 import org.sheepy.lily.vulkan.model.binding.RotateConfiguration;

@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.demo.rotating;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.application.GenericScenePart;
 import org.sheepy.lily.core.model.application.Scene;
 import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;
@@ -12,7 +13,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
 
-@Adapter(scope = GenericScenePart.class, name = MainRotating.NAME)
+@ModelExtender(scope = GenericScenePart.class, name = MainRotating.NAME)
+@Adapter(singleton = true)
 public class RotatingSubpassProvider implements ICompositor_SubpassProvider<GenericScenePart>
 {
 	static final String VERTEX_SHADER_PATH = "rotating.vert.spv";

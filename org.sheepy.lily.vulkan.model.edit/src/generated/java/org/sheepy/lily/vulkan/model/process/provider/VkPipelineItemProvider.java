@@ -120,7 +120,7 @@ public class VkPipelineItemProvider extends TaskPipelineItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ProcessPackage.Literals.VK_PIPELINE__DESCRIPTOR_SET_PKG);
+			childrenFeatures.add(ProcessPackage.Literals.VK_PIPELINE__DESCRIPTOR_POOL);
 			childrenFeatures.add(ProcessPackage.Literals.VK_PIPELINE__PUSH_CONSTANT_RANGES);
 		}
 		return childrenFeatures;
@@ -170,7 +170,7 @@ public class VkPipelineItemProvider extends TaskPipelineItemProvider
 
 		switch (notification.getFeatureID(VkPipeline.class))
 		{
-			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG:
+			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL:
 			case ProcessPackage.VK_PIPELINE__PUSH_CONSTANT_RANGES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -192,8 +192,8 @@ public class VkPipelineItemProvider extends TaskPipelineItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ProcessPackage.Literals.VK_PIPELINE__DESCRIPTOR_SET_PKG,
-				 VulkanResourceFactory.eINSTANCE.createDescriptorSetPkg()));
+				(ProcessPackage.Literals.VK_PIPELINE__DESCRIPTOR_POOL,
+				 VulkanResourceFactory.eINSTANCE.createDescriptorPool()));
 
 		newChildDescriptors.add
 			(createChildParameter

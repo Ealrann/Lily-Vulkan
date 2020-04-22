@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.nuklear.ui;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
 import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.core.model.ui.Slider;
@@ -15,8 +15,8 @@ import java.util.function.Consumer;
 
 import static org.lwjgl.nuklear.Nuklear.nk_slider_int;
 
-@Statefull
-@Adapter(scope = Slider.class)
+@ModelExtender(scope = Slider.class)
+@Adapter
 public class SliderAdapter implements IUIElementAdapter
 {
 	private final IntBuffer buffer;

@@ -1,56 +1,41 @@
 package org.sheepy.lily.vulkan.resource.image;
 
+import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
-import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
-import org.sheepy.lily.vulkan.core.resource.IDescriptorAdapter;
-import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
-import org.sheepy.lily.vulkan.core.resource.image.VkImageArrayDescriptor;
+import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
+import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 
-@Statefull
-@Adapter(scope = ImageArrayDescriptor.class)
-public class ImageArrayDescriptorAdapter implements IDescriptorAdapter
+@ModelExtender(scope = ImageArrayDescriptor.class)
+@Adapter
+public final class ImageArrayDescriptorAdapter implements IDescriptorAdapter
 {
 	private final ImageArrayDescriptor descriptor;
-	private final VkImageArrayDescriptor vkDescriptor;
 
-	public ImageArrayDescriptorAdapter(ImageArrayDescriptor descriptor)
+	private ImageArrayDescriptorAdapter(ImageArrayDescriptor descriptor)
 	{
 		this.descriptor = descriptor;
-
-		final var images = descriptor.getImages();
-		final var initialLayout = descriptor.getInitialLayout();
-		vkDescriptor = new VkImageArrayDescriptor(	images.size(),
-													initialLayout,
-													descriptor.getType(),
-													descriptor.getShaderStages());
 	}
 
 	@Override
-	public void allocate(IExecutionContext context)
+	public int sizeInPool()
 	{
-		final var images = descriptor.getImages();
-		final long[] viewPtrs = new long[images.size()];
-
-		for (int i = 0; i < images.size(); i++)
-		{
-			final var image = images.get(i);
-			final var adapter = image.adaptNotNull(IVkImageAdapter.class);
-			viewPtrs[i] = adapter.getViewPtr();
-		}
-
-		vkDescriptor.updateViewPtrs(viewPtrs);
+		return descriptor.getImages().size();
 	}
 
 	@Override
-	public void free(IExecutionContext context)
-	{}
-
-	@Override
-	public IVkDescriptor getVkDescriptor()
+	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
 	{
-		return vkDescriptor;
+		final var shaderStages = VulkanModelUtil.getEnumeratedFlag(descriptor.getShaderStages());
+		final int descriptorType = descriptor.getType().getValue();
+		final int count = descriptor.getImages().size();
+
+		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
+		res.descriptorType(descriptorType);
+		res.descriptorCount(count);
+		res.stageFlags(shaderStages);
+		return res;
 	}
 }

@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.model.application.IEngine;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 
@@ -26,6 +28,8 @@ import org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl#getSourceEngine <em>Source Engine</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl#getConfiguration <em>Configuration</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl#getExecutionManager <em>Execution Manager</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,6 +55,26 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	 * @ordered
 	 */
 	protected IEngine sourceEngine;
+
+	/**
+	 * The cached value of the '{@link #getConfiguration() <em>Configuration</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConfiguration()
+	 * @generated
+	 * @ordered
+	 */
+	protected ComputeConfiguration configuration;
+
+	/**
+	 * The cached value of the '{@link #getExecutionManager() <em>Execution Manager</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExecutionManager()
+	 * @generated
+	 * @ordered
+	 */
+	protected ComputeExecutionManager executionManager;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -174,12 +198,116 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	 * @generated
 	 */
 	@Override
+	public ComputeConfiguration getConfiguration()
+	{
+		return configuration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetConfiguration(ComputeConfiguration newConfiguration, NotificationChain msgs)
+	{
+		ComputeConfiguration oldConfiguration = configuration;
+		configuration = newConfiguration;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PROCESS__CONFIGURATION, oldConfiguration, newConfiguration);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setConfiguration(ComputeConfiguration newConfiguration)
+	{
+		if (newConfiguration != configuration)
+		{
+			NotificationChain msgs = null;
+			if (configuration != null)
+				msgs = ((InternalEObject)configuration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ComputePackage.COMPUTE_PROCESS__CONFIGURATION, null, msgs);
+			if (newConfiguration != null)
+				msgs = ((InternalEObject)newConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ComputePackage.COMPUTE_PROCESS__CONFIGURATION, null, msgs);
+			msgs = basicSetConfiguration(newConfiguration, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PROCESS__CONFIGURATION, newConfiguration, newConfiguration));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ComputeExecutionManager getExecutionManager()
+	{
+		return executionManager;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetExecutionManager(ComputeExecutionManager newExecutionManager, NotificationChain msgs)
+	{
+		ComputeExecutionManager oldExecutionManager = executionManager;
+		executionManager = newExecutionManager;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PROCESS__EXECUTION_MANAGER, oldExecutionManager, newExecutionManager);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setExecutionManager(ComputeExecutionManager newExecutionManager)
+	{
+		if (newExecutionManager != executionManager)
+		{
+			NotificationChain msgs = null;
+			if (executionManager != null)
+				msgs = ((InternalEObject)executionManager).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ComputePackage.COMPUTE_PROCESS__EXECUTION_MANAGER, null, msgs);
+			if (newExecutionManager != null)
+				msgs = ((InternalEObject)newExecutionManager).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ComputePackage.COMPUTE_PROCESS__EXECUTION_MANAGER, null, msgs);
+			msgs = basicSetExecutionManager(newExecutionManager, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PROCESS__EXECUTION_MANAGER, newExecutionManager, newExecutionManager));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
 			case ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG:
 				return basicSetPipelinePkg(null, msgs);
+			case ComputePackage.COMPUTE_PROCESS__CONFIGURATION:
+				return basicSetConfiguration(null, msgs);
+			case ComputePackage.COMPUTE_PROCESS__EXECUTION_MANAGER:
+				return basicSetExecutionManager(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -199,6 +327,10 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 			case ComputePackage.COMPUTE_PROCESS__SOURCE_ENGINE:
 				if (resolve) return getSourceEngine();
 				return basicGetSourceEngine();
+			case ComputePackage.COMPUTE_PROCESS__CONFIGURATION:
+				return getConfiguration();
+			case ComputePackage.COMPUTE_PROCESS__EXECUTION_MANAGER:
+				return getExecutionManager();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -218,6 +350,12 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 				return;
 			case ComputePackage.COMPUTE_PROCESS__SOURCE_ENGINE:
 				setSourceEngine((IEngine)newValue);
+				return;
+			case ComputePackage.COMPUTE_PROCESS__CONFIGURATION:
+				setConfiguration((ComputeConfiguration)newValue);
+				return;
+			case ComputePackage.COMPUTE_PROCESS__EXECUTION_MANAGER:
+				setExecutionManager((ComputeExecutionManager)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -239,6 +377,12 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 			case ComputePackage.COMPUTE_PROCESS__SOURCE_ENGINE:
 				setSourceEngine((IEngine)null);
 				return;
+			case ComputePackage.COMPUTE_PROCESS__CONFIGURATION:
+				setConfiguration((ComputeConfiguration)null);
+				return;
+			case ComputePackage.COMPUTE_PROCESS__EXECUTION_MANAGER:
+				setExecutionManager((ComputeExecutionManager)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -257,6 +401,10 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 				return pipelinePkg != null;
 			case ComputePackage.COMPUTE_PROCESS__SOURCE_ENGINE:
 				return sourceEngine != null;
+			case ComputePackage.COMPUTE_PROCESS__CONFIGURATION:
+				return configuration != null;
+			case ComputePackage.COMPUTE_PROCESS__EXECUTION_MANAGER:
+				return executionManager != null;
 		}
 		return super.eIsSet(featureID);
 	}

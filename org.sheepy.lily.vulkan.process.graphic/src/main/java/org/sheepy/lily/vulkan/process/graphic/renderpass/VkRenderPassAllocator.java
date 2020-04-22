@@ -4,12 +4,8 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkRenderPassCreateInfo;
 import org.sheepy.lily.vulkan.core.util.Logger;
-import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
-import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
+import org.sheepy.lily.vulkan.model.process.graphic.*;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.util.SubpassUtil;
-import org.sheepy.vulkan.model.enumeration.EFormat;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -22,22 +18,21 @@ public final class VkRenderPassAllocator
 {
 	private static final String CREATION_ERROR = "Failed to create render pass";
 
-	private final EFormat swapchainImageFormat;
-	private final List<ExtraAttachment> extraAttachments;
+	private final RenderPass renderPass;
+	private final int swapchainImageFormat;
 	private final VkDevice device;
 
-	public VkRenderPassAllocator(List<ExtraAttachment> extraAttachments, VkDevice device, EFormat swapchainImageFormat)
+	public VkRenderPassAllocator(VkDevice device, RenderPass renderPass, int swapchainImageFormat)
 	{
-		this.extraAttachments = extraAttachments;
 		this.device = device;
+		this.renderPass = renderPass;
 		this.swapchainImageFormat = swapchainImageFormat;
 	}
 
 	public long allocate(MemoryStack stack, GraphicProcess process)
 	{
-		final var format = swapchainImageFormat.getValue();
-		final var attachementAllocator = new VkAttachmentDescriptionAllocator(format);
-		final var descriptions = getAttachments(process);
+		final var attachementAllocator = new VkAttachmentDescriptionAllocator(swapchainImageFormat);
+		final var descriptions = getAttachments(process.getConfiguration().getSwapchainConfiguration());
 		final var attachments = attachementAllocator.allocate(stack, descriptions);
 
 		final List<Subpass> renderSubpasses = new ArrayList<>();
@@ -66,11 +61,11 @@ public final class VkRenderPassAllocator
 		return aRenderPass[0];
 	}
 
-	private List<Attachment> getAttachments(GraphicProcess process)
+	private List<Attachment> getAttachments(final SwapchainConfiguration swapchainConfiguration)
 	{
 		final List<Attachment> res = new ArrayList<>();
-		res.add(process.getColorAttachment());
-		res.addAll(extraAttachments);
+		res.add(swapchainConfiguration.getColorAttachment());
+		res.addAll(renderPass.getAttachments());
 		return res;
 	}
 }

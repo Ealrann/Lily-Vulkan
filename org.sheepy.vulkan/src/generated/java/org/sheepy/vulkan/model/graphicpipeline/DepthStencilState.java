@@ -2,7 +2,7 @@
  */
 package org.sheepy.vulkan.model.graphicpipeline;
 
-import org.sheepy.lily.core.api.adapter.ILilyEObject;
+import org.sheepy.lily.core.api.model.ILilyEObject;
 
 import org.sheepy.vulkan.model.enumeration.ECompareOp;
 

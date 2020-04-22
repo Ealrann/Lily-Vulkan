@@ -5,7 +5,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.resource.IResourceLoader;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.BackgroundImage;
@@ -22,8 +22,8 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
 import java.io.IOException;
 
-@Statefull
-@Adapter(scope = BackgroundImage.class)
+@ModelExtender(scope = BackgroundImage.class)
+@Adapter
 public class BackgroundImageSubpassProvider implements ICompositor_SubpassProvider<BackgroundImage>
 {
 	private static final String SUBPASS_PATH = "BackgroundImage.subpass";

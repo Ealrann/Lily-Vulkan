@@ -93,6 +93,11 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createTransferBufferAdapter();
 			}
 			@Override
+			public Adapter caseDescriptorPool(DescriptorPool object)
+			{
+				return createDescriptorPoolAdapter();
+			}
+			@Override
 			public Adapter caseConstantBuffer(ConstantBuffer object)
 			{
 				return createConstantBufferAdapter();
@@ -106,6 +111,21 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIBuffer(IBuffer object)
 			{
 				return createIBufferAdapter();
+			}
+			@Override
+			public Adapter caseIBufferReference(IBufferReference object)
+			{
+				return createIBufferReferenceAdapter();
+			}
+			@Override
+			public Adapter caseFixedBufferReference(FixedBufferReference object)
+			{
+				return createFixedBufferReferenceAdapter();
+			}
+			@Override
+			public Adapter caseCircularBufferReference(CircularBufferReference object)
+			{
+				return createCircularBufferReferenceAdapter();
 			}
 			@Override
 			public Adapter caseBuffer(Buffer object)
@@ -196,11 +216,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseDescriptorSet(DescriptorSet object)
 			{
 				return createDescriptorSetAdapter();
-			}
-			@Override
-			public Adapter caseDescriptorSetPkg(DescriptorSetPkg object)
-			{
-				return createDescriptorSetPkgAdapter();
 			}
 			@Override
 			public Adapter caseBufferBarrier(BufferBarrier object)
@@ -305,6 +320,21 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DescriptorPool <em>Descriptor Pool</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.DescriptorPool
+	 * @generated
+	 */
+	public Adapter createDescriptorPoolAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.ConstantBuffer <em>Constant Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -345,6 +375,51 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.IBufferReference <em>IBuffer Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.IBufferReference
+	 * @generated
+	 */
+	public Adapter createIBufferReferenceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.FixedBufferReference <em>Fixed Buffer Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.FixedBufferReference
+	 * @generated
+	 */
+	public Adapter createFixedBufferReferenceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference <em>Circular Buffer Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.CircularBufferReference
+	 * @generated
+	 */
+	public Adapter createCircularBufferReferenceAdapter()
 	{
 		return null;
 	}
@@ -615,21 +690,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createDescriptorSetAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg <em>Descriptor Set Pkg</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg
-	 * @generated
-	 */
-	public Adapter createDescriptorSetPkgAdapter()
 	{
 		return null;
 	}

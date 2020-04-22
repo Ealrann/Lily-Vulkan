@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.extra.graphic.sprite;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.extra.api.rendering.ISpecializationAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IStructureResourceAdapter;
@@ -11,7 +12,8 @@ import org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure;
 
 import java.nio.ByteBuffer;
 
-@Adapter(scope = SpriteCountSpecialization.class)
+@ModelExtender(scope = SpriteCountSpecialization.class)
+@Adapter(singleton = true)
 public final class SpriteCountSpecializationAdapter implements ISpecializationAdapter
 {
 	@Override

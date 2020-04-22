@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.nuklear.ui;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.action.IActionAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.model.action.Action;
 import org.sheepy.lily.core.model.ui.Button;
@@ -16,8 +16,8 @@ import java.util.List;
 
 import static org.lwjgl.nuklear.Nuklear.nk_button_label;
 
-@Statefull
-@Adapter(scope = Button.class)
+@ModelExtender(scope = Button.class)
+@Adapter
 public final class ButtonAdapter extends Notifier<ITextWidgetAdapter.Features> implements IUIElementAdapter,
 																						  ITextWidgetAdapter
 {

@@ -3,7 +3,7 @@
 package org.sheepy.vulkan.model.graphicpipeline;
 
 import org.joml.Vector2ic;
-import org.sheepy.lily.core.api.adapter.ILilyEObject;
+import org.sheepy.lily.core.api.model.ILilyEObject;
 
 /**
  * <!-- begin-user-doc -->

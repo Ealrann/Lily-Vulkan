@@ -50,6 +50,33 @@ public interface ComputeFactory extends EFactory
 	DispatchTask createDispatchTask();
 
 	/**
+	 * Returns a new object of class '<em>Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Configuration</em>'.
+	 * @generated
+	 */
+	ComputeConfiguration createComputeConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Execution Manager</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Execution Manager</em>'.
+	 * @generated
+	 */
+	ComputeExecutionManager createComputeExecutionManager();
+
+	/**
+	 * Returns a new object of class '<em>Execution Recorder</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Execution Recorder</em>'.
+	 * @generated
+	 */
+	ComputeExecutionRecorder createComputeExecutionRecorder();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

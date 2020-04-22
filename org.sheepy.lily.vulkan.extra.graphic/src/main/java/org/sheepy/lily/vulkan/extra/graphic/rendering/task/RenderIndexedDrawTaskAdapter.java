@@ -1,63 +1,43 @@
 package org.sheepy.lily.vulkan.extra.graphic.rendering.task;
 
-import static org.lwjgl.vulkan.VK10.vkCmdDrawIndexed;
-
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
+import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexProviderAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderIndexedDrawTask;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
-@Statefull
-@Adapter(scope = RenderIndexedDrawTask.class)
-public class RenderIndexedDrawTaskAdapter implements IPipelineTaskAdapter<RenderIndexedDrawTask>
+import static org.lwjgl.vulkan.VK10.vkCmdDrawIndexed;
+
+@ModelExtender(scope = RenderIndexedDrawTask.class)
+@Allocation
+@AllocationDependency(features = RenderingPackage.RENDER_INDEXED_DRAW_TASK__STRUCTURE, type = IStructureAdapter.class)
+@AllocationDependency(features = RenderingPackage.RENDER_INDEXED_DRAW_TASK__INDEX_PROVIDER, type = IIndexProviderAdapter.class)
+public final class RenderIndexedDrawTaskAdapter implements IPipelineTaskRecorder
 {
-	private int instanceCount;
-	private int indexCount;
-	private boolean hasChanged = true;
+	private final int instanceCount;
+	private final int indexCount;
 
-	@Override
-	public void update(RenderIndexedDrawTask task, int index)
+	private RenderIndexedDrawTaskAdapter(RenderIndexedDrawTask task,
+										 @InjectDependency(index = 0) IStructureAdapter structureAdapter,
+										 @InjectDependency(index = 1) IIndexProviderAdapter indexProviderAdapter)
 	{
 		final var structure = task.getStructure();
-		final var structureAdapter = structure.adaptNotNull(IStructureAdapter.class);
-		final var indexProvider = task.getIndexProvider().adapt(IIndexProviderAdapter.class);
-
-		if (structureAdapter.getInstanceCount(structure) != instanceCount)
-		{
-			instanceCount = structureAdapter.getInstanceCount(structure);
-			hasChanged = true;
-		}
-		if (indexCount != indexProvider.getIndexCount())
-		{
-			indexCount = indexProvider.getIndexCount();
-			hasChanged = true;
-		}
+		this.instanceCount = structureAdapter.getInstanceCount(structure);
+		this.indexCount = indexProviderAdapter.getIndexCount();
 	}
 
 	@Override
-	public void record(RenderIndexedDrawTask task, IRecordContext context)
+	public void record(RecordContext context)
 	{
 		final int firstIndex = 0;
 		final int vertexOffset = 0;
 		final int firstInstance = 0;
-		final var commandBuffer = ((RecordContext) context).commandBuffer;
+		final var commandBuffer = context.commandBuffer;
 
-		vkCmdDrawIndexed(	commandBuffer,
-							indexCount,
-							instanceCount,
-							firstIndex,
-							vertexOffset,
-							firstInstance);
-
-		hasChanged = false;
-	}
-
-	@Override
-	public boolean needRecord(RenderIndexedDrawTask task, int index)
-	{
-		return hasChanged;
+		vkCmdDrawIndexed(commandBuffer, indexCount, instanceCount, firstIndex, vertexOffset, firstInstance);
 	}
 }

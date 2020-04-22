@@ -2,8 +2,8 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="process" nsURI="org.sheepy.lily.vulkan.model.process" nsPrefix="process">
   <eClassifiers xsi:type="ecore:EClass" name="AbstractProcess" abstract="true" eSuperTypes="vulkan.ecore#//IProcess">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorSetPkg" eType="ecore:EClass resource.ecore#//DescriptorSetPkg"
-        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorPool" lowerBound="1"
+        eType="ecore:EClass resource.ecore#//DescriptorPool" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="waitingFenceDuringAcquire"
         unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false">
@@ -28,7 +28,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensionPkg" eType="#//ProcessExtensionPkg"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Configuration" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="PipelinePkg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pipelines" upperBound="-1"
         eType="#//AbstractPipeline" containment="true" resolveProxies="false"/>
@@ -49,7 +48,7 @@
         containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VkPipeline" abstract="true" eSuperTypes="#//TaskPipeline">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorSetPkg" eType="ecore:EClass resource.ecore#//DescriptorSetPkg"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorPool" eType="ecore:EClass resource.ecore#//DescriptorPool"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="specializationData" eType="ecore:EClass resource.ecore#//ConstantBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pushConstantRanges" upperBound="-1"
@@ -98,6 +97,8 @@
         eType="ecore:EClass resource.ecore#//DescriptorSet"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindPoint" lowerBound="1"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EBindPoint"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stride" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PushConstant" abstract="true" eSuperTypes="#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stages" lowerBound="1"
@@ -112,8 +113,6 @@
         eType="ecore:EClass resource.ecore#//TransferBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" lowerBound="1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
         defaultValueLiteral="Transfer"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="flushDuringUpdate" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CopyBufferTask" eSuperTypes="#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" lowerBound="1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
@@ -139,8 +138,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" lowerBound="1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
         defaultValueLiteral="Transfer"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parts" lowerBound="1" upperBound="-1"
-        eType="ecore:EClass resource.ecore#//BufferPart"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bufferReference" lowerBound="1"
+        eType="ecore:EClass resource.ecore#//IBufferReference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transferBuffer" lowerBound="1"
         eType="ecore:EClass resource.ecore#//TransferBuffer"/>
   </eClassifiers>
@@ -149,4 +148,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorSets" lowerBound="1"
         upperBound="-1" eType="ecore:EClass resource.ecore#//DescriptorSet"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessConfiguration" abstract="true"
+      interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessExecutionManager" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutionRecorder" abstract="true" interface="true"/>
 </ecore:EPackage>

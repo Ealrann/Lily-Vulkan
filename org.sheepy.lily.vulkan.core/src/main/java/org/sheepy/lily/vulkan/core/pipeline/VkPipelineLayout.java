@@ -5,9 +5,9 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
 import org.lwjgl.vulkan.VkPushConstantRange;
-import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
-import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptorSet;
+import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetAllocation;
+import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetLayoutAllocation;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
@@ -17,23 +17,22 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public final class VkPipelineLayout<T extends IVulkanContext> implements IAllocable<T>
+public final class VkPipelineLayout
 {
 	private static final String CREATION_ERROR = "Failed to create pipeline layout";
 
-	private final List<IVkDescriptorSet> descriptorSets;
+	private final List<IDescriptorSetLayoutAllocation> descriptorSets;
 	private final List<PushConstantRange> constantRanges;
 
-	protected long pipelineLayout = -1;
+	private long pipelineLayout = -1;
 
-	public VkPipelineLayout(List<IVkDescriptorSet> descriptorSets, List<PushConstantRange> constantRanges)
+	public VkPipelineLayout(List<IDescriptorSetLayoutAllocation> descriptorSets, List<PushConstantRange> constantRanges)
 	{
 		this.descriptorSets = List.copyOf(descriptorSets);
 		this.constantRanges = List.copyOf(constantRanges);
 	}
 
-	@Override
-	public void allocate(T context)
+	public void allocate(IVulkanContext context)
 	{
 		final var stack = context.stack();
 		final var vkDevice = context.getVkDevice();
@@ -63,10 +62,10 @@ public final class VkPipelineLayout<T extends IVulkanContext> implements IAlloca
 			layouts = stack.mallocLong(size);
 			for (int i = 0; i < size; i++)
 			{
-				final var vkDescriptorSet = descriptorSets.get(i);
-				if (vkDescriptorSet.descriptorCount() > 0)
+				final var descriptorSet = descriptorSets.get(i);
+				if (descriptorSet.descriptorCount() > 0)
 				{
-					layouts.put(vkDescriptorSet.getLayoutId());
+					layouts.put(descriptorSet.getLayoutPtr());
 				}
 			}
 			layouts.flip();
@@ -75,7 +74,7 @@ public final class VkPipelineLayout<T extends IVulkanContext> implements IAlloca
 		return layouts;
 	}
 
-	public void bindDescriptors(VkCommandBuffer commandBuffer, List<IVkDescriptorSet> sets, int bindPoint)
+	public void bindDescriptors(VkCommandBuffer commandBuffer, List<IDescriptorSetAllocation> sets, int bindPoint)
 	{
 		if (sets.size() > 0)
 		{
@@ -85,7 +84,7 @@ public final class VkPipelineLayout<T extends IVulkanContext> implements IAlloca
 			for (int i = 0; i < sets.size(); i++)
 			{
 				final var set = sets.get(i);
-				descriptorSetAddressBuffer.put(set.getId());
+				descriptorSetAddressBuffer.put(set.getPtr());
 			}
 			descriptorSetAddressBuffer.flip();
 
@@ -119,8 +118,7 @@ public final class VkPipelineLayout<T extends IVulkanContext> implements IAlloca
 		return ranges;
 	}
 
-	@Override
-	public void free(T context)
+	public void free(IVulkanContext context)
 	{
 		final var vkDevice = context.getVkDevice();
 		vkDestroyPipelineLayout(vkDevice, pipelineLayout, null);

@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.nuklear.scene;
 
 import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.resource.IResourceLoader;
 import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;
@@ -14,7 +15,8 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 import java.io.IOException;
 
-@Adapter(scope = UI.class)
+@ModelExtender(scope = UI.class)
+@Adapter(singleton = true)
 public final class NuklearSubpassProvider implements ICompositor_SubpassProvider<UI>
 {
 	private static final String PIPELINE_NO_IMAGE_PATH = "NuklearNoImages.subpass";

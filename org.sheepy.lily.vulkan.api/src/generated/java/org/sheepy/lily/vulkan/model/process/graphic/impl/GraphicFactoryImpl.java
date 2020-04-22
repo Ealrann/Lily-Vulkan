@@ -66,9 +66,14 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 		switch (eClass.getClassifierID())
 		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION: return createGraphicConfiguration();
+			case GraphicPackage.GRAPHIC_EXECUTION_MANAGER: return createGraphicExecutionManager();
+			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER: return createGraphicExecutionRecorder();
 			case GraphicPackage.COLOR_DOMAIN: return createColorDomain();
+			case GraphicPackage.PHYSICAL_SURFACE: return createPhysicalSurface();
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION: return createSwapchainConfiguration();
 			case GraphicPackage.FRAMEBUFFER_CONFIGURATION: return createFramebufferConfiguration();
+			case GraphicPackage.IMAGE_VIEWS: return createImageViews();
+			case GraphicPackage.RENDER_PASS: return createRenderPass();
 			case GraphicPackage.IMAGE_ATTACHMENT: return createImageAttachment();
 			case GraphicPackage.DEPTH_ATTACHMENT: return createDepthAttachment();
 			case GraphicPackage.COLOR_ATTACHMENT: return createColorAttachment();
@@ -151,10 +156,46 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	 * @generated
 	 */
 	@Override
+	public GraphicExecutionManager createGraphicExecutionManager()
+	{
+		GraphicExecutionManagerImpl graphicExecutionManager = new GraphicExecutionManagerImpl();
+		return graphicExecutionManager;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public GraphicExecutionRecorder createGraphicExecutionRecorder()
+	{
+		GraphicExecutionRecorderImpl graphicExecutionRecorder = new GraphicExecutionRecorderImpl();
+		return graphicExecutionRecorder;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ColorDomain createColorDomain()
 	{
 		ColorDomainImpl colorDomain = new ColorDomainImpl();
 		return colorDomain;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PhysicalSurface createPhysicalSurface()
+	{
+		PhysicalSurfaceImpl physicalSurface = new PhysicalSurfaceImpl();
+		return physicalSurface;
 	}
 
 	/**
@@ -179,6 +220,30 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		FramebufferConfigurationImpl framebufferConfiguration = new FramebufferConfigurationImpl();
 		return framebufferConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ImageViews createImageViews()
+	{
+		ImageViewsImpl imageViews = new ImageViewsImpl();
+		return imageViews;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RenderPass createRenderPass()
+	{
+		RenderPassImpl renderPass = new RenderPassImpl();
+		return renderPass;
 	}
 
 	/**

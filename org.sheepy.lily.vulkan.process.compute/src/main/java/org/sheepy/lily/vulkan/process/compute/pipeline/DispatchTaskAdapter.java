@@ -1,21 +1,27 @@
 package org.sheepy.lily.vulkan.process.compute.pipeline;
 
-import static org.lwjgl.vulkan.VK10.vkCmdDispatch;
-
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
+import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
 import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
 
-@Statefull
-@Adapter(scope = DispatchTask.class)
-public class DispatchTaskAdapter implements IPipelineTaskAdapter<DispatchTask>
+import static org.lwjgl.vulkan.VK10.vkCmdDispatch;
+
+@ModelExtender(scope = DispatchTask.class)
+@Adapter
+public final class DispatchTaskAdapter implements IPipelineTaskRecorder
 {
-	@Override
-	public void record(DispatchTask task, IRecordContext context)
+	private final DispatchTask task;
+
+	private DispatchTaskAdapter(DispatchTask task)
 	{
-		final var commandBuffer = ((RecordContext) context).commandBuffer;
+		this.task = task;
+	}
+
+	@Override
+	public void record(RecordContext context)
+	{
+		final var commandBuffer = context.commandBuffer;
 		final int groupCountX = task.getWorkgroupCountX();
 		final int groupCountY = task.getWorkgroupCountY();
 		final int groupCountZ = task.getWorkgroupCountZ();

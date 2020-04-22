@@ -50,12 +50,17 @@ import org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.ImageViews;
 import org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor;
+import org.sheepy.lily.vulkan.model.process.graphic.PhysicalSurface;
+import org.sheepy.lily.vulkan.model.process.graphic.RenderPass;
 import org.sheepy.lily.vulkan.model.process.graphic.SetScissor;
 import org.sheepy.lily.vulkan.model.process.graphic.SetViewport;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
@@ -96,7 +101,28 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass graphicExecutionManagerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass graphicExecutionRecorderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass colorDomainEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass physicalSurfaceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -111,6 +137,20 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	private EClass framebufferConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass imageViewsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass renderPassEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -467,9 +507,75 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getGraphicConfiguration_ColorDomain()
+	public EReference getGraphicConfiguration_Surface()
 	{
 		return (EReference)graphicConfigurationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getGraphicConfiguration_RenderPass()
+	{
+		return (EReference)graphicConfigurationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getGraphicConfiguration_ImageViews()
+	{
+		return (EReference)graphicConfigurationEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getGraphicExecutionManager()
+	{
+		return graphicExecutionManagerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getGraphicExecutionManager_Recorders()
+	{
+		return (EReference)graphicExecutionManagerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getGraphicExecutionRecorder()
+	{
+		return graphicExecutionRecorderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGraphicExecutionRecorder_Index()
+	{
+		return (EAttribute)graphicExecutionRecorderEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -503,6 +609,28 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	public EAttribute getColorDomain_ColorSpace()
 	{
 		return (EAttribute)colorDomainEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getPhysicalSurface()
+	{
+		return physicalSurfaceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPhysicalSurface_ColorDomain()
+	{
+		return (EReference)physicalSurfaceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -577,6 +705,17 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getSwapchainConfiguration_ColorAttachment()
+	{
+		return (EReference)swapchainConfigurationEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getFramebufferConfiguration()
 	{
 		return framebufferConfigurationEClass;
@@ -588,9 +727,31 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getFramebufferConfiguration_ClearValue()
+	public EClass getImageViews()
 	{
-		return (EAttribute)framebufferConfigurationEClass.getEStructuralFeatures().get(0);
+		return imageViewsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getRenderPass()
+	{
+		return renderPassEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getRenderPass_Attachments()
+	{
+		return (EReference)renderPassEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1050,6 +1211,17 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getSwapImageAttachment_ClearValue()
+	{
+		return (EAttribute)swapImageAttachmentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getExtraAttachment()
 	{
 		return extraAttachmentEClass;
@@ -1083,7 +1255,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getGraphicProcess_ColorAttachment()
+	public EReference getGraphicProcess_ExecutionManager()
 	{
 		return (EReference)graphicProcessEClass.getEStructuralFeatures().get(1);
 	}
@@ -1882,11 +2054,22 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION);
 		createEReference(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION);
 		createEAttribute(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE);
-		createEReference(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__COLOR_DOMAIN);
+		createEReference(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__SURFACE);
+		createEReference(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__RENDER_PASS);
+		createEReference(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__IMAGE_VIEWS);
+
+		graphicExecutionManagerEClass = createEClass(GRAPHIC_EXECUTION_MANAGER);
+		createEReference(graphicExecutionManagerEClass, GRAPHIC_EXECUTION_MANAGER__RECORDERS);
+
+		graphicExecutionRecorderEClass = createEClass(GRAPHIC_EXECUTION_RECORDER);
+		createEAttribute(graphicExecutionRecorderEClass, GRAPHIC_EXECUTION_RECORDER__INDEX);
 
 		colorDomainEClass = createEClass(COLOR_DOMAIN);
 		createEAttribute(colorDomainEClass, COLOR_DOMAIN__FORMAT);
 		createEAttribute(colorDomainEClass, COLOR_DOMAIN__COLOR_SPACE);
+
+		physicalSurfaceEClass = createEClass(PHYSICAL_SURFACE);
+		createEReference(physicalSurfaceEClass, PHYSICAL_SURFACE__COLOR_DOMAIN);
 
 		swapchainConfigurationEClass = createEClass(SWAPCHAIN_CONFIGURATION);
 		createEAttribute(swapchainConfigurationEClass, SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT);
@@ -1894,9 +2077,14 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(swapchainConfigurationEClass, SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK);
 		createEAttribute(swapchainConfigurationEClass, SWAPCHAIN_CONFIGURATION__ACQUIRE_WAIT_FOR_VBLANK);
 		createEAttribute(swapchainConfigurationEClass, SWAPCHAIN_CONFIGURATION__ALLOWING_ACCESS_FROM_COMPUTE);
+		createEReference(swapchainConfigurationEClass, SWAPCHAIN_CONFIGURATION__COLOR_ATTACHMENT);
 
 		framebufferConfigurationEClass = createEClass(FRAMEBUFFER_CONFIGURATION);
-		createEAttribute(framebufferConfigurationEClass, FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE);
+
+		imageViewsEClass = createEClass(IMAGE_VIEWS);
+
+		renderPassEClass = createEClass(RENDER_PASS);
+		createEReference(renderPassEClass, RENDER_PASS__ATTACHMENTS);
 
 		imageAttachmentEClass = createEClass(IMAGE_ATTACHMENT);
 		createEAttribute(imageAttachmentEClass, IMAGE_ATTACHMENT__CLEAR_VALUE);
@@ -1947,12 +2135,13 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(attachmentEClass, ATTACHMENT__FINAL_LAYOUT);
 
 		swapImageAttachmentEClass = createEClass(SWAP_IMAGE_ATTACHMENT);
+		createEAttribute(swapImageAttachmentEClass, SWAP_IMAGE_ATTACHMENT__CLEAR_VALUE);
 
 		extraAttachmentEClass = createEClass(EXTRA_ATTACHMENT);
 
 		graphicProcessEClass = createEClass(GRAPHIC_PROCESS);
 		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__CONFIGURATION);
-		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__COLOR_ATTACHMENT);
+		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__EXECUTION_MANAGER);
 		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__ATTACHMENT_PKG);
 		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__SUBPASSES);
 
@@ -2085,7 +2274,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		graphicConfigurationEClass.getESuperTypes().add(theProcessPackage.getConfiguration());
+		graphicConfigurationEClass.getESuperTypes().add(theProcessPackage.getProcessConfiguration());
+		graphicExecutionManagerEClass.getESuperTypes().add(theProcessPackage.getProcessExecutionManager());
+		graphicExecutionRecorderEClass.getESuperTypes().add(theProcessPackage.getExecutionRecorder());
 		imageAttachmentEClass.getESuperTypes().add(this.getExtraAttachment());
 		depthAttachmentEClass.getESuperTypes().add(this.getExtraAttachment());
 		colorAttachmentEClass.getESuperTypes().add(this.getExtraAttachment());
@@ -2127,11 +2318,22 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEReference(getGraphicConfiguration_SwapchainConfiguration(), this.getSwapchainConfiguration(), null, "swapchainConfiguration", null, 1, 1, GraphicConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphicConfiguration_FramebufferConfiguration(), this.getFramebufferConfiguration(), null, "framebufferConfiguration", null, 1, 1, GraphicConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGraphicConfiguration_AcquireWaitStage(), theEnumerationPackage.getEPipelineStage(), "acquireWaitStage", "COLOR_ATTACHMENT_OUTPUT_BIT", 0, 1, GraphicConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGraphicConfiguration_ColorDomain(), this.getColorDomain(), null, "colorDomain", null, 1, 1, GraphicConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicConfiguration_Surface(), this.getPhysicalSurface(), null, "surface", null, 1, 1, GraphicConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicConfiguration_RenderPass(), this.getRenderPass(), null, "renderPass", null, 1, 1, GraphicConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicConfiguration_ImageViews(), this.getImageViews(), null, "imageViews", null, 0, 1, GraphicConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(graphicExecutionManagerEClass, GraphicExecutionManager.class, "GraphicExecutionManager", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGraphicExecutionManager_Recorders(), this.getGraphicExecutionRecorder(), null, "recorders", null, 0, -1, GraphicExecutionManager.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(graphicExecutionRecorderEClass, GraphicExecutionRecorder.class, "GraphicExecutionRecorder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGraphicExecutionRecorder_Index(), ecorePackage.getEInt(), "index", null, 0, 1, GraphicExecutionRecorder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(colorDomainEClass, ColorDomain.class, "ColorDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getColorDomain_Format(), theEnumerationPackage.getEFormat(), "format", "B8G8R8A8_UNORM", 0, 1, ColorDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getColorDomain_ColorSpace(), theEnumerationPackage.getEColorSpace(), "colorSpace", "SRGB_NONLINEAR_KHR", 0, 1, ColorDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(physicalSurfaceEClass, PhysicalSurface.class, "PhysicalSurface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPhysicalSurface_ColorDomain(), this.getColorDomain(), null, "colorDomain", null, 1, 1, PhysicalSurface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(swapchainConfigurationEClass, SwapchainConfiguration.class, "SwapchainConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSwapchainConfiguration_RequiredSwapImageCount(), ecorePackage.getEInt(), "requiredSwapImageCount", "3", 0, 1, SwapchainConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2139,9 +2341,14 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getSwapchainConfiguration_PresentWhenVBlank(), ecorePackage.getEBoolean(), "presentWhenVBlank", "true", 1, 1, SwapchainConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSwapchainConfiguration_AcquireWaitForVBlank(), ecorePackage.getEBoolean(), "acquireWaitForVBlank", "true", 1, 1, SwapchainConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSwapchainConfiguration_AllowingAccessFromCompute(), ecorePackage.getEBoolean(), "allowingAccessFromCompute", "false", 1, 1, SwapchainConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSwapchainConfiguration_ColorAttachment(), this.getSwapImageAttachment(), null, "colorAttachment", null, 1, 1, SwapchainConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(framebufferConfigurationEClass, FramebufferConfiguration.class, "FramebufferConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFramebufferConfiguration_ClearValue(), theTypesPackage.getColor4f(), "clearValue", "0;0;0;0", 0, 1, FramebufferConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(imageViewsEClass, ImageViews.class, "ImageViews", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(renderPassEClass, RenderPass.class, "RenderPass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRenderPass_Attachments(), this.getExtraAttachment(), null, "attachments", null, 0, -1, RenderPass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageAttachmentEClass, ImageAttachment.class, "ImageAttachment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getImageAttachment_ClearValue(), theTypesPackage.getColor4f(), "clearValue", "0;0;0;0", 0, 1, ImageAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2192,12 +2399,13 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getAttachment_FinalLayout(), theEnumerationPackage.getEImageLayout(), "finalLayout", null, 0, 1, Attachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(swapImageAttachmentEClass, SwapImageAttachment.class, "SwapImageAttachment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSwapImageAttachment_ClearValue(), theTypesPackage.getColor4f(), "clearValue", "0;0;0;0", 0, 1, SwapImageAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(extraAttachmentEClass, ExtraAttachment.class, "ExtraAttachment", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(graphicProcessEClass, GraphicProcess.class, "GraphicProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGraphicProcess_Configuration(), this.getGraphicConfiguration(), null, "configuration", null, 1, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGraphicProcess_ColorAttachment(), this.getSwapImageAttachment(), null, "colorAttachment", null, 1, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicProcess_ExecutionManager(), this.getGraphicExecutionManager(), null, "executionManager", null, 1, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphicProcess_AttachmentPkg(), this.getAttachmentPkg(), null, "attachmentPkg", null, 1, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphicProcess_Subpasses(), this.getSubpass(), null, "subpasses", null, 0, -1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

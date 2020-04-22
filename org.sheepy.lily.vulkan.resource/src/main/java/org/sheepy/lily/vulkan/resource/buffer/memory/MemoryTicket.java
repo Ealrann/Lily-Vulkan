@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.resource.buffer.memory;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter.IMemoryTicket;
+import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation.IMemoryTicket;
 import org.sheepy.lily.vulkan.resource.buffer.memory.MemorySpaceManager.MemorySpace;
 
 public final class MemoryTicket implements IMemoryTicket

@@ -16,6 +16,7 @@ public class MainGameOfLife
 
 	public static void main(String[] args)
 	{
+		DebugUtil.parseMainArgs(args);
 		DebugUtil.DEBUG_ENABLED = true;
 
 		final Application application = buildApplication(0);

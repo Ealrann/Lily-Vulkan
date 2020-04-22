@@ -7,7 +7,7 @@ import org.sheepy.lily.core.api.input.event.*;
 import org.sheepy.lily.core.model.types.EKeyState;
 import org.sheepy.lily.vulkan.api.input.IInputCatcher;
 import org.sheepy.lily.vulkan.core.window.Window;
-import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
+import org.sheepy.lily.vulkan.nuklear.logic.LayoutManager;
 
 import java.util.List;
 
@@ -16,25 +16,20 @@ import static org.lwjgl.nuklear.Nuklear.*;
 
 public final class NuklearInputCatcher implements IInputCatcher
 {
-	public static final NuklearInputCatcher INSTANCE = new NuklearInputCatcher();
-
 	private static final NkVec2 scroll = NkVec2.create();
 
-	private NkContext nkContext;
-	private Window window;
-	private NuklearLayoutTaskAdapter layoutAdapter;
+	private final NkContext nkContext;
+	private final Window window;
+	private final LayoutManager layoutManager;
+
 	private boolean clicked = false;
 	private boolean caught = false;
 
-	private NuklearInputCatcher()
-	{
-	}
-
-	public void configure(NkContext nkContext, Window window, NuklearLayoutTaskAdapter layoutAdapter)
+	public NuklearInputCatcher(final NkContext nkContext, final Window window, final LayoutManager layoutManager)
 	{
 		this.nkContext = nkContext;
 		this.window = window;
-		this.layoutAdapter = layoutAdapter;
+		this.layoutManager = layoutManager;
 	}
 
 	private void onCharEvent(CharEvent event)
@@ -161,7 +156,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 		}
 
 		nk_input_end(nkContext);
-		layoutAdapter.requestLayout(caught);
+		layoutManager.requestLayout(caught);
 	}
 
 	@Override
@@ -199,7 +194,7 @@ public final class NuklearInputCatcher implements IInputCatcher
 
 		if (clicked)
 		{
-			final var panel = layoutAdapter.getHoveredPanel();
+			final var panel = layoutManager.getHoveredPanel();
 			if (panel != null)
 			{
 				res |= panel.isCatchInputs();

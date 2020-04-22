@@ -1,30 +1,27 @@
 package org.sheepy.lily.vulkan.core.concurrent;
 
+import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkSemaphoreCreateInfo;
-import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.concurrent.ISemaphore;
-import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 
 import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public class VkSemaphore implements ISemaphore, IAllocable<IVulkanContext>
+public class VkSemaphore implements ISemaphore
 {
-	private long semaphorePtr = VK_NULL_HANDLE;
+	private final long semaphorePtr;
 
-	@Override
-	public void allocate(IVulkanContext context)
+	public VkSemaphore(VkDevice vkDdevice)
 	{
-		final var logicalDevice = context.getLogicalDevice();
 		final VkSemaphoreCreateInfo semaphoreInfo = VkSemaphoreCreateInfo.calloc();
 		semaphoreInfo.sType(VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO);
 		semaphoreInfo.pNext(VK_NULL_HANDLE);
 		semaphoreInfo.flags(0);
 
 		final long[] aSemaphore = new long[1];
-		if (vkCreateSemaphore(logicalDevice.getVkDevice(), semaphoreInfo, null, aSemaphore) != VK_SUCCESS)
+		if (vkCreateSemaphore(vkDdevice, semaphoreInfo, null, aSemaphore) != VK_SUCCESS)
 		{
 			throw new AssertionError("Failed to create semaphores");
 		}
@@ -49,11 +46,8 @@ public class VkSemaphore implements ISemaphore, IAllocable<IVulkanContext>
 		});
 	}
 
-	@Override
-	public void free(IVulkanContext context)
+	public void free(VkDevice vkDdevice)
 	{
-		final var logicalDevice = context.getLogicalDevice();
-		vkDestroySemaphore(logicalDevice.getVkDevice(), semaphorePtr, null);
-		semaphorePtr = VK_NULL_HANDLE;
+		vkDestroySemaphore(vkDdevice, semaphorePtr, null);
 	}
 }

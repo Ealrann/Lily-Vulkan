@@ -1,16 +1,17 @@
 package org.sheepy.lily.vulkan.core.engine.utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public final class VulkanEngineUtils
 {
 	private VulkanEngineUtils()
-	{}
+	{
+	}
 
 	public static List<EQueueType> generateQueueTypes(VulkanEngine engine)
 	{

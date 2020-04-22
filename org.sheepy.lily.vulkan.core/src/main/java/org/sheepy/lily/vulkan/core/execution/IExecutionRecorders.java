@@ -1,10 +1,11 @@
 package org.sheepy.lily.vulkan.core.execution;
 
-import org.sheepy.lily.vulkan.api.process.IProcessContext;
+import org.sheepy.lily.core.api.extender.IExtender;
+import org.sheepy.lily.vulkan.api.execution.IExecutionPlayer;
 
-import java.util.List;
-
-public interface IExecutionRecorders<T extends ExecutionContext>
+public interface IExecutionRecorders extends IExtender
 {
-	List<IExecutionRecorder<? super T>> getRecorders();
+	IExecutionPlayer acquire();
+	void waitIdle();
+	int getExecutionCount();
 }

@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.core.execution;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkPhysicalDevice;
-import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.game.core.allocation.GameAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
@@ -17,28 +17,21 @@ import org.sheepy.lily.vulkan.core.window.Window;
 import java.util.Collection;
 import java.util.List;
 
-public class ExecutionContext extends GameAllocationContext implements IVulkanContext,
-																	   IExecutionContext,
-																	   IAllocable<IVulkanContext>
+public class ExecutionContext extends GameAllocationContext implements IVulkanContext, IExecutionContext
 {
+	private final IVulkanContext vulkanContext;
 	public final EQueueType queueType;
-	private final boolean resetAllowed;
 
 	public VulkanQueue queue;
 	public CommandPool commandPool;
-	private IVulkanContext vulkanContext;
 
-	public ExecutionContext(EQueueType queueType, boolean resetAllowed)
-	{
-		this.queueType = queueType;
-		this.resetAllowed = resetAllowed;
-	}
-
-	@Override
-	public void allocate(IVulkanContext vulkanContext)
+	public ExecutionContext(IVulkanContext vulkanContext, EQueueType queueType, boolean resetAllowed)
 	{
 		this.vulkanContext = vulkanContext;
+		this.queueType = queueType;
+
 		final var logicalDevice = vulkanContext.getLogicalDevice();
+		final var vkDevice = vulkanContext.getVkDevice();
 		switch (queueType)
 		{
 			case Compute -> queue = logicalDevice.borrowComputeQueue();
@@ -46,10 +39,12 @@ public class ExecutionContext extends GameAllocationContext implements IVulkanCo
 			case Present -> throw new AssertionError("Present is not a valid ExecutionContext");
 		}
 
-		commandPool = new CommandPool.Builder(queue.familyIndex, resetAllowed).build(vulkanContext);
+		try (final var stack = MemoryStack.stackPush())
+		{
+			commandPool = new CommandPool.Builder(queue.familyIndex, resetAllowed).build(vkDevice, stack);
+		}
 	}
 
-	@Override
 	public void free(IVulkanContext vulkanContext)
 	{
 		getLogicalDevice().returnQueue(queue);
@@ -126,7 +121,7 @@ public class ExecutionContext extends GameAllocationContext implements IVulkanCo
 		}
 
 		@Override
-		protected void doExecute(ExecutionContext context, ICommandBuffer<?> commandBuffer)
+		protected void doExecute(ExecutionContext context, ICommandBuffer commandBuffer)
 		{
 			command.execute(context, commandBuffer);
 		}

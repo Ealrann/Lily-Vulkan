@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import org.sheepy.lily.core.api.adapter.LilyEObject;
+import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.core.model.application.ICadence;
 import org.sheepy.lily.core.model.resource.ResourcePkg;
 import org.sheepy.lily.core.model.types.LNamedElement;
@@ -26,7 +26,7 @@ import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
+import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 
 /**
@@ -43,7 +43,7 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getQueuePriority <em>Queue Priority</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getCadence <em>Cadence</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getDescriptorPool <em>Descriptor Pool</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getSignals <em>Signals</em>}</li>
@@ -146,14 +146,14 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	protected ICadence cadence;
 
 	/**
-	 * The cached value of the '{@link #getDescriptorSetPkg() <em>Descriptor Set Pkg</em>}' containment reference.
+	 * The cached value of the '{@link #getDescriptorPool() <em>Descriptor Pool</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDescriptorSetPkg()
+	 * @see #getDescriptorPool()
 	 * @generated
 	 * @ordered
 	 */
-	protected DescriptorSetPkg descriptorSetPkg;
+	protected DescriptorPool descriptorPool;
 
 	/**
 	 * The default value of the '{@link #isWaitingFenceDuringAcquire() <em>Waiting Fence During Acquire</em>}' attribute.
@@ -427,6 +427,56 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 */
 	@Override
+	public DescriptorPool getDescriptorPool()
+	{
+		return descriptorPool;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDescriptorPool(DescriptorPool newDescriptorPool, NotificationChain msgs)
+	{
+		DescriptorPool oldDescriptorPool = descriptorPool;
+		descriptorPool = newDescriptorPool;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_POOL, oldDescriptorPool, newDescriptorPool);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDescriptorPool(DescriptorPool newDescriptorPool)
+	{
+		if (newDescriptorPool != descriptorPool)
+		{
+			NotificationChain msgs = null;
+			if (descriptorPool != null)
+				msgs = ((InternalEObject)descriptorPool).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_POOL, null, msgs);
+			if (newDescriptorPool != null)
+				msgs = ((InternalEObject)newDescriptorPool).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_POOL, null, msgs);
+			msgs = basicSetDescriptorPool(newDescriptorPool, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_POOL, newDescriptorPool, newDescriptorPool));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isWaitingFenceDuringAcquire()
 	{
 		return waitingFenceDuringAcquire;
@@ -557,56 +607,6 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 */
 	@Override
-	public DescriptorSetPkg getDescriptorSetPkg()
-	{
-		return descriptorSetPkg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDescriptorSetPkg(DescriptorSetPkg newDescriptorSetPkg, NotificationChain msgs)
-	{
-		DescriptorSetPkg oldDescriptorSetPkg = descriptorSetPkg;
-		descriptorSetPkg = newDescriptorSetPkg;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG, oldDescriptorSetPkg, newDescriptorSetPkg);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDescriptorSetPkg(DescriptorSetPkg newDescriptorSetPkg)
-	{
-		if (newDescriptorSetPkg != descriptorSetPkg)
-		{
-			NotificationChain msgs = null;
-			if (descriptorSetPkg != null)
-				msgs = ((InternalEObject)descriptorSetPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG, null, msgs);
-			if (newDescriptorSetPkg != null)
-				msgs = ((InternalEObject)newDescriptorSetPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG, null, msgs);
-			msgs = basicSetDescriptorSetPkg(newDescriptorSetPkg, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG, newDescriptorSetPkg, newDescriptorSetPkg));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public DescriptorPkg getDescriptorPkg()
 	{
 		return descriptorPkg;
@@ -667,8 +667,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return basicSetDescriptorPkg(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
 				return basicSetCadence(null, msgs);
-			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
-				return basicSetDescriptorSetPkg(null, msgs);
+			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_POOL:
+				return basicSetDescriptorPool(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
 				return basicSetExtensionPkg(null, msgs);
 		}
@@ -697,8 +697,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return getQueuePriority();
 			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
 				return getCadence();
-			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
-				return getDescriptorSetPkg();
+			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_POOL:
+				return getDescriptorPool();
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				return isWaitingFenceDuringAcquire();
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
@@ -742,8 +742,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
 				setCadence((ICadence)newValue);
 				return;
-			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
-				setDescriptorSetPkg((DescriptorSetPkg)newValue);
+			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_POOL:
+				setDescriptorPool((DescriptorPool)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				setWaitingFenceDuringAcquire((Boolean)newValue);
@@ -794,8 +794,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
 				setCadence((ICadence)null);
 				return;
-			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
-				setDescriptorSetPkg((DescriptorSetPkg)null);
+			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_POOL:
+				setDescriptorPool((DescriptorPool)null);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				setWaitingFenceDuringAcquire(WAITING_FENCE_DURING_ACQUIRE_EDEFAULT);
@@ -838,8 +838,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return queuePriority != QUEUE_PRIORITY_EDEFAULT;
 			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
 				return cadence != null;
-			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
-				return descriptorSetPkg != null;
+			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_POOL:
+				return descriptorPool != null;
 			case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 				return waitingFenceDuringAcquire != WAITING_FENCE_DURING_ACQUIRE_EDEFAULT;
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:

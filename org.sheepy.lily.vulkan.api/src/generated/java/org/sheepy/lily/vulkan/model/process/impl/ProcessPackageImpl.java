@@ -30,8 +30,8 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 import org.sheepy.lily.vulkan.model.process.CompositePipeline;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
-import org.sheepy.lily.vulkan.model.process.Configuration;
 import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
+import org.sheepy.lily.vulkan.model.process.ExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.IProcessExtension;
@@ -39,6 +39,8 @@ import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
+import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
+import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
 import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -75,13 +77,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass abstractProcessEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass configurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -217,6 +212,27 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	private EClass swapBindingsTaskEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass processConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass processExecutionManagerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass executionRecorderEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -335,6 +351,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getAbstractProcess_DescriptorPool()
+	{
+		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EAttribute getAbstractProcess_WaitingFenceDuringAcquire()
 	{
 		return (EAttribute)abstractProcessEClass.getEStructuralFeatures().get(1);
@@ -382,28 +409,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	public EReference getAbstractProcess_ExtensionPkg()
 	{
 		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getAbstractProcess_DescriptorSetPkg()
-	{
-		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getConfiguration()
-	{
-		return configurationEClass;
 	}
 
 	/**
@@ -522,7 +527,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getVkPipeline_DescriptorSetPkg()
+	public EReference getVkPipeline_DescriptorPool()
 	{
 		return (EReference)vkPipelineEClass.getEStructuralFeatures().get(0);
 	}
@@ -775,6 +780,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getBindDescriptorSets_Stride()
+	{
+		return (EAttribute)bindDescriptorSetsEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPushConstant()
 	{
 		return pushConstantEClass;
@@ -844,17 +860,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	public EAttribute getFlushTransferBufferTask_Stage()
 	{
 		return (EAttribute)flushTransferBufferTaskEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFlushTransferBufferTask_FlushDuringUpdate()
-	{
-		return (EAttribute)flushTransferBufferTaskEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1006,7 +1011,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getPrepareCompositeTransfer_Parts()
+	public EReference getPrepareCompositeTransfer_BufferReference()
 	{
 		return (EReference)prepareCompositeTransferEClass.getEStructuralFeatures().get(4);
 	}
@@ -1061,6 +1066,39 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getProcessConfiguration()
+	{
+		return processConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getProcessExecutionManager()
+	{
+		return processExecutionManagerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getExecutionRecorder()
+	{
+		return executionRecorderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ProcessFactory getProcessFactory()
 	{
 		return (ProcessFactory)getEFactoryInstance();
@@ -1087,14 +1125,12 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		// Create classes and their features
 		abstractProcessEClass = createEClass(ABSTRACT_PROCESS);
-		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG);
+		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__DESCRIPTOR_POOL);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__RESET_ALLOWED);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__SIGNALS);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__WAIT_FOR);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__EXTENSION_PKG);
-
-		configurationEClass = createEClass(CONFIGURATION);
 
 		pipelinePkgEClass = createEClass(PIPELINE_PKG);
 		createEReference(pipelinePkgEClass, PIPELINE_PKG__PIPELINES);
@@ -1110,7 +1146,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEReference(taskPipelineEClass, TASK_PIPELINE__TASK_PKG);
 
 		vkPipelineEClass = createEClass(VK_PIPELINE);
-		createEReference(vkPipelineEClass, VK_PIPELINE__DESCRIPTOR_SET_PKG);
+		createEReference(vkPipelineEClass, VK_PIPELINE__DESCRIPTOR_POOL);
 		createEReference(vkPipelineEClass, VK_PIPELINE__SPECIALIZATION_DATA);
 		createEReference(vkPipelineEClass, VK_PIPELINE__PUSH_CONSTANT_RANGES);
 		createEReference(vkPipelineEClass, VK_PIPELINE__LAYOUT);
@@ -1139,6 +1175,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		bindDescriptorSetsEClass = createEClass(BIND_DESCRIPTOR_SETS);
 		createEReference(bindDescriptorSetsEClass, BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS);
 		createEAttribute(bindDescriptorSetsEClass, BIND_DESCRIPTOR_SETS__BIND_POINT);
+		createEAttribute(bindDescriptorSetsEClass, BIND_DESCRIPTOR_SETS__STRIDE);
 
 		pushConstantEClass = createEClass(PUSH_CONSTANT);
 		createEAttribute(pushConstantEClass, PUSH_CONSTANT__STAGES);
@@ -1149,7 +1186,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		flushTransferBufferTaskEClass = createEClass(FLUSH_TRANSFER_BUFFER_TASK);
 		createEReference(flushTransferBufferTaskEClass, FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER);
 		createEAttribute(flushTransferBufferTaskEClass, FLUSH_TRANSFER_BUFFER_TASK__STAGE);
-		createEAttribute(flushTransferBufferTaskEClass, FLUSH_TRANSFER_BUFFER_TASK__FLUSH_DURING_UPDATE);
 
 		copyBufferTaskEClass = createEClass(COPY_BUFFER_TASK);
 		createEAttribute(copyBufferTaskEClass, COPY_BUFFER_TASK__STAGE);
@@ -1167,12 +1203,18 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEAttribute(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__MODE);
 		createEAttribute(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__PREPARE_DURING_UPDATE);
 		createEAttribute(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__STAGE);
-		createEReference(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__PARTS);
+		createEReference(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE);
 		createEReference(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER);
 
 		swapBindingsTaskEClass = createEClass(SWAP_BINDINGS_TASK);
 		createEReference(swapBindingsTaskEClass, SWAP_BINDINGS_TASK__TASK);
 		createEReference(swapBindingsTaskEClass, SWAP_BINDINGS_TASK__DESCRIPTOR_SETS);
+
+		processConfigurationEClass = createEClass(PROCESS_CONFIGURATION);
+
+		processExecutionManagerEClass = createEClass(PROCESS_EXECUTION_MANAGER);
+
+		executionRecorderEClass = createEClass(EXECUTION_RECORDER);
 	}
 
 	/**
@@ -1239,14 +1281,12 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractProcess_DescriptorSetPkg(), theVulkanResourcePackage.getDescriptorSetPkg(), null, "descriptorSetPkg", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractProcess_DescriptorPool(), theVulkanResourcePackage.getDescriptorPool(), null, "descriptorPool", null, 1, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractProcess_WaitingFenceDuringAcquire(), ecorePackage.getEBoolean(), "waitingFenceDuringAcquire", "false", 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractProcess_ResetAllowed(), ecorePackage.getEBoolean(), "resetAllowed", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_Signals(), theVulkanResourcePackage.getSemaphore(), null, "signals", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_WaitFor(), theVulkanResourcePackage.getSemaphore(), null, "waitFor", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_ExtensionPkg(), this.getProcessExtensionPkg(), null, "extensionPkg", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(configurationEClass, Configuration.class, "Configuration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(pipelinePkgEClass, PipelinePkg.class, "PipelinePkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPipelinePkg_Pipelines(), this.getAbstractPipeline(), null, "pipelines", null, 0, -1, PipelinePkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1262,7 +1302,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEReference(getTaskPipeline_TaskPkg(), this.getTaskPkg(), null, "taskPkg", null, 0, 1, TaskPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(vkPipelineEClass, VkPipeline.class, "VkPipeline", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVkPipeline_DescriptorSetPkg(), theVulkanResourcePackage.getDescriptorSetPkg(), null, "descriptorSetPkg", null, 0, 1, VkPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVkPipeline_DescriptorPool(), theVulkanResourcePackage.getDescriptorPool(), null, "descriptorPool", null, 0, 1, VkPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVkPipeline_SpecializationData(), theVulkanResourcePackage.getConstantBuffer(), null, "specializationData", null, 0, 1, VkPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVkPipeline_PushConstantRanges(), thePipelinePackage.getPushConstantRange(), null, "pushConstantRanges", null, 0, -1, VkPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVkPipeline_Layout(), theVulkanResourcePackage.getDescriptorSet(), null, "layout", null, 0, -1, VkPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1291,6 +1331,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEClass(bindDescriptorSetsEClass, BindDescriptorSets.class, "BindDescriptorSets", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBindDescriptorSets_DescriptorSets(), theVulkanResourcePackage.getDescriptorSet(), null, "descriptorSets", null, 0, -1, BindDescriptorSets.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBindDescriptorSets_BindPoint(), theEnumerationPackage.getEBindPoint(), "bindPoint", null, 1, 1, BindDescriptorSets.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBindDescriptorSets_Stride(), ecorePackage.getEInt(), "stride", "0", 0, 1, BindDescriptorSets.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pushConstantEClass, PushConstant.class, "PushConstant", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPushConstant_Stages(), theEnumerationPackage.getEShaderStage(), "stages", null, 1, -1, PushConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1301,7 +1342,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEClass(flushTransferBufferTaskEClass, FlushTransferBufferTask.class, "FlushTransferBufferTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFlushTransferBufferTask_TransferBuffer(), theVulkanResourcePackage.getTransferBuffer(), null, "transferBuffer", null, 1, 1, FlushTransferBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFlushTransferBufferTask_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Transfer", 1, 1, FlushTransferBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFlushTransferBufferTask_FlushDuringUpdate(), ecorePackage.getEBoolean(), "flushDuringUpdate", "false", 1, 1, FlushTransferBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(copyBufferTaskEClass, CopyBufferTask.class, "CopyBufferTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCopyBufferTask_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Transfer", 1, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1319,12 +1359,18 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEAttribute(getPrepareCompositeTransfer_Mode(), theVulkanResourcePackage.getEFlushMode(), "mode", "PUSH", 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPrepareCompositeTransfer_PrepareDuringUpdate(), ecorePackage.getEBoolean(), "prepareDuringUpdate", "false", 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPrepareCompositeTransfer_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Transfer", 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPrepareCompositeTransfer_Parts(), theVulkanResourcePackage.getBufferPart(), null, "parts", null, 1, -1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPrepareCompositeTransfer_BufferReference(), theVulkanResourcePackage.getIBufferReference(), null, "bufferReference", null, 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPrepareCompositeTransfer_TransferBuffer(), theVulkanResourcePackage.getTransferBuffer(), null, "transferBuffer", null, 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(swapBindingsTaskEClass, SwapBindingsTask.class, "SwapBindingsTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSwapBindingsTask_Task(), this.getBindDescriptorSets(), null, "task", null, 1, 1, SwapBindingsTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSwapBindingsTask_DescriptorSets(), theVulkanResourcePackage.getDescriptorSet(), null, "descriptorSets", null, 1, -1, SwapBindingsTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(processConfigurationEClass, ProcessConfiguration.class, "ProcessConfiguration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(processExecutionManagerEClass, ProcessExecutionManager.class, "ProcessExecutionManager", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(executionRecorderEClass, ExecutionRecorder.class, "ExecutionRecorder", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

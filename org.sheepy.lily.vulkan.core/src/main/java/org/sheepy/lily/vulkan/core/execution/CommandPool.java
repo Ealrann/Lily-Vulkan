@@ -1,6 +1,8 @@
 package org.sheepy.lily.vulkan.core.execution;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandPoolCreateInfo;
+import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
 
@@ -38,11 +40,8 @@ public final class CommandPool
 			this.allowReset = allowReset;
 		}
 
-		public CommandPool build(IVulkanContext context)
+		public CommandPool build(VkDevice device, MemoryStack stack)
 		{
-			final var stack = context.stack();
-			final var device = context.getVkDevice();
-
 			// Command Pool
 			// ------------------
 			final VkCommandPoolCreateInfo poolInfo = VkCommandPoolCreateInfo.callocStack(stack);

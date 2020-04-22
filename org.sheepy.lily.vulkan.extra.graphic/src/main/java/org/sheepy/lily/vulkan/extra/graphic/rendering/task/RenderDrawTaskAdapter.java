@@ -1,54 +1,38 @@
 package org.sheepy.lily.vulkan.extra.graphic.rendering.task;
 
-import static org.lwjgl.vulkan.VK10.vkCmdDraw;
-
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
+import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IVertexProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderDrawTask;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
-@Statefull
-@Adapter(scope = RenderDrawTask.class)
-public class RenderDrawTaskAdapter implements IPipelineTaskAdapter<RenderDrawTask>
+import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.vkCmdDraw;
+
+@ModelExtender(scope = RenderDrawTask.class)
+@Allocation
+@AllocationDependency(features = RenderingPackage.RENDER_DRAW_TASK__VERTEX_PROVIDERS, type = IVertexProviderAdapter.class)
+public final class RenderDrawTaskAdapter implements IPipelineTaskRecorder
 {
-	private int vertexCount;
-	private boolean hasChanged = true;
+	private final int vertexCount;
 
-	@Override
-	public void update(RenderDrawTask task, int index)
+	private RenderDrawTaskAdapter(@InjectDependency(index = 0) List<IVertexProviderAdapter> vertexProviderAdapters)
 	{
-		int newVertexCount = 0;
-		for (final var vertexProvider : task.getVertexProviders())
-		{
-			final var vertexProviderAdapter = vertexProvider.adaptNotNull(IVertexProviderAdapter.class);
-			newVertexCount += vertexProviderAdapter.getVertexCount();
-		}
-
-		if (newVertexCount != vertexCount)
-		{
-			vertexCount = newVertexCount;
-			hasChanged = true;
-		}
+		vertexCount = vertexProviderAdapters.stream().mapToInt(IVertexProviderAdapter::getVertexCount).sum();
 	}
 
 	@Override
-	public void record(RenderDrawTask task, IRecordContext context)
+	public void record(RecordContext context)
 	{
 		final int instanceCount = 1;
 		final int firstVertex = 0;
 		final int firstInstance = 0;
-		final var commandBuffer = ((RecordContext) context).commandBuffer;
+		final var commandBuffer = context.commandBuffer;
 
 		vkCmdDraw(commandBuffer, vertexCount, instanceCount, firstVertex, firstInstance);
-
-		hasChanged = true;
-	}
-
-	@Override
-	public boolean needRecord(RenderDrawTask task, int index)
-	{
-		return hasChanged;
 	}
 }

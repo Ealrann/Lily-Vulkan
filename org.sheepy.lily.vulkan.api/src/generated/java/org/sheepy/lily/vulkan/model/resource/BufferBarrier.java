@@ -13,7 +13,7 @@ import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferBarrier#getBuffer <em>Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferBarrier#getBuffers <em>Buffers</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferBarrier()
@@ -23,25 +23,25 @@ import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
 public interface BufferBarrier extends AbstractBufferBarrier
 {
 	/**
-	 * Returns the value of the '<em><b>Buffer</b></em>' reference.
+	 * Returns the value of the '<em><b>Buffers</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Buffer</em>' reference.
-	 * @see #setBuffer(IBuffer)
-	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferBarrier_Buffer()
-	 * @model
+	 * @return the value of the '<em>Buffers</em>' containment reference.
+	 * @see #setBuffers(IBufferReference)
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferBarrier_Buffers()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	IBuffer getBuffer();
+	IBufferReference getBuffers();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferBarrier#getBuffer <em>Buffer</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferBarrier#getBuffers <em>Buffers</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Buffer</em>' reference.
-	 * @see #getBuffer()
+	 * @param value the new value of the '<em>Buffers</em>' containment reference.
+	 * @see #getBuffers()
 	 * @generated
 	 */
-	void setBuffer(IBuffer value);
+	void setBuffers(IBufferReference value);
 
 } // BufferBarrier

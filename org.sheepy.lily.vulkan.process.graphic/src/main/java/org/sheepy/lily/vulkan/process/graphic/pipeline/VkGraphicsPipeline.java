@@ -1,13 +1,15 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
+import org.joml.Vector2ic;
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipeline;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipelineLayout;
 import org.sheepy.lily.vulkan.core.pipeline.VkShaderStage;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.*;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
+import org.sheepy.lily.vulkan.process.graphic.renderpass.RenderPassAllocation;
 import org.sheepy.lily.vulkan.process.pipeline.builder.ShaderStageBuilder;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.graphicpipeline.*;
 
 import java.nio.ByteBuffer;
@@ -15,7 +17,7 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public class VkGraphicsPipeline extends VkPipeline<GraphicContext>
+public class VkGraphicsPipeline extends VkPipeline
 {
 	private static final String FAILED_TO_CREATE_GRAPHICS_PIPELINE = "Failed to create graphics pipeline";
 
@@ -28,7 +30,7 @@ public class VkGraphicsPipeline extends VkPipeline<GraphicContext>
 	private final ColorBlendBuilder colorBlendBuilder;
 	private final DynamicStateBuilder dynamicStateBuilder;
 
-	private final VkPipelineLayout<? super GraphicContext> pipelineLayout;
+	private final VkPipelineLayout pipelineLayout;
 	private final ColorBlend colorBlend;
 	private final Rasterizer rasterizer;
 	private final InputAssembly inputAssembly;
@@ -42,7 +44,7 @@ public class VkGraphicsPipeline extends VkPipeline<GraphicContext>
 
 	protected long pipelinePtr = 0;
 
-	public VkGraphicsPipeline(VkPipelineLayout<? super GraphicContext> pipelineLayout,
+	public VkGraphicsPipeline(VkPipelineLayout pipelineLayout,
 							  ColorBlend colorBlend,
 							  Rasterizer rasterizer,
 							  InputAssembly inputAssembly,
@@ -78,13 +80,9 @@ public class VkGraphicsPipeline extends VkPipeline<GraphicContext>
 		dynamicStateBuilder = new DynamicStateBuilder();
 	}
 
-	@Override
-	public void allocate(GraphicContext context)
+	public void allocate(ProcessContext context, Vector2ic extent, RenderPassAllocation renderPassAllocation)
 	{
 		final var device = context.getVkDevice();
-		final var surfaceManager = context.getSurfaceManager();
-		final var renderPass = context.getRenderPass();
-		final var extent = surfaceManager.getExtent();
 		final var stack = context.stack();
 
 		// Create Pipeline
@@ -103,7 +101,7 @@ public class VkGraphicsPipeline extends VkPipeline<GraphicContext>
 		if (dynamicState != null) info.pDynamicState(dynamicStateBuilder.allocCreateInfo(stack, dynamicState));
 
 		info.layout(pipelineLayout.getId());
-		info.renderPass(renderPass.getPtr());
+		info.renderPass(renderPassAllocation.getPtr());
 		info.subpass(subpass);
 		info.basePipelineHandle(VK_NULL_HANDLE);
 		info.basePipelineIndex(-1);
@@ -114,8 +112,7 @@ public class VkGraphicsPipeline extends VkPipeline<GraphicContext>
 		pipelinePtr = aId[0];
 	}
 
-	@Override
-	public void free(GraphicContext context)
+	public void free(ProcessContext context)
 	{
 		final var device = context.getVkDevice();
 		vkDestroyPipeline(device, pipelinePtr, null);

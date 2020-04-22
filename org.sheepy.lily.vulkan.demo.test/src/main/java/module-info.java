@@ -1,5 +1,5 @@
-import org.sheepy.lily.core.api.adapter.IAdapterProvider;
-import org.sheepy.lily.vulkan.demo.test.composite.Adapters;
+import org.sheepy.lily.core.api.extender.IExtenderProvider;
+import org.sheepy.lily.vulkan.demo.test.composite.Extenders;
 
 module org.sheepy.lily.vulkan.demo.test
 {
@@ -17,5 +17,5 @@ module org.sheepy.lily.vulkan.demo.test
 	opens org.sheepy.lily.vulkan.demo.test.composite.instance;
 	opens org.sheepy.lily.vulkan.demo.test.composite.instance.adapter;
 
-	provides IAdapterProvider with Adapters;
+	provides IExtenderProvider with Extenders;
 }

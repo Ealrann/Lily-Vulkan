@@ -127,6 +127,31 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.DescriptorPool} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DescriptorPoolItemProvider descriptorPoolItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.DescriptorPool}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDescriptorPoolAdapter()
+	{
+		if (descriptorPoolItemProvider == null)
+		{
+			descriptorPoolItemProvider = new DescriptorPoolItemProvider(this);
+		}
+
+		return descriptorPoolItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ConstantBuffer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -174,6 +199,56 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 		}
 
 		return genericConstantBufferItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FixedBufferReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FixedBufferReferenceItemProvider fixedBufferReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.FixedBufferReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFixedBufferReferenceAdapter()
+	{
+		if (fixedBufferReferenceItemProvider == null)
+		{
+			fixedBufferReferenceItemProvider = new FixedBufferReferenceItemProvider(this);
+		}
+
+		return fixedBufferReferenceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CircularBufferReferenceItemProvider circularBufferReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCircularBufferReferenceAdapter()
+	{
+		if (circularBufferReferenceItemProvider == null)
+		{
+			circularBufferReferenceItemProvider = new CircularBufferReferenceItemProvider(this);
+		}
+
+		return circularBufferReferenceItemProvider;
 	}
 
 	/**
@@ -599,31 +674,6 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 		}
 
 		return descriptorSetItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DescriptorSetPkgItemProvider descriptorSetPkgItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDescriptorSetPkgAdapter()
-	{
-		if (descriptorSetPkgItemProvider == null)
-		{
-			descriptorSetPkgItemProvider = new DescriptorSetPkgItemProvider(this);
-		}
-
-		return descriptorSetPkgItemProvider;
 	}
 
 	/**

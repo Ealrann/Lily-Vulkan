@@ -3,12 +3,15 @@ package org.sheepy.lily.vulkan.core.input;
 import org.joml.Vector2f;
 import org.joml.Vector2fc;
 import org.lwjgl.glfw.*;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.input.IInputManager;
 import org.sheepy.lily.core.api.input.event.*;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.types.EKeyState;
 import org.sheepy.lily.core.model.types.EMouseButton;
+import org.sheepy.lily.game.api.window.IWindow;
 import org.sheepy.lily.vulkan.api.input.IInputCatcher;
 import org.sheepy.lily.vulkan.api.input.IVulkanInputManager;
 import org.sheepy.lily.vulkan.core.window.Window;
@@ -18,16 +21,19 @@ import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-public class VulkanInputManager extends Notifier<IInputManager.Features> implements IVulkanInputManager
+@ModelExtender(scope = Application.class, inherited = true)
+@Adapter
+public final class VulkanInputManager extends Notifier<IInputManager.Features> implements IVulkanInputManager
 {
 	private final Application application;
-	private final Window window;
 
 	private final double[] cursorPositionX = new double[1];
 	private final double[] cursorPositionY = new double[1];
 
 	private final List<InputEvent<?>> events = new ArrayList<>();
+	private final Runnable load = this::load;
 
+	private Window window = null;
 	private IInputCatcher catcher;
 	private Boolean inputsAreCaught = null;
 	private Vector2fc cursorPosition = new Vector2f();
@@ -97,7 +103,7 @@ public class VulkanInputManager extends Notifier<IInputManager.Features> impleme
 		}
 	};
 
-	public VulkanInputManager(Application application, Window window)
+	private VulkanInputManager(Application application)
 	{
 		super(List.of(Features.CharEvent,
 					  Features.KeyEvent,
@@ -107,20 +113,36 @@ public class VulkanInputManager extends Notifier<IInputManager.Features> impleme
 					  Features.MouseOverUIEvent,
 					  Features.AfterPollInputs));
 		this.application = application;
-		this.window = window;
 	}
 
-	public void load()
+	public void connect(Window window)
 	{
-		final var windowId = window.getPtr();
-		glfwSetScrollCallback(windowId, glfwSetScrollCallback);
-		glfwSetCharCallback(windowId, glfwSetCharCallback);
-		glfwSetKeyCallback(windowId, glfwSetKeyCallback);
-		glfwSetCursorPosCallback(windowId, glfwSetCursorPosCallback);
-		glfwSetMouseButtonCallback(windowId, glfwSetMouseButtonCallback);
+		this.window = window;
+		if (window.isOpenned())
+		{
+			load();
+		}
+		window.listenNoParam(load, IWindow.Features.Open);
 	}
 
-	public void dispose()
+	public void disconnect()
+	{
+		window.sulkNoParam(load, IWindow.Features.Open);
+		dispose();
+		this.window = null;
+	}
+
+	private void load()
+	{
+		final var windowPtr = window.getPtr();
+		glfwSetScrollCallback(windowPtr, glfwSetScrollCallback);
+		glfwSetCharCallback(windowPtr, glfwSetCharCallback);
+		glfwSetKeyCallback(windowPtr, glfwSetKeyCallback);
+		glfwSetCursorPosCallback(windowPtr, glfwSetCursorPosCallback);
+		glfwSetMouseButtonCallback(windowPtr, glfwSetMouseButtonCallback);
+	}
+
+	private void dispose()
 	{
 		glfwSetScrollCallback.free();
 		glfwSetCharCallback.free();
@@ -182,8 +204,10 @@ public class VulkanInputManager extends Notifier<IInputManager.Features> impleme
 	@Override
 	public void showCursor(boolean show)
 	{
-		final int flag = show ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_HIDDEN;
-		glfwSetInputMode(window.getPtr(), GLFW_CURSOR, flag);
+		if (window != null)
+		{
+			window.showCursor(show);
+		}
 	}
 
 	@Override
@@ -195,8 +219,11 @@ public class VulkanInputManager extends Notifier<IInputManager.Features> impleme
 	@Override
 	public void setCursorPosition(Vector2fc position)
 	{
-		glfwSetCursorPos(window.getPtr(), position.x(), position.y());
-		cursorPosition = new Vector2f(position);
+		if (window != null)
+		{
+			glfwSetCursorPos(window.getPtr(), position.x(), position.y());
+			cursorPosition = new Vector2f(position);
+		}
 	}
 
 	private void fireEvents()

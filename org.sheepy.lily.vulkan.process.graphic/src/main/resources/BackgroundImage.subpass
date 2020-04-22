@@ -39,7 +39,7 @@
         <tasks xsi:type="graphic:BlitTask"/>
       </taskPkg>
     </pipelines>
-    <pipelines xsi:type="graphic:GraphicsPipeline" name=" Compatibility" layout="//@pipelinePkg/@pipelines.2/@descriptorSetPkg/@descriptorSets.0" shaders="//@pipelinePkg/@pipelines.2/@resourcePkg/@resources.0 //@pipelinePkg/@pipelines.2/@resourcePkg/@resources.1">
+    <pipelines xsi:type="graphic:GraphicsPipeline" name=" Compatibility" layout="//@pipelinePkg/@pipelines.2/@descriptorPool/@descriptorSets.0" shaders="//@pipelinePkg/@pipelines.2/@resourcePkg/@resources.0 //@pipelinePkg/@pipelines.2/@resourcePkg/@resources.1">
       <resourcePkg>
         <resources xsi:type="resource:Shader" name="BackgroundCompatVertex">
           <file xsi:type="resource_1:StringModuleResource" path="background_compat.vert.spv" moduleName="org.sheepy.lily.vulkan.process.graphic"/>
@@ -59,12 +59,12 @@
             <dstAccessMask>TRANSFER_WRITE_BIT</dstAccessMask>
           </barriers>
         </tasks>
-        <tasks xsi:type="process:BindDescriptorSets" descriptorSets="//@pipelinePkg/@pipelines.2/@descriptorSetPkg/@descriptorSets.0"/>
+        <tasks xsi:type="process:BindDescriptorSets" descriptorSets="//@pipelinePkg/@pipelines.2/@descriptorPool/@descriptorSets.0"/>
         <tasks xsi:type="graphic:Draw" vertexCount="3"/>
       </taskPkg>
-      <descriptorSetPkg>
+      <descriptorPool>
         <descriptorSets descriptors="//@pipelinePkg/@pipelines.2/@descriptorPkg/@descriptors.0"/>
-      </descriptorSetPkg>
+      </descriptorPool>
       <viewportState xsi:type="graphicpipeline:StaticViewportState">
         <viewports xsi:type="graphicpipeline:Viewport"/>
         <scissors/>

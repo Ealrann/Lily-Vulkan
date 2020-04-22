@@ -7,14 +7,14 @@ import org.lwjgl.nuklear.NkRect;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.game.api.window.IWindow;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
-import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
 
 import java.nio.ByteBuffer;
 import java.util.List;
@@ -22,8 +22,8 @@ import java.util.function.Consumer;
 
 import static org.lwjgl.nuklear.Nuklear.*;
 
-@Statefull
-@Adapter(scope = Panel.class)
+@ModelExtender(scope = Panel.class)
+@Adapter
 public class PanelAdapter extends Notifier<ITextWidgetAdapter.Features> implements IPanelAdapter, ITextWidgetAdapter
 {
 	private final Consumer<Vector2ic> sizeListener = this::updateLocation;
@@ -142,7 +142,7 @@ public class PanelAdapter extends Notifier<ITextWidgetAdapter.Features> implemen
 			final var backgroundImage = panel.getBackgroundImage();
 			if (backgroundImage != null)
 			{
-				final var imageAdapter = backgroundImage.adapt(IVkImageAdapter.class);
+				final var imageAdapter = backgroundImage.adapt(IVkImageAllocation.class);
 				final var nkImage = NkImage.callocStack(stack);
 				nk_image_ptr(imageAdapter.getViewPtr(), nkImage);
 				final var canvas = nk_window_get_canvas(nkContext);

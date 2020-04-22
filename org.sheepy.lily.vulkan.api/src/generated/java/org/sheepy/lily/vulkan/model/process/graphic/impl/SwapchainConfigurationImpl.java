@@ -5,13 +5,16 @@ package org.sheepy.lily.vulkan.model.process.graphic.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.sheepy.lily.core.api.adapter.LilyEObject;
+import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
@@ -29,6 +32,7 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#isPresentWhenVBlank <em>Present When VBlank</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#isAcquireWaitForVBlank <em>Acquire Wait For VBlank</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#isAllowingAccessFromCompute <em>Allowing Access From Compute</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#getColorAttachment <em>Color Attachment</em>}</li>
  * </ul>
  *
  * @generated
@@ -124,6 +128,16 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 	 * @ordered
 	 */
 	protected boolean allowingAccessFromCompute = ALLOWING_ACCESS_FROM_COMPUTE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getColorAttachment() <em>Color Attachment</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getColorAttachment()
+	 * @generated
+	 * @ordered
+	 */
+	protected SwapImageAttachment colorAttachment;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -267,6 +281,72 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 	 * @generated
 	 */
 	@Override
+	public SwapImageAttachment getColorAttachment()
+	{
+		return colorAttachment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetColorAttachment(SwapImageAttachment newColorAttachment, NotificationChain msgs)
+	{
+		SwapImageAttachment oldColorAttachment = colorAttachment;
+		colorAttachment = newColorAttachment;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SWAPCHAIN_CONFIGURATION__COLOR_ATTACHMENT, oldColorAttachment, newColorAttachment);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setColorAttachment(SwapImageAttachment newColorAttachment)
+	{
+		if (newColorAttachment != colorAttachment)
+		{
+			NotificationChain msgs = null;
+			if (colorAttachment != null)
+				msgs = ((InternalEObject)colorAttachment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SWAPCHAIN_CONFIGURATION__COLOR_ATTACHMENT, null, msgs);
+			if (newColorAttachment != null)
+				msgs = ((InternalEObject)newColorAttachment).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SWAPCHAIN_CONFIGURATION__COLOR_ATTACHMENT, null, msgs);
+			msgs = basicSetColorAttachment(newColorAttachment, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SWAPCHAIN_CONFIGURATION__COLOR_ATTACHMENT, newColorAttachment, newColorAttachment));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__COLOR_ATTACHMENT:
+				return basicSetColorAttachment(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -281,6 +361,8 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 				return isAcquireWaitForVBlank();
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ALLOWING_ACCESS_FROM_COMPUTE:
 				return isAllowingAccessFromCompute();
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__COLOR_ATTACHMENT:
+				return getColorAttachment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -312,6 +394,9 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ALLOWING_ACCESS_FROM_COMPUTE:
 				setAllowingAccessFromCompute((Boolean)newValue);
 				return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__COLOR_ATTACHMENT:
+				setColorAttachment((SwapImageAttachment)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -341,6 +426,9 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ALLOWING_ACCESS_FROM_COMPUTE:
 				setAllowingAccessFromCompute(ALLOWING_ACCESS_FROM_COMPUTE_EDEFAULT);
 				return;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__COLOR_ATTACHMENT:
+				setColorAttachment((SwapImageAttachment)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -365,6 +453,8 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 				return acquireWaitForVBlank != ACQUIRE_WAIT_FOR_VBLANK_EDEFAULT;
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__ALLOWING_ACCESS_FROM_COMPUTE:
 				return allowingAccessFromCompute != ALLOWING_ACCESS_FROM_COMPUTE_EDEFAULT;
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION__COLOR_ATTACHMENT:
+				return colorAttachment != null;
 		}
 		return super.eIsSet(featureID);
 	}

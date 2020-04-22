@@ -8,6 +8,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.resource.provider.IResourceItemProvider;
@@ -48,8 +49,32 @@ public class SampledImageItemProvider extends IResourceItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
+			addImagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Image feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addImagePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SampledImage_image_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SampledImage_image_feature", "_UI_SampledImage_type"),
+				 VulkanResourcePackage.Literals.SAMPLED_IMAGE__IMAGE,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -67,7 +92,6 @@ public class SampledImageItemProvider extends IResourceItemProvider
 		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanResourcePackage.Literals.SAMPLED_IMAGE__SAMPLER);
-			childrenFeatures.add(VulkanResourcePackage.Literals.SAMPLED_IMAGE__IMAGE);
 		}
 		return childrenFeatures;
 	}
@@ -127,8 +151,10 @@ public class SampledImageItemProvider extends IResourceItemProvider
 
 		switch (notification.getFeatureID(SampledImage.class))
 		{
-			case VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER:
 			case VulkanResourcePackage.SAMPLED_IMAGE__IMAGE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -156,26 +182,6 @@ public class SampledImageItemProvider extends IResourceItemProvider
 			(createChildParameter
 				(VulkanResourcePackage.Literals.SAMPLED_IMAGE__SAMPLER,
 				 ImageFactory.eINSTANCE.createSamplerInfo()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(VulkanResourcePackage.Literals.SAMPLED_IMAGE__IMAGE,
-				 VulkanResourceFactory.eINSTANCE.createStaticImage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(VulkanResourcePackage.Literals.SAMPLED_IMAGE__IMAGE,
-				 VulkanResourceFactory.eINSTANCE.createFileImage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(VulkanResourcePackage.Literals.SAMPLED_IMAGE__IMAGE,
-				 VulkanResourceFactory.eINSTANCE.createFontImage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(VulkanResourcePackage.Literals.SAMPLED_IMAGE__IMAGE,
-				 VulkanResourceFactory.eINSTANCE.createCompositeImage()));
 	}
 
 }

@@ -20,7 +20,7 @@ public interface IWindow extends INotifier<IWindow.Features>
 
 	boolean isOpenned();
 	long getPtr();
-	void hideCursor(boolean hide);
+	void showCursor(boolean show);
 	int getRefreshRate();
 	Vector2ic getSize();
 }

@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model;
 
-import org.sheepy.lily.core.api.adapter.ILilyEObject;
+import org.sheepy.lily.core.api.model.ILilyEObject;
 import org.sheepy.lily.core.model.resource.ResourcePkg;
 
 /**

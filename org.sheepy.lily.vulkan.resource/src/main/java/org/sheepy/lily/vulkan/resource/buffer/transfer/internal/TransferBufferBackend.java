@@ -2,15 +2,14 @@ package org.sheepy.lily.vulkan.resource.buffer.transfer.internal;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter.IRecordContext;
-import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAdapter.IMemoryTicket.EReservationStatus;
+import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation.IMemoryTicket.EReservationStatus;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
-import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAdapter.EFlowType;
-import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAdapter.IDataFlowCommand;
-import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAdapter.IFlushRecorder;
+import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation.EFlowType;
+import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation.IDataFlowCommand;
+import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation.IFlushRecorder;
 import org.sheepy.lily.vulkan.resource.buffer.memory.MemorySpaceManager;
 import org.sheepy.lily.vulkan.resource.buffer.memory.MemorySpaceManager.MemorySpace;
 import org.sheepy.lily.vulkan.resource.buffer.memory.MemoryTicket;
@@ -168,9 +167,8 @@ public final class TransferBufferBackend
 		}
 
 		@Override
-		public void flush(IRecordContext context)
+		public void flush(RecordContext recordContext)
 		{
-			final var recordContext = (RecordContext) context;
 			final var commandBuffer = recordContext.commandBuffer;
 
 			try (final MemoryStack stack = MemoryStack.stackPush())

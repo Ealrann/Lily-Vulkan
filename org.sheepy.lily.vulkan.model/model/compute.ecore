@@ -6,6 +6,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="pipelinePkg" eType="ecore:EClass process.ecore#//PipelinePkg"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceEngine" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/application.ecore#//IEngine"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
+        eType="#//ComputeConfiguration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="executionManager" lowerBound="1"
+        eType="#//ComputeExecutionManager" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComputePipeline">
     <eStructuralFeatures xsi:type="ecore:EReference" name="shader" eType="ecore:EClass resource.ecore#//Shader"/>
@@ -21,5 +25,19 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="workgroupCountZ" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComputeConfiguration" eSuperTypes="process.ecore#//ProcessConfiguration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ComputeExecutionManager" eSuperTypes="process.ecore#//ProcessExecutionManager">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="recorders" upperBound="-1"
+        eType="#//ComputeExecutionRecorder" transient="true" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="property" value="None"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="indexCount" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComputeExecutionRecorder" eSuperTypes="process.ecore#//ExecutionRecorder">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
 </ecore:EPackage>

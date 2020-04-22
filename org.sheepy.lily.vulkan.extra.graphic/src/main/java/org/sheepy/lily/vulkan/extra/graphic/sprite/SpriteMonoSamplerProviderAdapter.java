@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.extra.graphic.sprite;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.lily.vulkan.extra.api.rendering.IDescriptorProviderAdapter;
@@ -18,7 +19,8 @@ import org.sheepy.vulkan.model.image.ImagePackage;
 import java.util.ArrayList;
 import java.util.List;
 
-@Adapter(scope = SpriteMonoSamplerProvider.class)
+@ModelExtender(scope = SpriteMonoSamplerProvider.class)
+@Adapter(singleton = true)
 public class SpriteMonoSamplerProviderAdapter implements IDescriptorProviderAdapter
 {
 	private static final List<EStructuralFeature> featureToCopy = List.copyOf(ImagePackage.Literals.SAMPLER_INFO.getEAllStructuralFeatures());

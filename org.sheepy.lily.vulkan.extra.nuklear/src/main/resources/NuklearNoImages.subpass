@@ -2,24 +2,14 @@
 <graphic:Subpass xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:graphic="org.sheepy.lily.vulkan.model.process.graphic" xmlns:graphicpipeline="org.sheepy.vulkan.model.graphicpipeline" xmlns:nuklear="org.sheepy.lily.vulkan.extra.model.nuklear" xmlns:process="org.sheepy.lily.vulkan.model.process" xmlns:resource="org.sheepy.lily.vulkan.model.resource" xmlns:resource_1="org.sheepy.lily.core.model.resource" name="Nuklear" waitForStage="COLOR_ATTACHMENT_OUTPUT_BIT" syncStage="COLOR_ATTACHMENT_OUTPUT_BIT" finishStage="COLOR_ATTACHMENT_OUTPUT_BIT">
   <attachmentRefPkg/>
   <pipelinePkg>
-    <pipelines xsi:type="graphic:GraphicsPipeline" name="GUI no images" layout="//@pipelinePkg/@pipelines.0/@descriptorSetPkg/@descriptorSets.0" shaders="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.4 //@pipelinePkg/@pipelines.0/@resourcePkg/@resources.5">
+    <pipelines xsi:type="graphic:GraphicsPipeline" name="GUI no images" layout="//@pipelinePkg/@pipelines.0/@descriptorPool/@descriptorSets.0" shaders="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3 //@pipelinePkg/@pipelines.0/@resourcePkg/@resources.4">
       <resourcePkg>
-        <resources xsi:type="resource:SampledImage" name="NullTexture">
-          <sampler/>
-          <image xsi:type="resource:StaticImage" name="NullImage" size="1;1">
-            <usages>Sampled</usages>
-            <usages>TransferDst</usages>
-            <initialLayout stage="FRAGMENT_SHADER_BIT">
-              <accessMask>SHADER_READ_BIT</accessMask>
-            </initialLayout>
-          </image>
-        </resources>
         <resources xsi:type="resource:FontImage" format="R8_UNORM">
           <usages>Sampled</usages>
           <usages>TransferDst</usages>
         </resources>
-        <resources xsi:type="nuklear:NuklearFont" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6" fontImage="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.1"/>
-        <resources xsi:type="nuklear:NuklearContext" font="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.2" nullTexture="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.0" layoutTask="//@pipelinePkg/@pipelines.0/@taskPkg/@tasks.1"/>
+        <resources xsi:type="nuklear:NuklearFont" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.5" fontImage="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.0"/>
+        <resources xsi:type="nuklear:NuklearContext" font="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.1" layoutTask="//@pipelinePkg/@pipelines.0/@taskPkg/@tasks.1"/>
         <resources xsi:type="resource:Shader" name="NkVertex">
           <file xsi:type="resource_1:StringModuleResource" name="Vertex" path="ui.vert.spv" moduleName="org.sheepy.lily.vulkan.extra.nuklear"/>
         </resources>
@@ -29,50 +19,64 @@
         <resources xsi:type="resource:TransferBuffer" name="NkPushBuffer" size="2097152" instanceCount="FitToSwapImageCount"/>
         <resources xsi:type="resource:CompositeBuffer" name="NuklearVertexBuffer">
           <parts name="Vertex">
-            <dataProvider xsi:type="nuklear:NuklearVertexProvider" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3">
+            <dataProvider xsi:type="nuklear:NuklearVertexProvider" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.2">
               <usages>VERTEX_BUFFER_BIT</usages>
             </dataProvider>
           </parts>
           <parts name="Index">
-            <dataProvider xsi:type="nuklear:NuklearIndexProvider" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3">
+            <dataProvider xsi:type="nuklear:NuklearIndexProvider" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.2">
               <usages>INDEX_BUFFER_BIT</usages>
             </dataProvider>
           </parts>
         </resources>
         <resources xsi:type="resource:Sampler" name="FontSampler"/>
+        <resources xsi:type="resource:StaticImage" name="NullImage" size="1;1">
+          <usages>Sampled</usages>
+          <usages>TransferDst</usages>
+          <initialLayout stage="FRAGMENT_SHADER_BIT">
+            <accessMask>SHADER_READ_BIT</accessMask>
+          </initialLayout>
+        </resources>
+        <resources xsi:type="resource:SampledImage" name="NullTexture" image="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.8">
+          <sampler/>
+        </resources>
       </resourcePkg>
       <descriptorPkg>
-        <descriptors xsi:type="resource:SampledImageDescriptor" name="NullTexture" type="COMBINED_IMAGE_SAMPLER" sampledImage="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.0">
+        <descriptors xsi:type="resource:SampledImageDescriptor" name="NullTexture" type="COMBINED_IMAGE_SAMPLER" sampledImage="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9">
           <shaderStages>FRAGMENT_BIT</shaderStages>
         </descriptors>
-        <descriptors xsi:type="resource:SamplerDescriptor" name="FontSampler" sampler="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.8">
+        <descriptors xsi:type="resource:SamplerDescriptor" name="FontSampler" sampler="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7">
           <shaderStages>FRAGMENT_BIT</shaderStages>
         </descriptors>
-        <descriptors xsi:type="resource:ImageDescriptor" name="Font" type="SAMPLED_IMAGE" image="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.1">
+        <descriptors xsi:type="resource:ImageDescriptor" name="Font" type="SAMPLED_IMAGE" image="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.0">
           <shaderStages>FRAGMENT_BIT</shaderStages>
         </descriptors>
       </descriptorPkg>
       <taskPkg>
-        <tasks xsi:type="process:BindDescriptorSets" descriptorSets="//@pipelinePkg/@pipelines.0/@descriptorSetPkg/@descriptorSets.0"/>
-        <tasks xsi:type="nuklear:NuklearLayoutTask" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3"/>
-        <tasks xsi:type="process:PrepareCompositeTransfer" compositeBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7" prepareDuringUpdate="true" parts="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7/@parts.0 //@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7/@parts.1" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6"/>
-        <tasks xsi:type="nuklear:NuklearFillBufferTask" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3" drawTask="//@pipelinePkg/@pipelines.0/@taskPkg/@tasks.6" vertexBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7" layoutTask="//@pipelinePkg/@pipelines.0/@taskPkg/@tasks.1"/>
-        <tasks xsi:type="process:FlushTransferBufferTask" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6"/>
+        <tasks xsi:type="process:BindDescriptorSets" descriptorSets="//@pipelinePkg/@pipelines.0/@descriptorPool/@descriptorSets.0"/>
+        <tasks xsi:type="nuklear:NuklearLayoutTask" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.2"/>
+        <tasks xsi:type="process:PrepareCompositeTransfer" compositeBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6" prepareDuringUpdate="true" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.5">
+          <bufferReference xsi:type="resource:FixedBufferReference" buffers="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6/@parts.0 //@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6/@parts.1"/>
+        </tasks>
+        <tasks xsi:type="nuklear:NuklearFillBufferTask" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.2" drawTask="//@pipelinePkg/@pipelines.0/@taskPkg/@tasks.6" vertexBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6" layoutTask="//@pipelinePkg/@pipelines.0/@taskPkg/@tasks.1"/>
+        <tasks xsi:type="process:FlushTransferBufferTask" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.5"/>
         <tasks xsi:type="process:PipelineBarrier" srcStage="TRANSFER_BIT" dstStage="VERTEX_INPUT_BIT" recordDuringStage="Transfer">
-          <barriers xsi:type="resource:BufferBarrier" name="Vertex" buffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7/@parts.0">
+          <barriers xsi:type="resource:BufferBarrier" name="Vertex">
+            <buffers xsi:type="resource:FixedBufferReference" buffers="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6/@parts.0"/>
             <srcAccessMask>TRANSFER_WRITE_BIT</srcAccessMask>
             <dstAccessMask>VERTEX_ATTRIBUTE_READ_BIT</dstAccessMask>
           </barriers>
-          <barriers xsi:type="resource:BufferBarrier" name="Index" buffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7/@parts.1">
+          <barriers xsi:type="resource:BufferBarrier" name="Index">
+            <buffers xsi:type="resource:FixedBufferReference" buffers="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6/@parts.1"/>
             <srcAccessMask>TRANSFER_WRITE_BIT</srcAccessMask>
             <dstAccessMask>INDEX_READ_BIT</dstAccessMask>
           </barriers>
         </tasks>
         <tasks xsi:type="process:CompositeTask" name="Nk draw"/>
       </taskPkg>
-      <descriptorSetPkg>
+      <descriptorPool>
         <descriptorSets name="UI" descriptors="//@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.0 //@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.1 //@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.2"/>
-      </descriptorSetPkg>
+      </descriptorPool>
       <pushConstantRanges size="68">
         <stages>VERTEX_BIT</stages>
         <stages>FRAGMENT_BIT</stages>

@@ -1,10 +1,12 @@
 package org.sheepy.lily.vulkan.resource.file;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.resource.AbstractModuleResource;
 import org.sheepy.lily.core.model.resource.ModuleResource;
 
-@Adapter(scope = ModuleResource.class)
+@ModelExtender(scope = ModuleResource.class)
+@Adapter(singleton = true)
 public class ModuleResourceAdapter extends AbstractModuleResourceAdapter
 {
 	@Override

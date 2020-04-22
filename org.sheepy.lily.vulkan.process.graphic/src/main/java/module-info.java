@@ -1,5 +1,5 @@
-import org.sheepy.lily.core.api.adapter.IAdapterProvider;
-import org.sheepy.lily.vulkan.process.graphic.Adapters;
+import org.sheepy.lily.core.api.extender.IExtenderProvider;
+import org.sheepy.lily.vulkan.process.graphic.Extenders;
 
 module org.sheepy.lily.vulkan.process.graphic {
 	requires transitive org.sheepy.lily.vulkan.api;
@@ -15,7 +15,8 @@ module org.sheepy.lily.vulkan.process.graphic {
 	opens org.sheepy.lily.vulkan.process.graphic.pipeline.viewport;
 	opens org.sheepy.lily.vulkan.process.graphic.process;
 	opens org.sheepy.lily.vulkan.process.graphic.resource;
+	opens org.sheepy.lily.vulkan.process.graphic.renderpass;
 	opens org.sheepy.lily.vulkan.process.graphic.scene;
 
-	provides IAdapterProvider with Adapters;
+	provides IExtenderProvider with Extenders;
 }

@@ -146,6 +146,81 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComputeConfigurationItemProvider computeConfigurationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComputeConfigurationAdapter()
+	{
+		if (computeConfigurationItemProvider == null)
+		{
+			computeConfigurationItemProvider = new ComputeConfigurationItemProvider(this);
+		}
+
+		return computeConfigurationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComputeExecutionManagerItemProvider computeExecutionManagerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComputeExecutionManagerAdapter()
+	{
+		if (computeExecutionManagerItemProvider == null)
+		{
+			computeExecutionManagerItemProvider = new ComputeExecutionManagerItemProvider(this);
+		}
+
+		return computeExecutionManagerItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComputeExecutionRecorderItemProvider computeExecutionRecorderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComputeExecutionRecorderAdapter()
+	{
+		if (computeExecutionRecorderItemProvider == null)
+		{
+			computeExecutionRecorderItemProvider = new ComputeExecutionRecorderItemProvider(this);
+		}
+
+		return computeExecutionRecorderItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -78,11 +78,11 @@ public final class SelectorButtonDrawer
 			nk_layout_row_dynamic(nkContext, buttonSize, 1);
 			if (image != null)
 			{
-				res |= nk_button_image(nkContext, image);
+				res = nk_button_image(nkContext, image);
 			}
 			else
 			{
-				res |= nk_button_color(nkContext, color);
+				res = nk_button_color(nkContext, color);
 			}
 		}
 		nk_end(nkContext);

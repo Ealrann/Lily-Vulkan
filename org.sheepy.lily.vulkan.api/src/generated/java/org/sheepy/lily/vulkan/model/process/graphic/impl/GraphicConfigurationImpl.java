@@ -9,11 +9,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.lily.core.api.adapter.LilyEObject;
-import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
+import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.ImageViews;
+import org.sheepy.lily.vulkan.model.process.graphic.PhysicalSurface;
+import org.sheepy.lily.vulkan.model.process.graphic.RenderPass;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
@@ -29,7 +31,9 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getSwapchainConfiguration <em>Swapchain Configuration</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getFramebufferConfiguration <em>Framebuffer Configuration</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getAcquireWaitStage <em>Acquire Wait Stage</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getColorDomain <em>Color Domain</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getSurface <em>Surface</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getRenderPass <em>Render Pass</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getImageViews <em>Image Views</em>}</li>
  * </ul>
  *
  * @generated
@@ -77,14 +81,34 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	protected EPipelineStage acquireWaitStage = ACQUIRE_WAIT_STAGE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getColorDomain() <em>Color Domain</em>}' containment reference.
+	 * The cached value of the '{@link #getSurface() <em>Surface</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getColorDomain()
+	 * @see #getSurface()
 	 * @generated
 	 * @ordered
 	 */
-	protected ColorDomain colorDomain;
+	protected PhysicalSurface surface;
+
+	/**
+	 * The cached value of the '{@link #getRenderPass() <em>Render Pass</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRenderPass()
+	 * @generated
+	 * @ordered
+	 */
+	protected RenderPass renderPass;
+
+	/**
+	 * The cached value of the '{@link #getImageViews() <em>Image Views</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getImageViews()
+	 * @generated
+	 * @ordered
+	 */
+	protected ImageViews imageViews;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -240,9 +264,9 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	 * @generated
 	 */
 	@Override
-	public ColorDomain getColorDomain()
+	public PhysicalSurface getSurface()
 	{
-		return colorDomain;
+		return surface;
 	}
 
 	/**
@@ -250,13 +274,13 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetColorDomain(ColorDomain newColorDomain, NotificationChain msgs)
+	public NotificationChain basicSetSurface(PhysicalSurface newSurface, NotificationChain msgs)
 	{
-		ColorDomain oldColorDomain = colorDomain;
-		colorDomain = newColorDomain;
+		PhysicalSurface oldSurface = surface;
+		surface = newSurface;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, oldColorDomain, newColorDomain);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE, oldSurface, newSurface);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -268,20 +292,120 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	 * @generated
 	 */
 	@Override
-	public void setColorDomain(ColorDomain newColorDomain)
+	public void setSurface(PhysicalSurface newSurface)
 	{
-		if (newColorDomain != colorDomain)
+		if (newSurface != surface)
 		{
 			NotificationChain msgs = null;
-			if (colorDomain != null)
-				msgs = ((InternalEObject)colorDomain).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, null, msgs);
-			if (newColorDomain != null)
-				msgs = ((InternalEObject)newColorDomain).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, null, msgs);
-			msgs = basicSetColorDomain(newColorDomain, msgs);
+			if (surface != null)
+				msgs = ((InternalEObject)surface).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE, null, msgs);
+			if (newSurface != null)
+				msgs = ((InternalEObject)newSurface).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE, null, msgs);
+			msgs = basicSetSurface(newSurface, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, newColorDomain, newColorDomain));
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE, newSurface, newSurface));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RenderPass getRenderPass()
+	{
+		return renderPass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetRenderPass(RenderPass newRenderPass, NotificationChain msgs)
+	{
+		RenderPass oldRenderPass = renderPass;
+		renderPass = newRenderPass;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS, oldRenderPass, newRenderPass);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setRenderPass(RenderPass newRenderPass)
+	{
+		if (newRenderPass != renderPass)
+		{
+			NotificationChain msgs = null;
+			if (renderPass != null)
+				msgs = ((InternalEObject)renderPass).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS, null, msgs);
+			if (newRenderPass != null)
+				msgs = ((InternalEObject)newRenderPass).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS, null, msgs);
+			msgs = basicSetRenderPass(newRenderPass, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS, newRenderPass, newRenderPass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ImageViews getImageViews()
+	{
+		return imageViews;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetImageViews(ImageViews newImageViews, NotificationChain msgs)
+	{
+		ImageViews oldImageViews = imageViews;
+		imageViews = newImageViews;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS, oldImageViews, newImageViews);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setImageViews(ImageViews newImageViews)
+	{
+		if (newImageViews != imageViews)
+		{
+			NotificationChain msgs = null;
+			if (imageViews != null)
+				msgs = ((InternalEObject)imageViews).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS, null, msgs);
+			if (newImageViews != null)
+				msgs = ((InternalEObject)newImageViews).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS, null, msgs);
+			msgs = basicSetImageViews(newImageViews, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS, newImageViews, newImageViews));
 	}
 
 	/**
@@ -298,8 +422,12 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 				return basicSetSwapchainConfiguration(null, msgs);
 			case GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION:
 				return basicSetFramebufferConfiguration(null, msgs);
-			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
-				return basicSetColorDomain(null, msgs);
+			case GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE:
+				return basicSetSurface(null, msgs);
+			case GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS:
+				return basicSetRenderPass(null, msgs);
+			case GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS:
+				return basicSetImageViews(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -320,8 +448,12 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 				return getFramebufferConfiguration();
 			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
 				return getAcquireWaitStage();
-			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
-				return getColorDomain();
+			case GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE:
+				return getSurface();
+			case GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS:
+				return getRenderPass();
+			case GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS:
+				return getImageViews();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -345,8 +477,14 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
 				setAcquireWaitStage((EPipelineStage)newValue);
 				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
-				setColorDomain((ColorDomain)newValue);
+			case GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE:
+				setSurface((PhysicalSurface)newValue);
+				return;
+			case GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS:
+				setRenderPass((RenderPass)newValue);
+				return;
+			case GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS:
+				setImageViews((ImageViews)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -371,8 +509,14 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
 				setAcquireWaitStage(ACQUIRE_WAIT_STAGE_EDEFAULT);
 				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
-				setColorDomain((ColorDomain)null);
+			case GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE:
+				setSurface((PhysicalSurface)null);
+				return;
+			case GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS:
+				setRenderPass((RenderPass)null);
+				return;
+			case GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS:
+				setImageViews((ImageViews)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -394,8 +538,12 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 				return framebufferConfiguration != null;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
 				return acquireWaitStage != ACQUIRE_WAIT_STAGE_EDEFAULT;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
-				return colorDomain != null;
+			case GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE:
+				return surface != null;
+			case GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS:
+				return renderPass != null;
+			case GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS:
+				return imageViews != null;
 		}
 		return super.eIsSet(featureID);
 	}

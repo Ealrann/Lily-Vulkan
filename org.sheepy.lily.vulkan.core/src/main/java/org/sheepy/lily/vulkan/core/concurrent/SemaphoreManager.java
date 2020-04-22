@@ -24,8 +24,7 @@ public class SemaphoreManager
 		{
 			throw new AssertionError("Object locked, can't create a Semaphore");
 		}
-		final VkSemaphore res = new VkSemaphore();
-		res.allocate(context);
+		final VkSemaphore res = new VkSemaphore(context.getVkDevice());
 		semaphores.add(res);
 		semaphorePtrs.add(res.getPtr());
 		return res;
@@ -33,9 +32,10 @@ public class SemaphoreManager
 
 	public void free()
 	{
+		final var vkDevice = context.getVkDevice();
 		for (final VkSemaphore vkSemaphore : semaphores)
 		{
-			vkSemaphore.free(context);
+			vkSemaphore.free(vkDevice);
 		}
 		semaphores.clear();
 		semaphorePtrs.clear();

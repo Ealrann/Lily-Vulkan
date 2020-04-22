@@ -7,20 +7,19 @@ import org.sheepy.lily.vulkan.core.util.Logger;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public abstract class AbstractCommandBuffer<T extends ExecutionContext> implements ICommandBuffer<T>
+public abstract class AbstractCommandBuffer implements ICommandBuffer
 {
-	protected VkCommandBuffer vkCommandBuffer;
+	protected final VkCommandBuffer vkCommandBuffer;
 
-	@Override
-	public void allocate(T context)
+	public AbstractCommandBuffer(ExecutionContext context)
 	{
 		final var stack = context.stack();
-		final long commandPoolId = context.getCommandPool().getPtr();
+		final long commandPoolPtr = context.getCommandPool().getPtr();
 		final var vkDevice = context.getVkDevice();
 
 		final var allocInfo = VkCommandBufferAllocateInfo.callocStack(stack);
 		allocInfo.sType(VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO);
-		allocInfo.commandPool(commandPoolId);
+		allocInfo.commandPool(commandPoolPtr);
 		allocInfo.level(VK_COMMAND_BUFFER_LEVEL_PRIMARY);
 		allocInfo.commandBufferCount(1);
 
@@ -31,18 +30,17 @@ public abstract class AbstractCommandBuffer<T extends ExecutionContext> implemen
 		vkCommandBuffer = new VkCommandBuffer(pCommandBuffer.get(0), vkDevice);
 	}
 
-	@Override
-	public final VkCommandBuffer getVkCommandBuffer()
-	{
-		return vkCommandBuffer;
-	}
-
-	@Override
-	public void free(T context)
+	public void free(ExecutionContext context)
 	{
 		final var device = context.getVkDevice();
 		final long poolId = context.getCommandPool().getPtr();
 
 		vkFreeCommandBuffers(device, poolId, vkCommandBuffer);
+	}
+
+	@Override
+	public final VkCommandBuffer getVkCommandBuffer()
+	{
+		return vkCommandBuffer;
 	}
 }

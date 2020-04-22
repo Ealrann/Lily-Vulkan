@@ -32,6 +32,24 @@ public interface GraphicFactory extends EFactory
 	GraphicConfiguration createGraphicConfiguration();
 
 	/**
+	 * Returns a new object of class '<em>Execution Manager</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Execution Manager</em>'.
+	 * @generated
+	 */
+	GraphicExecutionManager createGraphicExecutionManager();
+
+	/**
+	 * Returns a new object of class '<em>Execution Recorder</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Execution Recorder</em>'.
+	 * @generated
+	 */
+	GraphicExecutionRecorder createGraphicExecutionRecorder();
+
+	/**
 	 * Returns a new object of class '<em>Color Domain</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -39,6 +57,15 @@ public interface GraphicFactory extends EFactory
 	 * @generated
 	 */
 	ColorDomain createColorDomain();
+
+	/**
+	 * Returns a new object of class '<em>Physical Surface</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Physical Surface</em>'.
+	 * @generated
+	 */
+	PhysicalSurface createPhysicalSurface();
 
 	/**
 	 * Returns a new object of class '<em>Swapchain Configuration</em>'.
@@ -57,6 +84,24 @@ public interface GraphicFactory extends EFactory
 	 * @generated
 	 */
 	FramebufferConfiguration createFramebufferConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Image Views</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Image Views</em>'.
+	 * @generated
+	 */
+	ImageViews createImageViews();
+
+	/**
+	 * Returns a new object of class '<em>Render Pass</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Render Pass</em>'.
+	 * @generated
+	 */
+	RenderPass createRenderPass();
 
 	/**
 	 * Returns a new object of class '<em>Image Attachment</em>'.

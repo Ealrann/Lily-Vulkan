@@ -4,14 +4,14 @@ package org.sheepy.lily.vulkan.model.resource.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
-import org.sheepy.lily.vulkan.model.resource.IBuffer;
+import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.barrier.impl.AbstractBufferBarrierImpl;
@@ -24,7 +24,7 @@ import org.sheepy.vulkan.model.barrier.impl.AbstractBufferBarrierImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferBarrierImpl#getBuffer <em>Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferBarrierImpl#getBuffers <em>Buffers</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,15 +32,14 @@ import org.sheepy.vulkan.model.barrier.impl.AbstractBufferBarrierImpl;
 public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements BufferBarrier
 {
 	/**
-	 * The cached value of the '{@link #getBuffer() <em>Buffer</em>}' reference.
+	 * The cached value of the '{@link #getBuffers() <em>Buffers</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBuffer()
+	 * @see #getBuffers()
 	 * @generated
 	 * @ordered
 	 */
-	protected IBuffer buffer;
-
+	protected IBufferReference buffers;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,19 +67,9 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	 * @generated
 	 */
 	@Override
-	public IBuffer getBuffer()
+	public IBufferReference getBuffers()
 	{
-		if (buffer != null && ((EObject)buffer).eIsProxy())
-		{
-			InternalEObject oldBuffer = (InternalEObject)buffer;
-			buffer = (IBuffer)eResolveProxy(oldBuffer);
-			if (buffer != oldBuffer)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
-			}
-		}
-		return buffer;
+		return buffers;
 	}
 
 	/**
@@ -88,9 +77,16 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IBuffer basicGetBuffer()
+	public NotificationChain basicSetBuffers(IBufferReference newBuffers, NotificationChain msgs)
 	{
-		return buffer;
+		IBufferReference oldBuffers = buffers;
+		buffers = newBuffers;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_BARRIER__BUFFERS, oldBuffers, newBuffers);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -99,12 +95,36 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	 * @generated
 	 */
 	@Override
-	public void setBuffer(IBuffer newBuffer)
+	public void setBuffers(IBufferReference newBuffers)
 	{
-		IBuffer oldBuffer = buffer;
-		buffer = newBuffer;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
+		if (newBuffers != buffers)
+		{
+			NotificationChain msgs = null;
+			if (buffers != null)
+				msgs = ((InternalEObject)buffers).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.BUFFER_BARRIER__BUFFERS, null, msgs);
+			if (newBuffers != null)
+				msgs = ((InternalEObject)newBuffers).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.BUFFER_BARRIER__BUFFERS, null, msgs);
+			msgs = basicSetBuffers(newBuffers, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_BARRIER__BUFFERS, newBuffers, newBuffers));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case VulkanResourcePackage.BUFFER_BARRIER__BUFFERS:
+				return basicSetBuffers(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -117,9 +137,8 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.BUFFER_BARRIER__BUFFER:
-				if (resolve) return getBuffer();
-				return basicGetBuffer();
+			case VulkanResourcePackage.BUFFER_BARRIER__BUFFERS:
+				return getBuffers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -134,8 +153,8 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.BUFFER_BARRIER__BUFFER:
-				setBuffer((IBuffer)newValue);
+			case VulkanResourcePackage.BUFFER_BARRIER__BUFFERS:
+				setBuffers((IBufferReference)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -151,8 +170,8 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.BUFFER_BARRIER__BUFFER:
-				setBuffer((IBuffer)null);
+			case VulkanResourcePackage.BUFFER_BARRIER__BUFFERS:
+				setBuffers((IBufferReference)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -168,8 +187,8 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.BUFFER_BARRIER__BUFFER:
-				return buffer != null;
+			case VulkanResourcePackage.BUFFER_BARRIER__BUFFERS:
+				return buffers != null;
 		}
 		return super.eIsSet(featureID);
 	}
