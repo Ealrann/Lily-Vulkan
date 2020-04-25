@@ -108,9 +108,9 @@ public final class VulkanContext extends GameAllocationContext implements IVulka
 								   Collection<EQueueType> queueTypes,
 								   Collection<EPhysicalDeviceFeature> features)
 		{
-			final boolean windowCapability = window != null;
+			final boolean headless = window == null;
 			final var extRequirementBuilder = new InstanceExtensions.Builder(stack);
-			if (windowCapability) extRequirementBuilder.requiresWindow();
+			if (!headless) extRequirementBuilder.requiresWindow();
 			if (DebugUtil.DEBUG_ENABLED)
 			{
 				extRequirementBuilder.requires(EInstanceExtension.VK_EXT_debug_report.name);
@@ -119,10 +119,14 @@ public final class VulkanContext extends GameAllocationContext implements IVulka
 			final var extensionRequirement = extRequirementBuilder.build();
 
 			final var vkInstance = createInstance(instanceName, extensionRequirement, stack);
-			if (windowCapability) window.open();
+			if (!headless) window.open();
 
 			final var dummySurface = window != null ? window.createSurface(vkInstance.getVkInstance()) : null;
-			final var physicalDevice = pickPhysicalDevice(stack, vkInstance, extensionRequirement, dummySurface);
+			final var physicalDevice = pickPhysicalDevice(stack,
+														  headless,
+														  vkInstance,
+														  extensionRequirement,
+														  dummySurface);
 			final var logicalDevice = createLogicalDevice(stack, physicalDevice, queueTypes, features, dummySurface);
 			if (dummySurface != null) dummySurface.free();
 
@@ -149,13 +153,15 @@ public final class VulkanContext extends GameAllocationContext implements IVulka
 		}
 
 		private static PhysicalDevice pickPhysicalDevice(MemoryStack stack,
+														 boolean headless,
 														 VulkanInstance vulkanInstance,
 														 InstanceExtensions extensionRequirement,
 														 VkSurface dummySurface)
 		{
+			final var extensions = headless ? EnumSet.noneOf(EDeviceExtension.class) : EnumSet.of(EDeviceExtension.VK_KHR_swapchain);
 			final var deviceSelector = new PhysicalDeviceSelector(vulkanInstance,
 																  extensionRequirement,
-																  EnumSet.of(EDeviceExtension.VK_KHR_swapchain),
+																  extensions,
 																  dummySurface);
 			return deviceSelector.findBestPhysicalDevice(stack);
 		}

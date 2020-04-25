@@ -90,7 +90,9 @@ public final class DeviceExtensions
 
 		public DeviceExtensions build()
 		{
-			return new DeviceExtensions(EnumSet.copyOf(retainedExtensions));
+			final var extensions = retainedExtensions.isEmpty() ? Set.<EDeviceExtension>of() : EnumSet.copyOf(
+					retainedExtensions);
+			return new DeviceExtensions(extensions);
 		}
 
 		private static List<String> gatherAvailableExtensions(VkPhysicalDevice vkPhysicalDevice,
