@@ -2,12 +2,12 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.viewport;
 
 import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.game.api.graphic.IViewportAdapter;
 import org.sheepy.vulkan.model.graphicpipeline.CinemaViewport;
 
-@Statefull
-@Adapter(scope = CinemaViewport.class)
+@ModelExtender(scope = CinemaViewport.class)
+@Adapter
 public class CinemaViewportAdapter implements IViewportAdapter
 {
 	private final CinemaViewport viewport;

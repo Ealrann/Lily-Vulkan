@@ -4,8 +4,8 @@ package org.sheepy.lily.vulkan.model.resource.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -45,7 +45,7 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	protected SamplerInfo sampler;
 
 	/**
-	 * The cached value of the '{@link #getImage() <em>Image</em>}' containment reference.
+	 * The cached value of the '{@link #getImage() <em>Image</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getImage()
@@ -133,6 +133,16 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	@Override
 	public Image getImage()
 	{
+		if (image != null && ((EObject)image).eIsProxy())
+		{
+			InternalEObject oldImage = image;
+			image = (Image)eResolveProxy(oldImage);
+			if (image != oldImage)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.SAMPLED_IMAGE__IMAGE, oldImage, image));
+			}
+		}
 		return image;
 	}
 
@@ -141,16 +151,9 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetImage(Image newImage, NotificationChain msgs)
+	public Image basicGetImage()
 	{
-		Image oldImage = image;
-		image = newImage;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLED_IMAGE__IMAGE, oldImage, newImage);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+		return image;
 	}
 
 	/**
@@ -161,18 +164,10 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	@Override
 	public void setImage(Image newImage)
 	{
-		if (newImage != image)
-		{
-			NotificationChain msgs = null;
-			if (image != null)
-				msgs = ((InternalEObject)image).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.SAMPLED_IMAGE__IMAGE, null, msgs);
-			if (newImage != null)
-				msgs = ((InternalEObject)newImage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.SAMPLED_IMAGE__IMAGE, null, msgs);
-			msgs = basicSetImage(newImage, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLED_IMAGE__IMAGE, newImage, newImage));
+		Image oldImage = image;
+		image = newImage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLED_IMAGE__IMAGE, oldImage, image));
 	}
 
 	/**
@@ -187,8 +182,6 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 		{
 			case VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				return basicSetSampler(null, msgs);
-			case VulkanResourcePackage.SAMPLED_IMAGE__IMAGE:
-				return basicSetImage(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -206,7 +199,8 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 			case VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				return getSampler();
 			case VulkanResourcePackage.SAMPLED_IMAGE__IMAGE:
-				return getImage();
+				if (resolve) return getImage();
+				return basicGetImage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

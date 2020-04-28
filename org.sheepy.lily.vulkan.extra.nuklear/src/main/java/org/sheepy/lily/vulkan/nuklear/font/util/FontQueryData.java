@@ -8,7 +8,7 @@ public class FontQueryData
 {
 	private final IFontAllocator fontAllocator;
 	private final float fontHeight;
-	private final Runnable reloadNotification = this::fontAllocatorReloaded;
+	private final Runnable reloadNotification = this::reload;
 
 	private NkUserFontGlyph.Buffer patternGlyphs;
 
@@ -18,7 +18,7 @@ public class FontQueryData
 		this.fontHeight = fontHeight;
 	}
 
-	private void fontAllocatorReloaded()
+	private void reload()
 	{
 		dispose();
 		load();

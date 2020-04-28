@@ -4,7 +4,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.allocation.IAllocationService;
@@ -12,39 +11,29 @@ import org.sheepy.lily.core.api.allocation.IRootAllocator;
 import org.sheepy.lily.core.api.cadence.IStatistics;
 import org.sheepy.lily.core.api.util.CompositeModelExplorer;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.game.core.allocation.GenericAllocator;
 import org.sheepy.lily.game.core.allocation.ModelAllocator;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
-import org.sheepy.lily.vulkan.core.descriptor.DescriptorPool;
-import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptorSet;
+import org.sheepy.lily.vulkan.core.descriptor.DescriptorPoolAllocation;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
-import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAdapter;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
-import org.sheepy.lily.vulkan.core.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-@Statefull
 public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implements InternalProcessAdapter,
 																					 IAllocable<IVulkanContext>
 {
-	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG,
-																							VulkanResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));
-
 	protected final AbstractProcess process;
-	protected final DescriptorPool descriptorPool = new DescriptorPool();
 	protected T context;
 
 	private final GenericAllocator<T> resourceAllocator;
 	private final ModelAllocator resourceAllocator2;
+	private final ModelAllocator descriptorPoolAllocator;
 	private final GenericAllocator<T> pipelineAllocator;
 	private final CompositeModelExplorer pipelineExplorer;
 
@@ -57,8 +46,10 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	{
 		this.process = process;
 
-		resourceAllocator = new GenericAllocator<>(getResourceFeatureLists());
-		resourceAllocator2 = new ModelAllocator(getResourceFeatureLists());
+		final var resourceFeatures = getResourceFeatureLists();
+		resourceAllocator = new GenericAllocator<>(resourceFeatures);
+		resourceAllocator2 = new ModelAllocator(process, resourceFeatures);
+		descriptorPoolAllocator = new ModelAllocator(process, getDescriptorPoolFeatureLists());
 		pipelineAllocator = new GenericAllocator<>(getPipelineFeatureLists());
 		pipelineExplorer = new CompositeModelExplorer(getPipelineFeatureLists());
 	}
@@ -87,7 +78,8 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 
 		allocationChildren.addAll(this.context.getAllocationChildren());
 		allocationChildren.add(resourceAllocator.getAllocable());
-		allocationChildren.add(descriptorPool);
+		allocationChildren.add(resourceAllocator2);
+		allocationChildren.add(descriptorPoolAllocator);
 		allocationChildren.add(pipelineAllocator.getAllocable());
 		allocationChildren.addAll(getExtraAllocables());
 
@@ -108,7 +100,7 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	public void start(final IVulkanContext vulkanContext, final IRootAllocator<IVulkanContext> rootAllocator)
 	{
 		context = createContext(vulkanContext);
-		resourceAllocator2.start(process, vulkanContext);
+//		resourceAllocator2.start(process, context);
 
 		refreshStructure();
 
@@ -134,7 +126,6 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	private void refreshStructure()
 	{
 		pipelineAdapters = pipelineExplorer.exploreAdapt(process, IPipelineAdapter.class);
-		descriptorPool.setDescriptorSets(gatherDescriptorLists());
 	}
 
 	@Override
@@ -142,8 +133,9 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	{
 		waitIdle();
 		allocator.free();
-		resourceAllocator2.stop(process, context);
 		allocator = null;
+		context.free(vulkanContext);
+		context = null;
 	}
 
 	@Override
@@ -247,23 +239,6 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 		}
 	}
 
-	private List<IVkDescriptorSet> gatherDescriptorLists()
-	{
-		final List<IVkDescriptorSet> res = new ArrayList<>();
-		DERSCRIPTOR_SET_EXPLORER.streamAdaptNotNull(process, IDescriptorSetAdapter.class)
-								.collect(Collectors.toCollection(() -> res));
-		for (int i = 0; i < pipelineAdapters.size(); i++)
-		{
-			final var pipelineAdapter = pipelineAdapters.get(i);
-			if (pipelineAdapter instanceof IVkPipelineAdapter<?>)
-			{
-				((IVkPipelineAdapter<?>) pipelineAdapter).collectDescriptorSets(res);
-			}
-		}
-
-		return res;
-	}
-
 	private void prepareProcess()
 	{
 		final boolean allocationDirty = prepareAllocation();
@@ -273,6 +248,29 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 		{
 			invalidateRecords();
 		}
+	}
+
+	protected boolean prepareDescriptors()
+	{
+		boolean dirty = false;
+		final var pools = new CompositeModelExplorer(getDescriptorPoolFeatureLists()).explore(process,
+																							  DescriptorPool.class);
+		for (var descriptorPool : pools)
+		{
+			final var descriptorPoolAllocation = descriptorPool.allocationHandle(DescriptorPoolAllocation.class).get();
+			descriptorPoolAllocation.prepare();
+			if (descriptorPoolAllocation.hasChanged())
+			{
+				waitIdle();
+				try (final var stack = MemoryStack.stackPush())
+				{
+					descriptorPoolAllocation.update(stack);
+				}
+				dirty = true;
+			}
+
+		}
+		return dirty;
 	}
 
 	private void prepareRecord(int index)
@@ -297,7 +295,10 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	private boolean prepareAllocation()
 	{
 		refresh();
+		context.beforeChildrenAllocation();
 		resourceAllocator2.update(context);
+		descriptorPoolAllocator.update(context);
+		context.afterChildrenAllocation();
 		if (allocator.isAllocationDirty())
 		{
 			waitIdle();
@@ -308,23 +309,6 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 		{
 			return false;
 		}
-	}
-
-	protected boolean prepareDescriptors()
-	{
-		boolean dirty = false;
-		descriptorPool.prepare();
-		if (descriptorPool.hasChanged())
-		{
-			waitIdle();
-			try (final var stack = MemoryStack.stackPush())
-			{
-				descriptorPool.update(stack);
-				dirty = true;
-			}
-		}
-
-		return dirty;
 	}
 
 	private void updatePipelines(int index)
@@ -372,6 +356,7 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 
 	protected abstract List<List<EReference>> getPipelineFeatureLists();
 	protected abstract List<List<EReference>> getResourceFeatureLists();
+	protected abstract List<List<EReference>> getDescriptorPoolFeatureLists();
 	protected abstract List<IAllocable<? super T>> getExtraAllocables();
 	protected abstract Integer prepareNextExecution();
 	protected abstract List<ECommandStage> getStages();

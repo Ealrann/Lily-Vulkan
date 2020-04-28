@@ -1,8 +1,7 @@
 package org.sheepy.lily.vulkan.process.pipeline.task;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Observe;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
@@ -18,8 +17,8 @@ import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
 
-@Statefull
-@Adapter(scope = PushConstantBuffer.class)
+@ModelExtender(scope = PushConstantBuffer.class)
+@Adapter
 public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConstantBuffer>
 {
 	private final ConstantBuffer buffer;
@@ -27,15 +26,11 @@ public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConst
 
 	private boolean dirty = true;
 
-	public PushConstantBufferAdapter(PushConstantBuffer task)
+	public PushConstantBufferAdapter(PushConstantBuffer task, IObservatoryBuilder observatory)
 	{
 		buffer = task.getBuffer();
 		updater = buffer.adapt(IConstantBufferUpdater.class);
-	}
 
-	@Observe
-	private void observe(IObservatoryBuilder observatory)
-	{
 		observatory.explore(ProcessPackage.Literals.PUSH_CONSTANT_BUFFER__BUFFER)
 				   .listenNoParam(() -> dirty = true, VulkanResourcePackage.CONSTANT_BUFFER__DATA);
 	}

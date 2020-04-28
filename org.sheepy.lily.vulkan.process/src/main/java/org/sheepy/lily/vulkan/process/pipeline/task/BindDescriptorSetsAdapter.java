@@ -3,37 +3,28 @@ package org.sheepy.lily.vulkan.process.pipeline.task;
 import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptorSet;
+import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetAllocation;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAdapter;
-import org.sheepy.lily.vulkan.core.resource.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.Collectors;
 
-@Statefull
-@Adapter(scope = BindDescriptorSets.class)
+@ModelExtender(scope = BindDescriptorSets.class)
+@Adapter
 public final class BindDescriptorSetsAdapter implements IPipelineTaskAdapter<BindDescriptorSets>
 {
-	private List<IVkDescriptorSet> sets;
 	private boolean dirty = true;
-
-	public BindDescriptorSetsAdapter(BindDescriptorSets task)
-	{
-		sets = reloadSetAdapters(task);
-	}
 
 	@NotifyChanged(featureIds = ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS)
 	public void notifyChanged(Notification notification)
 	{
-		sets = reloadSetAdapters((BindDescriptorSets) notification.getNotifier());
 		dirty = true;
 	}
 
@@ -46,19 +37,14 @@ public final class BindDescriptorSetsAdapter implements IPipelineTaskAdapter<Bin
 		final int bindPoint = task.getBindPoint().getValue();
 		final var commandBuffer = ((RecordContext) context).commandBuffer;
 
+		final var sets = task.getDescriptorSets()
+							 .stream()
+							 .map(set -> set.allocationHandle(IDescriptorSetAllocation.class).get())
+							 .collect(Collectors.toUnmodifiableList());
+
 		pipelineLayout.bindDescriptors(commandBuffer, sets, bindPoint);
 
 		dirty = false;
-	}
-
-	private static List<IVkDescriptorSet> reloadSetAdapters(BindDescriptorSets task)
-	{
-		final List<IVkDescriptorSet> tmpList = new ArrayList<>();
-		for (final var modelSet : task.getDescriptorSets())
-		{
-			tmpList.add(modelSet.adaptNotNull(IDescriptorSetAdapter.class));
-		}
-		return List.copyOf(tmpList);
 	}
 
 	@Override

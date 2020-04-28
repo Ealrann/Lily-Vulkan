@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.resource.file;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.resource.FileResource;
 import org.sheepy.lily.core.model.resource.LocalResource;
 
@@ -9,7 +10,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-@Adapter(scope = LocalResource.class)
+@ModelExtender(scope = LocalResource.class)
+@Adapter(singleton = true)
 public class LocalResourceAdapter extends FileResourceAdapter
 {
 	@Override

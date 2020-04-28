@@ -5,7 +5,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.resource.IResourceLoader;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.ScreenEffect;
@@ -21,8 +21,8 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 import java.io.IOException;
 
-@Statefull
-@Adapter(scope = ScreenEffect.class)
+@ModelExtender(scope = ScreenEffect.class)
+@Adapter
 public final class ScreenEffectSubpassProvider implements ICompositor_SubpassProvider<ScreenEffect>
 {
 	private static final String SUBPASS_PATH = "ScreenEffect.subpass";

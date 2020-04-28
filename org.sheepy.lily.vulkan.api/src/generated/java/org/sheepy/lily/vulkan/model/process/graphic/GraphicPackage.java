@@ -1314,13 +1314,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__CADENCE = ProcessPackage.ABSTRACT_PROCESS__CADENCE;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Descriptor Pool</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__DESCRIPTOR_SET_PKG = ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG;
+	int GRAPHIC_PROCESS__DESCRIPTOR_POOL = ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_POOL;
 
 	/**
 	 * The feature id for the '<em><b>Waiting Fence During Acquire</b></em>' attribute.
@@ -1495,13 +1495,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__TASK_PKG = ProcessPackage.VK_PIPELINE__TASK_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Descriptor Pool</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG = ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG;
+	int GRAPHICS_PIPELINE__DESCRIPTOR_POOL = ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL;
 
 	/**
 	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.

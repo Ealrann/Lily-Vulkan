@@ -4,18 +4,18 @@ import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.adapter.util.ModelDependencyInjector;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
-@Statefull
-@Adapter(scope = BlitTask.class)
+@ModelExtender(scope = BlitTask.class)
+@Adapter
 public class BlitTaskAdapter extends AbstractBlitTaskAdapter
 {
 	private final BlitTask blitTask;
@@ -47,7 +47,7 @@ public class BlitTaskAdapter extends AbstractBlitTaskAdapter
 	public void allocate(final GraphicContext context)
 	{
 		final var dstImage = blitTask.getDstImage();
-		final var imageAdapter = dstImage.adaptNotNull(IVkImageAdapter.class);
+		final var imageAdapter = dstImage.allocationHandle(IVkImageAllocation.class).get();
 		dstVkImage = imageAdapter.getVkImage();
 
 		super.allocate(context);

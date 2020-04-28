@@ -2,6 +2,10 @@ plugins {
 	id 'application'
 }
 
+run {
+	enableAssertions = true
+}
+
 application {
 	mainModule = 'org.sheepy.lily.vulkan.demo.gameoflife'
 	mainClass = 'org.sheepy.lily.vulkan.demo.gameoflife.MainGameOfLife'

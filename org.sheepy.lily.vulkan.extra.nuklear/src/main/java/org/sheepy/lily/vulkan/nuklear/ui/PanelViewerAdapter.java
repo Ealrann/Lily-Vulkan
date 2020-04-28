@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.nuklear.ui;
 import org.sheepy.lily.core.api.adapter.LilyEObject;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
 import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
@@ -13,8 +13,8 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer;
 
 import java.util.function.Consumer;
 
-@Statefull
-@Adapter(scope = PanelViewer.class)
+@ModelExtender(scope = PanelViewer.class)
+@Adapter
 public final class PanelViewerAdapter extends PanelAdapter implements IPanelAdapter
 {
 	private final Consumer<Object> selectionListener = this::updateValue;

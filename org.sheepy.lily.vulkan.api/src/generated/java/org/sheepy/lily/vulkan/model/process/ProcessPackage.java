@@ -127,13 +127,13 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS__CADENCE = VulkanPackage.IPROCESS__CADENCE;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Descriptor Pool</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG = VulkanPackage.IPROCESS_FEATURE_COUNT + 0;
+	int ABSTRACT_PROCESS__DESCRIPTOR_POOL = VulkanPackage.IPROCESS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Waiting Fence During Acquire</b></em>' attribute.
@@ -511,13 +511,13 @@ public interface ProcessPackage extends EPackage
 	int VK_PIPELINE__TASK_PKG = TASK_PIPELINE__TASK_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Descriptor Pool</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VK_PIPELINE__DESCRIPTOR_SET_PKG = TASK_PIPELINE_FEATURE_COUNT + 0;
+	int VK_PIPELINE__DESCRIPTOR_POOL = TASK_PIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.
@@ -1489,6 +1489,17 @@ public interface ProcessPackage extends EPackage
 	EClass getAbstractProcess();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorPool <em>Descriptor Pool</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Descriptor Pool</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorPool()
+	 * @see #getAbstractProcess()
+	 * @generated
+	 */
+	EReference getAbstractProcess_DescriptorPool();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1542,17 +1553,6 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getAbstractProcess_ExtensionPkg();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Descriptor Set Pkg</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSetPkg()
-	 * @see #getAbstractProcess()
-	 * @generated
-	 */
-	EReference getAbstractProcess_DescriptorSetPkg();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}'.
@@ -1670,15 +1670,15 @@ public interface ProcessPackage extends EPackage
 	EClass getVkPipeline();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.VkPipeline#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.VkPipeline#getDescriptorPool <em>Descriptor Pool</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Descriptor Set Pkg</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.VkPipeline#getDescriptorSetPkg()
+	 * @return the meta object for the containment reference '<em>Descriptor Pool</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.VkPipeline#getDescriptorPool()
 	 * @see #getVkPipeline()
 	 * @generated
 	 */
-	EReference getVkPipeline_DescriptorSetPkg();
+	EReference getVkPipeline_DescriptorPool();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.VkPipeline#getSpecializationData <em>Specialization Data</em>}'.
@@ -2229,6 +2229,14 @@ public interface ProcessPackage extends EPackage
 		EClass ABSTRACT_PROCESS = eINSTANCE.getAbstractProcess();
 
 		/**
+		 * The meta object literal for the '<em><b>Descriptor Pool</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_PROCESS__DESCRIPTOR_POOL = eINSTANCE.getAbstractProcess_DescriptorPool();
+
+		/**
 		 * The meta object literal for the '<em><b>Waiting Fence During Acquire</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2267,14 +2275,6 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference ABSTRACT_PROCESS__EXTENSION_PKG = eINSTANCE.getAbstractProcess_ExtensionPkg();
-
-		/**
-		 * The meta object literal for the '<em><b>Descriptor Set Pkg</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG = eINSTANCE.getAbstractProcess_DescriptorSetPkg();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}' class.
@@ -2377,12 +2377,12 @@ public interface ProcessPackage extends EPackage
 		EClass VK_PIPELINE = eINSTANCE.getVkPipeline();
 
 		/**
-		 * The meta object literal for the '<em><b>Descriptor Set Pkg</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Descriptor Pool</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VK_PIPELINE__DESCRIPTOR_SET_PKG = eINSTANCE.getVkPipeline_DescriptorSetPkg();
+		EReference VK_PIPELINE__DESCRIPTOR_POOL = eINSTANCE.getVkPipeline_DescriptorPool();
 
 		/**
 		 * The meta object literal for the '<em><b>Specialization Data</b></em>' reference feature.

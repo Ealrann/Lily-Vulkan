@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.nuklear.pipeline;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
@@ -17,12 +17,11 @@ import java.nio.ByteBuffer;
 
 import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
 
-@Statefull
-@Adapter(scope = NuklearPushConstants.class)
+@ModelExtender(scope = NuklearPushConstants.class)
+@Adapter
 public class NuklearPushConstantsAdapter implements IPipelineTaskAdapter<NuklearPushConstants>
 {
-	public static final int STAGE_FLAGS = EShaderStage.VERTEX_BIT_VALUE
-			| EShaderStage.FRAGMENT_BIT_VALUE;
+	public static final int STAGE_FLAGS = EShaderStage.VERTEX_BIT_VALUE | EShaderStage.FRAGMENT_BIT_VALUE;
 	public static final int SIZE = 16 * 4 + 4;
 
 	private final ByteBuffer buffer;
@@ -41,7 +40,7 @@ public class NuklearPushConstantsAdapter implements IPipelineTaskAdapter<Nuklear
 	public void record(NuklearPushConstants pushConstant, IRecordContext context)
 	{
 		final var pipeline = ModelUtil.findParent(pushConstant, AbstractPipeline.class);
-		final var pipelineAdapter = pipeline.<IVkPipelineAdapter<?>> adaptNotNullGeneric(IPipelineAdapter.class);
+		final var pipelineAdapter = pipeline.<IVkPipelineAdapter<?>>adaptNotNullGeneric(IPipelineAdapter.class);
 		final long layoutId = pipelineAdapter.getVkPipelineLayout().getId();
 		final var commandBuffer = ((RecordContext) context).commandBuffer;
 

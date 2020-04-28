@@ -1,7 +1,6 @@
 package org.sheepy.lily.vulkan.process.graphic.process;
 
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.core.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
@@ -33,10 +32,9 @@ public final class GraphicContext extends ProcessContext<GraphicContext> impleme
 	public GraphicContext(IVulkanContext vulkanContext,
 						  EQueueType queueType,
 						  boolean resetAllowed,
-						  DescriptorPool descriptorPool,
 						  GraphicProcess graphicProcess)
 	{
-		super(vulkanContext, queueType, resetAllowed, descriptorPool, graphicProcess);
+		super(vulkanContext, queueType, resetAllowed, graphicProcess);
 		this.graphicProcess = graphicProcess;
 		this.configuration = graphicProcess.getConfiguration();
 		this.renderPass = new RenderPass(graphicProcess);

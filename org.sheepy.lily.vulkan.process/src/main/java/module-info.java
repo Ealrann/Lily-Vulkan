@@ -1,5 +1,5 @@
-import org.sheepy.lily.core.api.adapter.IAdapterProvider;
-import org.sheepy.lily.vulkan.process.Adapters;
+import org.sheepy.lily.core.api.extender.IExtenderProvider;
+import org.sheepy.lily.vulkan.process.Extenders;
 
 module org.sheepy.lily.vulkan.process
 {
@@ -21,5 +21,5 @@ module org.sheepy.lily.vulkan.process
 	opens org.sheepy.lily.vulkan.process.pipeline.task;
 	opens org.sheepy.lily.vulkan.process.process;
 
-	provides IAdapterProvider with Adapters;
+	provides IExtenderProvider with Extenders;
 }

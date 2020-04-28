@@ -1,18 +1,17 @@
 package org.sheepy.lily.vulkan.process.pipeline.task;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAdapter;
-import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAdapter.IFlushRecorder;
+import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation;
+import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation.IFlushRecorder;
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
-@Statefull
-@Adapter(scope = FlushTransferBufferTask.class)
-public final class FlushTransferBufferTaskAdapter
-		implements IPipelineTaskAdapter<FlushTransferBufferTask>
+@ModelExtender(scope = FlushTransferBufferTask.class)
+@Adapter
+public final class FlushTransferBufferTaskAdapter implements IPipelineTaskAdapter<FlushTransferBufferTask>
 {
 	private final TransferBuffer transferBuffer;
 
@@ -50,7 +49,7 @@ public final class FlushTransferBufferTaskAdapter
 
 	private void record()
 	{
-		final var pushBufferAdapter = transferBuffer.adaptNotNull(InternalTransferBufferAdapter.class);
+		final var pushBufferAdapter = transferBuffer.allocationHandle(InternalTransferBufferAllocation.class).get();
 		if (pushBufferAdapter.isEmpty() == false)
 		{
 			record = pushBufferAdapter.recordFlush();
@@ -64,7 +63,7 @@ public final class FlushTransferBufferTaskAdapter
 	@Override
 	public boolean needRecord(FlushTransferBufferTask task, int index)
 	{
-		final var pushBufferAdapter = transferBuffer.adaptNotNull(InternalTransferBufferAdapter.class);
+		final var pushBufferAdapter = transferBuffer.allocationHandle(InternalTransferBufferAllocation.class).get();
 		final boolean previousRecordMadeFlush = getAndClearHistory(index);
 
 		boolean res = false;

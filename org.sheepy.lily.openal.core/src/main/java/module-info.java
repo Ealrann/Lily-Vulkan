@@ -1,5 +1,5 @@
-import org.sheepy.lily.core.api.adapter.IAdapterProvider;
-import org.sheepy.lily.openal.core.Adapters;
+import org.sheepy.lily.core.api.extender.IExtenderProvider;
+import org.sheepy.lily.openal.core.Extenders;
 
 module org.sheepy.lily.openal.core
 {
@@ -12,5 +12,5 @@ module org.sheepy.lily.openal.core
 	opens org.sheepy.lily.openal.core.engine;
 	opens org.sheepy.lily.openal.core.resource;
 
-	provides IAdapterProvider with Adapters;
+	provides IExtenderProvider with Extenders;
 }

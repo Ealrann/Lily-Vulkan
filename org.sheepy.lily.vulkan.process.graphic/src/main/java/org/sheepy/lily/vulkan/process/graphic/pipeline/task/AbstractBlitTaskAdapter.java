@@ -1,17 +1,15 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 
 import org.joml.Vector2ic;
-import org.lwjgl.BufferUtils;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.adapter.util.ModelDependencyInjector;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
-import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.IVkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
@@ -23,7 +21,6 @@ import org.sheepy.vulkan.model.image.ImageFactory;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-@Statefull
 public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<AbstractBlitTask>,
 														 IAllocableAdapter<GraphicContext>
 {
@@ -67,7 +64,7 @@ public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<Ab
 		final var dstSize = getDtImageSize(context);
 
 		final var srcImage = blitTask.getSrcImage();
-		final var imageAdapter = srcImage.adaptNotNull(IVkImageAdapter.class);
+		final var imageAdapter = srcImage.allocationHandle(IVkImageAllocation.class).get();
 		final var imageInfo = imageAdapter.getVkImage();
 
 		srcImagePtr = imageAdapter.getImagePtr();

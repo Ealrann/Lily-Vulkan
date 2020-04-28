@@ -10,6 +10,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usedToFetch" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DescriptorPool">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorSets" upperBound="-1"
+        eType="#//DescriptorSet" containment="true" resolveProxies="false"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstantBuffer" eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" unique="false" eType="#//ByteBuffer"/>
   </eClassifiers>
@@ -124,8 +128,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="sampler" lowerBound="1"
         eType="ecore:EClass ../../org.sheepy.vulkan.model/model/Image.ecore#//SamplerInfo"
         containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="image" lowerBound="1" eType="#//Image"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="image" lowerBound="1" eType="#//Image"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Sampler" eSuperTypes="../../org.sheepy.vulkan.model/model/Image.ecore#//SamplerInfo ../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="image" eType="#//Image"/>
@@ -153,10 +156,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="DescriptorSet" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="descriptors" lowerBound="1"
         upperBound="-1" eType="ecore:EClass vulkan.ecore#//IDescriptor"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DescriptorSetPkg">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorSets" upperBound="-1"
-        eType="#//DescriptorSet" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BufferBarrier" eSuperTypes="../../org.sheepy.vulkan.model/model/barrier.ecore#//AbstractBufferBarrier">
     <eStructuralFeatures xsi:type="ecore:EReference" name="buffer" eType="#//IBuffer"/>

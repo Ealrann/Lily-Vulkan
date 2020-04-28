@@ -11,7 +11,6 @@ import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
@@ -103,8 +102,8 @@ public class InstanceEngineFactory
 		res.setTaskPkg(taskPkg);
 		res.setShader(resourceContainer.shader);
 		res.setStage(ECommandStage.COMPUTE);
-		final DescriptorSetPkg dsPkg = VulkanResourceFactory.eINSTANCE.createDescriptorSetPkg();
-		res.setDescriptorSetPkg(dsPkg);
+		final var dsPkg = VulkanResourceFactory.eINSTANCE.createDescriptorPool();
+		res.setDescriptorPool(dsPkg);
 		dsPkg.getDescriptorSets().add(resourceContainer.ds);
 		return res;
 	}

@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Observe;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
-import org.sheepy.lily.game.api.resource.buffer.IBufferAdapter;
+import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer;
@@ -11,19 +11,18 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 import static org.lwjgl.vulkan.VK10.vkCmdBindVertexBuffers;
 
-@Adapter(scope = BindVertexBuffer.class)
-public class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBuffer>
+@ModelExtender(scope = BindVertexBuffer.class)
+@Adapter
+public final class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBuffer>
 {
 	private boolean changed = true;
 
-	@Observe
-	private void observe(IObservatoryBuilder observatory)
+	private BindVertexBuferAdapter(IObservatoryBuilder observatory)
 	{
 		observatory.explore(GraphicPackage.Literals.BIND_VERTEX_BUFFER__VERTEX_BINDINGS)
 				   .explore(GraphicPackage.Literals.VERTEX_BINDING__BUFFER)
-				   .adaptNotifier(IBufferAdapter.class)
-				   .listenNoParam(() -> changed = true, IBufferAdapter.Features.Ptr)
-				   .listenNoParam(() -> changed = true, IBufferAdapter.Features.Offset);
+				   .allocation(IBufferAllocation.class)
+				   .listenNoParam(() -> changed = true);
 	}
 
 	@Override
@@ -41,10 +40,10 @@ public class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBu
 		{
 			final var binding = bindings.get(i);
 			final var buffer = binding.getBuffer();
-			final var adapter = buffer.adaptNotNull(IBufferAdapter.class);
+			final var allocation = buffer.allocationHandle(IBufferAllocation.class).get();
 
-			vertexBuffers[i] = adapter.getPtr();
-			offsets[i] = adapter.getBindOffset();
+			vertexBuffers[i] = allocation.getPtr();
+			offsets[i] = allocation.getBindOffset();
 		}
 
 		vkCmdBindVertexBuffers(commandBuffer, firstBinding, vertexBuffers, offsets);

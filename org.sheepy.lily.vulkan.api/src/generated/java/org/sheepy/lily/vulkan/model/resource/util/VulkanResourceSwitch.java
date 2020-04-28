@@ -94,6 +94,13 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case VulkanResourcePackage.DESCRIPTOR_POOL:
+			{
+				DescriptorPool descriptorPool = (DescriptorPool)theEObject;
+				T result = caseDescriptorPool(descriptorPool);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case VulkanResourcePackage.CONSTANT_BUFFER:
 			{
 				ConstantBuffer constantBuffer = (ConstantBuffer)theEObject;
@@ -297,13 +304,6 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanResourcePackage.DESCRIPTOR_SET_PKG:
-			{
-				DescriptorSetPkg descriptorSetPkg = (DescriptorSetPkg)theEObject;
-				T result = caseDescriptorSetPkg(descriptorSetPkg);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case VulkanResourcePackage.BUFFER_BARRIER:
 			{
 				BufferBarrier bufferBarrier = (BufferBarrier)theEObject;
@@ -358,6 +358,22 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseTransferBuffer(TransferBuffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Descriptor Pool</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Descriptor Pool</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDescriptorPool(DescriptorPool object)
 	{
 		return null;
 	}
@@ -694,22 +710,6 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseDescriptorSet(DescriptorSet object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Descriptor Set Pkg</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Descriptor Set Pkg</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDescriptorSetPkg(DescriptorSetPkg object)
 	{
 		return null;
 	}

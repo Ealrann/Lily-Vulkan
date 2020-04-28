@@ -1,6 +1,5 @@
 package org.sheepy.lily.vulkan.process.compute.process;
 
-import org.sheepy.lily.vulkan.core.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
@@ -16,12 +15,12 @@ public final class ComputeContext extends ProcessContext<ComputeContext> impleme
 	public final AbstractProcess Process;
 	public final ComputeExecutionRecorders executionRecorders = new ComputeExecutionRecorders();
 
-	public ComputeContext(final IVulkanContext vulkanContext, EQueueType queueType,
+	public ComputeContext(final IVulkanContext vulkanContext,
+						  EQueueType queueType,
 						  boolean resetAllowed,
-						  DescriptorPool descriptorPool,
 						  AbstractProcess Process)
 	{
-		super(vulkanContext, queueType, resetAllowed, descriptorPool, Process);
+		super(vulkanContext, queueType, resetAllowed, Process);
 		this.Process = Process;
 
 		allocationList.add(executionRecorders);

@@ -3,8 +3,8 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.graphic.IImageViewManager;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
@@ -12,8 +12,8 @@ import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
 import java.util.List;
 
-@Statefull
-@Adapter(scope = BlitToSwapImage.class)
+@ModelExtender(scope = BlitToSwapImage.class)
+@Adapter
 public class BlitToSwapImageAdapter extends AbstractBlitTaskAdapter
 {
 	private IImageViewManager imageViewManager;

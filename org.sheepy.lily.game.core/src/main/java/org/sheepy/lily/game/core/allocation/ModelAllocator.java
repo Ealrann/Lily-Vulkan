@@ -3,6 +3,7 @@ package org.sheepy.lily.game.core.allocation;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.core.api.adapter.ILilyEObject;
+import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.up.IAllocationContext;
 import org.sheepy.lily.core.api.allocation.up.IAllocationManager;
 import org.sheepy.lily.core.api.notification.util.ModelObserver;
@@ -14,36 +15,40 @@ import java.util.Deque;
 import java.util.List;
 import java.util.function.Consumer;
 
-public final class ModelAllocator
+public final class ModelAllocator implements IAllocable<org.sheepy.lily.core.api.allocation.IAllocationContext>
 {
+	private final ILilyEObject root;
 	private final List<ModelObserver> observers;
 	private final List<ILilyEObject> objects = new ArrayList<>();
 	private final Deque<ILilyEObject> toFree = new ArrayDeque<>();
 
 	private boolean started = false;
 
-	public ModelAllocator(final List<List<EReference>> featureLists)
+	public ModelAllocator(ILilyEObject root, final List<List<EReference>> featureLists)
 	{
+		this.root = root;
 		observers = List.copyOf(buildObservers(featureLists, this::resourceChanged));
 	}
 
-	public void start(ILilyEObject rootObject, IAllocationContext context)
+	@Override
+	public void allocate(final org.sheepy.lily.core.api.allocation.IAllocationContext context)
 	{
 		for (final var observer : observers)
 		{
-			observer.startObserve(rootObject);
+			observer.startObserve(root);
 		}
 		started = true;
 		update(context);
 	}
 
-	public void stop(ILilyEObject rootObject, IAllocationContext context)
+	@Override
+	public void free(final org.sheepy.lily.core.api.allocation.IAllocationContext context)
 	{
-		free(context);
+		free((IAllocationContext) context);
 		started = false;
 		for (final var observer : observers)
 		{
-			observer.stopObserve(rootObject);
+			observer.stopObserve(root);
 		}
 	}
 
@@ -77,19 +82,18 @@ public final class ModelAllocator
 		return res;
 	}
 
-	public void update(final IAllocationContext context)
+	public void update(final org.sheepy.lily.core.api.allocation.IAllocationContext _context)
 	{
-		context.preAllocation();
+		final var context = (IAllocationContext) _context;
 		while (toFree.isEmpty() == false)
 		{
 			final var object = toFree.removeLast();
-			IAllocationManager.INSTANCE.free(object, context);
+			object.adapt(IAllocationManager.class).free(context);
 		}
 		for (var object : objects)
 		{
-			IAllocationManager.INSTANCE.maintainAllocation(object, context);
+			object.adapt(IAllocationManager.class).maintains(context);
 		}
-		context.postAllocation();
 	}
 
 	private void free(final IAllocationContext context)
@@ -97,12 +101,12 @@ public final class ModelAllocator
 		while (toFree.isEmpty() == false)
 		{
 			final var object = toFree.removeLast();
-			IAllocationManager.INSTANCE.free(object, context);
+			object.adapt(IAllocationManager.class).free(context);
 		}
 		for (int i = objects.size() - 1; i >= 0; i--)
 		{
 			final var object = objects.get(i);
-			IAllocationManager.INSTANCE.free(object, context);
+			object.adapt(IAllocationManager.class).free(context);
 		}
 	}
 }

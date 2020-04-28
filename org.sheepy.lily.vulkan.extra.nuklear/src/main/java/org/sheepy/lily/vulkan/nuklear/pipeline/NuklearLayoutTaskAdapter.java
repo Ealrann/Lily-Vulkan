@@ -4,9 +4,7 @@ import org.joml.Vector2ic;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.core.api.adapter.annotation.Observe;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.ui.IPanel;
@@ -18,8 +16,9 @@ import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.nuklear.pipeline.layout.LayoutManager;
-import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
+import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAllocation;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearFontAdapter;
+import org.sheepy.lily.vulkan.nuklear.resource.NuklearFontAllocation;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
@@ -27,20 +26,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-@Statefull
-@Adapter(scope = NuklearLayoutTask.class, lazy = false)
+@ModelExtender(scope = NuklearLayoutTask.class)
+@Adapter(lazy = false)
 public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<NuklearLayoutTask>,
 													   IAllocableAdapter<IGraphicContext>
 {
 	private final NuklearLayoutTask task;
 	private final Consumer<Vector2ic> resizeListener = this::onResize;
-	private final UI ui;
 	private final LayoutManager layoutManager;
 	private final List<IPanelAdapter> panelAdapters = new ArrayList<>();
 
 	private IGraphicContext context;
 	private ELayoutRequest layoutRequested = ELayoutRequest.None;
-	private NuklearContextAdapter nuklearContextAdapter;
 	private IWindow window;
 
 	enum ELayoutRequest
@@ -50,17 +47,13 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 		IfNecessary
 	}
 
-	public NuklearLayoutTaskAdapter(NuklearLayoutTask task)
+	public NuklearLayoutTaskAdapter(NuklearLayoutTask task, IObservatoryBuilder observatory)
 	{
 		this.task = task;
 		final var subpass = ModelUtil.findParent(task, Subpass.class);
-		ui = (UI) subpass.getCompositor();
+		final var ui = (UI) subpass.getCompositor();
 		layoutManager = new LayoutManager();
-	}
 
-	@Observe
-	private void observe(IObservatoryBuilder observatory)
-	{
 		observatory.focus(ui)
 				   .explore(UiPackage.Literals.UI__CURRENT_UI_PAGE)
 				   .explore(UiPackage.Literals.UI_PAGE__PANELS)
@@ -78,12 +71,6 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 	{
 		layoutRequested = ELayoutRequest.Force;
 		panelAdapters.remove(adapter);
-	}
-
-	@Load
-	public void load()
-	{
-		nuklearContextAdapter = task.getContext().adaptNotNull(NuklearContextAdapter.class);
 	}
 
 	private void onResize(Vector2ic size)
@@ -127,11 +114,13 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 
 	private void layout()
 	{
+		final var nuklearContextAdapter = task.getContext().allocationHandle(NuklearContextAllocation.class).get();
 		final var nkContext = nuklearContextAdapter.getNkContext();
 		final var font = task.getContext().getFont();
-		final var fontAdapter = font.adaptNotNull(NuklearFontAdapter.class);
+		final var fontAdapter = font.adapt(NuklearFontAdapter.class);
+		final var fontAllocation = font.allocationHandle(NuklearFontAllocation.class).get();
 		final var defaultFont = fontAdapter.defaultFont;
-		final var fontMap = fontAdapter.fontMap;
+		final var fontMap = fontAllocation.fontMap;
 		final var extent = context.getSurfaceManager().getExtent();
 
 		try (final var stack = MemoryStack.stackPush())
@@ -201,6 +190,7 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 
 	public void clearFrame()
 	{
+		final var nuklearContextAdapter = task.getContext().allocationHandle(NuklearContextAllocation.class).get();
 		assert layoutManager.hasStartedFrame();
 		nuklearContextAdapter.clearFrame();
 		layoutManager.setStartedFrame(false);
@@ -211,3 +201,4 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 		return layoutManager.getCurrentExtent();
 	}
 }
+

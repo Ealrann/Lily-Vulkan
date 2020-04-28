@@ -1,5 +1,5 @@
-import org.sheepy.lily.core.api.adapter.IAdapterProvider;
-import org.sheepy.lily.vulkan.nuklear.Adapters;
+import org.sheepy.lily.core.api.extender.IExtenderProvider;
+import org.sheepy.lily.vulkan.nuklear.Extenders;
 
 module org.sheepy.lily.vulkan.extra.nuklear
 {
@@ -19,5 +19,5 @@ module org.sheepy.lily.vulkan.extra.nuklear
 	opens org.sheepy.lily.vulkan.nuklear.scene;
 	opens org.sheepy.lily.vulkan.nuklear.ui;
 
-	provides IAdapterProvider with Adapters;
+	provides IExtenderProvider with Extenders;
 }

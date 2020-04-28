@@ -1,10 +1,9 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Observe;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
-import org.sheepy.lily.game.api.resource.buffer.IBufferAdapter;
+import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
@@ -12,26 +11,24 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 import static org.lwjgl.vulkan.VK10.vkCmdBindIndexBuffer;
 
-@Statefull
-@Adapter(scope = BindIndexBuffer.class)
+@ModelExtender(scope = BindIndexBuffer.class)
+@Adapter
 public final class BindIndexBufferAdapter implements IPipelineTaskAdapter<BindIndexBuffer>
 {
 	private boolean changed = true;
 
-	@Observe
-	private void observe(IObservatoryBuilder observatory)
+	private BindIndexBufferAdapter(IObservatoryBuilder observatory)
 	{
 		observatory.explore(GraphicPackage.Literals.BIND_INDEX_BUFFER__BUFFER)
-				   .adaptNotifier(IBufferAdapter.class)
-				   .listenNoParam(() -> changed = true, IBufferAdapter.Features.Ptr)
-				   .listenNoParam(() -> changed = true, IBufferAdapter.Features.Offset);
+				   .allocation(IBufferAllocation.class)
+				   .listenNoParam(() -> changed = true);
 	}
 
 	@Override
 	public void record(BindIndexBuffer task, IRecordContext context)
 	{
 		final var bufferRef = task.getBuffer();
-		final var adapter = bufferRef.adaptNotNull(IBufferAdapter.class);
+		final var adapter = bufferRef.allocationHandle(IBufferAllocation.class).get();
 		final var indexPtr = adapter.getPtr();
 		final var indexOffset = adapter.getBindOffset();
 		final var indexType = task.getIndexType().getValue();

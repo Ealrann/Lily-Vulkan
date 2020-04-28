@@ -1,5 +1,5 @@
-import org.sheepy.lily.core.api.adapter.IAdapterProvider;
-import org.sheepy.lily.vulkan.core.Adapters;
+import org.sheepy.lily.core.api.extender.IExtenderProvider;
+import org.sheepy.lily.vulkan.core.Extenders;
 
 module org.sheepy.lily.vulkan.core {
 	requires transitive org.sheepy.lily.vulkan.api;
@@ -32,8 +32,9 @@ module org.sheepy.lily.vulkan.core {
 	exports org.sheepy.lily.vulkan.core.window;
 
 	opens org.sheepy.lily.vulkan.core.cadence;
+	opens org.sheepy.lily.vulkan.core.descriptor;
 	opens org.sheepy.lily.vulkan.core.engine;
 	opens org.sheepy.lily.vulkan.core.variable;
 
-	provides IAdapterProvider with Adapters;
+	provides IExtenderProvider with Extenders;
 }

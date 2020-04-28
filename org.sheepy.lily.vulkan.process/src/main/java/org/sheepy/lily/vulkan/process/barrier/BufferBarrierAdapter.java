@@ -1,18 +1,17 @@
 package org.sheepy.lily.vulkan.process.barrier;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Observe;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
-import org.sheepy.lily.game.api.resource.buffer.IBufferAdapter;
+import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.barrier.IBufferBarrierAdapter;
 import org.sheepy.lily.vulkan.core.barrier.VkBufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
-@Statefull
-@Adapter(scope = BufferBarrier.class)
+@ModelExtender(scope = BufferBarrier.class)
+@Adapter
 public class BufferBarrierAdapter implements IBufferBarrierAdapter
 {
 	private final VkBufferBarrier vkBarrier;
@@ -20,21 +19,18 @@ public class BufferBarrierAdapter implements IBufferBarrierAdapter
 
 	private boolean loaded = false;
 
-	public BufferBarrierAdapter(BufferBarrier barrier)
+	public BufferBarrierAdapter(BufferBarrier barrier, IObservatoryBuilder observatory)
 	{
 		this.barrier = barrier;
 		final int srcAccessMask = VulkanModelUtil.getEnumeratedFlag(barrier.getSrcAccessMask());
 		final int dstAccessMask = VulkanModelUtil.getEnumeratedFlag(barrier.getDstAccessMask());
 
 		vkBarrier = new VkBufferBarrier(srcAccessMask, dstAccessMask);
-	}
 
-	@Observe
-	private void observe(IObservatoryBuilder observatory)
-	{
 		observatory.explore(VulkanResourcePackage.Literals.BUFFER_BARRIER__BUFFER)
-				   .adaptNotifier(IBufferAdapter.class)
-				   .listenNoParam(this::updateBarrier, IBufferAdapter.Features.Ptr);
+				   .allocation(IBufferAllocation.class)
+				   .listen(this::updateBarrier);
+
 	}
 
 	@Override
@@ -42,18 +38,19 @@ public class BufferBarrierAdapter implements IBufferBarrierAdapter
 	{
 		if (loaded == false)
 		{
-			updateBarrier();
+			final var allocation = barrier.getBuffer()
+										  .allocationHandle(IBufferAllocation.class)
+										  .get();
+			updateBarrier(allocation);
 			loaded = true;
 		}
 	}
 
-	private void updateBarrier()
+	private void updateBarrier(IBufferAllocation newAllocation)
 	{
-		final var adapter = barrier.getBuffer().adapt(IBufferAdapter.class);
-
-		vkBarrier.updatePtr(adapter.getPtr());
-		vkBarrier.updateOffset(adapter.getBindOffset());
-		vkBarrier.updateSize(adapter.getBindSize());
+		vkBarrier.updatePtr(newAllocation.getPtr());
+		vkBarrier.updateOffset(newAllocation.getBindOffset());
+		vkBarrier.updateSize(newAllocation.getBindSize());
 
 		// System.out.println("Update barrier: buffer="
 		// + adapter.getPtr()

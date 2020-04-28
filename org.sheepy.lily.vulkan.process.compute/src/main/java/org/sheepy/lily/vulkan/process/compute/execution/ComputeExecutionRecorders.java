@@ -18,7 +18,7 @@ public class ComputeExecutionRecorders extends ExecutionRecorders<ComputeContext
 		final var signals = gatherSinalSemaphores(process);
 
 		final var commandBuffer = new ComputeCommandBuffer();
-		final var submission = new Submission<ComputeContext>(commandBuffer, waitForEmitters, signals, true);
+		final var submission = new Submission<>(commandBuffer, waitForEmitters, signals, true);
 
 		final var res = new ComputeExecutionRecorder(commandBuffer, submission, 0);
 

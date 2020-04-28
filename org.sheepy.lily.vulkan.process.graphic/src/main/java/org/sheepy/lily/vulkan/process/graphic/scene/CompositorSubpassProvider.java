@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.graphic.scene;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.resource.IResourceLoader;
 import org.sheepy.lily.core.model.variable.ModelVariablePkg;
 import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;
@@ -15,7 +16,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Adapter(scope = Compositor.class)
+@ModelExtender(scope = Compositor.class)
+@Adapter(singleton = true)
 public class CompositorSubpassProvider implements ICompositor_SubpassProvider<Compositor>
 {
 	private static final String PIPELINE_PATH = "com/isotropy/materia/asset/model/Compositor.subpass";
@@ -89,7 +91,7 @@ public class CompositorSubpassProvider implements ICompositor_SubpassProvider<Co
 		final DescriptorPkg descriptorPkg = compositor.getDescriptorPkg();
 		if (descriptorPkg != null)
 		{
-			final var descriptorSet = pipeline.getDescriptorSetPkg().getDescriptorSets().get(0);
+			final var descriptorSet = pipeline.getDescriptorPool().getDescriptorSets().get(0);
 			descriptorSet.getDescriptors().addAll(descriptorPkg.getDescriptors());
 		}
 	}

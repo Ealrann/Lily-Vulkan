@@ -1,11 +1,13 @@
 package org.sheepy.lily.vulkan.process.pipeline.task;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.model.binding.RotateConfiguration;
 import org.sheepy.lily.vulkan.process.binding.AbstractContextConfigurationAdapter;
 
-@Adapter(scope = RotateConfiguration.class)
+@ModelExtender(scope = RotateConfiguration.class)
+@Adapter(singleton = true)
 public final class RotateConfigurationAdapter implements IPipelineTaskAdapter<RotateConfiguration>
 {
 	@Override

@@ -1,44 +1,34 @@
 package org.sheepy.lily.vulkan.process.barrier;
 
-import org.sheepy.lily.core.api.adapter.annotation.*;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
+import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
+import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.barrier.IImageBarrierAdapter;
 import org.sheepy.lily.vulkan.core.barrier.VkImageBarrier;
-import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
-@Statefull
-@Adapter(scope = ImageBarrier.class)
+@ModelExtender(scope = ImageBarrier.class)
+@Adapter
 public class ImageBarrierAdapter implements IImageBarrierAdapter
 {
-	private final Runnable imageListener = this::imageChanged;
 	private final ImageBarrier imageBarrier;
+	private final VkImageBarrier vkBarrier;
 
-	private VkImageBarrier vkBarrier;
 	private boolean changed = true;
 
-	public ImageBarrierAdapter(ImageBarrier imageBarrier)
+	public ImageBarrierAdapter(ImageBarrier imageBarrier, IObservatoryBuilder observatory)
 	{
 		this.imageBarrier = imageBarrier;
-	}
 
-	@NotifyChanged(featureIds = VulkanResourcePackage.IMAGE_BARRIER__IMAGE)
-	private void imageChanged()
-	{
-		changed = true;
-	}
+		final IImage image = imageBarrier.getImage();
+		final var allocation = image.allocationHandle(IVkImageAllocation.class).get();
 
-	@Load
-	private void load()
-	{
-		final var adapter = imageBarrier.getImage().adapt(IVkImageAdapter.class);
-		adapter.listenNoParam(imageListener, IVkImageAdapter.Features.Image);
-
-		final var image = imageBarrier.getImage();
-		final var imageAdapter = image.adapt(IVkImageAdapter.class);
-		final var vkImage = imageAdapter.getVkImage();
-
+		final var vkImage = allocation.getVkImage();
 		final var srcLayout = imageBarrier.getSrcLayout();
 		final var dstLayout = imageBarrier.getDstLayout();
 		final var aspectMask = vkImage.aspect;
@@ -51,13 +41,16 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter
 									   dstAccessMask,
 									   aspectMask,
 									   vkImage.mipLevels);
+
+		observatory.explore(VulkanResourcePackage.Literals.IMAGE_BARRIER__IMAGE)
+				   .allocation(IVkImageAllocation.class)
+				   .listenNoParam(this::imageChanged);
 	}
 
-	@Dispose
-	private void dispose()
+	@NotifyChanged(featureIds = VulkanResourcePackage.IMAGE_BARRIER__IMAGE)
+	private void imageChanged()
 	{
-		final var adapter = imageBarrier.getImage().adapt(IVkImageAdapter.class);
-		adapter.sulkNoParam(imageListener, IVkImageAdapter.Features.Image);
+		changed = true;
 	}
 
 	@Override
@@ -65,8 +58,9 @@ public class ImageBarrierAdapter implements IImageBarrierAdapter
 	{
 		if (changed == true)
 		{
-			final var adapter = imageBarrier.getImage().adapt(IVkImageAdapter.class);
-			vkBarrier.updatePtr(adapter.getImagePtr());
+			final IImage image = imageBarrier.getImage();
+			final var allocation = image.allocationHandle(IVkImageAllocation.class).get();
+			vkBarrier.updatePtr(allocation.getImagePtr());
 			changed = false;
 		}
 	}

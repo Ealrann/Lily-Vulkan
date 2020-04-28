@@ -2,13 +2,13 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipeline;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipelineLayout;
 import org.sheepy.lily.vulkan.core.pipeline.VkShaderStage;
-import org.sheepy.lily.vulkan.core.resource.IShaderAdapter;
+import org.sheepy.lily.vulkan.core.resource.IShaderAllocation;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
@@ -22,8 +22,8 @@ import org.sheepy.lily.vulkan.process.pipeline.AbstractVkPipelineAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Statefull
-@Adapter(scope = GraphicsPipeline.class)
+@ModelExtender(scope = GraphicsPipeline.class)
+@Adapter
 public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<GraphicContext>
 {
 	protected final GraphicsPipeline pipeline;
@@ -60,7 +60,10 @@ public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<GraphicCo
 		final List<VkShaderStage> shaderStages = new ArrayList<>();
 		for (final Shader shader : shaders)
 		{
-			shaderStages.add(shader.adaptNotNull(IShaderAdapter.class).getVkShaderStage());
+			final var shaderStage = shader.allocationHandle(IShaderAllocation.class)
+										  .get()
+										  .getVkShaderStage();
+			shaderStages.add(shaderStage);
 		}
 
 		final var vertexInputState = pipeline.getVertexInputState();
@@ -110,7 +113,8 @@ public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<GraphicCo
 
 			for (final var attribute : inputDescriptor.getAttributes())
 			{
-				final var format = attribute.getFormat().getValue();
+				final var format = attribute.getFormat()
+											.getValue();
 				final var offset = attribute.getOffset();
 				attributes.add(new VkAttributeDescription(format, offset));
 			}

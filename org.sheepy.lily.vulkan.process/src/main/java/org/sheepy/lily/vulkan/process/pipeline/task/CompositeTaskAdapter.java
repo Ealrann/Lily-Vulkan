@@ -3,12 +3,12 @@ package org.sheepy.lily.vulkan.process.pipeline.task;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -17,8 +17,8 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import java.util.ArrayList;
 import java.util.List;
 
-@Statefull
-@Adapter(scope = CompositeTask.class)
+@ModelExtender(scope = CompositeTask.class)
+@Adapter
 public class CompositeTaskAdapter implements IPipelineTaskAdapter<CompositeTask>, IAllocableAdapter<IProcessContext>
 {
 	private final List<AdaptedTaskWrapper<?>> adaptedChildren = new ArrayList<>();

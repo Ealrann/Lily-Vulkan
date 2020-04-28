@@ -3,27 +3,27 @@ package org.sheepy.lily.vulkan.nuklear.pipeline;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.core.resource.IDescriptorAdapter;
+import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageArrayDescriptor;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFillBufferTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawCommandData;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawTaskMaintainer;
-import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
+import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAllocation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.lwjgl.nuklear.Nuklear.*;
 
-@Statefull
-@Adapter(scope = NuklearFillBufferTask.class)
+@ModelExtender(scope = NuklearFillBufferTask.class)
+@Adapter
 public final class NuklearFillBufferTaskAdapter implements IPipelineTaskAdapter<NuklearFillBufferTask>,
 														   IAllocableAdapter<IGraphicContext>
 {
@@ -34,7 +34,6 @@ public final class NuklearFillBufferTaskAdapter implements IPipelineTaskAdapter<
 	private final List<Long> texturePtrs = new ArrayList<>();
 
 	private NuklearLayoutTaskAdapter layoutAdapter;
-	private NuklearContextAdapter nuklearContextAdapter;
 	private int previousDrawedIndexes = 0;
 
 	public NuklearFillBufferTaskAdapter(NuklearFillBufferTask task)
@@ -51,14 +50,13 @@ public final class NuklearFillBufferTaskAdapter implements IPipelineTaskAdapter<
 	public void load()
 	{
 		layoutAdapter = task.getLayoutTask().adapt(NuklearLayoutTaskAdapter.class);
-		nuklearContextAdapter = task.getContext().adaptNotNull(NuklearContextAdapter.class);
 	}
 
 	@Override
 	public void allocate(IGraphicContext context)
 	{
 		final var pipeline = ModelUtil.findParent(task, GraphicsPipeline.class);
-		final var descriptorSet = pipeline.getDescriptorSetPkg().getDescriptorSets().get(0);
+		final var descriptorSet = pipeline.getDescriptorPool().getDescriptorSets().get(0);
 		reloadTexturePtrs(descriptorSet);
 	}
 
@@ -101,6 +99,7 @@ public final class NuklearFillBufferTaskAdapter implements IPipelineTaskAdapter<
 	{
 		boolean res = true;
 
+		final var nuklearContextAdapter = task.getContext().allocationHandle(NuklearContextAllocation.class).get();
 		final var nkContext = nuklearContextAdapter.getNkContext();
 		final var cmds = nuklearContextAdapter.getCmds();
 		final var vbuf = nuklearContextAdapter.getVBuf();
@@ -123,6 +122,7 @@ public final class NuklearFillBufferTaskAdapter implements IPipelineTaskAdapter<
 		final List<DrawCommandData> res = new ArrayList<>();
 		int drawedIndexes = 0;
 
+		final var nuklearContextAdapter = task.getContext().allocationHandle(NuklearContextAllocation.class).get();
 		final var nkContext = nuklearContextAdapter.getNkContext();
 		final var cmds = nuklearContextAdapter.getCmds();
 
@@ -161,8 +161,8 @@ public final class NuklearFillBufferTaskAdapter implements IPipelineTaskAdapter<
 		texturePtrs.clear();
 		for (final var descriptor : descriptorSet.getDescriptors())
 		{
-			final var adapter = descriptor.adaptNotNull(IDescriptorAdapter.class);
-			final var vkDescriptor = adapter.getVkDescriptor();
+			final var allocation = descriptor.allocationHandle(IDescriptorAllocation.class).get();
+			final var vkDescriptor = allocation.getVkDescriptor();
 			if (vkDescriptor instanceof VkImageArrayDescriptor)
 			{
 				final var viewPtrs = ((VkImageArrayDescriptor) vkDescriptor).getViewPtrs();

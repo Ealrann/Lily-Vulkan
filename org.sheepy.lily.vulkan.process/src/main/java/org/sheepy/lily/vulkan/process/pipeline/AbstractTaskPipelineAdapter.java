@@ -6,7 +6,6 @@ import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.notification.util.ModelStructureObserver;
 import org.sheepy.lily.core.api.util.DebugUtil;
@@ -22,7 +21,6 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import java.util.ArrayList;
 import java.util.List;
 
-@Statefull
 public abstract class AbstractTaskPipelineAdapter<T extends IVulkanContext> implements IAllocableAdapter<T>,
 																					   IPipelineAdapter
 {

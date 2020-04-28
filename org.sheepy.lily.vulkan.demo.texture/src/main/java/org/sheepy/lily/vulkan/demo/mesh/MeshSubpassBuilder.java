@@ -11,6 +11,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.enumeration.*;
@@ -113,8 +114,6 @@ public final class MeshSubpassBuilder
 			pushConstantRange.setSize(CameraConstantAdapter.SIZE_OF);
 			pushConstantRange.getStages().add(EShaderStage.VERTEX_BIT);
 		}
-
-		final var descriptorSet = VulkanResourceFactory.eINSTANCE.createDescriptorSet();
 
 		final var rasterizer = GraphicpipelineFactory.eINSTANCE.createRasterizer();
 		rasterizer.setFrontFace(meshConfiguration.rasterizerFrontFace);
@@ -219,21 +218,22 @@ public final class MeshSubpassBuilder
 			sampledImageDescriptor.getShaderStages().add(EShaderStage.FRAGMENT_BIT);
 			sampledImageDescriptor.setSampledImage(sampledImage);
 
+			resourcePkg.getResources().add(texture);
 			resourcePkg.getResources().add(sampledImage);
 			resourcePkg.getResources().add(imageFile);
+
+			final var descriptorSet = VulkanResourceFactory.eINSTANCE.createDescriptorSet();
 			descriptorSet.getDescriptors().add(sampledImageDescriptor);
 
 			final var descriptorPkg = VulkanFactory.eINSTANCE.createDescriptorPkg();
 			descriptorPkg.getDescriptors().add(sampledImageDescriptor);
 			graphicPipeline.setDescriptorPkg(descriptorPkg);
-		}
 
-		if (descriptorSet.getDescriptors().isEmpty() == false)
-		{
-			graphicPipeline.setDescriptorSetPkg(VulkanResourceFactory.eINSTANCE.createDescriptorSetPkg());
-			graphicPipeline.getDescriptorSetPkg().getDescriptorSets().add(descriptorSet);
+			final DescriptorPool descriptorPool = VulkanResourceFactory.eINSTANCE.createDescriptorPool();
+			graphicPipeline.setDescriptorPool(descriptorPool);
 			bindDescriptorSets.getDescriptorSets().add(descriptorSet);
 			graphicPipeline.getLayout().add(descriptorSet);
+			descriptorPool.getDescriptorSets().add(descriptorSet);
 		}
 
 		return List.of(graphicPipeline);

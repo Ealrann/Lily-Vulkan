@@ -1,14 +1,16 @@
 package org.sheepy.lily.vulkan.demo.test.composite.instance.adapter;
 
-import java.nio.ByteBuffer;
-import java.util.Random;
-
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 
-@Adapter(scope = BufferDataProvider.class, name = InstanceDataProviderAdapter.NAME, lazy = false)
+import java.nio.ByteBuffer;
+import java.util.Random;
+
+@ModelExtender(scope = BufferDataProvider.class, name = InstanceDataProviderAdapter.NAME)
+@Adapter(singleton = true, lazy = false)
 public final class InstanceDataProviderAdapter implements IBufferDataProviderAdapter
 {
 	public static final String NAME = "InstanceDataProvider";
@@ -53,12 +55,8 @@ public final class InstanceDataProviderAdapter implements IBufferDataProviderAda
 			final int prevIncr = previous[i] + 1;
 			if (currentVal != prevIncr)
 			{
-				System.err.print(String.format(	"\t- Failed step %d: %d != %d\n",
-												i,
-												currentVal,
-												prevIncr));
-
-				throw new AssertionError("Data are not the same after fetch");
+				System.err.print(String.format("\t- Failed step %d: %d != %d\n", i, currentVal, prevIncr));
+				throw new AssertionError("Data are not the same after fetch (is Descriptor updated ?)");
 			}
 		}
 	}
@@ -68,5 +66,4 @@ public final class InstanceDataProviderAdapter implements IBufferDataProviderAda
 	{
 		return true;
 	}
-
 }

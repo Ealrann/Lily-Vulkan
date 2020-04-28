@@ -1,11 +1,11 @@
 package org.sheepy.lily.vulkan.process.binding;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.model.binding.IndexConfiguration;
 
-@Statefull
-@Adapter(scope = IndexConfiguration.class, lazy = false)
+@ModelExtender(scope = IndexConfiguration.class)
+@Adapter(lazy = false)
 public final class IndexConfigurationAdapter extends AbstractContextConfigurationAdapter
 {
 	private IndexConfigurationAdapter(IndexConfiguration config)

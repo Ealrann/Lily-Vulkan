@@ -1,10 +1,12 @@
 package org.sheepy.lily.vulkan.process.binding.task;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.model.binding.ConfigureBind;
 import org.sheepy.lily.vulkan.process.binding.BindConfiguration;
 
-@Adapter(scope = ConfigureBind.class)
+@ModelExtender(scope = ConfigureBind.class)
+@Adapter(singleton = true)
 public final class ConfigureBindAdapter implements IConfigureTaskAdapter<ConfigureBind>
 {
 	@Override

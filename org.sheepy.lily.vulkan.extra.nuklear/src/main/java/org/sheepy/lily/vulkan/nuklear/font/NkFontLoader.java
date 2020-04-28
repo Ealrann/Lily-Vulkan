@@ -7,7 +7,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.core.resource.font.IFontAllocator;
 import org.sheepy.lily.vulkan.nuklear.font.util.FontQueryData;
-import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
+import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAllocation;
 
 import java.nio.IntBuffer;
 import java.util.Objects;
@@ -44,7 +44,7 @@ public final class NkFontLoader
 		advanceWidth = MemoryUtil.memAllocInt(1);
 		unicodePtr = memAddress(unicode);
 
-		nkFont.texture(it -> it.ptr(NuklearContextAdapter.FONT_TEXTURE_DESCRIPTOR_INDEX));
+		nkFont.texture(it -> it.ptr(NuklearContextAllocation.FONT_TEXTURE_DESCRIPTOR_INDEX));
 		nkFont.width(new TextWidthCallback());
 		nkFont.height(fontHeight);
 		nkFont.query((handle, font_height, glyph, codepoint, next_codepoint) -> {

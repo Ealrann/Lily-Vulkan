@@ -3,9 +3,8 @@ package org.sheepy.lily.vulkan.resource.buffer;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Observe;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.cadence.Tick;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.variable.IModelVariableAdapter;
 import org.sheepy.lily.core.model.variable.IModelVariable;
@@ -17,8 +16,8 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-@Statefull
-@Adapter(scope = GenericConstantBuffer.class, lazy = false)
+@ModelExtender(scope = GenericConstantBuffer.class)
+@Adapter(lazy = false)
 public final class GenericConstantBufferAdapter implements IAdapter
 {
 	private final GenericConstantBuffer constantBuffer;
@@ -27,14 +26,10 @@ public final class GenericConstantBufferAdapter implements IAdapter
 	private boolean bufferDirty = true;
 	private boolean valueDirty = true;
 
-	private GenericConstantBufferAdapter(GenericConstantBuffer constantBuffer)
+	private GenericConstantBufferAdapter(GenericConstantBuffer constantBuffer, IObservatoryBuilder observatory)
 	{
 		this.constantBuffer = constantBuffer;
-	}
 
-	@Observe
-	private void observe(final IObservatoryBuilder observatory)
-	{
 		observatory.explore(VulkanResourcePackage.Literals.GENERIC_CONSTANT_BUFFER__VARIABLE_PKG)
 				   .explore(VariablePackage.Literals.MODEL_VARIABLE_PKG__VARIABLES, IModelVariable.class)
 				   .gather(this::addEntry, this::removeEntry)

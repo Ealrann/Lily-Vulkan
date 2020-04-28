@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.demo.texture;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.application.GenericScenePart;
 import org.sheepy.lily.core.model.application.Scene;
 import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;
@@ -11,7 +12,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
 
-@Adapter(scope = GenericScenePart.class, name = MainTexture.NAME)
+@ModelExtender(scope = GenericScenePart.class, name = MainTexture.NAME)
+@Adapter(singleton = true)
 public class TextureSubpassProvider implements ICompositor_SubpassProvider<GenericScenePart>
 {
 	private static final String IMAGE_PATH = "image_77MJJZ.png";

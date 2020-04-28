@@ -1,12 +1,13 @@
 package org.sheepy.lily.vulkan.process.binding.task;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.model.binding.ConfigureBufferDescriptor;
 import org.sheepy.lily.vulkan.process.binding.BindConfiguration;
 
-@Adapter(scope = ConfigureBufferDescriptor.class)
-public final class ConfigureBufferDescriptorAdapter
-		implements IConfigureTaskAdapter<ConfigureBufferDescriptor>
+@ModelExtender(scope = ConfigureBufferDescriptor.class)
+@Adapter(singleton = true)
+public final class ConfigureBufferDescriptorAdapter implements IConfigureTaskAdapter<ConfigureBufferDescriptor>
 {
 	@Override
 	public void configure(BindConfiguration configuration, ConfigureBufferDescriptor task)

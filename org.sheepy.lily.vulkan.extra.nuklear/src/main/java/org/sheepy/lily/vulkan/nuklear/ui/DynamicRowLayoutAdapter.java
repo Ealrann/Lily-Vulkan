@@ -1,13 +1,15 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.ui.DynamicRowLayout;
 import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;
 
 import static org.lwjgl.nuklear.Nuklear.nk_layout_row_dynamic;
 
-@Adapter(scope = DynamicRowLayout.class)
+@ModelExtender(scope = DynamicRowLayout.class)
+@Adapter(singleton = true)
 public final class DynamicRowLayoutAdapter implements IUIElementAdapter
 {
 	@Override

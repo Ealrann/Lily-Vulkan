@@ -4,10 +4,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationService;
 import org.sheepy.lily.core.api.allocation.IRootAllocator;
 import org.sheepy.lily.core.api.cadence.ICadenceAdapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
@@ -36,8 +36,8 @@ import java.util.List;
 
 import static org.lwjgl.system.MemoryStack.stackPush;
 
-@Statefull
-@Adapter(scope = VulkanEngine.class)
+@ModelExtender(scope = VulkanEngine.class)
+@Adapter
 public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 {
 	private static final String WAIT_IDLE_RELOAD_ENGINE_RESOURCES = "[WaitIdle] Reload engine resources";
@@ -53,8 +53,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private final GenericAllocator<ExecutionContext> resourceAllocator = new GenericAllocator<>(List.of(
 			RESOURCE_FEATURES,
 			DESCRIPTOR_FEATURES));
-	private final ModelAllocator resourceAllocator2 = new ModelAllocator(List.of(RESOURCE_FEATURES,
-																				 DESCRIPTOR_FEATURES));
+	private final ModelAllocator resourceAllocator2;
 	private final Runnable openListener = this::loadInputManager;
 	private final Window window;
 
@@ -66,6 +65,8 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	public VulkanEngineAdapter(VulkanEngine engine)
 	{
 		this.engine = engine;
+		resourceAllocator2 = new ModelAllocator(engine, List.of(RESOURCE_FEATURES, DESCRIPTOR_FEATURES));
+
 		application = (Application) engine.eContainer();
 		final var scene = application.getScene();
 		if (scene != null)
@@ -165,7 +166,9 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void updateAllocation()
 	{
+		executionContext.beforeChildrenAllocation();
 		resourceAllocator2.update(executionContext);
+		executionContext.afterChildrenAllocation();
 		if (allocator.isAllocationDirty())
 		{
 			for (final var process : engine.getProcesses())
@@ -211,10 +214,11 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	{
 		resourceAllocator.start(engine);
 
-		final var allocationRoot = new VulkanEngineAllocationRoot(List.of(resourceAllocator.getAllocable()));
+		final var allocationRoot = new VulkanEngineAllocationRoot(List.of(resourceAllocator2,
+																		  resourceAllocator.getAllocable()));
 		allocator = IAllocationService.INSTANCE.createAllocator(allocationRoot, executionContext);
 
-		resourceAllocator2.start(engine, executionContext);
+//		resourceAllocator2.start(engine, executionContext);
 		allocator.allocate();
 
 		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
@@ -242,7 +246,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 		executionContext.getQueue().waitIdle();
 		stopProcesses();
 		allocator.free();
-		resourceAllocator2.stop(engine, executionContext);
+//		resourceAllocator2.stop(engine, executionContext);
 
 		for (final VkFence fence : fences)
 		{

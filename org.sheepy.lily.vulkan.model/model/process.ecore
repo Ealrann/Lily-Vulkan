@@ -2,8 +2,8 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="process" nsURI="org.sheepy.lily.vulkan.model.process" nsPrefix="process">
   <eClassifiers xsi:type="ecore:EClass" name="AbstractProcess" abstract="true" eSuperTypes="vulkan.ecore#//IProcess">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorSetPkg" eType="ecore:EClass resource.ecore#//DescriptorSetPkg"
-        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorPool" lowerBound="1"
+        eType="ecore:EClass resource.ecore#//DescriptorPool" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="waitingFenceDuringAcquire"
         unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false">
@@ -49,7 +49,7 @@
         containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VkPipeline" abstract="true" eSuperTypes="#//TaskPipeline">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorSetPkg" eType="ecore:EClass resource.ecore#//DescriptorSetPkg"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorPool" eType="ecore:EClass resource.ecore#//DescriptorPool"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="specializationData" eType="ecore:EClass resource.ecore#//ConstantBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pushConstantRanges" upperBound="-1"

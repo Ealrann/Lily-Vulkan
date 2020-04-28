@@ -5,9 +5,8 @@ package org.sheepy.lily.vulkan.model.process;
 import org.eclipse.emf.common.util.EList;
 
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
-
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 
 /**
@@ -19,7 +18,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.VkPipeline#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.VkPipeline#getDescriptorPool <em>Descriptor Pool</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.VkPipeline#getSpecializationData <em>Specialization Data</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.VkPipeline#getPushConstantRanges <em>Push Constant Ranges</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.VkPipeline#getLayout <em>Layout</em>}</li>
@@ -32,26 +31,26 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 public interface VkPipeline extends TaskPipeline
 {
 	/**
-	 * Returns the value of the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Descriptor Pool</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Descriptor Set Pkg</em>' containment reference.
-	 * @see #setDescriptorSetPkg(DescriptorSetPkg)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getVkPipeline_DescriptorSetPkg()
+	 * @return the value of the '<em>Descriptor Pool</em>' containment reference.
+	 * @see #setDescriptorPool(DescriptorPool)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getVkPipeline_DescriptorPool()
 	 * @model containment="true"
 	 * @generated
 	 */
-	DescriptorSetPkg getDescriptorSetPkg();
+	DescriptorPool getDescriptorPool();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.VkPipeline#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.VkPipeline#getDescriptorPool <em>Descriptor Pool</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Descriptor Set Pkg</em>' containment reference.
-	 * @see #getDescriptorSetPkg()
+	 * @param value the new value of the '<em>Descriptor Pool</em>' containment reference.
+	 * @see #getDescriptorPool()
 	 * @generated
 	 */
-	void setDescriptorSetPkg(DescriptorSetPkg value);
+	void setDescriptorPool(DescriptorPool value);
 
 	/**
 	 * Returns the value of the '<em><b>Specialization Data</b></em>' reference.

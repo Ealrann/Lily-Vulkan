@@ -161,13 +161,13 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__TASK_PKG = RenderingPackage.GENERIC_RENDERER__TASK_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Descriptor Pool</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_RENDERER__DESCRIPTOR_SET_PKG = RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_SET_PKG;
+	int MESH_RENDERER__DESCRIPTOR_POOL = RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_POOL;
 
 	/**
 	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.

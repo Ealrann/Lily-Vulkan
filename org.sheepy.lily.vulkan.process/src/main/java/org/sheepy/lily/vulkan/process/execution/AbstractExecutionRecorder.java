@@ -62,6 +62,7 @@ public abstract class AbstractExecutionRecorder<T extends ExecutionContext> impl
 	@Override
 	public final void record(List<ECommandStage> stages)
 	{
+		//TODO remove this wait...
 		waitIdle();
 
 		final List<IExecutionIdleListener> listeners = new ArrayList<>();

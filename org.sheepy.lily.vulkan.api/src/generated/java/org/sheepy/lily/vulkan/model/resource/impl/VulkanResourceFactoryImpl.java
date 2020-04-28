@@ -68,6 +68,7 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 		switch (eClass.getClassifierID())
 		{
 			case VulkanResourcePackage.TRANSFER_BUFFER: return createTransferBuffer();
+			case VulkanResourcePackage.DESCRIPTOR_POOL: return createDescriptorPool();
 			case VulkanResourcePackage.CONSTANT_BUFFER: return createConstantBuffer();
 			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER: return createGenericConstantBuffer();
 			case VulkanResourcePackage.BUFFER: return createBuffer();
@@ -87,7 +88,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR: return createSampledImageDescriptor();
 			case VulkanResourcePackage.SAMPLER_DESCRIPTOR: return createSamplerDescriptor();
 			case VulkanResourcePackage.DESCRIPTOR_SET: return createDescriptorSet();
-			case VulkanResourcePackage.DESCRIPTOR_SET_PKG: return createDescriptorSetPkg();
 			case VulkanResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
 			case VulkanResourcePackage.IMAGE_BARRIER: return createImageBarrier();
 			case VulkanResourcePackage.SHADER: return createShader();
@@ -145,6 +145,18 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		TransferBufferImpl transferBuffer = new TransferBufferImpl();
 		return transferBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DescriptorPool createDescriptorPool()
+	{
+		DescriptorPoolImpl descriptorPool = new DescriptorPoolImpl();
+		return descriptorPool;
 	}
 
 	/**
@@ -373,18 +385,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		DescriptorSetImpl descriptorSet = new DescriptorSetImpl();
 		return descriptorSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public DescriptorSetPkg createDescriptorSetPkg()
-	{
-		DescriptorSetPkgImpl descriptorSetPkg = new DescriptorSetPkgImpl();
-		return descriptorSetPkg;
 	}
 
 	/**

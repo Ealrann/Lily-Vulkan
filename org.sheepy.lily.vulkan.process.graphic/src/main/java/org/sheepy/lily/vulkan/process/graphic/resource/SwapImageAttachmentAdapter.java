@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.process.graphic.resource;
 
 import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.util.VulkanBufferUtils;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
@@ -13,8 +13,8 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.KHRSwapchain.vkGetSwapchainImagesKHR;
 
-@Statefull
-@Adapter(scope = SwapImageAttachment.class)
+@ModelExtender(scope = SwapImageAttachment.class)
+@Adapter
 public final class SwapImageAttachmentAdapter implements IAdapter
 {
 	private List<Long> swapChainImages = null;

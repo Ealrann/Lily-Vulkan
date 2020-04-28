@@ -241,13 +241,13 @@ public final class EngineBuilder
 		taskPkg.getTasks().add(bindTask);
 		taskPkg.getTasks().add(dispatch);
 
-		final var dSetPkg = VulkanResourceFactory.eINSTANCE.createDescriptorSetPkg();
-		dSetPkg.getDescriptorSets().addAll(bindingConfiguration.getDescriptorsSets());
+		final var descriptorPool = VulkanResourceFactory.eINSTANCE.createDescriptorPool();
+		descriptorPool.getDescriptorSets().addAll(bindingConfiguration.getDescriptorsSets());
 
 		pipeline.getLayout().addAll(bindingConfiguration.getDescriptorsSets());
 		pipeline.setShader(shader);
 		pipeline.setStage(ECommandStage.COMPUTE);
-		pipeline.setDescriptorSetPkg(dSetPkg);
+		pipeline.setDescriptorPool(descriptorPool);
 
 		return pipeline;
 	}

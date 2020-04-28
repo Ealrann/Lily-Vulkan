@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.process.graphic.renderpass;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkAttachmentDescription;
-import org.sheepy.lily.vulkan.core.resource.attachment.IExtraAttachmentAdapter;
+import org.sheepy.lily.vulkan.core.resource.attachment.IExtraAttachmentAllocation;
 import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
 
@@ -45,7 +45,7 @@ public final class VkAttachmentDescriptionAllocator
 	{
 		if (attachment instanceof ExtraAttachment)
 		{
-			final var adapter = attachment.adaptNotNull(IExtraAttachmentAdapter.class);
+			final var adapter = attachment.adapt(IExtraAttachmentAllocation.class);
 			return adapter.getImageFormat();
 		}
 		else

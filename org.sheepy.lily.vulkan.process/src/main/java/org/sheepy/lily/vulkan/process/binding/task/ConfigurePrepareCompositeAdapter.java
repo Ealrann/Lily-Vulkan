@@ -1,16 +1,17 @@
 package org.sheepy.lily.vulkan.process.binding.task;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.process.binding.BindConfiguration;
 
-@Adapter(scope = ConfigurePrepareComposite.class)
-public final class ConfigurePrepareCompositeAdapter
-		implements IConfigureTaskAdapter<ConfigurePrepareComposite>
+import java.util.ArrayList;
+import java.util.List;
+
+@ModelExtender(scope = ConfigurePrepareComposite.class)
+@Adapter(singleton = true)
+public final class ConfigurePrepareCompositeAdapter implements IConfigureTaskAdapter<ConfigurePrepareComposite>
 {
 	@Override
 	public void configure(BindConfiguration configuration, ConfigurePrepareComposite configure)

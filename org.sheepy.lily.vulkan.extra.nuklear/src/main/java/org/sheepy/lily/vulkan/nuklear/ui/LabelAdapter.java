@@ -5,7 +5,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.model.ui.Font;
@@ -21,8 +21,8 @@ import java.util.concurrent.TimeUnit;
 
 import static org.lwjgl.nuklear.Nuklear.*;
 
-@Statefull
-@Adapter(scope = Label.class)
+@ModelExtender(scope = Label.class)
+@Adapter
 public final class LabelAdapter extends Notifier<ITextWidgetAdapter.Features> implements IUIElementAdapter,
 																						 ITextWidgetAdapter
 {

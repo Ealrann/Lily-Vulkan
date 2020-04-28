@@ -3,8 +3,8 @@ package org.sheepy.lily.vulkan.process.pipeline.task;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.barrier.*;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
@@ -24,8 +24,8 @@ import java.util.List;
 import static org.lwjgl.vulkan.VK10.VK_QUEUE_FAMILY_IGNORED;
 import static org.lwjgl.vulkan.VK10.vkCmdPipelineBarrier;
 
-@Statefull
-@Adapter(scope = PipelineBarrier.class)
+@ModelExtender(scope = PipelineBarrier.class)
+@Adapter
 public class PipelineBarrierAdapter implements IPipelineTaskAdapter<PipelineBarrier>,
 											   IAllocableAdapter<ProcessContext<?>>
 {

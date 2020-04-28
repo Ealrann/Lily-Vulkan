@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.core.variable;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.input.IInputManager;
 import org.sheepy.lily.core.api.input.event.CursorLocationEvent;
 import org.sheepy.lily.core.api.notification.Notifier;
@@ -16,8 +16,8 @@ import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.function.Consumer;
 
-@Statefull
-@Adapter(scope = MouseLocation.class)
+@ModelExtender(scope = MouseLocation.class)
+@Adapter
 public final class MouseLocationAdapter extends Notifier<IModelVariableAdapter.Features> implements
 																						 IModelVariableAdapter<MouseLocation>
 {

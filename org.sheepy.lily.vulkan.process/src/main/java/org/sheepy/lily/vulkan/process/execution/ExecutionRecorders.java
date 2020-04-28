@@ -6,7 +6,7 @@ import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.core.execution.IExecutionRecorders;
-import org.sheepy.lily.vulkan.core.resource.ISemaphoreAdapter;
+import org.sheepy.lily.vulkan.core.resource.ISemaphoreAllocation;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 
@@ -44,12 +44,13 @@ public abstract class ExecutionRecorders<T extends ExecutionContext> implements 
 		return recorders != null ? recorders : List.of();
 	}
 
-	protected List<VkSemaphore> gatherSinalSemaphores(AbstractProcess process)
+	protected static List<VkSemaphore> gatherSinalSemaphores(AbstractProcess process)
 	{
 		final var res = new ArrayList<VkSemaphore>();
 		for (final var semaphore : process.getSignals())
 		{
-			res.add(semaphore.adaptNotNull(ISemaphoreAdapter.class).getVkSemaphore());
+			final var allocation = semaphore.allocationHandle(ISemaphoreAllocation.class).get();
+			res.add(allocation.getVkSemaphore());
 		}
 		return res;
 	}
@@ -67,9 +68,9 @@ public abstract class ExecutionRecorders<T extends ExecutionContext> implements 
 
 	protected static WaitData convertToData(Semaphore semaphore)
 	{
-		final var adapter = semaphore.adaptNotNull(ISemaphoreAdapter.class);
+		final var allocation = semaphore.allocationHandle(ISemaphoreAllocation.class).get();
 		final var waitStage = semaphore.getWaitStage();
-		return new WaitData(adapter.getVkSemaphore(), waitStage);
+		return new WaitData(allocation.getVkSemaphore(), waitStage);
 	}
 
 	protected abstract List<? extends IExecutionRecorder<? super T>> createRecorders(T context);

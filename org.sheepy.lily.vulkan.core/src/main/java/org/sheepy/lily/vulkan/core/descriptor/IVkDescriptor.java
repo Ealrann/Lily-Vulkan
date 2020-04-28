@@ -10,7 +10,7 @@ public interface IVkDescriptor
 	void fillPoolSize(VkDescriptorPoolSize poolSize);
 	VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack);
 	void fillWriteDescriptor(MemoryStack stack, VkWriteDescriptorSet writeDescriptor);
-	
+
 	default boolean isEmpty()
 	{
 		return false;

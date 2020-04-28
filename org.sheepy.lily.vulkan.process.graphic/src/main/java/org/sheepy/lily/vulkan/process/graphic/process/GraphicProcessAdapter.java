@@ -2,9 +2,9 @@ package org.sheepy.lily.vulkan.process.graphic.process;
 
 import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IRootAllocator;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
@@ -20,8 +20,8 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.List;
 
-@Statefull
-@Adapter(scope = GraphicProcess.class)
+@ModelExtender(scope = GraphicProcess.class)
+@Adapter
 public final class GraphicProcessAdapter extends AbstractProcessAdapter<GraphicContext>
 {
 	private static final List<EReference> PIPELINE__FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
@@ -63,6 +63,17 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<GraphicC
 																						   ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
 																						   VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
 																						   VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
+
+	private static final List<EReference> DERSCRIPTOR_POOL_FEATURES = List.of(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_POOL);
+	private static final List<EReference> PIPELINE_DERSCRIPTOR_POOL_FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																					   GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
+																					   ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+																					   ProcessPackage.Literals.VK_PIPELINE__DESCRIPTOR_POOL);
+	private static final List<EReference> COMPOSITE_PIPELINE_DERSCRIPTOR_POOL_FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
+																								 GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
+																								 ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+																								 ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
+																								 ProcessPackage.Literals.VK_PIPELINE__DESCRIPTOR_POOL);
 
 	private static final List<ECommandStage> stages = List.of(ECommandStage.TRANSFER,
 															  ECommandStage.COMPUTE,
@@ -112,11 +123,7 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<GraphicC
 	protected GraphicContext createContext(final IVulkanContext vulkanContext)
 	{
 		final var graphicProcess = (GraphicProcess) this.process;
-		return new GraphicContext(vulkanContext,
-								  getExecutionQueueType(),
-								  isResetAllowed(),
-								  descriptorPool,
-								  graphicProcess);
+		return new GraphicContext(vulkanContext, getExecutionQueueType(), isResetAllowed(), graphicProcess);
 	}
 
 	@Override
@@ -160,5 +167,13 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<GraphicC
 					   SUBPASS_DESCRIPTOR_FEATURES,
 					   PIPELINE_DESCRIPTOR_FEATURES,
 					   COMPOSITE_PIPELINE_DESCRIPTOR_FEATURES);
+	}
+
+	@Override
+	protected List<List<EReference>> getDescriptorPoolFeatureLists()
+	{
+		return List.of(DERSCRIPTOR_POOL_FEATURES,
+					   PIPELINE_DERSCRIPTOR_POOL_FEATURES,
+					   COMPOSITE_PIPELINE_DERSCRIPTOR_POOL_FEATURES);
 	}
 }

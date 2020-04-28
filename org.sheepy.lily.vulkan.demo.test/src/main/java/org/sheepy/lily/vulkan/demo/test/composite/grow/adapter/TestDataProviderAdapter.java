@@ -1,15 +1,15 @@
 package org.sheepy.lily.vulkan.demo.test.composite.grow.adapter;
 
-import java.nio.ByteBuffer;
-import java.util.Random;
-
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 
-@Statefull
-@Adapter(scope = BufferDataProvider.class, name = TestDataProviderAdapter.NAME)
+import java.nio.ByteBuffer;
+import java.util.Random;
+
+@ModelExtender(scope = BufferDataProvider.class, name = TestDataProviderAdapter.NAME)
+@Adapter
 public final class TestDataProviderAdapter implements IBufferDataProviderAdapter
 {
 	public static final String NAME = "TestDataProvider";

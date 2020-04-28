@@ -23,9 +23,8 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
 
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
-
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 
 /**
@@ -36,7 +35,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.VkPipelineImpl#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.VkPipelineImpl#getDescriptorPool <em>Descriptor Pool</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.VkPipelineImpl#getSpecializationData <em>Specialization Data</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.VkPipelineImpl#getPushConstantRanges <em>Push Constant Ranges</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.VkPipelineImpl#getLayout <em>Layout</em>}</li>
@@ -47,14 +46,14 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipeline
 {
 	/**
-	 * The cached value of the '{@link #getDescriptorSetPkg() <em>Descriptor Set Pkg</em>}' containment reference.
+	 * The cached value of the '{@link #getDescriptorPool() <em>Descriptor Pool</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDescriptorSetPkg()
+	 * @see #getDescriptorPool()
 	 * @generated
 	 * @ordered
 	 */
-	protected DescriptorSetPkg descriptorSetPkg;
+	protected DescriptorPool descriptorPool;
 
 	/**
 	 * The cached value of the '{@link #getSpecializationData() <em>Specialization Data</em>}' reference.
@@ -113,9 +112,9 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	 * @generated
 	 */
 	@Override
-	public DescriptorSetPkg getDescriptorSetPkg()
+	public DescriptorPool getDescriptorPool()
 	{
-		return descriptorSetPkg;
+		return descriptorPool;
 	}
 
 	/**
@@ -123,13 +122,13 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDescriptorSetPkg(DescriptorSetPkg newDescriptorSetPkg, NotificationChain msgs)
+	public NotificationChain basicSetDescriptorPool(DescriptorPool newDescriptorPool, NotificationChain msgs)
 	{
-		DescriptorSetPkg oldDescriptorSetPkg = descriptorSetPkg;
-		descriptorSetPkg = newDescriptorSetPkg;
+		DescriptorPool oldDescriptorPool = descriptorPool;
+		descriptorPool = newDescriptorPool;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG, oldDescriptorSetPkg, newDescriptorSetPkg);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL, oldDescriptorPool, newDescriptorPool);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -141,20 +140,20 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	 * @generated
 	 */
 	@Override
-	public void setDescriptorSetPkg(DescriptorSetPkg newDescriptorSetPkg)
+	public void setDescriptorPool(DescriptorPool newDescriptorPool)
 	{
-		if (newDescriptorSetPkg != descriptorSetPkg)
+		if (newDescriptorPool != descriptorPool)
 		{
 			NotificationChain msgs = null;
-			if (descriptorSetPkg != null)
-				msgs = ((InternalEObject)descriptorSetPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
-			if (newDescriptorSetPkg != null)
-				msgs = ((InternalEObject)newDescriptorSetPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG, null, msgs);
-			msgs = basicSetDescriptorSetPkg(newDescriptorSetPkg, msgs);
+			if (descriptorPool != null)
+				msgs = ((InternalEObject)descriptorPool).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL, null, msgs);
+			if (newDescriptorPool != null)
+				msgs = ((InternalEObject)newDescriptorPool).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL, null, msgs);
+			msgs = basicSetDescriptorPool(newDescriptorPool, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG, newDescriptorSetPkg, newDescriptorSetPkg));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL, newDescriptorPool, newDescriptorPool));
 	}
 
 	/**
@@ -242,8 +241,8 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG:
-				return basicSetDescriptorSetPkg(null, msgs);
+			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL:
+				return basicSetDescriptorPool(null, msgs);
 			case ProcessPackage.VK_PIPELINE__PUSH_CONSTANT_RANGES:
 				return ((InternalEList<?>)getPushConstantRanges()).basicRemove(otherEnd, msgs);
 		}
@@ -260,8 +259,8 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG:
-				return getDescriptorSetPkg();
+			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL:
+				return getDescriptorPool();
 			case ProcessPackage.VK_PIPELINE__SPECIALIZATION_DATA:
 				if (resolve) return getSpecializationData();
 				return basicGetSpecializationData();
@@ -284,8 +283,8 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG:
-				setDescriptorSetPkg((DescriptorSetPkg)newValue);
+			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL:
+				setDescriptorPool((DescriptorPool)newValue);
 				return;
 			case ProcessPackage.VK_PIPELINE__SPECIALIZATION_DATA:
 				setSpecializationData((ConstantBuffer)newValue);
@@ -312,8 +311,8 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG:
-				setDescriptorSetPkg((DescriptorSetPkg)null);
+			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL:
+				setDescriptorPool((DescriptorPool)null);
 				return;
 			case ProcessPackage.VK_PIPELINE__SPECIALIZATION_DATA:
 				setSpecializationData((ConstantBuffer)null);
@@ -338,8 +337,8 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_SET_PKG:
-				return descriptorSetPkg != null;
+			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL:
+				return descriptorPool != null;
 			case ProcessPackage.VK_PIPELINE__SPECIALIZATION_DATA:
 				return specializationData != null;
 			case ProcessPackage.VK_PIPELINE__PUSH_CONSTANT_RANGES:

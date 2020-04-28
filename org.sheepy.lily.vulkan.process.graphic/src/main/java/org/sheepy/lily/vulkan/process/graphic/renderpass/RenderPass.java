@@ -8,7 +8,7 @@ import org.sheepy.lily.core.api.notification.observatory.IObservatory;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.vulkan.core.graphic.ClearInfo;
 import org.sheepy.lily.vulkan.core.graphic.IRenderPass;
-import org.sheepy.lily.vulkan.core.resource.attachment.IExtraAttachmentAdapter;
+import org.sheepy.lily.vulkan.core.resource.attachment.IExtraAttachmentAllocation;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
@@ -132,7 +132,7 @@ public class RenderPass implements IRenderPass, IAllocable<GraphicContext>
 
 		for (final var attachment : attachments)
 		{
-			final var adapter = attachment.adaptNotNull(IExtraAttachmentAdapter.class);
+			final var adapter = attachment.adapt(IExtraAttachmentAllocation.class);
 			clearInfos.add(adapter.getClearInfos());
 		}
 

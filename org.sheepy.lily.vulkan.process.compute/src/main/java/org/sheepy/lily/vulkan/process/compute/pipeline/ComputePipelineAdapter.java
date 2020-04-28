@@ -1,14 +1,14 @@
 package org.sheepy.lily.vulkan.process.compute.pipeline;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.core.resource.IShaderAdapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.core.resource.IShaderAllocation;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractVkPipelineAdapter;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
-@Statefull
-@Adapter(scope = ComputePipeline.class)
+@ModelExtender(scope = ComputePipeline.class)
+@Adapter
 public final class ComputePipelineAdapter extends AbstractVkPipelineAdapter<ProcessContext<?>>
 {
 	private final ComputePipeline pipeline;
@@ -27,16 +27,12 @@ public final class ComputePipelineAdapter extends AbstractVkPipelineAdapter<Proc
 		super.allocate(context);
 
 		final var shader = pipeline.getShader();
-		final var shaderAdapter = shader.adaptNotNull(IShaderAdapter.class);
+		final var shaderAdapter = shader.allocationHandle(IShaderAllocation.class).get();
 		final var shaderStage = shaderAdapter.getVkShaderStage();
 		final var specializationData = pipeline.getSpecializationData();
-		final var specializationBuffer = specializationData != null
-				? specializationData.getData()
-				: null;
+		final var specializationBuffer = specializationData != null ? specializationData.getData() : null;
 
-		vkPipeline = new VkComputePipeline(	getVkPipelineLayout(),
-											shaderStage,
-											specializationBuffer);
+		vkPipeline = new VkComputePipeline(getVkPipelineLayout(), shaderStage, specializationBuffer);
 		vkPipeline.allocate(context);
 	}
 

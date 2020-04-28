@@ -1,5 +1,5 @@
-import org.sheepy.lily.core.api.adapter.IAdapterProvider;
-import org.sheepy.lily.vulkan.resource.Adapters;
+import org.sheepy.lily.core.api.extender.IExtenderProvider;
+import org.sheepy.lily.vulkan.resource.Extenders;
 
 module org.sheepy.lily.vulkan.resource
 {
@@ -18,5 +18,5 @@ module org.sheepy.lily.vulkan.resource
 	opens org.sheepy.lily.vulkan.resource.semaphore;
 	opens org.sheepy.lily.vulkan.resource.shader;
 
-	provides IAdapterProvider with Adapters;
+	provides IExtenderProvider with Extenders;
 }

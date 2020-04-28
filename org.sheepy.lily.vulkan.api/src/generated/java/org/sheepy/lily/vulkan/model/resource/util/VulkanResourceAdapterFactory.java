@@ -93,6 +93,11 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createTransferBufferAdapter();
 			}
 			@Override
+			public Adapter caseDescriptorPool(DescriptorPool object)
+			{
+				return createDescriptorPoolAdapter();
+			}
+			@Override
 			public Adapter caseConstantBuffer(ConstantBuffer object)
 			{
 				return createConstantBufferAdapter();
@@ -198,11 +203,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createDescriptorSetAdapter();
 			}
 			@Override
-			public Adapter caseDescriptorSetPkg(DescriptorSetPkg object)
-			{
-				return createDescriptorSetPkgAdapter();
-			}
-			@Override
 			public Adapter caseBufferBarrier(BufferBarrier object)
 			{
 				return createBufferBarrierAdapter();
@@ -300,6 +300,21 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createTransferBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DescriptorPool <em>Descriptor Pool</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.DescriptorPool
+	 * @generated
+	 */
+	public Adapter createDescriptorPoolAdapter()
 	{
 		return null;
 	}
@@ -615,21 +630,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createDescriptorSetAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg <em>Descriptor Set Pkg</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg
-	 * @generated
-	 */
-	public Adapter createDescriptorSetPkgAdapter()
 	{
 		return null;
 	}

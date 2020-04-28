@@ -5,7 +5,7 @@ import org.lwjgl.vulkan.VkFramebufferCreateInfo;
 import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.graphic.IFramebufferManager;
-import org.sheepy.lily.vulkan.core.resource.attachment.IExtraAttachmentAdapter;
+import org.sheepy.lily.vulkan.core.resource.attachment.IExtraAttachmentAllocation;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
@@ -61,7 +61,7 @@ public class FramebufferManager implements IFramebufferManager, IAllocable<Graph
 
 		for (final var attachment : attachments)
 		{
-			final var description = attachment.adaptNotNull(IExtraAttachmentAdapter.class);
+			final var description = attachment.adapt(IExtraAttachmentAllocation.class);
 			attachmentsBuffer.put(description.getViewPtr());
 		}
 

@@ -8,7 +8,7 @@ import org.lwjgl.nuklear.NkRect;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
 import org.sheepy.lily.core.model.resource.IImage;
@@ -18,7 +18,7 @@ import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.game.api.window.IWindow;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
-import org.sheepy.lily.vulkan.core.resource.IVkImageAdapter;
+import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
 import org.sheepy.lily.vulkan.extra.api.nuklear.ISelectorInputProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
 import org.sheepy.lily.vulkan.nuklear.ui.internal.SelectorButtonDrawer;
@@ -33,8 +33,8 @@ import java.util.function.Consumer;
 
 import static org.lwjgl.nuklear.Nuklear.*;
 
-@Statefull
-@Adapter(scope = SelectorPanel.class)
+@ModelExtender(scope = SelectorPanel.class)
+@Adapter
 public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Features> implements IPanelAdapter,
 																								 ITextWidgetAdapter,
 																								 IImageWidgetAdapter
@@ -376,7 +376,7 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 		{
 			if (image != null)
 			{
-				final var imageAdapter = image.adapt(IVkImageAdapter.class);
+				final var imageAdapter = image.allocationHandle(IVkImageAllocation.class).get();
 				nk_image_ptr(imageAdapter.getViewPtr(), nkImage);
 				return nkImage;
 			}

@@ -1,28 +1,17 @@
 package org.sheepy.lily.vulkan.process.pipeline;
 
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.core.api.util.ModelExplorer;
-import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptorSet;
+import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetAllocation;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAdapter;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipelineLayout;
-import org.sheepy.lily.vulkan.core.resource.IDescriptorSetAdapter;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
-@Statefull
 public abstract class AbstractVkPipelineAdapter<T extends IVulkanContext> extends AbstractTaskPipelineAdapter<T> implements
-																												IVkPipelineAdapter<T>
+																												 IVkPipelineAdapter<T>
 {
-	private static final ModelExplorer DERSCRIPTOR_SET_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.VK_PIPELINE__DESCRIPTOR_SET_PKG,
-																							VulkanResourcePackage.Literals.DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS));
-
 	protected final VkPipeline pipeline;
 
 	private VkPipelineLayout<? super T> vkPipelineLayout;
@@ -48,14 +37,13 @@ public abstract class AbstractVkPipelineAdapter<T extends IVulkanContext> extend
 
 	protected VkPipelineLayout<T> createVkPipelineLayout()
 	{
-		final List<IVkDescriptorSet> descriptorSets = new ArrayList<>();
-		for (final var descriptorSet : pipeline.getLayout())
-		{
-			descriptorSets.add(descriptorSet.adapt(IDescriptorSetAdapter.class));
-		}
-
 		final var pushConstantRanges = pipeline.getPushConstantRanges();
-		return new VkPipelineLayout<>(descriptorSets, pushConstantRanges);
+		final var sets = pipeline.getLayout()
+								 .stream()
+								 .map(set -> set.allocationHandle(IDescriptorSetAllocation.class).get())
+								 .collect(Collectors.toUnmodifiableList());
+
+		return new VkPipelineLayout<>(sets, pushConstantRanges);
 	}
 
 	@Override
@@ -76,13 +64,6 @@ public abstract class AbstractVkPipelineAdapter<T extends IVulkanContext> extend
 		}
 
 		super.recordInternal(context);
-	}
-
-	@Override
-	public void collectDescriptorSets(List<IVkDescriptorSet> collectIn)
-	{
-		DERSCRIPTOR_SET_EXPLORER.streamAdaptNotNull(pipeline, IDescriptorSetAdapter.class)
-								.collect(Collectors.toCollection(() -> collectIn));
 	}
 
 	@Override
