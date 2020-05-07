@@ -9,7 +9,7 @@ import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 @ModelExtender(scope = ComputePipeline.class)
 @Adapter
-public final class ComputePipelineAdapter extends AbstractVkPipelineAdapter<ProcessContext<?>>
+public final class ComputePipelineAdapter extends AbstractVkPipelineAdapter<ProcessContext>
 {
 	private final ComputePipeline pipeline;
 
@@ -22,7 +22,7 @@ public final class ComputePipelineAdapter extends AbstractVkPipelineAdapter<Proc
 	}
 
 	@Override
-	public void allocate(ProcessContext<?> context)
+	public void allocate(ProcessContext context)
 	{
 		super.allocate(context);
 
@@ -37,7 +37,7 @@ public final class ComputePipelineAdapter extends AbstractVkPipelineAdapter<Proc
 	}
 
 	@Override
-	public void free(ProcessContext<?> context)
+	public void free(ProcessContext context)
 	{
 		vkPipeline.free(context);
 		vkPipeline = null;

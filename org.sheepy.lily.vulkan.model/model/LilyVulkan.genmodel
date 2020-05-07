@@ -71,6 +71,7 @@
     <genClasses ecoreClass="compute.ecore#//ComputeProcess">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference compute.ecore#//ComputeProcess/pipelinePkg"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compute.ecore#//ComputeProcess/sourceEngine"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference compute.ecore#//ComputeProcess/configuration"/>
     </genClasses>
     <genClasses ecoreClass="compute.ecore#//ComputePipeline">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compute.ecore#//ComputePipeline/shader"/>
@@ -80,6 +81,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute compute.ecore#//DispatchTask/workgroupCountY"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute compute.ecore#//DispatchTask/workgroupCountZ"/>
     </genClasses>
+    <genClasses ecoreClass="compute.ecore#//ComputeConfiguration"/>
   </genPackages>
   <genPackages prefix="Graphic" basePackage="org.sheepy.lily.vulkan.model.process"
       resource="XMI" extensibleProviderFactory="true" childCreationExtenders="true"
@@ -94,11 +96,16 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicConfiguration/framebufferConfiguration"/>
       <genFeatures createChild="false" propertyDescription="The stage on which we should wait until acquire the next image"
           ecoreFeature="ecore:EAttribute graphic.ecore#//GraphicConfiguration/acquireWaitStage"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicConfiguration/colorDomain"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicConfiguration/surface"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicConfiguration/renderPass"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicConfiguration/imageViews"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//ColorDomain">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//ColorDomain/format"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//ColorDomain/colorSpace"/>
+    </genClasses>
+    <genClasses ecoreClass="graphic.ecore#//PhysicalSurface">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//PhysicalSurface/colorDomain"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//SwapchainConfiguration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//SwapchainConfiguration/requiredSwapImageCount"/>
@@ -108,9 +115,12 @@
       <genFeatures createChild="false" propertyDescription="Will limit FPS, based on VBlank. The engine will prefer using FIFO."
           ecoreFeature="ecore:EAttribute graphic.ecore#//SwapchainConfiguration/acquireWaitForVBlank"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//SwapchainConfiguration/allowingAccessFromCompute"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//SwapchainConfiguration/colorAttachment"/>
     </genClasses>
-    <genClasses ecoreClass="graphic.ecore#//FramebufferConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//FramebufferConfiguration/clearValue"/>
+    <genClasses ecoreClass="graphic.ecore#//FramebufferConfiguration"/>
+    <genClasses ecoreClass="graphic.ecore#//ImageViews"/>
+    <genClasses ecoreClass="graphic.ecore#//RenderPass">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//RenderPass/attachments"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//ImageAttachment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//ImageAttachment/clearValue"/>
@@ -166,11 +176,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Attachment/initialLayout"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Attachment/finalLayout"/>
     </genClasses>
-    <genClasses ecoreClass="graphic.ecore#//SwapImageAttachment"/>
+    <genClasses ecoreClass="graphic.ecore#//SwapImageAttachment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//SwapImageAttachment/clearValue"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="graphic.ecore#//ExtraAttachment"/>
     <genClasses ecoreClass="graphic.ecore#//GraphicProcess">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/configuration"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/colorAttachment"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/attachmentPkg"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicProcess/subpasses"/>
     </genClasses>
@@ -270,7 +281,6 @@
           propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//AbstractProcess/waitFor"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//AbstractProcess/extensionPkg"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="process.ecore#//Configuration"/>
     <genClasses ecoreClass="process.ecore#//PipelinePkg">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//PipelinePkg/pipelines"/>
     </genClasses>
@@ -347,6 +357,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//SwapBindingsTask/task"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//SwapBindingsTask/descriptorSets"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="process.ecore#//ProcessConfiguration"/>
   </genPackages>
   <genPackages prefix="VulkanResource" basePackage="org.sheepy.lily.vulkan.model"
       resource="XMI" extensibleProviderFactory="true" childCreationExtenders="true"

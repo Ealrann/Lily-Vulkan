@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.up.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.DebugUtil;
@@ -18,7 +18,7 @@ import org.sheepy.lily.vulkan.model.resource.Buffer;
 import java.nio.ByteBuffer;
 
 @ModelExtender(scope = Buffer.class)
-@Allocable(context = ExecutionContext.class)
+@Allocation(context = ExecutionContext.class)
 public final class BufferAllocation implements IBufferAllocation
 {
 	private final IBufferBackend bufferBackend;
@@ -27,7 +27,7 @@ public final class BufferAllocation implements IBufferAllocation
 	public BufferAllocation(Buffer buffer, ExecutionContext context)
 	{
 		executionManager = context;
-		final var info = createInfo(context, buffer);
+		final var info = createInfo(buffer);
 		if (!buffer.isHostVisible())
 		{
 			final var bufferBuilder = new GPUBufferBackend.Builder(info, buffer.isKeptMapped());
@@ -99,13 +99,13 @@ public final class BufferAllocation implements IBufferAllocation
 		bufferBackend.unmapMemory(executionManager.getVkDevice());
 	}
 
-	private static BufferInfo createInfo(ExecutionContext context, Buffer buffer)
+	private static BufferInfo createInfo(Buffer buffer)
 	{
 		final var size = buffer.getSize();
 		final int usage = VulkanModelUtil.getEnumeratedFlag(buffer.getUsages());
 		final var keptMapped = buffer.isKeptMapped();
 		final var eInstanceCount = buffer.getInstanceCount();
-		final int instanceCount = InstanceCountUtil.getInstanceCount(context, eInstanceCount);
+		final int instanceCount = InstanceCountUtil.getInstanceCount(buffer, eInstanceCount);
 
 		return new BufferInfo(size, usage, keptMapped, instanceCount);
 	}

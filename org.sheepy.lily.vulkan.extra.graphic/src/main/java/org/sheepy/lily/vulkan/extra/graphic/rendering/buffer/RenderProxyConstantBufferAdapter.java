@@ -4,8 +4,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.notification.INotificationListener;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.resource.buffer.IConstantBufferUpdater;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
@@ -13,13 +12,13 @@ import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import java.nio.ByteBuffer;
 
-@Statefull
-@Adapter(scope = RenderProxyConstantBuffer.class, lazy = false)
+@ModelExtender(scope = RenderProxyConstantBuffer.class)
+@Adapter(lazy = false)
 public class RenderProxyConstantBufferAdapter implements IConstantBufferUpdater
 {
 	private final RenderProxyConstantBuffer proxyConstantBuffer;
 	private final ConstantBuffer nestedConstantBuffer;
-	private final INotificationListener nestedBufferListener = notification -> updateBuffer();
+	private final Runnable nestedBufferListener = this::updateBuffer;
 
 	private IConstantBufferUpdater updater;
 	private ByteBuffer buffer = null;
@@ -36,7 +35,7 @@ public class RenderProxyConstantBufferAdapter implements IConstantBufferUpdater
 	{
 		if (nestedConstantBuffer != null)
 		{
-			nestedConstantBuffer.addListener(nestedBufferListener, VulkanResourcePackage.CONSTANT_BUFFER__DATA);
+			nestedConstantBuffer.listenNoParam(nestedBufferListener, VulkanResourcePackage.CONSTANT_BUFFER__DATA);
 			updater = nestedConstantBuffer.adapt(IConstantBufferUpdater.class);
 		}
 	}
@@ -46,7 +45,7 @@ public class RenderProxyConstantBufferAdapter implements IConstantBufferUpdater
 	{
 		if (nestedConstantBuffer != null)
 		{
-			nestedConstantBuffer.removeListener(nestedBufferListener, VulkanResourcePackage.CONSTANT_BUFFER__DATA);
+			nestedConstantBuffer.sulkNoParam(nestedBufferListener, VulkanResourcePackage.CONSTANT_BUFFER__DATA);
 		}
 
 		disposeBuffer();

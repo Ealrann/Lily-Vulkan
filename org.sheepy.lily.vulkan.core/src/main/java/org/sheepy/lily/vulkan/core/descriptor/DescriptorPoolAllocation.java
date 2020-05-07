@@ -4,10 +4,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorPoolCreateInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.sheepy.lily.core.api.allocation.IAllocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
-import org.sheepy.lily.core.api.allocation.up.annotation.AllocationChild;
-import org.sheepy.lily.core.api.allocation.up.annotation.Dependency;
-import org.sheepy.lily.core.api.allocation.up.annotation.Free;
+import org.sheepy.lily.core.api.allocation.up.annotation.*;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
@@ -19,8 +16,9 @@ import java.util.List;
 import static org.lwjgl.vulkan.VK10.*;
 
 @ModelExtender(scope = DescriptorPool.class)
-@Allocable(context = ExecutionContext.class)
+@Allocation(context = ExecutionContext.class)
 @AllocationChild(features = VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS, type = IDescriptorSetAllocation.class)
+@AllocationDependency(features = VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS, type = IDescriptorSetAllocation.class)
 public final class DescriptorPoolAllocation implements IAllocation
 {
 	private static final String FAILED_TO_CREATE_DESCRIPTOR_POOL = "Failed to create descriptor pool";
@@ -30,7 +28,7 @@ public final class DescriptorPoolAllocation implements IAllocation
 	private boolean hasChanged = false;
 
 	public DescriptorPoolAllocation(ExecutionContext context,
-									@Dependency(features = VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS, type = IDescriptorSetAllocation.class) List<IDescriptorSetAllocation> descriptorSets)
+									@InjectDependency(type = IDescriptorSetAllocation.class) List<IDescriptorSetAllocation> descriptorSets)
 	{
 		final var vkDevice = context.getVkDevice();
 		final int descriptorSetCount = descriptorSets.size();

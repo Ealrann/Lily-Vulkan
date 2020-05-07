@@ -1,17 +1,17 @@
 package org.sheepy.lily.vulkan.extra.graphic.rendering.task;
 
-import static org.lwjgl.vulkan.VK10.vkCmdDrawIndexed;
-
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexProviderAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderIndexedDrawTask;
 
-@Statefull
-@Adapter(scope = RenderIndexedDrawTask.class)
+import static org.lwjgl.vulkan.VK10.vkCmdDrawIndexed;
+
+@ModelExtender(scope = RenderIndexedDrawTask.class)
+@Adapter
 public class RenderIndexedDrawTaskAdapter implements IPipelineTaskAdapter<RenderIndexedDrawTask>
 {
 	private int instanceCount;
@@ -45,12 +45,7 @@ public class RenderIndexedDrawTaskAdapter implements IPipelineTaskAdapter<Render
 		final int firstInstance = 0;
 		final var commandBuffer = ((RecordContext) context).commandBuffer;
 
-		vkCmdDrawIndexed(	commandBuffer,
-							indexCount,
-							instanceCount,
-							firstIndex,
-							vertexOffset,
-							firstInstance);
+		vkCmdDrawIndexed(commandBuffer, indexCount, instanceCount, firstIndex, vertexOffset, firstInstance);
 
 		hasChanged = false;
 	}

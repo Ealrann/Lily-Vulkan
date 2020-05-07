@@ -1,62 +1,43 @@
 package org.sheepy.lily.vulkan.process.execution;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
-import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.execution.ICommandBuffer;
-import org.sheepy.lily.vulkan.core.execution.IExecutionRecorder;
+import org.sheepy.lily.vulkan.core.execution.*;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext.IExecutionIdleListener;
-import org.sheepy.lily.vulkan.core.execution.ISubmission;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.CompositePipeline;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractExecutionRecorder<T extends ExecutionContext> implements IExecutionRecorder<T>,
-																					   IAllocable<T>
+public abstract class AbstractExecutionRecorder implements IExecutionRecorder
 {
-	protected final ICommandBuffer<? super T> commandBuffer;
-	protected final ISubmission<? super T> submission;
-	private final List<IAllocable<? super T>> allocationList;
-
+	protected final AbstractCommandBuffer commandBuffer;
+	protected final Submission submission;
 	protected final int index;
+	private final ProcessContext context;
 
 	private boolean dirty = true;
-	private T context;
 
-	public AbstractExecutionRecorder(ICommandBuffer<? super T> commandBuffer,
-									 ISubmission<? super T> submission,
+	public AbstractExecutionRecorder(AbstractCommandBuffer commandBuffer,
+									 final ProcessContext context,
+									 Submission submission,
 									 int index)
 	{
 		this.commandBuffer = commandBuffer;
+		this.context = context;
 		this.submission = submission;
 		this.index = index;
-
-		allocationList = List.of(commandBuffer, submission);
 	}
 
-	@Override
-	public void configureAllocation(IAllocationConfigurator config, T context)
+	public void free(ExecutionContext context)
 	{
-		config.addChildren(allocationList);
-	}
-
-	@Override
-	public void allocate(T context)
-	{
-		this.context = context;
-	}
-
-	@Override
-	public void free(T context)
-	{
-		this.context = null;
+		commandBuffer.free(context);
+		submission.free();
 	}
 
 	@Override
@@ -139,13 +120,13 @@ public abstract class AbstractExecutionRecorder<T extends ExecutionContext> impl
 	}
 
 	@Override
-	public ICommandBuffer<? super T> getCommandBuffer()
+	public ICommandBuffer getCommandBuffer()
 	{
 		return commandBuffer;
 	}
 
 	@Override
-	public ISubmission<? super T> getSubmission()
+	public ISubmission getSubmission()
 	{
 		return submission;
 	}
@@ -162,6 +143,6 @@ public abstract class AbstractExecutionRecorder<T extends ExecutionContext> impl
 		this.dirty = dirty;
 	}
 
-	protected abstract void recordCommand(T processContext, RecordContext recordContext);
+	protected abstract void recordCommand(ProcessContext processContext, RecordContext recordContext);
 
 }

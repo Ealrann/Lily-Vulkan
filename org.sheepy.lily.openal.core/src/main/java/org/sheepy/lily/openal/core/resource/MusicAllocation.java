@@ -2,7 +2,7 @@ package org.sheepy.lily.openal.core.resource;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.up.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
@@ -28,7 +28,7 @@ import java.util.concurrent.Future;
 import java.util.function.IntFunction;
 
 @ModelExtender(scope = Music.class)
-@Allocable(context = IGameAllocationContext.class)
+@Allocation(context = IGameAllocationContext.class)
 public final class MusicAllocation implements IAudioAllocation
 {
 	private final ByteBuffer encodedBuffer;

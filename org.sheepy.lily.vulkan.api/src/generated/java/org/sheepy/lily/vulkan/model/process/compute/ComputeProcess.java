@@ -17,6 +17,7 @@ import org.sheepy.lily.vulkan.model.process.PipelinePkg;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getSourceEngine <em>Source Engine</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getConfiguration <em>Configuration</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputeProcess()
@@ -68,4 +69,26 @@ public interface ComputeProcess extends AbstractProcess
 	 * @see #getSourceEngine()
 	 * @generated
 	 */
-	void setSourceEngine(IEngine value);} // ComputeProcess
+	void setSourceEngine(IEngine value);
+
+	/**
+	 * Returns the value of the '<em><b>Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Configuration</em>' containment reference.
+	 * @see #setConfiguration(ComputeConfiguration)
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputeProcess_Configuration()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	ComputeConfiguration getConfiguration();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getConfiguration <em>Configuration</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Configuration</em>' containment reference.
+	 * @see #getConfiguration()
+	 * @generated
+	 */
+	void setConfiguration(ComputeConfiguration value);} // ComputeProcess

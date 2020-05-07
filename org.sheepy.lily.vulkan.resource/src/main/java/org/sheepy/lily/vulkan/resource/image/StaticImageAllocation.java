@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.resource.image;
 
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.up.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
@@ -15,7 +15,7 @@ import org.sheepy.lily.vulkan.model.resource.StaticImage;
 import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
 @ModelExtender(scope = StaticImage.class)
-@Allocable(context = ExecutionContext.class)
+@Allocation(context = ExecutionContext.class)
 public class StaticImageAllocation implements IVkImageAllocation
 {
 	private VkImage imageBackend;

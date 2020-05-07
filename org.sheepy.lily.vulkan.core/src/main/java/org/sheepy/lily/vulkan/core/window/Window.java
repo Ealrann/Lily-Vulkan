@@ -31,7 +31,7 @@ public class Window extends Notifier<IWindow.Features> implements IWindow
 	private long ptr;
 	private final String title;
 	private boolean opened = false;
-	private boolean cursorHide = false;
+	private boolean cursorVisible = true;
 
 	private GLFWWindowSizeCallback callback;
 	private GLFWVidMode mode;
@@ -76,7 +76,7 @@ public class Window extends Notifier<IWindow.Features> implements IWindow
 
 		final var size = scene.getSize();
 		ptr = glfwCreateWindow(size.x(), size.y(), title, monitor, 0);
-		hideCursor(cursorHide);
+		setCursorVisible(cursorVisible);
 		callback = new GLFWWindowSizeCallback()
 		{
 			@Override
@@ -198,17 +198,24 @@ public class Window extends Notifier<IWindow.Features> implements IWindow
 	}
 
 	@Override
-	public void hideCursor(boolean hide)
+	public void showCursor(boolean show)
 	{
-		if (hide)
+		cursorVisible = show;
+		if (isOpenned())
 		{
-			cursorHide = true;
-			glfwSetInputMode(ptr, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+			setCursorVisible(show);
+		}
+	}
+
+	private void setCursorVisible(boolean visible)
+	{
+		if (visible)
+		{
+			glfwSetInputMode(ptr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 		}
 		else
 		{
-			cursorHide = false;
-			glfwSetInputMode(ptr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+			glfwSetInputMode(ptr, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 		}
 	}
 

@@ -2,21 +2,26 @@ package org.sheepy.lily.vulkan.process.graphic.frame;
 
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
-import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.core.api.allocation.IAllocation;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.up.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.up.annotation.Free;
+import org.sheepy.lily.core.api.allocation.up.annotation.InjectDependency;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.vulkan.api.graphic.ISwapChainAllocation;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
-import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.api.graphic.ISwapChainManager;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 import org.sheepy.lily.vulkan.process.graphic.frame.util.PresentationModeSelector;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.process.graphic.resource.SwapImageAttachmentAdapter;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
 
@@ -31,44 +36,38 @@ import static org.lwjgl.vulkan.KHRSurface.VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;
 import static org.lwjgl.vulkan.KHRSwapchain.*;
 import static org.lwjgl.vulkan.VK10.*;
 
-public final class SwapChainManager implements ISwapChainManager, IAllocable<GraphicContext>
+@ModelExtender(scope = SwapchainConfiguration.class)
+@Allocation(context = ProcessContext.class)
+@AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE, type = PhysicalSurfaceAllocation.class)
+public final class SwapChainAllocation implements ISwapChainAllocation, IAllocation
 {
 	private static final String FAILED_TO_CREATE_SWAP_CHAIN = "Failed to create swap chain";
+	private static boolean first = true;
 
 	private final SwapImageAttachment swapImageAttachment;
+	private final long swapChainPtr;
+	private final int swapImageCount;
+	private final IntBuffer indices;
 
-	private long swapChainPtr = 0;
-	private IntBuffer indices = null;
-	private boolean first = true;
-	private int swapImageCount = 0;
-
-	public SwapChainManager(SwapImageAttachment swapImageAttachment)
+	public SwapChainAllocation(SwapchainConfiguration configuration,
+							   ProcessContext context,
+							   @InjectDependency(type = PhysicalSurfaceAllocation.class) PhysicalSurfaceAllocation surfaceAllocation)
 	{
-		this.swapImageAttachment = swapImageAttachment;
-	}
+		assert surfaceAllocation.isPresentable();
 
-	@Override
-	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
-	{
-		config.addDependencies(List.of(context.getSurfaceManager()));
-		config.setAllocationCondition(c -> ((IGraphicContext) c).getSurfaceManager().isPresentable());
-	}
+		swapImageAttachment = configuration.getColorAttachment();
 
-	@Override
-	public void allocate(GraphicContext context)
-	{
-		final var pdsManager = context.getSurfaceManager();
-		final var extent = pdsManager.getExtent();
+		final var graphicConfiguration = (GraphicConfiguration) configuration.eContainer();
+		final var extent = surfaceAllocation.getExtent();
 		final var logicalDevice = context.getLogicalDevice();
-		final var configuration = context.getConfiguration();
-		final var swapchainConfiguration = configuration.getSwapchainConfiguration();
+		final var swapchainConfiguration = graphicConfiguration.getSwapchainConfiguration();
 		final var requiredImageCount = swapchainConfiguration.getRequiredSwapImageCount();
 		final var vkDevice = context.getVkDevice();
-		final var capabilities = pdsManager.getCapabilities().vkCapabilities;
-		final var surface = pdsManager.getSurface();
-		final var colorDomain = pdsManager.getColorDomain();
+		final var capabilities = surfaceAllocation.getCapabilities().vkCapabilities;
+		final var surface = surfaceAllocation.getSurface();
+		final var colorDomain = surfaceAllocation.getColorDomain();
 		final var stack = context.stack();
-		final var imageCount = pdsManager.bestSupportedImageCount(requiredImageCount);
+		final var imageCount = surfaceAllocation.bestSupportedImageCount(requiredImageCount);
 		final int swapImageUsage = loadSwapChainUsage(swapchainConfiguration);
 		final int targetPresentMode = selectPresentMode(context, swapchainConfiguration, surface);
 
@@ -76,8 +75,8 @@ public final class SwapChainManager implements ISwapChainManager, IAllocable<Gra
 		createInfo.sType(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR);
 		createInfo.surface(surface.ptr);
 		createInfo.minImageCount(imageCount);
-		createInfo.imageFormat(colorDomain.getFormat().getValue());
-		createInfo.imageColorSpace(colorDomain.getColorSpace().getValue());
+		createInfo.imageFormat(colorDomain.format);
+		createInfo.imageColorSpace(colorDomain.colorSpace);
 		createInfo.imageExtent().width(extent.x());
 		createInfo.imageExtent().height(extent.y());
 		createInfo.imageArrayLayers(1);
@@ -94,6 +93,7 @@ public final class SwapChainManager implements ISwapChainManager, IAllocable<Gra
 		{
 			createInfo.imageSharingMode(VK_SHARING_MODE_EXCLUSIVE);
 			createInfo.pQueueFamilyIndices(null);
+			indices = null;
 		}
 
 		createInfo.preTransform(capabilities.currentTransform());
@@ -117,14 +117,12 @@ public final class SwapChainManager implements ISwapChainManager, IAllocable<Gra
 		}
 	}
 
-	@Override
-	public void free(GraphicContext context)
+	@Free
+	public void free(ProcessContext context)
 	{
 		vkDestroySwapchainKHR(context.getVkDevice(), swapChainPtr, null);
 		swapImageAttachment.adapt(SwapImageAttachmentAdapter.class).free();
 		if (indices != null) MemoryUtil.memFree(indices);
-		swapChainPtr = 0;
-		indices = null;
 	}
 
 	public static IntBuffer allocQueueIndices(LogicalDevice logicalDevice, boolean computeAcces)
@@ -165,7 +163,7 @@ public final class SwapChainManager implements ISwapChainManager, IAllocable<Gra
 		System.out.println(message);
 	}
 
-	private static int selectPresentMode(GraphicContext context,
+	private static int selectPresentMode(ProcessContext context,
 										 SwapchainConfiguration configuration,
 										 VkSurface surface)
 	{
@@ -187,7 +185,7 @@ public final class SwapChainManager implements ISwapChainManager, IAllocable<Gra
 	}
 
 	@Override
-	public long getAddress()
+	public long getPtr()
 	{
 		return swapChainPtr;
 	}

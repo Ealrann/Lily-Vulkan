@@ -61,20 +61,27 @@ public final class EngineBuilder
 		swapchainConfiguration.setAcquireWaitForVBlank(false);
 		swapchainConfiguration.setPresentWhenVBlank(false);
 		swapchainConfiguration.setAllowingAccessFromCompute(true);
+		swapchainConfiguration.setColorAttachment(colorAttachment);
 
 		final var framebufferConfiguration = GraphicFactory.eINSTANCE.createFramebufferConfiguration();
 		final var configuration = GraphicFactory.eINSTANCE.createGraphicConfiguration();
-		configuration.setColorDomain(GraphicFactory.eINSTANCE.createColorDomain());
+		final var surface = GraphicFactory.eINSTANCE.createPhysicalSurface();
+		final var renderPass = GraphicFactory.eINSTANCE.createRenderPass();
+		final var imageViews = GraphicFactory.eINSTANCE.createImageViews();
+		surface.setColorDomain(GraphicFactory.eINSTANCE.createColorDomain());
+
 		configuration.setAcquireWaitStage(EPipelineStage.TRANSFER_BIT);
 		configuration.setSwapchainConfiguration(swapchainConfiguration);
 		configuration.setFramebufferConfiguration(framebufferConfiguration);
+		configuration.setSurface(surface);
+		configuration.setRenderPass(renderPass);
+		configuration.setImageViews(imageViews);
 
 		createComputeProcessPool(sharedResources, sharedDescriptors);
 
 		loadColorAttachment();
 		graphicProcess = GraphicFactory.eINSTANCE.createGraphicProcess();
 		graphicProcess.setConfiguration(configuration);
-		graphicProcess.setColorAttachment(colorAttachment);
 		graphicProcess.setCadence(buildCadence(FRAME_COUNT));
 
 		engine.getProcesses().add(barrierProcess);
@@ -102,6 +109,9 @@ public final class EngineBuilder
 	{
 		lifeProcess = ComputeFactory.eINSTANCE.createComputeProcess();
 		pixelProcess = ComputeFactory.eINSTANCE.createComputeProcess();
+
+		lifeProcess.setConfiguration(ComputeFactory.eINSTANCE.createComputeConfiguration());
+		pixelProcess.setConfiguration(ComputeFactory.eINSTANCE.createComputeConfiguration());
 
 		createBarrierProcess();
 
@@ -196,6 +206,7 @@ public final class EngineBuilder
 	private void createBarrierProcess()
 	{
 		barrierProcess = ComputeFactory.eINSTANCE.createComputeProcess();
+		barrierProcess.setConfiguration(ComputeFactory.eINSTANCE.createComputeConfiguration());
 		barrierProcess.setPipelinePkg(ProcessFactory.eINSTANCE.createPipelinePkg());
 
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();

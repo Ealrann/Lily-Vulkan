@@ -1,10 +1,11 @@
 package org.sheepy.lily.vulkan.core.execution;
 
-import org.sheepy.lily.vulkan.api.process.IProcessContext;
+import org.sheepy.lily.core.api.allocation.IAllocation;
 
 import java.util.List;
 
-public interface IExecutionRecorders<T extends ExecutionContext>
+public interface IExecutionRecorders extends IAllocation
 {
-	List<IExecutionRecorder<? super T>> getRecorders();
+	List<? extends IExecutionRecorder> getRecorders();
+	Integer prepareNextExecution();
 }

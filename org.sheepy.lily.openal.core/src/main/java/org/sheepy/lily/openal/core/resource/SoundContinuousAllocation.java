@@ -1,6 +1,6 @@
 package org.sheepy.lily.openal.core.resource;
 
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.up.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
@@ -18,7 +18,7 @@ import org.sheepy.lily.openal.core.resource.util.RawAudioBuffer;
 import org.sheepy.lily.openal.model.openal.OpenALEngine;
 
 @ModelExtender(scope = SoundContinuous.class)
-@Allocable(context = IGameAllocationContext.class)
+@Allocation(context = IGameAllocationContext.class)
 public final class SoundContinuousAllocation implements IAudioAllocation
 {
 	private final RawAudioBuffer rawAudioBuffer;

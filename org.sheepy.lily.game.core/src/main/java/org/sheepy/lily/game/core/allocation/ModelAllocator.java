@@ -4,8 +4,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.allocation.up.IAllocationContext;
-import org.sheepy.lily.core.api.allocation.up.IAllocationManager;
+import org.sheepy.lily.core.api.allocation.IAllocationContext;
+import org.sheepy.lily.core.api.allocation.IAllocationManager;
 import org.sheepy.lily.core.api.notification.util.ModelObserver;
 import org.sheepy.lily.core.api.notification.util.NotificationUnifier;
 
@@ -15,7 +15,7 @@ import java.util.Deque;
 import java.util.List;
 import java.util.function.Consumer;
 
-public final class ModelAllocator implements IAllocable<org.sheepy.lily.core.api.allocation.IAllocationContext>
+public final class ModelAllocator implements IAllocable<IAllocationContext>
 {
 	private final ILilyEObject root;
 	private final List<ModelObserver> observers;
@@ -42,9 +42,9 @@ public final class ModelAllocator implements IAllocable<org.sheepy.lily.core.api
 	}
 
 	@Override
-	public void free(final org.sheepy.lily.core.api.allocation.IAllocationContext context)
+	public void free(final IAllocationContext context)
 	{
-		free((IAllocationContext) context);
+		freeInternal(context);
 		started = false;
 		for (final var observer : observers)
 		{
@@ -82,9 +82,8 @@ public final class ModelAllocator implements IAllocable<org.sheepy.lily.core.api
 		return res;
 	}
 
-	public void update(final org.sheepy.lily.core.api.allocation.IAllocationContext _context)
+	public void update(final org.sheepy.lily.core.api.allocation.IAllocationContext context)
 	{
-		final var context = (IAllocationContext) _context;
 		while (toFree.isEmpty() == false)
 		{
 			final var object = toFree.removeLast();
@@ -96,7 +95,7 @@ public final class ModelAllocator implements IAllocable<org.sheepy.lily.core.api
 		}
 	}
 
-	private void free(final IAllocationContext context)
+	private void freeInternal(final IAllocationContext context)
 	{
 		while (toFree.isEmpty() == false)
 		{

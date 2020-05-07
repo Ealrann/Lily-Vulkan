@@ -67,8 +67,11 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION: return createGraphicConfiguration();
 			case GraphicPackage.COLOR_DOMAIN: return createColorDomain();
+			case GraphicPackage.PHYSICAL_SURFACE: return createPhysicalSurface();
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION: return createSwapchainConfiguration();
 			case GraphicPackage.FRAMEBUFFER_CONFIGURATION: return createFramebufferConfiguration();
+			case GraphicPackage.IMAGE_VIEWS: return createImageViews();
+			case GraphicPackage.RENDER_PASS: return createRenderPass();
 			case GraphicPackage.IMAGE_ATTACHMENT: return createImageAttachment();
 			case GraphicPackage.DEPTH_ATTACHMENT: return createDepthAttachment();
 			case GraphicPackage.COLOR_ATTACHMENT: return createColorAttachment();
@@ -163,6 +166,18 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	 * @generated
 	 */
 	@Override
+	public PhysicalSurface createPhysicalSurface()
+	{
+		PhysicalSurfaceImpl physicalSurface = new PhysicalSurfaceImpl();
+		return physicalSurface;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public SwapchainConfiguration createSwapchainConfiguration()
 	{
 		SwapchainConfigurationImpl swapchainConfiguration = new SwapchainConfigurationImpl();
@@ -179,6 +194,30 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		FramebufferConfigurationImpl framebufferConfiguration = new FramebufferConfigurationImpl();
 		return framebufferConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ImageViews createImageViews()
+	{
+		ImageViewsImpl imageViews = new ImageViewsImpl();
+		return imageViews;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RenderPass createRenderPass()
+	{
+		RenderPassImpl renderPass = new RenderPassImpl();
+		return renderPass;
 	}
 
 	/**

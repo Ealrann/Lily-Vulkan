@@ -18,8 +18,9 @@ import java.util.List;
 import java.util.function.Consumer;
 
 @ModelExtender(scope = CompositeBuffer.class)
-@Allocable(context = ExecutionContext.class)
+@Allocation(context = ExecutionContext.class)
 @AllocationChild(features = VulkanResourcePackage.COMPOSITE_BUFFER__PARTS, type = BufferPartAllocation.class)
+@AllocationDependency(features = VulkanResourcePackage.COMPOSITE_BUFFER__PARTS, type = BufferPartAllocation.class)
 public final class CompositeBufferAllocation implements ICompositeBufferAllocation
 {
 	private final Consumer<Notification> sizeListener = this::partResized;
@@ -38,7 +39,7 @@ public final class CompositeBufferAllocation implements ICompositeBufferAllocati
 
 	public CompositeBufferAllocation(CompositeBuffer compositeBuffer,
 									 ExecutionContext context,
-									 @Dependency(features = VulkanResourcePackage.COMPOSITE_BUFFER__PARTS, type = BufferPartAllocation.class) List<BufferPartAllocation> partAllocations)
+									 @InjectDependency(type = BufferPartAllocation.class) List<BufferPartAllocation> partAllocations)
 	{
 		this.compositeBuffer = compositeBuffer;
 		this.context = context;

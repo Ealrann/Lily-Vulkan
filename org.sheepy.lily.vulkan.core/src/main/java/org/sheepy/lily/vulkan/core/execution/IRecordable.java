@@ -1,14 +1,14 @@
 package org.sheepy.lily.vulkan.core.execution;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EventListener;
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter.IRecordContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EventListener;
+import java.util.List;
 
 public interface IRecordable
 {
@@ -27,10 +27,7 @@ public interface IRecordable
 
 		private final List<IExecutionIdleListener> listeners = new ArrayList<>();
 
-		public RecordContext(	VkCommandBuffer commandBuffer,
-								ECommandStage stage,
-								int index,
-								MemoryStack stack)
+		public RecordContext(VkCommandBuffer commandBuffer, ECommandStage stage, int index, MemoryStack stack)
 		{
 			this.commandBuffer = commandBuffer;
 			this.stage = stage;

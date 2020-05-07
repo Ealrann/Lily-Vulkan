@@ -6,9 +6,10 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageCopy;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
-import org.sheepy.lily.core.api.allocation.up.annotation.Dependency;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.up.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.up.annotation.Free;
+import org.sheepy.lily.core.api.allocation.up.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
@@ -31,7 +32,9 @@ import java.util.List;
 import static org.lwjgl.vulkan.VK10.*;
 
 @ModelExtender(scope = CompositeImage.class)
-@Allocable(context = ExecutionContext.class)
+@Allocation(context = ExecutionContext.class)
+@AllocationDependency(features = VulkanResourcePackage.COMPOSITE_IMAGE__BACKGROUND, type = IVkImageAllocation.class)
+@AllocationDependency(features = {VulkanResourcePackage.COMPOSITE_IMAGE__INLAYS, VulkanResourcePackage.IMAGE_INLAY__IMAGE}, type = IVkImageAllocation.class)
 public final class CompositeImageAllocation implements IVkImageAllocation
 {
 	private final CompositeImage image;
@@ -42,8 +45,7 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 
 	private CompositeImageAllocation(CompositeImage image,
 									 ExecutionContext context,
-									 @Dependency(features = VulkanResourcePackage.COMPOSITE_IMAGE__BACKGROUND, type = IVkImageAllocation.class) IVkImageAllocation background,
-									 @Dependency(features = {VulkanResourcePackage.COMPOSITE_IMAGE__INLAYS, VulkanResourcePackage.IMAGE_INLAY__IMAGE}, type = IVkImageAllocation.class) List<IVkImageAllocation> inlays)
+									 @InjectDependency(type = IVkImageAllocation.class) IVkImageAllocation background)
 	{
 		this.image = image;
 		this.background = background;
@@ -60,7 +62,7 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 		context.execute(this::assembleImage);
 	}
 
-	private void assembleImage(ExecutionContext context, ICommandBuffer<?> commandBuffer)
+	private void assembleImage(ExecutionContext context, ICommandBuffer commandBuffer)
 	{
 		final var vkBackground = background.getVkImage();
 		final var initialLayout = image.getInitialLayout();

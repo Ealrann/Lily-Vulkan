@@ -2,21 +2,22 @@ package org.sheepy.lily.vulkan.process.compute.execution;
 
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
-import org.sheepy.lily.vulkan.process.compute.process.ComputeContext;
 import org.sheepy.lily.vulkan.process.execution.AbstractExecutionRecorder;
 import org.sheepy.lily.vulkan.process.execution.Submission;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
-public class ComputeExecutionRecorder extends AbstractExecutionRecorder<ComputeContext>
+public class ComputeExecutionRecorder extends AbstractExecutionRecorder
 {
 	public ComputeExecutionRecorder(ComputeCommandBuffer commandBuffer,
-									Submission<? super ComputeContext> submission,
+									final ProcessContext context,
+									Submission submission,
 									int index)
 	{
-		super(commandBuffer, submission, index);
+		super(commandBuffer, context, submission, index);
 	}
 
 	@Override
-	protected void recordCommand(ComputeContext context, RecordContext recordContext)
+	protected void recordCommand(ProcessContext context, RecordContext recordContext)
 	{
 		record((ComputeProcess) context.getProcess(), recordContext);
 	}

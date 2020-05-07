@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation.IMemoryTicket;
@@ -20,7 +20,7 @@ import java.nio.ByteBuffer;
 import java.util.function.Consumer;
 
 @ModelExtender(scope = BufferPart.class)
-@Allocable(context = ExecutionContext.class)
+@Allocation(context = ExecutionContext.class)
 public final class BufferPartAllocation implements IBufferPartAllocation
 {
 	public final BufferDataProvider dataProvider;
@@ -58,7 +58,7 @@ public final class BufferPartAllocation implements IBufferPartAllocation
 		final var physicalDevice = context.getPhysicalDevice();
 
 		final var eInstanceCount = dataProvider.getInstanceCount();
-		instanceCount = InstanceCountUtil.getInstanceCount(context, eInstanceCount);
+		instanceCount = InstanceCountUtil.getInstanceCount(bufferPart, eInstanceCount);
 
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
 		alignment = Math.max(adapter.minAlignment(), physicalDevice.getBufferAlignement(usage));

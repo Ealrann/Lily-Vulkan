@@ -1,25 +1,23 @@
 package org.sheepy.lily.vulkan.process.process;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.sheepy.lily.core.api.allocation.IAllocable;
+import org.sheepy.lily.core.api.adapter.ILilyEObject;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.execution.IExecutionRecorder;
-import org.sheepy.lily.vulkan.core.execution.IExecutionRecorders;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ProcessContext<T extends ProcessContext<T>> extends ExecutionContext implements IProcessContext
+public class ProcessContext extends ExecutionContext implements IProcessContext
 {
 	public final Application application;
 	public final AbstractProcess process;
 
-	protected final List<IAllocable<? super T>> allocationList = new ArrayList<>();
+	protected final List<ILilyEObject> allocationList = new ArrayList<>();
 
 	public ProcessContext(final IVulkanContext vulkanContext,
 						  EQueueType queueType,
@@ -32,7 +30,7 @@ public abstract class ProcessContext<T extends ProcessContext<T>> extends Execut
 		this.application = (Application) EcoreUtil.getRootContainer(process);
 	}
 
-	public List<IAllocable<? super T>> getAllocationChildren()
+	public List<ILilyEObject> getAllocationChildren()
 	{
 		return allocationList;
 	}
@@ -41,7 +39,4 @@ public abstract class ProcessContext<T extends ProcessContext<T>> extends Execut
 	{
 		return process;
 	}
-
-	public abstract IExecutionRecorders<? super T> getExecutionRecorders();
-	public abstract List<IExecutionRecorder<? super T>> getRecorders();
 }

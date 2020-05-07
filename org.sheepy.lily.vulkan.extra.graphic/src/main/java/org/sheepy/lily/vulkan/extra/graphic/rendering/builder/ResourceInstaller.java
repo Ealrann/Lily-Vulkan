@@ -79,7 +79,7 @@ public final class ResourceInstaller<T extends Structure>
 		{
 			final var dSet = VulkanResourceFactory.eINSTANCE.createDescriptorSet();
 			dSet.getDescriptors().addAll(res);
-			pipeline.getDescriptorSetPkg().getDescriptorSets().add(dSet);
+			pipeline.getDescriptorPool().getDescriptorSets().add(dSet);
 			pipeline.getLayout().add(dSet);
 			return dSet;
 		}

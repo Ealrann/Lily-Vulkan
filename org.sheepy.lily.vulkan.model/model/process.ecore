@@ -28,7 +28,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensionPkg" eType="#//ProcessExtensionPkg"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Configuration" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="PipelinePkg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pipelines" upperBound="-1"
         eType="#//AbstractPipeline" containment="true" resolveProxies="false"/>
@@ -149,4 +148,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorSets" lowerBound="1"
         upperBound="-1" eType="ecore:EClass resource.ecore#//DescriptorSet"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessConfiguration" abstract="true"
+      interface="true"/>
 </ecore:EPackage>

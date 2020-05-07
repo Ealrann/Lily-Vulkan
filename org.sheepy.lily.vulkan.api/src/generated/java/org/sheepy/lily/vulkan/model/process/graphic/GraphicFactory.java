@@ -41,6 +41,15 @@ public interface GraphicFactory extends EFactory
 	ColorDomain createColorDomain();
 
 	/**
+	 * Returns a new object of class '<em>Physical Surface</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Physical Surface</em>'.
+	 * @generated
+	 */
+	PhysicalSurface createPhysicalSurface();
+
+	/**
 	 * Returns a new object of class '<em>Swapchain Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,6 +66,24 @@ public interface GraphicFactory extends EFactory
 	 * @generated
 	 */
 	FramebufferConfiguration createFramebufferConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Image Views</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Image Views</em>'.
+	 * @generated
+	 */
+	ImageViews createImageViews();
+
+	/**
+	 * Returns a new object of class '<em>Render Pass</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Render Pass</em>'.
+	 * @generated
+	 */
+	RenderPass createRenderPass();
 
 	/**
 	 * Returns a new object of class '<em>Image Attachment</em>'.

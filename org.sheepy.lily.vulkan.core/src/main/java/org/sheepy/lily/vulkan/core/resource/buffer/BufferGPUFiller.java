@@ -31,10 +31,11 @@ public class BufferGPUFiller
 		context.execute(new ISingleTimeCommand()
 		{
 			@Override
-			public void execute(ExecutionContext context, ICommandBuffer<?> commandBuffer)
+			public void execute(ExecutionContext context, ICommandBuffer commandBuffer)
 			{
 				final var stack = context.stack();
-				fillBuffer(stack, commandBuffer.getVkCommandBuffer(), offset, byteSize);
+				final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
+				fillBuffer(stack, vkCommandBuffer, offset, byteSize);
 			}
 
 			@Override

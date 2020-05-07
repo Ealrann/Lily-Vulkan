@@ -149,6 +149,31 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.PhysicalSurface} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PhysicalSurfaceItemProvider physicalSurfaceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.PhysicalSurface}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPhysicalSurfaceAdapter()
+	{
+		if (physicalSurfaceItemProvider == null)
+		{
+			physicalSurfaceItemProvider = new PhysicalSurfaceItemProvider(this);
+		}
+
+		return physicalSurfaceItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -196,6 +221,56 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		}
 
 		return framebufferConfigurationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.ImageViews} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ImageViewsItemProvider imageViewsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.ImageViews}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createImageViewsAdapter()
+	{
+		if (imageViewsItemProvider == null)
+		{
+			imageViewsItemProvider = new ImageViewsItemProvider(this);
+		}
+
+		return imageViewsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.RenderPass} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RenderPassItemProvider renderPassItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.RenderPass}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRenderPassAdapter()
+	{
+		if (renderPassItemProvider == null)
+		{
+			renderPassItemProvider = new RenderPassItemProvider(this);
+		}
+
+		return renderPassItemProvider;
 	}
 
 	/**

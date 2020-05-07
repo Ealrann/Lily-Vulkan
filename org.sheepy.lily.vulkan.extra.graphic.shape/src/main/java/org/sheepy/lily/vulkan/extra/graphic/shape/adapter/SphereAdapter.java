@@ -3,11 +3,11 @@ package org.sheepy.lily.vulkan.extra.graphic.shape.adapter;
 import org.lwjgl.util.par.ParShapes;
 import org.lwjgl.util.par.ParShapesMesh;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.extra.model.mesh.Sphere;
 
-@Statefull
-@Adapter(scope = Sphere.class)
+@ModelExtender(scope = Sphere.class)
+@Adapter
 public class SphereAdapter extends AbstractShapeMeshAdapter<Sphere>
 {
 	public SphereAdapter(Sphere meshObject)

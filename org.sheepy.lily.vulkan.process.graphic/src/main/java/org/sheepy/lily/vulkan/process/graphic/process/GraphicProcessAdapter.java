@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.process.graphic.process;
 
 import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.core.api.allocation.IRootAllocator;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.resource.ResourceFactory;
@@ -12,9 +11,9 @@ import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.lily.vulkan.process.graphic.present.ImageAcquirer;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
@@ -22,7 +21,7 @@ import java.util.List;
 
 @ModelExtender(scope = GraphicProcess.class)
 @Adapter
-public final class GraphicProcessAdapter extends AbstractProcessAdapter<GraphicContext>
+public final class GraphicProcessAdapter extends AbstractProcessAdapter
 {
 	private static final List<EReference> PIPELINE__FEATURES = List.of(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES,
 																	   GraphicPackage.Literals.SUBPASS__PIPELINE_PKG,
@@ -81,7 +80,6 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<GraphicC
 															  ECommandStage.RENDER,
 															  ECommandStage.POST_RENDER);
 
-	private final ImageAcquirer acquirer = new ImageAcquirer();
 	public final SubpassManager subpassManager;
 
 	public GraphicProcessAdapter(GraphicProcess process)
@@ -111,25 +109,6 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<GraphicC
 	{
 		super.stop(vulkanContext);
 		subpassManager.stop(vulkanContext);
-	}
-
-	@Override
-	protected List<IAllocable<? super GraphicContext>> getExtraAllocables()
-	{
-		return List.of(acquirer);
-	}
-
-	@Override
-	protected GraphicContext createContext(final IVulkanContext vulkanContext)
-	{
-		final var graphicProcess = (GraphicProcess) this.process;
-		return new GraphicContext(vulkanContext, getExecutionQueueType(), isResetAllowed(), graphicProcess);
-	}
-
-	@Override
-	protected Integer prepareNextExecution()
-	{
-		return acquirer.acquireNextImage();
 	}
 
 	@Override
@@ -175,5 +154,11 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter<GraphicC
 		return List.of(DERSCRIPTOR_POOL_FEATURES,
 					   PIPELINE_DERSCRIPTOR_POOL_FEATURES,
 					   COMPOSITE_PIPELINE_DERSCRIPTOR_POOL_FEATURES);
+	}
+
+	@Override
+	protected GraphicConfiguration getProcessConfiguration()
+	{
+		return ((GraphicProcess) process).getConfiguration();
 	}
 }

@@ -1,5 +1,5 @@
 import org.sheepy.lily.core.api.extender.IExtenderProvider;
-import org.sheepy.lily.vulkan.extra.graphic.shape.Adapters;
+import org.sheepy.lily.vulkan.extra.graphic.shape.Extenders;
 
 module org.sheepy.lily.vulkan.extra.graphic.shape
 {
@@ -10,5 +10,5 @@ module org.sheepy.lily.vulkan.extra.graphic.shape
 
 	opens org.sheepy.lily.vulkan.extra.graphic.shape.adapter;
 
-	provides IExtenderProvider with Adapters;
+	provides IExtenderProvider with Extenders;
 }

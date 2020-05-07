@@ -14,6 +14,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 
@@ -94,6 +95,7 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG);
+			childrenFeatures.add(ComputePackage.Literals.COMPUTE_PROCESS__CONFIGURATION);
 		}
 		return childrenFeatures;
 	}
@@ -154,6 +156,7 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 		switch (notification.getFeatureID(ComputeProcess.class))
 		{
 			case ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG:
+			case ComputePackage.COMPUTE_PROCESS__CONFIGURATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -176,6 +179,11 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 			(createChildParameter
 				(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
 				 ProcessFactory.eINSTANCE.createPipelinePkg()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ComputePackage.Literals.COMPUTE_PROCESS__CONFIGURATION,
+				 ComputeFactory.eINSTANCE.createComputeConfiguration()));
 	}
 
 	/**

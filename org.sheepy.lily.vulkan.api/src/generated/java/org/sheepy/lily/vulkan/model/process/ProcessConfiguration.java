@@ -10,10 +10,11 @@ import org.sheepy.lily.core.api.adapter.ILilyEObject;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getConfiguration()
+ * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getProcessConfiguration()
  * @model interface="true" abstract="true"
  * @extends ILilyEObject
  * @generated
  */
-public interface Configuration extends ILilyEObject
-{} // Configuration
+public interface ProcessConfiguration extends ILilyEObject
+{
+} // ProcessConfiguration

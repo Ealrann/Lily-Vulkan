@@ -1,9 +1,8 @@
 package org.sheepy.lily.vulkan.core.resource.attachment;
 
-import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.graphic.ClearInfo;
 
-public interface IDepthAttachmentAllocation<T extends ExecutionContext> extends IExtraAttachmentAllocation<T>
+public interface IDepthAttachmentAllocation extends IExtraAttachmentAllocation
 {
 	@Override
 	default ClearInfo getClearInfos()

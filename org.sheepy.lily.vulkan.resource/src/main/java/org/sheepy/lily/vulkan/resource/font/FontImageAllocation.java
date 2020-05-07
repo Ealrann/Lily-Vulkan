@@ -6,7 +6,7 @@ import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VK10;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.up.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.ui.Font;
@@ -39,7 +39,7 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
 @ModelExtender(scope = FontImage.class)
-@Allocable(context = ExecutionContext.class)
+@Allocation(context = ExecutionContext.class)
 public final class FontImageAllocation implements IFontImageAllocation
 {
 	private static final int BASE_FONTIMAGE_WIDTH = 1024;
@@ -71,7 +71,7 @@ public final class FontImageAllocation implements IFontImageAllocation
 			allocator.allocate(stack);
 		}
 
-		instanceCount = InstanceCountUtil.getInstanceCount(context, fontImage.getInstanceCount());
+		instanceCount = InstanceCountUtil.getInstanceCount(fontImage, fontImage.getInstanceCount());
 
 		images = new VkImage[instanceCount];
 		views = new VkImageView[instanceCount];

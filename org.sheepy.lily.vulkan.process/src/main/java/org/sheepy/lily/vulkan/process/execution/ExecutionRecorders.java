@@ -1,10 +1,6 @@
 package org.sheepy.lily.vulkan.process.execution;
 
-import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.core.execution.IExecutionRecorders;
 import org.sheepy.lily.vulkan.core.resource.ISemaphoreAllocation;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
@@ -13,37 +9,8 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ExecutionRecorders<T extends ExecutionContext> implements IExecutionRecorders<T>, IAllocable<T>
+public abstract class ExecutionRecorders implements IExecutionRecorders
 {
-	private List<IExecutionRecorder<? super T>> recorders;
-	private IAllocationConfigurator allocationConfiguration;
-
-	@Override
-	public void configureAllocation(IAllocationConfigurator config, T context)
-	{
-		this.allocationConfiguration = config;
-	}
-
-	@Override
-	public void allocate(T context)
-	{
-		recorders = List.copyOf(createRecorders(context));
-		allocationConfiguration.addChildren(recorders, true);
-	}
-
-	@Override
-	public void free(T context)
-	{
-		allocationConfiguration.removeChildren(recorders, true);
-		recorders = null;
-	}
-
-	@Override
-	public List<IExecutionRecorder<? super T>> getRecorders()
-	{
-		return recorders != null ? recorders : List.of();
-	}
-
 	protected static List<VkSemaphore> gatherSinalSemaphores(AbstractProcess process)
 	{
 		final var res = new ArrayList<VkSemaphore>();
@@ -72,6 +39,4 @@ public abstract class ExecutionRecorders<T extends ExecutionContext> implements 
 		final var waitStage = semaphore.getWaitStage();
 		return new WaitData(allocation.getVkSemaphore(), waitStage);
 	}
-
-	protected abstract List<? extends IExecutionRecorder<? super T>> createRecorders(T context);
 }

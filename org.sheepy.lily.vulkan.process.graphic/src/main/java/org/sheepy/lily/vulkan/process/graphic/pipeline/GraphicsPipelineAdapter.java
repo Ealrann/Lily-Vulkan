@@ -16,15 +16,15 @@ import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.VkInputStateDescriptor.VkAttributeDescription;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.VkInputStateDescriptor.VkVertexBinding;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractVkPipelineAdapter;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @ModelExtender(scope = GraphicsPipeline.class)
 @Adapter
-public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<GraphicContext>
+public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<ProcessContext>
 {
 	protected final GraphicsPipeline pipeline;
 
@@ -38,10 +38,10 @@ public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<GraphicCo
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, ProcessContext context)
 	{
 		this.config = config;
-		this.config.addDependencies(List.of(context.getRenderPass()));
+//		this.config.addDependencies(List.of(context.getRenderPass()));
 		super.configureAllocation(config, context);
 	}
 
@@ -52,7 +52,7 @@ public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<GraphicCo
 	}
 
 	@Override
-	public void allocate(GraphicContext context)
+	public void allocate(ProcessContext context)
 	{
 		super.allocate(context);
 		final var shaders = pipeline.getShaders();
@@ -60,9 +60,7 @@ public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<GraphicCo
 		final List<VkShaderStage> shaderStages = new ArrayList<>();
 		for (final Shader shader : shaders)
 		{
-			final var shaderStage = shader.allocationHandle(IShaderAllocation.class)
-										  .get()
-										  .getVkShaderStage();
+			final var shaderStage = shader.allocationHandle(IShaderAllocation.class).get().getVkShaderStage();
 			shaderStages.add(shaderStage);
 		}
 
@@ -79,7 +77,7 @@ public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<GraphicCo
 		final var specializationBuffer = specialization != null ? specialization.getData() : null;
 		final int subpassIndex = subpass.getSubpassIndex();
 
-		final VkPipelineLayout<? super GraphicContext> vkPipelineLayout = getVkPipelineLayout();
+		final VkPipelineLayout vkPipelineLayout = getVkPipelineLayout();
 		vkGraphicsPipeline = new VkGraphicsPipeline(vkPipelineLayout,
 													colorBlend,
 													rasterizer,
@@ -95,7 +93,7 @@ public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<GraphicCo
 	}
 
 	@Override
-	public void free(GraphicContext context)
+	public void free(ProcessContext context)
 	{
 		vkGraphicsPipeline.free(context);
 		super.free(context);
@@ -113,8 +111,7 @@ public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<GraphicCo
 
 			for (final var attribute : inputDescriptor.getAttributes())
 			{
-				final var format = attribute.getFormat()
-											.getValue();
+				final var format = attribute.getFormat().getValue();
 				final var offset = attribute.getOffset();
 				attributes.add(new VkAttributeDescription(format, offset));
 			}
@@ -126,7 +123,7 @@ public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<GraphicCo
 	}
 
 	@Override
-	public VkPipeline<GraphicContext> getVkPipeline()
+	public VkPipeline<ProcessContext> getVkPipeline()
 	{
 		return vkGraphicsPipeline;
 	}

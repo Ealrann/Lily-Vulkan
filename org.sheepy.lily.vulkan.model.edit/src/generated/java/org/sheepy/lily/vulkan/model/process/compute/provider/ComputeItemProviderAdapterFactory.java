@@ -146,6 +146,31 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComputeConfigurationItemProvider computeConfigurationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComputeConfigurationAdapter()
+	{
+		if (computeConfigurationItemProvider == null)
+		{
+			computeConfigurationItemProvider = new ComputeConfigurationItemProvider(this);
+		}
+
+		return computeConfigurationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

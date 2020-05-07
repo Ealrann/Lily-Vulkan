@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.extra.graphic.sprite;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.resource.FileResource;
 import org.sheepy.lily.vulkan.extra.api.rendering.IStructureResourceAdapter;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure;
@@ -18,8 +18,8 @@ import org.sheepy.vulkan.model.image.ImageFactory;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Statefull
-@Adapter(scope = SpriteStructure.class)
+@ModelExtender(scope = SpriteStructure.class)
+@Adapter
 public final class SpriteStructureAdapter implements IStructureResourceAdapter
 {
 	private final List<Image> images;

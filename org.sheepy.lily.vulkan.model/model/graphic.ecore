@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="graphic" nsURI="org.sheepy.lily.vulkan.model.process.graphic"
     nsPrefix="graphic">
-  <eClassifiers xsi:type="ecore:EClass" name="GraphicConfiguration" eSuperTypes="process.ecore#//Configuration">
+  <eClassifiers xsi:type="ecore:EClass" name="GraphicConfiguration" eSuperTypes="process.ecore#//ProcessConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="swapchainConfiguration"
         lowerBound="1" eType="#//SwapchainConfiguration" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="framebufferConfiguration"
@@ -14,8 +14,12 @@
         <details key="propertyDescription" value="The stage on which we should wait until acquire the next image"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="colorDomain" lowerBound="1"
-        eType="#//ColorDomain" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="surface" lowerBound="1"
+        eType="#//PhysicalSurface" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="renderPass" lowerBound="1"
+        eType="#//RenderPass" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imageViews" eType="#//ImageViews"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ColorDomain">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" unique="false"
@@ -24,6 +28,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="colorSpace" unique="false"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EColorSpace"
         defaultValueLiteral="SRGB_NONLINEAR_KHR"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PhysicalSurface">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="colorDomain" lowerBound="1"
+        eType="#//ColorDomain" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SwapchainConfiguration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredSwapImageCount"
@@ -46,11 +54,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowingAccessFromCompute"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="colorAttachment" lowerBound="1"
+        eType="#//SwapImageAttachment" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FramebufferConfiguration">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clearValue" unique="false"
-        eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Color4f"
-        defaultValueLiteral="0;0;0;0"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FramebufferConfiguration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ImageViews"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RenderPass">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attachments" upperBound="-1"
+        eType="#//ExtraAttachment"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImageAttachment" eSuperTypes="#//ExtraAttachment">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clearValue" unique="false"
@@ -139,13 +150,15 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="finalLayout" unique="false"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EImageLayout"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SwapImageAttachment" eSuperTypes="#//Attachment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SwapImageAttachment" eSuperTypes="#//Attachment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clearValue" unique="false"
+        eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Color4f"
+        defaultValueLiteral="0;0;0;0"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExtraAttachment" abstract="true" eSuperTypes="#//Attachment"/>
   <eClassifiers xsi:type="ecore:EClass" name="GraphicProcess">
     <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
         eType="#//GraphicConfiguration" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="colorAttachment" lowerBound="1"
-        eType="#//SwapImageAttachment" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentPkg" lowerBound="1"
         eType="#//AttachmentPkg" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subpasses" upperBound="-1"

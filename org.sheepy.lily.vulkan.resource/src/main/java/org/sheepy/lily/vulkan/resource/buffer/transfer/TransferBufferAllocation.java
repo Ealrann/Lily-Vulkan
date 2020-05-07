@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.resource.buffer.transfer;
 
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.up.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
@@ -14,7 +14,7 @@ import org.sheepy.lily.vulkan.resource.buffer.transfer.internal.TransferBufferBa
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 @ModelExtender(scope = TransferBuffer.class)
-@Allocable(context = ExecutionContext.class)
+@Allocation(context = ExecutionContext.class)
 public class TransferBufferAllocation implements InternalTransferBufferAllocation
 {
 	private final TransferBufferBackend backendBuffer;
@@ -24,7 +24,7 @@ public class TransferBufferAllocation implements InternalTransferBufferAllocatio
 	{
 		this.vkDevice = context.getVkDevice();
 		final long size = transferBuffer.getSize();
-		final int instanceCount = InstanceCountUtil.getInstanceCount(context, transferBuffer.getInstanceCount());
+		final int instanceCount = InstanceCountUtil.getInstanceCount(transferBuffer, transferBuffer.getInstanceCount());
 		final boolean usedToPush = transferBuffer.isUsedToPush();
 		final boolean usedToFetch = transferBuffer.isUsedToFetch();
 

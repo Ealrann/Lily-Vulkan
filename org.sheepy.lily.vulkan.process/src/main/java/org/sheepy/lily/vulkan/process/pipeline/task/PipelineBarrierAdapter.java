@@ -26,8 +26,7 @@ import static org.lwjgl.vulkan.VK10.vkCmdPipelineBarrier;
 
 @ModelExtender(scope = PipelineBarrier.class)
 @Adapter
-public class PipelineBarrierAdapter implements IPipelineTaskAdapter<PipelineBarrier>,
-											   IAllocableAdapter<ProcessContext<?>>
+public class PipelineBarrierAdapter implements IPipelineTaskAdapter<PipelineBarrier>, IAllocableAdapter<ProcessContext>
 {
 	private final PipelineBarrier pipelineBarrier;
 	private final int srcStage;
@@ -45,7 +44,7 @@ public class PipelineBarrierAdapter implements IPipelineTaskAdapter<PipelineBarr
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator configurator, ProcessContext<?> context)
+	public void configureAllocation(IAllocationConfigurator configurator, ProcessContext context)
 	{
 		final List<IAllocableAdapter<?>> allocables = new ArrayList<>();
 		final var barriers = pipelineBarrier.getBarriers();
@@ -62,7 +61,7 @@ public class PipelineBarrierAdapter implements IPipelineTaskAdapter<PipelineBarr
 	}
 
 	@Override
-	public void allocate(ProcessContext<?> context)
+	public void allocate(ProcessContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
 		final var srcQueue = pipelineBarrier.getSrcQueue();
@@ -101,7 +100,7 @@ public class PipelineBarrierAdapter implements IPipelineTaskAdapter<PipelineBarr
 	}
 
 	@Override
-	public void free(ProcessContext<?> context)
+	public void free(ProcessContext context)
 	{
 		imageBarrierInfos = null;
 		bufferBarrierInfos = null;

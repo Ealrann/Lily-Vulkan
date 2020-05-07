@@ -196,13 +196,22 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__SOURCE_ENGINE = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PROCESS__CONFIGURATION = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
+	int COMPUTE_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Process</em>' class.
@@ -423,6 +432,34 @@ public interface ComputePackage extends EPackage
 	int DISPATCH_TASK_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeConfigurationImpl <em>Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputeConfigurationImpl
+	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getComputeConfiguration()
+	 * @generated
+	 */
+	int COMPUTE_CONFIGURATION = 3;
+
+	/**
+	 * The number of structural features of the '<em>Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_CONFIGURATION_FEATURE_COUNT = ProcessPackage.PROCESS_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_CONFIGURATION_OPERATION_COUNT = ProcessPackage.PROCESS_CONFIGURATION_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess <em>Process</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -453,6 +490,17 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 */
 	EReference getComputeProcess_SourceEngine();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getConfiguration <em>Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Configuration</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getConfiguration()
+	 * @see #getComputeProcess()
+	 * @generated
+	 */
+	EReference getComputeProcess_Configuration();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline <em>Pipeline</em>}'.
@@ -519,6 +567,16 @@ public interface ComputePackage extends EPackage
 	EAttribute getDispatchTask_WorkgroupCountZ();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration <em>Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Configuration</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration
+	 * @generated
+	 */
+	EClass getComputeConfiguration();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -567,6 +625,14 @@ public interface ComputePackage extends EPackage
 		 * @generated
 		 */
 		EReference COMPUTE_PROCESS__SOURCE_ENGINE = eINSTANCE.getComputeProcess_SourceEngine();
+
+		/**
+		 * The meta object literal for the '<em><b>Configuration</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPUTE_PROCESS__CONFIGURATION = eINSTANCE.getComputeProcess_Configuration();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl <em>Pipeline</em>}' class.
@@ -619,6 +685,16 @@ public interface ComputePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute DISPATCH_TASK__WORKGROUP_COUNT_Z = eINSTANCE.getDispatchTask_WorkgroupCountZ();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeConfigurationImpl <em>Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputeConfigurationImpl
+		 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getComputeConfiguration()
+		 * @generated
+		 */
+		EClass COMPUTE_CONFIGURATION = eINSTANCE.getComputeConfiguration();
 
 	}
 

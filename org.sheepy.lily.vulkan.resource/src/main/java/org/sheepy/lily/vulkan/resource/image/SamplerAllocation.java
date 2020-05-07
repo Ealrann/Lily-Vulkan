@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.resource.image;
 
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.up.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
@@ -10,7 +10,7 @@ import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.resource.image.backend.VkSampler;
 
 @ModelExtender(scope = Sampler.class)
-@Allocable(context = IVulkanContext.class)
+@Allocation(context = IVulkanContext.class)
 public class SamplerAllocation implements ISamplerAllocation
 {
 	private final VkSampler vkSampler;

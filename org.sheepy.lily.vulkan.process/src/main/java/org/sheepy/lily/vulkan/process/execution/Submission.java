@@ -1,78 +1,62 @@
 package org.sheepy.lily.vulkan.process.execution;
 
 import org.lwjgl.PointerBuffer;
+import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.concurrent.VkFence;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.core.execution.ICommandBuffer;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext.IExecutionIdleListener;
 import org.sheepy.lily.vulkan.core.execution.ISubmission;
 import org.sheepy.lily.vulkan.core.util.EVulkanErrorStatus;
 import org.sheepy.lily.vulkan.core.util.Logger;
-import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.vulkan.VK10.*;
 
-public class Submission<T extends ProcessContext<?>> implements ISubmission<T>
+public class Submission implements ISubmission
 {
 	private static final String FENCE_TIMEOUT = "Fence timeout";
-	private static final int TIMEOUT = (int) 60e9;
+	private static final long TIMEOUT = TimeUnit.SECONDS.toNanos(60);
 	private static final String FAILED_SUBMIT = "Failed to submit command buffer";
 
 	public final VkFence fence;
 
-	private final Collection<WaitData> waitSemaphores;
-	private final ICommandBuffer<? super T> commandBuffer;
-	private final List<VkSemaphore> signalSemaphores;
+	private final VkQueue queue;
+	private final VkSubmitInfo submitInfo;
+	private final PointerBuffer pCommandBuffers;
 
-	private VkSubmitInfo submitInfo;
-	private LongBuffer bWaitSemaphores;
-	private IntBuffer waitStages;
-	private PointerBuffer pCommandBuffers;
-	private LongBuffer bSignalSemaphores;
+	private final LongBuffer bWaitSemaphores;
+	private final IntBuffer waitStages;
+	private final LongBuffer bSignalSemaphores;
+
 	private List<IExecutionIdleListener> listeners;
-	private VkQueue queue;
 
-	public Submission(ICommandBuffer<? super T> commandBuffer,
+	public Submission(VkCommandBuffer commandBuffer,
+					  ExecutionContext context,
 					  Collection<WaitData> waitSemaphores,
 					  Collection<VkSemaphore> signalSemaphores,
 					  boolean useFence)
 	{
-		this.commandBuffer = commandBuffer;
-		this.waitSemaphores = List.copyOf(waitSemaphores);
-		this.signalSemaphores = List.copyOf(signalSemaphores);
-
 		if (useFence)
 		{
-			fence = new VkFence(true);
+			fence = new VkFence(context.getVkDevice(), true);
 		}
 		else
 		{
 			fence = null;
 		}
-	}
 
-	@Override
-	public void configureAllocation(IAllocationConfigurator config, T context)
-	{
-		config.addDependencies(List.of(commandBuffer));
-	}
-
-	@Override
-	public void allocate(T context)
-	{
 		queue = context.getQueue().vkQueue;
-		if (fence != null) fence.allocate(context);
 
 		if (waitSemaphores.isEmpty() == false)
 		{
@@ -86,12 +70,22 @@ public class Submission<T extends ProcessContext<?>> implements ISubmission<T>
 			bWaitSemaphores.flip();
 			waitStages.flip();
 		}
+		else
+		{
+			bWaitSemaphores = null;
+			waitStages = null;
+		}
 
 		pCommandBuffers = memAllocPointer(1);
-		pCommandBuffers.put(commandBuffer.getVkCommandBuffer());
+		pCommandBuffers.put(commandBuffer);
 		pCommandBuffers.flip();
 
-		allocSignalSemaphoreBuffer();
+		bSignalSemaphores = memAllocLong(signalSemaphores.size());
+		for (var signalSemaphore : signalSemaphores)
+		{
+			bSignalSemaphores.put(signalSemaphore.getPtr());
+		}
+		bSignalSemaphores.flip();
 
 		submitInfo = VkSubmitInfo.calloc();
 		submitInfo.sType(VK_STRUCTURE_TYPE_SUBMIT_INFO);
@@ -102,40 +96,24 @@ public class Submission<T extends ProcessContext<?>> implements ISubmission<T>
 		submitInfo.pSignalSemaphores(bSignalSemaphores);
 	}
 
-	private void allocSignalSemaphoreBuffer()
+	public void free()
 	{
-		bSignalSemaphores = memAllocLong(signalSemaphores.size());
-		for (int i = 0; i < signalSemaphores.size(); i++)
-		{
-			final var signalSemaphore = signalSemaphores.get(i).getPtr();
-			bSignalSemaphores.put(signalSemaphore);
-		}
-		bSignalSemaphores.flip();
-	}
-
-	@Override
-	public void free(T context)
-	{
-		if (fence != null) fence.free(context);
+		if (fence != null) fence.free();
 
 		memFree(pCommandBuffers);
-		pCommandBuffers = null;
 
 		if (waitStages != null) memFree(waitStages);
 
 		memFree(bSignalSemaphores);
-		bSignalSemaphores = null;
-
 		if (bWaitSemaphores != null) memFree(bWaitSemaphores);
 
 		submitInfo.free();
-		submitInfo = null;
 	}
 
 	@Override
 	public IFenceView submit()
 	{
-		final long fenceId = fence != null ? fence.getId() : 0;
+		final long fenceId = fence != null ? fence.getPtr() : 0;
 
 		waitIdle();
 

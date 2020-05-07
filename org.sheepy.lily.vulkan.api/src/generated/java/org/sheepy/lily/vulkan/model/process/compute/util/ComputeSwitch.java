@@ -17,6 +17,7 @@ import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
+import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.compute.*;
@@ -118,6 +119,14 @@ public class ComputeSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ComputePackage.COMPUTE_CONFIGURATION:
+			{
+				ComputeConfiguration computeConfiguration = (ComputeConfiguration)theEObject;
+				T1 result = caseComputeConfiguration(computeConfiguration);
+				if (result == null) result = caseProcessConfiguration(computeConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -166,6 +175,22 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseDispatchTask(DispatchTask object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseComputeConfiguration(ComputeConfiguration object)
 	{
 		return null;
 	}
@@ -326,6 +351,22 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIPipelineTask(IPipelineTask object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseProcessConfiguration(ProcessConfiguration object)
 	{
 		return null;
 	}

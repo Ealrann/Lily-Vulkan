@@ -6,7 +6,6 @@ import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.util.ModelDependencyInjector;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
@@ -15,14 +14,14 @@ import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.*;
 import org.sheepy.vulkan.model.image.ImageFactory;
 
 import static org.lwjgl.vulkan.VK10.*;
 
 public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<AbstractBlitTask>,
-														 IAllocableAdapter<GraphicContext>
+														 IAllocableAdapter<ProcessContext>
 {
 	private static final int FORMAT = EFormat.R8G8B8A8_UNORM_VALUE;
 	private static final IVkImageBuilder clearTextureBuilder = new VkImageBuilder(1, 1, FORMAT).usage(
@@ -47,7 +46,7 @@ public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<Ab
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, ProcessContext context)
 	{
 		dependencyInjector.start(config);
 	}
@@ -59,9 +58,9 @@ public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<Ab
 	}
 
 	@Override
-	public void allocate(GraphicContext context)
+	public void allocate(ProcessContext context)
 	{
-		final var dstSize = getDtImageSize(context);
+		final var dstSize = getDstImageSize();
 
 		final var srcImage = blitTask.getSrcImage();
 		final var imageAdapter = srcImage.allocationHandle(IVkImageAllocation.class).get();
@@ -142,7 +141,7 @@ public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<Ab
 	}
 
 	@Override
-	public void free(GraphicContext context)
+	public void free(ProcessContext context)
 	{
 		region.free();
 
@@ -156,7 +155,7 @@ public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<Ab
 	@Override
 	public void record(AbstractBlitTask task, IRecordContext context)
 	{
-		final var dstImagePtr = getDstImagePtr(context);
+		final var dstImagePtr = getDstImagePtr(context.index());
 		final var transfertSrc = EImageLayout.TRANSFER_SRC_OPTIMAL_VALUE;
 		final var transfertDst = EImageLayout.TRANSFER_DST_OPTIMAL_VALUE;
 		final int filter = task.getFilter().getValue();
@@ -176,8 +175,8 @@ public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<Ab
 		}
 	}
 
-	protected abstract long getDstImagePtr(IRecordContext context);
-	protected abstract Vector2ic getDtImageSize(final IGraphicContext context);
+	protected abstract long getDstImagePtr(int index);
+	protected abstract Vector2ic getDstImageSize();
 
 	protected static void fillRegion(VkImageBlit region,
 									 final int srcWidth,

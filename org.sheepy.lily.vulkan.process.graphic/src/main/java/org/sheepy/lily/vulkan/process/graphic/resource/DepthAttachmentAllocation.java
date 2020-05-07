@@ -3,8 +3,10 @@ package org.sheepy.lily.vulkan.process.graphic.resource;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.up.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.up.annotation.Free;
+import org.sheepy.lily.core.api.allocation.up.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
@@ -14,49 +16,41 @@ import org.sheepy.lily.vulkan.core.resource.attachment.IDepthAttachmentAllocatio
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
+import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalSurfaceAllocation;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
-import java.util.List;
-
 import static org.lwjgl.vulkan.VK10.*;
 
 @ModelExtender(scope = DepthAttachment.class)
-@Adapter
-public final class DepthAttachmentAllocation implements IDepthAttachmentAllocation<GraphicContext>
+@Allocation(context = ProcessContext.class)
+@AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE}, type = PhysicalSurfaceAllocation.class)
+public final class DepthAttachmentAllocation implements IDepthAttachmentAllocation
 {
 	private final DepthAttachment depthAttachment;
-	private VkImage depthImageBackend;
-	private VkImageView depthImageView;
-	private int depthFormat;
+	private final int depthFormat;
+	private final VkImage depthImageBackend;
+	private final VkImageView depthImageView;
 
-	public DepthAttachmentAllocation(DepthAttachment depthAttachment)
+	public DepthAttachmentAllocation(DepthAttachment depthAttachment,
+									 ProcessContext context,
+									 @InjectDependency(type = PhysicalSurfaceAllocation.class) PhysicalSurfaceAllocation surfaceAllocation)
 	{
 		this.depthAttachment = depthAttachment;
-	}
 
-	@Override
-	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
-	{
-		final var surfaceManager = context.getSurfaceManager();
-		config.addDependencies(List.of(surfaceManager));
-	}
-
-	@Override
-	public void allocate(GraphicContext context)
-	{
 		depthFormat = findDepthFormat(context.getPhysicalDevice());
-		createDepthImage(context);
-		createAndAllocateImageView(context.getLogicalDevice());
+		depthImageBackend = createDepthImage(context, surfaceAllocation);
+		depthImageView = createAndAllocateImageView(context.getLogicalDevice());
 		layoutTransitionOfDepthImage(context);
 	}
 
-	private void createDepthImage(GraphicContext context)
+	private VkImage createDepthImage(ProcessContext context, final PhysicalSurfaceAllocation surfaceAllocation)
 	{
-		final var surfaceManager = context.getSurfaceManager();
-		final var extent = surfaceManager.getExtent();
+		final var extent = surfaceAllocation.getExtent();
 		final int width = extent.x();
 		final int height = extent.y();
 		final int usages = VulkanModelUtil.getEnumeratedFlag(depthAttachment.getUsages()) |
@@ -66,14 +60,16 @@ public final class DepthAttachmentAllocation implements IDepthAttachmentAllocati
 		depthImageBuilder.usage(usages);
 		depthImageBuilder.aspect(VK_IMAGE_ASPECT_DEPTH_BIT);
 
-		depthImageBackend = depthImageBuilder.build(context);
+		return depthImageBuilder.build(context);
 	}
 
-	private void createAndAllocateImageView(LogicalDevice logicalDevice)
+	private VkImageView createAndAllocateImageView(LogicalDevice logicalDevice)
 	{
 		final var device = logicalDevice.getVkDevice();
-		depthImageView = new VkImageView(VK_IMAGE_ASPECT_DEPTH_BIT);
+		final var depthImageView = new VkImageView(VK_IMAGE_ASPECT_DEPTH_BIT);
 		depthImageView.allocate(device, depthImageBackend);
+
+		return depthImageView;
 	}
 
 	private void layoutTransitionOfDepthImage(ExecutionContext context)
@@ -116,8 +112,8 @@ public final class DepthAttachmentAllocation implements IDepthAttachmentAllocati
 												  VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT);
 	}
 
-	@Override
-	public void free(GraphicContext context)
+	@Free
+	public void free(ProcessContext context)
 	{
 		final var device = context.getVkDevice();
 		depthImageView.free(device);

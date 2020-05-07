@@ -13,28 +13,32 @@ import org.sheepy.lily.core.api.util.CompositeModelExplorer;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.game.core.allocation.GenericAllocator;
 import org.sheepy.lily.game.core.allocation.ModelAllocator;
+import org.sheepy.lily.game.core.allocation.ModelStaticAllocator;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.descriptor.DescriptorPoolAllocation;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
+import org.sheepy.lily.vulkan.core.execution.IExecutionRecorder;
+import org.sheepy.lily.vulkan.core.execution.IExecutionRecorders;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
 import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implements InternalProcessAdapter,
-																					 IAllocable<IVulkanContext>
+public abstract class AbstractProcessAdapter implements InternalProcessAdapter, IAllocable<IVulkanContext>
 {
 	protected final AbstractProcess process;
-	protected T context;
+	protected ProcessContext context;
 
-	private final GenericAllocator<T> resourceAllocator;
+	private final ModelStaticAllocator processAllocator;
+	private final GenericAllocator<ProcessContext> resourceAllocator;
 	private final ModelAllocator resourceAllocator2;
 	private final ModelAllocator descriptorPoolAllocator;
-	private final GenericAllocator<T> pipelineAllocator;
+	private final GenericAllocator<ProcessContext> pipelineAllocator;
 	private final CompositeModelExplorer pipelineExplorer;
 
 	protected IAllocationConfigurator config;
@@ -47,6 +51,7 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 		this.process = process;
 
 		final var resourceFeatures = getResourceFeatureLists();
+		processAllocator = new ModelStaticAllocator(getProcessConfiguration());
 		resourceAllocator = new GenericAllocator<>(resourceFeatures);
 		resourceAllocator2 = new ModelAllocator(process, resourceFeatures);
 		descriptorPoolAllocator = new ModelAllocator(process, getDescriptorPoolFeatureLists());
@@ -76,12 +81,11 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 
 		final List<IAllocable<?>> allocationChildren = new ArrayList<>();
 
-		allocationChildren.addAll(this.context.getAllocationChildren());
+		allocationChildren.add(processAllocator);
 		allocationChildren.add(resourceAllocator.getAllocable());
 		allocationChildren.add(resourceAllocator2);
 		allocationChildren.add(descriptorPoolAllocator);
 		allocationChildren.add(pipelineAllocator.getAllocable());
-		allocationChildren.addAll(getExtraAllocables());
 
 		config.addChildren(allocationChildren);
 	}
@@ -99,8 +103,7 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	@Override
 	public void start(final IVulkanContext vulkanContext, final IRootAllocator<IVulkanContext> rootAllocator)
 	{
-		context = createContext(vulkanContext);
-//		resourceAllocator2.start(process, context);
+		context = new ProcessContext(vulkanContext, getExecutionQueueType(), isResetAllowed(), process);
 
 		refreshStructure();
 
@@ -138,12 +141,19 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 		context = null;
 	}
 
+	private List<? extends IExecutionRecorder> getRecorders()
+	{
+		final var recorders = getProcessConfiguration().allocationHandle(IExecutionRecorders.class).get();
+		return recorders.getRecorders();
+	}
+
 	@Override
 	public void checkFence()
 	{
 		if (context != null)
 		{
-			final var recorders = context.getRecorders();
+
+			final var recorders = getRecorders();
 			for (int i = 0; i < recorders.size(); i++)
 			{
 				final var recorder = recorders.get(i);
@@ -188,7 +198,8 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 
 	private Integer acquireNextPlayer()
 	{
-		final Integer next = prepareNextExecution();
+		final var recorders = getProcessConfiguration().allocationHandle(IExecutionRecorders.class).get();
+		final Integer next = recorders.prepareNextExecution();
 
 		if (next != null && next != -1)
 		{
@@ -197,9 +208,7 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 
 		if (process.isWaitingFenceDuringAcquire())
 		{
-			final var recorders = context.getRecorders();
-			final var recorder = recorders.get(next);
-
+			final var recorder = recorders.getRecorders().get(next);
 			recorder.waitIdle();
 		}
 
@@ -208,7 +217,7 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 
 	private IFenceView execute(int next)
 	{
-		final var recorders = context.getRecorders();
+		final var recorders = getRecorders();
 		final var recorder = recorders.get(next);
 
 		if (recorder.isDirty())
@@ -231,7 +240,7 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	@Override
 	public void waitIdle()
 	{
-		final var recorders = context.getRecorders();
+		final var recorders = getRecorders();
 		for (int i = 0; i < recorders.size(); i++)
 		{
 			final var recorder = recorders.get(i);
@@ -285,7 +294,7 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 
 	private void invalidateRecords()
 	{
-		final var records = context.getRecorders();
+		final var records = getRecorders();
 		for (int i = 0; i < records.size(); i++)
 		{
 			records.get(i).setDirty(true);
@@ -296,6 +305,7 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	{
 		refresh();
 		context.beforeChildrenAllocation();
+		processAllocator.update(context);
 		resourceAllocator2.update(context);
 		descriptorPoolAllocator.update(context);
 		context.afterChildrenAllocation();
@@ -355,10 +365,8 @@ public abstract class AbstractProcessAdapter<T extends ProcessContext<T>> implem
 	}
 
 	protected abstract List<List<EReference>> getPipelineFeatureLists();
+	protected abstract ProcessConfiguration getProcessConfiguration();
 	protected abstract List<List<EReference>> getResourceFeatureLists();
 	protected abstract List<List<EReference>> getDescriptorPoolFeatureLists();
-	protected abstract List<IAllocable<? super T>> getExtraAllocables();
-	protected abstract Integer prepareNextExecution();
 	protected abstract List<ECommandStage> getStages();
-	protected abstract T createContext(final IVulkanContext vulkanContext);
 }

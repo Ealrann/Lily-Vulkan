@@ -33,7 +33,7 @@ public final class RenderPipelineBuilder
 		pipeline.setDescriptorPkg(VulkanFactory.eINSTANCE.createDescriptorPkg());
 		pipeline.setTaskPkg(ProcessFactory.eINSTANCE.createTaskPkg());
 		pipeline.setResourcePkg(ResourceFactory.eINSTANCE.createResourcePkg());
-		pipeline.setDescriptorSetPkg(VulkanResourceFactory.eINSTANCE.createDescriptorSetPkg());
+		pipeline.setDescriptorPool(VulkanResourceFactory.eINSTANCE.createDescriptorPool());
 
 		final var specializationData = prepareSpecializationBuffer(index, specialization);
 		final var constantBuffer = VulkanResourceFactory.eINSTANCE.createConstantBuffer();

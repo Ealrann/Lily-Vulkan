@@ -5,56 +5,54 @@ import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.core.graphic.IImageViewManager;
+import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
-
-import java.util.List;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
+import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewAllocation;
+import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalSurfaceAllocation;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 @ModelExtender(scope = BlitToSwapImage.class)
 @Adapter
 public class BlitToSwapImageAdapter extends AbstractBlitTaskAdapter
 {
-	private IImageViewManager imageViewManager;
+	private final GraphicProcess process;
 
 	public BlitToSwapImageAdapter(BlitToSwapImage blitTask)
 	{
 		super(blitTask);
+		this.process = ModelUtil.findParent(blitTask, GraphicProcess.class);
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, ProcessContext context)
 	{
-		final var imageViewManager = context.getImageViewManager();
-		config.addDependencies(List.of(imageViewManager));
+//		final var imageViewManager = context.getImageViewManager();
+//		config.addDependencies(List.of(imageViewManager));
 		super.configureAllocation(config, context);
 	}
 
 	@Override
-	public void allocate(GraphicContext context)
+	protected Vector2ic getDstImageSize()
 	{
-		imageViewManager = context.getImageViewManager();
-		super.allocate(context);
-	}
+		final var extent = process.getConfiguration()
+								  .getSurface()
+								  .allocationHandle(PhysicalSurfaceAllocation.class)
+								  .get()
+								  .getExtent();
 
-	@Override
-	public void free(GraphicContext context)
-	{
-		super.free(context);
-		imageViewManager = null;
-	}
-
-	@Override
-	protected Vector2ic getDtImageSize(final IGraphicContext context)
-	{
-		final var extent = context.getSurfaceManager().getExtent();
 		return new Vector2i(extent.x(), extent.y());
 	}
 
 	@Override
-	protected long getDstImagePtr(final IRecordContext context)
+	protected long getDstImagePtr(int index)
 	{
-		return imageViewManager.getImageViews().get(context.index()).getImagePtr();
+		return process.getConfiguration()
+					  .getImageViews()
+					  .allocationHandle(ImageViewAllocation.class)
+					  .get()
+					  .getImageViews()
+					  .get(index)
+					  .getImagePtr();
 	}
 }

@@ -1,7 +1,8 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
-import org.sheepy.lily.core.api.allocation.up.annotation.Dependency;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.up.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.up.annotation.InjectDependency;
 import org.sheepy.lily.core.api.allocation.up.annotation.UpdateDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
@@ -11,13 +12,14 @@ import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 @ModelExtender(scope = BufferDescriptor.class)
-@Allocable
+@Allocation
+@AllocationDependency(features = VulkanResourcePackage.BUFFER_DESCRIPTOR__BUFFER, type = IBufferAllocation.class)
 public final class BufferDescriptorAllocation implements IDescriptorAllocation
 {
 	private final VkBufferDescriptor vkDescriptor;
 
 	private BufferDescriptorAllocation(BufferDescriptor descriptor,
-									   @Dependency(features = VulkanResourcePackage.BUFFER_DESCRIPTOR__BUFFER, type = IBufferAllocation.class) IBufferAllocation bufferAllocation)
+									   @InjectDependency(type = IBufferAllocation.class) IBufferAllocation bufferAllocation)
 	{
 		vkDescriptor = new VkBufferDescriptor(bufferAllocation.getPtr(),
 											  bufferAllocation.getBindSize(),
@@ -26,7 +28,7 @@ public final class BufferDescriptorAllocation implements IDescriptorAllocation
 											  descriptor.getShaderStages());
 	}
 
-	@UpdateDependency(features = VulkanResourcePackage.BUFFER_DESCRIPTOR__BUFFER)
+	@UpdateDependency(type = IBufferAllocation.class)
 	private void update(IBufferAllocation bufferAdapter)
 	{
 		vkDescriptor.updateBufferPtr(bufferAdapter.getPtr());

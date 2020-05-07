@@ -2,8 +2,9 @@ package org.sheepy.lily.vulkan.process.descriptor;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorPoolSize.Buffer;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
-import org.sheepy.lily.core.api.allocation.up.annotation.Dependency;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.up.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.up.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetAllocation;
@@ -15,13 +16,14 @@ import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import java.util.List;
 
 @ModelExtender(scope = DescriptorSet.class)
-@Allocable
+@Allocation
+@AllocationDependency(features = VulkanResourcePackage.DESCRIPTOR_SET__DESCRIPTORS, type = IDescriptorAllocation.class)
 public final class DescriptorSetAllocation implements IDescriptorSetAllocation
 {
 	private final List<IDescriptorAllocation> descriptors;
 	private final VkDescriptorSet vkDescriptorSet;
 
-	public DescriptorSetAllocation(@Dependency(features = VulkanResourcePackage.DESCRIPTOR_SET__DESCRIPTORS, type = IDescriptorAllocation.class) List<IDescriptorAllocation> descriptorAllocations)
+	public DescriptorSetAllocation(@InjectDependency(type = IDescriptorAllocation.class) List<IDescriptorAllocation> descriptorAllocations)
 	{
 		descriptors = List.copyOf(descriptorAllocations);
 		vkDescriptorSet = new VkDescriptorSet(descriptors);

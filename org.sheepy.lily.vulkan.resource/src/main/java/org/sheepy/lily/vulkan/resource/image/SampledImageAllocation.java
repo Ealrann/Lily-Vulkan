@@ -2,9 +2,10 @@ package org.sheepy.lily.vulkan.resource.image;
 
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
-import org.sheepy.lily.core.api.allocation.up.annotation.Dependency;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.up.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.up.annotation.Free;
+import org.sheepy.lily.core.api.allocation.up.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.resource.ISampledImageAllocation;
@@ -15,7 +16,8 @@ import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.image.backend.VkSampler;
 
 @ModelExtender(scope = SampledImage.class)
-@Allocable(context = IVulkanContext.class)
+@Allocation(context = IVulkanContext.class)
+@AllocationDependency(features = VulkanResourcePackage.SAMPLED_IMAGE__IMAGE, type = IVkImageAllocation.class)
 public class SampledImageAllocation implements ISampledImageAllocation
 {
 	private final IVkImageAllocation imageAdapter;
@@ -23,7 +25,7 @@ public class SampledImageAllocation implements ISampledImageAllocation
 
 	public SampledImageAllocation(SampledImage sampledImage,
 								  IVulkanContext context,
-								  @Dependency(features = VulkanResourcePackage.SAMPLED_IMAGE__IMAGE, type = IVkImageAllocation.class) IVkImageAllocation imageAdapter)
+								  @InjectDependency(type = IVkImageAllocation.class) IVkImageAllocation imageAdapter)
 	{
 		this.imageAdapter = imageAdapter;
 

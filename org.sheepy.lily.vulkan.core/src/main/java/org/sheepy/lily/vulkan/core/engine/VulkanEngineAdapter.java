@@ -250,7 +250,7 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 		for (final VkFence fence : fences)
 		{
-			fence.free(executionContext);
+			fence.free();
 		}
 		allocated = false;
 	}
@@ -278,11 +278,10 @@ public final class VulkanEngineAdapter implements IVulkanEngineAdapter
 	@Override
 	public VkFence newFence(boolean signaled)
 	{
-		final VkFence res = new VkFence(signaled);
-		res.allocate(executionContext);
-
-		fences.add(res);
-		return res;
+		final var vkDevice = executionContext.getVkDevice();
+		final var vkFence = new VkFence(vkDevice, signaled);
+		fences.add(vkFence);
+		return vkFence;
 	}
 
 	public LogicalDevice getLogicalDevice()

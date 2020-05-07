@@ -199,34 +199,6 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS_OPERATION_COUNT = VulkanPackage.IPROCESS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.Configuration
-	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getConfiguration()
-	 * @generated
-	 */
-	int CONFIGURATION = 1;
-
-	/**
-	 * The number of structural features of the '<em>Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURATION_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURATION_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl <em>Pipeline Pkg</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -234,7 +206,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelinePkg()
 	 * @generated
 	 */
-	int PIPELINE_PKG = 2;
+	int PIPELINE_PKG = 1;
 
 	/**
 	 * The feature id for the '<em><b>Pipelines</b></em>' containment reference list.
@@ -271,7 +243,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineTask()
 	 * @generated
 	 */
-	int IPIPELINE_TASK = 3;
+	int IPIPELINE_TASK = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -317,7 +289,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getAbstractPipeline()
 	 * @generated
 	 */
-	int ABSTRACT_PIPELINE = 4;
+	int ABSTRACT_PIPELINE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -372,7 +344,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getTaskPipeline()
 	 * @generated
 	 */
-	int TASK_PIPELINE = 5;
+	int TASK_PIPELINE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -454,7 +426,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getVkPipeline()
 	 * @generated
 	 */
-	int VK_PIPELINE = 6;
+	int VK_PIPELINE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -572,7 +544,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getTaskPkg()
 	 * @generated
 	 */
-	int TASK_PKG = 7;
+	int TASK_PKG = 6;
 
 	/**
 	 * The feature id for the '<em><b>Tasks</b></em>' containment reference list.
@@ -609,7 +581,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipeline()
 	 * @generated
 	 */
-	int PIPELINE = 8;
+	int PIPELINE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -691,7 +663,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getCompositePipeline()
 	 * @generated
 	 */
-	int COMPOSITE_PIPELINE = 9;
+	int COMPOSITE_PIPELINE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -764,7 +736,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBarrier()
 	 * @generated
 	 */
-	int PIPELINE_BARRIER = 10;
+	int PIPELINE_BARRIER = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -864,7 +836,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getCompositeTask()
 	 * @generated
 	 */
-	int COMPOSITE_TASK = 11;
+	int COMPOSITE_TASK = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -937,7 +909,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getBindDescriptorSets()
 	 * @generated
 	 */
-	int BIND_DESCRIPTOR_SETS = 12;
+	int BIND_DESCRIPTOR_SETS = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1001,7 +973,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPushConstant()
 	 * @generated
 	 */
-	int PUSH_CONSTANT = 13;
+	int PUSH_CONSTANT = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1056,7 +1028,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPushConstantBuffer()
 	 * @generated
 	 */
-	int PUSH_CONSTANT_BUFFER = 14;
+	int PUSH_CONSTANT_BUFFER = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1120,7 +1092,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getFlushTransferBufferTask()
 	 * @generated
 	 */
-	int FLUSH_TRANSFER_BUFFER_TASK = 15;
+	int FLUSH_TRANSFER_BUFFER_TASK = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1193,7 +1165,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getCopyBufferTask()
 	 * @generated
 	 */
-	int COPY_BUFFER_TASK = 16;
+	int COPY_BUFFER_TASK = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1275,7 +1247,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIProcessExtension()
 	 * @generated
 	 */
-	int IPROCESS_EXTENSION = 17;
+	int IPROCESS_EXTENSION = 16;
 
 	/**
 	 * The number of structural features of the '<em>IProcess Extension</em>' class.
@@ -1303,7 +1275,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessExtensionPkg()
 	 * @generated
 	 */
-	int PROCESS_EXTENSION_PKG = 18;
+	int PROCESS_EXTENSION_PKG = 17;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1340,7 +1312,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPrepareCompositeTransfer()
 	 * @generated
 	 */
-	int PREPARE_COMPOSITE_TRANSFER = 19;
+	int PREPARE_COMPOSITE_TRANSFER = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1440,7 +1412,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getSwapBindingsTask()
 	 * @generated
 	 */
-	int SWAP_BINDINGS_TASK = 20;
+	int SWAP_BINDINGS_TASK = 19;
 
 	/**
 	 * The feature id for the '<em><b>Task</b></em>' reference.
@@ -1477,6 +1449,34 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int SWAP_BINDINGS_TASK_OPERATION_COUNT = CadencePackage.ICADENCE_TASK_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.ProcessConfiguration <em>Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessConfiguration
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessConfiguration()
+	 * @generated
+	 */
+	int PROCESS_CONFIGURATION = 20;
+
+	/**
+	 * The number of structural features of the '<em>Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_CONFIGURATION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_CONFIGURATION_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
@@ -1553,16 +1553,6 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getAbstractProcess_ExtensionPkg();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Configuration</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.Configuration
-	 * @generated
-	 */
-	EClass getConfiguration();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PipelinePkg <em>Pipeline Pkg</em>}'.
@@ -2195,6 +2185,16 @@ public interface ProcessPackage extends EPackage
 	EReference getSwapBindingsTask_DescriptorSets();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ProcessConfiguration <em>Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Configuration</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessConfiguration
+	 * @generated
+	 */
+	EClass getProcessConfiguration();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2275,16 +2275,6 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference ABSTRACT_PROCESS__EXTENSION_PKG = eINSTANCE.getAbstractProcess_ExtensionPkg();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.Configuration
-		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getConfiguration()
-		 * @generated
-		 */
-		EClass CONFIGURATION = eINSTANCE.getConfiguration();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl <em>Pipeline Pkg</em>}' class.
@@ -2795,6 +2785,16 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference SWAP_BINDINGS_TASK__DESCRIPTOR_SETS = eINSTANCE.getSwapBindingsTask_DescriptorSets();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.ProcessConfiguration <em>Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.ProcessConfiguration
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessConfiguration()
+		 * @generated
+		 */
+		EClass PROCESS_CONFIGURATION = eINSTANCE.getProcessConfiguration();
 
 	}
 

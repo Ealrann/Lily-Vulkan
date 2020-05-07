@@ -20,6 +20,7 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isPresentWhenVBlank <em>Present When VBlank</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isAcquireWaitForVBlank <em>Acquire Wait For VBlank</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#isAllowingAccessFromCompute <em>Allowing Access From Compute</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getColorAttachment <em>Color Attachment</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSwapchainConfiguration()
@@ -134,5 +135,27 @@ public interface SwapchainConfiguration extends ILilyEObject
 	 * @generated
 	 */
 	void setAllowingAccessFromCompute(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Color Attachment</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Color Attachment</em>' containment reference.
+	 * @see #setColorAttachment(SwapImageAttachment)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSwapchainConfiguration_ColorAttachment()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	SwapImageAttachment getColorAttachment();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getColorAttachment <em>Color Attachment</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Color Attachment</em>' containment reference.
+	 * @see #getColorAttachment()
+	 * @generated
+	 */
+	void setColorAttachment(SwapImageAttachment value);
 
 } // SwapchainConfiguration

@@ -182,8 +182,10 @@ public class VulkanInputManager extends Notifier<IInputManager.Features> impleme
 	@Override
 	public void showCursor(boolean show)
 	{
-		final int flag = show ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_HIDDEN;
-		glfwSetInputMode(window.getPtr(), GLFW_CURSOR, flag);
+		if (window != null)
+		{
+			window.showCursor(show);
+		}
 	}
 
 	@Override
@@ -195,8 +197,11 @@ public class VulkanInputManager extends Notifier<IInputManager.Features> impleme
 	@Override
 	public void setCursorPosition(Vector2fc position)
 	{
-		glfwSetCursorPos(window.getPtr(), position.x(), position.y());
-		cursorPosition = new Vector2f(position);
+		if (window != null)
+		{
+			glfwSetCursorPos(window.getPtr(), position.x(), position.y());
+			cursorPosition = new Vector2f(position);
+		}
 	}
 
 	private void fireEvents()

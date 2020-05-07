@@ -105,7 +105,9 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter implem
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION);
-			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__COLOR_DOMAIN);
+			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SURFACE);
+			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__RENDER_PASS);
+			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__IMAGE_VIEWS);
 		}
 		return childrenFeatures;
 	}
@@ -171,7 +173,9 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter implem
 				return;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
 			case GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION:
-			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
+			case GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE:
+			case GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS:
+			case GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -202,8 +206,18 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter implem
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__COLOR_DOMAIN,
-				 GraphicFactory.eINSTANCE.createColorDomain()));
+				(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SURFACE,
+				 GraphicFactory.eINSTANCE.createPhysicalSurface()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__RENDER_PASS,
+				 GraphicFactory.eINSTANCE.createRenderPass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__IMAGE_VIEWS,
+				 GraphicFactory.eINSTANCE.createImageViews()));
 	}
 
 	/**

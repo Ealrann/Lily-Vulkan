@@ -2,48 +2,46 @@ package org.sheepy.lily.vulkan.process.graphic.frame;
 
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
-import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.lwjgl.vulkan.VkPhysicalDevice;
+import org.sheepy.lily.core.api.allocation.IAllocation;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.up.annotation.Dirty;
+import org.sheepy.lily.core.api.allocation.up.annotation.Free;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.game.api.window.IWindow;
-import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.api.graphic.ISurfaceManager;
+import org.sheepy.lily.vulkan.api.graphic.IPhysicalSurfaceAllocation;
+import org.sheepy.lily.vulkan.api.graphic.VkColorDomain;
 import org.sheepy.lily.vulkan.core.device.capabilities.Capabilities;
 import org.sheepy.lily.vulkan.core.device.capabilities.ColorDomains;
-import org.sheepy.lily.vulkan.core.device.capabilities.VkColorDomain;
 import org.sheepy.lily.vulkan.core.execution.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
 import org.sheepy.lily.vulkan.core.window.VkSurface.ISurfaceListener;
 import org.sheepy.lily.vulkan.core.window.Window;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
+import org.sheepy.lily.vulkan.model.process.graphic.PhysicalSurface;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
-public class PhysicalDeviceSurfaceManager implements ISurfaceManager, IAllocable<GraphicContext>
+@ModelExtender(scope = PhysicalSurface.class)
+@Allocation(context = ProcessContext.class)
+public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocation, IAllocation
 {
 	private final Runnable sizeListener = () -> setDirty(true);
 	private final Runnable surfaceDeprecationListener = () -> setDirty(true);
 	private final ISurfaceListener surfaceListener = () -> setDirty(true);
+	private final VkColorDomain colorDomain;
+	private final Vector2ic extent;
 
-	private Capabilities capabilities;
-	private ColorDomains colorDomains;
+	private final Capabilities capabilities;
+	private final VulkanQueue presentQueue;
+	private final VkSurface surface;
 
-	private IAllocationConfigurator allocationConfiguration;
-	private ColorDomain requiredColorDomain;
-	private VulkanQueue presentQueue;
+	private boolean dirty = false;
 
-	private Vector2ic extent;
-	private VkSurface surface;
-
-	@Override
-	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
-	{
-		this.allocationConfiguration = config;
-	}
-
-	@Override
-	public void allocate(GraphicContext context)
+	private PhysicalSurfaceAllocation(PhysicalSurface physicalSurface, ProcessContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
+		final var vkPhysicalDevice = context.getVkPhysicalDevice();
 		final var vkInstance = context.getVkInstance();
 		final var window = context.getWindow();
 		surface = window.createSurface(vkInstance);
@@ -53,14 +51,12 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager, IAllocable
 		window.listenNoParam(sizeListener, IWindow.Features.Size);
 		window.listen(surfaceDeprecationListener, IWindow.Features.SurfaceDeprecated);
 
-		capabilities = new Capabilities(context.getVkPhysicalDevice(), surface);
-		colorDomains = new ColorDomains(context.getVkPhysicalDevice(), surface);
-		extent = updateExtent(window);
-
-		requiredColorDomain = loadColorDomain(context);
+		capabilities = new Capabilities(vkPhysicalDevice, surface);
+		extent = computeExtent(window);
+		colorDomain = loadColorDomain(vkPhysicalDevice, physicalSurface.getColorDomain());
 	}
 
-	private Vector2ic updateExtent(Window window)
+	private Vector2ic computeExtent(Window window)
 	{
 		final var currentExtent = capabilities.vkCapabilities.currentExtent();
 		if (currentExtent.width() == -1 || currentExtent.height() == -1)
@@ -75,22 +71,25 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager, IAllocable
 		}
 	}
 
-	private ColorDomain loadColorDomain(IGraphicContext context)
+	private VkColorDomain loadColorDomain(VkPhysicalDevice device, ColorDomain colorDomain)
 	{
-		final var colorDomain = context.getConfiguration().getColorDomain();
+		final var colorDomains = new ColorDomains(device, surface);
 		final var vkColorDomain = new VkColorDomain(colorDomain.getFormat().getValue(),
 													colorDomain.getColorSpace().getValue());
 
 		if (colorDomains.isColorDomainAvaillable(vkColorDomain) == false)
 		{
 			Logger.log("The desired ColorDomain is not availlable");
+			return colorDomains.get(0);
 		}
-
-		return colorDomain;
+		else
+		{
+			return vkColorDomain;
+		}
 	}
 
-	@Override
-	public void free(GraphicContext context)
+	@Free
+	public void free(ProcessContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
 		final var window = context.getWindow();
@@ -102,9 +101,6 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager, IAllocable
 
 		capabilities.free();
 		surface.free();
-		capabilities = null;
-		surface = null;
-		presentQueue = null;
 	}
 
 	@Override
@@ -137,9 +133,9 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager, IAllocable
 	}
 
 	@Override
-	public ColorDomain getColorDomain()
+	public VkColorDomain getColorDomain()
 	{
-		return requiredColorDomain;
+		return colorDomain;
 	}
 
 	@Override
@@ -158,13 +154,16 @@ public class PhysicalDeviceSurfaceManager implements ISurfaceManager, IAllocable
 		return surface;
 	}
 
+	@Dirty
+	public boolean isDirty()
+	{
+		return dirty;
+	}
+
 	@Override
 	public void setDirty(boolean dirty)
 	{
-		if (allocationConfiguration != null)
-		{
-			allocationConfiguration.setDirty();
-		}
+		this.dirty = dirty;
 	}
 
 	public VulkanQueue getPresentQueue()

@@ -2,73 +2,62 @@ package org.sheepy.lily.vulkan.core.concurrent;
 
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkFenceCreateInfo;
-import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
-import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public class VkFence implements IAllocable<IVulkanContext>, IFenceView, IFence
+public class VkFence implements IFenceView, IFence
 {
-	private final boolean signaledAfterAllocation;
-	private long id;
+	private final VkDevice vkDevice;
+	private final long ptr;
 
-	private boolean used = false;
-	private VkDevice device;
+	private boolean used;
 
-	public VkFence(boolean signaled)
+	public VkFence(VkDevice vkDevice, boolean signaled)
 	{
-		this.signaledAfterAllocation = signaled;
-	}
-
-	@Override
-	public void allocate(IVulkanContext context)
-	{
-		device = context.getVkDevice();
+		this.vkDevice = vkDevice;
 		final VkFenceCreateInfo createInfo = VkFenceCreateInfo.calloc();
 		createInfo.sType(VK_STRUCTURE_TYPE_FENCE_CREATE_INFO);
 		createInfo.pNext(VK_NULL_HANDLE);
-		createInfo.flags(signaledAfterAllocation ? VK_FENCE_CREATE_SIGNALED_BIT : 0);
+		createInfo.flags(signaled ? VK_FENCE_CREATE_SIGNALED_BIT : 0);
 
 		final long[] resArray = new long[1];
-		Logger.check(vkCreateFence(device, createInfo, null, resArray), "Failed to create Fence");
+		Logger.check(vkCreateFence(vkDevice, createInfo, null, resArray), "Failed to create Fence");
 
 		createInfo.free();
-		id = resArray[0];
-		used = signaledAfterAllocation;
+		ptr = resArray[0];
+		used = signaled;
 	}
 
-	@Override
-	public void free(IVulkanContext context)
+	public void free()
 	{
-		vkDestroyFence(device, id, null);
-		id = -1;
+		vkDestroyFence(vkDevice, ptr, null);
 	}
 
 	public boolean waitForSignal(long timeoutNs)
 	{
-		final int res = vkWaitForFences(device, id, true, timeoutNs);
+		final int res = vkWaitForFences(vkDevice, ptr, true, timeoutNs);
 		return res == VK_SUCCESS;
 	}
 
 	@Override
 	public boolean isSignaled()
 	{
-		final int status = vkGetFenceStatus(device, id);
+		final int status = vkGetFenceStatus(vkDevice, ptr);
 		return status == VK_SUCCESS;
 	}
 
 	public void reset()
 	{
-		vkResetFences(device, id);
+		vkResetFences(vkDevice, ptr);
 		used = false;
 	}
 
-	public long getId()
+	public long getPtr()
 	{
-		return id;
+		return ptr;
 	}
 
 	public boolean isUsed()

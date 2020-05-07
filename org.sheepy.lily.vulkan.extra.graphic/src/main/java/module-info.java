@@ -1,5 +1,5 @@
 import org.sheepy.lily.core.api.extender.IExtenderProvider;
-import org.sheepy.lily.vulkan.extra.graphic.Adapters;
+import org.sheepy.lily.vulkan.extra.graphic.Extenders;
 
 module org.sheepy.lily.vulkan.extra.graphic {
 	requires transitive org.sheepy.lily.vulkan.extra.api;
@@ -11,5 +11,5 @@ module org.sheepy.lily.vulkan.extra.graphic {
 	opens org.sheepy.lily.vulkan.extra.graphic.rendering.task;
 	opens org.sheepy.lily.vulkan.extra.graphic.sprite;
 
-	provides IExtenderProvider with Adapters;
+	provides IExtenderProvider with Extenders;
 }

@@ -5,8 +5,8 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.allocation.IAllocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
-import org.sheepy.lily.core.api.allocation.up.annotation.Dependency;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.up.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.up.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
@@ -27,7 +27,7 @@ import static org.lwjgl.system.MemoryUtil.nmemAllocChecked;
 import static org.lwjgl.system.MemoryUtil.nmemFree;
 
 @ModelExtender(scope = NuklearContext.class)
-@Allocable(context = ExecutionContext.class)
+@Allocation(context = ExecutionContext.class)
 public class NuklearContextAllocation implements IAllocation
 {
 	public static final int NULL_TEXTURE_DESCRIPTOR_INDEX = 0;
@@ -62,7 +62,7 @@ public class NuklearContextAllocation implements IAllocation
 
 	public NuklearContextAllocation(NuklearContext nuklearContext,
 									ExecutionContext context,
-									@Dependency(features = NuklearPackage.NUKLEAR_CONTEXT__FONT, type = NuklearFontAllocation.class) NuklearFontAllocation fontAllocation)
+									@AllocationDependency(features = NuklearPackage.NUKLEAR_CONTEXT__FONT, type = NuklearFontAllocation.class) NuklearFontAllocation fontAllocation)
 	{
 		this.nuklearContext = nuklearContext;
 		this.ALLOCATOR = NkAllocator.calloc()

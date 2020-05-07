@@ -17,7 +17,7 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public final class VkPipelineLayout<T extends IVulkanContext> implements IAllocable<T>
+public final class VkPipelineLayout implements IAllocable<IVulkanContext>
 {
 	private static final String CREATION_ERROR = "Failed to create pipeline layout";
 
@@ -33,7 +33,7 @@ public final class VkPipelineLayout<T extends IVulkanContext> implements IAlloca
 	}
 
 	@Override
-	public void allocate(T context)
+	public void allocate(IVulkanContext context)
 	{
 		final var stack = context.stack();
 		final var vkDevice = context.getVkDevice();
@@ -120,7 +120,7 @@ public final class VkPipelineLayout<T extends IVulkanContext> implements IAlloca
 	}
 
 	@Override
-	public void free(T context)
+	public void free(IVulkanContext context)
 	{
 		final var vkDevice = context.getVkDevice();
 		vkDestroyPipelineLayout(vkDevice, pipelineLayout, null);

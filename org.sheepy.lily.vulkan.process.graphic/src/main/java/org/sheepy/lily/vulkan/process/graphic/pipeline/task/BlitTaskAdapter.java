@@ -7,12 +7,11 @@ import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.util.ModelDependencyInjector;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 @ModelExtender(scope = BlitTask.class)
 @Adapter
@@ -31,7 +30,7 @@ public class BlitTaskAdapter extends AbstractBlitTaskAdapter
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, GraphicContext context)
+	public void configureAllocation(IAllocationConfigurator config, ProcessContext context)
 	{
 		super.configureAllocation(config, context);
 		dependencyInjector.start(config);
@@ -44,7 +43,7 @@ public class BlitTaskAdapter extends AbstractBlitTaskAdapter
 	}
 
 	@Override
-	public void allocate(final GraphicContext context)
+	public void allocate(final ProcessContext context)
 	{
 		final var dstImage = blitTask.getDstImage();
 		final var imageAdapter = dstImage.allocationHandle(IVkImageAllocation.class).get();
@@ -54,13 +53,13 @@ public class BlitTaskAdapter extends AbstractBlitTaskAdapter
 	}
 
 	@Override
-	protected long getDstImagePtr(final IRecordContext context)
+	protected long getDstImagePtr(int index)
 	{
 		return dstVkImage.getPtr();
 	}
 
 	@Override
-	protected Vector2ic getDtImageSize(final IGraphicContext context)
+	protected Vector2ic getDstImageSize()
 	{
 		return new Vector2i(dstVkImage.width, dstVkImage.height);
 	}

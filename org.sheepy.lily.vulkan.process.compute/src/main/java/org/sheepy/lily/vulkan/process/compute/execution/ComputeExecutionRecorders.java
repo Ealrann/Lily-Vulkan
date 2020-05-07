@@ -1,15 +1,22 @@
 package org.sheepy.lily.vulkan.process.compute.execution;
 
-import org.sheepy.lily.vulkan.process.compute.process.ComputeContext;
+import org.sheepy.lily.core.api.allocation.IAllocation;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
+import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration;
 import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
 import org.sheepy.lily.vulkan.process.execution.Submission;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.List;
 
-public class ComputeExecutionRecorders extends ExecutionRecorders<ComputeContext>
+@ModelExtender(scope = ComputeConfiguration.class)
+@Allocation(context = ProcessContext.class)
+public final class ComputeExecutionRecorders extends ExecutionRecorders implements IAllocation
 {
-	@Override
-	public List<ComputeExecutionRecorder> createRecorders(ComputeContext context)
+	private final ComputeExecutionRecorder executionRecorder;
+
+	private ComputeExecutionRecorders(ProcessContext context)
 	{
 		final var computeContext = context;
 		final var process = computeContext.getProcess();
@@ -17,11 +24,25 @@ public class ComputeExecutionRecorders extends ExecutionRecorders<ComputeContext
 		final var waitForEmitters = gatherWaitDatas(process);
 		final var signals = gatherSinalSemaphores(process);
 
-		final var commandBuffer = new ComputeCommandBuffer();
-		final var submission = new Submission<>(commandBuffer, waitForEmitters, signals, true);
+		final var commandBuffer = new ComputeCommandBuffer(context);
+		final var submission = new Submission(commandBuffer.getVkCommandBuffer(),
+											  context,
+											  waitForEmitters,
+											  signals,
+											  true);
 
-		final var res = new ComputeExecutionRecorder(commandBuffer, submission, 0);
+		executionRecorder = new ComputeExecutionRecorder(commandBuffer, context, submission, 0);
+	}
 
-		return List.of(res);
+	@Override
+	public Integer prepareNextExecution()
+	{
+		return 0;
+	}
+
+	@Override
+	public List<ComputeExecutionRecorder> getRecorders()
+	{
+		return List.of(executionRecorder);
 	}
 }

@@ -24,7 +24,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
-import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
 import org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl;
 
 /**
@@ -37,7 +36,6 @@ import org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getMaintainer <em>Maintainer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getConfiguration <em>Configuration</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getColorAttachment <em>Color Attachment</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getAttachmentPkg <em>Attachment Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getSubpasses <em>Subpasses</em>}</li>
  * </ul>
@@ -65,16 +63,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * @ordered
 	 */
 	protected GraphicConfiguration configuration;
-
-	/**
-	 * The cached value of the '{@link #getColorAttachment() <em>Color Attachment</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getColorAttachment()
-	 * @generated
-	 * @ordered
-	 */
-	protected SwapImageAttachment colorAttachment;
 
 	/**
 	 * The cached value of the '{@link #getAttachmentPkg() <em>Attachment Pkg</em>}' containment reference.
@@ -244,56 +232,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * @generated
 	 */
 	@Override
-	public SwapImageAttachment getColorAttachment()
-	{
-		return colorAttachment;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetColorAttachment(SwapImageAttachment newColorAttachment, NotificationChain msgs)
-	{
-		SwapImageAttachment oldColorAttachment = colorAttachment;
-		colorAttachment = newColorAttachment;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__COLOR_ATTACHMENT, oldColorAttachment, newColorAttachment);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setColorAttachment(SwapImageAttachment newColorAttachment)
-	{
-		if (newColorAttachment != colorAttachment)
-		{
-			NotificationChain msgs = null;
-			if (colorAttachment != null)
-				msgs = ((InternalEObject)colorAttachment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__COLOR_ATTACHMENT, null, msgs);
-			if (newColorAttachment != null)
-				msgs = ((InternalEObject)newColorAttachment).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__COLOR_ATTACHMENT, null, msgs);
-			msgs = basicSetColorAttachment(newColorAttachment, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__COLOR_ATTACHMENT, newColorAttachment, newColorAttachment));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public AttachmentPkg getAttachmentPkg()
 	{
 		return attachmentPkg;
@@ -386,8 +324,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 				return basicSetMaintainer(null, msgs);
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 				return basicSetConfiguration(null, msgs);
-			case GraphicPackage.GRAPHIC_PROCESS__COLOR_ATTACHMENT:
-				return basicSetColorAttachment(null, msgs);
 			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
 				return basicSetAttachmentPkg(null, msgs);
 			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:
@@ -411,8 +347,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 				return basicGetMaintainer();
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 				return getConfiguration();
-			case GraphicPackage.GRAPHIC_PROCESS__COLOR_ATTACHMENT:
-				return getColorAttachment();
 			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
 				return getAttachmentPkg();
 			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:
@@ -437,9 +371,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 				return;
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 				setConfiguration((GraphicConfiguration)newValue);
-				return;
-			case GraphicPackage.GRAPHIC_PROCESS__COLOR_ATTACHMENT:
-				setColorAttachment((SwapImageAttachment)newValue);
 				return;
 			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
 				setAttachmentPkg((AttachmentPkg)newValue);
@@ -468,9 +399,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 				setConfiguration((GraphicConfiguration)null);
 				return;
-			case GraphicPackage.GRAPHIC_PROCESS__COLOR_ATTACHMENT:
-				setColorAttachment((SwapImageAttachment)null);
-				return;
 			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
 				setAttachmentPkg((AttachmentPkg)null);
 				return;
@@ -495,8 +423,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 				return maintainer != null;
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 				return configuration != null;
-			case GraphicPackage.GRAPHIC_PROCESS__COLOR_ATTACHMENT:
-				return colorAttachment != null;
 			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
 				return attachmentPkg != null;
 			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:

@@ -19,18 +19,6 @@ public class GameAllocationContext implements IGameAllocationContext
 		stackPop();
 	}
 
-	@Override
-	public void preAllocation()
-	{
-		stackPush();
-	}
-
-	@Override
-	public void postAllocation()
-	{
-		stackPop();
-	}
-
 	private MemoryStack stackPush()
 	{
 		assert stack == null;

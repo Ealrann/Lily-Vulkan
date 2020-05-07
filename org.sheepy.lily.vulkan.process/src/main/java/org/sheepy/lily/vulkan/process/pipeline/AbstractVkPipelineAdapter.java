@@ -14,7 +14,7 @@ public abstract class AbstractVkPipelineAdapter<T extends IVulkanContext> extend
 {
 	protected final VkPipeline pipeline;
 
-	private VkPipelineLayout<? super T> vkPipelineLayout;
+	private VkPipelineLayout vkPipelineLayout;
 
 	public AbstractVkPipelineAdapter(VkPipeline pipeline)
 	{
@@ -35,7 +35,7 @@ public abstract class AbstractVkPipelineAdapter<T extends IVulkanContext> extend
 		}
 	}
 
-	protected VkPipelineLayout<T> createVkPipelineLayout()
+	protected VkPipelineLayout createVkPipelineLayout()
 	{
 		final var pushConstantRanges = pipeline.getPushConstantRanges();
 		final var sets = pipeline.getLayout()
@@ -43,7 +43,7 @@ public abstract class AbstractVkPipelineAdapter<T extends IVulkanContext> extend
 								 .map(set -> set.allocationHandle(IDescriptorSetAllocation.class).get())
 								 .collect(Collectors.toUnmodifiableList());
 
-		return new VkPipelineLayout<>(sets, pushConstantRanges);
+		return new VkPipelineLayout(sets, pushConstantRanges);
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public abstract class AbstractVkPipelineAdapter<T extends IVulkanContext> extend
 	}
 
 	@Override
-	public VkPipelineLayout<? super T> getVkPipelineLayout()
+	public VkPipelineLayout getVkPipelineLayout()
 	{
 		return vkPipelineLayout;
 	}

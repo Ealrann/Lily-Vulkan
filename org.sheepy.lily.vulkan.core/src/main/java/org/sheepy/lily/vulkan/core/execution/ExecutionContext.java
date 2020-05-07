@@ -121,7 +121,7 @@ public class ExecutionContext extends GameAllocationContext implements IVulkanCo
 		}
 
 		@Override
-		protected void doExecute(ExecutionContext context, ICommandBuffer<?> commandBuffer)
+		protected void doExecute(ExecutionContext context, ICommandBuffer commandBuffer)
 		{
 			command.execute(context, commandBuffer);
 		}

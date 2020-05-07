@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.resource.shader;
 
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkShaderModuleCreateInfo;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.up.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
@@ -18,7 +18,7 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 import static org.lwjgl.vulkan.VK10.*;
 
 @ModelExtender(scope = Shader.class)
-@Allocable(context = ExecutionContext.class)
+@Allocation(context = ExecutionContext.class)
 public final class ShaderAllocation implements IShaderAllocation
 {
 	private static final String FAILED_TO_CREATE_SHADER = "Failed to create shader";

@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.extra.graphic.rendering.resource;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.extra.api.rendering.IDescriptorProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
@@ -13,7 +14,8 @@ import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-@Adapter(scope = DataDescriptorsProvider.class)
+@ModelExtender(scope = DataDescriptorsProvider.class)
+@Adapter(singleton = true)
 public class DataDescriptorsProviderAdapter implements IDescriptorProviderAdapter
 {
 	@Override

@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.resource.image;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocable;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.up.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
@@ -18,7 +18,7 @@ import org.sheepy.lily.vulkan.resource.image.backend.VkTexture;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
 @ModelExtender(scope = FileImage.class)
-@Allocable(context = ExecutionContext.class)
+@Allocation(context = ExecutionContext.class)
 public class FileImageAllocation implements IVkImageAllocation
 {
 	private final ImageBuffer imageBuffer;

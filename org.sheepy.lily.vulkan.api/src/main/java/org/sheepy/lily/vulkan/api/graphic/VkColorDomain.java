@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.core.device.capabilities;
+package org.sheepy.lily.vulkan.api.graphic;
 
 public final class VkColorDomain
 {
