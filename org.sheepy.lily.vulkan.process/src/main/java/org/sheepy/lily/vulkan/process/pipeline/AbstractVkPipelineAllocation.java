@@ -1,30 +1,28 @@
 package org.sheepy.lily.vulkan.process.pipeline;
 
+import org.sheepy.lily.core.api.allocation.up.annotation.Free;
+import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetAllocation;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
-import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAdapter;
+import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAllocation;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipelineLayout;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.stream.Collectors;
 
-public abstract class AbstractVkPipelineAdapter<T extends IVulkanContext> extends AbstractTaskPipelineAdapter<T> implements
-																												 IVkPipelineAdapter<T>
+public abstract class AbstractVkPipelineAllocation<T extends IVulkanContext> extends AbstractTaskPipelineAllocation implements
+																													IVkPipelineAllocation<T>
 {
 	protected final VkPipeline pipeline;
+	private final VkPipelineLayout vkPipelineLayout;
 
-	private VkPipelineLayout vkPipelineLayout;
-
-	public AbstractVkPipelineAdapter(VkPipeline pipeline)
+	protected AbstractVkPipelineAllocation(VkPipeline pipeline, IObservatoryBuilder observatory, ProcessContext context)
 	{
-		super(pipeline);
+		super(pipeline, observatory);
 		this.pipeline = pipeline;
-	}
 
-	@Override
-	public void allocate(T context)
-	{
 		vkPipelineLayout = createVkPipelineLayout();
 		vkPipelineLayout.allocate(context);
 
@@ -46,8 +44,8 @@ public abstract class AbstractVkPipelineAdapter<T extends IVulkanContext> extend
 		return new VkPipelineLayout(sets, pushConstantRanges);
 	}
 
-	@Override
-	public void free(T context)
+	@Free
+	private void free(T context)
 	{
 		vkPipelineLayout.free(context);
 	}

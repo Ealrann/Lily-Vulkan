@@ -89,9 +89,16 @@ public final class ModelAllocator implements IAllocable<IAllocationContext>
 			final var object = toFree.removeLast();
 			object.adapt(IAllocationManager.class).free(context);
 		}
-		for (var object : objects)
+
+		for (int i = objects.size() - 1; i >= 0; i--)
 		{
-			object.adapt(IAllocationManager.class).maintains(context);
+			final var object = objects.get(i);
+			object.adapt(IAllocationManager.class).cleanup(context);
+		}
+		for (int i = 0; i < objects.size(); i++)
+		{
+			final var object = objects.get(i);
+			object.adapt(IAllocationManager.class).ensureAllocation(context);
 		}
 	}
 

@@ -18,7 +18,7 @@ public final class ImageDescriptorAllocation implements IDescriptorAllocation
 	private final VkImageDescriptor vkDescriptor;
 
 	private ImageDescriptorAllocation(ImageDescriptor descriptor,
-									  @InjectDependency(type = IVkImageAllocation.class) IVkImageAllocation imageAllocation)
+									  @InjectDependency(index = 0) IVkImageAllocation imageAllocation)
 	{
 		this.vkDescriptor = new VkImageDescriptor(imageAllocation.getViewPtr(),
 												  0,
@@ -27,7 +27,7 @@ public final class ImageDescriptorAllocation implements IDescriptorAllocation
 												  descriptor.getShaderStages());
 	}
 
-	@UpdateDependency(type = IVkImageAllocation.class)
+	@UpdateDependency(index = 0)
 	private void updateAllocation(IVkImageAllocation imageAllocation)
 	{
 		vkDescriptor.updateViewPtr(imageAllocation.getViewPtr());

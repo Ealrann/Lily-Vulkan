@@ -39,7 +39,7 @@ public final class ColorAttachmentAllocation implements IExtraAttachmentAllocati
 
 	public ColorAttachmentAllocation(ColorAttachment colorAttachment,
 									 ProcessContext context,
-									 @InjectDependency(type = PhysicalSurfaceAllocation.class) PhysicalSurfaceAllocation surfaceAllocation)
+									 @InjectDependency(index = 0) PhysicalSurfaceAllocation surfaceAllocation)
 	{
 		this.colorAttachment = colorAttachment;
 

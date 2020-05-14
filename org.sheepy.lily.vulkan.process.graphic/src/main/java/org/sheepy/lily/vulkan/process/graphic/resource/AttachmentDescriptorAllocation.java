@@ -21,7 +21,7 @@ public final class AttachmentDescriptorAllocation implements IDescriptorAllocati
 	private final VkImageDescriptor vkDescriptor;
 
 	private AttachmentDescriptorAllocation(AttachmentDescriptor descriptor,
-										   @InjectDependency(type = IVkImageAllocation.class) IVkImageAllocation imageAllocation)
+										   @InjectDependency(index = 0) IVkImageAllocation imageAllocation)
 	{
 		this.vkDescriptor = new VkImageDescriptor(imageAllocation.getViewPtr(),
 												  0,
@@ -30,7 +30,7 @@ public final class AttachmentDescriptorAllocation implements IDescriptorAllocati
 												  descriptor.getShaderStages());
 	}
 
-	@UpdateDependency(type = IVkImageAllocation.class)
+	@UpdateDependency(index = 0)
 	public void updateView(IVkImageAllocation imageAllocation)
 	{
 		vkDescriptor.updateViewPtr(imageAllocation.getViewPtr());

@@ -35,6 +35,7 @@ public class ProcessContext extends ExecutionContext implements IProcessContext
 		return allocationList;
 	}
 
+	@Override
 	public final AbstractProcess getProcess()
 	{
 		return process;

@@ -25,7 +25,7 @@ public class SampledImageAllocation implements ISampledImageAllocation
 
 	public SampledImageAllocation(SampledImage sampledImage,
 								  IVulkanContext context,
-								  @InjectDependency(type = IVkImageAllocation.class) IVkImageAllocation imageAdapter)
+								  @InjectDependency(index = 0) IVkImageAllocation imageAdapter)
 	{
 		this.imageAdapter = imageAdapter;
 

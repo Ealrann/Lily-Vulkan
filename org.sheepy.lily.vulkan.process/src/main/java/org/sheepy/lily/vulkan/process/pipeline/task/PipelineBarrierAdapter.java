@@ -5,6 +5,7 @@ import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.barrier.*;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
@@ -26,7 +27,8 @@ import static org.lwjgl.vulkan.VK10.vkCmdPipelineBarrier;
 
 @ModelExtender(scope = PipelineBarrier.class)
 @Adapter
-public class PipelineBarrierAdapter implements IPipelineTaskAdapter<PipelineBarrier>, IAllocableAdapter<ProcessContext>
+public final class PipelineBarrierAdapter implements IPipelineTaskAdapter<PipelineBarrier>,
+													 IAllocableAdapter<ProcessContext>
 {
 	private final PipelineBarrier pipelineBarrier;
 	private final int srcStage;

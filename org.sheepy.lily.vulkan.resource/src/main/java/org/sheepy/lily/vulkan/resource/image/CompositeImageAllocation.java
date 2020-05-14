@@ -45,7 +45,7 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 
 	private CompositeImageAllocation(CompositeImage image,
 									 ExecutionContext context,
-									 @InjectDependency(type = IVkImageAllocation.class) IVkImageAllocation background)
+									 @InjectDependency(index = 0) IVkImageAllocation background)
 	{
 		this.image = image;
 		this.background = background;

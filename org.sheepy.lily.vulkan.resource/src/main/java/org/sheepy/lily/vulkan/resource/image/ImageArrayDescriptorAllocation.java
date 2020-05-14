@@ -21,7 +21,7 @@ public class ImageArrayDescriptorAllocation implements IDescriptorAllocation
 	private final VkImageArrayDescriptor vkDescriptor;
 
 	public ImageArrayDescriptorAllocation(ImageArrayDescriptor descriptor,
-										  @InjectDependency(type = IVkImageAllocation.class) List<IVkImageAllocation> imageAllocations)
+										  @InjectDependency(index = 0) List<IVkImageAllocation> imageAllocations)
 	{
 		final var images = descriptor.getImages();
 		final var initialLayout = descriptor.getInitialLayout();

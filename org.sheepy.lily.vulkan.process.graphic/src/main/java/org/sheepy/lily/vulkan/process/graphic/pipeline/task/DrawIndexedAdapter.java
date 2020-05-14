@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed;
@@ -22,11 +23,6 @@ public class DrawIndexedAdapter implements IPipelineTaskAdapter<DrawIndexed>
 		final int firstInstance = task.getFirstInstance();
 		final var commandBuffer = ((RecordContext) context).commandBuffer;
 
-		vkCmdDrawIndexed(	commandBuffer,
-							indexCount,
-							instanceCount,
-							firstIndex,
-							vertexOffset,
-							firstInstance);
+		vkCmdDrawIndexed(commandBuffer, indexCount, instanceCount, firstIndex, vertexOffset, firstInstance);
 	}
 }

@@ -19,8 +19,8 @@ import static org.lwjgl.vulkan.VK10.vkDestroyRenderPass;
 @ModelExtender(scope = RenderPass.class)
 @Allocation(context = ProcessContext.class)
 @AllocationChild(features = GraphicPackage.RENDER_PASS__ATTACHMENTS, type = IExtraAttachmentAllocation.class)
-@AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION, type = SwapChainAllocation.class)
 @AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE, type = PhysicalSurfaceAllocation.class)
+@AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION, type = SwapChainAllocation.class)
 @AllocationDependency(features = GraphicPackage.RENDER_PASS__ATTACHMENTS, type = IExtraAttachmentAllocation.class)
 public final class RenderPassAllocation implements IRenderPass, IAllocation
 {
@@ -30,8 +30,8 @@ public final class RenderPassAllocation implements IRenderPass, IAllocation
 
 	private RenderPassAllocation(RenderPass renderPass,
 								 ProcessContext context,
-								 @InjectDependency(type = PhysicalSurfaceAllocation.class) PhysicalSurfaceAllocation surfaceAllocation,
-								 @InjectDependency(type = IExtraAttachmentAllocation.class) List<IExtraAttachmentAllocation> attachmentAllocations)
+								 @InjectDependency(index = 0) PhysicalSurfaceAllocation surfaceAllocation,
+								 @InjectDependency(index = 2) List<IExtraAttachmentAllocation> attachmentAllocations)
 	{
 		final var stack = context.stack();
 		final var format = surfaceAllocation.getColorDomain().format;

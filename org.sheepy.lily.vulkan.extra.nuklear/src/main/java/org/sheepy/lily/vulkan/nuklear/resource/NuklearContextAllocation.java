@@ -8,6 +8,7 @@ import org.sheepy.lily.core.api.allocation.IAllocation;
 import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.up.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.up.annotation.Free;
+import org.sheepy.lily.core.api.allocation.up.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
@@ -28,6 +29,7 @@ import static org.lwjgl.system.MemoryUtil.nmemFree;
 
 @ModelExtender(scope = NuklearContext.class)
 @Allocation(context = ExecutionContext.class)
+@AllocationDependency(features = NuklearPackage.NUKLEAR_CONTEXT__FONT, type = NuklearFontAllocation.class)
 public class NuklearContextAllocation implements IAllocation
 {
 	public static final int NULL_TEXTURE_DESCRIPTOR_INDEX = 0;
@@ -62,7 +64,7 @@ public class NuklearContextAllocation implements IAllocation
 
 	public NuklearContextAllocation(NuklearContext nuklearContext,
 									ExecutionContext context,
-									@AllocationDependency(features = NuklearPackage.NUKLEAR_CONTEXT__FONT, type = NuklearFontAllocation.class) NuklearFontAllocation fontAllocation)
+									@InjectDependency(type = NuklearFontAllocation.class) NuklearFontAllocation fontAllocation)
 	{
 		this.nuklearContext = nuklearContext;
 		this.ALLOCATOR = NkAllocator.calloc()

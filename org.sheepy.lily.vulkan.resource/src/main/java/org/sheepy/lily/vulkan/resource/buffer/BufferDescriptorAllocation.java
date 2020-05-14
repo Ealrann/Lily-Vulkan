@@ -19,7 +19,7 @@ public final class BufferDescriptorAllocation implements IDescriptorAllocation
 	private final VkBufferDescriptor vkDescriptor;
 
 	private BufferDescriptorAllocation(BufferDescriptor descriptor,
-									   @InjectDependency(type = IBufferAllocation.class) IBufferAllocation bufferAllocation)
+									   @InjectDependency(index = 0) IBufferAllocation bufferAllocation)
 	{
 		vkDescriptor = new VkBufferDescriptor(bufferAllocation.getPtr(),
 											  bufferAllocation.getBindSize(),
@@ -28,7 +28,7 @@ public final class BufferDescriptorAllocation implements IDescriptorAllocation
 											  descriptor.getShaderStages());
 	}
 
-	@UpdateDependency(type = IBufferAllocation.class)
+	@UpdateDependency(index = 0)
 	private void update(IBufferAllocation bufferAdapter)
 	{
 		vkDescriptor.updateBufferPtr(bufferAdapter.getPtr());

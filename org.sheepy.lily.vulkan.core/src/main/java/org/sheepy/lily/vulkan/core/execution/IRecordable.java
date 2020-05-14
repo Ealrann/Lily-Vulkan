@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.core.execution;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter.IRecordContext;
+import org.sheepy.lily.vulkan.api.execution.IRecordContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.ArrayList;
@@ -17,6 +17,10 @@ public interface IRecordable
 	boolean shouldRecord(ECommandStage stage);
 	boolean isActive();
 	boolean isRecordNeeded(int index);
+
+	default void update(int index)
+	{
+	}
 
 	final class RecordContext implements IRecordContext
 	{

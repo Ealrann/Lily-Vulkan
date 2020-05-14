@@ -23,7 +23,7 @@ public final class DescriptorSetAllocation implements IDescriptorSetAllocation
 	private final List<IDescriptorAllocation> descriptors;
 	private final VkDescriptorSet vkDescriptorSet;
 
-	public DescriptorSetAllocation(@InjectDependency(type = IDescriptorAllocation.class) List<IDescriptorAllocation> descriptorAllocations)
+	public DescriptorSetAllocation(@InjectDependency(index = 0) List<IDescriptorAllocation> descriptorAllocations)
 	{
 		descriptors = List.copyOf(descriptorAllocations);
 		vkDescriptorSet = new VkDescriptorSet(descriptors);

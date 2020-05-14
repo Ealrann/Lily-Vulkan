@@ -1,11 +1,11 @@
 package org.sheepy.lily.vulkan.core.resource.buffer;
 
-import java.util.function.Consumer;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter.IRecordContext;
+import org.sheepy.lily.vulkan.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation;
+
+import java.util.function.Consumer;
 
 public interface InternalTransferBufferAllocation extends ITransferBufferAllocation
 {

@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.pipeline.task;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation;
 import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation.IFlushRecorder;

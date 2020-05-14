@@ -5,10 +5,10 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAllocation;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
-import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAdapter;
+import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAllocation;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
@@ -19,7 +19,7 @@ import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
 
 @ModelExtender(scope = NuklearPushConstants.class)
 @Adapter
-public class NuklearPushConstantsAdapter implements IPipelineTaskAdapter<NuklearPushConstants>
+public class NuklearPushConstantsAdapter implements IPipelineTaskAllocation<NuklearPushConstants>
 {
 	public static final int STAGE_FLAGS = EShaderStage.VERTEX_BIT_VALUE | EShaderStage.FRAGMENT_BIT_VALUE;
 	public static final int SIZE = 16 * 4 + 4;
@@ -40,7 +40,7 @@ public class NuklearPushConstantsAdapter implements IPipelineTaskAdapter<Nuklear
 	public void record(NuklearPushConstants pushConstant, IRecordContext context)
 	{
 		final var pipeline = ModelUtil.findParent(pushConstant, AbstractPipeline.class);
-		final var pipelineAdapter = pipeline.<IVkPipelineAdapter<?>>adaptNotNullGeneric(IPipelineAdapter.class);
+		final var pipelineAdapter = pipeline.<IVkPipelineAllocation<?>>adaptNotNullGeneric(IPipelineAdapter.class);
 		final long layoutId = pipelineAdapter.getVkPipelineLayout().getId();
 		final var commandBuffer = ((RecordContext) context).commandBuffer;
 

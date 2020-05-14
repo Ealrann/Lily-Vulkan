@@ -6,6 +6,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
+import org.sheepy.lily.vulkan.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
@@ -45,12 +46,8 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 	@Override
 	public void record(CopyBufferTask task, IRecordContext context)
 	{
-		final var srcBufferAllocation = task.getSrcBuffer()
-											.allocationHandle(IBufferAllocation.class)
-											.get();
-		final var dstBufferAllocation = task.getDstBuffer()
-											.allocationHandle(IBufferAllocation.class)
-											.get();
+		final var srcBufferAllocation = task.getSrcBuffer().allocationHandle(IBufferAllocation.class).get();
+		final var dstBufferAllocation = task.getDstBuffer().allocationHandle(IBufferAllocation.class).get();
 		if (dirty)
 		{
 			update(srcBufferAllocation, dstBufferAllocation);
@@ -59,8 +56,7 @@ public final class CopyBufferTaskAdapter implements IPipelineTaskAdapter<CopyBuf
 		final var commandBuffer = ((RecordContext) context).commandBuffer;
 		final var scrPtr = srcBufferAllocation.getPtr();
 		final var dstPtr = dstBufferAllocation.getPtr();
-		final var srcBufferAdapter = srcBuffer.allocationHandle(IBufferAllocation.class)
-											  .get();
+		final var srcBufferAdapter = srcBuffer.allocationHandle(IBufferAllocation.class).get();
 
 		srcBufferAdapter.flush();
 		vkCmdCopyBuffer(commandBuffer, scrPtr, dstPtr, copyInfo);

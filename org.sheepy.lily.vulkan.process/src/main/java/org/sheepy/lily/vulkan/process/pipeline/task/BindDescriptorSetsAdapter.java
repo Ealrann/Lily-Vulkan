@@ -5,11 +5,11 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
+import org.sheepy.lily.vulkan.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetAllocation;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
-import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAdapter;
+import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAllocation;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -32,7 +32,7 @@ public final class BindDescriptorSetsAdapter implements IPipelineTaskAdapter<Bin
 	public void record(BindDescriptorSets task, IRecordContext context)
 	{
 		final var pipeline = ModelUtil.findParent(task, AbstractPipeline.class);
-		final var pipelineAdapter = pipeline.<IVkPipelineAdapter<?>>adaptNotNullGeneric(IPipelineAdapter.class);
+		final var pipelineAdapter = pipeline.allocationHandle(IVkPipelineAllocation.class).get();
 		final var pipelineLayout = pipelineAdapter.getVkPipelineLayout();
 		final int bindPoint = task.getBindPoint().getValue();
 		final var commandBuffer = ((RecordContext) context).commandBuffer;

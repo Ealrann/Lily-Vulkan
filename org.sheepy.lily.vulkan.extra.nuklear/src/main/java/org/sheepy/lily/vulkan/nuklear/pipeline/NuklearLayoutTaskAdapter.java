@@ -11,9 +11,11 @@ import org.sheepy.lily.core.model.ui.IPanel;
 import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.game.api.window.IWindow;
-import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.api.graphic.IPhysicalSurfaceAllocation;
+import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAllocation;
+import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.nuklear.pipeline.layout.LayoutManager;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAllocation;
@@ -28,15 +30,15 @@ import java.util.function.Consumer;
 
 @ModelExtender(scope = NuklearLayoutTask.class)
 @Adapter(lazy = false)
-public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<NuklearLayoutTask>,
-													   IAllocableAdapter<IGraphicContext>
+public final class NuklearLayoutTaskAdapter implements IPipelineTaskAllocation<NuklearLayoutTask>,
+													   IAllocableAdapter<IProcessContext>
 {
 	private final NuklearLayoutTask task;
 	private final Consumer<Vector2ic> resizeListener = this::onResize;
 	private final LayoutManager layoutManager;
 	private final List<IPanelAdapter> panelAdapters = new ArrayList<>();
 
-	private IGraphicContext context;
+	private IProcessContext context;
 	private ELayoutRequest layoutRequested = ELayoutRequest.None;
 	private IWindow window;
 
@@ -79,7 +81,7 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 	}
 
 	@Override
-	public void allocate(IGraphicContext context)
+	public void allocate(IProcessContext context)
 	{
 		this.context = context;
 		window = context.getWindow();
@@ -88,7 +90,7 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 	}
 
 	@Override
-	public void free(IGraphicContext context)
+	public void free(IProcessContext context)
 	{
 		window.sulk(resizeListener, IWindow.Features.Size);
 		this.context = null;
@@ -121,7 +123,9 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAdapter<Nukl
 		final var fontAllocation = font.allocationHandle(NuklearFontAllocation.class).get();
 		final var defaultFont = fontAdapter.defaultFont;
 		final var fontMap = fontAllocation.fontMap;
-		final var extent = context.getSurfaceManager().getExtent();
+		final var surface = ((GraphicProcess) context.getProcess()).getConfiguration().getSurface();
+		final var surfaceAllocation = surface.allocationHandle(IPhysicalSurfaceAllocation.class).get();
+		final var extent = surfaceAllocation.getExtent();
 
 		try (final var stack = MemoryStack.stackPush())
 		{

@@ -21,7 +21,7 @@ public class SampledImageDescriptorAllocation implements IDescriptorAllocation
 	private final VkImageDescriptor vkDescriptor;
 
 	public SampledImageDescriptorAllocation(SampledImageDescriptor descriptor,
-											@InjectDependency(type = ISampledImageAllocation.class) ISampledImageAllocation imageAllocation)
+											@InjectDependency(index = 0) ISampledImageAllocation imageAllocation)
 	{
 		final var sampledImage = descriptor.getSampledImage();
 		final var initialLayout = sampledImage.getImage().getInitialLayout();
@@ -34,7 +34,7 @@ public class SampledImageDescriptorAllocation implements IDescriptorAllocation
 											 descriptor.getShaderStages());
 	}
 
-	@UpdateDependency(type = ISampledImageAllocation.class)
+	@UpdateDependency(index = 0)
 	private void update(ISampledImageAllocation imageAllocation)
 	{
 		vkDescriptor.updateSamplerPtr(imageAllocation.getSamplerPtr());

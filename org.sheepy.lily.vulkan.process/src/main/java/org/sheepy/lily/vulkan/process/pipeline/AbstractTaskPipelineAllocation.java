@@ -2,16 +2,10 @@ package org.sheepy.lily.vulkan.process.pipeline;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
-import org.sheepy.lily.core.api.adapter.ILilyEObject;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
-import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.core.api.notification.util.ModelStructureObserver;
+import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.core.device.IVulkanContext;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAllocation;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
@@ -21,40 +15,23 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractTaskPipelineAdapter<T extends IVulkanContext> implements IAllocableAdapter<T>,
-																					   IPipelineAdapter
+public abstract class AbstractTaskPipelineAllocation implements IRecordableAllocation
 {
-	private final ModelStructureObserver taskObserver = new ModelStructureObserver(List.of(ProcessPackage.Literals.TASK_PIPELINE__TASK_PKG,
-																						   ProcessPackage.Literals.TASK_PKG__TASKS),
-																				   this::addTask,
-																				   this::removeTask);
-
 	protected final AbstractPipeline pipeline;
 
 	private final List<TaskWrapper<?>> taskWrappers = new ArrayList<>();
 	private boolean recordNeeded = false;
-	private IAllocationConfigurator allocationConfig;
 
-	public AbstractTaskPipelineAdapter(AbstractPipeline pipeline)
+	protected AbstractTaskPipelineAllocation(AbstractPipeline pipeline, IObservatoryBuilder observatory)
 	{
 		this.pipeline = pipeline;
+		observatory.explore(ProcessPackage.Literals.TASK_PIPELINE__TASK_PKG)
+				   .explore(ProcessPackage.Literals.TASK_PKG__TASKS, IPipelineTask.class)
+				   .gather(this::addTask, this::removeTask);
+		observatory.listen(this::pipelineEnabledChange, ProcessPackage.ABSTRACT_PIPELINE__ENABLED);
 	}
 
-	@Override
-	public void configureAllocation(IAllocationConfigurator config, T context)
-	{
-		this.allocationConfig = config;
-		taskObserver.startObserve(pipeline);
-	}
-
-	@Dispose
-	public void dispose()
-	{
-		taskObserver.stopObserve(pipeline);
-	}
-
-	@NotifyChanged(featureIds = ProcessPackage.ABSTRACT_PIPELINE__ENABLED)
-	private void notifyChanged(Notification notification)
+	private void pipelineEnabledChange(Notification notification)
 	{
 		if (notification.getOldBooleanValue() != notification.getNewBooleanValue())
 		{
@@ -152,21 +129,11 @@ public abstract class AbstractTaskPipelineAdapter<T extends IVulkanContext> impl
 		return res;
 	}
 
-	private void addTask(ILilyEObject newValue)
+	private void addTask(IPipelineTask newTasks)
 	{
-		final var task = (IPipelineTask) newValue;
-		final int taskIndex = taskIndex(task);
-		taskWrappers.add(taskIndex, new TaskWrapper<>(task, pipeline.getStage()));
-
-		final var adapter = task.<IAllocableAdapter<? super T>>adaptGeneric(IAllocableAdapter.class);
-
-		if (adapter != null)
-		{
-			allocationConfig.addChildren(List.of(adapter));
-			allocationConfig.setDirty();
-		}
-
-		if (task.isEnabled())
+		final int taskIndex = taskIndex(newTasks);
+		taskWrappers.add(taskIndex, new TaskWrapper<>(newTasks, pipeline.getStage()));
+		if (newTasks.isEnabled())
 		{
 			recordNeeded = true;
 		}
@@ -186,19 +153,10 @@ public abstract class AbstractTaskPipelineAdapter<T extends IVulkanContext> impl
 		return index;
 	}
 
-	private void removeTask(ILilyEObject oldValue)
+	private void removeTask(IPipelineTask oldTask)
 	{
-		final var task = (IPipelineTask) oldValue;
-		taskWrappers.removeIf(wrapper -> wrapper.task == task);
-
-		final var adapter = task.<IAllocableAdapter<? super T>>adaptGeneric(IAllocableAdapter.class);
-		if (adapter != null)
-		{
-			allocationConfig.removeChildren(List.of(adapter));
-			allocationConfig.setDirty();
-		}
-
-		if (task.isEnabled())
+		taskWrappers.removeIf(wrapper -> wrapper.task == oldTask);
+		if (oldTask.isEnabled())
 		{
 			recordNeeded = true;
 		}

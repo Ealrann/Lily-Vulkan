@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.extra.graphic.rendering.task;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAllocation;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexProviderAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
@@ -12,7 +12,7 @@ import static org.lwjgl.vulkan.VK10.vkCmdDrawIndexed;
 
 @ModelExtender(scope = RenderIndexedDrawTask.class)
 @Adapter
-public class RenderIndexedDrawTaskAdapter implements IPipelineTaskAdapter<RenderIndexedDrawTask>
+public class RenderIndexedDrawTaskAdapter implements IPipelineTaskAllocation<RenderIndexedDrawTask>
 {
 	private int instanceCount;
 	private int indexCount;

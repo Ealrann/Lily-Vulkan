@@ -12,7 +12,8 @@ import org.sheepy.lily.vulkan.process.binding.task.ConfigureCompositeBufferBarri
 import org.sheepy.lily.vulkan.process.binding.task.ConfigurePrepareCompositeAdapter;
 import org.sheepy.lily.vulkan.process.cadence.SwapBindingsTaskAdapter;
 import org.sheepy.lily.vulkan.process.descriptor.DescriptorSetAllocation;
-import org.sheepy.lily.vulkan.process.pipeline.PipelineAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.CompositePipelineAllocation;
+import org.sheepy.lily.vulkan.process.pipeline.PipelineAllocation;
 import org.sheepy.lily.vulkan.process.pipeline.task.*;
 
 import java.util.List;
@@ -22,12 +23,12 @@ public class Extenders implements IExtenderProvider
 	@Override
 	public List<Class<? extends IExtender>> classifiers()
 	{
-		return List.of(PipelineBarrierAdapter.class,
+		return List.<Class<? extends IExtender>>of(PipelineBarrierAdapter.class,
 					   PushConstantBufferAdapter.class,
 					   DescriptorSetAllocation.class,
 					   BufferBarrierAdapter.class,
 					   ImageBarrierAdapter.class,
-					   PipelineAdapter.class,
+					   PipelineAllocation.class,
 					   BindDescriptorSetsAdapter.class,
 					   CompositeTaskAdapter.class,
 					   FlushTransferBufferTaskAdapter.class,
@@ -40,6 +41,7 @@ public class Extenders implements IExtenderProvider
 					   IndexConfigurationAdapter.class,
 					   ConfigureCompositeBufferBarrierAdapter.class,
 					   ConfigurePrepareCompositeAdapter.class,
-					   ConfigureBufferDescriptorAdapter.class);
+					   ConfigureBufferDescriptorAdapter.class,
+					   CompositePipelineAllocation.class);
 	}
 }

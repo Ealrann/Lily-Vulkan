@@ -16,7 +16,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.VkInputStateDescriptor.VkAttributeDescription;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.VkInputStateDescriptor.VkVertexBinding;
-import org.sheepy.lily.vulkan.process.pipeline.AbstractVkPipelineAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.AbstractVkPipelineAllocation;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.ArrayList;
@@ -24,14 +24,14 @@ import java.util.List;
 
 @ModelExtender(scope = GraphicsPipeline.class)
 @Adapter
-public class GraphicsPipelineAdapter extends AbstractVkPipelineAdapter<ProcessContext>
+public class GraphicsPipelineAllocation extends AbstractVkPipelineAllocation<ProcessContext>
 {
 	protected final GraphicsPipeline pipeline;
 
 	private VkGraphicsPipeline vkGraphicsPipeline;
 	private IAllocationConfigurator config;
 
-	public GraphicsPipelineAdapter(GraphicsPipeline pipeline)
+	public GraphicsPipelineAllocation(GraphicsPipeline pipeline)
 	{
 		super(pipeline);
 		this.pipeline = pipeline;

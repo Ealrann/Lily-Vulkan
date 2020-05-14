@@ -1,14 +1,15 @@
 package org.sheepy.lily.vulkan.api.pipeline;
 
-import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.adapter.IAdapter;
+import org.sheepy.lily.core.api.allocation.IAllocation;
+import org.sheepy.lily.vulkan.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
-public interface IPipelineTaskAdapter<T extends IPipelineTask> extends IAdapter
+public interface IPipelineTaskAdapter<T extends IPipelineTask> extends IAllocation
 {
 	default void update(T task, int index)
-	{}
+	{
+	}
 
 	default boolean needRecord(T task, int index)
 	{
@@ -21,11 +22,5 @@ public interface IPipelineTaskAdapter<T extends IPipelineTask> extends IAdapter
 	{
 		// null means use the pipeline default stage
 		return null;
-	}
-
-	public static interface IRecordContext
-	{
-		MemoryStack stack();
-		int index();
 	}
 }

@@ -21,7 +21,7 @@ public class SamplerDescriptorAllocation implements IDescriptorAllocation
 	private final VkImageDescriptor vkDescriptor;
 
 	public SamplerDescriptorAllocation(SamplerDescriptor descriptor,
-									   @InjectDependency(type = ISamplerAllocation.class) ISamplerAllocation samplerAllocation)
+									   @InjectDependency(index = 0) ISamplerAllocation samplerAllocation)
 	{
 		vkDescriptor = new VkImageDescriptor(0,
 											 0,
@@ -33,7 +33,7 @@ public class SamplerDescriptorAllocation implements IDescriptorAllocation
 		vkDescriptor.updateViewPtr(samplerAllocation.getViewPtr());
 	}
 
-	@UpdateDependency(type = ISamplerAllocation.class)
+	@UpdateDependency(index = 0)
 	private void update(ISamplerAllocation samplerAllocation)
 	{
 		vkDescriptor.updateSamplerPtr(samplerAllocation.getSamplerPtr());

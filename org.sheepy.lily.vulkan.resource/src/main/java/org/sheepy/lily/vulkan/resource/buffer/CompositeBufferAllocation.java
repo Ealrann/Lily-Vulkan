@@ -39,7 +39,7 @@ public final class CompositeBufferAllocation implements ICompositeBufferAllocati
 
 	public CompositeBufferAllocation(CompositeBuffer compositeBuffer,
 									 ExecutionContext context,
-									 @InjectDependency(type = BufferPartAllocation.class) List<BufferPartAllocation> partAllocations)
+									 @InjectDependency(index = 0) List<BufferPartAllocation> partAllocations)
 	{
 		this.compositeBuffer = compositeBuffer;
 		this.context = context;

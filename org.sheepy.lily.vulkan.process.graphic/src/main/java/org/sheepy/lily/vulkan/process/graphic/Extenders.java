@@ -8,7 +8,8 @@ import org.sheepy.lily.vulkan.process.graphic.frame.FramebufferAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalSurfaceAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainAllocation;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAllocation;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.SubpassRecordableAllocation;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.task.*;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.viewport.CinemaViewportAdapter;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.viewport.ViewportAdapter;
@@ -29,11 +30,11 @@ public class Extenders implements IExtenderProvider
 	public List<Class<? extends IExtender>> classifiers()
 	{
 		return List.of(GraphicProcessAdapter.class,
-					   GraphicsPipelineAdapter.class,
+					   GraphicsPipelineAllocation.class,
 					   DepthAttachmentAllocation.class,
 					   SwapImageBarrierAdapter.class,
-					   BlitToSwapImageAdapter.class,
-					   BlitTaskAdapter.class,
+					   BlitToSwapImageAllocation.class,
+					   BlitTaskAllocation.class,
 					   DrawIndexedAdapter.class,
 					   DrawAdapter.class,
 					   BindIndexBufferAdapter.class,
@@ -52,6 +53,7 @@ public class Extenders implements IExtenderProvider
 					   RenderPassAllocation.class,
 					   ImageViewAllocation.class,
 					   FramebufferAllocation.class,
-					   GraphicExecutionRecorders.class);
+					   GraphicExecutionRecorders.class,
+					   SubpassRecordableAllocation.class);
 	}
 }

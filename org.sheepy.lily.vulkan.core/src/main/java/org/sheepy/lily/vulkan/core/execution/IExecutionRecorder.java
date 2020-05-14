@@ -12,5 +12,5 @@ public interface IExecutionRecorder extends IExecutionPlayer
 
 	boolean isDirty();
 	void setDirty(boolean dirty);
-	void record(List<ECommandStage> stages);
+	void record(List<IRecordable> recordables, List<ECommandStage> stages);
 }

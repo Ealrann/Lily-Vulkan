@@ -11,6 +11,7 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.game.api.window.IWindow;
 import org.sheepy.lily.vulkan.api.graphic.IPhysicalSurfaceAllocation;
 import org.sheepy.lily.vulkan.api.graphic.VkColorDomain;
+import org.sheepy.lily.vulkan.core.device.LogicalDevice;
 import org.sheepy.lily.vulkan.core.device.capabilities.Capabilities;
 import org.sheepy.lily.vulkan.core.device.capabilities.ColorDomains;
 import org.sheepy.lily.vulkan.core.execution.queue.VulkanQueue;
@@ -26,9 +27,7 @@ import org.sheepy.lily.vulkan.process.process.ProcessContext;
 @Allocation(context = ProcessContext.class)
 public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocation, IAllocation
 {
-	private final Runnable sizeListener = () -> setDirty(true);
-	private final Runnable surfaceDeprecationListener = () -> setDirty(true);
-	private final ISurfaceListener surfaceListener = () -> setDirty(true);
+	private final ISurfaceListener dirtyListener = this::setDirty;
 	private final VkColorDomain colorDomain;
 	private final Vector2ic extent;
 
@@ -37,19 +36,20 @@ public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocati
 	private final VkSurface surface;
 
 	private boolean dirty = false;
+	private final LogicalDevice logicalDevice;
 
 	private PhysicalSurfaceAllocation(PhysicalSurface physicalSurface, ProcessContext context)
 	{
-		final var logicalDevice = context.getLogicalDevice();
+		logicalDevice = context.getLogicalDevice();
 		final var vkPhysicalDevice = context.getVkPhysicalDevice();
 		final var vkInstance = context.getVkInstance();
 		final var window = context.getWindow();
 		surface = window.createSurface(vkInstance);
-		surface.addListener(surfaceListener);
+		surface.addListener(dirtyListener);
 
 		presentQueue = logicalDevice.borrowPresentQueue(surface);
-		window.listenNoParam(sizeListener, IWindow.Features.Size);
-		window.listen(surfaceDeprecationListener, IWindow.Features.SurfaceDeprecated);
+		window.listenNoParam(dirtyListener, IWindow.Features.Size);
+		window.listen(dirtyListener, IWindow.Features.SurfaceDeprecated);
 
 		capabilities = new Capabilities(vkPhysicalDevice, surface);
 		extent = computeExtent(window);
@@ -91,13 +91,11 @@ public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocati
 	@Free
 	public void free(ProcessContext context)
 	{
-		final var logicalDevice = context.getLogicalDevice();
 		final var window = context.getWindow();
 
-		logicalDevice.returnQueue(presentQueue);
-		window.sulkNoParam(sizeListener, IWindow.Features.Size);
-		window.sulk(surfaceDeprecationListener, IWindow.Features.SurfaceDeprecated);
-		surface.removeListener(surfaceListener);
+		window.sulkNoParam(dirtyListener, IWindow.Features.Size);
+		window.sulk(dirtyListener, IWindow.Features.SurfaceDeprecated);
+		surface.removeListener(dirtyListener);
 
 		capabilities.free();
 		surface.free();
@@ -161,9 +159,10 @@ public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocati
 	}
 
 	@Override
-	public void setDirty(boolean dirty)
+	public void setDirty()
 	{
-		this.dirty = dirty;
+		this.dirty = true;
+		logicalDevice.returnQueue(presentQueue);
 	}
 
 	public VulkanQueue getPresentQueue()

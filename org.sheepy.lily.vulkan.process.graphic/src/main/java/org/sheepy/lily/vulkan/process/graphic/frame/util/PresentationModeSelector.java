@@ -8,7 +8,6 @@ import org.sheepy.vulkan.model.enumeration.EPresentMode;
 
 import java.util.List;
 
-import static org.lwjgl.vulkan.KHRSurface.VK_PRESENT_MODE_FIFO_KHR;
 import static org.lwjgl.vulkan.KHRSurface.vkGetPhysicalDeviceSurfacePresentModesKHR;
 
 public class PresentationModeSelector
@@ -59,7 +58,7 @@ public class PresentationModeSelector
 		}
 	}
 
-	public int findBestMode(ProcessContext context, VkSurface surface)
+	public EPresentMode findBestMode(ProcessContext context, VkSurface surface)
 	{
 		final var device = context.getVkPhysicalDevice();
 		final var stack = context.stack();
@@ -73,7 +72,7 @@ public class PresentationModeSelector
 		Logger.check(vkGetPhysicalDeviceSurfacePresentModesKHR(device, surface.ptr, pPresentModeCount, pPresentModes),
 					 FAILED_GET_MODES);
 
-		int swapchainPresentMode = VK_PRESENT_MODE_FIFO_KHR;
+		EPresentMode swapchainPresentMode = EPresentMode.FIFO;
 		int rankFound = Integer.MAX_VALUE;
 		for (int i = 0; i < presentModeCount; i++)
 		{
@@ -84,7 +83,7 @@ public class PresentationModeSelector
 			if (rank < rankFound)
 			{
 				rankFound = rank;
-				swapchainPresentMode = modeValue;
+				swapchainPresentMode = mode;
 			}
 		}
 

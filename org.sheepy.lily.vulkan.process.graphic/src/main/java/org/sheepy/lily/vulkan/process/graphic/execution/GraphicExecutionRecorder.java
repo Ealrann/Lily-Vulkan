@@ -3,14 +3,17 @@ package org.sheepy.lily.vulkan.process.graphic.execution;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordable;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAllocation;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.process.execution.AbstractExecutionRecorder;
 import org.sheepy.lily.vulkan.process.execution.Submission;
-import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+
+import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.VK_SUBPASS_CONTENTS_INLINE;
 import static org.lwjgl.vulkan.VK10.vkCmdNextSubpass;
@@ -25,14 +28,13 @@ public final class GraphicExecutionRecorder extends AbstractExecutionRecorder
 	private int subpassCount;
 
 	public GraphicExecutionRecorder(GraphicProcess process,
-									ProcessContext context,
 									GraphicCommandBuffer commandBuffer,
 									Submission submission,
 									PresentSubmission presentSubmission,
 									VkSemaphore presentSemaphore,
 									int index)
 	{
-		super(commandBuffer, context, submission, index);
+		super(commandBuffer, submission, index);
 		this.process = process;
 		this.presentSubmission = presentSubmission;
 		this.presentSemaphore = presentSemaphore;
@@ -51,10 +53,8 @@ public final class GraphicExecutionRecorder extends AbstractExecutionRecorder
 	}
 
 	@Override
-	protected void recordCommand(ProcessContext graphicContext, RecordContext recordContext)
+	protected void recordCommand(final List<IRecordable> pipelines, RecordContext recordContext)
 	{
-		final var graphicProcess = (GraphicProcess) graphicContext.getProcess();
-		final var subpasses = graphicProcess.getSubpasses();
 		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 		final var stage = recordContext.stage;
 		int current = 0;
@@ -66,11 +66,10 @@ public final class GraphicExecutionRecorder extends AbstractExecutionRecorder
 				vkCmdNextSubpass(vkCommandBuffer, VK_SUBPASS_CONTENTS_INLINE);
 			}
 
-			for (int i = 0; i < subpasses.size(); i++)
+			for (int i = 0; i < pipelines.size(); i++)
 			{
-				final var subpass = subpasses.get(i);
+				final var subpass = (Subpass) pipelines.get(i);
 				final int subpassIndex = subpass.getSubpassIndex();
-
 				if (subpassIndex == current)
 				{
 					record(subpass, recordContext);
@@ -112,7 +111,8 @@ public final class GraphicExecutionRecorder extends AbstractExecutionRecorder
 			for (int i = 0; i < pipelines.size(); i++)
 			{
 				final var pipeline = pipelines.get(i);
-				record(recordContext, pipeline);
+				final var recordable = pipeline.allocationHandle(IRecordableAllocation.class).get();
+				recordable.record(recordContext);
 			}
 		}
 	}

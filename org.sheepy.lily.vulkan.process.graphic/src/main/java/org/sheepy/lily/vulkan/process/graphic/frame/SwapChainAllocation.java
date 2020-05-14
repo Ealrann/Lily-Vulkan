@@ -51,7 +51,7 @@ public final class SwapChainAllocation implements ISwapChainAllocation, IAllocat
 
 	public SwapChainAllocation(SwapchainConfiguration configuration,
 							   ProcessContext context,
-							   @InjectDependency(type = PhysicalSurfaceAllocation.class) PhysicalSurfaceAllocation surfaceAllocation)
+							   @InjectDependency(index = 0) PhysicalSurfaceAllocation surfaceAllocation)
 	{
 		assert surfaceAllocation.isPresentable();
 
@@ -69,7 +69,7 @@ public final class SwapChainAllocation implements ISwapChainAllocation, IAllocat
 		final var stack = context.stack();
 		final var imageCount = surfaceAllocation.bestSupportedImageCount(requiredImageCount);
 		final int swapImageUsage = loadSwapChainUsage(swapchainConfiguration);
-		final int targetPresentMode = selectPresentMode(context, swapchainConfiguration, surface);
+		final var targetPresentMode = selectPresentMode(context, swapchainConfiguration, surface);
 
 		final var createInfo = VkSwapchainCreateInfoKHR.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR);
@@ -98,7 +98,7 @@ public final class SwapChainAllocation implements ISwapChainAllocation, IAllocat
 
 		createInfo.preTransform(capabilities.currentTransform());
 		createInfo.compositeAlpha(VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR);
-		createInfo.presentMode(targetPresentMode);
+		createInfo.presentMode(targetPresentMode.getValue());
 		createInfo.clipped(true);
 		createInfo.oldSwapchain(VK_NULL_HANDLE);
 
@@ -154,18 +154,18 @@ public final class SwapChainAllocation implements ISwapChainAllocation, IAllocat
 		return res;
 	}
 
-	private void printSwapChainInformations(int presentMode)
+	private void printSwapChainInformations(EPresentMode presentMode)
 	{
-		final String presentationName = EPresentMode.get(presentMode).getName();
+		final String presentationName = presentMode.getName();
 		final String message = String.format("Swapchain created:\n\t- PresentationMode: %s\n\t- Number of images: %d",
 											 presentationName,
 											 swapImageCount);
 		System.out.println(message);
 	}
 
-	private static int selectPresentMode(ProcessContext context,
-										 SwapchainConfiguration configuration,
-										 VkSurface surface)
+	private static EPresentMode selectPresentMode(ProcessContext context,
+												  SwapchainConfiguration configuration,
+												  VkSurface surface)
 	{
 		final var selector = new PresentationModeSelector(configuration);
 		return selector.findBestMode(context, surface);

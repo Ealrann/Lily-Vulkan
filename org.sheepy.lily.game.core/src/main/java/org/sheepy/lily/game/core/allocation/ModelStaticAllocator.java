@@ -29,7 +29,9 @@ public final class ModelStaticAllocator implements IAllocable<IAllocationContext
 
 	public void update(final IAllocationContext context)
 	{
-		target.adapt(IAllocationManager.class).maintains(context);
+		final var allocationManager = target.adapt(IAllocationManager.class);
+		allocationManager.ensureAllocation(context);
+		allocationManager.cleanup(context);
 	}
 
 	private void freeInternal(final IAllocationContext context)

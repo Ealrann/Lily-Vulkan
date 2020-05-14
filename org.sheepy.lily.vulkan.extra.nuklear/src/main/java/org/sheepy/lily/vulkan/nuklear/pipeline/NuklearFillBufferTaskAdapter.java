@@ -6,8 +6,8 @@ import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAllocation;
+import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageArrayDescriptor;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFillBufferTask;
@@ -24,8 +24,8 @@ import static org.lwjgl.nuklear.Nuklear.*;
 
 @ModelExtender(scope = NuklearFillBufferTask.class)
 @Adapter
-public final class NuklearFillBufferTaskAdapter implements IPipelineTaskAdapter<NuklearFillBufferTask>,
-														   IAllocableAdapter<IGraphicContext>
+public final class NuklearFillBufferTaskAdapter implements IPipelineTaskAllocation<NuklearFillBufferTask>,
+														   IAllocableAdapter<IProcessContext>
 {
 	private static final String NK_CONVERT_FAILED = "nk_convert failed: ";
 
@@ -53,7 +53,7 @@ public final class NuklearFillBufferTaskAdapter implements IPipelineTaskAdapter<
 	}
 
 	@Override
-	public void allocate(IGraphicContext context)
+	public void allocate(IProcessContext context)
 	{
 		final var pipeline = ModelUtil.findParent(task, GraphicsPipeline.class);
 		final var descriptorSet = pipeline.getDescriptorPool().getDescriptorSets().get(0);
@@ -61,7 +61,7 @@ public final class NuklearFillBufferTaskAdapter implements IPipelineTaskAdapter<
 	}
 
 	@Override
-	public void free(IGraphicContext context)
+	public void free(IProcessContext context)
 	{
 	}
 

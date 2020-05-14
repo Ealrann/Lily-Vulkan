@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.pipeline.task;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.resource.buffer.ICompositeBufferAllocation;
 import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
@@ -9,7 +10,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @ModelExtender(scope = PrepareCompositeTransfer.class)
 @Adapter(singleton = true)
-public class PrepareCompositeTransferAdapter implements IPipelineTaskAdapter<PrepareCompositeTransfer>
+public final class PrepareCompositeTransferAdapter implements IPipelineTaskAdapter<PrepareCompositeTransfer>
 {
 	@Override
 	public void update(PrepareCompositeTransfer task, int index)

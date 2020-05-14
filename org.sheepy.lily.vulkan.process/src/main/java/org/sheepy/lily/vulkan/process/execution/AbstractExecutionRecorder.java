@@ -5,10 +5,6 @@ import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.execution.*;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext.IExecutionIdleListener;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
-import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
-import org.sheepy.lily.vulkan.model.process.CompositePipeline;
-import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.ArrayList;
@@ -19,17 +15,12 @@ public abstract class AbstractExecutionRecorder implements IExecutionRecorder
 	protected final AbstractCommandBuffer commandBuffer;
 	protected final Submission submission;
 	protected final int index;
-	private final ProcessContext context;
 
 	private boolean dirty = true;
 
-	public AbstractExecutionRecorder(AbstractCommandBuffer commandBuffer,
-									 final ProcessContext context,
-									 Submission submission,
-									 int index)
+	public AbstractExecutionRecorder(AbstractCommandBuffer commandBuffer, Submission submission, int index)
 	{
 		this.commandBuffer = commandBuffer;
-		this.context = context;
 		this.submission = submission;
 		this.index = index;
 	}
@@ -41,7 +32,7 @@ public abstract class AbstractExecutionRecorder implements IExecutionRecorder
 	}
 
 	@Override
-	public final void record(List<ECommandStage> stages)
+	public final void record(List<IRecordable> pipelines, List<ECommandStage> stages)
 	{
 		//TODO remove this wait...
 		waitIdle();
@@ -57,7 +48,7 @@ public abstract class AbstractExecutionRecorder implements IExecutionRecorder
 				final var context = new RecordContext(vkCommandBuffer, stage, index, stack);
 
 				commandBuffer.start(stage);
-				recordCommand(this.context, context);
+				recordCommand(pipelines, context);
 				commandBuffer.end(stage);
 				listeners.addAll(context.getExecutionIdleListeners());
 			}
@@ -70,30 +61,6 @@ public abstract class AbstractExecutionRecorder implements IExecutionRecorder
 		submission.setExecutionIdleListeners(listeners);
 
 		setDirty(false);
-	}
-
-	protected static void record(RecordContext recordContext, final AbstractPipeline pipeline)
-	{
-		if (pipeline instanceof CompositePipeline)
-		{
-			final var compositePipeline = (CompositePipeline) pipeline;
-			final int repeat = compositePipeline.getRepeat();
-			for (int i = 0; i < repeat; i++)
-			{
-				for (final var subPipeline : compositePipeline.getPipelines())
-				{
-					record(recordContext, subPipeline);
-				}
-			}
-		}
-		else
-		{
-			final var adapter = pipeline.adapt(IPipelineAdapter.class);
-			if (adapter != null)
-			{
-				adapter.record(recordContext);
-			}
-		}
 	}
 
 	public boolean isBusy()
@@ -143,6 +110,5 @@ public abstract class AbstractExecutionRecorder implements IExecutionRecorder
 		this.dirty = dirty;
 	}
 
-	protected abstract void recordCommand(ProcessContext processContext, RecordContext recordContext);
-
+	protected abstract void recordCommand(List<IRecordable> pipelines, RecordContext recordContext);
 }

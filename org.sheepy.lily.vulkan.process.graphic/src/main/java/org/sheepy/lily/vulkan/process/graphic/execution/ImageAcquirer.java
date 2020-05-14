@@ -50,7 +50,7 @@ public final class ImageAcquirer
 			{
 				Logger.check(res, FAILED_ACQUIRE_IMAGE, true);
 			}
-			surfaceManager.setDirty(true);
+			surfaceManager.setDirty();
 			return null;
 		}
 	}

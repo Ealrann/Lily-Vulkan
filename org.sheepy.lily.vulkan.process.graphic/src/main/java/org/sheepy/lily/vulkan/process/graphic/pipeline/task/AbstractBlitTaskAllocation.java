@@ -2,10 +2,8 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 
 import org.joml.Vector2ic;
 import org.lwjgl.vulkan.VkImageBlit;
-import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.util.ModelDependencyInjector;
-import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.vulkan.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
@@ -13,15 +11,13 @@ import org.sheepy.lily.vulkan.core.resource.image.IVkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.*;
 import org.sheepy.vulkan.model.image.ImageFactory;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<AbstractBlitTask>,
-														 IAllocableAdapter<ProcessContext>
+public abstract class AbstractBlitTaskAllocation implements IPipelineTaskAdapter<AbstractBlitTask>
 {
 	private static final int FORMAT = EFormat.R8G8B8A8_UNORM_VALUE;
 	private static final IVkImageBuilder clearTextureBuilder = new VkImageBuilder(1, 1, FORMAT).usage(
@@ -30,43 +26,17 @@ public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<Ab
 																							   .mipLevels(1)
 																							   .copyImmutable();
 
-	private final AbstractBlitTask blitTask;
-	private final ModelDependencyInjector dependencyInjector;
+	private final long srcImagePtr;
+	private final VkImageBlit.Buffer clearRegions;
+	private final VkImageBlit.Buffer region;
+	private final VkImage clearTexture;
 
-	private long srcImagePtr;
-	private VkImageBlit.Buffer region;
-	private VkImage clearTexture;
-	private VkImageBlit.Buffer clearRegions;
-
-	public AbstractBlitTaskAdapter(AbstractBlitTask blitTask)
-	{
-		this.blitTask = blitTask;
-		dependencyInjector = new ModelDependencyInjector(blitTask,
-														 GraphicPackage.Literals.ABSTRACT_BLIT_TASK__SRC_IMAGE);
-	}
-
-	@Override
-	public void configureAllocation(IAllocationConfigurator config, ProcessContext context)
-	{
-		dependencyInjector.start(config);
-	}
-
-	@Dispose
-	private void dispose()
-	{
-		dependencyInjector.stop();
-	}
-
-	@Override
-	public void allocate(ProcessContext context)
+	public AbstractBlitTaskAllocation(AbstractBlitTask blitTask, ProcessContext context, IVkImageAllocation srcImage)
 	{
 		final var dstSize = getDstImageSize();
+		final var imageInfo = srcImage.getVkImage();
 
-		final var srcImage = blitTask.getSrcImage();
-		final var imageAdapter = srcImage.allocationHandle(IVkImageAllocation.class).get();
-		final var imageInfo = imageAdapter.getVkImage();
-
-		srcImagePtr = imageAdapter.getImagePtr();
+		srcImagePtr = srcImage.getImagePtr();
 
 		final int viewWidth = dstSize.x();
 		final int viewHeight = dstSize.y();
@@ -93,7 +63,7 @@ public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<Ab
 				fillRegion(clearRegions.get(0), 1, 1, 0, 0, 1, viewHeight);
 			}
 		}
-		if (dstHeight < viewHeight)
+		else if (dstHeight < viewHeight)
 		{
 			yOffset = (viewHeight - dstHeight) / 2;
 
@@ -108,6 +78,10 @@ public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<Ab
 				clearRegions = VkImageBlit.calloc(1);
 				fillRegion(clearRegions.get(0), 1, 1, 0, 0, viewWidth, 1);
 			}
+		}
+		else
+		{
+			clearRegions = null;
 		}
 
 		region = VkImageBlit.calloc(1);
@@ -138,18 +112,25 @@ public abstract class AbstractBlitTaskAdapter implements IPipelineTaskAdapter<Ab
 			builder.initialLayout(initialLayout);
 			clearTexture = builder.build(context);
 		}
+		else
+		{
+			clearTexture = null;
+		}
 	}
 
 	@Override
+	public void update(final AbstractBlitTask task, final int index)
+	{
+
+	}
+
+	@Dispose
 	public void free(ProcessContext context)
 	{
 		region.free();
 
 		if (clearTexture != null) clearTexture.free(context);
 		if (clearRegions != null) clearRegions.free();
-
-		clearTexture = null;
-		clearRegions = null;
 	}
 
 	@Override

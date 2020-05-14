@@ -4,11 +4,12 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.ModelUtil;
+import org.sheepy.lily.vulkan.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IConstantBufferUpdater;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
-import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAdapter;
+import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAllocation;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
@@ -39,7 +40,7 @@ public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConst
 	public void record(PushConstantBuffer pushConstant, IRecordContext context)
 	{
 		final var pipeline = ModelUtil.findParent(pushConstant, AbstractPipeline.class);
-		final var vkPipelineAdapter = pipeline.adaptNotNull(IVkPipelineAdapter.class);
+		final var vkPipelineAdapter = pipeline.allocationHandle(IVkPipelineAllocation.class).get();
 
 		if (updater != null)
 		{

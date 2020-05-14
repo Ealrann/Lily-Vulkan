@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.process.compute;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.IExtenderProvider;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeExecutionRecorders;
-import org.sheepy.lily.vulkan.process.compute.pipeline.ComputePipelineAdapter;
+import org.sheepy.lily.vulkan.process.compute.pipeline.ComputePipelineAllocation;
 import org.sheepy.lily.vulkan.process.compute.pipeline.DispatchTaskAdapter;
 import org.sheepy.lily.vulkan.process.compute.process.ComputeProcessAdapter;
 
@@ -16,7 +16,7 @@ public class Extenders implements IExtenderProvider
 	{
 		return List.of(ComputeExecutionRecorders.class,
 					   ComputeProcessAdapter.class,
-					   ComputePipelineAdapter.class,
+					   ComputePipelineAllocation.class,
 					   DispatchTaskAdapter.class);
 	}
 }

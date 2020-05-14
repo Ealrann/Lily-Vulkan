@@ -36,9 +36,9 @@ public final class FramebufferAllocation implements IFramebufferManager, IAlloca
 	private final List<Long> framebuffersPtrs;
 
 	private FramebufferAllocation(ProcessContext context,
-								  @InjectDependency(type = PhysicalSurfaceAllocation.class) PhysicalSurfaceAllocation surfaceAllocation,
-								  @InjectDependency(type = ImageViewAllocation.class) ImageViewAllocation imageViewsAllocation,
-								  @InjectDependency(type = RenderPassAllocation.class) RenderPassAllocation renderPassAllocation)
+								  @InjectDependency(index = 0) PhysicalSurfaceAllocation surfaceAllocation,
+								  @InjectDependency(index = 2) ImageViewAllocation imageViewsAllocation,
+								  @InjectDependency(index = 3) RenderPassAllocation renderPassAllocation)
 	{
 		final var stack = context.stack();
 		final var vkDevice = context.getVkDevice();

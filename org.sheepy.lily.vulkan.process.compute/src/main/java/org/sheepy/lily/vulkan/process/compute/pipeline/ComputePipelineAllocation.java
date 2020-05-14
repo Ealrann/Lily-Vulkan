@@ -1,30 +1,23 @@
 package org.sheepy.lily.vulkan.process.compute.pipeline;
 
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.up.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.vulkan.core.resource.IShaderAllocation;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
-import org.sheepy.lily.vulkan.process.pipeline.AbstractVkPipelineAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.AbstractVkPipelineAllocation;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 @ModelExtender(scope = ComputePipeline.class)
-@Adapter
-public final class ComputePipelineAdapter extends AbstractVkPipelineAdapter<ProcessContext>
+@Allocation(context = ProcessContext.class)
+public final class ComputePipelineAllocation extends AbstractVkPipelineAllocation<ProcessContext>
 {
-	private final ComputePipeline pipeline;
+	private final VkComputePipeline vkPipeline;
 
-	private VkComputePipeline vkPipeline = null;
-
-	public ComputePipelineAdapter(ComputePipeline pipeline)
+	public ComputePipelineAllocation(ComputePipeline pipeline, IObservatoryBuilder observatory, ProcessContext context)
 	{
-		super(pipeline);
-		this.pipeline = pipeline;
-	}
-
-	@Override
-	public void allocate(ProcessContext context)
-	{
-		super.allocate(context);
+		super(pipeline, observatory, context);
 
 		final var shader = pipeline.getShader();
 		final var shaderAdapter = shader.allocationHandle(IShaderAllocation.class).get();
@@ -36,13 +29,10 @@ public final class ComputePipelineAdapter extends AbstractVkPipelineAdapter<Proc
 		vkPipeline.allocate(context);
 	}
 
-	@Override
+	@Free
 	public void free(ProcessContext context)
 	{
 		vkPipeline.free(context);
-		vkPipeline = null;
-
-		super.free(context);
 	}
 
 	@Override

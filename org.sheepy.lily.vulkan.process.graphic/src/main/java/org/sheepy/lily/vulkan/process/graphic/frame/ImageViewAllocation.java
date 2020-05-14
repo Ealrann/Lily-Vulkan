@@ -29,8 +29,8 @@ public final class ImageViewAllocation implements IImageViewManager, IAllocation
 	private final List<VkImageView> vkImageViews;
 
 	private ImageViewAllocation(ProcessContext context,
-								@InjectDependency(type = PhysicalSurfaceAllocation.class) PhysicalSurfaceAllocation surfaceAllocation,
-								@InjectDependency(type = SwapChainAllocation.class) SwapChainAllocation swapChainAllocation)
+								@InjectDependency(index = 0) PhysicalSurfaceAllocation surfaceAllocation,
+								@InjectDependency(index = 1) SwapChainAllocation swapChainAllocation)
 	{
 		final var device = context.getVkDevice();
 		final var colorFormat = surfaceAllocation.getColorDomain().format;

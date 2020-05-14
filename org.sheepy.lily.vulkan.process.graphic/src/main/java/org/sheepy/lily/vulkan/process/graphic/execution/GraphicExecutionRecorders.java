@@ -5,7 +5,9 @@ import org.sheepy.lily.core.api.allocation.up.annotation.*;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicExecutionRecorders;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAllocation;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
@@ -18,6 +20,7 @@ import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalSurfaceAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainAllocation;
 import org.sheepy.lily.vulkan.process.graphic.renderpass.RenderPassAllocation;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,25 +32,36 @@ import java.util.List;
 @AllocationChild(features = GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS, type = RenderPassAllocation.class)
 @AllocationChild(features = GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS, type = ImageViewAllocation.class)
 @AllocationChild(features = GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION, type = FramebufferAllocation.class)
+@AllocationChild(parent = ComputeProcess.class, features = GraphicPackage.GRAPHIC_PROCESS__SUBPASSES, type = IRecordableAllocation.class)
 @AllocationDependency(features = GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE, type = PhysicalSurfaceAllocation.class)
 @AllocationDependency(features = GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION, type = SwapChainAllocation.class)
 @AllocationDependency(features = GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS, type = RenderPassAllocation.class)
 @AllocationDependency(features = GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS, type = ImageViewAllocation.class)
 @AllocationDependency(features = GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION, type = FramebufferAllocation.class)
+@AllocationDependency(parent = ComputeProcess.class, features = GraphicPackage.GRAPHIC_PROCESS__SUBPASSES, type = IRecordableAllocation.class)
 public final class GraphicExecutionRecorders extends ExecutionRecorders implements IGraphicExecutionRecorders,
 																				   IAllocation
 {
+	private static final List<ECommandStage> stages = List.of(ECommandStage.TRANSFER,
+															  ECommandStage.COMPUTE,
+															  ECommandStage.PRE_RENDER,
+															  ECommandStage.RENDER,
+															  ECommandStage.POST_RENDER);
+
 	private final List<GraphicExecutionRecorder> recorders;
 	private final VkSemaphore imageAvailableSemaphore;
 	private final ImageAcquirer imageAcquirer;
 
 	private GraphicExecutionRecorders(GraphicConfiguration configuration,
 									  ProcessContext context,
-									  @InjectDependency(type = PhysicalSurfaceAllocation.class) PhysicalSurfaceAllocation surfaceAllocation,
-									  @InjectDependency(type = SwapChainAllocation.class) SwapChainAllocation swapChainAllocation,
-									  @InjectDependency(type = RenderPassAllocation.class) RenderPassAllocation renderPassAllocation,
-									  @InjectDependency(type = FramebufferAllocation.class) FramebufferAllocation framebufferAllocation)
+									  @InjectDependency(index = 0) PhysicalSurfaceAllocation surfaceAllocation,
+									  @InjectDependency(index = 1) SwapChainAllocation swapChainAllocation,
+									  @InjectDependency(index = 2) RenderPassAllocation renderPassAllocation,
+									  @InjectDependency(index = 4) FramebufferAllocation framebufferAllocation,
+									  @InjectDependency(index = 5) List<IRecordableAllocation> recordables)
 	{
+		super(recordables, stages);
+
 		final var process = (GraphicProcess) configuration.eContainer();
 		imageAvailableSemaphore = new VkSemaphore(context.getVkDevice());
 
@@ -73,7 +87,7 @@ public final class GraphicExecutionRecorders extends ExecutionRecorders implemen
 	}
 
 	@Override
-	public Integer prepareNextExecution()
+	public Integer acquire()
 	{
 		return imageAcquirer.acquireNextImage();
 	}
@@ -169,7 +183,6 @@ public final class GraphicExecutionRecorders extends ExecutionRecorders implemen
 																index,
 																presentSemaphore);
 			return new GraphicExecutionRecorder(process,
-												context,
 												commandBuffer,
 												submission,
 												presentSubmission,

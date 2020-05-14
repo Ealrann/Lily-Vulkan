@@ -11,7 +11,6 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.List;
 
@@ -55,17 +54,9 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter
 																								 ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
 																								 ProcessPackage.Literals.VK_PIPELINE__DESCRIPTOR_POOL);
 
-	private static final List<ECommandStage> stages = List.of(ECommandStage.TRANSFER, ECommandStage.COMPUTE);
-
 	public ComputeProcessAdapter(ComputeProcess process)
 	{
 		super(process);
-	}
-
-	@Override
-	protected List<ECommandStage> getStages()
-	{
-		return stages;
 	}
 
 	@Override

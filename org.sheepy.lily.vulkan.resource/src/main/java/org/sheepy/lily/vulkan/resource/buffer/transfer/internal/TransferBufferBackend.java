@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.resource.buffer.transfer.internal;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter.IRecordContext;
+import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAllocation.IRecordContext;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation.IMemoryTicket.EReservationStatus;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;

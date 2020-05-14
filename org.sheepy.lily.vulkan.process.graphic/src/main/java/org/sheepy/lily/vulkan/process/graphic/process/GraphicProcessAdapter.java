@@ -15,7 +15,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.List;
 
@@ -74,12 +73,6 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter
 																								 ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
 																								 ProcessPackage.Literals.VK_PIPELINE__DESCRIPTOR_POOL);
 
-	private static final List<ECommandStage> stages = List.of(ECommandStage.TRANSFER,
-															  ECommandStage.COMPUTE,
-															  ECommandStage.PRE_RENDER,
-															  ECommandStage.RENDER,
-															  ECommandStage.POST_RENDER);
-
 	public final SubpassManager subpassManager;
 
 	public GraphicProcessAdapter(GraphicProcess process)
@@ -109,12 +102,6 @@ public final class GraphicProcessAdapter extends AbstractProcessAdapter
 	{
 		super.stop(vulkanContext);
 		subpassManager.stop(vulkanContext);
-	}
-
-	@Override
-	protected List<ECommandStage> getStages()
-	{
-		return stages;
 	}
 
 	@Override

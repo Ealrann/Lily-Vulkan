@@ -28,7 +28,7 @@ public final class DescriptorPoolAllocation implements IAllocation
 	private boolean hasChanged = false;
 
 	public DescriptorPoolAllocation(ExecutionContext context,
-									@InjectDependency(type = IDescriptorSetAllocation.class) List<IDescriptorSetAllocation> descriptorSets)
+									@InjectDependency(index = 0) List<IDescriptorSetAllocation> descriptorSets)
 	{
 		final var vkDevice = context.getVkDevice();
 		final int descriptorSetCount = descriptorSets.size();
